@@ -275,7 +275,8 @@
 #'   x = df,
 #'   statistic = "t",
 #'   meta.analytic.effect = TRUE,
-#'   bf.message = TRUE
+#'   bf.message = TRUE,
+#'   k = 3
 #' )
 #'
 #' # -------------- getting model summary ------------------------------

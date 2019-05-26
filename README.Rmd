@@ -571,6 +571,30 @@ ggstatsplot::grouped_ggscatterstats(
 )
 ```
 
+**Using `ggscatterstats()` in R Notebooks or Rmarkdown**
+
+If you try including a `ggscatterstats()` plot inside an `R Notebook` or
+`Rmarkdown` code chunk, you'll notice that the plot doesn't get output. In
+order to get a `ggscatterstats()` to show up in these contexts, you need
+to save the `ggscatterstats` plot as a variable in one code chunk, and
+explicitly print it using the `grid` package in another chunk, like
+this:
+
+```{r ggscatterstats2, eval = FALSE}
+# include the following code in your code chunk inside R Notebook or Markdown
+grid::grid.newpage()
+grid::grid.draw(
+  ggstatsplot::ggscatterstats(
+    data = ggstatsplot::movies_wide,
+    x = budget,
+    y = rating,
+    marginal = TRUE,
+    messages = FALSE
+  )
+)
+```
+
+
 ### Summary of tests
 
 Following tests are carried out for each type of analyses. Additionally, the

@@ -40,6 +40,9 @@ additional vignettes that are only available on the website for this package:
   - `ggbetweenstats`:
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>)
     
+  - `ggwithinstats`:
+    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>)
+    
   - `ggcorrmat`:
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html>)
     
@@ -76,6 +79,9 @@ additional vignettes that are only available on the website for this package:
   - Examples illustrating how to use functional programming package like `purrr`
     to extend `ggstatsplot` functionality-
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>)
+    
+  - Frequently Asked Questions (FAQ)-
+    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/faq.html>)
 
   - Session information:
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>)

@@ -211,8 +211,11 @@
 <p>There is indeed a small, but significant, positive correlation between the amount of money studio invests in a movie and the ratings given by the audiences.</p>
 <p>The <code>type</code> (of test) argument also accepts the following abbreviations: <code>"p"</code> (for <em>parametric</em>/pearson’s), <code>"np"</code> (for <em>nonparametric</em>/spearman), <code>"r"</code> (for <em>robust</em>).</p>
 <p><strong>Important</strong>: In contrast to all other functions in this package, the <code>ggscatterstats</code> function returns object that is <strong>not</strong> further modifiable with <code>ggplot2</code>. This can be avoided by not plotting the marginal distributions (<code>marginal = FALSE</code>). Currently trying to find a workaround this problem.</p>
-<p><strong>Using <code><a href="../../reference/ggscatterstats.html">ggscatterstats()</a></code> in R Notebooks or Rmarkdown</strong></p>
-<p>If you try including a <code><a href="../../reference/ggscatterstats.html">ggscatterstats()</a></code> plot inside an R Notebook or Rmarkdown code chunk, you’ll notice that the plot doesn’t get output. In order to get a <code><a href="../../reference/ggscatterstats.html">ggscatterstats()</a></code> to show up in an these contexts, you need to save the ggscatterstats plot as a variable in one code chunk, and explicitly print it using the <code>grid</code> package in another chunk, like this:</p>
+</div>
+<div id="using-ggscatterstats-in-r-notebooks-or-rmarkdown" class="section level2">
+<h2 class="hasAnchor">
+<a href="#using-ggscatterstats-in-r-notebooks-or-rmarkdown" class="anchor"></a>Using <code><a href="../../reference/ggscatterstats.html">ggscatterstats()</a></code> in R Notebooks or Rmarkdown</h2>
+<p>If you try including a <code><a href="../../reference/ggscatterstats.html">ggscatterstats()</a></code> plot inside an <code>R Notebook</code> or <code>Rmarkdown</code> code chunk, you’ll notice that the plot doesn’t get output. In order to get a <code><a href="../../reference/ggscatterstats.html">ggscatterstats()</a></code> to show up in these contexts, you need to save the <code>ggscatterstats</code> plot as a variable in one code chunk, and explicitly print it using the <code>grid</code> package in another chunk, like this:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># include the following code in your code chunk inside R Notebook or Markdown</span></a>
 <a class="sourceLine" id="cb3-2" title="2">grid<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/grid/grid.newpage.html">grid.newpage</a></span>()</a>
 <a class="sourceLine" id="cb3-3" title="3">grid<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/grid/grid.draw.html">grid.draw</a></span>(</a>
@@ -378,6 +381,7 @@
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#correlation-plot-with-ggscatterstats">Correlation plot with <code>ggscatterstats</code></a></li>
+      <li><a href="#using-ggscatterstats-in-r-notebooks-or-rmarkdown">Using <code><a href="--/--/reference/ggscatterstats-html">ggscatterstats()</a></code> in R Notebooks or Rmarkdown</a></li>
       <li><a href="#grouped-analysis-with-grouped_ggscatterstats">Grouped analysis with <code>grouped_ggscatterstats</code></a></li>
       <li><a href="#grouped-analysis-with-ggscatterstats-purrr">Grouped analysis with <code>ggscatterstats</code> + <code>purrr</code></a></li>
       <li><a href="#summary-of-tests">Summary of tests</a></li>

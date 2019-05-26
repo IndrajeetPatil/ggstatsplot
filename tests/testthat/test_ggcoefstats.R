@@ -948,7 +948,7 @@ testthat::test_that(
           ") = ",
           "0.174",
           ", ",
-          italic("d")["mean"],
+          italic("d")["mean"]^"posterior",
           " = ",
           "0.110",
           ", CI"["95%"],
