@@ -59,7 +59,7 @@ Imports:
     purrr (>= 0.3.2),
     purrrlyr (>= 0.0.5),
     rcompanion (>= 2.1.7),
-    rlang (>= 0.3.2),
+    rlang (>= 0.3.4),
     scales (>= 1.0.0),
     sjstats (>= 0.17.4),
     stats,

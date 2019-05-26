@@ -102,6 +102,9 @@
       <a href="../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
+      <a href="../articles/web_only/faq.html">Frequently asked questions</a>
+    </li>
+    <li>
       <a href="../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
     </li>
     <li>
@@ -266,14 +269,14 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     ),
     <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, -<span class='fl'>5L</span>),
     <span class='kw'>class</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"tbl_df"</span>, <span class='st'>"tbl"</span>, <span class='st'>"data.frame"</span>)
-  ))</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 5 x 3</span><span>
+  ))</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 5 x 3</span><span>
 #&gt;   study estimate std.error
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> 1        0.382    0.046</span><span style='text-decoration: underline;'>6</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span> 2        0.781    0.033</span><span style='text-decoration: underline;'>0</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span> 3        0.426    0.036</span><span style='text-decoration: underline;'>3</span><span>
-#&gt; </span><span style='color: #555555;'>4</span><span> 4        0.558    0.048</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #555555;'>5</span><span> 5        0.956    0.062</span><span style='text-decoration: underline;'>2</span><span></div><div class='input'>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 1        0.382    0.046</span><span style='text-decoration: underline;'>6</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 2        0.781    0.033</span><span style='text-decoration: underline;'>0</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 3        0.426    0.036</span><span style='text-decoration: underline;'>3</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> 4        0.558    0.048</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> 5        0.956    0.062</span><span style='text-decoration: underline;'>2</span><span></div><div class='input'>
 <span class='co'># getting bayes factor in favor of null hypothesis</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/bf_meta_message.html'>bf_meta_message</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>df</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>sample</span> <span class='kw'>=</span> <span class='fl'>50</span>)</div><div class='output co'>#&gt; ### Bayesian Random-Effects Meta-Analysis ###
 #&gt;  
@@ -287,7 +290,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 #&gt;          Mean    Median        SD      q025      q975 HPD95lower HPD95upper
 #&gt; d   0.4914392 0.5151928 0.1610280 0.1008463 0.7456840  0.1473189  0.7747273
 #&gt; tau 0.3395064 0.2951255 0.1756484 0.1465943 0.7942745  0.1150910  0.6743084</div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("In favor of null: ", "log"["e"], 
-#&gt;     "(BF"["01"], ") = ", "-2.680", ", ", italic("d")["mean"], 
+#&gt;     "(BF"["01"], ") = ", "-2.680", ", ", italic("d")["mean"]^"posterior", 
 #&gt;     " = ", "0.491", ", CI"["95%"], " [", "0.147", ", ", "0.775", 
 #&gt;     "]"))</div></span></pre>
   </div>

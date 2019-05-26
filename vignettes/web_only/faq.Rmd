@@ -1,0 +1,58 @@
+---
+title: "Frequently asked questions"
+author: "Indrajeet Patil"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    fig_width: 6
+    fig.align: 'center'
+    fig.asp: 0.618
+    dpi: 300
+    toc: true
+    warning: FALSE
+    message: FALSE
+vignette: >
+  %\VignetteIndexEntry{Frequently asked questions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  dpi = 300,
+  out.width = "100%",
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# FAQ
+
+Here are some of the common questions that have been asked in GitHub issues and
+on social media platforms.  
+
+## I just want the plot, not the statistical details. How can I turn them off?
+
+All functions in `ggstatsplot` that display results from statistical analysis in
+a subtitle have argument `results.subtitle`. Setting it to `FALSE` will return
+only the plot.
+
+## What statistical test was carried out?
+
+In case you are not sure what was the statistical test that produced the results
+shown in the subtitle of the plot, the best way to get that information is to
+either look at the documentation for the function used or check out the
+associated vignette. For example, if you used the function `ggbetweenstats`, the
+details of the tests can be seen at the [summary table](https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html#summary-of-tests).
+Such summary tables are available for each function.
+
+# Suggestions
+
+If you find any bugs or have any suggestions/remarks, please file an issue on
+GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+
+# Session Information
+
+For details, see-
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>
+
