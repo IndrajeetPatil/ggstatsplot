@@ -102,6 +102,9 @@
       <a href="../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
+      <a href="../articles/web_only/faq.html">Frequently asked questions</a>
+    </li>
+    <li>
       <a href="../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
     </li>
     <li>
@@ -246,7 +249,7 @@ the default plot specification, e.g. <code><a href='https://rdrr.io/pkg/ggplot2/
   <span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/geom_boxplot.html'>geom_boxplot</a></span>()
 
 <span class='co'># get a dataframe with means</span>
-<span class='no'>mean_dat</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/mean_labeller.html'>mean_labeller</a></span>(
+<span class='no'>mean_dat</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/mean_labeller.html'>mean_labeller</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Species</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>,
@@ -255,7 +258,7 @@ the default plot specification, e.g. <code><a href='https://rdrr.io/pkg/ggplot2/
 )
 
 <span class='co'># add means</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/mean_ggrepel.html'>mean_ggrepel</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/mean_ggrepel.html'>mean_ggrepel</a></span>(
   <span class='kw'>plot</span> <span class='kw'>=</span> <span class='no'>p</span>,
   <span class='kw'>mean.data</span> <span class='kw'>=</span> <span class='no'>mean_dat</span>,
   <span class='kw'>mean.color</span> <span class='kw'>=</span> <span class='st'>"darkgreen"</span>

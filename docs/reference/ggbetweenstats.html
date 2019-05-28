@@ -106,6 +106,9 @@ the plot as a subtitle." />
       <a href="../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
+      <a href="../articles/web_only/faq.html">Frequently asked questions</a>
+    </li>
+    <li>
       <a href="../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
     </li>
     <li>
@@ -547,7 +550,7 @@ incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)<
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
 
 <span class='co'># simple function call with the defaults</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html'>ggbetweenstats</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/ggbetweenstats.html'>ggbetweenstats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>am</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>mpg</span>,
@@ -555,7 +558,7 @@ incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)<
   <span class='kw'>caption</span> <span class='kw'>=</span> <span class='st'>"Transmission (0 = automatic, 1 = manual)"</span>,
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Shapiro-Wilk Normality Test for </span><span style='color: #BBBB00;'>mpg</span><span style='color: #0000BB;'> : p-value = </span><span style='color: #BBBB00;'>0.123</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Bartlett's test for homogeneity of variances for factor </span><span style='color: #BBBB00;'>am</span><span style='color: #0000BB;'> : p-value = </span><span style='color: #BBBB00;'>0.072</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-1.png' alt='' width='700' height='433' /></div></span><div class='input'><span class='co'># more detailed function call</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html'>ggbetweenstats</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/ggbetweenstats.html'>ggbetweenstats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/r/datasets/morley.html'>morley</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Expt</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Speed</span>,

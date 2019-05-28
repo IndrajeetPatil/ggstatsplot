@@ -63,6 +63,9 @@
       <a href="../../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
+      <a href="../../articles/web_only/faq.html">Frequently asked questions</a>
+    </li>
+    <li>
       <a href="../../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
     </li>
     <li>
@@ -132,7 +135,7 @@
       <h1>combine_plots</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-05-25</h4>
+            <h4 class="date">2019-05-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/combine_plots.Rmd"><code>vignettes/web_only/combine_plots.Rmd</code></a></small>
       <div class="hidden name"><code>combine_plots.Rmd</code></div>
@@ -152,7 +155,7 @@
 <a href="#combining-multiple-plots-example-1-using-purrr" class="anchor"></a>Combining multiple plots: Example #1 using <code>purrr</code>
 </h2>
 <p>The full power of <code>ggstatsplot</code> can be leveraged with a functional programming package like <a href="http://purrr.tidyverse.org/"><code>purrr</code></a> which can replace many <code>for</code> loops, is more succinct, and easier to read. Consider <code>purrr</code> as your first choice for combining multiple plots.</p>
-<p>An example using the <code>iris</code> dataset is provided below. Imagine that we want to separately plot the linear relationship between sepal length and sepal width for each of the three species but combine them into one consistent plot with common labeling and as one plot. Rather than call <code>ggscatterstats</code> three times and gluing the results or using <code>cowplot</code> directly, we’ll create a <code>tibble</code> called <code>plots</code> using <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map</a></code> then feed that to <code>combine_plots</code> to get our combined plot.</p>
+<p>An example using the <code>iris</code> dataset is provided below. Imagine that we want to separately plot the linear relationship between sepal length and sepal width for each of the three species but combine them into one consistent plot with common labeling and as one plot. Rather than call <code>ggscatterstats</code> three times and gluing the results or using <code>cowplot</code> directly, we’ll create a <code>tibble</code> called <code>plots</code> using <code><a href="https://rdrr.io/pkg/purrr/man/map.html">purrr::map</a></code> then feed that to <code>combine_plots</code> to get our combined plot.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb1-2" title="2"></a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="co"># for reproducibility</span></a>
@@ -160,15 +163,15 @@
 <a class="sourceLine" id="cb1-5" title="5"></a>
 <a class="sourceLine" id="cb1-6" title="6"><span class="co"># creating a list column with `ggstatsplot` plots</span></a>
 <a class="sourceLine" id="cb1-7" title="7">plots &lt;-<span class="st"> </span>datasets<span class="op">::</span>iris <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">.data =</span> ., <span class="dt">Species2 =</span> Species) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># just creates a copy of this variable</span></a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="dt">.data =</span> ., Species) <span class="op">%&gt;%</span><span class="st">                </span></a>
-<a class="sourceLine" id="cb1-10" title="10"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/nest.html">nest</a></span>(<span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st">                        </span><span class="co"># a nested dataframe with list column called `data`</span></a>
-<a class="sourceLine" id="cb1-11" title="11"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(                                   <span class="co"># creating a new list column of ggstatsplot outputs</span></a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span>(<span class="dt">.data =</span> ., <span class="dt">Species2 =</span> Species) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># just creates a copy of this variable</span></a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span>(<span class="dt">.data =</span> ., Species) <span class="op">%&gt;%</span><span class="st">                </span></a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/tidyr/man/nest.html">nest</a></span>(<span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st">                        </span><span class="co"># a nested dataframe with list column called `data`</span></a>
+<a class="sourceLine" id="cb1-11" title="11"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span>(                                   <span class="co"># creating a new list column of ggstatsplot outputs</span></a>
 <a class="sourceLine" id="cb1-12" title="12">    <span class="dt">.data =</span> .,</a>
 <a class="sourceLine" id="cb1-13" title="13">    <span class="dt">plot =</span> data <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-14" title="14"><span class="st">      </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span>(</a>
+<a class="sourceLine" id="cb1-14" title="14"><span class="st">      </span>purrr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/purrr/man/map.html">map</a></span>(</a>
 <a class="sourceLine" id="cb1-15" title="15">        <span class="dt">.x =</span> .,</a>
-<a class="sourceLine" id="cb1-16" title="16">        <span class="dt">.f =</span> <span class="op">~</span><span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggscatterstats.html">ggscatterstats</a></span>(</a>
+<a class="sourceLine" id="cb1-16" title="16">        <span class="dt">.f =</span> <span class="op">~</span><span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggscatterstats.html">ggscatterstats</a></span>(</a>
 <a class="sourceLine" id="cb1-17" title="17">          <span class="dt">data =</span> .,</a>
 <a class="sourceLine" id="cb1-18" title="18">          <span class="dt">x =</span> Sepal.Length,</a>
 <a class="sourceLine" id="cb1-19" title="19">          <span class="dt">y =</span> Sepal.Width,</a>
@@ -195,7 +198,7 @@
 <a class="sourceLine" id="cb1-40" title="40"><span class="co">#&gt; 3 virginica  &lt;tibble [50 x 5]&gt; &lt;ggExtrPl&gt;</span></a>
 <a class="sourceLine" id="cb1-41" title="41"></a>
 <a class="sourceLine" id="cb1-42" title="42"><span class="co"># creating a grid with cowplot</span></a>
-<a class="sourceLine" id="cb1-43" title="43">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb1-43" title="43">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb1-44" title="44">  <span class="dt">plotlist =</span> plots<span class="op">$</span>plot,                           <span class="co"># list column containing all ggstatsplot objects</span></a>
 <a class="sourceLine" id="cb1-45" title="45">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
 <a class="sourceLine" id="cb1-46" title="46">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
@@ -225,7 +228,7 @@
 <a class="sourceLine" id="cb2-5" title="5"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb2-6" title="6"></a>
 <a class="sourceLine" id="cb2-7" title="7"><span class="co"># let's have a look at the structure of the data</span></a>
-<a class="sourceLine" id="cb2-8" title="8">dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="dt">x =</span> gapminder<span class="op">::</span>gapminder)</a>
+<a class="sourceLine" id="cb2-8" title="8">dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/reexports.html">glimpse</a></span>(<span class="dt">x =</span> gapminder<span class="op">::</span>gapminder)</a>
 <a class="sourceLine" id="cb2-9" title="9"><span class="co">#&gt; Observations: 1,704</span></a>
 <a class="sourceLine" id="cb2-10" title="10"><span class="co">#&gt; Variables: 6</span></a>
 <a class="sourceLine" id="cb2-11" title="11"><span class="co">#&gt; $ country   &lt;fct&gt; Afghanistan, Afghanistan, Afghanistan, Afghanistan, ...</span></a>
@@ -237,11 +240,11 @@
 <a class="sourceLine" id="cb2-17" title="17"></a>
 <a class="sourceLine" id="cb2-18" title="18"><span class="co"># creating a list of plots</span></a>
 <a class="sourceLine" id="cb2-19" title="19">plots &lt;-<span class="st"> </span>plyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/plyr/man/dlply.html">dlply</a></span>(</a>
-<a class="sourceLine" id="cb2-20" title="20">  <span class="dt">.data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(gapminder<span class="op">::</span>gapminder, </a>
+<a class="sourceLine" id="cb2-20" title="20">  <span class="dt">.data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(gapminder<span class="op">::</span>gapminder, </a>
 <a class="sourceLine" id="cb2-21" title="21">                        year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span>),</a>
 <a class="sourceLine" id="cb2-22" title="22">  <span class="dt">.variables =</span> .(continent),</a>
 <a class="sourceLine" id="cb2-23" title="23">  <span class="dt">.fun =</span> <span class="cf">function</span>(data)</a>
-<a class="sourceLine" id="cb2-24" title="24">    ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggscatterstats.html">ggscatterstats</a></span>(</a>
+<a class="sourceLine" id="cb2-24" title="24">    ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggscatterstats.html">ggscatterstats</a></span>(</a>
 <a class="sourceLine" id="cb2-25" title="25">      <span class="dt">data =</span> data,</a>
 <a class="sourceLine" id="cb2-26" title="26">      <span class="dt">x =</span> gdpPercap,</a>
 <a class="sourceLine" id="cb2-27" title="27">      <span class="dt">y =</span> lifeExp,</a>
@@ -256,7 +259,7 @@
 <a class="sourceLine" id="cb2-36" title="36">)</a>
 <a class="sourceLine" id="cb2-37" title="37"></a>
 <a class="sourceLine" id="cb2-38" title="38"><span class="co"># combining individual plots</span></a>
-<a class="sourceLine" id="cb2-39" title="39">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb2-39" title="39">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb2-40" title="40">  <span class="dt">plotlist =</span> plots,</a>
 <a class="sourceLine" id="cb2-41" title="41">  <span class="dt">title.text =</span> <span class="st">"Relationship between GDP (per capita) and life expectancy"</span>,</a>
 <a class="sourceLine" id="cb2-42" title="42">  <span class="dt">nrow =</span> <span class="dv">2</span></a>
@@ -270,13 +273,13 @@
 <p><code>ggcoefstats</code> will do most of the work, including the title, subtitle, and caption. But we want to add at the bottom an annotation to show the formula we are using for our regression. <code>combine_plots</code> allows us to add <code>sub.text =</code> to accomplish that task as shown in the resulting plot.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb3-2" title="2"></a>
-<a class="sourceLine" id="cb3-3" title="3">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb3-3" title="3">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb3-4" title="4">  <span class="co"># preparing the plot with ggstatsplot function</span></a>
 <a class="sourceLine" id="cb3-5" title="5">  <span class="co"># let's use only 20% of data to speed up the process</span></a>
-<a class="sourceLine" id="cb3-6" title="6">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb3-6" title="6">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggcoefstats.html">ggcoefstats</a></span>(</a>
 <a class="sourceLine" id="cb3-7" title="7">    <span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(</a>
 <a class="sourceLine" id="cb3-8" title="8">      <span class="dt">formula =</span> rating <span class="op">~</span><span class="st"> </span>stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span>(budget, <span class="dt">degree =</span> <span class="dv">3</span>),</a>
-<a class="sourceLine" id="cb3-9" title="9">      <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>movies_long, <span class="dt">size =</span> <span class="fl">0.2</span>),</a>
+<a class="sourceLine" id="cb3-9" title="9">      <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>movies_long, <span class="dt">size =</span> <span class="fl">0.2</span>),</a>
 <a class="sourceLine" id="cb3-10" title="10">      <span class="dt">na.action =</span> na.omit</a>
 <a class="sourceLine" id="cb3-11" title="11">    ),</a>
 <a class="sourceLine" id="cb3-12" title="12">    <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span>,</a>

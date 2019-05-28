@@ -40,6 +40,7 @@ Bayes factor message for random-effects meta-analysis
 }
 \examples{
 
+\dontrun{
 # setup
 set.seed(123)
 library(metaBMA)
@@ -70,4 +71,6 @@ library(metaBMA)
 
 # getting bayes factor in favor of null hypothesis
 ggstatsplot::bf_meta_message(data = df, k = 3, sample = 50)
+}
+
 }

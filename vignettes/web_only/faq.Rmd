@@ -46,6 +46,8 @@ associated vignette. For example, if you used the function `ggbetweenstats`, the
 details of the tests can be seen at the [summary table](https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html#summary-of-tests).
 Such summary tables are available for each function.
 
+
+
 # Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on

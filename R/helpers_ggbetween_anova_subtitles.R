@@ -599,22 +599,32 @@ subtitle_anova_robust <- function(data,
 #'
 #' @examples
 #' \dontrun{
+#' set.seed(123)
+#'
+#' # between-subjects ---------------------------------------
 #' # with defaults
-#' subtitle_anova_bayes(
+#' ggstatsplot::subtitle_anova_bayes(
 #'   data = ggplot2::msleep,
 #'   x = vore,
-#'   y = sleep_rem,
-#'   k = 2,
-#'   bf.prior = 0.8
+#'   y = sleep_rem
 #' )
 #'
 #' # modifying the defaults
-#' subtitle_anova_bayes(
+#' ggstatsplot::subtitle_anova_bayes(
 #'   data = ggplot2::msleep,
 #'   x = vore,
 #'   y = sleep_rem,
-#'   effsize.type = "partial_eta",
-#'   var.equal = TRUE
+#'   k = 3,
+#'   bf.prior = 0.8
+#' )
+#'
+#' # repeated measures ---------------------------------------
+#' ggstatsplot::subtitle_anova_bayes(
+#'   data = WRS2::WineTasting,
+#'   x = Wine,
+#'   y = Taste,
+#'   paired = TRUE,
+#'   k = 4
 #' )
 #' }
 #' @export
@@ -624,48 +634,9 @@ subtitle_anova_bayes <- function(data,
                                  x,
                                  y,
                                  paired = FALSE,
-                                 effsize.type = "unbiased",
-                                 partial = TRUE,
-                                 var.equal = FALSE,
                                  bf.prior = 0.707,
                                  k = 2,
                                  ...) {
-
-  # number of decimal places for degree of freedom
-  if (isTRUE(var.equal) || isTRUE(paired)) {
-    k.df <- 0
-  } else {
-    k.df <- k
-  }
-
-  # figuring out which effect size to use
-  effsize.type <- effsize_type_switch(effsize.type)
-
-  # some of the effect sizes don't work properly for paired designs
-  if (isTRUE(paired)) {
-    if (effsize.type == "unbiased") {
-      partial <- FALSE
-    } else {
-      partial <- TRUE
-    }
-  }
-
-  # preparing the subtitles with appropriate effect sizes
-  if (effsize.type == "unbiased") {
-    effsize <- "omega"
-    if (isTRUE(partial)) {
-      effsize.text <- quote(omega["p"]^2)
-    } else {
-      effsize.text <- quote(omega^2)
-    }
-  } else if (effsize.type == "biased") {
-    effsize <- "eta"
-    if (isTRUE(partial)) {
-      effsize.text <- quote(eta["p"]^2)
-    } else {
-      effsize.text <- quote(eta^2)
-    }
-  }
 
   # creating a dataframe
   data <-
@@ -700,80 +671,19 @@ subtitle_anova_bayes <- function(data,
 
     # sample size
     sample_size <- nrow(data)
-
-    # Welch's ANOVA run by default
-    stats_df <-
-      stats::oneway.test(
-        formula = y ~ x,
-        data = data,
-        subset = NULL,
-        na.action = na.omit,
-        var.equal = var.equal
-      )
-
-    # bayes factor results
-    bf_results <-
-      bf_oneway_anova(
-        data = data,
-        x = x,
-        y = y,
-        bf.prior = bf.prior,
-        caption = NULL,
-        output = "results"
-      )
-
-    # creating a standardized dataframe with effect size and its confidence
-    # intervals
-    effsize_df <- lm_effsize_standardizer(
-      object = stats::lm(
-        formula = y ~ x,
-        data = data,
-        na.action = na.omit
-      ),
-      effsize = effsize,
-      partial = partial
-    )
   }
 
-  # preparing the subtitle
+  # bayes factor results
   subtitle <-
-    base::substitute(
-      expr =
-        paste(
-          italic("F"),
-          "(",
-          df1,
-          ",",
-          df2,
-          ") = ",
-          estimate,
-          ", ",
-          effsize.text,
-          " = ",
-          effsize,
-          ", log"["e"],
-          "(BF"["10"],
-          ") = ",
-          bf,
-          ", ",
-          italic("r")["Cauchy"],
-          " = ",
-          bf_prior,
-          ", ",
-          italic("n"),
-          " = ",
-          n
-        ),
-      env = base::list(
-        effsize.text = effsize.text,
-        estimate = specify_decimal_p(x = stats_df$statistic[[1]], k = k),
-        df1 = stats_df$parameter[[1]],
-        df2 = specify_decimal_p(x = stats_df$parameter[[2]], k = k.df),
-        effsize = specify_decimal_p(x = effsize_df$estimate[[1]], k = k),
-        bf = specify_decimal_p(x = bf_results$log_e_bf10[[1]], k = 1),
-        bf_prior = specify_decimal_p(x = bf_results$bf.prior[[1]], k = 3),
-        n = sample_size
-      )
+    bf_oneway_anova(
+      data = data,
+      x = x,
+      y = y,
+      paired = paired,
+      bf.prior = bf.prior,
+      k = k,
+      caption = NULL,
+      output = "h1"
     )
 
   # return the subtitle

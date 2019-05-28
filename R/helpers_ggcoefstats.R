@@ -734,6 +734,7 @@ subtitle_meta_ggcoefstats <- function(data,
 #'
 #' @examples
 #'
+#' \dontrun{
 #' # setup
 #' set.seed(123)
 #' library(metaBMA)
@@ -764,6 +765,8 @@ subtitle_meta_ggcoefstats <- function(data,
 #'
 #' # getting bayes factor in favor of null hypothesis
 #' ggstatsplot::bf_meta_message(data = df, k = 3, sample = 50)
+#' }
+#'
 #' @export
 
 # function body

@@ -203,7 +203,7 @@
 #' ggstatsplot::ggcoefstats(x = mod, output = "augment")
 #'
 #' # -------------- with custom dataframe -----------------------------------
-#'
+#' \dontrun{
 #' # creating a dataframe
 #' df <-
 #'   structure(
@@ -278,7 +278,7 @@
 #'   bf.message = TRUE,
 #'   k = 3
 #' )
-#'
+#' }
 #' # -------------- getting model summary ------------------------------
 #'
 #' # model
@@ -887,8 +887,27 @@ ggcoefstats <- function(x,
     }
   }
 
-  # =================== meta-analytic subtitle ================================
+  # ============== meta-analysis plus Bayes factor =========================
 
+  # check if meta-analysis is to be run
+  if (isTRUE(meta.analytic.effect) && "std.error" %in% names(tidy_df)) {
+    if (dim(dplyr::filter(.data = tidy_df, is.na(std.error)))[[1]] > 0) {
+      # inform the user that skipping labels for the same reason
+      base::message(cat(
+        crayon::red("Error: "),
+        crayon::blue(
+          "At least one of the values in the `std.error` column is NA.\n",
+          "No meta-analysis will be carried out.\n"
+        ),
+        sep = ""
+      ))
+
+      # turn off meta-analysis
+      meta.analytic.effect <- FALSE
+    }
+  }
+
+  # running meta-analysis
   if (isTRUE(meta.analytic.effect)) {
     # result
     subtitle <-
@@ -1038,27 +1057,28 @@ ggcoefstats <- function(x,
     )
 
   # if needed, adding the vertical line
-  # either at 1 - if coefficients are exponentiated - or at 0
   if (isTRUE(vline)) {
+    # either at 1 - if coefficients are to be exponentiated - or at 0
+    if (isTRUE(exponentiate)) {
+      xintercept <- 1
+    } else {
+      xintercept <- 0
+    }
+
+    # adding the line geom
+    plot <- plot +
+      ggplot2::geom_vline(
+        xintercept = xintercept,
+        color = vline.color,
+        linetype = vline.linetype,
+        size = vline.size,
+        na.rm = TRUE
+      )
+
+    # logarithmic scale for exponent of coefficients
     if (isTRUE(exponentiate)) {
       plot <- plot +
-        ggplot2::geom_vline(
-          xintercept = 1,
-          color = vline.color,
-          linetype = vline.linetype,
-          size = vline.size,
-          na.rm = TRUE
-        ) +
         ggplot2::scale_x_log10()
-    } else {
-      plot <- plot +
-        ggplot2::geom_vline(
-          xintercept = 0,
-          color = vline.color,
-          linetype = vline.linetype,
-          size = vline.size,
-          na.rm = TRUE
-        )
     }
   }
 
@@ -1118,7 +1138,7 @@ ggcoefstats <- function(x,
       )
   }
 
-  # ========================== other plot labels =============================
+  # ========================== annotations =============================
 
   # adding other labels to the plot
   plot <- plot +

@@ -983,6 +983,40 @@ testthat::test_that(
   }
 )
 
+# dataframe as input (with NAs) --------------------------------------------
+
+testthat::test_that(
+  desc = "ggcoefstats works with data frames (with NAs)",
+  code = {
+    testthat::skip_on_cran()
+    set.seed(123)
+
+    # creating dataframe
+    df <- tibble::tribble(
+      ~term, ~statistic, ~estimate, ~std.error, ~p.value,
+      "level2", 0.158, 0.0665, 0.911, 0.875,
+      "level1", NA, 0.542, NA, NA,
+      "level3", 1.24, 0.045, 0.65, 0.001
+    )
+
+    # coefficient plot
+    p <- ggstatsplot::ggcoefstats(
+      x = df,
+      statistic = "t",
+      meta.analytic.effect = TRUE,
+      bf.message = TRUE,
+      messages = FALSE
+    )
+
+    # build the plot
+    pb <- ggplot2::ggplot_build(p)
+
+    # checking annotations
+    testthat::expect_null(p$labels$caption, NULL)
+    testthat::expect_null(p$labels$subtitle, NULL)
+  }
+)
+
 # check confidence intervals ----------------------------------------------
 
 testthat::test_that(

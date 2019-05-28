@@ -22,8 +22,9 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -96,6 +97,9 @@
     </li>
     <li>
       <a href="../articles/web_only/combine_plots.html">combine_plots</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/faq.html">Frequently asked questions</a>
     </li>
     <li>
       <a href="../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
@@ -177,6 +181,7 @@
 <p>BREAKING CHANGES</p>
 <ul>
 <li>Instead of having two separate functions that dealt with repeated measures (<code>subtitle_friedman_nonparametric</code>) and between-subjects (<code>subtitle_kw_nonparametric</code>), a single function <code>subtitle_anova_nonparametric</code> handles both of these designs with the <code>paired</code> argument determining which test is run.</li>
+<li>All functions that supported Bayes Factor analysis, setting <code>type = "bf"</code> will only return BF value and the scale used. Previously, this was a mix of parametric statistics and BF, which was confusing and often times misleading since these two types of analyses made different assumptions.</li>
 </ul>
 <p>NEW FEATURES</p>
 <ul>
@@ -293,7 +298,7 @@
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
-<li>Confidence interval for Kendall’s <em>W</em> is now computed using <code><a href="https://www.rdocumentation.org/packages/stats/topics/kruskal.test">stats::kruskal.test</a></code>. As a result, <code>PMCMRplus</code> removed from dependencies.</li>
+<li>Confidence interval for Kendall’s <em>W</em> is now computed using <code><a href="https://rdrr.io/r/stats/kruskal.test.html">stats::kruskal.test</a></code>. As a result, <code>PMCMRplus</code> removed from dependencies.</li>
 <li>
 <code>ggcoefstats</code> gains a <code>caption</code> argument. If <code>caption.summary</code> is set to <code>TRUE</code>, the specified caption will be added on top of the <code>caption.summary</code>.</li>
 </ul>
@@ -332,7 +337,7 @@
 <code>gghistostats</code> can now show both counts and proportions information on the same plot when <code>bar.measure</code> argument is set to <code>"mix"</code>.</li>
 <li>
 <code>ggcoefstats</code> works with tidy dataframes.</li>
-<li>The helper function <code>untable</code> has been deprecated in light of <code><a href="https://tidyr.tidyverse.org/reference/uncount.html">tidyr::uncount</a></code>, which does exactly what <code>untable</code> was doing. The author wasn’t aware of this function when <code>untable</code> was written.</li>
+<li>The helper function <code>untable</code> has been deprecated in light of <code><a href="https://rdrr.io/pkg/tidyr/man/uncount.html">tidyr::uncount</a></code>, which does exactly what <code>untable</code> was doing. The author wasn’t aware of this function when <code>untable</code> was written.</li>
 <li>All vignettes have been removed from <code>CRAN</code> to reduce the size of the package. They are now available on the package website: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/</a>.</li>
 <li>
 <code>subtitle_t_robust</code> function can now handle dependent samples and gains <code>paired</code> argument.</li>
@@ -435,7 +440,7 @@
 <code>gghistostats</code> has a new argument to remove color fill gradient.</li>
 <li>
 <code>ggbetweenstats</code> takes new argument <code>mean.ci</code> to show confidence intervals for the mean values.</li>
-<li>For <code>lmer</code> models, p-values are now computed using <code><a href="https://www.rdocumentation.org/packages/sjstats/topics/p_value">sjstats::p_value</a></code>. This removes <code>lmerTest</code> package from dependencies.</li>
+<li>For <code>lmer</code> models, p-values are now computed using <code><a href="https://rdrr.io/pkg/sjstats/man/p_value.html">sjstats::p_value</a></code>. This removes <code>lmerTest</code> package from dependencies.</li>
 <li>
 <code>sjstats</code> no longer suggests <code>apaTables</code> package to compute confidence intervals for partial eta- and omega-squared. Therefore, <code>apaTables</code> and <code>MBESS</code> are removed from dependencies.</li>
 <li>
@@ -450,7 +455,7 @@
 <ul>
 <li>New function: <code>ggcoefstats</code> for displaying model coefficients.</li>
 <li>All functions now have <code>ggtheme</code> argument that can be used to change the default theme, which has now been changed from <code>theme_grey()</code> to <code>theme_bw()</code>.</li>
-<li>The robust correlation is no longer <code><a href="https://www.rdocumentation.org/packages/MASS/topics/rlm">MASS::rlm</a></code>, but percentage bend correlation, as implemented in <code><a href="https://www.rdocumentation.org/packages/WRS2/topics/pbcor">WRS2::pbcor</a></code>. This was done to be consistent across different functions. <code>ggcorrmat</code> also uses percentage bend correlation as the robust correlation measure. This also means that <code>ggstatsplot</code> no longer imports <code>MASS</code> and <code>sfsmisc</code>.</li>
+<li>The robust correlation is no longer <code><a href="https://rdrr.io/pkg/MASS/man/rlm.html">MASS::rlm</a></code>, but percentage bend correlation, as implemented in <code><a href="https://rdrr.io/pkg/WRS2/man/pbcor.html">WRS2::pbcor</a></code>. This was done to be consistent across different functions. <code>ggcorrmat</code> also uses percentage bend correlation as the robust correlation measure. This also means that <code>ggstatsplot</code> no longer imports <code>MASS</code> and <code>sfsmisc</code>.</li>
 <li>The <code>data</code> argument is no longer <code>NULL</code> for all functions, except <code>gghistostats</code>. In other words, the user <strong>must</strong> provide a dataframe from which variables or formulas should be selected.</li>
 <li>All subtitles containing results now also show sample size information (<em>n</em>). To adjust for the inflated length of the subtitle, the default subtitle text size has been changed from <code>12</code> to <code>11</code>.</li>
 </ul>
@@ -463,7 +468,7 @@
 <code>ggbetweenstats</code> and <code>ggpiestats</code> now display sample sizes for each level of the groping factor by default. This behavior can be turned off by setting <code>sample.size.label</code> to <code>FALSE</code>.</li>
 <li>Three new datasets added: <code>Titanic_full</code>, <code>movies_wide</code>, <code>movies_long</code>.</li>
 <li>Added confidence interval for effect size for robust ANOVA.</li>
-<li>The 95% CI for Cramer’V computed using <code><a href="https://www.rdocumentation.org/packages/boot/topics/boot">boot::boot</a></code>. Therefore, the package no longer imports <code>DescTools</code>.</li>
+<li>The 95% CI for Cramer’V computed using <code><a href="https://rdrr.io/pkg/boot/man/boot.html">boot::boot</a></code>. Therefore, the package no longer imports <code>DescTools</code>.</li>
 <li>To be consistent across correlations covered, all correlations now show estimates for correlation coefficients, confidence intervals for the estimate, and <em>p</em>-values. Therefore, <em>t</em>-values and regression coefficients are no longer displayed for Pearson’s <em>r</em>.</li>
 <li>The <code>legend.title.margin</code> arguments for <code>gghistostats</code> and <code>ggcorrmat</code> now default to <code>FALSE</code>, since <code>ggplot2 3.0.0</code> has better legend title margins.</li>
 <li>
@@ -569,7 +574,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
 </div>
       </footer>
    </div>

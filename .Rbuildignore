@@ -8,6 +8,7 @@
 ^Rplots.pdf$
 ^README-.*\.png$
 ^CONDUCT\.md$
+^SECURITY\.md$
 ^cran-comments\.md$
 ^CODE_OF_CONDUCT\.md$
 ^SUPPORT\.md$

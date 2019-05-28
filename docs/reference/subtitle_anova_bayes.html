@@ -102,6 +102,9 @@
       <a href="../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
+      <a href="../articles/web_only/faq.html">Frequently asked questions</a>
+    </li>
+    <li>
       <a href="../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
     </li>
     <li>
@@ -180,9 +183,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>subtitle_anova_bayes</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"unbiased"</span>, <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>subtitle_anova_bayes</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -209,30 +211,6 @@ be carried out) or between-subjects (in which case one-way Kruskal–Wallis H
 test will be carried out). The default is <code>FALSE</code>.</p></td>
     </tr>
     <tr>
-      <th>effsize.type</th>
-      <td><p>Type of effect size needed for <em>parametric</em> tests. The
-argument can be <code>"biased"</code> (<code>"d"</code> for Cohen's <em>d</em> for <strong>t-test</strong>;
-<code>"partial_eta"</code> for partial eta-squared for <strong>anova</strong>) or <code>"unbiased"</code>
-(<code>"g"</code> Hedge's <em>g</em> for <strong>t-test</strong>; <code>"partial_omega"</code> for partial
-omega-squared for <strong>anova</strong>)).</p></td>
-    </tr>
-    <tr>
-      <th>partial</th>
-      <td><p>Logical that decides if partial eta-squared or omega-squared
-are returned (Default: <code>TRUE</code>). If <code>FALSE</code>, eta-squared or omega-squared
-will be returned. Valid only for objects of class <code>lm</code>, <code>aov</code>, <code>anova</code>, or
-<code>aovlist</code>.</p></td>
-    </tr>
-    <tr>
-      <th>var.equal</th>
-      <td><p>a logical variable indicating whether to treat the
-    variances in the samples as equal.  If <code>TRUE</code>, then a simple F
-    test for the equality of means in a one-way analysis of variance is
-    performed.  If <code>FALSE</code>, an approximate method of Welch (1951)
-    is used, which generalizes the commonly known 2-sample Welch test to
-    the case of arbitrarily many samples.</p></td>
-    </tr>
-    <tr>
       <th>bf.prior</th>
       <td><p>A number between 0.5 and 2 (default <code>0.707</code>), the prior width
 to use in calculating Bayes factors.</p></td>
@@ -250,28 +228,36 @@ to use in calculating Bayes factors.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># with defaults</span>
-<span class='fu'>subtitle_anova_bayes</span>(
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
+
+<span class='co'># between-subjects ---------------------------------------</span>
+<span class='co'># with defaults</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/subtitle_anova_bayes.html'>subtitle_anova_bayes</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ggplot2/man/msleep.html'>msleep</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.8</span>
-)</div><div class='output co'>#&gt; paste(italic("F"), "(", 3, ",", "11.10", ") = ", "2.63", ", ", 
-#&gt;     omega["p"]^2, " = ", "0.14", ", log"["e"], "(BF"["10"], ") = ", 
-#&gt;     "1.2", ", ", italic("r")["Cauchy"], " = ", "0.800", ", ", 
-#&gt;     italic("n"), " = ", 56L)</div><div class='input'>
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>
+)</div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("In favor of alternative: ", 
+#&gt;     "log"["e"], "(BF"["10"], ") = ", "1.23", ", ", italic("r")["Cauchy"], 
+#&gt;     " = ", "0.71"))</div><div class='input'>
 <span class='co'># modifying the defaults</span>
-<span class='fu'>subtitle_anova_bayes</span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/subtitle_anova_bayes.html'>subtitle_anova_bayes</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ggplot2/man/msleep.html'>msleep</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>,
-  <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"partial_eta"</span>,
-  <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; paste(italic("F"), "(", 3, ",", "52", ") = ", "4.14", ", ", eta["p"]^2, 
-#&gt;     " = ", "0.19", ", log"["e"], "(BF"["10"], ") = ", "1.2", 
-#&gt;     ", ", italic("r")["Cauchy"], " = ", "0.707", ", ", italic("n"), 
-#&gt;     " = ", 56L)</div></pre>
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.8</span>
+)</div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("In favor of alternative: ", 
+#&gt;     "log"["e"], "(BF"["10"], ") = ", "1.153", ", ", italic("r")["Cauchy"], 
+#&gt;     " = ", "0.800"))</div><div class='input'>
+<span class='co'># repeated measures ---------------------------------------</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/subtitle_anova_bayes.html'>subtitle_anova_bayes</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>WRS2</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/WRS2/man/WineTasting.html'>WineTasting</a></span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Wine</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Taste</span>,
+  <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("In favor of alternative: ", 
+#&gt;     "log"["e"], "(BF"["10"], ") = ", "2.12", ", ", italic("r")["Cauchy"], 
+#&gt;     " = ", "0.71"))</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
