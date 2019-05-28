@@ -487,7 +487,7 @@ ggcoefstats <- function(x,
 
   # glace is not supported for all models
   if (class(x)[[1]] %in% unsupported.mods) {
-    base::stop(base::message(cat(
+    stop(message(cat(
       crayon::red("Note: "),
       crayon::blue(
         "The object of class",
@@ -509,7 +509,7 @@ ggcoefstats <- function(x,
   if (!class(x)[[1]] %in% df.mods) {
     # if glance is not available, inform the user
     if (is.null(glance_df) && output == "plot") {
-      base::message(cat(
+      message(cat(
         crayon::green("Note: "),
         crayon::blue(
           "No model diagnostics information available for the object of class",
@@ -537,7 +537,7 @@ ggcoefstats <- function(x,
 
     # check for the two necessary columns
     if (!"estimate" %in% names(tidy_df)) {
-      base::stop(base::message(cat(
+      stop(message(cat(
         crayon::red("Error: "),
         crayon::blue(
           "The object of class",
@@ -559,13 +559,13 @@ ggcoefstats <- function(x,
 
     # check that statistic is specified
     if (purrr::is_null(statistic)) {
-      base::message(cat(
+      message(cat(
         crayon::red("Note"),
         crayon::blue(
           ": For the object of class",
           crayon::yellow(class(x)[[1]]),
-          ", the argument `statistic` is not specified ('t', 'z', or 'f'),\n",
-          "so no labels will be displayed.\n"
+          ", the argument `statistic` is not specified ('t', 'z', or 'f').\n",
+          "Statistical labels will therefore be skipped.\n"
         ),
         sep = ""
       ))
@@ -694,14 +694,14 @@ ggcoefstats <- function(x,
 
   # halt if there are repeated terms
   if (dim(term_df)[1] != 0L) {
-    base::message(cat(
+    message(cat(
       crayon::red("Error: "),
       crayon::blue(
-        "All elements in the column `term` should be unique."
+        "All elements in the column `term` should be unique.\n"
       ),
       sep = ""
     ))
-    base::return(base::invisible(dim(term_df)[1]))
+    return(invisible(dim(term_df)[1]))
   }
 
   # =================== p-value computation ==================================
@@ -745,7 +745,7 @@ ggcoefstats <- function(x,
     # inform the user that skipping labels for the same reason
     # (relevant only in case of a plot)
     if (output == "plot") {
-      base::message(cat(
+      message(cat(
         crayon::green("Note: "),
         crayon::blue(
           "No p-values and/or statistic available for regression coefficients from",
@@ -788,7 +788,7 @@ ggcoefstats <- function(x,
       conf.int <- FALSE
 
       # inform the user that skipping labels for the same reason
-      base::message(cat(
+      message(cat(
         crayon::green("Note: "),
         crayon::blue(
           "No confidence intervals available for regression coefficients from",
@@ -819,7 +819,7 @@ ggcoefstats <- function(x,
     tidy_df %<>%
       dplyr::filter(
         .data = .,
-        !base::grepl(
+        !grepl(
           pattern = "(Intercept)",
           x = term,
           ignore.case = TRUE
@@ -836,7 +836,7 @@ ggcoefstats <- function(x,
         .vars = dplyr::vars(dplyr::matches(
           match = "estimate|conf", ignore.case = TRUE
         )),
-        .funs = ~ base::exp(x = .)
+        .funs = ~ exp(x = .)
       )
   }
 
@@ -893,7 +893,7 @@ ggcoefstats <- function(x,
   if (isTRUE(meta.analytic.effect) && "std.error" %in% names(tidy_df)) {
     if (dim(dplyr::filter(.data = tidy_df, is.na(std.error)))[[1]] > 0) {
       # inform the user that skipping labels for the same reason
-      base::message(cat(
+      message(cat(
         crayon::red("Error: "),
         crayon::blue(
           "At least one of the values in the `std.error` column is NA.\n",
@@ -987,23 +987,23 @@ ggcoefstats <- function(x,
 
   # whether the term need to be arranged in any specified order
   if (sort != "none") {
-    tidy_df$term <- base::as.factor(tidy_df$term)
+    tidy_df$term <- as.factor(tidy_df$term)
     if (sort == "ascending") {
-      new_order <- base::order(tidy_df$estimate, decreasing = FALSE)
+      new_order <- order(tidy_df$estimate, decreasing = FALSE)
     } else {
-      new_order <- base::order(tidy_df$estimate, decreasing = TRUE)
+      new_order <- order(tidy_df$estimate, decreasing = TRUE)
     }
     tidy_df$term <- as.character(tidy_df$term)
     tidy_df$term <-
-      base::factor(x = tidy_df$term, levels = tidy_df$term[new_order])
+      factor(x = tidy_df$term, levels = tidy_df$term[new_order])
   } else {
-    tidy_df$term <- base::as.factor(tidy_df$term)
+    tidy_df$term <- as.factor(tidy_df$term)
     tidy_df %<>%
       tibble::rownames_to_column(., var = "rowid")
-    new_order <- base::order(tidy_df$rowid, decreasing = FALSE)
+    new_order <- order(tidy_df$rowid, decreasing = FALSE)
     tidy_df$term <- as.character(tidy_df$term)
     tidy_df$term <-
-      base::factor(x = tidy_df$term, levels = tidy_df$term[new_order])
+      factor(x = tidy_df$term, levels = tidy_df$term[new_order])
     tidy_df %<>%
       dplyr::select(.data = ., -rowid)
   }

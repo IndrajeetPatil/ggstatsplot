@@ -186,14 +186,14 @@ command (e.g., `?ggbetweenstats`).
 Another handy tool to see arguments to any of the functions is `args`. For
 example-
 
-```{r args}
+```{r args, message = FALSE, warning = FALSE}
 args(name = ggstatsplot::specify_decimal_p)
 ```
 
 In case you want to look at the function body for any of the functions, just
 type the name of the function without the parentheses:
 
-```{r funbody}
+```{r funbody, message = FALSE, warning = FALSE}
 # function to convert class of any object to `ggplot` class
 ggstatsplot::ggplot_converter
 ```
@@ -593,7 +593,6 @@ grid::grid.draw(
   )
 )
 ```
-
 
 ### Summary of tests
 

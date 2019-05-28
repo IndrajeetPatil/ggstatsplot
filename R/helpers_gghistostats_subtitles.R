@@ -18,12 +18,8 @@
 #'
 #' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
 #' @importFrom dplyr group_by n arrange
-#' @importFrom jmv ttestOneS
 #' @importFrom WRS2 onesampb
-#' @importFrom scales percent
 #' @importFrom crayon green blue yellow red
-#' @importFrom psych cohen.d.ci
-#' @importFrom groupedstats specify_decimal_p
 #' @importFrom ellipsis check_dots_used
 #' @importFrom rcompanion wilcoxonOneSampleR
 #'
@@ -70,35 +66,8 @@ subtitle_t_onesample <- function(data,
   # sample size
   sample_size <- nrow(data)
 
-  # ========================== stats ==========================================
-
   # standardize the type of statistics
   stats.type <- stats_type_switch(stats.type = type)
-
-  # decide whether to run bayesian tests
-  if (stats.type == "bayes") {
-    bf <- TRUE
-  } else {
-    bf <- FALSE
-  }
-
-  # common test
-  stats_df <-
-    jmv::ttestOneS(
-      data = data,
-      vars = "x",
-      students = TRUE,
-      bf = bf,
-      bfPrior = bf.prior,
-      wilcoxon = TRUE,
-      testValue = test.value,
-      hypothesis = "dt",
-      effectSize = TRUE,
-      miss = "listwise"
-    )
-
-  # extracting the relevant information
-  stats_df <- as.data.frame(stats_df$ttest)
 
   # ========================= parametric ======================================
   if (stats.type == "parametric") {
@@ -121,6 +90,9 @@ subtitle_t_onesample <- function(data,
       na.action = na.omit
     )
 
+    # tidy dataframe
+    stats_df <- broomExtra::tidy(tobj)
+
     # creating effect size info
     effsize_df <- effsize_t_parametric(
       formula = ~x,
@@ -136,9 +108,9 @@ subtitle_t_onesample <- function(data,
       no.parameters = 1L,
       stat.title = NULL,
       statistic.text = quote(italic("t")),
-      statistic = stats_df$`stat[stud]`,
-      parameter = stats_df$`df[stud]`,
-      p.value = stats_df$`p[stud]`,
+      statistic = stats_df$statistic,
+      parameter = stats_df$parameter,
+      p.value = stats_df$p.value,
       effsize.text = effsize.text,
       effsize.estimate = effsize_df$estimate,
       effsize.LL = effsize_df$conf.low,
@@ -210,24 +182,19 @@ subtitle_t_onesample <- function(data,
     )
 
     # displaying message about bootstrap
-    if (isTRUE(messages)) {
-      base::message(cat(
-        crayon::green("Note: "),
-        crayon::blue("95% CI for robust location measure computed with "),
-        crayon::yellow(nboot),
-        crayon::blue(" bootstrap samples.\n"),
-        sep = ""
-      ))
-    }
+      if (isTRUE(messages)) {
+        effsize_ci_message(nboot = nboot, conf.level = conf.level)
+      }
+
 
     # preparing the subtitle
-    subtitle <- base::substitute(
+    subtitle <- substitute(
       expr =
         paste(
           italic("M")[robust],
           " = ",
           estimate,
-          ", CI"["95%"],
+          ", CI"[conf.level],
           " [",
           LL,
           ", ",
@@ -241,8 +208,9 @@ subtitle_t_onesample <- function(data,
           " = ",
           n
         ),
-      env = base::list(
+      env = list(
         estimate = specify_decimal_p(x = stats_df$estimate[[1]], k = k),
+        conf.level = paste(conf.level * 100, "%", sep = ""),
         LL = specify_decimal_p(x = stats_df$ci[[1]], k = k),
         UL = specify_decimal_p(x = stats_df$ci[[2]], k = k),
         p.value = specify_decimal_p(
@@ -255,40 +223,14 @@ subtitle_t_onesample <- function(data,
     )
     # ===================== bayes ============================================
   } else if (stats.type == "bayes") {
-    # preparing the subtitle
-    subtitle <- base::substitute(
-      expr =
-        paste(
-          italic("t"),
-          "(",
-          df,
-          ") = ",
-          estimate,
-          ", log"["e"],
-          "(BF"["10"],
-          ") = ",
-          bf,
-          ", ",
-          italic("r")["Cauchy"],
-          " = ",
-          bf_prior,
-          ", ",
-          italic("d"),
-          " = ",
-          effsize,
-          ", ",
-          italic("n"),
-          " = ",
-          n
-        ),
-      env = base::list(
-        df = stats_df$`df[stud]`,
-        estimate = specify_decimal_p(x = stats_df$`stat[stud]`, k = k),
-        bf = specify_decimal_p(x = log(stats_df$`stat[bf]`), k = k),
-        bf_prior = specify_decimal_p(x = bf.prior, k = k),
-        effsize = specify_decimal_p(x = stats_df$`es[stud]`, k = k),
-        n = sample_size
-      )
+    subtitle <- bf_one_sample_ttest(
+      data = data,
+      x = x,
+      test.value = test.value,
+      bf.prior = bf.prior,
+      caption = NULL,
+      output = "h1",
+      k = k
     )
   }
 

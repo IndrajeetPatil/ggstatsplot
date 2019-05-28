@@ -11,7 +11,7 @@
 | [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot)  | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2074621.svg)](https://doi.org/10.5281/zenodo.2074621)                                                       |
 | [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2019--05--28-yellowgreen.svg)](/commits/master)                                                  | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
 | [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                                    | [![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2019_05_25-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md)                | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil)                                    | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)                                                      | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
-| [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ggstatsplot/community)                                                         | [![Dependency Status](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge)](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot)                                         |                                                                                                                                                   | [![Generic badge](https://img.shields.io/badge/forks-49-blue.svg)](https://github.com/IndrajeetPatil/ggstatsplot/)                                              |                                                                                                                                                                 |
+| [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ggstatsplot/community)                                                         | [![Dependency Status](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge)](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot)                                         |                                                                                                                                                   | [![Generic badge](https://img.shields.io/badge/forks-53-blue.svg)](https://github.com/IndrajeetPatil/ggstatsplot/)                                              |                                                                                                                                                                 |
 
 # Overview
 
@@ -183,15 +183,6 @@ For example-
 
 ``` r
 args(name = ggstatsplot::specify_decimal_p)
-#> Registered S3 method overwritten by 'broom.mixed':
-#>   method      from 
-#>   tidy.gamlss broom
-#> Registered S3 methods overwritten by 'lme4':
-#>   method                          from
-#>   cooks.distance.influence.merMod car 
-#>   influence.merMod                car 
-#>   dfbeta.influence.merMod         car 
-#>   dfbetas.influence.merMod        car
 #> function (x, k = 3, p.value = FALSE) 
 #> NULL
 ```
@@ -210,7 +201,7 @@ ggstatsplot::ggplot_converter
 #>   # returning the converted plot
 #>   return(p)
 #> }
-#> <bytecode: 0x000000002bd505d0>
+#> <bytecode: 0x000000002a0e5840>
 #> <environment: namespace:ggstatsplot>
 ```
 

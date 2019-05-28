@@ -40,7 +40,6 @@
 #' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
 #' @importFrom dplyr group_by n arrange
 #' @importFrom rlang enquo as_name !!
-#' @importFrom jmv ttestOneS
 #' @importFrom WRS2 onesampb
 #' @importFrom scales percent percent_format
 #' @importFrom stats dnorm

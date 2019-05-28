@@ -4,7 +4,6 @@ author: "Indrajeet Patil"
 date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
-    fig_width: 6
     fig.align: 'center'
     fig.asp: 0.618
     dpi: 300
@@ -46,7 +45,75 @@ associated vignette. For example, if you used the function `ggbetweenstats`, the
 details of the tests can be seen at the [summary table](https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html#summary-of-tests).
 Such summary tables are available for each function.
 
+## Does `ggstatsplot` work with `plotly`?
 
+The `plotly` R graphing library makes it easy to produce interactive web
+graphics via 'plotly.js'. 
+ 
+```{r plotly, message = FALSE, warning = FALSE, fig.height = 4, fig.width = 4}
+set.seed(123)
+library(ggstatsplot)
+library(plotly)
+
+# will work
+p <- ggstatsplot::ggscatterstats(
+  data = mtcars,
+  x = wt,
+  y = mpg,
+  marginal = FALSE,
+  messages = FALSE
+)
+
+# converting to plotly object
+plotly::ggplotly(p)
+```
+
+## I want to use `grouped_` functions, but I have more than one group. What can
+I do?
+
+Currently, the `grouped_` variants of functions only support repeating the
+analysis across a _single_ grouping variable. Often, you have to run the same
+analysis across a combination of more than two grouping variables. This can be
+easily achieved using `purrr` package. 
+
+Here is an example-
+
+```{r grouped_2, message = FALSE, warning = FALSE, fig.width = 6, fig.height = 6}
+# setup
+set.seed(123)
+library(tidyverse, warn.conflicts = FALSE)
+library(ggstatsplot)
+
+# creating a list by splitting dataframe by combination of two different
+# grouping variables
+df_list <- mpg %>%
+  dplyr::filter(drv %in% c("4", "f"), fl %in% c("p", "r")) %>%
+  split(x = ., f = list(.$drv, .$fl), drop = TRUE)
+
+# checking if the length of the list is 4
+length(df_list)
+
+# running correlation analyses between
+# this will return a *list* of plots
+plot_list <- purrr::pmap(
+  .l = list(
+    data = df_list,
+    x = "displ",
+    y = "hwy",
+    results.subtitle = FALSE,
+    marginal.type = "densigram",
+    messages = FALSE
+  ),
+  .f = ggstatsplot::ggscatterstats
+)
+
+# arragen the list in a single plot
+ggstatsplot::combine_plots(
+  plotlist = plot_list,
+  nrow = 2,
+  labels = c("(i)", "(ii)", "(iii)", "(iv)")
+)
+```
 
 # Suggestions
 

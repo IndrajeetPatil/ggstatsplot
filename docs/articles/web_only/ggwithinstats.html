@@ -163,8 +163,8 @@
 <a class="sourceLine" id="cb1-4" title="4"></a>
 <a class="sourceLine" id="cb1-5" title="5"><span class="co"># getting data in tidy format</span></a>
 <a class="sourceLine" id="cb1-6" title="6">data_bugs &lt;-<span class="st"> </span>bugs <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="st">  </span>tibble<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/tibble/man/as_tibble.html">as_tibble</a></span>(<span class="dt">x =</span> .) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/tidyr/man/gather.html">gather</a></span>(<span class="dt">data =</span> ., key, value, LDLF<span class="op">:</span>HDHF) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="st">  </span>tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(<span class="dt">x =</span> .) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/gather.html">gather</a></span>(<span class="dt">data =</span> ., key, value, LDLF<span class="op">:</span>HDHF) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb1-9" title="9"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(<span class="dt">.data =</span> ., Region <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Europe"</span>, <span class="st">"North America"</span>))</a>
 <a class="sourceLine" id="cb1-10" title="10"></a>
 <a class="sourceLine" id="cb1-11" title="11">dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/reexports.html">glimpse</a></span>(<span class="dt">x =</span> data_bugs)</a>
@@ -183,7 +183,7 @@
 <a class="sourceLine" id="cb2-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb2-4" title="4"></a>
 <a class="sourceLine" id="cb2-5" title="5"><span class="co"># function call</span></a>
-<a class="sourceLine" id="cb2-6" title="6">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggwithinstats.html">ggwithinstats</a></span>(</a>
+<a class="sourceLine" id="cb2-6" title="6">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggwithinstats.html">ggwithinstats</a></span>(</a>
 <a class="sourceLine" id="cb2-7" title="7">  <span class="dt">data =</span> data_bugs,</a>
 <a class="sourceLine" id="cb2-8" title="8">  <span class="dt">x =</span> key,</a>
 <a class="sourceLine" id="cb2-9" title="9">  <span class="dt">y =</span> value,</a>
@@ -198,7 +198,7 @@
 <a class="sourceLine" id="cb3-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb3-5" title="5"></a>
 <a class="sourceLine" id="cb3-6" title="6"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb3-7" title="7">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggwithinstats.html">ggwithinstats</a></span>(</a>
+<a class="sourceLine" id="cb3-7" title="7">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggwithinstats.html">ggwithinstats</a></span>(</a>
 <a class="sourceLine" id="cb3-8" title="8">  <span class="dt">data =</span> data_bugs,      </a>
 <a class="sourceLine" id="cb3-9" title="9">  <span class="dt">x =</span> key,                                            <span class="co"># grouping/independent variable</span></a>
 <a class="sourceLine" id="cb3-10" title="10">  <span class="dt">y =</span> value,                                          <span class="co"># dependent variables</span></a>
@@ -238,7 +238,7 @@
 <a class="sourceLine" id="cb4-7" title="7"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb4-8" title="8"></a>
 <a class="sourceLine" id="cb4-9" title="9"><span class="co"># parametric t-test</span></a>
-<a class="sourceLine" id="cb4-10" title="10">p1 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggwithinstats.html">ggwithinstats</a></span>(</a>
+<a class="sourceLine" id="cb4-10" title="10">p1 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggwithinstats.html">ggwithinstats</a></span>(</a>
 <a class="sourceLine" id="cb4-11" title="11">  <span class="dt">data =</span> df_disgust,</a>
 <a class="sourceLine" id="cb4-12" title="12">  <span class="dt">x =</span> key,</a>
 <a class="sourceLine" id="cb4-13" title="13">  <span class="dt">y =</span> value,</a>
@@ -252,7 +252,7 @@
 <a class="sourceLine" id="cb4-21" title="21">)</a>
 <a class="sourceLine" id="cb4-22" title="22"></a>
 <a class="sourceLine" id="cb4-23" title="23"><span class="co"># Mann-Whitney U test (nonparametric t) </span></a>
-<a class="sourceLine" id="cb4-24" title="24">p2 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggwithinstats.html">ggwithinstats</a></span>(</a>
+<a class="sourceLine" id="cb4-24" title="24">p2 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggwithinstats.html">ggwithinstats</a></span>(</a>
 <a class="sourceLine" id="cb4-25" title="25">  <span class="dt">data =</span> df_disgust,</a>
 <a class="sourceLine" id="cb4-26" title="26">  <span class="dt">x =</span> key,</a>
 <a class="sourceLine" id="cb4-27" title="27">  <span class="dt">y =</span> value,</a>
@@ -268,7 +268,7 @@
 <a class="sourceLine" id="cb4-37" title="37">)</a>
 <a class="sourceLine" id="cb4-38" title="38"></a>
 <a class="sourceLine" id="cb4-39" title="39"><span class="co"># robust t-test</span></a>
-<a class="sourceLine" id="cb4-40" title="40">p3 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggwithinstats.html">ggwithinstats</a></span>(</a>
+<a class="sourceLine" id="cb4-40" title="40">p3 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggwithinstats.html">ggwithinstats</a></span>(</a>
 <a class="sourceLine" id="cb4-41" title="41">  <span class="dt">data =</span> df_disgust,</a>
 <a class="sourceLine" id="cb4-42" title="42">  <span class="dt">x =</span> key,</a>
 <a class="sourceLine" id="cb4-43" title="43">  <span class="dt">y =</span> value,</a>
@@ -286,7 +286,7 @@
 <a class="sourceLine" id="cb4-55" title="55">)</a>
 <a class="sourceLine" id="cb4-56" title="56"></a>
 <a class="sourceLine" id="cb4-57" title="57"><span class="co"># Bayes Factor for parametric t-test</span></a>
-<a class="sourceLine" id="cb4-58" title="58">p4 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggwithinstats.html">ggwithinstats</a></span>(</a>
+<a class="sourceLine" id="cb4-58" title="58">p4 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggwithinstats.html">ggwithinstats</a></span>(</a>
 <a class="sourceLine" id="cb4-59" title="59">  <span class="dt">data =</span> df_disgust,</a>
 <a class="sourceLine" id="cb4-60" title="60">  <span class="dt">x =</span> key,</a>
 <a class="sourceLine" id="cb4-61" title="61">  <span class="dt">y =</span> value,</a>
@@ -300,7 +300,7 @@
 <a class="sourceLine" id="cb4-69" title="69">)</a>
 <a class="sourceLine" id="cb4-70" title="70"></a>
 <a class="sourceLine" id="cb4-71" title="71"><span class="co"># combining the individual plots into a single plot</span></a>
-<a class="sourceLine" id="cb4-72" title="72">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb4-72" title="72">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb4-73" title="73">  p1, p2, p3, p4, </a>
 <a class="sourceLine" id="cb4-74" title="74">  <span class="dt">nrow =</span> <span class="dv">2</span>, </a>
 <a class="sourceLine" id="cb4-75" title="75">  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>),</a>
@@ -322,7 +322,7 @@
 <a class="sourceLine" id="cb5-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb5-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb5-4" title="4"></a>
-<a class="sourceLine" id="cb5-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/grouped_ggwithinstats.html">grouped_ggwithinstats</a></span>(</a>
+<a class="sourceLine" id="cb5-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggwithinstats.html">grouped_ggwithinstats</a></span>(</a>
 <a class="sourceLine" id="cb5-6" title="6">  <span class="co"># arguments relevant for ggstatsplot::ggwithinstats</span></a>
 <a class="sourceLine" id="cb5-7" title="7">  <span class="dt">data =</span> data_bugs,</a>
 <a class="sourceLine" id="cb5-8" title="8">  <span class="dt">x =</span> key,</a>

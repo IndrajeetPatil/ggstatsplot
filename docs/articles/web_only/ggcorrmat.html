@@ -178,13 +178,13 @@
 <a class="sourceLine" id="cb2-4" title="4">gapminder_<span class="dv">2007</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder<span class="op">::</span>gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>)</a>
 <a class="sourceLine" id="cb2-5" title="5"></a>
 <a class="sourceLine" id="cb2-6" title="6"><span class="co"># producing the correlation matrix</span></a>
-<a class="sourceLine" id="cb2-7" title="7">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggcorrmat.html">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb2-7" title="7">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
 <a class="sourceLine" id="cb2-8" title="8">  <span class="dt">data =</span> gapminder_<span class="dv">2007</span>,             <span class="co"># data from which variable is to be taken</span></a>
 <a class="sourceLine" id="cb2-9" title="9">  <span class="dt">cor.vars =</span> lifeExp<span class="op">:</span>gdpPercap       <span class="co"># specifying correlation matrix variables</span></a>
 <a class="sourceLine" id="cb2-10" title="10">)</a></code></pre></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat1-1.png" width="576"></p>
 <p>This plot can be further modified with additional arguments-</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggcorrmat.html">ggcorrmat</a></span>(</a>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
 <a class="sourceLine" id="cb3-2" title="2">  <span class="dt">data =</span> gapminder_<span class="dv">2007</span>,                      <span class="co"># data from which variable is to be taken</span></a>
 <a class="sourceLine" id="cb3-3" title="3">  <span class="dt">cor.vars =</span> lifeExp<span class="op">:</span>gdpPercap,               <span class="co"># specifying correlation matrix variables</span></a>
 <a class="sourceLine" id="cb3-4" title="4">  <span class="dt">cor.vars.names =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Life Expectancy"</span>, </a>
@@ -225,7 +225,7 @@
 <a class="sourceLine" id="cb5-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb5-3" title="3"></a>
 <a class="sourceLine" id="cb5-4" title="4"><span class="co"># let's use just 5% of the data to speed it up</span></a>
-<a class="sourceLine" id="cb5-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggcorrmat.html">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb5-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
 <a class="sourceLine" id="cb5-6" title="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.05</span>),             </a>
 <a class="sourceLine" id="cb5-7" title="7">  <span class="dt">cor.vars =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(carat, depth<span class="op">:</span>z),        <span class="co"># note how the variables are getting selected</span></a>
 <a class="sourceLine" id="cb5-8" title="8">  <span class="dt">cor.vars.names =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(</a>
@@ -245,7 +245,7 @@
 <a class="sourceLine" id="cb6-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb6-3" title="3"></a>
 <a class="sourceLine" id="cb6-4" title="4"><span class="co"># let's use just 5% of the data to speed it up</span></a>
-<a class="sourceLine" id="cb6-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggcorrmat.html">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb6-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
 <a class="sourceLine" id="cb6-6" title="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.05</span>),             </a>
 <a class="sourceLine" id="cb6-7" title="7">  <span class="dt">cor.vars =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(price, carat, depth<span class="op">:</span>table, x<span class="op">:</span>z),    <span class="co"># note how the variables are getting selected</span></a>
 <a class="sourceLine" id="cb6-8" title="8">  <span class="dt">cor.vars.names =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(</a>
@@ -284,7 +284,7 @@
 <a class="sourceLine" id="cb7-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb7-3" title="3"></a>
 <a class="sourceLine" id="cb7-4" title="4"><span class="co"># to get correlations</span></a>
-<a class="sourceLine" id="cb7-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggcorrmat.html">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb7-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
 <a class="sourceLine" id="cb7-6" title="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.15</span>),             </a>
 <a class="sourceLine" id="cb7-7" title="7">  <span class="dt">cor.vars =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(price, carat, depth<span class="op">:</span>table, x<span class="op">:</span>z),</a>
 <a class="sourceLine" id="cb7-8" title="8">  <span class="dt">output =</span> <span class="st">"correlations"</span>,</a>
@@ -303,7 +303,7 @@
 <a class="sourceLine" id="cb7-21" title="21"><span class="co">#&gt; 7 z         0.9   0.981  0.088  0.171  0.992  0.991 1</span></a>
 <a class="sourceLine" id="cb7-22" title="22"></a>
 <a class="sourceLine" id="cb7-23" title="23"><span class="co"># to get p-values</span></a>
-<a class="sourceLine" id="cb7-24" title="24">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggcorrmat.html">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb7-24" title="24">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
 <a class="sourceLine" id="cb7-25" title="25">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.15</span>),             </a>
 <a class="sourceLine" id="cb7-26" title="26">  <span class="dt">cor.vars =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(price, carat, depth<span class="op">:</span>table, x<span class="op">:</span>z),</a>
 <a class="sourceLine" id="cb7-27" title="27">  <span class="dt">output =</span> <span class="st">"p-values"</span>,</a>
@@ -331,7 +331,7 @@
 <a class="sourceLine" id="cb8-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb8-3" title="3"></a>
 <a class="sourceLine" id="cb8-4" title="4"><span class="co"># let's use just 5% of the data to speed it up</span></a>
-<a class="sourceLine" id="cb8-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb8-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span>(</a>
 <a class="sourceLine" id="cb8-6" title="6">  <span class="co"># arguments relevant for ggstatsplot::ggcorrmat</span></a>
 <a class="sourceLine" id="cb8-7" title="7">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.05</span>),</a>
 <a class="sourceLine" id="cb8-8" title="8">  <span class="dt">corr.method =</span> <span class="st">"r"</span>,                  <span class="co"># percentage bend correlation coefficient</span></a>
@@ -369,7 +369,7 @@
 <a class="sourceLine" id="cb9-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb9-3" title="3"></a>
 <a class="sourceLine" id="cb9-4" title="4"><span class="co"># let's use just 5% of the data to speed it up</span></a>
-<a class="sourceLine" id="cb9-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb9-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span>(</a>
 <a class="sourceLine" id="cb9-6" title="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.05</span>),</a>
 <a class="sourceLine" id="cb9-7" title="7">  <span class="dt">grouping.var =</span> cut,</a>
 <a class="sourceLine" id="cb9-8" title="8">  <span class="dt">cor.vars =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(price, carat, depth<span class="op">:</span>table, x<span class="op">:</span>z),</a>

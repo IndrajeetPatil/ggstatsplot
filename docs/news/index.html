@@ -181,7 +181,7 @@
 <p>BREAKING CHANGES</p>
 <ul>
 <li>Instead of having two separate functions that dealt with repeated measures (<code>subtitle_friedman_nonparametric</code>) and between-subjects (<code>subtitle_kw_nonparametric</code>), a single function <code>subtitle_anova_nonparametric</code> handles both of these designs with the <code>paired</code> argument determining which test is run.</li>
-<li>All functions that supported Bayes Factor analysis, setting <code>type = "bf"</code> will only return BF value and the scale used. Previously, this was a mix of parametric statistics and BF, which was confusing and often times misleading since these two types of analyses made different assumptions.</li>
+<li>All functions that supported Bayes Factor analysis (<code>type = "bf"</code>) will only return BF value and the scale used. Previously, this was a mix of parametric statistics and BF, which was confusing and often times misleading since these two types of analyses relied on different tests.</li>
 </ul>
 <p>NEW FEATURES</p>
 <ul>
@@ -337,7 +337,7 @@
 <code>gghistostats</code> can now show both counts and proportions information on the same plot when <code>bar.measure</code> argument is set to <code>"mix"</code>.</li>
 <li>
 <code>ggcoefstats</code> works with tidy dataframes.</li>
-<li>The helper function <code>untable</code> has been deprecated in light of <code><a href="https://rdrr.io/pkg/tidyr/man/uncount.html">tidyr::uncount</a></code>, which does exactly what <code>untable</code> was doing. The author wasn’t aware of this function when <code>untable</code> was written.</li>
+<li>The helper function <code>untable</code> has been deprecated in light of <code><a href="https://tidyr.tidyverse.org/reference/uncount.html">tidyr::uncount</a></code>, which does exactly what <code>untable</code> was doing. The author wasn’t aware of this function when <code>untable</code> was written.</li>
 <li>All vignettes have been removed from <code>CRAN</code> to reduce the size of the package. They are now available on the package website: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/</a>.</li>
 <li>
 <code>subtitle_t_robust</code> function can now handle dependent samples and gains <code>paired</code> argument.</li>

@@ -210,7 +210,7 @@
 <td><a href="https://gitter.im/ggstatsplot/community"><img src="https://badges.gitter.im/gitterHQ/gitter.png" alt="Gitter chat"></a></td>
 <td><a href="https://dependencyci.com/github/IndrajeetPatil/ggstatsplot"><img src="https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge" alt="Dependency Status"></a></td>
 <td></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/"><img src="https://img.shields.io/badge/forks-49-blue.svg" alt="Generic badge"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/"><img src="https://img.shields.io/badge/forks-53-blue.svg" alt="Generic badge"></a></td>
 <td></td>
 </tr>
 </tbody>
@@ -468,17 +468,8 @@
 <p>In <code>R</code>, documentation for any function can be accessed with the standard <code>help</code> command (e.g., <code><a href="reference/ggbetweenstats.html">?ggbetweenstats</a></code>).</p>
 <p>Another handy tool to see arguments to any of the functions is <code>args</code>. For example-</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/args.html">args</a></span>(<span class="dt">name =</span> ggstatsplot<span class="op">::</span>specify_decimal_p)</a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="co">#&gt; Registered S3 method overwritten by 'broom.mixed':</span></a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="co">#&gt;   method      from </span></a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="co">#&gt;   tidy.gamlss broom</span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="co">#&gt; Registered S3 methods overwritten by 'lme4':</span></a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="co">#&gt;   method                          from</span></a>
-<a class="sourceLine" id="cb6-7" title="7"><span class="co">#&gt;   cooks.distance.influence.merMod car </span></a>
-<a class="sourceLine" id="cb6-8" title="8"><span class="co">#&gt;   influence.merMod                car </span></a>
-<a class="sourceLine" id="cb6-9" title="9"><span class="co">#&gt;   dfbeta.influence.merMod         car </span></a>
-<a class="sourceLine" id="cb6-10" title="10"><span class="co">#&gt;   dfbetas.influence.merMod        car</span></a>
-<a class="sourceLine" id="cb6-11" title="11"><span class="co">#&gt; function (x, k = 3, p.value = FALSE) </span></a>
-<a class="sourceLine" id="cb6-12" title="12"><span class="co">#&gt; NULL</span></a></code></pre></div>
+<a class="sourceLine" id="cb6-2" title="2"><span class="co">#&gt; function (x, k = 3, p.value = FALSE) </span></a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="co">#&gt; NULL</span></a></code></pre></div>
 <p>In case you want to look at the function body for any of the functions, just type the name of the function without the parentheses:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># function to convert class of any object to `ggplot` class</span></a>
 <a class="sourceLine" id="cb7-2" title="2">ggstatsplot<span class="op">::</span>ggplot_converter</a>
@@ -490,7 +481,7 @@
 <a class="sourceLine" id="cb7-8" title="8"><span class="co">#&gt;   # returning the converted plot</span></a>
 <a class="sourceLine" id="cb7-9" title="9"><span class="co">#&gt;   return(p)</span></a>
 <a class="sourceLine" id="cb7-10" title="10"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt; &lt;bytecode: 0x0000000022569570&gt;</span></a>
+<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt; &lt;bytecode: 0x000000001f88f9a0&gt;</span></a>
 <a class="sourceLine" id="cb7-12" title="12"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -524,7 +515,7 @@
 <a class="sourceLine" id="cb8-5" title="5"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb8-6" title="6"></a>
 <a class="sourceLine" id="cb8-7" title="7"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb8-8" title="8">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb8-8" title="8">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
 <a class="sourceLine" id="cb8-9" title="9">  <span class="dt">data =</span> iris,</a>
 <a class="sourceLine" id="cb8-10" title="10">  <span class="dt">x =</span> Species,</a>
 <a class="sourceLine" id="cb8-11" title="11">  <span class="dt">y =</span> Sepal.Length,</a>
@@ -553,7 +544,7 @@
 <a class="sourceLine" id="cb9-15" title="15">  )</a>
 <a class="sourceLine" id="cb9-16" title="16"></a>
 <a class="sourceLine" id="cb9-17" title="17"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb9-18" title="18">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb9-18" title="18">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
 <a class="sourceLine" id="cb9-19" title="19">  <span class="dt">data =</span> iris2,</a>
 <a class="sourceLine" id="cb9-20" title="20">  <span class="dt">x =</span> Species,</a>
 <a class="sourceLine" id="cb9-21" title="21">  <span class="dt">y =</span> Sepal.Length,</a>
@@ -584,7 +575,7 @@
 <a class="sourceLine" id="cb10-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb10-3" title="3"></a>
 <a class="sourceLine" id="cb10-4" title="4"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb10-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/grouped_ggbetweenstats.html">grouped_ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb10-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggbetweenstats.html">grouped_ggbetweenstats</a></span>(</a>
 <a class="sourceLine" id="cb10-6" title="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(</a>
 <a class="sourceLine" id="cb10-7" title="7">    <span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long,</a>
 <a class="sourceLine" id="cb10-8" title="8">    genre <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span>)</a>
@@ -727,7 +718,7 @@
 <a class="sourceLine" id="cb11-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(WRS2)</a>
 <a class="sourceLine" id="cb11-4" title="4"></a>
 <a class="sourceLine" id="cb11-5" title="5"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb11-6" title="6">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggwithinstats.html">ggwithinstats</a></span>(</a>
+<a class="sourceLine" id="cb11-6" title="6">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggwithinstats.html">ggwithinstats</a></span>(</a>
 <a class="sourceLine" id="cb11-7" title="7">  <span class="dt">data =</span> WRS2<span class="op">::</span>WineTasting,</a>
 <a class="sourceLine" id="cb11-8" title="8">  <span class="dt">x =</span> Wine,</a>
 <a class="sourceLine" id="cb11-9" title="9">  <span class="dt">y =</span> Taste,</a>
@@ -751,12 +742,12 @@
 <a class="sourceLine" id="cb12-5" title="5"></a>
 <a class="sourceLine" id="cb12-6" title="6"><span class="co"># getting data in tidy format</span></a>
 <a class="sourceLine" id="cb12-7" title="7">data_bugs &lt;-<span class="st"> </span>bugs <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-8" title="8"><span class="st">  </span>tibble<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/tibble/man/as_tibble.html">as_tibble</a></span>(<span class="dt">x =</span> .) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-9" title="9"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/tidyr/man/gather.html">gather</a></span>(<span class="dt">data =</span> ., key, value, LDLF<span class="op">:</span>HDHF) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-8" title="8"><span class="st">  </span>tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(<span class="dt">x =</span> .) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-9" title="9"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/gather.html">gather</a></span>(<span class="dt">data =</span> ., key, value, LDLF<span class="op">:</span>HDHF) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb12-10" title="10"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(<span class="dt">.data =</span> ., Region <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Europe"</span>, <span class="st">"North America"</span>))</a>
 <a class="sourceLine" id="cb12-11" title="11"></a>
 <a class="sourceLine" id="cb12-12" title="12"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb12-13" title="13">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/grouped_ggwithinstats.html">grouped_ggwithinstats</a></span>(</a>
+<a class="sourceLine" id="cb12-13" title="13">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggwithinstats.html">grouped_ggwithinstats</a></span>(</a>
 <a class="sourceLine" id="cb12-14" title="14">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(data_bugs, key <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"LDLF"</span>, <span class="st">"LDHF"</span>)),</a>
 <a class="sourceLine" id="cb12-15" title="15">  <span class="dt">x =</span> key,</a>
 <a class="sourceLine" id="cb12-16" title="16">  <span class="dt">y =</span> value,</a>
@@ -868,7 +859,7 @@
 <a href="#ggscatterstats" class="anchor"></a><code>ggscatterstats</code>
 </h2>
 <p>This function creates a scatterplot with marginal histograms/boxplots/density/violin/densigram plots from <code><a href="https://rdrr.io/pkg/ggExtra/man/ggMarginal.html">ggExtra::ggMarginal</a></code> and results from statistical tests in the subtitle:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggscatterstats.html">ggscatterstats</a></span>(</a>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggscatterstats.html">ggscatterstats</a></span>(</a>
 <a class="sourceLine" id="cb13-2" title="2">  <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</a>
 <a class="sourceLine" id="cb13-3" title="3">  <span class="dt">x =</span> sleep_rem,</a>
 <a class="sourceLine" id="cb13-4" title="4">  <span class="dt">y =</span> awake,</a>
@@ -884,7 +875,7 @@
 <a class="sourceLine" id="cb14-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb14-3" title="3"></a>
 <a class="sourceLine" id="cb14-4" title="4"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb14-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggscatterstats.html">ggscatterstats</a></span>(</a>
+<a class="sourceLine" id="cb14-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggscatterstats.html">ggscatterstats</a></span>(</a>
 <a class="sourceLine" id="cb14-6" title="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(<span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long, genre <span class="op">==</span><span class="st"> "Action"</span>),</a>
 <a class="sourceLine" id="cb14-7" title="7">  <span class="dt">x =</span> budget,</a>
 <a class="sourceLine" id="cb14-8" title="8">  <span class="dt">y =</span> rating,</a>
@@ -917,7 +908,7 @@
 <a class="sourceLine" id="cb15-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb15-3" title="3"></a>
 <a class="sourceLine" id="cb15-4" title="4"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb15-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span>(</a>
+<a class="sourceLine" id="cb15-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span>(</a>
 <a class="sourceLine" id="cb15-6" title="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(</a>
 <a class="sourceLine" id="cb15-7" title="7">    <span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long,</a>
 <a class="sourceLine" id="cb15-8" title="8">    genre <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span>)</a>
@@ -947,7 +938,7 @@
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># include the following code in your code chunk inside R Notebook or Markdown</span></a>
 <a class="sourceLine" id="cb16-2" title="2">grid<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/grid/grid.newpage.html">grid.newpage</a></span>()</a>
 <a class="sourceLine" id="cb16-3" title="3">grid<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/grid/grid.draw.html">grid.draw</a></span>(</a>
-<a class="sourceLine" id="cb16-4" title="4">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggscatterstats.html">ggscatterstats</a></span>(</a>
+<a class="sourceLine" id="cb16-4" title="4">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggscatterstats.html">ggscatterstats</a></span>(</a>
 <a class="sourceLine" id="cb16-5" title="5">    <span class="dt">data =</span> ggstatsplot<span class="op">::</span>movies_wide,</a>
 <a class="sourceLine" id="cb16-6" title="6">    <span class="dt">x =</span> budget,</a>
 <a class="sourceLine" id="cb16-7" title="7">    <span class="dt">y =</span> rating,</a>
@@ -1000,7 +991,7 @@
 <a class="sourceLine" id="cb17-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb17-3" title="3"></a>
 <a class="sourceLine" id="cb17-4" title="4"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb17-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggpiestats.html">ggpiestats</a></span>(</a>
+<a class="sourceLine" id="cb17-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb17-6" title="6">  <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</a>
 <a class="sourceLine" id="cb17-7" title="7">  <span class="dt">main =</span> vore,</a>
 <a class="sourceLine" id="cb17-8" title="8">  <span class="dt">title =</span> <span class="st">"Composition of vore types among mammals"</span>,</a>
@@ -1012,7 +1003,7 @@
 <a class="sourceLine" id="cb18-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb18-3" title="3"></a>
 <a class="sourceLine" id="cb18-4" title="4"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb18-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggpiestats.html">ggpiestats</a></span>(</a>
+<a class="sourceLine" id="cb18-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb18-6" title="6">  <span class="dt">data =</span> mtcars,</a>
 <a class="sourceLine" id="cb18-7" title="7">  <span class="dt">main =</span> am,</a>
 <a class="sourceLine" id="cb18-8" title="8">  <span class="dt">condition =</span> cyl,</a>
@@ -1045,7 +1036,7 @@
 <a class="sourceLine" id="cb19-10" title="10">)</a>
 <a class="sourceLine" id="cb19-11" title="11"></a>
 <a class="sourceLine" id="cb19-12" title="12"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb19-13" title="13">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggpiestats.html">ggpiestats</a></span>(</a>
+<a class="sourceLine" id="cb19-13" title="13">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb19-14" title="14">  <span class="dt">data =</span> survey.data,</a>
 <a class="sourceLine" id="cb19-15" title="15">  <span class="dt">main =</span> <span class="st">`</span><span class="dt">1st survey</span><span class="st">`</span>,</a>
 <a class="sourceLine" id="cb19-16" title="16">  <span class="dt">condition =</span> <span class="st">`</span><span class="dt">2nd survey</span><span class="st">`</span>,</a>
@@ -1071,7 +1062,7 @@
 <a class="sourceLine" id="cb20-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb20-3" title="3"></a>
 <a class="sourceLine" id="cb20-4" title="4"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb20-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/grouped_ggpiestats.html">grouped_ggpiestats</a></span>(</a>
+<a class="sourceLine" id="cb20-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggpiestats.html">grouped_ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb20-6" title="6">  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>movies_long,</a>
 <a class="sourceLine" id="cb20-7" title="7">  <span class="dt">main =</span> mpaa,</a>
 <a class="sourceLine" id="cb20-8" title="8">  <span class="dt">grouping.var =</span> genre, <span class="co"># grouping variable</span></a>
@@ -1098,7 +1089,7 @@
 <a class="sourceLine" id="cb21-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb21-3" title="3"></a>
 <a class="sourceLine" id="cb21-4" title="4"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb21-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggbarstats.html">ggbarstats</a></span>(</a>
+<a class="sourceLine" id="cb21-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbarstats.html">ggbarstats</a></span>(</a>
 <a class="sourceLine" id="cb21-6" title="6">  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>movies_long,</a>
 <a class="sourceLine" id="cb21-7" title="7">  <span class="dt">main =</span> mpaa,</a>
 <a class="sourceLine" id="cb21-8" title="8">  <span class="dt">condition =</span> genre,</a>
@@ -1127,7 +1118,7 @@
 <a class="sourceLine" id="cb22-9" title="9"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ., <span class="dt">size =</span> <span class="fl">0.05</span>)</a>
 <a class="sourceLine" id="cb22-10" title="10"></a>
 <a class="sourceLine" id="cb22-11" title="11"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb22-12" title="12">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/grouped_ggbarstats.html">grouped_ggbarstats</a></span>(</a>
+<a class="sourceLine" id="cb22-12" title="12">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggbarstats.html">grouped_ggbarstats</a></span>(</a>
 <a class="sourceLine" id="cb22-13" title="13">  <span class="dt">data =</span> diamonds_short,</a>
 <a class="sourceLine" id="cb22-14" title="14">  <span class="dt">main =</span> color,</a>
 <a class="sourceLine" id="cb22-15" title="15">  <span class="dt">condition =</span> clarity,</a>
@@ -1154,7 +1145,7 @@
 </h2>
 <p>In case you would like to see the distribution of one variable and check if it is significantly different from a specified value with a one sample test, this function will let you do that.</p>
 <p>The <code>type</code> (of test) argument also accepts the following abbreviations: <code>"p"</code> (for <em>parametric</em>) or <code>"np"</code> (for <em>nonparametric</em>) or <code>"r"</code> (for <em>robust</em>) or <code>"bf"</code> (for <em>Bayes Factor</em>).</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/gghistostats.html">gghistostats</a></span>(</a>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</a>
 <a class="sourceLine" id="cb23-2" title="2">  <span class="dt">data =</span> ToothGrowth, <span class="co"># dataframe from which variable is to be taken</span></a>
 <a class="sourceLine" id="cb23-3" title="3">  <span class="dt">x =</span> len, <span class="co"># numeric variable whose distribution is of interest</span></a>
 <a class="sourceLine" id="cb23-4" title="4">  <span class="dt">title =</span> <span class="st">"Distribution of Sepal.Length"</span>, <span class="co"># title for the plot</span></a>
@@ -1171,7 +1162,7 @@
 <a class="sourceLine" id="cb24-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb24-3" title="3"></a>
 <a class="sourceLine" id="cb24-4" title="4"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb24-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/gghistostats.html">gghistostats</a></span>(</a>
+<a class="sourceLine" id="cb24-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</a>
 <a class="sourceLine" id="cb24-6" title="6">  <span class="dt">data =</span> iris, <span class="co"># dataframe from which variable is to be taken</span></a>
 <a class="sourceLine" id="cb24-7" title="7">  <span class="dt">x =</span> Sepal.Length, <span class="co"># numeric variable whose distribution is of interest</span></a>
 <a class="sourceLine" id="cb24-8" title="8">  <span class="dt">title =</span> <span class="st">"Distribution of Iris sepal length"</span>, <span class="co"># title for the plot</span></a>
@@ -1198,7 +1189,7 @@
 <a class="sourceLine" id="cb25-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb25-3" title="3"></a>
 <a class="sourceLine" id="cb25-4" title="4"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb25-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/grouped_gghistostats.html">grouped_gghistostats</a></span>(</a>
+<a class="sourceLine" id="cb25-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_gghistostats.html">grouped_gghistostats</a></span>(</a>
 <a class="sourceLine" id="cb25-6" title="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(</a>
 <a class="sourceLine" id="cb25-7" title="7">    <span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long,</a>
 <a class="sourceLine" id="cb25-8" title="8">    genre <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span>)</a>
@@ -1289,7 +1280,7 @@
 <a class="sourceLine" id="cb27-5" title="5">df &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(<span class="dt">.data =</span> ggplot2<span class="op">::</span>mpg, cyl <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"4"</span>, <span class="st">"6"</span>))</a>
 <a class="sourceLine" id="cb27-6" title="6"></a>
 <a class="sourceLine" id="cb27-7" title="7"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb27-8" title="8">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/grouped_ggdotplotstats.html">grouped_ggdotplotstats</a></span>(</a>
+<a class="sourceLine" id="cb27-8" title="8">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggdotplotstats.html">grouped_ggdotplotstats</a></span>(</a>
 <a class="sourceLine" id="cb27-9" title="9">  <span class="dt">data =</span> df,</a>
 <a class="sourceLine" id="cb27-10" title="10">  <span class="dt">x =</span> cty,</a>
 <a class="sourceLine" id="cb27-11" title="11">  <span class="dt">y =</span> manufacturer,</a>
@@ -1318,7 +1309,7 @@
 <a class="sourceLine" id="cb28-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb28-3" title="3"></a>
 <a class="sourceLine" id="cb28-4" title="4"><span class="co"># as a default this function outputs a correlalogram plot</span></a>
-<a class="sourceLine" id="cb28-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggcorrmat.html">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb28-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
 <a class="sourceLine" id="cb28-6" title="6">  <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</a>
 <a class="sourceLine" id="cb28-7" title="7">  <span class="dt">corr.method =</span> <span class="st">"robust"</span>, <span class="co"># correlation method</span></a>
 <a class="sourceLine" id="cb28-8" title="8">  <span class="dt">sig.level =</span> <span class="fl">0.001</span>, <span class="co"># threshold of significance</span></a>
@@ -1345,7 +1336,7 @@
 <a class="sourceLine" id="cb29-5" title="5"><span class="kw"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="dt">pillar.sigfig =</span> <span class="dv">4</span>)</a>
 <a class="sourceLine" id="cb29-6" title="6"></a>
 <a class="sourceLine" id="cb29-7" title="7"><span class="co"># getting the correlation coefficient matrix</span></a>
-<a class="sourceLine" id="cb29-8" title="8">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggcorrmat.html">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb29-8" title="8">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
 <a class="sourceLine" id="cb29-9" title="9">  <span class="dt">data =</span> iris, <span class="co"># all numeric variables from data will be used</span></a>
 <a class="sourceLine" id="cb29-10" title="10">  <span class="dt">corr.method =</span> <span class="st">"robust"</span>,</a>
 <a class="sourceLine" id="cb29-11" title="11">  <span class="dt">output =</span> <span class="st">"correlations"</span>, <span class="co"># specifying the needed output ("r" or "corr" will also work)</span></a>
@@ -1360,7 +1351,7 @@
 <a class="sourceLine" id="cb29-20" title="20"><span class="co">#&gt; 4 Petal.Width         0.837      -0.373        0.966       1</span></a>
 <a class="sourceLine" id="cb29-21" title="21"></a>
 <a class="sourceLine" id="cb29-22" title="22"><span class="co"># getting the p-value matrix</span></a>
-<a class="sourceLine" id="cb29-23" title="23">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggcorrmat.html">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb29-23" title="23">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
 <a class="sourceLine" id="cb29-24" title="24">  <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</a>
 <a class="sourceLine" id="cb29-25" title="25">  <span class="dt">cor.vars =</span> sleep_total<span class="op">:</span>bodywt,</a>
 <a class="sourceLine" id="cb29-26" title="26">  <span class="dt">corr.method =</span> <span class="st">"robust"</span>,</a>
@@ -1378,7 +1369,7 @@
 <a class="sourceLine" id="cb29-38" title="38"><span class="co">#&gt; 6 bodywt      2.568e- 7 7.524e- 4   2.120e- 6 2.568e- 7 3.221e-18 0.</span></a>
 <a class="sourceLine" id="cb29-39" title="39"></a>
 <a class="sourceLine" id="cb29-40" title="40"><span class="co"># getting the confidence intervals for correlations</span></a>
-<a class="sourceLine" id="cb29-41" title="41">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggcorrmat.html">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb29-41" title="41">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
 <a class="sourceLine" id="cb29-42" title="42">  <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</a>
 <a class="sourceLine" id="cb29-43" title="43">  <span class="dt">cor.vars =</span> sleep_total<span class="op">:</span>bodywt,</a>
 <a class="sourceLine" id="cb29-44" title="44">  <span class="dt">corr.method =</span> <span class="st">"kendall"</span>,</a>
@@ -1408,7 +1399,7 @@
 <a class="sourceLine" id="cb29-68" title="68"><span class="co">#&gt; 15 brainwt-bodywt  0.8378  7.373e-1  9.020e-1 8.181e-16   0.6716    0.9238</span></a>
 <a class="sourceLine" id="cb29-69" title="69"></a>
 <a class="sourceLine" id="cb29-70" title="70"><span class="co"># getting the sample sizes for all pairs</span></a>
-<a class="sourceLine" id="cb29-71" title="71">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggcorrmat.html">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb29-71" title="71">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
 <a class="sourceLine" id="cb29-72" title="72">  <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</a>
 <a class="sourceLine" id="cb29-73" title="73">  <span class="dt">cor.vars =</span> sleep_total<span class="op">:</span>bodywt,</a>
 <a class="sourceLine" id="cb29-74" title="74">  <span class="dt">corr.method =</span> <span class="st">"robust"</span>,</a>
@@ -1429,7 +1420,7 @@
 <a class="sourceLine" id="cb30-3" title="3"></a>
 <a class="sourceLine" id="cb30-4" title="4"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb30-5" title="5"><span class="co"># let's use only 50% of the data to speed up the process</span></a>
-<a class="sourceLine" id="cb30-6" title="6">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb30-6" title="6">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span>(</a>
 <a class="sourceLine" id="cb30-7" title="7">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/sample.html">sample_frac</a></span>(ggstatsplot<span class="op">::</span>movies_long, <span class="dt">size =</span> <span class="fl">0.5</span>),</a>
 <a class="sourceLine" id="cb30-8" title="8">  <span class="dt">cor.vars =</span> length<span class="op">:</span>votes,</a>
 <a class="sourceLine" id="cb30-9" title="9">  <span class="dt">corr.method =</span> <span class="st">"np"</span>,</a>
@@ -1486,7 +1477,7 @@
 <a class="sourceLine" id="cb31-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb31-3" title="3"></a>
 <a class="sourceLine" id="cb31-4" title="4"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb31-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(</a>
+<a class="sourceLine" id="cb31-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(</a>
 <a class="sourceLine" id="cb31-6" title="6">  <span class="dt">formula =</span> mpg <span class="op">~</span><span class="st"> </span>am <span class="op">*</span><span class="st"> </span>cyl,</a>
 <a class="sourceLine" id="cb31-7" title="7">  <span class="dt">data =</span> mtcars</a>
 <a class="sourceLine" id="cb31-8" title="8">))</a></code></pre></div>
@@ -1496,7 +1487,7 @@
 <a class="sourceLine" id="cb32-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb32-3" title="3"></a>
 <a class="sourceLine" id="cb32-4" title="4"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb32-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggcoefstats.html">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb32-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
 <a class="sourceLine" id="cb32-6" title="6">  <span class="dt">x =</span> MASS<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/MASS/man/rlm.html">rlm</a></span>(</a>
 <a class="sourceLine" id="cb32-7" title="7">    <span class="dt">formula =</span> mpg <span class="op">~</span><span class="st"> </span>am <span class="op">*</span><span class="st"> </span>cyl,</a>
 <a class="sourceLine" id="cb32-8" title="8">    <span class="dt">data =</span> mtcars</a>
@@ -1544,9 +1535,9 @@
 <a class="sourceLine" id="cb33-4" title="4"><span class="co"># extrafont::font_import()</span></a>
 <a class="sourceLine" id="cb33-5" title="5"></a>
 <a class="sourceLine" id="cb33-6" title="6"><span class="co"># try this yourself</span></a>
-<a class="sourceLine" id="cb33-7" title="7">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb33-7" title="7">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb33-8" title="8">  <span class="co"># with the ggstatsplot layer</span></a>
-<a class="sourceLine" id="cb33-9" title="9">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/gghistostats.html">gghistostats</a></span>(</a>
+<a class="sourceLine" id="cb33-9" title="9">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</a>
 <a class="sourceLine" id="cb33-10" title="10">    <span class="dt">data =</span> iris,</a>
 <a class="sourceLine" id="cb33-11" title="11">    <span class="dt">x =</span> Sepal.Width,</a>
 <a class="sourceLine" id="cb33-12" title="12">    <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
@@ -1556,7 +1547,7 @@
 <a class="sourceLine" id="cb33-16" title="16">    <span class="dt">ggstatsplot.layer =</span> <span class="ot">TRUE</span></a>
 <a class="sourceLine" id="cb33-17" title="17">  ),</a>
 <a class="sourceLine" id="cb33-18" title="18">  <span class="co"># without the ggstatsplot layer</span></a>
-<a class="sourceLine" id="cb33-19" title="19">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/gghistostats.html">gghistostats</a></span>(</a>
+<a class="sourceLine" id="cb33-19" title="19">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</a>
 <a class="sourceLine" id="cb33-20" title="20">    <span class="dt">data =</span> iris,</a>
 <a class="sourceLine" id="cb33-21" title="21">    <span class="dt">x =</span> Sepal.Width,</a>
 <a class="sourceLine" id="cb33-22" title="22">    <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
@@ -1585,7 +1576,7 @@
 <a class="sourceLine" id="cb34-7" title="7"></a>
 <a class="sourceLine" id="cb34-8" title="8"><span class="co"># using `ggstatsplot` to prepare text with statistical results</span></a>
 <a class="sourceLine" id="cb34-9" title="9">stats_results &lt;-</a>
-<a class="sourceLine" id="cb34-10" title="10"><span class="st">  </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/subtitle_anova_parametric.html">subtitle_anova_parametric</a></span>(</a>
+<a class="sourceLine" id="cb34-10" title="10"><span class="st">  </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_anova_parametric.html">subtitle_anova_parametric</a></span>(</a>
 <a class="sourceLine" id="cb34-11" title="11">    <span class="dt">data =</span> ChickWeight,</a>
 <a class="sourceLine" id="cb34-12" title="12">    <span class="dt">x =</span> Time,</a>
 <a class="sourceLine" id="cb34-13" title="13">    <span class="dt">y =</span> weight,</a>
