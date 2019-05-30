@@ -135,7 +135,7 @@
       <h1>ggpiestats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-05-28</h4>
+            <h4 class="date">2019-05-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggpiestats.Rmd"><code>vignettes/web_only/ggpiestats.Rmd</code></a></small>
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
@@ -164,7 +164,7 @@
 <a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb1-4" title="4"></a>
 <a class="sourceLine" id="cb1-5" title="5"><span class="co"># looking at the original data in tabular format</span></a>
-<a class="sourceLine" id="cb1-6" title="6">dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/reexports.html">glimpse</a></span>(<span class="dt">x =</span> Titanic)</a>
+<a class="sourceLine" id="cb1-6" title="6">dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="dt">x =</span> Titanic)</a>
 <a class="sourceLine" id="cb1-7" title="7"><span class="co">#&gt;  'table' num [1:4, 1:2, 1:2, 1:2] 0 0 35 0 0 0 17 0 118 154 ...</span></a>
 <a class="sourceLine" id="cb1-8" title="8"><span class="co">#&gt;  - attr(*, "dimnames")=List of 4</span></a>
 <a class="sourceLine" id="cb1-9" title="9"><span class="co">#&gt;   ..$ Class   : chr [1:4] "1st" "2nd" "3rd" "Crew"</span></a>
@@ -173,7 +173,7 @@
 <a class="sourceLine" id="cb1-12" title="12"><span class="co">#&gt;   ..$ Survived: chr [1:2] "No" "Yes"</span></a>
 <a class="sourceLine" id="cb1-13" title="13"></a>
 <a class="sourceLine" id="cb1-14" title="14"><span class="co"># looking at the dataset as a tibble or dataframe</span></a>
-<a class="sourceLine" id="cb1-15" title="15">dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/reexports.html">glimpse</a></span>(<span class="dt">x =</span> ggstatsplot<span class="op">::</span>Titanic_full)</a>
+<a class="sourceLine" id="cb1-15" title="15">dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="dt">x =</span> ggstatsplot<span class="op">::</span>Titanic_full)</a>
 <a class="sourceLine" id="cb1-16" title="16"><span class="co">#&gt; Observations: 2,201</span></a>
 <a class="sourceLine" id="cb1-17" title="17"><span class="co">#&gt; Variables: 5</span></a>
 <a class="sourceLine" id="cb1-18" title="18"><span class="co">#&gt; $ id       &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16...</span></a>
@@ -192,7 +192,7 @@
 <a class="sourceLine" id="cb2-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb2-4" title="4"></a>
 <a class="sourceLine" id="cb2-5" title="5"><span class="co"># to speed up the process, let's use only half of the dataset</span></a>
-<a class="sourceLine" id="cb2-6" title="6">Titanic_full_<span class="dv">50</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>Titanic_full, <span class="dt">size =</span> <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb2-6" title="6">Titanic_full_<span class="dv">50</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>Titanic_full, <span class="dt">size =</span> <span class="fl">0.5</span>)</a>
 <a class="sourceLine" id="cb2-7" title="7"></a>
 <a class="sourceLine" id="cb2-8" title="8"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb2-9" title="9">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</a>
@@ -224,7 +224,7 @@
 <a class="sourceLine" id="cb3-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb3-4" title="4"></a>
 <a class="sourceLine" id="cb3-5" title="5"><span class="co"># to speed up the process, let's use only half of the dataset</span></a>
-<a class="sourceLine" id="cb3-6" title="6">Titanic_full_<span class="dv">50</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>Titanic_full, <span class="dt">size =</span> <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb3-6" title="6">Titanic_full_<span class="dv">50</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>Titanic_full, <span class="dt">size =</span> <span class="fl">0.5</span>)</a>
 <a class="sourceLine" id="cb3-7" title="7"></a>
 <a class="sourceLine" id="cb3-8" title="8"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb3-9" title="9">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</a>

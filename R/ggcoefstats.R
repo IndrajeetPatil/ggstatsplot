@@ -170,6 +170,7 @@
 #' @importFrom broomExtra tidy glance augment
 #' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if n
 #' @importFrom dplyr group_by arrange full_join vars matches desc everything
+#' @importFrom dplyr vars all_vars filter_at starts_with
 #' @importFrom purrrlyr by_row
 #' @importFrom stats as.formula lm confint qnorm
 #' @importFrom ggrepel geom_label_repel
@@ -650,13 +651,12 @@ ggcoefstats <- function(x,
     if (any(coefficient.type %in%
       c("alpha", "beta", "zeta", "intercept", "location", "scale", "coefficient"))) {
       # subset the dataframe, only if not all coefficients are to be retained
-      if (utils::packageVersion("broom") > "0.5.2") {
-        tidy_df %<>%
-          dplyr::filter(.data = ., coef.type %in% coefficient.type)
-      } else {
-        tidy_df %<>%
-          dplyr::filter(.data = ., coefficient_type %in% coefficient.type)
-      }
+      tidy_df %<>%
+        dplyr::filter_at(
+          .tbl = .,
+          .vars = dplyr::vars(dplyr::starts_with("coef")),
+          .vars_predicate = dplyr::all_vars(. %in% coefficient.type)
+        )
     }
   }
 
@@ -1008,153 +1008,158 @@ ggcoefstats <- function(x,
       dplyr::select(.data = ., -rowid)
   }
 
-  # ========================== palette check =================================
-
   # palette check is necessary only if output is a plot
-  if (output == "plot" && isTRUE(stats.labels)) {
+  if (output == "plot") {
 
-    # counting the number of terms in the tidy dataframe
-    count_term <- length(tidy_df$term)
+    # ========================== basic plot ===================================
 
-    # if no. of factor levels is greater than the default palette color count
-    palette_message(
-      package = package,
-      palette = palette,
-      min_length = count_term
-    )
+    # setting up the basic architecture
+    plot <-
+      ggplot2::ggplot(data = tidy_df, mapping = ggplot2::aes(x = estimate, y = factor(term)))
 
-    # computing the number of colors in a given palette
-    palette_df <-
-      tibble::as_tibble(x = paletteer::palettes_d_names) %>%
-      dplyr::filter(.data = ., package == !!package, palette == !!palette) %>%
-      dplyr::select(.data = ., length)
+    # if needed, adding the vertical line
+    if (isTRUE(vline)) {
+      # either at 1 - if coefficients are to be exponentiated - or at 0
+      if (isTRUE(exponentiate)) {
+        xintercept <- 1
+      } else {
+        xintercept <- 0
+      }
 
-    # if insufficient number of colors are available in a given palette
-    if (palette_df$length[[1]] < count_term) {
-      stats.label.color <- "black"
+      # adding the line geom
+      plot <- plot +
+        ggplot2::geom_vline(
+          xintercept = xintercept,
+          color = vline.color,
+          linetype = vline.linetype,
+          size = vline.size,
+          na.rm = TRUE
+        )
+
+      # logarithmic scale for exponent of coefficients
+      if (isTRUE(exponentiate)) {
+        plot <- plot +
+          ggplot2::scale_x_log10()
+      }
     }
 
-    # if user has not specified colors, then use a color palette
-    if (is.null(stats.label.color)) {
-      stats.label.color <-
-        paletteer::paletteer_d(
-          package = !!package,
-          palette = !!palette,
-          n = count_term,
-          direction = direction,
-          type = "discrete"
+    # if the confidence intervals are to be displayed on the plot
+    if (isTRUE(conf.int)) {
+      plot <- plot +
+        ggplot2::geom_errorbarh(
+          ggplot2::aes_string(xmin = "conf.low", xmax = "conf.high"),
+          color = errorbar.color,
+          height = errorbar.height,
+          linetype = errorbar.linetype,
+          size = errorbar.size,
+          na.rm = TRUE
         )
     }
-  }
 
-  # ========================== basic plot ===================================
-
-  # setting up the basic architecture
-  plot <-
-    ggplot2::ggplot(
-      data = tidy_df,
-      mapping = ggplot2::aes(x = estimate, y = factor(term))
-    )
-
-  # if needed, adding the vertical line
-  if (isTRUE(vline)) {
-    # either at 1 - if coefficients are to be exponentiated - or at 0
-    if (isTRUE(exponentiate)) {
-      xintercept <- 1
-    } else {
-      xintercept <- 0
-    }
-
-    # adding the line geom
+    # changing the point aesthetics
     plot <- plot +
-      ggplot2::geom_vline(
-        xintercept = xintercept,
-        color = vline.color,
-        linetype = vline.linetype,
-        size = vline.size,
+      ggplot2::geom_point(
+        color = point.color,
+        size = point.size,
+        shape = point.shape,
         na.rm = TRUE
       )
 
-    # logarithmic scale for exponent of coefficients
-    if (isTRUE(exponentiate)) {
+    # ========================= ggrepel labels ================================
+
+    # adding the labels
+    if (isTRUE(stats.labels)) {
+      # removing all rows that have NAs anywhere in the columns of interest
+      tidy_df %<>%
+        dplyr::filter_at(
+          .tbl = .,
+          .vars = dplyr::vars(dplyr::matches("estimate|statistic|std.error|p.value")),
+          .vars_predicate = dplyr::all_vars(!is.na(.))
+        )
+
+      # ========================== palette check =================================
+
+      # counting the number of terms in the tidy dataframe
+      count_term <- length(tidy_df$term)
+
+      # if no. of factor levels is greater than the default palette color count
+      palette_message(
+        package = package,
+        palette = palette,
+        min_length = count_term
+      )
+
+      # computing the number of colors in a given palette
+      palette_df <-
+        tibble::as_tibble(x = paletteer::palettes_d_names) %>%
+        dplyr::filter(.data = ., package == !!package, palette == !!palette) %>%
+        dplyr::select(.data = ., length)
+
+      # if insufficient number of colors are available in a given palette
+      if (palette_df$length[[1]] < count_term) {
+        stats.label.color <- "black"
+      }
+
+      # if user has not specified colors, then use a color palette
+      if (is.null(stats.label.color)) {
+        stats.label.color <-
+          paletteer::paletteer_d(
+            package = !!package,
+            palette = !!palette,
+            n = count_term,
+            direction = direction,
+            type = "discrete"
+          )
+      }
+
+      # adding labels
       plot <- plot +
-        ggplot2::scale_x_log10()
+        ggrepel::geom_label_repel(
+          data = tidy_df,
+          mapping = ggplot2::aes(x = estimate, y = term, label = label),
+          size = stats.label.size,
+          fontface = stats.label.fontface,
+          color = stats.label.color,
+          box.padding = grid::unit(x = label.box.padding, units = "lines"),
+          label.padding = grid::unit(x = label.label.padding, units = "lines"),
+          point.padding = grid::unit(x = label.point.padding, units = "lines"),
+          label.r = grid::unit(x = label.r, units = "lines"),
+          label.size = label.size,
+          segment.color = label.segment.color,
+          segment.size = label.segment.size,
+          segment.alpha = label.segment.alpha,
+          min.segment.length = label.min.segment.length,
+          force = label.force,
+          max.iter = label.max.iter,
+          nudge_x = label.nudge.x,
+          nudge_y = label.nudge.y,
+          xlim = label.xlim,
+          ylim = label.ylim,
+          na.rm = TRUE,
+          show.legend = FALSE,
+          direction = label.direction,
+          parse = TRUE,
+          seed = 123
+        )
     }
-  }
 
-  # if the confidence intervals are to be displayed on the plot
-  if (isTRUE(conf.int)) {
+    # ========================== annotations =============================
+
+    # adding other labels to the plot
     plot <- plot +
-      ggplot2::geom_errorbarh(
-        ggplot2::aes_string(xmin = "conf.low", xmax = "conf.high"),
-        color = errorbar.color,
-        height = errorbar.height,
-        linetype = errorbar.linetype,
-        size = errorbar.size,
-        na.rm = TRUE
-      )
+      ggplot2::labs(
+        x = xlab,
+        y = ylab,
+        caption = caption,
+        subtitle = subtitle,
+        title = title
+      ) +
+      ggstatsplot::theme_mprl(
+        ggtheme = ggtheme,
+        ggstatsplot.layer = ggstatsplot.layer
+      ) +
+      ggplot2::theme(plot.caption = ggplot2::element_text(size = 10))
   }
-
-  # changing the point aesthetics
-  plot <- plot +
-    ggplot2::geom_point(
-      color = point.color,
-      size = point.size,
-      shape = point.shape,
-      na.rm = TRUE
-    )
-
-  # ========================= ggrepel labels ================================
-
-  # adding the labels
-  if (isTRUE(stats.labels)) {
-    plot <- plot +
-      ggrepel::geom_label_repel(
-        data = tidy_df,
-        mapping = ggplot2::aes(x = estimate, y = term, label = label),
-        size = stats.label.size,
-        fontface = stats.label.fontface,
-        color = stats.label.color,
-        box.padding = grid::unit(x = label.box.padding, units = "lines"),
-        label.padding = grid::unit(x = label.label.padding, units = "lines"),
-        point.padding = grid::unit(x = label.point.padding, units = "lines"),
-        label.r = grid::unit(x = label.r, units = "lines"),
-        label.size = label.size,
-        segment.color = label.segment.color,
-        segment.size = label.segment.size,
-        segment.alpha = label.segment.alpha,
-        min.segment.length = label.min.segment.length,
-        force = label.force,
-        max.iter = label.max.iter,
-        nudge_x = label.nudge.x,
-        nudge_y = label.nudge.y,
-        xlim = label.xlim,
-        ylim = label.ylim,
-        na.rm = TRUE,
-        show.legend = FALSE,
-        direction = label.direction,
-        parse = TRUE,
-        seed = 123
-      )
-  }
-
-  # ========================== annotations =============================
-
-  # adding other labels to the plot
-  plot <- plot +
-    ggplot2::labs(
-      x = xlab,
-      y = ylab,
-      caption = caption,
-      subtitle = subtitle,
-      title = title
-    ) +
-    ggstatsplot::theme_mprl(
-      ggtheme = ggtheme,
-      ggstatsplot.layer = ggstatsplot.layer
-    ) +
-    ggplot2::theme(plot.caption = ggplot2::element_text(size = 10))
-
   # =========================== output =====================================
 
   # what needs to be returned?

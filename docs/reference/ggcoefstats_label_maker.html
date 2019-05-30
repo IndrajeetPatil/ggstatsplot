@@ -191,7 +191,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>A model object to be tidied with <code><a href='https://rdrr.io/pkg/broom/man/reexports.html'>broom::tidy</a></code>, or a tidy data frame
+      <td><p>A model object to be tidied with <code><a href='http://broom.tidyverse.org/reference/reexports.html'>broom::tidy</a></code>, or a tidy data frame
 containing results. If a data frame is to be plotted, it <em>must</em> contain
 columns named <code>term</code> (names of predictors), or <code>estimate</code> (corresponding
 estimates of coefficients or other quantities of interest). Other optional
@@ -204,7 +204,7 @@ columns are <code>conf.low</code> and <code>conf.high</code> (for confidence int
     </tr>
     <tr>
       <th>glance_df</th>
-      <td><p>Glance model summary dataframe from <code><a href='https://rdrr.io/pkg/broom/man/reexports.html'>broom::glance</a></code>
+      <td><p>Glance model summary dataframe from <code><a href='http://broom.tidyverse.org/reference/reexports.html'>broom::glance</a></code>
 (default: <code>NULL</code>). This is optional argument. If provide, the <code>glance</code>
 summary will be used to write <code>caption</code> for the final plot.</p></td>
     </tr>
@@ -357,7 +357,7 @@ will be returned. Valid only for objects of class <code>aov</code>, <code>anova<
   <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>50</span>
 ) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/select.html'>rename</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='kw'>estimate</span> <span class='kw'>=</span> <span class='no'>omegasq</span>, <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='no'>F.value</span>)
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>rename</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='kw'>estimate</span> <span class='kw'>=</span> <span class='no'>omegasq</span>, <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='no'>F.value</span>)
 
 <span class='co'># including a new column with a label</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats_label_maker.html'>ggcoefstats_label_maker</a></span>(

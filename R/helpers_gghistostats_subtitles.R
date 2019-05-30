@@ -182,9 +182,9 @@ subtitle_t_onesample <- function(data,
     )
 
     # displaying message about bootstrap
-      if (isTRUE(messages)) {
-        effsize_ci_message(nboot = nboot, conf.level = conf.level)
-      }
+    if (isTRUE(messages)) {
+      effsize_ci_message(nboot = nboot, conf.level = conf.level)
+    }
 
 
     # preparing the subtitle

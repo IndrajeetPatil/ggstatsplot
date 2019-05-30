@@ -242,12 +242,12 @@ testthat::test_that(
           ", ",
           italic(r),
           " = ",
-          "0.1264",
+          "-0.1264",
           ", CI"["95%"],
           " [",
-          "-0.1279",
+          "-0.3805",
           ", ",
-          "0.3150",
+          "0.1545",
           "]",
           ", ",
           italic("n"),
@@ -322,13 +322,13 @@ testthat::test_that(
     # ggstatsplot output
     set.seed(123)
     using_function <-
-        ggstatsplot::subtitle_t_onesample(
-          data = anscombe,
-          x = x2,
-          test.value = 8,
-          type = "bf",
-          messages = FALSE
-        )
+      ggstatsplot::subtitle_t_onesample(
+        data = anscombe,
+        x = x2,
+        test.value = 8,
+        type = "bf",
+        messages = FALSE
+      )
 
     # expected output
     set.seed(123)

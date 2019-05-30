@@ -600,10 +600,9 @@ References:</p><ul>
 <li><p>ANOVA: one-way ANOVA on trimmed means (see <code><a href='https://rdrr.io/pkg/WRS2/man/t1way.html'>?WRS2::t1way</a></code>)</p></li>
 <li><p><em>t</em>-test: Yuen's test for trimmed means (see <code><a href='https://rdrr.io/pkg/WRS2/man/yuen.html'>?WRS2::yuen</a></code>)</p></li>
 </ul>
-    <p>Variant of this function <code>ggwithinstats</code> is currently in progress. You <em>can</em>
-still use this function just to prepare the <strong>plot</strong> for exploratory data
-analysis, but the statistical details displayed in the subtitle will be
-incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)</code>.</p>
+    <p>For more about how the effect size measures (for nonparametric tests) and
+their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/wilcoxonR.html'>?rcompanion::wilcoxonR</a></code>.</p>
+<p>For repeated measures designs, use <code>ggwithinstats</code>.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -621,7 +620,7 @@ incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)<
 
 <span class='co'># the most basic function call</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggbetweenstats.html'>grouped_ggbetweenstats</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/filter.html'>filter</a></span>(<span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ggplot2/man/mpg.html'>mpg</a></span>, <span class='no'>drv</span> <span class='kw'>!=</span> <span class='st'>"4"</span>),
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ggplot2/man/mpg.html'>mpg</a></span>, <span class='no'>drv</span> <span class='kw'>!=</span> <span class='st'>"4"</span>),
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>year</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>hwy</span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>drv</span>,
@@ -631,7 +630,7 @@ incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)<
 #&gt; can't be further modified with `ggplot2` functions.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggbetweenstats-1.png' alt='' width='700' height='433' /></div></span><div class='input'><span class='co'># modifying individual plots using `ggplot.component` argument</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggbetweenstats.html'>grouped_ggbetweenstats</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/filter.html'>filter</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
     <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='no'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/movies_long.html'>movies_long</a></span>,
     <span class='no'>genre</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Action"</span>, <span class='st'>"Comedy"</span>),
     <span class='no'>mpaa</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"R"</span>, <span class='st'>"PG"</span>)

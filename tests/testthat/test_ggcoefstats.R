@@ -1020,7 +1020,6 @@ testthat::test_that(
       pb$data[[4]]$label,
       c(
         "list(~italic(beta)==0.07, ~italic(t)==0.16, ~italic(p)==0.875)",
-        "list(~italic(beta)==0.54, ~italic(t)==NA, ~italic(p)==NA)",
         "list(~italic(beta)==0.04, ~italic(t)==1.24, ~italic(p)==0.001)"
       )
     )
