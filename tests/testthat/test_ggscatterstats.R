@@ -514,16 +514,64 @@ testthat::test_that(
   }
 )
 
+# checking formula specification -------------------------------------------
+
+testthat::test_that(
+  desc = "checking formula specification",
+  code = {
+    testthat::skip_on_cran()
+
+    # creating the messages
+    set.seed(123)
+    p1 <- ggstatsplot::ggscatterstats(
+      data = dplyr::starwars,
+      x = mass,
+      y = height,
+      formula = y ~ log(x),
+      method = MASS::rlm,
+      marginal = FALSE
+    )
+
+    set.seed(123)
+    p2 <- ggstatsplot::ggscatterstats(
+      data = dplyr::starwars,
+      x = mass,
+      y = height,
+      method = "gam",
+      marginal = FALSE
+    )
+
+    # build the plot
+    pb1 <- ggplot2::ggplot_build(p1)
+    pb2 <- ggplot2::ggplot_build(p2)
+
+    # checking subtitle - lack thereof
+    testthat::expect_null(pb1$plot$labels$subtitle, NULL)
+    testthat::expect_is(pb1$plot$layers[[2]]$stat_params$method, "function")
+    testthat::expect_identical(
+      as.character(deparse(pb1$plot$layers[[2]]$stat_params$formula)),
+      "y ~ log(x)"
+    )
+
+    testthat::expect_null(pb2$plot$labels$subtitle, NULL)
+    testthat::expect_identical(pb2$plot$layers[[2]]$stat_params$method[[1]], "gam")
+    testthat::expect_identical(
+      as.character(deparse(pb2$plot$layers[[2]]$stat_params$formula)),
+      "y ~ x"
+    )
+  }
+)
+
 # message checks ----------------------------------------------------------
 
 testthat::test_that(
-  desc = "class of object",
+  desc = "message checks",
   code = {
     testthat::skip_on_cran()
 
     # creating the messages
     p_message1 <- capture.output(
-      ggstatsplot::subtitle_ggscatterstats(
+      ggstatsplot::ggscatterstats(
         data = dplyr::starwars,
         x = mass,
         y = height,

@@ -183,6 +183,11 @@
 <li>Instead of having two separate functions that dealt with repeated measures (<code>subtitle_friedman_nonparametric</code>) and between-subjects (<code>subtitle_kw_nonparametric</code>), a single function <code>subtitle_anova_nonparametric</code> handles both of these designs with the <code>paired</code> argument determining which test is run.</li>
 <li>All functions that supported Bayes Factor analysis (<code>type = "bf"</code>) will only return BF value and the scale used. Previously, this was a mix of parametric statistics and BF, which was confusing and often times misleading since these two types of analyses relied on different tests.</li>
 </ul>
+<p>MAJOR CHANGES</p>
+<ul>
+<li>
+<code>ggscatterstats</code> returns only plot (without any statistical details) when the specified model is not linear (i.e., either when <code>method</code> argument is not <code>"lm"</code> or when <code>formula</code> is not <code>y ~ x</code>).</li>
+</ul>
 <p>NEW FEATURES</p>
 <ul>
 <li>New functions <code>ggwithinstats</code> (and its <code>grouped_</code> variant) are introduced as a counterpart to <code>ggbetweenstats</code> to handle repeated measures designs.</li>
