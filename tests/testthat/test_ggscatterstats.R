@@ -528,7 +528,7 @@ testthat::test_that(
       x = mass,
       y = height,
       formula = y ~ log(x),
-      method = MASS::rlm,
+      method = stats::lm,
       marginal = FALSE
     )
 
