@@ -734,6 +734,7 @@ subtitle_meta_ggcoefstats <- function(data,
 #'
 #' @examples
 #'
+#' \dontrun{
 #' # setup
 #' set.seed(123)
 #' library(metaBMA)
@@ -763,7 +764,14 @@ subtitle_meta_ggcoefstats <- function(data,
 #'   ))
 #'
 #' # getting bayes factor in favor of null hypothesis
-#' ggstatsplot::bf_meta_message(data = df, k = 3, sample = 50)
+#' ggstatsplot::bf_meta_message(
+#'   data = df,
+#'   k = 3,
+#'   sample = 50,
+#'   messages = FALSE
+#' )
+#' }
+#'
 #' @export
 
 # function body
@@ -787,7 +795,7 @@ bf_meta_message <- function(data,
     base::stop(base::message(cat(
       crayon::red("Error"),
       crayon::blue(": The dataframe **must** contain the following two columns:\n"),
-      crayon::blue("`estimate` and `std.error`."),
+      crayon::blue("`estimate` and `std.error`.\n"),
       sep = ""
     )),
     call. = FALSE

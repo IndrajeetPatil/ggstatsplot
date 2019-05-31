@@ -183,7 +183,7 @@ subtitle.
 \itemize{
 \item \code{marginal.type = "densigram"} will work only with the development
 version of \code{ggExtra} that you can download from \code{GitHub}:
-\code{devtools::install_github("daattali/ggExtra")}
+\code{remotes::install_github("daattali/ggExtra")}.
 
 \item The plot uses \code{ggrepel::geom_label_repel} to attempt to keep labels
 from over-lapping to the largest degree possible.  As a consequence plot

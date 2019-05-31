@@ -111,7 +111,7 @@ In contrast to all other functions in this package, the
 with `ggplot2`. This can be avoided by not plotting the marginal distributions
 (`marginal = FALSE`). Currently trying to find a workaround this problem.
 
-## Using `ggscatterstats()` in R Notebooks or Rmarkdown
+## Using `ggscatterstats()` in `R Notebook` or `Rmarkdown`
 
 If you try including a `ggscatterstats()` plot inside an `R Notebook` or
 `Rmarkdown` code chunk, you'll notice that the plot doesn't get output. In
@@ -259,7 +259,6 @@ plot_list2 <- purrr::pmap(
                    y ~ x + I(x ^ 2)),
     line.color = list("#009E73", "#F0E442", "#0072B2", "#D55E00"),
     marginal = FALSE,
-    results.subtitle = FALSE,
     messages = FALSE
   ),
   .f = ggstatsplot::ggscatterstats

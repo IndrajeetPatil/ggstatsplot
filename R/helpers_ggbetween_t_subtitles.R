@@ -133,6 +133,7 @@ subtitle_t_parametric <- function(data,
     na.action = na.omit
   )
 
+  # tidy dataframe from model object
   stats_df <-
     broomExtra::tidy(tobject)
 
@@ -587,15 +588,13 @@ subtitle_t_robust <- function(data,
 #' @inheritParams subtitle_t_parametric
 #' @inheritParams subtitle_anova_parametric
 #'
-#' @importFrom jmv ttestIS ttestPS
-#'
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
 #'
 #' # between-subjects design
 #'
-#' subtitle_t_bayes(
+#' ggstatsplot::subtitle_t_bayes(
 #'   data = mtcars,
 #'   x = am,
 #'   y = wt,
@@ -604,7 +603,7 @@ subtitle_t_robust <- function(data,
 #'
 #' # within-subjects design
 #'
-#' subtitle_t_bayes(
+#' ggstatsplot::subtitle_t_bayes(
 #'   data = dplyr::filter(
 #'     ggstatsplot::intent_morality,
 #'     condition %in% c("accidental", "attempted"),
@@ -625,7 +624,6 @@ subtitle_t_bayes <- function(data,
                              k = 2,
                              ...) {
 
-
   # creating a dataframe
   data <-
     dplyr::select(
@@ -633,116 +631,20 @@ subtitle_t_bayes <- function(data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
     ) %>%
-    dplyr::mutate(.data = ., x = droplevels(as.factor(x)))
-
-  # -------------------------- between-subjects design ------------------------
-
-  # running bayesian analysis
-  if (!isTRUE(paired)) {
-
-    # removing NAs
-    data %<>%
-      stats::na.omit(.)
-
-    # sample size
-    sample_size <- nrow(data)
-
-    # independent samples design
-    jmv_results <-
-      jmv::ttestIS(
-        data = data,
-        vars = "y",
-        group = "x",
-        students = TRUE,
-        effectSize = TRUE,
-        bf = TRUE,
-        bfPrior = bf.prior,
-        hypothesis = "different",
-        miss = "listwise"
-      )
-
-    # --------------------- within-subjects design ---------------------------
-  } else if (isTRUE(paired)) {
-
-    # jamovi needs data to be wide format and not long format
-    data_wide <- long_to_wide_converter(
-      data = data,
-      x = x,
-      y = y
-    )
-
-    # dependent samples design
-    jmv_results <-
-      jmv::ttestPS(
-        data = na.omit(data_wide),
-        pairs = list(list(
-          i1 = colnames(data_wide)[[2]], i2 = colnames(data_wide)[[3]]
-        )),
-        students = TRUE,
-        effectSize = TRUE,
-        bf = TRUE,
-        bfPrior = bf.prior,
-        hypothesis = "different",
-        miss = "listwise"
-      )
-
-    # sample size
-    sample_size <- nrow(data_wide)
-  }
+    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
+    tibble::as_tibble(.)
 
   # preparing the subtitle
   subtitle <-
-    base::substitute(
-      expr =
-        paste(
-          italic("t"),
-          "(",
-          df,
-          ") = ",
-          estimate,
-          ", log"["e"],
-          "(BF"["10"],
-          ") = ",
-          bf,
-          ", ",
-          italic("r")["Cauchy"],
-          " = ",
-          bf_prior,
-          ", ",
-          italic("d"),
-          " = ",
-          effsize,
-          ", ",
-          italic("n"),
-          " = ",
-          n
-        ),
-      env = base::list(
-        df = as.data.frame(jmv_results$ttest)$`df[stud]`,
-        estimate = specify_decimal_p(
-          x = as.data.frame(jmv_results$ttest)$`stat[stud]`,
-          k = k
-        ),
-        bf = specify_decimal_p(
-          x = log(
-            x = as.data.frame(jmv_results$ttest)$`stat[bf]`,
-            base = exp(1)
-          ),
-          k = 1,
-          p.value = FALSE
-        ),
-        bf_prior = specify_decimal_p(
-          x = bf.prior,
-          k = 3,
-          p.value = FALSE
-        ),
-        effsize = specify_decimal_p(
-          x = as.data.frame(jmv_results$ttest)$`es[stud]`,
-          k = k,
-          p.value = FALSE
-        ),
-        n = sample_size
-      )
+    bf_two_sample_ttest(
+      data = data,
+      x = x,
+      y = y,
+      paired = paired,
+      bf.prior = bf.prior,
+      caption = NULL,
+      output = "h1",
+      k = k
     )
 
   # return the message
@@ -783,8 +685,7 @@ subtitle_t_bayes <- function(data,
 #' Psychological Measurement, Vol. 61 No. 4, August 2001 532-574. \item Cohen,
 #' J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.)
 #' Hillsdale, NJ: Lawrence Erlbaum Associates. \item David C. Howell (2010).
-#' Confidence Intervals on Effect Size, retrieved from
-#' (\url{https://www.uvm.edu/~dhowell/methods7/Supplements/Confidence\%20Intervals\%20on\%20Effect\%20Size.pdf}).
+#' Confidence Intervals on Effect Size
 #' }
 #'
 #' @examples

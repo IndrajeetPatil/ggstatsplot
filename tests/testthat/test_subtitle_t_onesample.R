@@ -242,12 +242,12 @@ testthat::test_that(
           ", ",
           italic(r),
           " = ",
-          "0.1264",
+          "-0.1264",
           ", CI"["95%"],
           " [",
-          "-0.1279",
+          "-0.3805",
           ", ",
-          "0.3150",
+          "0.1545",
           "]",
           ", ",
           italic("n"),
@@ -322,44 +322,31 @@ testthat::test_that(
     # ggstatsplot output
     set.seed(123)
     using_function <-
-      suppressWarnings(
-        ggstatsplot::subtitle_t_onesample(
-          data = anscombe,
-          x = x2,
-          test.value = 8,
-          type = "bf",
-          messages = FALSE
-        )
+      ggstatsplot::subtitle_t_onesample(
+        data = anscombe,
+        x = x2,
+        test.value = 8,
+        type = "bf",
+        messages = FALSE
       )
 
     # expected output
     set.seed(123)
     results <-
-      ggplot2::expr(
-        paste(
-          italic("t"),
-          "(",
-          10,
-          ") = ",
-          "1.00",
-          ", log"["e"],
+      ggplot2::expr(atop(
+        displaystyle(NULL),
+        expr = paste(
+          "In favor of alternative: ",
+          "log"["e"],
           "(BF"["10"],
           ") = ",
           "-0.80",
           ", ",
           italic("r")["Cauchy"],
           " = ",
-          "0.71",
-          ", ",
-          italic("d"),
-          " = ",
-          "0.30",
-          ", ",
-          italic("n"),
-          " = ",
-          11L
+          "0.71"
         )
-      )
+      ))
 
     # testing overall call
     testthat::expect_identical(using_function, results)

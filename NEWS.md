@@ -9,6 +9,16 @@ BREAKING CHANGES
     (`subtitle_kw_nonparametric`), a single function
     `subtitle_anova_nonparametric` handles both of these designs with the
     `paired` argument determining which test is run.
+  - All functions that supported Bayes Factor analysis (`type = "bf"`) will only
+    return BF value and the scale used. Previously, this was a mix of parametric
+    statistics and BF, which was confusing and often times misleading since
+    these two types of analyses relied on different tests.
+    
+MAJOR CHANGES
+
+  - `ggscatterstats` returns only plot (without any statistical details) when
+    the specified model is not linear (i.e., either when `method` argument is
+    not `"lm"` or when `formula` is not `y ~ x`).
 
 NEW FEATURES
 

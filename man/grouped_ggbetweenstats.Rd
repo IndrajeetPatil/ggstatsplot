@@ -307,10 +307,10 @@ If robust tests are selected, following tests are used is .
 \item \emph{t}-test: Yuen's test for trimmed means (see \code{?WRS2::yuen})
 }
 
-Variant of this function \code{ggwithinstats} is currently in progress. You \emph{can}
-still use this function just to prepare the \strong{plot} for exploratory data
-analysis, but the statistical details displayed in the subtitle will be
-incorrect. You can remove them by adding \code{+ ggplot2::labs(subtitle = NULL)}.
+For more about how the effect size measures (for nonparametric tests) and
+their confidence intervals are computed, see \code{?rcompanion::wilcoxonR}.
+
+For repeated measures designs, use \code{ggwithinstats}.
 }
 \examples{
 

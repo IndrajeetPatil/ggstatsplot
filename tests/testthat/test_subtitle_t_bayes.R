@@ -22,31 +22,20 @@ testthat::test_that(
     # expected output
     set.seed(123)
     results <-
-      ggplot2::expr(
-        paste(
-          italic("t"),
-          "(",
-          612,
-          ") = ",
-          "-10.52948",
-          ", log"["e"],
+      ggplot2::expr(atop(
+        displaystyle(NULL),
+        expr = paste(
+          "In favor of alternative: ",
+          "log"["e"],
           "(BF"["10"],
           ") = ",
-          "47.8",
+          "47.76267",
           ", ",
           italic("r")["Cauchy"],
           " = ",
-          "0.900",
-          ", ",
-          italic("d"),
-          " = ",
-          "-0.92473",
-          ", ",
-          italic("n"),
-          " = ",
-          614L
+          "0.90000"
         )
-      )
+      ))
 
     # testing overall call
     testthat::expect_identical(using_function, results)
@@ -110,31 +99,20 @@ testthat::test_that(
     # expected output
     set.seed(123)
     results <-
-      ggplot2::expr(
-        paste(
-          italic("t"),
-          "(",
-          15,
-          ") = ",
-          "-4.06465",
-          ", log"["e"],
+      ggplot2::expr(atop(
+        displaystyle(NULL),
+        expr = paste(
+          "In favor of alternative: ",
+          "log"["e"],
           "(BF"["10"],
           ") = ",
-          "3.6",
+          "3.59201",
           ", ",
           italic("r")["Cauchy"],
           " = ",
-          "0.600",
-          ", ",
-          italic("d"),
-          " = ",
-          "-1.01616",
-          ", ",
-          italic("n"),
-          " = ",
-          16L
+          "0.60000"
         )
-      )
+      ))
 
     # testing overall call
     testthat::expect_identical(using_function, results)

@@ -1,65 +1,49 @@
 context("subtitle_anova_bayes")
 
-# subtitle_anova_bayes works (unequal variance) ----------------------------
+# subtitle_anova_bayes works (between-subjects) ----------------------------
 
 testthat::test_that(
-  desc = "subtitle_anova_bayes works (unequal variance)",
+  desc = "subtitle_anova_bayes works (between-subjects)",
   code = {
     testthat::skip_on_cran()
-    set.seed(123)
 
     # ggstatsplot output
+    set.seed(123)
     using_function1 <-
       ggstatsplot::subtitle_anova_bayes(
         data = ggstatsplot::movies_long,
         x = genre,
         y = rating,
-        effsize.type = "unbiased",
         k = 5,
-        var.equal = FALSE,
-        bf.prior = 0.8,
-        nboot = 100
+        bf.prior = 0.8
       )
 
     # expected output
     results1 <-
-      ggplot2::expr(
-        paste(
-          italic("F"),
-          "(",
-          8,
-          ",",
-          "399.03535",
-          ") = ",
-          "28.41410",
-          ", ",
-          omega["p"]^2,
-          " = ",
-          "0.12673",
-          ", log"["e"],
+      ggplot2::expr(atop(
+        displaystyle(NULL),
+        expr = paste(
+          "In favor of alternative: ",
+          "log"["e"],
           "(BF"["10"],
           ") = ",
-          "93.1",
+          "93.14228",
           ", ",
           italic("r")["Cauchy"],
           " = ",
-          "0.800",
-          ", ",
-          italic("n"),
-          " = ",
-          1579L
+          "0.80000"
         )
-      )
+      ))
 
     # testing overall call
     testthat::expect_identical(using_function1, results1)
   }
 )
 
-# subtitle_anova_bayes works (unequal variance) ----------------------------
+# subtitle_anova_bayes works (within-subjects) ----------------------------
 
 testthat::test_that(
-  desc = "subtitle_anova_bayes works (equal variance)",
+  desc = "subtitle_anova_bayes works (within-subjects)",
   code = {
     testthat::skip_on_cran()
 
@@ -67,46 +51,29 @@ testthat::test_that(
     set.seed(123)
     using_function1 <-
       ggstatsplot::subtitle_anova_bayes(
-        data = ggplot2::msleep,
-        x = vore,
-        y = brainwt,
-        effsize.type = "biased",
-        partial = FALSE,
-        k = 4,
-        var.equal = TRUE,
-        bf.prior = 0.9,
-        nboot = 20
+        data = WRS2::WineTasting,
+        x = Wine,
+        y = Taste,
+        paired = TRUE,
+        k = 3
       )
 
     # expected output
     results1 <-
-      ggplot2::expr(
-        paste(
-          italic("F"),
-          "(",
-          3,
-          ",",
-          "47",
-          ") = ",
-          "1.0596",
-          ", ",
-          eta^2,
-          " = ",
-          "0.0633",
-          ", log"["e"],
+      ggplot2::expr(atop(
+        displaystyle(NULL),
+        expr = paste(
+          "In favor of alternative: ",
+          "log"["e"],
           "(BF"["10"],
           ") = ",
-          "-2.0",
+          "2.115",
           ", ",
           italic("r")["Cauchy"],
           " = ",
-          "0.900",
-          ", ",
-          italic("n"),
-          " = ",
-          51L
+          "0.707"
         )
-      )
+      ))
 
     # testing overall call
     testthat::expect_identical(using_function1, results1)

@@ -189,47 +189,15 @@ subtitle_ggscatterstats <- function(data,
   } else if (stats.type == "bayes") {
 
     # bayes factor results
-    bf_results <-
+    subtitle <-
       bf_corr_test(
         data = data,
         x = x,
         y = y,
         bf.prior = bf.prior,
         caption = NULL,
-        output = "results"
-      )
-
-    # preparing the subtitle
-    subtitle <-
-      base::substitute(
-        expr =
-          paste(
-            italic("r")["Pearson"],
-            "(",
-            df,
-            ")",
-            " = ",
-            estimate,
-            ", log"["e"],
-            "(BF"["10"],
-            ") = ",
-            bf,
-            ", ",
-            italic("r")["Cauchy"],
-            " = ",
-            bf_prior,
-            ", ",
-            italic("n"),
-            " = ",
-            n
-          ),
-        env = base::list(
-          df = stats_df$parameter[[1]],
-          estimate = specify_decimal_p(x = stats_df$estimate[[1]], k = k),
-          bf = specify_decimal_p(x = bf_results$log_e_bf10[[1]], k = k),
-          bf_prior = specify_decimal_p(x = bf_results$bf.prior[[1]], k = k),
-          n = sample_size
-        )
+        output = "h1",
+        k = k
       )
   }
 

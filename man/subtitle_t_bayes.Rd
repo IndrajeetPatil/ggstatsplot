@@ -38,7 +38,7 @@ set.seed(123)
 
 # between-subjects design
 
-subtitle_t_bayes(
+ggstatsplot::subtitle_t_bayes(
   data = mtcars,
   x = am,
   y = wt,
@@ -47,7 +47,7 @@ subtitle_t_bayes(
 
 # within-subjects design
 
-subtitle_t_bayes(
+ggstatsplot::subtitle_t_bayes(
   data = dplyr::filter(
     ggstatsplot::intent_morality,
     condition \%in\% c("accidental", "attempted"),

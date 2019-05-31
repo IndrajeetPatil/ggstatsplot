@@ -60,8 +60,7 @@ That Are Based On Central And Noncentral Distributions, Educational and
 Psychological Measurement, Vol. 61 No. 4, August 2001 532-574. \item Cohen,
 J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.)
 Hillsdale, NJ: Lawrence Erlbaum Associates. \item David C. Howell (2010).
-Confidence Intervals on Effect Size, retrieved from
-(\url{https://www.uvm.edu/~dhowell/methods7/Supplements/Confidence\%20Intervals\%20on\%20Effect\%20Size.pdf}).
+Confidence Intervals on Effect Size
 }
 }
 \examples{
