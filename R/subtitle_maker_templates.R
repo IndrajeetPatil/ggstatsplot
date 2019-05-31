@@ -75,7 +75,7 @@ subtitle_template <- function(no.parameters,
   if (no.parameters == 0L) {
     # preparing subtitle
     subtitle <-
-      base::substitute(
+      substitute(
         expr =
           paste(
             stat.title,
@@ -101,7 +101,7 @@ subtitle_template <- function(no.parameters,
             " = ",
             n
           ),
-        env = base::list(
+        env = list(
           stat.title = stat.title,
           statistic.text = statistic.text,
           statistic = specify_decimal_p(x = statistic, k = k),
@@ -120,7 +120,7 @@ subtitle_template <- function(no.parameters,
 
     # check if parameter is specified
     if (purrr::is_null(parameter)) {
-      base::stop(base::message(cat(
+      stop(message(cat(
         crayon::red("Error: "),
         crayon::blue(
           "For tests with statistic that have two parameters, \n",
@@ -134,7 +134,7 @@ subtitle_template <- function(no.parameters,
 
     # preparing subtitle
     subtitle <-
-      base::substitute(
+      substitute(
         expr =
           paste(
             stat.title,
@@ -162,7 +162,7 @@ subtitle_template <- function(no.parameters,
             " = ",
             n
           ),
-        env = base::list(
+        env = list(
           stat.title = stat.title,
           statistic.text = statistic.text,
           statistic = specify_decimal_p(x = statistic, k = k),
@@ -182,7 +182,7 @@ subtitle_template <- function(no.parameters,
 
     # check if parameters are specified
     if (purrr::is_null(parameter) || purrr::is_null(parameter2)) {
-      base::stop(base::message(cat(
+      stop(message(cat(
         crayon::red("Error: "),
         crayon::blue(
           "For tests with statistic that have two parameters, \n",
@@ -196,7 +196,7 @@ subtitle_template <- function(no.parameters,
 
     # preparing subtitle
     subtitle <-
-      base::substitute(
+      substitute(
         expr =
           paste(
             stat.title,
@@ -226,7 +226,7 @@ subtitle_template <- function(no.parameters,
             " = ",
             n
           ),
-        env = base::list(
+        env = list(
           stat.title = stat.title,
           statistic.text = statistic.text,
           statistic = specify_decimal_p(x = statistic, k = k),

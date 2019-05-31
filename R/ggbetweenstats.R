@@ -128,7 +128,6 @@
 #'  \code{\link{grouped_ggwithinstats}}, \code{\link{pairwise_p}}
 #'
 #' @details
-#'
 #' For parametric tests, Welch's ANOVA/*t*-test are used as a default (i.e.,
 #' `var.equal = FALSE`).
 #' References:
@@ -144,10 +143,10 @@
 #'  \item *t*-test: Yuen's test for trimmed means (see `?WRS2::yuen`)
 #'  }
 #'
-#' Variant of this function `ggwithinstats` is currently in progress. You *can*
-#' still use this function just to prepare the **plot** for exploratory data
-#' analysis, but the statistical details displayed in the subtitle will be
-#' incorrect. You can remove them by adding `+ ggplot2::labs(subtitle = NULL)`.
+#'  For more about how the effect size measures (for nonparametric tests) and
+#'  their confidence intervals are computed, see `?rcompanion::wilcoxonR`.
+#'
+#'  For repeated measures designs, use `ggwithinstats`.
 #'
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}

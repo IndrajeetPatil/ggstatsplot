@@ -189,36 +189,25 @@ testthat::test_that(
         y = sleep_rem,
         type = "bf",
         k = 3,
-        conf.level = 0.95,
-        conf.type = "perc",
-        nboot = 25,
         messages = FALSE
       ))
 
     # expected
     expected <-
-      ggplot2::expr(
-        paste(
-          italic("r")["Pearson"],
-          "(",
-          46L,
-          ")",
-          " = ",
-          "-0.221",
-          ", log"["e"],
+      ggplot2::expr(atop(
+        displaystyle(NULL),
+        expr = paste(
+          "In favor of alternative: ",
+          "log"["e"],
           "(BF"["10"],
           ") = ",
           "-0.425",
           ", ",
           italic("r")["Cauchy"],
           " = ",
-          "0.707",
-          ", ",
-          italic("n"),
-          " = ",
-          48L
+          "0.707"
         )
-      )
+      ))
 
     # testing overall call
     testthat::expect_identical(using_function, expected)

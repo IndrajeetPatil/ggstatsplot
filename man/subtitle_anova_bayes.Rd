@@ -4,9 +4,8 @@
 \alias{subtitle_anova_bayes}
 \title{Making text subtitle for the between-subject one-way anova designs.}
 \usage{
-subtitle_anova_bayes(data, x, y, paired = FALSE,
-  effsize.type = "unbiased", partial = TRUE, var.equal = FALSE,
-  bf.prior = 0.707, k = 2, ...)
+subtitle_anova_bayes(data, x, y, paired = FALSE, bf.prior = 0.707,
+  k = 2, ...)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
@@ -22,24 +21,6 @@ measures/within-subjects (in which case one-way Friedman Rank Sum Test will
 be carried out) or between-subjects (in which case one-way Kruskal–Wallis H
 test will be carried out). The default is \code{FALSE}.}
 
-\item{effsize.type}{Type of effect size needed for \emph{parametric} tests. The
-argument can be \code{"biased"} (\code{"d"} for Cohen's \emph{d} for \strong{t-test};
-\code{"partial_eta"} for partial eta-squared for \strong{anova}) or \code{"unbiased"}
-(\code{"g"} Hedge's \emph{g} for \strong{t-test}; \code{"partial_omega"} for partial
-omega-squared for \strong{anova})).}
-
-\item{partial}{Logical that decides if partial eta-squared or omega-squared
-are returned (Default: \code{TRUE}). If \code{FALSE}, eta-squared or omega-squared
-will be returned. Valid only for objects of class \code{lm}, \code{aov}, \code{anova}, or
-\code{aovlist}.}
-
-\item{var.equal}{a logical variable indicating whether to treat the
-    variances in the samples as equal.  If \code{TRUE}, then a simple F
-    test for the equality of means in a one-way analysis of variance is
-    performed.  If \code{FALSE}, an approximate method of Welch (1951)
-    is used, which generalizes the commonly known 2-sample Welch test to
-    the case of arbitrarily many samples.}
-
 \item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
 to use in calculating Bayes factors.}
 
@@ -53,22 +34,32 @@ Making text subtitle for the between-subject one-way anova designs.
 }
 \examples{
 \dontrun{
+set.seed(123)
+
+# between-subjects ---------------------------------------
 # with defaults
-subtitle_anova_bayes(
+ggstatsplot::subtitle_anova_bayes(
   data = ggplot2::msleep,
   x = vore,
-  y = sleep_rem,
-  k = 2,
-  bf.prior = 0.8
+  y = sleep_rem
 )
 
 # modifying the defaults
-subtitle_anova_bayes(
+ggstatsplot::subtitle_anova_bayes(
   data = ggplot2::msleep,
   x = vore,
   y = sleep_rem,
-  effsize.type = "partial_eta",
-  var.equal = TRUE
+  k = 3,
+  bf.prior = 0.8
+)
+
+# repeated measures ---------------------------------------
+ggstatsplot::subtitle_anova_bayes(
+  data = WRS2::WineTasting,
+  x = Wine,
+  y = Taste,
+  paired = TRUE,
+  k = 4
 )
 }
 }

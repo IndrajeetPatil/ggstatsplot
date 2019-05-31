@@ -102,6 +102,9 @@
       <a href="../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
+      <a href="../articles/web_only/faq.html">Frequently asked questions</a>
+    </li>
+    <li>
       <a href="../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
     </li>
     <li>
@@ -230,18 +233,17 @@ test will be carried out). The default is <code>FALSE</code>.</p></td>
 
 <span class='co'># between-subjects design</span>
 
-<span class='fu'>subtitle_t_bayes</span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_t_bayes.html'>subtitle_t_bayes</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>am</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>wt</span>,
   <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</div><div class='output co'>#&gt; paste(italic("t"), "(", 30, ") = ", "5.26", ", log"["e"], "(BF"["10"], 
-#&gt;     ") = ", "7.2", ", ", italic("r")["Cauchy"], " = ", "0.707", 
-#&gt;     ", ", italic("d"), " = ", "1.89", ", ", italic("n"), " = ", 
-#&gt;     32L)</div><div class='input'>
+)</div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("In favor of alternative: ", 
+#&gt;     "log"["e"], "(BF"["10"], ") = ", "7.23", ", ", italic("r")["Cauchy"], 
+#&gt;     " = ", "0.71"))</div><div class='input'>
 <span class='co'># within-subjects design</span>
 
-<span class='fu'>subtitle_t_bayes</span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_t_bayes.html'>subtitle_t_bayes</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
     <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='no'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/intent_morality.html'>intent_morality</a></span>,
     <span class='no'>condition</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"accidental"</span>, <span class='st'>"attempted"</span>),
@@ -250,10 +252,9 @@ test will be carried out). The default is <code>FALSE</code>.</p></td>
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>condition</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>rating</span>,
   <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; paste(italic("t"), "(", 249, ") = ", "-23.34", ", log"["e"], 
-#&gt;     "(BF"["10"], ") = ", "140.6", ", ", italic("r")["Cauchy"], 
-#&gt;     " = ", "0.707", ", ", italic("d"), " = ", "-1.48", ", ", 
-#&gt;     italic("n"), " = ", 250L)</div></pre>
+)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("In favor of alternative: ", 
+#&gt;     "log"["e"], "(BF"["10"], ") = ", "140.64", ", ", italic("r")["Cauchy"], 
+#&gt;     " = ", "0.71"))</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

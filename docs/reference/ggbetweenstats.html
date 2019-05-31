@@ -106,6 +106,9 @@ the plot as a subtitle." />
       <a href="../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
+      <a href="../articles/web_only/faq.html">Frequently asked questions</a>
+    </li>
+    <li>
       <a href="../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
     </li>
     <li>
@@ -526,10 +529,9 @@ References:</p><ul>
 <li><p>ANOVA: one-way ANOVA on trimmed means (see <code><a href='https://rdrr.io/pkg/WRS2/man/t1way.html'>?WRS2::t1way</a></code>)</p></li>
 <li><p><em>t</em>-test: Yuen's test for trimmed means (see <code><a href='https://rdrr.io/pkg/WRS2/man/yuen.html'>?WRS2::yuen</a></code>)</p></li>
 </ul>
-    <p>Variant of this function <code>ggwithinstats</code> is currently in progress. You <em>can</em>
-still use this function just to prepare the <strong>plot</strong> for exploratory data
-analysis, but the statistical details displayed in the subtitle will be
-incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)</code>.</p>
+    <p>For more about how the effect size measures (for nonparametric tests) and
+their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/wilcoxonR.html'>?rcompanion::wilcoxonR</a></code>.</p>
+<p>For repeated measures designs, use <code>ggwithinstats</code>.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 

@@ -73,7 +73,7 @@
 #' \itemize{
 #' \item `marginal.type = "densigram"` will work only with the development
 #'   version of `ggExtra` that you can download from `GitHub`:
-#'   `devtools::install_github("daattali/ggExtra")`
+#'   `remotes::install_github("daattali/ggExtra")`.
 #'
 #' \item The plot uses `ggrepel::geom_label_repel` to attempt to keep labels
 #'   from over-lapping to the largest degree possible.  As a consequence plot
@@ -164,6 +164,30 @@ ggscatterstats <- function(data,
   # if `ylab` is not provided, use the variable `y` name
   if (is.null(ylab)) {
     ylab <- rlang::as_name(rlang::ensym(y))
+  }
+
+  # check the formula and the method
+  # subtitle statistics is valid only for linear models, so turn off the
+  # analysis if the model is not linear
+  # `method` argument can be a string (`"gam"`) or function (`MASS::rlm`)
+  method_ch <- paste(deparse(method), collapse = "")
+
+  if (as.character(deparse(formula)) != "y ~ x" ||
+    if (class(method) == "function") {
+      method_ch != paste(deparse(lm), collapse = "")
+    } else {
+      method != "lm"
+    }) {
+    # turn off the analysis
+    results.subtitle <- FALSE
+
+    # tell the user
+    base::message(cat(
+      crayon::red("Warning: "),
+      crayon::blue("The statistical analysis is available only for linear model\n"),
+      crayon::blue("(formula = y ~ x, method = 'lm'). Returning only the plot.\n"),
+      sep = ""
+    ))
   }
 
   #----------------------- dataframe --------------------------------------
