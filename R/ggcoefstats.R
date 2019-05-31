@@ -484,6 +484,11 @@ ggcoefstats <- function(x,
     "manova"
   )
 
+  # changing conf.method to something suitable for Bayesian models
+  if (class(x)[[1]] %in% bayes.mods && conf.method == "Wald") {
+    conf.method <- "quantile"
+  }
+
   # =========================== checking if object is supported ==============
 
   # glace is not supported for all models
@@ -578,23 +583,19 @@ ggcoefstats <- function(x,
     # =========================== broom.mixed tidiers =======================
   } else if (class(x)[[1]] %in% mixed.mods) {
 
-    # changing conf.method to something suitable for Bayesian models
-    if (class(x)[[1]] %in% bayes.mods && conf.method == "Wald") {
-      conf.method <- "quantile"
-    }
-
     # getting tidy output using `broom.mixed`
     tidy_df <-
       broomExtra::tidy(
         x = x,
         conf.int = TRUE,
-        exponentiate = exponentiate,
+        #exponentiate = exponentiate,
         conf.level = conf.level,
         effects = "fixed",
         scales = scales,
         conf.method = conf.method,
         ...
       )
+
     # ====================== tidying F-statistic objects ===================
   } else if (class(x)[[1]] %in% f.mods) {
     # creating dataframe
@@ -640,7 +641,7 @@ ggcoefstats <- function(x,
         by_class = by.class,
         conf.type = conf.type,
         component = component,
-        exponentiate = exponentiate,
+        #exponentiate = exponentiate,
         parametric = TRUE,
         ...
       )
@@ -831,8 +832,7 @@ ggcoefstats <- function(x,
 
   # if the coefficients are to be exponentiated, the label positions will also
   # have to be adjusted
-  if ((class(x)[[1]] %in% df.mods || class(x)[[1]] %in% c("lmRob", "glmRob"))
-      && isTRUE(exponentiate)) {
+  if (isTRUE(exponentiate)) {
     tidy_df %<>%
       dplyr::mutate_at(
         .tbl = .,
