@@ -206,8 +206,8 @@ ggwithinstats <- function(data,
       fill = "white",
       width = 0.2,
       alpha = 0.5,
-      notch = FALSE,
-      notchwidth = 0.1
+      notch = notch,
+      notchwidth = notchwidth
     ) +
     ggplot2::geom_violin(
       mapping = ggplot2::aes(x = x, y = y),
