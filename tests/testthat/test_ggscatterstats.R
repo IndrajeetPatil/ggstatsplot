@@ -541,9 +541,18 @@ testthat::test_that(
       marginal = FALSE
     )
 
+    p3 <- suppressWarnings(ggstatsplot::ggscatterstats(
+      data = dplyr::starwars,
+      x = mass,
+      y = height,
+      method = gmm::gmm,
+      marginal = FALSE
+    ))
+
     # build the plot
     pb1 <- ggplot2::ggplot_build(p1)
     pb2 <- ggplot2::ggplot_build(p2)
+    pb3 <- suppressWarnings(ggplot2::ggplot_build(p3))
 
     # checking subtitle - lack thereof
     testthat::expect_null(pb1$plot$labels$subtitle, NULL)
@@ -559,6 +568,8 @@ testthat::test_that(
       as.character(deparse(pb2$plot$layers[[2]]$stat_params$formula)),
       "y ~ x"
     )
+
+    testthat::expect_null(pb3$plot$labels$subtitle, NULL)
   }
 )
 

@@ -661,16 +661,12 @@ subtitle_anova_bayes <- function(data,
       tidyr::gather(data = ., key, value, -rowid) %>%
       dplyr::arrange(.data = ., rowid)
 
-    # sample size
-    sample_size <- length(unique(data_within$rowid))
   } else {
 
     # remove NAs listwise for between-subjects design
     data %<>%
       tidyr::drop_na(data = .)
 
-    # sample size
-    sample_size <- nrow(data)
   }
 
   # bayes factor results
