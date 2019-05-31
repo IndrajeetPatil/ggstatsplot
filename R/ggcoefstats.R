@@ -588,6 +588,7 @@ ggcoefstats <- function(x,
       broomExtra::tidy(
         x = x,
         conf.int = TRUE,
+        exponentiate = exponentiate,
         conf.level = conf.level,
         effects = "fixed",
         scales = scales,
@@ -639,6 +640,7 @@ ggcoefstats <- function(x,
         by_class = by.class,
         conf.type = conf.type,
         component = component,
+        exponentiate = exponentiate,
         parametric = TRUE,
         ...
       )
@@ -829,7 +831,8 @@ ggcoefstats <- function(x,
 
   # if the coefficients are to be exponentiated, the label positions will also
   # have to be adjusted
-  if (isTRUE(exponentiate)) {
+  if ((class(x)[[1]] %in% df.mods || class(x)[[1]] %in% c("lmRob", "glmRob"))
+      && isTRUE(exponentiate)) {
     tidy_df %<>%
       dplyr::mutate_at(
         .tbl = .,
@@ -1015,7 +1018,8 @@ ggcoefstats <- function(x,
 
     # setting up the basic architecture
     plot <-
-      ggplot2::ggplot(data = tidy_df, mapping = ggplot2::aes(x = estimate, y = factor(term)))
+      ggplot2::ggplot(data = tidy_df,
+                      mapping = ggplot2::aes(x = estimate, y = factor(term)))
 
     # if needed, adding the vertical line
     if (isTRUE(vline)) {
