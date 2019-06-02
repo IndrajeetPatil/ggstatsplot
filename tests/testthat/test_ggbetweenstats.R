@@ -454,7 +454,7 @@ testthat::test_that(
         outlier.tagging = TRUE,
         outlier.coef = 0.75,
         outlier.color = "blue",
-        bf.message = TRUE,
+        bf.message = FALSE,
         mean.plotting = FALSE,
         sample.size.label = FALSE,
         package = "wesanderson",
@@ -498,20 +498,7 @@ testthat::test_that(
         60L
       )
     ))
-    testthat::expect_identical(pb2$plot$labels$caption, ggplot2::expr(atop(
-      displaystyle(NULL),
-      expr = paste(
-        "In favor of null: ",
-        "log"["e"],
-        "(BF"["01"],
-        ") = ",
-        "-0.18",
-        ", ",
-        italic("r")["Cauchy"],
-        " = ",
-        "0.71"
-      )
-    )))
+    testthat::expect_null(pb2$plot$labels$caption, NULL)
     testthat::expect_identical(length(pb1$data), 5L)
     testthat::expect_identical(length(pb1$data), 5L)
     testthat::expect_identical(length(pb2$data), 4L)

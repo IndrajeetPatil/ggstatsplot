@@ -31,10 +31,11 @@
 #'   argument to make sure that your plot is not uber-cluttered when you have
 #'   multiple groups being compared and scores of pairwise comparisons being
 #'   displayed.
-#' @param bf.prior A number between 0.5 and 2 (default `0.707`), the prior width
-#'   to use in calculating Bayes factors.
+#' @param bf.prior A number between `0.5` and `2` (default `0.707`), the prior
+#'   width to use in calculating Bayes factors.
 #' @param bf.message Logical that decides whether to display Bayes Factor in
-#'   favor of the *null* hypothesis **for parametric test** (Default: `FALSE`).
+#'   favor of the *null* hypothesis. This argument is relevant only **for
+#'   parametric test** (Default: `TRUE`).
 #' @param results.subtitle Decides whether the results of statistical tests are
 #'   to be displayed as a subtitle (Default: `TRUE`). If set to `FALSE`, only
 #'   the plot will be returned.
@@ -202,7 +203,7 @@ ggbetweenstats <- function(data,
                            partial = TRUE,
                            effsize.noncentral = TRUE,
                            bf.prior = 0.707,
-                           bf.message = FALSE,
+                           bf.message = TRUE,
                            results.subtitle = TRUE,
                            xlab = NULL,
                            ylab = NULL,

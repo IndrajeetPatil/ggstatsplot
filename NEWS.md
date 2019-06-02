@@ -13,6 +13,8 @@ BREAKING CHANGES
     return BF value and the scale used. Previously, this was a mix of parametric
     statistics and BF, which was confusing and often times misleading since
     these two types of analyses relied on different tests.
+  - The default for `bf.message` has been changed from `FALSE` to `TRUE`. This
+    is to make the Bayes Factor analysis more visible to the user.
     
 MAJOR CHANGES
 

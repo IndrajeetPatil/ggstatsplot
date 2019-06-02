@@ -18,8 +18,8 @@ paired)}
 
 \item{paired}{if \code{TRUE}, observations are paired}
 
-\item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
-to use in calculating Bayes factors.}
+\item{bf.prior}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
+width to use in calculating Bayes factors.}
 
 \item{caption}{The text for the plot caption.}
 

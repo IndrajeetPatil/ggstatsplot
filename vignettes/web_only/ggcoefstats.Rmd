@@ -1143,6 +1143,28 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
+## bounded memory general linear regression (`bigglm`)
+
+```{r bigglm, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+# setup
+set.seed(123)
+library(biglm)
+data(trees)
+
+# model
+mod <- biglm::bigglm(
+  formula = log(Volume) ~ log(Girth) + log(Height),
+  data = trees,
+  chunksize = 10,
+  sandwich = TRUE
+)
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
+  title = "bounded memory general linear regression"
+)
+```
+
 ## parametric survival regression model (`survreg`)
 
 ```{r survreg, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}

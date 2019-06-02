@@ -182,6 +182,7 @@
 <ul>
 <li>Instead of having two separate functions that dealt with repeated measures (<code>subtitle_friedman_nonparametric</code>) and between-subjects (<code>subtitle_kw_nonparametric</code>), a single function <code>subtitle_anova_nonparametric</code> handles both of these designs with the <code>paired</code> argument determining which test is run.</li>
 <li>All functions that supported Bayes Factor analysis (<code>type = "bf"</code>) will only return BF value and the scale used. Previously, this was a mix of parametric statistics and BF, which was confusing and often times misleading since these two types of analyses relied on different tests.</li>
+<li>The default for <code>bf.message</code> has been changed from <code>FALSE</code> to <code>TRUE</code>. This is to make the Bayes Factor analysis more visible to the user.</li>
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>

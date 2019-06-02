@@ -279,6 +279,7 @@ ggstatsplot::grouped_ggwithinstats(
   ggtheme = ggthemes::theme_tufte(),
   package = "ggsci",
   palette = "default_jco",
+  notch = TRUE,
   outlier.tagging = TRUE,
   ggstatsplot.layer = FALSE,
   outlier.label = Education,

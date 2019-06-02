@@ -105,7 +105,12 @@ regression | <font color="green">Yes</font> | <font color="green">Yes</font> | <
 
 # Installation
 
-To get the latest, stable CRAN release (`0.0.10`):
+```{r echo = FALSE, include = FALSE} 
+# this will make code printing prettier
+prettycode::prettycode()
+```
+
+To get the latest, stable `CRAN` release (`0.0.10`):
 ```{r installationCRAN, eval = FALSE}
 utils::install.packages(pkgs = "ggstatsplot")
 ```

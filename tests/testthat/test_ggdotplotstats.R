@@ -74,10 +74,10 @@ testthat::test_that(
         paste("Speed of light (", italic("c"), ")")
       )
     )
-    testthat::expect_identical(p$labels$y, "Experimental run")
-    testthat::expect_identical(p$labels$title, "Michelson-Morley experiment")
-    testthat::expect_identical(p$labels$subtitle, p_subtitle)
-    testthat::expect_identical(p$labels$caption, ggplot2::expr(atop(
+    testthat::expect_identical(pb$plot$labels$y, "Experimental run")
+    testthat::expect_identical(pb$plot$labels$title, "Michelson-Morley experiment")
+    testthat::expect_identical(pb$plot$labels$subtitle, p_subtitle)
+    testthat::expect_identical(pb$plot$labels$caption, ggplot2::expr(atop(
       displaystyle("Studies carried out in 1887"),
       expr = paste(
         "In favor of null: ",
@@ -213,6 +213,7 @@ testthat::test_that(
       pb$layout$panel_params[[1]]$x.labels,
       pb$layout$panel_params[[1]]$x.sec.labels
     )
-    testthat::expect_null(p$labels$subtitle, NULL)
+    testthat::expect_null(pb$plot$labels$subtitle, NULL)
+    testthat::expect_null(pb$plot$labels$caption, NULL)
   }
 )

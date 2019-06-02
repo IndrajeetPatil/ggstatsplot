@@ -660,13 +660,11 @@ subtitle_anova_bayes <- function(data,
       ) %>%
       tidyr::gather(data = ., key, value, -rowid) %>%
       dplyr::arrange(.data = ., rowid)
-
   } else {
 
     # remove NAs listwise for between-subjects design
     data %<>%
       tidyr::drop_na(data = .)
-
   }
 
   # bayes factor results
