@@ -10,7 +10,7 @@ grouped_ggbetweenstats(data, x, y, grouping.var, title.prefix = NULL,
   pairwise.comparisons = FALSE, pairwise.annotation = "asterisk",
   pairwise.display = "significant", p.adjust.method = "holm",
   effsize.type = "unbiased", partial = TRUE,
-  effsize.noncentral = TRUE, bf.prior = 0.707, bf.message = FALSE,
+  effsize.noncentral = TRUE, bf.prior = 0.707, bf.message = TRUE,
   results.subtitle = TRUE, xlab = NULL, ylab = NULL,
   subtitle = NULL, caption = NULL, sample.size.label = TRUE, k = 2,
   var.equal = FALSE, conf.level = 0.95, nboot = 100, tr = 0.1,
@@ -87,11 +87,12 @@ will be returned. Valid only for objects of class \code{lm}, \code{aov}, \code{a
 \emph{t}-distributions for computing the confidence interval for Cohen's \emph{d}
 or Hedge's \emph{g} (Default: \code{TRUE}).}
 
-\item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
-to use in calculating Bayes factors.}
+\item{bf.prior}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
+width to use in calculating Bayes factors.}
 
 \item{bf.message}{Logical that decides whether to display Bayes Factor in
-favor of the \emph{null} hypothesis \strong{for parametric test} (Default: \code{FALSE}).}
+favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
+parametric test} (Default: \code{TRUE}).}
 
 \item{results.subtitle}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only

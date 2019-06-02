@@ -24,6 +24,7 @@ testthat::test_that(
       xlab = "Passenger sex",
       ylab = "proportion",
       label.separator = "\n",
+      bf.message = FALSE,
       messages = TRUE
     )
 
@@ -63,6 +64,7 @@ testthat::test_that(
 
     # checking plot labels
     testthat::expect_identical(pb$plot$labels$subtitle, p_subtitle)
+    testthat::expect_identical(pb$plot$labels$caption, NULL)
     testthat::expect_identical(pb$plot$labels$x, "Passenger sex")
     testthat::expect_identical(pb$plot$labels$y, "proportion")
 

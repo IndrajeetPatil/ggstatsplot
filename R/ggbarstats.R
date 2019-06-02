@@ -81,7 +81,7 @@ ggbarstats <- function(data,
                        label.fill.color = "white",
                        label.fill.alpha = 1,
                        bar.outline.color = "black",
-                       bf.message = FALSE,
+                       bf.message = TRUE,
                        sampling.plan = "jointMulti",
                        fixed.margin = "rows",
                        prior.concentration = 1,
@@ -315,7 +315,7 @@ ggbarstats <- function(data,
       )
 
     # preparing the BF message for null hypothesis support
-    if (isTRUE(bf.message)) {
+    if (isTRUE(bf.message) && !is.null(subtitle)) {
       bf.caption.text <-
         bf_contingency_tab(
           data = data,

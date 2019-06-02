@@ -161,6 +161,9 @@ testthat::test_that(
         messages = FALSE
       )
 
+    # build the plot
+    pb <- ggplot2::ggplot_build(p)
+
     # subtitle
     set.seed(123)
     p_subtitle <- ggstatsplot::subtitle_ggscatterstats(
@@ -173,6 +176,7 @@ testthat::test_that(
     )
 
     testthat::expect_identical(p$plot_env$subtitle, p_subtitle)
+    testthat::expect_null(pb$plot$labels$caption, NULL)
   }
 )
 
@@ -256,6 +260,7 @@ testthat::test_that(
         palette = "Royal1",
         package = "wesanderson",
         marginal = FALSE,
+        bf.message = FALSE,
         centrality.para = "median",
         axes.range.restrict = TRUE,
         ggplot.component = ggplot2::scale_y_continuous(breaks = seq(0, 20, 2)),
@@ -300,6 +305,7 @@ testthat::test_that(
       pb$layout$panel_params[[1]]$y.labels,
       c("4", "6", "8", "10", "12", "14", "16", "18", "20")
     )
+    testthat::expect_null(pb$plot$labels$caption, NULL)
   }
 )
 

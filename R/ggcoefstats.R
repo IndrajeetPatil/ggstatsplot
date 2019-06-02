@@ -1,7 +1,6 @@
 #' @title Model coefficients for fitted models with the model summary as a
 #'   caption.
 #' @name ggcoefstats
-#' @aliases ggcoefstats
 #' @author Indrajeet Patil
 #' @return Plot with the regression coefficients' point estimates as dots with
 #'   confidence interval whiskers.
@@ -588,7 +587,7 @@ ggcoefstats <- function(x,
       broomExtra::tidy(
         x = x,
         conf.int = TRUE,
-        #exponentiate = exponentiate,
+        # exponentiate = exponentiate,
         conf.level = conf.level,
         effects = "fixed",
         scales = scales,
@@ -641,7 +640,7 @@ ggcoefstats <- function(x,
         by_class = by.class,
         conf.type = conf.type,
         component = component,
-        #exponentiate = exponentiate,
+        # exponentiate = exponentiate,
         parametric = TRUE,
         ...
       )
@@ -1018,8 +1017,10 @@ ggcoefstats <- function(x,
 
     # setting up the basic architecture
     plot <-
-      ggplot2::ggplot(data = tidy_df,
-                      mapping = ggplot2::aes(x = estimate, y = factor(term)))
+      ggplot2::ggplot(
+        data = tidy_df,
+        mapping = ggplot2::aes(x = estimate, y = factor(term))
+      )
 
     # if needed, adding the vertical line
     if (isTRUE(vline)) {

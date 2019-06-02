@@ -191,7 +191,7 @@ subtitle.</p>
     </div>
 
     <pre class="usage"><span class='fu'>grouped_ggscatterstats</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>label.var</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>label.var</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>label.expression</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>grouping.var</span>, <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"lm"</span>, <span class='kw'>method.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
   <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>x</span>, <span class='kw'>point.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>point.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
@@ -249,7 +249,8 @@ to use in calculating Bayes factors.</p></td>
     <tr>
       <th>bf.message</th>
       <td><p>Logical that decides whether to display Bayes Factor in
-favor of the <em>null</em> hypothesis <strong>for parametric test</strong> (Default: <code>FALSE</code>).</p></td>
+favor of the <em>null</em> hypothesis. This argument is relevant only <strong>for
+parametric test</strong> (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>label.var</th>
@@ -562,8 +563,12 @@ combining (plot, caption).</p></dd>
   <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"lm"</span>,
   <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>x</span> + <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span>(<span class='no'>x</span>^<span class='fl'>3</span>),
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>genre</span>
-)</div><div class='output co'>#&gt; <span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>This plot can't be further modified with `ggplot2` functions.
+)</div><div class='output co'>#&gt; <span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>The statistical analysis is available only for linear model
+#&gt; (formula = y ~ x, method = 'lm'). Returning only the plot.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>This plot can't be further modified with `ggplot2` functions.
 #&gt; In case you want a `ggplot` object, set `marginal = FALSE`.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>The statistical analysis is available only for linear model
+#&gt; (formula = y ~ x, method = 'lm'). Returning only the plot.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>This plot can't be further modified with `ggplot2` functions.
 #&gt; In case you want a `ggplot` object, set `marginal = FALSE`.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Individual plots in the combined `grouped_` plot

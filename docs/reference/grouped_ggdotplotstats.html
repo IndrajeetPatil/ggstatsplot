@@ -190,18 +190,17 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
     <pre class="usage"><span class='fu'>grouped_ggdotplotstats</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>grouping.var</span>, <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>, <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
-  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>robust.estimator</span> <span class='kw'>=</span> <span class='st'>"onestep"</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"g"</span>, <span class='kw'>effsize.noncentral</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/ggtheme.html'>theme_bw</a></span>(),
-  <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>point.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>point.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>point.shape</span> <span class='kw'>=</span> <span class='fl'>16</span>, <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='st'>"mean"</span>, <span class='kw'>centrality.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
-  <span class='kw'>centrality.size</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>centrality.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>,
-  <span class='kw'>centrality.line.labeller</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>centrality.k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>test.value.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>test.value.size</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>test.value.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>,
-  <span class='kw'>test.line.labeller</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>test.k</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>robust.estimator</span> <span class='kw'>=</span> <span class='st'>"onestep"</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"g"</span>, <span class='kw'>effsize.noncentral</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/ggtheme.html'>theme_bw</a></span>(), <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>point.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>point.size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>point.shape</span> <span class='kw'>=</span> <span class='fl'>16</span>,
+  <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='st'>"mean"</span>,
+  <span class='kw'>centrality.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>centrality.size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>centrality.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>, <span class='kw'>centrality.line.labeller</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>centrality.k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>test.value.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>test.value.size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>test.value.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>, <span class='kw'>test.line.labeller</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>test.k</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -262,13 +261,14 @@ or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations ar
     </tr>
     <tr>
       <th>bf.prior</th>
-      <td><p>A number between 0.5 and 2 (default <code>0.707</code>), the prior width
-to use in calculating Bayes factors.</p></td>
+      <td><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
+width to use in calculating Bayes factors.</p></td>
     </tr>
     <tr>
       <th>bf.message</th>
       <td><p>Logical that decides whether to display Bayes Factor in
-favor of the <em>null</em> hypothesis <strong>for parametric test</strong> (Default: <code>FALSE</code>).</p></td>
+favor of the <em>null</em> hypothesis. This argument is relevant only <strong>for
+parametric test</strong> (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>robust.estimator</th>
