@@ -169,7 +169,7 @@ subtitle_anova_parametric <- function(data,
       list(
         statistic = ez_df$ANOVA$F[2],
         parameter = c(ez_df$ANOVA$DFn[2], ez_df$ANOVA$DFd[2]),
-        p.value = ez_df$ANOVA$p[2]
+        p.value = ez_df$ANOVA$p[2] # ez_df$`Sphericity Corrections`$`p[GG]`[[1]]
       )
 
     # creating a standardized dataframe with effect size and its CIs

@@ -14,7 +14,7 @@
 #'   of data points, it is advisable to set `path.point = FALSE` as these lines
 #'   can overwhelm the plot.
 #'
-#' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggbetweentats}},
+#' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggbetweenstats}},
 #'  \code{\link{grouped_ggwithinstats}}, \code{\link{pairwise_p}}
 #'
 #' @importFrom forcats fct_reorder

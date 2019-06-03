@@ -259,7 +259,7 @@ ggstatsplot::ggwithinstats(
 )
 }
 \seealso{
-\code{\link{grouped_ggbetweenstats}}, \code{\link{ggbetweentats}},
+\code{\link{grouped_ggbetweenstats}}, \code{\link{ggbetweenstats}},
 \code{\link{grouped_ggwithinstats}}, \code{\link{pairwise_p}}
 }
 \author{
