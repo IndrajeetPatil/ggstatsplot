@@ -9,7 +9,7 @@
 | [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)                      | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Github Pending PRs](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/pulls.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/pulls) | [![Rdoc](https://www.rdocumentation.org/badges/version/ggstatsplot)](https://www.rdocumentation.org/packages/ggstatsplot)                                       |
 | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/)                                                      | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                                               | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/issues.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)               | [![vignettes](https://img.shields.io/badge/vignettes-0.0.10-orange.svg?colorB=FF5722)](https://cran.r-project.org/web/packages/ggstatsplot/vignettes/)          |
 | [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot)  | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2074621.svg)](https://doi.org/10.5281/zenodo.2074621)                                                       |
-| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2019--05--28-yellowgreen.svg)](/commits/master)                                                  | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
+| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2019--06--02-yellowgreen.svg)](/commits/master)                                                  | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
 | [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                                    | [![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2019_05_25-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md)                | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil)                                    | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)                                                      | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
 | [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ggstatsplot/community)                                                         | [![Dependency Status](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge)](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot)                                         |                                                                                                                                                   | [![Generic badge](https://img.shields.io/badge/forks-53-blue.svg)](https://github.com/IndrajeetPatil/ggstatsplot/)                                              |                                                                                                                                                                 |
 
@@ -95,7 +95,7 @@ intervals.
 
 # Installation
 
-To get the latest, stable CRAN release (`0.0.10`):
+To get the latest, stable `CRAN` release (`0.0.10`):
 
 ``` r
 utils::install.packages(pkgs = "ggstatsplot")
@@ -201,7 +201,7 @@ ggstatsplot::ggplot_converter
 #>   # returning the converted plot
 #>   return(p)
 #> }
-#> <bytecode: 0x000000002a0e5840>
+#> <bytecode: 0x000000002a7e2a38>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -309,7 +309,6 @@ ggstatsplot::ggbetweenstats(
   mean.ci = TRUE, # whether to display confidence interval for means
   mean.label.size = 2.5, # size of the label for mean
   type = "p", # which type of test is to be run
-  bf.message = TRUE, # add a message with bayes factor favoring null
   k = 3, # number of decimal places for statistical results
   outlier.tagging = TRUE, # whether outliers need to be tagged
   outlier.label = Sepal.Width, # variable to be used for the outlier tag
@@ -328,10 +327,9 @@ ggstatsplot::ggbetweenstats(
 <img src="man/figures/README-ggbetweenstats2-1.png" width="100%" />
 
 In case of a parametric t-test, setting `bf.message = TRUE` will also
-attach results from Bayesian Student’s *t*-test. That way, if the null
-hypothesis can’t be rejected with the NHST approach, the Bayesian
-approach can help index evidence in favor of the null hypothesis (i.e.,
-`BF01`).
+attach results from Bayesian Student’s *t*-test. If the null hypothesis
+can’t be rejected with the NHST approach, the Bayesian approach can help
+index evidence in favor of the null hypothesis (i.e., `BF01`).
 
 By default, Bayes Factor quantifies the support for the alternative
 hypothesis (H1) over the null hypothesis (H0) (i.e., `BF10` is
@@ -360,7 +358,6 @@ ggstatsplot::grouped_ggbetweenstats(
   pairwise.comparisons = TRUE, # display significant pairwise comparisons
   pairwise.annotation = "p.value", # how do you want to annotate the pairwise comparisons
   p.adjust.method = "bonferroni", # method for adjusting p-values for multiple comparisons
-  bf.message = TRUE, # display Bayes Factor in favor of the null hypothesis
   conf.level = 0.99, # changing confidence level to 99%
   ggplot.component = list( # adding new components to `ggstatsplot` default
     ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis())
@@ -472,7 +469,6 @@ ggstatsplot::grouped_ggwithinstats(
   grouping.var = Region,
   outlier.tagging = TRUE,
   outlier.label = Education,
-  bf.message = TRUE,
   ggtheme = hrbrthemes::theme_ipsum_tw(),
   ggstatsplot.layer = FALSE,
   messages = FALSE
@@ -525,7 +521,6 @@ ggstatsplot::ggscatterstats(
   xlab = "REM sleep (in hours)",
   ylab = "Amount of time spent awake (in hours)",
   title = "Understanding mammalian sleep",
-  bf.message = TRUE,
   messages = FALSE
 )
 ```
@@ -586,7 +581,6 @@ ggstatsplot::grouped_ggscatterstats(
   ),
   x = rating,
   y = length,
-  bf.message = TRUE, # display bayes factor message
   conf.level = 0.99,
   k = 3, # no. of decimal places in the results
   xfill = "#E69F00",
@@ -687,7 +681,6 @@ ggstatsplot::ggpiestats(
   conf.level = 0.99, # confidence interval for effect size measure
   title = "Dataset: Motor Trend Car Road Tests", # title for the plot
   stat.title = "interaction: ", # title for the results
-  bf.message = TRUE, # display bayes factor in favor of null
   legend.title = "Transmission", # title for the legend
   factor.levels = c("1 = manual", "0 = automatic"), # renaming the factor level names (`main`)
   facet.wrap.name = "No. of cylinders", # name for the facetting variable
@@ -788,7 +781,6 @@ ggstatsplot::ggbarstats(
   data = ggstatsplot::movies_long,
   main = mpaa,
   condition = genre,
-  bf.message = TRUE,
   sampling.plan = "jointMulti",
   title = "MPAA Ratings by Genre",
   xlab = "movie genre",
@@ -824,7 +816,6 @@ ggstatsplot::grouped_ggbarstats(
   main = color,
   condition = clarity,
   grouping.var = cut,
-  bf.message = TRUE,
   sampling.plan = "poisson",
   title.prefix = "Quality",
   data.label = "both",
@@ -889,7 +880,6 @@ ggstatsplot::gghistostats(
   centrality.para = "mean", # which measure of central tendency is to be plotted
   centrality.color = "darkred", # decides color for central tendency line
   binwidth = 0.10, # binwidth value (experiment)
-  bf.message = TRUE, # display bayes factor for null over alternative
   bf.prior = 0.8, # prior width for computing bayes factor
   messages = FALSE, # turn off the messages
   ggtheme = hrbrthemes::theme_ipsum_tw(), # choosing a different theme
@@ -972,7 +962,6 @@ ggdotplotstats(
   centrality.k = 0,
   title = "Distribution of life expectancy in Asian continent",
   xlab = "Life expectancy",
-  bf.message = TRUE,
   messages = FALSE,
   caption = substitute(
     paste(

@@ -2,23 +2,22 @@
 % Please edit documentation in R/grouped_ggdotplotstats.R
 \name{grouped_ggdotplotstats}
 \alias{grouped_ggdotplotstats}
-\title{Grouped histograms for distribution of a labelled numeric variable}
+\title{Grouped histograms for distribution of a labeled numeric variable}
 \usage{
 grouped_ggdotplotstats(data, x, y, grouping.var, title.prefix = NULL,
   xlab = NULL, ylab = NULL, subtitle = NULL, caption = NULL,
   type = "parametric", test.value = 0, bf.prior = 0.707,
-  bf.message = FALSE, robust.estimator = "onestep",
-  conf.level = 0.95, effsize.type = "g", effsize.noncentral = TRUE,
-  nboot = 100, k = 2, ggtheme = ggplot2::theme_bw(),
-  ggstatsplot.layer = TRUE, point.color = "black", point.size = 3,
-  point.shape = 16, results.subtitle = TRUE,
-  centrality.para = "mean", centrality.color = "blue",
-  centrality.size = 1, centrality.linetype = "dashed",
-  centrality.line.labeller = TRUE, centrality.k = 2,
-  test.value.line = FALSE, test.value.color = "black",
-  test.value.size = 1, test.value.linetype = "dashed",
-  test.line.labeller = TRUE, test.k = 0, ggplot.component = NULL,
-  messages = TRUE, ...)
+  bf.message = TRUE, robust.estimator = "onestep", conf.level = 0.95,
+  effsize.type = "g", effsize.noncentral = TRUE, nboot = 100,
+  k = 2, ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
+  point.color = "black", point.size = 3, point.shape = 16,
+  results.subtitle = TRUE, centrality.para = "mean",
+  centrality.color = "blue", centrality.size = 1,
+  centrality.linetype = "dashed", centrality.line.labeller = TRUE,
+  centrality.k = 2, test.value.line = FALSE,
+  test.value.color = "black", test.value.size = 1,
+  test.value.linetype = "dashed", test.line.labeller = TRUE,
+  test.k = 0, ggplot.component = NULL, messages = TRUE, ...)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
@@ -53,11 +52,12 @@ or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accep
 \item{test.value}{A number specifying the value of the null hypothesis
 (Default: \code{0}).}
 
-\item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
-to use in calculating Bayes factors.}
+\item{bf.prior}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
+width to use in calculating Bayes factors.}
 
 \item{bf.message}{Logical that decides whether to display Bayes Factor in
-favor of the \emph{null} hypothesis \strong{for parametric test} (Default: \code{FALSE}).}
+favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
+parametric test} (Default: \code{TRUE}).}
 
 \item{robust.estimator}{If \code{test = "robust"} robust estimator to be used
 (\code{"onestep"} (Default), \code{"mom"}, or \code{"median"}). For more, see
@@ -226,7 +226,8 @@ ggstatsplot::grouped_ggdotplotstats(
 )
 }
 \seealso{
-\code{\link{ggdotplotstats}}
+\code{\link{grouped_gghistostats}}, \code{\link{ggdotplotstats}},
+\code{\link{gghistostats}}
 }
 \author{
 Indrajeet Patil

@@ -195,6 +195,7 @@ testthat::test_that(
     testthat::expect_null(pb$plot$plot_env$stat.title, NULL)
     testthat::expect_identical(pb$plot$guides$fill$title[1], "transmission")
     testthat::expect_null(pb1$plot$labels$subtitle, NULL)
+    testthat::expect_null(pb1$plot$labels$caption, NULL)
     testthat::expect_identical(
       pb1$layout$facet_params$plot_env$facet.wrap.name,
       "transmission"
@@ -250,6 +251,7 @@ testthat::test_that(
       main = Sex,
       condition = Survived,
       nboot = 25,
+      bf.message = FALSE,
       counts = "Freq",
       perc.k = 2,
       ggtheme = ggplot2::theme_minimal(),
@@ -291,6 +293,7 @@ testthat::test_that(
 
     # checking plot labels
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
+    testthat::expect_null(p$labels$caption, NULL)
   }
 )
 

@@ -9,7 +9,7 @@ grouped_ggpiestats(data, main, condition = NULL, counts = NULL,
   results.subtitle = TRUE, factor.levels = NULL, stat.title = NULL,
   sample.size.label = TRUE, label.separator = "\\n",
   label.text.size = 4, label.fill.color = "white",
-  label.fill.alpha = 1, bf.message = FALSE,
+  label.fill.alpha = 1, bf.message = TRUE,
   sampling.plan = "indepMulti", fixed.margin = "rows",
   prior.concentration = 1, subtitle = NULL, caption = NULL,
   conf.level = 0.95, nboot = 100, simulate.p.value = FALSE,
@@ -255,7 +255,6 @@ ggstatsplot::grouped_ggpiestats(
   main = color,
   condition = clarity,
   grouping.var = cut,
-  bf.message = TRUE,
   sampling.plan = "poisson",
   title.prefix = "Quality",
   slice.label = "both",
@@ -269,7 +268,8 @@ ggstatsplot::grouped_ggpiestats(
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
 }
 \seealso{
-\code{\link{ggpiestats}}
+\code{\link{ggbarstats}}, \code{\link{ggpiestats}},
+\code{\link{grouped_ggbarstats}}
 }
 \author{
 Indrajeet Patil, Chuck Powell

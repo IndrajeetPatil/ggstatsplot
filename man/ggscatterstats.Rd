@@ -5,7 +5,7 @@
 \title{Scatterplot with marginal distributions}
 \usage{
 ggscatterstats(data, x, y, type = "pearson", conf.level = 0.95,
-  bf.prior = 0.707, bf.message = FALSE, label.var = NULL,
+  bf.prior = 0.707, bf.message = TRUE, label.var = NULL,
   label.expression = NULL, xlab = NULL, ylab = NULL, method = "lm",
   method.args = list(), formula = y ~ x, point.color = "black",
   point.size = 3, point.alpha = 0.4, point.width.jitter = 0,
@@ -47,7 +47,8 @@ parametric/pearson's), \code{"np"} (nonparametric/spearman), \code{"r"} (robust)
 to use in calculating Bayes factors.}
 
 \item{bf.message}{Logical that decides whether to display Bayes Factor in
-favor of the \emph{null} hypothesis \strong{for parametric test} (Default: \code{FALSE}).}
+favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
+parametric test} (Default: \code{TRUE}).}
 
 \item{label.var}{Variable to use for points labels. Can be entered either as
 a character string (e.g., \code{"var1"}) or as a bare expression (e.g, \code{var1}).}
@@ -196,7 +197,7 @@ have a lot of labels that overlap.
 # to get reproducible results from bootstrapping
 set.seed(123)
 
-# creating dataframe
+# creating dataframe with rownames converted to a new column
 mtcars_new <- mtcars \%>\%
   tibble::rownames_to_column(., var = "car") \%>\%
   tibble::as_tibble(x = .)

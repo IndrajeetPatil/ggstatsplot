@@ -48,7 +48,7 @@ Such summary tables are available for each function.
 ## Does `ggstatsplot` work with `plotly`?
 
 The `plotly` R graphing library makes it easy to produce interactive web
-graphics via 'plotly.js'. 
+graphics via 'plotly.js'. `ggstatsplot` functions are compatible with `plotly`.
  
 ```{r plotly, message = FALSE, warning = FALSE, fig.height = 4, fig.width = 4}
 set.seed(123)
@@ -56,11 +56,10 @@ library(ggstatsplot)
 library(plotly)
 
 # will work
-p <- ggstatsplot::ggscatterstats(
+p <- ggstatsplot::ggbetweenstats(
   data = mtcars,
-  x = wt,
+  x = cyl,
   y = mpg,
-  marginal = FALSE,
   messages = FALSE
 )
 
@@ -68,8 +67,7 @@ p <- ggstatsplot::ggscatterstats(
 plotly::ggplotly(p)
 ```
 
-## I want to use `grouped_` functions, but I have more than one group. What can
-I do?
+## How can I use `grouped_` functions with more than one group?
 
 Currently, the `grouped_` variants of functions only support repeating the
 analysis across a _single_ grouping variable. Often, you have to run the same

@@ -39,6 +39,9 @@
 #' @inheritParams gghistostats
 #' @inheritParams cat_label_df
 #'
+#' @seealso \code{\link{grouped_ggpiestats}}, \code{\link{ggbarstats}},
+#'  \code{\link{grouped_ggbarstats}}
+#'
 #' @import ggplot2
 #'
 #' @importFrom dplyr select group_by summarize n arrange if_else desc
@@ -112,7 +115,7 @@ ggpiestats <- function(data,
                        label.text.size = 4,
                        label.fill.color = "white",
                        label.fill.alpha = 1,
-                       bf.message = FALSE,
+                       bf.message = TRUE,
                        sampling.plan = "indepMulti",
                        fixed.margin = "rows",
                        prior.concentration = 1,
@@ -395,7 +398,7 @@ ggpiestats <- function(data,
         )
 
       # preparing the BF message for null hypothesis support
-      if (isTRUE(bf.message)) {
+      if (isTRUE(bf.message) && !is.null(subtitle)) {
         bf.caption.text <-
           bf_contingency_tab(
             data = data,

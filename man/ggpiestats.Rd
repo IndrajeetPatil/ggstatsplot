@@ -9,7 +9,7 @@ ggpiestats(data, main, condition = NULL, counts = NULL, ratio = NULL,
   stat.title = NULL, sample.size.label = TRUE,
   label.separator = "\\n", label.text.size = 4,
   label.fill.color = "white", label.fill.alpha = 1,
-  bf.message = FALSE, sampling.plan = "indepMulti",
+  bf.message = TRUE, sampling.plan = "indepMulti",
   fixed.margin = "rows", prior.concentration = 1, title = NULL,
   subtitle = NULL, caption = NULL, conf.level = 0.95, nboot = 100,
   simulate.p.value = FALSE, B = 2000, legend.title = NULL,
@@ -200,6 +200,10 @@ ggstatsplot::ggpiestats(
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
+}
+\seealso{
+\code{\link{grouped_ggpiestats}}, \code{\link{ggbarstats}},
+\code{\link{grouped_ggbarstats}}
 }
 \author{
 Indrajeet Patil

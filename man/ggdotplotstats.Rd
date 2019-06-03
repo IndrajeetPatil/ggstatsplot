@@ -7,7 +7,7 @@
 \usage{
 ggdotplotstats(data, x, y, xlab = NULL, ylab = NULL, title = NULL,
   subtitle = NULL, caption = NULL, type = "parametric",
-  test.value = 0, bf.prior = 0.707, bf.message = FALSE,
+  test.value = 0, bf.prior = 0.707, bf.message = TRUE,
   robust.estimator = "onestep", effsize.type = "g",
   effsize.noncentral = TRUE, conf.level = 0.95, nboot = 100, k = 2,
   results.subtitle = TRUE, ggtheme = ggplot2::theme_bw(),
@@ -48,11 +48,12 @@ or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accep
 \item{test.value}{A number specifying the value of the null hypothesis
 (Default: \code{0}).}
 
-\item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
-to use in calculating Bayes factors.}
+\item{bf.prior}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
+width to use in calculating Bayes factors.}
 
 \item{bf.message}{Logical that decides whether to display Bayes Factor in
-favor of the \emph{null} hypothesis \strong{for parametric test} (Default: \code{FALSE}).}
+favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
+parametric test} (Default: \code{TRUE}).}
 
 \item{robust.estimator}{If \code{test = "robust"} robust estimator to be used
 (\code{"onestep"} (Default), \code{"mom"}, or \code{"median"}). For more, see
@@ -164,11 +165,14 @@ ggdotplotstats(
   centrality.k = 0,
   title = "Fuel economy data",
   xlab = "city miles per gallon",
-  bf.message = TRUE,
   caption = substitute(
     paste(italic("Source"), ": EPA dataset on http://fueleconomy.gov")
   )
 )
+}
+\seealso{
+\code{\link{grouped_gghistostats}}, \code{\link{gghistostats}},
+\code{\link{grouped_ggdotplotstats}}
 }
 \author{
 Indrajeet Patil

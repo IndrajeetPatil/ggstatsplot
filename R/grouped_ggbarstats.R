@@ -16,9 +16,9 @@
 #' @importFrom rlang !! enquo quo_name ensym
 #' @importFrom glue glue
 #' @importFrom purrr map set_names
-#' @importFrom tidyr nest
 #'
-#' @seealso \code{\link{ggbarstats}}
+#' @seealso \code{\link{ggbarstats}}, \code{\link{ggpiestats}},
+#'  \code{\link{grouped_ggpiestats}}
 #'
 #' @inherit ggbarstats return references
 #' @inherit ggbarstats return details
@@ -54,10 +54,9 @@
 #'   main = color,
 #'   condition = clarity,
 #'   grouping.var = cut,
-#'   bf.message = TRUE,
 #'   sampling.plan = "poisson",
 #'   title.prefix = "Quality",
-#'   data.label = "both",
+#'   bar.label = "both",
 #'   messages = FALSE,
 #'   perc.k = 1,
 #'   nrow = 2
@@ -83,7 +82,7 @@ grouped_ggbarstats <- function(data,
                                label.fill.color = "white",
                                label.fill.alpha = 1,
                                bar.outline.color = "black",
-                               bf.message = FALSE,
+                               bf.message = TRUE,
                                sampling.plan = "jointMulti",
                                fixed.margin = "rows",
                                prior.concentration = 1,
@@ -100,7 +99,8 @@ grouped_ggbarstats <- function(data,
                                ylab = "Percent",
                                k = 2,
                                perc.k = 0,
-                               data.label = "percentage",
+                               bar.label = "percentage",
+                               data.label = NULL,
                                bar.proptest = TRUE,
                                ggtheme = ggplot2::theme_bw(),
                                ggstatsplot.layer = TRUE,
@@ -114,17 +114,17 @@ grouped_ggbarstats <- function(data,
   # ======================== check user input =============================
 
   # create a list of function call to check
-  param_list <- base::as.list(base::match.call())
+  param_list <- as.list(match.call())
 
   # check that there is a grouping.var
   if (!"grouping.var" %in% names(param_list)) {
-    base::stop("You must specify a grouping variable")
+    stop("You must specify a grouping variable")
   }
 
   # check that conditioning and grouping.var are different
   if ("condition" %in% names(param_list)) {
     if (as.character(param_list$condition) == as.character(param_list$grouping.var)) {
-      base::message(cat(
+      message(cat(
         crayon::red("\nError: "),
         crayon::blue(
           "Identical variable (",
@@ -133,7 +133,7 @@ grouped_ggbarstats <- function(data,
         ),
         sep = ""
       ))
-      base::return(base::invisible(param_list$condition))
+      return(invisible(param_list$condition))
     }
   }
 
@@ -220,6 +220,7 @@ grouped_ggbarstats <- function(data,
       k = k,
       perc.k = perc.k,
       data.label = data.label,
+      bar.label = bar.label,
       bar.proptest = bar.proptest,
       ggtheme = ggtheme,
       ggstatsplot.layer = ggstatsplot.layer,

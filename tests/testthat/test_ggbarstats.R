@@ -24,6 +24,7 @@ testthat::test_that(
       xlab = "Passenger sex",
       ylab = "proportion",
       label.separator = "\n",
+      bf.message = FALSE,
       messages = TRUE
     )
 
@@ -63,6 +64,7 @@ testthat::test_that(
 
     # checking plot labels
     testthat::expect_identical(pb$plot$labels$subtitle, p_subtitle)
+    testthat::expect_identical(pb$plot$labels$caption, NULL)
     testthat::expect_identical(pb$plot$labels$x, "Passenger sex")
     testthat::expect_identical(pb$plot$labels$y, "proportion")
 
@@ -128,7 +130,7 @@ testthat::test_that(
       condition = "cyl",
       bf.message = TRUE,
       nboot = 10,
-      data.label = "both",
+      bar.label = "both",
       package = "wesanderson",
       palette = "Royal2",
       labels.legend = c("0 = V-shaped", "1 = straight"),
@@ -143,7 +145,7 @@ testthat::test_that(
       data = mtcars,
       main = vs,
       condition = cyl,
-      data.label = "counts",
+      bar.label = "counts",
       bf.message = FALSE,
       nboot = 10,
       x.axis.orientation = "vertical",

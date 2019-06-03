@@ -9,13 +9,13 @@ ggbarstats(data, main, condition = NULL, counts = NULL, ratio = NULL,
   stat.title = NULL, sample.size.label = TRUE, label.separator = " ",
   label.text.size = 4, label.fill.color = "white",
   label.fill.alpha = 1, bar.outline.color = "black",
-  bf.message = FALSE, sampling.plan = "jointMulti",
+  bf.message = TRUE, sampling.plan = "jointMulti",
   fixed.margin = "rows", prior.concentration = 1, title = NULL,
   subtitle = NULL, caption = NULL, legend.position = "right",
   x.axis.orientation = NULL, conf.level = 0.95, nboot = 100,
   simulate.p.value = FALSE, B = 2000, legend.title = NULL,
   xlab = NULL, ylab = "Percent", k = 2, perc.k = 0,
-  data.label = "percentage", bar.proptest = TRUE,
+  bar.label = "percentage", data.label = NULL, bar.proptest = TRUE,
   ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
   package = "RColorBrewer", palette = "Dark2", direction = 1,
   ggplot.component = NULL, messages = TRUE)
@@ -129,9 +129,9 @@ will cause the \code{x} axis label to be the \code{main} variable).}
 \item{perc.k}{Numeric that decides number of decimal places for percentage
 labels (Default: \code{0}).}
 
-\item{data.label}{Character decides what information needs to be displayed
-on the label in each pie slice. Possible options are \code{"percentage"}
-(default), \code{"counts"}, \code{"both"}.}
+\item{bar.label, data.label}{Character decides what information needs to be
+displayed on the label in each pie slice. Possible options are
+\code{"percentage"} (default), \code{"counts"}, \code{"both"}.}
 
 \item{bar.proptest}{Decides whether proportion test for \code{main} variable is
 to be carried out for each level of \code{condition} (Default: \code{TRUE}).}
@@ -189,7 +189,6 @@ ggstatsplot::ggbarstats(
   data = datasets::mtcars,
   main = vs,
   condition = cyl,
-  bf.message = TRUE,
   nboot = 10,
   labels.legend = c("0 = V-shaped", "1 = straight"),
   legend.title = "Engine"
@@ -205,6 +204,10 @@ ggstatsplot::ggbarstats(
   counts = Freq
 )
 }
+}
+\seealso{
+\code{\link{grouped_ggbarstats}}, \code{\link{ggpiestats}},
+\code{\link{grouped_ggpiestats}}
 }
 \author{
 Chuck Powell, Indrajeet Patil

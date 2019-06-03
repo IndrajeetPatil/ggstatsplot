@@ -282,8 +282,9 @@ testthat::test_that(
       )
 
     # testing labels
-    testthat::expect_identical(p$labels$subtitle, p_subtitle)
-    testthat::expect_identical(p$labels$y, "proportion")
+    testthat::expect_identical(pb$plot$labels$subtitle, p_subtitle)
+    testthat::expect_null(pb$plot$labels$caption, NULL)
+    testthat::expect_identical(pb$plot$labels$y, "proportion")
 
     # checking different data layers
     testthat::expect_equal(length(pb$data), 1L)
@@ -493,6 +494,12 @@ testthat::test_that(
     testthat::expect_equal(mean(pb2$data[[2]]$y), 0.008271081, tolerance = 0.001)
     testthat::expect_equal(mean(pb3$data[[2]]$y), 4.627659, tolerance = 0.001)
     testthat::expect_equal(mean(pb4$data[[2]]$y), 0.1082654, tolerance = 0.001)
+
+    # annotation
+    testthat::expect_null(pb1$plot$labels$caption, NULL)
+    testthat::expect_null(pb2$plot$labels$caption, NULL)
+    testthat::expect_null(pb3$plot$labels$caption, NULL)
+    testthat::expect_null(pb4$plot$labels$caption, NULL)
   }
 )
 
@@ -506,20 +513,22 @@ testthat::test_that(
     # creating the plot
     set.seed(123)
     p <-
-      ggstatsplot::gghistostats(
+      suppressWarnings(ggstatsplot::gghistostats(
         x = morley$Speed,
-        results.subtitle = FALSE,
+        effsize.type = "d",
+        effsize.noncentral = FALSE,
+        bf.message = FALSE,
         ggplot.component = ggplot2::scale_x_continuous(
           sec.axis = ggplot2::dup_axis(name = ggplot2::element_blank())
         ),
         messages = FALSE
-      )
+      ))
 
     # build the plot
     pb <- ggplot2::ggplot_build(p)
 
     # tests
-    testthat::expect_null(pb$plot$labels$subtitle, NULL)
+    testthat::expect_null(pb$plot$labels$caption, NULL)
     testthat::expect_equal(pb$layout$panel_params[[1]]$x.range,
       c(582.75, 1127.25),
       tolerance = 0.001

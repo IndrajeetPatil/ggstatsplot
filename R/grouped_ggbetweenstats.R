@@ -21,7 +21,8 @@
 #' @importFrom glue glue
 #' @importFrom purrr pmap
 #'
-#' @seealso \code{\link{ggbetweenstats}}
+#' @seealso \code{\link{ggbetweenstats}}, \code{\link{ggwithinstats}},
+#'  \code{\link{grouped_ggwithinstats}}
 #'
 #' @inherit ggbetweenstats return references
 #' @inherit ggbetweenstats return details
@@ -37,8 +38,7 @@
 #'   x = year,
 #'   y = hwy,
 #'   grouping.var = drv,
-#'   conf.level = 0.99,
-#'   bf.message = TRUE
+#'   conf.level = 0.99
 #' )
 #' \dontrun{
 #' # modifying individual plots using `ggplot.component` argument
@@ -75,7 +75,7 @@ grouped_ggbetweenstats <- function(data,
                                    partial = TRUE,
                                    effsize.noncentral = TRUE,
                                    bf.prior = 0.707,
-                                   bf.message = FALSE,
+                                   bf.message = TRUE,
                                    results.subtitle = TRUE,
                                    xlab = NULL,
                                    ylab = NULL,
@@ -121,16 +121,16 @@ grouped_ggbetweenstats <- function(data,
   # =================== check user input and prep =========================
 
   # create a list of function call to check
-  param_list <- base::as.list(base::match.call())
+  param_list <- as.list(match.call())
 
   # check that there is a grouping.var
   if (!"grouping.var" %in% names(param_list)) {
-    base::stop("You must specify a grouping variable")
+    stop("You must specify a grouping variable")
   }
 
   # check that conditioning and grouping.var are different
   if (as.character(param_list$x) == as.character(param_list$grouping.var)) {
-    base::message(cat(
+    message(cat(
       crayon::red("\nError: "),
       crayon::blue(
         "Identical variable (",
@@ -139,7 +139,7 @@ grouped_ggbetweenstats <- function(data,
       ),
       sep = ""
     ))
-    base::return(base::invisible(param_list$x))
+    return(invisible(param_list$x))
   }
 
   # ensure the grouping variable works quoted or unquoted
@@ -264,8 +264,7 @@ grouped_ggbetweenstats <- function(data,
       ...
     )
 
-  # show the note about grouped_ variant producing object which is not of
-  # class ggplot
+  # inform user this can't be modified further with ggplot commands
   if (isTRUE(messages)) {
     grouped_message()
   }

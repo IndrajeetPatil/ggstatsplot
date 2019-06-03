@@ -14,9 +14,9 @@
 #' @importFrom rlang !! enquo quo_name ensym
 #' @importFrom glue glue
 #' @importFrom purrr map set_names
-#' @importFrom tidyr nest
 #'
-#' @seealso \code{\link{ggpiestats}}
+#' @seealso \code{\link{ggbarstats}}, \code{\link{ggpiestats}},
+#'  \code{\link{grouped_ggbarstats}}
 #'
 #' @inherit ggpiestats return references
 #' @inherit ggpiestats return details
@@ -57,7 +57,6 @@
 #'   main = color,
 #'   condition = clarity,
 #'   grouping.var = cut,
-#'   bf.message = TRUE,
 #'   sampling.plan = "poisson",
 #'   title.prefix = "Quality",
 #'   slice.label = "both",
@@ -85,7 +84,7 @@ grouped_ggpiestats <- function(data,
                                label.text.size = 4,
                                label.fill.color = "white",
                                label.fill.alpha = 1,
-                               bf.message = FALSE,
+                               bf.message = TRUE,
                                sampling.plan = "indepMulti",
                                fixed.margin = "rows",
                                prior.concentration = 1,
@@ -113,17 +112,17 @@ grouped_ggpiestats <- function(data,
   # ======================== check user input =============================
 
   # create a list of function call to check
-  param_list <- base::as.list(base::match.call())
+  param_list <- as.list(match.call())
 
   # check that there is a grouping.var
   if (!"grouping.var" %in% names(param_list)) {
-    base::stop("You must specify a grouping variable")
+    stop("You must specify a grouping variable")
   }
 
   # check that conditioning and grouping.var are different
   if ("condition" %in% names(param_list)) {
     if (as.character(param_list$condition) == as.character(param_list$grouping.var)) {
-      base::message(cat(
+      message(cat(
         crayon::red("\nError: "),
         crayon::blue(
           "Identical variable (",
@@ -132,7 +131,7 @@ grouped_ggpiestats <- function(data,
         ),
         sep = ""
       ))
-      base::return(base::invisible(param_list$condition))
+      return(invisible(param_list$condition))
     }
   }
 

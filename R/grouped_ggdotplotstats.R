@@ -1,4 +1,4 @@
-#' @title Grouped histograms for distribution of a labelled numeric variable
+#' @title Grouped histograms for distribution of a labeled numeric variable
 #' @name grouped_ggdotplotstats
 #' @description Helper function for `ggstatsplot::ggdotplotstats` to apply this
 #'   function across multiple levels of a given factor and combining the
@@ -14,9 +14,9 @@
 #' @importFrom rlang !! enquo quo_name ensym
 #' @importFrom glue glue
 #' @importFrom purrr pmap
-#' @importFrom tidyr nest
 #'
-#' @seealso \code{\link{ggdotplotstats}}
+#' @seealso \code{\link{grouped_gghistostats}}, \code{\link{ggdotplotstats}},
+#'  \code{\link{gghistostats}}
 #'
 #' @inherit ggdotplotstats return references
 #' @inherit ggdotplotstats return details
@@ -59,7 +59,7 @@ grouped_ggdotplotstats <- function(data,
                                    type = "parametric",
                                    test.value = 0,
                                    bf.prior = 0.707,
-                                   bf.message = FALSE,
+                                   bf.message = TRUE,
                                    robust.estimator = "onestep",
                                    conf.level = 0.95,
                                    effsize.type = "g",

@@ -131,7 +131,7 @@ testthat::test_that(
     )
 
     testthat::expect_equal(tidy_df$estimate, broom_df$estimate, tolerance = 1e-3)
-    #testthat::expect_equal(tidy_df$std.error, broom_df$std.error, tolerance = 1e-3)
+    # testthat::expect_equal(tidy_df$std.error, broom_df$std.error, tolerance = 1e-3)
     testthat::expect_equal(tidy_df$conf.low, broom_df$conf.low, tolerance = 1e-3)
     testthat::expect_equal(tidy_df$conf.high, broom_df$conf.high, tolerance = 1e-3)
     testthat::expect_equal(tidy_df$p.value, broom_df$p.value, tolerance = 1e-3)

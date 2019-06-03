@@ -13,6 +13,9 @@
 #' @inheritParams gghistostats
 #' @inheritParams ggcoefstats
 #'
+#' @seealso \code{\link{grouped_gghistostats}}, \code{\link{gghistostats}},
+#'  \code{\link{grouped_ggdotplotstats}}
+#'
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
@@ -31,7 +34,6 @@
 #'   centrality.k = 0,
 #'   title = "Fuel economy data",
 #'   xlab = "city miles per gallon",
-#'   bf.message = TRUE,
 #'   caption = substitute(
 #'     paste(italic("Source"), ": EPA dataset on http://fueleconomy.gov")
 #'   )
@@ -50,7 +52,7 @@ ggdotplotstats <- function(data,
                            type = "parametric",
                            test.value = 0,
                            bf.prior = 0.707,
-                           bf.message = FALSE,
+                           bf.message = TRUE,
                            robust.estimator = "onestep",
                            effsize.type = "g",
                            effsize.noncentral = TRUE,

@@ -18,7 +18,6 @@
 #' @importFrom rlang !! enquo quo_name ensym as_quosure parse_expr quo_text
 #' @importFrom glue glue
 #' @importFrom purrr map set_names pmap
-#' @importFrom tidyr nest
 #'
 #' @seealso \code{\link{ggscatterstats}}, \code{\link{ggcorrmat}},
 #' \code{\link{grouped_ggcorrmat}}
@@ -75,7 +74,7 @@
 #'   x = budget,
 #'   y = length,
 #'   grouping.var = genre,
-#'   bf.message = TRUE,
+#'   bf.message = FALSE,
 #'   label.var = "title",
 #'   marginal = FALSE,
 #'   title.prefix = "Genre",
@@ -91,7 +90,7 @@ grouped_ggscatterstats <- function(data,
                                    type = "pearson",
                                    conf.level = 0.95,
                                    bf.prior = 0.707,
-                                   bf.message = FALSE,
+                                   bf.message = TRUE,
                                    label.var = NULL,
                                    label.expression = NULL,
                                    grouping.var,
@@ -136,17 +135,17 @@ grouped_ggscatterstats <- function(data,
                                    ...) {
 
   # create a list of function call to check for label.expression
-  param_list <- base::as.list(base::match.call())
+  param_list <- as.list(match.call())
 
   # check that there is a grouping.var
   if (!"grouping.var" %in% names(param_list)) {
-    base::stop("You must specify a grouping variable")
+    stop("You must specify a grouping variable")
   }
 
   # check that label.var and grouping.var are different
   if ("label.var" %in% names(param_list)) {
     if (as.character(param_list$label.var) == as.character(param_list$grouping.var)) {
-      base::message(cat(
+      message(cat(
         crayon::red("\nError: "),
         crayon::blue(
           "Identical variable (",
@@ -155,7 +154,7 @@ grouped_ggscatterstats <- function(data,
         ),
         sep = ""
       ))
-      base::return(base::invisible(param_list$label.var))
+      return(invisible(param_list$label.var))
     }
   }
 
@@ -212,7 +211,7 @@ grouped_ggscatterstats <- function(data,
       # the environment is essential
       label.expression <- rlang::as_quosure(
         x = label.expression,
-        env = base::sys.frame(which = 0)
+        env = sys.frame(which = 0)
       )
     }
   }

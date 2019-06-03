@@ -14,9 +14,17 @@
 #'   of data points, it is advisable to set `path.point = FALSE` as these lines
 #'   can overwhelm the plot.
 #'
+#' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggbetweenstats}},
+#'  \code{\link{grouped_ggwithinstats}}, \code{\link{pairwise_p}}
+#'
 #' @importFrom forcats fct_reorder
 #'
-#' @details **This function is still work in progress.**
+#' @details
+#'
+#'  For more about how the effect size measures (for nonparametric tests) and
+#'  their confidence intervals are computed, see `?rcompanion::wilcoxonPairedR`.
+#'
+#'  For independent measures designs, use `ggbetweenstats`.
 #'
 #' @examples
 #'
@@ -29,7 +37,6 @@
 #'   data = VR_dilemma,
 #'   x = modality,
 #'   y = score,
-#'   bf.message = TRUE,
 #'   xlab = "Presentation modality",
 #'   ylab = "Proportion of utilitarian decisions"
 #' )
@@ -61,7 +68,7 @@ ggwithinstats <- function(data,
                           partial = TRUE,
                           effsize.noncentral = TRUE,
                           bf.prior = 0.707,
-                          bf.message = FALSE,
+                          bf.message = TRUE,
                           results.subtitle = TRUE,
                           xlab = NULL,
                           ylab = NULL,
@@ -206,8 +213,8 @@ ggwithinstats <- function(data,
       fill = "white",
       width = 0.2,
       alpha = 0.5,
-      notch = FALSE,
-      notchwidth = 0.1
+      notch = notch,
+      notchwidth = notchwidth
     ) +
     ggplot2::geom_violin(
       mapping = ggplot2::aes(x = x, y = y),

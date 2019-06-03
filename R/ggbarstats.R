@@ -11,9 +11,9 @@
 #' @param ylab Custom text for the `y` axis label (Default: `"percent"`).
 #' @param bar.proptest Decides whether proportion test for `main` variable is
 #'   to be carried out for each level of `condition` (Default: `TRUE`).
-#' @param data.label Character decides what information needs to be displayed
-#'   on the label in each pie slice. Possible options are `"percentage"`
-#'   (default), `"counts"`, `"both"`.
+#' @param bar.label,data.label Character decides what information needs to be
+#'   displayed on the label in each pie slice. Possible options are
+#'   `"percentage"` (default), `"counts"`, `"both"`.
 #' @param legend.position The position of the legend
 #'   `"none"`, `"left"`, `"right"`, `"bottom"`, `"top"` (Default: `"right"`).
 #' @param x.axis.orientation The orientation of the `x` axis labels one of
@@ -22,6 +22,9 @@
 #' @param bar.outline.color Character specifying color for bars (default:
 #'   `"black"`).
 #' @inheritParams ggpiestats
+#'
+#' @seealso \code{\link{grouped_ggbarstats}}, \code{\link{ggpiestats}},
+#'  \code{\link{grouped_ggpiestats}}
 #'
 #' @import ggplot2
 #'
@@ -47,7 +50,6 @@
 #'   data = datasets::mtcars,
 #'   main = vs,
 #'   condition = cyl,
-#'   bf.message = TRUE,
 #'   nboot = 10,
 #'   labels.legend = c("0 = V-shaped", "1 = straight"),
 #'   legend.title = "Engine"
@@ -81,7 +83,7 @@ ggbarstats <- function(data,
                        label.fill.color = "white",
                        label.fill.alpha = 1,
                        bar.outline.color = "black",
-                       bf.message = FALSE,
+                       bf.message = TRUE,
                        sampling.plan = "jointMulti",
                        fixed.margin = "rows",
                        prior.concentration = 1,
@@ -99,7 +101,8 @@ ggbarstats <- function(data,
                        ylab = "Percent",
                        k = 2,
                        perc.k = 0,
-                       data.label = "percentage",
+                       bar.label = "percentage",
+                       data.label = NULL,
                        bar.proptest = TRUE,
                        ggtheme = ggplot2::theme_bw(),
                        ggstatsplot.layer = TRUE,
@@ -108,10 +111,11 @@ ggbarstats <- function(data,
                        direction = 1,
                        ggplot.component = NULL,
                        messages = TRUE) {
+  bar.label <- bar.label %||% data.label
 
   # ================= extracting column names as labels  =====================
 
-  if (base::missing(condition)) {
+  if (missing(condition)) {
     stop("You must specify a condition variable")
   }
   # if legend title is not provided, use the variable name for 'main'
@@ -142,7 +146,7 @@ ggbarstats <- function(data,
   # =========================== converting counts ============================
 
   # untable the dataframe based on the count for each obervation
-  if (!base::missing(counts)) {
+  if (!missing(counts)) {
     data %<>%
       tidyr::uncount(
         data = .,
@@ -167,8 +171,8 @@ ggbarstats <- function(data,
   df %<>%
     cat_label_df(
       data = .,
-      label.col.name = "data.label",
-      label.content = data.label,
+      label.col.name = "bar.label",
+      label.content = bar.label,
       label.separator = label.separator,
       perc.k = perc.k
     )
@@ -225,7 +229,7 @@ ggbarstats <- function(data,
       minor_breaks = seq(from = 0.05, to = 0.95, by = 0.10)
     ) +
     ggplot2::geom_label(
-      mapping = ggplot2::aes(label = data.label, group = main),
+      mapping = ggplot2::aes(label = bar.label, group = main),
       show.legend = FALSE,
       position = ggplot2::position_fill(vjust = 0.5),
       color = "black",
@@ -291,7 +295,7 @@ ggbarstats <- function(data,
 
       # print the tibble and leave out unnecessary columns
       print(tibble::as_tibble(df2) %>%
-        dplyr::select(.data = ., -c(main:data.label)))
+        dplyr::select(.data = ., -c(main:bar.label)))
     }
   }
 
@@ -315,7 +319,7 @@ ggbarstats <- function(data,
       )
 
     # preparing the BF message for null hypothesis support
-    if (isTRUE(bf.message)) {
+    if (isTRUE(bf.message) && !is.null(subtitle)) {
       bf.caption.text <-
         bf_contingency_tab(
           data = data,
@@ -372,7 +376,7 @@ ggbarstats <- function(data,
   # =========================== putting all together ========================
 
   # if we need to modify `x`-axis orientation
-  if (!base::is.null(x.axis.orientation)) {
+  if (!is.null(x.axis.orientation)) {
     if (x.axis.orientation == "slant") {
       p <-
         p + ggplot2::theme(

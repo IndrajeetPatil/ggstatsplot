@@ -16,7 +16,8 @@
 #' @importFrom purrr pmap
 #' @importFrom tidyr drop_na
 #'
-#' @seealso \code{\link{gghistostats}}
+#' @seealso \code{\link{gghistostats}}, \code{\link{ggdotplotstats}},
+#'  \code{\link{grouped_ggdotplotstats}}
 #'
 #' @inherit gghistostats return references
 #' @inherit gghistostats return details
@@ -27,7 +28,6 @@
 #'   data = iris,
 #'   x = Sepal.Length,
 #'   test.value = 5,
-#'   bf.message = TRUE,
 #'   grouping.var = Species,
 #'   bar.fill = "orange",
 #'   nrow = 1,
@@ -53,7 +53,7 @@ grouped_gghistostats <- function(data,
                                  type = "parametric",
                                  test.value = 0,
                                  bf.prior = 0.707,
-                                 bf.message = FALSE,
+                                 bf.message = TRUE,
                                  robust.estimator = "onestep",
                                  effsize.type = "g",
                                  effsize.noncentral = TRUE,

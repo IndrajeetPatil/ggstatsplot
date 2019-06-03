@@ -7,7 +7,7 @@
 grouped_gghistostats(data, x, grouping.var, title.prefix = NULL,
   binwidth = NULL, bar.measure = "count", xlab = NULL,
   subtitle = NULL, caption = NULL, type = "parametric",
-  test.value = 0, bf.prior = 0.707, bf.message = FALSE,
+  test.value = 0, bf.prior = 0.707, bf.message = TRUE,
   robust.estimator = "onestep", effsize.type = "g",
   effsize.noncentral = TRUE, conf.level = 0.95, nboot = 100, k = 2,
   ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
@@ -65,11 +65,12 @@ or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accep
 \item{test.value}{A number specifying the value of the null hypothesis
 (Default: \code{0}).}
 
-\item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
-to use in calculating Bayes factors.}
+\item{bf.prior}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
+width to use in calculating Bayes factors.}
 
 \item{bf.message}{Logical that decides whether to display Bayes Factor in
-favor of the \emph{null} hypothesis \strong{for parametric test} (Default: \code{FALSE}).}
+favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
+parametric test} (Default: \code{TRUE}).}
 
 \item{robust.estimator}{If \code{test = "robust"} robust estimator to be used
 (\code{"onestep"} (Default), \code{"mom"}, or \code{"median"}). For more, see
@@ -241,7 +242,6 @@ ggstatsplot::grouped_gghistostats(
   data = iris,
   x = Sepal.Length,
   test.value = 5,
-  bf.message = TRUE,
   grouping.var = Species,
   bar.fill = "orange",
   nrow = 1,
@@ -256,7 +256,8 @@ ggstatsplot::grouped_gghistostats(
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
 }
 \seealso{
-\code{\link{gghistostats}}
+\code{\link{gghistostats}}, \code{\link{ggdotplotstats}},
+\code{\link{grouped_ggdotplotstats}}
 }
 \author{
 Indrajeet Patil, Chuck Powell

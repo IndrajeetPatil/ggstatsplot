@@ -6,7 +6,7 @@
 variable}
 \usage{
 grouped_ggscatterstats(data, x, y, type = "pearson", conf.level = 0.95,
-  bf.prior = 0.707, bf.message = FALSE, label.var = NULL,
+  bf.prior = 0.707, bf.message = TRUE, label.var = NULL,
   label.expression = NULL, grouping.var, title.prefix = NULL,
   xlab = NULL, ylab = NULL, method = "lm", method.args = list(),
   formula = y ~ x, point.color = "black", point.size = 3,
@@ -48,7 +48,8 @@ parametric/pearson's), \code{"np"} (nonparametric/spearman), \code{"r"} (robust)
 to use in calculating Bayes factors.}
 
 \item{bf.message}{Logical that decides whether to display Bayes Factor in
-favor of the \emph{null} hypothesis \strong{for parametric test} (Default: \code{FALSE}).}
+favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
+parametric test} (Default: \code{TRUE}).}
 
 \item{label.var}{Variable to use for points labels. Can be entered either as
 a character string (e.g., \code{"var1"}) or as a bare expression (e.g, \code{var1}).}
@@ -305,7 +306,7 @@ ggstatsplot::grouped_ggscatterstats(
   x = budget,
   y = length,
   grouping.var = genre,
-  bf.message = TRUE,
+  bf.message = FALSE,
   label.var = "title",
   marginal = FALSE,
   title.prefix = "Genre",
