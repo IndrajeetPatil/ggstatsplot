@@ -925,6 +925,7 @@ effsize_t_parametric <- function(formula = NULL,
     upper.ci <- max(ncp.lower.ci, ncp.upper.ci)
   }
 
+  # return the final dataframe with results
   return(tibble::tibble(
     method = method,
     estimate = d,

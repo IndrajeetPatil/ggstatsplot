@@ -14,9 +14,17 @@
 #'   of data points, it is advisable to set `path.point = FALSE` as these lines
 #'   can overwhelm the plot.
 #'
+#' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggbetweentats}},
+#'  \code{\link{grouped_ggwithinstats}}, \code{\link{pairwise_p}}
+#'
 #' @importFrom forcats fct_reorder
 #'
-#' @details **This function is still work in progress.**
+#' @details
+#'
+#'  For more about how the effect size measures (for nonparametric tests) and
+#'  their confidence intervals are computed, see `?rcompanion::wilcoxonPairedR`.
+#'
+#'  For independent measures designs, use `ggbetweenstats`.
 #'
 #' @examples
 #'
@@ -29,7 +37,6 @@
 #'   data = VR_dilemma,
 #'   x = modality,
 #'   y = score,
-#'   bf.message = TRUE,
 #'   xlab = "Presentation modality",
 #'   ylab = "Proportion of utilitarian decisions"
 #' )

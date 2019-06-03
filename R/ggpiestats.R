@@ -39,6 +39,9 @@
 #' @inheritParams gghistostats
 #' @inheritParams cat_label_df
 #'
+#' @seealso \code{\link{grouped_ggpiestats}}, \code{\link{ggbarstats}},
+#'  \code{\link{grouped_ggbarstats}}
+#'
 #' @import ggplot2
 #'
 #' @importFrom dplyr select group_by summarize n arrange if_else desc

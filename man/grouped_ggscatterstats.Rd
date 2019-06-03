@@ -306,7 +306,7 @@ ggstatsplot::grouped_ggscatterstats(
   x = budget,
   y = length,
   grouping.var = genre,
-  bf.message = TRUE,
+  bf.message = FALSE,
   label.var = "title",
   marginal = FALSE,
   title.prefix = "Genre",

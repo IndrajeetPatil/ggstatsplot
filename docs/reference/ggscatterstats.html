@@ -469,7 +469,7 @@ have a lot of labels that overlap.</p></li>
 <span class='co'># to get reproducible results from bootstrapping</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
 
-<span class='co'># creating dataframe</span>
+<span class='co'># creating dataframe with rownames converted to a new column</span>
 <span class='no'>mtcars_new</span> <span class='kw'>&lt;-</span> <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/rownames.html'>rownames_to_column</a></span>(<span class='no'>.</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='st'>"car"</span>) <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>.</span>)
@@ -487,7 +487,8 @@ have a lot of labels that overlap.</p></li>
   <span class='kw'>xfill</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )</div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='output co'>#&gt; <span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>This plot can't be further modified with `ggplot2` functions.
 #&gt; In case you want a `ggplot` object, set `marginal = FALSE`.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggscatterstats-1.png' alt='' width='700' height='433' /></div></span></pre>
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggscatterstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

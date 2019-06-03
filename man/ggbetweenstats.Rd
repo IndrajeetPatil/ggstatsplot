@@ -254,6 +254,7 @@ For repeated measures designs, use \code{ggwithinstats}.
 
 # to get reproducible results from bootstrapping
 set.seed(123)
+library(ggstatsplot)
 
 # simple function call with the defaults
 ggstatsplot::ggbetweenstats(
@@ -261,8 +262,7 @@ ggstatsplot::ggbetweenstats(
   x = am,
   y = mpg,
   title = "Fuel efficiency by type of car transmission",
-  caption = "Transmission (0 = automatic, 1 = manual)",
-  bf.message = TRUE
+  caption = "Transmission (0 = automatic, 1 = manual)"
 )
 \dontrun{
 # more detailed function call
@@ -282,7 +282,7 @@ ggstatsplot::ggbetweenstats(
   nboot = 10,
   ggtheme = ggplot2::theme_grey(),
   ggstatsplot.layer = FALSE,
-  bf.message = TRUE
+  bf.message = FALSE
 )
 }
 }
