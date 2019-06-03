@@ -324,8 +324,7 @@ ggstatsplot::grouped_ggbetweenstats(
   x = year,
   y = hwy,
   grouping.var = drv,
-  conf.level = 0.99,
-  bf.message = TRUE
+  conf.level = 0.99
 )
 \dontrun{
 # modifying individual plots using `ggplot.component` argument
@@ -349,7 +348,8 @@ ggstatsplot::grouped_ggbetweenstats(
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}
 }
 \seealso{
-\code{\link{ggbetweenstats}}
+\code{\link{ggbetweenstats}}, \code{\link{ggwithinstats}},
+\code{\link{grouped_ggwithinstats}}
 }
 \author{
 Indrajeet Patil, Chuck Powell

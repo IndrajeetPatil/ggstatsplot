@@ -2,7 +2,7 @@
 % Please edit documentation in R/grouped_ggdotplotstats.R
 \name{grouped_ggdotplotstats}
 \alias{grouped_ggdotplotstats}
-\title{Grouped histograms for distribution of a labelled numeric variable}
+\title{Grouped histograms for distribution of a labeled numeric variable}
 \usage{
 grouped_ggdotplotstats(data, x, y, grouping.var, title.prefix = NULL,
   xlab = NULL, ylab = NULL, subtitle = NULL, caption = NULL,
@@ -226,7 +226,8 @@ ggstatsplot::grouped_ggdotplotstats(
 )
 }
 \seealso{
-\code{\link{ggdotplotstats}}
+\code{\link{grouped_gghistostats}}, \code{\link{ggdotplotstats}},
+\code{\link{gghistostats}}
 }
 \author{
 Indrajeet Patil

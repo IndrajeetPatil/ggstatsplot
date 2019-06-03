@@ -242,7 +242,6 @@ ggstatsplot::grouped_gghistostats(
   data = iris,
   x = Sepal.Length,
   test.value = 5,
-  bf.message = TRUE,
   grouping.var = Species,
   bar.fill = "orange",
   nrow = 1,
@@ -257,7 +256,8 @@ ggstatsplot::grouped_gghistostats(
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
 }
 \seealso{
-\code{\link{gghistostats}}
+\code{\link{gghistostats}}, \code{\link{ggdotplotstats}},
+\code{\link{grouped_ggdotplotstats}}
 }
 \author{
 Indrajeet Patil, Chuck Powell

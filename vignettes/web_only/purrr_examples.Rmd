@@ -87,7 +87,7 @@ entries in the list.
 
 Following our methodology above let's start with `ggebtweenstats`. We'll use the
 `gapminder` dataset. We'll make a 3 item named `list` called `data_list` using
-`dplyr::filter` and `base::split`.
+`dplyr::filter` and `split`.
 
 ```{r purrr_ggbetweenstats1, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 7}
 library(ggstatsplot)
@@ -104,7 +104,7 @@ year_list <- gapminder::gapminder %>%
       year == 2007,
     continent != "Oceania"
   ) %>%
-  base::split(x = ., f = .$year, drop = TRUE)
+  split(x = ., f = .$year, drop = TRUE)
 
 # this created a list with 3 elements, one for each year we want
 # you can check the structure of the file for yourself
@@ -195,7 +195,7 @@ ggstatsplot::combine_plots(
 We will be using simulated data from then Attention Network Test provided in ANT
 dataset in `ez` package.
 
-```{r purrr_ggwithinstats1, warning = FALSE, message = FALSE, fig.height = 18, fig.width = 8}
+```{r purrr_ggwithinstats, warning = FALSE, message = FALSE, fig.height = 18, fig.width = 8}
 library(ggstatsplot)
 library(ez)
 data("ANT") # loading data from `ez` package
@@ -205,7 +205,7 @@ set.seed(123)
 
 # let's split the dataframe and create a list by years of interest
 cue_list <- ANT %>%
-  base::split(x = ., f = .$cue, drop = TRUE)
+  split(x = ., f = .$cue, drop = TRUE)
 
 # this created a list with 4 elements, one for each year we want
 # you can check the structure of the file for yourself
@@ -300,7 +300,7 @@ set.seed(123)
 mpaa_list <- ggstatsplot::movies_wide %>%
   dplyr::filter(.data = ., mpaa != "NC-17") %>%
   dplyr::sample_frac(tbl = ., size = 0.25) %>%
-  base::split(x = ., f = .$mpaa, drop = TRUE)
+  split(x = ., f = .$mpaa, drop = TRUE)
 
 plot_list <- purrr::pmap(
   .l = list(
@@ -322,7 +322,6 @@ plot_list <- purrr::pmap(
       "rating > 8 & budget < 10"
     ),
     type = list("r", "np", "bf"),
-    method = list(MASS::rlm, "lm", "lm"),
     nboot = 25,
     marginal.type = list("boxplot", "density", "violin"),
     centrality.para = list("mean", "median", "mean"),
@@ -364,7 +363,7 @@ methodology as the earlier examples.
 cut_list <- ggplot2::diamonds %>%
   dplyr::sample_frac(tbl = ., size = 0.05) %>%
   dplyr::filter(.data = ., cut != "Fair") %>%
-  base::split(x = ., f = .$cut, drop = TRUE)
+  split(x = ., f = .$cut, drop = TRUE)
 
 # this created a list with 4 elements, one for each quality of cut
 # you can check the structure of the file for yourself
@@ -440,7 +439,7 @@ library(ggthemes)
 # let's leave out Oceania because it has just two data points
 continent_list <- gapminder::gapminder %>%
   dplyr::filter(.data = ., year == 2007, continent != "Oceania") %>%
-  base::split(x = ., f = .$continent, drop = TRUE)
+  split(x = ., f = .$continent, drop = TRUE)
 
 # this created a list with 4 elements, one for each continent
 # you can check the structure of the file for yourself
@@ -514,7 +513,7 @@ library(hrbrthemes)
 # let's leave out Oceania because it has just two data points
 continent_list <- gapminder::gapminder %>%
   dplyr::filter(.data = ., continent != "Oceania") %>%
-  base::split(x = ., f = .$continent, drop = TRUE)
+  split(x = ., f = .$continent, drop = TRUE)
 
 # this created a list with 4 elements, one for each continent
 # you can check the structure of the file for yourself
@@ -547,9 +546,9 @@ plot_list <- purrr::pmap(
     centrality.color = list("red", "#0072B2", "#D55E00", "#CC79A7"),
     test.value.line = TRUE,
     test.value.color = list("#E69F00", "#56B4E9", "#009E73", "blue"),
-    centrality.para = list("median", "mean", "mean", "median"), 
-    point.color = list("green", "blue", "#E69F00", "darkgreen"), 
-    point.size = list(3, 4, 4, 3), 
+    centrality.para = list("median", "mean", "mean", "median"),
+    point.color = list("green", "blue", "#E69F00", "darkgreen"),
+    point.size = list(3, 4, 4, 3),
     point.shape = list(12, 13, 17, 18),
     ggtheme = list(
       ggplot2::theme_minimal(base_family = "serif"),
@@ -576,7 +575,7 @@ ggstatsplot::combine_plots(
 ```{r purrr_ggpiestats, warning = FALSE, message = FALSE, fig.height = 20, fig.width = 9}
 # let's split the dataframe and create a list by passenger class
 class_list <- ggstatsplot::Titanic_full %>%
-  base::split(x = ., f = .$Class, drop = TRUE)
+  split(x = ., f = .$Class, drop = TRUE)
 
 # this created a list with 4 elements, one for each class
 # you can check the structure of the file for yourself
@@ -594,6 +593,7 @@ plot_list <- purrr::pmap(
     data = class_list,
     main = "Survived",
     condition = "Sex",
+    slice.label = list("both", "count", "percentage", "both"),
     nboot = 10,
     facet.wrap.name = "Gender",
     title = list(
@@ -621,6 +621,68 @@ plot_list <- purrr::pmap(
     messages = FALSE
   ),
   .f = ggstatsplot::ggpiestats
+)
+
+# combining all individual plots from the list into a single plot using combine_plots function
+ggstatsplot::combine_plots(
+  plotlist = plot_list,
+  title.text = "Survival in Titanic disaster by gender for all passenger classes",
+  caption.text = "Asterisks denote results from proportion tests: \n***: p < 0.001, ns: non-significant",
+  ncol = 1,
+  labels = c("(a)", "(b)", "(c)", "(d)")
+)
+``` 
+
+# `ggbarstats`
+
+```{r purrr_ggbarstats, warning = FALSE, message = FALSE, fig.height = 20, fig.width = 9}
+# let's split the dataframe and create a list by passenger class
+class_list <- ggstatsplot::Titanic_full %>%
+  split(x = ., f = .$Class, drop = TRUE)
+
+# this created a list with 4 elements, one for each class
+# you can check the structure of the file for yourself
+# str(class_list)
+
+# checking the length and names of each element
+length(class_list)
+names(class_list)
+
+# running function on every element of this list note that if you want the same
+# value for a given argument across all elements of the list, you need to
+# specify it just once
+plot_list <- purrr::pmap(
+  .l = list(
+    data = class_list,
+    main = "Survived",
+    condition = "Sex",
+    nboot = 10,
+    bar.label = list("both", "count", "percentage", "both"),
+    title = list(
+      "Passenger class: 1st",
+      "Passenger class: 2nd",
+      "Passenger class: 3rd",
+      "Passenger class: Crew"
+    ),
+    caption = list(
+      "Total: 319, Died: 120, Survived: 199, % Survived: 62%",
+      "Total: 272, Died: 155, Survived: 117, % Survived: 43%",
+      "Total: 709, Died: 537, Survived: 172, % Survived: 25%",
+      "Data not available for crew passengers"
+    ),
+    package = list("RColorBrewer", "ghibli", "palettetown", "yarrr"),
+    palette = list("Accent", "MarnieMedium1", "pikachu", "nemo"),
+    ggtheme = list(
+      ggplot2::theme_grey(),
+      ggplot2::theme_bw(),
+      ggthemes::theme_tufte(),
+      ggthemes::theme_economist()
+    ),
+    ggstatsplot.layer = list(TRUE, TRUE, FALSE, FALSE),
+    sample.size.label = list(TRUE, FALSE, TRUE, FALSE),
+    messages = FALSE
+  ),
+  .f = ggstatsplot::ggbarstats
 )
 
 # combining all individual plots from the list into a single plot using combine_plots function

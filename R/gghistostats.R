@@ -35,12 +35,14 @@
 #' @inheritParams histo_labeller
 #' @inheritParams ggbetweenstats
 #'
+#' @seealso \code{\link{grouped_gghistostats}}, \code{\link{ggdotplotstats}},
+#'  \code{\link{grouped_ggdotplotstats}}
+#'
 #' @import ggplot2
 #'
 #' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
 #' @importFrom dplyr group_by n arrange
 #' @importFrom rlang enquo as_name !!
-#' @importFrom WRS2 onesampb
 #' @importFrom scales percent percent_format
 #' @importFrom stats dnorm
 #' @importFrom crayon green blue yellow red
@@ -61,7 +63,6 @@
 #'   x = Sepal.Length,
 #'   bar.measure = "mix",
 #'   type = "p",
-#'   bf.message = TRUE,
 #'   caption = substitute(paste(italic("Note"), ": Iris dataset by Fisher.")),
 #'   bf.prior = 0.8,
 #'   test.value = 3,
@@ -69,8 +70,6 @@
 #'   binwidth = 0.10,
 #'   bar.fill = "grey50"
 #' )
-#' @seealso \code{\link{grouped_gghistostats}}
-#'
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
 #'

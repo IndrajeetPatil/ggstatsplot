@@ -165,11 +165,14 @@ ggdotplotstats(
   centrality.k = 0,
   title = "Fuel economy data",
   xlab = "city miles per gallon",
-  bf.message = TRUE,
   caption = substitute(
     paste(italic("Source"), ": EPA dataset on http://fueleconomy.gov")
   )
 )
+}
+\seealso{
+\code{\link{grouped_gghistostats}}, \code{\link{gghistostats}},
+\code{\link{grouped_ggdotplotstats}}
 }
 \author{
 Indrajeet Patil

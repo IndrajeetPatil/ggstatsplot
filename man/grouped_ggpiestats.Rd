@@ -255,7 +255,6 @@ ggstatsplot::grouped_ggpiestats(
   main = color,
   condition = clarity,
   grouping.var = cut,
-  bf.message = TRUE,
   sampling.plan = "poisson",
   title.prefix = "Quality",
   slice.label = "both",
@@ -269,7 +268,8 @@ ggstatsplot::grouped_ggpiestats(
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
 }
 \seealso{
-\code{\link{ggpiestats}}
+\code{\link{ggbarstats}}, \code{\link{ggpiestats}},
+\code{\link{grouped_ggbarstats}}
 }
 \author{
 Indrajeet Patil, Chuck Powell

@@ -15,7 +15,6 @@
 #' @importFrom rlang !! enquo quo_name ensym
 #' @importFrom glue glue
 #' @importFrom purrr map set_names %||%
-#' @importFrom tidyr nest
 #'
 #' @seealso \code{\link{ggcorrmat}}, \code{\link{ggscatterstats}},
 #'   \code{\link{grouped_ggscatterstats}}
@@ -116,11 +115,11 @@ grouped_ggcorrmat <- function(data,
                               ...) {
 
   # create a list of function call to check for label.expression
-  param_list <- base::as.list(base::match.call())
+  param_list <- as.list(match.call())
 
   # check that there is a grouping.var
   if (!"grouping.var" %in% names(param_list)) {
-    base::stop("You must specify a grouping variable")
+    stop("You must specify a grouping variable")
   }
 
   # ========================= preparing dataframe =============================

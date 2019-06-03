@@ -197,7 +197,7 @@ have a lot of labels that overlap.
 # to get reproducible results from bootstrapping
 set.seed(123)
 
-# creating dataframe
+# creating dataframe with rownames converted to a new column
 mtcars_new <- mtcars \%>\%
   tibble::rownames_to_column(., var = "car") \%>\%
   tibble::as_tibble(x = .)

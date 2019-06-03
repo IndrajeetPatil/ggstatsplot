@@ -611,7 +611,8 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='ggbetweenstats.html'>ggbetweenstats</a></code></p></div>
+    <div class='dont-index'><p><code><a href='ggbetweenstats.html'>ggbetweenstats</a></code>, <code><a href='ggwithinstats.html'>ggwithinstats</a></code>,
+<code><a href='grouped_ggwithinstats.html'>grouped_ggwithinstats</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -625,8 +626,7 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>year</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>hwy</span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>drv</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.99</span>,
-  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.99</span>
 )</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Shapiro-Wilk Normality Test for </span><span style='color: #BBBB00;'>hwy</span><span style='color: #0000BB;'> : p-value = </span><span style='color: #BBBB00;'>&lt; 0.001</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Bartlett's test for homogeneity of variances for factor </span><span style='color: #BBBB00;'>year</span><span style='color: #0000BB;'> : p-value = </span><span style='color: #BBBB00;'>0.144</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Shapiro-Wilk Normality Test for </span><span style='color: #BBBB00;'>hwy</span><span style='color: #0000BB;'> : p-value = </span><span style='color: #BBBB00;'>0.033</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Bartlett's test for homogeneity of variances for factor </span><span style='color: #BBBB00;'>year</span><span style='color: #0000BB;'> : p-value = </span><span style='color: #BBBB00;'>0.682</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Individual plots in the combined `grouped_` plot
 #&gt; can't be further modified with `ggplot2` functions.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggbetweenstats-1.png' alt='' width='700' height='433' /></div></span><div class='input'><span class='co'># modifying individual plots using `ggplot.component` argument</span>

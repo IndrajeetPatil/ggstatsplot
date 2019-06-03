@@ -51,14 +51,14 @@ cat_label_df <- function(data,
                          label.separator = c("\n", " "),
                          perc.k = 1) {
   # checking what needs to be displayed in a label
-  if (label.content %in% c("percentage", "perc", "proportion", "prop")) {
+  if (label.content %in% c("percentage", "perc", "proportion", "prop", "%")) {
     # only percentage
     data %<>%
       dplyr::mutate(
         .data = .,
         !!label.col.name := paste0(round(x = perc, digits = perc.k), "%")
       )
-  } else if (label.content %in% c("counts", "n", "count")) {
+  } else if (label.content %in% c("counts", "n", "count", "N")) {
     # only raw counts
     data %<>%
       dplyr::mutate(

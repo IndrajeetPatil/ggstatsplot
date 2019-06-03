@@ -225,7 +225,10 @@ A combination of box and violin plots along with raw
 details included in the plot as a subtitle.
 }
 \details{
-\strong{This function is still work in progress.}
+For more about how the effect size measures (for nonparametric tests) and
+their confidence intervals are computed, see \code{?rcompanion::wilcoxonPairedR}.
+
+For independent measures designs, use \code{ggbetweenstats}.
 }
 \examples{
 
@@ -238,7 +241,6 @@ ggstatsplot::ggwithinstats(
   data = VR_dilemma,
   x = modality,
   y = score,
-  bf.message = TRUE,
   xlab = "Presentation modality",
   ylab = "Proportion of utilitarian decisions"
 )
@@ -255,6 +257,10 @@ ggstatsplot::ggwithinstats(
   outlier.tagging = TRUE,
   outlier.label = Taster
 )
+}
+\seealso{
+\code{\link{grouped_ggbetweenstats}}, \code{\link{ggbetweenstats}},
+\code{\link{grouped_ggwithinstats}}, \code{\link{pairwise_p}}
 }
 \author{
 Indrajeet Patil

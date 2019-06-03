@@ -115,8 +115,6 @@
 #'
 #' @importFrom dplyr select group_by arrange mutate mutate_at mutate_if
 #' @importFrom ggrepel geom_label_repel
-#' @importFrom WRS2 t1way yuen yuen.effect.ci
-#' @importFrom sjstats eta_sq omega_sq
 #' @importFrom stats na.omit t.test oneway.test
 #' @importFrom rlang enquo quo_name as_name !!
 #' @importFrom ggrepel geom_label_repel
@@ -156,6 +154,7 @@
 #'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
+#' library(ggstatsplot)
 #'
 #' # simple function call with the defaults
 #' ggstatsplot::ggbetweenstats(
@@ -163,8 +162,7 @@
 #'   x = am,
 #'   y = mpg,
 #'   title = "Fuel efficiency by type of car transmission",
-#'   caption = "Transmission (0 = automatic, 1 = manual)",
-#'   bf.message = TRUE
+#'   caption = "Transmission (0 = automatic, 1 = manual)"
 #' )
 #' \dontrun{
 #' # more detailed function call
@@ -184,7 +182,7 @@
 #'   nboot = 10,
 #'   ggtheme = ggplot2::theme_grey(),
 #'   ggstatsplot.layer = FALSE,
-#'   bf.message = TRUE
+#'   bf.message = FALSE
 #' )
 #' }
 #' @export

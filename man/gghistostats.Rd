@@ -185,7 +185,6 @@ ggstatsplot::gghistostats(
   x = Sepal.Length,
   bar.measure = "mix",
   type = "p",
-  bf.message = TRUE,
   caption = substitute(paste(italic("Note"), ": Iris dataset by Fisher.")),
   bf.prior = 0.8,
   test.value = 3,
@@ -198,7 +197,8 @@ ggstatsplot::gghistostats(
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
 }
 \seealso{
-\code{\link{grouped_gghistostats}}
+\code{\link{grouped_gghistostats}}, \code{\link{ggdotplotstats}},
+\code{\link{grouped_ggdotplotstats}}
 }
 \author{
 Indrajeet Patil

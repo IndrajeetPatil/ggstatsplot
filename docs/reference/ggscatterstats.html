@@ -469,7 +469,7 @@ have a lot of labels that overlap.</p></li>
 <span class='co'># to get reproducible results from bootstrapping</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
 
-<span class='co'># creating dataframe</span>
+<span class='co'># creating dataframe with rownames converted to a new column</span>
 <span class='no'>mtcars_new</span> <span class='kw'>&lt;-</span> <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/rownames.html'>rownames_to_column</a></span>(<span class='no'>.</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='st'>"car"</span>) <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>.</span>)

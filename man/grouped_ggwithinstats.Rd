@@ -285,7 +285,10 @@ A combined plot of comparison plot created for levels of a
 grouping variable.
 }
 \details{
-\strong{This function is still work in progress.}
+For more about how the effect size measures (for nonparametric tests) and
+their confidence intervals are computed, see \code{?rcompanion::wilcoxonPairedR}.
+
+For independent measures designs, use \code{ggbetweenstats}.
 }
 \examples{
 
@@ -299,7 +302,6 @@ ggstatsplot::grouped_ggwithinstats(
   x = modality,
   y = score,
   grouping.var = order,
-  bf.message = TRUE,
   messages = TRUE
 )
 }
