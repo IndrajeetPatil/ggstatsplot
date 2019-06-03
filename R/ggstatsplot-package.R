@@ -7,8 +7,8 @@
 #'   themselves and targeted primarily at behavioral sciences community to
 #'   provide a one-line code to produce information-rich plots. In a typical
 #'   exploratory data analysis workflow, data visualization and statistical
-#'   modelling are two different phases: visualization informs modelling, and
-#'   modelling in its turn can suggest a different visualization method, and so
+#'   modeling are two different phases: visualization informs modeling, and
+#'   modeling in its turn can suggest a different visualization method, and so
 #'   on and so forth. The central idea of ggstatsplot is simple: combine these
 #'   two phases into one in the form of graphics with statistical details, which
 #'   makes data exploration simpler and faster. Currently, it supports only the
@@ -19,7 +19,10 @@
 #' @details The main functions are-
 #' \itemize{
 #'   \item \code{\link[ggstatsplot]{ggbetweenstats}} function to produce
-#'   information-rich comparison plot between different groups or conditions
+#'   information-rich comparison plot *between* different groups or conditions
+#'   with `ggplot2` and details from the statistical tests in the subtitle.
+#'   \item \code{\link[ggstatsplot]{ggwithinstats}} function to produce
+#'   information-rich comparison plot *within* different groups or conditions
 #'   with `ggplot2` and details from the statistical tests in the subtitle.
 #'   \item \code{\link[ggstatsplot]{ggscatterstats}} function to produce
 #'   `ggplot2` scatterplots along with a marginal histograms/boxplots/density

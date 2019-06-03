@@ -744,7 +744,7 @@ pairwise_p_caption <- function(type,
 ggsignif_position_calculator <- function(x, y) {
   # number of comparisons
   n_comparions <-
-    length(x = utils::combn(
+    length(utils::combn(
       x = unique(x),
       m = 2,
       simplify = FALSE

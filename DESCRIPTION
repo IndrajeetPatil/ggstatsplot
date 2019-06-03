@@ -12,7 +12,16 @@ Authors@R:
              family = "Powell",
              role = c("aut", "ctb"),
              email = "ibecav@gmail.com",
-             comment = c(ORCID = "0000-0002-3606-2188")))
+             comment = c(ORCID = "0000-0002-3606-2188")),
+      person(given = "Fiery",
+             family = "Cushman",
+             role = c("fnd", "ths"),
+             email = "cushman@fas.harvard.edu",
+             comment = c(ORCID = "0000-0002-6929-9982")),
+      person(given = "Mina",
+             family = "Cikara",
+             role = c("fnd", "ths"),
+             email = "mcikara@fas.harvard.edu"))
 Maintainer: Indrajeet Patil <patilindrajeet.science@gmail.com>
 Description: Extension of 'ggplot2', 'ggstatsplot' creates
     graphics with details from statistical tests included in the plots

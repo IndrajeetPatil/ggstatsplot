@@ -422,7 +422,7 @@ ggwithinstats <- function(data,
 
   # ------------------------ annotations and themes -------------------------
 
-  # specifiying annotations and other aesthetic aspects for the plot
+  # specifying annotations and other aesthetic aspects for the plot
   plot <-
     aesthetic_addon(
       plot = plot,
