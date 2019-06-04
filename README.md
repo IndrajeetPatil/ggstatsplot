@@ -193,6 +193,9 @@ In case you want to look at the function body for any of the functions,
 just type the name of the function without the parentheses:
 
 ``` r
+# this will make code printing prettier
+prettycode::prettycode()
+
 # function to convert class of any object to `ggplot` class
 ggstatsplot::ggplot_converter
 #> function(plot) {
@@ -203,7 +206,7 @@ ggstatsplot::ggplot_converter
 #>   # returning the converted plot
 #>   return(p)
 #> }
-#> <bytecode: 0x000000002a7d6738>
+#> <bytecode: 0x00000000297277e8>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -747,7 +750,10 @@ set.seed(123)
 
 # plot
 ggstatsplot::grouped_ggpiestats(
-  data = ggstatsplot::movies_long,
+  dplyr::filter(
+    .data = ggstatsplot::movies_long,
+    genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
+  ),
   main = mpaa,
   grouping.var = genre, # grouping variable
   title.prefix = "Movie genre", # prefix for the facetted title
@@ -1150,7 +1156,10 @@ set.seed(123)
 # plot
 # let's use only 50% of the data to speed up the process
 ggstatsplot::grouped_ggcorrmat(
-  data = dplyr::sample_frac(ggstatsplot::movies_long, size = 0.5),
+  data = dplyr::filter(
+    .data = ggstatsplot::movies_long,
+    genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
+  ),
   cor.vars = length:votes,
   corr.method = "np",
   colors = c("#cbac43", "white", "#550000"),
@@ -1244,10 +1253,10 @@ Most of the regression models that are supported in the `broom` and
 `broom.mixed` packages with `tidy` and `glance` methods are also
 supported by `ggcoefstats`. For example-
 
-`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `biglm`, `brmsfit`,
-`btergm`, `cch`, `clm`, `clmm`, `confusionMatrix`, `coxph`, `drc`,
-`ergm`, `felm`, `fitdistr`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`,
-`gamlss`, `garch`, `glm`, `glmmadmb`, `glmmTMB`, `glmrob`, `gmm`,
+`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `bigglm`, `biglm`,
+`brmsfit`, `btergm`, `cch`, `clm`, `clmm`, `confusionMatrix`, `coxph`,
+`drc`, `ergm`, `felm`, `fitdistr`, `glmerMod`, `glmmTMB`, `gls`, `gam`,
+`Gam`, `gamlss`, `garch`, `glm`, `glmmadmb`, `glmmTMB`, `glmrob`, `gmm`,
 `ivreg`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`, `lmrob`, `mcmc`,
 `MCMCglmm`, `mediate`, `mjoint`, `mle2`, `mlm`, `multinom`, `nlmerMod`,
 `nlrq`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`,

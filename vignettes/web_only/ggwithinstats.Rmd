@@ -118,6 +118,7 @@ ggstatsplot::ggwithinstats(
   effsize.type = "biased",                            # type of effect size
   nboot = 10,                                         # number of bootstrap samples used
   bf.message = TRUE,                                  # display bayes factor in favor of null hypothesis
+  sphericity.correction = FALSE,                      # don't display Greenhouse–Geisser adjusted p-value
   pairwise.comparisons = TRUE,                        # display pairwise comparisons
   outlier.tagging = TRUE,                             # whether outliers should be flagged
   outlier.coef = 1.5,                                 # coefficient for Tukey's rule

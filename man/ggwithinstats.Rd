@@ -10,8 +10,8 @@ ggwithinstats(data, x, y, type = "parametric",
   pairwise.display = "significant", p.adjust.method = "holm",
   effsize.type = "unbiased", partial = TRUE,
   effsize.noncentral = TRUE, bf.prior = 0.707, bf.message = TRUE,
-  results.subtitle = TRUE, xlab = NULL, ylab = NULL,
-  caption = NULL, title = NULL, subtitle = NULL,
+  sphericity.correction = TRUE, results.subtitle = TRUE, xlab = NULL,
+  ylab = NULL, caption = NULL, title = NULL, subtitle = NULL,
   sample.size.label = TRUE, k = 2, conf.level = 0.95, nboot = 100,
   tr = 0.1, path.point = TRUE, path.mean = TRUE, sort = "none",
   sort.fun = mean, axes.range.restrict = FALSE, mean.label.size = 3,
@@ -80,6 +80,10 @@ width to use in calculating Bayes factors.}
 \item{bf.message}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
 parametric test} (Default: \code{TRUE}).}
+
+\item{sphericity.correction}{Logical that decides whether to apply correction
+to account for violation of sphericity in a repeated measures design ANOVA
+(Default: \code{TRUE}).}
 
 \item{results.subtitle}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
