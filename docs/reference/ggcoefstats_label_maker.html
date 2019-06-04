@@ -350,13 +350,14 @@ will be returned. Valid only for objects of class <code>aov</code>, <code>anova<
 <span class='no'>op</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span>(<span class='kw'>contrasts</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"contr.helmert"</span>, <span class='st'>"contr.poly"</span>))
 <span class='no'>npk.aov</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/r/stats/aov.html'>aov</a></span>(<span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>yield</span> ~ <span class='no'>block</span> + <span class='no'>N</span> * <span class='no'>P</span> * <span class='no'>K</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>npk</span>)
 
-<span class='co'># converting to a dataframe using</span>
-<span class='no'>tidy_df</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/reexports.html'>lm_effsize_ci</a></span>(
-  <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>npk.aov</span>,
-  <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"omega"</span>,
-  <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>50</span>
-) <span class='kw'>%&gt;%</span>
+<span class='co'># extracting a tidy dataframe with effect size estimate and their CIs</span>
+<span class='no'>tidy_df</span> <span class='kw'>&lt;-</span>
+  <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/reexports.html'>lm_effsize_ci</a></span>(
+    <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>npk.aov</span>,
+    <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"omega"</span>,
+    <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+    <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>50</span>
+  ) <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>rename</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='kw'>estimate</span> <span class='kw'>=</span> <span class='no'>omegasq</span>, <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='no'>F.value</span>)
 
 <span class='co'># including a new column with a label</span>
@@ -408,7 +409,7 @@ will be returned. Valid only for objects of class <code>aov</code>, <code>anova<
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://sites.google.com/site/indrajeetspatilmorality/'>Indrajeet Patil</a>, Chuck Powell.</p>
+  <p>Developed by <a href='https://sites.google.com/site/indrajeetspatilmorality/'>Indrajeet Patil</a>, <a href='https://ibecav.github.io/'>Chuck Powell</a>.</p>
 </div>
 
 <div class="pkgdown">

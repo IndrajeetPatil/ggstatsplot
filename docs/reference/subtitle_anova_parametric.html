@@ -185,7 +185,8 @@
 
     <pre class="usage"><span class='fu'>subtitle_anova_parametric</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"unbiased"</span>, <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sphericity.correction</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -244,6 +245,12 @@ for the effect size (Default: <code>100</code>).</p></td>
     performed.  If <code>FALSE</code>, an approximate method of Welch (1951)
     is used, which generalizes the commonly known 2-sample Welch test to
     the case of arbitrarily many samples.</p></td>
+    </tr>
+    <tr>
+      <th>sphericity.correction</th>
+      <td><p>Logical that decides whether to apply correction
+to account for violation of sphericity in a repeated measures design ANOVA
+(Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>k</th>
@@ -334,7 +341,7 @@ partial eta-squared effect sizes are supported.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://sites.google.com/site/indrajeetspatilmorality/'>Indrajeet Patil</a>, Chuck Powell.</p>
+  <p>Developed by <a href='https://sites.google.com/site/indrajeetspatilmorality/'>Indrajeet Patil</a>, <a href='https://ibecav.github.io/'>Chuck Powell</a>.</p>
 </div>
 
 <div class="pkgdown">
