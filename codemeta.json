@@ -58,6 +58,19 @@
       "familyName": "Powell",
       "email": "ibecav@gmail.com",
       "@id": "https://orcid.org/0000-0002-3606-2188"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Fiery",
+      "familyName": "Cushman",
+      "email": "cushman@fas.harvard.edu",
+      "@id": "https://orcid.org/0000-0002-6929-9982"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Mina",
+      "familyName": "Cikara",
+      "email": "mcikara@fas.harvard.edu"
     }
   ],
   "maintainer": [
@@ -741,6 +754,16 @@
           "@type": "Person",
           "givenName": "Chuck",
           "familyName": "Powell"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Fiery",
+          "familyName": "Cushman"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Mina",
+          "familyName": "Cikara"
         }
       ],
       "name": "ggstatsplot: 'ggplot2' Based Plots with Statistical Details",
@@ -751,5 +774,19 @@
     }
   ],
   "copyrightHolder": {},
-  "funder": {}
+  "funder": [
+    {
+      "@type": "Person",
+      "givenName": "Fiery",
+      "familyName": "Cushman",
+      "email": "cushman@fas.harvard.edu",
+      "@id": "https://orcid.org/0000-0002-6929-9982"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Mina",
+      "familyName": "Cikara",
+      "email": "mcikara@fas.harvard.edu"
+    }
+  ]
 }

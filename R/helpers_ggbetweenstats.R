@@ -517,7 +517,7 @@ ggsignif_adder <- function(plot,
     df_pairwise %<>%
       dplyr::arrange(.data = ., group1)
 
-    # computing y coordinates for ggsgnif bars
+    # computing y coordinates for ggsignif bars
     ggsignif_y_position <-
       ggsignif_position_calculator(x = data$x, y = data$y)
 

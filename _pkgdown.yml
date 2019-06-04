@@ -8,13 +8,18 @@ template:
       index_name: ggstatsplot
     bootswatch: lumen
 
-
 development:
   mode: unreleased
 
 authors:
   Indrajeet Patil:
     href: https://sites.google.com/site/indrajeetspatilmorality/
+  Chuck Powell:
+    href: https://ibecav.github.io/
+  Fiery Cushman:
+    href: http://cushmanlab.fas.harvard.edu/index.php
+  Mina Cikara:
+    href: http://www.intergroupneurosciencelaboratory.com/
 
 reference:
   - title: Primary functions

@@ -507,7 +507,7 @@ subtitle_anova_robust <- function(data,
 
     # preparing the subtitle
     subtitle <-
-      base::substitute(
+      substitute(
         expr =
           paste(
             italic("F"),
@@ -526,7 +526,7 @@ subtitle_anova_robust <- function(data,
             " = ",
             n
           ),
-        env = base::list(
+        env = list(
           estimate = specify_decimal_p(x = stats_df$test[[1]], k = k),
           df1 = specify_decimal_p(x = stats_df$df1[[1]], k = k),
           df2 = specify_decimal_p(x = stats_df$df2[[1]], k = k),

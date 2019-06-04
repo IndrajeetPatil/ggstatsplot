@@ -196,7 +196,7 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
 <td><a href="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot"><img src="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2019--06--02-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2019--06--03-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg" alt="GitHub last commit"></a></td>
 </tr>
 <tr class="even">
@@ -458,6 +458,8 @@
 <ul>
 <li>README: <a href="https://cran.r-project.org/web/packages/ggstatsplot/readme/README.html" class="uri">https://cran.r-project.org/web/packages/ggstatsplot/readme/README.html</a>
 </li>
+<li>Presentation: <a href="https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1" class="uri">https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1</a>
+</li>
 <li>Vignettes: <a href="https://cran.r-project.org/web/packages/ggstatsplot/vignettes/" class="uri">https://cran.r-project.org/web/packages/ggstatsplot/vignettes/</a>
 </li>
 </ul>
@@ -481,7 +483,7 @@
 <a class="sourceLine" id="cb7-8" title="8"><span class="co">#&gt;   # returning the converted plot</span></a>
 <a class="sourceLine" id="cb7-9" title="9"><span class="co">#&gt;   return(p)</span></a>
 <a class="sourceLine" id="cb7-10" title="10"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt; &lt;bytecode: 0x0000000029a23a48&gt;</span></a>
+<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt; &lt;bytecode: 0x000000002a2e97a8&gt;</span></a>
 <a class="sourceLine" id="cb7-12" title="12"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -924,12 +926,11 @@
 <a class="sourceLine" id="cb15-22" title="22">  ),</a>
 <a class="sourceLine" id="cb15-23" title="23">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
 <a class="sourceLine" id="cb15-24" title="24">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb15-25" title="25">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb15-26" title="26">  <span class="dt">title.text =</span> <span class="st">"Relationship between movie length by IMDB ratings for different genres"</span></a>
-<a class="sourceLine" id="cb15-27" title="27">)</a></code></pre></div>
+<a class="sourceLine" id="cb15-25" title="25">  <span class="dt">title.text =</span> <span class="st">"Relationship between movie length by IMDB ratings for different genres"</span></a>
+<a class="sourceLine" id="cb15-26" title="26">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggscatterstats3-1.png" width="100%"></p>
-<p><strong>Using <code><a href="reference/ggscatterstats.html">ggscatterstats()</a></code> in R Notebooks or Rmarkdown</strong></p>
-<p>If you try including a <code><a href="reference/ggscatterstats.html">ggscatterstats()</a></code> plot inside an <code>R Notebook</code> or <code>Rmarkdown</code> code chunk, you’ll notice that the plot doesn’t get output. In order to get a <code><a href="reference/ggscatterstats.html">ggscatterstats()</a></code> to show up in these contexts, you need to save the <code>ggscatterstats</code> plot as a variable in one code chunk, and explicitly print it using the <code>grid</code> package in another chunk, like this:</p>
+<p><strong>Using <code><a href="reference/ggscatterstats.html">ggscatterstats()</a></code> in R Notebooks or R Markdown</strong></p>
+<p>If you try including a <code><a href="reference/ggscatterstats.html">ggscatterstats()</a></code> plot inside an <code>R Notebook</code> or <code>R Markdown</code> code chunk, you’ll notice that the plot doesn’t get output. In order to get a <code><a href="reference/ggscatterstats.html">ggscatterstats()</a></code> to show up in these contexts, you need to save the <code>ggscatterstats</code> plot as a variable in one code chunk, and explicitly print it using the <code>grid</code> package in another chunk, like this:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># include the following code in your code chunk inside R Notebook or Markdown</span></a>
 <a class="sourceLine" id="cb16-2" title="2">grid<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/grid/grid.newpage.html">grid.newpage</a></span>()</a>
 <a class="sourceLine" id="cb16-3" title="3">grid<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/grid/grid.draw.html">grid.draw</a></span>(</a>
@@ -1068,9 +1069,8 @@
 <a class="sourceLine" id="cb20-14" title="14">  <span class="dt">package =</span> <span class="st">"quickpalette"</span>,</a>
 <a class="sourceLine" id="cb20-15" title="15">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
 <a class="sourceLine" id="cb20-16" title="16">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb20-17" title="17">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb20-18" title="18">  <span class="dt">title.text =</span> <span class="st">"Composition of MPAA ratings for different genres"</span></a>
-<a class="sourceLine" id="cb20-19" title="19">)</a></code></pre></div>
+<a class="sourceLine" id="cb20-17" title="17">  <span class="dt">title.text =</span> <span class="st">"Composition of MPAA ratings for different genres"</span></a>
+<a class="sourceLine" id="cb20-18" title="18">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggpiestats4-1.png" width="100%"></p>
 <p>For more, see the <code>ggpiestats</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html</a></p>
 </div>
@@ -1416,10 +1416,10 @@
 <a class="sourceLine" id="cb30-9" title="9">  <span class="dt">corr.method =</span> <span class="st">"np"</span>,</a>
 <a class="sourceLine" id="cb30-10" title="10">  <span class="dt">colors =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#cbac43"</span>, <span class="st">"white"</span>, <span class="st">"#550000"</span>),</a>
 <a class="sourceLine" id="cb30-11" title="11">  <span class="dt">grouping.var =</span> genre, <span class="co"># grouping variable</span></a>
-<a class="sourceLine" id="cb30-12" title="12">  <span class="dt">title.prefix =</span> <span class="st">"Movie genre"</span>,</a>
-<a class="sourceLine" id="cb30-13" title="13">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb30-14" title="14">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb30-15" title="15">  <span class="dt">ncol =</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb30-12" title="12">  <span class="dt">digits =</span> <span class="dv">3</span>, <span class="co"># number of digits after decimal point</span></a>
+<a class="sourceLine" id="cb30-13" title="13">  <span class="dt">title.prefix =</span> <span class="st">"Movie genre"</span>,</a>
+<a class="sourceLine" id="cb30-14" title="14">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb30-15" title="15">  <span class="dt">nrow =</span> <span class="dv">2</span></a>
 <a class="sourceLine" id="cb30-16" title="16">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggcorrmat3-1.png" width="100%"></p>
 <div id="summary-of-tests-4" class="section level3">
@@ -1466,40 +1466,46 @@
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb31-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb31-3" title="3"></a>
-<a class="sourceLine" id="cb31-4" title="4"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb31-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(</a>
+<a class="sourceLine" id="cb31-4" title="4"><span class="co"># model</span></a>
+<a class="sourceLine" id="cb31-5" title="5">mod &lt;-<span class="st"> </span>stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(</a>
 <a class="sourceLine" id="cb31-6" title="6">  <span class="dt">formula =</span> mpg <span class="op">~</span><span class="st"> </span>am <span class="op">*</span><span class="st"> </span>cyl,</a>
 <a class="sourceLine" id="cb31-7" title="7">  <span class="dt">data =</span> mtcars</a>
-<a class="sourceLine" id="cb31-8" title="8">))</a></code></pre></div>
-<p><img src="reference/figures/README-ggcoefstats1-1.png" width="80%"></p>
+<a class="sourceLine" id="cb31-8" title="8">)</a>
+<a class="sourceLine" id="cb31-9" title="9"></a>
+<a class="sourceLine" id="cb31-10" title="10"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb31-11" title="11">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> mod)</a></code></pre></div>
+<p><img src="reference/figures/README-ggcoefstats1-1.png" width="100%"></p>
 <p>The basic plot can be further modified to one’s liking with additional arguments (also, let’s use a robust linear model instead of a simple linear model now):</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb32-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb32-3" title="3"></a>
-<a class="sourceLine" id="cb32-4" title="4"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb32-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
-<a class="sourceLine" id="cb32-6" title="6">  <span class="dt">x =</span> MASS<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/MASS/man/rlm.html">rlm</a></span>(</a>
-<a class="sourceLine" id="cb32-7" title="7">    <span class="dt">formula =</span> mpg <span class="op">~</span><span class="st"> </span>am <span class="op">*</span><span class="st"> </span>cyl,</a>
-<a class="sourceLine" id="cb32-8" title="8">    <span class="dt">data =</span> mtcars</a>
-<a class="sourceLine" id="cb32-9" title="9">  ),</a>
-<a class="sourceLine" id="cb32-10" title="10">  <span class="dt">point.color =</span> <span class="st">"red"</span>,</a>
-<a class="sourceLine" id="cb32-11" title="11">  <span class="dt">point.shape =</span> <span class="dv">15</span>,</a>
-<a class="sourceLine" id="cb32-12" title="12">  <span class="dt">vline.color =</span> <span class="st">"#CC79A7"</span>,</a>
-<a class="sourceLine" id="cb32-13" title="13">  <span class="dt">vline.linetype =</span> <span class="st">"dotdash"</span>,</a>
-<a class="sourceLine" id="cb32-14" title="14">  <span class="dt">stats.label.size =</span> <span class="fl">3.5</span>,</a>
-<a class="sourceLine" id="cb32-15" title="15">  <span class="dt">stats.label.color =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>, <span class="st">"darkgreen"</span>),</a>
-<a class="sourceLine" id="cb32-16" title="16">  <span class="dt">title =</span> <span class="st">"Car performance predicted by transmission &amp; cylinder count"</span>,</a>
-<a class="sourceLine" id="cb32-17" title="17">  <span class="dt">subtitle =</span> <span class="st">"Source: 1974 Motor Trend US magazine"</span>,</a>
-<a class="sourceLine" id="cb32-18" title="18">  <span class="dt">ggtheme =</span> hrbrthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html">theme_ipsum_ps</a></span>(),</a>
-<a class="sourceLine" id="cb32-19" title="19">  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb32-20" title="20">) <span class="op">+</span></a>
-<a class="sourceLine" id="cb32-21" title="21"><span class="st">  </span><span class="co"># further modification with the ggplot2 commands</span></a>
-<a class="sourceLine" id="cb32-22" title="22"><span class="st">  </span><span class="co"># note the order in which the labels are entered</span></a>
-<a class="sourceLine" id="cb32-23" title="23"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/scale_discrete.html">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"transmission"</span>, <span class="st">"cylinders"</span>, <span class="st">"interaction"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb32-24" title="24"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span>(</a>
-<a class="sourceLine" id="cb32-25" title="25">    <span class="dt">x =</span> <span class="st">"regression coefficient"</span>,</a>
-<a class="sourceLine" id="cb32-26" title="26">    <span class="dt">y =</span> <span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb32-27" title="27">  )</a></code></pre></div>
+<a class="sourceLine" id="cb32-4" title="4"><span class="co"># model</span></a>
+<a class="sourceLine" id="cb32-5" title="5">mod &lt;-<span class="st"> </span>MASS<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/MASS/man/rlm.html">rlm</a></span>(</a>
+<a class="sourceLine" id="cb32-6" title="6">  <span class="dt">formula =</span> mpg <span class="op">~</span><span class="st"> </span>am <span class="op">*</span><span class="st"> </span>cyl,</a>
+<a class="sourceLine" id="cb32-7" title="7">  <span class="dt">data =</span> mtcars</a>
+<a class="sourceLine" id="cb32-8" title="8">)</a>
+<a class="sourceLine" id="cb32-9" title="9"></a>
+<a class="sourceLine" id="cb32-10" title="10"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb32-11" title="11">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb32-12" title="12">  <span class="dt">x =</span> mod,</a>
+<a class="sourceLine" id="cb32-13" title="13">  <span class="dt">point.color =</span> <span class="st">"red"</span>,</a>
+<a class="sourceLine" id="cb32-14" title="14">  <span class="dt">point.shape =</span> <span class="dv">15</span>,</a>
+<a class="sourceLine" id="cb32-15" title="15">  <span class="dt">vline.color =</span> <span class="st">"#CC79A7"</span>,</a>
+<a class="sourceLine" id="cb32-16" title="16">  <span class="dt">vline.linetype =</span> <span class="st">"dotdash"</span>,</a>
+<a class="sourceLine" id="cb32-17" title="17">  <span class="dt">stats.label.size =</span> <span class="fl">3.5</span>,</a>
+<a class="sourceLine" id="cb32-18" title="18">  <span class="dt">stats.label.color =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>, <span class="st">"darkgreen"</span>),</a>
+<a class="sourceLine" id="cb32-19" title="19">  <span class="dt">title =</span> <span class="st">"Car performance predicted by transmission &amp; cylinder count"</span>,</a>
+<a class="sourceLine" id="cb32-20" title="20">  <span class="dt">subtitle =</span> <span class="st">"Source: 1974 Motor Trend US magazine"</span>,</a>
+<a class="sourceLine" id="cb32-21" title="21">  <span class="dt">ggtheme =</span> hrbrthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html">theme_ipsum_ps</a></span>(),</a>
+<a class="sourceLine" id="cb32-22" title="22">  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb32-23" title="23">) <span class="op">+</span></a>
+<a class="sourceLine" id="cb32-24" title="24"><span class="st">  </span><span class="co"># further modification with the ggplot2 commands</span></a>
+<a class="sourceLine" id="cb32-25" title="25"><span class="st">  </span><span class="co"># note the order in which the labels are entered</span></a>
+<a class="sourceLine" id="cb32-26" title="26"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/scale_discrete.html">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"transmission"</span>, <span class="st">"cylinders"</span>, <span class="st">"interaction"</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb32-27" title="27"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span>(</a>
+<a class="sourceLine" id="cb32-28" title="28">    <span class="dt">x =</span> <span class="st">"regression coefficient"</span>,</a>
+<a class="sourceLine" id="cb32-29" title="29">    <span class="dt">y =</span> <span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb32-30" title="30">  )</a></code></pre></div>
 <p><img src="reference/figures/README-ggcoefstats2-1.png" width="100%"></p>
 <p>Most of the regression models that are supported in the <code>broom</code> and <code>broom.mixed</code> packages with <code>tidy</code> and <code>glance</code> methods are also supported by <code>ggcoefstats</code>. For example-</p>
 <p><code>aareg</code>, <code>anova</code>, <code>aov</code>, <code>aovlist</code>, <code>Arima</code>, <code>biglm</code>, <code>brmsfit</code>, <code>btergm</code>, <code>cch</code>, <code>clm</code>, <code>clmm</code>, <code>confusionMatrix</code>, <code>coxph</code>, <code>drc</code>, <code>ergm</code>, <code>felm</code>, <code>fitdistr</code>, <code>glmerMod</code>, <code>glmmTMB</code>, <code>gls</code>, <code>gam</code>, <code>Gam</code>, <code>gamlss</code>, <code>garch</code>, <code>glm</code>, <code>glmmadmb</code>, <code>glmmTMB</code>, <code>glmrob</code>, <code>gmm</code>, <code>ivreg</code>, <code>lm</code>, <code>lm.beta</code>, <code>lmerMod</code>, <code>lmodel2</code>, <code>lmrob</code>, <code>mcmc</code>, <code>MCMCglmm</code>, <code>mediate</code>, <code>mjoint</code>, <code>mle2</code>, <code>mlm</code>, <code>multinom</code>, <code>nlmerMod</code>, <code>nlrq</code>, <code>nls</code>, <code>orcutt</code>, <code>plm</code>, <code>polr</code>, <code>ridgelm</code>, <code>rjags</code>, <code>rlm</code>, <code>rlmerMod</code>, <code>rq</code>, <code>speedglm</code>, <code>speedlm</code>, <code>stanreg</code>, <code>survreg</code>, <code>svyglm</code>, <code>svyolr</code>, <code>svyglm</code>, etc.</p>
@@ -1638,7 +1644,12 @@
 <ul class="list-unstyled">
 <li>
 <a href="https://sites.google.com/site/indrajeetspatilmorality/">Indrajeet Patil</a> <br><small class="roles"> Maintainer, author, contributor </small> <a href="https://orcid.org/0000-0003-1995-6531" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" alt="ORCID" height="16"></a> </li>
-<li>Chuck Powell <br><small class="roles"> Author, contributor </small> <a href="https://orcid.org/0000-0002-3606-2188" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" alt="ORCID" height="16"></a> </li>
+<li>
+<a href="https://ibecav.github.io/">Chuck Powell</a> <br><small class="roles"> Author, contributor </small> <a href="https://orcid.org/0000-0002-3606-2188" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" alt="ORCID" height="16"></a> </li>
+<li>
+<a href="http://cushmanlab.fas.harvard.edu/index.php">Fiery Cushman</a> <br><small class="roles"> Funder, thesis advisor </small> <a href="https://orcid.org/0000-0002-6929-9982" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" alt="ORCID" height="16"></a> </li>
+<li>
+<a href="http://www.intergroupneurosciencelaboratory.com/">Mina Cikara</a> <br><small class="roles"> Funder, thesis advisor </small> <a href="https://orcid.org/0000-0002-3606-2188" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" alt="ORCID" height="16"></a> </li>
 </ul>
 </div>
 
@@ -1648,7 +1659,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/">Indrajeet Patil</a>, Chuck Powell.</p>
+  <p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/">Indrajeet Patil</a>, <a href="https://ibecav.github.io/">Chuck Powell</a>, <a href="http://cushmanlab.fas.harvard.edu/index.php">Fiery Cushman</a>, <a href="http://www.intergroupneurosciencelaboratory.com/">Mina Cikara</a>.</p>
 </div>
 
 <div class="pkgdown">

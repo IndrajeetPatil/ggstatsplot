@@ -108,13 +108,14 @@ ggstatsplot:::ggcoefstats_label_maker(x = mod, tidy_df = broomExtra::tidy(mod))
 op <- options(contrasts = c("contr.helmert", "contr.poly"))
 npk.aov <- stats::aov(formula = yield ~ block + N * P * K, data = npk)
 
-# converting to a dataframe using
-tidy_df <- ggstatsplot::lm_effsize_ci(
-  object = npk.aov,
-  effsize = "omega",
-  partial = FALSE,
-  nboot = 50
-) \%>\%
+# extracting a tidy dataframe with effect size estimate and their CIs
+tidy_df <-
+  ggstatsplot::lm_effsize_ci(
+    object = npk.aov,
+    effsize = "omega",
+    partial = FALSE,
+    nboot = 50
+  ) \%>\%
   dplyr::rename(.data = ., estimate = omegasq, statistic = F.value)
 
 # including a new column with a label
