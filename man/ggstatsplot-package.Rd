@@ -77,10 +77,4 @@ Authors:
   \item Chuck Powell \email{ibecav@gmail.com} (0000-0002-3606-2188) [contributor]
 }
 
-Other contributors:
-\itemize{
-  \item Fiery Cushman \email{cushman@fas.harvard.edu} (0000-0002-6929-9982) [funder, thesis advisor]
-  \item Mina Cikara \email{mcikara@fas.harvard.edu} [funder, thesis advisor]
-}
-
 }

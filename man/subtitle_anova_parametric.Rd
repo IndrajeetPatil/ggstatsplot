@@ -6,7 +6,8 @@
 \usage{
 subtitle_anova_parametric(data, x, y, paired = FALSE,
   effsize.type = "unbiased", partial = TRUE, conf.level = 0.95,
-  nboot = 100, var.equal = FALSE, k = 2, messages = TRUE, ...)
+  nboot = 100, var.equal = FALSE, sphericity.correction = TRUE,
+  k = 2, messages = TRUE, ...)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
@@ -45,6 +46,10 @@ for the effect size (Default: \code{100}).}
     performed.  If \code{FALSE}, an approximate method of Welch (1951)
     is used, which generalizes the commonly known 2-sample Welch test to
     the case of arbitrarily many samples.}
+
+\item{sphericity.correction}{Logical that decides whether to apply correction
+to account for violation of sphericity in a repeated measures design ANOVA
+(Default: \code{TRUE}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}

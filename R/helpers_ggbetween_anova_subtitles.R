@@ -15,6 +15,9 @@
 #'   `"partial_eta"` for partial eta-squared for **anova**) or `"unbiased"`
 #'   (`"g"` Hedge's *g* for **t-test**; `"partial_omega"` for partial
 #'   omega-squared for **anova**)).
+#' @param sphericity.correction Logical that decides whether to apply correction
+#'   to account for violation of sphericity in a repeated measures design ANOVA
+#'   (Default: `TRUE`).
 #' @param k Number of digits after decimal point (should be an integer)
 #'   (Default: `k = 2`).
 #' @param messages Decides whether messages references, notes, and warnings are
@@ -81,6 +84,7 @@ subtitle_anova_parametric <- function(data,
                                       conf.level = 0.95,
                                       nboot = 100,
                                       var.equal = FALSE,
+                                      sphericity.correction = TRUE,
                                       k = 2,
                                       messages = TRUE,
                                       ...) {
@@ -164,12 +168,19 @@ subtitle_anova_parametric <- function(data,
         return_aov = TRUE
       )
 
+    # which p-value to display
+    if (isTRUE(sphericity.correction)) {
+      p.value <- ez_df$`Sphericity Corrections`$`p[GG]`[[1]]
+    } else {
+      p.value <- ez_df$ANOVA$p[2]
+    }
+
     # list with results
     stats_df <-
       list(
         statistic = ez_df$ANOVA$F[2],
         parameter = c(ez_df$ANOVA$DFn[2], ez_df$ANOVA$DFd[2]),
-        p.value = ez_df$ANOVA$p[2] # ez_df$`Sphericity Corrections`$`p[GG]`[[1]]
+        p.value = p.value
       )
 
     # creating a standardized dataframe with effect size and its CIs

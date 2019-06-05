@@ -438,25 +438,16 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
 
-
-    set.seed(123)
-    library(jmv)
-    data("bugs", package = "jmv")
-
-    # converting to long format
-    data_bugs <- bugs %>%
-      tibble::as_tibble(.) %>%
-      tidyr::gather(., key, value, LDLF:HDHF)
-
     # ggstatsplot output
     set.seed(123)
     using_function1 <-
       ggstatsplot::subtitle_anova_parametric(
-        data = data_bugs,
-        x = key,
-        y = value,
+        data = WRS2::WineTasting,
+        x = Wine,
+        y = Taste,
         paired = TRUE,
         effsize.type = "biased",
+        sphericity.correction = FALSE,
         conf.level = 0.99,
         messages = FALSE
       )
@@ -468,29 +459,29 @@ testthat::test_that(
           NULL,
           italic("F"),
           "(",
-          "3",
+          "2",
           ",",
-          "261",
+          "42",
           ") = ",
-          "20.59",
+          "6.29",
           ", ",
           italic("p"),
           " = ",
-          "< 0.001",
+          "0.004",
           ", ",
           eta["p"]^2,
           " = ",
-          "0.19",
+          "0.23",
           ", CI"["99%"],
           " [",
-          "0.09",
+          "0.00",
           ", ",
-          "0.29",
+          "0.46",
           "]",
           ", ",
           italic("n"),
           " = ",
-          88L
+          22L
         )
       )
 
@@ -501,13 +492,13 @@ testthat::test_that(
     set.seed(123)
     using_function2 <-
       ggstatsplot::subtitle_anova_parametric(
-        data = data_bugs,
-        x = key,
-        y = value,
+        data = WRS2::WineTasting,
+        x = Wine,
+        y = Taste,
         paired = TRUE,
         effsize.type = "bogus",
         k = 5,
-        conf.level = 0.99,
+        conf.level = 0.90,
         nboot = 15,
         messages = FALSE
       )
@@ -519,29 +510,29 @@ testthat::test_that(
           NULL,
           italic("F"),
           "(",
-          "3",
+          "2",
           ",",
-          "261",
+          "42",
           ") = ",
-          "20.58738",
+          "6.28831",
           ", ",
           italic("p"),
           " = ",
-          "< 0.001",
+          "0.00844",
           ", ",
           omega^2,
           " = ",
-          "0.07869",
-          ", CI"["99%"],
+          "0.01701",
+          ", CI"["90%"],
           " [",
-          "0.06548",
+          "0.03464",
           ", ",
-          "0.23741",
+          "0.28869",
           "]",
           ", ",
           italic("n"),
           " = ",
-          88L
+          22L
         )
       )
 
