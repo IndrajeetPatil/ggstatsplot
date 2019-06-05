@@ -25,13 +25,14 @@
 #' @param ... Additional arguments.
 #' @inheritParams stats::oneway.test
 #' @inheritParams subtitle_t_parametric
-#' @inheritParams lm_effsize_standardizer
+#' @inheritParams groupedstats::lm_effsize_standardizer
 #'
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
 #' @importFrom stats lm oneway.test na.omit
 #' @importFrom sjstats eta_sq omega_sq
 #' @importFrom ez ezANOVA
+#' @importFrom groupedstats lm_effsize_standardizer
 #'
 #' @examples
 #'
@@ -240,13 +241,14 @@ subtitle_anova_parametric <- function(data,
   }
 
   # creating a standardized dataframe with effect size and its CIs
-  effsize_df <- lm_effsize_standardizer(
-    object = effsize_object,
-    effsize = effsize,
-    partial = partial,
-    conf.level = conf.level,
-    nboot = nboot
-  )
+  effsize_df <-
+    groupedstats::lm_effsize_standardizer(
+      object = effsize_object,
+      effsize = effsize,
+      partial = partial,
+      conf.level = conf.level,
+      nboot = nboot
+    )
 
   # preparing subtitle
   subtitle <- subtitle_template(

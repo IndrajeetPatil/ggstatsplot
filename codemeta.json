@@ -463,7 +463,7 @@
       "@type": "SoftwareApplication",
       "identifier": "groupedstats",
       "name": "groupedstats",
-      "version": ">= 0.0.6",
+      "version": ">= 0.0.7",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
