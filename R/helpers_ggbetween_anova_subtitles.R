@@ -89,11 +89,31 @@ subtitle_anova_parametric <- function(data,
                                       messages = TRUE,
                                       ...) {
 
+  # for paired designs, variance is going to be equal across grouping levels
+  if (isTRUE(paired)) {
+    var.equal <- TRUE
+  }
+
   # number of decimal places for degree of freedom
-  if (isTRUE(var.equal) || isTRUE(paired)) {
-    k.df <- 0
+  if (isTRUE(var.equal)) {
+    if (isTRUE(paired)) {
+      if (isTRUE(sphericity.correction)) {
+        k.df2 <- k
+      } else {
+        k.df2 <- 0L
+      }
+    } else {
+      k.df2 <- 0L
+    }
   } else {
-    k.df <- k
+    k.df2 <- k
+  }
+
+  # denominator degrees of freedom
+  if (isTRUE(paired) && isTRUE(sphericity.correction)) {
+    k.df1 <- k
+  } else {
+    k.df1 <- 0L
   }
 
   # figuring out which effect size to use
@@ -168,20 +188,26 @@ subtitle_anova_parametric <- function(data,
         return_aov = TRUE
       )
 
-    # which p-value to display
-    if (isTRUE(sphericity.correction)) {
-      p.value <- ez_df$`Sphericity Corrections`$`p[GG]`[[1]]
-    } else {
-      p.value <- ez_df$ANOVA$p[2]
-    }
-
     # list with results
-    stats_df <-
-      list(
-        statistic = ez_df$ANOVA$F[2],
-        parameter = c(ez_df$ANOVA$DFn[2], ez_df$ANOVA$DFd[2]),
-        p.value = p.value
-      )
+    if (isTRUE(sphericity.correction)) {
+      epsilon_corr <- ez_df$`Sphericity Corrections`$GGe
+      stats_df <-
+        list(
+          statistic = ez_df$ANOVA$F[2],
+          parameter = c(
+            epsilon_corr * ez_df$ANOVA$DFn[2],
+            epsilon_corr * ez_df$ANOVA$DFd[2]
+          ),
+          p.value = ez_df$ANOVA$p[2]
+        )
+    } else {
+      stats_df <-
+        list(
+          statistic = ez_df$ANOVA$F[2],
+          parameter = c(ez_df$ANOVA$DFn[2], ez_df$ANOVA$DFd[2]),
+          p.value = ez_df$`Sphericity Corrections`$`p[GG]`[[1]]
+        )
+    }
 
     # creating a standardized dataframe with effect size and its CIs
     effsize_object <- ez_df$aov
@@ -238,7 +264,8 @@ subtitle_anova_parametric <- function(data,
     n = sample_size,
     conf.level = conf.level,
     k = k,
-    k.parameter = k.df
+    k.parameter = k.df1,
+    k.parameter2 = k.df2
   )
 
   # message about effect size measure
@@ -582,7 +609,8 @@ subtitle_anova_robust <- function(data,
       n = sample_size,
       conf.level = conf.level,
       k = k,
-      k.parameter = k
+      k.parameter = 0L,
+      k.parameter2 = k
     )
 
     # message about effect size measure

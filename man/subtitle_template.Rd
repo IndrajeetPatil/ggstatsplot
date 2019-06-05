@@ -8,7 +8,7 @@ single parameter (e.g., t, chi-squared, etc.)}
 subtitle_template(no.parameters, stat.title = NULL, statistic.text,
   statistic, parameter = NULL, parameter2 = NULL, p.value,
   effsize.text, effsize.estimate, effsize.LL, effsize.UL, n,
-  conf.level = 0.95, k = 3L, k.parameter = 0L)
+  conf.level = 0.95, k = 3L, k.parameter = 0L, k.parameter2 = 0L)
 }
 \arguments{
 \item{no.parameters}{An integer that specifies that the number of parameters
@@ -51,8 +51,8 @@ effect size, its lower bound, and its upper.}
 
 \item{k}{Number of decimal places to display (default: \code{3}).}
 
-\item{k.parameter}{Number of decimal places to display for the parameter
-(default: \code{0}).}
+\item{k.parameter, k.parameter2}{Number of decimal places to display for the
+parameters (default: \code{0}).}
 }
 \description{
 Template for subtitles with statistical details for tests with a
