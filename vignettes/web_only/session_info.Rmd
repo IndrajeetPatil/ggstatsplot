@@ -33,13 +33,15 @@ see any divergences between function behavior as described on the website and
 what you see on your system, this information can come in handy for diagnosing
 the source of those divergences.
 
-```{r libcall, include = FALSE}
+This session information was generated on `r Sys.Date()`:
+
+```{r include = FALSE}
 library(ggstatsplot)
 ```
 
 ```{r session_info}
 options(width = 200)
-devtools::session_info(include_base = TRUE)
+sessioninfo::session_info(include_base = TRUE)
 ```
 
 # Suggestions

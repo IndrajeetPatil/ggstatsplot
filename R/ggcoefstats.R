@@ -177,6 +177,7 @@
 #' @importFrom sjstats p_value
 #' @importFrom tibble as_tibble rownames_to_column
 #' @importFrom tidyr unite
+#' @importFrom groupedstats lm_effsize_standardizer
 #'
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}
@@ -599,7 +600,7 @@ ggcoefstats <- function(x,
   } else if (class(x)[[1]] %in% f.mods) {
     # creating dataframe
     tidy_df <-
-      lm_effsize_standardizer(
+      groupedstats::lm_effsize_standardizer(
         object = x,
         effsize = effsize,
         partial = partial,

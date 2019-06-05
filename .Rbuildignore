@@ -31,3 +31,5 @@ tests\^spelling
 ^LICENSE\.md$
 ^\.lintr$
 ^\.circleci$
+^tests/manual$
+^revdep$
