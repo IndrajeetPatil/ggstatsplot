@@ -149,7 +149,7 @@ ggpiestats <- function(data,
 
   # if facetting variable name is not specified, use the variable name for
   # 'condition' argument
-  if (!base::missing(condition)) {
+  if (!missing(condition)) {
     if (is.null(facet.wrap.name)) {
       facet.wrap.name <- rlang::as_name(rlang::ensym(condition))
     }
@@ -171,7 +171,7 @@ ggpiestats <- function(data,
   # =========================== converting counts ============================
 
   # untable the dataframe based on the count for each obervation
-  if (!base::missing(counts)) {
+  if (!missing(counts)) {
     data %<>%
       tidyr::uncount(
         data = .,
@@ -191,7 +191,7 @@ ggpiestats <- function(data,
     dplyr::mutate(.data = ., main = droplevels(as.factor(main)))
 
   # condition
-  if (!base::missing(condition)) {
+  if (!missing(condition)) {
     data %<>%
       dplyr::mutate(.data = ., condition = droplevels(as.factor(condition)))
   }
@@ -214,7 +214,7 @@ ggpiestats <- function(data,
   # if sample size labels are to be displayed at the bottom of the pie charts
   # for each facet
   if (isTRUE(sample.size.label)) {
-    if (!base::missing(condition)) {
+    if (!missing(condition)) {
       df_n_label <-
         dplyr::full_join(
           x = df,
@@ -230,14 +230,14 @@ ggpiestats <- function(data,
             dplyr::mutate_if(
               .tbl = .,
               .predicate = purrr::is_bare_character,
-              .funs = ~ base::as.factor(.)
+              .funs = ~ as.factor(.)
             ),
           by = "condition"
         ) %>%
         dplyr::mutate(
           .data = .,
           condition_n_label = dplyr::if_else(
-            condition = base::duplicated(condition),
+            condition = duplicated(condition),
             true = NA_character_,
             false = as.character(condition_n_label)
           )
@@ -300,7 +300,7 @@ ggpiestats <- function(data,
     )
 
   # if facet_wrap is *not* happening
-  if (base::missing(condition)) {
+  if (missing(condition)) {
     p <- p +
       ggplot2::coord_polar(theta = "y")
   } else {
@@ -340,7 +340,7 @@ ggpiestats <- function(data,
   # =============== chi-square test (either Pearson or McNemar) =============
 
   # if facetting by condition is happening
-  if (!base::missing(condition)) {
+  if (!missing(condition)) {
     if (isTRUE(facet.proptest)) {
       # merging dataframe containing results from the proportion test with
       # counts and percentage dataframe

@@ -34,19 +34,10 @@ summary for categorical variables.
 }
 \examples{
 \dontrun{
-# creating a dataframe with counts and percentage
-df <-
-  mtcars \%>\%
-  dplyr::group_by(.data = ., am, cyl) \%>\%
-  dplyr::summarize(.data = ., counts = n()) \%>\%
-  dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) \%>\%
-  dplyr::ungroup(x = .) \%>\%
-  dplyr::arrange(.data = ., dplyr::desc(x = cyl)) \%>\%
-  dplyr::filter(.data = ., counts != 0L)
 
 # dataframe with label column
 ggstatsplot:::cat_label_df(
-  data = df,
+  data = ggstatsplot:::cat_counter(mtcars, am, cyl),
   label.col.name = "slice.label",
   label.content = "both",
   perc.k = 1

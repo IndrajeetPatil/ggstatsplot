@@ -61,7 +61,7 @@ Imports:
     rcompanion (>= 2.2.1),
     rlang (>= 0.3.4),
     scales (>= 1.0.0),
-    sjstats (>= 0.17.4),
+    sjstats (>= 0.17.5),
     stats,
     stringr (>= 1.4.0),
     tibble (>= 2.1.2),

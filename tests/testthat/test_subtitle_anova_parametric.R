@@ -248,10 +248,7 @@ testthat::test_that(
       )
 
     # testing overall call
-    testthat::expect_identical(
-      object = using_function1,
-      expected = results1
-    )
+    testthat::expect_identical(using_function1, results1)
   }
 )
 
@@ -379,16 +376,16 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
 
-
     # ggstatsplot output
     set.seed(123)
     using_function1 <-
       ggstatsplot::subtitle_anova_parametric(
-        data = iris_long,
+        data = ggstatsplot::iris_long,
         x = condition,
         y = value,
         paired = TRUE,
         nboot = 20,
+        k = 3,
         conf.level = 0.99,
         messages = TRUE
       )
@@ -400,11 +397,11 @@ testthat::test_that(
           NULL,
           italic("F"),
           "(",
-          "3",
+          "1.149",
           ",",
-          "447",
+          "171.217",
           ") = ",
-          "776.32",
+          "776.318",
           ", ",
           italic("p"),
           " = ",
@@ -412,12 +409,12 @@ testthat::test_that(
           ", ",
           omega^2,
           " = ",
-          "0.71",
+          "0.707",
           ", CI"["99%"],
           " [",
-          "0.76",
+          "0.758",
           ", ",
-          "0.82",
+          "0.825",
           "]",
           ", ",
           italic("n"),
@@ -448,6 +445,7 @@ testthat::test_that(
         paired = TRUE,
         effsize.type = "biased",
         sphericity.correction = FALSE,
+        k = 4,
         conf.level = 0.99,
         messages = FALSE
       )
@@ -463,20 +461,20 @@ testthat::test_that(
           ",",
           "42",
           ") = ",
-          "6.29",
+          "6.2883",
           ", ",
           italic("p"),
           " = ",
-          "0.004",
+          "0.0084",
           ", ",
           eta["p"]^2,
           " = ",
-          "0.23",
+          "0.2304",
           ", CI"["99%"],
           " [",
-          "0.00",
+          "0.0020",
           ", ",
-          "0.46",
+          "0.4598",
           "]",
           ", ",
           italic("n"),
@@ -510,15 +508,15 @@ testthat::test_that(
           NULL,
           italic("F"),
           "(",
-          "2",
+          "1.54700",
           ",",
-          "42",
+          "32.48706",
           ") = ",
           "6.28831",
           ", ",
           italic("p"),
           " = ",
-          "0.00844",
+          "0.00408",
           ", ",
           omega^2,
           " = ",
@@ -549,11 +547,12 @@ testthat::test_that(
     testthat::skip_on_cran()
 
     # ggstatsplot output
-    set.seed(123)
+
     # fake a data entry mistake
     iris_long[5, 3] <- "Sepal.Width"
 
     # sample size should be different
+    set.seed(123)
     using_function1 <- ggstatsplot::subtitle_anova_parametric(
       data = iris_long,
       x = condition,
@@ -571,9 +570,9 @@ testthat::test_that(
         NULL,
         italic("F"),
         "(",
-        "3",
+        "1.28",
         ",",
-        "444",
+        "189.93",
         ") = ",
         "686.64",
         ", ",

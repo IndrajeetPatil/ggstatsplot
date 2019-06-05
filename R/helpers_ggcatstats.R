@@ -23,19 +23,10 @@
 #'
 #' @examples
 #' \dontrun{
-#' # creating a dataframe with counts and percentage
-#' df <-
-#'   mtcars %>%
-#'   dplyr::group_by(.data = ., am, cyl) %>%
-#'   dplyr::summarize(.data = ., counts = n()) %>%
-#'   dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
-#'   dplyr::ungroup(x = .) %>%
-#'   dplyr::arrange(.data = ., dplyr::desc(x = cyl)) %>%
-#'   dplyr::filter(.data = ., counts != 0L)
 #'
 #' # dataframe with label column
 #' ggstatsplot:::cat_label_df(
-#'   data = df,
+#'   data = ggstatsplot:::cat_counter(mtcars, am, cyl),
 #'   label.col.name = "slice.label",
 #'   label.content = "both",
 #'   perc.k = 1
@@ -51,22 +42,27 @@ cat_label_df <- function(data,
                          label.separator = c("\n", " "),
                          perc.k = 1) {
   # checking what needs to be displayed in a label
+
+  # only percentage
   if (label.content %in% c("percentage", "perc", "proportion", "prop", "%")) {
-    # only percentage
     data %<>%
       dplyr::mutate(
         .data = .,
         !!label.col.name := paste0(round(x = perc, digits = perc.k), "%")
       )
-  } else if (label.content %in% c("counts", "n", "count", "N")) {
-    # only raw counts
+  }
+
+  # only raw counts
+  if (label.content %in% c("counts", "n", "count", "N")) {
     data %<>%
       dplyr::mutate(
         .data = .,
         !!label.col.name := paste0("n = ", counts)
       )
-  } else if (label.content %in% c("both", "mix", "all", "everything")) {
-    # both raw counts and percentages
+  }
+
+  # both raw counts and percentages
+  if (label.content %in% c("both", "mix", "all", "everything")) {
     data %<>%
       dplyr::mutate(
         .data = .,
@@ -115,7 +111,7 @@ cat_counter <- function(data, main, condition = NULL, ...) {
   df <-
     data %>%
     dplyr::group_by_at(.tbl = ., .vars = dots, .drop = TRUE) %>%
-    dplyr::summarize(.data = ., counts = n()) %>%
+    dplyr::summarize(.data = ., counts = dplyr::n()) %>%
     dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
     dplyr::ungroup(x = .) %>%
     dplyr::arrange(.data = ., dplyr::desc(!!rlang::ensym(main))) %>%
