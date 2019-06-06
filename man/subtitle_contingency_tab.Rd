@@ -68,7 +68,7 @@ within-subjects design)
 \examples{
 
 # without counts data
-subtitle_contingency_tab(
+ggstatsplot::subtitle_contingency_tab(
   data = mtcars,
   main = am,
   condition = cyl,

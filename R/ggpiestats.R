@@ -76,7 +76,7 @@
 #'   data = ggplot2::msleep,
 #'   main = vore,
 #'   perc.k = 1,
-#'   k = 2
+#'   k = 3
 #' )
 #'
 #' # simple function call with the defaults (with condition)
@@ -91,7 +91,7 @@
 #' )
 #'
 #' # simple function call with the defaults (without condition; with count data)
-#' library(jmv)
+#' library(jmv, warn.conflicts = FALSE)
 #'
 #' ggstatsplot::ggpiestats(
 #'   data = as.data.frame(HairEyeColor),
@@ -449,7 +449,9 @@ ggpiestats <- function(data,
       subtitle <- subtitle_onesample_proptest(
         data = data,
         main = main,
+        conf.level = conf.level,
         ratio = ratio,
+        stat.title = stat.title,
         legend.title = legend.title,
         k = k
       )

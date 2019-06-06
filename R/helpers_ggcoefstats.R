@@ -195,17 +195,22 @@ ggcoefstats_label_maker <- function(x,
   )
 
   # ================================ dataframe ================================
+
   if (class(x)[[1]] %in% df.mods) {
-    tidy_df <- tfz_labeller(
-      tidy_df = x,
-      glance_df = glance_df,
-      statistic = statistic,
-      effsize = effsize,
-      partial = partial,
-      k = k
-    )
-    # ================================ t-statistic labels =====================
-  } else if (class(x)[[1]] %in% t.mods) {
+    tidy_df <-
+      tfz_labeller(
+        tidy_df = x,
+        glance_df = glance_df,
+        statistic = statistic,
+        effsize = effsize,
+        partial = partial,
+        k = k
+      )
+  }
+
+  # ================================ t-statistic labels =====================
+
+  if (class(x)[[1]] %in% t.mods) {
     tidy_df %<>%
       tfz_labeller(
         tidy_df = .,
@@ -213,8 +218,11 @@ ggcoefstats_label_maker <- function(x,
         statistic = "t",
         k = k
       )
-    # ======================= z-statistic labels ==============================
-  } else if (class(x)[[1]] %in% z.mods) {
+  }
+
+  # ======================= z-statistic labels ==============================
+
+  if (class(x)[[1]] %in% z.mods) {
     tidy_df %<>%
       tfz_labeller(
         tidy_df = .,
@@ -222,9 +230,11 @@ ggcoefstats_label_maker <- function(x,
         statistic = "z",
         k = k
       )
+  }
 
-    # ================ t/z-statistic labels ===================================
-  } else if (class(x)[[1]] %in% g.mods) {
+  # ======================= t/z-statistic labels ==============================
+
+  if (class(x)[[1]] %in% g.mods) {
     if (class(x)[[1]] == "glm") {
       if (summary(x)$family$family[[1]] %in% g.t.mods) {
         tidy_df %<>%
@@ -273,8 +283,11 @@ ggcoefstats_label_maker <- function(x,
           )
       }
     }
-    # ====================== F-statistic ====================================
-  } else if (class(x)[[1]] %in% f.mods) {
+  }
+
+  # ====================== F-statistic ====================================
+
+  if (class(x)[[1]] %in% f.mods) {
     tidy_df %<>%
       tfz_labeller(
         tidy_df = .,
@@ -346,7 +359,7 @@ tfz_labeller <- function(tidy_df,
   #--------------------------- t-statistic ------------------------------------
 
   # if the statistic is t-value
-  if (statistic == "t") {
+  if (statistic %in% c("t", "t.value", "t-value", "T")) {
     if ("df.residual" %in% names(glance_df) ||
       "df.residual" %in% names(tidy_df)) {
 
@@ -377,7 +390,7 @@ tfz_labeller <- function(tidy_df,
           .labels = TRUE
         )
     } else {
-      # for objects like rlm there will be no parameter
+      # for objects like `rlm` there will be no parameter
       tidy_df %<>%
         purrrlyr::by_row(
           .d = .,
@@ -397,8 +410,11 @@ tfz_labeller <- function(tidy_df,
           .labels = TRUE
         )
     }
-    #--------------------------- z-statistic ---------------------------------
-  } else if (statistic == "z") {
+  }
+
+  #--------------------------- z-statistic ---------------------------------
+
+  if (statistic %in% c("z", "z.value", "z-value", "Z")) {
     # if the statistic is z-value
     tidy_df %<>%
       purrrlyr::by_row(
@@ -417,9 +433,11 @@ tfz_labeller <- function(tidy_df,
         .to = "label",
         .labels = TRUE
       )
+  }
 
-    #--------------------------- f-statistic ---------------------------------
-  } else if (statistic == "f") {
+  #--------------------------- f-statistic ---------------------------------
+
+  if (statistic %in% c("f", "f.value", "f-value", "F-value", "F")) {
 
     # which effect size is needed?
     if (effsize == "eta") {
@@ -561,7 +579,7 @@ subtitle_meta_ggcoefstats <- function(data,
   # check if the two columns needed are present
   if (sum(c("estimate", "std.error") %in% names(data)) != 2) {
     # inform the user that skipping labels for the same reason
-    base::stop(base::message(cat(
+    stop(message(cat(
       crayon::red("Error"),
       crayon::blue(": The dataframe **must** contain the following two columns:\n"),
       crayon::blue("`estimate` and `std.error`."),
@@ -619,7 +637,7 @@ subtitle_meta_ggcoefstats <- function(data,
 
   # preparing the subtitle
   subtitle <-
-    base::substitute(
+    substitute(
       expr =
         paste(
           "Summary effect: ",
@@ -644,7 +662,7 @@ subtitle_meta_ggcoefstats <- function(data,
           " = ",
           pvalue
         ),
-      env = base::list(
+      env = list(
         estimate = specify_decimal_p(x = df_tidy$estimate, k = k),
         LL = specify_decimal_p(x = df_tidy$conf.low, k = k),
         UL = specify_decimal_p(x = df_tidy$conf.high, k = k),
@@ -676,7 +694,7 @@ subtitle_meta_ggcoefstats <- function(data,
 
   # preparing the subtitle
   caption <-
-    base::substitute(
+    substitute(
       atop(displaystyle(top.text),
         expr =
           paste(
@@ -700,7 +718,7 @@ subtitle_meta_ggcoefstats <- function(data,
             I2
           )
       ),
-      env = base::list(
+      env = list(
         top.text = caption,
         Q = specify_decimal_p(x = df_glance$QE, k = 0L),
         df = specify_decimal_p(x = (df_glance$k - 1), k = 0L),
@@ -793,7 +811,7 @@ bf_meta_message <- function(data,
   # check if the two columns needed are present
   if (sum(c("estimate", "std.error") %in% names(data)) != 2) {
     # inform the user that skipping labels for the same reason
-    base::stop(base::message(cat(
+    stop(message(cat(
       crayon::red("Error"),
       crayon::blue(": The dataframe **must** contain the following two columns:\n"),
       crayon::blue("`estimate` and `std.error`.\n"),
@@ -841,7 +859,7 @@ bf_meta_message <- function(data,
 
   # prepare the bayes factor message
   bf_text <-
-    base::substitute(
+    substitute(
       atop(displaystyle(top.text),
         expr =
           paste(
@@ -862,7 +880,7 @@ bf_meta_message <- function(data,
             "]"
           )
       ),
-      env = base::list(
+      env = list(
         top.text = caption,
         bf = specify_decimal_p(x = -log(bf_meta$BF[[1]]), k = k),
         d.pmean = specify_decimal_p(x = df_estimates$Mean[[1]], k = k),

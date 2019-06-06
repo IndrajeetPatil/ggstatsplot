@@ -106,12 +106,12 @@ The `type` (of test) argument also accepts the following abbreviations: `"p"`
 *robust*).
 
 **Important**: 
-In contrast to all other functions in this package, the
-`ggscatterstats` function returns object that is **not** further modifiable
-with `ggplot2`. This can be avoided by not plotting the marginal distributions
-(`marginal = FALSE`). Currently trying to find a workaround this problem.
+In contrast to all other functions in this package, the `ggscatterstats`
+function returns object that is **not** further modifiable with `ggplot2`. This
+can be avoided by not plotting the marginal distributions (`marginal = FALSE`).
+Currently trying to find a workaround this problem.
 
-## Using `ggscatterstats()` in `R Notebook` or `R Markdown`
+## Using `ggscatterstats` in `R Notebook` or `R Markdown`
 
 If you try including a `ggscatterstats()` plot inside an `R Notebook` or
 `R Markdown` code chunk, you'll notice that the plot doesn't get output. In

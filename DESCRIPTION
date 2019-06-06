@@ -64,10 +64,10 @@ Imports:
     sjstats (>= 0.17.5),
     stats,
     stringr (>= 1.4.0),
-    tibble (>= 2.1.2),
+    tibble (>= 2.1.3),
     tidyr (>= 0.8.3),
     utils,
-    WRS2 (>= 0.10-0)
+    WRS2 (>= 1.0-0)
 Suggests:
     broom,
     broom.mixed,
