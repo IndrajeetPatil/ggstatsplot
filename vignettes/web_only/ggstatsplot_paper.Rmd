@@ -87,7 +87,6 @@ ggstatsplot::ggbetweenstats(
   title = "Figure-1: IMDB rating by film genre",
   xlab = "Genre",
   ylab = "IMDB rating (average)",
-  bf.message = TRUE,
   pairwise.comparisons = TRUE,
   p.adjust.method = "bonferroni",
   ggtheme = hrbrthemes::theme_ipsum_tw(),
@@ -124,7 +123,6 @@ ggstatsplot::ggpiestats(
   caption = substitute(paste(
     italic("MPAA"), ": Motion Picture Association of America"
   )),
-  bf.message = TRUE,
   palette = "Paired",
   messages = FALSE
 )
@@ -172,7 +170,6 @@ ggstatsplot::combine_plots(
     x = length,
     y = rating,
     grouping.var = genre,
-    bf.message = TRUE,
     marginal = FALSE,
     messages = FALSE,
     title.prefix = "Genre",
@@ -345,12 +342,17 @@ Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
 Functions | Type | Test | Effect size | 95% CI available? 
 ----------- | ----------- | ------------------ | ------------------ | -----  
 `ggbetweenstats` | Parametric | Student's and Welch's *t*-test | Cohen's *d*, Hedge's *g* | <font color="green">$\checkmark$</font> 
-`ggbetweenstats` | Parametric | Fisher's and Welch's one-way ANOVA | $$\eta^2_p, \omega^2_p$$ | <font color="green">$\checkmark$</font> 
+`ggbetweenstats` | Parametric | Fisher's and Welch's one-way ANOVA | $$\eta^2, \eta^2_p, \omega^2, \omega^2_p$$ | <font color="green">$\checkmark$</font> 
 `ggbetweenstats` | Non-parametric | Mann-Whitney *U*-test | *r* | <font color="green">$\checkmark$</font> 
 `ggbetweenstats` | Non-parametric | Kruskal-Wallis Rank Sum Test | $$\eta^2_H$$ | <font color="green">$\checkmark$</font> 
-`ggbetweenstats` | Non-parametric | Friedman test | $$W_{Kendall}$$ | <font color="green">$\checkmark$</font>
 `ggbetweenstats` | Robust | Yuen's test for trimmed means | $$\xi$$ | <font color="green">$\checkmark$</font> 
 `ggbetweenstats` | Robust | Heteroscedastic one-way ANOVA for trimmed means | $$\xi$$ | <font color="green">$\checkmark$</font> 
+`ggwithinstats` | Parametric | Student's *t*-test | Cohen's *d*, Hedge's *g* | <font color="green">$\checkmark$</font> 
+`ggwithinstats` | Parametric | Fisher's one-way repeated measures ANOVA | $$\eta^2_p, \omega^2$$ | <font color="green">$\checkmark$</font> 
+`ggwithinstats` | Non-parametric | Wilcoxon signed-rank test | *r* | <font color="green">$\checkmark$</font> 
+`ggwithinstats` | Non-parametric | Friedman test | $$W_{Kendall}$$ | <font color="green">$\checkmark$</font>
+`ggwithinstats` | Robust | Yuen's test on trimmed means for dependent samples | $$\xi$$ | <font color="green">$\checkmark$</font> 
+`ggwithinstats` | Robust | Heteroscedastic one-way repeated measures ANOVA for trimmed means | <font color="red">$\times$</font> | <font color="red">$\times$</font>
 `ggpiestats` | Parametric | $$\text{Pearson's}~ \chi^2 ~\text{test}$$ | Cramer's *V* | <font color="green">$\checkmark$</font>
 `ggpiestats` | Parametric | McNemar's test | Cohen's *g* | <font color="green">$\checkmark$</font>
 `ggscatterstats`/`ggcorrmat` | Parametric | Pearson's *r* | *r* | <font color="green">$\checkmark$</font>
@@ -406,7 +408,6 @@ ggstatsplot::gghistostats(
   x = Speed,
   test.value = 792,
   test.value.line = TRUE,
-  bf.message = TRUE,
   xlab = "Speed of light (km/sec, with 299000 subtracted)",
   title = "Figure-5: Distribution of Speed of light",
   caption = "Note: Data collected across 5 experiments (20 measurements each)",
@@ -425,13 +426,15 @@ ggstatsplot::gghistostats(
 # for reproducibility
 set.seed(123)
 
+# creating model object
+mod <- lme4::lmer(
+  formula = total.fruits ~ nutrient + rack + (nutrient | popu / gen),
+  data = lme4::Arabidopsis
+)
+
 # plot
 ggstatsplot::ggcoefstats(
-  x = lme4::lmer(
-    total.fruits ~ nutrient + rack + (nutrient |
-      popu / gen),
-    data = lme4::Arabidopsis
-  ),
+  x = mod,
   p.kr = FALSE
 )
 ```

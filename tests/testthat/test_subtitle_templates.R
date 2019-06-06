@@ -188,7 +188,8 @@ testthat::test_that(
       effsize.UL = 0.10,
       conf.level = 0.95,
       k = 2L,
-      k.parameter = 2L,
+      k.parameter = 0L,
+      k.parameter2 = 2L,
       n = 51L,
       effsize.text = quote(omega["p"]^2)
     )

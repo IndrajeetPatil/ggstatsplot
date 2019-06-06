@@ -6,9 +6,9 @@ testthat::test_that(
   desc = "subtitle_anova_robust works - between-subjects",
   code = {
     testthat::skip_on_cran()
-    set.seed(123)
 
     # ggstatsplot output
+    set.seed(123)
     using_function1 <-
       ggstatsplot::subtitle_anova_robust(
         data = dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.5),
