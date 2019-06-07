@@ -394,7 +394,8 @@ ggcoefstats <- function(x,
     "data.frame",
     "grouped_df",
     "tbl",
-    "tbl_df"
+    "tbl_df",
+    "spec_tbl_df"
   )
 
   # creating a list of objects which will have fixed and random "effects"
@@ -688,15 +689,8 @@ ggcoefstats <- function(x,
       )
   }
 
-  # checking if there are any terms that are repeated
-  # since `term` column is a factor, remove any unused levels
-  term_df <- tidy_df %>%
-    dplyr::mutate(.data = ., term = droplevels(as.factor(term))) %>%
-    dplyr::count(term) %>%
-    dplyr::filter(.data = ., n != 1L)
-
   # halt if there are repeated terms
-  if (dim(term_df)[1] != 0L) {
+  if (any(duplicated(dplyr::select(tidy_df, term)))) {
     message(cat(
       crayon::red("Error: "),
       crayon::blue(
@@ -704,7 +698,7 @@ ggcoefstats <- function(x,
       ),
       sep = ""
     ))
-    return(invisible(dim(term_df)[1]))
+    return(invisible(tidy_df))
   }
 
   # =================== p-value computation ==================================
@@ -713,16 +707,13 @@ ggcoefstats <- function(x,
   if (class(x)[[1]] %in% p.mods) {
     # computing p-values
     tidy_df %<>%
-      tibble::as_tibble(x = .) %>%
-      dplyr::mutate_at(
-        .tbl = .,
-        .vars = "term",
-        .funs = ~ as.character(x = .)
-      ) %>%
       dplyr::full_join(
-        x = .,
+        x = dplyr::mutate_at(
+          .tbl = .,
+          .vars = "term",
+          .funs = ~ as.character(x = .)
+        ),
         y = sjstats::p_value(fit = x, p.kr = p.kr) %>%
-          tibble::as_tibble(x = .) %>%
           dplyr::select(.data = ., -std.error) %>%
           dplyr::mutate_at(
             .tbl = .,
@@ -730,12 +721,9 @@ ggcoefstats <- function(x,
             .funs = ~ as.character(x = .)
           ),
         by = "term"
-      )
-
-    # sometimes unwanted rows will percolate into merged dataframe
-    # remove such rows
-    tidy_df %<>%
-      dplyr::filter(.data = ., !is.na(estimate))
+      ) %>%
+      dplyr::filter(.data = ., !is.na(estimate)) %>%
+      tibble::as_tibble(x = .)
   }
 
   # ================== statistic and p-value check ===========================
@@ -866,28 +854,21 @@ ggcoefstats <- function(x,
   # adding a column with labels to be used with `ggrepel`
   if (isTRUE(stats.labels)) {
     if (class(x)[[1]] %in% df.mods) {
-      tidy_df %<>%
-        ggcoefstats_label_maker(
-          x = .,
-          statistic = statistic,
-          tidy_df = .,
-          glance_df = glance_df,
-          k = k,
-          effsize = effsize,
-          partial = partial
-        )
-    } else {
-      tidy_df %<>%
-        ggcoefstats_label_maker(
-          x = x,
-          statistic = statistic,
-          tidy_df = .,
-          glance_df = glance_df,
-          k = k,
-          effsize = effsize,
-          partial = partial
-        )
+      # in case a dataframe was entered, `x` and `tidy_df` are going to be same
+      x <- tidy_df
     }
+
+    # adding a column with labels using custom function
+    tidy_df %<>%
+      ggcoefstats_label_maker(
+        x = x,
+        statistic = statistic,
+        tidy_df = .,
+        glance_df = glance_df,
+        k = k,
+        effsize = effsize,
+        partial = partial
+      )
   }
 
   # ============== meta-analysis plus Bayes factor =========================
@@ -921,7 +902,7 @@ ggcoefstats <- function(x,
         output = "subtitle"
       )
 
-    # add bayes factor caption
+    # add Bayes factor caption
     if (isTRUE(bf.message)) {
       caption <-
         bf_meta_message(
@@ -989,27 +970,24 @@ ggcoefstats <- function(x,
   # ========================== sorting ===================================
 
   # whether the term need to be arranged in any specified order
+  tidy_df$term <- as.factor(tidy_df$term)
+  tidy_df %<>% tibble::rownames_to_column(.data = ., var = "rowid")
+
+  # sorting factor levels
   if (sort != "none") {
-    tidy_df$term <- as.factor(tidy_df$term)
     if (sort == "ascending") {
       new_order <- order(tidy_df$estimate, decreasing = FALSE)
     } else {
       new_order <- order(tidy_df$estimate, decreasing = TRUE)
     }
-    tidy_df$term <- as.character(tidy_df$term)
-    tidy_df$term <-
-      factor(x = tidy_df$term, levels = tidy_df$term[new_order])
   } else {
-    tidy_df$term <- as.factor(tidy_df$term)
-    tidy_df %<>%
-      tibble::rownames_to_column(., var = "rowid")
     new_order <- order(tidy_df$rowid, decreasing = FALSE)
-    tidy_df$term <- as.character(tidy_df$term)
-    tidy_df$term <-
-      factor(x = tidy_df$term, levels = tidy_df$term[new_order])
-    tidy_df %<>%
-      dplyr::select(.data = ., -rowid)
   }
+
+  # sorting `term` factor levels according to new sorting order
+  tidy_df$term <- as.character(tidy_df$term)
+  tidy_df$term <- factor(x = tidy_df$term, levels = tidy_df$term[new_order])
+  tidy_df %<>% dplyr::select(.data = ., -rowid)
 
   # palette check is necessary only if output is a plot
   if (output == "plot") {
@@ -1166,6 +1144,7 @@ ggcoefstats <- function(x,
       ) +
       ggplot2::theme(plot.caption = ggplot2::element_text(size = 10))
   }
+
   # =========================== output =====================================
 
   # what needs to be returned?
@@ -1173,7 +1152,10 @@ ggcoefstats <- function(x,
     EXPR = output,
     "plot" = plot,
     "tidy" = tidy_df,
+    "dataframe" = tidy_df,
+    "df" = tidy_df,
     "glance" = glance_df,
+    "summary" = glance_df,
     "augment" = tibble::as_tibble(broomExtra::augment(x = x, ...)),
     "plot"
   ))

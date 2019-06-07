@@ -70,6 +70,7 @@ subtitle_t_onesample <- function(data,
   stats.type <- stats_type_switch(stats.type = type)
 
   # ========================= parametric ======================================
+
   if (stats.type == "parametric") {
 
     # deciding which effect size to use (Hedge's g or Cohen's d)
@@ -120,9 +121,11 @@ subtitle_t_onesample <- function(data,
       k = k,
       k.parameter = 0L
     )
+  }
 
-    # ========================== non-parametric ==============================
-  } else if (stats.type == "nonparametric") {
+  # ========================== non-parametric ==============================
+
+  if (stats.type == "nonparametric") {
     # setting up the Mann-Whitney U-test and getting its summary
     stats_df <-
       broomExtra::tidy(stats::wilcox.test(
@@ -170,22 +173,25 @@ subtitle_t_onesample <- function(data,
       conf.level = conf.level,
       k = k
     )
-    # ======================= robust =========================================
-  } else if (stats.type == "robust") {
+  }
+
+  # ======================= robust =========================================
+
+  if (stats.type == "robust") {
 
     # running one-sample percentile bootstrap
     stats_df <- WRS2::onesampb(
       x = data$x,
       est = robust.estimator,
       nboot = nboot,
-      nv = test.value
+      nv = test.value,
+      alpha = 1 - conf.level
     )
 
     # displaying message about bootstrap
     if (isTRUE(messages)) {
       effsize_ci_message(nboot = nboot, conf.level = conf.level)
     }
-
 
     # preparing the subtitle
     subtitle <- substitute(
@@ -221,8 +227,11 @@ subtitle_t_onesample <- function(data,
         n = sample_size
       )
     )
-    # ===================== bayes ============================================
-  } else if (stats.type == "bayes") {
+  }
+
+  # ======================== bayes ============================================
+
+  if (stats.type == "bayes") {
     subtitle <- bf_one_sample_ttest(
       data = data,
       x = x,

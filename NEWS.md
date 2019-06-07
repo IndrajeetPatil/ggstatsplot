@@ -34,6 +34,8 @@ NEW FEATURES
   - `ggcoefstats` gains `bf.message` argument to display a caption containing
     results from Bayesian random-effects meta-analysis. It therefore gains a new
     dependency: `metaBMA`.
+  - `ggpiestats` and `ggcatstats` will now display Cramer's *V* as effect size
+    for one-sample proportion tests.
 
 MINOR CHANGES
 

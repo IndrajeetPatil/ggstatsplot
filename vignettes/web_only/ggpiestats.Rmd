@@ -147,12 +147,12 @@ ggstatsplot::ggpiestats(
   title = "Passenger survival on the Titanic by gender",   # title for the entire plot
   caption = "Source: Titanic survival dataset",            # caption for the entire plot
   legend.title = "Survived?",                              # legend title
-  bf.message = TRUE,                                       # show resuls from bayes factor in favor of null
+  bf.message = TRUE,                                       # display bayes factor in favor of null hypothesis
   ggtheme = ggplot2::theme_grey(),                         # changing plot theme 
   palette = "category10_d3",                               # choosing a different color palette
   package = "ggsci",                                       # package to which color palette belongs
   stat.title = "Pearson's chi-squared test: ",             # title for statistical test
-  k = 2,                                                   # decimal places in result
+  k = 3,                                                   # decimal places in result
   perc.k = 1,                                              # decimal places in percentage labels
   nboot = 10,                                              # no. of bootstrap sample for effect size CI
   messages = FALSE
@@ -194,12 +194,10 @@ ggstatsplot::grouped_ggpiestats(
   # arguments relevant for ggstatsplot::gghistostats
   data = ggstatsplot::Titanic_full,
   grouping.var = Age,
-  title.prefix = "Child or Adult?: ",
+  title.prefix = "Child or Adult?",
   main = Survived,
   condition = Sex,
-  bf.message = TRUE,
   nboot = 10,
-  k = 2,
   perc.k = 1,
   package = "ggsci",
   palette = "category10_d3",
@@ -207,8 +205,7 @@ ggstatsplot::grouped_ggpiestats(
   # arguments relevant for ggstatsplot::combine_plots
   title.text = "Passenger survival on the Titanic by gender and age",
   caption.text = "Asterisks denote results from proportion tests; \n***: p < 0.001, ns: non-significant",
-  nrow = 2,
-  ncol = 1
+  nrow = 2
 )
 ```
 
@@ -282,6 +279,7 @@ ggstatsplot::ggpiestats(
   main = Fish,
   condition = Month,
   counts = SumOfCaught,
+  slice.label = "both",
   package = "ggsci",
   palette = "default_jama",
   title = "Type fish caught by month",
@@ -301,12 +299,13 @@ indicate there's no strong evidence that the distribution isn't equal.
 
 For our final example let's imagine we're conducting clinical trials for some
 new imaginary wonder drug. We have 134 subjects entering the trial. Some of them
-enter healthy (N=96), some of them enter the trial already being sick (N=38).
+enter healthy (N=96), some of them enter the trial already being sick (*n* = 38).
 All of them receive our treatment or intervention. Then we check back in a month
 to see if they are healthy or sick. A classic pre/post experimental design.
 We're interested in seeing the change in both groupings. In the case of
 within-subjects designs, you can set `paired = TRUE`, which will display results
 from **McNemar test** in the subtitle. 
+
 (**Note:** If you forget to set `paired = TRUE`, the results you get will be
 inaccurate.)
 
@@ -324,13 +323,6 @@ clinical_trial <-
     "No",	"No",	92
   )
 
-# display it as a simple table
-stats::xtabs(
-  formula = Counts ~ SickBefore + SickAfter,
-  subset = NULL,
-  data = clinical_trial
-)
-
 # plot
 ggstatsplot::ggpiestats(
   data = clinical_trial,
@@ -338,6 +330,7 @@ ggstatsplot::ggpiestats(
   main = SickAfter,
   counts = Counts,
   paired = TRUE,
+  slice.label = "both",
   stat.title = "McNemar test: ",
   title = "Results from imaginary clinical trial",
   package = "ggsci",
@@ -369,7 +362,7 @@ Type | Effect size | CI?
 --------------- | ------------------------- | --- 
 Pearson's $\chi^2$ test | Cramer's $V$ | <font color="green">Yes<font>
 McNemar's test | Cohen's $g$ | <font color="green">Yes<font>
-Goodness of fit | <font color="red">No<font> | <font color="red">No<font> 
+Goodness of fit | Cramer's $V$ | <font color="green">Yes<font>
 
 # Suggestions
 
