@@ -82,30 +82,31 @@ Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
 `gghistostats`, `ggdotplotstats` | Distribution of a numeric variable | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
 `ggcorrmat` | Correlation matrix | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font>
 `ggscatterstats` | Correlation between two variables | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
-`ggpiestats`, `ggbarstats` | Association between categorical variables | <font color="green">Yes</font> | <font color="red">No</font> | <font color="red">No</font> | <font color="green">Yes</font>
-`ggpiestats` | Proportion test | <font color="green">Yes</font> | <font color="red">No</font> | <font color="red">No</font> | <font color="red">No</font>
-`ggcoefstats` | Regression model coefficients | <font color="green">Yes</font> | <font color="red">No</font>| <font color="green">Yes</font> | <font color="green">Yes</font>
+`ggpiestats`, `ggbarstats` | Association between categorical variables | <font color="green">Yes</font> | `NA` | `NA` | <font color="green">Yes</font>
+`ggpiestats`, `ggbarstats` | Equal proportions for categorical variable levels | <font color="green">Yes</font> | `NA` | `NA` | <font color="red">No</font>
+`ggcoefstats` | Regression model coefficients | <font color="green">Yes</font> | <font color="red">No</font> | <font color="green">Yes</font> | <font color="red">No</font>
 
 # Effect sizes and confidence intervals available
 
 `ggstatsplot` provides a wide range of effect sizes and their confidence
 intervals.
 
-Test | Parametric | Non-parametric | Robust | Bayes
+Test | Parametric | Non-parametric | Robust | Bayes Factor
 ---------------------------- | ------ | ------ | ------ | ------
 one-sample *t*-test | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font>
 two-sample *t*-test (between) | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font>
 two-sample *t*-test (within) | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font>
-One-way ANOVA (between) | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font>
-One-way ANOVA (within) | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font> | <font color="red">No</font>
+one-way ANOVA (between) | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font>
+one-way ANOVA (within) | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font> | <font color="red">No</font>
 correlations | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font>
 contingency table | <font color="green">Yes</font> | `NA` | `NA` | <font color="red">No</font>
 goodness of fit | <font color="green">Yes</font> | `NA` | `NA` | <font color="red">No</font>
-regression | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font>
+regression | <font color="green">Yes</font> | <font color="red">No</font> | <font color="green">Yes</font> | <font color="red">No</font>
 
 # Installation
 
 To get the latest, stable `CRAN` release (`0.0.10`):
+
 ```{r installationCRAN, eval = FALSE}
 utils::install.packages(pkgs = "ggstatsplot")
 ```
@@ -135,6 +136,7 @@ remotes::install_github(
 ```
 
 If time is not a constraint-
+
 ```{r installation2, eval = FALSE}
 remotes::install_github(
   repo = "IndrajeetPatil/ggstatsplot", # package path on GitHub
@@ -689,7 +691,7 @@ ggstatsplot::ggpiestats(
 Additionally, there is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable:
 
-```{r ggpiestats4, message = FALSE, warning = FALSE, fig.height = 8, fig.width = 8}
+```{r ggpiestats4, message = FALSE, warning = FALSE, fig.height = 10, fig.width = 10}
 # for reproducibility
 set.seed(123)
 
@@ -712,6 +714,25 @@ ggstatsplot::grouped_ggpiestats(
   title.text = "Composition of MPAA ratings for different genres"
 )
 ```
+
+### Summary of tests
+
+Following tests are carried out for each type of analyses-
+
+Type of data | Design | Test
+----------- | ------------ | -------------------------
+Unpaired | $n \times p$ contingency table | Pearson's $\chi^2$ test
+Paired | $n \times p$ contingency table | McNemar's test
+Frequency | $n \times 1$ contingency table | Goodness of fit
+
+Following effect sizes (and confidence intervals/CI) are available for each type
+of test-
+
+Type | Effect size | CI?
+--------------- | ------------------------- | --- 
+Pearson's $\chi^2$ test | Cramer's $V$ | <font color="green">Yes<font>
+McNemar's test | Cohen's $g$ | <font color="green">Yes<font>
+Goodness of fit | Cramer's $V$ | <font color="green">Yes<font>
 
 For more, see the `ggpiestats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
@@ -776,6 +797,10 @@ ggstatsplot::grouped_ggbarstats(
   nrow = 2
 )
 ```
+
+### Summary of tests
+
+This is identical to the `ggpiestats` function summary of tests.
 
 ## `gghistostats`
 
@@ -940,6 +965,10 @@ ggstatsplot::grouped_ggdotplotstats(
   title.text = "Fuel economy data"
 )
 ```
+
+### Summary of tests
+
+This is identical to summary of tests for `gghistostats`.
 
 ## `ggcorrmat`
 
@@ -1248,7 +1277,7 @@ functions involved:
 
 I'm happy to receive bug reports, suggestions, questions, and (most of all)
 contributions to fix problems and add features. I personally prefer using the
-Github issues system over trying to reach out to me in other ways (personal
+`GitHub` issues system over trying to reach out to me in other ways (personal
 e-mail, Twitter, etc.). Pull requests for contributions are encouraged.
 
 Here are some simple ways in which you can contribute:

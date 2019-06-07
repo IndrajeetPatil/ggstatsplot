@@ -175,7 +175,7 @@ ggstatsplot::ggpiestats(
   data = ggplot2::msleep,
   main = vore,
   perc.k = 1,
-  k = 2
+  k = 3
 )
 
 # simple function call with the defaults (with condition)
@@ -190,7 +190,7 @@ ggstatsplot::ggpiestats(
 )
 
 # simple function call with the defaults (without condition; with count data)
-library(jmv)
+library(jmv, warn.conflicts = FALSE)
 
 ggstatsplot::ggpiestats(
   data = as.data.frame(HairEyeColor),

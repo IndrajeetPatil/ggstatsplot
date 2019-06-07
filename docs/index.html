@@ -196,7 +196,7 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
 <td><a href="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot"><img src="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2019--06--05-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2019--06--06-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg" alt="GitHub last commit"></a></td>
 </tr>
 <tr class="even">
@@ -315,16 +315,18 @@
 </td>
 <td>Association between categorical variables</td>
 <td><font color="green">Yes</font></td>
-<td><font color="red">No</font></td>
-<td><font color="red">No</font></td>
+<td><code>NA</code></td>
+<td><code>NA</code></td>
 <td><font color="green">Yes</font></td>
 </tr>
 <tr class="odd">
-<td><code>ggpiestats</code></td>
-<td>Proportion test</td>
-<td><font color="red">No</font></td>
-<td><font color="red">No</font></td>
-<td><font color="red">No</font></td>
+<td>
+<code>ggpiestats</code>, <code>ggbarstats</code>
+</td>
+<td>Equal proportions for categorical variable levels</td>
+<td><font color="green">Yes</font></td>
+<td><code>NA</code></td>
+<td><code>NA</code></td>
 <td><font color="red">No</font></td>
 </tr>
 <tr class="even">
@@ -333,7 +335,7 @@
 <td><font color="green">Yes</font></td>
 <td><font color="red">No</font></td>
 <td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
+<td><font color="red">No</font></td>
 </tr>
 </tbody>
 </table>
@@ -348,7 +350,7 @@
 <th>Parametric</th>
 <th>Non-parametric</th>
 <th>Robust</th>
-<th>Bayes</th>
+<th>Bayes Factor</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -373,14 +375,14 @@
 <td><font color="red">No</font></td>
 </tr>
 <tr class="even">
-<td>One-way ANOVA (between)</td>
+<td>one-way ANOVA (between)</td>
 <td><font color="green">Yes</font></td>
 <td><font color="green">Yes</font></td>
 <td><font color="green">Yes</font></td>
 <td><font color="red">No</font></td>
 </tr>
 <tr class="odd">
-<td>One-way ANOVA (within)</td>
+<td>one-way ANOVA (within)</td>
 <td><font color="green">Yes</font></td>
 <td><font color="green">Yes</font></td>
 <td><font color="red">No</font></td>
@@ -410,7 +412,7 @@
 <tr class="odd">
 <td>regression</td>
 <td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
+<td><font color="red">No</font></td>
 <td><font color="green">Yes</font></td>
 <td><font color="red">No</font></td>
 </tr>
@@ -483,7 +485,7 @@
 <a class="sourceLine" id="cb7-8" title="8"><span class="co">#&gt;   # returning the converted plot</span></a>
 <a class="sourceLine" id="cb7-9" title="9"><span class="co">#&gt;   return(p)</span></a>
 <a class="sourceLine" id="cb7-10" title="10"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt; &lt;bytecode: 0x00000000264ca0e0&gt;</span></a>
+<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt; &lt;bytecode: 0x0000000026396918&gt;</span></a>
 <a class="sourceLine" id="cb7-12" title="12"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -1075,7 +1077,67 @@
 <a class="sourceLine" id="cb20-20" title="20">  <span class="dt">title.text =</span> <span class="st">"Composition of MPAA ratings for different genres"</span></a>
 <a class="sourceLine" id="cb20-21" title="21">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggpiestats4-1.png" width="100%"></p>
+<div id="summary-of-tests-3" class="section level3">
+<h3 class="hasAnchor">
+<a href="#summary-of-tests-3" class="anchor"></a>Summary of tests</h3>
+<p>Following tests are carried out for each type of analyses-</p>
+<table class="table table">
+<thead><tr class="header">
+<th>Type of data</th>
+<th>Design</th>
+<th>Test</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Unpaired</td>
+<td>
+<span class="math inline">\(n \times p\)</span> contingency table</td>
+<td>Pearson’s <span class="math inline">\(\chi^2\)</span> test</td>
+</tr>
+<tr class="even">
+<td>Paired</td>
+<td>
+<span class="math inline">\(n \times p\)</span> contingency table</td>
+<td>McNemar’s test</td>
+</tr>
+<tr class="odd">
+<td>Frequency</td>
+<td>
+<span class="math inline">\(n \times 1\)</span> contingency table</td>
+<td>Goodness of fit</td>
+</tr>
+</tbody>
+</table>
+<p>Following effect sizes (and confidence intervals/CI) are available for each type of test-</p>
+<table class="table table">
+<thead><tr class="header">
+<th>Type</th>
+<th>Effect size</th>
+<th>CI?</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Pearson’s <span class="math inline">\(\chi^2\)</span> test</td>
+<td>Cramer’s <span class="math inline">\(V\)</span>
+</td>
+<td><font color="green">Yes<font></font></font></td>
+</tr>
+<tr class="even">
+<td>McNemar’s test</td>
+<td>Cohen’s <span class="math inline">\(g\)</span>
+</td>
+<td><font color="green">Yes<font></font></font></td>
+</tr>
+<tr class="odd">
+<td>Goodness of fit</td>
+<td>Cramer’s <span class="math inline">\(V\)</span>
+</td>
+<td><font color="green">Yes<font></font></font></td>
+</tr>
+</tbody>
+</table>
 <p>For more, see the <code>ggpiestats</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html</a></p>
+</div>
 </div>
 <div id="ggbarstats" class="section level2">
 <h2 class="hasAnchor">
@@ -1133,6 +1195,11 @@
 <a class="sourceLine" id="cb22-28" title="28">  <span class="dt">nrow =</span> <span class="dv">2</span></a>
 <a class="sourceLine" id="cb22-29" title="29">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggbarstats2-1.png" width="100%"></p>
+<div id="summary-of-tests-4" class="section level3">
+<h3 class="hasAnchor">
+<a href="#summary-of-tests-4" class="anchor"></a>Summary of tests</h3>
+<p>This is identical to the <code>ggpiestats</code> function summary of tests.</p>
+</div>
 </div>
 <div id="gghistostats" class="section level2">
 <h2 class="hasAnchor">
@@ -1204,9 +1271,9 @@
 <a class="sourceLine" id="cb25-23" title="23">  <span class="dt">title.text =</span> <span class="st">"Movies budgets for different genres"</span></a>
 <a class="sourceLine" id="cb25-24" title="24">)</a></code></pre></div>
 <p><img src="reference/figures/README-gghistostats4-1.png" width="100%"></p>
-<div id="summary-of-tests-3" class="section level3">
+<div id="summary-of-tests-5" class="section level3">
 <h3 class="hasAnchor">
-<a href="#summary-of-tests-3" class="anchor"></a>Summary of tests</h3>
+<a href="#summary-of-tests-5" class="anchor"></a>Summary of tests</h3>
 <p>Following tests are carried out for each type of analyses-</p>
 <table class="table table">
 <thead><tr class="header">
@@ -1292,6 +1359,11 @@
 <a class="sourceLine" id="cb27-24" title="24">  <span class="dt">title.text =</span> <span class="st">"Fuel economy data"</span></a>
 <a class="sourceLine" id="cb27-25" title="25">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggdotplotstats2-1.png" width="100%"></p>
+<div id="summary-of-tests-6" class="section level3">
+<h3 class="hasAnchor">
+<a href="#summary-of-tests-6" class="anchor"></a>Summary of tests</h3>
+<p>This is identical to summary of tests for <code>gghistostats</code>.</p>
+</div>
 </div>
 <div id="ggcorrmat" class="section level2">
 <h2 class="hasAnchor">
@@ -1428,9 +1500,9 @@
 <a class="sourceLine" id="cb30-18" title="18">  <span class="dt">nrow =</span> <span class="dv">2</span></a>
 <a class="sourceLine" id="cb30-19" title="19">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggcorrmat3-1.png" width="100%"></p>
-<div id="summary-of-tests-4" class="section level3">
+<div id="summary-of-tests-7" class="section level3">
 <h3 class="hasAnchor">
-<a href="#summary-of-tests-4" class="anchor"></a>Summary of tests</h3>
+<a href="#summary-of-tests-7" class="anchor"></a>Summary of tests</h3>
 <p>Following tests are carried out for each type of analyses. Additionally, the correlation coefficients (and their confidence intervals) are used as effect sizes-</p>
 <table class="table table">
 <thead><tr class="header">
@@ -1603,7 +1675,7 @@
 <div id="contributing" class="section level1">
 <h1 class="hasAnchor">
 <a href="#contributing" class="anchor"></a>Contributing</h1>
-<p>I’m happy to receive bug reports, suggestions, questions, and (most of all) contributions to fix problems and add features. I personally prefer using the Github issues system over trying to reach out to me in other ways (personal e-mail, Twitter, etc.). Pull requests for contributions are encouraged.</p>
+<p>I’m happy to receive bug reports, suggestions, questions, and (most of all) contributions to fix problems and add features. I personally prefer using the <code>GitHub</code> issues system over trying to reach out to me in other ways (personal e-mail, Twitter, etc.). Pull requests for contributions are encouraged.</p>
 <p>Here are some simple ways in which you can contribute:</p>
 <ul>
 <li><p>Read and correct any inconsistencies in the <a href="https://indrajeetpatil.github.io/ggstatsplot/">documentation</a></p></li>
@@ -1637,6 +1709,12 @@
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
 <li><small><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a> | file <a href="LICENSE-text.html">LICENSE</a></small></li>
+</ul>
+</div>
+<div class="community">
+<h2>Community</h2>
+<ul class="list-unstyled">
+<li><a href="CONTRIBUTING.html">Contributing guide</a></li>
 </ul>
 </div>
 <div class="citation">

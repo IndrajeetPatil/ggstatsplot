@@ -89,9 +89,10 @@ ggstatsplot::ggwithinstats(
 ```
 
 **Note**:
-  - The function automatically decides whether an independent samples *t*-test
-    is preferred (for 2 groups) or a one-way ANOVA (3 or more groups). based on
-    the number of levels in the grouping variable.
+
+  - The function automatically decides whether a dependent samples test is
+    preferred (for 2 groups) or an ANOVA (3 or more groups). based on the number
+    of levels in the grouping variable.
   - The output of the function is a `ggplot` object which means that it can be
     further modified with `ggplot2` functions.
 
@@ -118,7 +119,7 @@ ggstatsplot::ggwithinstats(
   effsize.type = "biased",                            # type of effect size
   nboot = 10,                                         # number of bootstrap samples used
   bf.message = TRUE,                                  # display bayes factor in favor of null hypothesis
-  sphericity.correction = FALSE,                      # don't display Greenhouse–Geisser adjusted p-value
+  sphericity.correction = FALSE,                      # don't display sphericity corrected dfs and p-values
   pairwise.comparisons = TRUE,                        # display pairwise comparisons
   outlier.tagging = TRUE,                             # whether outliers should be flagged
   outlier.coef = 1.5,                                 # coefficient for Tukey's rule
@@ -157,13 +158,12 @@ recommended, to make each plot have different colors or themes.
 
 For example,
 ```{r ggwithinstats3, message = FALSE, warning = FALSE, fig.height = 10, fig.width = 10}
+# for reproducibility
+set.seed(123)
 library(ggstatsplot)
 
 # selecting subset of the data
 df_disgust <- dplyr::filter(.data = data_bugs, key %in% c("LDHF", "HDHF"))
-
-# for reproducibility
-set.seed(123)
 
 # parametric t-test
 p1 <- ggstatsplot::ggwithinstats(
@@ -176,6 +176,7 @@ p1 <- ggstatsplot::ggwithinstats(
   title = "Parametric test",
   package = "ggsci",
   palette = "nrc_npg",
+  ggtheme = ggthemr::ggthemr(palette = "light"),
   messages = FALSE
 )
 
@@ -192,6 +193,8 @@ p2 <- ggstatsplot::ggwithinstats(
   title = "Non-parametric Test",
   package = "ggsci",
   palette = "uniform_startrek",
+  ggtheme = ggthemes::theme_map(),
+  ggstatsplot.layer = FALSE,
   messages = FALSE
 )
 
@@ -209,7 +212,8 @@ p3 <- ggstatsplot::ggwithinstats(
   tr = 0.2,
   package = "wesanderson",
   palette = "Royal2",
-  nboot = 15,
+  ggtheme = hrbrthemes::theme_ipsum_tw(),
+  ggstatsplot.layer = FALSE,
   messages = FALSE
 )
 
@@ -224,6 +228,7 @@ p4 <- ggstatsplot::ggwithinstats(
   title = "Bayesian Test",
   package = "ggsci",
   palette = "nrc_npg",
+  ggtheme = ggthemes::theme_fivethirtyeight(),
   messages = FALSE
 )
 
@@ -231,7 +236,6 @@ p4 <- ggstatsplot::ggwithinstats(
 ggstatsplot::combine_plots(
   p1, p2, p3, p4, 
   nrow = 2, 
-  labels = c("(a)", "(b)", "(c)", "(d)"),
   title.text = "Effect of disgust on desire to kill bugs ",
   caption.text = "Source: Bugs dataset from `jmv` R package",
   title.size = 14,
@@ -333,7 +337,7 @@ Type | No. of groups | Effect size | CI?
 ----------- | --- | ------------------------- | --- 
 Parametric | > 2 | $\eta_{p}^2$, $\omega^2$ | <font color="green">Yes<font>
 Non-parametric | > 2 | $W_{Kendall}$ (Kendall's coefficient of concordance) | <font color="green">Yes<font>
-Robust | > 2 | <font color="red">No<font> | <font color="green">Yes<font>
+Robust | > 2 | <font color="red">No<font> | <font color="red">No<font>
 Bayes Factor | > 2 | <font color="red">No<font> | <font color="red">No<font>
 Parametric | 2 | Cohen's *d*, Hedge's *g* (central-and noncentral-*t* distribution based) | <font color="green">Yes<font>
 Non-parametric | 2 | *r* (computed as $Z/\sqrt{N}$) | <font color="green">Yes<font>

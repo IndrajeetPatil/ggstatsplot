@@ -5,7 +5,8 @@
 \title{Making text subtitle for Proportion Test (N Outcomes)}
 \usage{
 subtitle_onesample_proptest(data, main, counts = NULL, ratio = NULL,
-  legend.title = NULL, k = 2, ...)
+  conf.level = 0.95, stat.title = NULL, legend.title = NULL, k = 2,
+  ...)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
@@ -20,6 +21,14 @@ if each row represents a single observation (Default).}
 \item{ratio}{A vector of numbers: the expected proportions for the proportion
 test. Default is \code{NULL}, which means if there are two levels \code{ratio = c(1,1)}, etc.}
 
+\item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
+\code{95\%} lower and upper confidence intervals (\code{0.95}).}
+
+\item{stat.title}{Title for the effect being investigated with the chi-square
+test. The default is \code{NULL}, i.e. no title will be added to describe the
+effect being shown. An example of a \code{stat.title} argument will be something
+like \code{"main x condition"} or \code{"interaction"}.}
+
 \item{legend.title}{Title text for the legend.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
@@ -32,16 +41,18 @@ This is going to be a chi-squared Goodness of fit test.
 }
 \examples{
 
-# with counts
+# for reproducibility
+set.seed(123)
 library(jmv)
 
+# with counts
 subtitle_onesample_proptest(
   data = as.data.frame(HairEyeColor),
   main = Eye,
   counts = Freq
 )
 
-# in case no variation, only sample size will be shown
+# in case of no variation, only sample size will be shown
 subtitle_onesample_proptest(
   data = cbind.data.frame(x = rep("a", 10)),
   main = x

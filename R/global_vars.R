@@ -190,7 +190,10 @@ utils::globalVariables(
     "Statistic",
     "d.pmean",
     "d.pmean.LB",
-    "d.pmean.UB"
+    "d.pmean.UB",
+    "Cramer V",
+    "lwr.ci",
+    "upr.ci"
   ),
   package = "ggstatsplot",
   add = FALSE

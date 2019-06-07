@@ -11,6 +11,9 @@ install:
   - ps: (new-object net.webclient).DownloadFile('https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Windows/JAGS-4.2.0-Rtools33.exe', 'C:\projects\JAGS-4.2.0.exe')
   - cmd: C:\projects\JAGS-4.2.0.exe /S
 
+# Do not build feature branch with open Pull Requests
+skip_branch_with_pr: true
+
 # Adapt as necessary starting from here
 
 environment:
