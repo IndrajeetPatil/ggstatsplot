@@ -7,7 +7,7 @@
 subtitle_anova_parametric(data, x, y, paired = FALSE,
   effsize.type = "unbiased", partial = TRUE, conf.level = 0.95,
   nboot = 100, var.equal = FALSE, sphericity.correction = TRUE,
-  k = 2, messages = TRUE, ...)
+  k = 2, stat.title = NULL, messages = TRUE, ...)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
@@ -53,6 +53,10 @@ to account for violation of sphericity in a repeated measures design ANOVA
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
+
+\item{stat.title}{A character describing the test being run, which will be
+added as a prefix in the subtitle. The default is \code{NULL}. An example of a
+\code{stat.title} argument will be something like \code{"Student's t-test: "}.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

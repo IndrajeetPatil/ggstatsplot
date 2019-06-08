@@ -1,7 +1,5 @@
 # ggstatsplot 0.0.10.9000
 
-(To be released as `1.0.0`)
-
 BREAKING CHANGES
 
   - Instead of having two separate functions that dealt with repeated measures
@@ -36,6 +34,9 @@ NEW FEATURES
     dependency: `metaBMA`.
   - `ggpiestats` and `ggcatstats` will now display Cramer's *V* as effect size
     for one-sample proportion tests.
+  - All functions gain `stat.title` argument (`NULL` by default) that can be
+    used to prefix the subtitle with a string of interest. This is possibly
+    useful for specifying the details of the statistical test.
 
 MINOR CHANGES
 

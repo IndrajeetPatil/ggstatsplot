@@ -26,6 +26,7 @@
 #' @inheritParams stats::oneway.test
 #' @inheritParams subtitle_t_parametric
 #' @inheritParams groupedstats::lm_effsize_standardizer
+#' @inheritParams subtitle_template
 #'
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
@@ -87,6 +88,7 @@ subtitle_anova_parametric <- function(data,
                                       var.equal = FALSE,
                                       sphericity.correction = TRUE,
                                       k = 2,
+                                      stat.title = NULL,
                                       messages = TRUE,
                                       ...) {
 
@@ -253,7 +255,7 @@ subtitle_anova_parametric <- function(data,
   # preparing subtitle
   subtitle <- subtitle_template(
     no.parameters = 2L,
-    stat.title = NULL,
+    stat.title = stat.title,
     statistic.text = quote(italic("F")),
     statistic = stats_df$statistic[[1]],
     parameter = stats_df$parameter[[1]],
@@ -289,6 +291,7 @@ subtitle_anova_parametric <- function(data,
 #'
 #' @inheritParams t1way_ci
 #' @inheritParams subtitle_anova_parametric
+#' @inheritParams subtitle_template
 #'
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
@@ -339,6 +342,7 @@ subtitle_anova_nonparametric <- function(data,
                                          conf.level = 0.95,
                                          k = 2,
                                          nboot = 100,
+                                         stat.title = NULL,
                                          messages = TRUE,
                                          ...) {
 
@@ -426,7 +430,7 @@ subtitle_anova_nonparametric <- function(data,
   # preparing subtitle
   subtitle <- subtitle_template(
     no.parameters = 1L,
-    stat.title = NULL,
+    stat.title = stat.title,
     statistic.text = quote(italic(chi)^2),
     statistic = stats_df$statistic[[1]],
     parameter = stats_df$parameter[[1]],
@@ -451,6 +455,7 @@ subtitle_anova_nonparametric <- function(data,
 #'
 #' @inheritParams t1way_ci
 #' @inheritParams subtitle_anova_nonparametric
+#' @inheritParams subtitle_template
 #'
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
@@ -506,8 +511,9 @@ subtitle_anova_robust <- function(data,
                                   nboot = 100,
                                   conf.level = 0.95,
                                   conf.type = "norm",
-                                  messages = TRUE,
                                   k = 2,
+                                  stat.title = NULL,
+                                  messages = TRUE,
                                   ...) {
 
   # creating a dataframe
@@ -598,7 +604,7 @@ subtitle_anova_robust <- function(data,
     # preparing subtitle
     subtitle <- subtitle_template(
       no.parameters = 2L,
-      stat.title = NULL,
+      stat.title = stat.title,
       statistic.text = quote(italic("F")),
       statistic = stats_df$F.value[[1]],
       parameter = stats_df$df1[[1]],

@@ -12,12 +12,13 @@ grouped_ggbetweenstats(data, x, y, grouping.var, title.prefix = NULL,
   effsize.type = "unbiased", partial = TRUE,
   effsize.noncentral = TRUE, bf.prior = 0.707, bf.message = TRUE,
   results.subtitle = TRUE, xlab = NULL, ylab = NULL,
-  subtitle = NULL, caption = NULL, sample.size.label = TRUE, k = 2,
-  var.equal = FALSE, conf.level = 0.95, nboot = 100, tr = 0.1,
-  sort = "none", sort.fun = mean, axes.range.restrict = FALSE,
-  mean.label.size = 3, mean.label.fontface = "bold",
-  mean.label.color = "black", notch = FALSE, notchwidth = 0.5,
-  linetype = "solid", outlier.tagging = FALSE, outlier.label = NULL,
+  subtitle = NULL, stat.title = NULL, caption = NULL,
+  sample.size.label = TRUE, k = 2, var.equal = FALSE,
+  conf.level = 0.95, nboot = 100, tr = 0.1, sort = "none",
+  sort.fun = mean, axes.range.restrict = FALSE, mean.label.size = 3,
+  mean.label.fontface = "bold", mean.label.color = "black",
+  notch = FALSE, notchwidth = 0.5, linetype = "solid",
+  outlier.tagging = FALSE, outlier.label = NULL,
   outlier.label.color = "black", outlier.color = "black",
   outlier.shape = 19, outlier.coef = 1.5, mean.plotting = TRUE,
   mean.ci = FALSE, mean.size = 5, mean.color = "darkred",
@@ -106,6 +107,10 @@ variable names for \code{x} and \code{y} will be used.}
 
 \item{subtitle}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
+
+\item{stat.title}{A character describing the test being run, which will be
+added as a prefix in the subtitle. The default is \code{NULL}. An example of a
+\code{stat.title} argument will be something like \code{"Student's t-test: "}.}
 
 \item{caption}{The text for the plot caption.}
 

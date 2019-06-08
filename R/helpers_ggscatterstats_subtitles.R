@@ -49,8 +49,9 @@ subtitle_ggscatterstats <- function(data,
                                     bf.prior = 0.707,
                                     conf.level = 0.95,
                                     conf.type = "norm",
-                                    messages = TRUE,
                                     k = 2,
+                                    stat.title = NULL,
+                                    messages = TRUE,
                                     ...) {
   ellipsis::check_dots_used()
 
@@ -91,7 +92,7 @@ subtitle_ggscatterstats <- function(data,
     # preparing subtitle
     subtitle <- subtitle_template(
       no.parameters = 1L,
-      stat.title = NULL,
+      stat.title = stat.title,
       statistic.text = quote(italic("t")),
       statistic = stats_df$statistic[[1]],
       parameter = stats_df$parameter[[1]],

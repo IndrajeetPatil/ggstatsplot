@@ -6,19 +6,20 @@
 \title{Dot plot/chart for labeled numeric data.}
 \usage{
 ggdotplotstats(data, x, y, xlab = NULL, ylab = NULL, title = NULL,
-  subtitle = NULL, caption = NULL, type = "parametric",
-  test.value = 0, bf.prior = 0.707, bf.message = TRUE,
-  robust.estimator = "onestep", effsize.type = "g",
-  effsize.noncentral = TRUE, conf.level = 0.95, nboot = 100, k = 2,
-  results.subtitle = TRUE, ggtheme = ggplot2::theme_bw(),
-  ggstatsplot.layer = TRUE, point.color = "black", point.size = 3,
-  point.shape = 16, centrality.para = "mean",
-  centrality.color = "blue", centrality.size = 1,
-  centrality.linetype = "dashed", centrality.line.labeller = TRUE,
-  centrality.k = 2, test.value.line = FALSE,
-  test.value.color = "black", test.value.size = 1,
-  test.value.linetype = "dashed", test.line.labeller = TRUE,
-  test.k = 0, ggplot.component = NULL, messages = TRUE)
+  stat.title = NULL, subtitle = NULL, caption = NULL,
+  type = "parametric", test.value = 0, bf.prior = 0.707,
+  bf.message = TRUE, robust.estimator = "onestep",
+  effsize.type = "g", effsize.noncentral = TRUE, conf.level = 0.95,
+  nboot = 100, k = 2, results.subtitle = TRUE,
+  ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
+  point.color = "black", point.size = 3, point.shape = 16,
+  centrality.para = "mean", centrality.color = "blue",
+  centrality.size = 1, centrality.linetype = "dashed",
+  centrality.line.labeller = TRUE, centrality.k = 2,
+  test.value.line = FALSE, test.value.color = "black",
+  test.value.size = 1, test.value.linetype = "dashed",
+  test.line.labeller = TRUE, test.k = 0, ggplot.component = NULL,
+  messages = TRUE)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
@@ -34,6 +35,10 @@ variable names for \code{x} and \code{y} will be used.}
 \item{ylab}{Label for \code{y} axis variable.}
 
 \item{title}{The text for the plot title.}
+
+\item{stat.title}{A character describing the test being run, which will be
+added as a prefix in the subtitle. The default is \code{NULL}. An example of a
+\code{stat.title} argument will be something like \code{"Student's t-test: "}.}
 
 \item{subtitle}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
