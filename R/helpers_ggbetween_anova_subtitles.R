@@ -174,6 +174,25 @@ subtitle_anova_parametric <- function(data,
     # sample size
     sample_size <- length(unique(data_within$rowid))
 
+    # warn the user if
+    if (sample_size < nlevels(as.factor(data_within$key))) {
+      # no sphericity correction applied
+      sphericity.correction <- FALSE
+      k.df1 <- 0L
+      k.df2 <- 0L
+
+      # inform the user
+      message(cat(
+        crayon::red("Warning: "),
+        crayon::blue(
+          "No. of factor levels is greater than number of observations per cell.\n"
+        ),
+        crayon::blue("No sphericity correction applied. Interpret the results with caution.\n")
+      ),
+      sep = ""
+      )
+    }
+
     # run the ANOVA
     ez_df <-
       ez::ezANOVA(
@@ -201,14 +220,14 @@ subtitle_anova_parametric <- function(data,
             epsilon_corr * ez_df$ANOVA$DFn[2],
             epsilon_corr * ez_df$ANOVA$DFd[2]
           ),
-          p.value = ez_df$ANOVA$p[2]
+          p.value = ez_df$`Sphericity Corrections`$`p[GG]`[[1]]
         )
     } else {
       stats_df <-
         list(
           statistic = ez_df$ANOVA$F[2],
           parameter = c(ez_df$ANOVA$DFn[2], ez_df$ANOVA$DFd[2]),
-          p.value = ez_df$`Sphericity Corrections`$`p[GG]`[[1]]
+          p.value = ez_df$ANOVA$p[2]
         )
     }
 

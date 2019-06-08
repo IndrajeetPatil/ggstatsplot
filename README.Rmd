@@ -173,10 +173,10 @@ To see the detailed documentation for each function in the stable **CRAN**
 version of the package, see:
 
   - README:
-    <https://cran.r-project.org/web/packages/ggstatsplot/readme/README.html>
+    <https://CRAN.R-project.org/package=ggstatsplot/readme/README.html>
   - Presentation:
     <https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1>
-  - Vignettes: <https://cran.r-project.org/web/packages/ggstatsplot/vignettes/>
+  - Vignettes: <https://CRAN.R-project.org/package=ggstatsplot/vignettes/additional.html>
 
 To see the documentation relevant for the **development** version of the package,
 see the dedicated website for `ggstatplot`, which is updated after every new
