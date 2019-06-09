@@ -81,6 +81,7 @@ gghistostats <- function(data = NULL,
                          binwidth = NULL,
                          bar.measure = "count",
                          xlab = NULL,
+                         stat.title = NULL,
                          title = NULL,
                          subtitle = NULL,
                          caption = NULL,
@@ -189,6 +190,7 @@ gghistostats <- function(data = NULL,
         conf.level = conf.level,
         nboot = nboot,
         k = k,
+        stat.title = stat.title,
         messages = messages
       )
   }
@@ -204,8 +206,8 @@ gghistostats <- function(data = NULL,
   # preparing the basic layout of the plot based on whether counts or density
   # information is needed
 
-  if (bar.measure == "count") {
-    # only counts
+  # only counts
+  if (bar.measure %in% c("counts", "n", "count", "N")) {
     plot <- ggplot2::ggplot(
       data = data,
       mapping = ggplot2::aes(x = x)
@@ -225,8 +227,10 @@ gghistostats <- function(data = NULL,
         low = low.color,
         high = high.color
       )
-  } else if (bar.measure == "proportion") {
-    # only proportion
+  }
+
+  # only proportion
+  if (bar.measure %in% c("percentage", "perc", "proportion", "prop", "%")) {
     plot <- ggplot2::ggplot(
       data = data,
       mapping = ggplot2::aes(x = x)
@@ -249,8 +253,10 @@ gghistostats <- function(data = NULL,
       ) +
       ggplot2::scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
       ggplot2::ylab("proportion")
-  } else if (bar.measure == "density") {
-    # only density
+  }
+
+  # only density
+  if (bar.measure == "density") {
     plot <- ggplot2::ggplot(
       data = data,
       mapping = ggplot2::aes(x = x)
@@ -270,8 +276,10 @@ gghistostats <- function(data = NULL,
         low = low.color,
         high = high.color
       )
-  } else if (bar.measure %in% c("mix", "both", "all")) {
-    # all things combined
+  }
+
+  # all things combined
+  if (bar.measure %in% c("both", "mix", "all", "everything")) {
     plot <- ggplot2::ggplot(
       data = data,
       mapping = ggplot2::aes(x = x)
@@ -320,7 +328,7 @@ gghistostats <- function(data = NULL,
     }
 
     # adding normal curve count & mix
-    if (bar.measure %in% c("mix", "count")) {
+    if (bar.measure %in% c("both", "mix", "all", "everything", "counts", "n", "count", "N")) {
       plot <- plot +
         ggplot2::stat_function(
           fun = function(x, mean, sd, n, bw) {
@@ -340,7 +348,7 @@ gghistostats <- function(data = NULL,
     }
 
     # adding normal curve proportion
-    if (bar.measure == "proportion") {
+    if (bar.measure %in% c("percentage", "perc", "proportion", "prop", "%")) {
       plot <- plot +
         ggplot2::stat_function(
           fun = function(x, mean, sd, n, bw) {

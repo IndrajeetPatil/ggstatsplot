@@ -26,6 +26,7 @@
 #' @inheritParams stats::oneway.test
 #' @inheritParams subtitle_t_parametric
 #' @inheritParams groupedstats::lm_effsize_standardizer
+#' @inheritParams subtitle_template
 #'
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
@@ -87,6 +88,7 @@ subtitle_anova_parametric <- function(data,
                                       var.equal = FALSE,
                                       sphericity.correction = TRUE,
                                       k = 2,
+                                      stat.title = NULL,
                                       messages = TRUE,
                                       ...) {
 
@@ -172,6 +174,25 @@ subtitle_anova_parametric <- function(data,
     # sample size
     sample_size <- length(unique(data_within$rowid))
 
+    # warn the user if
+    if (sample_size < nlevels(as.factor(data_within$key))) {
+      # no sphericity correction applied
+      sphericity.correction <- FALSE
+      k.df1 <- 0L
+      k.df2 <- 0L
+
+      # inform the user
+      message(cat(
+        crayon::red("Warning: "),
+        crayon::blue(
+          "No. of factor levels is greater than number of observations per cell.\n"
+        ),
+        crayon::blue("No sphericity correction applied. Interpret the results with caution.\n")
+      ),
+      sep = ""
+      )
+    }
+
     # run the ANOVA
     ez_df <-
       ez::ezANOVA(
@@ -199,14 +220,14 @@ subtitle_anova_parametric <- function(data,
             epsilon_corr * ez_df$ANOVA$DFn[2],
             epsilon_corr * ez_df$ANOVA$DFd[2]
           ),
-          p.value = ez_df$ANOVA$p[2]
+          p.value = ez_df$`Sphericity Corrections`$`p[GG]`[[1]]
         )
     } else {
       stats_df <-
         list(
           statistic = ez_df$ANOVA$F[2],
           parameter = c(ez_df$ANOVA$DFn[2], ez_df$ANOVA$DFd[2]),
-          p.value = ez_df$`Sphericity Corrections`$`p[GG]`[[1]]
+          p.value = ez_df$ANOVA$p[2]
         )
     }
 
@@ -253,7 +274,7 @@ subtitle_anova_parametric <- function(data,
   # preparing subtitle
   subtitle <- subtitle_template(
     no.parameters = 2L,
-    stat.title = NULL,
+    stat.title = stat.title,
     statistic.text = quote(italic("F")),
     statistic = stats_df$statistic[[1]],
     parameter = stats_df$parameter[[1]],
@@ -289,6 +310,7 @@ subtitle_anova_parametric <- function(data,
 #'
 #' @inheritParams t1way_ci
 #' @inheritParams subtitle_anova_parametric
+#' @inheritParams subtitle_template
 #'
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
@@ -339,6 +361,7 @@ subtitle_anova_nonparametric <- function(data,
                                          conf.level = 0.95,
                                          k = 2,
                                          nboot = 100,
+                                         stat.title = NULL,
                                          messages = TRUE,
                                          ...) {
 
@@ -426,7 +449,7 @@ subtitle_anova_nonparametric <- function(data,
   # preparing subtitle
   subtitle <- subtitle_template(
     no.parameters = 1L,
-    stat.title = NULL,
+    stat.title = stat.title,
     statistic.text = quote(italic(chi)^2),
     statistic = stats_df$statistic[[1]],
     parameter = stats_df$parameter[[1]],
@@ -451,6 +474,7 @@ subtitle_anova_nonparametric <- function(data,
 #'
 #' @inheritParams t1way_ci
 #' @inheritParams subtitle_anova_nonparametric
+#' @inheritParams subtitle_template
 #'
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
@@ -506,8 +530,9 @@ subtitle_anova_robust <- function(data,
                                   nboot = 100,
                                   conf.level = 0.95,
                                   conf.type = "norm",
-                                  messages = TRUE,
                                   k = 2,
+                                  stat.title = NULL,
+                                  messages = TRUE,
                                   ...) {
 
   # creating a dataframe
@@ -598,7 +623,7 @@ subtitle_anova_robust <- function(data,
     # preparing subtitle
     subtitle <- subtitle_template(
       no.parameters = 2L,
-      stat.title = NULL,
+      stat.title = stat.title,
       statistic.text = quote(italic("F")),
       statistic = stats_df$F.value[[1]],
       parameter = stats_df$df1[[1]],

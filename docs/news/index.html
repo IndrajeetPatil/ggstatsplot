@@ -177,7 +177,6 @@
 <h1 class="page-header">
 <a href="#ggstatsplot-00109000" class="anchor"></a>ggstatsplot 0.0.10.9000<small> Unreleased </small>
 </h1>
-<p>(To be released as <code>1.0.0</code>)</p>
 <p>BREAKING CHANGES</p>
 <ul>
 <li>Instead of having two separate functions that dealt with repeated measures (<code>subtitle_friedman_nonparametric</code>) and between-subjects (<code>subtitle_kw_nonparametric</code>), a single function <code>subtitle_anova_nonparametric</code> handles both of these designs with the <code>paired</code> argument determining which test is run.</li>
@@ -200,6 +199,7 @@
 <code>ggcoefstats</code> gains <code>bf.message</code> argument to display a caption containing results from Bayesian random-effects meta-analysis. It therefore gains a new dependency: <code>metaBMA</code>.</li>
 <li>
 <code>ggpiestats</code> and <code>ggcatstats</code> will now display Cramer’s <em>V</em> as effect size for one-sample proportion tests.</li>
+<li>All functions gain <code>stat.title</code> argument (<code>NULL</code> by default) that can be used to prefix the subtitle with a string of interest. This is possibly useful for specifying the details of the statistical test.</li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>

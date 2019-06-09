@@ -7,7 +7,7 @@ designs).}
 \usage{
 subtitle_t_parametric(data, x, y, paired = FALSE, effsize.type = "g",
   effsize.noncentral = TRUE, conf.level = 0.95, var.equal = FALSE,
-  k = 2, ...)
+  k = 2, stat.title = NULL, ...)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
@@ -45,6 +45,10 @@ or Hedge's \emph{g} (Default: \code{TRUE}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
+
+\item{stat.title}{A character describing the test being run, which will be
+added as a prefix in the subtitle. The default is \code{NULL}. An example of a
+\code{stat.title} argument will be something like \code{"Student's t-test: "}.}
 
 \item{...}{Additional arguments.}
 }

@@ -47,6 +47,7 @@ ggdotplotstats <- function(data,
                            xlab = NULL,
                            ylab = NULL,
                            title = NULL,
+                           stat.title = NULL,
                            subtitle = NULL,
                            caption = NULL,
                            type = "parametric",
@@ -151,6 +152,7 @@ ggdotplotstats <- function(data,
         conf.level = conf.level,
         nboot = nboot,
         k = k,
+        stat.title = stat.title,
         messages = messages
       )
   }
