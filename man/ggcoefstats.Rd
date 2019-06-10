@@ -51,7 +51,7 @@ dataframe of results from \code{broom::tidy}) or \code{"glance"} (object from
 \code{ggcoefstats} is a dataframe in which case the function wouldn't know what
 kind of model it is dealing with.}
 
-\item{scales}{scales on which to report the variables: for random effects, the choices are \sQuote{"sdcor"} (standard deviations and correlations: the default if \code{scales} is \code{NULL}) or \sQuote{"vcov"} (variances and covariances). \code{NA} means no transformation, appropriate e.g. for fixed effects; inverse-link transformations (exponentiation or logistic) are not yet implemented, but may be in the future.}
+\item{scales}{scales on which to report the variables: for random effects, the choices are \sQuote{"sdcor"} (standard deviations and correlations: the default if \code{scales} is \code{NULL}) or \sQuote{"vcov"} (variances and covariances). \code{NA} means no transformation, appropriate e.g. for fixed effects.}
 
 \item{conf.method}{Character describing method for computing confidence
 intervals (for more, see \code{?lme4::confint.merMod} and
@@ -62,8 +62,9 @@ are: \code{"profile"}, \code{"boot"}). For MCMC or brms fit model objects (Stan,
 JAGS, etc.), the default is \code{"quantile"}, while the only other options is
 \code{"HPDinterval"}.}
 
-\item{conf.type}{the type of confidence interval
-(see \code{\link[ordinal:confint.clm]{ordinal::confint.clm()}})}
+\item{conf.type}{Whether to use \code{"profile"} or \code{"Wald"} confidendence
+intervals, passed to the \code{type} argument of \code{\link[ordinal:confint.clm]{ordinal::confint.clm()}}.
+Defaults to \code{"profile"}.}
 
 \item{component}{Character specifying whether to tidy the survival or
 the longitudinal component of the model. Must be either \code{"survival"} or

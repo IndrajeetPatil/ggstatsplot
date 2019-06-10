@@ -2,31 +2,32 @@
 % Please edit documentation in R/helpers_ggcatstats.R
 \name{cramer_v_ci}
 \alias{cramer_v_ci}
-\title{Custom function to compute Cramer's V and confidence intervals for
-a chi squared goodness of fit test using non central parameters.}
+\title{Cramer's V and confidence intervals for a chi squared goodness of fit
+test using non central parameters.}
 \usage{
 cramer_v_ci(x, conf.level = 0.95, method = c("ncchisq", "ncchisqadj"),
   p = rep(1/length(x), length(x)))
 }
 \arguments{
-\item{x}{a table of counts}
+\item{x}{table of counts.}
 
-\item{conf.level}{confidence level of the interval around V}
+\item{conf.level}{confidence level of the interval around Cramer's \emph{V}.}
 
 \item{method}{string defining the method to calculate confidence intervals
-for Cramer's V. Either "ncchisq" (using noncentral chisquare), or
-the adjusted version "ncchisqadj" with degrees of freedom added to both
-the nuemrator and denominator.  Default is "ncchisq".}
+for Cramer's \emph{V}. Either \code{"ncchisq"} (using noncentral chisquare), or the
+adjusted version \code{"ncchisqadj"`` with degrees of freedom added to both the numerator and denominator.  Default is }"ncchisq"`.}
 
 \item{p}{(passed to \code{chisq.test}) a vector of probabilities of the same
-length of x. p is rescaled (if necessary and it is possible) to sum to 1.
-An error is given if any entry of p is negative. Default is equal counts
-per category (factor level)}
+length of \code{x}. \code{p} is rescaled (if necessary and it is possible) to sum to
+\enumerate{
+\item An error is given if any entry of \code{p} is negative. Default is equal
+counts per category (factor level).
+}}
 }
 \description{
-A customized version of CramerV from DescTools to allow
-for probabilities to be specified. Called from \code{helpers_ggpiestats_subtitle}
-after the appropriate \code{x} has been made into a \code{table}
+A customized version of \code{DescTools::CramerV} to allow for
+probabilities to be specified. Called from \code{helpers_ggpiestats_subtitle}
+after the appropriate \code{x} has been made into a \code{table}.
 }
 \examples{
 
@@ -39,11 +40,13 @@ x <- table(mtcars$am)
 ggstatsplot:::cramer_v_ci(x)
 
 # raise confidence intervals specify proportions
-ggstatsplot:::cramer_v_ci(x, conf.level = .999, p = c(.6, .4))
+ggstatsplot:::cramer_v_ci(x, conf.level = 0.999, p = c(0.6, 0.4))
 
 # notice order matters and it follows the levels of `x`
-# in this case am = 0 is before am = 1, so...
-ggstatsplot:::cramer_v_ci(x, conf.level = .9, p = c(4, 6))
+# in this case am = 0 is before am = 1
+ggstatsplot:::cramer_v_ci(x, conf.level = 0.90, p = c(4, 6))
+
+# function body
 }
 \author{
 Chuck Powell

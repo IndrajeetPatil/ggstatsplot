@@ -49,7 +49,8 @@ library(jmv)
 subtitle_onesample_proptest(
   data = as.data.frame(HairEyeColor),
   main = Eye,
-  counts = Freq
+  counts = Freq,
+  ratio = c(0.2, 0.2, 0.3, 0.3)
 )
 
 # in case of no variation, only sample size will be shown

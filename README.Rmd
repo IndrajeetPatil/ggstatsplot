@@ -517,7 +517,7 @@ ggstatsplot::ggscatterstats(
   xlab = "Movie budget (in million/ US$)", # label for x axis
   ylab = "IMDB rating", # label for y axis
   label.var = "title", # variable for labeling data points
-  label.expression = "rating < 5 & budget > 150", # expression that decides which points to label
+  label.expression = "rating < 5 & budget > 100", # expression that decides which points to label
   line.color = "yellow", # changing regression line color line
   title = "Movie budget and IMDB rating (action)", # title text for the plot
   caption = expression( # caption text for the plot
@@ -531,8 +531,6 @@ ggstatsplot::ggscatterstats(
   xalpha = 0.6, # transparency for x-axis marginal distribution
   yalpha = 0.6, # transparency for y-axis marginal distribution
   centrality.para = "median", # central tendency lines to be displayed
-  point.width.jitter = 0.2, # amount of horizontal jitter for data points
-  point.height.jitter = 0.4, # amount of vertical jitter for data points
   messages = FALSE # turn off messages and notes
 )
 ```
@@ -721,18 +719,18 @@ Following tests are carried out for each type of analyses-
 
 Type of data | Design | Test
 ----------- | ------------ | -------------------------
-Unpaired | $n \times p$ contingency table | Pearson's $\chi^2$ test
-Paired | $n \times p$ contingency table | McNemar's test
-Frequency | $n \times 1$ contingency table | Goodness of fit
+Unpaired | *n* X *p* contingency table | Pearson's chi-squared test
+Paired | *n* X *p*contingency table | McNemar's test
+Frequency | *n* X *1* contingency table | Goodness of fit
 
 Following effect sizes (and confidence intervals/CI) are available for each type
 of test-
 
 Type | Effect size | CI?
 --------------- | ------------------------- | --- 
-Pearson's $\chi^2$ test | Cramer's $V$ | <font color="green">Yes<font>
-McNemar's test | Cohen's $g$ | <font color="green">Yes<font>
-Goodness of fit | Cramer's $V$ | <font color="green">Yes<font>
+Pearson's chi-squared test | Cramer's *V* | <font color="green">Yes<font>
+McNemar's test | *g*  | <font color="green">Yes<font>
+Goodness of fit | *V*  | <font color="green">Yes<font>
 
 For more, see the `ggpiestats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>

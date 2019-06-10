@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Making text subtitle for Proportion Test (N Outcomes) — subtitle_onesample_proptest • ggstatsplot</title>
+<title>Cramer's V and confidence intervals for a chi squared goodness of fit
+test using non central parameters. — cramer_v_ci • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -40,9 +41,12 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Making text subtitle for Proportion Test (N Outcomes) — subtitle_onesample_proptest" />
+<meta property="og:title" content="Cramer's V and confidence intervals for a chi squared goodness of fit
+test using non central parameters. — cramer_v_ci" />
 
-<meta property="og:description" content="This is going to be a chi-squared Goodness of fit test." />
+<meta property="og:description" content="A customized version of DescTools::CramerV to allow for
+probabilities to be specified. Called from helpers_ggpiestats_subtitle
+after the appropriate x has been made into a table." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -172,96 +176,70 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Making text subtitle for Proportion Test (N Outcomes)</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggpiestats_subtitles.R'><code>R/helpers_ggpiestats_subtitles.R</code></a></small>
-    <div class="hidden name"><code>subtitle_onesample_proptest.Rd</code></div>
+    <h1>Cramer's V and confidence intervals for a chi squared goodness of fit
+test using non central parameters.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggcatstats.R'><code>R/helpers_ggcatstats.R</code></a></small>
+    <div class="hidden name"><code>cramer_v_ci.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This is going to be a chi-squared Goodness of fit test.</p>
+    <p>A customized version of <code><a href='https://rdrr.io/pkg/DescTools/man/CramerV.html'>DescTools::CramerV</a></code> to allow for
+probabilities to be specified. Called from <code>helpers_ggpiestats_subtitle</code>
+after the appropriate <code>x</code> has been made into a <code>table</code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>subtitle_onesample_proptest</span>(<span class='no'>data</span>, <span class='no'>main</span>, <span class='kw'>counts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ratio</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>cramer_v_ci</span>(<span class='no'>x</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"ncchisq"</span>, <span class='st'>"ncchisqadj"</span>),
+  <span class='kw'>p</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>/<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>x</span>), <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>x</span>)))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>A dataframe (or a tibble) from which variables specified are to
-be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
-    </tr>
-    <tr>
-      <th>main</th>
-      <td><p>The variable to use as the <strong>rows</strong> in the
-contingency table.</p></td>
-    </tr>
-    <tr>
-      <th>counts</th>
-      <td><p>A string naming a variable in data containing counts, or <code>NULL</code>
-if each row represents a single observation (Default).</p></td>
-    </tr>
-    <tr>
-      <th>ratio</th>
-      <td><p>A vector of numbers: the expected proportions for the proportion
-test. Default is <code>NULL</code>, which means if there are two levels <code>ratio = c(1,1)</code>, etc.</p></td>
+      <th>x</th>
+      <td><p>table of counts.</p></td>
     </tr>
     <tr>
       <th>conf.level</th>
-      <td><p>Scalar between 0 and 1. If unspecified, the defaults return
-<code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
+      <td><p>confidence level of the interval around Cramer's <em>V</em>.</p></td>
     </tr>
     <tr>
-      <th>stat.title</th>
-      <td><p>Title for the effect being investigated with the chi-square
-test. The default is <code>NULL</code>, i.e. no title will be added to describe the
-effect being shown. An example of a <code>stat.title</code> argument will be something
-like <code>"main x condition"</code> or <code>"interaction"</code>.</p></td>
+      <th>method</th>
+      <td><p>string defining the method to calculate confidence intervals
+for Cramer's <em>V</em>. Either <code>"ncchisq"</code> (using noncentral chisquare), or the
+adjusted version <code>"ncchisqadj"`` with degrees of freedom added to both the numerator and denominator.  Default is </code>"ncchisq"`.</p></td>
     </tr>
     <tr>
-      <th>legend.title</th>
-      <td><p>Title text for the legend.</p></td>
-    </tr>
-    <tr>
-      <th>k</th>
-      <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 2</code>).</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional arguments (currently ignored).</p></td>
+      <th>p</th>
+      <td><p>(passed to <code>chisq.test</code>) a vector of probabilities of the same
+length of <code>x</code>. <code>p</code> is rescaled (if necessary and it is possible) to sum to</p><ol>
+<li><p>An error is given if any entry of <code>p</code> is negative. Default is equal
+counts per category (factor level).</p></li>
+</ol></td>
     </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='co'># for reproducibility</span>
+<span class='co'># to get reproducible results from bootstrapping</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>jmv</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggstatsplot</span>)
 
-<span class='co'># with counts</span>
-<span class='fu'>subtitle_onesample_proptest</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='no'>HairEyeColor</span>),
-  <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>Eye</span>,
-  <span class='kw'>counts</span> <span class='kw'>=</span> <span class='no'>Freq</span>,
-  <span class='kw'>ratio</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.2</span>, <span class='fl'>0.2</span>, <span class='fl'>0.3</span>, <span class='fl'>0.3</span>)
-)</div><div class='output co'>#&gt; paste(NULL, italic(chi)^2, "(", "3", ") = ", "278.96", ", ", 
-#&gt;     italic("p"), " = ", "&lt; 0.001", ", ", italic("V")["Cramer"], 
-#&gt;     " = ", "0.40", ", CI"["95%"], " [", "0.35", ", ", "0.44", 
-#&gt;     "]", ", ", italic("n"), " = ", 592L)</div><div class='input'>
-<span class='co'># in case of no variation, only sample size will be shown</span>
-<span class='fu'>subtitle_onesample_proptest</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind.data.frame</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='st'>"a"</span>, <span class='fl'>10</span>)),
-  <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>x</span>
-)</div><div class='output co'>#&gt; Error in chisq.test(counts, p = expProps) : 
-#&gt;   'x' must at least have 2 elements
-#&gt; <span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Proportion test will not be run because it requires </span><span style='color: #BBBB00;'>x</span><span style='color: #0000BB;'> to have at least 
-#&gt; 2 levels with non-zero frequencies.</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("n"), " = ", 10L)</div></span></pre>
+<span class='co'># simple function call with the defaults</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span>(<span class='no'>mtcars</span>$<span class='no'>am</span>)
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/cramer_v_ci.html'>cramer_v_ci</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;  Cramer V    lwr.ci    upr.ci 
+#&gt; 0.1875000 0.0000000 0.5338788 </div><div class='input'>
+<span class='co'># raise confidence intervals specify proportions</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/cramer_v_ci.html'>cramer_v_ci</a></span>(<span class='no'>x</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.999</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.6</span>, <span class='fl'>0.4</span>))</div><div class='output co'>#&gt;   Cramer V     lwr.ci     upr.ci 
+#&gt; 0.01275776 0.00000000 0.54508636 </div><div class='input'>
+<span class='co'># notice order matters and it follows the levels of `x`</span>
+<span class='co'># in this case am = 0 is before am = 1</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/cramer_v_ci.html'>cramer_v_ci</a></span>(<span class='no'>x</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.90</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>4</span>, <span class='fl'>6</span>))</div><div class='output co'>#&gt;  Cramer V    lwr.ci    upr.ci 
+#&gt; 0.3954905 0.1003035 0.6862628 </div><div class='input'>
+# function body
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -272,7 +250,7 @@ like <code>"main x condition"</code> or <code>"interaction"</code>.</p></td>
     </ul>
 
     <h2>Author</h2>
-    <p>Indrajeet Patil</p>
+    <p>Chuck Powell</p>
   </div>
 </div>
 
