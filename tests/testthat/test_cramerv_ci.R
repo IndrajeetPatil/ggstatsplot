@@ -16,9 +16,9 @@ testthat::test_that(
 
     set.seed(123)
     res2 <- ggstatsplot:::cramer_v_ci(table(Titanic_full$Sex),
-                                      conf.level = .999,
-                                      method = "ncchisqadj",
-                                      p = c(.4,.6)
+      conf.level = .999,
+      method = "ncchisqadj",
+      p = c(.4, .6)
     )
 
     # tests
@@ -28,15 +28,14 @@ testthat::test_that(
 
     set.seed(123)
     res3 <- ggstatsplot:::cramer_v_ci(table(Titanic_full$Sex),
-                                      conf.level = .99,
-                                      method = "ncchisq",
-                                      p = c(.21,.79)
+      conf.level = .99,
+      method = "ncchisq",
+      p = c(.21, .79)
     )
 
     # tests
     testthat::expect_equal(res3[[1]], 0.008689, tolerance = 0.001)
     testthat::expect_equal(res3[[2]], 0.000000, tolerance = 0.001)
     testthat::expect_equal(res3[[3]], 0.063036, tolerance = 0.001)
-
   }
 )
