@@ -40,7 +40,7 @@ testthat::test_that(
     res3 <- ggstatsplot:::cramer_v_ci(table(Titanic_full$Sex),
       conf.level = .99,
       method = "ncchisq",
-      p = c(.21, .79)
+      p = c(.2135, .7865)
     )
 
     # tests
