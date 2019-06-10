@@ -20,6 +20,7 @@
 #'
 #' @importFrom dplyr mutate
 #' @importFrom rlang !! :=
+#' @importFrom stats pchisq
 #'
 #' @examples
 #' \dontrun{
@@ -119,4 +120,149 @@ cat_counter <- function(data, main, condition = NULL, ...) {
 
   # return the final dataframe
   return(df)
+}
+
+#' @title Custom function to compute Cramer's V and confidence intervals for
+#'   a chi squared goodness of fit test using non central parameters.
+#' @name cramer_v_ci
+#' @description A customized version of CramerV from DescTools to allow
+#'   for probabilities to be specified. Called from `helpers_ggpiestats_subtitle`
+#'   after the appropriate `x` has been made into a `table`
+#' @author Chuck Powell
+#'
+#' @param x a table of counts
+#' @param conf.level confidence level of the interval around V
+#' @param method string defining the method to calculate confidence intervals
+#'   for Cramer's V. Either "ncchisq" (using noncentral chisquare), or
+#'   the adjusted version "ncchisqadj" with degrees of freedom added to both
+#'   the nuemrator and denominator.  Default is "ncchisq".
+#' @param p (passed to `chisq.test`) a vector of probabilities of the same
+#'   length of x. p is rescaled (if necessary and it is possible) to sum to 1.
+#'   An error is given if any entry of p is negative. Default is equal counts
+#'   per category (factor level)
+#' @value a numeric vector with 3 elements for the estimate, the lower and
+#'   the upper confidence interval
+
+
+#'
+#' @examples
+#'
+#' # to get reproducible results from bootstrapping
+#' set.seed(123)
+#' library(ggstatsplot)
+#'
+#' # simple function call with the defaults
+#' x <- table(mtcars$am)
+#' ggstatsplot:::cramer_v_ci(x)
+#'
+#' # raise confidence intervals specify proportions
+#' ggstatsplot:::cramer_v_ci(x, conf.level = .999, p = c(.6, .4))
+#'
+#' # notice order matters and it follows the levels of `x`
+#' # in this case am = 0 is before am = 1, so...
+#' ggstatsplot:::cramer_v_ci(x, conf.level = .9, p = c(4, 6))
+cramer_v_ci <- function(x,
+                        conf.level = .95,
+                        method = c(
+                          "ncchisq",
+                          "ncchisqadj"
+                        ),
+                        p = rep(1 / length(x), length(x))) {
+
+  # Make sure we were input a table
+  if (!class(x) %in% c("table")) {
+    # turn off pairwise comparisons
+    stop("Input x must be a table")
+  }
+
+  # ------------------------- sub functions ----------------------------
+
+  lochi <- function(chival, df, conf) {
+    ulim <- 1 - (1 - conf) / 2
+    lc <- c(0.001, chival / 2, chival)
+    while (pchisq(chival, df, lc[1]) < ulim) {
+      if (pchisq(chival, df) < ulim) {
+        return(c(0, pchisq(chival, df)))
+      }
+      lc <- c(lc[1] / 4, lc[1], lc[3])
+    }
+    diff <- 1
+    while (diff > 1e-05) {
+      if (pchisq(chival, df, lc[2]) < ulim) {
+        lc <- c(lc[1], (lc[1] + lc[2]) / 2, lc[2])
+      } else {
+        lc <- c(lc[2], (lc[2] + lc[3]) / 2, lc[3])
+      }
+      diff <- abs(pchisq(chival, df, lc[2]) - ulim)
+      ucdf <- pchisq(chival, df, lc[2])
+    }
+    c(lc[2], ucdf)
+  }
+
+  hichi <- function(chival, df, conf) {
+    uc <- c(chival, 2 * chival, 3 * chival)
+    llim <- (1 - conf) / 2
+    while (pchisq(chival, df, uc[1]) < llim) {
+      uc <- c(uc[1] / 4, uc[1], uc[3])
+    }
+    while (pchisq(chival, df, uc[3]) > llim) {
+      uc <- c(uc[1], uc[3], uc[3] + chival)
+    }
+    diff <- 1
+    while (diff > 1e-05) {
+      if (pchisq(chival, df, uc[2]) < llim) {
+        uc <- c(uc[1], (uc[1] + uc[2]) / 2, uc[2])
+      } else {
+        uc <- c(uc[2], (uc[2] + uc[3]) / 2, uc[3])
+      }
+      diff <- abs(pchisq(chival, df, uc[2]) - llim)
+      lcdf <- pchisq(chival, df, uc[2])
+    }
+    c(uc[2], lcdf)
+  }
+
+  # --------------- initial chisq and V estimates ---------------------------
+
+  chisq.hat <- suppressWarnings(
+    chisq.test(x,
+      correct = FALSE,
+      p = p,
+      rescale.p = TRUE
+    )$statistic
+  )
+
+  df <- prod(dim(x) - 1)
+  n <- sum(x)
+  v <- as.numeric(sqrt(chisq.hat / (n * (min(dim(x)) - 1))))
+
+
+  # --------------- adjusted or unadjusted ------------------------
+
+  switch(
+    match.arg(method),
+    ncchisq = {
+      ci <- c(
+        lochi(chisq.hat, df, conf.level)[1],
+        hichi(chisq.hat, df, conf.level)[1]
+      )
+      ci <- unname(sqrt((ci) / (n * (min(dim(x)) - 1))))
+    },
+    ncchisqadj = {
+      ci <- c(
+        lochi(chisq.hat, df, conf.level)[1] + df,
+        hichi(chisq.hat, df, conf.level)[1] + df
+      )
+      ci <- unname(sqrt((ci) / (n * (min(dim(x)) - 1))))
+    }
+  )
+
+  results <- c(
+    `Cramer V` = v,
+    lwr.ci = max(0, ci[1]),
+    upr.ci = min(1, ci[2])
+  )
+
+  # --------------- return results ---------------------------
+
+  return(results)
 }
