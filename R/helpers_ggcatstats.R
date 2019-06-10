@@ -160,14 +160,13 @@ cat_counter <- function(data, main, condition = NULL, ...) {
 #' # notice order matters and it follows the levels of `x`
 #' # in this case am = 0 is before am = 1, so...
 #' ggstatsplot:::cramer_v_ci(x, conf.level = .9, p = c(4, 6))
-#'
-#'
-cramer_v_ci <- function (x,
-                      conf.level = .95,
-                      method = c("ncchisq",
-                                 "ncchisqadj"),
-                      p = rep(1/length(x), length(x))
-) {
+cramer_v_ci <- function(x,
+                        conf.level = .95,
+                        method = c(
+                          "ncchisq",
+                          "ncchisqadj"
+                        ),
+                        p = rep(1 / length(x), length(x))) {
 
   # Make sure we were input a table
   if (!class(x) %in% c("table")) {
@@ -178,18 +177,21 @@ cramer_v_ci <- function (x,
   # ------------------------- sub functions ----------------------------
 
   lochi <- function(chival, df, conf) {
-    ulim <- 1 - (1 - conf)/2
-    lc <- c(0.001, chival/2, chival)
+    ulim <- 1 - (1 - conf) / 2
+    lc <- c(0.001, chival / 2, chival)
     while (pchisq(chival, df, lc[1]) < ulim) {
-      if (pchisq(chival, df) < ulim)
+      if (pchisq(chival, df) < ulim) {
         return(c(0, pchisq(chival, df)))
-      lc <- c(lc[1]/4, lc[1], lc[3])
+      }
+      lc <- c(lc[1] / 4, lc[1], lc[3])
     }
     diff <- 1
     while (diff > 1e-05) {
-      if (pchisq(chival, df, lc[2]) < ulim)
-        lc <- c(lc[1], (lc[1] + lc[2])/2, lc[2])
-      else lc <- c(lc[2], (lc[2] + lc[3])/2, lc[3])
+      if (pchisq(chival, df, lc[2]) < ulim) {
+        lc <- c(lc[1], (lc[1] + lc[2]) / 2, lc[2])
+      } else {
+        lc <- c(lc[2], (lc[2] + lc[3]) / 2, lc[3])
+      }
       diff <- abs(pchisq(chival, df, lc[2]) - ulim)
       ucdf <- pchisq(chival, df, lc[2])
     }
@@ -198,18 +200,20 @@ cramer_v_ci <- function (x,
 
   hichi <- function(chival, df, conf) {
     uc <- c(chival, 2 * chival, 3 * chival)
-    llim <- (1 - conf)/2
+    llim <- (1 - conf) / 2
     while (pchisq(chival, df, uc[1]) < llim) {
-      uc <- c(uc[1]/4, uc[1], uc[3])
+      uc <- c(uc[1] / 4, uc[1], uc[3])
     }
     while (pchisq(chival, df, uc[3]) > llim) {
       uc <- c(uc[1], uc[3], uc[3] + chival)
     }
     diff <- 1
     while (diff > 1e-05) {
-      if (pchisq(chival, df, uc[2]) < llim)
-        uc <- c(uc[1], (uc[1] + uc[2])/2, uc[2])
-      else uc <- c(uc[2], (uc[2] + uc[3])/2, uc[3])
+      if (pchisq(chival, df, uc[2]) < llim) {
+        uc <- c(uc[1], (uc[1] + uc[2]) / 2, uc[2])
+      } else {
+        uc <- c(uc[2], (uc[2] + uc[3]) / 2, uc[3])
+      }
       diff <- abs(pchisq(chival, df, uc[2]) - llim)
       lcdf <- pchisq(chival, df, uc[2])
     }
@@ -220,13 +224,15 @@ cramer_v_ci <- function (x,
 
   chisq.hat <- suppressWarnings(
     chisq.test(x,
-               correct = FALSE,
-               p = p,
-               rescale.p = TRUE)$statistic)
+      correct = FALSE,
+      p = p,
+      rescale.p = TRUE
+    )$statistic
+  )
 
   df <- prod(dim(x) - 1)
   n <- sum(x)
-  v <- as.numeric(sqrt(chisq.hat/(n * (min(dim(x)) - 1))))
+  v <- as.numeric(sqrt(chisq.hat / (n * (min(dim(x)) - 1))))
 
 
   # --------------- adjusted or unadjusted ------------------------
@@ -234,13 +240,17 @@ cramer_v_ci <- function (x,
   switch(
     match.arg(method),
     ncchisq = {
-      ci <- c(lochi(chisq.hat, df, conf.level)[1],
-              hichi(chisq.hat, df, conf.level)[1])
+      ci <- c(
+        lochi(chisq.hat, df, conf.level)[1],
+        hichi(chisq.hat, df, conf.level)[1]
+      )
       ci <- unname(sqrt((ci) / (n * (min(dim(x)) - 1))))
     },
     ncchisqadj = {
-      ci <- c(lochi(chisq.hat, df, conf.level)[1] + df,
-              hichi(chisq.hat, df, conf.level)[1] + df)
+      ci <- c(
+        lochi(chisq.hat, df, conf.level)[1] + df,
+        hichi(chisq.hat, df, conf.level)[1] + df
+      )
       ci <- unname(sqrt((ci) / (n * (min(dim(x)) - 1))))
     }
   )
@@ -255,4 +265,3 @@ cramer_v_ci <- function (x,
 
   return(results)
 }
-
