@@ -5,6 +5,16 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
 
+    testthat::test_that(
+      desc = "error when not a table",
+      code = {
+        testthat::expect_error(
+          ggstatsplot:::cramer_v_ci(Titanic_full$Class)
+        )
+      }
+    )
+
+
     set.seed(123)
     library(ggstatsplot)
     res1 <- ggstatsplot:::cramer_v_ci(table(Titanic_full$Class))
@@ -34,8 +44,8 @@ testthat::test_that(
     )
 
     # tests
-    testthat::expect_equal(res3[[1]], 0.008689, tolerance = 0.001)
-    testthat::expect_equal(res3[[2]], 0.000000, tolerance = 0.001)
-    testthat::expect_equal(res3[[3]], 0.063036, tolerance = 0.001)
+    testthat:::expect_equal(res3[[1]], 0.008689, tolerance = 0.001)
+    testthat:::expect_equal(res3[[2]], 0.000000, tolerance = 0.001)
+    testthat:::expect_equal(res3[[3]], 0.063036, tolerance = 0.001)
   }
 )
