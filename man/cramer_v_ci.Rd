@@ -44,8 +44,6 @@ ggstatsplot:::cramer_v_ci(x, conf.level = .999, p = c(.6, .4))
 # notice order matters and it follows the levels of `x`
 # in this case am = 0 is before am = 1, so...
 ggstatsplot:::cramer_v_ci(x, conf.level = .9, p = c(4, 6))
-
-
 }
 \author{
 Chuck Powell
