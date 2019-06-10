@@ -5,9 +5,9 @@
 \title{Histogram for distribution of a numeric variable}
 \usage{
 gghistostats(data = NULL, x, binwidth = NULL, bar.measure = "count",
-  xlab = NULL, title = NULL, subtitle = NULL, caption = NULL,
-  type = "parametric", test.value = 0, bf.prior = 0.707,
-  bf.message = TRUE, robust.estimator = "onestep",
+  xlab = NULL, stat.title = NULL, title = NULL, subtitle = NULL,
+  caption = NULL, type = "parametric", test.value = 0,
+  bf.prior = 0.707, bf.message = TRUE, robust.estimator = "onestep",
   effsize.type = "g", effsize.noncentral = TRUE, conf.level = 0.95,
   nboot = 100, k = 2, ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE, fill.gradient = FALSE,
@@ -43,6 +43,10 @@ proportion in the same plot.}
 
 \item{xlab}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
 variable names for \code{x} and \code{y} will be used.}
+
+\item{stat.title}{A character describing the test being run, which will be
+added as a prefix in the subtitle. The default is \code{NULL}. An example of a
+\code{stat.title} argument will be something like \code{"Student's t-test: "}.}
 
 \item{title}{The text for the plot title.}
 

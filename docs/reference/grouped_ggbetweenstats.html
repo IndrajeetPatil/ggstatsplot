@@ -195,12 +195,13 @@ grouping variable.</p>
   <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"unbiased"</span>, <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>effsize.noncentral</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sample.size.label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
-  <span class='kw'>sort</span> <span class='kw'>=</span> <span class='st'>"none"</span>, <span class='kw'>sort.fun</span> <span class='kw'>=</span> <span class='no'>mean</span>, <span class='kw'>axes.range.restrict</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>mean.label.size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>mean.label.fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>,
-  <span class='kw'>mean.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>notch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>notchwidth</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>, <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>sample.size.label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>sort</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
+  <span class='kw'>sort.fun</span> <span class='kw'>=</span> <span class='no'>mean</span>, <span class='kw'>axes.range.restrict</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>mean.label.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>mean.label.fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>, <span class='kw'>mean.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>notch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>notchwidth</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>,
+  <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>outlier.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>outlier.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>outlier.shape</span> <span class='kw'>=</span> <span class='fl'>19</span>, <span class='kw'>outlier.coef</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>mean.plotting</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>mean.ci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>mean.size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>mean.color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>,
@@ -331,6 +332,12 @@ variable names for <code>x</code> and <code>y</code> will be used.</p></td>
       <th>subtitle</th>
       <td><p>The text for the plot subtitle. Will work only if
 <code>results.subtitle = FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>stat.title</th>
+      <td><p>A character describing the test being run, which will be
+added as a prefix in the subtitle. The default is <code>NULL</code>. An example of a
+<code>stat.title</code> argument will be something like <code>"Student's t-test: "</code>.</p></td>
     </tr>
     <tr>
       <th>caption</th>

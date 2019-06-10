@@ -8,7 +8,7 @@ robust equivalents.}
 subtitle_t_onesample(data, x, type = "parametric", test.value = 0,
   bf.prior = 0.707, robust.estimator = "onestep", effsize.type = "g",
   effsize.noncentral = TRUE, conf.level = 0.95, conf.type = "norm",
-  nboot = 100, k = 2, messages = TRUE, ...)
+  nboot = 100, k = 2, stat.title = NULL, messages = TRUE, ...)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
@@ -51,6 +51,10 @@ for the effect size (Default: \code{100}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
+
+\item{stat.title}{A character describing the test being run, which will be
+added as a prefix in the subtitle. The default is \code{NULL}. An example of a
+\code{stat.title} argument will be something like \code{"Student's t-test: "}.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

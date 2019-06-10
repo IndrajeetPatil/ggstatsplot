@@ -12,19 +12,20 @@ ggbetweenstats(data, x, y, plot.type = "boxviolin",
   partial = TRUE, effsize.noncentral = TRUE, bf.prior = 0.707,
   bf.message = TRUE, results.subtitle = TRUE, xlab = NULL,
   ylab = NULL, caption = NULL, title = NULL, subtitle = NULL,
-  sample.size.label = TRUE, k = 2, var.equal = FALSE,
-  conf.level = 0.95, nboot = 100, tr = 0.1, sort = "none",
-  sort.fun = mean, axes.range.restrict = FALSE, mean.label.size = 3,
-  mean.label.fontface = "bold", mean.label.color = "black",
-  notch = FALSE, notchwidth = 0.5, linetype = "solid",
-  outlier.tagging = FALSE, outlier.shape = 19, outlier.label = NULL,
-  outlier.label.color = "black", outlier.color = "black",
-  outlier.coef = 1.5, mean.plotting = TRUE, mean.ci = FALSE,
-  mean.size = 5, mean.color = "darkred", point.jitter.width = NULL,
-  point.jitter.height = 0, point.dodge.width = 0.6,
-  ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
-  package = "RColorBrewer", palette = "Dark2", direction = 1,
-  ggplot.component = NULL, messages = TRUE)
+  stat.title = NULL, sample.size.label = TRUE, k = 2,
+  var.equal = FALSE, conf.level = 0.95, nboot = 100, tr = 0.1,
+  sort = "none", sort.fun = mean, axes.range.restrict = FALSE,
+  mean.label.size = 3, mean.label.fontface = "bold",
+  mean.label.color = "black", notch = FALSE, notchwidth = 0.5,
+  linetype = "solid", outlier.tagging = FALSE, outlier.shape = 19,
+  outlier.label = NULL, outlier.label.color = "black",
+  outlier.color = "black", outlier.coef = 1.5, mean.plotting = TRUE,
+  mean.ci = FALSE, mean.size = 5, mean.color = "darkred",
+  point.jitter.width = NULL, point.jitter.height = 0,
+  point.dodge.width = 0.6, ggtheme = ggplot2::theme_bw(),
+  ggstatsplot.layer = TRUE, package = "RColorBrewer",
+  palette = "Dark2", direction = 1, ggplot.component = NULL,
+  messages = TRUE)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
@@ -99,6 +100,10 @@ variable names for \code{x} and \code{y} will be used.}
 
 \item{subtitle}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
+
+\item{stat.title}{A character describing the test being run, which will be
+added as a prefix in the subtitle. The default is \code{NULL}. An example of a
+\code{stat.title} argument will be something like \code{"Student's t-test: "}.}
 
 \item{sample.size.label}{Logical that decides whether sample size information
 should be displayed for each level of the grouping variable \code{x} (Default:

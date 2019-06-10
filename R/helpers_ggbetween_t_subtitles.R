@@ -8,6 +8,7 @@
 #'   or Hedge's *g* (Default: `TRUE`).
 #' @inheritParams subtitle_anova_parametric
 #' @inheritParams stats::t.test
+#' @inheritParams subtitle_template
 #'
 #' @importFrom dplyr select mutate_at
 #' @importFrom rlang !! enquo
@@ -73,6 +74,7 @@ subtitle_t_parametric <- function(data,
                                   conf.level = 0.95,
                                   var.equal = FALSE,
                                   k = 2,
+                                  stat.title = NULL,
                                   ...) {
 
   # creating a dataframe
@@ -161,7 +163,7 @@ subtitle_t_parametric <- function(data,
   # preparing subtitle
   subtitle <- subtitle_template(
     no.parameters = 1L,
-    stat.title = NULL,
+    stat.title = stat.title,
     statistic.text = quote(italic("t")),
     statistic = stats_df$statistic[[1]],
     parameter = stats_df$parameter[[1]],
@@ -282,6 +284,7 @@ subtitle_mann_nonparametric <- function(data,
                                         conf.level = 0.95,
                                         conf.type = "norm",
                                         nboot = 100,
+                                        stat.title = NULL,
                                         messages = TRUE,
                                         ...) {
 
@@ -375,7 +378,7 @@ subtitle_mann_nonparametric <- function(data,
     no.parameters = 0L,
     parameter = NULL,
     parameter2 = NULL,
-    stat.title = NULL,
+    stat.title = stat.title,
     statistic.text = statistic.text,
     statistic = log(stats_df$statistic[[1]]),
     p.value = stats_df$p.value[[1]],
@@ -454,6 +457,7 @@ subtitle_t_robust <- function(data,
                               conf.level = 0.95,
                               conf.type = "norm",
                               k = 2,
+                              stat.title = NULL,
                               messages = TRUE,
                               ...) {
 
@@ -507,7 +511,7 @@ subtitle_t_robust <- function(data,
     # preparing subtitle
     subtitle <- subtitle_template(
       no.parameters = 1L,
-      stat.title = NULL,
+      stat.title = stat.title,
       statistic.text = quote(italic("t")),
       statistic = stats_df$test[[1]],
       parameter = stats_df$df[[1]],

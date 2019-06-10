@@ -8,11 +8,11 @@
 \usage{
 subtitle_mann_nonparametric(data, x, y, paired = FALSE, k = 2,
   conf.level = 0.95, conf.type = "norm", nboot = 100,
-  messages = TRUE, ...)
+  stat.title = NULL, messages = TRUE, ...)
 
 subtitle_t_nonparametric(data, x, y, paired = FALSE, k = 2,
   conf.level = 0.95, conf.type = "norm", nboot = 100,
-  messages = TRUE, ...)
+  stat.title = NULL, messages = TRUE, ...)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
@@ -40,6 +40,10 @@ intervals required. The value should be any subset of the values \code{"norm"},
 
 \item{nboot}{Number of bootstrap samples for computing confidence interval
 for the effect size (Default: \code{100}).}
+
+\item{stat.title}{A character describing the test being run, which will be
+added as a prefix in the subtitle. The default is \code{NULL}. An example of a
+\code{stat.title} argument will be something like \code{"Student's t-test: "}.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

@@ -141,6 +141,7 @@ ggscatterstats <- function(data,
                            ysize = 0.7,
                            centrality.para = NULL,
                            results.subtitle = TRUE,
+                           stat.title = NULL,
                            title = NULL,
                            subtitle = NULL,
                            caption = NULL,
@@ -262,8 +263,9 @@ ggscatterstats <- function(data,
       type = type,
       conf.level = conf.level,
       conf.type = "norm",
-      messages = messages,
-      k = k
+      k = k,
+      stat.title = stat.title,
+      messages = messages
     )
 
     # preparing the BF message for null hypothesis support

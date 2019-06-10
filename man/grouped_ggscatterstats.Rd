@@ -16,10 +16,11 @@ grouped_ggscatterstats(data, x, y, type = "pearson", conf.level = 0.95,
   "x", "y"), package = "wesanderson", palette = "Royal1",
   direction = 1, xfill = "#009E73", yfill = "#D55E00", xalpha = 1,
   yalpha = 1, xsize = 0.7, ysize = 0.7, centrality.para = NULL,
-  results.subtitle = TRUE, caption = NULL, subtitle = NULL,
-  nboot = 100, beta = 0.1, k = 2, axes.range.restrict = FALSE,
-  ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
-  ggplot.component = NULL, messages = TRUE, ...)
+  results.subtitle = TRUE, stat.title = NULL, caption = NULL,
+  subtitle = NULL, nboot = 100, beta = 0.1, k = 2,
+  axes.range.restrict = FALSE, ggtheme = ggplot2::theme_bw(),
+  ggstatsplot.layer = TRUE, ggplot.component = NULL, messages = TRUE,
+  ...)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
@@ -165,6 +166,10 @@ or \code{"median"}) is to be displayed as vertical (for \code{x}) and horizontal
 \item{results.subtitle}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}
+
+\item{stat.title}{A character describing the test being run, which will be
+added as a prefix in the subtitle. The default is \code{NULL}. An example of a
+\code{stat.title} argument will be something like \code{"Student's t-test: "}.}
 
 \item{caption}{The text for the plot caption.}
 

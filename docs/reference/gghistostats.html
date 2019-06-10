@@ -186,9 +186,9 @@ in the plot as a subtitle.</p>
     </div>
 
     <pre class="usage"><span class='fu'>gghistostats</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>x</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>bar.measure</span> <span class='kw'>=</span> <span class='st'>"count"</span>,
-  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>, <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
-  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>robust.estimator</span> <span class='kw'>=</span> <span class='st'>"onestep"</span>,
+  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>, <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>robust.estimator</span> <span class='kw'>=</span> <span class='st'>"onestep"</span>,
   <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"g"</span>, <span class='kw'>effsize.noncentral</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/ggtheme.html'>theme_bw</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>fill.gradient</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
@@ -236,6 +236,12 @@ proportion in the same plot.</p></td>
       <th>xlab</th>
       <td><p>Labels for <code>x</code> and <code>y</code> axis variables. If <code>NULL</code> (default),
 variable names for <code>x</code> and <code>y</code> will be used.</p></td>
+    </tr>
+    <tr>
+      <th>stat.title</th>
+      <td><p>A character describing the test being run, which will be
+added as a prefix in the subtitle. The default is <code>NULL</code>. An example of a
+<code>stat.title</code> argument will be something like <code>"Student's t-test: "</code>.</p></td>
     </tr>
     <tr>
       <th>title</th>
@@ -448,7 +454,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>ToothGrowth</span>$<span class='no'>len</span>,
   <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Tooth length"</span>,
   <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='st'>"median"</span>
-)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: full precision may not have been achieved in 'pnt{final}'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: full precision may not have been achieved in 'pnt{final}'</span></div><div class='img'><img src='gghistostats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='img'><img src='gghistostats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># a detailed function call</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html'>gghistostats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
@@ -461,7 +467,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>0.10</span>,
   <span class='kw'>bar.fill</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>
-)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: full precision may not have been achieved in 'pnt{final}'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: full precision may not have been achieved in 'pnt{final}'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: full precision may not have been achieved in 'pnt{final}'</span></div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Shapiro-Wilk Normality Test for </span><span style='color: #BBBB00;'>Sepal.Length</span><span style='color: #0000BB;'> : p-value = </span><span style='color: #BBBB00;'>0.010</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='gghistostats-2.png' alt='' width='700' height='433' /></div></span></pre>
+)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Shapiro-Wilk Normality Test for </span><span style='color: #BBBB00;'>Sepal.Length</span><span style='color: #0000BB;'> : p-value = </span><span style='color: #BBBB00;'>0.010</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='gghistostats-2.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

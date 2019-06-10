@@ -60,7 +60,7 @@ normality_message <- function(x,
     if (output == "message") {
 
       # exact message
-      base::message(cat(
+      message(cat(
         crayon::green("Note: "),
         crayon::blue(
           "Shapiro-Wilk Normality Test for",
@@ -144,7 +144,7 @@ bartlett_message <- function(data,
   # preparing message
   if (output == "message") {
     # display homogeneity of variances test result as a message
-    base::message(cat(
+    message(cat(
       crayon::green("Note: "),
       crayon::blue(
         "Bartlett's test for homogeneity of variances for factor",
@@ -176,7 +176,7 @@ bartlett_message <- function(data,
 
 # function body
 grouped_message <- function() {
-  base::message(cat(
+  message(cat(
     crayon::red("Warning: "),
     crayon::blue("Individual plots in the combined `grouped_` plot\n"),
     crayon::blue("can't be further modified with `ggplot2` functions.\n"),
@@ -225,7 +225,7 @@ palette_message <- function(package,
   # if insufficient number of colors are available in a given palette
   if (palette_df$length[[1]] < min_length) {
     # message to display
-    base::message(cat(
+    message(cat(
       crayon::red("Warning: "),
       crayon::blue(
         "No. of factor levels is greater than specified palette color count.\n"
@@ -249,7 +249,7 @@ palette_message <- function(package,
 
 # function body
 ggcorrmat_matrix_message <- function() {
-  base::message(
+  message(
     cat(
       crayon::green("Note: "),
       crayon::blue("In the correlation matrix,\n"),
@@ -274,7 +274,7 @@ ggcorrmat_matrix_message <- function() {
 
 # displaying message about bootstrap
 effsize_ci_message <- function(nboot = 100, conf.level = 0.95) {
-  base::message(cat(
+  message(cat(
     crayon::green("Note: "),
     crayon::blue(
       crayon::yellow(paste(conf.level * 100, "%", sep = "")),
@@ -304,7 +304,7 @@ effsize_ci_message <- function(nboot = 100, conf.level = 0.95) {
 # function body
 proptest_message <- function(main, condition) {
   # tell the user what these results are
-  base::message(cat(
+  message(cat(
     crayon::green("Note: "),
     crayon::blue("Results from one-sample proportion tests for each\n"),
     crayon::blue("      level of the variable "),

@@ -27,11 +27,12 @@
 #'   `quote(italic("d"))`).
 #' @param effsize.estimate,effsize.LL,effsize.UL The estimated value of the
 #'   effect size, its lower bound, and its upper.
-#' @param k Number of decimal places to display (default: `3`).
+#' @param k Number of digits after decimal point (should be an integer)
+#'   (Default: `k = 2`).
 #' @param k.parameter,k.parameter2 Number of decimal places to display for the
 #'   parameters (default: `0`).
 #' @param n An integer specifying the sample size used for the test.
-#' @inheritParams ggbetweenstats
+#' @inheritParams t1way_ci
 #'
 #' @examples
 #' set.seed(123)
@@ -68,7 +69,7 @@ subtitle_template <- function(no.parameters,
                               effsize.UL,
                               n,
                               conf.level = 0.95,
-                              k = 3L,
+                              k = 2L,
                               k.parameter = 0L,
                               k.parameter2 = 0L) {
   # ------------------ statistic with 0 degrees of freedom --------------------
