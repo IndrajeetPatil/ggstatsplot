@@ -36,16 +36,17 @@ testthat::test_that(
     testthat::expect_equal(res2[[2]], 0.31112, tolerance = 0.001)
     testthat::expect_equal(res2[[3]], 0.45123, tolerance = 0.001)
 
-    set.seed(123)
-    res3 <- ggstatsplot:::cramer_v_ci(table(Titanic_full$Sex),
-      conf.level = .99,
-      method = "ncchisq",
-      p = c(.2135, .7865)
-    )
-
-    # tests
-    testthat:::expect_equal(res3[[1]], 0.008689, tolerance = 0.001)
-    testthat:::expect_equal(res3[[2]], 0.000000, tolerance = 0.001)
-    testthat:::expect_equal(res3[[3]], 0.063036, tolerance = 0.001)
+# Too long for CRAN
+#    set.seed(123)
+#    res3 <- ggstatsplot:::cramer_v_ci(table(Titanic_full$Sex),
+#      conf.level = .99,
+#      method = "ncchisq",
+#      p = c(.2135, .7865)
+#    )
+#
+#    # tests
+#    testthat:::expect_equal(res3[[1]], 0.008689, tolerance = 0.001)
+#    testthat:::expect_equal(res3[[2]], 0.000000, tolerance = 0.001)
+#    testthat:::expect_equal(res3[[3]], 0.063036, tolerance = 0.001)
   }
 )

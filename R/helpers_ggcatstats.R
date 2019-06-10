@@ -20,6 +20,7 @@
 #'
 #' @importFrom dplyr mutate
 #' @importFrom rlang !! :=
+#' @importFrom stats pchisq
 #'
 #' @examples
 #' \dontrun{
