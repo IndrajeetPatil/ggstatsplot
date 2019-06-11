@@ -75,7 +75,7 @@ variable names for \code{x} and \code{y} will be used.}
 
 \item{method}{Smoothing method (function) to use, accepts either a character vector,
 e.g. \code{"auto"}, \code{"lm"}, \code{"glm"}, \code{"gam"}, \code{"loess"} or a function, e.g.
-\code{MASS::rlm} or \code{mgcv::gam}, \code{base::lm}, or \code{base::loess}.
+\code{MASS::rlm} or \code{mgcv::gam}, \code{stats::lm}, or \code{stats::loess}.
 
 For \code{method = "auto"} the smoothing method is chosen based on the
 size of the largest group (across all panels). \code{\link[=loess]{loess()}} is

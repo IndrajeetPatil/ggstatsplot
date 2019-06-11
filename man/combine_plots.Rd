@@ -31,7 +31,7 @@ Must be specified if any of the graphs are complex (e.g. faceted) and alignment 
   \item{rel_widths}{(optional) Numerical vector of relative columns widths. For example, in a two-column
 grid, \code{rel_widths = c(2, 1)} would make the first column twice as wide as the
 second column.}
-  \item{rel_heights}{(optional) Numerical vector of relative columns heights. Works just as
+  \item{rel_heights}{(optional) Numerical vector of relative rows heights. Works just as
 \code{rel_widths} does, but for rows rather than columns.}
   \item{labels}{(optional) List of labels to be added to the plots. You can also set \code{labels="AUTO"} to
 auto-generate upper-case labels or \code{labels="auto"} to auto-generate lower-case labels.}
@@ -52,6 +52,7 @@ down on the plot canvas. Can be a single value (applied to all labels) or a vect
   \item{scale}{Individual number or vector of numbers greater than 0. Enables you to scale the size of all or
 select plots. Usually it's preferable to set margins instead of using \code{scale}, but \code{scale} can
 sometimes be more powerful.}
+  \item{greedy}{(optional) How should margins be adjusted during alignment. See \code{\link[=align_plots]{align_plots()}} for details.}
   \item{cols}{Deprecated. Use \code{ncol}.}
   \item{rows}{Deprecated. Use \code{nrow}.}
 }}

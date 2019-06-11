@@ -342,8 +342,8 @@ testthat::test_that(
 
     # checking comparison groups and labels
     testthat::expect_equal(data_dims, c(3L, 6L))
-    testthat::expect_identical(dat$group1, c("6", "8", "8"))
-    testthat::expect_identical(dat$group2, c("4", "4", "6"))
+    testthat::expect_identical(dat$group1, c("4", "4", "6"))
+    testthat::expect_identical(dat$group2, c("6", "8", "8"))
     testthat::expect_identical(dat$significance, c("*", "***", "*"))
     testthat::expect_identical(
       p$labels$caption,
@@ -369,7 +369,7 @@ testthat::test_that(
       c(5.559600, 5.852925, 6.146250),
       tolerance = 0.001
     )
-    testthat::expect_equal(ggsignif_stat$comparisons[[2]], c("8", "4"))
+    testthat::expect_equal(ggsignif_stat$comparisons[[2]], c("4", "8"))
     testthat::expect_equal(
       ggsignif_stat$annotations,
       c(
@@ -384,15 +384,15 @@ testthat::test_that(
     testthat::expect_identical(
       as.character(data_signif$group),
       c(
-        "6-4-1",
-        "6-4-1",
-        "6-4-1",
-        "8-4-2",
-        "8-4-2",
-        "8-4-2",
-        "8-6-3",
-        "8-6-3",
-        "8-6-3"
+        "4-6-1",
+        "4-6-1",
+        "4-6-1",
+        "4-8-2",
+        "4-8-2",
+        "4-8-2",
+        "6-8-3",
+        "6-8-3",
+        "6-8-3"
       )
     )
   }

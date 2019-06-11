@@ -117,8 +117,8 @@ testthat::test_that(
       tolerance = 0.001
     )
 
-    testthat::expect_equal(df5$group1, c("PG-13", "R", "R"))
-    testthat::expect_equal(df5$group2, c("PG", "PG", "PG-13"))
+    testthat::expect_equal(df5$group1, c("PG", "PG", "PG-13"))
+    testthat::expect_equal(df5$group2, c("PG-13", "R", "R"))
     testthat::expect_equal(df5$mean.difference,
       c(0.1042746, 0.3234094, 0.2191348),
       tolerance = 0.001
@@ -503,7 +503,7 @@ testthat::test_that(
     )
 
     testthat::expect_equal(dim(df), c(3L, 6L))
-    testthat::expect_equal(df$group1, c("PG-13", "R", "R"))
-    testthat::expect_equal(df$group2, c("PG", "PG", "PG-13"))
+    testthat::expect_equal(df$group1, c("PG", "PG", "PG-13"))
+    testthat::expect_equal(df$group2, c("PG-13", "R", "R"))
   }
 )

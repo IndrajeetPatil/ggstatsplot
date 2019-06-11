@@ -279,7 +279,8 @@ subtitle_contingency_tab <- function(data,
 #' subtitle_onesample_proptest(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,
-#'   counts = Freq
+#'   counts = Freq,
+#'   ratio = c(0.2, 0.2, 0.3, 0.3)
 #' )
 #'
 #' # in case of no variation, only sample size will be shown
@@ -336,6 +337,11 @@ subtitle_onesample_proptest <- function(data,
   # sample size
   sample_size <- nrow(data)
 
+  # ratio
+  if (is.null(ratio)) {
+    ratio <- rep(1 / length(table(data$main)), length(table(data$main)))
+  }
+
   # conducting proportion test with jmv::propTestN()
   stats_df <-
     jmv::propTestN(
@@ -369,14 +375,17 @@ subtitle_onesample_proptest <- function(data,
     ))
   } else {
     # computing Cramer's V as effect size
-    effsize_oneprop <- DescTools::CramerV(
-      x = table(data$main),
-      conf.level = conf.level,
-      method = "ncchisq"
-    )
+    effsize_oneprop <-
+      cramer_v_ci(
+        x = table(data$main),
+        conf.level = conf.level,
+        method = "ncchisq",
+        p = ratio
+      )
 
     # formatting it into a dataframe
-    effsize_df <- as.data.frame(x = effsize_oneprop) %>%
+    effsize_df <-
+      as.data.frame(x = effsize_oneprop) %>%
       tibble::rownames_to_column(.data = ., var = "term") %>%
       tibble::as_tibble(x = .) %>%
       tidyr::spread(data = ., key = "term", value = "effsize_oneprop") %>%

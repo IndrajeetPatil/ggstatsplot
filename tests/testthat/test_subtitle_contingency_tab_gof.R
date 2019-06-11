@@ -109,10 +109,10 @@ testthat::test_that(
   }
 )
 
-# dataframe with NA --------------------------------------------------------
+# dataframe with NA  and with ratio ----------------------------------------
 
 testthat::test_that(
-  desc = "works with dataframes with NAs",
+  desc = "works with dataframes with NAs and with ratio",
   code = {
     testthat::skip_on_cran()
 
@@ -121,7 +121,8 @@ testthat::test_that(
     using_function <-
       ggstatsplot::subtitle_onesample_proptest(
         data = ggplot2::msleep,
-        main = vore
+        main = vore,
+        ratio = c(0.2, 0.2, 0.3, 0.3)
       )
 
     # expected
@@ -133,7 +134,7 @@ testthat::test_that(
           "(",
           "3",
           ") = ",
-          "19.26",
+          "33.76",
           ", ",
           italic("p"),
           " = ",
@@ -141,12 +142,12 @@ testthat::test_that(
           ", ",
           italic("V")["Cramer"],
           " = ",
-          "0.29",
+          "0.38",
           ", CI"["95%"],
           " [",
-          "0.14",
+          "0.24",
           ", ",
-          "0.41",
+          "0.50",
           "]",
           ", ",
           italic("n"),

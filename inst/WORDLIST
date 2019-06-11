@@ -21,6 +21,7 @@ Camilli
 cex
 changedate
 chartjunk
+chisquare
 Cochrane
 codecov
 Codecov
@@ -34,6 +35,7 @@ Covrpage
 Cramer
 Cramer's
 Cramer'V
+Cramer’s
 cran
 Crichtlow
 customizable
@@ -123,6 +125,7 @@ MPAA
 msleep
 multiway
 na
+ncchisq
 nd
 NHST
 noncentral
@@ -147,7 +150,6 @@ popu
 pre
 preferrred
 priori
-PRs
 pseudolikelihood
 PsyArXiv
 purrr
@@ -157,6 +159,7 @@ Rdoc
 readme
 README
 reproducibility
+rescaled
 rlbt
 Royston
 rpubs

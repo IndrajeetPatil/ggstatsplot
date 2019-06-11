@@ -34,7 +34,7 @@ mean_labeller <- function(data,
     dplyr::mutate_at(
       .tbl = .,
       .vars = "x",
-      .funs = ~ base::droplevels(x = base::as.factor(x = .))
+      .funs = ~ droplevels(x = as.factor(x = .))
     ) %>%
     tibble::as_tibble(x = .)
 
@@ -282,7 +282,7 @@ outlier_df <- function(data,
     dplyr::group_by(.data = ., !!rlang::enquo(x)) %>%
     dplyr::mutate(
       .data = .,
-      isanoutlier = base::ifelse(
+      isanoutlier = ifelse(
         test = check_outlier(
           var = !!rlang::enquo(y),
           coef = outlier.coef
@@ -293,7 +293,7 @@ outlier_df <- function(data,
     ) %>%
     dplyr::mutate(
       .data = .,
-      outlier = base::ifelse(
+      outlier = ifelse(
         test = isanoutlier,
         yes = !!rlang::enquo(outlier.label),
         no = NA

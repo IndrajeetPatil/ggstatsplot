@@ -215,7 +215,7 @@ Must be specified if any of the graphs are complex (e.g. faceted) and alignment 
   <dt>rel_widths</dt><dd><p>(optional) Numerical vector of relative columns widths. For example, in a two-column
 grid, <code>rel_widths = c(2, 1)</code> would make the first column twice as wide as the
 second column.</p></dd>
-  <dt>rel_heights</dt><dd><p>(optional) Numerical vector of relative columns heights. Works just as
+  <dt>rel_heights</dt><dd><p>(optional) Numerical vector of relative rows heights. Works just as
 <code>rel_widths</code> does, but for rows rather than columns.</p></dd>
   <dt>labels</dt><dd><p>(optional) List of labels to be added to the plots. You can also set <code>labels="AUTO"</code> to
 auto-generate upper-case labels or <code>labels="auto"</code> to auto-generate lower-case labels.</p></dd>
@@ -236,6 +236,7 @@ down on the plot canvas. Can be a single value (applied to all labels) or a vect
   <dt>scale</dt><dd><p>Individual number or vector of numbers greater than 0. Enables you to scale the size of all or
 select plots. Usually it's preferable to set margins instead of using <code>scale</code>, but <code>scale</code> can
 sometimes be more powerful.</p></dd>
+  <dt>greedy</dt><dd><p>(optional) How should margins be adjusted during alignment. See <code>align_plots()</code> for details.</p></dd>
   <dt>cols</dt><dd><p>Deprecated. Use <code>ncol</code>.</p></dd>
   <dt>rows</dt><dd><p>Deprecated. Use <code>nrow</code>.</p></dd>
 </dl></td>
