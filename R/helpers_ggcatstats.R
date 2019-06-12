@@ -121,4 +121,3 @@ cat_counter <- function(data, main, condition = NULL, ...) {
   # return the final dataframe
   return(df)
 }
-

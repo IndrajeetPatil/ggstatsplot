@@ -166,8 +166,10 @@ research which suggests that the Yates' correction is overly conservative,
 even in small sample sizes. As such it is recommended that it should not
 ever be applied in practice (Camilli & Hopkins, 1978, 1979; Feinberg, 1980;
 Larntz, 1978; Thompson, 1988).
+
 For more about how the effect size measures and their confidence intervals
-are computed, see \code{?rcompanion::cohenG} and \code{?rcompanion::cramerV}.
+are computed, see \code{?rcompanion::cohenG}, \code{?rcompanion::cramerV}, and
+\code{?rcompanion::cramerVFit}.
 }
 \description{
 Pie charts for categorical data with statistical details

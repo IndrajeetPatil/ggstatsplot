@@ -74,7 +74,7 @@ included in the plot as a subtitle." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.10.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11</span>
       </span>
     </div>
 
@@ -429,9 +429,10 @@ statistic. This is due to compelling amount of Monte-Carlo simulation
 research which suggests that the Yates' correction is overly conservative,
 even in small sample sizes. As such it is recommended that it should not
 ever be applied in practice (Camilli &amp; Hopkins, 1978, 1979; Feinberg, 1980;
-Larntz, 1978; Thompson, 1988).
-For more about how the effect size measures and their confidence intervals
-are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'>?rcompanion::cohenG</a></code> and <code><a href='https://rdrr.io/pkg/rcompanion/man/cramerV.html'>?rcompanion::cramerV</a></code>.</p>
+Larntz, 1978; Thompson, 1988).</p>
+<p>For more about how the effect size measures and their confidence intervals
+are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'>?rcompanion::cohenG</a></code>, <code><a href='https://rdrr.io/pkg/rcompanion/man/cramerV.html'>?rcompanion::cramerV</a></code>, and
+<code><a href='https://rdrr.io/pkg/rcompanion/man/cramerVFit.html'>?rcompanion::cramerVFit</a></code>.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -454,7 +455,8 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
   <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>
-)</div><div class='img'><img src='ggpiestats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>95%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>100</span><span style='color: #0000BB;'> bootstrap samples.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggpiestats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># simple function call with the defaults (with condition)</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html'>ggpiestats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/r/datasets/mtcars.html'>mtcars</a></span>,
@@ -464,7 +466,7 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>,
   <span class='kw'>factor.levels</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"0 = V-shaped"</span>, <span class='st'>"1 = straight"</span>),
   <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='st'>"Engine"</span>
-)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Results from one-sample proportion tests for each
+)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Results from one-sample proportion tests for each
 #&gt;       level of the variable </span><span style='color: #BBBB00;'>cyl</span><span style='color: #0000BB;'> testing for equal
 #&gt;       proportions of the variable </span><span style='color: #BBBB00;'>vs</span><span style='color: #0000BB;'>.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 7</span><span>
@@ -481,7 +483,8 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='no'>HairEyeColor</span>),
   <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>Eye</span>,
   <span class='kw'>counts</span> <span class='kw'>=</span> <span class='no'>Freq</span>
-)</div><div class='img'><img src='ggpiestats-3.png' alt='' width='700' height='433' /></div></span></pre>
+)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>95%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>100</span><span style='color: #0000BB;'> bootstrap samples.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggpiestats-3.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

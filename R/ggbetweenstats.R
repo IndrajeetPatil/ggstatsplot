@@ -603,23 +603,25 @@ ggbetweenstats <- function(data,
 
   # ------------------------ annotations and themes -------------------------
 
-  # specifiying annotations and other aesthetic aspects for the plot
-  plot <-
-    aesthetic_addon(
-      plot = plot,
-      x = data$x,
-      xlab = xlab,
-      ylab = ylab,
-      title = title,
-      subtitle = subtitle,
-      caption = caption,
-      ggtheme = ggtheme,
-      ggstatsplot.layer = ggstatsplot.layer,
-      package = package,
-      palette = palette,
-      direction = direction,
-      ggplot.component = ggplot.component
-    )
+  # specifying annotations and other aesthetic aspects for the plot
+  if (return == "plot") {
+    plot <-
+      aesthetic_addon(
+        plot = plot,
+        x = data$x,
+        xlab = xlab,
+        ylab = ylab,
+        title = title,
+        subtitle = subtitle,
+        caption = caption,
+        ggtheme = ggtheme,
+        ggstatsplot.layer = ggstatsplot.layer,
+        package = package,
+        palette = palette,
+        direction = direction,
+        ggplot.component = ggplot.component
+      )
+  }
 
   # don't do scale restriction in case of post hoc comparisons
   if (isTRUE(axes.range.restrict) && !isTRUE(pairwise.comparisons)) {
@@ -631,7 +633,6 @@ ggbetweenstats <- function(data,
   # --------------------- messages ------------------------------------------
 
   if (isTRUE(messages)) {
-
     # display normality test result as a message
     normality_message(
       x = data$y,

@@ -427,34 +427,34 @@ ggwithinstats <- function(data,
   # ------------------------ annotations and themes -------------------------
 
   # specifying annotations and other aesthetic aspects for the plot
-  plot <-
-    aesthetic_addon(
-      plot = plot,
-      x = data$x,
-      xlab = xlab,
-      ylab = ylab,
-      title = title,
-      subtitle = subtitle,
-      caption = caption,
-      ggtheme = ggtheme,
-      ggstatsplot.layer = ggstatsplot.layer,
-      package = package,
-      palette = palette,
-      direction = direction,
-      ggplot.component = ggplot.component
-    )
+  if (return == "plot") {
+    plot <-
+      aesthetic_addon(
+        plot = plot,
+        x = data$x,
+        xlab = xlab,
+        ylab = ylab,
+        title = title,
+        subtitle = subtitle,
+        caption = caption,
+        ggtheme = ggtheme,
+        ggstatsplot.layer = ggstatsplot.layer,
+        package = package,
+        palette = palette,
+        direction = direction,
+        ggplot.component = ggplot.component
+      )
 
-  # don't do scale restriction in case of post hoc comparisons
-  if (isTRUE(axes.range.restrict) && !isTRUE(pairwise.comparisons)) {
-    plot <- plot +
-      ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y))) +
-      ggplot2::scale_y_continuous(limits = c(min(data$y), max(data$y)))
+    # don't do scale restriction in case of post hoc comparisons
+    if (isTRUE(axes.range.restrict) && !isTRUE(pairwise.comparisons)) {
+      plot <- plot +
+        ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y))) +
+        ggplot2::scale_y_continuous(limits = c(min(data$y), max(data$y)))
+    }
   }
-
   # --------------------- messages ------------------------------------------
 
   if (isTRUE(messages)) {
-
     # display normality test result as a message
     normality_message(
       x = data$y,
