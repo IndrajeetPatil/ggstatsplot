@@ -451,10 +451,13 @@ ggpiestats <- function(data,
         data = data,
         main = main,
         conf.level = conf.level,
+        conf.type = "norm",
+        nboot = nboot,
         ratio = ratio,
         stat.title = stat.title,
         legend.title = legend.title,
-        k = k
+        k = k,
+        messages = messages
       )
     }
   }

@@ -34,7 +34,8 @@ testthat::test_that(
     p_subtitle <-
       ggstatsplot::subtitle_onesample_proptest(
         data = ggplot2::msleep,
-        main = "vore"
+        main = "vore",
+        nboot = 25
       )
 
     # checking dimensions of data

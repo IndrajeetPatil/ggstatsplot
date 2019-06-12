@@ -184,7 +184,8 @@
     </div>
 
     <pre class="usage"><span class='fu'>subtitle_onesample_proptest</span>(<span class='no'>data</span>, <span class='no'>main</span>, <span class='kw'>counts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ratio</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+  <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -216,6 +217,17 @@ test. Default is <code>NULL</code>, which means if there are two levels <code>ra
 <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
     </tr>
     <tr>
+      <th>conf.type</th>
+      <td><p>A vector of character strings representing the type of
+intervals required. The value should be any subset of the values <code>"norm"</code>,
+<code>"basic"</code>, <code>"perc"</code>, <code>"bca"</code>. For more, see <code><a href='https://rdrr.io/pkg/boot/man/boot.ci.html'>?boot::boot.ci</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>nboot</th>
+      <td><p>Number of bootstrap samples for computing confidence interval
+for the effect size (Default: <code>100</code>).</p></td>
+    </tr>
+    <tr>
       <th>stat.title</th>
       <td><p>Title for the effect being investigated with the chi-square
 test. The default is <code>NULL</code>, i.e. no title will be added to describe the
@@ -230,6 +242,11 @@ like <code>"main x condition"</code> or <code>"interaction"</code>.</p></td>
       <th>k</th>
       <td><p>Number of digits after decimal point (should be an integer)
 (Default: <code>k = 2</code>).</p></td>
+    </tr>
+    <tr>
+      <th>messages</th>
+      <td><p>Decides whether messages references, notes, and warnings are
+to be displayed (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -250,9 +267,10 @@ like <code>"main x condition"</code> or <code>"interaction"</code>.</p></td>
   <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>Eye</span>,
   <span class='kw'>counts</span> <span class='kw'>=</span> <span class='no'>Freq</span>,
   <span class='kw'>ratio</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.2</span>, <span class='fl'>0.2</span>, <span class='fl'>0.3</span>, <span class='fl'>0.3</span>)
-)</div><div class='output co'>#&gt; paste(NULL, italic(chi)^2, "(", "3", ") = ", "278.96", ", ", 
+)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>95%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>100</span><span style='color: #0000BB;'> bootstrap samples.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(NULL, italic(chi)^2, "(", "3", ") = ", "278.96", ", ", 
 #&gt;     italic("p"), " = ", "&lt; 0.001", ", ", italic("V")["Cramer"], 
-#&gt;     " = ", "0.40", ", CI"["95%"], " [", "0.35", ", ", "0.44", 
+#&gt;     " = ", "0.40", ", CI"["95%"], " [", "0.35", ", ", "0.43", 
 #&gt;     "]", ", ", italic("n"), " = ", 592L)</div><div class='input'>
 <span class='co'># in case of no variation, only sample size will be shown</span>
 <span class='fu'>subtitle_onesample_proptest</span>(
@@ -260,7 +278,7 @@ like <code>"main x condition"</code> or <code>"interaction"</code>.</p></td>
   <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>x</span>
 )</div><div class='output co'>#&gt; Error in chisq.test(counts, p = expProps) : 
 #&gt;   'x' must at least have 2 elements
-#&gt; <span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Proportion test will not be run because it requires </span><span style='color: #BBBB00;'>x</span><span style='color: #0000BB;'> to have at least 
+#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Proportion test will not be run because it requires </span><span style='color: #BBBB00;'>x</span><span style='color: #0000BB;'> to have at least 
 #&gt; 2 levels with non-zero frequencies.</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("n"), " = ", 10L)</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -182,7 +182,7 @@
 <td><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg" alt="minimal R version"></a></td>
 <td><a href="https://www.tidyverse.org/lifecycle/"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue" alt="Monthly downloads badge"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-15-red.svg" alt="Github Issues"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-16-red.svg" alt="Github Issues"></a></td>
 <td><a href="https://cran.r-project.org/web/packages/ggstatsplot/vignettes/"><img src="https://img.shields.io/badge/vignettes-0.0.10-orange.svg?colorB=FF5722" alt="vignettes"></a></td>
 </tr>
 <tr class="even">
@@ -485,7 +485,7 @@
 <a class="sourceLine" id="cb7-8" title="8"><span class="co">#&gt;   # returning the converted plot</span></a>
 <a class="sourceLine" id="cb7-9" title="9"><span class="co">#&gt;   return(p)</span></a>
 <a class="sourceLine" id="cb7-10" title="10"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt; &lt;bytecode: 0x00000000367f89b8&gt;</span></a>
+<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt; &lt;bytecode: 0x00000000367d3cf0&gt;</span></a>
 <a class="sourceLine" id="cb7-12" title="12"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -1095,7 +1095,7 @@
 <tr class="even">
 <td>Paired</td>
 <td>
-<em>n</em> X <em>p</em>contingency table</td>
+<em>n</em> X <em>p</em> contingency table</td>
 <td>McNemar’s test</td>
 </tr>
 <tr class="odd">
@@ -1646,20 +1646,22 @@
 <a class="sourceLine" id="cb34-7" title="7"></a>
 <a class="sourceLine" id="cb34-8" title="8"><span class="co"># using `ggstatsplot` to prepare text with statistical results</span></a>
 <a class="sourceLine" id="cb34-9" title="9">stats_results &lt;-</a>
-<a class="sourceLine" id="cb34-10" title="10"><span class="st">  </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_anova_parametric.html">subtitle_anova_parametric</a></span>(</a>
+<a class="sourceLine" id="cb34-10" title="10"><span class="st">  </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
 <a class="sourceLine" id="cb34-11" title="11">    <span class="dt">data =</span> ChickWeight,</a>
 <a class="sourceLine" id="cb34-12" title="12">    <span class="dt">x =</span> Time,</a>
 <a class="sourceLine" id="cb34-13" title="13">    <span class="dt">y =</span> weight,</a>
 <a class="sourceLine" id="cb34-14" title="14">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb34-15" title="15">  )</a>
-<a class="sourceLine" id="cb34-16" title="16"></a>
-<a class="sourceLine" id="cb34-17" title="17"><span class="co"># using `yarrr` to create plot</span></a>
-<a class="sourceLine" id="cb34-18" title="18">yarrr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/yarrr/man/pirateplot.html">pirateplot</a></span>(</a>
-<a class="sourceLine" id="cb34-19" title="19">  <span class="dt">formula =</span> weight <span class="op">~</span><span class="st"> </span>Time,</a>
-<a class="sourceLine" id="cb34-20" title="20">  <span class="dt">data =</span> ChickWeight,</a>
-<a class="sourceLine" id="cb34-21" title="21">  <span class="dt">theme =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb34-22" title="22">  <span class="dt">main =</span> stats_results</a>
-<a class="sourceLine" id="cb34-23" title="23">)</a></code></pre></div>
+<a class="sourceLine" id="cb34-16" title="16"><span class="co">#&gt; Warning:  No. of factor levels is greater than specified palette color count.</span></a>
+<a class="sourceLine" id="cb34-17" title="17"><span class="co">#&gt;  Try using another color `palette` (and/or `package`).</span></a>
+<a class="sourceLine" id="cb34-18" title="18"></a>
+<a class="sourceLine" id="cb34-19" title="19"><span class="co"># using `yarrr` to create plot</span></a>
+<a class="sourceLine" id="cb34-20" title="20">yarrr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/yarrr/man/pirateplot.html">pirateplot</a></span>(</a>
+<a class="sourceLine" id="cb34-21" title="21">  <span class="dt">formula =</span> weight <span class="op">~</span><span class="st"> </span>Time,</a>
+<a class="sourceLine" id="cb34-22" title="22">  <span class="dt">data =</span> ChickWeight,</a>
+<a class="sourceLine" id="cb34-23" title="23">  <span class="dt">theme =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb34-24" title="24">  <span class="dt">main =</span> stats_results</a>
+<a class="sourceLine" id="cb34-25" title="25">)</a></code></pre></div>
 <p><img src="reference/figures/README-pirateplot-1.png" width="100%"></p>
 </div>
 </div>

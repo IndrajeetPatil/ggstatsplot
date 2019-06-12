@@ -15,6 +15,7 @@ testthat::test_that(
         main = "am",
         legend.title = "Engine",
         conf.level = 0.99,
+        messages = FALSE,
         k = 5
       )
 
@@ -24,7 +25,7 @@ testthat::test_that(
       ggplot2::expr(
         paste(
           NULL,
-          italic(chi)^2,
+          italic(chi) ^ 2,
           "(",
           "1",
           ") = ",
@@ -39,9 +40,9 @@ testthat::test_that(
           "0.18750",
           ", CI"["99%"],
           " [",
-          "0.00000",
+          "-0.21551",
           ", ",
-          "0.64272",
+          "0.52301",
           "]",
           ", ",
           italic("n"),
@@ -69,7 +70,8 @@ testthat::test_that(
         data = as.data.frame(Titanic),
         main = Sex,
         counts = "Freq",
-        k = 3
+        k = 3,
+        messages = FALSE
       )
 
     # expected output
@@ -93,9 +95,9 @@ testthat::test_that(
           "0.573",
           ", CI"["95%"],
           " [",
-          "0.531",
+          "0.541",
           ", ",
-          "0.615",
+          "0.607",
           "]",
           ", ",
           italic("n"),
@@ -122,7 +124,9 @@ testthat::test_that(
       ggstatsplot::subtitle_onesample_proptest(
         data = ggplot2::msleep,
         main = vore,
-        ratio = c(0.2, 0.2, 0.3, 0.3)
+        ratio = c(0.2, 0.2, 0.3, 0.3),
+        conf.type = "perc",
+        messages = TRUE
       )
 
     # expected
@@ -130,7 +134,7 @@ testthat::test_that(
       ggplot2::expr(
         paste(
           NULL,
-          italic(chi)^2,
+          italic(chi) ^ 2,
           "(",
           "3",
           ") = ",
@@ -145,9 +149,9 @@ testthat::test_that(
           "0.38",
           ", CI"["95%"],
           " [",
-          "0.24",
+          "0.29",
           ", ",
-          "0.50",
+          "0.51",
           "]",
           ", ",
           italic("n"),
