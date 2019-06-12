@@ -105,6 +105,13 @@
 #'   be sorted based on increasing values of `y`-axis variable. If
 #'   `"descending"`, the opposite. If `"none"`, no sorting will happen.
 #' @param sort.fun The function used to sort (default: `mean`).
+#' @param return Character that describes what is to be returned: can be
+#'   `"plot"` (default) or `"subtitle"` or `"caption"`. Setting this to
+#'   `"subtitle"` will return the expression containing statistical results,
+#'   which will be a `NULL` if you set `results.subtitle = FALSE`. Setting this
+#'   to `"caption"` will return the expression containing details about Bayes
+#'   Factor analysis, but valid only when `type = "p"` and `bf.message = TRUE`,
+#'   otherwise this will return a `NULL`.
 #' @inheritParams paletteer::scale_color_paletteer_d
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams t1way_ci
@@ -181,8 +188,7 @@
 #'   outlier.label = Run,
 #'   nboot = 10,
 #'   ggtheme = ggplot2::theme_grey(),
-#'   ggstatsplot.layer = FALSE,
-#'   bf.message = FALSE
+#'   ggstatsplot.layer = FALSE
 #' )
 #' }
 #' @export
@@ -243,6 +249,7 @@ ggbetweenstats <- function(data,
                            palette = "Dark2",
                            direction = 1,
                            ggplot.component = NULL,
+                           return = "plot",
                            messages = TRUE) {
 
   # no pairwise comparisons are available for bayesian t-tests
@@ -645,5 +652,11 @@ ggbetweenstats <- function(data,
   }
 
   # return the final plot
-  return(plot)
+  return(switch(
+    EXPR = return,
+    "plot" = plot,
+    "subtitle" = subtitle,
+    "caption" = caption,
+    plot
+  ))
 }

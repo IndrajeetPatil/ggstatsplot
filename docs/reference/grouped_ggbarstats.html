@@ -193,7 +193,7 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
   <span class='kw'>sample.size.label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>label.separator</span> <span class='kw'>=</span> <span class='st'>" "</span>,
   <span class='kw'>label.text.size</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>label.fill.color</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
   <span class='kw'>label.fill.alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>bar.outline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>sampling.plan</span> <span class='kw'>=</span> <span class='st'>"jointMulti"</span>,
+  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>sampling.plan</span> <span class='kw'>=</span> <span class='st'>"indepMulti"</span>,
   <span class='kw'>fixed.margin</span> <span class='kw'>=</span> <span class='st'>"rows"</span>, <span class='kw'>prior.concentration</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>legend.position</span> <span class='kw'>=</span> <span class='st'>"right"</span>,
   <span class='kw'>x.axis.orientation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
@@ -202,7 +202,7 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
   <span class='kw'>bar.label</span> <span class='kw'>=</span> <span class='st'>"percentage"</span>, <span class='kw'>data.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>bar.proptest</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/ggtheme.html'>theme_bw</a></span>(), <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>, <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>return</span> <span class='kw'>=</span> <span class='st'>"plot"</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -441,6 +441,16 @@ of the current function. Default is <code>NULL</code>. The argument should be en
 as a function. If the given function has an argument <code>axes.range.restrict</code>
 and if it has been set to <code>TRUE</code>, the added ggplot component <em>might</em> not
 work as expected.</p></td>
+    </tr>
+    <tr>
+      <th>return</th>
+      <td><p>Character that describes what is to be returned: can be
+<code>"plot"</code> (default) or <code>"subtitle"</code> or <code>"caption"</code>. Setting this to
+<code>"subtitle"</code> will return the expression containing statistical results,
+which will be a <code>NULL</code> if you set <code>results.subtitle = FALSE</code>. Setting this
+to <code>"caption"</code> will return the expression containing details about Bayes
+Factor analysis, but valid only when <code>type = "p"</code> and <code>bf.message = TRUE</code>,
+otherwise this will return a <code>NULL</code>.</p></td>
     </tr>
     <tr>
       <th>messages</th>

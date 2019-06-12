@@ -166,10 +166,16 @@ subtitle_contingency_tab <- function(data,
           digits = k,
           bias.correct = bias.correct
         ) %>%
-          tibble::as_tibble(x = .),
+          tibble::as_tibble(x = .) %>%
+          dplyr::rename(
+            .data = .,
+            estimate = Cramer.V,
+            conf.low = lower.ci,
+            conf.high = upper.ci
+          ),
         error = function(x) {
           tibble::tribble(
-            ~r, ~lower.ci, ~upper.ci,
+            ~estimate, ~conf.low, ~conf.high,
             NaN, NaN, NaN
           )
         }
@@ -211,7 +217,12 @@ subtitle_contingency_tab <- function(data,
       digits = 5
     )$Global.statistics %>%
       tibble::as_tibble(x = .) %>%
-      dplyr::rename(.data = ., r = Value) %>%
+      dplyr::rename(
+        .data = .,
+        estimate = Value,
+        conf.low = lower.ci,
+        conf.high = upper.ci
+      ) %>%
       dplyr::filter(.data = ., Statistic == "g")
   }
 
@@ -231,9 +242,9 @@ subtitle_contingency_tab <- function(data,
     parameter = stats_df$parameter[[1]],
     p.value = stats_df$p.value[[1]],
     effsize.text = effsize.text,
-    effsize.estimate = effsize_df$r[[1]],
-    effsize.LL = effsize_df$lower.ci[[1]],
-    effsize.UL = effsize_df$upper.ci[[1]],
+    effsize.estimate = effsize_df$estimate[[1]],
+    effsize.LL = effsize_df$conf.low[[1]],
+    effsize.UL = effsize_df$conf.high[[1]],
     n = sample_size,
     conf.level = conf.level,
     k = k,
@@ -265,9 +276,8 @@ subtitle_contingency_tab <- function(data,
 #' @importFrom rlang !! enquo as_name ensym
 #' @importFrom tibble as_tibble rownames_to_column
 #' @importFrom tidyr uncount drop_na gather spread
-#' @importFrom DescTools CramerV
+#' @importFrom rcompanion cramerVFit
 #' @importFrom jmv propTestN
-#' @importFrom rcompanion cramerV cohenG
 #'
 #' @examples
 #'
@@ -296,9 +306,12 @@ subtitle_onesample_proptest <- function(data,
                                         counts = NULL,
                                         ratio = NULL,
                                         conf.level = 0.95,
+                                        conf.type = "norm",
+                                        nboot = 100,
                                         stat.title = NULL,
                                         legend.title = NULL,
                                         k = 2,
+                                        messages = TRUE,
                                         ...) {
   ellipsis::check_dots_used()
 
@@ -374,22 +387,30 @@ subtitle_onesample_proptest <- function(data,
       sep = ""
     ))
   } else {
-    # computing Cramer's V as effect size
-    effsize_oneprop <-
-      cramer_v_ci(
-        x = table(data$main),
-        conf.level = conf.level,
-        method = "ncchisq",
-        p = ratio
+
+    # dataframe with effect size and its confidence intervals
+    effsize_df <- rcompanion::cramerVFit(
+      x = as.vector(table(data$main)),
+      p = ratio,
+      ci = TRUE,
+      conf = conf.level,
+      type = conf.type,
+      R = nboot,
+      histogram = FALSE,
+      digits = 5
+    ) %>%
+      tibble::as_tibble(x = .) %>%
+      dplyr::rename(
+        .data = .,
+        estimate = Cramer.V,
+        conf.low = lower.ci,
+        conf.high = upper.ci
       )
 
-    # formatting it into a dataframe
-    effsize_df <-
-      as.data.frame(x = effsize_oneprop) %>%
-      tibble::rownames_to_column(.data = ., var = "term") %>%
-      tibble::as_tibble(x = .) %>%
-      tidyr::spread(data = ., key = "term", value = "effsize_oneprop") %>%
-      dplyr::rename(.data = ., r = `Cramer V`, lower.ci = lwr.ci, upper.ci = upr.ci)
+    # message about effect size measure
+    if (isTRUE(messages)) {
+      effsize_ci_message(nboot = nboot, conf.level = conf.level)
+    }
 
     # preparing subtitle
     subtitle <- subtitle_template(
@@ -400,9 +421,9 @@ subtitle_onesample_proptest <- function(data,
       parameter = stats_df$parameter[[1]],
       p.value = stats_df$p.value[[1]],
       effsize.text = quote(italic("V")["Cramer"]),
-      effsize.estimate = effsize_df$r[[1]],
-      effsize.LL = effsize_df$lower.ci[[1]],
-      effsize.UL = effsize_df$upper.ci[[1]],
+      effsize.estimate = effsize_df$estimate[[1]],
+      effsize.LL = effsize_df$conf.low[[1]],
+      effsize.UL = effsize_df$conf.high[[1]],
       n = sample_size,
       conf.level = conf.level,
       k = k,

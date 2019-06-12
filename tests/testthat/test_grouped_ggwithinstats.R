@@ -107,3 +107,126 @@ testthat::test_that(
     ))
   }
 )
+
+# subtitle return --------------------------------------------------
+
+testthat::test_that(
+  desc = "subtitle return",
+  code = {
+    testthat::skip_on_cran()
+
+    # should return a list of length 3
+    set.seed(123)
+    ls_results <- ggstatsplot::grouped_ggwithinstats(
+      data = iris_long,
+      x = condition,
+      y = value,
+      grouping.var = Species,
+      return = "subtitle",
+      messages = FALSE
+    )
+
+    # tests
+    testthat::expect_equal(length(ls_results), 3L)
+    testthat::expect_identical(
+      ls_results[[1]],
+      ggplot2::expr(
+        paste(
+          NULL,
+          italic("F"),
+          "(",
+          "1.88",
+          ",",
+          "91.96",
+          ") = ",
+          "4276.86",
+          ", ",
+          italic("p"),
+          " = ",
+          "< 0.001",
+          ", ",
+          omega^
+            2,
+          " = ",
+          "0.98",
+          ", CI"["95%"],
+          " [",
+          "0.98",
+          ", ",
+          "0.99",
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          50L
+        )
+      )
+    )
+    testthat::expect_identical(
+      ls_results[[2]],
+      ggplot2::expr(
+        paste(
+          NULL,
+          italic("F"),
+          "(",
+          "2.16",
+          ",",
+          "106.01",
+          ") = ",
+          "2821.59",
+          ", ",
+          italic("p"),
+          " = ",
+          "< 0.001",
+          ", ",
+          omega^2,
+          " = ",
+          "0.95",
+          ", CI"["95%"],
+          " [",
+          "0.97",
+          ", ",
+          "0.98",
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          50L
+        )
+      )
+    )
+    testthat::expect_identical(
+      ls_results[[3]],
+      ggplot2::expr(
+        paste(
+          NULL,
+          italic("F"),
+          "(",
+          "1.67",
+          ",",
+          "81.87",
+          ") = ",
+          "1910.86",
+          ", ",
+          italic("p"),
+          " = ",
+          "< 0.001",
+          ", ",
+          omega^2,
+          " = ",
+          "0.94",
+          ", CI"["95%"],
+          " [",
+          "0.96",
+          ", ",
+          "0.97",
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          50L
+        )
+      )
+    )
+  }
+)

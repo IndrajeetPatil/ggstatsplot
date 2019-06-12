@@ -5,7 +5,8 @@
 \title{Making text subtitle for Proportion Test (N Outcomes)}
 \usage{
 subtitle_onesample_proptest(data, main, counts = NULL, ratio = NULL,
-  conf.level = 0.95, stat.title = NULL, legend.title = NULL, k = 2,
+  conf.level = 0.95, conf.type = "norm", nboot = 100,
+  stat.title = NULL, legend.title = NULL, k = 2, messages = TRUE,
   ...)
 }
 \arguments{
@@ -24,6 +25,13 @@ test. Default is \code{NULL}, which means if there are two levels \code{ratio = 
 \item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
 \code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
+\item{conf.type}{A vector of character strings representing the type of
+intervals required. The value should be any subset of the values \code{"norm"},
+\code{"basic"}, \code{"perc"}, \code{"bca"}. For more, see \code{?boot::boot.ci}.}
+
+\item{nboot}{Number of bootstrap samples for computing confidence interval
+for the effect size (Default: \code{100}).}
+
 \item{stat.title}{Title for the effect being investigated with the chi-square
 test. The default is \code{NULL}, i.e. no title will be added to describe the
 effect being shown. An example of a \code{stat.title} argument will be something
@@ -33,6 +41,9 @@ like \code{"main x condition"} or \code{"interaction"}.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
+
+\item{messages}{Decides whether messages references, notes, and warnings are
+to be displayed (Default: \code{TRUE}).}
 
 \item{...}{Additional arguments (currently ignored).}
 }

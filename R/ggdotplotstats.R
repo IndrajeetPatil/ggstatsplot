@@ -79,6 +79,7 @@ ggdotplotstats <- function(data,
                            test.line.labeller = TRUE,
                            test.k = 0,
                            ggplot.component = NULL,
+                           return = "plot",
                            messages = TRUE) {
 
   # ------------------------------ variable names ----------------------------
@@ -266,5 +267,11 @@ ggdotplotstats <- function(data,
   }
 
   # return the plot
-  return(plot)
+  return(switch(
+    EXPR = return,
+    "plot" = plot,
+    "subtitle" = subtitle,
+    "caption" = caption,
+    plot
+  ))
 }

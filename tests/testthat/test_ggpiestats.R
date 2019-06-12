@@ -34,7 +34,8 @@ testthat::test_that(
     p_subtitle <-
       ggstatsplot::subtitle_onesample_proptest(
         data = ggplot2::msleep,
-        main = "vore"
+        main = "vore",
+        nboot = 25
       )
 
     # checking dimensions of data
@@ -371,5 +372,86 @@ testthat::test_that(
       main = x,
       condition = y
     ))
+  }
+)
+
+# subtitle return --------------------------------------------------
+
+testthat::test_that(
+  desc = "subtitle return",
+  code = {
+    testthat::skip_on_cran()
+
+    # subtitle return
+    set.seed(123)
+    p_sub <- ggstatsplot::ggpiestats(
+      data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
+      main = race,
+      condition = marital,
+      return = "subtitle",
+      k = 4,
+      messages = FALSE
+    )
+
+    # caption return
+    set.seed(123)
+    p_cap <- ggstatsplot::ggpiestats(
+      data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
+      main = race,
+      condition = marital,
+      return = "caption",
+      k = 4,
+      messages = FALSE
+    )
+
+    # tests
+    testthat::expect_identical(p_sub, ggplot2::expr(
+      paste(
+        NULL,
+        italic(chi)^2,
+        "(",
+        "8",
+        ") = ",
+        "109.2007",
+        ", ",
+        italic("p"),
+        " = ",
+        "< 0.001",
+        ", ",
+        italic("V")["Cramer"],
+        " = ",
+        "0.1594",
+        ", CI"["95%"],
+        " [",
+        "0.0916",
+        ", ",
+        "0.1278",
+        "]",
+        ", ",
+        italic("n"),
+        " = ",
+        2148L
+      )
+    ))
+
+    testthat::expect_identical(
+      p_cap,
+      ggplot2::expr(atop(
+        displaystyle(NULL),
+        expr = paste(
+          "In favor of null: ",
+          "log"["e"],
+          "(BF"["01"],
+          ") = ",
+          "-36.8983",
+          ", sampling = ",
+          "independent multinomial",
+          ", ",
+          italic("a"),
+          " = ",
+          "1.0000"
+        )
+      ))
+    )
   }
 )

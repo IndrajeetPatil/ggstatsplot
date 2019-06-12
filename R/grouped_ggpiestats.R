@@ -106,6 +106,7 @@ grouped_ggpiestats <- function(data,
                                palette = "Dark2",
                                direction = 1,
                                ggplot.component = NULL,
+                               return = "plot",
                                messages = TRUE,
                                ...) {
 
@@ -238,23 +239,26 @@ grouped_ggpiestats <- function(data,
       palette = palette,
       direction = direction,
       ggplot.component = ggplot.component,
+      return = return,
       messages = messages
     )
 
-
   # combining the list of plots into a single plot
-  combined_plot <-
-    ggstatsplot::combine_plots(
-      plotlist = plotlist_purrr,
-      ...
-    )
+  if (return == "plot") {
+    combined_object <-
+      ggstatsplot::combine_plots(
+        plotlist = plotlist_purrr,
+        ...
+      )
 
-  # show the note about grouped_ variant producing object which is not of
-  # class ggplot
-  if (isTRUE(messages)) {
-    grouped_message()
+    # inform user this can't be modified further with ggplot commands
+    if (isTRUE(messages)) {
+      grouped_message()
+    }
+  } else {
+    combined_object <- plotlist_purrr
   }
 
   # return the combined plot
-  return(combined_plot)
+  return(combined_object)
 }

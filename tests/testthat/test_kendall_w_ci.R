@@ -60,5 +60,10 @@ testthat::test_that(
     testthat::expect_equal(df4$estimate, 0.3366415, tolerance = 0.001)
     testthat::expect_equal(df4$conf.low, 0.3029868, tolerance = 0.001)
     testthat::expect_equal(df4$conf.high, 0.3688444, tolerance = 0.001)
+
+    testthat::expect_error(ggstatsplot:::kendall_w_ci(
+      data = data_bugs,
+      conf.type = "bca"
+    ))
   }
 )

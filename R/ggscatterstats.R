@@ -1,6 +1,5 @@
 #' @title Scatterplot with marginal distributions
 #' @name ggscatterstats
-#' @aliases ggscatterstats
 #' @author Indrajeet Patil, Chuck Powell
 #' @description Scatterplots from `ggplot2` combined with marginal
 #'   histograms/boxplots/density plots with statistical details added as a
@@ -152,6 +151,7 @@ ggscatterstats <- function(data,
                            ggtheme = ggplot2::theme_bw(),
                            ggstatsplot.layer = TRUE,
                            ggplot.component = NULL,
+                           return = "plot",
                            messages = TRUE) {
 
   #---------------------- variable names --------------------------------
@@ -537,17 +537,23 @@ ggscatterstats <- function(data,
   }
 
   #------------------------- messages  ------------------------------------
-  #
+
   # display warning that this function doesn't produce a ggplot2 object
   if (isTRUE(marginal) && isTRUE(messages)) {
     message(cat(
       crayon::red("Warning: "),
       crayon::blue("This plot can't be further modified with `ggplot2` functions.\n"),
-      crayon::blue("In case you want a `ggplot` object, set `marginal = FALSE`.\n"),
+      crayon::blue("In case you want a `ggplot` object, set `marginal = FALSE`."),
       sep = ""
     ))
   }
 
   # return the final plot
-  return(plot)
+  return(switch(
+    EXPR = return,
+    "plot" = plot,
+    "subtitle" = subtitle,
+    "caption" = caption,
+    plot
+  ))
 }

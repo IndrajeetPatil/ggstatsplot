@@ -84,7 +84,7 @@ ggbarstats <- function(data,
                        label.fill.alpha = 1,
                        bar.outline.color = "black",
                        bf.message = TRUE,
-                       sampling.plan = "jointMulti",
+                       sampling.plan = "indepMulti",
                        fixed.margin = "rows",
                        prior.concentration = 1,
                        title = NULL,
@@ -110,8 +110,9 @@ ggbarstats <- function(data,
                        palette = "Dark2",
                        direction = 1,
                        ggplot.component = NULL,
+                       return = "plot",
                        messages = TRUE) {
-  bar.label <- bar.label %||% data.label
+  bar.label <- data.label %||% bar.label
 
   # ================= extracting column names as labels  =====================
 
@@ -418,5 +419,11 @@ ggbarstats <- function(data,
   p <- p + ggplot.component
 
   # return the final plot
-  return(p)
+  return(switch(
+    EXPR = return,
+    "plot" = p,
+    "subtitle" = subtitle,
+    "caption" = caption,
+    p
+  ))
 }

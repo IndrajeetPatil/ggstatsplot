@@ -109,6 +109,7 @@ ggwithinstats <- function(data,
                           palette = "Dark2",
                           direction = 1,
                           ggplot.component = NULL,
+                          return = "plot",
                           messages = TRUE) {
 
   # no pairwise comparisons are available for bayesian t-tests
@@ -474,5 +475,11 @@ ggwithinstats <- function(data,
   }
 
   # return the final plot
-  return(plot)
+  return(switch(
+    EXPR = return,
+    "plot" = plot,
+    "subtitle" = subtitle,
+    "caption" = caption,
+    plot
+  ))
 }
