@@ -555,3 +555,54 @@ testthat::test_that(
     )
   }
 )
+
+# subtitle return --------------------------------------------------
+
+testthat::test_that(
+  desc = "subtitle return",
+  code = {
+    testthat::skip_on_cran()
+
+    # should return a list of length 3
+    set.seed(123)
+    p_sub <- ggstatsplot::gghistostats(
+      data = ggplot2::msleep,
+      x = brainwt,
+      return = "subtitle",
+      type = "np",
+      test.value = 0.25,
+      messages = FALSE
+    )
+
+    # tests
+    testthat::expect_identical(
+      p_sub,
+      ggplot2::expr(
+        paste(
+          NULL,
+          "log"["e"](italic("V")),
+          " = ",
+          "5.57",
+          ", ",
+          italic("p"),
+          " = ",
+          "< 0.001",
+          ", ",
+          italic(r),
+          " = ",
+          "-0.58",
+          ", CI"["95%"],
+          " [",
+          "-0.81",
+          ", ",
+          "-0.38",
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          56L
+        )
+      )
+    )
+  }
+)

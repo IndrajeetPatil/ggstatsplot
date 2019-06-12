@@ -31,7 +31,7 @@ ggcoefstats(x, output = "plot", statistic = NULL, scales = NULL,
   label.nudge.y = 0, label.xlim = c(NA, NA), label.ylim = c(NA, NA),
   label.direction = "y", package = "RColorBrewer", palette = "Dark2",
   direction = 1, ggtheme = ggplot2::theme_bw(),
-  ggstatsplot.layer = TRUE, messages = FALSE, ...)
+  ggstatsplot.layer = TRUE, messages = FALSE, return = NULL, ...)
 }
 \arguments{
 \item{x}{A model object to be tidied with \code{broom::tidy}, or a tidy data frame
@@ -41,7 +41,7 @@ estimates of coefficients or other quantities of interest). Other optional
 columns are \code{conf.low} and \code{conf.high} (for confidence intervals);
 \code{p.value}. It is important that all \code{term} names should be unique.}
 
-\item{output}{Character describing the expected output from this function:
+\item{output, return}{Character describing the expected output from this function:
 \code{"plot"} (visualization of regression coefficients) or \code{"tidy"} (tidy
 dataframe of results from \code{broom::tidy}) or \code{"glance"} (object from
 \code{broom::glance}) or \code{"augment"} (object from \code{broom::augment}).}

@@ -720,7 +720,7 @@ Following tests are carried out for each type of analyses-
 Type of data | Design | Test
 ----------- | ------------ | -------------------------
 Unpaired | *n* X *p* contingency table | Pearson's chi-squared test
-Paired | *n* X *p*contingency table | McNemar's test
+Paired | *n* X *p* contingency table | McNemar's test
 Frequency | *n* X *1* contingency table | Goodness of fit
 
 Following effect sizes (and confidence intervals/CI) are available for each type
@@ -1249,7 +1249,7 @@ library(ggstatsplot)
 
 # using `ggstatsplot` to prepare text with statistical results
 stats_results <-
-  ggstatsplot::subtitle_anova_parametric(
+  ggstatsplot::ggbetweenstats(
     data = ChickWeight,
     x = Time,
     y = weight,

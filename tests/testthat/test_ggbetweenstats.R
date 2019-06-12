@@ -568,3 +568,55 @@ testthat::test_that(
     testthat::expect_identical(p$labels$y, "SL")
   }
 )
+
+# subtitle return works ------------------------------------------------
+
+testthat::test_that(
+  desc = "subtitle return works",
+  code = {
+    testthat::skip_on_cran()
+
+    # plot
+    set.seed(123)
+    subtitle_exp <- ggstatsplot::ggbetweenstats(
+      data = iris,
+      x = Species,
+      y = Sepal.Length,
+      return = "subtitle",
+      messages = FALSE
+    )
+
+    # test
+    testthat::expect_identical(
+      subtitle_exp,
+      ggplot2::expr(paste(
+        NULL,
+        italic("F"),
+        "(",
+        "2",
+        ",",
+        "92.21",
+        ") = ",
+        "138.91",
+        ", ",
+        italic("p"),
+        " = ",
+        "< 0.001",
+        ", ",
+        omega["p"]^2,
+        " = ",
+        "0.61",
+        ", CI"["95%"],
+        " [",
+        "0.54",
+        ", ",
+        "0.69",
+        "]",
+        ", ",
+        italic("n"),
+        " = ",
+        150L
+      ))
+    )
+  }
+)

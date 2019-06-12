@@ -26,7 +26,7 @@ grouped_ggbetweenstats(data, x, y, grouping.var, title.prefix = NULL,
   point.dodge.width = 0.6, ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE, package = "RColorBrewer",
   palette = "Dark2", direction = 1, ggplot.component = NULL,
-  messages = TRUE, ...)
+  return = "plot", messages = TRUE, ...)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
@@ -240,6 +240,14 @@ of the current function. Default is \code{NULL}. The argument should be entered
 as a function. If the given function has an argument \code{axes.range.restrict}
 and if it has been set to \code{TRUE}, the added ggplot component \emph{might} not
 work as expected.}
+
+\item{return}{Character that describes what is to be returned: can be
+\code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to
+\code{"subtitle"} will return the expression containing statistical results,
+which will be a \code{NULL} if you set \code{results.subtitle = FALSE}. Setting this
+to \code{"caption"} will return the expression containing details about Bayes
+Factor analysis, but valid only when \code{type = "p"} and \code{bf.message = TRUE},
+otherwise this will return a \code{NULL}.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

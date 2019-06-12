@@ -217,3 +217,55 @@ testthat::test_that(
     testthat::expect_null(pb$plot$labels$caption, NULL)
   }
 )
+
+# subtitle return --------------------------------------------------
+
+testthat::test_that(
+  desc = "subtitle return",
+  code = {
+    testthat::skip_on_cran()
+
+    # should return a list of length 3
+    set.seed(123)
+    p_sub <- suppressWarnings(ggstatsplot::ggdotplotstats(
+      data = morley,
+      x = Speed,
+      y = Expt,
+      test.value = 800,
+      return = "subtitle",
+      type = "np",
+      messages = FALSE
+    ))
+
+    # tests
+    testthat::expect_identical(
+      p_sub,
+      ggplot2::expr(
+        paste(
+          NULL,
+          "log"["e"](italic("V")),
+          " = ",
+          "2.71",
+          ", ",
+          italic("p"),
+          " = ",
+          "0.059",
+          ", ",
+          italic(r),
+          " = ",
+          "0.90",
+          ", CI"["95%"],
+          " [",
+          "0.88",
+          ", ",
+          "0.91",
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          5L
+        )
+      )
+    )
+  }
+)

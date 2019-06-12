@@ -26,6 +26,11 @@ NEW FEATURES
     a counterpart to `ggbetweenstats` to handle repeated measures designs.
   - For repeated measures ANOVA, `subtitle_anova_nonparametric` now returns
     confidence intervals for Kendall's *W*.
+  - All functions get `return` argument that can be used to return either
+    `"plot"`, `"subtitle"`, or `"caption"`. This makes it unnecessary to
+    remember which subtitle function is to be used where. As a result, in the
+    next release, all subtitle making functions will not be exported and are
+    encouraged not be used either by other developers or by users.
   - Both `subtitle_anova_robust` and `subtitle_anova_parametric` gain a new
     argument `paired` to support repeated measures designs.
   - `ggcoefstats` can support following new model objects: `drc`, `mlm`.
@@ -48,6 +53,9 @@ MINOR CHANGES
     to reduce number of custom internal functions used to compute CIs for
     various effect sizes. `ggstatsplot` therefore gains `DescTools` as a
     dependency.
+  - The `sampling.plan` argument default for `ggbarstats` function has been
+    changed from `"indepMulti"` to `"jointMulti"` to be consistent with its
+    sister function `ggpiestats`.
   
 # ggstatsplot 0.0.10
 

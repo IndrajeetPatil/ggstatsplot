@@ -138,6 +138,7 @@ ggpiestats <- function(data,
                        palette = "Dark2",
                        direction = 1,
                        ggplot.component = NULL,
+                       return = "plot",
                        messages = TRUE) {
 
   # ================= extracting column names as labels  =====================
@@ -479,5 +480,11 @@ ggpiestats <- function(data,
   p <- p + ggplot.component
 
   # return the final plot
-  return(p)
+  return(switch(
+    EXPR = return,
+    "plot" = p,
+    "subtitle" = subtitle,
+    "caption" = caption,
+    p
+  ))
 }

@@ -59,3 +59,29 @@ testthat::test_that(
     )
   }
 )
+
+# subtitle return --------------------------------------------------
+
+testthat::test_that(
+  desc = "subtitle return",
+  code = {
+    testthat::skip_on_cran()
+
+    # should return a list of length 3
+    ls_results <- ggstatsplot::grouped_gghistostats(
+      data = ggplot2::msleep,
+      x = brainwt,
+      grouping.var = vore,
+      return = "subtitle",
+      results.subtitle = NULL,
+      messages = FALSE
+    )
+
+    # tests
+    testthat::expect_equal(length(ls_results), 4L)
+    testthat::expect_null(ls_results[[1]], NULL)
+    testthat::expect_null(ls_results[[2]], NULL)
+    testthat::expect_null(ls_results[[3]], NULL)
+    testthat::expect_null(ls_results[[4]], NULL)
+  }
+)

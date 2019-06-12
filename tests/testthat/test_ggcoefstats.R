@@ -473,7 +473,7 @@ testthat::test_that(
       x = mod1,
       conf.int = TRUE,
       conf.level = 0.99,
-      output = "tidy",
+      return = "tidy",
       exclude.intercept = FALSE
     )
 

@@ -192,6 +192,7 @@
 <ul>
 <li>New functions <code>ggwithinstats</code> (and its <code>grouped_</code> variant) are introduced as a counterpart to <code>ggbetweenstats</code> to handle repeated measures designs.</li>
 <li>For repeated measures ANOVA, <code>subtitle_anova_nonparametric</code> now returns confidence intervals for Kendall’s <em>W</em>.</li>
+<li>All functions get <code>return</code> argument that can be used to return either <code>"plot"</code>, <code>"subtitle"</code>, or <code>"caption"</code>. This makes it unnecessary to remember which subtitle function is to be used where. As a result, in the next release, all subtitle making functions will not be exported and are encouraged not be used either by other developers or by users.</li>
 <li>Both <code>subtitle_anova_robust</code> and <code>subtitle_anova_parametric</code> gain a new argument <code>paired</code> to support repeated measures designs.</li>
 <li>
 <code>ggcoefstats</code> can support following new model objects: <code>drc</code>, <code>mlm</code>.</li>
@@ -206,6 +207,7 @@
 <li>
 <code><a href="../reference/pairwise_p.html">pairwise_p()</a></code> function no longer outputs <code>conf.low</code> and <code>conf.high</code> columns when parametric <em>post hoc</em> tests are run. This is because these values were accurate only when no <em>p</em>-value adjustment was carried out.</li>
 <li>Instead of using the internal function <code>cor_test_ci</code>, <code>ggscatterstats</code> instead used <code>SpearmanRho</code> function from <code>DescTools</code> package. This was done to reduce number of custom internal functions used to compute CIs for various effect sizes. <code>ggstatsplot</code> therefore gains <code>DescTools</code> as a dependency.</li>
+<li>The <code>sampling.plan</code> argument default for <code>ggbarstats</code> function has been changed from <code>"indepMulti"</code> to <code>"jointMulti"</code> to be consistent with its sister function <code>ggpiestats</code>.</li>
 </ul>
 </div>
     <div id="ggstatsplot-0010" class="section level1">

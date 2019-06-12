@@ -119,6 +119,7 @@ gghistostats <- function(data = NULL,
                          normal.curve.linetype = "solid",
                          normal.curve.size = 1.0,
                          ggplot.component = NULL,
+                         return = "plot",
                          messages = TRUE) {
 
   # if data is not available then don't display any messages
@@ -440,5 +441,11 @@ gghistostats <- function(data = NULL,
   }
 
   # return the final plot
-  return(plot)
+  return(switch(
+    EXPR = return,
+    "plot" = plot,
+    "subtitle" = subtitle,
+    "caption" = caption,
+    plot
+  ))
 }

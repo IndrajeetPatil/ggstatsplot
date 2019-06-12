@@ -166,3 +166,30 @@ testthat::test_that(
     ))
   }
 )
+
+# subtitle return --------------------------------------------------
+
+testthat::test_that(
+  desc = "subtitle return",
+  code = {
+    testthat::skip_on_cran()
+
+    # should return a list of length 3
+    ls_results <- ggstatsplot::grouped_ggpiestats(
+      data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
+      main = relig,
+      condition = marital,
+      grouping.var = race,
+      return = "caption",
+      results.subtitle = FALSE,
+      facet.proptest = FALSE,
+      messages = FALSE
+    )
+
+    # tests
+    testthat::expect_equal(length(ls_results), 3L)
+    testthat::expect_null(ls_results[[1]], NULL)
+    testthat::expect_null(ls_results[[2]], NULL)
+    testthat::expect_null(ls_results[[3]], NULL)
+  }
+)
