@@ -65,6 +65,11 @@ Making text subtitle for contingency analysis (Pearson's chi-square
 test for independence for between-subjects design or McNemar's test for
 within-subjects design)
 }
+\details{
+For more details about how the effect sizes and their confidence
+intervals were computed, see documentation in \code{?rcompanion::cramerV} and
+\code{?rcompanion::cohenG}.
+}
 \examples{
 
 # without counts data

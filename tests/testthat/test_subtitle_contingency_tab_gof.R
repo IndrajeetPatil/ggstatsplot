@@ -25,7 +25,7 @@ testthat::test_that(
       ggplot2::expr(
         paste(
           NULL,
-          italic(chi) ^ 2,
+          italic(chi)^2,
           "(",
           "1",
           ") = ",
@@ -134,7 +134,7 @@ testthat::test_that(
       ggplot2::expr(
         paste(
           NULL,
-          italic(chi) ^ 2,
+          italic(chi)^2,
           "(",
           "3",
           ") = ",

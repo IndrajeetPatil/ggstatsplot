@@ -193,7 +193,9 @@ utils::globalVariables(
     "d.pmean.UB",
     "Cramer V",
     "lwr.ci",
-    "upr.ci"
+    "upr.ci",
+    "lower.ci",
+    "upper.ci"
   ),
   package = "ggstatsplot",
   add = FALSE

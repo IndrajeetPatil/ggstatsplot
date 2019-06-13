@@ -50,6 +50,10 @@ to be displayed (Default: \code{TRUE}).}
 \description{
 This is going to be a chi-squared Goodness of fit test.
 }
+\details{
+For more details about how the effect sizes and their confidence
+intervals were computed, see documentation in \code{?rcompanion::cramerVFit}.
+}
 \examples{
 
 # for reproducibility
