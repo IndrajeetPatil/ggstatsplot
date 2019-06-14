@@ -147,7 +147,7 @@
 <p><!-- README.md is generated from README.Rmd. Please edit that file --></p>
 <div id="ggstatsplot-ggplot2-based-plots-with-statistical-details" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#ggstatsplot-ggplot2-based-plots-with-statistical-details" class="anchor"></a>ggstatsplot: <code>ggplot2</code> Based Plots with Statistical Details</h1></div>
+<a href="#ggstatsplot-ggplot2-based-plots-with-statistical-details" class="anchor"></a><code>ggstatsplot</code>: <code>ggplot2</code> Based Plots with Statistical Details</h1></div>
 <table class="table table">
 <colgroup>
 <col width="20%">
@@ -182,8 +182,8 @@
 <td><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg" alt="minimal R version"></a></td>
 <td><a href="https://www.tidyverse.org/lifecycle/"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue" alt="Monthly downloads badge"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-15-red.svg" alt="Github Issues"></a></td>
-<td><a href="https://cran.r-project.org/web/packages/ggstatsplot/vignettes/"><img src="https://img.shields.io/badge/vignettes-0.0.11-orange.svg?colorB=FF5722" alt="vignettes"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-16-red.svg" alt="Github Issues"></a></td>
+<td><a href="https://CRAN.R-project.org/package=ggstatsplot/vignettes/"><img src="https://img.shields.io/badge/vignettes-0.0.11-orange.svg?colorB=FF5722" alt="vignettes"></a></td>
 </tr>
 <tr class="even">
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot"><img src="https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg" alt="GitHub code size in bytes"></a></td>
@@ -196,7 +196,7 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
 <td><a href="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot"><img src="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2019--06--12-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2019--06--14-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg" alt="GitHub last commit"></a></td>
 </tr>
 <tr class="even">
@@ -485,7 +485,7 @@
 <a class="sourceLine" id="cb7-8" title="8"><span class="co">#&gt;   # returning the converted plot</span></a>
 <a class="sourceLine" id="cb7-9" title="9"><span class="co">#&gt;   return(p)</span></a>
 <a class="sourceLine" id="cb7-10" title="10"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt; &lt;bytecode: 0x00000000367db5c0&gt;</span></a>
+<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt; &lt;bytecode: 0x0000000036290b40&gt;</span></a>
 <a class="sourceLine" id="cb7-12" title="12"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -499,11 +499,11 @@
 <p><code>ggstatsplot</code> relies on non-standard evaluation (NSE), i.e., rather than looking at the values of arguments (<code>x</code>, <code>y</code>), it instead looks at their expressions. This means that you <strong>shouldn’t</strong> enter arguments with the <code>$</code> operator and setting <code>data = NULL</code>: <code>data = NULL, x = data$x, y = data$y</code>. You <strong>must</strong> always specify the <code>data</code> argument for all functions. On the plus side, you can enter arguments either as a string (<code>x = "x", y = "y"</code>) or as a bare expression (<code>x = x, y = y</code>) and it wouldn’t matter. To read more about NSE, see- <a href="http://adv-r.had.co.nz/Computing-on-the-language.html" class="uri">http://adv-r.had.co.nz/Computing-on-the-language.html</a></p>
 <p><code>ggstatsplot</code> is a very chatty package and will by default print helpful notes on assumptions about linear models, warnings, etc. If you don’t want your console to be cluttered with such messages, they can be turned off by setting argument <code>messages = FALSE</code> in the function call.</p>
 <p>Here are examples of the main functions currently supported in <code>ggstatsplot</code>.</p>
-<p><strong>Note</strong>: If you are reading this on GitHub repository, the documentation below is for the <strong>development</strong> version of the package. So you may see some features available here that are not currently present in the stable version of this package on <strong>CRAN</strong>. For documentation relevant for the CRAN version, see:</p>
+<p><strong>Note</strong>: If you are reading this on GitHub repository, the documentation below is for the <strong>development</strong> version of the package. So you may see some features available here that are not currently present in the stable version of this package on <strong>CRAN</strong>. For documentation relevant for the <code>CRAN</code> version, see:</p>
 <ul>
-<li>vignettes: <a href="https://cran.r-project.org/web/packages/ggstatsplot/vignettes/" class="uri">https://cran.r-project.org/web/packages/ggstatsplot/vignettes/</a>
+<li>vignettes: <a href="https://CRAN.R-project.org/package=ggstatsplot/vignettes/" class="uri">https://CRAN.R-project.org/package=ggstatsplot/vignettes/</a>
 </li>
-<li>README: <a href="https://cran.r-project.org/web/packages/ggstatsplot/readme/README.html" class="uri">https://cran.r-project.org/web/packages/ggstatsplot/readme/README.html</a>
+<li>README: <a href="https://CRAN.R-project.org/package=ggstatsplot/readme/README.html" class="uri">https://CRAN.R-project.org/package=ggstatsplot/readme/README.html</a>
 </li>
 </ul>
 </div>
@@ -1714,6 +1714,7 @@
 <h2>Community</h2>
 <ul class="list-unstyled">
 <li><a href="CONTRIBUTING.html">Contributing guide</a></li>
+<li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
 </ul>
 </div>
 <div class="citation">

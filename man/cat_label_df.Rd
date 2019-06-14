@@ -33,7 +33,6 @@ Creating a dataframe with an added column corresponding to
 summary for categorical variables.
 }
 \examples{
-\dontrun{
 
 # dataframe with label column
 ggstatsplot:::cat_label_df(
@@ -42,8 +41,6 @@ ggstatsplot:::cat_label_df(
   label.content = "both",
   perc.k = 1
 )
-}
-
 }
 \author{
 Indrajeet Patil

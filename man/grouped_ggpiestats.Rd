@@ -250,7 +250,7 @@ ggstatsplot::grouped_ggpiestats(
 )
 
 # the following will take slightly more amount of time
-\dontrun{
+\donttest{
 # for reproducibility
 set.seed(123)
 

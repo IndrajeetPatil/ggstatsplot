@@ -42,7 +42,7 @@ will be returned. Valid only for objects of class \code{aov}, \code{anova}, or
 Create labels with statistical details for \code{ggcoefstats}.
 }
 \examples{
-\dontrun{
+\donttest{
 # show all columns in output tibble
 options(tibble.width = Inf)
 

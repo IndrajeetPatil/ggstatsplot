@@ -725,7 +725,9 @@
     "tidy-data",
     "effect-size",
     "mixed-models",
-    "statistical-measures"
+    "statistical-measures",
+    "robust-statistics",
+    "non-parametric-statistics"
   ],
   "citation": [
     {

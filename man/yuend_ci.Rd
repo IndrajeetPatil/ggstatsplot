@@ -166,7 +166,8 @@ Custom function to get confidence intervals for effect size
 measure for paired samples robust t-tests.
 }
 \examples{
-\dontrun{
+
+\donttest{
 ggstatsplot:::yuend_ci(
   data = dplyr::filter(
     .data = ggstatsplot::iris_long,

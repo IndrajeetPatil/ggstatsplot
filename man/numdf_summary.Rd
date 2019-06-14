@@ -18,7 +18,7 @@ Compute minimum, maximum, and median across all numeric columns in a
 dataframe.
 }
 \examples{
-\dontrun{
+\donttest{
 ggstatsplot:::numdf_summary(ggplot2::msleep)
 }
 

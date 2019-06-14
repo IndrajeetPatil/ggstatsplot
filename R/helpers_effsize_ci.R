@@ -31,7 +31,8 @@
 #' @importFrom stats na.omit
 #'
 #' @examples
-#' \dontrun{
+#'
+#' \donttest{
 #' set.seed(123)
 #' ggstatsplot:::t1way_ci(
 #'   data = dplyr::filter(ggplot2::msleep, vore != "insecti"),
@@ -180,7 +181,8 @@ t1way_ci <- function(data,
 #' @importFrom stats na.omit
 #'
 #' @examples
-#' \dontrun{
+#'
+#' \donttest{
 #' ggstatsplot:::yuend_ci(
 #'   data = dplyr::filter(
 #'     .data = ggstatsplot::iris_long,
@@ -346,7 +348,8 @@ yuend_ci <- function(data,
 #' @importFrom stats na.omit
 #'
 #' @examples
-#' \dontrun{
+#'
+#' \donttest{
 #' ggstatsplot:::robcor_ci(
 #'   data = mtcars,
 #'   x = "hp",
@@ -486,7 +489,8 @@ robcor_ci <- function(data,
 #' @importFrom stats na.omit
 #'
 #' @examples
-#' \dontrun{
+#'
+#' \donttest{
 #' ggstatsplot:::kw_eta_h_ci(
 #'   data = ggplot2::msleep,
 #'   x = vore,

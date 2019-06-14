@@ -14,7 +14,7 @@ contingency table analyses.}
 Message about results from a single-sample proportion test.
 }
 \examples{
-\dontrun{
+\donttest{
 ggstatsplot:::proptest_message(main = "am", condition = "cyl")
 }
 

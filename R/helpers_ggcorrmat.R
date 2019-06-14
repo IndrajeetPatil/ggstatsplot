@@ -13,7 +13,7 @@
 #' @importFrom stats median
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ggstatsplot:::numdf_summary(ggplot2::msleep)
 #' }
 #'

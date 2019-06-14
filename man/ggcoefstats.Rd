@@ -312,7 +312,7 @@ ggstatsplot::ggcoefstats(x = mod, output = "glance")
 ggstatsplot::ggcoefstats(x = mod, output = "augment")
 
 # -------------- with custom dataframe -----------------------------------
-\dontrun{
+\donttest{
 # creating a dataframe
 df <-
   structure(

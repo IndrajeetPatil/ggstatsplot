@@ -55,7 +55,7 @@ Making text subtitle for the robust ANOVA
 }
 \examples{
 
-\dontrun{
+\donttest{
 # for reproducibility
 set.seed(123)
 

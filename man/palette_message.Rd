@@ -20,14 +20,11 @@ when the number of factor levels is greater than 8, the maximum number of
 colors allowed by \code{"Dark2"} palette from the \code{RColorBrewer} package.
 }
 \examples{
-\dontrun{
 ggstatsplot:::palette_message(
   package = "RColorBrewer",
   palette = "Dark2",
   min_length = 20
 )
-}
-
 }
 \seealso{
 Other helper_messages: \code{\link{bartlett_message}},

@@ -166,7 +166,8 @@ Custom function to get confidence intervals for effect size
 measure for robust ANOVA.
 }
 \examples{
-\dontrun{
+
+\donttest{
 set.seed(123)
 ggstatsplot:::t1way_ci(
   data = dplyr::filter(ggplot2::msleep, vore != "insecti"),

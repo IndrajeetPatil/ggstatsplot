@@ -64,7 +64,7 @@ Confidence Intervals on Effect Size
 }
 }
 \examples{
-\dontrun{
+\donttest{
 #---------------- two-sample test ------------------------------------
 
 # creating a smaller dataset

@@ -251,7 +251,7 @@ resulting plots using \code{ggstatsplot::combine_plots}.
 }
 \examples{
 
-\dontrun{
+\donttest{
 # with condition and with count data
 library(jmv)
 

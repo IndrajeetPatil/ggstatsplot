@@ -78,7 +78,7 @@ reordering your factor levels if appropriate as shown in the second example
 below.
 }
 \examples{
-\dontrun{
+\donttest{
 set.seed(123)
 
 # -------------- between-subjects design ------------------------
