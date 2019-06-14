@@ -40,7 +40,7 @@ Bayes factor message for random-effects meta-analysis
 }
 \examples{
 
-\dontrun{
+\donttest{
 # setup
 set.seed(123)
 library(metaBMA)

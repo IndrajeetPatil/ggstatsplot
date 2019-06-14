@@ -219,7 +219,7 @@ subtitle_t_parametric <- function(data,
 #'   below.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' set.seed(123)
 #'
 #' # -------------- between-subjects design ------------------------
@@ -693,7 +693,7 @@ subtitle_t_bayes <- function(data,
 #' }
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' #---------------- two-sample test ------------------------------------
 #'
 #' # creating a smaller dataset

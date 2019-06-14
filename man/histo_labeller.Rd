@@ -62,7 +62,7 @@ Helper function for adding centrality parameter value and/or a
 test value for the continuous, numeric \code{x}-axis variable.
 }
 \examples{
-\dontrun{
+\donttest{
 library(ggplot2)
 
 # creating a ploton which lines and labels are to be superposed

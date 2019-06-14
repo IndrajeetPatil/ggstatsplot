@@ -29,13 +29,10 @@ Computing confidence intervals for the Kendall's coefficient of
 concordance (aka Kendall's \emph{W}).
 }
 \examples{
-\dontrun{
 set.seed(123)
 library(jmv)
 data("bugs", package = "jmv")
 ggstatsplot:::kendall_w_ci(dplyr::select(bugs, LDLF:HDHF))
-}
-
 }
 \author{
 Indrajeet Patil

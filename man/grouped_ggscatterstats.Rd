@@ -272,7 +272,7 @@ subtitle.
 }
 \examples{
 
-\dontrun{
+\donttest{
 # to ensure reproducibility
 set.seed(123)
 

@@ -185,7 +185,7 @@ games_howell <- function(data,
 #' @examples
 #'
 #' # time consuming, so not run on `CRAN` machines
-#' \dontrun{
+#' \donttest{
 #' # show all columns in a tibble
 #' options(tibble.width = Inf)
 #'

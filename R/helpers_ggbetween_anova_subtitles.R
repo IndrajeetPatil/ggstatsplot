@@ -482,7 +482,7 @@ subtitle_anova_nonparametric <- function(data,
 #'
 #' @examples
 #'
-#' \dontrun{
+#' \donttest{
 #' # for reproducibility
 #' set.seed(123)
 #'
@@ -664,7 +664,7 @@ subtitle_anova_robust <- function(data,
 #' @importFrom sjstats eta_sq omega_sq
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' set.seed(123)
 #'
 #' # between-subjects ---------------------------------------

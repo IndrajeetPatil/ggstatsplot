@@ -5,7 +5,7 @@
 #' @inheritParams tfz_labeller
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # show all columns in output tibble
 #' options(tibble.width = Inf)
 #'
@@ -753,7 +753,7 @@ subtitle_meta_ggcoefstats <- function(data,
 #'
 #' @examples
 #'
-#' \dontrun{
+#' \donttest{
 #' # setup
 #' set.seed(123)
 #' library(metaBMA)

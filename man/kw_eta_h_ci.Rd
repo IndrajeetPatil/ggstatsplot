@@ -159,7 +159,8 @@ Custom function to get confidence intervals for effect size
 measure for Kruskal-Wallis Rank Sum Test.
 }
 \examples{
-\dontrun{
+
+\donttest{
 ggstatsplot:::kw_eta_h_ci(
   data = ggplot2::msleep,
   x = vore,

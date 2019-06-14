@@ -339,7 +339,7 @@ ggstatsplot::grouped_ggbetweenstats(
   grouping.var = drv,
   conf.level = 0.99
 )
-\dontrun{
+\donttest{
 # modifying individual plots using `ggplot.component` argument
 ggstatsplot::grouped_ggbetweenstats(
   data = dplyr::filter(

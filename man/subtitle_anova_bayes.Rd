@@ -33,7 +33,7 @@ to use in calculating Bayes factors.}
 Making text subtitle for the between-subject one-way anova designs.
 }
 \examples{
-\dontrun{
+\donttest{
 set.seed(123)
 
 # between-subjects ---------------------------------------

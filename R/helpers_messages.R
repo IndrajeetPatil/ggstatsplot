@@ -202,14 +202,11 @@ grouped_message <- function() {
 #' @family helper_messages
 #'
 #' @examples
-#' \dontrun{
 #' ggstatsplot:::palette_message(
 #'   package = "RColorBrewer",
 #'   palette = "Dark2",
 #'   min_length = 20
 #' )
-#' }
-#'
 #' @keywords internal
 
 # function body
@@ -295,7 +292,7 @@ effsize_ci_message <- function(nboot = 100, conf.level = 0.95) {
 #'   contingency table analyses.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ggstatsplot:::proptest_message(main = "am", condition = "cyl")
 #' }
 #'

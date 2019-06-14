@@ -166,7 +166,8 @@ Custom function to get confidence intervals for percentage bend
 correlation coefficient.
 }
 \examples{
-\dontrun{
+
+\donttest{
 ggstatsplot:::robcor_ci(
   data = mtcars,
   x = "hp",
