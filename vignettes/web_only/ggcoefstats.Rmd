@@ -71,9 +71,9 @@ Most of the regression models that are supported in the `broom` and
 `ggcoefstats`. For example-
 
 `aareg`, `anova`, `aov`, `aovlist`, `Arima`, `bigglm`, `biglm`, `brmsfit`,
-`btergm`, `cch`, `clm`, `clmm`, `confusionMatrix`, `coxph`, `drc`, `ergm`,
-`felm`, `fitdistr`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`,
-`garch`, `glm`, `glmmadmb`, `glmmTMB`, `glmrob`, `gmm`, `ivreg`, `lm`,
+`btergm`, `cch`, `clm`, `clmm`, `confusionMatrix`, `coxph`, `drc`, `epi.2by2`,
+`ergm`, `felm`, `fitdistr`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`,
+`gamlss`, `garch`, `glm`, `glmmadmb`, `glmmTMB`, `glmrob`, `gmm`, `ivreg`, `lm`,
 `lm.beta`, `lmerMod`, `lmodel2`, `lmrob`, `mcmc`, `MCMCglmm`, `mediate`,
 `mjoint`, `mle2`, `mlm`, `multinom`, `nlmerMod`, `nlrq`, `nls`, `orcutt`, `plm`,
 `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `speedglm`, `speedlm`,
@@ -809,12 +809,16 @@ ggstatsplot::ggcoefstats(
 
 ```{r mlm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
 # model (converting all numeric columns in data to z-scores)
-mod <- stats::lm(formula = cbind(mpg, disp) ~ wt, 
-                 data = purrr::modify_if(.x = mtcars, .p = is.numeric, .f = scale))
+mod <- stats::lm(
+  formula = cbind(mpg, disp) ~ wt,
+  data = purrr::modify_if(.x = mtcars, .p = is.numeric, .f = scale)
+)
 
 # plot
-ggstatsplot::ggcoefstats(x = mod,
-                         exclude.intercept = FALSE)
+ggstatsplot::ggcoefstats(
+  x = mod,
+  exclude.intercept = FALSE
+)
 ```
 
 ## multinomial logistic regression models (`multinom`)
@@ -1584,9 +1588,9 @@ library(glmnet)
 set.seed(2014)
 
 # creating a dataframe
-x <- matrix(rnorm(100*20),100,20)
+x <- matrix(rnorm(100 * 20), 100, 20)
 y <- rnorm(100)
-fit1 <- glmnet::glmnet(x,y)
+fit1 <- glmnet::glmnet(x, y)
 (df <- broom::tidy(fit1))
 
 # displaying only a certain step
@@ -1816,6 +1820,33 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
+## Summary measures for count data (`epi.2by2`)
+
+```{r epi.2by2, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+# setup
+set.seed(123)
+library(epiR)
+
+# creating a model
+dat <- matrix(c(13, 2163, 5, 3349), nrow = 2, byrow = TRUE)
+rownames(dat) <- c("DF+", "DF-")
+colnames(dat) <- c("FUS+", "FUS-")
+fit <- epiR::epi.2by2(
+  dat = as.table(dat),
+  method = "cross.sectional",
+  conf.level = 0.95,
+  units = 100,
+  outcome = "as.columns"
+)
+
+# tidy dataframe
+ggstatsplot::ggcoefstats(
+  x = fit,
+  parameters = "moa",
+  title = "Summary measures for count data \npresented in a 2 by 2 table"
+)
+```
+
 ## Bayesian generalized (non-)linear multivariate multilevel models (`brmsfit`)
 
 ```{r brmsfit, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
@@ -2019,11 +2050,11 @@ columns- `term`, `estimate`, `std.error`.
 # let's make up a dataframe (with minimum amount of details)
 df_min <- tibble::tribble(
   ~term, ~estimate, ~std.error,
-  "study1", 0.0665, -0.778,
-  "study2", 0.542, -0.280,
+  "study1", 0.0665, 0.778,
+  "study2", 0.542, 0.280,
   "study3", 0.045, 0.030,
-  "study4", 0.500, -0.708,
-  "study5", 0.032, -0.280,
+  "study4", 0.500, 0.708,
+  "study5", 0.032, 0.280,
   "study6", 0.085, 0.030
 )
 
@@ -2042,11 +2073,11 @@ information for making labels with statistical information.
 # let's make up a dataframe (with all available details)
 df_full <- tibble::tribble(
   ~term, ~statistic, ~estimate, ~std.error, ~p.value, ~df.residual,
-  "study1", 0.158, 0.0665, -0.778, 0.875, 5L,
-  "study2", 1.33, 0.542, -0.280, 0.191, 10L,
+  "study1", 0.158, 0.0665, 0.778, 0.875, 5L,
+  "study2", 1.33, 0.542, 0.280, 0.191, 10L,
   "study3", 1.24, 0.045, 0.030, 0.001, 12L,
-  "study4", 0.156, 0.500, -0.708, 0.885, 8L,
-  "study5", 0.33, 0.032, -0.280, 0.101, 2L,
+  "study4", 0.156, 0.500, 0.708, 0.885, 8L,
+  "study5", 0.33, 0.032, 0.280, 0.101, 2L,
   "study6", 1.04, 0.085, 0.030, 0.001, 3L
 )
 

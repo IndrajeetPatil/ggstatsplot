@@ -1,3 +1,11 @@
+# ggstatsplot 0.0.11.9000
+
+MINOR CHANGES
+
+  - `ggcoefstats` defaults to `bf.message = TRUE` to be consistent with the rest
+    of the functions in the package.
+  - `ggcoefstats` supports the following class of objects: `epi.2by2`.
+
 # ggstatsplot 0.0.11
  
 BREAKING CHANGES

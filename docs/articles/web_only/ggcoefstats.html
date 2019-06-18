@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11.9000</span>
       </span>
     </div>
 
@@ -135,7 +135,7 @@
       <h1>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-06-12</h4>
+            <h4 class="date">2019-06-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -158,7 +158,7 @@
 <li><p>The output of this function will be a <code>ggplot2</code> object and, thus, it can be further modified (e.g., change themes, etc.) with <code>ggplot2</code> functions.</p></li>
 </ul>
 <p>Most of the regression models that are supported in the <code>broom</code> and <code>broom.mixed</code> packages with <code>tidy</code> and <code>glance</code> methods are also supported by <code>ggcoefstats</code>. For example-</p>
-<p><code>aareg</code>, <code>anova</code>, <code>aov</code>, <code>aovlist</code>, <code>Arima</code>, <code>bigglm</code>, <code>biglm</code>, <code>brmsfit</code>, <code>btergm</code>, <code>cch</code>, <code>clm</code>, <code>clmm</code>, <code>confusionMatrix</code>, <code>coxph</code>, <code>drc</code>, <code>ergm</code>, <code>felm</code>, <code>fitdistr</code>, <code>glmerMod</code>, <code>glmmTMB</code>, <code>gls</code>, <code>gam</code>, <code>Gam</code>, <code>gamlss</code>, <code>garch</code>, <code>glm</code>, <code>glmmadmb</code>, <code>glmmTMB</code>, <code>glmrob</code>, <code>gmm</code>, <code>ivreg</code>, <code>lm</code>, <code>lm.beta</code>, <code>lmerMod</code>, <code>lmodel2</code>, <code>lmrob</code>, <code>mcmc</code>, <code>MCMCglmm</code>, <code>mediate</code>, <code>mjoint</code>, <code>mle2</code>, <code>mlm</code>, <code>multinom</code>, <code>nlmerMod</code>, <code>nlrq</code>, <code>nls</code>, <code>orcutt</code>, <code>plm</code>, <code>polr</code>, <code>ridgelm</code>, <code>rjags</code>, <code>rlm</code>, <code>rlmerMod</code>, <code>rq</code>, <code>speedglm</code>, <code>speedlm</code>, <code>stanreg</code>, <code>survreg</code>, <code>svyglm</code>, <code>svyolr</code>, <code>svyglm</code>, etc.</p>
+<p><code>aareg</code>, <code>anova</code>, <code>aov</code>, <code>aovlist</code>, <code>Arima</code>, <code>bigglm</code>, <code>biglm</code>, <code>brmsfit</code>, <code>btergm</code>, <code>cch</code>, <code>clm</code>, <code>clmm</code>, <code>confusionMatrix</code>, <code>coxph</code>, <code>drc</code>, <code>epi.2by2</code>, <code>ergm</code>, <code>felm</code>, <code>fitdistr</code>, <code>glmerMod</code>, <code>glmmTMB</code>, <code>gls</code>, <code>gam</code>, <code>Gam</code>, <code>gamlss</code>, <code>garch</code>, <code>glm</code>, <code>glmmadmb</code>, <code>glmmTMB</code>, <code>glmrob</code>, <code>gmm</code>, <code>ivreg</code>, <code>lm</code>, <code>lm.beta</code>, <code>lmerMod</code>, <code>lmodel2</code>, <code>lmrob</code>, <code>mcmc</code>, <code>MCMCglmm</code>, <code>mediate</code>, <code>mjoint</code>, <code>mle2</code>, <code>mlm</code>, <code>multinom</code>, <code>nlmerMod</code>, <code>nlrq</code>, <code>nls</code>, <code>orcutt</code>, <code>plm</code>, <code>polr</code>, <code>ridgelm</code>, <code>rjags</code>, <code>rlm</code>, <code>rlmerMod</code>, <code>rq</code>, <code>speedglm</code>, <code>speedlm</code>, <code>stanreg</code>, <code>survreg</code>, <code>svyglm</code>, <code>svyolr</code>, <code>svyglm</code>, etc.</p>
 <p>In the following examples, we will try out a number of regression models and, additionally, we will also see how we can change different aspects of the plot itself.</p>
 </div>
 <div id="omnibus-anova-aov" class="section level2">
@@ -192,8 +192,8 @@
 <a class="sourceLine" id="cb1-25" title="25">) <span class="op">+</span></a>
 <a class="sourceLine" id="cb1-26" title="26"><span class="st">  </span><span class="co"># further modification with the ggplot2 commands</span></a>
 <a class="sourceLine" id="cb1-27" title="27"><span class="st">  </span><span class="co"># note the order in which the labels are entered</span></a>
-<a class="sourceLine" id="cb1-28" title="28"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/scale_discrete.html">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"MPAA"</span>, <span class="st">"Genre"</span>, <span class="st">"Interaction term"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb1-29" title="29"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span>(</a>
+<a class="sourceLine" id="cb1-28" title="28"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"MPAA"</span>, <span class="st">"Genre"</span>, <span class="st">"Interaction term"</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb1-29" title="29"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(</a>
 <a class="sourceLine" id="cb1-30" title="30">    <span class="dt">x =</span> <span class="st">"effect size estimate (partial omega-squared)"</span>,</a>
 <a class="sourceLine" id="cb1-31" title="31">    <span class="dt">y =</span> <span class="ot">NULL</span></a>
 <a class="sourceLine" id="cb1-32" title="32">  )</a></code></pre></div>
@@ -293,16 +293,16 @@
 <a class="sourceLine" id="cb4-17" title="17">  <span class="dt">conf.level =</span> <span class="fl">0.99</span>, <span class="co"># changing the confidence levels for confidence intervals</span></a>
 <a class="sourceLine" id="cb4-18" title="18">  <span class="dt">sort =</span> <span class="st">"ascending"</span>, <span class="co"># sorting the terms of the model based on estimate values</span></a>
 <a class="sourceLine" id="cb4-19" title="19">  <span class="dt">label.direction =</span> <span class="st">"both"</span>, <span class="co"># direction in which to adjust position of labels (both x and y)</span></a>
-<a class="sourceLine" id="cb4-20" title="20">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_gray</a></span>(), <span class="co"># changing the default theme</span></a>
+<a class="sourceLine" id="cb4-20" title="20">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_gray</a></span>(), <span class="co"># changing the default theme</span></a>
 <a class="sourceLine" id="cb4-21" title="21">  <span class="dt">stats.label.color =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#CC79A7"</span>, <span class="st">"darkgreen"</span>, <span class="st">"#0072B2"</span>, <span class="st">"black"</span>, <span class="st">"red"</span>),</a>
 <a class="sourceLine" id="cb4-22" title="22">  <span class="dt">title =</span> <span class="st">"Movie ratings by their genre"</span>,</a>
 <a class="sourceLine" id="cb4-23" title="23">  <span class="dt">subtitle =</span> <span class="st">"Source: www.imdb.com"</span></a>
 <a class="sourceLine" id="cb4-24" title="24">) <span class="op">+</span></a>
 <a class="sourceLine" id="cb4-25" title="25"><span class="st">  </span><span class="co"># further modification with the ggplot2 commands</span></a>
 <a class="sourceLine" id="cb4-26" title="26"><span class="st">  </span><span class="co"># note the order in which the labels are entered</span></a>
-<a class="sourceLine" id="cb4-27" title="27"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/scale_discrete.html">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Comedy"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy Drama"</span>, <span class="st">"Drama"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb4-28" title="28"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span>(<span class="dt">y =</span> <span class="st">"Genre compared to Action movies)"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb4-29" title="29"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/theme.html">theme</a></span>(<span class="dt">axis.title.y =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">element_text</a></span>(<span class="dt">size =</span> <span class="dv">14</span>, <span class="dt">face =</span> <span class="st">"bold"</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb4-27" title="27"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Comedy"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy Drama"</span>, <span class="st">"Drama"</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-28" title="28"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">y =</span> <span class="st">"Genre compared to Action movies)"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-29" title="29"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">axis.title.y =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="dt">size =</span> <span class="dv">14</span>, <span class="dt">face =</span> <span class="st">"bold"</span>))</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/lm-1.png" width="768"></p>
 <p>As can be seen from the regression coefficients, compared to action movies, comedies and action comedies are not rated significantly better. All three of the “drama” types (pure, action or comedy dramas) have statistical significantly higher regression coefficients. This finding occurs even with our more conservative <code>0.99</code> confidence interval.</p>
 </div>
@@ -330,7 +330,7 @@
 <a class="sourceLine" id="cb5-18" title="18">    <span class="dt">stats.label.color =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb5-19" title="19">    <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span> <span class="co"># show the intercept</span></a>
 <a class="sourceLine" id="cb5-20" title="20">  ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-21" title="21"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span>(<span class="dt">x =</span> <span class="kw"><a href="https://rdrr.io/r/base/parse.html">parse</a></span>(<span class="dt">text =</span> <span class="st">"'standardized regression coefficient' ~italic(beta)"</span>)),</a>
+<a class="sourceLine" id="cb5-21" title="21"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">x =</span> <span class="kw"><a href="https://rdrr.io/r/base/parse.html">parse</a></span>(<span class="dt">text =</span> <span class="st">"'standardized regression coefficient' ~italic(beta)"</span>)),</a>
 <a class="sourceLine" id="cb5-22" title="22">  <span class="co"># model 2: linear mixed-effects model</span></a>
 <a class="sourceLine" id="cb5-23" title="23">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
 <a class="sourceLine" id="cb5-24" title="24">    <span class="dt">x =</span> lme4<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span>(</a>
@@ -343,7 +343,7 @@
 <a class="sourceLine" id="cb5-31" title="31">    <span class="dt">stats.label.color =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb5-32" title="32">    <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span> <span class="co"># show the intercept</span></a>
 <a class="sourceLine" id="cb5-33" title="33">  ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-34" title="34"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span>(</a>
+<a class="sourceLine" id="cb5-34" title="34"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(</a>
 <a class="sourceLine" id="cb5-35" title="35">      <span class="dt">x =</span> <span class="kw"><a href="https://rdrr.io/r/base/parse.html">parse</a></span>(<span class="dt">text =</span> <span class="st">"'standardized regression coefficient' ~italic(beta)"</span>),</a>
 <a class="sourceLine" id="cb5-36" title="36">      <span class="dt">y =</span> <span class="st">"fixed effects"</span></a>
 <a class="sourceLine" id="cb5-37" title="37">    ),</a>
@@ -755,7 +755,7 @@
 <a class="sourceLine" id="cb15-17" title="17">  <span class="dt">subtitle =</span> <span class="st">"(using `ordinal` package)"</span>,</a>
 <a class="sourceLine" id="cb15-18" title="18">  <span class="dt">caption.summary =</span> <span class="ot">FALSE</span> <span class="co"># suppress model diagnostics</span></a>
 <a class="sourceLine" id="cb15-19" title="19">) <span class="op">+</span></a>
-<a class="sourceLine" id="cb15-20" title="20"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span>(</a>
+<a class="sourceLine" id="cb15-20" title="20"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(</a>
 <a class="sourceLine" id="cb15-21" title="21">    <span class="dt">x =</span> <span class="st">"logit regression coefficient"</span>,</a>
 <a class="sourceLine" id="cb15-22" title="22">    <span class="dt">y =</span> <span class="ot">NULL</span></a>
 <a class="sourceLine" id="cb15-23" title="23">  )</a></code></pre></div>
@@ -785,7 +785,7 @@
 <a class="sourceLine" id="cb16-17" title="17">  <span class="dt">title =</span> <span class="st">"cumulative link mixed model (clmm)"</span>,</a>
 <a class="sourceLine" id="cb16-18" title="18">  <span class="dt">subtitle =</span> <span class="st">"(using `ordinal` package)"</span></a>
 <a class="sourceLine" id="cb16-19" title="19">) <span class="op">+</span></a>
-<a class="sourceLine" id="cb16-20" title="20"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span>(</a>
+<a class="sourceLine" id="cb16-20" title="20"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(</a>
 <a class="sourceLine" id="cb16-21" title="21">    <span class="dt">x =</span> <span class="st">"coefficient from ordinal mixed-effects regression"</span>,</a>
 <a class="sourceLine" id="cb16-22" title="22">    <span class="dt">y =</span> <span class="st">"fixed effects"</span></a>
 <a class="sourceLine" id="cb16-23" title="23">  )</a></code></pre></div>
@@ -809,7 +809,7 @@
 <a class="sourceLine" id="cb17-15" title="15">    )</a>
 <a class="sourceLine" id="cb17-16" title="16">  )</a>
 <a class="sourceLine" id="cb17-17" title="17">) <span class="op">+</span></a>
-<a class="sourceLine" id="cb17-18" title="18"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span>(</a>
+<a class="sourceLine" id="cb17-18" title="18"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(</a>
 <a class="sourceLine" id="cb17-19" title="19">    <span class="dt">x =</span> <span class="st">"logit regression coefficients"</span>,</a>
 <a class="sourceLine" id="cb17-20" title="20">    <span class="dt">y =</span> <span class="st">"threshold parameters"</span>,</a>
 <a class="sourceLine" id="cb17-21" title="21">    <span class="dt">title =</span> <span class="st">"cumulative link mixed models"</span></a>
@@ -841,13 +841,17 @@
 <h2 class="hasAnchor">
 <a href="#multiple-linear-regression-models-mlm" class="anchor"></a>multiple linear regression models (<code>mlm</code>)</h2>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="co"># model (converting all numeric columns in data to z-scores)</span></a>
-<a class="sourceLine" id="cb19-2" title="2">mod &lt;-<span class="st"> </span>stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="dt">formula =</span> <span class="kw"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(mpg, disp) <span class="op">~</span><span class="st"> </span>wt, </a>
-<a class="sourceLine" id="cb19-3" title="3">                 <span class="dt">data =</span> purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/modify.html">modify_if</a></span>(<span class="dt">.x =</span> mtcars, <span class="dt">.p =</span> is.numeric, <span class="dt">.f =</span> scale))</a>
-<a class="sourceLine" id="cb19-4" title="4"></a>
-<a class="sourceLine" id="cb19-5" title="5"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb19-6" title="6">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> mod,</a>
-<a class="sourceLine" id="cb19-7" title="7">                         <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb19-8" title="8"><span class="co">#&gt; Note: No model diagnostics information available for the object of class mlm .</span></a></code></pre></div>
+<a class="sourceLine" id="cb19-2" title="2">mod &lt;-<span class="st"> </span>stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(</a>
+<a class="sourceLine" id="cb19-3" title="3">  <span class="dt">formula =</span> <span class="kw"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(mpg, disp) <span class="op">~</span><span class="st"> </span>wt,</a>
+<a class="sourceLine" id="cb19-4" title="4">  <span class="dt">data =</span> purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/modify.html">modify_if</a></span>(<span class="dt">.x =</span> mtcars, <span class="dt">.p =</span> is.numeric, <span class="dt">.f =</span> scale)</a>
+<a class="sourceLine" id="cb19-5" title="5">)</a>
+<a class="sourceLine" id="cb19-6" title="6"></a>
+<a class="sourceLine" id="cb19-7" title="7"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb19-8" title="8">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb19-9" title="9">  <span class="dt">x =</span> mod,</a>
+<a class="sourceLine" id="cb19-10" title="10">  <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb19-11" title="11">)</a>
+<a class="sourceLine" id="cb19-12" title="12"><span class="co">#&gt; Note: No model diagnostics information available for the object of class mlm .</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/mlm-1.png" width="480"></p>
 </div>
 <div id="multinomial-logistic-regression-models-multinom" class="section level2">
@@ -968,7 +972,7 @@
 <a class="sourceLine" id="cb23-31" title="31">  <span class="dt">subtitle =</span> <span class="st">"Source: Iris data set (by Fisher or Anderson)"</span>,</a>
 <a class="sourceLine" id="cb23-32" title="32">  <span class="dt">caption =</span> <span class="st">"Results from 2 by 2 RM ANOVA"</span></a>
 <a class="sourceLine" id="cb23-33" title="33">) <span class="op">+</span></a>
-<a class="sourceLine" id="cb23-34" title="34"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/theme.html">theme</a></span>(<span class="dt">plot.subtitle =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">element_text</a></span>(<span class="dt">size =</span> <span class="dv">11</span>, <span class="dt">face =</span> <span class="st">"plain"</span>))</a>
+<a class="sourceLine" id="cb23-34" title="34"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">plot.subtitle =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="dt">size =</span> <span class="dv">11</span>, <span class="dt">face =</span> <span class="st">"plain"</span>))</a>
 <a class="sourceLine" id="cb23-35" title="35"><span class="co">#&gt; Note: No model diagnostics information available for the object of class aovlist .</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/aovlist1-1.png" width="768"></p>
 <p>As revealed by this analysis, all effects of this model are significant. But most of the variance is explained by the <code>attribute</code>, with the next important explanatory factor being the <code>measure</code> used. A very little amount of variation in measurement is accounted for by the interaction between these two factors.</p>
@@ -1606,9 +1610,9 @@
 <a class="sourceLine" id="cb48-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">2014</span>)</a>
 <a class="sourceLine" id="cb48-4" title="4"></a>
 <a class="sourceLine" id="cb48-5" title="5"><span class="co"># creating a dataframe</span></a>
-<a class="sourceLine" id="cb48-6" title="6">x &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">100</span><span class="op">*</span><span class="dv">20</span>),<span class="dv">100</span>,<span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb48-6" title="6">x &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="dv">20</span>), <span class="dv">100</span>, <span class="dv">20</span>)</a>
 <a class="sourceLine" id="cb48-7" title="7">y &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb48-8" title="8">fit1 &lt;-<span class="st"> </span>glmnet<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/glmnet/man/glmnet.html">glmnet</a></span>(x,y)</a>
+<a class="sourceLine" id="cb48-8" title="8">fit1 &lt;-<span class="st"> </span>glmnet<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/glmnet/man/glmnet.html">glmnet</a></span>(x, y)</a>
 <a class="sourceLine" id="cb48-9" title="9">(df &lt;-<span class="st"> </span>broom<span class="op">::</span><span class="kw"><a href="http://broom.tidyverse.org/reference/reexports.html">tidy</a></span>(fit1))</a>
 <a class="sourceLine" id="cb48-10" title="10"><span class="co">#&gt; # A tibble: 1,086 x 5</span></a>
 <a class="sourceLine" id="cb48-11" title="11"><span class="co">#&gt;    term         step estimate lambda dev.ratio</span></a>
@@ -1874,341 +1878,371 @@
 <a class="sourceLine" id="cb57-20" title="20">)</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/drc-1.png" width="480"></p>
 </div>
+<div id="summary-measures-for-count-data-epi-2by2" class="section level2">
+<h2 class="hasAnchor">
+<a href="#summary-measures-for-count-data-epi-2by2" class="anchor"></a>Summary measures for count data (<code>epi.2by2</code>)</h2>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="co"># setup</span></a>
+<a class="sourceLine" id="cb58-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb58-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(epiR)</a>
+<a class="sourceLine" id="cb58-4" title="4"></a>
+<a class="sourceLine" id="cb58-5" title="5"><span class="co"># creating a model</span></a>
+<a class="sourceLine" id="cb58-6" title="6">dat &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">13</span>, <span class="dv">2163</span>, <span class="dv">5</span>, <span class="dv">3349</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb58-7" title="7"><span class="kw"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(dat) &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"DF+"</span>, <span class="st">"DF-"</span>)</a>
+<a class="sourceLine" id="cb58-8" title="8"><span class="kw"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(dat) &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"FUS+"</span>, <span class="st">"FUS-"</span>)</a>
+<a class="sourceLine" id="cb58-9" title="9">fit &lt;-<span class="st"> </span>epiR<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/epiR/man/epi.2by2.html">epi.2by2</a></span>(</a>
+<a class="sourceLine" id="cb58-10" title="10">  <span class="dt">dat =</span> <span class="kw"><a href="https://rdrr.io/r/base/table.html">as.table</a></span>(dat),</a>
+<a class="sourceLine" id="cb58-11" title="11">  <span class="dt">method =</span> <span class="st">"cross.sectional"</span>,</a>
+<a class="sourceLine" id="cb58-12" title="12">  <span class="dt">conf.level =</span> <span class="fl">0.95</span>,</a>
+<a class="sourceLine" id="cb58-13" title="13">  <span class="dt">units =</span> <span class="dv">100</span>,</a>
+<a class="sourceLine" id="cb58-14" title="14">  <span class="dt">outcome =</span> <span class="st">"as.columns"</span></a>
+<a class="sourceLine" id="cb58-15" title="15">)</a>
+<a class="sourceLine" id="cb58-16" title="16"></a>
+<a class="sourceLine" id="cb58-17" title="17"><span class="co"># tidy dataframe</span></a>
+<a class="sourceLine" id="cb58-18" title="18">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb58-19" title="19">  <span class="dt">x =</span> fit,</a>
+<a class="sourceLine" id="cb58-20" title="20">  <span class="dt">parameters =</span> <span class="st">"moa"</span>,</a>
+<a class="sourceLine" id="cb58-21" title="21">  <span class="dt">title =</span> <span class="st">"Summary measures for count data </span><span class="ch">\n</span><span class="st">presented in a 2 by 2 table"</span></a>
+<a class="sourceLine" id="cb58-22" title="22">)</a>
+<a class="sourceLine" id="cb58-23" title="23"><span class="co">#&gt; Note: No model diagnostics information available for the object of class epi.2by2 .</span></a>
+<a class="sourceLine" id="cb58-24" title="24"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from epi.2by2 object; </span></a>
+<a class="sourceLine" id="cb58-25" title="25"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/epi.2by2-1.png" width="384"></p>
+</div>
 <div id="bayesian-generalized-non-linear-multivariate-multilevel-models-brmsfit" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bayesian-generalized-non-linear-multivariate-multilevel-models-brmsfit" class="anchor"></a>Bayesian generalized (non-)linear multivariate multilevel models (<code>brmsfit</code>)</h2>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="co"># setup</span></a>
-<a class="sourceLine" id="cb58-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb58-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(brms)</a>
-<a class="sourceLine" id="cb58-4" title="4"></a>
-<a class="sourceLine" id="cb58-5" title="5"><span class="co"># prior</span></a>
-<a class="sourceLine" id="cb58-6" title="6">bprior1 &lt;-<span class="st"> </span><span class="kw">prior</span>(<span class="kw">student_t</span>(<span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">10</span>), <span class="dt">class =</span> b) <span class="op">+</span></a>
-<a class="sourceLine" id="cb58-7" title="7"><span class="st">  </span><span class="kw">prior</span>(<span class="kw">cauchy</span>(<span class="dv">0</span>, <span class="dv">2</span>), <span class="dt">class =</span> sd)</a>
-<a class="sourceLine" id="cb58-8" title="8"></a>
-<a class="sourceLine" id="cb58-9" title="9"><span class="co"># model</span></a>
-<a class="sourceLine" id="cb58-10" title="10">fit1 &lt;-<span class="st"> </span>brms<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/brms/man/brm.html">brm</a></span>(</a>
-<a class="sourceLine" id="cb58-11" title="11">  <span class="dt">formula =</span> count <span class="op">~</span><span class="st"> </span>Age <span class="op">+</span><span class="st"> </span>Base <span class="op">*</span><span class="st"> </span>Trt <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>patient),</a>
-<a class="sourceLine" id="cb58-12" title="12">  <span class="dt">data =</span> epilepsy,</a>
-<a class="sourceLine" id="cb58-13" title="13">  <span class="dt">family =</span> <span class="kw"><a href="https://rdrr.io/r/stats/family.html">poisson</a></span>(),</a>
-<a class="sourceLine" id="cb58-14" title="14">  <span class="dt">prior =</span> bprior1,</a>
-<a class="sourceLine" id="cb58-15" title="15">  <span class="dt">silent =</span> <span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb58-16" title="16">)</a>
-<a class="sourceLine" id="cb58-17" title="17"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb58-18" title="18"><span class="co">#&gt; SAMPLING FOR MODEL 'fe0a44bc352f0b7fbbe8bc1fa1f056ad' NOW (CHAIN 1).</span></a>
-<a class="sourceLine" id="cb58-19" title="19"><span class="co">#&gt; Chain 1: </span></a>
-<a class="sourceLine" id="cb58-20" title="20"><span class="co">#&gt; Chain 1: Gradient evaluation took 0 seconds</span></a>
-<a class="sourceLine" id="cb58-21" title="21"><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span></a>
-<a class="sourceLine" id="cb58-22" title="22"><span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span></a>
-<a class="sourceLine" id="cb58-23" title="23"><span class="co">#&gt; Chain 1: </span></a>
-<a class="sourceLine" id="cb58-24" title="24"><span class="co">#&gt; Chain 1: </span></a>
-<a class="sourceLine" id="cb58-25" title="25"><span class="co">#&gt; Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb58-26" title="26"><span class="co">#&gt; Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb58-27" title="27"><span class="co">#&gt; Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb58-28" title="28"><span class="co">#&gt; Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb58-29" title="29"><span class="co">#&gt; Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb58-30" title="30"><span class="co">#&gt; Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb58-31" title="31"><span class="co">#&gt; Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb58-32" title="32"><span class="co">#&gt; Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb58-33" title="33"><span class="co">#&gt; Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb58-34" title="34"><span class="co">#&gt; Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb58-35" title="35"><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb58-36" title="36"><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb58-37" title="37"><span class="co">#&gt; Chain 1: </span></a>
-<a class="sourceLine" id="cb58-38" title="38"><span class="co">#&gt; Chain 1:  Elapsed Time: 13.719 seconds (Warm-up)</span></a>
-<a class="sourceLine" id="cb58-39" title="39"><span class="co">#&gt; Chain 1:                7.372 seconds (Sampling)</span></a>
-<a class="sourceLine" id="cb58-40" title="40"><span class="co">#&gt; Chain 1:                21.091 seconds (Total)</span></a>
-<a class="sourceLine" id="cb58-41" title="41"><span class="co">#&gt; Chain 1: </span></a>
-<a class="sourceLine" id="cb58-42" title="42"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb58-43" title="43"><span class="co">#&gt; SAMPLING FOR MODEL 'fe0a44bc352f0b7fbbe8bc1fa1f056ad' NOW (CHAIN 2).</span></a>
-<a class="sourceLine" id="cb58-44" title="44"><span class="co">#&gt; Chain 2: </span></a>
-<a class="sourceLine" id="cb58-45" title="45"><span class="co">#&gt; Chain 2: Gradient evaluation took 0 seconds</span></a>
-<a class="sourceLine" id="cb58-46" title="46"><span class="co">#&gt; Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span></a>
-<a class="sourceLine" id="cb58-47" title="47"><span class="co">#&gt; Chain 2: Adjust your expectations accordingly!</span></a>
-<a class="sourceLine" id="cb58-48" title="48"><span class="co">#&gt; Chain 2: </span></a>
-<a class="sourceLine" id="cb58-49" title="49"><span class="co">#&gt; Chain 2: </span></a>
-<a class="sourceLine" id="cb58-50" title="50"><span class="co">#&gt; Chain 2: Iteration:    1 / 2000 [  0%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb58-51" title="51"><span class="co">#&gt; Chain 2: Iteration:  200 / 2000 [ 10%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb58-52" title="52"><span class="co">#&gt; Chain 2: Iteration:  400 / 2000 [ 20%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb58-53" title="53"><span class="co">#&gt; Chain 2: Iteration:  600 / 2000 [ 30%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb58-54" title="54"><span class="co">#&gt; Chain 2: Iteration:  800 / 2000 [ 40%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb58-55" title="55"><span class="co">#&gt; Chain 2: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb58-56" title="56"><span class="co">#&gt; Chain 2: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb58-57" title="57"><span class="co">#&gt; Chain 2: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb58-58" title="58"><span class="co">#&gt; Chain 2: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb58-59" title="59"><span class="co">#&gt; Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb58-60" title="60"><span class="co">#&gt; Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb58-61" title="61"><span class="co">#&gt; Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb58-62" title="62"><span class="co">#&gt; Chain 2: </span></a>
-<a class="sourceLine" id="cb58-63" title="63"><span class="co">#&gt; Chain 2:  Elapsed Time: 30.382 seconds (Warm-up)</span></a>
-<a class="sourceLine" id="cb58-64" title="64"><span class="co">#&gt; Chain 2:                76.33 seconds (Sampling)</span></a>
-<a class="sourceLine" id="cb58-65" title="65"><span class="co">#&gt; Chain 2:                106.712 seconds (Total)</span></a>
-<a class="sourceLine" id="cb58-66" title="66"><span class="co">#&gt; Chain 2: </span></a>
-<a class="sourceLine" id="cb58-67" title="67"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb58-68" title="68"><span class="co">#&gt; SAMPLING FOR MODEL 'fe0a44bc352f0b7fbbe8bc1fa1f056ad' NOW (CHAIN 3).</span></a>
-<a class="sourceLine" id="cb58-69" title="69"><span class="co">#&gt; Chain 3: </span></a>
-<a class="sourceLine" id="cb58-70" title="70"><span class="co">#&gt; Chain 3: Gradient evaluation took 0 seconds</span></a>
-<a class="sourceLine" id="cb58-71" title="71"><span class="co">#&gt; Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span></a>
-<a class="sourceLine" id="cb58-72" title="72"><span class="co">#&gt; Chain 3: Adjust your expectations accordingly!</span></a>
-<a class="sourceLine" id="cb58-73" title="73"><span class="co">#&gt; Chain 3: </span></a>
-<a class="sourceLine" id="cb58-74" title="74"><span class="co">#&gt; Chain 3: </span></a>
-<a class="sourceLine" id="cb58-75" title="75"><span class="co">#&gt; Chain 3: Iteration:    1 / 2000 [  0%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb58-76" title="76"><span class="co">#&gt; Chain 3: Iteration:  200 / 2000 [ 10%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb58-77" title="77"><span class="co">#&gt; Chain 3: Iteration:  400 / 2000 [ 20%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb58-78" title="78"><span class="co">#&gt; Chain 3: Iteration:  600 / 2000 [ 30%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb58-79" title="79"><span class="co">#&gt; Chain 3: Iteration:  800 / 2000 [ 40%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb58-80" title="80"><span class="co">#&gt; Chain 3: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb58-81" title="81"><span class="co">#&gt; Chain 3: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb58-82" title="82"><span class="co">#&gt; Chain 3: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb58-83" title="83"><span class="co">#&gt; Chain 3: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb58-84" title="84"><span class="co">#&gt; Chain 3: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb58-85" title="85"><span class="co">#&gt; Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb58-86" title="86"><span class="co">#&gt; Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb58-87" title="87"><span class="co">#&gt; Chain 3: </span></a>
-<a class="sourceLine" id="cb58-88" title="88"><span class="co">#&gt; Chain 3:  Elapsed Time: 10.414 seconds (Warm-up)</span></a>
-<a class="sourceLine" id="cb58-89" title="89"><span class="co">#&gt; Chain 3:                6.225 seconds (Sampling)</span></a>
-<a class="sourceLine" id="cb58-90" title="90"><span class="co">#&gt; Chain 3:                16.639 seconds (Total)</span></a>
-<a class="sourceLine" id="cb58-91" title="91"><span class="co">#&gt; Chain 3: </span></a>
-<a class="sourceLine" id="cb58-92" title="92"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb58-93" title="93"><span class="co">#&gt; SAMPLING FOR MODEL 'fe0a44bc352f0b7fbbe8bc1fa1f056ad' NOW (CHAIN 4).</span></a>
-<a class="sourceLine" id="cb58-94" title="94"><span class="co">#&gt; Chain 4: </span></a>
-<a class="sourceLine" id="cb58-95" title="95"><span class="co">#&gt; Chain 4: Gradient evaluation took 0 seconds</span></a>
-<a class="sourceLine" id="cb58-96" title="96"><span class="co">#&gt; Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span></a>
-<a class="sourceLine" id="cb58-97" title="97"><span class="co">#&gt; Chain 4: Adjust your expectations accordingly!</span></a>
-<a class="sourceLine" id="cb58-98" title="98"><span class="co">#&gt; Chain 4: </span></a>
-<a class="sourceLine" id="cb58-99" title="99"><span class="co">#&gt; Chain 4: </span></a>
-<a class="sourceLine" id="cb58-100" title="100"><span class="co">#&gt; Chain 4: Iteration:    1 / 2000 [  0%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb58-101" title="101"><span class="co">#&gt; Chain 4: Iteration:  200 / 2000 [ 10%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb58-102" title="102"><span class="co">#&gt; Chain 4: Iteration:  400 / 2000 [ 20%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb58-103" title="103"><span class="co">#&gt; Chain 4: Iteration:  600 / 2000 [ 30%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb58-104" title="104"><span class="co">#&gt; Chain 4: Iteration:  800 / 2000 [ 40%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb58-105" title="105"><span class="co">#&gt; Chain 4: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb58-106" title="106"><span class="co">#&gt; Chain 4: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb58-107" title="107"><span class="co">#&gt; Chain 4: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb58-108" title="108"><span class="co">#&gt; Chain 4: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb58-109" title="109"><span class="co">#&gt; Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb58-110" title="110"><span class="co">#&gt; Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb58-111" title="111"><span class="co">#&gt; Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb58-112" title="112"><span class="co">#&gt; Chain 4: </span></a>
-<a class="sourceLine" id="cb58-113" title="113"><span class="co">#&gt; Chain 4:  Elapsed Time: 9.916 seconds (Warm-up)</span></a>
-<a class="sourceLine" id="cb58-114" title="114"><span class="co">#&gt; Chain 4:                6.701 seconds (Sampling)</span></a>
-<a class="sourceLine" id="cb58-115" title="115"><span class="co">#&gt; Chain 4:                16.617 seconds (Total)</span></a>
-<a class="sourceLine" id="cb58-116" title="116"><span class="co">#&gt; Chain 4:</span></a>
-<a class="sourceLine" id="cb58-117" title="117"></a>
-<a class="sourceLine" id="cb58-118" title="118"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb58-119" title="119">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
-<a class="sourceLine" id="cb58-120" title="120">  <span class="dt">x =</span> fit1,</a>
-<a class="sourceLine" id="cb58-121" title="121">  <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb58-122" title="122">  <span class="dt">conf.method =</span> <span class="st">"HPDinterval"</span>,</a>
-<a class="sourceLine" id="cb58-123" title="123">  <span class="dt">title =</span> <span class="st">"Bayesian generalized (non-)linear </span><span class="ch">\n</span><span class="st">multivariate multilevel models"</span>,</a>
-<a class="sourceLine" id="cb58-124" title="124">  <span class="dt">subtitle =</span> <span class="st">"using `brms` package"</span></a>
-<a class="sourceLine" id="cb58-125" title="125">)</a>
-<a class="sourceLine" id="cb58-126" title="126"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from brmsfit object; </span></a>
-<a class="sourceLine" id="cb58-127" title="127"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"><span class="co"># setup</span></a>
+<a class="sourceLine" id="cb59-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb59-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(brms)</a>
+<a class="sourceLine" id="cb59-4" title="4"></a>
+<a class="sourceLine" id="cb59-5" title="5"><span class="co"># prior</span></a>
+<a class="sourceLine" id="cb59-6" title="6">bprior1 &lt;-<span class="st"> </span><span class="kw">prior</span>(<span class="kw">student_t</span>(<span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">10</span>), <span class="dt">class =</span> b) <span class="op">+</span></a>
+<a class="sourceLine" id="cb59-7" title="7"><span class="st">  </span><span class="kw">prior</span>(<span class="kw">cauchy</span>(<span class="dv">0</span>, <span class="dv">2</span>), <span class="dt">class =</span> sd)</a>
+<a class="sourceLine" id="cb59-8" title="8"></a>
+<a class="sourceLine" id="cb59-9" title="9"><span class="co"># model</span></a>
+<a class="sourceLine" id="cb59-10" title="10">fit1 &lt;-<span class="st"> </span>brms<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/brms/man/brm.html">brm</a></span>(</a>
+<a class="sourceLine" id="cb59-11" title="11">  <span class="dt">formula =</span> count <span class="op">~</span><span class="st"> </span>Age <span class="op">+</span><span class="st"> </span>Base <span class="op">*</span><span class="st"> </span>Trt <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>patient),</a>
+<a class="sourceLine" id="cb59-12" title="12">  <span class="dt">data =</span> epilepsy,</a>
+<a class="sourceLine" id="cb59-13" title="13">  <span class="dt">family =</span> <span class="kw"><a href="https://rdrr.io/r/stats/family.html">poisson</a></span>(),</a>
+<a class="sourceLine" id="cb59-14" title="14">  <span class="dt">prior =</span> bprior1,</a>
+<a class="sourceLine" id="cb59-15" title="15">  <span class="dt">silent =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb59-16" title="16">)</a>
+<a class="sourceLine" id="cb59-17" title="17"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb59-18" title="18"><span class="co">#&gt; SAMPLING FOR MODEL 'fe0a44bc352f0b7fbbe8bc1fa1f056ad' NOW (CHAIN 1).</span></a>
+<a class="sourceLine" id="cb59-19" title="19"><span class="co">#&gt; Chain 1: </span></a>
+<a class="sourceLine" id="cb59-20" title="20"><span class="co">#&gt; Chain 1: Gradient evaluation took 0.001 seconds</span></a>
+<a class="sourceLine" id="cb59-21" title="21"><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.</span></a>
+<a class="sourceLine" id="cb59-22" title="22"><span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span></a>
+<a class="sourceLine" id="cb59-23" title="23"><span class="co">#&gt; Chain 1: </span></a>
+<a class="sourceLine" id="cb59-24" title="24"><span class="co">#&gt; Chain 1: </span></a>
+<a class="sourceLine" id="cb59-25" title="25"><span class="co">#&gt; Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb59-26" title="26"><span class="co">#&gt; Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb59-27" title="27"><span class="co">#&gt; Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb59-28" title="28"><span class="co">#&gt; Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb59-29" title="29"><span class="co">#&gt; Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb59-30" title="30"><span class="co">#&gt; Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb59-31" title="31"><span class="co">#&gt; Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb59-32" title="32"><span class="co">#&gt; Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb59-33" title="33"><span class="co">#&gt; Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb59-34" title="34"><span class="co">#&gt; Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb59-35" title="35"><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb59-36" title="36"><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb59-37" title="37"><span class="co">#&gt; Chain 1: </span></a>
+<a class="sourceLine" id="cb59-38" title="38"><span class="co">#&gt; Chain 1:  Elapsed Time: 7.695 seconds (Warm-up)</span></a>
+<a class="sourceLine" id="cb59-39" title="39"><span class="co">#&gt; Chain 1:                4.338 seconds (Sampling)</span></a>
+<a class="sourceLine" id="cb59-40" title="40"><span class="co">#&gt; Chain 1:                12.033 seconds (Total)</span></a>
+<a class="sourceLine" id="cb59-41" title="41"><span class="co">#&gt; Chain 1: </span></a>
+<a class="sourceLine" id="cb59-42" title="42"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb59-43" title="43"><span class="co">#&gt; SAMPLING FOR MODEL 'fe0a44bc352f0b7fbbe8bc1fa1f056ad' NOW (CHAIN 2).</span></a>
+<a class="sourceLine" id="cb59-44" title="44"><span class="co">#&gt; Chain 2: </span></a>
+<a class="sourceLine" id="cb59-45" title="45"><span class="co">#&gt; Chain 2: Gradient evaluation took 0 seconds</span></a>
+<a class="sourceLine" id="cb59-46" title="46"><span class="co">#&gt; Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span></a>
+<a class="sourceLine" id="cb59-47" title="47"><span class="co">#&gt; Chain 2: Adjust your expectations accordingly!</span></a>
+<a class="sourceLine" id="cb59-48" title="48"><span class="co">#&gt; Chain 2: </span></a>
+<a class="sourceLine" id="cb59-49" title="49"><span class="co">#&gt; Chain 2: </span></a>
+<a class="sourceLine" id="cb59-50" title="50"><span class="co">#&gt; Chain 2: Iteration:    1 / 2000 [  0%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb59-51" title="51"><span class="co">#&gt; Chain 2: Iteration:  200 / 2000 [ 10%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb59-52" title="52"><span class="co">#&gt; Chain 2: Iteration:  400 / 2000 [ 20%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb59-53" title="53"><span class="co">#&gt; Chain 2: Iteration:  600 / 2000 [ 30%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb59-54" title="54"><span class="co">#&gt; Chain 2: Iteration:  800 / 2000 [ 40%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb59-55" title="55"><span class="co">#&gt; Chain 2: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb59-56" title="56"><span class="co">#&gt; Chain 2: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb59-57" title="57"><span class="co">#&gt; Chain 2: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb59-58" title="58"><span class="co">#&gt; Chain 2: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb59-59" title="59"><span class="co">#&gt; Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb59-60" title="60"><span class="co">#&gt; Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb59-61" title="61"><span class="co">#&gt; Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb59-62" title="62"><span class="co">#&gt; Chain 2: </span></a>
+<a class="sourceLine" id="cb59-63" title="63"><span class="co">#&gt; Chain 2:  Elapsed Time: 17.717 seconds (Warm-up)</span></a>
+<a class="sourceLine" id="cb59-64" title="64"><span class="co">#&gt; Chain 2:                42.554 seconds (Sampling)</span></a>
+<a class="sourceLine" id="cb59-65" title="65"><span class="co">#&gt; Chain 2:                60.271 seconds (Total)</span></a>
+<a class="sourceLine" id="cb59-66" title="66"><span class="co">#&gt; Chain 2: </span></a>
+<a class="sourceLine" id="cb59-67" title="67"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb59-68" title="68"><span class="co">#&gt; SAMPLING FOR MODEL 'fe0a44bc352f0b7fbbe8bc1fa1f056ad' NOW (CHAIN 3).</span></a>
+<a class="sourceLine" id="cb59-69" title="69"><span class="co">#&gt; Chain 3: </span></a>
+<a class="sourceLine" id="cb59-70" title="70"><span class="co">#&gt; Chain 3: Gradient evaluation took 0 seconds</span></a>
+<a class="sourceLine" id="cb59-71" title="71"><span class="co">#&gt; Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span></a>
+<a class="sourceLine" id="cb59-72" title="72"><span class="co">#&gt; Chain 3: Adjust your expectations accordingly!</span></a>
+<a class="sourceLine" id="cb59-73" title="73"><span class="co">#&gt; Chain 3: </span></a>
+<a class="sourceLine" id="cb59-74" title="74"><span class="co">#&gt; Chain 3: </span></a>
+<a class="sourceLine" id="cb59-75" title="75"><span class="co">#&gt; Chain 3: Iteration:    1 / 2000 [  0%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb59-76" title="76"><span class="co">#&gt; Chain 3: Iteration:  200 / 2000 [ 10%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb59-77" title="77"><span class="co">#&gt; Chain 3: Iteration:  400 / 2000 [ 20%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb59-78" title="78"><span class="co">#&gt; Chain 3: Iteration:  600 / 2000 [ 30%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb59-79" title="79"><span class="co">#&gt; Chain 3: Iteration:  800 / 2000 [ 40%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb59-80" title="80"><span class="co">#&gt; Chain 3: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb59-81" title="81"><span class="co">#&gt; Chain 3: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb59-82" title="82"><span class="co">#&gt; Chain 3: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb59-83" title="83"><span class="co">#&gt; Chain 3: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb59-84" title="84"><span class="co">#&gt; Chain 3: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb59-85" title="85"><span class="co">#&gt; Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb59-86" title="86"><span class="co">#&gt; Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb59-87" title="87"><span class="co">#&gt; Chain 3: </span></a>
+<a class="sourceLine" id="cb59-88" title="88"><span class="co">#&gt; Chain 3:  Elapsed Time: 6.562 seconds (Warm-up)</span></a>
+<a class="sourceLine" id="cb59-89" title="89"><span class="co">#&gt; Chain 3:                4.458 seconds (Sampling)</span></a>
+<a class="sourceLine" id="cb59-90" title="90"><span class="co">#&gt; Chain 3:                11.02 seconds (Total)</span></a>
+<a class="sourceLine" id="cb59-91" title="91"><span class="co">#&gt; Chain 3: </span></a>
+<a class="sourceLine" id="cb59-92" title="92"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb59-93" title="93"><span class="co">#&gt; SAMPLING FOR MODEL 'fe0a44bc352f0b7fbbe8bc1fa1f056ad' NOW (CHAIN 4).</span></a>
+<a class="sourceLine" id="cb59-94" title="94"><span class="co">#&gt; Chain 4: </span></a>
+<a class="sourceLine" id="cb59-95" title="95"><span class="co">#&gt; Chain 4: Gradient evaluation took 0 seconds</span></a>
+<a class="sourceLine" id="cb59-96" title="96"><span class="co">#&gt; Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span></a>
+<a class="sourceLine" id="cb59-97" title="97"><span class="co">#&gt; Chain 4: Adjust your expectations accordingly!</span></a>
+<a class="sourceLine" id="cb59-98" title="98"><span class="co">#&gt; Chain 4: </span></a>
+<a class="sourceLine" id="cb59-99" title="99"><span class="co">#&gt; Chain 4: </span></a>
+<a class="sourceLine" id="cb59-100" title="100"><span class="co">#&gt; Chain 4: Iteration:    1 / 2000 [  0%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb59-101" title="101"><span class="co">#&gt; Chain 4: Iteration:  200 / 2000 [ 10%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb59-102" title="102"><span class="co">#&gt; Chain 4: Iteration:  400 / 2000 [ 20%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb59-103" title="103"><span class="co">#&gt; Chain 4: Iteration:  600 / 2000 [ 30%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb59-104" title="104"><span class="co">#&gt; Chain 4: Iteration:  800 / 2000 [ 40%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb59-105" title="105"><span class="co">#&gt; Chain 4: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb59-106" title="106"><span class="co">#&gt; Chain 4: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb59-107" title="107"><span class="co">#&gt; Chain 4: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb59-108" title="108"><span class="co">#&gt; Chain 4: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb59-109" title="109"><span class="co">#&gt; Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb59-110" title="110"><span class="co">#&gt; Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb59-111" title="111"><span class="co">#&gt; Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb59-112" title="112"><span class="co">#&gt; Chain 4: </span></a>
+<a class="sourceLine" id="cb59-113" title="113"><span class="co">#&gt; Chain 4:  Elapsed Time: 5.549 seconds (Warm-up)</span></a>
+<a class="sourceLine" id="cb59-114" title="114"><span class="co">#&gt; Chain 4:                4.78 seconds (Sampling)</span></a>
+<a class="sourceLine" id="cb59-115" title="115"><span class="co">#&gt; Chain 4:                10.329 seconds (Total)</span></a>
+<a class="sourceLine" id="cb59-116" title="116"><span class="co">#&gt; Chain 4:</span></a>
+<a class="sourceLine" id="cb59-117" title="117"></a>
+<a class="sourceLine" id="cb59-118" title="118"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb59-119" title="119">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb59-120" title="120">  <span class="dt">x =</span> fit1,</a>
+<a class="sourceLine" id="cb59-121" title="121">  <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb59-122" title="122">  <span class="dt">conf.method =</span> <span class="st">"HPDinterval"</span>,</a>
+<a class="sourceLine" id="cb59-123" title="123">  <span class="dt">title =</span> <span class="st">"Bayesian generalized (non-)linear </span><span class="ch">\n</span><span class="st">multivariate multilevel models"</span>,</a>
+<a class="sourceLine" id="cb59-124" title="124">  <span class="dt">subtitle =</span> <span class="st">"using `brms` package"</span></a>
+<a class="sourceLine" id="cb59-125" title="125">)</a>
+<a class="sourceLine" id="cb59-126" title="126"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from brmsfit object; </span></a>
+<a class="sourceLine" id="cb59-127" title="127"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/brmsfit-1.png" width="480"></p>
 </div>
 <div id="bayesian-regression-models-via-stan-stanreg" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bayesian-regression-models-via-stan-stanreg" class="anchor"></a>Bayesian regression models via Stan (<code>stanreg</code>)</h2>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"><span class="co"># set up</span></a>
-<a class="sourceLine" id="cb59-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb59-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(rstanarm)</a>
-<a class="sourceLine" id="cb59-4" title="4"></a>
-<a class="sourceLine" id="cb59-5" title="5"><span class="co"># model</span></a>
-<a class="sourceLine" id="cb59-6" title="6">fit &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/rstanarm/man/stan_glm.html">stan_glm</a></span>(<span class="dt">formula =</span> mpg <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>am, <span class="dt">data =</span> mtcars, <span class="dt">chains =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb59-7" title="7"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb59-8" title="8"><span class="co">#&gt; SAMPLING FOR MODEL 'continuous' NOW (CHAIN 1).</span></a>
-<a class="sourceLine" id="cb59-9" title="9"><span class="co">#&gt; Chain 1: </span></a>
-<a class="sourceLine" id="cb59-10" title="10"><span class="co">#&gt; Chain 1: Gradient evaluation took 0 seconds</span></a>
-<a class="sourceLine" id="cb59-11" title="11"><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span></a>
-<a class="sourceLine" id="cb59-12" title="12"><span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span></a>
-<a class="sourceLine" id="cb59-13" title="13"><span class="co">#&gt; Chain 1: </span></a>
-<a class="sourceLine" id="cb59-14" title="14"><span class="co">#&gt; Chain 1: </span></a>
-<a class="sourceLine" id="cb59-15" title="15"><span class="co">#&gt; Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb59-16" title="16"><span class="co">#&gt; Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb59-17" title="17"><span class="co">#&gt; Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb59-18" title="18"><span class="co">#&gt; Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb59-19" title="19"><span class="co">#&gt; Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb59-20" title="20"><span class="co">#&gt; Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span></a>
-<a class="sourceLine" id="cb59-21" title="21"><span class="co">#&gt; Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb59-22" title="22"><span class="co">#&gt; Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb59-23" title="23"><span class="co">#&gt; Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb59-24" title="24"><span class="co">#&gt; Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb59-25" title="25"><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb59-26" title="26"><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></a>
-<a class="sourceLine" id="cb59-27" title="27"><span class="co">#&gt; Chain 1: </span></a>
-<a class="sourceLine" id="cb59-28" title="28"><span class="co">#&gt; Chain 1:  Elapsed Time: 0.081 seconds (Warm-up)</span></a>
-<a class="sourceLine" id="cb59-29" title="29"><span class="co">#&gt; Chain 1:                0.079 seconds (Sampling)</span></a>
-<a class="sourceLine" id="cb59-30" title="30"><span class="co">#&gt; Chain 1:                0.16 seconds (Total)</span></a>
-<a class="sourceLine" id="cb59-31" title="31"><span class="co">#&gt; Chain 1:</span></a>
-<a class="sourceLine" id="cb59-32" title="32"></a>
-<a class="sourceLine" id="cb59-33" title="33"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb59-34" title="34">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
-<a class="sourceLine" id="cb59-35" title="35">  <span class="dt">x =</span> fit,</a>
-<a class="sourceLine" id="cb59-36" title="36">  <span class="dt">title =</span> <span class="st">"Bayesian generalized linear models via Stan"</span></a>
-<a class="sourceLine" id="cb59-37" title="37">)</a>
-<a class="sourceLine" id="cb59-38" title="38"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from stanreg object; </span></a>
-<a class="sourceLine" id="cb59-39" title="39"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1"><span class="co"># set up</span></a>
+<a class="sourceLine" id="cb60-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb60-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(rstanarm)</a>
+<a class="sourceLine" id="cb60-4" title="4"></a>
+<a class="sourceLine" id="cb60-5" title="5"><span class="co"># model</span></a>
+<a class="sourceLine" id="cb60-6" title="6">fit &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/rstanarm/man/stan_glm.html">stan_glm</a></span>(<span class="dt">formula =</span> mpg <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>am, <span class="dt">data =</span> mtcars, <span class="dt">chains =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb60-7" title="7"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb60-8" title="8"><span class="co">#&gt; SAMPLING FOR MODEL 'continuous' NOW (CHAIN 1).</span></a>
+<a class="sourceLine" id="cb60-9" title="9"><span class="co">#&gt; Chain 1: </span></a>
+<a class="sourceLine" id="cb60-10" title="10"><span class="co">#&gt; Chain 1: Gradient evaluation took 0.003 seconds</span></a>
+<a class="sourceLine" id="cb60-11" title="11"><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 30 seconds.</span></a>
+<a class="sourceLine" id="cb60-12" title="12"><span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span></a>
+<a class="sourceLine" id="cb60-13" title="13"><span class="co">#&gt; Chain 1: </span></a>
+<a class="sourceLine" id="cb60-14" title="14"><span class="co">#&gt; Chain 1: </span></a>
+<a class="sourceLine" id="cb60-15" title="15"><span class="co">#&gt; Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb60-16" title="16"><span class="co">#&gt; Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb60-17" title="17"><span class="co">#&gt; Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb60-18" title="18"><span class="co">#&gt; Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb60-19" title="19"><span class="co">#&gt; Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb60-20" title="20"><span class="co">#&gt; Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span></a>
+<a class="sourceLine" id="cb60-21" title="21"><span class="co">#&gt; Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb60-22" title="22"><span class="co">#&gt; Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb60-23" title="23"><span class="co">#&gt; Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb60-24" title="24"><span class="co">#&gt; Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb60-25" title="25"><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb60-26" title="26"><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></a>
+<a class="sourceLine" id="cb60-27" title="27"><span class="co">#&gt; Chain 1: </span></a>
+<a class="sourceLine" id="cb60-28" title="28"><span class="co">#&gt; Chain 1:  Elapsed Time: 0.073 seconds (Warm-up)</span></a>
+<a class="sourceLine" id="cb60-29" title="29"><span class="co">#&gt; Chain 1:                0.08 seconds (Sampling)</span></a>
+<a class="sourceLine" id="cb60-30" title="30"><span class="co">#&gt; Chain 1:                0.153 seconds (Total)</span></a>
+<a class="sourceLine" id="cb60-31" title="31"><span class="co">#&gt; Chain 1:</span></a>
+<a class="sourceLine" id="cb60-32" title="32"></a>
+<a class="sourceLine" id="cb60-33" title="33"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb60-34" title="34">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb60-35" title="35">  <span class="dt">x =</span> fit,</a>
+<a class="sourceLine" id="cb60-36" title="36">  <span class="dt">title =</span> <span class="st">"Bayesian generalized linear models via Stan"</span></a>
+<a class="sourceLine" id="cb60-37" title="37">)</a>
+<a class="sourceLine" id="cb60-38" title="38"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from stanreg object; </span></a>
+<a class="sourceLine" id="cb60-39" title="39"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/rstan-1.png" width="480"></p>
 </div>
 <div id="multivariate-generalized-linear-mixed-models-mcmcglmm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#multivariate-generalized-linear-mixed-models-mcmcglmm" class="anchor"></a>multivariate generalized linear mixed models (<code>MCMCglmm</code>)</h2>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1"><span class="co"># setup</span></a>
-<a class="sourceLine" id="cb60-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb60-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(MCMCglmm)</a>
-<a class="sourceLine" id="cb60-4" title="4"></a>
-<a class="sourceLine" id="cb60-5" title="5"><span class="co"># model</span></a>
-<a class="sourceLine" id="cb60-6" title="6">mm0 &lt;-<span class="st"> </span>MCMCglmm<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/MCMCglmm/man/MCMCglmm.html">MCMCglmm</a></span>(</a>
-<a class="sourceLine" id="cb60-7" title="7">  <span class="dt">fixed =</span> <span class="kw"><a href="https://rdrr.io/r/base/scale.html">scale</a></span>(Reaction) <span class="op">~</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/scale.html">scale</a></span>(Days),</a>
-<a class="sourceLine" id="cb60-8" title="8">  <span class="dt">random =</span> <span class="op">~</span>Subject,</a>
-<a class="sourceLine" id="cb60-9" title="9">  <span class="dt">data =</span> sleepstudy,</a>
-<a class="sourceLine" id="cb60-10" title="10">  <span class="dt">nitt =</span> <span class="dv">4000</span>,</a>
-<a class="sourceLine" id="cb60-11" title="11">  <span class="dt">pr =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb60-12" title="12">  <span class="dt">verbose =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb60-13" title="13">)</a>
-<a class="sourceLine" id="cb60-14" title="14"></a>
-<a class="sourceLine" id="cb60-15" title="15"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb60-16" title="16">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
-<a class="sourceLine" id="cb60-17" title="17">  <span class="dt">x =</span> mm0,</a>
-<a class="sourceLine" id="cb60-18" title="18">  <span class="dt">title =</span> <span class="st">"multivariate generalized linear mixed model"</span>,</a>
-<a class="sourceLine" id="cb60-19" title="19">  <span class="dt">conf.method =</span> <span class="st">"HPDinterval"</span>,</a>
-<a class="sourceLine" id="cb60-20" title="20">  <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb60-21" title="21">  <span class="dt">robust =</span> <span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb60-22" title="22">)</a>
-<a class="sourceLine" id="cb60-23" title="23"><span class="co">#&gt; Note: No model diagnostics information available for the object of class MCMCglmm .</span></a>
-<a class="sourceLine" id="cb60-24" title="24"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from MCMCglmm object; </span></a>
-<a class="sourceLine" id="cb60-25" title="25"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1"><span class="co"># setup</span></a>
+<a class="sourceLine" id="cb61-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb61-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(MCMCglmm)</a>
+<a class="sourceLine" id="cb61-4" title="4"></a>
+<a class="sourceLine" id="cb61-5" title="5"><span class="co"># model</span></a>
+<a class="sourceLine" id="cb61-6" title="6">mm0 &lt;-<span class="st"> </span>MCMCglmm<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/MCMCglmm/man/MCMCglmm.html">MCMCglmm</a></span>(</a>
+<a class="sourceLine" id="cb61-7" title="7">  <span class="dt">fixed =</span> <span class="kw"><a href="https://rdrr.io/r/base/scale.html">scale</a></span>(Reaction) <span class="op">~</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/scale.html">scale</a></span>(Days),</a>
+<a class="sourceLine" id="cb61-8" title="8">  <span class="dt">random =</span> <span class="op">~</span>Subject,</a>
+<a class="sourceLine" id="cb61-9" title="9">  <span class="dt">data =</span> sleepstudy,</a>
+<a class="sourceLine" id="cb61-10" title="10">  <span class="dt">nitt =</span> <span class="dv">4000</span>,</a>
+<a class="sourceLine" id="cb61-11" title="11">  <span class="dt">pr =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb61-12" title="12">  <span class="dt">verbose =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb61-13" title="13">)</a>
+<a class="sourceLine" id="cb61-14" title="14"></a>
+<a class="sourceLine" id="cb61-15" title="15"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb61-16" title="16">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb61-17" title="17">  <span class="dt">x =</span> mm0,</a>
+<a class="sourceLine" id="cb61-18" title="18">  <span class="dt">title =</span> <span class="st">"multivariate generalized linear mixed model"</span>,</a>
+<a class="sourceLine" id="cb61-19" title="19">  <span class="dt">conf.method =</span> <span class="st">"HPDinterval"</span>,</a>
+<a class="sourceLine" id="cb61-20" title="20">  <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb61-21" title="21">  <span class="dt">robust =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb61-22" title="22">)</a>
+<a class="sourceLine" id="cb61-23" title="23"><span class="co">#&gt; Note: No model diagnostics information available for the object of class MCMCglmm .</span></a>
+<a class="sourceLine" id="cb61-24" title="24"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from MCMCglmm object; </span></a>
+<a class="sourceLine" id="cb61-25" title="25"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/MCMCglmm-1.png" width="576"></p>
 </div>
 <div id="markov-chain-monte-carlo-objects-mcmc" class="section level2">
 <h2 class="hasAnchor">
 <a href="#markov-chain-monte-carlo-objects-mcmc" class="anchor"></a>Markov Chain Monte Carlo objects (<code>mcmc</code>)</h2>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1"><span class="co"># loading the data</span></a>
-<a class="sourceLine" id="cb61-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb61-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(coda)</a>
-<a class="sourceLine" id="cb61-4" title="4"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(line)</a>
-<a class="sourceLine" id="cb61-5" title="5"></a>
-<a class="sourceLine" id="cb61-6" title="6"><span class="co"># select first chain</span></a>
-<a class="sourceLine" id="cb61-7" title="7">x1 &lt;-<span class="st"> </span>line[[<span class="dv">1</span>]]</a>
-<a class="sourceLine" id="cb61-8" title="8"></a>
-<a class="sourceLine" id="cb61-9" title="9"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb61-10" title="10">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
-<a class="sourceLine" id="cb61-11" title="11">  <span class="dt">x =</span> x1,</a>
-<a class="sourceLine" id="cb61-12" title="12">  <span class="dt">title =</span> <span class="st">"Markov Chain Monte Carlo objects"</span>,</a>
-<a class="sourceLine" id="cb61-13" title="13">  <span class="dt">robust =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb61-14" title="14">  <span class="dt">ess =</span> <span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb61-15" title="15">)</a>
-<a class="sourceLine" id="cb61-16" title="16"><span class="co">#&gt; Note: No model diagnostics information available for the object of class mcmc .</span></a>
-<a class="sourceLine" id="cb61-17" title="17"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from mcmc object; </span></a>
-<a class="sourceLine" id="cb61-18" title="18"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1"><span class="co"># loading the data</span></a>
+<a class="sourceLine" id="cb62-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb62-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(coda)</a>
+<a class="sourceLine" id="cb62-4" title="4"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(line)</a>
+<a class="sourceLine" id="cb62-5" title="5"></a>
+<a class="sourceLine" id="cb62-6" title="6"><span class="co"># select first chain</span></a>
+<a class="sourceLine" id="cb62-7" title="7">x1 &lt;-<span class="st"> </span>line[[<span class="dv">1</span>]]</a>
+<a class="sourceLine" id="cb62-8" title="8"></a>
+<a class="sourceLine" id="cb62-9" title="9"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb62-10" title="10">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb62-11" title="11">  <span class="dt">x =</span> x1,</a>
+<a class="sourceLine" id="cb62-12" title="12">  <span class="dt">title =</span> <span class="st">"Markov Chain Monte Carlo objects"</span>,</a>
+<a class="sourceLine" id="cb62-13" title="13">  <span class="dt">robust =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb62-14" title="14">  <span class="dt">ess =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb62-15" title="15">)</a>
+<a class="sourceLine" id="cb62-16" title="16"><span class="co">#&gt; Note: No model diagnostics information available for the object of class mcmc .</span></a>
+<a class="sourceLine" id="cb62-17" title="17"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from mcmc object; </span></a>
+<a class="sourceLine" id="cb62-18" title="18"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/mcmc-1.png" width="480"></p>
 </div>
 <div id="mcmc-with-just-another-gibbs-sampler-rjags" class="section level2">
 <h2 class="hasAnchor">
 <a href="#mcmc-with-just-another-gibbs-sampler-rjags" class="anchor"></a>MCMC with Just Another Gibbs Sampler (<code>rjags</code>)</h2>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1"><span class="co"># setup</span></a>
-<a class="sourceLine" id="cb62-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb62-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(R2jags)</a>
-<a class="sourceLine" id="cb62-4" title="4"></a>
-<a class="sourceLine" id="cb62-5" title="5"><span class="co"># An example model file is given in:</span></a>
-<a class="sourceLine" id="cb62-6" title="6">model.file &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="dt">package =</span> <span class="st">"R2jags"</span>, <span class="st">"model"</span>, <span class="st">"schools.txt"</span>)</a>
-<a class="sourceLine" id="cb62-7" title="7"></a>
-<a class="sourceLine" id="cb62-8" title="8"><span class="co"># data</span></a>
-<a class="sourceLine" id="cb62-9" title="9">J &lt;-<span class="st"> </span><span class="fl">8.0</span></a>
-<a class="sourceLine" id="cb62-10" title="10">y &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">28.4</span>, <span class="fl">7.9</span>, <span class="fl">-2.8</span>, <span class="fl">6.8</span>, <span class="fl">-0.6</span>, <span class="fl">0.6</span>, <span class="fl">18.0</span>, <span class="fl">12.2</span>)</a>
-<a class="sourceLine" id="cb62-11" title="11">sd &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">14.9</span>, <span class="fl">10.2</span>, <span class="fl">16.3</span>, <span class="fl">11.0</span>, <span class="fl">9.4</span>, <span class="fl">11.4</span>, <span class="fl">10.4</span>, <span class="fl">17.6</span>)</a>
-<a class="sourceLine" id="cb62-12" title="12"></a>
-<a class="sourceLine" id="cb62-13" title="13"><span class="co"># setting up model</span></a>
-<a class="sourceLine" id="cb62-14" title="14">jags.data &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"y"</span>, <span class="st">"sd"</span>, <span class="st">"J"</span>)</a>
-<a class="sourceLine" id="cb62-15" title="15">jags.params &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"mu"</span>, <span class="st">"sigma"</span>, <span class="st">"theta"</span>)</a>
-<a class="sourceLine" id="cb62-16" title="16">jags.inits &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
-<a class="sourceLine" id="cb62-17" title="17">  <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"mu"</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">1</span>), <span class="st">"sigma"</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dv">1</span>), <span class="st">"theta"</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(J))</a>
-<a class="sourceLine" id="cb62-18" title="18">}</a>
-<a class="sourceLine" id="cb62-19" title="19"></a>
-<a class="sourceLine" id="cb62-20" title="20"><span class="co"># model fitting</span></a>
-<a class="sourceLine" id="cb62-21" title="21">jagsfit &lt;-<span class="st"> </span>R2jags<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/R2jags/man/jags.html">jags</a></span>(</a>
-<a class="sourceLine" id="cb62-22" title="22">  <span class="dt">data =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"y"</span>, <span class="st">"sd"</span>, <span class="st">"J"</span>),</a>
-<a class="sourceLine" id="cb62-23" title="23">  <span class="dt">inits =</span> jags.inits,</a>
-<a class="sourceLine" id="cb62-24" title="24">  jags.params,</a>
-<a class="sourceLine" id="cb62-25" title="25">  <span class="dt">n.iter =</span> <span class="dv">10</span>,</a>
-<a class="sourceLine" id="cb62-26" title="26">  <span class="dt">model.file =</span> model.file</a>
-<a class="sourceLine" id="cb62-27" title="27">)</a>
-<a class="sourceLine" id="cb62-28" title="28"><span class="co">#&gt; Compiling model graph</span></a>
-<a class="sourceLine" id="cb62-29" title="29"><span class="co">#&gt;    Resolving undeclared variables</span></a>
-<a class="sourceLine" id="cb62-30" title="30"><span class="co">#&gt;    Allocating nodes</span></a>
-<a class="sourceLine" id="cb62-31" title="31"><span class="co">#&gt; Graph information:</span></a>
-<a class="sourceLine" id="cb62-32" title="32"><span class="co">#&gt;    Observed stochastic nodes: 8</span></a>
-<a class="sourceLine" id="cb62-33" title="33"><span class="co">#&gt;    Unobserved stochastic nodes: 10</span></a>
-<a class="sourceLine" id="cb62-34" title="34"><span class="co">#&gt;    Total graph size: 41</span></a>
-<a class="sourceLine" id="cb62-35" title="35"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb62-36" title="36"><span class="co">#&gt; Initializing model</span></a>
-<a class="sourceLine" id="cb62-37" title="37"></a>
-<a class="sourceLine" id="cb62-38" title="38"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb62-39" title="39">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
-<a class="sourceLine" id="cb62-40" title="40">  <span class="dt">x =</span> jagsfit,</a>
-<a class="sourceLine" id="cb62-41" title="41">  <span class="dt">title =</span> <span class="st">"Markov Chain Monte Carlo with</span><span class="ch">\n</span><span class="st">Just Another Gibbs Sampler"</span>,</a>
-<a class="sourceLine" id="cb62-42" title="42">  <span class="dt">point.color =</span> <span class="st">"darkgreen"</span></a>
-<a class="sourceLine" id="cb62-43" title="43">)</a>
-<a class="sourceLine" id="cb62-44" title="44"><span class="co">#&gt; Note: No model diagnostics information available for the object of class rjags .</span></a>
-<a class="sourceLine" id="cb62-45" title="45"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from rjags object; </span></a>
-<a class="sourceLine" id="cb62-46" title="46"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1"><span class="co"># setup</span></a>
+<a class="sourceLine" id="cb63-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb63-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(R2jags)</a>
+<a class="sourceLine" id="cb63-4" title="4"></a>
+<a class="sourceLine" id="cb63-5" title="5"><span class="co"># An example model file is given in:</span></a>
+<a class="sourceLine" id="cb63-6" title="6">model.file &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="dt">package =</span> <span class="st">"R2jags"</span>, <span class="st">"model"</span>, <span class="st">"schools.txt"</span>)</a>
+<a class="sourceLine" id="cb63-7" title="7"></a>
+<a class="sourceLine" id="cb63-8" title="8"><span class="co"># data</span></a>
+<a class="sourceLine" id="cb63-9" title="9">J &lt;-<span class="st"> </span><span class="fl">8.0</span></a>
+<a class="sourceLine" id="cb63-10" title="10">y &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">28.4</span>, <span class="fl">7.9</span>, <span class="fl">-2.8</span>, <span class="fl">6.8</span>, <span class="fl">-0.6</span>, <span class="fl">0.6</span>, <span class="fl">18.0</span>, <span class="fl">12.2</span>)</a>
+<a class="sourceLine" id="cb63-11" title="11">sd &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">14.9</span>, <span class="fl">10.2</span>, <span class="fl">16.3</span>, <span class="fl">11.0</span>, <span class="fl">9.4</span>, <span class="fl">11.4</span>, <span class="fl">10.4</span>, <span class="fl">17.6</span>)</a>
+<a class="sourceLine" id="cb63-12" title="12"></a>
+<a class="sourceLine" id="cb63-13" title="13"><span class="co"># setting up model</span></a>
+<a class="sourceLine" id="cb63-14" title="14">jags.data &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"y"</span>, <span class="st">"sd"</span>, <span class="st">"J"</span>)</a>
+<a class="sourceLine" id="cb63-15" title="15">jags.params &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"mu"</span>, <span class="st">"sigma"</span>, <span class="st">"theta"</span>)</a>
+<a class="sourceLine" id="cb63-16" title="16">jags.inits &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
+<a class="sourceLine" id="cb63-17" title="17">  <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"mu"</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">1</span>), <span class="st">"sigma"</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dv">1</span>), <span class="st">"theta"</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(J))</a>
+<a class="sourceLine" id="cb63-18" title="18">}</a>
+<a class="sourceLine" id="cb63-19" title="19"></a>
+<a class="sourceLine" id="cb63-20" title="20"><span class="co"># model fitting</span></a>
+<a class="sourceLine" id="cb63-21" title="21">jagsfit &lt;-<span class="st"> </span>R2jags<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/R2jags/man/jags.html">jags</a></span>(</a>
+<a class="sourceLine" id="cb63-22" title="22">  <span class="dt">data =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"y"</span>, <span class="st">"sd"</span>, <span class="st">"J"</span>),</a>
+<a class="sourceLine" id="cb63-23" title="23">  <span class="dt">inits =</span> jags.inits,</a>
+<a class="sourceLine" id="cb63-24" title="24">  jags.params,</a>
+<a class="sourceLine" id="cb63-25" title="25">  <span class="dt">n.iter =</span> <span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb63-26" title="26">  <span class="dt">model.file =</span> model.file</a>
+<a class="sourceLine" id="cb63-27" title="27">)</a>
+<a class="sourceLine" id="cb63-28" title="28"><span class="co">#&gt; Compiling model graph</span></a>
+<a class="sourceLine" id="cb63-29" title="29"><span class="co">#&gt;    Resolving undeclared variables</span></a>
+<a class="sourceLine" id="cb63-30" title="30"><span class="co">#&gt;    Allocating nodes</span></a>
+<a class="sourceLine" id="cb63-31" title="31"><span class="co">#&gt; Graph information:</span></a>
+<a class="sourceLine" id="cb63-32" title="32"><span class="co">#&gt;    Observed stochastic nodes: 8</span></a>
+<a class="sourceLine" id="cb63-33" title="33"><span class="co">#&gt;    Unobserved stochastic nodes: 10</span></a>
+<a class="sourceLine" id="cb63-34" title="34"><span class="co">#&gt;    Total graph size: 41</span></a>
+<a class="sourceLine" id="cb63-35" title="35"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb63-36" title="36"><span class="co">#&gt; Initializing model</span></a>
+<a class="sourceLine" id="cb63-37" title="37"></a>
+<a class="sourceLine" id="cb63-38" title="38"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb63-39" title="39">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb63-40" title="40">  <span class="dt">x =</span> jagsfit,</a>
+<a class="sourceLine" id="cb63-41" title="41">  <span class="dt">title =</span> <span class="st">"Markov Chain Monte Carlo with</span><span class="ch">\n</span><span class="st">Just Another Gibbs Sampler"</span>,</a>
+<a class="sourceLine" id="cb63-42" title="42">  <span class="dt">point.color =</span> <span class="st">"darkgreen"</span></a>
+<a class="sourceLine" id="cb63-43" title="43">)</a>
+<a class="sourceLine" id="cb63-44" title="44"><span class="co">#&gt; Note: No model diagnostics information available for the object of class rjags .</span></a>
+<a class="sourceLine" id="cb63-45" title="45"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from rjags object; </span></a>
+<a class="sourceLine" id="cb63-46" title="46"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/R2jags-1.png" width="576"></p>
 </div>
 <div id="dataframes-tbl_df-tbl-data-frame" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dataframes-tbl_df-tbl-data-frame" class="anchor"></a>dataframes (<code>tbl_df</code>, <code>tbl</code>, <code>data.frame</code>)</h2>
 <p>Sometimes you don’t have a model object but a custom dataframe that you want display using this function. If a data frame is to be plotted, it <strong>must</strong> contain columns named <code>term</code> (names of predictors), and <code>estimate</code> (corresponding estimates of coefficients or other quantities of interest). Other optional columns are <code>conf.low</code> and <code>conf.high</code> (for confidence intervals), and <code>p.value</code>. You will also have to specify the type of statistic relevant for regression models (<code>"t"</code>, <code>"z"</code>, <code>"f"</code>) in case you want to display statistical labels.</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1"><span class="co"># set up</span></a>
-<a class="sourceLine" id="cb63-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb63-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggstatsplot)</a>
-<a class="sourceLine" id="cb63-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(gapminder)</a>
-<a class="sourceLine" id="cb63-5" title="5"></a>
-<a class="sourceLine" id="cb63-6" title="6"><span class="co"># data for running regression models</span></a>
-<a class="sourceLine" id="cb63-7" title="7">df &lt;-</a>
-<a class="sourceLine" id="cb63-8" title="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder<span class="op">::</span>gapminder, continent <span class="op">!=</span><span class="st"> "Oceania"</span>)</a>
-<a class="sourceLine" id="cb63-9" title="9"></a>
-<a class="sourceLine" id="cb63-10" title="10"><span class="co"># saving results from regression</span></a>
-<a class="sourceLine" id="cb63-11" title="11">df_results &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(</a>
-<a class="sourceLine" id="cb63-12" title="12">  <span class="dt">.l =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
-<a class="sourceLine" id="cb63-13" title="13">    <span class="dt">data =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(df),</a>
-<a class="sourceLine" id="cb63-14" title="14">    <span class="dt">formula =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/scale.html">scale</a></span>(lifeExp) <span class="op">~</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/scale.html">scale</a></span>(gdpPercap) <span class="op">+</span><span class="st"> </span>(gdpPercap <span class="op">|</span></a>
-<a class="sourceLine" id="cb63-15" title="15"><span class="st">      </span>country)),</a>
-<a class="sourceLine" id="cb63-16" title="16">    <span class="dt">grouping.vars =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">alist</a></span>(continent),</a>
-<a class="sourceLine" id="cb63-17" title="17">    <span class="dt">output =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"tidy"</span>, <span class="st">"glance"</span>)</a>
-<a class="sourceLine" id="cb63-18" title="18">  ),</a>
-<a class="sourceLine" id="cb63-19" title="19">  <span class="dt">.f =</span> groupedstats<span class="op">::</span>grouped_lmer</a>
-<a class="sourceLine" id="cb63-20" title="20">) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb63-21" title="21"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">full_join</a></span>(<span class="dt">x =</span> .[[<span class="dv">1</span>]], <span class="dt">y =</span> .[[<span class="dv">2</span>]], <span class="dt">by =</span> <span class="st">"continent"</span>)</a>
-<a class="sourceLine" id="cb63-22" title="22"></a>
-<a class="sourceLine" id="cb63-23" title="23"><span class="co"># modifying the results so to be compatible with the `ggcoefstats` requirement</span></a>
-<a class="sourceLine" id="cb63-24" title="24">(df_results <span class="op">%&lt;&gt;%</span></a>
-<a class="sourceLine" id="cb63-25" title="25"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., term <span class="op">!=</span><span class="st"> "(Intercept)"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb63-26" title="26"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(</a>
-<a class="sourceLine" id="cb63-27" title="27">    <span class="dt">.data =</span> .,</a>
-<a class="sourceLine" id="cb63-28" title="28">    <span class="op">-</span>effect,</a>
-<a class="sourceLine" id="cb63-29" title="29">    <span class="op">-</span>term,</a>
-<a class="sourceLine" id="cb63-30" title="30">    <span class="dt">term =</span> continent,</a>
-<a class="sourceLine" id="cb63-31" title="31">    <span class="dt">statistic =</span> t.value</a>
-<a class="sourceLine" id="cb63-32" title="32">  ))</a>
-<a class="sourceLine" id="cb63-33" title="33"><span class="co">#&gt; # A tibble: 4 x 14</span></a>
-<a class="sourceLine" id="cb63-34" title="34"><span class="co">#&gt;   term  estimate std.error statistic conf.low conf.high  p.value</span></a>
-<a class="sourceLine" id="cb63-35" title="35"><span class="co">#&gt;   &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb63-36" title="36"><span class="co">#&gt; 1 Asia      7.35     1.27       5.79    4.86       9.84 7.00e- 9</span></a>
-<a class="sourceLine" id="cb63-37" title="37"><span class="co">#&gt; 2 Euro~     1.52     0.238      6.36    1.05       1.98 2.02e-10</span></a>
-<a class="sourceLine" id="cb63-38" title="38"><span class="co">#&gt; 3 Afri~     1.54     0.348      4.43    0.860      2.22 9.49e- 6</span></a>
-<a class="sourceLine" id="cb63-39" title="39"><span class="co">#&gt; 4 Amer~     1.88     0.233      8.06    1.42       2.34 7.64e-16</span></a>
-<a class="sourceLine" id="cb63-40" title="40"><span class="co">#&gt; # ... with 7 more variables: significance &lt;chr&gt;, sigma &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb63-41" title="41"><span class="co">#&gt; #   logLik &lt;dbl&gt;, AIC &lt;dbl&gt;, BIC &lt;dbl&gt;, REMLcrit &lt;dbl&gt;, df.residual &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb63-42" title="42"></a>
-<a class="sourceLine" id="cb63-43" title="43"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb63-44" title="44">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
-<a class="sourceLine" id="cb63-45" title="45">  <span class="dt">x =</span> df_results,</a>
-<a class="sourceLine" id="cb63-46" title="46">  <span class="dt">statistic =</span> <span class="st">"t"</span>,</a>
-<a class="sourceLine" id="cb63-47" title="47">  <span class="dt">sort =</span> <span class="st">"ascending"</span>,</a>
-<a class="sourceLine" id="cb63-48" title="48">  <span class="dt">title =</span> <span class="st">"Relationship between life expectancy and GDP"</span>,</a>
-<a class="sourceLine" id="cb63-49" title="49">  <span class="dt">subtitle =</span> <span class="st">"Source: Gapminder foundation"</span>,</a>
-<a class="sourceLine" id="cb63-50" title="50">  <span class="dt">caption =</span> <span class="st">"Data from Oceania continent not included"</span></a>
-<a class="sourceLine" id="cb63-51" title="51">)</a></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1"><span class="co"># set up</span></a>
+<a class="sourceLine" id="cb64-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb64-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggstatsplot)</a>
+<a class="sourceLine" id="cb64-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(gapminder)</a>
+<a class="sourceLine" id="cb64-5" title="5"></a>
+<a class="sourceLine" id="cb64-6" title="6"><span class="co"># data for running regression models</span></a>
+<a class="sourceLine" id="cb64-7" title="7">df &lt;-</a>
+<a class="sourceLine" id="cb64-8" title="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder<span class="op">::</span>gapminder, continent <span class="op">!=</span><span class="st"> "Oceania"</span>)</a>
+<a class="sourceLine" id="cb64-9" title="9"></a>
+<a class="sourceLine" id="cb64-10" title="10"><span class="co"># saving results from regression</span></a>
+<a class="sourceLine" id="cb64-11" title="11">df_results &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(</a>
+<a class="sourceLine" id="cb64-12" title="12">  <span class="dt">.l =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
+<a class="sourceLine" id="cb64-13" title="13">    <span class="dt">data =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(df),</a>
+<a class="sourceLine" id="cb64-14" title="14">    <span class="dt">formula =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/scale.html">scale</a></span>(lifeExp) <span class="op">~</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/scale.html">scale</a></span>(gdpPercap) <span class="op">+</span><span class="st"> </span>(gdpPercap <span class="op">|</span></a>
+<a class="sourceLine" id="cb64-15" title="15"><span class="st">      </span>country)),</a>
+<a class="sourceLine" id="cb64-16" title="16">    <span class="dt">grouping.vars =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">alist</a></span>(continent),</a>
+<a class="sourceLine" id="cb64-17" title="17">    <span class="dt">output =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"tidy"</span>, <span class="st">"glance"</span>)</a>
+<a class="sourceLine" id="cb64-18" title="18">  ),</a>
+<a class="sourceLine" id="cb64-19" title="19">  <span class="dt">.f =</span> groupedstats<span class="op">::</span>grouped_lmer</a>
+<a class="sourceLine" id="cb64-20" title="20">) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb64-21" title="21"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">full_join</a></span>(<span class="dt">x =</span> .[[<span class="dv">1</span>]], <span class="dt">y =</span> .[[<span class="dv">2</span>]], <span class="dt">by =</span> <span class="st">"continent"</span>)</a>
+<a class="sourceLine" id="cb64-22" title="22"></a>
+<a class="sourceLine" id="cb64-23" title="23"><span class="co"># modifying the results so to be compatible with the `ggcoefstats` requirement</span></a>
+<a class="sourceLine" id="cb64-24" title="24">(df_results <span class="op">%&lt;&gt;%</span></a>
+<a class="sourceLine" id="cb64-25" title="25"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., term <span class="op">!=</span><span class="st"> "(Intercept)"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb64-26" title="26"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(</a>
+<a class="sourceLine" id="cb64-27" title="27">    <span class="dt">.data =</span> .,</a>
+<a class="sourceLine" id="cb64-28" title="28">    <span class="op">-</span>effect,</a>
+<a class="sourceLine" id="cb64-29" title="29">    <span class="op">-</span>term,</a>
+<a class="sourceLine" id="cb64-30" title="30">    <span class="dt">term =</span> continent,</a>
+<a class="sourceLine" id="cb64-31" title="31">    <span class="dt">statistic =</span> t.value</a>
+<a class="sourceLine" id="cb64-32" title="32">  ))</a>
+<a class="sourceLine" id="cb64-33" title="33"><span class="co">#&gt; # A tibble: 4 x 14</span></a>
+<a class="sourceLine" id="cb64-34" title="34"><span class="co">#&gt;   term  estimate std.error statistic conf.low conf.high  p.value</span></a>
+<a class="sourceLine" id="cb64-35" title="35"><span class="co">#&gt;   &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb64-36" title="36"><span class="co">#&gt; 1 Asia      7.35     1.27       5.79    4.86       9.84 7.00e- 9</span></a>
+<a class="sourceLine" id="cb64-37" title="37"><span class="co">#&gt; 2 Euro~     1.52     0.238      6.36    1.05       1.98 2.02e-10</span></a>
+<a class="sourceLine" id="cb64-38" title="38"><span class="co">#&gt; 3 Afri~     1.54     0.348      4.43    0.860      2.22 9.49e- 6</span></a>
+<a class="sourceLine" id="cb64-39" title="39"><span class="co">#&gt; 4 Amer~     1.88     0.233      8.06    1.42       2.34 7.64e-16</span></a>
+<a class="sourceLine" id="cb64-40" title="40"><span class="co">#&gt; # ... with 7 more variables: significance &lt;chr&gt;, sigma &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb64-41" title="41"><span class="co">#&gt; #   logLik &lt;dbl&gt;, AIC &lt;dbl&gt;, BIC &lt;dbl&gt;, REMLcrit &lt;dbl&gt;, df.residual &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb64-42" title="42"></a>
+<a class="sourceLine" id="cb64-43" title="43"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb64-44" title="44">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb64-45" title="45">  <span class="dt">x =</span> df_results,</a>
+<a class="sourceLine" id="cb64-46" title="46">  <span class="dt">statistic =</span> <span class="st">"t"</span>,</a>
+<a class="sourceLine" id="cb64-47" title="47">  <span class="dt">sort =</span> <span class="st">"ascending"</span>,</a>
+<a class="sourceLine" id="cb64-48" title="48">  <span class="dt">title =</span> <span class="st">"Relationship between life expectancy and GDP"</span>,</a>
+<a class="sourceLine" id="cb64-49" title="49">  <span class="dt">subtitle =</span> <span class="st">"Source: Gapminder foundation"</span>,</a>
+<a class="sourceLine" id="cb64-50" title="50">  <span class="dt">caption =</span> <span class="st">"Data from Oceania continent not included"</span></a>
+<a class="sourceLine" id="cb64-51" title="51">)</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/dataframe-1.png" width="576"></p>
 </div>
 <div id="meta-analysis" class="section level2">
@@ -2216,48 +2250,48 @@
 <a href="#meta-analysis" class="anchor"></a>meta-analysis</h2>
 <p>In case the estimates you are displaying come from multiple studies, you can also use this function to carry out random-effects meta-analysis (as implemented in the <a href="http://www.metafor-project.org/doku.php">metafor</a> package; see <code><a href="https://rdrr.io/pkg/metafor/man/rma.uni.html">metafor::rma()</a></code>).</p>
 <p>The dataframe you enter <strong>must</strong> contain at the minimum the following three columns- <code>term</code>, <code>estimate</code>, <code>std.error</code>.</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1"><span class="co"># let's make up a dataframe (with minimum amount of details)</span></a>
-<a class="sourceLine" id="cb64-2" title="2">df_min &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span>(</a>
-<a class="sourceLine" id="cb64-3" title="3">  <span class="op">~</span>term, <span class="op">~</span>estimate, <span class="op">~</span>std.error,</a>
-<a class="sourceLine" id="cb64-4" title="4">  <span class="st">"study1"</span>, <span class="fl">0.0665</span>, <span class="fl">-0.778</span>,</a>
-<a class="sourceLine" id="cb64-5" title="5">  <span class="st">"study2"</span>, <span class="fl">0.542</span>, <span class="fl">-0.280</span>,</a>
-<a class="sourceLine" id="cb64-6" title="6">  <span class="st">"study3"</span>, <span class="fl">0.045</span>, <span class="fl">0.030</span>,</a>
-<a class="sourceLine" id="cb64-7" title="7">  <span class="st">"study4"</span>, <span class="fl">0.500</span>, <span class="fl">-0.708</span>,</a>
-<a class="sourceLine" id="cb64-8" title="8">  <span class="st">"study5"</span>, <span class="fl">0.032</span>, <span class="fl">-0.280</span>,</a>
-<a class="sourceLine" id="cb64-9" title="9">  <span class="st">"study6"</span>, <span class="fl">0.085</span>, <span class="fl">0.030</span></a>
-<a class="sourceLine" id="cb64-10" title="10">)</a>
-<a class="sourceLine" id="cb64-11" title="11"></a>
-<a class="sourceLine" id="cb64-12" title="12"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb64-13" title="13">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
-<a class="sourceLine" id="cb64-14" title="14">  <span class="dt">x =</span> df_min,</a>
-<a class="sourceLine" id="cb64-15" title="15">  <span class="dt">meta.analytic.effect =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb64-16" title="16">  <span class="dt">point.color =</span> <span class="st">"red"</span></a>
-<a class="sourceLine" id="cb64-17" title="17">)</a>
-<a class="sourceLine" id="cb64-18" title="18"><span class="co">#&gt; Note: For the object of class tbl_df , the argument `statistic` is not specified ('t', 'z', or 'f').</span></a>
-<a class="sourceLine" id="cb64-19" title="19"><span class="co">#&gt;  Statistical labels will therefore be skipped.</span></a>
-<a class="sourceLine" id="cb64-20" title="20"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from tbl_df object; </span></a>
-<a class="sourceLine" id="cb64-21" title="21"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/meta1-1.png" width="576"></p>
-<p>Or you can also provide a dataframe containing all the other relevant information for making labels with statistical information.</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="co"># let's make up a dataframe (with all available details)</span></a>
-<a class="sourceLine" id="cb65-2" title="2">df_full &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span>(</a>
-<a class="sourceLine" id="cb65-3" title="3">  <span class="op">~</span>term, <span class="op">~</span>statistic, <span class="op">~</span>estimate, <span class="op">~</span>std.error, <span class="op">~</span>p.value, <span class="op">~</span>df.residual,</a>
-<a class="sourceLine" id="cb65-4" title="4">  <span class="st">"study1"</span>, <span class="fl">0.158</span>, <span class="fl">0.0665</span>, <span class="fl">-0.778</span>, <span class="fl">0.875</span>, 5L,</a>
-<a class="sourceLine" id="cb65-5" title="5">  <span class="st">"study2"</span>, <span class="fl">1.33</span>, <span class="fl">0.542</span>, <span class="fl">-0.280</span>, <span class="fl">0.191</span>, 10L,</a>
-<a class="sourceLine" id="cb65-6" title="6">  <span class="st">"study3"</span>, <span class="fl">1.24</span>, <span class="fl">0.045</span>, <span class="fl">0.030</span>, <span class="fl">0.001</span>, 12L,</a>
-<a class="sourceLine" id="cb65-7" title="7">  <span class="st">"study4"</span>, <span class="fl">0.156</span>, <span class="fl">0.500</span>, <span class="fl">-0.708</span>, <span class="fl">0.885</span>, 8L,</a>
-<a class="sourceLine" id="cb65-8" title="8">  <span class="st">"study5"</span>, <span class="fl">0.33</span>, <span class="fl">0.032</span>, <span class="fl">-0.280</span>, <span class="fl">0.101</span>, 2L,</a>
-<a class="sourceLine" id="cb65-9" title="9">  <span class="st">"study6"</span>, <span class="fl">1.04</span>, <span class="fl">0.085</span>, <span class="fl">0.030</span>, <span class="fl">0.001</span>, 3L</a>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="co"># let's make up a dataframe (with minimum amount of details)</span></a>
+<a class="sourceLine" id="cb65-2" title="2">df_min &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span>(</a>
+<a class="sourceLine" id="cb65-3" title="3">  <span class="op">~</span>term, <span class="op">~</span>estimate, <span class="op">~</span>std.error,</a>
+<a class="sourceLine" id="cb65-4" title="4">  <span class="st">"study1"</span>, <span class="fl">0.0665</span>, <span class="fl">0.778</span>,</a>
+<a class="sourceLine" id="cb65-5" title="5">  <span class="st">"study2"</span>, <span class="fl">0.542</span>, <span class="fl">0.280</span>,</a>
+<a class="sourceLine" id="cb65-6" title="6">  <span class="st">"study3"</span>, <span class="fl">0.045</span>, <span class="fl">0.030</span>,</a>
+<a class="sourceLine" id="cb65-7" title="7">  <span class="st">"study4"</span>, <span class="fl">0.500</span>, <span class="fl">0.708</span>,</a>
+<a class="sourceLine" id="cb65-8" title="8">  <span class="st">"study5"</span>, <span class="fl">0.032</span>, <span class="fl">0.280</span>,</a>
+<a class="sourceLine" id="cb65-9" title="9">  <span class="st">"study6"</span>, <span class="fl">0.085</span>, <span class="fl">0.030</span></a>
 <a class="sourceLine" id="cb65-10" title="10">)</a>
 <a class="sourceLine" id="cb65-11" title="11"></a>
 <a class="sourceLine" id="cb65-12" title="12"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb65-13" title="13">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
-<a class="sourceLine" id="cb65-14" title="14">  <span class="dt">x =</span> df_full,</a>
+<a class="sourceLine" id="cb65-14" title="14">  <span class="dt">x =</span> df_min,</a>
 <a class="sourceLine" id="cb65-15" title="15">  <span class="dt">meta.analytic.effect =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb65-16" title="16">  <span class="dt">statistic =</span> <span class="st">"t"</span>,</a>
-<a class="sourceLine" id="cb65-17" title="17">  <span class="dt">package =</span> <span class="st">"LaCroixColoR"</span>,</a>
-<a class="sourceLine" id="cb65-18" title="18">  <span class="dt">palette =</span> <span class="st">"paired"</span></a>
-<a class="sourceLine" id="cb65-19" title="19">)</a></code></pre></div>
+<a class="sourceLine" id="cb65-16" title="16">  <span class="dt">point.color =</span> <span class="st">"red"</span></a>
+<a class="sourceLine" id="cb65-17" title="17">)</a>
+<a class="sourceLine" id="cb65-18" title="18"><span class="co">#&gt; Note: For the object of class tbl_df , the argument `statistic` is not specified ('t', 'z', or 'f').</span></a>
+<a class="sourceLine" id="cb65-19" title="19"><span class="co">#&gt;  Statistical labels will therefore be skipped.</span></a>
+<a class="sourceLine" id="cb65-20" title="20"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from tbl_df object; </span></a>
+<a class="sourceLine" id="cb65-21" title="21"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/meta1-1.png" width="576"></p>
+<p>Or you can also provide a dataframe containing all the other relevant information for making labels with statistical information.</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1"><span class="co"># let's make up a dataframe (with all available details)</span></a>
+<a class="sourceLine" id="cb66-2" title="2">df_full &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span>(</a>
+<a class="sourceLine" id="cb66-3" title="3">  <span class="op">~</span>term, <span class="op">~</span>statistic, <span class="op">~</span>estimate, <span class="op">~</span>std.error, <span class="op">~</span>p.value, <span class="op">~</span>df.residual,</a>
+<a class="sourceLine" id="cb66-4" title="4">  <span class="st">"study1"</span>, <span class="fl">0.158</span>, <span class="fl">0.0665</span>, <span class="fl">0.778</span>, <span class="fl">0.875</span>, 5L,</a>
+<a class="sourceLine" id="cb66-5" title="5">  <span class="st">"study2"</span>, <span class="fl">1.33</span>, <span class="fl">0.542</span>, <span class="fl">0.280</span>, <span class="fl">0.191</span>, 10L,</a>
+<a class="sourceLine" id="cb66-6" title="6">  <span class="st">"study3"</span>, <span class="fl">1.24</span>, <span class="fl">0.045</span>, <span class="fl">0.030</span>, <span class="fl">0.001</span>, 12L,</a>
+<a class="sourceLine" id="cb66-7" title="7">  <span class="st">"study4"</span>, <span class="fl">0.156</span>, <span class="fl">0.500</span>, <span class="fl">0.708</span>, <span class="fl">0.885</span>, 8L,</a>
+<a class="sourceLine" id="cb66-8" title="8">  <span class="st">"study5"</span>, <span class="fl">0.33</span>, <span class="fl">0.032</span>, <span class="fl">0.280</span>, <span class="fl">0.101</span>, 2L,</a>
+<a class="sourceLine" id="cb66-9" title="9">  <span class="st">"study6"</span>, <span class="fl">1.04</span>, <span class="fl">0.085</span>, <span class="fl">0.030</span>, <span class="fl">0.001</span>, 3L</a>
+<a class="sourceLine" id="cb66-10" title="10">)</a>
+<a class="sourceLine" id="cb66-11" title="11"></a>
+<a class="sourceLine" id="cb66-12" title="12"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb66-13" title="13">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb66-14" title="14">  <span class="dt">x =</span> df_full,</a>
+<a class="sourceLine" id="cb66-15" title="15">  <span class="dt">meta.analytic.effect =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb66-16" title="16">  <span class="dt">statistic =</span> <span class="st">"t"</span>,</a>
+<a class="sourceLine" id="cb66-17" title="17">  <span class="dt">package =</span> <span class="st">"LaCroixColoR"</span>,</a>
+<a class="sourceLine" id="cb66-18" title="18">  <span class="dt">palette =</span> <span class="st">"paired"</span></a>
+<a class="sourceLine" id="cb66-19" title="19">)</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/meta2-1.png" width="672"></p>
 </div>
 <div id="and-much-more" class="section level2">
@@ -2335,6 +2369,7 @@
       <li><a href="#cochrane-orcutt-estimation-orcutt">Cochrane-Orcutt estimation (<code>orcutt</code>)</a></li>
       <li><a href="#confusion-matrix-confusionmatrix">confusion matrix (<code>confusionMatrix</code>)</a></li>
       <li><a href="#dose-response-curves-drc">Dose-Response Curves (<code>drc</code>)</a></li>
+      <li><a href="#summary-measures-for-count-data-epi-2by2">Summary measures for count data (<code>epi.2by2</code>)</a></li>
       <li><a href="#bayesian-generalized-non-linear-multivariate-multilevel-models-brmsfit">Bayesian generalized (non-)linear multivariate multilevel models (<code>brmsfit</code>)</a></li>
       <li><a href="#bayesian-regression-models-via-stan-stanreg">Bayesian regression models via Stan (<code>stanreg</code>)</a></li>
       <li><a href="#multivariate-generalized-linear-mixed-models-mcmcglmm">multivariate generalized linear mixed models (<code>MCMCglmm</code>)</a></li>
