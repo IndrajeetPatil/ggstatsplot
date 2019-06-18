@@ -22,7 +22,7 @@
 #' @param bf.message Logical that decides whether results from running a
 #'   Bayesian meta-analysis assuming that the effect size *d* varies across
 #'   studies with standard deviation *t* (i.e., a random-effects analysis)
-#'   should be displayed in caption. Defaults to `FALSE`.
+#'   should be displayed in caption. Defaults to `TRUE`.
 #' @param xlab Label for `x` axis variable (Default: `"estimate"`).
 #' @param ylab Label for `y` axis variable (Default: `"term"`).
 #' @param subtitle The text for the plot subtitle. The input to this argument
@@ -276,7 +276,6 @@
 #'   x = df,
 #'   statistic = "t",
 #'   meta.analytic.effect = TRUE,
-#'   bf.message = TRUE,
 #'   k = 3
 #' )
 #' }
@@ -319,7 +318,7 @@ ggcoefstats <- function(x,
                         conf.method = "Wald",
                         conf.type = "Wald",
                         component = "survival",
-                        bf.message = FALSE,
+                        bf.message = TRUE,
                         d = "norm",
                         d.par = c(0, 0.3),
                         tau = "halfcauchy",
@@ -559,13 +558,6 @@ ggcoefstats <- function(x,
       )
     }
 
-    # create a new term column if it's not present
-    if (!"term" %in% names(tidy_df)) {
-      tidy_df %<>%
-        dplyr::mutate(.data = ., term = 1:nrow(.)) %>%
-        dplyr::mutate(.data = ., term = as.character(term))
-    }
-
     # check that statistic is specified
     if (purrr::is_null(statistic)) {
       message(cat(
@@ -651,6 +643,13 @@ ggcoefstats <- function(x,
   }
 
   # =================== tidy dataframe cleanup ================================
+
+  # create a new term column if it's not present
+  if (!"term" %in% names(tidy_df)) {
+    tidy_df %<>%
+      dplyr::mutate(.data = ., term = 1:nrow(.)) %>%
+      dplyr::mutate(.data = ., term = as.character(term))
+  }
 
   # selecting needed coefficients/parameters for ordinal regression models
   if (any(names(tidy_df) %in% c("coefficient_type", "coef.type"))) {
@@ -895,7 +894,7 @@ ggcoefstats <- function(x,
 
   # running meta-analysis
   if (isTRUE(meta.analytic.effect)) {
-    # result
+    # results from frequentist random-effects meta-analysis
     subtitle <-
       subtitle_meta_ggcoefstats(
         data = tidy_df,
@@ -904,7 +903,7 @@ ggcoefstats <- function(x,
         output = "subtitle"
       )
 
-    # add Bayes factor caption
+    # results from Bayesian random-effects meta-analysi
     if (isTRUE(bf.message)) {
       caption <-
         bf_meta_message(

@@ -7,7 +7,7 @@ caption.}
 \usage{
 ggcoefstats(x, output = "plot", statistic = NULL, scales = NULL,
   conf.method = "Wald", conf.type = "Wald", component = "survival",
-  bf.message = FALSE, d = "norm", d.par = c(0, 0.3),
+  bf.message = TRUE, d = "norm", d.par = c(0, 0.3),
   tau = "halfcauchy", tau.par = 0.5, sample = 10000,
   summarize = "integrate", p.kr = TRUE, p.adjust.method = "none",
   coefficient.type = c("beta", "location", "coefficient"),
@@ -73,7 +73,7 @@ the longitudinal component of the model. Must be either \code{"survival"} or
 \item{bf.message}{Logical that decides whether results from running a
 Bayesian meta-analysis assuming that the effect size \emph{d} varies across
 studies with standard deviation \emph{t} (i.e., a random-effects analysis)
-should be displayed in caption. Defaults to \code{FALSE}.}
+should be displayed in caption. Defaults to \code{TRUE}.}
 
 \item{d}{type of prior for mean effect \eqn{d} (see \code{\link{prior}})}
 
@@ -384,7 +384,6 @@ ggstatsplot::ggcoefstats(
   x = df,
   statistic = "t",
   meta.analytic.effect = TRUE,
-  bf.message = TRUE,
   k = 3
 )
 }
