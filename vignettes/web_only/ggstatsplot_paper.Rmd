@@ -345,7 +345,7 @@ Functions | Type | Test | Effect size | 95% CI available?
 `ggbetweenstats` | Parametric | Student's and Welch's *t*-test | Cohen's *d*, Hedge's *g* | <font color="green">$\checkmark$</font> 
 `ggbetweenstats` | Parametric | Fisher's and Welch's one-way ANOVA | $$\eta^2, \eta^2_p, \omega^2, \omega^2_p$$ | <font color="green">$\checkmark$</font> 
 `ggbetweenstats` | Non-parametric | Mann-Whitney *U*-test | *r* | <font color="green">$\checkmark$</font> 
-`ggbetweenstats` | Non-parametric | Kruskal-Wallis Rank Sum Test | $$\eta^2_H$$ | <font color="green">$\checkmark$</font> 
+`ggbetweenstats` | Non-parametric | Kruskal-Wallis Rank Sum Test | $$\epsilon^2$$ | <font color="green">$\checkmark$</font> 
 `ggbetweenstats` | Robust | Yuen's test for trimmed means | $$\xi$$ | <font color="green">$\checkmark$</font> 
 `ggbetweenstats` | Robust | Heteroscedastic one-way ANOVA for trimmed means | $$\xi$$ | <font color="green">$\checkmark$</font> 
 `ggwithinstats` | Parametric | Student's *t*-test | Cohen's *d*, Hedge's *g* | <font color="green">$\checkmark$</font> 
@@ -354,9 +354,9 @@ Functions | Type | Test | Effect size | 95% CI available?
 `ggwithinstats` | Non-parametric | Friedman test | $$W_{Kendall}$$ | <font color="green">$\checkmark$</font>
 `ggwithinstats` | Robust | Yuen's test on trimmed means for dependent samples | $$\xi$$ | <font color="green">$\checkmark$</font> 
 `ggwithinstats` | Robust | Heteroscedastic one-way repeated measures ANOVA for trimmed means | <font color="red">$\times$</font> | <font color="red">$\times$</font>
-`ggpiestats` | Parametric | $$\text{Pearson's}~ \chi^2 ~\text{test}$$ | Cramer's *V* | <font color="green">$\checkmark$</font>
+`ggpiestats` | Parametric | $$\text{Pearson's}~ \chi^2 ~\text{test}$$ | Cramér's *V* | <font color="green">$\checkmark$</font>
 `ggpiestats` | Parametric | McNemar's test | Cohen's *g* | <font color="green">$\checkmark$</font>
-`ggpiestats` | Parametric | One-sample proportion test | Cramer's *V* | <font color="green">$\checkmark$</font>
+`ggpiestats` | Parametric | One-sample proportion test | Cramér's *V* | <font color="green">$\checkmark$</font>
 `ggscatterstats`/`ggcorrmat` | Parametric | Pearson's *r* | *r* | <font color="green">$\checkmark$</font>
 `ggscatterstats`/`ggcorrmat` | Non-parametric | $$\text{Spearman's}~ \rho$$ | $$\rho$$ | <font color="green">$\checkmark$</font>
 `ggscatterstats`/`ggcorrmat` | Robust | Percentage bend correlation | *r* | <font color="green">$\checkmark$</font>
@@ -375,7 +375,7 @@ Parametric | between-subjects | Yes | Student's *t*-test | <font color="green">$
 Parametric | within-subjects | `NA` | Student's *t*-test | <font color="green">$\checkmark$</font> 
 Non-parametric | between-subjects | No | Dwass-Steel-Crichtlow-Fligner test | <font color="green">$\checkmark$</font> 
 Non-parametric | within-subjects | No | Durbin-Conover test | <font color="green">$\checkmark$</font> 
-Robust | between-subjects | No | Yuen's trimmed means test | <font color="green">$\checkmark$</font> 
+Robust | between-subjects | No | Yuen's two-sample trimmed means *t*-test | <font color="green">$\checkmark$</font> 
 Robust | within-subjects | `NA` | Yuen's trimmed means test | <font color="green">$\checkmark$</font>
 Bayes Factor | between-subjects | No | <font color="red">$\times$</font> | <font color="red">$\times$</font>
 Bayes Factor | between-subjects | Yes | <font color="red">$\times$</font> | <font color="red">$\times$</font>

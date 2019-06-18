@@ -4,6 +4,7 @@ pkgdown_sha: 5a70d7edc6d7f09255c8e255c5ab044c7d25e72f
 articles:
   additional: additional.html
   combine_plots: web_only/combine_plots.html
+  effsize_interpretation: web_only/effsize_interpretation.html
   faq: web_only/faq.html
   gallery: web_only/gallery.html
   ggbetweenstats: web_only/ggbetweenstats.html

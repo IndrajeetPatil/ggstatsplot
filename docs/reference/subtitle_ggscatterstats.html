@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11.9000</span>
       </span>
     </div>
 
@@ -100,6 +100,9 @@
     </li>
     <li>
       <a href="../articles/web_only/combine_plots.html">combine_plots</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
       <a href="../articles/web_only/faq.html">Frequently asked questions</a>
@@ -266,7 +269,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     <pre class="examples"><div class='input'>
 <span class='co'># without changing defaults</span>
 <span class='fu'>subtitle_ggscatterstats</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ggplot2/man/midwest.html'>midwest</a></span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/midwest.html'>midwest</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>area</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>percblack</span>
 )</div><div class='output co'>#&gt; paste(NULL, italic("t"), "(", "435", ") = ", "-0.97", ", ", italic("p"), 
@@ -275,7 +278,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 #&gt;     " = ", 437L)</div><div class='input'>
 <span class='co'># changing defaults</span>
 <span class='fu'>subtitle_ggscatterstats</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ggplot2/man/midwest.html'>midwest</a></span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/midwest.html'>midwest</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>area</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>percblack</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>25</span>,

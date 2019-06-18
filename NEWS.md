@@ -1,5 +1,11 @@
 # ggstatsplot 0.0.11.9000
 
+MAJOR CHANGES
+
+  - The effect size measure for Kruskal-Wallis test has been changed from the
+    more obscure H-based eta-squared statistic to more common and interpretable
+    epsilon-squared.
+
 MINOR CHANGES
 
   - `ggcoefstats` defaults to `bf.message = TRUE` to be consistent with the rest

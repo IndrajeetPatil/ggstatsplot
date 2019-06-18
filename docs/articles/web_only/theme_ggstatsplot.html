@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11.9000</span>
       </span>
     </div>
 
@@ -61,6 +61,9 @@
     </li>
     <li>
       <a href="../../articles/web_only/combine_plots.html">combine_plots</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
       <a href="../../articles/web_only/faq.html">Frequently asked questions</a>
@@ -135,7 +138,7 @@
       <h1>ggstatsplot theme</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-06-12</h4>
+            <h4 class="date">2019-06-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/theme_ggstatsplot.Rmd"><code>vignettes/web_only/theme_ggstatsplot.Rmd</code></a></small>
       <div class="hidden name"><code>theme_ggstatsplot.Rmd</code></div>
@@ -154,17 +157,17 @@
 <a class="sourceLine" id="cb1-2" title="2"></a>
 <a class="sourceLine" id="cb1-3" title="3">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb1-4" title="4">  <span class="co"># basic scatter plot</span></a>
-<a class="sourceLine" id="cb1-5" title="5">  ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span>(</a>
+<a class="sourceLine" id="cb1-5" title="5">  ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(</a>
 <a class="sourceLine" id="cb1-6" title="6">    <span class="dt">data =</span> datasets<span class="op">::</span>mtcars,</a>
-<a class="sourceLine" id="cb1-7" title="7">    <span class="dt">mapping =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span>(<span class="dt">x =</span> wt, <span class="dt">y =</span> mpg)</a>
+<a class="sourceLine" id="cb1-7" title="7">    <span class="dt">mapping =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> wt, <span class="dt">y =</span> mpg)</a>
 <a class="sourceLine" id="cb1-8" title="8">  ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point</a></span>(),</a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(),</a>
 <a class="sourceLine" id="cb1-10" title="10">  <span class="co"># basic scatter plot with theme_ggstatsplot() added</span></a>
-<a class="sourceLine" id="cb1-11" title="11">  ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span>(</a>
+<a class="sourceLine" id="cb1-11" title="11">  ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(</a>
 <a class="sourceLine" id="cb1-12" title="12">    <span class="dt">data =</span> datasets<span class="op">::</span>mtcars,</a>
-<a class="sourceLine" id="cb1-13" title="13">    <span class="dt">mapping =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span>(<span class="dt">x =</span> wt, <span class="dt">y =</span> mpg)</a>
+<a class="sourceLine" id="cb1-13" title="13">    <span class="dt">mapping =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> wt, <span class="dt">y =</span> mpg)</a>
 <a class="sourceLine" id="cb1-14" title="14">  ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb1-15" title="15"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point</a></span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb1-15" title="15"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb1-16" title="16"><span class="st">    </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/theme_ggstatsplot.html">theme_ggstatsplot</a></span>(),</a>
 <a class="sourceLine" id="cb1-17" title="17">  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(i)"</span>, <span class="st">"(ii)"</span>),</a>
 <a class="sourceLine" id="cb1-18" title="18">  <span class="dt">nrow =</span> <span class="dv">1</span>,</a>

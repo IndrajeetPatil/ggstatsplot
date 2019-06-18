@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11.9000</span>
       </span>
     </div>
 
@@ -100,6 +100,9 @@
     </li>
     <li>
       <a href="../articles/web_only/combine_plots.html">combine_plots</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
       <a href="../articles/web_only/faq.html">Frequently asked questions</a>
@@ -247,25 +250,25 @@ will be returned. Valid only for objects of class <code>aov</code>, <code>anova<
 <span class='co'># model with t-statistic</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats_label_maker.html'>ggcoefstats_label_maker</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='kw pkg'>broomExtra</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/broomExtra//reference/tidy.html'>tidy</a></span>(<span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>, <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>wt</span> ~ <span class='no'>cyl</span> * <span class='no'>mpg</span>
-)), <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='st'>"t"</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 x 9</span><span>
+)), <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='st'>"t"</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 4 x 9</span><span>
 #&gt;   term        estimate std.error statistic p.value significance
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> (Intercept)  2.98       1.57   1.90       0.068</span><span style='text-decoration: underline;'>3</span><span> ns          
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> cyl          0.478      0.233  2.05       0.050</span><span style='text-decoration: underline;'>3</span><span> ns          
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> mpg         -</span><span style='color: #BB0000;'>0.009</span><span style='color: #BB0000;text-decoration: underline;'>47</span><span>    0.066</span><span style='text-decoration: underline;'>0</span><span> -0.14      0.887  ns          
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> cyl:mpg     -</span><span style='color: #BB0000;'>0.021</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span>     0.012</span><span style='text-decoration: underline;'>0</span><span> -1.82      0.079</span><span style='text-decoration: underline;'>0</span><span> ns          
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       
+#&gt; </span><span style='color: #555555;'>1</span><span> (Intercept)  2.98       1.57   1.90       0.068</span><span style='text-decoration: underline;'>3</span><span> ns          
+#&gt; </span><span style='color: #555555;'>2</span><span> cyl          0.478      0.233  2.05       0.050</span><span style='text-decoration: underline;'>3</span><span> ns          
+#&gt; </span><span style='color: #555555;'>3</span><span> mpg         -</span><span style='color: #BB0000;'>0.009</span><span style='color: #BB0000;text-decoration: underline;'>47</span><span>    0.066</span><span style='text-decoration: underline;'>0</span><span> -0.14      0.887  ns          
+#&gt; </span><span style='color: #555555;'>4</span><span> cyl:mpg     -</span><span style='color: #BB0000;'>0.021</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span>     0.012</span><span style='text-decoration: underline;'>0</span><span> -1.82      0.079</span><span style='text-decoration: underline;'>0</span><span> ns          
 #&gt;   p.value.formatted p.value.formatted2
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 0.068             ==0.068           
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 0.050             ==0.050           
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 0.887             ==0.887           
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> 0.079             ==0.079           
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             
+#&gt; </span><span style='color: #555555;'>1</span><span> 0.068             ==0.068           
+#&gt; </span><span style='color: #555555;'>2</span><span> 0.050             ==0.050           
+#&gt; </span><span style='color: #555555;'>3</span><span> 0.887             ==0.887           
+#&gt; </span><span style='color: #555555;'>4</span><span> 0.079             ==0.079           
 #&gt;   label                                                           
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                                           
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> list(~italic(beta)==2.98, ~italic(t)==1.90, ~italic(p)==0.068)  
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> list(~italic(beta)==0.48, ~italic(t)==2.05, ~italic(p)==0.050)  
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> list(~italic(beta)==-0.01, ~italic(t)==-0.14, ~italic(p)==0.887)
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> list(~italic(beta)==-0.02, ~italic(t)==-1.82, ~italic(p)==0.079)</div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                                           
+#&gt; </span><span style='color: #555555;'>1</span><span> list(~italic(beta)==2.98, ~italic(t)==1.90, ~italic(p)==0.068)  
+#&gt; </span><span style='color: #555555;'>2</span><span> list(~italic(beta)==0.48, ~italic(t)==2.05, ~italic(p)==0.050)  
+#&gt; </span><span style='color: #555555;'>3</span><span> list(~italic(beta)==-0.01, ~italic(t)==-0.14, ~italic(p)==0.887)
+#&gt; </span><span style='color: #555555;'>4</span><span> list(~italic(beta)==-0.02, ~italic(t)==-1.82, ~italic(p)==0.079)</div><div class='input'>
 <span class='co'># (in case `x` is not a dataframe, no need to specify `statistic` argument;</span>
 <span class='co'># this will be figured out by the function itself)</span>
 
@@ -294,19 +297,19 @@ will be returned. Valid only for objects of class <code>aov</code>, <code>anova<
     <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
     <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>
   )
-)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 2 x 11</span><span>
+)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 2 x 11</span><span>
 #&gt;   term        estimate std.error statistic conf.low conf.high       p.value
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> (Intercept)  -</span><span style='color: #BB0000;'>0.016</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>  0.000</span><span style='text-decoration: underline;'>928</span><span> -17.85     -</span><span style='color: #BB0000;'>0.018</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span>   -</span><span style='color: #BB0000;'>0.014</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span> 0.000</span><span style='text-decoration: underline;'>000</span><span>428  
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> log(u)        0.015</span><span style='text-decoration: underline;'>3</span><span>  0.000</span><span style='text-decoration: underline;'>415</span><span> 36.97       0.014</span><span style='text-decoration: underline;'>5</span><span>    0.016</span><span style='text-decoration: underline;'>2</span><span> 0.000</span><span style='text-decoration: underline;'>000</span><span>002</span><span style='text-decoration: underline;'>75</span><span>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> (Intercept)  -</span><span style='color: #BB0000;'>0.016</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>  0.000</span><span style='text-decoration: underline;'>928</span><span> -17.85     -</span><span style='color: #BB0000;'>0.018</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span>   -</span><span style='color: #BB0000;'>0.014</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span> 0.000</span><span style='text-decoration: underline;'>000</span><span>428  
+#&gt; </span><span style='color: #555555;'>2</span><span> log(u)        0.015</span><span style='text-decoration: underline;'>3</span><span>  0.000</span><span style='text-decoration: underline;'>415</span><span> 36.97       0.014</span><span style='text-decoration: underline;'>5</span><span>    0.016</span><span style='text-decoration: underline;'>2</span><span> 0.000</span><span style='text-decoration: underline;'>000</span><span>002</span><span style='text-decoration: underline;'>75</span><span>
 #&gt;   significance p.value.formatted p.value.formatted2
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> ***          &lt; 0.001           &lt;= 0.001          
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> ***          &lt; 0.001           &lt;= 0.001          
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             
+#&gt; </span><span style='color: #555555;'>1</span><span> ***          &lt; 0.001           &lt;= 0.001          
+#&gt; </span><span style='color: #555555;'>2</span><span> ***          &lt; 0.001           &lt;= 0.001          
 #&gt;   label                                                             
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                                             
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> list(~italic(beta)==-0.02, ~italic(t)==-17.85, ~italic(p)&lt;= 0.001)
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> list(~italic(beta)==0.02, ~italic(t)==36.97, ~italic(p)&lt;= 0.001)  </div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                                             
+#&gt; </span><span style='color: #555555;'>1</span><span> list(~italic(beta)==-0.02, ~italic(t)==-17.85, ~italic(p)&lt;= 0.001)
+#&gt; </span><span style='color: #555555;'>2</span><span> list(~italic(beta)==0.02, ~italic(t)==36.97, ~italic(p)&lt;= 0.001)  </div><div class='input'>
 <span class='co'>#------------------------- models with *z*-statistic --------------------</span>
 
 <span class='co'># preparing dataframe</span>
@@ -323,28 +326,28 @@ will be returned. Valid only for objects of class <code>aov</code>, <code>anova<
 )
 
 <span class='co'># creating tidy dataframe with label column</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats_label_maker.html'>ggcoefstats_label_maker</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>tidy_df</span> <span class='kw'>=</span> <span class='kw pkg'>broomExtra</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/broomExtra//reference/tidy.html'>tidy</a></span>(<span class='no'>mod</span>))</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 5 x 9</span><span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats_label_maker.html'>ggcoefstats_label_maker</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>tidy_df</span> <span class='kw'>=</span> <span class='kw pkg'>broomExtra</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/broomExtra//reference/tidy.html'>tidy</a></span>(<span class='no'>mod</span>))</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 5 x 9</span><span>
 #&gt;   term         estimate std.error statistic   p.value significance
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> (Intercept)  3.04</span><span style='color: #949494;'>e</span><span>+ 0     0.171 17.81      5.43</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-71</span><span> ***         
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> outcome2    -</span><span style='color: #BB0000;'>4.54</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 1</span><span>     0.202 -2.25      2.46</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 2</span><span> *           
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> outcome3    -</span><span style='color: #BB0000;'>2.93</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 1</span><span>     0.193 -1.52      1.28</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 1</span><span> ns          
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> treatment2   1.34</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-15</span><span>     0.200 0.00      10.00</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 1</span><span> ns          
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> treatment3   1.42</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-15</span><span>     0.200 0.00      10.00</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 1</span><span> ns          
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       
+#&gt; </span><span style='color: #555555;'>1</span><span> (Intercept)  3.04</span><span style='color: #555555;'>e</span><span>+ 0     0.171 17.81      5.43</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-71</span><span> ***         
+#&gt; </span><span style='color: #555555;'>2</span><span> outcome2    -</span><span style='color: #BB0000;'>4.54</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 1</span><span>     0.202 -2.25      2.46</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span> *           
+#&gt; </span><span style='color: #555555;'>3</span><span> outcome3    -</span><span style='color: #BB0000;'>2.93</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 1</span><span>     0.193 -1.52      1.28</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 1</span><span> ns          
+#&gt; </span><span style='color: #555555;'>4</span><span> treatment2   1.34</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-15</span><span>     0.200 0.00      10.00</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 1</span><span> ns          
+#&gt; </span><span style='color: #555555;'>5</span><span> treatment3   1.42</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-15</span><span>     0.200 0.00      10.00</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 1</span><span> ns          
 #&gt;   p.value.formatted p.value.formatted2
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> &lt; 0.001           &lt;= 0.001          
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 0.025             ==0.025           
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 0.128             ==0.128           
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> 1.000             ==1.000           
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> 1.000             ==1.000           
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             
+#&gt; </span><span style='color: #555555;'>1</span><span> &lt; 0.001           &lt;= 0.001          
+#&gt; </span><span style='color: #555555;'>2</span><span> 0.025             ==0.025           
+#&gt; </span><span style='color: #555555;'>3</span><span> 0.128             ==0.128           
+#&gt; </span><span style='color: #555555;'>4</span><span> 1.000             ==1.000           
+#&gt; </span><span style='color: #555555;'>5</span><span> 1.000             ==1.000           
 #&gt;   label                                                           
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                                           
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> list(~italic(beta)==3.04, ~italic(z)==17.81, ~italic(p)&lt;= 0.001)
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> list(~italic(beta)==-0.45, ~italic(z)==-2.25, ~italic(p)==0.025)
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> list(~italic(beta)==-0.29, ~italic(z)==-1.52, ~italic(p)==0.128)
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> list(~italic(beta)==0.00, ~italic(z)==0.00, ~italic(p)==1.000)  
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> list(~italic(beta)==0.00, ~italic(z)==0.00, ~italic(p)==1.000)  </div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                                           
+#&gt; </span><span style='color: #555555;'>1</span><span> list(~italic(beta)==3.04, ~italic(z)==17.81, ~italic(p)&lt;= 0.001)
+#&gt; </span><span style='color: #555555;'>2</span><span> list(~italic(beta)==-0.45, ~italic(z)==-2.25, ~italic(p)==0.025)
+#&gt; </span><span style='color: #555555;'>3</span><span> list(~italic(beta)==-0.29, ~italic(z)==-1.52, ~italic(p)==0.128)
+#&gt; </span><span style='color: #555555;'>4</span><span> list(~italic(beta)==0.00, ~italic(z)==0.00, ~italic(p)==1.000)  
+#&gt; </span><span style='color: #555555;'>5</span><span> list(~italic(beta)==0.00, ~italic(z)==0.00, ~italic(p)==1.000)  </div><div class='input'>
 <span class='co'>#------------------------- models with *f*-statistic --------------------</span>
 <span class='co'># creating a model object</span>
 <span class='no'>op</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span>(<span class='kw'>contrasts</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"contr.helmert"</span>, <span class='st'>"contr.poly"</span>))
@@ -366,34 +369,34 @@ will be returned. Valid only for objects of class <code>aov</code>, <code>anova<
   <span class='kw'>tidy_df</span> <span class='kw'>=</span> <span class='no'>tidy_df</span>,
   <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"omega"</span>,
   <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 7 x 13</span><span>
+)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 7 x 13</span><span>
 #&gt;   term  statistic   df1   df2 estimate conf.low conf.high p.value significance
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> block 4.45          5    12  0.298     0.029</span><span style='text-decoration: underline;'>8</span><span>     0.675 0.015</span><span style='text-decoration: underline;'>9</span><span>  *           
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> N     12.26         1    12  0.195     0.044</span><span style='text-decoration: underline;'>0</span><span>     0.588 0.004</span><span style='text-decoration: underline;'>37</span><span> **          
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> P     0.54          1    12 -</span><span style='color: #BB0000;'>0.007</span><span style='color: #BB0000;text-decoration: underline;'>89</span><span>  </span><span style='color: #BB0000;'>NA</span><span>          0.233 0.475   ns          
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> K     6.17          1    12  0.089</span><span style='text-decoration: underline;'>4</span><span>   </span><span style='color: #BB0000;'>NA</span><span>          0.472 0.028</span><span style='text-decoration: underline;'>8</span><span>  *           
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> N:P   1.38          1    12  0.006</span><span style='text-decoration: underline;'>55</span><span>  </span><span style='color: #BB0000;'>NA</span><span>          0.294 0.263   ns          
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> N:K   2.15          1    12  0.019</span><span style='text-decoration: underline;'>8</span><span>   </span><span style='color: #BB0000;'>NA</span><span>          0.336 0.169   ns          
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span> P:K   0.03          1    12 -</span><span style='color: #BB0000;'>0.016</span><span style='color: #BB0000;text-decoration: underline;'>8</span><span>   </span><span style='color: #BB0000;'>NA</span><span>          0.126 0.863   ns          
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       
+#&gt; </span><span style='color: #555555;'>1</span><span> block 4.45          5    12  0.298     0.029</span><span style='text-decoration: underline;'>8</span><span>     0.675 0.015</span><span style='text-decoration: underline;'>9</span><span>  *           
+#&gt; </span><span style='color: #555555;'>2</span><span> N     12.26         1    12  0.195     0.044</span><span style='text-decoration: underline;'>0</span><span>     0.588 0.004</span><span style='text-decoration: underline;'>37</span><span> **          
+#&gt; </span><span style='color: #555555;'>3</span><span> P     0.54          1    12 -</span><span style='color: #BB0000;'>0.007</span><span style='color: #BB0000;text-decoration: underline;'>89</span><span>  </span><span style='color: #BB0000;'>NA</span><span>          0.233 0.475   ns          
+#&gt; </span><span style='color: #555555;'>4</span><span> K     6.17          1    12  0.089</span><span style='text-decoration: underline;'>4</span><span>   </span><span style='color: #BB0000;'>NA</span><span>          0.472 0.028</span><span style='text-decoration: underline;'>8</span><span>  *           
+#&gt; </span><span style='color: #555555;'>5</span><span> N:P   1.38          1    12  0.006</span><span style='text-decoration: underline;'>55</span><span>  </span><span style='color: #BB0000;'>NA</span><span>          0.294 0.263   ns          
+#&gt; </span><span style='color: #555555;'>6</span><span> N:K   2.15          1    12  0.019</span><span style='text-decoration: underline;'>8</span><span>   </span><span style='color: #BB0000;'>NA</span><span>          0.336 0.169   ns          
+#&gt; </span><span style='color: #555555;'>7</span><span> P:K   0.03          1    12 -</span><span style='color: #BB0000;'>0.016</span><span style='color: #BB0000;text-decoration: underline;'>8</span><span>   </span><span style='color: #BB0000;'>NA</span><span>          0.126 0.863   ns          
 #&gt;   p.value.formatted p.value.formatted2 effsize.text
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>              </span><span style='color: #949494;font-style: italic;'>&lt;list&gt;</span><span>      
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 0.016             ==0.016            </span><span style='color: #949494;'>&lt;language&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 0.004             ==0.004            </span><span style='color: #949494;'>&lt;language&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 0.475             ==0.475            </span><span style='color: #949494;'>&lt;language&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> 0.029             ==0.029            </span><span style='color: #949494;'>&lt;language&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> 0.263             ==0.263            </span><span style='color: #949494;'>&lt;language&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> 0.169             ==0.169            </span><span style='color: #949494;'>&lt;language&gt;</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span> 0.863             ==0.863            </span><span style='color: #949494;'>&lt;language&gt;</span><span>  
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>              </span><span style='color: #555555;font-style: italic;'>&lt;list&gt;</span><span>      
+#&gt; </span><span style='color: #555555;'>1</span><span> 0.016             ==0.016            </span><span style='color: #555555;'>&lt;language&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'>2</span><span> 0.004             ==0.004            </span><span style='color: #555555;'>&lt;language&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'>3</span><span> 0.475             ==0.475            </span><span style='color: #555555;'>&lt;language&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'>4</span><span> 0.029             ==0.029            </span><span style='color: #555555;'>&lt;language&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'>5</span><span> 0.263             ==0.263            </span><span style='color: #555555;'>&lt;language&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'>6</span><span> 0.169             ==0.169            </span><span style='color: #555555;'>&lt;language&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'>7</span><span> 0.863             ==0.863            </span><span style='color: #555555;'>&lt;language&gt;</span><span>  
 #&gt;   label                                                                         
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                                                         
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> </span><span style='color: #949494;'>"</span><span>list(~italic(F)(5*\",\"*12)==4.45, ~italic(p)==0.016, ~italic(omega)^2==0.30~
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> </span><span style='color: #949494;'>"</span><span>list(~italic(F)(1*\",\"*12)==12.26, ~italic(p)==0.004, ~italic(omega)^2==0.1~
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> </span><span style='color: #949494;'>"</span><span>list(~italic(F)(1*\",\"*12)==0.54, ~italic(p)==0.475, ~italic(omega)^2==-0.0~
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> </span><span style='color: #949494;'>"</span><span>list(~italic(F)(1*\",\"*12)==6.17, ~italic(p)==0.029, ~italic(omega)^2==0.09~
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> </span><span style='color: #949494;'>"</span><span>list(~italic(F)(1*\",\"*12)==1.38, ~italic(p)==0.263, ~italic(omega)^2==0.01~
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> </span><span style='color: #949494;'>"</span><span>list(~italic(F)(1*\",\"*12)==2.15, ~italic(p)==0.169, ~italic(omega)^2==0.02~
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span> </span><span style='color: #949494;'>"</span><span>list(~italic(F)(1*\",\"*12)==0.03, ~italic(p)==0.863, ~italic(omega)^2==-0.0~</div></span><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                                                         
+#&gt; </span><span style='color: #555555;'>1</span><span> </span><span style='color: #555555;'>"</span><span>list(~italic(F)(5*\",\"*12)==4.45, ~italic(p)==0.016, ~italic(omega)^2==0.30~
+#&gt; </span><span style='color: #555555;'>2</span><span> </span><span style='color: #555555;'>"</span><span>list(~italic(F)(1*\",\"*12)==12.26, ~italic(p)==0.004, ~italic(omega)^2==0.1~
+#&gt; </span><span style='color: #555555;'>3</span><span> </span><span style='color: #555555;'>"</span><span>list(~italic(F)(1*\",\"*12)==0.54, ~italic(p)==0.475, ~italic(omega)^2==-0.0~
+#&gt; </span><span style='color: #555555;'>4</span><span> </span><span style='color: #555555;'>"</span><span>list(~italic(F)(1*\",\"*12)==6.17, ~italic(p)==0.029, ~italic(omega)^2==0.09~
+#&gt; </span><span style='color: #555555;'>5</span><span> </span><span style='color: #555555;'>"</span><span>list(~italic(F)(1*\",\"*12)==1.38, ~italic(p)==0.263, ~italic(omega)^2==0.01~
+#&gt; </span><span style='color: #555555;'>6</span><span> </span><span style='color: #555555;'>"</span><span>list(~italic(F)(1*\",\"*12)==2.15, ~italic(p)==0.169, ~italic(omega)^2==0.02~
+#&gt; </span><span style='color: #555555;'>7</span><span> </span><span style='color: #555555;'>"</span><span>list(~italic(F)(1*\",\"*12)==0.03, ~italic(p)==0.863, ~italic(omega)^2==-0.0~</div></span><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

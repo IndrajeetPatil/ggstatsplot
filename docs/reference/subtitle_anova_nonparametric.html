@@ -44,7 +44,7 @@
 
 <meta property="og:description" content="For paired designs, the effect size is Kendall's coefficient of
 concordance (W), while for between-subjects designs, the effect size is
-H-statistic based eta-squared." />
+epsilon-squared (for more, see ?rcompanion::epsilonSquared)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -75,7 +75,7 @@ H-statistic based eta-squared." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11.9000</span>
       </span>
     </div>
 
@@ -102,6 +102,9 @@ H-statistic based eta-squared." />
     </li>
     <li>
       <a href="../articles/web_only/combine_plots.html">combine_plots</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
       <a href="../articles/web_only/faq.html">Frequently asked questions</a>
@@ -183,7 +186,7 @@ H-statistic based eta-squared." />
     
     <p>For paired designs, the effect size is Kendall's coefficient of
 concordance (<em>W</em>), while for between-subjects designs, the effect size is
-H-statistic based eta-squared.</p>
+epsilon-squared (for more, see <code><a href='https://rdrr.io/pkg/rcompanion/man/epsilonSquared.html'>?rcompanion::epsilonSquared</a></code>).</p>
     
     </div>
 
@@ -275,24 +278,26 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>key</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>value</span>,
   <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.99</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>
-)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>95%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>100</span><span style='color: #0000BB;'> bootstrap samples.
+)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>99%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>100</span><span style='color: #0000BB;'> bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(NULL, italic(chi)^2, "(", "3", ") = ", "55.83", ", ", italic("p"), 
 #&gt;     " = ", "&lt; 0.001", ", ", italic("W")["Kendall"], " = ", "0.61", 
-#&gt;     ", CI"["95%"], " [", "0.52", ", ", "0.71", "]", ", ", italic("n"), 
+#&gt;     ", CI"["99%"], " [", "0.49", ", ", "0.74", "]", ", ", italic("n"), 
 #&gt;     " = ", 88L)</div><div class='input'>
 <span class='co'># -------------- between-subjects design --------------------------------</span>
 
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_anova_nonparametric.html'>subtitle_anova_nonparametric</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ggplot2/man/msleep.html'>msleep</a></span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>,
   <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.99</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>99%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>100</span><span style='color: #0000BB;'> bootstrap samples.
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.99</span>,
+  <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"perc"</span>
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: extreme order statistics used as endpoints</span></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>99%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>100</span><span style='color: #0000BB;'> bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(NULL, italic(chi)^2, "(", "3", ") = ", "9.06", ", ", italic("p"), 
-#&gt;     " = ", "0.028", ", ", eta["H"]^2, " = ", "0.12", ", CI"["99%"], 
-#&gt;     " [", "-0.24", ", ", "0.35", "]", ", ", italic("n"), " = ", 
+#&gt;     " = ", "0.028", ", ", epsilon^2, " = ", "0.16", ", CI"["99%"], 
+#&gt;     " [", "0.02", ", ", "0.59", "]", ", ", italic("n"), " = ", 
 #&gt;     56L)</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

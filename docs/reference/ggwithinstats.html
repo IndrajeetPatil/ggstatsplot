@@ -77,7 +77,7 @@ details included in the plot as a subtitle." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11.9000</span>
       </span>
     </div>
 
@@ -104,6 +104,9 @@ details included in the plot as a subtitle." />
     </li>
     <li>
       <a href="../articles/web_only/combine_plots.html">combine_plots</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
       <a href="../articles/web_only/faq.html">Frequently asked questions</a>
@@ -206,7 +209,7 @@ details included in the plot as a subtitle.</p>
   <span class='kw'>outlier.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>outlier.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>outlier.coef</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>mean.plotting</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>mean.ci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>mean.size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>mean.color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>,
-  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/ggtheme.html'>theme_bw</a></span>(), <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(), <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>, <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>return</span> <span class='kw'>=</span> <span class='st'>"plot"</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
@@ -475,7 +478,7 @@ is to be displayed (Default: <code>FALSE</code>).</p></td>
     <tr>
       <th>ggtheme</th>
       <td><p>A function, <code>ggplot2</code> theme name. Default value is
-<code><a href='https://rdrr.io/pkg/ggplot2/man/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
+<code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
 extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>,
 <code><a href='https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html'>hrbrthemes::theme_ipsum_ps()</a></code>, etc.).</p></td>
     </tr>
@@ -561,16 +564,18 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span>(<span class='no'>WineTasting</span>),
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Wine</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Taste</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"r"</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"np"</span>,
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.99</span>,
   <span class='kw'>pairwise.comparisons</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='no'>Taster</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 8</span><span>
-#&gt;   group1 group2 psihat conf.low conf.high p.value significance p.value.label
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        
-#&gt; </span><span style='color: #555555;'>1</span><span> Wine A Wine B 0.016</span><span style='text-decoration: underline;'>7</span><span> -</span><span style='color: #BB0000;'>0.032</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span>     0.065</span><span style='text-decoration: underline;'>7</span><span> 0.380   ns           p = 0.380    
-#&gt; </span><span style='color: #555555;'>2</span><span> Wine B Wine C 0.077</span><span style='text-decoration: underline;'>8</span><span>  0.018</span><span style='text-decoration: underline;'>3</span><span>     0.137  0.008</span><span style='text-decoration: underline;'>80</span><span> **           p = 0.009    
-#&gt; </span><span style='color: #555555;'>3</span><span> Wine A Wine C 0.1     0.006</span><span style='text-decoration: underline;'>95</span><span>    0.193  0.022</span><span style='text-decoration: underline;'>0</span><span>  *            p = 0.022    
+)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>99%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>100</span><span style='color: #0000BB;'> bootstrap samples.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 6</span><span>
+#&gt;   group1 group2 statistic p.value significance p.value.label
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        
+#&gt; </span><span style='color: #555555;'>1</span><span> Wine A Wine B      1.05 0.301   ns           p = 0.301    
+#&gt; </span><span style='color: #555555;'>2</span><span> Wine A Wine C      3.66 0.002</span><span style='text-decoration: underline;'>07</span><span> **           p = 0.002    
+#&gt; </span><span style='color: #555555;'>3</span><span> Wine B Wine C      2.62 0.024</span><span style='text-decoration: underline;'>6</span><span>  *            p = 0.025    
 #&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Shapiro-Wilk Normality Test for </span><span style='color: #BBBB00;'>Taste</span><span style='color: #0000BB;'> : p-value = </span><span style='color: #BBBB00;'>0.002</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Bartlett's test for homogeneity of variances for factor </span><span style='color: #BBBB00;'>Wine</span><span style='color: #0000BB;'> : p-value = </span><span style='color: #BBBB00;'>0.970</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggwithinstats-2.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

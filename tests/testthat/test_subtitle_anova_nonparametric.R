@@ -35,14 +35,14 @@ testthat::test_that(
           " = ",
           "< 0.001",
           ", ",
-          eta["H"]^2,
+          epsilon^2,
           " = ",
-          "0.21331",
+          "0.21730",
           ", CI"["95%"],
           " [",
-          "0.16934",
+          "0.17355",
           ", ",
-          "0.24848",
+          "0.25229",
           "]",
           ", ",
           italic("n"),
@@ -56,7 +56,7 @@ testthat::test_that(
 
     # ggstatsplot output
     set.seed(123)
-    using_function1 <-
+    using_function2 <-
       suppressWarnings(ggstatsplot::subtitle_anova_nonparametric(
         data = ggplot2::msleep,
         x = vore,
@@ -70,7 +70,7 @@ testthat::test_that(
 
     # expected output
     set.seed(123)
-    results1 <-
+    results2 <-
       ggplot2::expr(
         paste(
           NULL,
@@ -84,14 +84,14 @@ testthat::test_that(
           " = ",
           "0.155",
           ", ",
-          eta["H"]^2,
+          epsilon^2,
           " = ",
-          "0.083",
+          "0.175",
           ", CI"["99%"],
           " [",
-          "-0.108",
+          "0.003",
           ", ",
-          "0.458",
+          "0.513",
           "]",
           ", ",
           italic("n"),
@@ -101,7 +101,7 @@ testthat::test_that(
       )
 
     # testing overall call
-    testthat::expect_identical(using_function1, results1)
+    testthat::expect_identical(using_function2, results2)
   }
 )
 

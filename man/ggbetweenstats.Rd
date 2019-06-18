@@ -283,6 +283,7 @@ ggstatsplot::ggbetweenstats(
   data = datasets::morley,
   x = Expt,
   y = Speed,
+  type = "np",
   plot.type = "box",
   conf.level = 0.99,
   xlab = "The experiment number",

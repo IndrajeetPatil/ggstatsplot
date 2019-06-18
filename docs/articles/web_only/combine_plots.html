@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11.9000</span>
       </span>
     </div>
 
@@ -61,6 +61,9 @@
     </li>
     <li>
       <a href="../../articles/web_only/combine_plots.html">combine_plots</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
       <a href="../../articles/web_only/faq.html">Frequently asked questions</a>
@@ -135,7 +138,7 @@
       <h1>combine_plots</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-06-12</h4>
+            <h4 class="date">2019-06-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/combine_plots.Rmd"><code>vignettes/web_only/combine_plots.Rmd</code></a></small>
       <div class="hidden name"><code>combine_plots.Rmd</code></div>
@@ -255,7 +258,7 @@
 <a class="sourceLine" id="cb2-32" title="32">      <span class="dt">title =</span> glue<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/glue/man/glue.html">glue</a></span>(<span class="st">"Continent: {data$continent}"</span>),</a>
 <a class="sourceLine" id="cb2-33" title="33">      <span class="dt">marginal =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb2-34" title="34">    ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb2-35" title="35"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_continuous</a></span>(<span class="dt">labels =</span> scales<span class="op">::</span>comma)</a>
+<a class="sourceLine" id="cb2-35" title="35"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span>(<span class="dt">labels =</span> scales<span class="op">::</span>comma)</a>
 <a class="sourceLine" id="cb2-36" title="36">)</a>
 <a class="sourceLine" id="cb2-37" title="37"></a>
 <a class="sourceLine" id="cb2-38" title="38"><span class="co"># combining individual plots</span></a>
@@ -285,11 +288,11 @@
 <a class="sourceLine" id="cb3-12" title="12">    <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span>,</a>
 <a class="sourceLine" id="cb3-13" title="13">    <span class="dt">title =</span> <span class="st">"Relationship between movie budget and IMDB rating"</span>,</a>
 <a class="sourceLine" id="cb3-14" title="14">    <span class="dt">subtitle =</span> <span class="st">"Source: Internet Movie Database"</span>,</a>
-<a class="sourceLine" id="cb3-15" title="15">    <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_gray</a></span>(),</a>
+<a class="sourceLine" id="cb3-15" title="15">    <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_gray</a></span>(),</a>
 <a class="sourceLine" id="cb3-16" title="16">    <span class="dt">stats.label.color =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#CC79A7"</span>, <span class="st">"darkgreen"</span>, <span class="st">"#0072B2"</span>, <span class="st">"red"</span>)</a>
 <a class="sourceLine" id="cb3-17" title="17">  ) <span class="op">+</span></a>
 <a class="sourceLine" id="cb3-18" title="18"><span class="st">    </span><span class="co"># modifying the plot outside of ggstatsplot using ggplot2 functions</span></a>
-<a class="sourceLine" id="cb3-19" title="19"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/scale_discrete.html">scale_y_discrete</a></span>(</a>
+<a class="sourceLine" id="cb3-19" title="19"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(</a>
 <a class="sourceLine" id="cb3-20" title="20">      <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(</a>
 <a class="sourceLine" id="cb3-21" title="21">        <span class="st">"Intercept (c)"</span>,</a>
 <a class="sourceLine" id="cb3-22" title="22">        <span class="st">"1st degree (b1)"</span>,</a>
@@ -297,7 +300,7 @@
 <a class="sourceLine" id="cb3-24" title="24">        <span class="st">"3rd degree (b3)"</span></a>
 <a class="sourceLine" id="cb3-25" title="25">      )</a>
 <a class="sourceLine" id="cb3-26" title="26">    ) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb3-27" title="27"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span>(<span class="dt">y =</span> <span class="st">"term (polynomial regression)"</span>),</a>
+<a class="sourceLine" id="cb3-27" title="27"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">y =</span> <span class="st">"term (polynomial regression)"</span>),</a>
 <a class="sourceLine" id="cb3-28" title="28">  <span class="co"># adding additional text element to the plot since title, subtitle, caption are all already occupied</span></a>
 <a class="sourceLine" id="cb3-29" title="29">  <span class="dt">sub.text =</span> <span class="kw"><a href="https://rdrr.io/r/base/expression.html">expression</a></span>(</a>
 <a class="sourceLine" id="cb3-30" title="30">    <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(</a>
