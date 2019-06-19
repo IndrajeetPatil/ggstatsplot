@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11.9000</span>
       </span>
     </div>
 
@@ -100,6 +100,9 @@
     </li>
     <li>
       <a href="../articles/web_only/combine_plots.html">combine_plots</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
       <a href="../articles/web_only/faq.html">Frequently asked questions</a>
@@ -229,7 +232,7 @@ the label displaying mean. Defaults: <code>3</code>, <code>"bold"</code>,<code>"
       <td><p>If <code>FALSE</code>, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
-the default plot specification, e.g. <code><a href='https://rdrr.io/pkg/ggplot2/man/borders.html'>borders</a></code>.</p></td>
+the default plot specification, e.g. <code><a href='https://ggplot2.tidyverse.org/reference/borders.html'>borders</a></code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -245,8 +248,8 @@ the default plot specification, e.g. <code><a href='https://rdrr.io/pkg/ggplot2/
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
 
 <span class='co'># make a plot</span>
-<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/ggplot.html'>ggplot</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>, <span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Species</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>)) +
-  <span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/geom_boxplot.html'>geom_boxplot</a></span>()
+<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Species</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>)) +
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_boxplot.html'>geom_boxplot</a></span>()
 
 <span class='co'># get a dataframe with means</span>
 <span class='no'>mean_dat</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/mean_labeller.html'>mean_labeller</a></span>(

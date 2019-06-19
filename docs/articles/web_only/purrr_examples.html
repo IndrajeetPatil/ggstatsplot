@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11.9000</span>
       </span>
     </div>
 
@@ -61,6 +61,9 @@
     </li>
     <li>
       <a href="../../articles/web_only/combine_plots.html">combine_plots</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
       <a href="../../articles/web_only/faq.html">Frequently asked questions</a>
@@ -135,7 +138,7 @@
       <h1>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-06-12</h4>
+            <h4 class="date">2019-06-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -243,7 +246,7 @@
 <a class="sourceLine" id="cb2-37" title="37">    <span class="dt">palette =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"aurora"</span>, <span class="st">"parliament"</span>, <span class="st">"ppalette"</span>),</a>
 <a class="sourceLine" id="cb2-38" title="38">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
 <a class="sourceLine" id="cb2-39" title="39">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_stata.html">theme_stata</a></span>(),</a>
-<a class="sourceLine" id="cb2-40" title="40">      ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_classic</a></span>(),</a>
+<a class="sourceLine" id="cb2-40" title="40">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),</a>
 <a class="sourceLine" id="cb2-41" title="41">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>()</a>
 <a class="sourceLine" id="cb2-42" title="42">    ),</a>
 <a class="sourceLine" id="cb2-43" title="43">    <span class="dt">ggstatsplot.layer =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>),</a>
@@ -328,7 +331,7 @@
 <a class="sourceLine" id="cb4-59" title="59">    <span class="dt">package =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"ggsci"</span>, <span class="st">"palettetown"</span>, <span class="st">"vapoRwave"</span>, <span class="st">"wesanderson"</span>),</a>
 <a class="sourceLine" id="cb4-60" title="60">    <span class="dt">palette =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"lanonc_lancet"</span>, <span class="st">"venomoth"</span>, <span class="st">"hotlineBling"</span>, <span class="st">"GrandBudapest1"</span>),</a>
 <a class="sourceLine" id="cb4-61" title="61">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
-<a class="sourceLine" id="cb4-62" title="62">      ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_linedraw</a></span>(),</a>
+<a class="sourceLine" id="cb4-62" title="62">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_linedraw</a></span>(),</a>
 <a class="sourceLine" id="cb4-63" title="63">      hrbrthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_rc.html">theme_ft_rc</a></span>(),</a>
 <a class="sourceLine" id="cb4-64" title="64">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_solarized.html">theme_solarized</a></span>(),</a>
 <a class="sourceLine" id="cb4-65" title="65">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_gdocs.html">theme_gdocs</a></span>()</a>
@@ -393,8 +396,8 @@
 <a class="sourceLine" id="cb5-33" title="33">    <span class="dt">yfill =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"#CC79A7"</span>, <span class="st">"#F0E442"</span>, <span class="st">"#D55E00"</span>),</a>
 <a class="sourceLine" id="cb5-34" title="34">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
 <a class="sourceLine" id="cb5-35" title="35">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),</a>
-<a class="sourceLine" id="cb5-36" title="36">      ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_classic</a></span>(),</a>
-<a class="sourceLine" id="cb5-37" title="37">      ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_light</a></span>()</a>
+<a class="sourceLine" id="cb5-36" title="36">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),</a>
+<a class="sourceLine" id="cb5-37" title="37">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span>()</a>
 <a class="sourceLine" id="cb5-38" title="38">    ),</a>
 <a class="sourceLine" id="cb5-39" title="39">    <span class="dt">ggstatsplot.layer =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>),</a>
 <a class="sourceLine" id="cb5-40" title="40">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
@@ -467,8 +470,8 @@
 <a class="sourceLine" id="cb6-45" title="45">    ),</a>
 <a class="sourceLine" id="cb6-46" title="46">    <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</a>
 <a class="sourceLine" id="cb6-47" title="47">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
-<a class="sourceLine" id="cb6-48" title="48">      ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_grey</a></span>(),</a>
-<a class="sourceLine" id="cb6-49" title="49">      ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_classic</a></span>(),</a>
+<a class="sourceLine" id="cb6-48" title="48">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),</a>
+<a class="sourceLine" id="cb6-49" title="49">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),</a>
 <a class="sourceLine" id="cb6-50" title="50">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>(),</a>
 <a class="sourceLine" id="cb6-51" title="51">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>()</a>
 <a class="sourceLine" id="cb6-52" title="52">    ),</a>
@@ -547,9 +550,9 @@
 <a class="sourceLine" id="cb7-50" title="50">    <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,</a>
 <a class="sourceLine" id="cb7-51" title="51">    <span class="dt">normal.curve =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb7-52" title="52">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
-<a class="sourceLine" id="cb7-53" title="53">      ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_classic</a></span>(),</a>
+<a class="sourceLine" id="cb7-53" title="53">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),</a>
 <a class="sourceLine" id="cb7-54" title="54">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>(),</a>
-<a class="sourceLine" id="cb7-55" title="55">      ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_minimal</a></span>(),</a>
+<a class="sourceLine" id="cb7-55" title="55">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>(),</a>
 <a class="sourceLine" id="cb7-56" title="56">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_few.html">theme_few</a></span>()</a>
 <a class="sourceLine" id="cb7-57" title="57">    ),</a>
 <a class="sourceLine" id="cb7-58" title="58">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
@@ -622,7 +625,7 @@
 <a class="sourceLine" id="cb8-49" title="49">    <span class="dt">point.size =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>),</a>
 <a class="sourceLine" id="cb8-50" title="50">    <span class="dt">point.shape =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">17</span>, <span class="dv">18</span>),</a>
 <a class="sourceLine" id="cb8-51" title="51">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
-<a class="sourceLine" id="cb8-52" title="52">      ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_minimal</a></span>(<span class="dt">base_family =</span> <span class="st">"serif"</span>),</a>
+<a class="sourceLine" id="cb8-52" title="52">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>(<span class="dt">base_family =</span> <span class="st">"serif"</span>),</a>
 <a class="sourceLine" id="cb8-53" title="53">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),</a>
 <a class="sourceLine" id="cb8-54" title="54">      hrbrthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_rc.html">theme_ipsum_rc</a></span>(<span class="dt">axis_title_size =</span> <span class="dv">10</span>),</a>
 <a class="sourceLine" id="cb8-55" title="55">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_hc.html">theme_hc</a></span>(<span class="dt">bgcolor =</span> <span class="st">"darkunica"</span>)</a>
@@ -685,8 +688,8 @@
 <a class="sourceLine" id="cb9-38" title="38">    <span class="dt">package =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"RColorBrewer"</span>, <span class="st">"ghibli"</span>, <span class="st">"palettetown"</span>, <span class="st">"yarrr"</span>),</a>
 <a class="sourceLine" id="cb9-39" title="39">    <span class="dt">palette =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"Accent"</span>, <span class="st">"MarnieMedium1"</span>, <span class="st">"pikachu"</span>, <span class="st">"nemo"</span>),</a>
 <a class="sourceLine" id="cb9-40" title="40">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
-<a class="sourceLine" id="cb9-41" title="41">      ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_grey</a></span>(),</a>
-<a class="sourceLine" id="cb9-42" title="42">      ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_bw</a></span>(),</a>
+<a class="sourceLine" id="cb9-41" title="41">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),</a>
+<a class="sourceLine" id="cb9-42" title="42">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>(),</a>
 <a class="sourceLine" id="cb9-43" title="43">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),</a>
 <a class="sourceLine" id="cb9-44" title="44">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_economist.html">theme_economist</a></span>()</a>
 <a class="sourceLine" id="cb9-45" title="45">    ),</a>
@@ -750,8 +753,8 @@
 <a class="sourceLine" id="cb10-37" title="37">    <span class="dt">package =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"RColorBrewer"</span>, <span class="st">"ghibli"</span>, <span class="st">"palettetown"</span>, <span class="st">"yarrr"</span>),</a>
 <a class="sourceLine" id="cb10-38" title="38">    <span class="dt">palette =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"Accent"</span>, <span class="st">"MarnieMedium1"</span>, <span class="st">"pikachu"</span>, <span class="st">"nemo"</span>),</a>
 <a class="sourceLine" id="cb10-39" title="39">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
-<a class="sourceLine" id="cb10-40" title="40">      ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_grey</a></span>(),</a>
-<a class="sourceLine" id="cb10-41" title="41">      ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_bw</a></span>(),</a>
+<a class="sourceLine" id="cb10-40" title="40">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),</a>
+<a class="sourceLine" id="cb10-41" title="41">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>(),</a>
 <a class="sourceLine" id="cb10-42" title="42">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),</a>
 <a class="sourceLine" id="cb10-43" title="43">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_economist.html">theme_economist</a></span>()</a>
 <a class="sourceLine" id="cb10-44" title="44">    ),</a>

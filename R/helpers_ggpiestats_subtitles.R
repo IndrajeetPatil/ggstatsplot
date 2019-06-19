@@ -27,7 +27,7 @@
 #'
 #' @importFrom tibble tribble as_tibble
 #' @importFrom tidyr uncount drop_na
-#' @importFrom jmv propTestN contTables
+#' @importFrom jmv propTestN
 #' @importFrom stats mcnemar.test chisq.test
 #' @importFrom rcompanion cramerV cohenG
 #'

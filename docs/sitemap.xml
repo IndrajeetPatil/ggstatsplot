@@ -148,9 +148,6 @@
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/kendall_w_ci.html</loc>
   </url>
   <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/kw_eta_h_ci.html</loc>
-  </url>
-  <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/line_labeller.html</loc>
   </url>
   <url>
@@ -278,6 +275,9 @@
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/web_only/combine_plots.html</loc>
+  </url>
+  <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/web_only/effsize_interpretation.html</loc>
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/web_only/faq.html</loc>

@@ -195,7 +195,8 @@ utils::globalVariables(
     "lwr.ci",
     "upr.ci",
     "lower.ci",
-    "upper.ci"
+    "upper.ci",
+    "epsilon.squared"
   ),
   package = "ggstatsplot",
   add = FALSE

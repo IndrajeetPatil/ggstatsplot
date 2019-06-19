@@ -72,6 +72,9 @@ additional vignettes that are only available on the website for this package:
     principles behind this package):
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggstatsplot_paper.html>)
     
+  - Interpreting effect sizes for different tests:
+    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html>)
+    
   - Gallery of `ggstatsplot` examples (shows how `ggstatsplot` can be further
     modified using `ggplot2` functions):
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gallery.html>)

@@ -364,6 +364,11 @@ Pearson's $\chi^2$ test | Cramer's $V$ | <font color="green">Yes<font>
 McNemar's test | Cohen's $g$ | <font color="green">Yes<font>
 Goodness of fit | Cramer's $V$ | <font color="green">Yes<font>
 
+## Effect size interpretation
+
+To see how the effect sizes displayed in these tests can be interpreted, see:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html>
+
 # Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on

@@ -76,7 +76,7 @@ sample designs)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11.9000</span>
       </span>
     </div>
 
@@ -103,6 +103,9 @@ sample designs)." />
     </li>
     <li>
       <a href="../articles/web_only/combine_plots.html">combine_plots</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
       <a href="../articles/web_only/faq.html">Frequently asked questions</a>
@@ -274,7 +277,7 @@ Confidence Intervals on Effect Size</p></li>
 
 <span class='co'># creating a smaller dataset</span>
 <span class='no'>msleep_short</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
-  <span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ggplot2/man/msleep.html'>msleep</a></span>,
+  <span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='no'>vore</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"carni"</span>, <span class='st'>"herbi"</span>)
 )
 
@@ -287,11 +290,11 @@ Confidence Intervals on Effect Size</p></li>
   <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span> ~ <span class='no'>vore</span>,
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>,
   <span class='kw'>tobject</span> <span class='kw'>=</span> <span class='no'>tobj1</span>
-)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 9</span><span>
+)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 9</span><span>
 #&gt;   method estimate conf.low conf.high conf.level alternative paired noncentral
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Hedge~    0.614   -</span><span style='color: #BB0000;'>0.223</span><span>      1.32       0.95 two.sided   FALSE  TRUE      
-#&gt; </span><span style='color: #949494;'># ... with 1 more variable: var.equal </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span></div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>     
+#&gt; </span><span style='color: #555555;'>1</span><span> Hedge~    0.614   -</span><span style='color: #BB0000;'>0.223</span><span>      1.32       0.95 two.sided   FALSE  TRUE      
+#&gt; </span><span style='color: #555555;'># ... with 1 more variable: var.equal </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span></div><div class='input'>
 <span class='co'># changing defaults</span>
 <span class='no'>tobj2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/t.test.html'>t.test</a></span>(
   <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span> ~ <span class='no'>vore</span>,
@@ -309,11 +312,11 @@ Confidence Intervals on Effect Size</p></li>
   <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>.99</span>,
   <span class='kw'>noncentral</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>tobject</span> <span class='kw'>=</span> <span class='no'>tobj2</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 9</span><span>
+)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 9</span><span>
 #&gt;   method estimate conf.low conf.high conf.level alternative paired noncentral
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Hedge~    0.614   -</span><span style='color: #BB0000;'>0.582</span><span>      1.81       0.99 two.sided   FALSE  FALSE     
-#&gt; </span><span style='color: #949494;'># ... with 1 more variable: var.equal </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span></div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>     
+#&gt; </span><span style='color: #555555;'>1</span><span> Hedge~    0.614   -</span><span style='color: #BB0000;'>0.582</span><span>      1.81       0.99 two.sided   FALSE  FALSE     
+#&gt; </span><span style='color: #555555;'># ... with 1 more variable: var.equal </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span></div><div class='input'>
 <span class='co'>#---------------- one-sample test ------------------------------------</span>
 
 <span class='no'>tobj3</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/t.test.html'>t.test</a></span>(
@@ -329,11 +332,11 @@ Confidence Intervals on Effect Size</p></li>
   <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>.90</span>,
   <span class='kw'>noncentral</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>tobject</span> <span class='kw'>=</span> <span class='no'>tobj3</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 9</span><span>
+)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 9</span><span>
 #&gt;   method estimate conf.low conf.high conf.level alternative paired noncentral
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Hedge~   -</span><span style='color: #BB0000;'>0.269</span><span>   -</span><span style='color: #BB0000;'>0.570</span><span>    0.014</span><span style='text-decoration: underline;'>0</span><span>        0.9 two.sided   </span><span style='color: #BB0000;'>NA</span><span>     TRUE      
-#&gt; </span><span style='color: #949494;'># ... with 1 more variable: var.equal </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span></div></span></pre>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>     
+#&gt; </span><span style='color: #555555;'>1</span><span> Hedge~   -</span><span style='color: #BB0000;'>0.269</span><span>   -</span><span style='color: #BB0000;'>0.570</span><span>    0.014</span><span style='text-decoration: underline;'>0</span><span>        0.9 two.sided   </span><span style='color: #BB0000;'>NA</span><span>     TRUE      
+#&gt; </span><span style='color: #555555;'># ... with 1 more variable: var.equal </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

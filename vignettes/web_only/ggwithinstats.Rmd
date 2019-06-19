@@ -354,6 +354,11 @@ Non-parametric | Durbin-Conover test | <font color="green">Yes</font>
 Robust | Yuen's trimmed means test | <font color="green">Yes</font>  
 Bayes Factor | <font color="red">No</font> | <font color="red">No</font>
 
+## Effect size interpretation
+
+To see how the effect sizes displayed in these tests can be interpreted, see:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html>
+
 # Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on

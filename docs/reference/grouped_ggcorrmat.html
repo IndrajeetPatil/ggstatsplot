@@ -77,7 +77,7 @@ resulting plots using ggstatsplot::combine_plots." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11.9000</span>
       </span>
     </div>
 
@@ -104,6 +104,9 @@ resulting plots using ggstatsplot::combine_plots." />
     </li>
     <li>
       <a href="../articles/web_only/combine_plots.html">combine_plots</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
       <a href="../articles/web_only/faq.html">Frequently asked questions</a>
@@ -198,7 +201,7 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
   <span class='kw'>hc.order</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>hc.method</span> <span class='kw'>=</span> <span class='st'>"complete"</span>, <span class='kw'>lab</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>, <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"#E69F00"</span>, <span class='st'>"white"</span>, <span class='st'>"#009E73"</span>), <span class='kw'>outline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/ggtheme.html'>theme_bw</a></span>(), <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(), <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption.default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>lab.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>lab.size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>insig</span> <span class='kw'>=</span> <span class='st'>"pch"</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>4</span>,
   <span class='kw'>pch.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>pch.cex</span> <span class='kw'>=</span> <span class='fl'>11</span>, <span class='kw'>tl.cex</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>tl.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
@@ -364,7 +367,7 @@ colors from the specified <code>palette</code> from <code>package</code> will be
     <tr>
       <th>ggtheme</th>
       <td><p>A function, <code>ggplot2</code> theme name. Default value is
-<code><a href='https://rdrr.io/pkg/ggplot2/man/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
+<code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
 extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>,
 <code><a href='https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html'>hrbrthemes::theme_ipsum_ps()</a></code>, etc.).</p></td>
     </tr>
@@ -540,14 +543,14 @@ of p-values.</p>
 <span class='co'># for plot</span>
 <span class='co'># (without specifiying needed variables; all numeric variables will be used)</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html'>grouped_ggcorrmat</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ggplot2/man/msleep.html'>msleep</a></span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>vore</span>
 )</div><div class='output co'>#&gt; <span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Individual plots in the combined `grouped_` plot
 #&gt; can't be further modified with `ggplot2` functions.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggcorrmat-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># for getting plot</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html'>grouped_ggcorrmat</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ggplot2/man/msleep.html'>msleep</a></span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>sleep_total</span>:<span class='no'>bodywt</span>,
   <span class='kw'>corr.method</span> <span class='kw'>=</span> <span class='st'>"r"</span>,
@@ -561,7 +564,7 @@ of p-values.</p>
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggcorrmat-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># for getting correlations</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html'>grouped_ggcorrmat</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ggplot2/man/msleep.html'>msleep</a></span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>sleep_total</span>:<span class='no'>bodywt</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"correlations"</span>

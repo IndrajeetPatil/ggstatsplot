@@ -47,7 +47,7 @@ to be displayed (Default: \code{TRUE}).}
 \description{
 For paired designs, the effect size is Kendall's coefficient of
 concordance (\emph{W}), while for between-subjects designs, the effect size is
-H-statistic based eta-squared.
+epsilon-squared (for more, see \code{?rcompanion::epsilonSquared}).
 }
 \examples{
 # setup
@@ -70,6 +70,7 @@ ggstatsplot::subtitle_anova_nonparametric(
   x = key,
   y = value,
   paired = TRUE,
+  conf.level = 0.99,
   k = 2
 )
 
@@ -80,7 +81,8 @@ ggstatsplot::subtitle_anova_nonparametric(
   x = vore,
   y = sleep_rem,
   paired = FALSE,
-  conf.level = 0.99
+  conf.level = 0.99,
+  conf.type = "perc"
 )
 }
 \author{

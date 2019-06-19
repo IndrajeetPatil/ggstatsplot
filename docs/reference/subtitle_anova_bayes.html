@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11.9000</span>
       </span>
     </div>
 
@@ -100,6 +100,9 @@
     </li>
     <li>
       <a href="../articles/web_only/combine_plots.html">combine_plots</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
       <a href="../articles/web_only/faq.html">Frequently asked questions</a>
@@ -233,7 +236,7 @@ to use in calculating Bayes factors.</p></td>
 <span class='co'># between-subjects ---------------------------------------</span>
 <span class='co'># with defaults</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_anova_bayes.html'>subtitle_anova_bayes</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ggplot2/man/msleep.html'>msleep</a></span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>
 )</div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("In favor of alternative: ", 
@@ -241,7 +244,7 @@ to use in calculating Bayes factors.</p></td>
 #&gt;     " = ", "0.71"))</div><div class='input'>
 <span class='co'># modifying the defaults</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_anova_bayes.html'>subtitle_anova_bayes</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ggplot2/man/msleep.html'>msleep</a></span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,

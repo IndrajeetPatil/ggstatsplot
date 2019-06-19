@@ -21,7 +21,6 @@ Camilli
 cex
 changedate
 chartjunk
-chisquare
 Cochrane
 codecov
 Codecov
@@ -36,6 +35,7 @@ Cramer
 Cramer's
 Cramer'V
 Cramer’s
+Cramér’s
 cran
 Crichtlow
 customizable
@@ -48,6 +48,7 @@ dplyr
 ds
 Durbin
 Dwass
+effsize
 eg
 elasticnet
 Erlbaum
@@ -91,6 +92,7 @@ img
 indrajeetpatil
 IndrajeetPatil
 intentionality
+interpretable
 io
 issuecomment
 jitter
@@ -125,7 +127,6 @@ MPAA
 msleep
 multiway
 na
-ncchisq
 nd
 NHST
 noncentral
@@ -155,11 +156,11 @@ PsyArXiv
 purrr
 Quartile
 Rafferty
+rcompanion
 Rdoc
 readme
 README
 reproducibility
-rescaled
 rlbt
 Royston
 rpubs
@@ -199,6 +200,7 @@ Wickham
 wilcox
 Wilk
 Winsorized
+WRS
 yellowgreen
 Yuen's
 Yuen’s

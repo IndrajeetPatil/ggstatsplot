@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11.9000</span>
       </span>
     </div>
 
@@ -61,6 +61,9 @@
     </li>
     <li>
       <a href="../../articles/web_only/combine_plots.html">combine_plots</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
       <a href="../../articles/web_only/faq.html">Frequently asked questions</a>
@@ -135,7 +138,7 @@
       <h1>Gallery of ggstatsplot examples</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-06-12</h4>
+            <h4 class="date">2019-06-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/gallery.Rmd"><code>vignettes/web_only/gallery.Rmd</code></a></small>
       <div class="hidden name"><code>gallery.Rmd</code></div>
@@ -167,8 +170,8 @@
 <a class="sourceLine" id="cb1-13" title="13">  <span class="dt">marginal =</span> <span class="ot">FALSE</span>,</a>
 <a class="sourceLine" id="cb1-14" title="14">  <span class="dt">type =</span> <span class="st">"robust"</span></a>
 <a class="sourceLine" id="cb1-15" title="15">) <span class="op">+</span><span class="st"> </span><span class="co"># further modifications with `ggplot2`</span></a>
-<a class="sourceLine" id="cb1-16" title="16"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/geom_rug.html">geom_rug</a></span>(<span class="dt">sides =</span> <span class="st">"b"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb1-17" title="17"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_log10</a></span>()</a>
+<a class="sourceLine" id="cb1-16" title="16"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_rug.html">geom_rug</a></span>(<span class="dt">sides =</span> <span class="st">"b"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb1-17" title="17"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span>()</a>
 <a class="sourceLine" id="cb1-18" title="18"><span class="co">#&gt; Note: 95% CI for effect size estimate was computed with 100 bootstrap samples.</span></a></code></pre></div>
 <p><img src="gallery_files/figure-html/gallery1-1.png" width="100%"></p>
 </div>
@@ -196,7 +199,7 @@
 <a class="sourceLine" id="cb2-18" title="18">    <span class="dt">title =</span> <span class="st">"Differences in IMDB ratings by genre"</span></a>
 <a class="sourceLine" id="cb2-19" title="19">  ) <span class="op">+</span><span class="st"> </span><span class="co"># further modifications with `ggplot2`</span></a>
 <a class="sourceLine" id="cb2-20" title="20"><span class="st">    </span>ggpomological<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggpomological/man/theme_pomological.html">theme_pomological_fancy</a></span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb2-21" title="21"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/theme.html">theme</a></span>(<span class="dt">legend.position =</span> <span class="st">"none"</span>),</a>
+<a class="sourceLine" id="cb2-21" title="21"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">legend.position =</span> <span class="st">"none"</span>),</a>
 <a class="sourceLine" id="cb2-22" title="22">  <span class="dt">res =</span> <span class="dv">110</span>,</a>
 <a class="sourceLine" id="cb2-23" title="23">  <span class="dt">width =</span> <span class="dv">1000</span>,</a>
 <a class="sourceLine" id="cb2-24" title="24">  <span class="dt">height =</span> <span class="dv">700</span></a>

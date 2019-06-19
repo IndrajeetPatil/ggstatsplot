@@ -648,7 +648,8 @@ ggcoefstats <- function(x,
   if (!"term" %in% names(tidy_df)) {
     tidy_df %<>%
       dplyr::mutate(.data = ., term = 1:nrow(.)) %>%
-      dplyr::mutate(.data = ., term = as.character(term))
+      dplyr::mutate(.data = ., term = as.character(term)) %>%
+      dplyr::mutate(.data = ., term = paste("term", term, sep = "_"))
   }
 
   # selecting needed coefficients/parameters for ordinal regression models
