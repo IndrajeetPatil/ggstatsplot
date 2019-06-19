@@ -31,7 +31,6 @@
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
 #' @importFrom stats lm oneway.test na.omit
-#' @importFrom sjstats eta_sq omega_sq
 #' @importFrom ez ezANOVA
 #' @importFrom groupedstats lm_effsize_standardizer
 #'
@@ -674,7 +673,6 @@ subtitle_anova_robust <- function(data,
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
 #' @importFrom stats lm oneway.test na.omit
-#' @importFrom sjstats eta_sq omega_sq
 #'
 #' @examples
 #' \donttest{

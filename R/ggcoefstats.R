@@ -422,41 +422,6 @@ ggcoefstats <- function(x,
       "TMB"
     )
 
-  # models which are currently not supported
-  unsupported.mods <-
-    c(
-      "acf",
-      "AUC",
-      "cv.glmnet",
-      "density",
-      "dist",
-      "durbinWatsonTest",
-      "elnet",
-      "emmGrid",
-      "ftable",
-      "glht",
-      "glmnet",
-      "kde",
-      "Kendall",
-      "kmeans",
-      "list",
-      "map",
-      "Mclust",
-      "mts",
-      "muhaz",
-      "optim",
-      "pam",
-      "poLCA",
-      "power.htest",
-      "prcomp",
-      "spec",
-      "survdiff",
-      "survexp",
-      "survfit",
-      "ts",
-      "zoo"
-    )
-
   # objects for which p-value needs to be computed using `sjstats` package
   p.mods <- c(
     "lmerMod",
@@ -486,21 +451,24 @@ ggcoefstats <- function(x,
     "manova"
   )
 
-  # changing conf.method to something suitable for Bayesian models
+  # changing `conf.method` to something suitable for Bayesian models
   if (class(x)[[1]] %in% bayes.mods && conf.method == "Wald") {
     conf.method <- "quantile"
   }
 
   # =========================== checking if object is supported ==============
 
-  # glace is not supported for all models
-  if (class(x)[[1]] %in% unsupported.mods) {
+  # those objects won't be supported for which there either no tidier
+  # or they don't contain an estimate term, so there is nothing to plot
+  if (!class(x)[[1]] %in% c(df.mods, f.mods, bayes.mods, "gam")
+  && !("estimate" %in% names(broomExtra::tidy(x)))) {
     stop(message(cat(
       crayon::red("Note: "),
       crayon::blue(
         "The object of class",
         crayon::yellow(class(x)[[1]]),
-        "aren't currently supported.\n"
+        "isn't currently supported-\n either because there is no tidier available",
+        "or because there is no `estimate` column present."
       ),
       sep = ""
     )),
@@ -508,7 +476,7 @@ ggcoefstats <- function(x,
     )
   }
 
-  # ============================= model and its summary ======================
+  # ============================= model summary ============================
 
   # creating glance dataframe
   glance_df <- broomExtra::glance(x)

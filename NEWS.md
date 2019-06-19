@@ -10,7 +10,8 @@ MINOR CHANGES
 
   - `ggcoefstats` defaults to `bf.message = TRUE` to be consistent with the rest
     of the functions in the package.
-  - `ggcoefstats` supports the following class of objects: `epi.2by2`.
+  - `ggcoefstats` supports the following class of objects: `epi.2by2`, `negbin`,
+    `emmGrid`.
 
 # ggstatsplot 0.0.11
  
