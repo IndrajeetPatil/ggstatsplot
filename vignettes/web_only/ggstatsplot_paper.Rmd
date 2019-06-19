@@ -39,12 +39,11 @@ The `ggstatsplot` package is an opinionated collection of plots made with
 publication-ready statistical graphics. All plots share an underlying principle
 of displaying information-rich plots with all necessary statistical details
 included in the plots themselves. Although the plots produced by `ggstatsplot`
-are still `ggplot` objects and can thus be further modified using `ggplot2`
-commands, there is a limit to how many such modifications can be made. That is,
-it is less flexible than `ggplot2`, but that's a feature and not a bug. The
-original intent behind this package is to offload struggles associated with
-*constructing* the plot and focus more on the *interpretation* of that data
-displayed in the plot.
+are still `ggplot` objects and can thus be further modified to certain extent
+using `ggplot2` commands. That is, it is less flexible than `ggplot2`, but
+that's a feature and not a bug. The original intent behind this package is to
+offload struggles associated with *constructing* the plot and focus more on the
+*interpretation* of that data displayed in the plot.
 
 # Graphical perception
    

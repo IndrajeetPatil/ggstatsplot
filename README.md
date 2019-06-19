@@ -203,7 +203,7 @@ ggstatsplot::ggplot_converter
 #>   # returning the converted plot
 #>   return(p)
 #> }
-#> <bytecode: 0x000000002d74e840>
+#> <bytecode: 0x000000002cf44348>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -1281,9 +1281,9 @@ supported by `ggcoefstats`. For example-
 `gls`, `gam`, `Gam`, `gamlss`, `garch`, `glm`, `glmmadmb`, `glmmTMB`,
 `glmrob`, `gmm`, `ivreg`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`,
 `lmrob`, `mcmc`, `MCMCglmm`, `mediate`, `mjoint`, `mle2`, `mlm`,
-`multinom`, `nlmerMod`, `nlrq`, `nls`, `orcutt`, `plm`, `polr`,
-`ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `speedglm`, `speedlm`,
-`stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`, etc.
+`multinom`, `negbin`, `nlmerMod`, `nlrq`, `nls`, `orcutt`, `plm`,
+`polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `speedglm`,
+`speedlm`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`, etc.
 
 Although not shown here, this function can also be used to carry out
 both frequentist and Bayesian random-effects meta-analysis.

@@ -1279,7 +1279,7 @@ testthat::test_that(
     # mod-2
     mod2 <- stats::aov(
       formula = value ~ attribute * measure + Error(id / (attribute * measure)),
-      data = iris_long
+      data = ggstatsplot::iris_long
     )
 
     # plot
@@ -1287,7 +1287,9 @@ testthat::test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # test failures
-    testthat::expect_error(ggstatsplot::ggcoefstats(x = mod1))
+    testthat::expect_error(ggstatsplot::ggcoefstats(mod1))
+    testthat::expect_error(ggstatsplot::ggcoefstats(stats::acf(lh, plot = FALSE)))
     testthat::expect_null(pb$plot$labels$subtitle, NULL)
+    testthat::expect_null(pb$plot$labels$caption, NULL)
   }
 )
