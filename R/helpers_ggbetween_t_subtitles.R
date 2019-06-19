@@ -125,7 +125,6 @@ subtitle_t_parametric <- function(data,
   }
 
   # setting up the t-test model and getting its summary
-
   tobject <- stats::t.test(
     formula = y ~ x,
     data = data,

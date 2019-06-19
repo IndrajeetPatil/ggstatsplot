@@ -33,3 +33,4 @@ tests\^spelling
 ^\.circleci$
 ^tests/manual$
 ^revdep$
+^\.covrignore$

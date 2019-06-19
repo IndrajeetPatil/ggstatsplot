@@ -11,10 +11,10 @@
 #'   be carried out) or between-subjects (in which case one-way Kruskal–Wallis H
 #'   test will be carried out). The default is `FALSE`.
 #' @param effsize.type Type of effect size needed for *parametric* tests. The
-#'   argument can be `"biased"` (`"d"` for Cohen's *d* for **t-test**;
-#'   `"partial_eta"` for partial eta-squared for **anova**) or `"unbiased"`
-#'   (`"g"` Hedge's *g* for **t-test**; `"partial_omega"` for partial
-#'   omega-squared for **anova**)).
+#'   argument can be `"biased"` (equivalent to `"d"` for Cohen's *d* for
+#'   **t-test**; `"partial_eta"` for partial eta-squared for **anova**) or
+#'   `"unbiased"` (equivalent to `"g"` Hedge's *g* for **t-test**;
+#'   `"partial_omega"` for partial omega-squared for **anova**)).
 #' @param sphericity.correction Logical that decides whether to apply correction
 #'   to account for violation of sphericity in a repeated measures design ANOVA
 #'   (Default: `TRUE`).

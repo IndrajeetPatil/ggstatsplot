@@ -132,13 +132,14 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>effect size interpretation</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-06-18</h4>
+            <h4 class="date">2019-06-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/effsize_interpretation.Rmd"><code>vignettes/web_only/effsize_interpretation.Rmd</code></a></small>
       <div class="hidden name"><code>effsize_interpretation.Rmd</code></div>
@@ -147,10 +148,40 @@
 
     
     
-<div id="gghistostats" class="section level1">
+<p>Note that the following recommendations on how to interpret the effect sizes are just suggestions and there is nothing universal about them. The interpretation of <strong>any</strong> effect size measures is always going to be relative to the discipline, the specific data, and the aims of the analyst. Here the guidelines are given for <em>small</em>, <em>medium</em>, and <em>large</em> effects and references should shed more information on the baseline discipline with respect to which these guidelines were recommended. This is important because what might be considered a small effect in psychology might be large for some other field like public health.</p>
+<div id="gghistostats-and-ggdotplotstats" class="section level1">
 <h1 class="hasAnchor">
-<a href="#gghistostats" class="anchor"></a><code>gghistostats</code>
+<a href="#gghistostats-and-ggdotplotstats" class="anchor"></a><code>gghistostats</code> and <code>ggdotplotstats</code>
 </h1>
+<div id="parametric" class="section level2">
+<h2 class="hasAnchor">
+<a href="#parametric" class="anchor"></a>parametric</h2>
+<p><strong>Test</strong>: One-sample <em>t</em>-test <br><strong>Effect size</strong>: Cohen’s <em>d</em>, Hedge’s <em>g</em></p>
+<table class="table">
+<thead><tr class="header">
+<th>Effect size</th>
+<th>Small</th>
+<th>Medium</th>
+<th>Large</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Cohen’s <em>d</em>
+</td>
+<td>0 – &lt; 0.20</td>
+<td>0.20 – &lt; 0.50</td>
+<td>≥ 0.80</td>
+</tr>
+<tr class="even">
+<td>Hedge’s <em>d</em>
+</td>
+<td>0 – &lt; 0.20</td>
+<td>0.20 – &lt; 0.50</td>
+<td>≥ 0.80</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="non-parametric" class="section level2">
 <h2 class="hasAnchor">
 <a href="#non-parametric" class="anchor"></a>non-parametric</h2>
@@ -174,6 +205,35 @@
 <div id="ggwithinstats---2-groups" class="section level1">
 <h1 class="hasAnchor">
 <a href="#ggwithinstats---2-groups" class="anchor"></a><code>ggwithinstats</code> - 2 groups</h1>
+<div id="parametric-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#parametric-1" class="anchor"></a>parametric</h2>
+<p><strong>Test</strong>: Student’s dependent samples <em>t</em>-test <br><strong>Effect size</strong>: Cohen’s <em>d</em>, Hedge’s <em>g</em></p>
+<table class="table">
+<thead><tr class="header">
+<th>Effect size</th>
+<th>Small</th>
+<th>Medium</th>
+<th>Large</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Cohen’s <em>d</em>
+</td>
+<td>0.20</td>
+<td>0.50</td>
+<td>0.80</td>
+</tr>
+<tr class="even">
+<td>Hedge’s <em>d</em>
+</td>
+<td>0.20</td>
+<td>0.50</td>
+<td>0.80</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="non-parametric-1" class="section level2">
 <h2 class="hasAnchor">
 <a href="#non-parametric-1" class="anchor"></a>non-parametric</h2>
@@ -211,17 +271,49 @@
 <td>≥ 0.50</td>
 </tr></tbody>
 </table>
-<p>Reference: <a href="https://cran.r-project.org/web/packages/WRS2/vignettes/WRS2.pdf" class="uri">https://cran.r-project.org/web/packages/WRS2/vignettes/WRS2.pdf</a></p>
+<p><strong>Reference</strong>: <a href="https://cran.r-project.org/web/packages/WRS2/vignettes/WRS2.pdf" class="uri">https://cran.r-project.org/web/packages/WRS2/vignettes/WRS2.pdf</a></p>
 </div>
 </div>
 <div id="ggwithinstats-2-groups" class="section level1">
 <h1 class="hasAnchor">
 <a href="#ggwithinstats-2-groups" class="anchor"></a><code>ggwithinstats</code> &gt; 2 groups</h1>
+<div id="parametric-2" class="section level2">
+<h2 class="hasAnchor">
+<a href="#parametric-2" class="anchor"></a>parametric</h2>
+<p><strong>Test</strong>: Fisher’s repeated measures one-way ANOVA <br><strong>Effect size</strong>: <span class="math inline">\(\eta^2_p\)</span>, <span class="math inline">\(\omega^2\)</span></p>
+<table class="table">
+<thead><tr class="header">
+<th>Effect size</th>
+<th>Small</th>
+<th>Medium</th>
+<th>Large</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\omega^2\)</span></td>
+<td>0.01 – &lt; 0.06</td>
+<td>0.06 – &lt; 0.14</td>
+<td>≥ 0.14</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\eta^2_p\)</span></td>
+<td>0.01 – &lt; 0.06</td>
+<td>0.06 – &lt; 0.14</td>
+<td>≥ 0.14</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Reference</strong>: <br></p>
+<ul>
+<li><a href="http://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize" class="uri">http://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize</a></li>
+<li><a href="http://www.psy.gla.ac.uk/~steve/best/effect.html" class="uri">http://www.psy.gla.ac.uk/~steve/best/effect.html</a></li>
+</ul>
+</div>
 <div id="non-parametric-2" class="section level2">
 <h2 class="hasAnchor">
 <a href="#non-parametric-2" class="anchor"></a>non-parametric</h2>
 <p><strong>Test</strong>: Friedman’s rank sum test <br><strong>Effect size</strong>: Kendall’s <em>W</em></p>
-<p><em>k</em> is the number of treatments, groups, or things being rated</p>
+<p>In the following table, <em>k</em> is the number of treatments, groups, or things being rated.</p>
 <table class="table">
 <thead><tr class="header">
 <th><em>k</em></th>
@@ -261,10 +353,44 @@
 </tbody>
 </table>
 </div>
+<div id="robust-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#robust-1" class="anchor"></a>robust</h2>
+<p><strong>Test</strong>: Heteroscedastic one-way repeated measures ANOVA for trimmed means <br><strong>Effect size</strong>: Not available 🙍</p>
+</div>
 </div>
 <div id="ggbetweenstats---2-groups" class="section level1">
 <h1 class="hasAnchor">
 <a href="#ggbetweenstats---2-groups" class="anchor"></a><code>ggbetweenstats</code> - 2 groups</h1>
+<div id="parametric-3" class="section level2">
+<h2 class="hasAnchor">
+<a href="#parametric-3" class="anchor"></a>parametric</h2>
+<p><strong>Test</strong>: Student’s and Welch’s independent samples <em>t</em>-test <br><strong>Effect size</strong>: Cohen’s <em>d</em>, Hedge’s <em>g</em></p>
+<table class="table">
+<thead><tr class="header">
+<th>Effect size</th>
+<th>Small</th>
+<th>Medium</th>
+<th>Large</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Cohen’s <em>d</em>
+</td>
+<td>0.20</td>
+<td>0.50</td>
+<td>0.80</td>
+</tr>
+<tr class="even">
+<td>Hedge’s <em>d</em>
+</td>
+<td>0.20</td>
+<td>0.50</td>
+<td>0.80</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="non-parametric-3" class="section level2">
 <h2 class="hasAnchor">
 <a href="#non-parametric-3" class="anchor"></a>non-parametric</h2>
@@ -283,11 +409,11 @@
 <td>≥ 0.50</td>
 </tr></tbody>
 </table>
-<p>Reference: <a href="https://rcompanion.org/handbook/F_04.html" class="uri">https://rcompanion.org/handbook/F_04.html</a></p>
+<p><strong>Reference</strong>: <a href="https://rcompanion.org/handbook/F_04.html" class="uri">https://rcompanion.org/handbook/F_04.html</a></p>
 </div>
-<div id="robust-1" class="section level2">
+<div id="robust-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#robust-1" class="anchor"></a>robust</h2>
+<a href="#robust-2" class="anchor"></a>robust</h2>
 <p><strong>Test</strong>: Yuen’s independent sample trimmed means <em>t</em>-test <br><strong>Effect size</strong>: Explanatory measure of effect size (<span class="math inline">\(\xi\)</span>)</p>
 <table class="table">
 <thead><tr class="header">
@@ -303,12 +429,56 @@
 <td>≥ 0.50</td>
 </tr></tbody>
 </table>
-<p>Reference: <a href="https://cran.r-project.org/web/packages/WRS2/vignettes/WRS2.pdf" class="uri">https://cran.r-project.org/web/packages/WRS2/vignettes/WRS2.pdf</a></p>
+<p><strong>Reference</strong>: <a href="https://cran.r-project.org/web/packages/WRS2/vignettes/WRS2.pdf" class="uri">https://cran.r-project.org/web/packages/WRS2/vignettes/WRS2.pdf</a></p>
 </div>
 </div>
 <div id="ggbetweenstats-2-groups" class="section level1">
 <h1 class="hasAnchor">
 <a href="#ggbetweenstats-2-groups" class="anchor"></a><code>ggbetweenstats</code> &gt; 2 groups</h1>
+<div id="parametric-4" class="section level2">
+<h2 class="hasAnchor">
+<a href="#parametric-4" class="anchor"></a>parametric</h2>
+<p><strong>Test</strong>: Fisher’s or Welch’s one-way ANOVA <br><strong>Effect size</strong>: <span class="math inline">\(\eta^2\)</span>, <span class="math inline">\(\eta^2_p\)</span>, <span class="math inline">\(\omega^2\)</span>, <span class="math inline">\(\omega^2_p\)</span></p>
+<table class="table">
+<thead><tr class="header">
+<th>Effect size</th>
+<th>Small</th>
+<th>Medium</th>
+<th>Large</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\eta^2\)</span></td>
+<td>0.01 – &lt; 0.06</td>
+<td>0.06 – &lt; 0.14</td>
+<td>≥ 0.14</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\omega^2\)</span></td>
+<td>0.01 – &lt; 0.06</td>
+<td>0.06 – &lt; 0.14</td>
+<td>≥ 0.14</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\eta^2_p\)</span></td>
+<td>0.01 – &lt; 0.06</td>
+<td>0.06 – &lt; 0.14</td>
+<td>≥ 0.14</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\omega^2_p\)</span></td>
+<td>0.01 – &lt; 0.06</td>
+<td>0.06 – &lt; 0.14</td>
+<td>≥ 0.14</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Reference</strong>: <br></p>
+<ul>
+<li><a href="http://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize" class="uri">http://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize</a></li>
+<li><a href="http://www.psy.gla.ac.uk/~steve/best/effect.html" class="uri">http://www.psy.gla.ac.uk/~steve/best/effect.html</a></li>
+</ul>
+</div>
 <div id="non-parametric-4" class="section level2">
 <h2 class="hasAnchor">
 <a href="#non-parametric-4" class="anchor"></a>non-parametric</h2>
@@ -327,11 +497,11 @@
 <td>≥ 0.26</td>
 </tr></tbody>
 </table>
-<p>Reference: <a href="https://rcompanion.org/handbook/F_08.html" class="uri">https://rcompanion.org/handbook/F_08.html</a></p>
+<p><strong>Reference</strong>: <a href="https://rcompanion.org/handbook/F_08.html" class="uri">https://rcompanion.org/handbook/F_08.html</a></p>
 </div>
-<div id="robust-2" class="section level2">
+<div id="robust-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#robust-2" class="anchor"></a>robust</h2>
+<a href="#robust-3" class="anchor"></a>robust</h2>
 <p><strong>Test</strong>: Heteroscedastic one-way ANOVA for trimmed means <br><strong>Effect size</strong>: Explanatory measure of effect size (<span class="math inline">\(\xi\)</span>)</p>
 </div>
 </div>
@@ -339,11 +509,11 @@
 <h1 class="hasAnchor">
 <a href="#ggpiestats-and-ggbarstats" class="anchor"></a><code>ggpiestats</code> and <code>ggbarstats</code>
 </h1>
-<div id="association-test-for-nominal-data---unpaired" class="section level2">
+<div id="association-test---unpaired" class="section level2">
 <h2 class="hasAnchor">
-<a href="#association-test-for-nominal-data---unpaired" class="anchor"></a>association test for nominal data - unpaired</h2>
+<a href="#association-test---unpaired" class="anchor"></a>association test - unpaired</h2>
 <p><strong>Test</strong>: Pearson’s <span class="math inline">\(\chi^2\)</span>-squared test <br><strong>Effect size</strong>: Cramér’s <em>V</em></p>
-<p><em>k</em> is the minimum number of categories in either rows or columns.</p>
+<p>In the following table, <em>k</em> is the minimum number of categories in either rows or columns.</p>
 <table class="table">
 <thead><tr class="header">
 <th><em>k</em></th>
@@ -375,12 +545,12 @@
 </tr>
 </tbody>
 </table>
-<p>Reference: <a href="https://rcompanion.org/handbook/H_10.html" class="uri">https://rcompanion.org/handbook/H_10.html</a></p>
+<p><strong>Reference</strong>: <a href="https://rcompanion.org/handbook/H_10.html" class="uri">https://rcompanion.org/handbook/H_10.html</a></p>
 </div>
-<div id="association-test-for-nominal-data---paired" class="section level2">
+<div id="association-test---paired" class="section level2">
 <h2 class="hasAnchor">
-<a href="#association-test-for-nominal-data---paired" class="anchor"></a>association test for nominal data - paired</h2>
-<p><strong>Test</strong>: McNemar test <br><strong>Effect size</strong>: Cohen’s <em>g</em></p>
+<a href="#association-test---paired" class="anchor"></a>association test - paired</h2>
+<p><strong>Test</strong>: McNemar’s test <br><strong>Effect size</strong>: Cohen’s <em>g</em></p>
 <table class="table">
 <thead><tr class="header">
 <th>Effect size</th>
@@ -396,12 +566,12 @@
 <td>≥ 0.25</td>
 </tr></tbody>
 </table>
-<p>Reference: <a href="https://rcompanion.org/handbook/H_05.html" class="uri">https://rcompanion.org/handbook/H_05.html</a></p>
+<p><strong>Reference</strong>: <a href="https://rcompanion.org/handbook/H_05.html" class="uri">https://rcompanion.org/handbook/H_05.html</a></p>
 </div>
-<div id="goodness-of-fit-test-for-nominal-data" class="section level2">
+<div id="goodness-of-fit-test" class="section level2">
 <h2 class="hasAnchor">
-<a href="#goodness-of-fit-test-for-nominal-data" class="anchor"></a>Goodness-of-Fit test for nominal data</h2>
-<p><strong>Test</strong>: Goodness-of-fit test <br><strong>Effect size</strong>: Cramér’s <em>V</em></p>
+<a href="#goodness-of-fit-test" class="anchor"></a>goodness-of-fit test</h2>
+<p><strong>Test</strong>: Pearson’s <span class="math inline">\(\chi^2\)</span>-squared goodness-of-fit test <br><strong>Effect size</strong>: Cramér’s <em>V</em></p>
 <p>In the following table, <em>k</em> is the number of categories.</p>
 <table class="table">
 <thead><tr class="header">
@@ -476,7 +646,71 @@
 </tr>
 </tbody>
 </table>
-<p>Reference: <a href="https://rcompanion.org/handbook/H_03.html" class="uri">https://rcompanion.org/handbook/H_03.html</a></p>
+<p><strong>Reference</strong>: <a href="https://rcompanion.org/handbook/H_03.html" class="uri">https://rcompanion.org/handbook/H_03.html</a></p>
+</div>
+</div>
+<div id="ggscatterstats-and-ggcorrmat" class="section level1">
+<h1 class="hasAnchor">
+<a href="#ggscatterstats-and-ggcorrmat" class="anchor"></a><code>ggscatterstats</code> and <code>ggcorrmat</code>
+</h1>
+<div id="parametric-5" class="section level2">
+<h2 class="hasAnchor">
+<a href="#parametric-5" class="anchor"></a>parametric</h2>
+<p><strong>Test</strong>: Pearson product-moment correlation coefficient <br><strong>Effect size</strong>: Pearson’s correlation coefficient (<em>r</em>)</p>
+<table class="table">
+<thead><tr class="header">
+<th>Effect size</th>
+<th>Small</th>
+<th>Medium</th>
+<th>Large</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td>Pearson’s <em>r</em>
+</td>
+<td>0.10 – &lt; 0.30</td>
+<td>0.30 – &lt; 0.50</td>
+<td>≥ 0.50</td>
+</tr></tbody>
+</table>
+</div>
+<div id="non-parametric-5" class="section level2">
+<h2 class="hasAnchor">
+<a href="#non-parametric-5" class="anchor"></a>non-parametric</h2>
+<p><strong>Test</strong>: Spearman’s rank correlation coefficient <br><strong>Effect size</strong>: Spearman’s rank correlation coefficient (<span class="math inline">\(\rho\)</span>)</p>
+<table class="table">
+<thead><tr class="header">
+<th>Effect size</th>
+<th>Small</th>
+<th>Medium</th>
+<th>Large</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td>Spearman’s <span class="math inline">\(\rho\)</span>
+</td>
+<td>0.10 – &lt; 0.30</td>
+<td>0.30 – &lt; 0.50</td>
+<td>≥ 0.50</td>
+</tr></tbody>
+</table>
+</div>
+<div id="robust-4" class="section level2">
+<h2 class="hasAnchor">
+<a href="#robust-4" class="anchor"></a>robust</h2>
+<p><strong>Test</strong>: Percentage bend correlation coefficient <br><strong>Effect size</strong>: Percentage bend correlation coefficient (<span class="math inline">\(\rho_{pb}\)</span>)</p>
+<table class="table">
+<thead><tr class="header">
+<th>Effect size</th>
+<th>Small</th>
+<th>Medium</th>
+<th>Large</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td><span class="math inline">\(\rho_{pb}\)</span></td>
+<td>0.10 – &lt; 0.30</td>
+<td>0.30 – &lt; 0.50</td>
+<td>≥ 0.50</td>
+</tr></tbody>
+</table>
 </div>
 </div>
 <div id="suggestions" class="section level1">
@@ -497,38 +731,51 @@
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li>
-<a href="#gghistostats"><code>gghistostats</code></a><ul class="nav nav-pills nav-stacked">
-<li><a href="#non-parametric">non-parametric</a></li>
+<a href="#gghistostats-and-ggdotplotstats"><code>gghistostats</code> and <code>ggdotplotstats</code></a><ul class="nav nav-pills nav-stacked">
+<li><a href="#parametric">parametric</a></li>
+      <li><a href="#non-parametric">non-parametric</a></li>
       </ul>
 </li>
       <li>
 <a href="#ggwithinstats---2-groups"><code>ggwithinstats</code> - 2 groups</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#non-parametric-1">non-parametric</a></li>
+<li><a href="#parametric-1">parametric</a></li>
+      <li><a href="#non-parametric-1">non-parametric</a></li>
       <li><a href="#robust">robust</a></li>
       </ul>
 </li>
       <li>
 <a href="#ggwithinstats-2-groups"><code>ggwithinstats</code> &gt; 2 groups</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#non-parametric-2">non-parametric</a></li>
-      </ul>
-</li>
-      <li>
-<a href="#ggbetweenstats---2-groups"><code>ggbetweenstats</code> - 2 groups</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#non-parametric-3">non-parametric</a></li>
+<li><a href="#parametric-2">parametric</a></li>
+      <li><a href="#non-parametric-2">non-parametric</a></li>
       <li><a href="#robust-1">robust</a></li>
       </ul>
 </li>
       <li>
-<a href="#ggbetweenstats-2-groups"><code>ggbetweenstats</code> &gt; 2 groups</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#non-parametric-4">non-parametric</a></li>
+<a href="#ggbetweenstats---2-groups"><code>ggbetweenstats</code> - 2 groups</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#parametric-3">parametric</a></li>
+      <li><a href="#non-parametric-3">non-parametric</a></li>
       <li><a href="#robust-2">robust</a></li>
       </ul>
 </li>
       <li>
+<a href="#ggbetweenstats-2-groups"><code>ggbetweenstats</code> &gt; 2 groups</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#parametric-4">parametric</a></li>
+      <li><a href="#non-parametric-4">non-parametric</a></li>
+      <li><a href="#robust-3">robust</a></li>
+      </ul>
+</li>
+      <li>
 <a href="#ggpiestats-and-ggbarstats"><code>ggpiestats</code> and <code>ggbarstats</code></a><ul class="nav nav-pills nav-stacked">
-<li><a href="#association-test-for-nominal-data---unpaired">association test for nominal data - unpaired</a></li>
-      <li><a href="#association-test-for-nominal-data---paired">association test for nominal data - paired</a></li>
-      <li><a href="#goodness-of-fit-test-for-nominal-data">Goodness-of-Fit test for nominal data</a></li>
+<li><a href="#association-test---unpaired">association test - unpaired</a></li>
+      <li><a href="#association-test---paired">association test - paired</a></li>
+      <li><a href="#goodness-of-fit-test">goodness-of-fit test</a></li>
+      </ul>
+</li>
+      <li>
+<a href="#ggscatterstats-and-ggcorrmat"><code>ggscatterstats</code> and <code>ggcorrmat</code></a><ul class="nav nav-pills nav-stacked">
+<li><a href="#parametric-5">parametric</a></li>
+      <li><a href="#non-parametric-5">non-parametric</a></li>
+      <li><a href="#robust-4">robust</a></li>
       </ul>
 </li>
       <li><a href="#suggestions">Suggestions</a></li>
@@ -540,6 +787,7 @@
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/">Indrajeet Patil</a>, <a href="https://ibecav.github.io/">Chuck Powell</a>.</p>
 </div>
@@ -547,6 +795,7 @@
 <div class="pkgdown">
   <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
 </div>
+
       </footer>
 </div>
 
