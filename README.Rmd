@@ -657,7 +657,7 @@ ggstatsplot::ggpiestats(
 ```
 
 In case of within-subjects designs, setting `paired = TRUE` will produce results
-from McNemar test-
+from McNemar's test-
 
 ```{r ggpiestats3, message = FALSE, warning = FALSE}
 # for reproducibility
@@ -679,7 +679,7 @@ ggstatsplot::ggpiestats(
   counts = Counts,
   paired = TRUE, # within-subjects design
   conf.level = 0.99, # confidence interval for effect size measure
-  stat.title = "McNemar Test: ",
+  stat.title = "McNemar's Test: ",
   package = "wesanderson",
   palette = "Royal1"
 )

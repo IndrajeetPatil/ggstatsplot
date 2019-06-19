@@ -220,6 +220,11 @@ Non-parametric | Spearman's rank correlation coefficient | <font color="green">Y
 Robust | Percentage bend correlation coefficient | <font color="green">Yes<font>
 Bayes Factor | Pearson's correlation coefficient | <font color="red">No<font>
 
+## Effect size interpretation
+
+To see how the effect sizes displayed in these tests can be interpreted, see:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html>
+
 ## Different smoothing methods
 
 Additionally, different smoothing methods can be specified. For example, if a

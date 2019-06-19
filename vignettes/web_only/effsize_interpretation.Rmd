@@ -24,7 +24,27 @@ knitr::opts_chunk$set(
 )
 ```
 
-# `gghistostats`
+Note that the following recommendations on how to interpret the effect sizes are
+just suggestions and there is nothing universal about them. The interpretation
+of **any** effect size measures is always going to be relative to the
+discipline, the specific data, and the aims of the analyst. Here the guidelines
+are given for *small*, *medium*, and *large* effects and references should shed
+more information on the baseline discipline with respect to which these
+guidelines were recommended. This is important because what might be considered
+a small effect in psychology might be large for some other field like public
+health.
+
+# `gghistostats` and `ggdotplotstats`
+
+## parametric
+
+**Test**: One-sample *t*-test <br>
+**Effect size**: Cohen's *d*, Hedge's *g* 
+
+Effect size | Small | Medium | Large
+----- | ---------- | ---------- | ----------
+Cohen's *d* | 0 – < 0.20 | 0.20 – < 0.50 | ≥ 0.80
+Hedge's *d* | 0 – < 0.20 | 0.20 – < 0.50 | ≥ 0.80
 
 ## non-parametric
 
@@ -36,6 +56,16 @@ Effect size | Small | Medium | Large
 *r* | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50
 
 # `ggwithinstats` - 2 groups
+
+## parametric
+
+**Test**: Student's dependent samples *t*-test <br>
+**Effect size**: Cohen's *d*, Hedge's *g* 
+
+Effect size | Small | Medium | Large
+----- | ---------- | ---------- | ---------- 
+Cohen's *d* | 0.20 | 0.50 | 0.80
+Hedge's *d* | 0.20 | 0.50 | 0.80
 
 ## non-parametric
 
@@ -55,16 +85,32 @@ Effect size | Small | Medium | Large
 ----- | ---------- | ---------- | ---------- 
 $\xi$ | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50
 
-Reference: <https://cran.r-project.org/web/packages/WRS2/vignettes/WRS2.pdf>
+**Reference**: <https://cran.r-project.org/web/packages/WRS2/vignettes/WRS2.pdf>
 
 # `ggwithinstats` > 2 groups
+
+## parametric
+
+**Test**: Fisher's repeated measures one-way ANOVA  <br>
+**Effect size**: $\eta^2_p$, $\omega^2$
+
+Effect size | Small | Medium | Large
+----- | ---------- | ---------- | ---------- 
+$\omega^2$ | 0.01 – < 0.06 | 0.06 – < 0.14 | ≥ 0.14
+$\eta^2_p$ | 0.01 – < 0.06 | 0.06 – < 0.14 | ≥ 0.14
+
+**Reference**: <br>
+
+- <http://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize>
+- <http://www.psy.gla.ac.uk/~steve/best/effect.html>
 
 ## non-parametric
 
 **Test**: Friedman's rank sum test <br>
 **Effect size**: Kendall's *W*
 
-*k* is the number of treatments, groups, or things being rated
+In the following table, *k* is the number of treatments, groups, or things being
+rated.
 
 *k* | Small | Medium | Large
 ----- | ---------- | ---------- | ---------- 
@@ -73,7 +119,22 @@ Reference: <https://cran.r-project.org/web/packages/WRS2/vignettes/WRS2.pdf>
 *k* = 7 | < 0.10 | 0.10 – < 0.20 | ≥ 0.20
 *k* = 9 | < 0.10 | 0.10 – < 0.20 | ≥ 0.20
 
+## robust
+
+**Test**: Heteroscedastic one-way repeated measures ANOVA for trimmed means <br>
+**Effect size**: Not available `r emo::ji("sad")`
+
 # `ggbetweenstats` - 2 groups
+
+## parametric
+
+**Test**: Student's and Welch's independent samples *t*-test <br>
+**Effect size**: Cohen's *d*, Hedge's *g* 
+
+Effect size | Small | Medium | Large
+----- | ---------- | ---------- | ---------- 
+Cohen's *d* | 0.20 | 0.50 | 0.80
+Hedge's *d* | 0.20 | 0.50 | 0.80
 
 ## non-parametric
 
@@ -84,7 +145,7 @@ Effect size | Small | Medium | Large
 ----- | ---------- | ---------- | ---------- 
 *r* | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50
 
-Reference: <https://rcompanion.org/handbook/F_04.html>
+**Reference**: <https://rcompanion.org/handbook/F_04.html>
 
 ## robust
 
@@ -95,9 +156,26 @@ Effect size | Small | Medium | Large
 ----- | ---------- | ---------- | ---------- 
 $\xi$ | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50
 
-Reference: <https://cran.r-project.org/web/packages/WRS2/vignettes/WRS2.pdf>
+**Reference**: <https://cran.r-project.org/web/packages/WRS2/vignettes/WRS2.pdf>
 
 # `ggbetweenstats` > 2 groups
+
+## parametric
+
+**Test**: Fisher's or Welch's one-way ANOVA  <br>
+**Effect size**: $\eta^2$, $\eta^2_p$, $\omega^2$, $\omega^2_p$
+
+Effect size | Small | Medium | Large
+----- | ---------- | ---------- | ---------- 
+$\eta^2$ | 0.01 – < 0.06 | 0.06 – < 0.14 | ≥ 0.14
+$\omega^2$ | 0.01 – < 0.06 | 0.06 – < 0.14 | ≥ 0.14
+$\eta^2_p$ | 0.01 – < 0.06 | 0.06 – < 0.14 | ≥ 0.14
+$\omega^2_p$ | 0.01 – < 0.06 | 0.06 – < 0.14 | ≥ 0.14
+
+**Reference**: <br>
+
+- <http://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize>
+- <http://www.psy.gla.ac.uk/~steve/best/effect.html>
 
 ## non-parametric
 
@@ -108,22 +186,22 @@ Effect size | Small | Medium | Large
 ----- | ---------- | ---------- | ---------- 
 $\epsilon^2$ | 0.01 – < 0.08 | 0.08 – < 0.26 | ≥ 0.26
 
-Reference:  <https://rcompanion.org/handbook/F_08.html>
+**Reference**:  <https://rcompanion.org/handbook/F_08.html>
 
 ## robust
 
 **Test**: Heteroscedastic one-way ANOVA for trimmed means <br>
 **Effect size**: Explanatory measure of effect size ($\xi$)
 
-
 # `ggpiestats` and `ggbarstats`
 
-## association test for nominal data - unpaired
+## association test - unpaired
 
 **Test**: Pearson's $\chi^2$-squared test <br>
 **Effect size**: Cramér’s *V*
 
-*k* is the minimum number of categories in either rows or columns.
+In the following table, *k* is the minimum number of categories in either rows
+or columns.
 
 *k* | Small | Medium | Large
 ----- | ---------- | ---------- | ---------- 
@@ -131,22 +209,22 @@ Reference:  <https://rcompanion.org/handbook/F_08.html>
 *k* = 3 | 0.07 – < 0.20 | 0.20 – < 0.35 | ≥ 0.35
 *k* = 4 | 0.06 – < 0.17 | 0.17 – < 0.29 | ≥ 0.29
 
-Reference: <https://rcompanion.org/handbook/H_10.html>
+**Reference**: <https://rcompanion.org/handbook/H_10.html>
 
-## association test for nominal data - paired 
+## association test - paired 
 
-**Test**: McNemar test <br>
+**Test**: McNemar's test <br>
 **Effect size**: Cohen’s *g*
 
 Effect size | Small | Medium | Large
 ----- | ---------- | ---------- | ---------- 
 Cohen’s *g* | 0.05 – < 0.15 | 0.15 – < 0.25 | ≥ 0.25
 
-Reference: <https://rcompanion.org/handbook/H_05.html>
+**Reference**: <https://rcompanion.org/handbook/H_05.html>
 
-## Goodness-of-Fit test for nominal data
+## goodness-of-fit test 
 
-**Test**: Goodness-of-fit test <br>
+**Test**: Pearson's $\chi^2$-squared goodness-of-fit test <br>
 **Effect size**: Cramér’s *V*
 
 In the following table, *k* is the number of categories.
@@ -163,7 +241,36 @@ In the following table, *k* is the number of categories.
 *k* = 9 | 0.042 – < 0.125 | 0.125 – < 0.209 | ≥ 0.209
 *k* = 10 | 0.041 – < 0.124 | 0.124 – < 0.207 | ≥ 0.207
 
-Reference: <https://rcompanion.org/handbook/H_03.html>
+**Reference**: <https://rcompanion.org/handbook/H_03.html>
+
+# `ggscatterstats` and `ggcorrmat`
+
+## parametric
+
+**Test**:  Pearson product-moment correlation coefficient <br>
+**Effect size**: Pearson's correlation coefficient (*r*) 
+
+Effect size | Small | Medium | Large
+----- | ---------- | ---------- | ---------- 
+Pearson's *r* | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50
+
+## non-parametric
+
+**Test**: Spearman's rank correlation coefficient <br>
+**Effect size**: Spearman's rank correlation coefficient ($\rho$) 
+
+Effect size | Small | Medium | Large
+----- | ---------- | ---------- | ---------- 
+Spearman's $\rho$ | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50
+
+## robust
+
+**Test**: Percentage bend correlation coefficient <br>
+**Effect size**: Percentage bend correlation coefficient ($\rho_{pb}$) 
+
+Effect size | Small | Medium | Large
+----- | ---------- | ---------- | ---------- 
+$\rho_{pb}$ | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50
 
 # Suggestions
 
