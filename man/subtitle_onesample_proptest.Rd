@@ -5,9 +5,9 @@
 \title{Making text subtitle for Proportion Test (N Outcomes)}
 \usage{
 subtitle_onesample_proptest(data, main, counts = NULL, ratio = NULL,
-  conf.level = 0.95, conf.type = "norm", nboot = 100,
-  stat.title = NULL, legend.title = NULL, k = 2, messages = TRUE,
-  ...)
+  conf.level = 0.95, conf.type = "norm", simulate.p.value = FALSE,
+  B = 2000, nboot = 100, stat.title = NULL, legend.title = NULL,
+  k = 2, messages = TRUE, ...)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
@@ -28,6 +28,12 @@ test. Default is \code{NULL}, which means if there are two levels \code{ratio = 
 \item{conf.type}{A vector of character strings representing the type of
 intervals required. The value should be any subset of the values \code{"norm"},
 \code{"basic"}, \code{"perc"}, \code{"bca"}. For more, see \code{?boot::boot.ci}.}
+
+\item{simulate.p.value}{a logical indicating whether to compute
+    p-values by Monte Carlo simulation.}
+
+\item{B}{an integer specifying the number of replicates used in the
+    Monte Carlo test.}
 
 \item{nboot}{Number of bootstrap samples for computing confidence interval
 for the effect size (Default: \code{100}).}

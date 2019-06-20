@@ -4,7 +4,7 @@
 \alias{ggbarstats}
 \title{Bar (column) charts with statistical tests}
 \usage{
-ggbarstats(data, main, condition = NULL, counts = NULL, ratio = NULL,
+ggbarstats(data, main, condition, counts = NULL, ratio = NULL,
   paired = FALSE, labels.legend = NULL, results.subtitle = TRUE,
   stat.title = NULL, sample.size.label = TRUE, label.separator = " ",
   label.text.size = 4, label.fill.color = "white",

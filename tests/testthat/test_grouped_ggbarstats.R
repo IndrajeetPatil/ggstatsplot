@@ -111,7 +111,7 @@ testthat::test_that(
     testthat::skip_on_cran()
 
     # should return a list of length 3
-    ls_results <- ggstatsplot::grouped_ggbarstats(
+    ls_results <- suppressWarnings(ggstatsplot::grouped_ggbarstats(
       data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
       main = relig,
       condition = marital,
@@ -120,7 +120,7 @@ testthat::test_that(
       results.subtitle = FALSE,
       bar.proptest = FALSE,
       messages = FALSE
-    )
+    ))
 
     # tests
     testthat::expect_equal(length(ls_results), 3L)

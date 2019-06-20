@@ -11,7 +11,7 @@ testthat::test_that(
     set.seed(123)
     using_function1 <-
       suppressWarnings(ggstatsplot::subtitle_contingency_tab(
-        data = Titanic_full,
+        data = ggstatsplot::Titanic_full,
         main = "Survived",
         condition = Class,
         stat.title = "Testing",

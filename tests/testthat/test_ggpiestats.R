@@ -169,6 +169,22 @@ testthat::test_that(
       c("condition", "main", "counts", "perc", "slice.label")
     )
 
+    # checking layer data
+
+    # with facets
+    testthat::expect_equal(length(pb$data), 4L)
+    testthat::expect_equal(dim(pb$data[[1]]), c(6L, 13L))
+    testthat::expect_equal(dim(pb$data[[2]]), c(6L, 19L))
+    testthat::expect_equal(dim(pb$data[[3]]), c(3L, 18L))
+    testthat::expect_equal(dim(pb$data[[4]]), c(3L, 18L))
+
+    # without facets
+    testthat::expect_equal(length(pb1$data), 4L)
+    testthat::expect_equal(dim(pb1$data[[1]]), c(3L, 13L))
+    testthat::expect_equal(dim(pb1$data[[2]]), c(3L, 19L))
+    testthat::expect_equal(dim(pb1$data[[3]]), c(1L, 18L))
+    testthat::expect_equal(dim(pb1$data[[4]]), c(1L, 18L))
+
     # checking plot labels
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
     testthat::expect_identical(pb$plot$plot_env$facet.wrap.name, "cylinders")
@@ -272,6 +288,9 @@ testthat::test_that(
       messages = FALSE
     )
 
+    # build the plot
+    pb <- ggplot2::ggplot_build(p)
+
     # checking data used to create a plot
     dat <- p$data %>%
       dplyr::mutate_if(
@@ -295,6 +314,12 @@ testthat::test_that(
     # checking plot labels
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
     testthat::expect_null(p$labels$caption, NULL)
+
+    # checking geometric layers
+    testthat::expect_equal(pb$data[[1]]$y,
+      c(0.915436241610738, 1, 0.516174402250352, 1),
+      tolerance = 0.001
+    )
   }
 )
 

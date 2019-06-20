@@ -125,6 +125,9 @@ a.anchor {
 
 .orcid {
   height: 16px;
+  /* margins are required by official ORCID trademark and display guidelines */
+  margin-left:4px;
+  margin-right:4px;
   vertical-align: middle;
 }
 
