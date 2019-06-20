@@ -123,7 +123,7 @@ bf_caption_maker <- function(bf.df,
 
   # prepare the bayes factor message
   bf_text <-
-    base::substitute(
+    substitute(
       atop(displaystyle(top.text),
         expr =
           paste(
@@ -138,7 +138,7 @@ bf_caption_maker <- function(bf.df,
             bf_prior
           )
       ),
-      env = base::list(
+      env = list(
         hypothesis.text = hypothesis.text,
         top.text = caption,
         bf.subscript = bf.subscript,
@@ -376,7 +376,7 @@ bf_contingency_tab <- function(data,
 
   # prepare the bayes factor message
   bf_message <-
-    base::substitute(
+    substitute(
       atop(
         displaystyle(top.text),
         expr =
@@ -394,7 +394,7 @@ bf_contingency_tab <- function(data,
             a
           )
       ),
-      env = base::list(
+      env = list(
         hypothesis.text = hypothesis.text,
         top.text = caption,
         bf.subscript = bf.subscript,
@@ -414,6 +414,105 @@ bf_contingency_tab <- function(data,
   ))
 }
 
+#' @title Bayesian one-sample *t*-test.
+#' @name bf_one_sample_ttest
+#' @author Indrajeet Patil
+#'
+#' @inheritParams BayesFactor::ttestBF
+#' @inheritParams gghistostats
+#' @inheritParams bf_corr_test
+#'
+#' @importFrom BayesFactor ttestBF extractBF
+#'
+#' @seealso \code{\link{bf_contingency_tab}}, \code{\link{bf_oneway_anova}},
+#' \code{\link{bf_two_sample_ttest}}
+#'
+#' @examples
+#'
+#' # to get caption (default)
+#' bf_one_sample_ttest(
+#'   data = iris,
+#'   x = Sepal.Length,
+#'   test.value = 5.85,
+#'   bf.prior = 0.8,
+#'   output = "caption", k = 2
+#' )
+#'
+#' # to get results dataframe
+#' bf_one_sample_ttest(
+#'   data = iris,
+#'   x = Sepal.Length,
+#'   test.value = 5.85,
+#'   bf.prior = 0.8,
+#'   output = "results"
+#' )
+#' @export
+
+# function body
+bf_one_sample_ttest <- function(data = NULL,
+                                x,
+                                test.value = 0,
+                                bf.prior = 0.707,
+                                caption = NULL,
+                                output = "null",
+                                k = 2,
+                                ...) {
+
+  # ================================= dataframe =============================
+
+  # preparing a dataframe out of provided inputs
+  if (!is.null(data)) {
+    # if dataframe is provided
+    data <-
+      dplyr::select(
+        .data = data,
+        x = !!rlang::enquo(x)
+      )
+  } else {
+    # if vectors are provided
+    data <-
+      cbind.data.frame(x = x)
+  }
+
+  # convert to a tibble
+  data %<>%
+    tibble::as_tibble(x = .)
+
+  # ========================= subtitle preparation ==========================
+
+  # extracting results from Bayesian test and creating a dataframe
+  bf_results <-
+    bf_extractor(
+      BayesFactor::ttestBF(
+        x = data$x,
+        rscale = bf.prior,
+        mu = test.value,
+        nullInterval = NULL,
+        ...
+      )
+    ) %>%
+    dplyr::mutate(.data = ., bf.prior = bf.prior)
+
+  # prepare the bayes factor message
+  if (output != "results") {
+    bf_message <-
+      bf_caption_maker(
+        bf.df = bf_results,
+        output = output,
+        k = k,
+        caption = caption
+      )
+  }
+
+  # ============================ return ==================================
+
+  # return the text results or the dataframe with results
+  return(switch(
+    EXPR = output,
+    "results" = bf_results,
+    bf_message
+  ))
+}
 
 #' @title Bayesian two-samples *t*-test.
 #' @name bf_two_sample_ttest
@@ -507,7 +606,7 @@ bf_two_sample_ttest <- function(data,
         progress = FALSE,
         ...
       )
-  } else if (isTRUE(paired)) {
+  } else {
     # the data needs to be in wide format
     data_wide <-
       long_to_wide_converter(
@@ -660,106 +759,6 @@ bf_oneway_anova <- function(data,
       ) %>%
       dplyr::mutate(.data = ., bf.prior = bf.prior)
   }
-
-  # prepare the bayes factor message
-  if (output != "results") {
-    bf_message <-
-      bf_caption_maker(
-        bf.df = bf_results,
-        output = output,
-        k = k,
-        caption = caption
-      )
-  }
-
-  # ============================ return ==================================
-
-  # return the text results or the dataframe with results
-  return(switch(
-    EXPR = output,
-    "results" = bf_results,
-    bf_message
-  ))
-}
-
-#' @title Bayesian one-sample *t*-test.
-#' @name bf_one_sample_ttest
-#' @author Indrajeet Patil
-#'
-#' @inheritParams BayesFactor::ttestBF
-#' @inheritParams gghistostats
-#' @inheritParams bf_corr_test
-#'
-#' @importFrom BayesFactor ttestBF extractBF
-#'
-#' @seealso \code{\link{bf_contingency_tab}}, \code{\link{bf_oneway_anova}},
-#' \code{\link{bf_two_sample_ttest}}
-#'
-#' @examples
-#'
-#' # to get caption (default)
-#' bf_one_sample_ttest(
-#'   data = iris,
-#'   x = Sepal.Length,
-#'   test.value = 5.85,
-#'   bf.prior = 0.8,
-#'   output = "caption", k = 2
-#' )
-#'
-#' # to get results dataframe
-#' bf_one_sample_ttest(
-#'   data = iris,
-#'   x = Sepal.Length,
-#'   test.value = 5.85,
-#'   bf.prior = 0.8,
-#'   output = "results"
-#' )
-#' @export
-
-# function body
-bf_one_sample_ttest <- function(data = NULL,
-                                x,
-                                test.value = 0,
-                                bf.prior = 0.707,
-                                caption = NULL,
-                                output = "null",
-                                k = 2,
-                                ...) {
-
-  # ================================= dataframe =============================
-
-  # preparing a dataframe out of provided inputs
-  if (!is.null(data)) {
-    # if dataframe is provided
-    data <-
-      dplyr::select(
-        .data = data,
-        x = !!rlang::enquo(x)
-      )
-  } else {
-    # if vectors are provided
-    data <-
-      base::cbind.data.frame(x = x)
-  }
-
-  # convert to a tibble
-  data %<>%
-    tibble::as_tibble(x = .)
-
-  # ========================= subtitle preparation ==========================
-
-  # extracting results from bayesian test and creating a dataframe
-  bf_results <-
-    bf_extractor(
-      BayesFactor::ttestBF(
-        x = data$x,
-        rscale = bf.prior,
-        mu = test.value,
-        nullInterval = NULL,
-        ...
-      )
-    ) %>%
-    dplyr::mutate(.data = ., bf.prior = bf.prior)
 
   # prepare the bayes factor message
   if (output != "results") {

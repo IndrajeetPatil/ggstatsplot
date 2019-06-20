@@ -743,16 +743,6 @@
           "@type": "Person",
           "givenName": "Chuck",
           "familyName": "Powell"
-        },
-        {
-          "@type": "Person",
-          "givenName": "Fiery",
-          "familyName": "Cushman"
-        },
-        {
-          "@type": "Person",
-          "givenName": "Mina",
-          "familyName": "Cikara"
         }
       ],
       "name": "ggstatsplot: 'ggplot2' Based Plots with Statistical Details",

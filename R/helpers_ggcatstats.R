@@ -89,7 +89,7 @@ cat_label_df <- function(data,
 #'
 #' @importFrom rlang enquos !! quo_is_null
 #' @importFrom purrr discard
-#' @importFrom dplyr select group_by summarize n arrange if_else desc
+#' @importFrom dplyr select group_by summarize n arrange desc
 #' @importFrom dplyr mutate mutate_at mutate_if group_by_at
 #'
 #' @examples
@@ -113,6 +113,40 @@ cat_counter <- function(data, main, condition = NULL, ...) {
     dplyr::ungroup(x = .) %>%
     dplyr::arrange(.data = ., dplyr::desc(!!rlang::ensym(main))) %>%
     dplyr::filter(.data = ., counts != 0L)
+
+  # return the final dataframe
+  return(df)
+}
+
+#' @noRd
+#' @keywords internal
+
+df_facet_label <- function(data, x, y) {
+
+  # prepare dataframe
+  data <-
+    dplyr::select(
+      .data = data,
+      main = !!rlang::enquo(x),
+      condition = !!rlang::enquo(y)
+    )
+
+  # combine info about sample size plus
+  df <- dplyr::full_join(
+    x = data %>%
+      dplyr::group_by(.data = ., condition) %>%
+      dplyr::summarize(.data = ., N = n()) %>%
+      dplyr::mutate(.data = ., N = paste0("(n = ", N, ")", sep = "")) %>%
+      dplyr::ungroup(x = .),
+    y = data %>%
+      groupedstats::grouped_proptest(
+        data = .,
+        grouping.vars = condition,
+        measure = main
+      ) %>%
+      dplyr::filter(.data = ., !is.na(significance)),
+    by = "condition"
+  )
 
   # return the final dataframe
   return(df)

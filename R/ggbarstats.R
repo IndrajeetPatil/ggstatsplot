@@ -28,13 +28,12 @@
 #'
 #' @import ggplot2
 #'
-#' @importFrom dplyr select group_by summarize n arrange if_else desc
-#' @importFrom dplyr mutate mutate_at mutate_if
-#' @importFrom rlang !! enquo quo_name
+#' @importFrom dplyr select group_by summarize n mutate mutate_at mutate_if
+#' @importFrom rlang !! enquo quo_name as_name ensym
 #' @importFrom crayon green blue yellow red
 #' @importFrom paletteer scale_fill_paletteer_d
 #' @importFrom groupedstats grouped_proptest
-#' @importFrom tidyr uncount
+#' @importFrom tidyr uncount drop_na
 #' @importFrom tibble as_tibble
 #' @importFrom scales percent
 #'
@@ -70,7 +69,7 @@
 # defining the function
 ggbarstats <- function(data,
                        main,
-                       condition = NULL,
+                       condition,
                        counts = NULL,
                        ratio = NULL,
                        paired = FALSE,
@@ -116,17 +115,12 @@ ggbarstats <- function(data,
 
   # ================= extracting column names as labels  =====================
 
-  if (missing(condition)) {
-    stop("You must specify a condition variable")
-  }
-  # if legend title is not provided, use the variable name for 'main'
-  # argument
+  # if legend title is not provided, use the 'main' variable name
   if (is.null(legend.title)) {
     legend.title <- rlang::as_name(rlang::ensym(main))
   }
 
-  # if alternate variable label is not specified, use the variable name for
-  # 'condition' argument
+  # if x-axis label is not specified, use the 'condition' variable
   if (is.null(xlab)) {
     xlab <- rlang::as_name(rlang::ensym(condition))
   }
@@ -146,7 +140,7 @@ ggbarstats <- function(data,
 
   # =========================== converting counts ============================
 
-  # untable the dataframe based on the count for each obervation
+  # untable the dataframe based on the count for each observation
   if (!missing(counts)) {
     data %<>%
       tidyr::uncount(
@@ -166,41 +160,30 @@ ggbarstats <- function(data,
     dplyr::mutate(.data = ., condition = droplevels(as.factor(condition)))
 
   # convert the data into percentages; group by conditional variable
-  df <- cat_counter(data, main, condition)
-
   # dataframe with summary labels
-  df %<>%
+  df <-
     cat_label_df(
-      data = .,
+      data = cat_counter(data, main, condition),
       label.col.name = "bar.label",
       label.content = bar.label,
       label.separator = label.separator,
       perc.k = perc.k
     )
 
-  # ============================ sample size label ==========================
+  # ============================ label dataframe ==========================
 
-  # if labels are to be displayed on the bottom of the charts
-  # for each bar/column
-  if (isTRUE(sample.size.label)) {
-    df_n_label <- data %>%
-      dplyr::group_by(.data = ., condition) %>%
-      dplyr::summarize(.data = ., N = n()) %>%
-      dplyr::mutate(.data = ., N = paste0("(n = ", N, ")", sep = ""))
-  }
+  # dataframe containing all details needed for sample size and prop test
+  df_labels <- df_facet_label(data = data, x = main, y = condition)
 
   # ====================== preparing names for legend  ======================
 
   # reorder the category factor levels to order the legend
-  df$main <- factor(
-    x = df$main,
-    levels = unique(df$main)
-  )
+  df$main <- factor(x = df$main, levels = unique(df$main))
 
   # getting labels for all levels of the 'main' variable factor
   if (is.null(labels.legend)) {
     legend.labels <- as.character(df$main)
-  } else if (!missing(labels.legend)) {
+  } else {
     legend.labels <- labels.legend
   }
 
@@ -247,10 +230,7 @@ ggbarstats <- function(data,
       panel.grid.major.x = ggplot2::element_blank(),
       legend.position = legend.position
     ) +
-    ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title))
-
-  # color palette
-  p <- p +
+    ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title)) +
     paletteer::scale_fill_paletteer_d(
       package = !!package,
       palette = !!palette,
@@ -263,29 +243,6 @@ ggbarstats <- function(data,
 
   # if testing by condition is happening
   if (isTRUE(bar.proptest)) {
-    # merging dataframe containing results from the proportion test with
-    # counts and percentage dataframe
-    df2 <-
-      dplyr::full_join(
-        x = df,
-        # running grouped proportion test with helper functions
-        y = groupedstats::grouped_proptest(
-          data = data,
-          grouping.vars = condition,
-          measure = main
-        ),
-        by = "condition"
-      ) %>%
-      dplyr::mutate(
-        .data = .,
-        significance = dplyr::if_else(
-          condition = duplicated(condition),
-          true = NA_character_,
-          false = significance
-        )
-      ) %>%
-      dplyr::filter(.data = ., !is.na(significance))
-
     # display grouped proportion test results
     if (isTRUE(messages)) {
       # tell the user what these results are
@@ -295,12 +252,11 @@ ggbarstats <- function(data,
       )
 
       # print the tibble and leave out unnecessary columns
-      print(tibble::as_tibble(df2) %>%
-        dplyr::select(.data = ., -c(main:bar.label)))
+      print(df_labels)
     }
   }
 
-  # running approprate statistical test
+  # running appropriate statistical test
   # unpaired: Pearson's Chi-square test of independence
   if (isTRUE(results.subtitle)) {
     subtitle <-
@@ -345,7 +301,7 @@ ggbarstats <- function(data,
     p <-
       p +
       ggplot2::geom_text(
-        data = df2,
+        data = df_labels,
         mapping = ggplot2::aes(
           x = condition,
           y = 1.05,
@@ -362,7 +318,7 @@ ggbarstats <- function(data,
     p <-
       p +
       ggplot2::geom_text(
-        data = df_n_label,
+        data = df_labels,
         mapping = ggplot2::aes(
           x = condition,
           y = -0.05,

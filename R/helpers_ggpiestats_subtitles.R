@@ -27,7 +27,6 @@
 #'
 #' @importFrom tibble tribble as_tibble
 #' @importFrom tidyr uncount drop_na
-#' @importFrom jmv propTestN
 #' @importFrom stats mcnemar.test chisq.test
 #' @importFrom rcompanion cramerV cohenG
 #'
@@ -281,7 +280,7 @@ subtitle_contingency_tab <- function(data,
 #' @importFrom tibble as_tibble rownames_to_column
 #' @importFrom tidyr uncount drop_na gather spread
 #' @importFrom rcompanion cramerVFit
-#' @importFrom jmv propTestN
+#' @importFrom broomExtra tidy
 #'
 #' @details For more details about how the effect sizes and their confidence
 #'   intervals were computed, see documentation in `?rcompanion::cramerVFit`.
@@ -314,6 +313,8 @@ subtitle_onesample_proptest <- function(data,
                                         ratio = NULL,
                                         conf.level = 0.95,
                                         conf.type = "norm",
+                                        simulate.p.value = FALSE,
+                                        B = 2000,
                                         nboot = 100,
                                         stat.title = NULL,
                                         legend.title = NULL,
@@ -362,19 +363,25 @@ subtitle_onesample_proptest <- function(data,
     ratio <- rep(1 / length(table(data$main)), length(table(data$main)))
   }
 
-  # conducting proportion test with jmv::propTestN()
+  # checking if the chi-squared test can be run
   stats_df <-
-    jmv::propTestN(
-      data = data,
-      var = "main",
-      ratio = ratio,
-      expected = FALSE
+    tryCatch(
+      expr = stats::chisq.test(
+        x = table(data$main),
+        y = NULL,
+        correct = FALSE,
+        p = ratio,
+        rescale.p = FALSE,
+        simulate.p.value = simulate.p.value,
+        B = B
+      ),
+      error = function(x) {
+        tibble::tribble(
+          ~statistic, ~parameter, ~p.value,
+          NaN, NaN, NaN
+        )
+      }
     )
-
-  # extracting the results
-  stats_df <-
-    tibble::as_tibble(as.data.frame(stats_df$tests)) %>%
-    dplyr::rename(.data = ., statistic = chi, parameter = df, p.value = p)
 
   # if there is no value corresponding to one of the levels of the 'main'
   # variable, then no subtitle is needed
@@ -394,6 +401,9 @@ subtitle_onesample_proptest <- function(data,
       sep = ""
     ))
   } else {
+
+    # tidying up the results
+    stats_df <- broomExtra::tidy(stats_df)
 
     # dataframe with effect size and its confidence intervals
     effsize_df <- rcompanion::cramerVFit(

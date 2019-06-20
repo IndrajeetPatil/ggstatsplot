@@ -169,6 +169,75 @@ testthat::test_that(
       c("condition", "main", "counts", "perc", "slice.label")
     )
 
+    # checking layer data
+
+    # with facets
+    testthat::expect_equal(length(pb$data), 4L)
+    testthat::expect_equal(dim(pb$data[[1]]), c(6L, 13L))
+    testthat::expect_equal(dim(pb$data[[2]]), c(6L, 19L))
+    testthat::expect_equal(dim(pb$data[[3]]), c(3L, 18L))
+    testthat::expect_equal(dim(pb$data[[4]]), c(3L, 18L))
+
+    # without facets
+    testthat::expect_equal(length(pb1$data), 4L)
+    testthat::expect_equal(dim(pb1$data[[1]]), c(3L, 13L))
+    testthat::expect_equal(dim(pb1$data[[2]]), c(3L, 19L))
+    testthat::expect_equal(dim(pb1$data[[3]]), c(1L, 18L))
+    testthat::expect_equal(dim(pb1$data[[4]]), c(1L, 18L))
+
+    # check geoms
+    testthat::expect_equal(
+      pb$data[[2]]$y,
+      c(
+        0.136363636363636,
+        0.636363636363636,
+        0.285714285714286,
+        0.785714285714286,
+        0.428571428571429,
+        0.928571428571429
+      ),
+      tolerance = 0.001
+    )
+    testthat::expect_equal(
+      pb1$data[[2]]$y,
+      c(
+        0.07894737,
+        0.26315789,
+        0.68421053
+      ),
+      tolerance = 0.001
+    )
+    testthat::expect_equal(
+      unique(pb$data[[3]]$x),
+      unique(pb1$data[[3]]$x),
+      tolerance = 0.001
+    )
+    testthat::expect_equal(
+      unique(pb$data[[3]]$y),
+      unique(pb1$data[[3]]$y),
+      tolerance = 0.001
+    )
+    testthat::expect_equal(
+      unique(pb$data[[3]]$xmin),
+      unique(pb1$data[[3]]$xmin),
+      tolerance = 0.001
+    )
+    testthat::expect_equal(
+      unique(pb$data[[3]]$x),
+      unique(pb$data[[4]]$x),
+      tolerance = 0.001
+    )
+    testthat::expect_equal(
+      unique(pb$data[[3]]$y),
+      1,
+      tolerance = 0.001
+    )
+    testthat::expect_equal(
+      unique(pb1$data[[4]]$y),
+      0.5,
+      tolerance = 0.001
+    )
+
     # checking plot labels
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
     testthat::expect_identical(pb$plot$plot_env$facet.wrap.name, "cylinders")
@@ -229,6 +298,10 @@ testthat::test_that(
         "#9A8822"
       )
     )
+    testthat::expect_identical(
+      pb1$data[[1]]$fill,
+      c("#7570B3", "#D95F02", "#1B9E77")
+    )
 
     # test layout
     df_layout <- tibble::as_tibble(pb$layout$layout)
@@ -272,6 +345,9 @@ testthat::test_that(
       messages = FALSE
     )
 
+    # build the plot
+    pb <- ggplot2::ggplot_build(p)
+
     # checking data used to create a plot
     dat <- p$data %>%
       dplyr::mutate_if(
@@ -295,6 +371,12 @@ testthat::test_that(
     # checking plot labels
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
     testthat::expect_null(p$labels$caption, NULL)
+
+    # checking geometric layers
+    testthat::expect_equal(pb$data[[1]]$y,
+      c(0.915436241610738, 1, 0.516174402250352, 1),
+      tolerance = 0.001
+    )
   }
 )
 

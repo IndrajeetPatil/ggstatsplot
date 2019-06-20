@@ -44,13 +44,12 @@
 #'
 #' @import ggplot2
 #'
-#' @importFrom dplyr select group_by summarize n arrange if_else desc
-#' @importFrom dplyr mutate mutate_at mutate_if
-#' @importFrom rlang !! enquo quo_name
+#' @importFrom dplyr select group_by summarize n mutate mutate_at mutate_if
+#' @importFrom rlang !! enquo quo_name as_name ensym
 #' @importFrom crayon green blue yellow red
 #' @importFrom paletteer scale_fill_paletteer_d
 #' @importFrom groupedstats grouped_proptest
-#' @importFrom tidyr uncount
+#' @importFrom tidyr uncount drop_na
 #' @importFrom tibble as_tibble
 #'
 #' @references
@@ -152,10 +151,8 @@ ggpiestats <- function(data,
 
   # if facetting variable name is not specified, use the variable name for
   # 'condition' argument
-  if (!missing(condition)) {
-    if (is.null(facet.wrap.name)) {
-      facet.wrap.name <- rlang::as_name(rlang::ensym(condition))
-    }
+  if (!missing(condition) && is.null(facet.wrap.name)) {
+    facet.wrap.name <- rlang::as_name(rlang::ensym(condition))
   }
 
   # =============================== dataframe ================================
@@ -200,53 +197,21 @@ ggpiestats <- function(data,
   }
 
   # convert the data into percentages; group by conditional variable if needed
-  df <- cat_counter(data, main, condition)
-
   # dataframe with summary labels
-  df %<>%
+  df <-
     cat_label_df(
-      data = .,
+      data = cat_counter(data, main, condition),
       label.col.name = "slice.label",
       label.content = slice.label,
       label.separator = label.separator,
       perc.k = perc.k
     )
 
-  # ============================ sample size label ==========================
+  # ============================ label dataframe ==========================
 
-  # if sample size labels are to be displayed at the bottom of the pie charts
-  # for each facet
-  if (isTRUE(sample.size.label)) {
-    if (!missing(condition)) {
-      df_n_label <-
-        dplyr::full_join(
-          x = df,
-          y = df %>%
-            dplyr::group_by(.data = ., condition) %>%
-            dplyr::summarize(.data = ., total_n = sum(counts)) %>%
-            dplyr::ungroup(x = .) %>%
-            dplyr::mutate(
-              .data = .,
-              condition_n_label = paste("(n = ", total_n, ")", sep = "")
-            ) %>%
-            # changing character variables into factors
-            dplyr::mutate_if(
-              .tbl = .,
-              .predicate = purrr::is_bare_character,
-              .funs = ~ as.factor(.)
-            ),
-          by = "condition"
-        ) %>%
-        dplyr::mutate(
-          .data = .,
-          condition_n_label = dplyr::if_else(
-            condition = duplicated(condition),
-            true = NA_character_,
-            false = as.character(condition_n_label)
-          )
-        ) %>%
-        tidyr::drop_na(data = .)
-    }
+  # dataframe containing all details needed for sample size and prop test
+  if (!missing(condition)) {
+    df_labels <- df_facet_label(data = data, x = main, y = condition)
   }
 
   # ================= preparing names for legend and facet_wrap ==============
@@ -257,12 +222,11 @@ ggpiestats <- function(data,
   # getting labels for all levels of the 'main' variable factor
   if (is.null(factor.levels)) {
     legend.labels <- as.character(df$main)
-  } else if (!missing(factor.levels)) {
+  } else {
     legend.labels <- factor.levels
   }
 
-  # custom labeller function to use if the user wants a different name for
-  # facet_wrap variable
+  # custom function for facet_wrap variable label
   label_facet <- function(original_var, custom_name) {
     lev <- levels(as.factor(original_var))
     lab <- paste0(custom_name, ": ", lev)
@@ -342,45 +306,8 @@ ggpiestats <- function(data,
 
   # =============== chi-square test (either Pearson or McNemar) =============
 
-  # if facetting by condition is happening
+  # if faceting by condition is happening
   if (!missing(condition)) {
-    if (isTRUE(facet.proptest)) {
-      # merging dataframe containing results from the proportion test with
-      # counts and percentage dataframe
-      df2 <-
-        dplyr::full_join(
-          x = df,
-          # running grouped proportion test with helper functions
-          y = groupedstats::grouped_proptest(
-            data = data,
-            grouping.vars = condition,
-            measure = main
-          ),
-          by = "condition"
-        ) %>%
-        dplyr::mutate(
-          .data = .,
-          significance = dplyr::if_else(
-            condition = duplicated(condition),
-            true = NA_character_,
-            false = significance
-          )
-        ) %>%
-        dplyr::filter(.data = ., !is.na(significance))
-
-      # display grouped proportion test results
-      if (isTRUE(messages)) {
-        # tell the user what these results are
-        proptest_message(
-          main = rlang::as_name(rlang::ensym(main)),
-          condition = rlang::as_name(rlang::ensym(condition))
-        )
-
-        # print the tibble and leave out unnecessary columns
-        print(tibble::as_tibble(df2) %>%
-          dplyr::select(.data = ., -c(main:slice.label)))
-      }
-    }
 
     # if subtitle with results is to be displayed
     if (isTRUE(results.subtitle)) {
@@ -424,11 +351,25 @@ ggpiestats <- function(data,
 
     # adding significance labels to pie charts for grouped proportion tests
     if (isTRUE(facet.proptest)) {
+
+      # display grouped proportion test results
+      if (isTRUE(messages)) {
+        # tell the user what these results are
+        proptest_message(
+          main = rlang::as_name(rlang::ensym(main)),
+          condition = rlang::as_name(rlang::ensym(condition))
+        )
+
+        # print the tibble and leave out unnecessary columns
+        print(df_labels)
+      }
+
+      # adding labels
       p <-
         p +
         ggplot2::geom_text(
-          data = df2,
-          mapping = ggplot2::aes(label = significance, x = 1.65),
+          data = df_labels,
+          mapping = ggplot2::aes(label = significance, x = 1.65, y = 0.5),
           position = ggplot2::position_fill(vjust = 1),
           size = 5,
           na.rm = TRUE
@@ -440,14 +381,15 @@ ggpiestats <- function(data,
       p <-
         p +
         ggplot2::geom_text(
-          data = df_n_label,
-          mapping = ggplot2::aes(label = condition_n_label, x = 1.65),
+          data = df_labels,
+          mapping = ggplot2::aes(label = N, x = 1.65, y = 1),
           position = ggplot2::position_fill(vjust = 0.5),
           size = 4,
           na.rm = TRUE
         )
     }
   } else {
+    # goodness of fit test
     if (isTRUE(results.subtitle)) {
       subtitle <- subtitle_onesample_proptest(
         data = data,
@@ -458,6 +400,8 @@ ggpiestats <- function(data,
         ratio = ratio,
         stat.title = stat.title,
         legend.title = legend.title,
+        simulate.p.value = simulate.p.value,
+        B = B,
         k = k,
         messages = messages
       )

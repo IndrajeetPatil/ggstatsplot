@@ -175,7 +175,8 @@ testthat::test_that(
     testthat::skip_on_cran()
 
     # should return a list of length 3
-    ls_results <- ggstatsplot::grouped_ggpiestats(
+    set.seed(123)
+    ls_results <- suppressWarnings(ggstatsplot::grouped_ggpiestats(
       data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
       main = relig,
       condition = marital,
@@ -184,7 +185,7 @@ testthat::test_that(
       results.subtitle = FALSE,
       facet.proptest = FALSE,
       messages = FALSE
-    )
+    ))
 
     # tests
     testthat::expect_equal(length(ls_results), 3L)
