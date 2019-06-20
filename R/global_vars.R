@@ -11,6 +11,7 @@ utils::globalVariables(
     "chi",
     "counts",
     "df",
+    "df.residual",
     "df1",
     "df2",
     "desc",

@@ -407,6 +407,7 @@ ggcoefstats <- function(x,
       "gamlss",
       "glmmadmb",
       "glmerMod",
+      "glmmPQL",
       "glmmTMB",
       "gls",
       "lme",
@@ -465,7 +466,7 @@ ggcoefstats <- function(x,
     stop(message(cat(
       crayon::red("Note: "),
       crayon::blue(
-        "The object of class",
+        "The model object of class",
         crayon::yellow(class(x)[[1]]),
         "isn't currently supported-\n either because there is no tidier available",
         "or because there is no `estimate` column present."
@@ -587,7 +588,7 @@ ggcoefstats <- function(x,
       }
     }
     # ============ tidying robust models =====================================
-  } else if (class(x)[[1]] %in% c("lmRob", "glmRob")) {
+  } else if (class(x)[[1]] %in% c("lmRob", "glmRob", "lmrob", "glmrob")) {
     tidy_df <-
       broomExtra::tidy(
         x = x,
