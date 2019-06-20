@@ -73,11 +73,12 @@ Most of the regression models that are supported in the `broom` and
 `aareg`, `anova`, `aov`, `aovlist`, `Arima`, `bigglm`, `biglm`, `brmsfit`,
 `btergm`, `cch`, `clm`, `clmm`, `confusionMatrix`, `coxph`, `drc`, `emmGrid`,
 `epi.2by2`, `ergm`, `felm`, `fitdistr`, `glmerMod`, `glmmTMB`, `gls`, `gam`,
-`Gam`, `gamlss`, `garch`, `glm`, `glmmadmb`, `glmmTMB`, `glmrob`, `gmm`,
-`ivreg`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`, `lmrob`, `mcmc`, `MCMCglmm`,
-`mediate`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `nlmerMod`, `nlrq`,
-`nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`,
-`speedglm`, `speedlm`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`, etc.
+`Gam`, `gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmmTMB`, `glmRob`,
+`glmrob`, `gmm`, `ivreg`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`, `lmRob`,
+`lmrob`, `mcmc`, `MCMCglmm`, `mediate`, `mjoint`, `mle2`, `mlm`, `multinom`,
+`negbin`, `nlmerMod`, `nlrq`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`,
+`rjags`, `rlm`, `rlmerMod`, `rq`, `speedglm`, `speedlm`, `stanreg`, `survreg`,
+`svyglm`, `svyolr`, `svyglm`, etc.
 
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
@@ -591,16 +592,18 @@ dd <- expand.grid(
   KEEP.OUT.ATTRS = FALSE
 )
 summary(mu <-
-          5 * (-4 + with(dd, as.integer(f1) + 4 * as.numeric(f2))))
+  5 * (-4 + with(dd, as.integer(f1) + 4 * as.numeric(f2))))
 dd$y <- rnbinom(nrow(dd), mu = mu, size = 0.5)
 
 # model
 m.glm <- MASS::glm.nb(formula = y ~ f1 * f2, data = dd)
 
 # plot
-ggstatsplot::ggcoefstats(x = m.glm,
-                         title = "generalized linear model (GLM)\n for the negative binomial family",
-                         exclude.intercept = FALSE)
+ggstatsplot::ggcoefstats(
+  x = m.glm,
+  title = "generalized linear model (GLM)\n for the negative binomial family",
+  exclude.intercept = FALSE
+)
 ```
 
 ## generalized linear mixed-effects model (`glmer`/`glmerMod`)
@@ -657,16 +660,42 @@ dd <- expand.grid(
   KEEP.OUT.ATTRS = FALSE
 )
 summary(mu <-
-          5 * (-4 + with(dd, as.integer(f1) + 4 * as.numeric(f2))))
+  5 * (-4 + with(dd, as.integer(f1) + 4 * as.numeric(f2))))
 dd$y <- rnbinom(nrow(dd), mu = mu, size = 0.5)
 
 # model
 m.nb <- lme4::glmer.nb(formula = y ~ f1 * f2 + (1 | g), data = dd)
 
 # plot
-ggstatsplot::ggcoefstats(x = m.nb,
-                         title = "generalized linear mixed-effects model (GLMM)\n for the negative binomial family",
-                         exclude.intercept = FALSE)
+ggstatsplot::ggcoefstats(
+  x = m.nb,
+  title = "generalized linear mixed-effects model (GLMM)\n for the negative binomial family",
+  exclude.intercept = FALSE
+)
+```
+
+## generalized linear mixed models using Penalized Quasi-Likelihood (`glmmPQL`)
+
+```{r glmmPQL, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6}
+# setup
+set.seed(123)
+library(MASS)
+library(nlme)
+
+# model
+mod <- MASS::glmmPQL(
+  fixed = y ~ trt + I(week > 2),
+  random = ~ 1 | ID,
+  family = binomial,
+  data = bacteria
+)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
+  title = "generalized linear mixed models \n using Penalized Quasi-Likelihood",
+  exclude.intercept = FALSE
+)
 ```
 
 ## generalized linear mixed models using Template Model Builder (`glmmTMB`)
@@ -783,7 +812,7 @@ different types of harm)? For this, we can use ordinal mixed-effects regression
 model (with random effects for type of harm) to see how intent and outcome
 contribute towards variation in moral judgment ratings-
 
-```{r clmm1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+```{r clmm1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6, eval = FALSE}
 # for reproducibility
 set.seed(123)
 
@@ -817,7 +846,7 @@ with these four types of (minor) harms.
 Note that, by default, `beta` parameters are shown for `clm` and `clmm` models,
 but you can also plot either just `alpha` or `both` using `ggcoefstats`.
 
-```{r clmm2, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+```{r clmm2, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6, eval = FALSE}
 # for reproducibility
 set.seed(123)
 
@@ -1006,12 +1035,12 @@ most of the variance is explained by the `attribute`, with the next important
 explanatory factor being the `measure` used. A very little amount of variation
 in measurement is accounted for by the interaction between these two factors.
 
-## robust regression (`lmRob`, `glmRob`)
+## robust regression with `robust` package (`lmRob`, `glmRob`)
 
 The robust regression models, as implemented in the `robust` package are also
 supported. 
 
-```{r robust, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 8}
+```{r robust, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 6}
 ggstatsplot::combine_plots(
   # plot 1: glmRob
   ggstatsplot::ggcoefstats(
@@ -1040,7 +1069,48 @@ ggstatsplot::combine_plots(
   ),
   # arguments relevant for `combine_plots` function
   labels = c("(a)", "(b)"),
-  title.text = "Robust variants of lmRob and glmRob",
+  title.text = "Robust variants of `lmRob` and `glmRob` (\nfrom`robust` package)",
+  nrow = 2
+)
+```
+
+## robust regression with `robustbase` package (`lmrob`, `glmrob`)
+
+Another alternative is to use robust models, as implemented in the `robustbase`
+package.
+
+```{r robustbase, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 6, eval = FALSE}
+# setup
+set.seed(123)
+library(robustbase)
+
+# dataframe
+data(coleman)
+clotting <- data.frame(
+  u = c(5, 10, 15, 20, 30, 40, 60, 80, 100),
+  lot1 = c(118, 58, 42, 35, 27, 25, 21, 19, 18),
+  lot2 = c(69, 35, 26, 21, 18, 16, 13, 12, 12)
+)
+
+# combined plot for both generalized and simple robust models
+ggstatsplot::combine_plots(
+  # plot 1: glmrob
+  ggstatsplot::ggcoefstats(
+    x = robustbase::glmrob(
+      formula = lot1 ~ log(u),
+      data = clotting,
+      family = Gamma
+    ),
+    title = "generalized robust linear model"
+  ),
+  # plot 2: lmrob
+  ggstatsplot::ggcoefstats(
+    x = m1 <- robustbase::lmrob(formula = Y ~ ., data = coleman),
+    title = "robust linear model"
+  ),
+  # arguments relevant for `combine_plots` function
+  labels = c("(i)", "(ii)"),
+  title.text = "Robust variants of `lmRob` and `glmRob` (\nfrom`robustbase` package)",
   nrow = 2
 )
 ```
@@ -1821,8 +1891,10 @@ set.seed(123)
 library(emmeans)
 
 # linear model for sales of oranges per day
-oranges_lm1 <- stats::lm(formula = sales1 ~ price1 + price2 + day + store, 
-                         data = oranges)
+oranges_lm1 <- stats::lm(
+  formula = sales1 ~ price1 + price2 + day + store,
+  data = oranges
+)
 
 # reference grid; see vignette("basics", package = "emmeans")
 oranges_rg1 <- emmeans::ref_grid(oranges_lm1)
@@ -1831,13 +1903,14 @@ marginal <- emmeans::emmeans(oranges_rg1, "day")
 # looking at the tidy output
 broom::tidy(marginal)
 
-# plotting it using `ggcoefstats` 
-# note that since there was column called `term`, the function created one 
-ggstatsplot::ggcoefstats(x = marginal, 
-                         point.color = "darkgreen", 
-                         point.shape = 9,
-                         title = "summary grid from `emmeans` package")
-
+# plotting it using `ggcoefstats`
+# note that since there was column called `term`, the function created one
+ggstatsplot::ggcoefstats(
+  x = marginal,
+  point.color = "darkgreen",
+  point.shape = 9,
+  title = "summary grid from `emmeans` package"
+)
 ```
 
 ## Cochrane-Orcutt estimation (`orcutt`)

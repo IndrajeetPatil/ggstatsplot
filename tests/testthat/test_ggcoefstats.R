@@ -671,6 +671,50 @@ testthat::test_that(
   }
 )
 
+# glmmPQL object --------------------------------------------
+
+testthat::test_that(
+  desc = "ggcoefstats works with glmmPQL object",
+  code = {
+    testthat::skip_on_cran()
+
+    # setup
+    set.seed(123)
+    library(MASS)
+    library(nlme)
+
+    # model
+    mod <- MASS::glmmPQL(
+      fixed = y ~ trt + I(week > 2),
+      random = ~ 1 | ID,
+      family = binomial,
+      data = bacteria,
+      verbose = FALSE
+    )
+
+    # coefficient plot
+    p <- ggstatsplot::ggcoefstats(mod, exclude.intercept = FALSE)
+
+    # build the plot
+    pb <- ggplot2::ggplot_build(p)
+
+    # checking annotations
+    testthat::expect_null(p$labels$caption, NULL)
+    testthat::expect_null(p$labels$subtitle, NULL)
+
+    # labels
+    testthat::expect_identical(
+      pb$data[[4]]$label,
+      c(
+        "list(~italic(beta)==3.41, ~italic(t)(169)==6.58, ~italic(p)<= 0.001)",
+        "list(~italic(beta)==-1.25, ~italic(t)(47)==-1.94, ~italic(p)==0.059)",
+        "list(~italic(beta)==-0.75, ~italic(t)(47)==-1.17, ~italic(p)==0.248)",
+        "list(~italic(beta)==-1.61, ~italic(t)(169)==-4.49, ~italic(p)<= 0.001)"
+      )
+    )
+  }
+)
+
 # check clm models (minimal) ----------------------------------------
 
 testthat::test_that(

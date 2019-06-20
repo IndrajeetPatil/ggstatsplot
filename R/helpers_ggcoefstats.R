@@ -121,6 +121,7 @@ ggcoefstats_label_maker <- function(x,
       "gam",
       "gamlss",
       "garch",
+      "glmmPQL",
       "gls",
       "gmm",
       "ivreg",
@@ -128,6 +129,7 @@ ggcoefstats_label_maker <- function(x,
       "lm.beta",
       "lmerMod",
       "lmRob",
+      "lmrob",
       "mlm",
       "multinom",
       "nlmerMod",
@@ -176,7 +178,8 @@ ggcoefstats_label_maker <- function(x,
   g.mods <- c(
     "glm",
     "glmerMod",
-    "glmRob"
+    "glmRob",
+    "glmrob"
   )
 
   # t-statistic
@@ -189,11 +192,8 @@ ggcoefstats_label_maker <- function(x,
     "inverse.gaussian"
   )
 
-  # z-statistic
-  g.z.mods <- c(
-    "binomial",
-    "poisson"
-  )
+  # for z-statistic, the families are going to be "binomial" and "poisson"
+  # but package-dependent; `robustbase` gives z for "Gamma" family, e.g.
 
   # ================================ dataframe ================================
 
@@ -278,18 +278,16 @@ ggcoefstats_label_maker <- function(x,
       }
     }
 
-    # robust models
-    if (class(x)[[1]] == "glmRob") {
+    # robust models (always going to be z-statistic)
+    if (class(x)[[1]] %in% c("glmRob", "glmrob")) {
       # only binomial and poisson families are implemented in `robust` package
-      if (x$family[[1]] %in% g.z.mods) {
-        tidy_df %<>%
-          tfz_labeller(
-            tidy_df = .,
-            glance_df = glance_df,
-            statistic = "z",
-            k = k
-          )
-      }
+      tidy_df %<>%
+        tfz_labeller(
+          tidy_df = .,
+          glance_df = glance_df,
+          statistic = "z",
+          k = k
+        )
     }
   }
 
@@ -368,10 +366,17 @@ tfz_labeller <- function(tidy_df,
 
   # if the statistic is t-value
   if (statistic %in% c("t", "t.value", "t-value", "T")) {
+    # if `df` column is in the tidy dataframe, rename it to `df.residual`
+    if ("df" %in% names(tidy_df)) {
+      tidy_df %<>%
+        dplyr::mutate(.data = ., df.residual = df)
+    }
+
+    # check if df info is available somewhere
     if ("df.residual" %in% names(glance_df) ||
       "df.residual" %in% names(tidy_df)) {
 
-      # if glance object is available, insert df.residual as a new column
+      # if glance object is available, use that `df.residual`
       if ("df.residual" %in% names(glance_df)) {
         tidy_df$df.residual <- glance_df$df.residual
       }

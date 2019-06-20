@@ -144,6 +144,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "MASS",
+      "name": "MASS",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=MASS"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "MCMCglmm",
       "name": "MCMCglmm",
       "provider": {
@@ -153,6 +165,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=MCMCglmm"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "nlme",
+      "name": "nlme",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=nlme"
     },
     {
       "@type": "SoftwareApplication",
@@ -341,7 +365,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ellipsis",
       "name": "ellipsis",
-      "version": ">= 0.1.0",
+      "version": ">= 0.2.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
