@@ -6,11 +6,13 @@ testthat::test_that(
   desc = "checking labels with counts",
   code = {
 
-    # condition variable is not options for ggbarstats
-    testthat::expect_error(ggstatsplot::ggbarstats(
-      data = as.data.frame(Titanic),
-      main = Sex
-    ))
+    # condition variable is not options for `ggbarstats`
+    testthat::expect_error(
+      ggstatsplot::ggbarstats(
+        data = as.data.frame(Titanic),
+        main = Sex
+      )
+    )
 
     # plot
     set.seed(123)
@@ -55,7 +57,14 @@ testthat::test_that(
 
     # testing everything is okay with data
     testthat::expect_equal(data_dims, c(4L, 5L))
-    testthat::expect_equal(dat$perc, c(8.46, 48.38, 91.54, 51.62), tolerance = 1e-3)
+    testthat::expect_equal(dim(pb$data[[1]]), c(4L, 13L))
+    testthat::expect_equal(dim(pb$data[[2]]), c(4L, 19L))
+    testthat::expect_equal(dim(pb$data[[3]]), c(2L, 14L))
+    testthat::expect_equal(dim(pb$data[[4]]), c(2L, 14L))
+    testthat::expect_equal(dat$perc,
+      c(8.46, 48.38, 91.54, 51.62),
+      tolerance = 1e-3
+    )
     testthat::expect_equal(dat$condition[1], "No")
     testthat::expect_equal(dat$condition[4], "Yes")
     testthat::expect_equal(dat$main[2], "Female")
@@ -82,6 +91,13 @@ testthat::test_that(
     )
     testthat::expect_identical(pb$data[[3]]$label, c("***", "ns"))
     testthat::expect_identical(pb$data[[4]]$label, c("(n = 1490)", "(n = 711)"))
+
+    # checking geoms data
+    testthat::expect_equal(
+      pb$data[[3]]$y + pb$data[[4]]$y,
+      c(1, 1),
+      tolerance = 0.001
+    )
 
     # checking panel parameters
     testthat::expect_equal(pb$layout$panel_params[[1]]$x.range,
@@ -227,34 +243,37 @@ testthat::test_that(
     )
 
     # tests
-    testthat::expect_identical(p_sub, ggplot2::expr(
-      paste(
-        NULL,
-        italic(chi)^2,
-        "(",
-        "8",
-        ") = ",
-        "109.2007",
-        ", ",
-        italic("p"),
-        " = ",
-        "< 0.001",
-        ", ",
-        italic("V")["Cramer"],
-        " = ",
-        "0.1594",
-        ", CI"["95%"],
-        " [",
-        "0.0916",
-        ", ",
-        "0.1278",
-        "]",
-        ", ",
-        italic("n"),
-        " = ",
-        2148L
+    testthat::expect_identical(
+      p_sub,
+      ggplot2::expr(
+        paste(
+          NULL,
+          italic(chi)^2,
+          "(",
+          "8",
+          ") = ",
+          "109.2007",
+          ", ",
+          italic("p"),
+          " = ",
+          "< 0.001",
+          ", ",
+          italic("V")["Cramer"],
+          " = ",
+          "0.1594",
+          ", CI"["95%"],
+          " [",
+          "0.0916",
+          ", ",
+          "0.1278",
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          2148L
+        )
       )
-    ))
+    )
 
     testthat::expect_identical(
       p_cap,

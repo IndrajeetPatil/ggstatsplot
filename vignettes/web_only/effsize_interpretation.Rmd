@@ -193,6 +193,12 @@ $\epsilon^2$ | 0.01 – < 0.08 | 0.08 – < 0.26 | ≥ 0.26
 **Test**: Heteroscedastic one-way ANOVA for trimmed means <br>
 **Effect size**: Explanatory measure of effect size ($\xi$)
 
+Effect size | Small | Medium | Large
+----- | ---------- | ---------- | ---------- 
+$\xi$ | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50
+
+**Reference**: <https://cran.r-project.org/web/packages/WRS2/vignettes/WRS2.pdf>
+
 # `ggpiestats` and `ggbarstats`
 
 ## association test - unpaired

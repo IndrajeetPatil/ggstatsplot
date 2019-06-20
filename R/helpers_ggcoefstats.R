@@ -278,6 +278,7 @@ ggcoefstats_label_maker <- function(x,
       }
     }
 
+    # robust models
     if (class(x)[[1]] == "glmRob") {
       # only binomial and poisson families are implemented in `robust` package
       if (x$family[[1]] %in% g.z.mods) {

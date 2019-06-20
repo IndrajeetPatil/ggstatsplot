@@ -1,5 +1,7 @@
 ---
-output: github_document
+output:
+  github_document:
+    pandoc_args: --webtex
 ---
 
   <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -70,7 +72,7 @@ trimmed means (robust *t*-test):
 
 <img src="man/figures/stats_reporting_format.png" align="center" />
 
-# Summary of supported statistical analyses
+# Summary of types of statistical analyses
 
 The table below summarizes all the different types of analyses currently
 supported in this package-
@@ -86,22 +88,35 @@ Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
 `ggpiestats`, `ggbarstats` | Equal proportions for categorical variable levels | <font color="green">Yes</font> | `NA` | `NA` | <font color="red">No</font>
 `ggcoefstats` | Regression model coefficients | <font color="green">Yes</font> | <font color="red">No</font> | <font color="green">Yes</font> | <font color="red">No</font>
 
-# Effect sizes and confidence intervals available
+# Summary of statistical tests and effect sizes
 
-`ggstatsplot` provides a wide range of effect sizes and their confidence
-intervals.
+Here is a summary table of all the statistical tests currently supported across
+various functions:
 
-Test | Parametric | Non-parametric | Robust | Bayes Factor
----------------------------- | ------ | ------ | ------ | ------
-one-sample *t*-test | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font>
-two-sample *t*-test (between) | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font>
-two-sample *t*-test (within) | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font>
-one-way ANOVA (between) | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font>
-one-way ANOVA (within) | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font> | <font color="red">No</font>
-correlations | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font>
-contingency table | <font color="green">Yes</font> | `NA` | `NA` | <font color="red">No</font>
-goodness of fit | <font color="green">Yes</font> | `NA` | `NA` | <font color="red">No</font>
-regression | <font color="green">Yes</font> | <font color="red">No</font> | <font color="green">Yes</font> | <font color="red">No</font>
+Functions | Type | Test | Effect size | 95% CI available? 
+----------- | ----------- | ------------------ | ------------------ | -----  
+`ggbetweenstats` | Parametric | Student's and Welch's *t*-test | Cohen's *d*, Hedge's *g* | <font color="green">$\checkmark$</font> 
+`ggbetweenstats` | Parametric | Fisher's and Welch's one-way ANOVA | $$\eta^2, \eta^2_p, \omega^2, \omega^2_p$$ | <font color="green">$\checkmark$</font> 
+`ggbetweenstats` | Non-parametric | Mann-Whitney *U*-test | *r* | <font color="green">$\checkmark$</font> 
+`ggbetweenstats` | Non-parametric | Kruskal-Wallis Rank Sum Test | $$\epsilon^2$$ | <font color="green">$\checkmark$</font> 
+`ggbetweenstats` | Robust | Yuen's test for trimmed means | $$\xi$$ | <font color="green">$\checkmark$</font> 
+`ggbetweenstats` | Robust | Heteroscedastic one-way ANOVA for trimmed means | $$\xi$$ | <font color="green">$\checkmark$</font> 
+`ggwithinstats` | Parametric | Student's *t*-test | Cohen's *d*, Hedge's *g* | <font color="green">$\checkmark$</font> 
+`ggwithinstats` | Parametric | Fisher's one-way repeated measures ANOVA | $$\eta^2_p, \omega^2$$ | <font color="green">$\checkmark$</font> 
+`ggwithinstats` | Non-parametric | Wilcoxon signed-rank test | *r* | <font color="green">$\checkmark$</font> 
+`ggwithinstats` | Non-parametric | Friedman test | $$W_{Kendall}$$ | <font color="green">$\checkmark$</font>
+`ggwithinstats` | Robust | Yuen's test on trimmed means for dependent samples | $$\xi$$ | <font color="green">$\checkmark$</font> 
+`ggwithinstats` | Robust | Heteroscedastic one-way repeated measures ANOVA for trimmed means | <font color="red">$\times$</font> | <font color="red">$\times$</font>
+`ggpiestats` | Parametric | $$\text{Pearson's}~ \chi^2 ~\text{test}$$ | Cramér's *V* | <font color="green">$\checkmark$</font>
+`ggpiestats` | Parametric | McNemar's test | Cohen's *g* | <font color="green">$\checkmark$</font>
+`ggpiestats` | Parametric | One-sample proportion test | Cramér's *V* | <font color="green">$\checkmark$</font>
+`ggscatterstats`/`ggcorrmat` | Parametric | Pearson's *r* | *r* | <font color="green">$\checkmark$</font>
+`ggscatterstats`/`ggcorrmat` | Non-parametric | $$\text{Spearman's}~ \rho$$ | $$\rho$$ | <font color="green">$\checkmark$</font>
+`ggscatterstats`/`ggcorrmat` | Robust | Percentage bend correlation | *r* | <font color="green">$\checkmark$</font>
+`gghistostats`/`ggdotplotstats` | Parametric | One-sample *t*-test | Cohen's *d*, Hedge's *g* | <font color="green">$\checkmark$</font>
+`gghistostats` | Non-parametric | One-sample Wilcoxon signed rank test | *r* | <font color="green">$\checkmark$</font> 
+`gghistostats`/`ggdotplotstats` | Robust | One-sample percentile bootstrap | robust estimator | <font color="green">$\checkmark$</font>
+`gghistostats`/`ggdotplotstats` | Parametric | Regression models | $$\beta$$ | <font color="green">$\checkmark$</font>
 
 # Installation
 
