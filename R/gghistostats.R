@@ -165,9 +165,10 @@ gghistostats <- function(data = NULL,
     # preparing the BF message for NULL
     if (isTRUE(bf.message)) {
       bf.caption.text <-
-        bf_one_sample_ttest(
+        bf_ttest(
           data = data,
           x = x,
+          y = NULL,
           test.value = test.value,
           bf.prior = bf.prior,
           caption = caption,

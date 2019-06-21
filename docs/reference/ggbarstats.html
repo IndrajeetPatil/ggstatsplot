@@ -492,16 +492,14 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Results from one-sample proportion tests for each
 #&gt;       level of the variable </span><span style='color: #BBBB00;'>cyl</span><span style='color: #0000BB;'> testing for equal
 #&gt;       proportions of the variable </span><span style='color: #BBBB00;'>vs</span><span style='color: #0000BB;'>.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 8</span><span>
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 3 x 8</span><span>
 #&gt;   condition N        `0`     `1`    `Chi-squared`    df `p-value` significance
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       
-#&gt; </span><span style='color: #555555;'>1</span><span> 4         (n = 11) 9.09%   90.91%         7.36      1     0.007 **          
-#&gt; </span><span style='color: #555555;'>2</span><span> 6         (n = 7)  42.86%  57.14%         0.143     1     0.705 ns          
-#&gt; </span><span style='color: #555555;'>3</span><span> 8         (n = 14) 100.00% </span><span style='color: #BB0000;'>NA</span><span>            14         1     0     ***         </div><div class='img'><img src='ggbarstats-1.png' alt='' width='700' height='433' /></div></span><div class='input'><span class='co'># simple function call with the defaults (with count data)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>jmv</span>)</div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: 'jmv'</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from 'package:stats':</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    anova</span></div><div class='input'>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 4         (n = 11) 9.09%   90.91%         7.364     1     0.007 **          
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 6         (n = 7)  42.86%  57.14%         0.143     1     0.705 ns          
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 8         (n = 14) 100.00% </span><span style='color: #BB0000;'>NA</span><span>            14         1     0     ***         </div><div class='img'><img src='ggbarstats-1.png' alt='' width='700' height='433' /></div></span><div class='input'><span class='co'># simple function call with the defaults (with count data)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>jmv</span>)
+
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggbarstats.html'>ggbarstats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='no'>HairEyeColor</span>),
   <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>Eye</span>,
@@ -511,14 +509,14 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Results from one-sample proportion tests for each
 #&gt;       level of the variable </span><span style='color: #BBBB00;'>Hair</span><span style='color: #0000BB;'> testing for equal
 #&gt;       proportions of the variable </span><span style='color: #BBBB00;'>Eye</span><span style='color: #0000BB;'>.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 4 x 10</span><span>
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 4 x 10</span><span>
 #&gt;   condition N     Brown Blue  Hazel Green `Chi-squared`    df `p-value`
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> Black     (n =~ 62.9~ 18.5~ 13.8~ 4.63%         87.3      3     0    
-#&gt; </span><span style='color: #555555;'>2</span><span> Brown     (n =~ 41.6~ 29.3~ 18.8~ 10.1~         63.3      3     0    
-#&gt; </span><span style='color: #555555;'>3</span><span> Red       (n =~ 36.6~ 23.9~ 19.7~ 19.7~          5.45     3     0.142
-#&gt; </span><span style='color: #555555;'>4</span><span> Blond     (n =~ 5.51% 74.0~ 7.87% 12.6~        164.       3     0    
-#&gt; </span><span style='color: #555555;'># ... with 1 more variable: significance </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span></div><div class='img'><img src='ggbarstats-2.png' alt='' width='700' height='433' /></div></span></pre>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Black     (n =~ 62.9~ 18.5~ 13.8~ 4.63%        87.33      3     0    
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Brown     (n =~ 41.6~ 29.3~ 18.8~ 10.1~        63.29      3     0    
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Red       (n =~ 36.6~ 23.9~ 19.7~ 19.7~         5.451     3     0.142
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> Blond     (n =~ 5.51% 74.0~ 7.87% 12.6~       164.1       3     0    
+#&gt; </span><span style='color: #949494;'># ... with 1 more variable: significance </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span></div><div class='img'><img src='ggbarstats-2.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -442,7 +442,7 @@ ggbetweenstats <- function(data,
       # preparing the BF message for null
       if (test == "t-test") {
         caption <-
-          bf_two_sample_ttest(
+          bf_ttest(
             data = data,
             x = x,
             y = y,

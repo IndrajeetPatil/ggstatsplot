@@ -25,7 +25,47 @@ testthat::test_that(
   }
 )
 
-# bayes factor (paired t-test) ----------------------
+# bayes factor (independent samples t-test) ----------------------
+
+testthat::test_that(
+  desc = "bayes factor (independent samples t-test)",
+  code = {
+    testthat::skip_on_cran()
+
+    # from Bayes Factor
+    df <- suppressMessages(ggstatsplot::bf_extractor(
+      BayesFactor::ttestBF(
+        formula = len ~ supp,
+        data = as.data.frame(ToothGrowth),
+        rscale = 0.99,
+        paired = FALSE
+      )
+    ))
+
+    # extracting results from where this function is implemented
+    set.seed(123)
+    df_results <- ggstatsplot::bf_ttest(
+      data = ToothGrowth,
+      x = supp,
+      y = len,
+      paired = FALSE,
+      bf.prior = 0.99,
+      output = "results"
+    )
+
+    # check bayes factor values
+    testthat::expect_equal(df$log_e_bf10, -0.001119132, tolerance = 0.001)
+    testthat::expect_equal(df$log_e_bf10, -df$log_e_bf01, tolerance = 0.001)
+    testthat::expect_equal(df$log_10_bf10, -0.0004860328, tolerance = 0.001)
+    testthat::expect_equal(df$log_10_bf10, -df$log_10_bf01, tolerance = 0.001)
+
+    # checking if two usages of the function are producing the same results
+    testthat::expect_equal(df$bf10, df_results$bf10, tolerance = 0.001)
+    testthat::expect_equal(df$log_e_bf01, df_results$log_e_bf01, tolerance = 0.001)
+  }
+)
+
+# Bayes factor (paired t-test) ---------------------------------------------
 
 testthat::test_that(
   desc = "bayes factor (paired t-test)",
@@ -52,7 +92,7 @@ testthat::test_that(
 
     # extracting results from where this function is implemented
     set.seed(123)
-    df_results <- ggstatsplot::bf_two_sample_ttest(
+    df_results <- ggstatsplot::bf_ttest(
       data = dat_tidy,
       x = key,
       y = value,
@@ -74,10 +114,10 @@ testthat::test_that(
   }
 )
 
-# bayes factor (paired t-test) ----------------------
+# bayes factor (one sample t-test) ----------------------
 
 testthat::test_that(
-  desc = "bayes factor (paired t-test)",
+  desc = "bayes factor (one sample t-test)",
   code = {
     testthat::skip_on_cran()
 
@@ -93,14 +133,16 @@ testthat::test_that(
 
     # extracting results from where this function is implemented
     set.seed(123)
-    df_results <- ggstatsplot::bf_one_sample_ttest(
-      x = iris$Petal.Length,
+    df_results <- ggstatsplot::bf_ttest(
+      data = iris,
+      x = Petal.Length,
+      y = NULL,
       test.value = 5.5,
       bf.prior = 0.99,
       output = "results"
     )
 
-    # check bayes factor values
+    # check Bayes factor values
     testthat::expect_equal(df$bf10, 5.958171e+20, tolerance = 0.001)
     testthat::expect_equal(df$log_e_bf10, 47.83647, tolerance = 0.001)
     testthat::expect_equal(df$log_e_bf10, -df$log_e_bf01, tolerance = 0.001)

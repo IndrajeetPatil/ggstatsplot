@@ -2,8 +2,7 @@
 % Please edit documentation in R/helpers_bf_tests.R
 \name{bf_extractor}
 \alias{bf_extractor}
-\title{Convenience function to extract bayes factors from \code{BayesFactor} model
-object.}
+\title{Extract Bayes Factors from \code{BayesFactor} model object.}
 \usage{
 bf_extractor(bf.object, ...)
 }
@@ -13,13 +12,13 @@ bf_extractor(bf.object, ...)
 \item{...}{Currently ignored.}
 }
 \description{
-Convenience function to extract bayes factors from \code{BayesFactor} model
-object.
+Extract Bayes Factors from \code{BayesFactor} model object.
 }
 \examples{
 # getting only bayes factors
 ggstatsplot::bf_extractor(
-  BayesFactor::anovaBF(Sepal.Length ~ Species,
+  BayesFactor::anovaBF(
+    formula = Sepal.Length ~ Species,
     data = iris,
     progress = FALSE
   )
