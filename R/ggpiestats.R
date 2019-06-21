@@ -152,7 +152,7 @@ ggpiestats <- function(data,
 
   # if facetting variable name is not specified, use the variable name for
   # 'condition' argument
-  if ("condition" %in% names(data) && is.null(facet.wrap.name)) {
+  if (!missing(condition) && rlang::is_null(facet.wrap.name)) {
     facet.wrap.name <- rlang::as_name(rlang::ensym(condition))
   }
 
