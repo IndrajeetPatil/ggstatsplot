@@ -13,22 +13,24 @@ ggbarstats(data, main, condition, counts = NULL, ratio = NULL,
   fixed.margin = "rows", prior.concentration = 1, title = NULL,
   subtitle = NULL, caption = NULL, legend.position = "right",
   x.axis.orientation = NULL, conf.level = 0.95, nboot = 100,
-  simulate.p.value = FALSE, B = 2000, legend.title = NULL,
-  xlab = NULL, ylab = "Percent", k = 2, perc.k = 0,
-  bar.label = "percentage", data.label = NULL, bar.proptest = TRUE,
-  ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
-  package = "RColorBrewer", palette = "Dark2", direction = 1,
-  ggplot.component = NULL, return = "plot", messages = TRUE)
+  simulate.p.value = FALSE, B = 2000, bias.correct = FALSE,
+  legend.title = NULL, xlab = NULL, ylab = "Percent", k = 2,
+  perc.k = 0, bar.label = "percentage", data.label = NULL,
+  bar.proptest = TRUE, ggtheme = ggplot2::theme_bw(),
+  ggstatsplot.layer = TRUE, package = "RColorBrewer",
+  palette = "Dark2", direction = 1, ggplot.component = NULL,
+  return = "plot", messages = TRUE)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
 be taken. A matrix or tables will \strong{not} be accepted.}
 
-\item{main}{The variable to use as the \strong{rows} in the
-contingency table.}
+\item{main}{The variable to use as the \strong{rows} in the contingency table.}
 
 \item{condition}{The variable to use as the \strong{columns} in the contingency
-table.}
+table. Default is \code{NULL}. If \code{NULL}, one-sample proportion test (a goodness
+of fit test) will be run for the \code{main} variable. Otherwise an appropriate
+association test will be run.}
 
 \item{counts}{A string naming a variable in data containing counts, or \code{NULL}
 if each row represents a single observation (Default).}
@@ -36,9 +38,10 @@ if each row represents a single observation (Default).}
 \item{ratio}{A vector of numbers: the expected proportions for the proportion
 test. Default is \code{NULL}, which means if there are two levels \code{ratio = c(1,1)}, etc.}
 
-\item{paired}{Logical indicating whether data came from a within-subjects
-design study (Default: \code{FALSE}). If \code{TRUE}, McNemar test subtitle will be
-returned. If \code{FALSE}, Pearson's chi-square test will be returned.}
+\item{paired}{Logical indicating whether data came from a within-subjects or
+repeated measures design study (Default: \code{FALSE}). If \code{TRUE}, McNemar's
+test subtitle will be returned. If \code{FALSE}, Pearson's chi-square test will
+be returned.}
 
 \item{labels.legend}{A character vector with custom labels for levels of
 the \code{main} variable displayed in the legend.}
@@ -115,6 +118,9 @@ for the effect size (Default: \code{100}).}
 
 \item{B}{an integer specifying the number of replicates used in the
     Monte Carlo test.}
+
+\item{bias.correct}{If \code{TRUE}, a bias correction will be applied to Cramer's
+\emph{V}.}
 
 \item{legend.title}{Title text for the legend.}
 

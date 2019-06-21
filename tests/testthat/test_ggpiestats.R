@@ -490,7 +490,7 @@ testthat::test_that(
     testthat::expect_identical(p_sub, ggplot2::expr(
       paste(
         NULL,
-        italic(chi)^2,
+        chi["Pearson"]^2,
         "(",
         "8",
         ") = ",
