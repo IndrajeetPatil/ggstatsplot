@@ -127,6 +127,7 @@ ggpiestats <- function(data,
                        nboot = 100,
                        simulate.p.value = FALSE,
                        B = 2000,
+                       bias.correct = FALSE,
                        legend.title = NULL,
                        facet.wrap.name = NULL,
                        k = 2,
@@ -151,7 +152,7 @@ ggpiestats <- function(data,
 
   # if facetting variable name is not specified, use the variable name for
   # 'condition' argument
-  if (!missing(condition) && is.null(facet.wrap.name)) {
+  if (!missing(condition) && rlang::is_null(facet.wrap.name)) {
     facet.wrap.name <- rlang::as_name(rlang::ensym(condition))
   }
 
@@ -171,7 +172,7 @@ ggpiestats <- function(data,
   # =========================== converting counts ============================
 
   # untable the dataframe based on the count for each obervation
-  if (!missing(counts)) {
+  if ("counts" %in% names(data)) {
     data %<>%
       tidyr::uncount(
         data = .,
@@ -191,7 +192,7 @@ ggpiestats <- function(data,
     dplyr::mutate(.data = ., main = droplevels(as.factor(main)))
 
   # condition
-  if (!missing(condition)) {
+  if ("condition" %in% names(data)) {
     data %<>%
       dplyr::mutate(.data = ., condition = droplevels(as.factor(condition)))
   }
@@ -210,7 +211,7 @@ ggpiestats <- function(data,
   # ============================ label dataframe ==========================
 
   # dataframe containing all details needed for sample size and prop test
-  if (!missing(condition)) {
+  if ("condition" %in% names(data)) {
     df_labels <- df_facet_label(data = data, x = main, y = condition)
   }
 
@@ -306,48 +307,49 @@ ggpiestats <- function(data,
 
   # =============== chi-square test (either Pearson or McNemar) =============
 
+  # if subtitle with results is to be displayed
+  if (isTRUE(results.subtitle)) {
+    subtitle <-
+      subtitle_contingency_tab(
+        data = data,
+        main = main,
+        condition = condition,
+        ratio = ratio,
+        nboot = nboot,
+        paired = paired,
+        stat.title = stat.title,
+        legend.title = legend.title,
+        conf.level = conf.level,
+        conf.type = "norm",
+        bias.correct = bias.correct,
+        simulate.p.value = simulate.p.value,
+        B = B,
+        k = k,
+        messages = messages
+      )
+  }
+
   # if faceting by condition is happening
-  if (!missing(condition)) {
+  if ("condition" %in% names(data)) {
 
     # if subtitle with results is to be displayed
-    if (isTRUE(results.subtitle)) {
-      subtitle <-
-        subtitle_contingency_tab(
+    # preparing the BF message for null hypothesis support
+    if (isTRUE(results.subtitle) && isTRUE(bf.message) && !is.null(subtitle)) {
+      caption <-
+        bf_contingency_tab(
           data = data,
           main = main,
           condition = condition,
-          nboot = nboot,
-          paired = paired,
-          stat.title = stat.title,
-          conf.level = conf.level,
-          conf.type = "norm",
-          simulate.p.value = simulate.p.value,
-          B = B,
-          messages = messages,
+          sampling.plan = sampling.plan,
+          fixed.margin = fixed.margin,
+          prior.concentration = prior.concentration,
+          caption = caption,
+          output = "caption",
           k = k
         )
-
-      # preparing the BF message for null hypothesis support
-      if (isTRUE(bf.message) && !is.null(subtitle)) {
-        bf.caption.text <-
-          bf_contingency_tab(
-            data = data,
-            main = main,
-            condition = condition,
-            sampling.plan = sampling.plan,
-            fixed.margin = fixed.margin,
-            prior.concentration = prior.concentration,
-            caption = caption,
-            output = "caption",
-            k = k
-          )
-
-        # assign it to captio
-        caption <- bf.caption.text
-      }
     }
 
-    # ====================== facetted proportion test =======================
+    # ================ sample size and proportion test labels =================
 
     # adding significance labels to pie charts for grouped proportion tests
     if (isTRUE(facet.proptest)) {
@@ -388,24 +390,6 @@ ggpiestats <- function(data,
           na.rm = TRUE
         )
     }
-  } else {
-    # goodness of fit test
-    if (isTRUE(results.subtitle)) {
-      subtitle <- subtitle_onesample_proptest(
-        data = data,
-        main = main,
-        conf.level = conf.level,
-        conf.type = "norm",
-        nboot = nboot,
-        ratio = ratio,
-        stat.title = stat.title,
-        legend.title = legend.title,
-        simulate.p.value = simulate.p.value,
-        B = B,
-        k = k,
-        messages = messages
-      )
-    }
   }
 
   # =========================== putting all together ========================
@@ -420,13 +404,9 @@ ggpiestats <- function(data,
       title = title,
       caption = caption
     ) +
-    ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title))
-
-  # ---------------- adding ggplot component ---------------------------------
-
-  # if any additional modification needs to be made to the plot
-  # this is primarily useful for grouped_ variant of this function
-  p <- p + ggplot.component
+    ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title)) +
+    # adding ggplot component
+    ggplot.component
 
   # return the final plot
   return(switch(

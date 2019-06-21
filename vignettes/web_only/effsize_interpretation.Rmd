@@ -55,6 +55,11 @@ Effect size | Small | Medium | Large
 ----- | ---------- | ---------- | ---------- 
 *r* | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50
 
+## robust
+
+**Test**: One-sample percentile bootstrap test <br>
+**Effect size**: robust location measure
+
 # `ggwithinstats` - 2 groups
 
 ## parametric

@@ -202,12 +202,13 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
   <span class='kw'>fixed.margin</span> <span class='kw'>=</span> <span class='st'>"rows"</span>, <span class='kw'>prior.concentration</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>legend.position</span> <span class='kw'>=</span> <span class='st'>"right"</span>,
   <span class='kw'>x.axis.orientation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>simulate.p.value</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>2000</span>, <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Percent"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>bar.label</span> <span class='kw'>=</span> <span class='st'>"percentage"</span>, <span class='kw'>data.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>bar.proptest</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(), <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>, <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>return</span> <span class='kw'>=</span> <span class='st'>"plot"</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>simulate.p.value</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>2000</span>, <span class='kw'>bias.correct</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Percent"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>bar.label</span> <span class='kw'>=</span> <span class='st'>"percentage"</span>, <span class='kw'>data.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>bar.proptest</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
+  <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>,
+  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>return</span> <span class='kw'>=</span> <span class='st'>"plot"</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -219,13 +220,14 @@ be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
     </tr>
     <tr>
       <th>main</th>
-      <td><p>The variable to use as the <strong>rows</strong> in the
-contingency table.</p></td>
+      <td><p>The variable to use as the <strong>rows</strong> in the contingency table.</p></td>
     </tr>
     <tr>
       <th>condition</th>
       <td><p>The variable to use as the <strong>columns</strong> in the contingency
-table.</p></td>
+table. Default is <code>NULL</code>. If <code>NULL</code>, one-sample proportion test (a goodness
+of fit test) will be run for the <code>main</code> variable. Otherwise an appropriate
+association test will be run.</p></td>
     </tr>
     <tr>
       <th>counts</th>
@@ -250,9 +252,10 @@ test. Default is <code>NULL</code>, which means if there are two levels <code>ra
     </tr>
     <tr>
       <th>paired</th>
-      <td><p>Logical indicating whether data came from a within-subjects
-design study (Default: <code>FALSE</code>). If <code>TRUE</code>, McNemar test subtitle will be
-returned. If <code>FALSE</code>, Pearson's chi-square test will be returned.</p></td>
+      <td><p>Logical indicating whether data came from a within-subjects or
+repeated measures design study (Default: <code>FALSE</code>). If <code>TRUE</code>, McNemar's
+test subtitle will be returned. If <code>FALSE</code>, Pearson's chi-square test will
+be returned.</p></td>
     </tr>
     <tr>
       <th>results.subtitle</th>
@@ -369,6 +372,11 @@ for the effect size (Default: <code>100</code>).</p></td>
       <th>B</th>
       <td><p>an integer specifying the number of replicates used in the
     Monte Carlo test.</p></td>
+    </tr>
+    <tr>
+      <th>bias.correct</th>
+      <td><p>If <code>TRUE</code>, a bias correction will be applied to Cramer's
+<em>V</em>.</p></td>
     </tr>
     <tr>
       <th>legend.title</th>
@@ -544,7 +552,8 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
   <span class='kw'>condition</span> <span class='kw'>=</span> <span class='no'>Eye</span>,
   <span class='kw'>counts</span> <span class='kw'>=</span> <span class='no'>Freq</span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>Sex</span>
-)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Results from one-sample proportion tests for each
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>95%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>100</span><span style='color: #0000BB;'> bootstrap samples.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Results from one-sample proportion tests for each
 #&gt;       level of the variable </span><span style='color: #BBBB00;'>Eye</span><span style='color: #0000BB;'> testing for equal
 #&gt;       proportions of the variable </span><span style='color: #BBBB00;'>Hair</span><span style='color: #0000BB;'>.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 4 x 10</span><span>
@@ -575,8 +584,8 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
 #&gt; </span><span style='color: #555555;'>1</span><span> ***         
 #&gt; </span><span style='color: #555555;'>2</span><span> ***         
 #&gt; </span><span style='color: #555555;'>3</span><span> ***         
-#&gt; </span><span style='color: #555555;'>4</span><span> *           </div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>95%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>100</span><span style='color: #0000BB;'> bootstrap samples.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Individual plots in the combined `grouped_` plot
+#&gt; </span><span style='color: #555555;'>4</span><span> *           
+#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Individual plots in the combined `grouped_` plot
 #&gt; can't be further modified with `ggplot2` functions.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggbarstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># the following will take slightly more amount of time</span>

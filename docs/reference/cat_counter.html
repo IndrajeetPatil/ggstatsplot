@@ -205,13 +205,14 @@ be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
     </tr>
     <tr>
       <th>main</th>
-      <td><p>The variable to use as the <strong>rows</strong> in the
-contingency table.</p></td>
+      <td><p>The variable to use as the <strong>rows</strong> in the contingency table.</p></td>
     </tr>
     <tr>
       <th>condition</th>
       <td><p>The variable to use as the <strong>columns</strong> in the contingency
-table.</p></td>
+table. Default is <code>NULL</code>. If <code>NULL</code>, one-sample proportion test (a goodness
+of fit test) will be run for the <code>main</code> variable. Otherwise an appropriate
+association test will be run.</p></td>
     </tr>
     <tr>
       <th>...</th>

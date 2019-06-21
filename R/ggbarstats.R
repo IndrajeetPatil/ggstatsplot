@@ -95,6 +95,7 @@ ggbarstats <- function(data,
                        nboot = 100,
                        simulate.p.value = FALSE,
                        B = 2000,
+                       bias.correct = FALSE,
                        legend.title = NULL,
                        xlab = NULL,
                        ylab = "Percent",
@@ -141,7 +142,7 @@ ggbarstats <- function(data,
   # =========================== converting counts ============================
 
   # untable the dataframe based on the count for each observation
-  if (!missing(counts)) {
+  if ("counts" %in% names(data)) {
     data %<>%
       tidyr::uncount(
         data = .,
@@ -239,9 +240,50 @@ ggbarstats <- function(data,
       labels = unique(legend.labels)
     )
 
-  # =============== chi-square test (either Pearson or McNemar) =============
+  # ========================= statistical analysis ===========================
 
-  # if testing by condition is happening
+  # running appropriate statistical test
+  # unpaired: Pearson's Chi-square test of independence
+  if (isTRUE(results.subtitle)) {
+    subtitle <-
+      subtitle_contingency_tab(
+        data = data,
+        main = main,
+        condition = condition,
+        ratio = ratio,
+        nboot = nboot,
+        paired = paired,
+        stat.title = stat.title,
+        legend.title = legend.title,
+        conf.level = conf.level,
+        conf.type = "norm",
+        bias.correct = bias.correct,
+        simulate.p.value = simulate.p.value,
+        B = B,
+        k = k,
+        messages = messages
+      )
+
+    # preparing the BF message for null hypothesis support
+    if (isTRUE(bf.message) && !is.null(subtitle)) {
+      caption <-
+        bf_contingency_tab(
+          data = data,
+          main = main,
+          condition = condition,
+          sampling.plan = sampling.plan,
+          fixed.margin = fixed.margin,
+          prior.concentration = prior.concentration,
+          caption = caption,
+          output = "caption",
+          k = k
+        )
+    }
+  }
+
+  # ================ sample size and proportion test labels ===================
+
+  # adding significance labels to bars for proportion tests
   if (isTRUE(bar.proptest)) {
     # display grouped proportion test results
     if (isTRUE(messages)) {
@@ -254,50 +296,8 @@ ggbarstats <- function(data,
       # print the tibble and leave out unnecessary columns
       print(df_labels)
     }
-  }
 
-  # running appropriate statistical test
-  # unpaired: Pearson's Chi-square test of independence
-  if (isTRUE(results.subtitle)) {
-    subtitle <-
-      subtitle_contingency_tab(
-        data = data,
-        main = main,
-        condition = condition,
-        nboot = nboot,
-        paired = paired,
-        stat.title = stat.title,
-        conf.level = conf.level,
-        conf.type = "norm",
-        simulate.p.value = simulate.p.value,
-        B = B,
-        messages = messages,
-        k = k
-      )
-
-    # preparing the BF message for null hypothesis support
-    if (isTRUE(bf.message) && !is.null(subtitle)) {
-      bf.caption.text <-
-        bf_contingency_tab(
-          data = data,
-          main = main,
-          condition = condition,
-          sampling.plan = sampling.plan,
-          fixed.margin = fixed.margin,
-          prior.concentration = prior.concentration,
-          caption = caption,
-          output = "caption",
-          k = k
-        )
-
-      caption <- bf.caption.text
-    }
-  }
-
-  # ====================== proportion test =======================
-
-  # adding significance labels to bars for proportion tests
-  if (isTRUE(bar.proptest)) {
+    # modify plot
     p <-
       p +
       ggplot2::geom_text(
@@ -366,13 +366,8 @@ ggbarstats <- function(data,
       subtitle = subtitle,
       title = title,
       caption = caption
-    )
-
-  # ---------------- adding ggplot component ---------------------------------
-
-  # if any additional modification needs to be made to the plot
-  # this is primarily useful for grouped_ variant of this function
-  p <- p + ggplot.component
+    ) + # adding ggplot component
+    ggplot.component
 
   # return the final plot
   return(switch(

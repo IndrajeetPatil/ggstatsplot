@@ -11,11 +11,12 @@ cat_counter(data, main, condition = NULL, ...)
 \item{data}{A dataframe (or a tibble) from which variables specified are to
 be taken. A matrix or tables will \strong{not} be accepted.}
 
-\item{main}{The variable to use as the \strong{rows} in the
-contingency table.}
+\item{main}{The variable to use as the \strong{rows} in the contingency table.}
 
 \item{condition}{The variable to use as the \strong{columns} in the contingency
-table.}
+table. Default is \code{NULL}. If \code{NULL}, one-sample proportion test (a goodness
+of fit test) will be run for the \code{main} variable. Otherwise an appropriate
+association test will be run.}
 
 \item{...}{Additional grouping variables.}
 }

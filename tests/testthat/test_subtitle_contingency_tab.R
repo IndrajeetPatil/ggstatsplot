@@ -28,7 +28,7 @@ testthat::test_that(
       ggplot2::expr(
         paste(
           "Testing",
-          italic(chi)^2,
+          chi["Pearson"]^2,
           "(",
           "3",
           ") = ",
@@ -102,7 +102,7 @@ testthat::test_that(
       ggplot2::expr(
         paste(
           NULL,
-          italic(chi)^2,
+          chi["Pearson"]^2,
           "(",
           "NA",
           ") = ",

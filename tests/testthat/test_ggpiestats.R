@@ -72,6 +72,8 @@ testthat::test_that(
     testthat::expect_identical(p$labels$caption, "From ggplot2 package")
     testthat::expect_null(p$labels$x, NULL)
     testthat::expect_null(p$labels$y, NULL)
+    testthat::expect_identical(pb$plot$plot_env$legend.title, "vorarephilia")
+    testthat::expect_null(pb$plot$plot_env$facet.wrap.name, NULL)
 
     # checking layer data
     testthat::expect_equal(length(pb$data), 2L)
@@ -328,6 +330,7 @@ testthat::test_that(
       bf.message = FALSE,
       counts = "Freq",
       perc.k = 2,
+      legend.title = NULL,
       ggtheme = ggplot2::theme_minimal(),
       conf.level = 0.95,
       messages = TRUE
@@ -371,6 +374,8 @@ testthat::test_that(
     # checking plot labels
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
     testthat::expect_null(p$labels$caption, NULL)
+    testthat::expect_identical(pb$plot$plot_env$facet.wrap.name, "Survived")
+    testthat::expect_identical(pb$plot$plot_env$legend.title, "Sex")
 
     # checking geometric layers
     testthat::expect_equal(pb$data[[1]]$y,
@@ -405,9 +410,13 @@ testthat::test_that(
       counts = Counts,
       nboot = 25,
       paired = TRUE,
+      facet.wrap.name = NULL,
       conf.level = 0.90,
       messages = FALSE
     )
+
+    # build the plot
+    pb <- ggplot2::ggplot_build(p)
 
     # subtitle
     set.seed(123)
@@ -424,6 +433,8 @@ testthat::test_that(
 
     # checking plot labels
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
+    testthat::expect_identical(pb$plot$plot_env$facet.wrap.name, "2nd survey")
+    testthat::expect_identical(pb$plot$plot_env$legend.title, "1st survey")
   }
 )
 
@@ -490,7 +501,7 @@ testthat::test_that(
     testthat::expect_identical(p_sub, ggplot2::expr(
       paste(
         NULL,
-        italic(chi)^2,
+        chi["Pearson"]^2,
         "(",
         "8",
         ") = ",

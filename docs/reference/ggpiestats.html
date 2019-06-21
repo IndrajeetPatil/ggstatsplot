@@ -198,8 +198,8 @@ included in the plot as a subtitle.</p>
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>sampling.plan</span> <span class='kw'>=</span> <span class='st'>"indepMulti"</span>,
   <span class='kw'>fixed.margin</span> <span class='kw'>=</span> <span class='st'>"rows"</span>, <span class='kw'>prior.concentration</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>simulate.p.value</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>2000</span>, <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>facet.wrap.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>simulate.p.value</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>2000</span>, <span class='kw'>bias.correct</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>facet.wrap.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>slice.label</span> <span class='kw'>=</span> <span class='st'>"percentage"</span>, <span class='kw'>facet.proptest</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(), <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>, <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>,
@@ -215,13 +215,14 @@ be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
     </tr>
     <tr>
       <th>main</th>
-      <td><p>The variable to use as the <strong>rows</strong> in the
-contingency table.</p></td>
+      <td><p>The variable to use as the <strong>rows</strong> in the contingency table.</p></td>
     </tr>
     <tr>
       <th>condition</th>
       <td><p>The variable to use as the <strong>columns</strong> in the contingency
-table.</p></td>
+table. Default is <code>NULL</code>. If <code>NULL</code>, one-sample proportion test (a goodness
+of fit test) will be run for the <code>main</code> variable. Otherwise an appropriate
+association test will be run.</p></td>
     </tr>
     <tr>
       <th>counts</th>
@@ -235,9 +236,10 @@ test. Default is <code>NULL</code>, which means if there are two levels <code>ra
     </tr>
     <tr>
       <th>paired</th>
-      <td><p>Logical indicating whether data came from a within-subjects
-design study (Default: <code>FALSE</code>). If <code>TRUE</code>, McNemar test subtitle will be
-returned. If <code>FALSE</code>, Pearson's chi-square test will be returned.</p></td>
+      <td><p>Logical indicating whether data came from a within-subjects or
+repeated measures design study (Default: <code>FALSE</code>). If <code>TRUE</code>, McNemar's
+test subtitle will be returned. If <code>FALSE</code>, Pearson's chi-square test will
+be returned.</p></td>
     </tr>
     <tr>
       <th>results.subtitle</th>
@@ -342,6 +344,11 @@ for the effect size (Default: <code>100</code>).</p></td>
       <th>B</th>
       <td><p>an integer specifying the number of replicates used in the
     Monte Carlo test.</p></td>
+    </tr>
+    <tr>
+      <th>bias.correct</th>
+      <td><p>If <code>TRUE</code>, a bias correction will be applied to Cramer's
+<em>V</em>.</p></td>
     </tr>
     <tr>
       <th>legend.title</th>

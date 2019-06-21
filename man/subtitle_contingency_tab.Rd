@@ -2,39 +2,52 @@
 % Please edit documentation in R/helpers_ggpiestats_subtitles.R
 \name{subtitle_contingency_tab}
 \alias{subtitle_contingency_tab}
-\title{Making text subtitle for contingency analysis (Pearson's chi-square
-test for independence for between-subjects design or McNemar's test for
-within-subjects design)}
+\alias{subtitle_onesample_proptest}
+\title{Subtitle for categorical tests}
 \usage{
-subtitle_contingency_tab(data, main, condition, counts = NULL,
-  nboot = 100, paired = FALSE, stat.title = NULL,
-  conf.level = 0.95, conf.type = "norm", simulate.p.value = FALSE,
-  B = 2000, bias.correct = FALSE, k = 2, messages = TRUE, ...)
+subtitle_contingency_tab(data, main, condition = NULL, counts = NULL,
+  ratio = NULL, nboot = 100, paired = FALSE, stat.title = NULL,
+  legend.title = NULL, conf.level = 0.95, conf.type = "norm",
+  simulate.p.value = FALSE, B = 2000, bias.correct = FALSE, k = 2,
+  messages = TRUE, ...)
+
+subtitle_onesample_proptest(data, main, condition = NULL,
+  counts = NULL, ratio = NULL, nboot = 100, paired = FALSE,
+  stat.title = NULL, legend.title = NULL, conf.level = 0.95,
+  conf.type = "norm", simulate.p.value = FALSE, B = 2000,
+  bias.correct = FALSE, k = 2, messages = TRUE, ...)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
 be taken. A matrix or tables will \strong{not} be accepted.}
 
-\item{main}{The variable to use as the \strong{rows} in the
-contingency table.}
+\item{main}{The variable to use as the \strong{rows} in the contingency table.}
 
 \item{condition}{The variable to use as the \strong{columns} in the contingency
-table.}
+table. Default is \code{NULL}. If \code{NULL}, one-sample proportion test (a goodness
+of fit test) will be run for the \code{main} variable. Otherwise an appropriate
+association test will be run.}
 
 \item{counts}{A string naming a variable in data containing counts, or \code{NULL}
 if each row represents a single observation (Default).}
 
+\item{ratio}{A vector of numbers: the expected proportions for the proportion
+test. Default is \code{NULL}, which means if there are two levels \code{ratio = c(1,1)}, etc.}
+
 \item{nboot}{Number of bootstrap samples for computing confidence interval
 for the effect size (Default: \code{100}).}
 
-\item{paired}{Logical indicating whether data came from a within-subjects
-design study (Default: \code{FALSE}). If \code{TRUE}, McNemar test subtitle will be
-returned. If \code{FALSE}, Pearson's chi-square test will be returned.}
+\item{paired}{Logical indicating whether data came from a within-subjects or
+repeated measures design study (Default: \code{FALSE}). If \code{TRUE}, McNemar's
+test subtitle will be returned. If \code{FALSE}, Pearson's chi-square test will
+be returned.}
 
 \item{stat.title}{Title for the effect being investigated with the chi-square
 test. The default is \code{NULL}, i.e. no title will be added to describe the
 effect being shown. An example of a \code{stat.title} argument will be something
 like \code{"main x condition"} or \code{"interaction"}.}
+
+\item{legend.title}{Title text for the legend.}
 
 \item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
 \code{95\%} lower and upper confidence intervals (\code{0.95}).}
@@ -61,16 +74,21 @@ to be displayed (Default: \code{TRUE}).}
 \item{...}{Additional arguments (currently ignored).}
 }
 \description{
-Making text subtitle for contingency analysis (Pearson's chi-square
-test for independence for between-subjects design or McNemar's test for
-within-subjects design)
+Making text subtitle for contingency analysis (Pearson's
+chi-square test for independence for between-subjects design or McNemar's
+test for within-subjects design) or goodness of fit test for a single
+categorical variable.
 }
 \details{
 For more details about how the effect sizes and their confidence
-intervals were computed, see documentation in \code{?rcompanion::cramerV} and
-\code{?rcompanion::cohenG}.
+intervals were computed, see documentation in \code{?rcompanion::cramerV},
+\code{?rcompanion::cramerVFit}, and \code{?rcompanion::cohenG}.
 }
 \examples{
+
+# ------------------------ association tests -----------------------------
+
+set.seed(123)
 
 # without counts data
 ggstatsplot::subtitle_contingency_tab(
@@ -92,6 +110,25 @@ as.data.frame(HairEyeColor) \%>\%
     condition = Sex,
     counts = Freq
   )
+
+# ------------------------ goodness of fit tests ---------------------------
+
+# for reproducibility
+set.seed(123)
+
+# with counts
+subtitle_contingency_tab(
+  data = as.data.frame(HairEyeColor),
+  main = Eye,
+  counts = Freq,
+  ratio = c(0.2, 0.2, 0.3, 0.3)
+)
+
+# in case of no variation, only sample size will be shown
+subtitle_contingency_tab(
+  data = cbind.data.frame(x = rep("a", 10)),
+  main = x
+)
 }
 \seealso{
 \code{\link{ggpiestats}}
