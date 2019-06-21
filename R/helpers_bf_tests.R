@@ -1,5 +1,4 @@
-#' @title Convenience function to extract bayes factors from `BayesFactor` model
-#'   object.
+#' @title Extract Bayes Factors from `BayesFactor` model object.
 #' @name bf_extractor
 #'
 #' @param bf.object An object from `BayesFactor` package test results.
@@ -13,7 +12,8 @@
 #' @examples
 #' # getting only bayes factors
 #' ggstatsplot::bf_extractor(
-#'   BayesFactor::anovaBF(Sepal.Length ~ Species,
+#'   BayesFactor::anovaBF(
+#'     formula = Sepal.Length ~ Species,
 #'     data = iris,
 #'     progress = FALSE
 #'   )
@@ -161,10 +161,10 @@ bf_caption_maker <- function(bf.df,
 #' @param bf.prior A number between 0.5 and 2 (default `0.707`), the prior width
 #'   to use in calculating Bayes factors.
 #'
-#' @importFrom BayesFactor correlationBF extractBF
+#' @importFrom BayesFactor correlationBF
 #'
 #' @seealso \code{\link{bf_contingency_tab}}, \code{\link{bf_oneway_anova}},
-#' \code{\link{bf_two_sample_ttest}}
+#' \code{\link{bf_ttest}}
 #'
 #' @examples
 #'
@@ -266,10 +266,10 @@ bf_corr_test <- function(data,
 #'   hypothesis under the alternative, and corresponds to Gunel and Dickey's
 #'   (1974) `"a"` parameter.
 #'
-#' @importFrom BayesFactor contingencyTableBF extractBF
+#' @importFrom BayesFactor contingencyTableBF
 #'
 #' @seealso \code{\link{bf_corr_test}}, \code{\link{bf_oneway_anova}},
-#' \code{\link{bf_two_sample_ttest}}
+#' \code{\link{bf_ttest}}
 #'
 #' @examples
 #'
@@ -414,126 +414,32 @@ bf_contingency_tab <- function(data,
   ))
 }
 
-#' @title Bayesian one-sample *t*-test.
-#' @name bf_one_sample_ttest
+#' @title Bayes Factor for *t*-test
 #' @author Indrajeet Patil
+#' @details If `y` is `NULL`, a one-sample *t*-test will be carried out,
+#'   otherwise a two-sample *t*-test will be carried out.
 #'
-#' @inheritParams BayesFactor::ttestBF
-#' @inheritParams gghistostats
-#' @inheritParams bf_corr_test
+#' @importFrom BayesFactor ttestBF
 #'
-#' @importFrom BayesFactor ttestBF extractBF
-#'
-#' @seealso \code{\link{bf_contingency_tab}}, \code{\link{bf_oneway_anova}},
-#' \code{\link{bf_two_sample_ttest}}
-#'
-#' @examples
-#'
-#' # to get caption (default)
-#' bf_one_sample_ttest(
-#'   data = iris,
-#'   x = Sepal.Length,
-#'   test.value = 5.85,
-#'   bf.prior = 0.8,
-#'   output = "caption", k = 2
-#' )
-#'
-#' # to get results dataframe
-#' bf_one_sample_ttest(
-#'   data = iris,
-#'   x = Sepal.Length,
-#'   test.value = 5.85,
-#'   bf.prior = 0.8,
-#'   output = "results"
-#' )
-#' @export
-
-# function body
-bf_one_sample_ttest <- function(data = NULL,
-                                x,
-                                test.value = 0,
-                                bf.prior = 0.707,
-                                caption = NULL,
-                                output = "null",
-                                k = 2,
-                                ...) {
-
-  # ================================= dataframe =============================
-
-  # preparing a dataframe out of provided inputs
-  if (!is.null(data)) {
-    # if dataframe is provided
-    data <-
-      dplyr::select(
-        .data = data,
-        x = !!rlang::enquo(x)
-      )
-  } else {
-    # if vectors are provided
-    data <-
-      cbind.data.frame(x = x)
-  }
-
-  # convert to a tibble
-  data %<>%
-    tibble::as_tibble(x = .)
-
-  # ========================= subtitle preparation ==========================
-
-  # extracting results from Bayesian test and creating a dataframe
-  bf_results <-
-    bf_extractor(
-      BayesFactor::ttestBF(
-        x = data$x,
-        rscale = bf.prior,
-        mu = test.value,
-        nullInterval = NULL,
-        ...
-      )
-    ) %>%
-    dplyr::mutate(.data = ., bf.prior = bf.prior)
-
-  # prepare the bayes factor message
-  if (output != "results") {
-    bf_message <-
-      bf_caption_maker(
-        bf.df = bf_results,
-        output = output,
-        k = k,
-        caption = caption
-      )
-  }
-
-  # ============================ return ==================================
-
-  # return the text results or the dataframe with results
-  return(switch(
-    EXPR = output,
-    "results" = bf_results,
-    bf_message
-  ))
-}
-
-#' @title Bayesian two-samples *t*-test.
-#' @name bf_two_sample_ttest
-#' @author Indrajeet Patil
-#'
-#' @importFrom BayesFactor ttestBF extractBF
-#'
-#' @inheritParams BayesFactor::ttestBF
+#' @param x Either the grouping variable from the dataframe `data` if it's a
+#'   two-sample *t*-test or a numeric variable if it's a one-sample *t*-test.
 #' @inheritParams ggbetweenstats
+#' @inheritParams BayesFactor::ttestBF
 #' @inheritParams bf_corr_test
+#' @inheritParams subtitle_t_onesample
 #'
 #' @seealso \code{\link{bf_contingency_tab}}, \code{\link{bf_corr_test}},
 #' \code{\link{bf_oneway_anova}}
 #'
 #' @examples
 #'
+#' # ------------------- two-samples tests -----------------------------------
+#'
 #' # for reproducibility
 #' set.seed(123)
 #'
 #' # to get caption (default)
-#' bf_two_sample_ttest(
+#' bf_ttest(
 #'   data = mtcars,
 #'   x = am,
 #'   y = wt,
@@ -542,7 +448,7 @@ bf_one_sample_ttest <- function(data = NULL,
 #' )
 #'
 #' # to see results
-#' bf_two_sample_ttest(
+#' bf_ttest(
 #'   data = mtcars,
 #'   x = am,
 #'   y = wt,
@@ -551,7 +457,7 @@ bf_one_sample_ttest <- function(data = NULL,
 #' )
 #'
 #' # for paired sample test
-#' bf_two_sample_ttest(
+#' bf_ttest(
 #'   data = dplyr::filter(
 #'     ggstatsplot::intent_morality,
 #'     condition %in% c("accidental", "attempted"),
@@ -562,18 +468,39 @@ bf_one_sample_ttest <- function(data = NULL,
 #'   paired = TRUE,
 #'   output = "results"
 #' )
+#'
+#' # ------------------- one-samples test -----------------------------------
+#'
+#' # to get caption (default)
+#' bf_ttest(
+#'   data = iris,
+#'   x = Sepal.Length,
+#'   test.value = 5.85,
+#'   bf.prior = 0.8,
+#'   output = "caption", k = 2
+#' )
+#'
+#' # to get results dataframe
+#' bf_ttest(
+#'   data = iris,
+#'   x = Sepal.Length,
+#'   test.value = 5.85,
+#'   bf.prior = 0.8,
+#'   output = "results"
+#' )
 #' @export
 
 # function body
-bf_two_sample_ttest <- function(data,
-                                x,
-                                y,
-                                paired = FALSE,
-                                bf.prior = 0.707,
-                                caption = NULL,
-                                output = "null",
-                                k = 2,
-                                ...) {
+bf_ttest <- function(data,
+                     x,
+                     y = NULL,
+                     test.value = 0,
+                     paired = FALSE,
+                     bf.prior = 0.707,
+                     caption = NULL,
+                     output = "null",
+                     k = 2,
+                     ...) {
 
   # ============================ data preparation ==========================
 
@@ -584,57 +511,72 @@ bf_two_sample_ttest <- function(data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
     ) %>%
-    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
     tibble::as_tibble(.)
 
   # -------------------------- between-subjects design -------------------
 
-  # running bayesian analysis
-  if (!isTRUE(paired)) {
+  if ("y" %in% names(data)) {
 
-    # removing NAs
+    # dropping unused factor levels from `x` variable
     data %<>%
-      stats::na.omit(.)
+      dplyr::mutate(.data = ., x = droplevels(as.factor(x)))
 
-    # extracting results from bayesian test and creating a dataframe
-    bf_object <-
-      BayesFactor::ttestBF(
-        formula = y ~ x,
-        data = as.data.frame(data),
-        rscale = bf.prior,
-        paired = FALSE,
-        progress = FALSE,
-        ...
-      )
+    # running bayesian analysis
+    if (!isTRUE(paired)) {
+
+      # removing NAs
+      data %<>%
+        stats::na.omit(.)
+
+      # extracting results from bayesian test and creating a dataframe
+      bf_object <-
+        BayesFactor::ttestBF(
+          formula = y ~ x,
+          data = as.data.frame(data),
+          rscale = bf.prior,
+          paired = FALSE,
+          progress = FALSE,
+          ...
+        )
+    } else {
+      # the data needs to be in wide format
+      data_wide <-
+        long_to_wide_converter(
+          data = data,
+          x = x,
+          y = y
+        )
+
+      # change names for convenience
+      colnames(data_wide) <- c("rowid", "col1", "col2")
+
+      # extracting results from Bayesian test and creating a dataframe
+      bf_object <-
+        BayesFactor::ttestBF(
+          x = data_wide$col1,
+          y = data_wide$col2,
+          rscale = bf.prior,
+          paired = TRUE,
+          progress = FALSE,
+          ...
+        )
+    }
   } else {
-    # the data needs to be in wide format
-    data_wide <-
-      long_to_wide_converter(
-        data = data,
-        x = x,
-        y = y
-      )
-
-    # change names for convenience
-    colnames(data_wide) <- c("rowid", "col1", "col2")
-
-    # extracting results from bayesian test and creating a dataframe
     bf_object <-
       BayesFactor::ttestBF(
-        x = data_wide$col1,
-        y = data_wide$col2,
+        x = data$x,
         rscale = bf.prior,
-        paired = TRUE,
-        progress = FALSE,
+        mu = test.value,
+        nullInterval = NULL,
         ...
       )
   }
 
-  # extracting the bayes factors
+  # extracting the Bayes factors
   bf_results <- bf_extractor(bf.object = bf_object) %>%
     dplyr::mutate(.data = ., bf.prior = bf.prior)
 
-  # prepare the bayes factor message
+  # prepare the Bayes factor message
   if (output != "results") {
     bf_message <-
       bf_caption_maker(
@@ -655,11 +597,23 @@ bf_two_sample_ttest <- function(data,
   ))
 }
 
+#' @rdname bf_ttest
+#' @aliases bf_ttest
+#' @export
+
+bf_one_sample_ttest <- bf_ttest
+
+#' @rdname bf_ttest
+#' @aliases bf_ttest
+#' @export
+
+bf_two_sample_ttest <- bf_ttest
+
 #' @title Bayesian one-way analysis of variance.
 #' @name bf_oneway_anova
 #' @author Indrajeet Patil
 #'
-#' @importFrom BayesFactor anovaBF extractBF
+#' @importFrom BayesFactor anovaBF
 #'
 #' @inheritParams BayesFactor::anovaBF
 #' @inheritParams ggbetweenstats
@@ -668,7 +622,7 @@ bf_two_sample_ttest <- function(data,
 #' @param ... Additional arguments.
 #'
 #' @seealso \code{\link{bf_contingency_tab}}, \code{\link{bf_corr_test}},
-#' \code{\link{bf_two_sample_ttest}}
+#' \code{\link{bf_ttest}}
 #'
 #' @examples
 #'

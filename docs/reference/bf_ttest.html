@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bayesian two-samples <em>t</em>-test. — bf_two_sample_ttest • ggstatsplot</title>
+<title>Bayes Factor for <em>t</em>-test — bf_ttest • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -40,9 +40,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Bayesian two-samples <em>t</em>-test. — bf_two_sample_ttest" />
+<meta property="og:title" content="Bayes Factor for <em>t</em>-test — bf_ttest" />
 
-<meta property="og:description" content="Bayesian two-samples t-test." />
+<meta property="og:description" content="Bayes Factor for t-test" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -177,36 +177,50 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Bayesian two-samples <em>t</em>-test.</h1>
+    <h1>Bayes Factor for <em>t</em>-test</h1>
     <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_bf_tests.R'><code>R/helpers_bf_tests.R</code></a></small>
-    <div class="hidden name"><code>bf_two_sample_ttest.Rd</code></div>
+    <div class="hidden name"><code>bf_ttest.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Bayesian two-samples <em>t</em>-test.</p>
+    <p>Bayes Factor for <em>t</em>-test</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>bf_two_sample_ttest</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
-  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"null"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>bf_ttest</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"null"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='no'>...</span>)
+
+<span class='fu'>bf_one_sample_ttest</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"null"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='no'>...</span>)
+
+<span class='fu'>bf_two_sample_ttest</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"null"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>for use with <code>formula</code>, a data frame containing all the
-data</p></td>
+      <td><p>A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
     </tr>
     <tr>
       <th>x</th>
-      <td><p>a vector of observations for the first (or only) group</p></td>
+      <td><p>Either the grouping variable from the dataframe <code>data</code> if it's a
+two-sample <em>t</em>-test or a numeric variable if it's a one-sample <em>t</em>-test.</p></td>
     </tr>
     <tr>
       <th>y</th>
-      <td><p>a vector of observations for the second group (or condition, for
-paired)</p></td>
+      <td><p>The response (a.k.a. outcome or dependent) variable from the
+dataframe <code>data</code>.</p></td>
+    </tr>
+    <tr>
+      <th>test.value</th>
+      <td><p>A number specifying the value of the null hypothesis
+(Default: <code>0</code>).</p></td>
     </tr>
     <tr>
       <th>paired</th>
@@ -239,6 +253,11 @@ a dataframe with results all the details).</p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>If <code>y</code> is <code>NULL</code>, a one-sample <em>t</em>-test will be carried out,
+otherwise a two-sample <em>t</em>-test will be carried out.</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='bf_contingency_tab.html'>bf_contingency_tab</a></code>, <code><a href='bf_corr_test.html'>bf_corr_test</a></code>,
@@ -247,11 +266,13 @@ a dataframe with results all the details).</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
+<span class='co'># ------------------- two-samples tests -----------------------------------</span>
+
 <span class='co'># for reproducibility</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
 
 <span class='co'># to get caption (default)</span>
-<span class='fu'>bf_two_sample_ttest</span>(
+<span class='fu'>bf_ttest</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>am</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>wt</span>,
@@ -261,18 +282,18 @@ a dataframe with results all the details).</p></td>
 #&gt;     "(BF"["01"], ") = ", "-7.36", ", ", italic("r")["Cauchy"], 
 #&gt;     " = ", "0.88"))</div><div class='input'>
 <span class='co'># to see results</span>
-<span class='fu'>bf_two_sample_ttest</span>(
+<span class='fu'>bf_ttest</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>am</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>wt</span>,
   <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"results"</span>
-)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 8</span><span>
+)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 8</span><span>
 #&gt;    bf10 log_e_bf10 log_10_bf10     bf01 log_e_bf01 log_10_bf01    error bf.prior
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> </span><span style='text-decoration: underline;'>1</span><span>383.       7.23        3.14 0.000</span><span style='text-decoration: underline;'>723</span><span>      -</span><span style='color: #BB0000;'>7.23</span><span>       -</span><span style='color: #BB0000;'>3.14</span><span>  3.41</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-9</span><span>    0.707</div><div class='input'>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> </span><span style='text-decoration: underline;'>1</span><span>383.      7.232       3.141 7.229</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-4</span><span>     -</span><span style='color: #BB0000;'>7.232</span><span>      -</span><span style='color: #BB0000;'>3.141</span><span> 3.411</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-9</span><span>    0.707</div><div class='input'>
 <span class='co'># for paired sample test</span>
-<span class='fu'>bf_two_sample_ttest</span>(
+<span class='fu'>bf_ttest</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
     <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='no'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/intent_morality.html'>intent_morality</a></span>,
     <span class='no'>condition</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"accidental"</span>, <span class='st'>"attempted"</span>),
@@ -282,17 +303,42 @@ a dataframe with results all the details).</p></td>
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>rating</span>,
   <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"results"</span>
-)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 8</span><span>
-#&gt;      bf10 log_e_bf10 log_10_bf10     bf01 log_e_bf01 log_10_bf01    error
-#&gt;     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> 1.20</span><span style='color: #555555;'>e</span><span>61       141.        61.1 8.36</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-62</span><span>      -</span><span style='color: #BB0000;'>141.</span><span>       -</span><span style='color: #BB0000;'>61.1</span><span> 1.17</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-69</span><span>
-#&gt; </span><span style='color: #555555;'># ... with 1 more variable: bf.prior </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
+)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 8</span><span>
+#&gt;       bf10 log_e_bf10 log_10_bf10      bf01 log_e_bf01 log_10_bf01     error
+#&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 1.196</span><span style='color: #949494;'>e</span><span>61      140.6       61.08 8.364</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-62</span><span>     -</span><span style='color: #BB0000;'>140.6</span><span>      -</span><span style='color: #BB0000;'>61.08</span><span> 1.172</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-69</span><span>
+#&gt; </span><span style='color: #949494;'># ... with 1 more variable: bf.prior </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+<span class='co'># ------------------- one-samples test -----------------------------------</span>
+
+<span class='co'># to get caption (default)</span>
+<span class='fu'>bf_ttest</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>,
+  <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>5.85</span>,
+  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.8</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"caption"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>
+)</div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("In favor of null: ", "log"["e"], 
+#&gt;     "(BF"["01"], ") = ", "2.51", ", ", italic("r")["Cauchy"], 
+#&gt;     " = ", "0.80"))</div><div class='input'>
+<span class='co'># to get results dataframe</span>
+<span class='fu'>bf_ttest</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>,
+  <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>5.85</span>,
+  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.8</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"results"</span>
+)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 8</span><span>
+#&gt;      bf10 log_e_bf10 log_10_bf10  bf01 log_e_bf01 log_10_bf01     error bf.prior
+#&gt;     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 0.081</span><span style='text-decoration: underline;'>00</span><span>     -</span><span style='color: #BB0000;'>2.513</span><span>      -</span><span style='color: #BB0000;'>1.092</span><span> 12.35      2.513       1.092  1.283</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-5</span><span>      0.8</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#details">Details</a></li>
+
       <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>

@@ -12,6 +12,8 @@ MINOR CHANGES
     of the functions in the package.
   - `ggcoefstats` supports the following class of objects: `epi.2by2`, `negbin`,
     `emmGrid`, `lmrob`, `glmrob`, `glmmPQL`.
+  - `bf_ttest` is introduced as a general function. The previously exported
+    `bf_one_sample_ttest` and `bf_two_sample_ttest` become its aliases.
 
 # ggstatsplot 0.0.11
  
