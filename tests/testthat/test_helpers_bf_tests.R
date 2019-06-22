@@ -468,6 +468,17 @@ testthat::test_that(
       output = "alternative"
     )
 
+    # with counts
+    caption_text2 <- ggstatsplot::bf_contingency_tab(
+      data = as.data.frame(Titanic),
+      main = Survived,
+      condition = Sex,
+      counts = "Freq",
+      sampling.plan = "jointMulti",
+      fixed.margin = "rows",
+      output = "alternative"
+    )
+
     # check bayes factor values
     testthat::expect_equal(df$bf10, 28.07349, tolerance = 0.001)
     testthat::expect_equal(df$log_e_bf10, 3.334826, tolerance = 0.001)
@@ -496,6 +507,26 @@ testthat::test_that(
         "1.00"
       )
     )))
+
+    testthat::expect_identical(
+      caption_text2,
+      ggplot2::expr(atop(
+        displaystyle(NULL),
+        expr = paste(
+          "In favor of alternative: ",
+          "log"["e"],
+          "(BF"["10"],
+          ") = ",
+          "214.25",
+          ", sampling = ",
+          "joint multinomial",
+          ", ",
+          italic("a"),
+          " = ",
+          "1.00"
+        )
+      ))
+    )
   }
 )
 
