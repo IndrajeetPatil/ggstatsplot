@@ -361,79 +361,79 @@ bf_contingency_tab <- function(data,
     data %<>%
       dplyr::mutate(.data = ., condition = droplevels(as.factor(condition)))
 
-  # detailed text of sample plan
-  sampling_plan_text <-
-    switch(
-      EXPR = sampling.plan,
-      "jointMulti" = "joint multinomial",
-      "poisson" = "poisson",
-      "indepMulti" = "independent multinomial",
-      "hypergeom" = "hypergeometric"
-    )
-
-  # extracting results from bayesian test and creating a dataframe
-  bf_results <-
-    bf_extractor(
-      BayesFactor::contingencyTableBF(
-        x = table(data$main, data$condition),
-        sampleType = sampling.plan,
-        fixedMargin = fixed.margin,
-        priorConcentration = prior.concentration,
-        ...
+    # detailed text of sample plan
+    sampling_plan_text <-
+      switch(
+        EXPR = sampling.plan,
+        "jointMulti" = "joint multinomial",
+        "poisson" = "poisson",
+        "indepMulti" = "independent multinomial",
+        "hypergeom" = "hypergeometric"
       )
-    ) %>%
-    dplyr::mutate(
-      .data = .,
-      sampling.plan = sampling_plan_text,
-      fixed.margin = fixed.margin,
-      prior.concentration = prior.concentration
-    )
 
-  # changing aspects of the caption based on what output is needed
-  if (output %in% c("null", "caption", "H0", "h0")) {
-    hypothesis.text <- "In favor of null: "
-    bf.value <- bf_results$log_e_bf01[[1]]
-    bf.subscript <- "01"
-  } else {
-    hypothesis.text <- "In favor of alternative: "
-    bf.value <- -bf_results$log_e_bf01[[1]]
-    bf.subscript <- "10"
-  }
-
-  # prepare the bayes factor message
-  bf_message <-
-    substitute(
-      atop(
-        displaystyle(top.text),
-        expr =
-          paste(
-            hypothesis.text,
-            "log"["e"],
-            "(BF"[bf.subscript],
-            ") = ",
-            bf,
-            ", sampling = ",
-            sampling.plan,
-            ", ",
-            italic("a"),
-            " = ",
-            a
-          )
-      ),
-      env = list(
-        hypothesis.text = hypothesis.text,
-        top.text = caption,
-        bf.subscript = bf.subscript,
-        bf = specify_decimal_p(x = bf.value, k = k),
+    # extracting results from bayesian test and creating a dataframe
+    bf_results <-
+      bf_extractor(
+        BayesFactor::contingencyTableBF(
+          x = table(data$main, data$condition),
+          sampleType = sampling.plan,
+          fixedMargin = fixed.margin,
+          priorConcentration = prior.concentration,
+          ...
+        )
+      ) %>%
+      dplyr::mutate(
+        .data = .,
         sampling.plan = sampling_plan_text,
-        a = specify_decimal_p(x = bf_results$prior.concentration[[1]], k = k)
+        fixed.margin = fixed.margin,
+        prior.concentration = prior.concentration
       )
-    )
+
+    # changing aspects of the caption based on what output is needed
+    if (output %in% c("null", "caption", "H0", "h0")) {
+      hypothesis.text <- "In favor of null: "
+      bf.value <- bf_results$log_e_bf01[[1]]
+      bf.subscript <- "01"
+    } else {
+      hypothesis.text <- "In favor of alternative: "
+      bf.value <- -bf_results$log_e_bf01[[1]]
+      bf.subscript <- "10"
+    }
+
+    # prepare the bayes factor message
+    bf_message <-
+      substitute(
+        atop(
+          displaystyle(top.text),
+          expr =
+            paste(
+              hypothesis.text,
+              "log"["e"],
+              "(BF"[bf.subscript],
+              ") = ",
+              bf,
+              ", sampling = ",
+              sampling.plan,
+              ", ",
+              italic("a"),
+              " = ",
+              a
+            )
+        ),
+        env = list(
+          hypothesis.text = hypothesis.text,
+          top.text = caption,
+          bf.subscript = bf.subscript,
+          bf = specify_decimal_p(x = bf.value, k = k),
+          sampling.plan = sampling_plan_text,
+          a = specify_decimal_p(x = bf_results$prior.concentration[[1]], k = k)
+        )
+      )
   } else {
     # no. of levels in `main` variable
     n_levels <- length(as.vector(table(data$main)))
 
-    if (1/n_levels == 0 || 1/n_levels == 1) {
+    if (1 / n_levels == 0 || 1 / n_levels == 1) {
       return(NULL)
     }
 
@@ -448,21 +448,21 @@ bf_contingency_tab <- function(data,
         posterior = FALSE
       )
 
-  # extracting the Bayes factors
-  bf_results <- bf_extractor(bf.object = bf_object) %>%
-    dplyr::mutate(.data = ., bf.prior = bf.prior)
+    # extracting the Bayes factors
+    bf_results <- bf_extractor(bf.object = bf_object) %>%
+      dplyr::mutate(.data = ., bf.prior = bf.prior)
 
-  # prepare the Bayes factor message
-  if (output != "results") {
-    bf_message <-
-      bf_caption_maker(
-        bf.df = bf_results,
-        output = output,
-        k = k,
-        caption = caption
-      )
+    # prepare the Bayes factor message
+    if (output != "results") {
+      bf_message <-
+        bf_caption_maker(
+          bf.df = bf_results,
+          output = output,
+          k = k,
+          caption = caption
+        )
+    }
   }
-}
   # ============================ return ==================================
 
   # return the text results or the dataframe with results

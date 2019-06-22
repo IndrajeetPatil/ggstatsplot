@@ -53,6 +53,48 @@ testthat::test_that(
 
     # testing overall call
     testthat::expect_identical(using_function1, results1)
+
+    # with counts
+    set.seed(123)
+    using_function2 <- ggstatsplot::subtitle_contingency_tab(
+      data = as.data.frame(Titanic),
+      main = Sex,
+      counts = "Freq",
+      messages = FALSE
+    )
+
+    results2 <-
+      ggplot2::expr(
+        paste(
+          NULL,
+          chi["gof"]^2,
+          "(",
+          "1",
+          ") = ",
+          "722.45",
+          ", ",
+          italic("p"),
+          " = ",
+          "< 0.001",
+          ", ",
+          italic("V")["Cramer"],
+          " = ",
+          "0.57",
+          ", CI"["95%"],
+          " [",
+          "0.54",
+          ", ",
+          "0.61",
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          2201L
+        )
+      )
+
+    # testing overall call
+    testthat::expect_identical(using_function2, results2)
   }
 )
 

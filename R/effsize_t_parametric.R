@@ -182,7 +182,7 @@ effsize_t_parametric <- function(formula = NULL,
   # if the data is in tidy format
   if (length(formula) == 3 & isTRUE(paired)) {
     if (is.factor(eval(formula[[3]], data)) ||
-        is.character(eval(formula[[3]], data))) {
+      is.character(eval(formula[[3]], data))) {
       # getting `x` and `y` in required format
       outcome <- eval(formula[[2]], data)
       group <- eval(formula[[3]], data)

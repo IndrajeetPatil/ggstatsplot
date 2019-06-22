@@ -461,11 +461,13 @@ testthat::test_that(
 
     # plots
     p1 <-
-      ggstatsplot::ggpiestats(data = mtcars,
-                              main = am,
-                              ratio = c(0.5, 0.5),
-                              bf.prior = 0.8,
-                              messages = FALSE)
+      ggstatsplot::ggpiestats(
+        data = mtcars,
+        main = am,
+        ratio = c(0.5, 0.5),
+        bf.prior = 0.8,
+        messages = FALSE
+      )
     p2 <-
       ggstatsplot::ggpiestats(
         data = mtcars,
@@ -474,14 +476,18 @@ testthat::test_that(
         caption = "dolore",
         messages = FALSE
       )
-    p3 <- ggstatsplot::ggpiestats(data = mtcars,
-                                  main = cyl,
-                                  messages = FALSE)
+    p3 <- ggstatsplot::ggpiestats(
+      data = mtcars,
+      main = cyl,
+      messages = FALSE
+    )
     p4 <-
-      ggstatsplot::ggpiestats(data = mtcars,
-                              main = cyl,
-                              ratio = c(0.3, 0.3, 0.4),
-                              messages = FALSE)
+      ggstatsplot::ggpiestats(
+        data = mtcars,
+        main = cyl,
+        ratio = c(0.3, 0.3, 0.4),
+        messages = FALSE
+      )
 
     # testing overall call
     testthat::expect_identical(p1$labels$caption, ggplot2::expr(atop(
