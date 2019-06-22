@@ -366,7 +366,71 @@ testthat::test_that(
   }
 )
 
-# bayes factor (contingency tab) ----------------------
+
+# bayes factor (proportion test) --------------------------------------
+
+testthat::test_that(
+  desc = "bayes factor (proportion test)",
+  code = {
+    testthat::skip_on_cran()
+
+    # extracting results from where this function is implemented
+    set.seed(123)
+    df <- ggstatsplot::bf_extractor(BayesFactor::proportionBF(
+      y = as.vector(table(mtcars$am)),
+      N = rep(nrow(mtcars), length(as.vector(table(mtcars$am)))),
+      p = 0.5,
+      rscale = 0.5
+    ))
+
+    # extracting results from where this function is implemented
+    set.seed(123)
+    df_results <- ggstatsplot::bf_contingency_tab(
+      data = mtcars,
+      main = am,
+      bf.prior = 0.5,
+      output = "results"
+    )
+
+    # check bayes factor values
+    testthat::expect_equal(df$bf10, 0.2967642, tolerance = 0.001)
+    testthat::expect_equal(df$log_e_bf10, -1.214817, tolerance = 0.001)
+    testthat::expect_equal(df$log_e_bf10, -df$log_e_bf01, tolerance = 0.001)
+    testthat::expect_equal(df$log_10_bf10, -0.5275885, tolerance = 0.001)
+    testthat::expect_equal(df$log_10_bf10, -df$log_10_bf01, tolerance = 0.001)
+
+    # checking if two usages of the function are producing the same results
+    testthat::expect_equal(df$bf10, df_results$bf10, tolerance = 0.001)
+    testthat::expect_equal(df$log_e_bf01, df_results$log_e_bf01, tolerance = 0.001)
+
+    # caption
+    caption_text <- ggstatsplot::bf_contingency_tab(
+      data = mtcars,
+      main = am,
+      output = "alternative"
+    )
+
+    testthat::expect_identical(
+      caption_text,
+      ggplot2::expr(atop(
+        displaystyle(NULL),
+        expr = paste(
+          "In favor of alternative: ",
+          "log"["e"],
+          "(BF"["10"],
+          ") = ",
+          "-1.53",
+          ", ",
+          italic("r")["Cauchy"],
+          " = ",
+          "0.71"
+        )
+      ))
+    )
+  }
+)
+
+# bayes factor (contingency tab) --------------------------------------
 
 testthat::test_that(
   desc = "bayes factor (contingency tab)",

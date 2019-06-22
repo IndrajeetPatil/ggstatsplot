@@ -4,7 +4,8 @@
 \alias{bf_contingency_tab}
 \title{Bayesian contingency table analysis.}
 \usage{
-bf_contingency_tab(data, main, condition, sampling.plan = "indepMulti",
+bf_contingency_tab(data, main, condition = NULL, counts = NULL,
+  bf.prior = 0.707, sampling.plan = "indepMulti",
   fixed.margin = "rows", prior.concentration = 1, caption = NULL,
   output = "null", k = 2, ...)
 }
@@ -18,6 +19,12 @@ be taken. A matrix or tables will \strong{not} be accepted.}
 table. Default is \code{NULL}. If \code{NULL}, one-sample proportion test (a goodness
 of fit test) will be run for the \code{main} variable. Otherwise an appropriate
 association test will be run.}
+
+\item{counts}{A string naming a variable in data containing counts, or \code{NULL}
+if each row represents a single observation (Default).}
+
+\item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
+to use in calculating Bayes factors.}
 
 \item{sampling.plan}{Character describing the sampling plan. Possible options
 are \code{"indepMulti"} (independent multinomial; default), \code{"poisson"},

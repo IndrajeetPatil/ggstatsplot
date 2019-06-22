@@ -308,7 +308,9 @@ bf_corr_test <- function(data,
 # function body
 bf_contingency_tab <- function(data,
                                main,
-                               condition,
+                               condition = NULL,
+                               counts = NULL,
+                               bf.prior = 0.707,
                                sampling.plan = "indepMulti",
                                fixed.margin = "rows",
                                prior.concentration = 1,
@@ -316,24 +318,48 @@ bf_contingency_tab <- function(data,
                                output = "null",
                                k = 2,
                                ...) {
+  ellipsis::check_dots_used()
 
-  # ============================ data preparation ==========================
+  # =============================== dataframe ================================
 
   # creating a dataframe
   data <-
     dplyr::select(
       .data = data,
-      x = !!rlang::enquo(main),
-      y = !!rlang::enquo(condition)
+      main = !!rlang::enquo(main),
+      condition = !!rlang::enquo(condition),
+      counts = !!rlang::enquo(counts)
     ) %>%
     tidyr::drop_na(data = .) %>%
-    dplyr::mutate(
-      .data = .,
-      x = droplevels(as.factor(x)), y = droplevels(as.factor(y))
-    ) %>%
-    tibble::as_tibble(.)
+    tibble::as_tibble(x = .)
 
-  # ========================= subtitle preparation ==========================
+  # =========================== converting counts ============================
+
+  # untable the dataframe based on the count for each obervation
+  if ("counts" %in% names(data)) {
+    data %<>%
+      tidyr::uncount(
+        data = .,
+        weights = counts,
+        .remove = TRUE,
+        .id = "id"
+      )
+  }
+
+  # main and condition need to be a factor for this analysis
+  # also drop the unused levels of the factors
+
+  # main
+  data %<>%
+    dplyr::mutate(.data = ., main = droplevels(as.factor(main)))
+
+  # ========================= caption preparation ==========================
+
+  if ("condition" %in% names(data)) {
+
+    # dropping unused levels
+    data %<>%
+      dplyr::mutate(.data = ., condition = droplevels(as.factor(condition)))
 
   # detailed text of sample plan
   sampling_plan_text <-
@@ -349,7 +375,7 @@ bf_contingency_tab <- function(data,
   bf_results <-
     bf_extractor(
       BayesFactor::contingencyTableBF(
-        x = table(data$x, data$y),
+        x = table(data$main, data$condition),
         sampleType = sampling.plan,
         fixedMargin = fixed.margin,
         priorConcentration = prior.concentration,
@@ -403,7 +429,40 @@ bf_contingency_tab <- function(data,
         a = specify_decimal_p(x = bf_results$prior.concentration[[1]], k = k)
       )
     )
+  } else {
+    # no. of levels in `main` variable
+    n_levels <- length(as.vector(table(data$main)))
 
+    if (1/n_levels == 0 || 1/n_levels == 1) {
+      return(NULL)
+    }
+
+    # one sample goodness of fit test for equal proportions
+    bf_object <-
+      BayesFactor::proportionBF(
+        y = as.vector(table(data$main)),
+        N = rep(nrow(data), n_levels),
+        p = 1 / n_levels,
+        rscale = bf.prior,
+        nullInterval = NULL,
+        posterior = FALSE
+      )
+
+  # extracting the Bayes factors
+  bf_results <- bf_extractor(bf.object = bf_object) %>%
+    dplyr::mutate(.data = ., bf.prior = bf.prior)
+
+  # prepare the Bayes factor message
+  if (output != "results") {
+    bf_message <-
+      bf_caption_maker(
+        bf.df = bf_results,
+        output = output,
+        k = k,
+        caption = caption
+      )
+  }
+}
   # ============================ return ==================================
 
   # return the text results or the dataframe with results

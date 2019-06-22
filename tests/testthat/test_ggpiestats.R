@@ -69,7 +69,20 @@ testthat::test_that(
     # checking plot labels
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
     testthat::expect_identical(p$labels$title, "mammalian sleep")
-    testthat::expect_identical(p$labels$caption, "From ggplot2 package")
+    testthat::expect_identical(p$labels$caption, ggplot2::expr(atop(
+      displaystyle("From ggplot2 package"),
+      expr = paste(
+        "In favor of null: ",
+        "log"["e"],
+        "(BF"["01"],
+        ") = ",
+        "2.15",
+        ", ",
+        italic("r")["Cauchy"],
+        " = ",
+        "0.71"
+      )
+    )))
     testthat::expect_null(p$labels$x, NULL)
     testthat::expect_null(p$labels$y, NULL)
     testthat::expect_identical(pb$plot$plot_env$legend.title, "vorarephilia")
@@ -438,6 +451,72 @@ testthat::test_that(
   }
 )
 
+# one sample prop test bf caption ---------------------------------------------
+
+testthat::test_that(
+  desc = "checking one sample prop test bf caption",
+  code = {
+    testthat::skip_on_cran()
+    set.seed(123)
+
+    # plots
+    p1 <-
+      ggstatsplot::ggpiestats(data = mtcars,
+                              main = am,
+                              ratio = c(0.5, 0.5),
+                              bf.prior = 0.8,
+                              messages = FALSE)
+    p2 <-
+      ggstatsplot::ggpiestats(
+        data = mtcars,
+        main = am,
+        ratio = c(0.6, 0.4),
+        caption = "dolore",
+        messages = FALSE
+      )
+    p3 <- ggstatsplot::ggpiestats(data = mtcars,
+                                  main = cyl,
+                                  messages = FALSE)
+    p4 <-
+      ggstatsplot::ggpiestats(data = mtcars,
+                              main = cyl,
+                              ratio = c(0.3, 0.3, 0.4),
+                              messages = FALSE)
+
+    # testing overall call
+    testthat::expect_identical(p1$labels$caption, ggplot2::expr(atop(
+      displaystyle(NULL),
+      expr = paste(
+        "In favor of null: ",
+        "log"["e"],
+        "(BF"["01"],
+        ") = ",
+        "1.65",
+        ", ",
+        italic("r")["Cauchy"],
+        " = ",
+        "0.80"
+      )
+    )))
+    testthat::expect_identical(p2$labels$caption, "dolore")
+    testthat::expect_identical(p3$labels$caption, ggplot2::expr(atop(
+      displaystyle(NULL),
+      expr = paste(
+        "In favor of null: ",
+        "log"["e"],
+        "(BF"["01"],
+        ") = ",
+        "1.67",
+        ", ",
+        italic("r")["Cauchy"],
+        " = ",
+        "0.71"
+      )
+    )))
+    testthat::expect_null(p4$labels$caption, NULL)
+  }
+)
+
 # without enough data ---------------------------------------------------------
 
 testthat::test_that(
@@ -460,6 +539,7 @@ testthat::test_that(
 
     # testing overall call
     testthat::expect_identical(p1$labels$subtitle, p_subtitle1)
+    testthat::expect_null(p1$labels$caption, NULL)
     testthat::expect_error(ggstatsplot::ggpiestats(
       data = df,
       main = x,
