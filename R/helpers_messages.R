@@ -303,11 +303,9 @@ proptest_message <- function(main, condition) {
   # tell the user what these results are
   message(cat(
     crayon::green("Note: "),
-    crayon::blue("Results from one-sample proportion tests for each\n"),
-    crayon::blue("      level of the variable "),
+    crayon::blue("Results from one-sample proportion tests for each level of the variable\n"),
     crayon::yellow(condition),
-    crayon::blue(" testing for equal\n"),
-    crayon::blue("      proportions of the variable "),
+    crayon::blue(" testing for equal proportions of the variable "),
     crayon::yellow(main),
     crayon::blue(".\n"),
     sep = ""

@@ -366,7 +366,59 @@ testthat::test_that(
   }
 )
 
-# bayes factor (contingency tab) ----------------------
+
+# bayes factor (proportion test) --------------------------------------
+
+testthat::test_that(
+  desc = "bayes factor (proportion test)",
+  code = {
+    testthat::skip_on_cran()
+
+    # extracting results from where this function is implemented
+    set.seed(123)
+    df <- ggstatsplot::bf_contingency_tab(
+      data = mtcars,
+      main = am,
+      output = "results"
+    )
+
+    # check bayes factor values
+    testthat::expect_equal(df$bf10, 0.2465787, tolerance = 0.001)
+    testthat::expect_equal(df$log_e_bf10, -1.400074, tolerance = 0.001)
+    testthat::expect_equal(df$log_e_bf10, -df$log_e_bf01, tolerance = 0.001)
+    testthat::expect_equal(df$log_10_bf10, -0.6080444, tolerance = 0.001)
+    testthat::expect_equal(df$log_10_bf10, -df$log_10_bf01, tolerance = 0.001)
+
+    # caption
+    set.seed(123)
+    caption_text <- ggstatsplot::bf_contingency_tab(
+      data = mtcars,
+      main = cyl,
+      output = "alternative",
+      prior.concentration = 10
+    )
+
+    testthat::expect_identical(
+      caption_text,
+      ggplot2::expr(atop(
+        displaystyle(NULL),
+        expr = paste(
+          "In favor of alternative: ",
+          "log"["e"],
+          "(BF"["10"],
+          ") = ",
+          "-0.55",
+          ", ",
+          italic("a"),
+          " = ",
+          "10.00"
+        )
+      ))
+    )
+  }
+)
+
+# bayes factor (contingency tab) --------------------------------------
 
 testthat::test_that(
   desc = "bayes factor (contingency tab)",
@@ -404,6 +456,17 @@ testthat::test_that(
       output = "alternative"
     )
 
+    # with counts
+    caption_text2 <- ggstatsplot::bf_contingency_tab(
+      data = as.data.frame(Titanic),
+      main = Survived,
+      condition = Sex,
+      counts = "Freq",
+      sampling.plan = "jointMulti",
+      fixed.margin = "rows",
+      output = "alternative"
+    )
+
     # check bayes factor values
     testthat::expect_equal(df$bf10, 28.07349, tolerance = 0.001)
     testthat::expect_equal(df$log_e_bf10, 3.334826, tolerance = 0.001)
@@ -432,6 +495,26 @@ testthat::test_that(
         "1.00"
       )
     )))
+
+    testthat::expect_identical(
+      caption_text2,
+      ggplot2::expr(atop(
+        displaystyle(NULL),
+        expr = paste(
+          "In favor of alternative: ",
+          "log"["e"],
+          "(BF"["10"],
+          ") = ",
+          "214.25",
+          ", sampling = ",
+          "joint multinomial",
+          ", ",
+          italic("a"),
+          " = ",
+          "1.00"
+        )
+      ))
+    )
   }
 )
 

@@ -11,9 +11,10 @@ ggpiestats(data, main, condition = NULL, counts = NULL, ratio = NULL,
   label.fill.color = "white", label.fill.alpha = 1,
   bf.message = TRUE, sampling.plan = "indepMulti",
   fixed.margin = "rows", prior.concentration = 1, title = NULL,
-  subtitle = NULL, caption = NULL, conf.level = 0.95, nboot = 100,
-  simulate.p.value = FALSE, B = 2000, bias.correct = FALSE,
-  legend.title = NULL, facet.wrap.name = NULL, k = 2, perc.k = 0,
+  subtitle = NULL, caption = NULL, conf.level = 0.95,
+  bf.prior = 0.707, nboot = 100, simulate.p.value = FALSE,
+  B = 2000, bias.correct = FALSE, legend.title = NULL,
+  facet.wrap.name = NULL, k = 2, perc.k = 0,
   slice.label = "percentage", facet.proptest = TRUE,
   ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
   package = "RColorBrewer", palette = "Dark2", direction = 1,
@@ -97,6 +98,9 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 
 \item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
 \code{95\%} lower and upper confidence intervals (\code{0.95}).}
+
+\item{bf.prior}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
+width to use in calculating Bayes factors.}
 
 \item{nboot}{Number of bootstrap samples for computing confidence interval
 for the effect size (Default: \code{100}).}

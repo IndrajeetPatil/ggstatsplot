@@ -4,9 +4,10 @@
 \alias{bf_contingency_tab}
 \title{Bayesian contingency table analysis.}
 \usage{
-bf_contingency_tab(data, main, condition, sampling.plan = "indepMulti",
-  fixed.margin = "rows", prior.concentration = 1, caption = NULL,
-  output = "null", k = 2, ...)
+bf_contingency_tab(data, main, condition = NULL, counts = NULL,
+  ratio = NULL, sampling.plan = "indepMulti", fixed.margin = "rows",
+  prior.concentration = 1, caption = NULL, output = "null", k = 2,
+  ...)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
@@ -18,6 +19,12 @@ be taken. A matrix or tables will \strong{not} be accepted.}
 table. Default is \code{NULL}. If \code{NULL}, one-sample proportion test (a goodness
 of fit test) will be run for the \code{main} variable. Otherwise an appropriate
 association test will be run.}
+
+\item{counts}{A string naming a variable in data containing counts, or \code{NULL}
+if each row represents a single observation (Default).}
+
+\item{ratio}{A vector of numbers: the expected proportions for the proportion
+test. Default is \code{NULL}, which means if there are two levels \code{ratio = c(1,1)}, etc.}
 
 \item{sampling.plan}{Character describing the sampling plan. Possible options
 are \code{"indepMulti"} (independent multinomial; default), \code{"poisson"},
@@ -48,7 +55,14 @@ a dataframe with results all the details).}
 \description{
 Bayesian contingency table analysis.
 }
+\note{
+Bayes Factor for goodness of fit test is based on gist provided by
+Richard Morey:
+\url{https://gist.github.com/richarddmorey/a4cd3a2051f373db917550d67131dba4}.
+}
 \examples{
+
+# ------------------ association tests --------------------------------
 
 # for reproducibility
 set.seed(123)
@@ -79,6 +93,14 @@ bf_contingency_tab(
   sampling.plan = "jointMulti",
   fixed.margin = "rows",
   prior.concentration = 1
+)
+
+# ------------------ goodness of fit tests --------------------------------
+
+bf_contingency_tab(
+  data = mtcars,
+  main = am,
+  prior.concentration = 10
 )
 }
 \seealso{

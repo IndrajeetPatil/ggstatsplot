@@ -218,7 +218,7 @@ testthat::test_that(
 
     testthat::expect_output(
       ggstatsplot:::proptest_message(main = "am", condition = "cyl"),
-      "level of the variable cyl testing for equal",
+      "Results from one-sample proportion tests",
       fixed = TRUE
     )
   }

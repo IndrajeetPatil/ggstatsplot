@@ -44,7 +44,7 @@
 #'
 #' @import ggplot2
 #'
-#' @importFrom dplyr select group_by summarize n mutate mutate_at mutate_if
+#' @importFrom dplyr select group_by summarize n mutate mutate_at mutate_if near
 #' @importFrom rlang !! enquo quo_name as_name ensym
 #' @importFrom crayon green blue yellow red
 #' @importFrom paletteer scale_fill_paletteer_d
@@ -124,6 +124,7 @@ ggpiestats <- function(data,
                        subtitle = NULL,
                        caption = NULL,
                        conf.level = 0.95,
+                       bf.prior = 0.707,
                        nboot = 100,
                        simulate.p.value = FALSE,
                        B = 2000,
@@ -208,14 +209,12 @@ ggpiestats <- function(data,
       perc.k = perc.k
     )
 
-  # ============================ label dataframe ==========================
+  # ============ preparing label dataframe and other annotations  =============
 
   # dataframe containing all details needed for sample size and prop test
   if ("condition" %in% names(data)) {
     df_labels <- df_facet_label(data = data, x = main, y = condition)
   }
-
-  # ================= preparing names for legend and facet_wrap ==============
 
   # reorder the category factor levels to order the legend
   df$main <- factor(x = df$main, levels = unique(df$main))
@@ -305,7 +304,7 @@ ggpiestats <- function(data,
       fill = ggplot2::guide_legend(override.aes = list(color = NA))
     )
 
-  # =============== chi-square test (either Pearson or McNemar) =============
+  # ========================= statistical analysis ==========================
 
   # if subtitle with results is to be displayed
   if (isTRUE(results.subtitle)) {
@@ -327,27 +326,25 @@ ggpiestats <- function(data,
         k = k,
         messages = messages
       )
+
+    # preparing Bayes Factor caption
+    if (isTRUE(bf.message) && !is.null(subtitle)) {
+      caption <- bf_contingency_tab(
+        data = data,
+        main = main,
+        condition = condition,
+        sampling.plan = sampling.plan,
+        fixed.margin = fixed.margin,
+        prior.concentration = prior.concentration,
+        caption = caption,
+        output = "caption",
+        k = k
+      )
+    }
   }
 
   # if faceting by condition is happening
   if ("condition" %in% names(data)) {
-
-    # if subtitle with results is to be displayed
-    # preparing the BF message for null hypothesis support
-    if (isTRUE(results.subtitle) && isTRUE(bf.message) && !is.null(subtitle)) {
-      caption <-
-        bf_contingency_tab(
-          data = data,
-          main = main,
-          condition = condition,
-          sampling.plan = sampling.plan,
-          fixed.margin = fixed.margin,
-          prior.concentration = prior.concentration,
-          caption = caption,
-          output = "caption",
-          k = k
-        )
-    }
 
     # ================ sample size and proportion test labels =================
 

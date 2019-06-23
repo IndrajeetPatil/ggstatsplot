@@ -23,7 +23,7 @@ coverage:
     changes:
       default:
         branches: null
-
+        threshold: 1%
 
 comment:
   layout: "header, diff, changes, sunburst, uncovered, tree"
