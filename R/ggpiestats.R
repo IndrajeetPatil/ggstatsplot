@@ -209,24 +209,6 @@ ggpiestats <- function(data,
       perc.k = perc.k
     )
 
-  # ============ ratio check for goodness of fit Bayes Factor  =============
-
-  # ratio
-  if (!"condition" %in% names(data) && !is.null(ratio) && isTRUE(bf.message)) {
-    # turn off caption with Bayes Factor if ratio is not equal probability
-    if (!dplyr::near(ratio[1], 1 / length(as.vector(table(data$main))), tol = 0.001)) {
-      bf.message <- FALSE
-      # message to display
-      message(cat(
-        crayon::red("Warning: "),
-        crayon::blue("Bayes Factor for one-sample proportion test is available only"),
-        crayon::blue("for equal probability.\n No Bayes Factor caption will be displayed."),
-        crayon::blue("Try setting `ratio = NULL`.\n"),
-        sep = ""
-      ))
-    }
-  }
-
   # ============ preparing label dataframe and other annotations  =============
 
   # dataframe containing all details needed for sample size and prop test
@@ -351,7 +333,6 @@ ggpiestats <- function(data,
         data = data,
         main = main,
         condition = condition,
-        bf.prior = bf.prior,
         sampling.plan = sampling.plan,
         fixed.margin = fixed.margin,
         prior.concentration = prior.concentration,

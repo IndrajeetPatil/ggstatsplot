@@ -524,6 +524,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "MCMCpack",
+      "name": "MCMCpack",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=MCMCpack"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "metaBMA",
       "name": "metaBMA",
       "version": ">= 0.3.9",

@@ -186,7 +186,7 @@
 <td><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg" alt="minimal R version"></a></td>
 <td><a href="https://www.tidyverse.org/lifecycle/"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue" alt="Monthly downloads badge"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-18-red.svg" alt="Github Issues"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-19-red.svg" alt="Github Issues"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot/vignettes/"><img src="https://img.shields.io/badge/vignettes-0.0.11-orange.svg?colorB=FF5722" alt="vignettes"></a></td>
 </tr>
 <tr class="even">
@@ -200,12 +200,12 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
 <td><a href="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot"><img src="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2019--06--20-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2019--06--23-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg" alt="GitHub last commit"></a></td>
 </tr>
 <tr class="even">
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://tinyverse.netlify.com/badge/ggstatsplot" alt="status"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md"><img src="https://img.shields.io/badge/covrpage-Last_Build_2019_06_18-red.svg" alt="Covrpage Summary"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md"><img src="https://img.shields.io/badge/covrpage-Last_Build_2019_06_20-yellowgreen.svg" alt="Covrpage Summary"></a></td>
 <td><a href="https://saythanks.io/to/IndrajeetPatil"><img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg" alt="saythanks"></a></td>
 <td><a href="http://www.repostatus.org/#active"><img src="http://www.repostatus.org/badges/latest/active.svg" alt="Project Status"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat" alt="contributions welcome"></a></td>
@@ -331,7 +331,7 @@
 <td><font color="green">Yes</font></td>
 <td><code>NA</code></td>
 <td><code>NA</code></td>
-<td><font color="red">No</font></td>
+<td><font color="green">Yes</font></td>
 </tr>
 <tr class="even">
 <td><code>ggcoefstats</code></td>
@@ -606,7 +606,7 @@
 <a class="sourceLine" id="cb7-8" title="8"><span class="co">#&gt;   # returning the converted plot</span></a>
 <a class="sourceLine" id="cb7-9" title="9"><span class="co">#&gt;   return(p)</span></a>
 <a class="sourceLine" id="cb7-10" title="10"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt; &lt;bytecode: 0x00000000365fee90&gt;</span></a>
+<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt; &lt;bytecode: 0x00000000303e9228&gt;</span></a>
 <a class="sourceLine" id="cb7-12" title="12"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -1164,15 +1164,14 @@
 <a class="sourceLine" id="cb19-22" title="22">  <span class="dt">palette =</span> <span class="st">"Royal1"</span></a>
 <a class="sourceLine" id="cb19-23" title="23">)</a>
 <a class="sourceLine" id="cb19-24" title="24"><span class="co">#&gt; Note: 99% CI for effect size estimate was computed with 100 bootstrap samples.</span></a>
-<a class="sourceLine" id="cb19-25" title="25"><span class="co">#&gt; Note: Results from one-sample proportion tests for each</span></a>
-<a class="sourceLine" id="cb19-26" title="26"><span class="co">#&gt;       level of the variable 2nd survey testing for equal</span></a>
-<a class="sourceLine" id="cb19-27" title="27"><span class="co">#&gt;       proportions of the variable 1st survey.</span></a>
-<a class="sourceLine" id="cb19-28" title="28"><span class="co">#&gt; # A tibble: 2 x 8</span></a>
-<a class="sourceLine" id="cb19-29" title="29"><span class="co">#&gt;   condition N     Approve Disapprove `Chi-squared`    df `p-value`</span></a>
-<a class="sourceLine" id="cb19-30" title="30"><span class="co">#&gt;   &lt;fct&gt;     &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb19-31" title="31"><span class="co">#&gt; 1 Approve   (n =~ 90.23%  9.77%               570.     1         0</span></a>
-<a class="sourceLine" id="cb19-32" title="32"><span class="co">#&gt; 2 Disappro~ (n =~ 20.83%  79.17%              245      1         0</span></a>
-<a class="sourceLine" id="cb19-33" title="33"><span class="co">#&gt; # ... with 1 more variable: significance &lt;chr&gt;</span></a></code></pre></div>
+<a class="sourceLine" id="cb19-25" title="25"><span class="co">#&gt; Note: Results from one-sample proportion tests for each level of the variable</span></a>
+<a class="sourceLine" id="cb19-26" title="26"><span class="co">#&gt; 2nd survey testing for equal proportions of the variable 1st survey.</span></a>
+<a class="sourceLine" id="cb19-27" title="27"><span class="co">#&gt; # A tibble: 2 x 8</span></a>
+<a class="sourceLine" id="cb19-28" title="28"><span class="co">#&gt;   condition N     Approve Disapprove `Chi-squared`    df `p-value`</span></a>
+<a class="sourceLine" id="cb19-29" title="29"><span class="co">#&gt;   &lt;fct&gt;     &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb19-30" title="30"><span class="co">#&gt; 1 Approve   (n =~ 90.23%  9.77%               570.     1         0</span></a>
+<a class="sourceLine" id="cb19-31" title="31"><span class="co">#&gt; 2 Disappro~ (n =~ 20.83%  79.17%              245      1         0</span></a>
+<a class="sourceLine" id="cb19-32" title="32"><span class="co">#&gt; # ... with 1 more variable: significance &lt;chr&gt;</span></a></code></pre></div>
 <p><img src="reference/figures/README-ggpiestats3-1.png" width="100%"></p>
 <p>Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="co"># for reproducibility</span></a>

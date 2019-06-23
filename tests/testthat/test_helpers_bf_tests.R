@@ -376,38 +376,26 @@ testthat::test_that(
 
     # extracting results from where this function is implemented
     set.seed(123)
-    df <- ggstatsplot::bf_extractor(BayesFactor::proportionBF(
-      y = as.vector(table(mtcars$am)),
-      N = rep(nrow(mtcars), length(as.vector(table(mtcars$am)))),
-      p = 0.5,
-      rscale = 0.5
-    ))
-
-    # extracting results from where this function is implemented
-    set.seed(123)
-    df_results <- ggstatsplot::bf_contingency_tab(
+    df <- ggstatsplot::bf_contingency_tab(
       data = mtcars,
       main = am,
-      bf.prior = 0.5,
       output = "results"
     )
 
     # check bayes factor values
-    testthat::expect_equal(df$bf10, 0.2967642, tolerance = 0.001)
-    testthat::expect_equal(df$log_e_bf10, -1.214817, tolerance = 0.001)
+    testthat::expect_equal(df$bf10, 0.2465787, tolerance = 0.001)
+    testthat::expect_equal(df$log_e_bf10, -1.400074, tolerance = 0.001)
     testthat::expect_equal(df$log_e_bf10, -df$log_e_bf01, tolerance = 0.001)
-    testthat::expect_equal(df$log_10_bf10, -0.5275885, tolerance = 0.001)
+    testthat::expect_equal(df$log_10_bf10, -0.6080444, tolerance = 0.001)
     testthat::expect_equal(df$log_10_bf10, -df$log_10_bf01, tolerance = 0.001)
 
-    # checking if two usages of the function are producing the same results
-    testthat::expect_equal(df$bf10, df_results$bf10, tolerance = 0.001)
-    testthat::expect_equal(df$log_e_bf01, df_results$log_e_bf01, tolerance = 0.001)
-
     # caption
+    set.seed(123)
     caption_text <- ggstatsplot::bf_contingency_tab(
       data = mtcars,
-      main = am,
-      output = "alternative"
+      main = cyl,
+      output = "alternative",
+      prior.concentration = 10
     )
 
     testthat::expect_identical(
@@ -419,11 +407,11 @@ testthat::test_that(
           "log"["e"],
           "(BF"["10"],
           ") = ",
-          "-1.53",
+          "-0.55",
           ", ",
-          italic("r")["Cauchy"],
+          italic("a"),
           " = ",
-          "0.71"
+          "10.00"
         )
       ))
     )

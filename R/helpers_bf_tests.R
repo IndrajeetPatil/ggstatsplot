@@ -266,12 +266,20 @@ bf_corr_test <- function(data,
 #'   hypothesis under the alternative, and corresponds to Gunel and Dickey's
 #'   (1974) `"a"` parameter.
 #'
-#' @importFrom BayesFactor contingencyTableBF
+#' @importFrom BayesFactor contingencyTableBF logMeanExpLogs
+#' @importFrom stats dmultinom
+#' @importFrom MCMCpack rdirichlet
 #'
 #' @seealso \code{\link{bf_corr_test}}, \code{\link{bf_oneway_anova}},
 #' \code{\link{bf_ttest}}
 #'
+#' @note Bayes Factor for goodness of fit test is based on gist provided by
+#'   Richard Morey:
+#'   \url{https://gist.github.com/richarddmorey/a4cd3a2051f373db917550d67131dba4}.
+#'
 #' @examples
+#'
+#' # ------------------ association tests --------------------------------
 #'
 #' # for reproducibility
 #' set.seed(123)
@@ -303,6 +311,14 @@ bf_corr_test <- function(data,
 #'   fixed.margin = "rows",
 #'   prior.concentration = 1
 #' )
+#'
+#' # ------------------ goodness of fit tests --------------------------------
+#'
+#' bf_contingency_tab(
+#'   data = mtcars,
+#'   main = am,
+#'   prior.concentration = 10
+#' )
 #' @export
 
 # function body
@@ -310,7 +326,7 @@ bf_contingency_tab <- function(data,
                                main,
                                condition = NULL,
                                counts = NULL,
-                               bf.prior = 0.707,
+                               ratio = NULL,
                                sampling.plan = "indepMulti",
                                fixed.margin = "rows",
                                prior.concentration = 1,
@@ -353,6 +369,11 @@ bf_contingency_tab <- function(data,
   data %<>%
     dplyr::mutate(.data = ., main = droplevels(as.factor(main)))
 
+  # ratio
+  if (is.null(ratio)) {
+    ratio <- rep(1 / length(table(data$main)), length(table(data$main)))
+  }
+
   # ========================= caption preparation ==========================
 
   if ("condition" %in% names(data)) {
@@ -388,19 +409,76 @@ bf_contingency_tab <- function(data,
         fixed.margin = fixed.margin,
         prior.concentration = prior.concentration
       )
+  } else {
+    # no. of levels in `main` variable
+    n_levels <- length(as.vector(table(data$main)))
 
-    # changing aspects of the caption based on what output is needed
-    if (output %in% c("null", "caption", "H0", "h0")) {
-      hypothesis.text <- "In favor of null: "
-      bf.value <- bf_results$log_e_bf01[[1]]
-      bf.subscript <- "01"
-    } else {
-      hypothesis.text <- "In favor of alternative: "
-      bf.value <- -bf_results$log_e_bf01[[1]]
-      bf.subscript <- "10"
+    if (1 / n_levels == 0 || 1 / n_levels == 1) {
+      return(NULL)
     }
 
-    # prepare the bayes factor message
+    # one sample goodness of fit test for equal proportions
+    y <- as.matrix(table(data$main))
+
+    # (log) prob of data under null
+    pr_y_h0 <- stats::dmultinom(x = y, prob = ratio, log = TRUE)
+
+    # estimate log prob of data under null with Monte Carlo
+    M <- 100000
+    p1s <- MCMCpack::rdirichlet(n = M, alpha = prior.concentration * ratio)
+    tmp_pr_h1 <-
+      sapply(
+        X = 1:M,
+        FUN = function(i)
+          stats::dmultinom(x = y, prob = p1s[i, ], log = TRUE)
+      )
+
+    # estimate log prob of data under alternative
+    pr_y_h1 <- BayesFactor::logMeanExpLogs(v = tmp_pr_h1)
+
+    # computing Bayes Factor
+    bf_10 <- exp(pr_y_h1 - pr_y_h0)
+
+    # dataframe with results
+    bf_results <- tibble::enframe(bf_10) %>%
+      dplyr::select(.data = ., bf10 = value) %>%
+      dplyr::mutate(
+        .data = .,
+        bf01 = 1 / bf10,
+        log_e_bf10 = log(bf10),
+        log_e_bf01 = log(bf01),
+        log_10_bf10 = log10(bf10),
+        log_10_bf01 = log10(bf01)
+      ) %>%
+      dplyr::select(
+        .data = .,
+        bf10,
+        log_e_bf10,
+        log_10_bf10,
+        bf01,
+        log_e_bf01,
+        log_10_bf01,
+        dplyr::everything()
+      ) %>%
+      dplyr::mutate(
+        .data = .,
+        prior.concentration = prior.concentration
+      )
+  }
+
+  # changing aspects of the caption based on what output is needed
+  if (output %in% c("null", "caption", "H0", "h0")) {
+    hypothesis.text <- "In favor of null: "
+    bf.value <- bf_results$log_e_bf01[[1]]
+    bf.subscript <- "01"
+  } else {
+    hypothesis.text <- "In favor of alternative: "
+    bf.value <- -bf_results$log_e_bf01[[1]]
+    bf.subscript <- "10"
+  }
+
+  # prepare the Bayes Factor message
+  if ("condition" %in% names(data)) {
     bf_message <-
       substitute(
         atop(
@@ -430,39 +508,33 @@ bf_contingency_tab <- function(data,
         )
       )
   } else {
-    # no. of levels in `main` variable
-    n_levels <- length(as.vector(table(data$main)))
-
-    if (1 / n_levels == 0 || 1 / n_levels == 1) {
-      return(NULL)
-    }
-
-    # one sample goodness of fit test for equal proportions
-    bf_object <-
-      BayesFactor::proportionBF(
-        y = as.vector(table(data$main)),
-        N = rep(nrow(data), n_levels),
-        p = 1 / n_levels,
-        rscale = bf.prior,
-        nullInterval = NULL,
-        posterior = FALSE
-      )
-
-    # extracting the Bayes factors
-    bf_results <- bf_extractor(bf.object = bf_object) %>%
-      dplyr::mutate(.data = ., bf.prior = bf.prior)
-
-    # prepare the Bayes factor message
-    if (output != "results") {
-      bf_message <-
-        bf_caption_maker(
-          bf.df = bf_results,
-          output = output,
-          k = k,
-          caption = caption
+    bf_message <-
+      substitute(
+        atop(
+          displaystyle(top.text),
+          expr =
+            paste(
+              hypothesis.text,
+              "log"["e"],
+              "(BF"[bf.subscript],
+              ") = ",
+              bf,
+              ", ",
+              italic("a"),
+              " = ",
+              a
+            )
+        ),
+        env = list(
+          hypothesis.text = hypothesis.text,
+          top.text = caption,
+          bf.subscript = bf.subscript,
+          bf = specify_decimal_p(x = bf.value, k = k),
+          a = specify_decimal_p(x = bf_results$prior.concentration[[1]], k = k)
         )
-    }
+      )
   }
+
   # ============================ return ==================================
 
   # return the text results or the dataframe with results
