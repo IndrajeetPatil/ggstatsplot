@@ -189,6 +189,7 @@ utils::globalVariables(
     "coef.type",
     "Value",
     "Statistic",
+    "statistic",
     "d.pmean",
     "d.pmean.LB",
     "d.pmean.UB",

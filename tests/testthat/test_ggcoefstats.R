@@ -681,7 +681,6 @@ testthat::test_that(
     # setup
     set.seed(123)
     library(MASS)
-    library(nlme)
 
     # model
     mod <- MASS::glmmPQL(

@@ -42,6 +42,8 @@ different visualization method, and so on and so forth. The central idea of
 graphics with statistical details, which makes data exploration simpler and
 faster.
 
+# Summary of types of statistical analyses
+
 Currently, it supports only the most common types of statistical tests:
 **parametric**, **nonparametric**, **robust**, and **bayesian** versions of
 **t-test**/**anova**, **correlation** analyses, **contingency table** analysis,
@@ -63,17 +65,6 @@ any grouping variable.
 Future versions will include other types of statistical analyses and plots as
 well.
 
-# Statistical reporting
-
-For all statistical tests reported in the plots, the default template abides
-by the [APA](https://my.ilstu.edu/~jhkahn/apastats.html) gold standard for
-statistical reporting. For example, here are results from Yuen's test for
-trimmed means (robust *t*-test):
-
-<img src="man/figures/stats_reporting_format.png" align="center" />
-
-# Summary of types of statistical analyses
-
 The table below summarizes all the different types of analyses currently
 supported in this package-
 
@@ -87,6 +78,15 @@ Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
 `ggpiestats`, `ggbarstats` | Association between categorical variables | <font color="green">Yes</font> | `NA` | `NA` | <font color="green">Yes</font>
 `ggpiestats`, `ggbarstats` | Equal proportions for categorical variable levels | <font color="green">Yes</font> | `NA` | `NA` | <font color="green">Yes</font>
 `ggcoefstats` | Regression model coefficients | <font color="green">Yes</font> | <font color="red">No</font> | <font color="green">Yes</font> | <font color="red">No</font>
+
+# Statistical reporting
+
+For **all** statistical tests reported in the plots, the default template abides
+by the [APA](https://my.ilstu.edu/~jhkahn/apastats.html) gold standard for
+statistical reporting. For example, here are results from Yuen's test for
+trimmed means (robust *t*-test):
+
+<img src="man/figures/stats_reporting_format.png" align="center" />
 
 # Summary of statistical tests and effect sizes
 
@@ -117,6 +117,8 @@ Functions | Type | Test | Effect size | 95% CI available?
 `gghistostats` | Non-parametric | One-sample Wilcoxon signed rank test | *r* | <font color="green">$\checkmark$</font> 
 `gghistostats`/`ggdotplotstats` | Robust | One-sample percentile bootstrap | robust estimator | <font color="green">$\checkmark$</font>
 `gghistostats`/`ggdotplotstats` | Parametric | Regression models | $$\beta$$ | <font color="green">$\checkmark$</font>
+
+Work is in progress to add some of the currently missing functionality. 
 
 # Installation
 

@@ -261,8 +261,9 @@ structure of the data. More specifically,
     
   - All `ggstatsplot` functions remove `NA`s from variables of interest (similar
     to `ggplot2`; Wickham, 2016, p.207) in the data and display total sample
-    size (*n*) in the subtitle to inform the user/reader about the number of
-    observations included for both the statistical analysis and the
+    size (*n*, either observations for between-subjects or pairs for
+    within-subjects designs) in the subtitle to inform the user/reader about the
+    number of observations included for both the statistical analysis and the
     visualization. But, when sample sizes differ *across* tests in the same
     function, `ggstatsplot` makes an effort to inform the user of this aspect.
     For example, `ggcorrmat` features several correlation test pairs and,
@@ -449,7 +450,7 @@ statistical reporting and why.
 
 1. **APA guidelines** (APA, 2009) are followed (for the most part) by default:   
   - Percentages are displayed with no decimal places (Figure-2).
-  - Correlations, *t*-tests, and chi-squared tests are reported with the degrees
+  - Correlations, *t*-tests, and $\chi^2$-tests are reported with the degrees
     of freedom in parentheses and the significance level (Figure-2, Figure-3b,
     Figure-5).
   - ANOVAs are reported with two degrees of freedom and the significance level
@@ -459,7 +460,7 @@ statistical reporting and why.
     statistic (depending on the model, this can be a *t* or *z* statistic) and
     the corresponding significance level (Figure-6).
   - With the exception of *p*-values, most statistics are rounded to two decimal
-    places.
+    places by default.
 
 2. Default statistical tests: 
 

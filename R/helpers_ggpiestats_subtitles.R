@@ -22,9 +22,11 @@
 #'   like `"main x condition"` or `"interaction"`.
 #' @param bias.correct If `TRUE`, a bias correction will be applied to Cramer's
 #'   *V*.
-#' @param ratio A vector of numbers: the expected proportions for the proportion
-#'   test. Default is `NULL`, which means if there are two levels `ratio =
-#'   c(1,1)`, etc.
+#' @param ratio A vector of proportions: the expected proportions for the
+#'   proportion test (should sum to 1). Default is `NULL`, which means the null
+#'   is equal theoretical proportions across the levels of the nominal variable.
+#'   This means if there are two levels this will be `ratio = c(0.5,0.5)` or if
+#'   there are four levels this will be `ratio = c(0.25,0.25,0.25,0.25)`, etc.
 #' @param legend.title Title text for the legend.
 #' @param ... Additional arguments (currently ignored).
 #' @inheritParams t1way_ci
@@ -32,6 +34,7 @@
 #' @inheritParams stats::chisq.test
 #' @inheritParams subtitle_anova_parametric
 #'
+#' @importFrom dplyr select mutate mutate_at union rename filter
 #' @importFrom ellipsis check_dots_used
 #' @importFrom rlang !! enquo as_name ensym
 #' @importFrom tibble tribble as_tibble
@@ -230,7 +233,7 @@ subtitle_contingency_tab <- function(data,
     } else {
 
       # figuring out all unique factor levels across two variables
-      factor.levels <- union(levels(data$main), levels(data$condition))
+      factor.levels <- dplyr::union(levels(data$main), levels(data$condition))
 
       # introducing dropped levels back into the variables
       data %<>%
