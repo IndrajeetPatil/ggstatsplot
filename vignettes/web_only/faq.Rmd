@@ -113,6 +113,32 @@ ggstatsplot::combine_plots(
 )
 ```
 
+## How can I remove a a particular `geom` layer from the plot?
+
+Sometimes you may not want a particular `geom` layer to be displayed. You can
+remove them using `gginnards`. 
+
+For example, let's say we want to remove the `geom_point()` from
+`ggbetweenstats` default plot.
+
+```{r gginnards, message = FALSE, warning = FALSE, fig.width = 6, fig.height = 6}
+# needed libraries
+library(ggstatsplot)
+library(gginnards)
+
+# plot with all geoms
+p <- ggbetweenstats(
+  data = iris,
+  x = Species,
+  y = Sepal.Length,
+  mean.plotting = FALSE,
+  messages = FALSE
+)
+
+# delete geom corresponding to points
+gginnards::delete_layers(x = p, match_type = "GeomPoint")
+```
+
 # Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on

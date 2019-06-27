@@ -168,18 +168,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "nlme",
-      "name": "nlme",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=nlme"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "ordinal",
       "name": "ordinal",
       "provider": {
@@ -300,7 +288,7 @@
       "@type": "SoftwareApplication",
       "identifier": "broomExtra",
       "name": "broomExtra",
-      "version": ">= 0.0.3",
+      "version": ">= 0.0.4",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -634,7 +622,7 @@
       "@type": "SoftwareApplication",
       "identifier": "rlang",
       "name": "rlang",
-      "version": ">= 0.3.4",
+      "version": ">= 0.4.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",

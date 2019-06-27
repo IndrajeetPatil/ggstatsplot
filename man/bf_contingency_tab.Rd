@@ -23,8 +23,11 @@ association test will be run.}
 \item{counts}{A string naming a variable in data containing counts, or \code{NULL}
 if each row represents a single observation (Default).}
 
-\item{ratio}{A vector of numbers: the expected proportions for the proportion
-test. Default is \code{NULL}, which means if there are two levels \code{ratio = c(1,1)}, etc.}
+\item{ratio}{A vector of proportions: the expected proportions for the
+proportion test (should sum to 1). Default is \code{NULL}, which means the null
+is equal theoretical proportions across the levels of the nominal variable.
+This means if there are two levels this will be \code{ratio = c(0.5,0.5)} or if
+there are four levels this will be \code{ratio = c(0.25,0.25,0.25,0.25)}, etc.}
 
 \item{sampling.plan}{Character describing the sampling plan. Possible options
 are \code{"indepMulti"} (independent multinomial; default), \code{"poisson"},

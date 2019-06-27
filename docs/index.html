@@ -179,14 +179,14 @@
 <td><a href="https://cran.r-project.org/web/checks/check_results_ggstatsplot.html"><img src="https://cranchecks.info/badges/summary/ggstatsplot" alt="CRAN Checks"></a></td>
 <td><a href="https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot"><img src="https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue" alt="Weekly downloads badge"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/"><img src="https://img.shields.io/badge/forks-55-blue.svg" alt="Forks"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/"><img src="https://img.shields.io/badge/forks-57-blue.svg" alt="Forks"></a></td>
 <td><a href="https://www.rdocumentation.org/packages/ggstatsplot"><img src="https://www.rdocumentation.org/badges/version/ggstatsplot" alt="Rdoc"></a></td>
 </tr>
 <tr class="odd">
 <td><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg" alt="minimal R version"></a></td>
 <td><a href="https://www.tidyverse.org/lifecycle/"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue" alt="Monthly downloads badge"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-19-red.svg" alt="Github Issues"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-20-red.svg" alt="Github Issues"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot/vignettes/"><img src="https://img.shields.io/badge/vignettes-0.0.11-orange.svg?colorB=FF5722" alt="vignettes"></a></td>
 </tr>
 <tr class="even">
@@ -200,7 +200,7 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
 <td><a href="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot"><img src="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2019--06--23-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2019--06--27-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg" alt="GitHub last commit"></a></td>
 </tr>
 <tr class="even">
@@ -224,6 +224,10 @@
 <h1 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h1>
 <p><a href="https://indrajeetpatil.github.io/ggstatsplot/"><code>ggstatsplot</code></a> is an extension of <a href="https://github.com/tidyverse/ggplot2"><code>ggplot2</code></a> package for creating graphics with details from statistical tests included in the plots themselves and targeted primarily at behavioral sciences community to provide a one-line code to produce information-rich plots. In a typical exploratory data analysis workflow, data visualization and statistical modeling are two different phases: visualization informs modeling, and modeling in its turn can suggest a different visualization method, and so on and so forth. The central idea of <em>ggstatsplot</em> is simple: combine these two phases into one in the form of graphics with statistical details, which makes data exploration simpler and faster.</p>
+</div>
+<div id="summary-of-types-of-statistical-analyses" class="section level1">
+<h1 class="hasAnchor">
+<a href="#summary-of-types-of-statistical-analyses" class="anchor"></a>Summary of types of statistical analyses</h1>
 <p>Currently, it supports only the most common types of statistical tests: <strong>parametric</strong>, <strong>nonparametric</strong>, <strong>robust</strong>, and <strong>bayesian</strong> versions of <strong>t-test</strong>/<strong>anova</strong>, <strong>correlation</strong> analyses, <strong>contingency table</strong> analysis, and <strong>regression</strong> analyses.</p>
 <p>It, therefore, produces a limited kinds of plots for the supported analyses:</p>
 <ul>
@@ -242,16 +246,6 @@
 </ul>
 <p>In addition to these basic plots, <code>ggstatsplot</code> also provides <strong><code>grouped_</code></strong> versions for most functions that makes it easy to repeat the same analysis for any grouping variable.</p>
 <p>Future versions will include other types of statistical analyses and plots as well.</p>
-</div>
-<div id="statistical-reporting" class="section level1">
-<h1 class="hasAnchor">
-<a href="#statistical-reporting" class="anchor"></a>Statistical reporting</h1>
-<p>For all statistical tests reported in the plots, the default template abides by the <a href="https://my.ilstu.edu/~jhkahn/apastats.html">APA</a> gold standard for statistical reporting. For example, here are results from Yuen’s test for trimmed means (robust <em>t</em>-test):</p>
-<p><img src="reference/figures/stats_reporting_format.png" align="center"></p>
-</div>
-<div id="summary-of-types-of-statistical-analyses" class="section level1">
-<h1 class="hasAnchor">
-<a href="#summary-of-types-of-statistical-analyses" class="anchor"></a>Summary of types of statistical analyses</h1>
 <p>The table below summarizes all the different types of analyses currently supported in this package-</p>
 <table class="table table">
 <colgroup>
@@ -343,6 +337,12 @@
 </tr>
 </tbody>
 </table>
+</div>
+<div id="statistical-reporting" class="section level1">
+<h1 class="hasAnchor">
+<a href="#statistical-reporting" class="anchor"></a>Statistical reporting</h1>
+<p>For <strong>all</strong> statistical tests reported in the plots, the default template abides by the <a href="https://my.ilstu.edu/~jhkahn/apastats.html">APA</a> gold standard for statistical reporting. For example, here are results from Yuen’s test for trimmed means (robust <em>t</em>-test):</p>
+<p><img src="reference/figures/stats_reporting_format.png" align="center"></p>
 </div>
 <div id="summary-of-statistical-tests-and-effect-sizes" class="section level1">
 <h1 class="hasAnchor">
@@ -539,6 +539,7 @@
 </tr>
 </tbody>
 </table>
+<p>Work is in progress to add some of the currently missing functionality.</p>
 </div>
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
@@ -571,7 +572,7 @@
 <h1 class="hasAnchor">
 <a href="#citation" class="anchor"></a>Citation</h1>
 <p>If you want to cite this package in a scientific journal or in any other context, run the following code in your <code>R</code> console:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">utils<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span>(<span class="dt">package =</span> <span class="st">"ggstatsplot"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span>(<span class="st">"ggstatsplot"</span>)</a></code></pre></div>
 <p>There is currently a publication in preparation corresponding to this package and the citation will be updated once it’s published.</p>
 </div>
 <div id="documentation-and-examples" class="section level1">
@@ -606,7 +607,7 @@
 <a class="sourceLine" id="cb7-8" title="8"><span class="co">#&gt;   # returning the converted plot</span></a>
 <a class="sourceLine" id="cb7-9" title="9"><span class="co">#&gt;   return(p)</span></a>
 <a class="sourceLine" id="cb7-10" title="10"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt; &lt;bytecode: 0x00000000303e9228&gt;</span></a>
+<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt; &lt;bytecode: 0x0000000034d68b30&gt;</span></a>
 <a class="sourceLine" id="cb7-12" title="12"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -614,20 +615,31 @@
 <li><a href="http://r4ds.had.co.nz/pipes.html" class="uri">http://r4ds.had.co.nz/pipes.html</a></li>
 </ul>
 </div>
-<div id="usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
-<p><code>ggstatsplot</code> relies on non-standard evaluation (NSE), i.e., rather than looking at the values of arguments (<code>x</code>, <code>y</code>), it instead looks at their expressions. This means that you <strong>shouldn’t</strong> enter arguments with the <code>$</code> operator and setting <code>data = NULL</code>: <code>data = NULL, x = data$x, y = data$y</code>. You <strong>must</strong> always specify the <code>data</code> argument for all functions. On the plus side, you can enter arguments either as a string (<code>x = "x", y = "y"</code>) or as a bare expression (<code>x = x, y = y</code>) and it wouldn’t matter. To read more about NSE, see- <a href="http://adv-r.had.co.nz/Computing-on-the-language.html" class="uri">http://adv-r.had.co.nz/Computing-on-the-language.html</a></p>
-<p><code>ggstatsplot</code> is a very chatty package and will by default print helpful notes on assumptions about linear models, warnings, etc. If you don’t want your console to be cluttered with such messages, they can be turned off by setting argument <code>messages = FALSE</code> in the function call.</p>
-<p>Here are examples of the main functions currently supported in <code>ggstatsplot</code>.</p>
-<p><strong>Note</strong>: If you are reading this on GitHub repository, the documentation below is for the <strong>development</strong> version of the package. So you may see some features available here that are not currently present in the stable version of this package on <strong>CRAN</strong>. For documentation relevant for the <code>CRAN</code> version, see:</p>
-<ul>
-<li>vignettes: <a href="https://CRAN.R-project.org/package=ggstatsplot/vignettes/" class="uri">https://CRAN.R-project.org/package=ggstatsplot/vignettes/</a>
-</li>
-<li>README: <a href="https://CRAN.R-project.org/package=ggstatsplot/readme/README.html" class="uri">https://CRAN.R-project.org/package=ggstatsplot/readme/README.html</a>
-</li>
-</ul>
 </div>
+<div id="usage-and-syntax" class="section level1">
+<h1 class="hasAnchor">
+<a href="#usage-and-syntax" class="anchor"></a>Usage and syntax</h1>
+<p><code>ggstatsplot</code> relies on non-standard evaluation (NSE), i.e., rather than looking at the values of arguments (<code>x</code>, <code>y</code>), it instead looks at their expressions. This means that you <strong>shouldn’t</strong> enter arguments with the <code>$</code> operator and set <code>data = NULL</code> (e.g., <code>data = NULL, x = data$x, y = data$y</code>). You <strong>must</strong> always specify the <code>data</code> argument for all functions. On the plus side, you can enter arguments either as a string (<code>x = "x", y = "y"</code>) or as a bare expression (<code>x = x, y = y</code>) and it wouldn’t matter. To read more about NSE, see- <a href="http://adv-r.had.co.nz/Computing-on-the-language.html" class="uri">http://adv-r.had.co.nz/Computing-on-the-language.html</a></p>
+<p><code>ggstatsplot</code> is a very chatty package and will by default print helpful notes on assumptions about statistical tests, warnings, etc. If you don’t want your console to be cluttered with such messages, they can be turned off by setting argument <code>messages = FALSE</code> in the function call.</p>
+<p>Most functions share a <code>type</code> (of test) argument that is helpful to specify the type of statistical analysis:</p>
+<ul>
+<li>
+<code>"p"</code> (for <strong>parametric</strong>)</li>
+<li>
+<code>"np"</code> (for <strong>non-parametric</strong>)</li>
+<li>
+<code>"r"</code> (for <strong>robust</strong>)</li>
+<li>
+<code>"bf"</code> (for <strong>Bayes Factor</strong>)</li>
+</ul>
+<p>All relevant functions in <code>ggstatsplot</code> have a <code>return</code> argument which can be used to not only return plots (which is the default), but also to return a <code>subtitle</code> or <code>caption</code>, which are objects of type <code>call</code> and can be used to display statistical details in conjunction with a custom plot and at a custom location in the plot.</p>
+<p>Additionally, all functions share the <code>ggtheme</code> and <code>palette</code> arguments that can be used to specify your favorite <code>ggplot</code> theme and color palette.</p>
+</div>
+<div id="primary-functions" class="section level1">
+<h1 class="hasAnchor">
+<a href="#primary-functions" class="anchor"></a>Primary functions</h1>
+<p>Here are examples of the main functions currently supported in <code>ggstatsplot</code>.</p>
+<p><strong>Note</strong>: If you are reading this on <code>GitHub</code> repository, the documentation below is for the <strong>development</strong> version of the package. So you may see some features available here that are not currently present in the stable version of this package on <strong>CRAN</strong>. For documentation relevant for the <code>CRAN</code> version, see: <a href="https://CRAN.R-project.org/package=ggstatsplot/readme/README.html" class="uri">https://CRAN.R-project.org/package=ggstatsplot/readme/README.html</a></p>
 <div id="ggbetweenstats" class="section level2">
 <h2 class="hasAnchor">
 <a href="#ggbetweenstats" class="anchor"></a><code>ggbetweenstats</code>
@@ -692,8 +704,8 @@
 <a class="sourceLine" id="cb9-38" title="38">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb9-39" title="39">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats2-1.png" width="100%"></p>
-<p>In case of a parametric t-test, setting <code>bf.message = TRUE</code> will also attach results from Bayesian Student’s <em>t</em>-test. If the null hypothesis can’t be rejected with the NHST approach, the Bayesian approach can help index evidence in favor of the null hypothesis (i.e., <code>BF01</code>).</p>
-<p>By default, Bayes Factor quantifies the support for the alternative hypothesis (H1) over the null hypothesis (H0) (i.e., <code>BF10</code> is displayed). Natural logarithms are shown because BF values can be pretty large. This also makes it easy to compare evidence in favor alternative (<code>BF10</code>) versus null (<code>BF01</code>) hypotheses (since <code>log(BF10) = - log(BF01)</code>).</p>
+<p>As can be seen from the plot, the function by default returns Bayes Factor for the test (here, Student’s <em>t</em>-test). If the null hypothesis can’t be rejected with the null hypothesis significance testing (NHST) approach, the Bayesian approach can help index evidence in favor of the null hypothesis (i.e., <span class="math inline">\(BF_{01}\)</span>).</p>
+<p>By default, natural logarithms are shown because Bayes Factor values can sometimes be pretty large. Having values on logarithmic scale also makes it easy to compare evidence in favor alternative (<span class="math inline">\(BF_{10}\)</span>) versus null (<span class="math inline">\(BF_{01}\)</span>) hypotheses (since <span class="math inline">\(log_{e}(BF_{01}) = - log_{e}(BF_{01})\)</span>).</p>
 <p>Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb10-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
@@ -780,7 +792,7 @@
 </tr>
 </tbody>
 </table>
-<p>Here is a summary of <em>multiple pairwise comparison</em> tests supported in <em>ggbetweenstats</em>-</p>
+<p>The omnibus effect in one-way ANOVA design can also be followed up with more focal pairwise comparison tests. Here is a summary of <em>multiple pairwise comparison</em> tests supported in <em>ggbetweenstats</em>-</p>
 <table class="table table">
 <thead><tr class="header">
 <th>Type</th>
@@ -835,7 +847,7 @@
 <h2 class="hasAnchor">
 <a href="#ggwithinstats" class="anchor"></a><code>ggwithinstats</code>
 </h2>
-<p><code>ggbetweenstats</code> function has an identical twin function <code>ggwithinstats</code> for repeated measures designs that behaves in the same fashion with few minor tweaks. As can be seen from an example below, the only difference between the plot structure is that now the group means are connected by paths to highlight the within-subjects nature of the data.</p>
+<p><code>ggbetweenstats</code> function has an identical twin function <code>ggwithinstats</code> for repeated measures designs that behaves in the same fashion with a few minor tweaks introduced to properly visualize the repeated measures design. As can be seen from an example below, the only difference between the plot structure is that now the group means are connected by paths to highlight the fact that these data are paired with each other.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co"># for reproducibility and data</span></a>
 <a class="sourceLine" id="cb11-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb11-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(WRS2)</a>
@@ -942,7 +954,7 @@
 </tr>
 </tbody>
 </table>
-<p>Here is a summary of <em>multiple pairwise comparison</em> tests supported in <em>ggwithinstats</em>-</p>
+<p>The omnibus effect in one-way ANOVA design can also be followed up with more focal pairwise comparison tests. Here is a summary of <em>multiple pairwise comparison</em> tests supported in <em>ggwithinstats</em>-</p>
 <table class="table table">
 <thead><tr class="header">
 <th>Type</th>
@@ -980,7 +992,7 @@
 <h2 class="hasAnchor">
 <a href="#ggscatterstats" class="anchor"></a><code>ggscatterstats</code>
 </h2>
-<p>This function creates a scatterplot with marginal histograms/boxplots/density/violin/densigram plots from <code><a href="https://rdrr.io/pkg/ggExtra/man/ggMarginal.html">ggExtra::ggMarginal</a></code> and results from statistical tests in the subtitle:</p>
+<p>This function creates a scatterplot with marginal distributions overlaid on the axes (from <code><a href="https://rdrr.io/pkg/ggExtra/man/ggMarginal.html">ggExtra::ggMarginal</a></code>) and results from statistical tests in the subtitle:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggscatterstats.html">ggscatterstats</a></span>(</a>
 <a class="sourceLine" id="cb13-2" title="2">  <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</a>
 <a class="sourceLine" id="cb13-3" title="3">  <span class="dt">x =</span> sleep_rem,</a>
@@ -991,6 +1003,14 @@
 <a class="sourceLine" id="cb13-8" title="8">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb13-9" title="9">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggscatterstats1-1.png" width="100%"></p>
+<p>The available marginal distributions are-</p>
+<ul>
+<li>histograms</li>
+<li>boxplots</li>
+<li>density</li>
+<li>violin</li>
+<li>densigram (density + histogram)</li>
+</ul>
 <p>Number of other arguments can be specified to modify this basic plot-</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb14-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
@@ -1022,7 +1042,7 @@
 <a class="sourceLine" id="cb14-28" title="28">  <span class="dt">messages =</span> <span class="ot">FALSE</span> <span class="co"># turn off messages and notes</span></a>
 <a class="sourceLine" id="cb14-29" title="29">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggscatterstats2-1.png" width="100%"></p>
-<p>Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
+<p>Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable. Also, note that, as opposed to the other functions, this function does not return a <code>ggplot</code> object and any modification you want to make can be made in advance using <code>ggplot.component</code> argument (available for all functions, but especially useful for this particular function):</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb15-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb15-3" title="3"></a>
@@ -1051,7 +1071,7 @@
 <a class="sourceLine" id="cb15-26" title="26">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggscatterstats3-1.png" width="100%"></p>
 <p><strong>Using <code><a href="reference/ggscatterstats.html">ggscatterstats()</a></code> in R Notebooks or R Markdown</strong></p>
-<p>If you try including a <code><a href="reference/ggscatterstats.html">ggscatterstats()</a></code> plot inside an <code>R Notebook</code> or <code>R Markdown</code> code chunk, you’ll notice that the plot doesn’t get output. In order to get a <code><a href="reference/ggscatterstats.html">ggscatterstats()</a></code> to show up in these contexts, you need to save the <code>ggscatterstats</code> plot as a variable in one code chunk, and explicitly print it using the <code>grid</code> package in another chunk, like this:</p>
+<p>If you include a <code><a href="reference/ggscatterstats.html">ggscatterstats()</a></code> plot inside an <code>R Notebook</code> or <code>R Markdown</code> code chunk, you will notice that running the chunk doesn’t return any output nor does it give any error. In order to get a <code><a href="reference/ggscatterstats.html">ggscatterstats()</a></code> to show up in these contexts, you need to save the <code>ggscatterstats</code> plot as a variable in one code chunk, and explicitly print it using the <code>grid</code> package in another chunk, like this:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># include the following code in your code chunk inside R Notebook or Markdown</span></a>
 <a class="sourceLine" id="cb16-2" title="2">grid<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/grid/grid.newpage.html">grid.newpage</a></span>()</a>
 <a class="sourceLine" id="cb16-3" title="3">grid<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/grid/grid.draw.html">grid.draw</a></span>(</a>
@@ -1063,6 +1083,7 @@
 <a class="sourceLine" id="cb16-9" title="9">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb16-10" title="10">  )</a>
 <a class="sourceLine" id="cb16-11" title="11">)</a></code></pre></div>
+<p>Another option - or rather a compromise - is not to include marginal distribution at all by setting <code>marginal = FALSE</code>.</p>
 <div id="summary-of-tests-2" class="section level3">
 <h3 class="hasAnchor">
 <a href="#summary-of-tests-2" class="anchor"></a>Summary of tests</h3>
@@ -1103,7 +1124,8 @@
 <h2 class="hasAnchor">
 <a href="#ggpiestats" class="anchor"></a><code>ggpiestats</code>
 </h2>
-<p>This function creates a pie chart for categorical or nominal variables with results from contingency table analysis (Pearson’s chi-squared test for between-subjects design and McNemar’s test for within-subjects design) included in the subtitle of the plot. If only one categorical variable is entered, results from one-sample <strong>proportion test</strong> will be displayed as a subtitle.</p>
+<p>This function creates a pie chart for categorical or nominal variables with results from contingency table analysis (Pearson’s <span class="math inline">\(\chi^2\)</span> test for between-subjects design and McNemar’s <span class="math inline">\(\chi^2\)</span> test for within-subjects design) included in the subtitle of the plot. If only one categorical variable is entered, results from one-sample proportion test (i.e., a <span class="math inline">\(\chi^2\)</span> goodness of fit test) will be displayed as a subtitle.</p>
+<p>Here is an example of a case where the theoretical question is about proportions for different levels of a single nominal variable:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb17-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb17-3" title="3"></a>
@@ -1115,7 +1137,7 @@
 <a class="sourceLine" id="cb17-9" title="9">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb17-10" title="10">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggpiestats1-1.png" width="100%"></p>
-<p>This function can also be used to study an interaction between two categorical variables. Additionally, this basic plot can further be modified with additional arguments and the function returns a <code>ggplot2</code> object that can further be modified with <code>ggplot2</code> syntax:</p>
+<p>This function can also be used to study an interaction between two categorical variables:</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb18-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb18-3" title="3"></a>
@@ -1139,7 +1161,7 @@
 <a class="sourceLine" id="cb18-21" title="21">  <span class="dt">messages =</span> <span class="ot">FALSE</span> <span class="co"># turn off messages and notes</span></a>
 <a class="sourceLine" id="cb18-22" title="22">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggpiestats2-1.png" width="100%"></p>
-<p>In case of within-subjects designs, setting <code>paired = TRUE</code> will produce results from McNemar’s test-</p>
+<p>In case of repeated measures designs, setting <code>paired = TRUE</code> will produce results from McNemar’s <span class="math inline">\(\chi^2\)</span> test-</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb19-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb19-3" title="3"></a>
@@ -1173,6 +1195,21 @@
 <a class="sourceLine" id="cb19-31" title="31"><span class="co">#&gt; 2 Disappro~ (n =~ 20.83%  79.17%              245      1         0</span></a>
 <a class="sourceLine" id="cb19-32" title="32"><span class="co">#&gt; # ... with 1 more variable: significance &lt;chr&gt;</span></a></code></pre></div>
 <p><img src="reference/figures/README-ggpiestats3-1.png" width="100%"></p>
+<p>Note that when a two-way table is present (i.e., when both <code>main</code> and <code>condition</code> arguments are specified), <em>p</em>-values for results from one-sample proportion tests are displayed in each facet in the form of asterisks with the following convention: <br></p>
+<ul>
+<li>
+<span class="math inline">\(***\)</span>: <span class="math inline">\(p &lt; 0.001\)</span>
+</li>
+<li>
+<span class="math inline">\(**\)</span>: <span class="math inline">\(p &lt; 0.01\)</span>
+</li>
+<li>
+<span class="math inline">\(*\)</span>: <span class="math inline">\(p &lt; 0.05\)</span>
+</li>
+<li>
+<span class="math inline">\(ns\)</span>: <span class="math inline">\(p &gt; 0.05\)</span>
+</li>
+</ul>
 <p>Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb20-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
@@ -1210,20 +1247,20 @@
 <tr class="odd">
 <td>Unpaired</td>
 <td>
-<em>n</em> X <em>p</em> contingency table</td>
-<td>Pearson’s chi-squared test</td>
+<span class="math inline">\(n \times p\)</span> contingency table</td>
+<td>Pearson’s <span class="math inline">\(\chi^{2}\)</span> test</td>
 </tr>
 <tr class="even">
 <td>Paired</td>
 <td>
-<em>n</em> X <em>p</em> contingency table</td>
-<td>McNemar’s test</td>
+<span class="math inline">\(n \times p\)</span> contingency table</td>
+<td>McNemar’s <span class="math inline">\(\chi^{2}\)</span> test</td>
 </tr>
 <tr class="odd">
 <td>Frequency</td>
 <td>
-<em>n</em> X <em>1</em> contingency table</td>
-<td>Goodness of fit</td>
+<span class="math inline">\(n \times 1\)</span> contingency table</td>
+<td>Goodness of fit (<span class="math inline">\(\chi^{2}\)</span>)</td>
 </tr>
 </tbody>
 </table>
@@ -1260,7 +1297,7 @@
 <h2 class="hasAnchor">
 <a href="#ggbarstats" class="anchor"></a><code>ggbarstats</code>
 </h2>
-<p>In case you are not a fan of pie charts (for very good reasons), you can alternatively use <code>ggbarstats</code> function-</p>
+<p>In case you are not a fan of pie charts (for very good reasons), you can alternatively use <code>ggbarstats</code> function which has a similar syntax-</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb21-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb21-3" title="3"></a>
@@ -1322,8 +1359,7 @@
 <h2 class="hasAnchor">
 <a href="#gghistostats" class="anchor"></a><code>gghistostats</code>
 </h2>
-<p>In case you would like to see the distribution of one variable and check if it is significantly different from a specified value with a one sample test, this function will let you do that.</p>
-<p>The <code>type</code> (of test) argument also accepts the following abbreviations: <code>"p"</code> (for <em>parametric</em>) or <code>"np"</code> (for <em>nonparametric</em>) or <code>"r"</code> (for <em>robust</em>) or <code>"bf"</code> (for <em>Bayes Factor</em>).</p>
+<p>In case you would like to see the distribution of a single variable and check if it is significantly different from a specified value with a one sample test, this function will let you do that.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</a>
 <a class="sourceLine" id="cb23-2" title="2">  <span class="dt">data =</span> ToothGrowth, <span class="co"># dataframe from which variable is to be taken</span></a>
 <a class="sourceLine" id="cb23-3" title="3">  <span class="dt">x =</span> len, <span class="co"># numeric variable whose distribution is of interest</span></a>
@@ -1423,7 +1459,7 @@
 <h2 class="hasAnchor">
 <a href="#ggdotplotstats" class="anchor"></a><code>ggdotplotstats</code>
 </h2>
-<p>This function is similar to <code>gghistostats</code>, but is intended to be used when numeric variable also has a label.</p>
+<p>This function is similar to <code>gghistostats</code>, but is intended to be used when the numeric variable also has a label.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb26-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb26-3" title="3"></a>
@@ -1449,7 +1485,7 @@
 <a class="sourceLine" id="cb26-23" title="23">  )</a>
 <a class="sourceLine" id="cb26-24" title="24">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggdotplotstats1-1.png" width="100%"></p>
-<p>As with the rest of the functions in this package, there is also a <code>grouped_</code> variant of this function to facilitateto repeat the same operation across a grouping variable.</p>
+<p>As with the rest of the functions in this package, there is also a <code>grouped_</code> variant of this function to facilitate looping the same operation for all levels of a single grouping variable.</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb27-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb27-3" title="3"></a>
@@ -1509,8 +1545,8 @@
 <a class="sourceLine" id="cb28-20" title="20">  <span class="dt">subtitle =</span> <span class="st">"sleep units: hours; weight units: kilograms"</span></a>
 <a class="sourceLine" id="cb28-21" title="21">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggcorrmat1-1.png" width="100%"></p>
-<p>Note that if there are <code>NA</code>s present in the selected dataframe, the legend will display minimum, median, and maximum number of pairs used for correlation matrices.</p>
-<p>Alternatively, you can use it just to get the correlation matrices and their corresponding <em>p</em>-values (in a <code>tibble</code> format). Also, note that if <code>cor.vars</code> are not specified, all numeric variables will be used.</p>
+<p>Note that if there are <code>NA</code>s present in the selected variables, the legend will display minimum, median, and maximum number of pairs used for correlation tests.</p>
+<p>Alternatively, you can use it just to get the correlation matrices and their corresponding <em>p</em>-values (in a <code>tibble</code> format).</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb29-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb29-3" title="3"></a>
@@ -1596,7 +1632,8 @@
 <a class="sourceLine" id="cb29-83" title="83"><span class="co">#&gt; 4 awake                83        61          32    83      56     83</span></a>
 <a class="sourceLine" id="cb29-84" title="84"><span class="co">#&gt; 5 brainwt              56        48          30    56      56     56</span></a>
 <a class="sourceLine" id="cb29-85" title="85"><span class="co">#&gt; 6 bodywt               83        61          32    83      56     83</span></a></code></pre></div>
-<p>Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
+<p>Note that if <code>cor.vars</code> are not specified, all numeric variables will be used.</p>
+<p>There is a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb30-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb30-3" title="3"></a>
@@ -1657,7 +1694,7 @@
 <h2 class="hasAnchor">
 <a href="#ggcoefstats" class="anchor"></a><code>ggcoefstats</code>
 </h2>
-<p><code>ggcoefstats</code> creates a lot with the regression coefficients’ point estimates as dots with confidence interval whiskers.</p>
+<p><code>ggcoefstats</code> creates a dot-and-whisker plot point estimates for regression coefficients as dots with confidence intervals as whiskers.</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb31-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb31-3" title="3"></a>
@@ -1670,7 +1707,7 @@
 <a class="sourceLine" id="cb31-10" title="10"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb31-11" title="11">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> mod)</a></code></pre></div>
 <p><img src="reference/figures/README-ggcoefstats1-1.png" width="100%"></p>
-<p>The basic plot can be further modified to one’s liking with additional arguments (also, let’s use a robust linear model instead of a simple linear model now):</p>
+<p>This default plot can be further modified to one’s liking with additional arguments (also, let’s use a robust linear model instead of a simple linear model now):</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb32-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb32-3" title="3"></a>
@@ -1693,14 +1730,13 @@
 <a class="sourceLine" id="cb32-20" title="20">  <span class="dt">subtitle =</span> <span class="st">"Source: 1974 Motor Trend US magazine"</span>,</a>
 <a class="sourceLine" id="cb32-21" title="21">  <span class="dt">ggtheme =</span> hrbrthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html">theme_ipsum_ps</a></span>(),</a>
 <a class="sourceLine" id="cb32-22" title="22">  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb32-23" title="23">) <span class="op">+</span></a>
-<a class="sourceLine" id="cb32-24" title="24"><span class="st">  </span><span class="co"># further modification with the ggplot2 commands</span></a>
-<a class="sourceLine" id="cb32-25" title="25"><span class="st">  </span><span class="co"># note the order in which the labels are entered</span></a>
-<a class="sourceLine" id="cb32-26" title="26"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"transmission"</span>, <span class="st">"cylinders"</span>, <span class="st">"interaction"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb32-27" title="27"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(</a>
-<a class="sourceLine" id="cb32-28" title="28">    <span class="dt">x =</span> <span class="st">"regression coefficient"</span>,</a>
-<a class="sourceLine" id="cb32-29" title="29">    <span class="dt">y =</span> <span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb32-30" title="30">  )</a></code></pre></div>
+<a class="sourceLine" id="cb32-23" title="23">) <span class="op">+</span><span class="st"> </span><span class="co"># further modification with the ggplot2 commands</span></a>
+<a class="sourceLine" id="cb32-24" title="24"><span class="st">  </span><span class="co"># note the order in which the labels are entered</span></a>
+<a class="sourceLine" id="cb32-25" title="25"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"transmission"</span>, <span class="st">"cylinders"</span>, <span class="st">"interaction"</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb32-26" title="26"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(</a>
+<a class="sourceLine" id="cb32-27" title="27">    <span class="dt">x =</span> <span class="st">"regression coefficient"</span>,</a>
+<a class="sourceLine" id="cb32-28" title="28">    <span class="dt">y =</span> <span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb32-29" title="29">  )</a></code></pre></div>
 <p><img src="reference/figures/README-ggcoefstats2-1.png" width="100%"></p>
 <p>Most of the regression models that are supported in the <code>broom</code> and <code>broom.mixed</code> packages with <code>tidy</code> and <code>glance</code> methods are also supported by <code>ggcoefstats</code>. For example-</p>
 <p><code>aareg</code>, <code>anova</code>, <code>aov</code>, <code>aovlist</code>, <code>Arima</code>, <code>bigglm</code>, <code>biglm</code>, <code>brmsfit</code>, <code>btergm</code>, <code>cch</code>, <code>clm</code>, <code>clmm</code>, <code>confusionMatrix</code>, <code>coxph</code>, <code>drc</code>, <code>emmGrid</code>, <code>epi.2by2</code>, <code>ergm</code>, <code>felm</code>, <code>fitdistr</code>, <code>glmerMod</code>, <code>glmmTMB</code>, <code>gls</code>, <code>gam</code>, <code>Gam</code>, <code>gamlss</code>, <code>garch</code>, <code>glm</code>, <code>glmmadmb</code>, <code>glmmPQL</code>, <code>glmmTMB</code>, <code>glmRob</code>, <code>glmrob</code>, <code>gmm</code>, <code>ivreg</code>, <code>lm</code>, <code>lm.beta</code>, <code>lmerMod</code>, <code>lmodel2</code>, <code>lmRob</code>, <code>lmrob</code>, <code>mcmc</code>, <code>MCMCglmm</code>, <code>mediate</code>, <code>mjoint</code>, <code>mle2</code>, <code>mlm</code>, <code>multinom</code>, <code>negbin</code>, <code>nlmerMod</code>, <code>nlrq</code>, <code>nls</code>, <code>orcutt</code>, <code>plm</code>, <code>polr</code>, <code>ridgelm</code>, <code>rjags</code>, <code>rlm</code>, <code>rlmerMod</code>, <code>rq</code>, <code>speedglm</code>, <code>speedlm</code>, <code>stanreg</code>, <code>survreg</code>, <code>svyglm</code>, <code>svyolr</code>, <code>svyglm</code>, etc.</p>
@@ -1719,8 +1755,8 @@
 <h2 class="hasAnchor">
 <a href="#theme_ggstatsplot" class="anchor"></a><code>theme_ggstatsplot</code>
 </h2>
-<p>All plots from <code>ggstatsplot</code> have a default theme: <code>theme_ggstatsplot</code>. You can change this theme by using the argument <code>ggtheme</code> for all functions.</p>
-<p>It is important to note that irrespective of which <code>ggplot</code> theme you choose, <code>ggstatsplot</code> in the backdrop adds a new layer with its idiosyncratic theme settings, chosen to make the graphs more readable or aesthetically pleasing. Let’s see an example with <code>gghistostats</code> and see how a certain theme from <code>hrbrthemes</code> package looks with and without the <code>ggstatsplot</code> layer.</p>
+<p>All plots from <code>ggstatsplot</code> have a default theme: <code>theme_ggstatsplot</code>. You can change this theme by using the <code>ggtheme</code> argument. It is important to note that irrespective of which <code>ggplot</code> theme you choose, <code>ggstatsplot</code> in the backdrop adds a new layer with its idiosyncratic theme settings, chosen to make the graphs more readable or aesthetically pleasing.</p>
+<p>Let’s see an example with <code>gghistostats</code> and see how a certain theme from <code>hrbrthemes</code> package looks like with and without the <code>ggstatsplot</code> layer.</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="co"># to use hrbrthemes themes, first make sure you have all the necessary fonts</span></a>
 <a class="sourceLine" id="cb33-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(hrbrthemes)</a>
 <a class="sourceLine" id="cb33-3" title="3"><span class="co"># extrafont::ttf_import()</span></a>
@@ -1750,7 +1786,7 @@
 <a class="sourceLine" id="cb33-27" title="27">  ),</a>
 <a class="sourceLine" id="cb33-28" title="28">  <span class="dt">nrow =</span> <span class="dv">1</span>,</a>
 <a class="sourceLine" id="cb33-29" title="29">  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>),</a>
-<a class="sourceLine" id="cb33-30" title="30">  <span class="dt">title.text =</span> <span class="st">"Behavior of ggstatsplot theme layer with chosen ggtheme"</span></a>
+<a class="sourceLine" id="cb33-30" title="30">  <span class="dt">title.text =</span> <span class="st">"Behavior of ggstatsplot theme layer with and without chosen ggtheme"</span></a>
 <a class="sourceLine" id="cb33-31" title="31">)</a></code></pre></div>
 <p><img src="reference/figures/README-theme_ggstatsplot-1.png" width="100%"></p>
 <p>For more on how to modify it, see the associated vignette- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html</a></p>
@@ -1759,7 +1795,7 @@
 <h2 class="hasAnchor">
 <a href="#using-ggstatsplot-statistical-details-with-custom-plots" class="anchor"></a>Using <code>ggstatsplot</code> statistical details with custom plots</h2>
 <p>Sometimes you may not like the defaults in a plot produced by <code>ggstatsplot</code>. In such cases, you can use other custom plots (from <code>ggplot2</code> or other plotting packages) and still use <code>ggstatsplot</code> functions to display results from relevant statistical test.</p>
-<p>For example, in the following chunk, we will use a <em>pirateplot</em> from <code>yarrr</code> package and use <code>ggstatsplot</code> function to display the results.</p>
+<p>For example, in the following chunk, we will create plot (<em>pirateplot</em>) using <code>yarrr</code> package and use <code>ggstatsplot</code> function for extracting results.</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb34-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb34-3" title="3"></a>
@@ -1785,7 +1821,6 @@
 <a class="sourceLine" id="cb34-23" title="23">  <span class="dt">main =</span> stats_results</a>
 <a class="sourceLine" id="cb34-24" title="24">)</a></code></pre></div>
 <p><img src="reference/figures/README-pirateplot-1.png" width="100%"></p>
-<p>All relevant functions in <code>ggstatsplot</code> have a <code>return</code> argument which can be used to not only return plots (which is the default), but also to return a <code>subtitle</code> or <code>caption</code>, which are objects of type <code>call</code> and can be used to display statistical details in conjunction with a custom plot and at a custom location.</p>
 </div>
 </div>
 <div id="code-coverage" class="section level1">
@@ -1796,8 +1831,8 @@
 <div id="contributing" class="section level1">
 <h1 class="hasAnchor">
 <a href="#contributing" class="anchor"></a>Contributing</h1>
-<p>I’m happy to receive bug reports, suggestions, questions, and (most of all) contributions to fix problems and add features. I personally prefer using the <code>GitHub</code> issues system over trying to reach out to me in other ways (personal e-mail, Twitter, etc.). Pull requests for contributions are encouraged.</p>
-<p>Here are some simple ways in which you can contribute:</p>
+<p>I’m happy to receive bug reports, suggestions, questions, and (most of all) contributions to fix problems and add features. I personally prefer using the <code>GitHub</code> issues system over trying to reach out to me in other ways (personal e-mail, Twitter, etc.). Pull Requests for contributions are encouraged.</p>
+<p>Here are some simple ways in which you can contribute (in the increasing order of commitment):</p>
 <ul>
 <li><p>Read and correct any inconsistencies in the <a href="https://indrajeetpatil.github.io/ggstatsplot/">documentation</a></p></li>
 <li><p>Raise issues about bugs or wanted features</p></li>
