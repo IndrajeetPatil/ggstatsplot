@@ -139,7 +139,7 @@ testthat::test_that(
       y = brainwt,
       title = "mammalian sleep",
       caption = "From ggplot2 package",
-      xlab = "vorarephilia",
+      xlab = "vore",
       ylab = "brain weight",
       axes.range.restrict = TRUE,
       outlier.tagging = TRUE,
@@ -240,7 +240,7 @@ testthat::test_that(
         )
       ))
     )
-    testthat::expect_identical(p$labels$x, "vorarephilia")
+    testthat::expect_identical(p$labels$x, "vore")
     testthat::expect_identical(p$labels$y, "brain weight")
   }
 )

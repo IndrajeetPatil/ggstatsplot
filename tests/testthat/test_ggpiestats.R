@@ -15,7 +15,7 @@ testthat::test_that(
       main = vore,
       bf.message = TRUE,
       title = "mammalian sleep",
-      legend.title = "vorarephilia",
+      legend.title = "vore",
       caption = "From ggplot2 package",
       perc.k = 2,
       nboot = 25,
@@ -88,7 +88,7 @@ testthat::test_that(
     )
     testthat::expect_null(p$labels$x, NULL)
     testthat::expect_null(p$labels$y, NULL)
-    testthat::expect_identical(pb$plot$plot_env$legend.title, "vorarephilia")
+    testthat::expect_identical(pb$plot$plot_env$legend.title, "vore")
     testthat::expect_null(pb$plot$plot_env$facet.wrap.name, NULL)
 
     # checking layer data

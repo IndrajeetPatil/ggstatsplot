@@ -1,6 +1,12 @@
 ---
 title: "ggstatsplot: ggplot2 Based Plots with Statistical Details"
-author: "Indrajeet Patil"
+author: 
+- name: Indrajeet Patil
+  affiliation: Harvard University
+- name: Fiery Cushman
+  affiliation: Harvard University
+- name: Mina Cikara
+  affiliation: Harvard University
 date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
@@ -43,7 +49,8 @@ are still `ggplot` objects and can thus be further modified to certain extent
 using `ggplot2` commands. That is, it is less flexible than `ggplot2`, but
 that's a feature and not a bug. The original intent behind this package is to
 offload struggles associated with *constructing* the plot and focus more on the
-*interpretation* of that data displayed in the plot.
+*interpretation* of the data and associated statistical analysis displayed in the
+plot.
 
 # Graphical perception
    
