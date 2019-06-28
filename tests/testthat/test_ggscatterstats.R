@@ -551,7 +551,7 @@ testthat::test_that(
       data = dplyr::starwars,
       x = mass,
       y = height,
-      method = gmm::gmm,
+      method = MASS::rlm,
       marginal = FALSE
     ))
 

@@ -4,7 +4,7 @@
 \alias{gghistostats}
 \title{Histogram for distribution of a numeric variable}
 \usage{
-gghistostats(data = NULL, x, binwidth = NULL, bar.measure = "count",
+gghistostats(data, x, binwidth = NULL, bar.measure = "count",
   xlab = NULL, stat.title = NULL, title = NULL, subtitle = NULL,
   caption = NULL, type = "parametric", test.value = 0,
   bf.prior = 0.707, bf.message = TRUE, robust.estimator = "onestep",
@@ -186,7 +186,8 @@ in the plot as a subtitle.
 # most basic function call with the defaults
 # this is the **only** function where data argument can be `NULL`
 ggstatsplot::gghistostats(
-  x = ToothGrowth$len,
+  data = ToothGrowth,
+  x = len,
   xlab = "Tooth length",
   centrality.para = "median"
 )

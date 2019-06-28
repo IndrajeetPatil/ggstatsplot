@@ -32,6 +32,11 @@
 #' @param k.parameter,k.parameter2 Number of decimal places to display for the
 #'   parameters (default: `0`).
 #' @param n An integer specifying the sample size used for the test.
+#' @param n.text A character that specifies the design, which will determine
+#'   what the `n` stands for. For example, for repeated measures, this can be
+#'   `quote(italic("n")["pairs"])`, while for independent subjects design this
+#'   can be `quote(italic("n")["obs"])`. If `NULL`, defaults to generic
+#'   `quote(italic("n"))`.
 #' @inheritParams t1way_ci
 #'
 #' @examples
@@ -71,7 +76,14 @@ subtitle_template <- function(no.parameters,
                               conf.level = 0.95,
                               k = 2L,
                               k.parameter = 0L,
-                              k.parameter2 = 0L) {
+                              k.parameter2 = 0L,
+                              n.text = NULL) {
+
+  # if sample size nature is not specified, use generic n
+  if (purrr::is_null(n.text)) {
+    n.text <- quote(italic("n"))
+  }
+
   # ------------------ statistic with 0 degrees of freedom --------------------
 
   if (no.parameters == 0L) {
@@ -99,7 +111,7 @@ subtitle_template <- function(no.parameters,
             effsize.UL,
             "]",
             ", ",
-            italic("n"),
+            n.text,
             " = ",
             n
           ),
@@ -113,13 +125,15 @@ subtitle_template <- function(no.parameters,
           conf.level = paste(conf.level * 100, "%", sep = ""),
           effsize.LL = specify_decimal_p(x = effsize.LL, k = k),
           effsize.UL = specify_decimal_p(x = effsize.UL, k = k),
-          n = n
+          n = n,
+          n.text = n.text
         )
       )
+  }
 
-    # ------------------ statistic with 1 degree of freedom -----------------
-  } else if (no.parameters == 1L) {
+  # ------------------ statistic with 1 degree of freedom --------------------
 
+  if (no.parameters == 1L) {
     # check if parameter is specified
     if (purrr::is_null(parameter)) {
       stop(message(cat(
@@ -160,7 +174,7 @@ subtitle_template <- function(no.parameters,
             effsize.UL,
             "]",
             ", ",
-            italic("n"),
+            n.text,
             " = ",
             n
           ),
@@ -175,13 +189,15 @@ subtitle_template <- function(no.parameters,
           conf.level = paste(conf.level * 100, "%", sep = ""),
           effsize.LL = specify_decimal_p(x = effsize.LL, k = k),
           effsize.UL = specify_decimal_p(x = effsize.UL, k = k),
-          n = n
+          n = n,
+          n.text = n.text
         )
       )
+  }
 
-    # ------------------ statistic with 2 degrees of freedom -----------------
-  } else if (no.parameters == 2L) {
+  # ------------------ statistic with 2 degrees of freedom -----------------
 
+  if (no.parameters == 2L) {
     # check if parameters are specified
     if (purrr::is_null(parameter) || purrr::is_null(parameter2)) {
       stop(message(cat(
@@ -224,7 +240,7 @@ subtitle_template <- function(no.parameters,
             effsize.UL,
             "]",
             ", ",
-            italic("n"),
+            n.text,
             " = ",
             n
           ),
@@ -240,7 +256,8 @@ subtitle_template <- function(no.parameters,
           conf.level = paste(conf.level * 100, "%", sep = ""),
           effsize.LL = specify_decimal_p(x = effsize.LL, k = k),
           effsize.UL = specify_decimal_p(x = effsize.UL, k = k),
-          n = n
+          n = n,
+          n.text = n.text
         )
       )
   }

@@ -73,7 +73,6 @@ Suggests:
     broom,
     broom.mixed,
     glmmTMB,
-    gmm,
     knitr,
     lme4,
     MASS,

@@ -52,7 +52,8 @@
 #' # most basic function call with the defaults
 #' # this is the **only** function where data argument can be `NULL`
 #' ggstatsplot::gghistostats(
-#'   x = ToothGrowth$len,
+#'   data = ToothGrowth,
+#'   x = len,
 #'   xlab = "Tooth length",
 #'   centrality.para = "median"
 #' )
@@ -76,7 +77,7 @@
 #' @export
 
 # function body
-gghistostats <- function(data = NULL,
+gghistostats <- function(data,
                          x,
                          binwidth = NULL,
                          bar.measure = "count",
@@ -122,34 +123,16 @@ gghistostats <- function(data = NULL,
                          return = "plot",
                          messages = TRUE) {
 
-  # if data is not available then don't display any messages
-  if (is.null(data)) {
-    messages <- FALSE
-  }
-
   # ================================= dataframe ==============================
 
-  # preparing a dataframe out of provided inputs
-  if (!is.null(data)) {
-    # if xlab is not provided, use the variable x name
-    if (is.null(xlab)) {
-      xlab <- rlang::as_name(rlang::ensym(x))
-    }
-
-    # if dataframe is provided
-    data <-
-      dplyr::select(
-        .data = data,
-        x = !!rlang::enquo(x)
-      )
-  } else {
-    # if vectors are provided
-    data <-
-      base::cbind.data.frame(x = x)
+  # if xlab is not provided, use the variable x name
+  if (is.null(xlab)) {
+    xlab <- rlang::as_name(rlang::ensym(x))
   }
 
-  # convert to a tibble and remove NAs from `x`
-  data %<>%
+  # if dataframe is provided
+  data <-
+    dplyr::select(.data = data, x = !!rlang::enquo(x)) %>%
     tidyr::drop_na(data = .) %>%
     tibble::as_tibble(x = .)
 
@@ -161,7 +144,6 @@ gghistostats <- function(data = NULL,
   # ================ stats labels ==========================================
 
   if (isTRUE(results.subtitle)) {
-
     # preparing the BF message for NULL
     if (isTRUE(bf.message)) {
       bf.caption.text <-
@@ -419,8 +401,7 @@ gghistostats <- function(data = NULL,
 
   # if no color fill gradient is used, then remove the legend
   if (!isTRUE(fill.gradient)) {
-    plot <- plot +
-      ggplot2::theme(legend.position = "none")
+    plot <- plot + ggplot2::theme(legend.position = "none")
   }
 
   # ---------------- adding ggplot component ---------------------------------

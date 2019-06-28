@@ -464,7 +464,7 @@ testthat::test_that(
       data = ggplot2::msleep,
       cor.vars = sleep_total:awake,
       type = "r",
-      output = "n",
+      return = "n",
       p.adjust.method = "fdr",
       messages = FALSE
     )
@@ -607,11 +607,11 @@ testthat::test_that(
     # checking messages
     testthat::expect_match(
       p_message1[1],
-      "Number of variable names does not equal"
+      "No. of variable names doesn't equal"
     )
     testthat::expect_match(
       p_message1[2],
-      "Confidence intervals currently not supported"
+      "Confidence intervals not supported"
     )
     testthat::expect_match(
       p_message2[2],

@@ -17,9 +17,7 @@ grouped_ggcorrmat(data, cor.vars = NULL, cor.vars.names = NULL,
   subtitle = NULL, caption = NULL, caption.default = TRUE,
   lab.col = "black", lab.size = 5, insig = "pch", pch = 4,
   pch.col = "black", pch.cex = 11, tl.cex = 12, tl.col = "black",
-  tl.srt = 45, axis.text.x.margin.t = 0, axis.text.x.margin.r = 0,
-  axis.text.x.margin.b = 0, axis.text.x.margin.l = 0,
-  messages = TRUE, ...)
+  tl.srt = 45, messages = TRUE, return = NULL, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -39,11 +37,11 @@ bare name \code{x} or as a string \code{"x"}).}
 plot title (name of each factor level) (Default: \code{NULL}). If \code{NULL}, the
 variable name entered for \code{grouping.var} will be used.}
 
-\item{output}{Character that decides expected output from this function:
-\code{"plot"} (for visualization matrix) or \code{"correlations"} (or \code{"corr"} or
-\code{"r"}; for correlation matrix) or \code{"p-values"} (or \code{"p.values"} or \code{"p"};
-for a matrix of \emph{p}-values) or \code{"ci"} (for a tibble with confidence
-intervals for unique correlation pairs; not available for robust
+\item{output}{Character that decides expected output from this
+function: \code{"plot"} (for visualization matrix) or \code{"correlations"} (or
+\code{"corr"} or \code{"r"}; for correlation matrix) or \code{"p-values"} (or \code{"p.values"}
+or \code{"p"}; for a matrix of \emph{p}-values) or \code{"ci"} (for a tibble with
+confidence intervals for unique correlation pairs; not available for robust
 correlation) or \code{"n"} (or \code{"sample.size"} for a tibble with sample sizes
 for each correlation pair).}
 
@@ -135,11 +133,11 @@ theme elements are to be displayed along with the selected \code{ggtheme}
 
 \item{subtitle}{The text for the plot subtitle.}
 
-\item{caption}{The text for the plot caption. If not specified (if it is
-\code{NULL}, i.e.), a default caption will be shown.}
+\item{caption}{The text for the plot caption. If \code{NULL}, a default caption
+will be shown.}
 
-\item{caption.default}{Logical decides whether the default caption should be
-shown.}
+\item{caption.default}{Logical that decides whether the default caption
+should be shown (default: \code{TRUE}).}
 
 \item{lab.col}{Color to be used for the correlation coefficient labels
 (applicable only when \code{lab = TRUE}).}
@@ -171,24 +169,16 @@ text label (variable names, i.e.).}
 \item{tl.srt}{The size, the color, and the string rotation of
 text label (variable names, i.e.).}
 
-\item{axis.text.x.margin.t}{Margins between x-axis and the variable name texts (t: top, r: right, b:
-bottom, l:left), especially useful in case the names are slanted, i.e. when
-the tl.srt is between \code{45} and \code{75} (Defaults: \code{0}, \code{0}, \code{0}, \code{0}, resp.).}
-
-\item{axis.text.x.margin.r}{Margins between x-axis and the variable name texts (t: top, r: right, b:
-bottom, l:left), especially useful in case the names are slanted, i.e. when
-the tl.srt is between \code{45} and \code{75} (Defaults: \code{0}, \code{0}, \code{0}, \code{0}, resp.).}
-
-\item{axis.text.x.margin.b}{Margins between x-axis and the variable name texts (t: top, r: right, b:
-bottom, l:left), especially useful in case the names are slanted, i.e. when
-the tl.srt is between \code{45} and \code{75} (Defaults: \code{0}, \code{0}, \code{0}, \code{0}, resp.).}
-
-\item{axis.text.x.margin.l}{Margins between x-axis and the variable name texts (t: top, r: right, b:
-bottom, l:left), especially useful in case the names are slanted, i.e. when
-the tl.srt is between \code{45} and \code{75} (Defaults: \code{0}, \code{0}, \code{0}, \code{0}, resp.).}
-
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
+
+\item{return}{Character that decides expected output from this
+function: \code{"plot"} (for visualization matrix) or \code{"correlations"} (or
+\code{"corr"} or \code{"r"}; for correlation matrix) or \code{"p-values"} (or \code{"p.values"}
+or \code{"p"}; for a matrix of \emph{p}-values) or \code{"ci"} (for a tibble with
+confidence intervals for unique correlation pairs; not available for robust
+correlation) or \code{"n"} (or \code{"sample.size"} for a tibble with sample sizes
+for each correlation pair).}
 
 \item{...}{Arguments passed on to \code{combine_plots}
 \describe{

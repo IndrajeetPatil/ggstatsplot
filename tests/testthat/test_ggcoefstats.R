@@ -596,39 +596,29 @@ testthat::test_that(
   }
 )
 
-# check gmm output ----------------------------------------------
+# check mlm output ----------------------------------------------
 
 testthat::test_that(
-  desc = "check gmm output",
+  desc = "check mlm output",
   code = {
     testthat::skip_on_cran()
 
-    # setup
-    set.seed(123)
-    library(gmm)
-
-    # examples come from the "gmm" package
-    ## CAPM test with GMM
-    data(Finance)
-    r <- Finance[1:300, 1:10]
-    rm <- Finance[1:300, "rm"]
-    rf <- Finance[1:300, "rf"]
-
-    z <- as.matrix(r - rf)
-    t <- nrow(z)
-    zm <- rm - rf
-    h <- matrix(zm, t, 1)
-    res <- gmm::gmm(z ~ zm, x = h)
+    # model (converting all numeric columns in data to z-scores)
+    res <- stats::lm(
+      formula = cbind(mpg, disp) ~ wt,
+      data = purrr::modify_if(.x = mtcars, .p = is.numeric, .f = scale)
+    )
 
     # plot
     df <- ggstatsplot::ggcoefstats(
       x = res,
+      exclude.intercept = FALSE,
       output = "tidy"
     )
 
     # tests
-    testthat::expect_equal(dim(df), c(10L, 12L))
-    testthat::expect_identical(as.character(df$term[[1]]), "WMK_zm")
+    testthat::expect_equal(dim(df), c(4L, 11L))
+    testthat::expect_identical(as.character(df$term[[1]]), "mpg_(Intercept)")
   }
 )
 
