@@ -8,7 +8,8 @@ single parameter (e.g., t, chi-squared, etc.)}
 subtitle_template(no.parameters, stat.title = NULL, statistic.text,
   statistic, parameter = NULL, parameter2 = NULL, p.value,
   effsize.text, effsize.estimate, effsize.LL, effsize.UL, n,
-  conf.level = 0.95, k = 2L, k.parameter = 0L, k.parameter2 = 0L)
+  conf.level = 0.95, k = 2L, k.parameter = 0L, k.parameter2 = 0L,
+  n.text = NULL)
 }
 \arguments{
 \item{no.parameters}{An integer that specifies that the number of parameters
@@ -54,6 +55,12 @@ effect size, its lower bound, and its upper.}
 
 \item{k.parameter, k.parameter2}{Number of decimal places to display for the
 parameters (default: \code{0}).}
+
+\item{n.text}{A character that specifies the design, which will determine
+what the \code{n} stands for. For example, for repeated measures, this can be
+\code{quote(italic("n")["pairs"])}, while for independent subjects design this
+can be \code{quote(italic("n")["obs"])}. If \code{NULL}, defaults to generic
+\code{quote(italic("n"))}.}
 }
 \description{
 Template for subtitles with statistical details for tests with a

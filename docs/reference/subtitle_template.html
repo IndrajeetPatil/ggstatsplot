@@ -196,7 +196,8 @@ single parameter (e.g., t, chi-squared, etc.)</p>
     <pre class="usage"><span class='fu'>subtitle_template</span>(<span class='no'>no.parameters</span>, <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>statistic.text</span>,
   <span class='no'>statistic</span>, <span class='kw'>parameter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>parameter2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>p.value</span>,
   <span class='no'>effsize.text</span>, <span class='no'>effsize.estimate</span>, <span class='no'>effsize.LL</span>, <span class='no'>effsize.UL</span>, <span class='no'>n</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>k.parameter</span> <span class='kw'>=</span> <span class='fl'>0L</span>, <span class='kw'>k.parameter2</span> <span class='kw'>=</span> <span class='fl'>0L</span>)</pre>
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>k.parameter</span> <span class='kw'>=</span> <span class='fl'>0L</span>, <span class='kw'>k.parameter2</span> <span class='kw'>=</span> <span class='fl'>0L</span>,
+  <span class='kw'>n.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -270,6 +271,14 @@ effect size, its lower bound, and its upper.</p></td>
       <th>k.parameter, k.parameter2</th>
       <td><p>Number of decimal places to display for the
 parameters (default: <code>0</code>).</p></td>
+    </tr>
+    <tr>
+      <th>n.text</th>
+      <td><p>A character that specifies the design, which will determine
+what the <code>n</code> stands for. For example, for repeated measures, this can be
+<code><a href='https://rdrr.io/r/base/substitute.html'>quote(italic("n")["pairs"])</a></code>, while for independent subjects design this
+can be <code><a href='https://rdrr.io/r/base/substitute.html'>quote(italic("n")["obs"])</a></code>. If <code>NULL</code>, defaults to generic
+<code><a href='https://rdrr.io/r/base/substitute.html'>quote(italic("n"))</a></code>.</p></td>
     </tr>
     </table>
     

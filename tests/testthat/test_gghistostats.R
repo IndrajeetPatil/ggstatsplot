@@ -130,7 +130,8 @@ testthat::test_that(
     set.seed(123)
     p <-
       ggstatsplot::gghistostats(
-        x = ggplot2::mpg$cty,
+        data = ggplot2::mpg,
+        x = cty,
         xlab = "city miles per gallon",
         title = "fuel economy",
         caption = substitute(paste(italic("source"), ": government website")),
@@ -256,7 +257,8 @@ testthat::test_that(
     set.seed(123)
     p <-
       ggstatsplot::gghistostats(
-        x = mtcars$wt,
+        data = mtcars,
+        x = wt,
         bar.measure = "proportion",
         binwidth = 0.5,
         test.value = 2.5,
@@ -342,7 +344,8 @@ testthat::test_that(
     set.seed(123)
     p <-
       suppressMessages(ggstatsplot::gghistostats(
-        x = morley$Speed,
+        data = morley,
+        x = Speed,
         bar.measure = "density",
         binwidth = 50,
         test.value = 2.5,
@@ -514,7 +517,8 @@ testthat::test_that(
     set.seed(123)
     p <-
       suppressWarnings(ggstatsplot::gghistostats(
-        x = morley$Speed,
+        data = morley,
+        x = Speed,
         effsize.type = "d",
         effsize.noncentral = FALSE,
         bf.message = FALSE,

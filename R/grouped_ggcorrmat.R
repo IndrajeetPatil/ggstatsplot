@@ -107,11 +107,8 @@ grouped_ggcorrmat <- function(data,
                               tl.cex = 12,
                               tl.col = "black",
                               tl.srt = 45,
-                              axis.text.x.margin.t = 0,
-                              axis.text.x.margin.r = 0,
-                              axis.text.x.margin.b = 0,
-                              axis.text.x.margin.l = 0,
                               messages = TRUE,
+                              return = NULL,
                               ...) {
 
   # create a list of function call to check for label.expression
@@ -198,11 +195,8 @@ grouped_ggcorrmat <- function(data,
       tl.cex = tl.cex,
       tl.col = tl.col,
       tl.srt = tl.srt,
-      axis.text.x.margin.t = axis.text.x.margin.t,
-      axis.text.x.margin.r = axis.text.x.margin.r,
-      axis.text.x.margin.b = axis.text.x.margin.b,
-      axis.text.x.margin.l = axis.text.x.margin.l,
-      messages = messages
+      messages = messages,
+      return = return
     )
 
   # ===================== combining results ===================================

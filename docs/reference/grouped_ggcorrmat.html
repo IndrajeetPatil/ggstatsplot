@@ -207,9 +207,7 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
   <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption.default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>lab.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>lab.size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>insig</span> <span class='kw'>=</span> <span class='st'>"pch"</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>4</span>,
   <span class='kw'>pch.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>pch.cex</span> <span class='kw'>=</span> <span class='fl'>11</span>, <span class='kw'>tl.cex</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>tl.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>tl.srt</span> <span class='kw'>=</span> <span class='fl'>45</span>, <span class='kw'>axis.text.x.margin.t</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>axis.text.x.margin.r</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>axis.text.x.margin.b</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>axis.text.x.margin.l</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>tl.srt</span> <span class='kw'>=</span> <span class='fl'>45</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>return</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -243,11 +241,11 @@ variable name entered for <code>grouping.var</code> will be used.</p></td>
     </tr>
     <tr>
       <th>output</th>
-      <td><p>Character that decides expected output from this function:
-<code>"plot"</code> (for visualization matrix) or <code>"correlations"</code> (or <code>"corr"</code> or
-<code>"r"</code>; for correlation matrix) or <code>"p-values"</code> (or <code>"p.values"</code> or <code>"p"</code>;
-for a matrix of <em>p</em>-values) or <code>"ci"</code> (for a tibble with confidence
-intervals for unique correlation pairs; not available for robust
+      <td><p>Character that decides expected output from this
+function: <code>"plot"</code> (for visualization matrix) or <code>"correlations"</code> (or
+<code>"corr"</code> or <code>"r"</code>; for correlation matrix) or <code>"p-values"</code> (or <code>"p.values"</code>
+or <code>"p"</code>; for a matrix of <em>p</em>-values) or <code>"ci"</code> (for a tibble with
+confidence intervals for unique correlation pairs; not available for robust
 correlation) or <code>"n"</code> (or <code>"sample.size"</code> for a tibble with sample sizes
 for each correlation pair).</p></td>
     </tr>
@@ -385,13 +383,13 @@ theme elements are to be displayed along with the selected <code>ggtheme</code>
     </tr>
     <tr>
       <th>caption</th>
-      <td><p>The text for the plot caption. If not specified (if it is
-<code>NULL</code>, i.e.), a default caption will be shown.</p></td>
+      <td><p>The text for the plot caption. If <code>NULL</code>, a default caption
+will be shown.</p></td>
     </tr>
     <tr>
       <th>caption.default</th>
-      <td><p>Logical decides whether the default caption should be
-shown.</p></td>
+      <td><p>Logical that decides whether the default caption
+should be shown (default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>lab.col</th>
@@ -442,33 +440,19 @@ text label (variable names, i.e.).</p></td>
 text label (variable names, i.e.).</p></td>
     </tr>
     <tr>
-      <th>axis.text.x.margin.t</th>
-      <td><p>Margins between x-axis and the variable name texts (t: top, r: right, b:
-bottom, l:left), especially useful in case the names are slanted, i.e. when
-the tl.srt is between <code>45</code> and <code>75</code> (Defaults: <code>0</code>, <code>0</code>, <code>0</code>, <code>0</code>, resp.).</p></td>
-    </tr>
-    <tr>
-      <th>axis.text.x.margin.r</th>
-      <td><p>Margins between x-axis and the variable name texts (t: top, r: right, b:
-bottom, l:left), especially useful in case the names are slanted, i.e. when
-the tl.srt is between <code>45</code> and <code>75</code> (Defaults: <code>0</code>, <code>0</code>, <code>0</code>, <code>0</code>, resp.).</p></td>
-    </tr>
-    <tr>
-      <th>axis.text.x.margin.b</th>
-      <td><p>Margins between x-axis and the variable name texts (t: top, r: right, b:
-bottom, l:left), especially useful in case the names are slanted, i.e. when
-the tl.srt is between <code>45</code> and <code>75</code> (Defaults: <code>0</code>, <code>0</code>, <code>0</code>, <code>0</code>, resp.).</p></td>
-    </tr>
-    <tr>
-      <th>axis.text.x.margin.l</th>
-      <td><p>Margins between x-axis and the variable name texts (t: top, r: right, b:
-bottom, l:left), especially useful in case the names are slanted, i.e. when
-the tl.srt is between <code>45</code> and <code>75</code> (Defaults: <code>0</code>, <code>0</code>, <code>0</code>, <code>0</code>, resp.).</p></td>
-    </tr>
-    <tr>
       <th>messages</th>
       <td><p>Decides whether messages references, notes, and warnings are
 to be displayed (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>return</th>
+      <td><p>Character that decides expected output from this
+function: <code>"plot"</code> (for visualization matrix) or <code>"correlations"</code> (or
+<code>"corr"</code> or <code>"r"</code>; for correlation matrix) or <code>"p-values"</code> (or <code>"p.values"</code>
+or <code>"p"</code>; for a matrix of <em>p</em>-values) or <code>"ci"</code> (for a tibble with
+confidence intervals for unique correlation pairs; not available for robust
+correlation) or <code>"n"</code> (or <code>"sample.size"</code> for a tibble with sample sizes
+for each correlation pair).</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -593,9 +577,9 @@ of p-values.</p>
   <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"holm"</span>,
   <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>:<span class='no'>Petal.Width</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"ci"</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Confidence intervals currently not supported for robust correlation.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Confidence intervals currently not supported for robust correlation.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Confidence intervals currently not supported for robust correlation.
+)</div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Confidence intervals not supported for robust correlation.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Confidence intervals not supported for robust correlation.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Confidence intervals not supported for robust correlation.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 0 x 1</span><span>
 #&gt; </span><span style='color: #555555;'># ... with 1 variable: Species </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span></div></span></pre>
   </div>

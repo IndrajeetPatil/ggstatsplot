@@ -94,16 +94,14 @@ subtitle_anova_parametric <- function(data,
   # for paired designs, variance is going to be equal across grouping levels
   if (isTRUE(paired)) {
     var.equal <- TRUE
+  } else {
+    sphericity.correction <- FALSE
   }
 
   # number of decimal places for degree of freedom
   if (isTRUE(var.equal)) {
-    if (isTRUE(paired)) {
-      if (isTRUE(sphericity.correction)) {
-        k.df2 <- k
-      } else {
-        k.df2 <- 0L
-      }
+    if (isTRUE(sphericity.correction)) {
+      k.df2 <- k
     } else {
       k.df2 <- 0L
     }
