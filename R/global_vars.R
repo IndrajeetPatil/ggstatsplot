@@ -200,7 +200,8 @@ utils::globalVariables(
     "upper.ci",
     "epsilon.squared",
     "condition",
-    "main"
+    "main",
+    "pair1"
   ),
   package = "ggstatsplot",
   add = FALSE

@@ -42,16 +42,6 @@ bf_extractor <- function(bf.object,
       log_e_bf01 = log(bf01),
       log_10_bf10 = log10(bf10),
       log_10_bf01 = log10(bf01)
-    ) %>%
-    dplyr::select(
-      .data = .,
-      bf10,
-      log_e_bf10,
-      log_10_bf10,
-      bf01,
-      log_e_bf01,
-      log_10_bf01,
-      dplyr::everything()
     )
 
   # return the dataframe with bayes factors

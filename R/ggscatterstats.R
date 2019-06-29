@@ -366,9 +366,9 @@ ggscatterstats <- function(data,
   )
 
   # adding vertical and horizontal lines and attaching labels
-  if (!is.null(centrality.para)) {
+  if (!is.null(centrality.para) && !isFALSE(centrality.para)) {
     # choosing the appropriate intercepts for the lines
-    if (centrality.para == "mean") {
+    if (centrality.para == "mean" || isTRUE(centrality.para)) {
       x.intercept <- x_mean
       y.intercept <- y_mean
       x.vline <- x_mean

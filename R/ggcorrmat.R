@@ -3,7 +3,7 @@
 #' @aliases ggcorrmat
 #' @author Indrajeet Patil
 #' @return Correlation matrix plot or correlation coefficient matrix or matrix
-#'   of p-values.
+#'   of *p*-values.
 #'
 #' @param data Dataframe from which variables specified are preferentially to be
 #'   taken.
@@ -32,13 +32,12 @@
 #'   will also work: `"p"` (for parametric/Pearson's *r*), `"np"`
 #'   (nonparametric/Spearman's *rho*), `"r"` (robust).
 #' @param exact A logical indicating whether an exact *p*-value should be
-#'   computed. Used for Kendall's *tau* and Spearman's *rho*. For more details,
-#'   see `?stats::cor.test`.
+#'   computed. Used for Spearman's *rho*. For more details, see
+#'   `?stats::cor.test`.
 #' @param continuity A logical. If `TRUE`, a continuity correction is used for
-#'   Kendall's *tau* and Spearman's *rho* when not computed exactly (Default:
-#'   `TRUE`).
-#' @param beta A numeric bending constant for robust correlation coefficient
-#'   (Default: `0.1`).
+#'   Spearman's *rho* when not computed exactly (Default: `TRUE`).
+#' @param beta A numeric bending constant for percentage bend robust correlation
+#'   coefficient (Default: `0.1`).
 #' @param digits,k Decides the number of decimal digits to be displayed
 #'   (Default: `2`).
 #' @param sig.level Significance level (Default: `0.05`). If the *p*-value in
@@ -89,14 +88,16 @@
 #'   to be displayed (Default: `TRUE`).
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams paletteer::paletteer_d
+#' @inheritParams ggscatterstats
 #'
 #' @import ggplot2
 #'
 #' @importFrom ggcorrplot ggcorrplot
-#' @importFrom dplyr select group_by summarize n arrange
+#' @importFrom dplyr select group_by summarize n arrange bind_cols
 #' @importFrom dplyr mutate mutate_at mutate_if
-#' @importFrom purrr is_bare_double flatten_dbl keep %||%
-#' @importFrom stats cor na.omit
+#' @importFrom purrr is_bare_double is_bare_numeric %||%
+#' @importFrom purrr flatten_dbl keep flatten_dfr compose
+#' @importFrom stats cor na.omit median
 #' @importFrom tibble as_tibble rownames_to_column
 #' @importFrom rlang !! enquo quo_name is_null
 #' @importFrom crayon green blue yellow red
@@ -180,6 +181,7 @@ ggcorrmat <- function(data,
                       digits = 2,
                       k = NULL,
                       sig.level = 0.05,
+                      conf.level = 0.95,
                       p.adjust.method = "none",
                       hc.order = FALSE,
                       hc.method = "complete",
@@ -302,7 +304,7 @@ ggcorrmat <- function(data,
         y = NULL,
         use = "pairwise",
         adjust = "none",
-        alpha = .05,
+        alpha = 1 - conf.level,
         ci = FALSE,
         minlength = 20
       )
@@ -359,8 +361,19 @@ ggcorrmat <- function(data,
           ))
       } else {
         # in case of NAs, compute minimum and maximum sample sizes of pairs
-        n_summary <- numdf_summary(corr_df$n)
+        n_summary <- tibble::as_tibble(corr_df$n) %>%
+          dplyr::select_if(.tbl = ., .predicate = purrr::is_bare_numeric) %>%
+          purrr::flatten_dbl(.x = .) %>%
+          {
+            list(
+              n_min = min(., na.rm = TRUE),
+              n_median = stats::median(x = ., na.rm = TRUE),
+              n_max = max(., na.rm = TRUE)
+            )
+          } %>%
+          purrr::flatten_dfr(.x = .)
 
+        # creating legend with sample size info
         legend.title.text <-
           bquote(atop(
             atop(
@@ -463,16 +476,14 @@ ggcorrmat <- function(data,
 
   if (output == "ci") {
     if (corr.method %in% c("pearson", "spearman", "kendall")) {
-      # compute confidence intervals
-      ci.mat <- dplyr::full_join(
-        x = corr_df$ci %>%
-          tibble::rownames_to_column(.data = ., var = "pair") %>%
-          tibble::rowid_to_column(.data = ., var = "rowid"),
-        y = corr_df$ci.adj %>%
-          tibble::rowid_to_column(.data = ., var = "rowid"),
-        by = "rowid"
-      ) %>%
-        dplyr::select(.data = ., pair, r, dplyr::everything(), -rowid)
+      # composing a function to convert dataframe to tibble
+      tibble_helper <- purrr::compose(tibble::as_tibble, tibble::rownames_to_column)
+
+      # merging data frame with CIs and adjusted CIs
+      ci.mat <- list(corr_df$ci, corr_df$ci.adj) %>%
+        purrr::map(.x = ., .f = tibble_helper, var = "pair") %>%
+        dplyr::bind_cols(.) %>%
+        dplyr::select(.data = ., pair, r, dplyr::everything(), -pair1)
     } else {
       return(message(cat(
         crayon::red("Warning: "),
@@ -492,15 +503,15 @@ ggcorrmat <- function(data,
   # return the desired result
   return(
     switch(output,
-      "correlations" = matrix_to_tibble(corr.mat),
-      "corr" = matrix_to_tibble(corr.mat),
-      "r" = matrix_to_tibble(corr.mat),
-      "n" = matrix_to_tibble(corr_df$n),
-      "sample.size" = matrix_to_tibble(corr_df$n),
+      "correlations" = tibble::as_tibble(x = corr.mat, rownames = "variable"),
+      "corr" = tibble::as_tibble(x = corr.mat, rownames = "variable"),
+      "r" = tibble::as_tibble(x = corr.mat, rownames = "variable"),
+      "n" = tibble::as_tibble(x = corr_df$n, rownames = "variable"),
+      "sample.size" = tibble::as_tibble(x = corr_df$n, rownames = "variable"),
       "ci" = tibble::as_tibble(ci.mat),
-      "p-values" = matrix_to_tibble(p.mat),
-      "p.values" = matrix_to_tibble(p.mat),
-      "p" = matrix_to_tibble(p.mat),
+      "p-values" = tibble::as_tibble(x = p.mat, rownames = "variable"),
+      "p.values" = tibble::as_tibble(x = p.mat, rownames = "variable"),
+      "p" = tibble::as_tibble(x = p.mat, rownames = "variable"),
       "plot" = plot,
       plot
     )

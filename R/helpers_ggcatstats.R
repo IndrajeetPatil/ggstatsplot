@@ -123,30 +123,22 @@ cat_counter <- function(data, main, condition = NULL, ...) {
 
 df_facet_label <- function(data, x, y) {
 
-  # prepare dataframe
-  data <-
-    dplyr::select(
-      .data = data,
-      main = !!rlang::enquo(x),
-      condition = !!rlang::enquo(y)
-    )
-
   # combine info about sample size plus
-  df <- dplyr::full_join(
-    x = data %>%
-      dplyr::group_by(.data = ., condition) %>%
-      dplyr::summarize(.data = ., N = n()) %>%
-      dplyr::mutate(.data = ., N = paste0("(n = ", N, ")", sep = "")) %>%
-      dplyr::ungroup(x = .),
-    y = data %>%
-      groupedstats::grouped_proptest(
+  df <- data %>% {
+    dplyr::full_join(
+      x = dplyr::group_by(.data = ., !!rlang::enquo(y)) %>%
+        dplyr::summarize(.data = ., N = dplyr::n()) %>%
+        dplyr::mutate(.data = ., N = paste0("(n = ", N, ")", sep = "")) %>%
+        dplyr::ungroup(x = .),
+      y = groupedstats::grouped_proptest(
         data = .,
-        grouping.vars = condition,
-        measure = main
+        grouping.vars = !!rlang::enquo(y),
+        measure = !!rlang::enquo(x)
       ) %>%
-      dplyr::filter(.data = ., !is.na(significance)),
-    by = "condition"
-  )
+        dplyr::filter(.data = ., !is.na(significance)),
+      by = rlang::as_name(rlang::ensym(y))
+    )
+  }
 
   # return the final dataframe
   return(df)

@@ -26,16 +26,9 @@ mean_labeller <- function(data,
       .data = data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
-    )
-
-  # convert the grouping variable to factor and drop unused levels
-  data %<>%
-    dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
-    dplyr::mutate_at(
-      .tbl = .,
-      .vars = "x",
-      .funs = ~ droplevels(x = as.factor(x = .))
     ) %>%
+    tidyr::drop_na(data = .) %>%
+    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
     tibble::as_tibble(x = .)
 
   # computing mean and confidence interval for mean

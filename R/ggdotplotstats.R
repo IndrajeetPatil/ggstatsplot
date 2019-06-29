@@ -13,6 +13,8 @@
 #' @inheritParams gghistostats
 #' @inheritParams ggcoefstats
 #'
+#' @importFrom dplyr row_number percent_rank
+#'
 #' @seealso \code{\link{grouped_gghistostats}}, \code{\link{gghistostats}},
 #'  \code{\link{grouped_ggdotplotstats}}
 #'
@@ -116,8 +118,8 @@ ggdotplotstats <- function(data,
     dplyr::mutate(.data = ., y = factor(y, levels = .$y)) %>%
     dplyr::mutate(
       .data = .,
-      percent_rank = (trunc(rank(x)) / length(x)) * 100,
-      rank = 1:NROW(.)
+      percent_rank = dplyr::percent_rank(x),
+      rank = dplyr::row_number()
     )
 
   # ================ stats labels ==========================================

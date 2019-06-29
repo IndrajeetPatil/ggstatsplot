@@ -37,7 +37,7 @@ Imports:
     cowplot (>= 0.9.4),
     crayon (>= 1.3.4),
     DescTools (>= 0.99.28),
-    dplyr (>= 0.8.1),
+    dplyr (>= 0.8.2),
     ellipsis (>= 0.2.0),
     ez (>= 4.4-0),
     forcats (>= 0.4.0),
