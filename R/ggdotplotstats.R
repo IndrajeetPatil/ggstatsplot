@@ -125,7 +125,6 @@ ggdotplotstats <- function(data,
   # ================ stats labels ==========================================
 
   if (isTRUE(results.subtitle)) {
-
     # preparing the BF message for NULL
     if (isTRUE(bf.message)) {
       bf.caption.text <-

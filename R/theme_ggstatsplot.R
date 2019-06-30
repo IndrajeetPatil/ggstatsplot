@@ -109,20 +109,8 @@ theme_pie <- function(ggtheme = ggplot2::theme_bw(),
         legend.position = "bottom",
         legend.key = ggplot2::element_rect(size = 5),
         legend.key.size = grid::unit(x = 1.5, units = "lines"),
-        legend.margin = ggplot2::margin(
-          t = 5,
-          r = 5,
-          b = 5,
-          l = 5,
-          unit = "pt"
-        ),
-        legend.box.margin = ggplot2::margin(
-          t = 5,
-          r = 5,
-          b = 5,
-          l = 5,
-          unit = "pt"
-        ),
+        legend.margin = ggplot2::margin(t = 5, r = 5, b = 5, l = 5, unit = "pt"),
+        legend.box.margin = ggplot2::margin(t = 5, r = 5, b = 5, l = 5, unit = "pt"),
         panel.border = ggplot2::element_rect(
           color = "black",
           fill = NA,

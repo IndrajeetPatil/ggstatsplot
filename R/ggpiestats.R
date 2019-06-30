@@ -402,7 +402,6 @@ ggpiestats <- function(data,
       caption = caption
     ) +
     ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title)) +
-    # adding ggplot component
     ggplot.component
 
   # return the final plot

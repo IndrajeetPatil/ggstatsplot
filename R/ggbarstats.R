@@ -335,26 +335,23 @@ ggbarstats <- function(data,
   # if we need to modify `x`-axis orientation
   if (!is.null(x.axis.orientation)) {
     if (x.axis.orientation == "slant") {
-      p <-
-        p + ggplot2::theme(
-          axis.text.x = ggplot2::element_text(
-            angle = 45,
-            vjust = 1,
-            hjust = 1,
-            face = "bold"
-          )
-        )
-    } else if (x.axis.orientation == "vertical") {
-      p <-
-        p + ggplot2::theme(
-          axis.text.x = ggplot2::element_text(
-            angle = 90,
-            vjust = 0.5,
-            hjust = 1,
-            face = "bold"
-          )
-        )
+      angle <- 45
+      vjust <- 1
+    } else {
+      angle <- 90
+      vjust <- 0.5
     }
+
+    # adjusting plot label
+    p <-
+      p + ggplot2::theme(
+        axis.text.x = ggplot2::element_text(
+          angle = angle,
+          vjust = vjust,
+          hjust = 1,
+          face = "bold"
+        )
+      )
   }
 
   # preparing the plot

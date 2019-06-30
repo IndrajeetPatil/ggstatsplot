@@ -440,16 +440,6 @@ bf_contingency_tab <- function(data,
         log_10_bf10 = log10(bf10),
         log_10_bf01 = log10(bf01)
       ) %>%
-      dplyr::select(
-        .data = .,
-        bf10,
-        log_e_bf10,
-        log_10_bf10,
-        bf01,
-        log_e_bf01,
-        log_10_bf01,
-        dplyr::everything()
-      ) %>%
       dplyr::mutate(
         .data = .,
         prior.concentration = prior.concentration

@@ -30,11 +30,11 @@ grouped_list <- function(data, grouping.var) {
     dplyr::mutate_if(
       .tbl = .,
       .predicate = is.factor,
-      .funs = ~ base::droplevels(.)
+      .funs = ~ droplevels(.)
     ) %>%
     dplyr::filter(.data = ., !is.na(!!rlang::enquo(grouping.var))) %>%
     tibble::as_tibble(x = .) %>%
-    base::split(x = ., f = .[[rlang::quo_text(grouping.var)]], drop = TRUE)
+    split(x = ., f = .[[rlang::quo_text(grouping.var)]], drop = TRUE)
 
   # return the list
   return(data_list)
