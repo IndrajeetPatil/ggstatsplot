@@ -23,7 +23,6 @@ testthat::test_that(
   }
 )
 
-
 # checking if labeling works ------------------------------------------------
 
 testthat::test_that(
@@ -35,7 +34,8 @@ testthat::test_that(
     library(ggplot2)
 
     # plot
-    plot <- ggplot(dplyr::starwars, aes(height, mass)) +
+    plot <-
+      ggplot(dplyr::starwars, aes(height, mass)) +
       geom_point(na.rm = TRUE)
 
     # y coordinates

@@ -84,6 +84,7 @@ grouped_ggcorrmat <- function(data,
                               digits = 2,
                               k = NULL,
                               sig.level = 0.05,
+                              conf.level = 0.95,
                               p.adjust.method = "none",
                               hc.order = FALSE,
                               hc.method = "complete",
@@ -131,19 +132,14 @@ grouped_ggcorrmat <- function(data,
 
   # getting the dataframe ready
   if ("cor.vars" %in% names(param_list)) {
-    df <-
-      dplyr::select(
-        .data = data,
-        !!rlang::enquo(grouping.var),
-        !!rlang::enquo(cor.vars)
-      )
+    df <- dplyr::select(.data = data, {{ grouping.var }}, {{ cor.vars }})
   } else {
     df <- data
   }
 
   # creating a list for grouped analysis
   df %<>%
-    grouped_list(data = ., grouping.var = !!rlang::enquo(grouping.var))
+    grouped_list(data = ., grouping.var = {{ grouping.var }})
 
   # list with basic arguments
   flexiblelist <- list(
@@ -172,6 +168,7 @@ grouped_ggcorrmat <- function(data,
       beta = beta,
       digits = digits,
       sig.level = sig.level,
+      conf.level = conf.level,
       p.adjust.method = p.adjust.method,
       hc.order = hc.order,
       hc.method = hc.method,

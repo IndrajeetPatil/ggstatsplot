@@ -393,6 +393,7 @@ ggcoefstats <- function(x,
   # dataframe objects
   df.mods <- c(
     "data.frame",
+    "data.table",
     "grouped_df",
     "tbl",
     "tbl_df",
@@ -519,7 +520,7 @@ ggcoefstats <- function(x,
     }
 
     # check that statistic is specified
-    if (purrr::is_null(statistic)) {
+    if (rlang::is_null(statistic)) {
       message(cat(
         crayon::red("Note"),
         crayon::blue(

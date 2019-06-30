@@ -42,16 +42,6 @@ bf_extractor <- function(bf.object,
       log_e_bf01 = log(bf01),
       log_10_bf10 = log10(bf10),
       log_10_bf01 = log10(bf01)
-    ) %>%
-    dplyr::select(
-      .data = .,
-      bf10,
-      log_e_bf10,
-      log_10_bf10,
-      bf01,
-      log_e_bf01,
-      log_10_bf01,
-      dplyr::everything()
     )
 
   # return the dataframe with bayes factors
@@ -339,12 +329,12 @@ bf_contingency_tab <- function(data,
   # =============================== dataframe ================================
 
   # creating a dataframe
-  data <-
+  data %<>%
     dplyr::select(
-      .data = data,
-      main = !!rlang::enquo(main),
-      condition = !!rlang::enquo(condition),
-      counts = !!rlang::enquo(counts)
+      .data = .,
+      main = {{ main }},
+      condition = {{ condition }},
+      counts = {{ counts }}
     ) %>%
     tidyr::drop_na(data = .) %>%
     tibble::as_tibble(x = .)
@@ -449,16 +439,6 @@ bf_contingency_tab <- function(data,
         log_e_bf01 = log(bf01),
         log_10_bf10 = log10(bf10),
         log_10_bf01 = log10(bf01)
-      ) %>%
-      dplyr::select(
-        .data = .,
-        bf10,
-        log_e_bf10,
-        log_10_bf10,
-        bf01,
-        log_e_bf01,
-        log_10_bf01,
-        dplyr::everything()
       ) %>%
       dplyr::mutate(
         .data = .,

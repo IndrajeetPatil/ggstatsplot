@@ -120,17 +120,12 @@ grouped_gghistostats <- function(data,
   # ======================== preparing dataframe ============================
 
   # getting the dataframe ready
+  # creating a dataframe
   df <-
-    dplyr::select(
-      .data = data,
-      !!rlang::enquo(grouping.var),
-      !!rlang::enquo(x)
-    ) %>%
-    tidyr::drop_na(data = .)
-
-  # creating a list for grouped analysis
-  df %<>%
-    grouped_list(data = ., grouping.var = !!rlang::enquo(grouping.var))
+    data %>%
+    dplyr::select(.data = ., {{ grouping.var }}, {{ x }}) %>%
+    tidyr::drop_na(data = .) %>% # creating a list for grouped analysis
+    grouped_list(data = ., grouping.var = {{ grouping.var }})
 
   # list with basic arguments
   flexiblelist <- list(

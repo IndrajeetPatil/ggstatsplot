@@ -11,7 +11,7 @@ MINOR CHANGES
   - `ggcoefstats` defaults to `bf.message = TRUE` to be consistent with the rest
     of the functions in the package.
   - `ggcoefstats` supports the following class of objects: `epi.2by2`, `negbin`,
-    `emmGrid`, `lmrob`, `glmrob`, `glmmPQL`.
+    `emmGrid`, `lmrob`, `glmrob`, `glmmPQL`, `data.table`.
   - `bf_ttest` is introduced as a general function. The previously exported
     `bf_one_sample_ttest` and `bf_two_sample_ttest` become its aliases.
 

@@ -838,7 +838,7 @@ bf_meta_message <- function(data,
 
   if (!"term" %in% names(data)) {
     data %<>%
-      dplyr::mutate(.data = ., term = 1:nrow(.)) %>%
+      dplyr::mutate(.data = ., term = dplyr::row_number()) %>%
       dplyr::mutate(.data = ., term = as.character(term))
   }
 

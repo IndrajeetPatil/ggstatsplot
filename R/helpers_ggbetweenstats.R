@@ -24,18 +24,11 @@ mean_labeller <- function(data,
   data <-
     dplyr::select(
       .data = data,
-      x = !!rlang::enquo(x),
-      y = !!rlang::enquo(y)
-    )
-
-  # convert the grouping variable to factor and drop unused levels
-  data %<>%
-    dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
-    dplyr::mutate_at(
-      .tbl = .,
-      .vars = "x",
-      .funs = ~ droplevels(x = as.factor(x = .))
+      x = {{ x }},
+      y = {{ y }}
     ) %>%
+    tidyr::drop_na(data = .) %>%
+    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
     tibble::as_tibble(x = .)
 
   # computing mean and confidence interval for mean
@@ -80,16 +73,12 @@ mean_labeller <- function(data,
         .labels = TRUE
       )
   } else {
-    mean_dat %<>%
-      dplyr::mutate(.data = ., label = mean.y)
+    mean_dat %<>% dplyr::mutate(.data = ., label = mean.y)
   }
 
   # adding sample size labels and arranging by original factor levels
   mean_dat %<>%
-    dplyr::mutate(
-      .data = .,
-      n_label = paste0(x, "\n(n = ", n, ")", sep = "")
-    ) %>%
+    dplyr::mutate(.data = ., n_label = paste0(x, "\n(n = ", n, ")", sep = "")) %>%
     dplyr::arrange(.data = ., x)
 
   # return the dataframe with mean information
@@ -279,12 +268,12 @@ outlier_df <- function(data,
 
   # add a logical column indicating whether a point is or is not an outlier
   data %<>%
-    dplyr::group_by(.data = ., !!rlang::enquo(x)) %>%
+    dplyr::group_by(.data = ., {{ x }}) %>%
     dplyr::mutate(
       .data = .,
       isanoutlier = ifelse(
         test = check_outlier(
-          var = !!rlang::enquo(y),
+          var = {{ y }},
           coef = outlier.coef
         ),
         yes = TRUE,
@@ -295,7 +284,7 @@ outlier_df <- function(data,
       .data = .,
       outlier = ifelse(
         test = isanoutlier,
-        yes = !!rlang::enquo(outlier.label),
+        yes = {{ outlier.label }},
         no = NA
       )
     ) %>%
@@ -335,24 +324,21 @@ long_to_wide_converter <- function(data,
 
   # creating a dataframe
   data <-
-    dplyr::select(
-      .data = data,
-      x = !!rlang::enquo(x),
-      y = !!rlang::enquo(y)
-    ) %>%
-    dplyr::mutate(.data = ., x = droplevels(as.factor(x)))
+    dplyr::select(.data = data, {{ x }}, {{ y }}) %>%
+    dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }}))) %>%
+    tibble::as_tibble(x = .)
 
   # figuring out number of levels in the grouping factor
-  x_n_levels <- length(levels(data$x))[[1]]
+  x_n_levels <- length(levels(data[[rlang::as_name(rlang::enquo(x))]]))[[1]]
 
   # wide format
   data_wide <-
     data %>%
-    dplyr::filter(.data = ., !is.na(x)) %>%
-    dplyr::group_by(.data = ., x) %>%
+    dplyr::filter(.data = ., !is.na({{ x }})) %>%
+    dplyr::group_by(.data = ., {{ x }}) %>%
     dplyr::mutate(.data = ., rowid = dplyr::row_number()) %>%
     dplyr::ungroup(x = .) %>%
-    dplyr::filter(.data = ., !is.na(y)) %>%
+    dplyr::filter(.data = ., !is.na({{ y }})) %>%
     tibble::as_tibble(x = .)
 
   # clean up for repeated measures design
@@ -362,15 +348,15 @@ long_to_wide_converter <- function(data,
       dplyr::mutate(.data = ., n = dplyr::n()) %>%
       dplyr::ungroup(x = .) %>%
       dplyr::filter(.data = ., n == x_n_levels) %>%
-      dplyr::select(.data = ., x, y, rowid)
+      dplyr::select(.data = ., {{ x }}, {{ y }}, rowid)
   }
 
   # spreading the columns of interest
   data_wide %<>%
     tidyr::spread(
       data = .,
-      key = x,
-      value = y,
+      key = {{ x }},
+      value = {{ y }},
       convert = TRUE
     )
 
@@ -436,16 +422,14 @@ ggsignif_adder <- function(plot,
     # deciding what needs to be displayed
     if (pairwise.annotation %in% c("p", "p-value", "p.value")) {
       # if p-values are to be displayed
-      df_pairwise %<>%
-        dplyr::rename(.data = ., label = p.value.label)
+      df_pairwise %<>% dplyr::rename(.data = ., label = p.value.label)
 
       # for ggsignif
       textsize <- 3
       vjust <- 0
     } else {
       # otherwise just show the asterisks
-      df_pairwise %<>%
-        dplyr::rename(.data = ., label = significance)
+      df_pairwise %<>% dplyr::rename(.data = ., label = significance)
 
       # for ggsignif
       textsize <- 4
@@ -453,8 +437,7 @@ ggsignif_adder <- function(plot,
     }
 
     # arrange the dataframe so that annotations are properly aligned
-    df_pairwise %<>%
-      dplyr::arrange(.data = ., group1)
+    df_pairwise %<>% dplyr::arrange(.data = ., group1)
 
     # computing y coordinates for ggsignif bars
     ggsignif_y_position <-
@@ -499,9 +482,9 @@ sort_xy <- function(data,
   data %<>%
     dplyr::mutate(
       .data = .,
-      !!rlang::enquo(x) := forcats::fct_reorder(
-        .f = !!rlang::enquo(x),
-        .x = !!rlang::enquo(y),
+      {{ x }} := forcats::fct_reorder(
+        .f = {{ x }},
+        .x = {{ y }},
         .fun = sort.fun,
         na.rm = TRUE,
         .desc = .desc

@@ -58,13 +58,9 @@ subtitle_ggscatterstats <- function(data,
   #------------------------ dataframe -------------------------------------
 
   # if dataframe is provided
-  data <-
-    dplyr::select(
-      .data = data,
-      x = !!rlang::enquo(x),
-      y = !!rlang::enquo(y)
-    ) %>%
-    stats::na.omit(.) %>%
+  data %<>%
+    dplyr::select(.data = .,x = {{ x }}, y = {{ y }}) %>%
+    tidyr::drop_na(.) %>%
     tibble::as_tibble(x = .)
 
   # the total sample size for analysis

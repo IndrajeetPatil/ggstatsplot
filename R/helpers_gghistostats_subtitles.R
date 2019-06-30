@@ -60,7 +60,11 @@ subtitle_t_onesample <- function(data,
   # ====================== dataframe ========================================
 
   # preparing a dataframe out of provided inputs
-  data <- dplyr::select(.data = data, x = !!rlang::enquo(x)) %>%
+  data <-
+    dplyr::select(
+      .data = data,
+      x = !!rlang::enquo(x)
+    ) %>%
     tidyr::drop_na(data = .) %>%
     tibble::as_tibble(x = .)
 

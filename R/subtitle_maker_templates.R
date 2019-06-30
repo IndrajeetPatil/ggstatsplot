@@ -80,7 +80,7 @@ subtitle_template <- function(no.parameters,
                               n.text = NULL) {
 
   # if sample size nature is not specified, use generic n
-  if (purrr::is_null(n.text)) {
+  if (rlang::is_null(n.text)) {
     n.text <- quote(italic("n"))
   }
 
@@ -135,7 +135,7 @@ subtitle_template <- function(no.parameters,
 
   if (no.parameters == 1L) {
     # check if parameter is specified
-    if (purrr::is_null(parameter)) {
+    if (rlang::is_null(parameter)) {
       stop(message(cat(
         crayon::red("Error: "),
         crayon::blue(
@@ -199,7 +199,7 @@ subtitle_template <- function(no.parameters,
 
   if (no.parameters == 2L) {
     # check if parameters are specified
-    if (purrr::is_null(parameter) || purrr::is_null(parameter2)) {
+    if (rlang::is_null(parameter) || rlang::is_null(parameter2)) {
       stop(message(cat(
         crayon::red("Error: "),
         crayon::blue(

@@ -189,18 +189,17 @@ grouped_ggscatterstats <- function(data,
   # getting the dataframe ready
   # note that `dplyr::everything` is used because point labelling can involve
   # any of the data columns
+  # creating a dataframe
   df <-
+    data %>%
     dplyr::select(
-      .data = data,
-      !!rlang::enquo(grouping.var),
-      !!rlang::enquo(x),
-      !!rlang::enquo(y),
+      .data = .,
+      {{ grouping.var }},
+      {{ x }},
+      {{ y }},
       dplyr::everything()
-    )
-
-  # creating a list for grouped analysis
-  df %<>%
-    grouped_list(data = ., grouping.var = !!rlang::enquo(grouping.var))
+    ) %>%
+    grouped_list(data = ., grouping.var = {{ grouping.var }})
 
   # if labeling expression has been specified, format the arguments accordingly
   if (isTRUE(expression.present)) {

@@ -274,12 +274,12 @@ ggbetweenstats <- function(data,
   # --------------------------------- data -----------------------------------
 
   # creating a dataframe
-  data <-
+  data %<>%
     dplyr::select(
-      .data = data,
-      x = !!rlang::enquo(x),
-      y = !!rlang::enquo(y),
-      outlier.label = !!rlang::enquo(outlier.label)
+      .data = .,
+      x = {{ x }},
+      y = {{ y }},
+      outlier.label = {{ outlier.label }}
     ) %>%
     tidyr::drop_na(data = .) %>%
     dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%

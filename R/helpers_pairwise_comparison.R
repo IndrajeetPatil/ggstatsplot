@@ -305,7 +305,7 @@ pairwise_p <- function(data,
     tibble::as_tibble(x = .)
 
   # ---------------------------- parametric ---------------------------------
-  #
+
   if (type %in% c("parametric", "p")) {
     if (isTRUE(var.equal) || isTRUE(paired)) {
       # anova model
@@ -387,11 +387,7 @@ pairwise_p <- function(data,
       # dataframe with Games-Howell test results
       df <-
         games_howell(data = data, x = x, y = y) %>%
-        dplyr::mutate(
-          .data = .,
-          p.value = stats::p.adjust(p = p.value, method = p.adjust.method)
-        ) %>%
-        signif_column(data = ., p = p.value) %>%
+        p_adjust_column_adder(df = ., p.adjust.method = p.adjust.method) %>%
         dplyr::select(.data = ., -conf.low, -conf.high)
 
       # display message about the post hoc tests run
@@ -433,11 +429,7 @@ pairwise_p <- function(data,
           group2 = p2,
           p.value = p
         ) %>%
-        dplyr::mutate(
-          .data = .,
-          p.value = stats::p.adjust(p = p.value, method = p.adjust.method)
-        ) %>%
-        ggstatsplot::signif_column(data = ., p = p.value)
+        p_adjust_column_adder(df = ., p.adjust.method = p.adjust.method)
 
       # letting the user know which test was run
       if (isTRUE(messages)) {
@@ -480,11 +472,7 @@ pairwise_p <- function(data,
           statistic = stat,
           p.value = p
         ) %>%
-        dplyr::mutate(
-          .data = .,
-          p.value = stats::p.adjust(p = p.value, method = p.adjust.method)
-        ) %>%
-        ggstatsplot::signif_column(data = ., p = p.value)
+        p_adjust_column_adder(df = ., p.adjust.method = p.adjust.method)
 
       # letting the user know which test was run
       if (isTRUE(messages)) {
@@ -553,13 +541,9 @@ pairwise_p <- function(data,
     # cleaning the raw object and getting it in the right format
     df <-
       dplyr::full_join(
-        # dataframe comparing comparion details
+        # dataframe comparing comparison details
         x = rob_df_tidy %>%
-          dplyr::mutate(
-            .data = .,
-            p.value = stats::p.adjust(p = p.value, method = p.adjust.method)
-          ) %>%
-          ggstatsplot::signif_column(data = ., p = p.value) %>%
+          p_adjust_column_adder(df = ., p.adjust.method = p.adjust.method) %>%
           tidyr::gather(
             data = .,
             key = "key",
@@ -577,13 +561,11 @@ pairwise_p <- function(data,
 
     # for paired designs, there will be an unnecessary column to remove
     if (("p.crit") %in% names(df)) {
-      df %<>%
-        dplyr::select(.data = ., -p.crit)
+      df %<>% dplyr::select(.data = ., -p.crit)
     }
 
     # renaming confidence interval names
-    df %<>%
-      dplyr::rename(.data = ., conf.low = ci.lower, conf.high = ci.upper)
+    df %<>% dplyr::rename(.data = ., conf.low = ci.lower, conf.high = ci.upper)
 
     # message about which test was run
     if (isTRUE(messages)) {
@@ -624,7 +606,7 @@ pairwise_p <- function(data,
     ) %>%
     purrrlyr::by_row(
       .d = .,
-      ..f = ~ ggstatsplot::specify_decimal_p(
+      ..f = ~ specify_decimal_p(
         x = .$p.value,
         k = k,
         p.value = TRUE
@@ -660,6 +642,18 @@ pairwise_p <- function(data,
 }
 
 
+#' @noRd
+#' @keywords internal
+
+p_adjust_column_adder <- function(df, p.adjust.method) {
+  df %>%
+    dplyr::mutate(
+      .data = .,
+      p.value = stats::p.adjust(p = p.value, method = p.adjust.method)
+    ) %>%
+    signif_column(data = ., p = p.value)
+}
+
 #' @title Preparing caption in case pairwise comparisons are displayed.
 #' @name pairwise_p_caption
 #'
@@ -692,18 +686,16 @@ pairwise_p_caption <- function(type,
   )
 
   # figuring out which pairwise comparison test was run
+  # parametric
   if (test.type == "p") {
-    if (isTRUE(paired)) {
+    if (isTRUE(paired) || isTRUE(var.equal)) {
       test.description <- "Student's t-test"
     } else {
-      if (isTRUE(var.equal)) {
-        test.description <- "Student's t-test"
-      } else {
-        test.description <- "Games-Howell test"
-      }
+      test.description <- "Games-Howell test"
     }
   }
 
+  # non-parametric
   if (test.type == "np") {
     if (isTRUE(paired)) {
       test.description <- "Durbin-Conover test"
@@ -712,6 +704,7 @@ pairwise_p_caption <- function(type,
     }
   }
 
+  # robust
   if (test.type == "r") {
     test.description <- "Yuen's trimmed means test"
   }

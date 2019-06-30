@@ -156,18 +156,16 @@ grouped_ggbetweenstats <- function(data,
 
   # creating a dataframe
   df <-
+    data %>%
     dplyr::select(
-      .data = data,
-      !!rlang::enquo(x),
-      !!rlang::enquo(y),
-      !!rlang::enquo(grouping.var),
-      !!rlang::enquo(outlier.label)
+      .data = .,
+      {{ grouping.var }},
+      {{ x }},
+      {{ y }},
+      {{ outlier.label }}
     ) %>%
-    tidyr::drop_na(data = .)
-
-  # creating a list for grouped analysis
-  df %<>%
-    grouped_list(data = ., grouping.var = !!rlang::enquo(grouping.var))
+    tidyr::drop_na(data = .) %>% # creating a list for grouped analysis
+    grouped_list(data = ., grouping.var = {{ grouping.var }})
 
   # ============== build pmap list based on conditions =====================
 

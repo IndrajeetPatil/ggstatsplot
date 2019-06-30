@@ -79,11 +79,7 @@ subtitle_t_parametric <- function(data,
 
   # creating a dataframe
   data <-
-    dplyr::select(
-      .data = data,
-      x = !!rlang::enquo(x),
-      y = !!rlang::enquo(y)
-    ) %>%
+    dplyr::select(.data = data, x = {{ x }}, y = {{ y }}) %>%
     dplyr::mutate_if(.tbl = ., .predicate = is.character, .funs = as.factor) %>%
     dplyr::mutate_if(.tbl = ., .predicate = is.factor, .funs = droplevels) %>%
     tibble::as_tibble(x = .)
@@ -289,11 +285,7 @@ subtitle_mann_nonparametric <- function(data,
 
   # creating a dataframe
   data <-
-    dplyr::select(
-      .data = data,
-      x = !!rlang::enquo(x),
-      y = !!rlang::enquo(y)
-    ) %>%
+    dplyr::select(.data = data, x = {{ x }}, y = {{ y }}) %>%
     dplyr::mutate_if(.tbl = ., .predicate = is.character, .funs = as.factor) %>%
     dplyr::mutate_if(.tbl = ., .predicate = is.factor, .funs = droplevels) %>%
     tibble::as_tibble(x = .)
@@ -462,11 +454,7 @@ subtitle_t_robust <- function(data,
 
   # creating a dataframe
   data <-
-    dplyr::select(
-      .data = data,
-      x = !!rlang::enquo(x),
-      y = !!rlang::enquo(y)
-    ) %>%
+    dplyr::select(.data = data, x = {{ x }}, y = {{ y }}) %>%
     dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
     tibble::as_tibble(x = .)
 
@@ -629,11 +617,7 @@ subtitle_t_bayes <- function(data,
 
   # creating a dataframe
   data <-
-    dplyr::select(
-      .data = data,
-      x = !!rlang::enquo(x),
-      y = !!rlang::enquo(y)
-    ) %>%
+    dplyr::select(.data = data, x = {{ x }}, y = {{ y }}) %>%
     dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
     tibble::as_tibble(.)
 

@@ -9,15 +9,16 @@ grouped_ggcorrmat(data, cor.vars = NULL, cor.vars.names = NULL,
   grouping.var, title.prefix = NULL, output = "plot",
   matrix.type = "full", method = "square", corr.method = "pearson",
   type = NULL, exact = FALSE, continuity = TRUE, beta = 0.1,
-  digits = 2, k = NULL, sig.level = 0.05, p.adjust.method = "none",
-  hc.order = FALSE, hc.method = "complete", lab = TRUE,
-  package = "RColorBrewer", palette = "Dark2", direction = 1,
-  colors = c("#E69F00", "white", "#009E73"), outline.color = "black",
-  ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
-  subtitle = NULL, caption = NULL, caption.default = TRUE,
-  lab.col = "black", lab.size = 5, insig = "pch", pch = 4,
-  pch.col = "black", pch.cex = 11, tl.cex = 12, tl.col = "black",
-  tl.srt = 45, messages = TRUE, return = NULL, ...)
+  digits = 2, k = NULL, sig.level = 0.05, conf.level = 0.95,
+  p.adjust.method = "none", hc.order = FALSE, hc.method = "complete",
+  lab = TRUE, package = "RColorBrewer", palette = "Dark2",
+  direction = 1, colors = c("#E69F00", "white", "#009E73"),
+  outline.color = "black", ggtheme = ggplot2::theme_bw(),
+  ggstatsplot.layer = TRUE, subtitle = NULL, caption = NULL,
+  caption.default = TRUE, lab.col = "black", lab.size = 5,
+  insig = "pch", pch = 4, pch.col = "black", pch.cex = 11,
+  tl.cex = 12, tl.col = "black", tl.srt = 45, messages = TRUE,
+  return = NULL, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -69,15 +70,14 @@ will also work: \code{"p"} (for parametric/Pearson's \emph{r}), \code{"np"}
 (nonparametric/Spearman's \emph{rho}), \code{"r"} (robust).}
 
 \item{exact}{A logical indicating whether an exact \emph{p}-value should be
-computed. Used for Kendall's \emph{tau} and Spearman's \emph{rho}. For more details,
-see \code{?stats::cor.test}.}
+computed. Used for Spearman's \emph{rho}. For more details, see
+\code{?stats::cor.test}.}
 
 \item{continuity}{A logical. If \code{TRUE}, a continuity correction is used for
-Kendall's \emph{tau} and Spearman's \emph{rho} when not computed exactly (Default:
-\code{TRUE}).}
+Spearman's \emph{rho} when not computed exactly (Default: \code{TRUE}).}
 
-\item{beta}{A numeric bending constant for robust correlation coefficient
-(Default: \code{0.1}).}
+\item{beta}{A numeric bending constant for percentage bend robust correlation
+coefficient (Default: \code{0.1}).}
 
 \item{digits}{Decides the number of decimal digits to be displayed
 (Default: \code{2}).}
@@ -89,6 +89,9 @@ Kendall's \emph{tau} and Spearman's \emph{rho} when not computed exactly (Defaul
 \emph{p}-value matrix is bigger than \code{sig.level}, then the corresponding
 correlation coefficient is regarded as insignificant and flagged as such in
 the plot. This argument is relevant only when \code{output = "plot"}.}
+
+\item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
+\code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
 \item{p.adjust.method}{What adjustment for multiple tests should be used?
 (\code{"holm"}, \code{"hochberg"}, \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"},
@@ -231,7 +234,7 @@ combining (plot, caption).}
 }
 \value{
 Correlation matrix plot or correlation coefficient matrix or matrix
-of p-values.
+of \emph{p}-values.
 }
 \description{
 Helper function for \code{ggstatsplot::ggcorrmat} to apply this

@@ -193,32 +193,20 @@ ggscatterstats <- function(data,
   #----------------------- dataframe --------------------------------------
 
   # preparing the dataframe
-  data <- dplyr::full_join(
-    # bizarre names like "x...internal" and "y...internal" are used to protect
-    # against the possibility that user has already used "x" and "y" as
-    # variable names, in which case the full_join() will create variable names
-    # that will create problems
-    x = data %>%
-      dplyr::select(
-        .data = .,
-        x...internal = !!rlang::enquo(x),
-        y...internal = !!rlang::enquo(y)
-      ) %>%
-      tibble::rowid_to_column(., var = "rowid"),
-    # dataframe where x and y retain their original names
-    y = data %>%
-      dplyr::select(
-        .data = .,
-        !!rlang::enquo(x),
-        !!rlang::enquo(y),
-        dplyr::everything()
-      ) %>%
-      tibble::rowid_to_column(., var = "rowid"),
-    by = "rowid"
-  ) %>%
-    dplyr::select(.data = ., -rowid) %>% # remove NAs only from x & y columns
-    dplyr::filter(.data = ., !is.na(x...internal), !is.na(y...internal)) %>%
-    tibble::as_tibble(x = .)
+  data %<>% {
+    dplyr::full_join(
+      # bizarre names like "x...internal" and "y...internal" are used to protect
+      # against the possibility that user has already used "x" and "y"
+      x = dplyr::select(.data = ., x...internal = {{ x }}, y...internal = {{ y }}) %>%
+        tibble::rowid_to_column(., var = "rowid"),
+      # dataframe where x and y retain their original names
+      y = tibble::rowid_to_column(., var = "rowid"),
+      by = "rowid"
+    ) %>%
+      dplyr::select(.data = ., -rowid) %>% # remove NAs only from x & y columns
+      dplyr::filter(.data = ., !is.na(x...internal), !is.na(y...internal)) %>%
+      tibble::as_tibble(x = .)
+  }
 
   #---------------------------- user expression -------------------------
 
@@ -366,9 +354,9 @@ ggscatterstats <- function(data,
   )
 
   # adding vertical and horizontal lines and attaching labels
-  if (!is.null(centrality.para)) {
+  if (!is.null(centrality.para) && !isFALSE(centrality.para)) {
     # choosing the appropriate intercepts for the lines
-    if (centrality.para == "mean") {
+    if (centrality.para == "mean" || isTRUE(centrality.para)) {
       x.intercept <- x_mean
       y.intercept <- y_mean
       x.vline <- x_mean

@@ -155,6 +155,7 @@ testthat::test_that(
         data = ggplot2::msleep,
         x = sleep_total,
         y = bodywt,
+        centrality.para = FALSE,
         type = "np",
         conf.level = 0.99,
         marginal = FALSE,
@@ -175,6 +176,8 @@ testthat::test_that(
       messages = FALSE
     )
 
+    # testing data and annotations
+    testthat::expect_equal(length(pb$data), 2L)
     testthat::expect_identical(p$plot_env$subtitle, p_subtitle)
     testthat::expect_null(pb$plot$labels$caption, NULL)
   }

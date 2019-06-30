@@ -160,19 +160,19 @@ ggpiestats <- function(data,
   # =============================== dataframe ================================
 
   # creating a dataframe
-  data <-
+  data %<>%
     dplyr::select(
-      .data = data,
-      main = !!rlang::enquo(main),
-      condition = !!rlang::enquo(condition),
-      counts = !!rlang::enquo(counts)
+      .data = .,
+      main = {{ main }},
+      condition = {{ condition }},
+      counts = {{ counts }}
     ) %>%
     tidyr::drop_na(data = .) %>%
     tibble::as_tibble(x = .)
 
   # =========================== converting counts ============================
 
-  # untable the dataframe based on the count for each obervation
+  # untable the dataframe based on the count for each observation
   if ("counts" %in% names(data)) {
     data %<>%
       tidyr::uncount(
@@ -402,7 +402,6 @@ ggpiestats <- function(data,
       caption = caption
     ) +
     ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title)) +
-    # adding ggplot component
     ggplot.component
 
   # return the final plot

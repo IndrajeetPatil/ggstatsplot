@@ -166,8 +166,8 @@ histo_labeller <- function(plot,
         na.rm = TRUE
       )
 
+    # adding a text label with test value
     if (isTRUE(test.line.labeller)) {
-      # adding a text label with test value
       plot <-
         line_labeller(
           plot = plot,
@@ -182,53 +182,37 @@ histo_labeller <- function(plot,
   }
 
   # if central tendency parameter is to be added
-  if (!is.null(centrality.para)) {
-    if (isTRUE(centrality.para) || centrality.para == "mean") {
-      plot <- plot +
-        ggplot2::geom_vline(
-          xintercept = x_mean,
-          linetype = centrality.linetype,
-          color = centrality.color,
-          size = centrality.size,
-          na.rm = TRUE
-        )
+  if (!is.null(centrality.para) && !isFALSE(centrality.para)) {
+    if (centrality.para == "mean" || isTRUE(centrality.para)) {
+      x.intercept <- x_mean
+      label.text <- "mean"
+    } else {
+      x.intercept <- x_median
+      label.text <- "median"
+    }
 
-      if (isTRUE(centrality.line.labeller)) {
-        # adding a text label with mean value
-        plot <-
-          line_labeller(
-            plot = plot,
-            x = x_mean,
-            y = y.label.position,
-            label.text = "mean",
-            k = centrality.k,
-            jitter = 0.25,
-            color = centrality.color
-          )
-      }
-    } else if (centrality.para == "median") {
-      plot <- plot +
-        ggplot2::geom_vline(
-          xintercept = x_median,
-          linetype = centrality.linetype,
-          color = centrality.color,
-          size = centrality.size,
-          na.rm = TRUE
-        )
+    # adding a vertical line corresponding to centrality parameter
+    plot <- plot +
+      ggplot2::geom_vline(
+        xintercept = x.intercept,
+        linetype = centrality.linetype,
+        color = centrality.color,
+        size = centrality.size,
+        na.rm = TRUE
+      )
 
-      # adding a text label with median value
-      if (isTRUE(centrality.line.labeller)) {
-        plot <-
-          line_labeller(
-            plot = plot,
-            x = x_median,
-            y = y.label.position,
-            label.text = "median",
-            k = centrality.k,
-            jitter = 0.25,
-            color = centrality.color
-          )
-      }
+    # adding a text label with mean value
+    if (isTRUE(centrality.line.labeller)) {
+      plot <-
+        line_labeller(
+          plot = plot,
+          x = x.intercept,
+          y = y.label.position,
+          label.text = label.text,
+          k = centrality.k,
+          jitter = 0.25,
+          color = centrality.color
+        )
     }
   }
 
