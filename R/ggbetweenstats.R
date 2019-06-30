@@ -274,9 +274,9 @@ ggbetweenstats <- function(data,
   # --------------------------------- data -----------------------------------
 
   # creating a dataframe
-  data <-
+  data %<>%
     dplyr::select(
-      .data = data,
+      .data = .,
       x = {{ x }},
       y = {{ y }},
       outlier.label = {{ outlier.label }}

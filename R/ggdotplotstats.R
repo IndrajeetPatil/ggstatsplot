@@ -99,28 +99,21 @@ ggdotplotstats <- function(data,
   # --------------------------- data preparation ----------------------------
 
   # creating a dataframe
-  data <-
-    dplyr::select(
-      .data = data,
-      x = !!rlang::enquo(x),
-      y = !!rlang::enquo(y)
-    ) %>%
+  data %<>%
+    dplyr::select(.data = ., x = {{ x }}, y = {{ y }}) %>%
     tidyr::drop_na(data = .) %>%
     dplyr::mutate(.data = ., y = droplevels(as.factor(y))) %>%
     dplyr::group_by(.data = ., y) %>%
     dplyr::summarise(.data = ., x = mean(x, na.rm = TRUE)) %>%
-    dplyr::ungroup(x = .) %>%
-    tibble::as_tibble(x = .)
-
-  # rank ordering the data
-  data %<>%
+    dplyr::ungroup(x = .) %>% # rank ordering the data
     dplyr::arrange(.data = ., x) %>%
     dplyr::mutate(.data = ., y = factor(y, levels = .$y)) %>%
     dplyr::mutate(
       .data = .,
       percent_rank = dplyr::percent_rank(x),
       rank = dplyr::row_number()
-    )
+    ) %>%
+    tibble::as_tibble(x = .)
 
   # ================ stats labels ==========================================
 

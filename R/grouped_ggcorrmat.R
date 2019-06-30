@@ -132,19 +132,14 @@ grouped_ggcorrmat <- function(data,
 
   # getting the dataframe ready
   if ("cor.vars" %in% names(param_list)) {
-    df <-
-      dplyr::select(
-        .data = data,
-        !!rlang::enquo(grouping.var),
-        !!rlang::enquo(cor.vars)
-      )
+    df <- dplyr::select(.data = data, {{ grouping.var }}, {{ cor.vars }})
   } else {
     df <- data
   }
 
   # creating a list for grouped analysis
   df %<>%
-    grouped_list(data = ., grouping.var = !!rlang::enquo(grouping.var))
+    grouped_list(data = ., grouping.var = {{ grouping.var }})
 
   # list with basic arguments
   flexiblelist <- list(

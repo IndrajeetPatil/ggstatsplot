@@ -216,7 +216,7 @@ ggcorrmat <- function(data,
     df <- purrr::keep(.x = data, .p = purrr::is_bare_numeric)
   } else {
     # creating a dataframe out of the entered variables
-    df <- dplyr::select(.data = data, !!rlang::enquo(cor.vars))
+    df <- dplyr::select(.data = data, {{ cor.vars }})
   }
 
   # counting number of NAs present in the dataframe

@@ -129,12 +129,12 @@ ggbarstats <- function(data,
   # =============================== dataframe ================================
 
   # creating a dataframe
-  data <-
+  data %<>%
     dplyr::select(
-      .data = data,
-      main = !!rlang::enquo(main),
-      condition = !!rlang::enquo(condition),
-      counts = !!rlang::enquo(counts)
+      .data = .,
+      main = {{ main }},
+      condition = {{ condition }},
+      counts = {{ counts }}
     ) %>%
     tidyr::drop_na(data = .) %>%
     tibble::as_tibble(x = .)

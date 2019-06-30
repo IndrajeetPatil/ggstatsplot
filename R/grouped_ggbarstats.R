@@ -151,18 +151,16 @@ grouped_ggbarstats <- function(data,
 
   # creating a dataframe
   df <-
+    data %>%
     dplyr::select(
-      .data = data,
-      !!rlang::enquo(grouping.var),
-      !!rlang::enquo(main),
-      !!rlang::enquo(condition),
-      !!rlang::enquo(counts)
+      .data = .,
+      {{ grouping.var }},
+      {{ main }},
+      {{ condition }},
+      {{ counts }}
     ) %>%
-    tidyr::drop_na(data = .)
-
-  # creating a list for grouped analysis
-  df %<>%
-    grouped_list(data = ., grouping.var = !!rlang::enquo(grouping.var))
+    tidyr::drop_na(data = .) %>% # creating a list for grouped analysis
+    grouped_list(data = ., grouping.var = {{ grouping.var }})
 
   # ============== build pmap list based on conditions =====================
 

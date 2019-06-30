@@ -100,19 +100,17 @@ grouped_ggdotplotstats <- function(data,
     title.prefix <- rlang::as_name(grouping.var)
   }
 
-  # getting the dataframe ready
+  # creating a dataframe
   df <-
+    data %>%
     dplyr::select(
-      .data = data,
-      !!rlang::enquo(grouping.var),
-      !!rlang::enquo(x),
-      !!rlang::enquo(y)
+      .data = .,
+      {{ grouping.var }},
+      {{ x }},
+      {{ y }}
     ) %>%
-    tidyr::drop_na(data = .)
-
-  # creating a list for grouped analysis
-  df %<>%
-    grouped_list(data = ., grouping.var = !!rlang::enquo(grouping.var))
+    tidyr::drop_na(data = .) %>% # creating a list for grouped analysis
+    grouped_list(data = ., grouping.var = {{ grouping.var }})
 
   # list with basic arguments
   flexiblelist <- list(

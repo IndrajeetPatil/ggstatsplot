@@ -132,7 +132,7 @@ gghistostats <- function(data,
 
   # if dataframe is provided
   data <-
-    dplyr::select(.data = data, x = !!rlang::enquo(x)) %>%
+    dplyr::select(.data = data, x = {{ x }}) %>%
     tidyr::drop_na(data = .) %>%
     tibble::as_tibble(x = .)
 
