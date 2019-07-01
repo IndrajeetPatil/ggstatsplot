@@ -23,15 +23,16 @@
 #'   are two possibilities implemented. If the *t*-test did not make a
 #'   homogeneity of variance assumption, (the Welch test), the variance term
 #'   will mirror the Welch test, otherwise a pooled and weighted estimate is
-#'   used. If a paired samples *t*-test was requested, then effect size desired is
-#'   based on the standard deviation of the differences.
+#'   used. If a paired samples *t*-test was requested, then effect size desired
+#'   is based on the standard deviation of the differences.
 #'
 #'   The computation of the confidence intervals defaults to a use of
 #'   non-central Student-*t* distributions (`effsize.noncentral = TRUE`);
 #'   otherwise a central distribution is used.
 #'
-#'   When computing confidence intervals the variance of the effect size *d* or *g* is
-#'   computed using the conversion formula reported in Cooper et al. (2009)
+#'   When computing confidence intervals the variance of the effect size *d* or
+#'   *g* is computed using the conversion formula reported in Cooper et al.
+#'   (2009)
 #'
 #'   - `((n1+n2)/(n1*n2) + .5*d^2/df) * ((n1+n2)/df)` (independent samples)
 #'
@@ -85,7 +86,7 @@ subtitle_t_parametric <- function(data,
     tibble::as_tibble(x = .)
 
   # properly removing NAs if it's a paired design
-  if (isTRUE(paired) && is.factor(data$x)) {
+  if (isTRUE(paired)) {
     data %<>%
       long_to_wide_converter(
         data = .,
@@ -131,8 +132,7 @@ subtitle_t_parametric <- function(data,
   )
 
   # tidy dataframe from model object
-  stats_df <-
-    broomExtra::tidy(tobject)
+  stats_df <- broomExtra::tidy(tobject)
 
   # effect size object
   effsize_df <-
@@ -334,8 +334,10 @@ subtitle_mann_nonparametric <- function(data,
   # function to compute effect sizes
   if (isTRUE(paired)) {
     .f <- rcompanion::wilcoxonPairedR
+    statistic.text <- quote("log"["e"](italic("V")))
   } else {
     .f <- rcompanion::wilcoxonR
+    statistic.text <- quote("log"["e"](italic("W")))
   }
 
   # computing effect size
@@ -355,13 +357,6 @@ subtitle_mann_nonparametric <- function(data,
   # message about effect size measure
   if (isTRUE(messages)) {
     effsize_ci_message(nboot = nboot, conf.level = conf.level)
-  }
-
-  # statistic text
-  if (isTRUE(paired)) {
-    statistic.text <- quote("log"["e"](italic("V")))
-  } else {
-    statistic.text <- quote("log"["e"](italic("W")))
   }
 
   # preparing subtitle

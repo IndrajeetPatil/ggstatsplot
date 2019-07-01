@@ -28,7 +28,7 @@ testthat::test_that(
 
     # check that dropped factor level is not retained
     testthat::expect_equal(
-      object = length(levels(mean_dat$x)) + 1,
+      object = length(levels(mean_dat$cut)) + 1,
       expected = length(levels(diamonds_short$cut))
     )
 
@@ -75,15 +75,15 @@ testthat::test_that(
     set.seed(123)
     mean_dat2 <- ggstatsplot:::mean_labeller(
       data = ggplot2::msleep,
-      x = "vore",
-      y = "brainwt",
+      x = vore,
+      y = brainwt,
       mean.ci = TRUE,
       k = 3
     )
 
     # when factor level contains NAs
     testthat::expect_equal(
-      object = length(levels(mean_dat2$x)),
+      object = length(levels(mean_dat2$vore)),
       expected = length(levels(as.factor(
         ggplot2::msleep$vore
       )))

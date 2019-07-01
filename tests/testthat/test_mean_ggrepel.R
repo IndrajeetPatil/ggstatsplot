@@ -19,7 +19,8 @@ testthat::test_that(
       x = vore,
       y = brainwt,
       mean.ci = TRUE
-    )
+    ) %>%
+      dplyr::rename(.data = ., x = vore, y = brainwt)
 
     # add means
     p_mean <- ggstatsplot:::mean_ggrepel(

@@ -1,4 +1,4 @@
-#' @title Create a dataframe with mean per group and a formatted label for
+#'  @title Create a dataframe with mean per group and a formatted label for
 #'   display in `ggbetweenstats` plot.
 #' @name mean_labeller
 #'
@@ -11,6 +11,17 @@
 #' @importFrom tibble as_tibble
 #' @importFrom purrrlyr by_row
 #'
+#' @examples
+#' \donttest{
+#' ggstatsplot:::mean_labeller(
+#'   data = ggplot2::msleep,
+#'   x = vore,
+#'   y = brainwt,
+#'   mean.ci = TRUE,
+#'   k = 3
+#' )
+#' }
+#'
 #' @keywords internal
 
 # function body
@@ -21,36 +32,30 @@ mean_labeller <- function(data,
                           k = 3) {
 
   # creating the dataframe
-  data <-
-    dplyr::select(
-      .data = data,
-      x = {{ x }},
-      y = {{ y }}
-    ) %>%
+  data %<>%
+    dplyr::select(.data = ., {{ x }}, {{ y }}) %>%
     tidyr::drop_na(data = .) %>%
-    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
+    dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }}))) %>%
     tibble::as_tibble(x = .)
 
   # computing mean and confidence interval for mean
   mean_dat <-
     groupedstats::grouped_summary(
       data = data,
-      grouping.vars = x,
-      measures = y
+      grouping.vars = {{ x }},
+      measures = {{ y }}
     ) %>%
-    dplyr::mutate(.data = ., y = mean) %>%
+    dplyr::mutate(.data = ., {{ y }} := mean) %>%
     dplyr::select(
       .data = .,
-      x,
-      y,
-      mean.y = mean,
-      lower.ci.y = mean.low.conf,
-      upper.ci.y = mean.high.conf,
+      {{ x }},
+      {{ y }},
+      dplyr::matches("^mean"),
       n
     ) %>% # format the numeric values
     dplyr::mutate_at(
       .tbl = .,
-      .vars = dplyr::vars(dplyr::contains(".y")),
+      .vars = dplyr::vars(dplyr::contains("mean")),
       .funs = ~ specify_decimal_p(x = ., k = k)
     )
 
@@ -59,11 +64,11 @@ mean_labeller <- function(data,
     mean_dat %<>%
       purrrlyr::by_row(
         .d = .,
-        ..f = ~ paste(.$mean.y,
+        ..f = ~ paste(.$mean,
           ", 95% CI [",
-          .$lower.ci.y,
+          .$mean.low.conf,
           ", ",
-          .$upper.ci.y,
+          .$mean.high.conf,
           "]",
           sep = "",
           collapse = ""
@@ -73,13 +78,13 @@ mean_labeller <- function(data,
         .labels = TRUE
       )
   } else {
-    mean_dat %<>% dplyr::mutate(.data = ., label = mean.y)
+    mean_dat %<>% dplyr::mutate(.data = ., label = mean)
   }
 
   # adding sample size labels and arranging by original factor levels
   mean_dat %<>%
-    dplyr::mutate(.data = ., n_label = paste0(x, "\n(n = ", n, ")", sep = "")) %>%
-    dplyr::arrange(.data = ., x)
+    dplyr::mutate(.data = ., n_label = paste0({{ x }}, "\n(n = ", n, ")", sep = "")) %>%
+    dplyr::arrange(.data = ., {{ x }})
 
   # return the dataframe with mean information
   return(mean_dat)

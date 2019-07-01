@@ -59,7 +59,7 @@ subtitle_ggscatterstats <- function(data,
 
   # if dataframe is provided
   data %<>%
-    dplyr::select(.data = .,x = {{ x }}, y = {{ y }}) %>%
+    dplyr::select(.data = ., x = {{ x }}, y = {{ y }}) %>%
     tidyr::drop_na(.) %>%
     tibble::as_tibble(x = .)
 
