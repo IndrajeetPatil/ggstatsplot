@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers_ggbetweenstats.R
 \name{mean_labeller}
 \alias{mean_labeller}
-\title{Create a dataframe with mean per group and a formatted label for
+\title{@title Create a dataframe with mean per group and a formatted label for
 display in \code{ggbetweenstats} plot.}
 \usage{
 mean_labeller(data, x, y, mean.ci = FALSE, k = 3)
@@ -23,7 +23,19 @@ is to be displayed (Default: \code{FALSE}).}
 (Default: \code{k = 2}).}
 }
 \description{
-Create a dataframe with mean per group and a formatted label for
+@title Create a dataframe with mean per group and a formatted label for
 display in \code{ggbetweenstats} plot.
+}
+\examples{
+\donttest{
+ggstatsplot:::mean_labeller(
+  data = ggplot2::msleep,
+  x = vore,
+  y = brainwt,
+  mean.ci = TRUE,
+  k = 3
+)
+}
+
 }
 \keyword{internal}

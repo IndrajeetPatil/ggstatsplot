@@ -121,7 +121,9 @@ subtitle_contingency_tab <- function(data,
   data %<>%
     dplyr::select(
       .data = .,
-      main = {{ main }}, condition = {{ condition }}, counts = {{ counts }}
+      main = {{ main }},
+      condition = {{ condition }},
+      counts = {{ counts }}
     ) %>%
     tidyr::drop_na(data = .)
 

@@ -25,6 +25,9 @@ BREAKING CHANGES
     package (none of which allow `data` to be `NULL`). This also removes
     confusion that arose for some users when `data` couldn't be `NULL` for its
     `grouped_` cousin (`grouped_gghistostats`).
+  - `outlier_df` function is no longer exported since it was always meant to be
+    an internal function and was accidently exported during initial release and
+    was retained for a while for backward compatibility. 
 
 # ggstatsplot 0.0.11
  

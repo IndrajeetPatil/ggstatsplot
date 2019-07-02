@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a dataframe with mean per group and a formatted label for
+<title>@title Create a dataframe with mean per group and a formatted label for
 display in <code>ggbetweenstats</code> plot. — mean_labeller • ggstatsplot</title>
 
 <!-- jquery -->
@@ -41,10 +41,10 @@ display in <code>ggbetweenstats</code> plot. — mean_labeller • ggstatsplot</
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Create a dataframe with mean per group and a formatted label for
+<meta property="og:title" content="@title Create a dataframe with mean per group and a formatted label for
 display in <code>ggbetweenstats</code> plot. — mean_labeller" />
 
-<meta property="og:description" content="Create a dataframe with mean per group and a formatted label for
+<meta property="og:description" content="@title Create a dataframe with mean per group and a formatted label for
 display in ggbetweenstats plot." />
 <meta name="twitter:card" content="summary" />
 
@@ -180,7 +180,7 @@ display in ggbetweenstats plot." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a dataframe with mean per group and a formatted label for
+    <h1>@title Create a dataframe with mean per group and a formatted label for
 display in <code>ggbetweenstats</code> plot.</h1>
     <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggbetweenstats.R'><code>R/helpers_ggbetweenstats.R</code></a></small>
     <div class="hidden name"><code>mean_labeller.Rd</code></div>
@@ -188,7 +188,7 @@ display in <code>ggbetweenstats</code> plot.</h1>
 
     <div class="ref-description">
     
-    <p>Create a dataframe with mean per group and a formatted label for
+    <p>@title Create a dataframe with mean per group and a formatted label for
 display in <code>ggbetweenstats</code> plot.</p>
     
     </div>
@@ -225,12 +225,35 @@ is to be displayed (Default: <code>FALSE</code>).</p></td>
     </table>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/mean_labeller.html'>mean_labeller</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>brainwt</span>,
+  <span class='kw'>mean.ci</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>
+)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 4 x 8</span><span>
+#&gt;   vore    brainwt mean  mean.low.conf mean.high.conf     n
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> carni     0.079 0.079 0.002         0.156              9
+#&gt; </span><span style='color: #555555;'>2</span><span> herbi     0.62  0.620 -0.115        1.355             20
+#&gt; </span><span style='color: #555555;'>3</span><span> insecti   0.022 0.022 -0.021        0.065              5
+#&gt; </span><span style='color: #555555;'>4</span><span> omni      0.15  0.150 -0.015        0.315             17
+#&gt;   label                         n_label           
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                         </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             
+#&gt; </span><span style='color: #555555;'>1</span><span> 0.079, 95% CI [0.002, 0.156]  </span><span style='color: #555555;'>"</span><span>carni\n(n = 9)</span><span style='color: #555555;'>"</span><span>  
+#&gt; </span><span style='color: #555555;'>2</span><span> 0.620, 95% CI [-0.115, 1.355] </span><span style='color: #555555;'>"</span><span>herbi\n(n = 20)</span><span style='color: #555555;'>"</span><span> 
+#&gt; </span><span style='color: #555555;'>3</span><span> 0.022, 95% CI [-0.021, 0.065] </span><span style='color: #555555;'>"</span><span>insecti\n(n = 5)</span><span style='color: #555555;'>"</span><span>
+#&gt; </span><span style='color: #555555;'>4</span><span> 0.150, 95% CI [-0.015, 0.315] </span><span style='color: #555555;'>"</span><span>omni\n(n = 17)</span><span style='color: #555555;'>"</span><span>  </div></span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

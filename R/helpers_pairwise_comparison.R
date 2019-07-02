@@ -15,9 +15,7 @@
 #' @keywords internal
 
 # function body
-games_howell <- function(data,
-                         x,
-                         y) {
+games_howell <- function(data, x, y) {
 
   # ============================ data preparation ==========================
 
@@ -617,25 +615,12 @@ pairwise_p <- function(data,
     ) %>%
     dplyr::mutate(
       .data = .,
-      label2 = dplyr::case_when(
-        label == "< 0.001" ~ " <= 0.001",
-        label != "< 0.001" ~ paste(" = ", label,
-          sep = ""
-        )
+      p.value.label = dplyr::case_when(
+        label == "< 0.001" ~ "p <= 0.001",
+        TRUE ~ paste("p = ", label, sep = "")
       )
     ) %>%
-    dplyr::select(.data = ., -label) %>%
-    purrrlyr::by_row(
-      .d = .,
-      ..f = ~ paste("p",
-        .$label2,
-        sep = ""
-      ),
-      .collate = "rows",
-      .to = "p.value.label",
-      .labels = TRUE
-    ) %>%
-    dplyr::select(.data = ., -label2)
+    dplyr::select(.data = ., -label)
 
   # return
   return(tibble::as_tibble(df))

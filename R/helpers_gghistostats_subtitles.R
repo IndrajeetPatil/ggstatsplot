@@ -61,10 +61,7 @@ subtitle_t_onesample <- function(data,
 
   # preparing a dataframe out of provided inputs
   data <-
-    dplyr::select(
-      .data = data,
-      x = !!rlang::enquo(x)
-    ) %>%
+    dplyr::select(.data = data, x = !!rlang::enquo(x)) %>%
     tidyr::drop_na(data = .) %>%
     tibble::as_tibble(x = .)
 
@@ -87,8 +84,8 @@ subtitle_t_onesample <- function(data,
       effsize.text <- quote(italic("d"))
     }
 
-    # creating tobject
-    tobj <- stats::t.test(
+    # creating model object
+    mod_object <- stats::t.test(
       x = data$x,
       mu = test.value,
       conf.level = conf.level,
@@ -97,35 +94,22 @@ subtitle_t_onesample <- function(data,
     )
 
     # tidy dataframe
-    stats_df <- broomExtra::tidy(tobj)
+    stats_df <- broomExtra::tidy(mod_object)
 
     # creating effect size info
     effsize_df <- effsize_t_parametric(
       formula = ~x,
       data = data,
-      tobject = tobj,
+      tobject = mod_object,
       mu = test.value,
       hedges.correction = hedges.correction,
       conf.level = conf.level
     )
 
-    # preparing subtitle
-    subtitle <- subtitle_template(
-      no.parameters = 1L,
-      stat.title = stat.title,
-      statistic.text = quote(italic("t")),
-      statistic = stats_df$statistic,
-      parameter = stats_df$parameter,
-      p.value = stats_df$p.value,
-      effsize.text = effsize.text,
-      effsize.estimate = effsize_df$estimate,
-      effsize.LL = effsize_df$conf.low,
-      effsize.UL = effsize_df$conf.high,
-      n = sample_size,
-      conf.level = conf.level,
-      k = k,
-      k.parameter = 0L
-    )
+    # preparing subtitle parameters
+    statistic.text <- quote(italic("t"))
+    no.parameters <- 1L
+    parameter <- stats_df$parameter[[1]]
   }
 
   # ========================== non-parametric ==============================
@@ -139,10 +123,9 @@ subtitle_t_onesample <- function(data,
         na.action = na.omit,
         mu = test.value,
         exact = FALSE,
-        correct = TRUE,
-        conf.int = TRUE,
-        conf.level = conf.level
-      ))
+        correct = TRUE
+      )) %>%
+      dplyr::mutate(.data = ., statistic = log(statistic))
 
     # effect size dataframe
     effsize_df <- rcompanion::wilcoxonOneSampleR(
@@ -154,36 +137,50 @@ subtitle_t_onesample <- function(data,
       R = nboot,
       histogram = FALSE,
       digits = k
-    )
+    ) %>%
+      tibble::as_tibble(x = .) %>%
+      dplyr::rename(
+        .data = .,
+        estimate = r,
+        conf.low = lower.ci,
+        conf.high = upper.ci
+      )
+
+    # preparing subtitle parameters
+    statistic.text <- quote("log"["e"](italic("V")))
+    no.parameters <- 0L
+    parameter <- NULL
+    effsize.text <- quote(italic("r"))
 
     # message about effect size measure
     if (isTRUE(messages)) {
       effsize_ci_message(nboot = nboot, conf.level = conf.level)
     }
+  }
 
-    # preparing subtitle
+  # preparing subtitle
+  if (stats.type %in% c("parametric", "nonparametric")) {
     subtitle <- subtitle_template(
-      no.parameters = 0L,
-      parameter = NULL,
-      parameter2 = NULL,
+      no.parameters = no.parameters,
+      parameter = parameter,
       stat.title = stat.title,
-      statistic.text = quote("log"["e"](italic("V"))),
-      statistic = log(stats_df$statistic[[1]]),
+      statistic.text = statistic.text,
+      statistic = stats_df$statistic[[1]],
       p.value = stats_df$p.value[[1]],
-      effsize.text = quote(italic(r)),
-      effsize.estimate = effsize_df$r[[1]],
-      effsize.LL = effsize_df$lower.ci[[1]],
-      effsize.UL = effsize_df$upper.ci[[1]],
+      effsize.text = effsize.text,
+      effsize.estimate = effsize_df$estimate[[1]],
+      effsize.LL = effsize_df$conf.low[[1]],
+      effsize.UL = effsize_df$conf.high[[1]],
       n = sample_size,
       conf.level = conf.level,
-      k = k
+      k = k,
+      k.parameter = 0L
     )
   }
 
   # ======================= robust =========================================
 
   if (stats.type == "robust") {
-
     # running one-sample percentile bootstrap
     stats_df <- WRS2::onesampb(
       x = data$x,

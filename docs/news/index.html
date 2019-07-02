@@ -200,6 +200,8 @@
 <li>The vestigial arguments <code>axis.text.x.margin.t</code>, <code>axis.text.x.margin.r</code>, <code>axis.text.x.margin.b</code>, <code>axis.text.x.margin.l</code> for <code>ggcorrmat</code> have been removed. The margins can be adjusted using <code><a href="https://ggplot2.tidyverse.org/reference/element.html">ggplot2::margin()</a></code>.</li>
 <li>
 <code>gghistostats</code> no longer allows <code>data</code> argument to be <code>NULL</code>. This is to make this function’s syntax consistent with rest of the functions in this package (none of which allow <code>data</code> to be <code>NULL</code>). This also removes confusion that arose for some users when <code>data</code> couldn’t be <code>NULL</code> for its <code>grouped_</code> cousin (<code>grouped_gghistostats</code>).</li>
+<li>
+<code>outlier_df</code> function is no longer exported since it was always meant to be an internal function and was accidently exported during initial release and was retained for a while for backward compatibility.</li>
 </ul>
 </div>
     <div id="ggstatsplot-0011" class="section level1">

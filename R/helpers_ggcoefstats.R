@@ -107,7 +107,8 @@ ggcoefstats_label_maker <- function(x,
     "data.frame",
     "grouped_df",
     "tbl",
-    "tbl_df"
+    "tbl_df",
+    "data.table"
   )
 
   # models for which statistic is t-value
@@ -356,9 +357,7 @@ tfz_labeller <- function(tidy_df,
       .data = .,
       p.value.formatted2 = dplyr::case_when(
         p.value.formatted == "< 0.001" ~ "<= 0.001",
-        p.value.formatted != "< 0.001" ~ paste("==", p.value.formatted,
-          sep = ""
-        )
+        TRUE ~ paste("==", p.value.formatted, sep = "")
       )
     )
 

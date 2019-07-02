@@ -275,13 +275,14 @@ standardized deviation.  By default Hedge's correction is applied
 are two possibilities implemented. If the <em>t</em>-test did not make a
 homogeneity of variance assumption, (the Welch test), the variance term
 will mirror the Welch test, otherwise a pooled and weighted estimate is
-used. If a paired samples <em>t</em>-test was requested, then effect size desired is
-based on the standard deviation of the differences.</p>
+used. If a paired samples <em>t</em>-test was requested, then effect size desired
+is based on the standard deviation of the differences.</p>
 <p>The computation of the confidence intervals defaults to a use of
 non-central Student-<em>t</em> distributions (<code>effsize.noncentral = TRUE</code>);
 otherwise a central distribution is used.</p>
-<p>When computing confidence intervals the variance of the effect size <em>d</em> or <em>g</em> is
-computed using the conversion formula reported in Cooper et al. (2009)</p><ul>
+<p>When computing confidence intervals the variance of the effect size <em>d</em> or
+<em>g</em> is computed using the conversion formula reported in Cooper et al.
+(2009)</p><ul>
 <li><p><code>((n1+n2)/(n1*n2) + .5*d^2/df) * ((n1+n2)/df)</code> (independent samples)</p></li>
 <li><p><code><a href='https://rdrr.io/r/base/MathFun.html'>sqrt(((1 / n) + (d^2 / n)) * 2 * (1 - r))</a></code>  (paired case)</p></li>
 </ul>
