@@ -9,7 +9,7 @@ testthat::test_that(
     set.seed(123)
 
     # dataframe with outlier column (data without NA)
-    df1 <- ggstatsplot::outlier_df(
+    df1 <- ggstatsplot:::outlier_df(
       data = morley,
       x = Expt,
       y = Speed,
@@ -22,7 +22,7 @@ testthat::test_that(
     testthat::expect_equal(dim(tidyr::drop_na(df1)), c(4L, 5L))
 
     # dataframe with outlier column (data with NA)
-    df2 <- ggstatsplot::outlier_df(
+    df2 <- ggstatsplot:::outlier_df(
       data = ggplot2::msleep,
       x = vore,
       y = brainwt,
