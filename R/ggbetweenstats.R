@@ -287,8 +287,7 @@ ggbetweenstats <- function(data,
 
   # if outlier.label column is not present, just use the values from `y` column
   if (!"outlier.label" %in% names(data)) {
-    data %<>%
-      dplyr::mutate(.data = ., outlier.label = y)
+    data %<>% dplyr::mutate(.data = ., outlier.label = y)
   }
 
   # add a logical column indicating whether a point is or is not an outlier
@@ -433,7 +432,6 @@ ggbetweenstats <- function(data,
   # --------------------- subtitle/caption preparation ------------------------
 
   if (isTRUE(results.subtitle)) {
-
     # figuring out which effect size to use
     effsize.type <- effsize_type_switch(effsize.type)
 

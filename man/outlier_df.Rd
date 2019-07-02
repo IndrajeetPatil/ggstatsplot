@@ -30,7 +30,7 @@ of the functions in this package.
 }
 \examples{
 # adding column for outlier and a label for that outlier
-ggstatsplot::outlier_df(
+ggstatsplot:::outlier_df(
   data = morley,
   x = Expt,
   y = Speed,
@@ -42,3 +42,4 @@ ggstatsplot::outlier_df(
 \author{
 Indrajeet Patil
 }
+\keyword{internal}

@@ -105,8 +105,7 @@ subtitle_t_parametric <- function(data,
       dplyr::select(.data = ., -rowid)
   } else {
     # remove NAs listwise for between-subjects design
-    data %<>%
-      dplyr::filter(.data = ., !is.na(x), !is.na(y))
+    data %<>% tidyr::drop_na(data = .)
 
     # sample size
     sample_size <- nrow(data)
@@ -291,7 +290,7 @@ subtitle_mann_nonparametric <- function(data,
     tibble::as_tibble(x = .)
 
   # properly removing NAs if it's a paired design
-  if (isTRUE(paired) && is.factor(data$x)) {
+  if (isTRUE(paired)) {
     data %<>%
       long_to_wide_converter(
         data = .,
@@ -306,12 +305,10 @@ subtitle_mann_nonparametric <- function(data,
     sample_size <- length(unique(data$rowid))
 
     # removing the unnecessary `rowid` column
-    data %<>%
-      dplyr::select(.data = ., -rowid)
+    data %<>% dplyr::select(.data = ., -rowid)
   } else {
     # remove NAs listwise for between-subjects design
-    data %<>%
-      tidyr::drop_na(data = .)
+    data %<>% tidyr::drop_na(data = .)
 
     # sample size
     sample_size <- nrow(data)
@@ -453,21 +450,13 @@ subtitle_t_robust <- function(data,
     dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
     tibble::as_tibble(x = .)
 
-  # when paired robust t-test is run, `df` is going to be an integer
-  if (isTRUE(paired)) {
-    k.df <- 0
-  } else {
-    k.df <- k
-  }
-
   # ---------------------------- between-subjects design --------------------
 
   # running bayesian analysis
   if (!isTRUE(paired)) {
 
     # removing NAs
-    data %<>%
-      stats::na.omit(.)
+    data %<>% tidyr::drop_na(.)
 
     # sample size
     sample_size <- nrow(data)
@@ -489,6 +478,8 @@ subtitle_t_robust <- function(data,
         nboot = nboot,
         alpha = 1 - conf.level
       )
+
+    k.df <- k
 
     # preparing subtitle
     subtitle <- subtitle_template(
@@ -536,6 +527,8 @@ subtitle_t_robust <- function(data,
         conf.level = conf.level,
         conf.type = conf.type
       )
+
+    k.df <- 0
 
     # preparing subtitle
     subtitle <- subtitle_template(

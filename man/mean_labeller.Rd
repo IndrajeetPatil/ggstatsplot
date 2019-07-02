@@ -29,11 +29,11 @@ display in \code{ggbetweenstats} plot.
 \examples{
 \donttest{
 ggstatsplot:::mean_labeller(
-data = ggplot2::msleep,
-x = vore,
-y = brainwt,
-mean.ci = TRUE,
-k = 3
+  data = ggplot2::msleep,
+  x = vore,
+  y = brainwt,
+  mean.ci = TRUE,
+  k = 3
 )
 }
 

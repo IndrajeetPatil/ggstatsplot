@@ -430,7 +430,8 @@ bf_contingency_tab <- function(data,
     bf_10 <- exp(pr_y_h1 - pr_y_h0)
 
     # dataframe with results
-    bf_results <- tibble::enframe(bf_10) %>%
+    bf_results <-
+      tibble::enframe(bf_10) %>%
       dplyr::select(.data = ., bf10 = value) %>%
       dplyr::mutate(
         .data = .,
@@ -440,10 +441,7 @@ bf_contingency_tab <- function(data,
         log_10_bf10 = log10(bf10),
         log_10_bf01 = log10(bf01)
       ) %>%
-      dplyr::mutate(
-        .data = .,
-        prior.concentration = prior.concentration
-      )
+      dplyr::mutate(.data = ., prior.concentration = prior.concentration)
   }
 
   # changing aspects of the caption based on what output is needed
@@ -636,8 +634,7 @@ bf_ttest <- function(data,
     if (!isTRUE(paired)) {
 
       # removing NAs
-      data %<>%
-        stats::na.omit(.)
+      data %<>% tidyr::drop_na(.)
 
       # extracting results from bayesian test and creating a dataframe
       bf_object <-
@@ -684,7 +681,8 @@ bf_ttest <- function(data,
   }
 
   # extracting the Bayes factors
-  bf_results <- bf_extractor(bf.object = bf_object) %>%
+  bf_results <-
+    bf_extractor(bf.object = bf_object) %>%
     dplyr::mutate(.data = ., bf.prior = bf.prior)
 
   # prepare the Bayes factor message
@@ -806,10 +804,8 @@ bf_oneway_anova <- function(data,
       )) %>%
       dplyr::mutate(.data = ., bf.prior = bf.prior)
   } else {
-
     # remove NAs listwise for between-subjects design
-    data %<>%
-      tidyr::drop_na(data = .)
+    data %<>% tidyr::drop_na(data = .)
 
     # extracting results from bayesian test and creating a dataframe
     bf_results <-

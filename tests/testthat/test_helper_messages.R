@@ -118,7 +118,7 @@ testthat::test_that(
         y = Speed,
         k = 4
       ),
-      "Expt : p-value = 0.0210",
+      "Note: Bartlett's test for homogeneity of variances for factor Expt: p-value = 0.0210",
       fixed = TRUE
     )
 
@@ -148,7 +148,7 @@ testthat::test_that(
         y = sleep_rem,
         k = 4
       ),
-      "vore : p-value = 0.0225",
+      "Note: Bartlett's test for homogeneity of variances for factor vore: p-value = 0.0225",
       fixed = TRUE
     )
 
@@ -184,7 +184,7 @@ testthat::test_that(
         y = sleep_rem,
         k = 4
       ),
-      "vore : p-value = 0.0188",
+      "Note: Bartlett's test for homogeneity of variances for factor vore: p-value = 0.0188",
       fixed = TRUE
     )
 

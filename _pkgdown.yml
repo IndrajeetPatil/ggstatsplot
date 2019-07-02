@@ -60,7 +60,6 @@ reference:
     desc: Sundry of helpful statistical functions.
     contents:
       - pairwise_p
-      - outlier_df
 
   - title: Themes used
     desc: The `ggplot2` themes used as default in `ggstatsplot`.

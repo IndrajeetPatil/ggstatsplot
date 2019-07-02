@@ -251,7 +251,7 @@ testthat::test_that(
           " = ",
           "0.059",
           ", ",
-          italic(r),
+          italic("r"),
           " = ",
           "0.90",
           ", CI"["95%"],

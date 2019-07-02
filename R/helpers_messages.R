@@ -54,7 +54,7 @@ normality_message <- function(x,
   if (length(x) > 3 && length(x) < 5000) {
 
     # test object
-    sw_norm <- stats::shapiro.test(x = x)
+    sw_norm <- stats::shapiro.test(x)
 
     # what object to return?
     if (output == "message") {
@@ -146,11 +146,9 @@ bartlett_message <- function(data,
     # display homogeneity of variances test result as a message
     message(cat(
       crayon::green("Note: "),
-      crayon::blue(
-        "Bartlett's test for homogeneity of variances for factor",
-        crayon::yellow(lab),
-        ": p-value = "
-      ),
+      crayon::blue("Bartlett's test for homogeneity of variances for factor "),
+      crayon::yellow(lab),
+      crayon::blue(": p-value = "),
       crayon::yellow(
         specify_decimal_p(x = bartlett$p.value[[1]], k = k, p.value = TRUE)
       ),
@@ -224,9 +222,7 @@ palette_message <- function(package,
     # message to display
     message(cat(
       crayon::red("Warning: "),
-      crayon::blue(
-        "No. of factor levels is greater than specified palette color count.\n"
-      ),
+      crayon::blue("No. of factor levels is greater than default palette color count.\n"),
       crayon::blue("Try using another color `palette` (and/or `package`).\n")
     ),
     sep = ""
@@ -250,9 +246,7 @@ ggcorrmat_matrix_message <- function() {
     cat(
       crayon::green("Note: "),
       crayon::blue("In the correlation matrix,\n"),
-      crayon::blue(
-        "the upper triangle: p-values adjusted for multiple comparisons\n"
-      ),
+      crayon::blue("the upper triangle: p-values adjusted for multiple comparisons\n"),
       crayon::blue("the lower triangle: unadjusted p-values.\n"),
       sep = ""
     )

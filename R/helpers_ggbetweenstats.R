@@ -4,7 +4,6 @@
 #'
 #' @inheritParams ggbetweenstats
 #'
-#' @importFrom stats na.omit
 #' @importFrom groupedstats grouped_summary
 #' @importFrom dplyr select group_by vars contains mutate mutate_at arrange
 #' @importFrom rlang !! enquo
@@ -124,7 +123,8 @@ mean_labeller <- function(data,
 #'   y = Sepal.Length,
 #'   mean.ci = TRUE,
 #'   k = 3
-#' )
+#' ) %>%
+#' dplyr::rename(.data = ., x = Species, y = Sepal.Length)
 #'
 #' # add means
 #' ggstatsplot:::mean_ggrepel(
@@ -253,7 +253,7 @@ check_outlier <- function(var, coef = 1.5) {
 #'
 #' @examples
 #' # adding column for outlier and a label for that outlier
-#' ggstatsplot::outlier_df(
+#' ggstatsplot:::outlier_df(
 #'   data = morley,
 #'   x = Expt,
 #'   y = Speed,
@@ -261,8 +261,9 @@ check_outlier <- function(var, coef = 1.5) {
 #'   outlier.coef = 2
 #' ) %>%
 #'   dplyr::arrange(outlier)
-#' @export
+#' @keywords internal
 
+# function body
 outlier_df <- function(data,
                        x,
                        y,
@@ -311,7 +312,6 @@ outlier_df <- function(data,
 #' @importFrom rlang !! enquo
 #' @importFrom dplyr n row_number select mutate mutate_at group_by ungroup
 #' @importFrom tidyr spread
-#' @importFrom stats na.omit
 #'
 #' @examples
 #' ggstatsplot:::long_to_wide_converter(
@@ -334,7 +334,7 @@ long_to_wide_converter <- function(data,
     tibble::as_tibble(x = .)
 
   # figuring out number of levels in the grouping factor
-  x_n_levels <- length(levels(data[[rlang::as_name(rlang::enquo(x))]]))[[1]]
+  x_n_levels <- nlevels(data[[rlang::as_name(rlang::enquo(x))]])
 
   # wide format
   data_wide <-
@@ -343,8 +343,7 @@ long_to_wide_converter <- function(data,
     dplyr::group_by(.data = ., {{ x }}) %>%
     dplyr::mutate(.data = ., rowid = dplyr::row_number()) %>%
     dplyr::ungroup(x = .) %>%
-    dplyr::filter(.data = ., !is.na({{ y }})) %>%
-    tibble::as_tibble(x = .)
+    dplyr::filter(.data = ., !is.na({{ y }}))
 
   # clean up for repeated measures design
   if (isTRUE(paired)) {
