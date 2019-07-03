@@ -58,7 +58,7 @@ mean_dat <- ggstatsplot:::mean_labeller(
   mean.ci = TRUE,
   k = 3
 ) \%>\%
-dplyr::rename(.data = ., x = Species, y = Sepal.Length)
+  dplyr::rename(.data = ., x = Species, y = Sepal.Length)
 
 # add means
 ggstatsplot:::mean_ggrepel(
