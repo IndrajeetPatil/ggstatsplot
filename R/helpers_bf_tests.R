@@ -152,6 +152,7 @@ bf_caption_maker <- function(bf.df,
 #'   to use in calculating Bayes factors.
 #'
 #' @importFrom BayesFactor correlationBF
+#' @importFrom dplyr pull
 #'
 #' @seealso \code{\link{bf_contingency_tab}}, \code{\link{bf_oneway_anova}},
 #' \code{\link{bf_ttest}}
@@ -192,12 +193,8 @@ bf_corr_test <- function(data,
   # ============================ data preparation ==========================
 
   # creating a dataframe
-  data <-
-    dplyr::select(
-      .data = data,
-      x = !!rlang::enquo(x),
-      y = !!rlang::enquo(y)
-    ) %>%
+  data %<>%
+    dplyr::select(.data = ., {{ x }}, {{ y }}) %>%
     tidyr::drop_na(data = .) %>%
     tibble::as_tibble(.)
 
@@ -207,8 +204,8 @@ bf_corr_test <- function(data,
   bf_results <-
     bf_extractor(
       BayesFactor::correlationBF(
-        x = data$x,
-        y = data$y,
+        x = data %>% dplyr::pull({{ x }}),
+        y = data %>% dplyr::pull({{ y }}),
         nullInterval = NULL,
         rscale = bf.prior,
         ...
