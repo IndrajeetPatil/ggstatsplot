@@ -31,7 +31,7 @@ testthat::test_that(
           ") = ",
           "47.76267",
           ", ",
-          italic("r")["Cauchy"],
+          italic("r")["Cauchy"]^"JZS",
           " = ",
           "0.90000"
         )
@@ -108,7 +108,7 @@ testthat::test_that(
           ") = ",
           "3.59201",
           ", ",
-          italic("r")["Cauchy"],
+          italic("r")["Cauchy"]^"JZS",
           " = ",
           "0.60000"
         )

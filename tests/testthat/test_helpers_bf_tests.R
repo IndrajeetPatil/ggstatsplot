@@ -231,7 +231,7 @@ testthat::test_that(
           ") = ",
           "1.92",
           ", ",
-          italic("r")["Cauchy"],
+          italic("r")["Cauchy"]^"JZS",
           " = ",
           "0.88"
         )
@@ -249,7 +249,7 @@ testthat::test_that(
           ") = ",
           "-1.92",
           ", ",
-          italic("r")["Cauchy"],
+          italic("r")["Cauchy"]^"JZS",
           " = ",
           "0.88"
         )
@@ -339,7 +339,7 @@ testthat::test_that(
           ") = ",
           "-1.9580",
           ", ",
-          italic("r")["Cauchy"],
+          italic("r")["Cauchy"]^"JZS",
           " = ",
           "0.8800"
         )
@@ -357,7 +357,7 @@ testthat::test_that(
           ") = ",
           "1.9580",
           ", ",
-          italic("r")["Cauchy"],
+          italic("r")["Cauchy"]^"JZS",
           " = ",
           "0.8800"
         )
@@ -558,7 +558,7 @@ testthat::test_that(
           ") = ",
           "1.100",
           ", ",
-          italic("r")["Cauchy"],
+          italic("r")["Cauchy"]^"JZS",
           " = ",
           "0.880"
         )
@@ -578,7 +578,7 @@ testthat::test_that(
           ") = ",
           "-1.10",
           ", ",
-          italic("r")["Cauchy"],
+          italic("r")["Cauchy"]^"JZS",
           " = ",
           "0.88"
         )

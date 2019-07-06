@@ -18,10 +18,10 @@
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.0",
+    "version": "3.6.1",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.0 (2019-04-26)",
+  "runtimePlatform": "R version 3.6.1 (2019-07-05)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -263,7 +263,7 @@
       "@type": "SoftwareApplication",
       "identifier": "boot",
       "name": "boot",
-      "version": ">= 1.3-21",
+      "version": ">= 1.3-22",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -328,7 +328,7 @@
       "@type": "SoftwareApplication",
       "identifier": "dplyr",
       "name": "dplyr",
-      "version": ">= 0.8.2",
+      "version": ">= 0.8.3",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -709,7 +709,6 @@
     }
   ],
   "releaseNotes": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/NEWS.md",
-  "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md",
   "contIntegration": [
     "https://travis-ci.org/IndrajeetPatil/ggstatsplot",
     "https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot",

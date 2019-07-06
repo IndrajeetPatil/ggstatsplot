@@ -123,7 +123,7 @@ bf_caption_maker <- function(bf.df,
             ") = ",
             bf,
             ", ",
-            italic("r")["Cauchy"],
+            italic("r")["Cauchy"]^"JZS",
             " = ",
             bf_prior
           )
