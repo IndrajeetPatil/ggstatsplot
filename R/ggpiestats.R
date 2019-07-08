@@ -77,6 +77,7 @@
 #'   data = ggplot2::msleep,
 #'   main = vore,
 #'   perc.k = 1,
+#'   bf.message = FALSE,
 #'   k = 3
 #' )
 #'

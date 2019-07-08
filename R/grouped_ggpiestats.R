@@ -24,6 +24,7 @@
 #'
 #' @examples
 #'
+#' \donttest{
 #' # grouped one-sample proportion tests
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = mtcars,
@@ -42,7 +43,6 @@
 #' )
 #'
 #' # the following will take slightly more amount of time
-#' \donttest{
 #' # for reproducibility
 #' set.seed(123)
 #'

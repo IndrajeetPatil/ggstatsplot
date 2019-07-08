@@ -244,6 +244,7 @@ resulting plots using \code{ggstatsplot::combine_plots}.
 }
 \examples{
 
+\donttest{
 # grouped one-sample proportion tests
 ggstatsplot::grouped_ggpiestats(
   data = mtcars,
@@ -262,7 +263,6 @@ ggstatsplot::grouped_ggpiestats(
 )
 
 # the following will take slightly more amount of time
-\donttest{
 # for reproducibility
 set.seed(123)
 

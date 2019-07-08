@@ -1,4 +1,4 @@
-# ggstatsplot 0.0.11.9000
+# ggstatsplot 0.0.12
 
 BUG FIXES
 

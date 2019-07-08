@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.12</span>
       </span>
     </div>
 
@@ -178,9 +178,9 @@
       <small>Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="ggstatsplot-00119000" class="section level1">
+    <div id="ggstatsplot-0012" class="section level1">
 <h1 class="page-header">
-<a href="#ggstatsplot-00119000" class="anchor"></a>ggstatsplot 0.0.11.9000<small> Unreleased </small>
+<a href="#ggstatsplot-0012" class="anchor"></a>ggstatsplot 0.0.12<small> Unreleased </small>
 </h1>
 <p>BUG FIXES</p>
 <ul>
@@ -201,7 +201,7 @@
 </ul>
 <p>BREAKING CHANGES</p>
 <ul>
-<li>The vestigial arguments <code>axis.text.x.margin.t</code>, <code>axis.text.x.margin.r</code>, <code>axis.text.x.margin.b</code>, <code>axis.text.x.margin.l</code> for <code>ggcorrmat</code> have been removed. The margins can be adjusted using <code><a href="https://rdrr.io/pkg/ggplot2/man/element.html">ggplot2::margin()</a></code>.</li>
+<li>The vestigial arguments <code>axis.text.x.margin.t</code>, <code>axis.text.x.margin.r</code>, <code>axis.text.x.margin.b</code>, <code>axis.text.x.margin.l</code> for <code>ggcorrmat</code> have been removed. The margins can be adjusted using <code><a href="https://ggplot2.tidyverse.org/reference/element.html">ggplot2::margin()</a></code>.</li>
 <li>
 <code>gghistostats</code> no longer allows <code>data</code> argument to be <code>NULL</code>. This is to make this function’s syntax consistent with rest of the functions in this package (none of which allow <code>data</code> to be <code>NULL</code>). This also removes confusion that arose for some users when <code>data</code> couldn’t be <code>NULL</code> for its <code>grouped_</code> cousin (<code>grouped_gghistostats</code>).</li>
 <li>
@@ -382,7 +382,7 @@
 <code>gghistostats</code> can now show both counts and proportions information on the same plot when <code>bar.measure</code> argument is set to <code>"mix"</code>.</li>
 <li>
 <code>ggcoefstats</code> works with tidy dataframes.</li>
-<li>The helper function <code>untable</code> has been deprecated in light of <code><a href="https://rdrr.io/pkg/tidyr/man/uncount.html">tidyr::uncount</a></code>, which does exactly what <code>untable</code> was doing. The author wasn’t aware of this function when <code>untable</code> was written.</li>
+<li>The helper function <code>untable</code> has been deprecated in light of <code><a href="https://tidyr.tidyverse.org/reference/uncount.html">tidyr::uncount</a></code>, which does exactly what <code>untable</code> was doing. The author wasn’t aware of this function when <code>untable</code> was written.</li>
 <li>All vignettes have been removed from <code>CRAN</code> to reduce the size of the package. They are now available on the package website: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/</a>.</li>
 <li>
 <code>subtitle_t_robust</code> function can now handle dependent samples and gains <code>paired</code> argument.</li>
@@ -596,7 +596,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#ggstatsplot-00119000">0.0.11.9000</a></li>
+        <li><a href="#ggstatsplot-0012">0.0.12</a></li>
         <li><a href="#ggstatsplot-0011">0.0.11</a></li>
         <li><a href="#ggstatsplot-0010">0.0.10</a></li>
         <li><a href="#ggstatsplot-009">0.0.9</a></li>
