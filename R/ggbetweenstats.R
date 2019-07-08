@@ -437,32 +437,26 @@ ggbetweenstats <- function(data,
 
     # preparing the bayes factor message
     if (type %in% c("parametric", "p") && isTRUE(bf.message)) {
-      # preparing the BF message for null
+      # choosing the appropriate test
       if (test == "t-test") {
-        caption <-
-          bf_ttest(
-            data = data,
-            x = x,
-            y = y,
-            bf.prior = bf.prior,
-            caption = caption,
-            paired = FALSE,
-            output = "caption",
-            k = k
-          )
-      } else if (test == "anova") {
-        # preparing the BF message for null
-        caption <-
-          bf_oneway_anova(
-            data = data,
-            x = x,
-            y = y,
-            bf.prior = bf.prior,
-            caption = caption,
-            output = "caption",
-            k = k
-          )
+        .f <- bf_ttest
+      } else {
+        .f <- bf_oneway_anova
       }
+
+      # preparing the BF message for null
+      caption <-
+        rlang::exec(
+          .fn = .f,
+          data = data,
+          x = "x",
+          y = "y",
+          bf.prior = bf.prior,
+          caption = caption,
+          paired = FALSE,
+          output = "caption",
+          k = k
+        )
     }
 
     # extracting the subtitle using the switch function

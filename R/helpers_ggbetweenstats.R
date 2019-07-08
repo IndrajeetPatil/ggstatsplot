@@ -328,8 +328,8 @@ long_to_wide_converter <- function(data,
                                    paired = TRUE) {
 
   # creating a dataframe
-  data <-
-    dplyr::select(.data = data, {{ x }}, {{ y }}) %>%
+  data %<>%
+    dplyr::select(.data = ., {{ x }}, {{ y }}) %>%
     dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }}))) %>%
     tibble::as_tibble(x = .)
 
@@ -414,11 +414,9 @@ ggsignif_adder <- function(plot,
   # decide what needs to be displayed:
   # only significant or non-significant comparisons
   if (pairwise.display %in% c("s", "significant")) {
-    df_pairwise %<>%
-      dplyr::filter(.data = ., significance != "ns")
+    df_pairwise %<>% dplyr::filter(.data = ., significance != "ns")
   } else if (pairwise.display %in% c("ns", "nonsignificant", "non-significant")) {
-    df_pairwise %<>%
-      dplyr::filter(.data = ., significance == "ns")
+    df_pairwise %<>% dplyr::filter(.data = ., significance == "ns")
   }
 
   # proceed only if there are any significant comparisons to display

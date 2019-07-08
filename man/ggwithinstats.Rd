@@ -248,7 +248,7 @@ For independent measures designs, use \code{ggbetweenstats}.
 set.seed(123)
 library(ggstatsplot)
 
-# two groups (t-test)
+# two groups (*t*-test)
 ggstatsplot::ggwithinstats(
   data = VR_dilemma,
   x = modality,

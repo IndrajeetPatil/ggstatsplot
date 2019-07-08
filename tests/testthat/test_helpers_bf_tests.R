@@ -258,7 +258,7 @@ testthat::test_that(
   }
 )
 
-# bayes factor (between-subjects - anova) ---------------------------------
+# bayes factor (within-subjects - anova) ---------------------------------
 
 testthat::test_that(
   desc = "bayes factor (within-subjects - anova)",

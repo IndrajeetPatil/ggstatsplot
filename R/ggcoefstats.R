@@ -988,8 +988,7 @@ ggcoefstats <- function(x,
 
       # logarithmic scale for exponent of coefficients
       if (isTRUE(exponentiate)) {
-        plot <- plot +
-          ggplot2::scale_x_log10()
+        plot <- plot + ggplot2::scale_x_log10()
       }
     }
 
