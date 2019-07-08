@@ -143,7 +143,7 @@
             <address class="author_afil">
       Harvard University<br><h4 class="author">Mina Cikara</h4>
             <address class="author_afil">
-      Harvard University<br><h4 class="date">2019-07-06</h4>
+      Harvard University<br><h4 class="date">2019-07-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggstatsplot_paper.Rmd"><code>vignettes/web_only/ggstatsplot_paper.Rmd</code></a></small>
       <div class="hidden name"><code>ggstatsplot_paper.Rmd</code></div>
@@ -187,8 +187,8 @@
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb1-3" title="3"></a>
 <a class="sourceLine" id="cb1-4" title="4"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb1-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb1-6" title="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(</a>
+<a class="sourceLine" id="cb1-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb1-6" title="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(</a>
 <a class="sourceLine" id="cb1-7" title="7">    <span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long,</a>
 <a class="sourceLine" id="cb1-8" title="8">    genre <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span>)</a>
 <a class="sourceLine" id="cb1-9" title="9">  ),</a>
@@ -218,7 +218,7 @@
 <a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb2-3" title="3"></a>
 <a class="sourceLine" id="cb2-4" title="4"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb2-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</a>
+<a class="sourceLine" id="cb2-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggpiestats.html">ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb2-6" title="6">  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>movies_long,</a>
 <a class="sourceLine" id="cb2-7" title="7">  <span class="dt">main =</span> genre,</a>
 <a class="sourceLine" id="cb2-8" title="8">  <span class="dt">condition =</span> mpaa,</a>
@@ -242,24 +242,24 @@
 <a class="sourceLine" id="cb3-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb3-3" title="3"></a>
 <a class="sourceLine" id="cb3-4" title="4"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb3-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb3-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb3-6" title="6">  <span class="co"># plot 1: superposition</span></a>
-<a class="sourceLine" id="cb3-7" title="7">  ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(</a>
-<a class="sourceLine" id="cb3-8" title="8">    <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(ggstatsplot<span class="op">::</span>movies_long, genre <span class="op">==</span><span class="st"> "Comedy"</span> <span class="op">|</span></a>
+<a class="sourceLine" id="cb3-7" title="7">  ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span>(</a>
+<a class="sourceLine" id="cb3-8" title="8">    <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(ggstatsplot<span class="op">::</span>movies_long, genre <span class="op">==</span><span class="st"> "Comedy"</span> <span class="op">|</span></a>
 <a class="sourceLine" id="cb3-9" title="9"><span class="st">      </span>genre <span class="op">==</span><span class="st"> "Drama"</span>),</a>
-<a class="sourceLine" id="cb3-10" title="10">    <span class="dt">mapping =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(</a>
+<a class="sourceLine" id="cb3-10" title="10">    <span class="dt">mapping =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span>(</a>
 <a class="sourceLine" id="cb3-11" title="11">      <span class="dt">x =</span> length,</a>
 <a class="sourceLine" id="cb3-12" title="12">      <span class="dt">y =</span> rating,</a>
 <a class="sourceLine" id="cb3-13" title="13">      <span class="dt">color =</span> genre</a>
 <a class="sourceLine" id="cb3-14" title="14">    )</a>
 <a class="sourceLine" id="cb3-15" title="15">  ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-16" title="16"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span>(<span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-17" title="17"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span>(<span class="dt">method =</span> <span class="st">"lm"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-18" title="18"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">title =</span> <span class="st">"superposition (recommended in Cleveland's paradigm)"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-19" title="19"><span class="st">    </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/theme_ggstatsplot.html">theme_ggstatsplot</a></span>(),</a>
+<a class="sourceLine" id="cb3-16" title="16"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/geom_jitter.html">geom_jitter</a></span>(<span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-17" title="17"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/geom_smooth.html">geom_smooth</a></span>(<span class="dt">method =</span> <span class="st">"lm"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-18" title="18"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span>(<span class="dt">title =</span> <span class="st">"superposition (recommended in Cleveland's paradigm)"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-19" title="19"><span class="st">    </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/theme_ggstatsplot.html">theme_ggstatsplot</a></span>(),</a>
 <a class="sourceLine" id="cb3-20" title="20">  <span class="co"># plot 2: juxtaposition</span></a>
-<a class="sourceLine" id="cb3-21" title="21">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span>(</a>
-<a class="sourceLine" id="cb3-22" title="22">    <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(ggstatsplot<span class="op">::</span>movies_long, genre <span class="op">==</span><span class="st"> "Comedy"</span> <span class="op">|</span></a>
+<a class="sourceLine" id="cb3-21" title="21">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span>(</a>
+<a class="sourceLine" id="cb3-22" title="22">    <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(ggstatsplot<span class="op">::</span>movies_long, genre <span class="op">==</span><span class="st"> "Comedy"</span> <span class="op">|</span></a>
 <a class="sourceLine" id="cb3-23" title="23"><span class="st">      </span>genre <span class="op">==</span><span class="st"> "Drama"</span>),</a>
 <a class="sourceLine" id="cb3-24" title="24">    <span class="dt">x =</span> length,</a>
 <a class="sourceLine" id="cb3-25" title="25">    <span class="dt">y =</span> rating,</a>
@@ -314,7 +314,7 @@
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"></a>
 <a class="sourceLine" id="cb4-2" title="2"><span class="co"># creating a new dataset without any NAs in variables of interest</span></a>
 <a class="sourceLine" id="cb4-3" title="3">msleep_no_na &lt;-</a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(</a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(</a>
 <a class="sourceLine" id="cb4-5" title="5">    <span class="dt">.data =</span> ggplot2<span class="op">::</span>msleep,</a>
 <a class="sourceLine" id="cb4-6" title="6">    <span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(sleep_rem),</a>
 <a class="sourceLine" id="cb4-7" title="7">    <span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(awake),</a>
@@ -331,9 +331,9 @@
 <a class="sourceLine" id="cb4-18" title="18">)</a>
 <a class="sourceLine" id="cb4-19" title="19"></a>
 <a class="sourceLine" id="cb4-20" title="20"><span class="co"># combining two plots</span></a>
-<a class="sourceLine" id="cb4-21" title="21">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb4-21" title="21">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb4-22" title="22">  <span class="co"># plot *without* any NAs</span></a>
-<a class="sourceLine" id="cb4-23" title="23">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb4-23" title="23">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggcorrmat.html">ggcorrmat</a></span>(</a>
 <a class="sourceLine" id="cb4-24" title="24">    <span class="dt">data =</span> msleep_no_na,</a>
 <a class="sourceLine" id="cb4-25" title="25">    <span class="dt">corr.method =</span> <span class="st">"kendall"</span>,</a>
 <a class="sourceLine" id="cb4-26" title="26">    <span class="dt">sig.level =</span> <span class="fl">0.001</span>,</a>
@@ -347,7 +347,7 @@
 <a class="sourceLine" id="cb4-34" title="34">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb4-35" title="35">  ),</a>
 <a class="sourceLine" id="cb4-36" title="36">  <span class="co"># plot *with* NAs</span></a>
-<a class="sourceLine" id="cb4-37" title="37">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb4-37" title="37">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggcorrmat.html">ggcorrmat</a></span>(</a>
 <a class="sourceLine" id="cb4-38" title="38">    <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</a>
 <a class="sourceLine" id="cb4-39" title="39">    <span class="dt">corr.method =</span> <span class="st">"kendall"</span>,</a>
 <a class="sourceLine" id="cb4-40" title="40">    <span class="dt">sig.level =</span> <span class="fl">0.001</span>,</a>
@@ -765,7 +765,7 @@
 <a class="sourceLine" id="cb5-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb5-3" title="3"></a>
 <a class="sourceLine" id="cb5-4" title="4"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb5-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</a>
+<a class="sourceLine" id="cb5-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/gghistostats.html">gghistostats</a></span>(</a>
 <a class="sourceLine" id="cb5-6" title="6">  <span class="dt">data =</span> morley,</a>
 <a class="sourceLine" id="cb5-7" title="7">  <span class="dt">x =</span> Speed,</a>
 <a class="sourceLine" id="cb5-8" title="8">  <span class="dt">test.value =</span> <span class="dv">792</span>,</a>
@@ -795,7 +795,7 @@
 <a class="sourceLine" id="cb6-9" title="9"><span class="co">#&gt; boundary (singular) fit: see ?isSingular</span></a>
 <a class="sourceLine" id="cb6-10" title="10"></a>
 <a class="sourceLine" id="cb6-11" title="11"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb6-12" title="12">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb6-12" title="12">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggcoefstats.html">ggcoefstats</a></span>(</a>
 <a class="sourceLine" id="cb6-13" title="13">  <span class="dt">x =</span> mod,</a>
 <a class="sourceLine" id="cb6-14" title="14">  <span class="dt">p.kr =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb6-15" title="15">)</a>
@@ -890,7 +890,7 @@ Vignettes contain probably the most detailed exposition. Every single function i
 <a class="sourceLine" id="cb7-10" title="10"><span class="co">#&gt;  collate  English_United States.1252  </span></a>
 <a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt;  ctype    English_United States.1252  </span></a>
 <a class="sourceLine" id="cb7-12" title="12"><span class="co">#&gt;  tz       Europe/Berlin               </span></a>
-<a class="sourceLine" id="cb7-13" title="13"><span class="co">#&gt;  date     2019-07-06                  </span></a>
+<a class="sourceLine" id="cb7-13" title="13"><span class="co">#&gt;  date     2019-07-08                  </span></a>
 <a class="sourceLine" id="cb7-14" title="14"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb7-15" title="15"><span class="co">#&gt; - Packages -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span></a>
 <a class="sourceLine" id="cb7-16" title="16"><span class="co">#&gt;  package       * version     date       lib source                                  </span></a>
@@ -944,7 +944,7 @@ Vignettes contain probably the most detailed exposition. Every single function i
 <a class="sourceLine" id="cb7-64" title="64"><span class="co">#&gt;  ggplot2         3.2.0.9000  2019-06-05 [1] Github (tidyverse/ggplot2@b560662)      </span></a>
 <a class="sourceLine" id="cb7-65" title="65"><span class="co">#&gt;  ggrepel         0.8.1       2019-05-07 [1] CRAN (R 3.6.0)                          </span></a>
 <a class="sourceLine" id="cb7-66" title="66"><span class="co">#&gt;  ggsignif        0.5.0       2019-02-20 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb7-67" title="67"><span class="co">#&gt;  ggstatsplot     0.0.11.9000 2019-07-06 [1] local                                   </span></a>
+<a class="sourceLine" id="cb7-67" title="67"><span class="co">#&gt;  ggstatsplot     0.0.11.9000 2019-07-08 [1] local                                   </span></a>
 <a class="sourceLine" id="cb7-68" title="68"><span class="co">#&gt;  glue            1.3.1       2019-03-12 [1] CRAN (R 3.6.0)                          </span></a>
 <a class="sourceLine" id="cb7-69" title="69"><span class="co">#&gt;  groupedstats    0.0.7.9005  2019-07-01 [1] local                                   </span></a>
 <a class="sourceLine" id="cb7-70" title="70"><span class="co">#&gt;  gtable          0.3.0       2019-03-25 [1] CRAN (R 3.6.0)                          </span></a>

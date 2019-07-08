@@ -29,32 +29,32 @@ ggbetweenstats_switch <- function(type, test, ...) {
     subtitle <- switch(
       EXPR = test.type,
       p = {
-        ggstatsplot::subtitle_t_parametric(...)
+        subtitle_t_parametric(...)
       },
       np = {
-        ggstatsplot::subtitle_mann_nonparametric(...)
+        subtitle_mann_nonparametric(...)
       },
       r = {
-        ggstatsplot::subtitle_t_robust(...)
+        subtitle_t_robust(...)
       },
       bf = {
-        ggstatsplot::subtitle_t_bayes(...)
+        subtitle_t_bayes(...)
       }
     )
-  } else if (test == "anova") {
+  } else {
     subtitle <- switch(
       EXPR = test.type,
       p = {
-        ggstatsplot::subtitle_anova_parametric(...)
+        subtitle_anova_parametric(...)
       },
       np = {
-        ggstatsplot::subtitle_anova_nonparametric(...)
+        subtitle_anova_nonparametric(...)
       },
       r = {
-        ggstatsplot::subtitle_anova_robust(...)
+        subtitle_anova_robust(...)
       },
       bf = {
-        ggstatsplot::subtitle_anova_bayes(...)
+        subtitle_anova_bayes(...)
       }
     )
   }
@@ -62,6 +62,12 @@ ggbetweenstats_switch <- function(type, test, ...) {
   # return the text for the subtitle
   return(subtitle)
 }
+
+#' @rdname ggbetweenstats_switch
+#' @aliases ggbetweenstats_switch
+#' @export
+
+ggwithinstats_switch <- ggbetweenstats_switch
 
 #' @title Preparing text to describe which *p*-value adjustment method was used.
 #' @name p.adjust.method.description

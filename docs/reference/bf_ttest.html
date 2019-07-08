@@ -294,8 +294,8 @@ otherwise a two-sample <em>t</em>-test will be carried out.</p>
 #&gt; </span><span style='color: #555555;'>1</span><span> </span><span style='text-decoration: underline;'>1</span><span>383.   3.41</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-9</span><span> 7.23</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span>       7.23      -</span><span style='color: #BB0000;'>7.23</span><span>        3.14       -</span><span style='color: #BB0000;'>3.14</span><span>    0.707</div><div class='input'>
 <span class='co'># for paired sample test</span>
 <span class='fu'>bf_ttest</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
-    <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='no'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/intent_morality.html'>intent_morality</a></span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/filter.html'>filter</a></span>(
+    <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ggstatsplot/man/intent_morality.html'>intent_morality</a></span>,
     <span class='no'>condition</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"accidental"</span>, <span class='st'>"attempted"</span>),
     <span class='no'>harm</span> <span class='kw'>==</span> <span class='st'>"Poisoning"</span>
   ),

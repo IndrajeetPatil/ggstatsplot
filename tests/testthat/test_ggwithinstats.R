@@ -216,7 +216,7 @@ testthat::test_that(
             "log"["e"],
             "(BF"["01"],
             ") = ",
-            "2.0635",
+            "-2.1154",
             ", ",
             italic("r")["Cauchy"]^"JZS",
             " = ",
@@ -236,6 +236,44 @@ testthat::test_that(
 
     # checking pairwise comparisons
     testthat::expect_equal(levels(pb1$data[[8]]$annotation), c("*", "**"))
+
+    # checking data with NA
+    set.seed(123)
+    library(jmv, warn.conflicts = FALSE)
+    data("bugs", package = "jmv")
+
+    # proper exclusion of NAs
+    data_bugs <- bugs %>%
+      tibble::as_tibble(.) %>%
+      tidyr::gather(., key, value, LDLF:HDHF)
+
+    # caption for the plot
+    set.seed(254)
+    plot_caption <-
+      ggstatsplot::ggwithinstats(
+        data = data_bugs,
+        x = key,
+        y = value,
+        messages = FALSE,
+        bf.prior = 0.85,
+        k = 3,
+        return = "caption"
+      )
+
+    # function output
+    set.seed(254)
+    fun_output <-
+      bf_oneway_anova(
+        data = data_bugs,
+        x = key,
+        y = value,
+        paired = TRUE,
+        bf.prior = 0.85,
+        k = 3
+      )
+
+    # these should be equal
+    testthat::expect_identical(plot_caption, fun_output)
   }
 )
 

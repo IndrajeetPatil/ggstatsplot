@@ -139,7 +139,7 @@
       <h1>combine_plots</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-07-06</h4>
+            <h4 class="date">2019-07-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/combine_plots.Rmd"><code>vignettes/web_only/combine_plots.Rmd</code></a></small>
       <div class="hidden name"><code>combine_plots.Rmd</code></div>
@@ -167,15 +167,15 @@
 <a class="sourceLine" id="cb1-5" title="5"></a>
 <a class="sourceLine" id="cb1-6" title="6"><span class="co"># creating a list column with `ggstatsplot` plots</span></a>
 <a class="sourceLine" id="cb1-7" title="7">plots &lt;-<span class="st"> </span>datasets<span class="op">::</span>iris <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">.data =</span> ., <span class="dt">Species2 =</span> Species) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># just creates a copy of this variable</span></a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="dt">.data =</span> ., Species) <span class="op">%&gt;%</span><span class="st">                </span></a>
-<a class="sourceLine" id="cb1-10" title="10"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/nest.html">nest</a></span>(<span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st">                        </span><span class="co"># a nested dataframe with list column called `data`</span></a>
-<a class="sourceLine" id="cb1-11" title="11"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(                                   <span class="co"># creating a new list column of ggstatsplot outputs</span></a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span>(<span class="dt">.data =</span> ., <span class="dt">Species2 =</span> Species) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># just creates a copy of this variable</span></a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span>(<span class="dt">.data =</span> ., Species) <span class="op">%&gt;%</span><span class="st">                </span></a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/tidyr/man/nest.html">nest</a></span>(<span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st">                        </span><span class="co"># a nested dataframe with list column called `data`</span></a>
+<a class="sourceLine" id="cb1-11" title="11"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span>(                                   <span class="co"># creating a new list column of ggstatsplot outputs</span></a>
 <a class="sourceLine" id="cb1-12" title="12">    <span class="dt">.data =</span> .,</a>
 <a class="sourceLine" id="cb1-13" title="13">    <span class="dt">plot =</span> data <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb1-14" title="14"><span class="st">      </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span>(</a>
 <a class="sourceLine" id="cb1-15" title="15">        <span class="dt">.x =</span> .,</a>
-<a class="sourceLine" id="cb1-16" title="16">        <span class="dt">.f =</span> <span class="op">~</span><span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggscatterstats.html">ggscatterstats</a></span>(</a>
+<a class="sourceLine" id="cb1-16" title="16">        <span class="dt">.f =</span> <span class="op">~</span><span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggscatterstats.html">ggscatterstats</a></span>(</a>
 <a class="sourceLine" id="cb1-17" title="17">          <span class="dt">data =</span> .,</a>
 <a class="sourceLine" id="cb1-18" title="18">          <span class="dt">x =</span> Sepal.Length,</a>
 <a class="sourceLine" id="cb1-19" title="19">          <span class="dt">y =</span> Sepal.Width,</a>
@@ -202,7 +202,7 @@
 <a class="sourceLine" id="cb1-40" title="40"><span class="co">#&gt; 3 virginica  &lt;tibble [50 x 5]&gt; &lt;ggExtrPl&gt;</span></a>
 <a class="sourceLine" id="cb1-41" title="41"></a>
 <a class="sourceLine" id="cb1-42" title="42"><span class="co"># creating a grid with cowplot</span></a>
-<a class="sourceLine" id="cb1-43" title="43">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb1-43" title="43">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb1-44" title="44">  <span class="dt">plotlist =</span> plots<span class="op">$</span>plot,                           <span class="co"># list column containing all ggstatsplot objects</span></a>
 <a class="sourceLine" id="cb1-45" title="45">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
 <a class="sourceLine" id="cb1-46" title="46">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
@@ -232,7 +232,7 @@
 <a class="sourceLine" id="cb2-5" title="5"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb2-6" title="6"></a>
 <a class="sourceLine" id="cb2-7" title="7"><span class="co"># let's have a look at the structure of the data</span></a>
-<a class="sourceLine" id="cb2-8" title="8">dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="dt">x =</span> gapminder<span class="op">::</span>gapminder)</a>
+<a class="sourceLine" id="cb2-8" title="8">dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/reexports.html">glimpse</a></span>(<span class="dt">x =</span> gapminder<span class="op">::</span>gapminder)</a>
 <a class="sourceLine" id="cb2-9" title="9"><span class="co">#&gt; Observations: 1,704</span></a>
 <a class="sourceLine" id="cb2-10" title="10"><span class="co">#&gt; Variables: 6</span></a>
 <a class="sourceLine" id="cb2-11" title="11"><span class="co">#&gt; $ country   &lt;fct&gt; Afghanistan, Afghanistan, Afghanistan, Afghanistan, ...</span></a>
@@ -244,11 +244,11 @@
 <a class="sourceLine" id="cb2-17" title="17"></a>
 <a class="sourceLine" id="cb2-18" title="18"><span class="co"># creating a list of plots</span></a>
 <a class="sourceLine" id="cb2-19" title="19">plots &lt;-<span class="st"> </span>plyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/plyr/man/dlply.html">dlply</a></span>(</a>
-<a class="sourceLine" id="cb2-20" title="20">  <span class="dt">.data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(gapminder<span class="op">::</span>gapminder, </a>
+<a class="sourceLine" id="cb2-20" title="20">  <span class="dt">.data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(gapminder<span class="op">::</span>gapminder, </a>
 <a class="sourceLine" id="cb2-21" title="21">                        year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span>),</a>
 <a class="sourceLine" id="cb2-22" title="22">  <span class="dt">.variables =</span> .(continent),</a>
 <a class="sourceLine" id="cb2-23" title="23">  <span class="dt">.fun =</span> <span class="cf">function</span>(data)</a>
-<a class="sourceLine" id="cb2-24" title="24">    ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggscatterstats.html">ggscatterstats</a></span>(</a>
+<a class="sourceLine" id="cb2-24" title="24">    ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggscatterstats.html">ggscatterstats</a></span>(</a>
 <a class="sourceLine" id="cb2-25" title="25">      <span class="dt">data =</span> data,</a>
 <a class="sourceLine" id="cb2-26" title="26">      <span class="dt">x =</span> gdpPercap,</a>
 <a class="sourceLine" id="cb2-27" title="27">      <span class="dt">y =</span> lifeExp,</a>
@@ -259,11 +259,11 @@
 <a class="sourceLine" id="cb2-32" title="32">      <span class="dt">title =</span> glue<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/glue/man/glue.html">glue</a></span>(<span class="st">"Continent: {data$continent}"</span>),</a>
 <a class="sourceLine" id="cb2-33" title="33">      <span class="dt">marginal =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb2-34" title="34">    ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb2-35" title="35"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span>(<span class="dt">labels =</span> scales<span class="op">::</span>comma)</a>
+<a class="sourceLine" id="cb2-35" title="35"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_continuous</a></span>(<span class="dt">labels =</span> scales<span class="op">::</span>comma)</a>
 <a class="sourceLine" id="cb2-36" title="36">)</a>
 <a class="sourceLine" id="cb2-37" title="37"></a>
 <a class="sourceLine" id="cb2-38" title="38"><span class="co"># combining individual plots</span></a>
-<a class="sourceLine" id="cb2-39" title="39">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb2-39" title="39">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb2-40" title="40">  <span class="dt">plotlist =</span> plots,</a>
 <a class="sourceLine" id="cb2-41" title="41">  <span class="dt">title.text =</span> <span class="st">"Relationship between GDP (per capita) and life expectancy"</span>,</a>
 <a class="sourceLine" id="cb2-42" title="42">  <span class="dt">nrow =</span> <span class="dv">2</span></a>
@@ -277,23 +277,23 @@
 <p><code>ggcoefstats</code> will do most of the work, including the title, subtitle, and caption. But we want to add at the bottom an annotation to show the formula we are using for our regression. <code>combine_plots</code> allows us to add <code>sub.text =</code> to accomplish that task as shown in the resulting plot.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb3-2" title="2"></a>
-<a class="sourceLine" id="cb3-3" title="3">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb3-3" title="3">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb3-4" title="4">  <span class="co"># preparing the plot with ggstatsplot function</span></a>
 <a class="sourceLine" id="cb3-5" title="5">  <span class="co"># let's use only 20% of data to speed up the process</span></a>
-<a class="sourceLine" id="cb3-6" title="6">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb3-6" title="6">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggcoefstats.html">ggcoefstats</a></span>(</a>
 <a class="sourceLine" id="cb3-7" title="7">    <span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(</a>
 <a class="sourceLine" id="cb3-8" title="8">      <span class="dt">formula =</span> rating <span class="op">~</span><span class="st"> </span>stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span>(budget, <span class="dt">degree =</span> <span class="dv">3</span>),</a>
-<a class="sourceLine" id="cb3-9" title="9">      <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>movies_long, <span class="dt">size =</span> <span class="fl">0.2</span>),</a>
+<a class="sourceLine" id="cb3-9" title="9">      <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>movies_long, <span class="dt">size =</span> <span class="fl">0.2</span>),</a>
 <a class="sourceLine" id="cb3-10" title="10">      <span class="dt">na.action =</span> na.omit</a>
 <a class="sourceLine" id="cb3-11" title="11">    ),</a>
 <a class="sourceLine" id="cb3-12" title="12">    <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span>,</a>
 <a class="sourceLine" id="cb3-13" title="13">    <span class="dt">title =</span> <span class="st">"Relationship between movie budget and IMDB rating"</span>,</a>
 <a class="sourceLine" id="cb3-14" title="14">    <span class="dt">subtitle =</span> <span class="st">"Source: Internet Movie Database"</span>,</a>
-<a class="sourceLine" id="cb3-15" title="15">    <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_gray</a></span>(),</a>
+<a class="sourceLine" id="cb3-15" title="15">    <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_gray</a></span>(),</a>
 <a class="sourceLine" id="cb3-16" title="16">    <span class="dt">stats.label.color =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#CC79A7"</span>, <span class="st">"darkgreen"</span>, <span class="st">"#0072B2"</span>, <span class="st">"red"</span>)</a>
 <a class="sourceLine" id="cb3-17" title="17">  ) <span class="op">+</span></a>
 <a class="sourceLine" id="cb3-18" title="18"><span class="st">    </span><span class="co"># modifying the plot outside of ggstatsplot using ggplot2 functions</span></a>
-<a class="sourceLine" id="cb3-19" title="19"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(</a>
+<a class="sourceLine" id="cb3-19" title="19"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/scale_discrete.html">scale_y_discrete</a></span>(</a>
 <a class="sourceLine" id="cb3-20" title="20">      <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(</a>
 <a class="sourceLine" id="cb3-21" title="21">        <span class="st">"Intercept (c)"</span>,</a>
 <a class="sourceLine" id="cb3-22" title="22">        <span class="st">"1st degree (b1)"</span>,</a>
@@ -301,7 +301,7 @@
 <a class="sourceLine" id="cb3-24" title="24">        <span class="st">"3rd degree (b3)"</span></a>
 <a class="sourceLine" id="cb3-25" title="25">      )</a>
 <a class="sourceLine" id="cb3-26" title="26">    ) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb3-27" title="27"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">y =</span> <span class="st">"term (polynomial regression)"</span>),</a>
+<a class="sourceLine" id="cb3-27" title="27"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span>(<span class="dt">y =</span> <span class="st">"term (polynomial regression)"</span>),</a>
 <a class="sourceLine" id="cb3-28" title="28">  <span class="co"># adding additional text element to the plot since title, subtitle, caption are all already occupied</span></a>
 <a class="sourceLine" id="cb3-29" title="29">  <span class="dt">sub.text =</span> <span class="kw"><a href="https://rdrr.io/r/base/expression.html">expression</a></span>(</a>
 <a class="sourceLine" id="cb3-30" title="30">    <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(</a>

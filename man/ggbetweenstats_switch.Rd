@@ -2,10 +2,13 @@
 % Please edit documentation in R/switch_functions.R
 \name{ggbetweenstats_switch}
 \alias{ggbetweenstats_switch}
+\alias{ggwithinstats_switch}
 \title{Switch function to use helper function to create subtitle for the
 \code{ggbetweenstats} plot.}
 \usage{
 ggbetweenstats_switch(type, test, ...)
+
+ggwithinstats_switch(type, test, ...)
 }
 \arguments{
 \item{type}{Type of statistic expected (\code{"parametric"} or \code{"nonparametric"}

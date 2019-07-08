@@ -19,6 +19,7 @@
 #'  \code{\link{grouped_ggwithinstats}}, \code{\link{pairwise_p}}
 #'
 #' @importFrom forcats fct_reorder
+#' @importFrom rlang exec
 #'
 #' @details
 #'
@@ -33,7 +34,7 @@
 #' set.seed(123)
 #' library(ggstatsplot)
 #'
-#' # two groups (t-test)
+#' # two groups (*t*-test)
 #' ggstatsplot::ggwithinstats(
 #'   data = VR_dilemma,
 #'   x = modality,
@@ -134,7 +135,7 @@ ggwithinstats <- function(data,
   # --------------------------------- data -----------------------------------
 
   # creating a dataframe
-  data %<>%
+  df <- data %>%
     dplyr::select(
       .data = .,
       x = {{ x }},
@@ -145,10 +146,10 @@ ggwithinstats <- function(data,
     tibble::as_tibble(x = .)
 
   # figuring out number of levels in the grouping factor
-  x_n_levels <- length(levels(data$x))[[1]]
+  x_n_levels <- length(levels(df$x))[[1]]
 
   # removing observations that don't have all repeated values
-  data %<>%
+  df %<>%
     dplyr::filter(.data = ., !is.na(x)) %>%
     dplyr::group_by(.data = ., x) %>%
     dplyr::mutate(.data = ., id = dplyr::row_number()) %>%
@@ -161,12 +162,12 @@ ggwithinstats <- function(data,
     dplyr::select(.data = ., -n)
 
   # if outlier.label column is not present, just use the values from `y` column
-  if (!"outlier.label" %in% names(data)) {
-    data %<>% dplyr::mutate(.data = ., outlier.label = y)
+  if (!"outlier.label" %in% names(df)) {
+    df %<>% dplyr::mutate(.data = ., outlier.label = y)
   }
 
   # add a logical column indicating whether a point is or is not an outlier
-  data %<>%
+  df %<>%
     outlier_df(
       data = .,
       x = x,
@@ -177,7 +178,7 @@ ggwithinstats <- function(data,
 
   # figure out which test to run based on the number of levels of the
   # independent variables
-  if (length(levels(as.factor(data$x))) < 3) {
+  if (length(levels(as.factor(df$x))) < 3) {
     test <- "t-test"
   } else {
     test <- "anova"
@@ -187,7 +188,7 @@ ggwithinstats <- function(data,
 
   # if sorting is happening
   if (sort != "none") {
-    data %<>%
+    df %<>%
       sort_xy(
         data = .,
         x = x,
@@ -201,7 +202,7 @@ ggwithinstats <- function(data,
 
   # plot
   plot <- ggplot2::ggplot(
-    data = data,
+    data = df,
     mapping = ggplot2::aes(x = x, y = y, group = id)
   ) +
     ggplot2::geom_point(
@@ -242,47 +243,41 @@ ggwithinstats <- function(data,
   # --------------------- subtitle/caption preparation ------------------------
 
   if (isTRUE(results.subtitle)) {
-
     # figuring out which effect size to use
     effsize.type <- effsize_type_switch(effsize.type)
 
     # preparing the bayes factor message
     if (type %in% c("parametric", "p") && isTRUE(bf.message)) {
-      # preparing the BF message for null
+      # choosing the appropriate test
       if (test == "t-test") {
-        caption <-
-          bf_ttest(
-            data = data,
-            x = x,
-            y = y,
-            bf.prior = bf.prior,
-            caption = caption,
-            paired = TRUE,
-            output = "caption",
-            k = k
-          )
-      } else if (test == "anova") {
-        caption <-
-          bf_oneway_anova(
-            data = data,
-            x = x,
-            y = y,
-            bf.prior = bf.prior,
-            caption = caption,
-            output = "caption",
-            k = k
-          )
+        .f <- bf_ttest
+      } else {
+        .f <- bf_oneway_anova
       }
+
+      # preparing the BF message for null
+      caption <-
+        rlang::exec(
+          .fn = .f,
+          data = df,
+          x = "x",
+          y = "y",
+          bf.prior = bf.prior,
+          caption = caption,
+          paired = TRUE,
+          output = "caption",
+          k = k
+        )
     }
 
     # extracting the subtitle using the switch function
     subtitle <-
-      ggbetweenstats_switch(
+      ggwithinstats_switch(
         # switch based on
         type = type,
         test = test,
         # arguments relevant for subtitle helper functions
-        data = data,
+        data = df,
         x = x,
         y = y,
         paired = TRUE,
@@ -310,7 +305,7 @@ ggwithinstats <- function(data,
 
   if (isTRUE(outlier.tagging)) {
     # finding and tagging the outliers
-    data_outlier_label <- data %>%
+    data_outlier_label <- df %>%
       dplyr::filter(.data = ., isanoutlier) %>%
       dplyr::select(.data = ., -outlier)
 
@@ -339,7 +334,7 @@ ggwithinstats <- function(data,
   # mean plus its CI
   mean_dat <-
     mean_labeller(
-      data = data,
+      data = df,
       x = x,
       y = y,
       mean.ci = mean.ci,
@@ -387,7 +382,7 @@ ggwithinstats <- function(data,
     # creating dataframe with pairwise comparison results
     df_pairwise <-
       pairwise_p(
-        data = data,
+        data = df,
         x = x,
         y = y,
         type = type,
@@ -408,7 +403,7 @@ ggwithinstats <- function(data,
     plot <- ggsignif_adder(
       plot = plot,
       df_pairwise = df_pairwise,
-      data = data,
+      data = df,
       pairwise.annotation = pairwise.annotation,
       pairwise.display = pairwise.display
     )
@@ -431,7 +426,7 @@ ggwithinstats <- function(data,
     plot <-
       aesthetic_addon(
         plot = plot,
-        x = data$x,
+        x = df$x,
         xlab = xlab,
         ylab = ylab,
         title = title,
@@ -448,8 +443,8 @@ ggwithinstats <- function(data,
     # don't do scale restriction in case of post hoc comparisons
     if (isTRUE(axes.range.restrict) && !isTRUE(pairwise.comparisons)) {
       plot <- plot +
-        ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y))) +
-        ggplot2::scale_y_continuous(limits = c(min(data$y), max(data$y)))
+        ggplot2::coord_cartesian(ylim = c(min(df$y), max(df$y))) +
+        ggplot2::scale_y_continuous(limits = c(min(df$y), max(df$y)))
     }
   }
   # --------------------- messages ------------------------------------------
@@ -457,7 +452,7 @@ ggwithinstats <- function(data,
   if (isTRUE(messages)) {
     # display normality test result as a message
     normality_message(
-      x = data$y,
+      x = df$y,
       lab = ylab,
       k = k,
       output = "message"
@@ -465,7 +460,7 @@ ggwithinstats <- function(data,
 
     # display homogeneity of variance test as a message
     bartlett_message(
-      data = data,
+      data = df,
       x = x,
       y = y,
       lab = xlab,

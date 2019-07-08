@@ -322,6 +322,44 @@ testthat::test_that(
   }
 )
 
+# plot caption is correct --------------------------------------------------
+
+testthat::test_that(
+  desc = "checking mean labels are working",
+  code = {
+    testthat::skip_on_cran()
+
+    library(ggplot2)
+
+    # caption for the plot
+    set.seed(254)
+    plot_caption <-
+      ggstatsplot::ggbetweenstats(
+        data = msleep,
+        x = vore,
+        y = brainwt,
+        messages = FALSE,
+        bf.prior = 0.85,
+        k = 3,
+        return = "caption"
+      )
+
+    # function output
+    set.seed(254)
+    fun_output <-
+      bf_oneway_anova(
+        data = msleep,
+        x = vore,
+        y = brainwt,
+        bf.prior = 0.85,
+        k = 3
+      )
+
+    # these should be equal
+    testthat::expect_identical(plot_caption, fun_output)
+  }
+)
+
 # subtitles with bayesian tests work -----------------------------------------
 
 testthat::test_that(

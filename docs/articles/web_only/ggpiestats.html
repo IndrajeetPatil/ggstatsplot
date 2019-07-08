@@ -139,7 +139,7 @@
       <h1>ggpiestats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-07-06</h4>
+            <h4 class="date">2019-07-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggpiestats.Rmd"><code>vignettes/web_only/ggpiestats.Rmd</code></a></small>
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
@@ -168,7 +168,7 @@
 <a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb1-4" title="4"></a>
 <a class="sourceLine" id="cb1-5" title="5"><span class="co"># looking at the original data in tabular format</span></a>
-<a class="sourceLine" id="cb1-6" title="6">dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="dt">x =</span> Titanic)</a>
+<a class="sourceLine" id="cb1-6" title="6">dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/reexports.html">glimpse</a></span>(<span class="dt">x =</span> Titanic)</a>
 <a class="sourceLine" id="cb1-7" title="7"><span class="co">#&gt;  'table' num [1:4, 1:2, 1:2, 1:2] 0 0 35 0 0 0 17 0 118 154 ...</span></a>
 <a class="sourceLine" id="cb1-8" title="8"><span class="co">#&gt;  - attr(*, "dimnames")=List of 4</span></a>
 <a class="sourceLine" id="cb1-9" title="9"><span class="co">#&gt;   ..$ Class   : chr [1:4] "1st" "2nd" "3rd" "Crew"</span></a>
@@ -177,7 +177,7 @@
 <a class="sourceLine" id="cb1-12" title="12"><span class="co">#&gt;   ..$ Survived: chr [1:2] "No" "Yes"</span></a>
 <a class="sourceLine" id="cb1-13" title="13"></a>
 <a class="sourceLine" id="cb1-14" title="14"><span class="co"># looking at the dataset as a tibble or dataframe</span></a>
-<a class="sourceLine" id="cb1-15" title="15">dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="dt">x =</span> ggstatsplot<span class="op">::</span>Titanic_full)</a>
+<a class="sourceLine" id="cb1-15" title="15">dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/reexports.html">glimpse</a></span>(<span class="dt">x =</span> ggstatsplot<span class="op">::</span>Titanic_full)</a>
 <a class="sourceLine" id="cb1-16" title="16"><span class="co">#&gt; Observations: 2,201</span></a>
 <a class="sourceLine" id="cb1-17" title="17"><span class="co">#&gt; Variables: 5</span></a>
 <a class="sourceLine" id="cb1-18" title="18"><span class="co">#&gt; $ id       &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16...</span></a>
@@ -196,10 +196,10 @@
 <a class="sourceLine" id="cb2-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb2-4" title="4"></a>
 <a class="sourceLine" id="cb2-5" title="5"><span class="co"># to speed up the process, let's use only half of the dataset</span></a>
-<a class="sourceLine" id="cb2-6" title="6">Titanic_full_<span class="dv">50</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>Titanic_full, <span class="dt">size =</span> <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb2-6" title="6">Titanic_full_<span class="dv">50</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>Titanic_full, <span class="dt">size =</span> <span class="fl">0.5</span>)</a>
 <a class="sourceLine" id="cb2-7" title="7"></a>
 <a class="sourceLine" id="cb2-8" title="8"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb2-9" title="9">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</a>
+<a class="sourceLine" id="cb2-9" title="9">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggpiestats.html">ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb2-10" title="10">  <span class="dt">data =</span> Titanic_full_<span class="dv">50</span>,                          </a>
 <a class="sourceLine" id="cb2-11" title="11">  <span class="dt">main =</span> Survived,</a>
 <a class="sourceLine" id="cb2-12" title="12">  <span class="dt">title =</span> <span class="st">"Passenger survival on the Titanic"</span>,       <span class="co"># title for the entire plot</span></a>
@@ -218,7 +218,7 @@
 <p>Let’s next investigate whether the passenger’s gender was independent of, or associated with, gender. The test is whether the proportion of people who survived was different between the sexes using <code>ggpiestats</code>.</p>
 <p>We’ll modify a number of arguments to change the appearance of this plot and showcase the flexibility of <code>ggpiestats</code>. We will:</p>
 <ol style="list-style-type: decimal">
-<li><p>Change the plot theme to <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">ggplot2::theme_grey()</a></code></p></li>
+<li><p>Change the plot theme to <code><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">ggplot2::theme_grey()</a></code></p></li>
 <li><p>Change our color palette to <code>category10_d3</code> from <code>ggsci</code> package</p></li>
 <li><p>We’ll customize the subtitle by being more precise about which chi squared test this is <code>stat.title = "chi squared test of independence: "</code></p></li>
 <li><p>Finally, we’ll make a call to <code>ggplot2</code> to modify the size of our plot title and to make it right justified</p></li>
@@ -228,10 +228,10 @@
 <a class="sourceLine" id="cb3-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb3-4" title="4"></a>
 <a class="sourceLine" id="cb3-5" title="5"><span class="co"># to speed up the process, let's use only half of the dataset</span></a>
-<a class="sourceLine" id="cb3-6" title="6">Titanic_full_<span class="dv">50</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>Titanic_full, <span class="dt">size =</span> <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb3-6" title="6">Titanic_full_<span class="dv">50</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>Titanic_full, <span class="dt">size =</span> <span class="fl">0.5</span>)</a>
 <a class="sourceLine" id="cb3-7" title="7"></a>
 <a class="sourceLine" id="cb3-8" title="8"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb3-9" title="9">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</a>
+<a class="sourceLine" id="cb3-9" title="9">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggpiestats.html">ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb3-10" title="10">  <span class="dt">data =</span> Titanic_full_<span class="dv">50</span>,</a>
 <a class="sourceLine" id="cb3-11" title="11">  <span class="dt">main =</span> Survived,</a>
 <a class="sourceLine" id="cb3-12" title="12">  <span class="dt">condition =</span> Sex,</a>
@@ -239,7 +239,7 @@
 <a class="sourceLine" id="cb3-14" title="14">  <span class="dt">caption =</span> <span class="st">"Source: Titanic survival dataset"</span>,            <span class="co"># caption for the entire plot</span></a>
 <a class="sourceLine" id="cb3-15" title="15">  <span class="dt">legend.title =</span> <span class="st">"Survived?"</span>,                              <span class="co"># legend title</span></a>
 <a class="sourceLine" id="cb3-16" title="16">  <span class="dt">bf.message =</span> <span class="ot">TRUE</span>,                                       <span class="co"># display bayes factor in favor of null hypothesis</span></a>
-<a class="sourceLine" id="cb3-17" title="17">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),                         <span class="co"># changing plot theme </span></a>
+<a class="sourceLine" id="cb3-17" title="17">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_grey</a></span>(),                         <span class="co"># changing plot theme </span></a>
 <a class="sourceLine" id="cb3-18" title="18">  <span class="dt">palette =</span> <span class="st">"category10_d3"</span>,                               <span class="co"># choosing a different color palette</span></a>
 <a class="sourceLine" id="cb3-19" title="19">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,                                       <span class="co"># package to which color palette belongs</span></a>
 <a class="sourceLine" id="cb3-20" title="20">  <span class="dt">stat.title =</span> <span class="st">"Pearson's chi-squared test: "</span>,             <span class="co"># title for statistical test</span></a>
@@ -248,7 +248,7 @@
 <a class="sourceLine" id="cb3-23" title="23">  <span class="dt">nboot =</span> <span class="dv">10</span>,                                              <span class="co"># no. of bootstrap sample for effect size CI</span></a>
 <a class="sourceLine" id="cb3-24" title="24">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb3-25" title="25">)  <span class="op">+</span><span class="st">                                                       </span><span class="co"># further modification with `ggplot2` commands</span></a>
-<a class="sourceLine" id="cb3-26" title="26"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">plot.title =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(</a>
+<a class="sourceLine" id="cb3-26" title="26"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/theme.html">theme</a></span>(<span class="dt">plot.title =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">element_text</a></span>(</a>
 <a class="sourceLine" id="cb3-27" title="27">    <span class="dt">color =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb3-28" title="28">    <span class="dt">size =</span> <span class="dv">14</span>,</a>
 <a class="sourceLine" id="cb3-29" title="29">    <span class="dt">hjust =</span> <span class="dv">0</span></a>
@@ -267,7 +267,7 @@
 <a class="sourceLine" id="cb4-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb4-4" title="4"></a>
 <a class="sourceLine" id="cb4-5" title="5"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb4-6" title="6">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggpiestats.html">grouped_ggpiestats</a></span>(</a>
+<a class="sourceLine" id="cb4-6" title="6">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/grouped_ggpiestats.html">grouped_ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb4-7" title="7">  <span class="co"># arguments relevant for ggstatsplot::gghistostats</span></a>
 <a class="sourceLine" id="cb4-8" title="8">  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>Titanic_full,</a>
 <a class="sourceLine" id="cb4-9" title="9">  <span class="dt">grouping.var =</span> Age,</a>
@@ -351,7 +351,7 @@
 <a class="sourceLine" id="cb5-50" title="50"><span class="co">#&gt; 16 B     March    Catfish          20</span></a></code></pre></div>
 <p>When the data is organized this way, we make a slightly different call to the <code>ggpiestats</code> function: we use the <code>counts</code> argument. If we want to investigate the relationship of type of fish by month (a test of independence), our command would be:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># running `ggpiestats` with counts information</span></a>
-<a class="sourceLine" id="cb6-2" title="2">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</a>
+<a class="sourceLine" id="cb6-2" title="2">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggpiestats.html">ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb6-3" title="3">  <span class="dt">data =</span> fishing,</a>
 <a class="sourceLine" id="cb6-4" title="4">  <span class="dt">main =</span> Fish,</a>
 <a class="sourceLine" id="cb6-5" title="5">  <span class="dt">condition =</span> Month,</a>
@@ -386,7 +386,7 @@
 <a class="sourceLine" id="cb7-12" title="12">  )</a>
 <a class="sourceLine" id="cb7-13" title="13"></a>
 <a class="sourceLine" id="cb7-14" title="14"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb7-15" title="15">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</a>
+<a class="sourceLine" id="cb7-15" title="15">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggpiestats.html">ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb7-16" title="16">  <span class="dt">data =</span> clinical_trial,</a>
 <a class="sourceLine" id="cb7-17" title="17">  <span class="dt">condition =</span> SickBefore,</a>
 <a class="sourceLine" id="cb7-18" title="18">  <span class="dt">main =</span> SickAfter,</a>

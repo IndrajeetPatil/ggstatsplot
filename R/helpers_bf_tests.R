@@ -778,7 +778,7 @@ bf_oneway_anova <- function(data,
   if (isTRUE(paired)) {
     # converting to long format and then getting it back in wide so that the
     # rowid variable can be used as the block variable
-    data <-
+    df <-
       long_to_wide_converter(
         data = data,
         x = x,
@@ -792,7 +792,7 @@ bf_oneway_anova <- function(data,
     bf_results <-
       bf_extractor(BayesFactor::anovaBF(
         value ~ key + rowid,
-        data = as.data.frame(data),
+        data = as.data.frame(df),
         whichRandom = "rowid",
         rscaleFixed = bf.prior,
         progress = FALSE,
@@ -802,14 +802,14 @@ bf_oneway_anova <- function(data,
       dplyr::mutate(.data = ., bf.prior = bf.prior)
   } else {
     # remove NAs listwise for between-subjects design
-    data %<>% tidyr::drop_na(data = .)
+    df <- tidyr::drop_na(data = data)
 
     # extracting results from bayesian test and creating a dataframe
     bf_results <-
       bf_extractor(
         BayesFactor::anovaBF(
           formula = y ~ x,
-          data = as.data.frame(data),
+          data = as.data.frame(df),
           rscaleFixed = bf.prior,
           progress = FALSE,
           ...
