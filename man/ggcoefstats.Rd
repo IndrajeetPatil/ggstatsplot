@@ -7,9 +7,9 @@ caption.}
 \usage{
 ggcoefstats(x, output = "plot", statistic = NULL, scales = NULL,
   conf.method = "Wald", conf.type = "Wald", component = "survival",
-  bf.message = TRUE, d = "norm", d.par = c(0, 0.3),
-  tau = "halfcauchy", tau.par = 0.5, sample = 10000,
-  summarize = "integrate", p.kr = TRUE, p.adjust.method = "none",
+  bf.message = TRUE, d = "norm", d.par = c(mean = 0, sd = 0.3),
+  tau = "halfcauchy", tau.par = c(scale = 0.5), iter = 5000,
+  summarize = "stan", p.kr = TRUE, p.adjust.method = "none",
   coefficient.type = c("beta", "location", "coefficient"),
   by.class = FALSE, effsize = "eta", partial = TRUE, nboot = 500,
   meta.analytic.effect = FALSE, point.color = "blue", point.size = 3,
@@ -51,7 +51,7 @@ dataframe of results from \code{broom::tidy}) or \code{"glance"} (object from
 \code{ggcoefstats} is a dataframe in which case the function wouldn't know what
 kind of model it is dealing with.}
 
-\item{scales}{scales on which to report the variables: for random effects, the choices are \sQuote{"sdcor"} (standard deviations and correlations: the default if \code{scales} is \code{NULL}) or \sQuote{"vcov"} (variances and covariances). \code{NA} means no transformation, appropriate e.g. for fixed effects.}
+\item{scales}{scales on which to report the variables: for random effects, the choices are \sQuote{"sdcor"} (standard deviations and correlations: the default if \code{scales} is \code{NULL}) or \sQuote{"vcov"} (variances and covariances). \code{NA} means no transformation, appropriate e.g. for fixed effects; inverse-link transformations (exponentiation or logistic) are not yet implemented, but may be in the future.}
 
 \item{conf.method}{Character describing method for computing confidence
 intervals (for more, see \code{?lme4::confint.merMod} and
@@ -62,9 +62,8 @@ are: \code{"profile"}, \code{"boot"}). For MCMC or brms fit model objects (Stan,
 JAGS, etc.), the default is \code{"quantile"}, while the only other options is
 \code{"HPDinterval"}.}
 
-\item{conf.type}{Whether to use \code{"profile"} or \code{"Wald"} confidendence
-intervals, passed to the \code{type} argument of \code{\link[ordinal:confint.clm]{ordinal::confint.clm()}}.
-Defaults to \code{"profile"}.}
+\item{conf.type}{the type of confidence interval
+(see \code{\link[ordinal:confint.clm]{ordinal::confint.clm()}})}
 
 \item{component}{Character specifying whether to tidy the survival or
 the longitudinal component of the model. Must be either \code{"survival"} or
@@ -75,17 +74,21 @@ Bayesian meta-analysis assuming that the effect size \emph{d} varies across
 studies with standard deviation \emph{t} (i.e., a random-effects analysis)
 should be displayed in caption. Defaults to \code{TRUE}.}
 
-\item{d}{type of prior for mean effect \eqn{d} (see \code{\link{prior}})}
+\item{d}{the prior distribution of the average effect size \eqn{d} specified
+either as the type of family (e.g., \code{"norm"}) or via \code{\link[metaBMA]{prior}}}
 
-\item{d.par}{prior parameters for \eqn{d}}
+\item{d.par}{prior parameters for \eqn{d} (only used if \code{d} specifies the type of family)}
 
-\item{tau}{type of prior for standard deviation of study effects \eqn{\tau} in random-effects meta-analysis (i.e., the SD of d across studies; see \code{\link{prior}})}
+\item{tau}{the prior distribution of the between-study heterogeneity \eqn{\tau} specified
+either as a character value (e.g., \code{"halfcauchy"}) or via \code{\link[metaBMA]{prior}}}
 
-\item{tau.par}{prior parameters for \eqn{\tau}}
+\item{tau.par}{prior parameters for \eqn{\tau}  (only used if \code{tau} specifies the type of family)}
 
-\item{sample}{number of samples in JAGS after burn-in and thinning (see \code{\link[runjags]{run.jags}}). Samples are used to get posterior  estimates for each study effect (which will show shrinkage). Only works for priors defined in \code{\link{prior}}.}
+\item{iter}{number of MCMC iterations using Stan.}
 
-\item{summarize}{whether and to compute parameter summaries (mean, median, SD, 95\% quantile interval, HPD interval). If \code{summarize = "integrate"}, numerical integration is used  (which is precise but can require some seconds of computing time), \code{summarize = "jags"} summarizes the JAGS samples, and \code{summarize = "none"} suppresses parameter summaries.}
+\item{summarize}{how to estimate parameter summaries (mean, median, SD,
+etc.): Either by numerical integration (\code{summarize = "integrate"}) or
+based on MCMC/Stan samples (\code{summarize = "stan"}).}
 
 \item{p.kr}{Logical, if \code{TRUE}, the computation of \emph{p}-values for \code{lmer} is
 based on conditional F-tests with Kenward-Roger approximation for the df.

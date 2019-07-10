@@ -882,7 +882,8 @@ testthat::test_that(
         k = 3,
         meta.analytic.effect = TRUE,
         bf.message = TRUE,
-        sample = 1000,
+        iter = 2500,
+        summarize="int",
         messages = FALSE
       )
 
@@ -988,9 +989,9 @@ testthat::test_that(
           "0.110",
           ", CI"["95%"],
           " [",
-          "-0.175",
+          "-0.178",
           ", ",
-          "0.415",
+          "0.412",
           "]"
         )
       )),

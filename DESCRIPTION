@@ -52,7 +52,7 @@ Imports:
     jmv (>= 0.9.6.1),
     magrittr (>= 1.5),
     MCMCpack,
-    metaBMA (>= 0.3.9),
+    metaBMA (>= 0.6.1),
     metafor (>= 2.1-0),
     methods,
     paletteer (>= 0.2.1),

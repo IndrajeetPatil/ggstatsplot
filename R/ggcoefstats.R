@@ -320,11 +320,11 @@ ggcoefstats <- function(x,
                         component = "survival",
                         bf.message = TRUE,
                         d = "norm",
-                        d.par = c(0, 0.3),
+                        d.par = c(mean=0, sd=0.3),
                         tau = "halfcauchy",
-                        tau.par = 0.5,
-                        sample = 10000,
-                        summarize = "integrate",
+                        tau.par = c(scale=0.5),
+                        iter = 5000,
+                        summarize = "stan",
                         p.kr = TRUE,
                         p.adjust.method = "none",
                         coefficient.type = c("beta", "location", "coefficient"),
@@ -868,7 +868,7 @@ ggcoefstats <- function(x,
         output = "subtitle"
       )
 
-    # results from Bayesian random-effects meta-analysi
+    # results from Bayesian random-effects meta-analysis
     if (isTRUE(bf.message)) {
       caption <-
         bf_meta_message(
@@ -880,7 +880,7 @@ ggcoefstats <- function(x,
           d.par = d.par,
           tau = tau,
           tau.par = tau.par,
-          sample = sample,
+          iter = iter,
           summarize = summarize
         )
     }
