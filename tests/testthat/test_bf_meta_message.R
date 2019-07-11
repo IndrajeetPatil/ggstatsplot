@@ -42,7 +42,8 @@ testthat::test_that(
       data = df1,
       k = 3,
       messages = TRUE,
-      iter = 2000
+      iter = 2000,
+      summarize="integrate"
     )
     set.seed(123)
     subtitle2 <- ggstatsplot::bf_meta_message(
@@ -53,7 +54,8 @@ testthat::test_that(
       d.par = c(0, .3),
       tau = "halfcauchy",
       tau.par = .5,
-      iter = 2000
+      iter = 2000,
+      summarize="integrate"
     )
     # test prior defaults and use of metaBMA::prior()
     set.seed(123)
@@ -63,7 +65,8 @@ testthat::test_that(
       messages = FALSE,
       d = metaBMA::prior("norm", c(0,.3)),
       tau = metaBMA::prior("halfcauchy", c(.5)),
-      iter = 2000
+      iter = 2000,
+      summarize="integrate"
     )
 
     testthat::expect_identical(subtitle1, subtitle2)
@@ -79,12 +82,12 @@ testthat::test_that(
         ", ",
         italic("d")["mean"]^"posterior",
         " = ",
-        "0.492",
+        "0.491",
         ", CI"["95%"],
         " [",
-        "0.161",
+        "0.144",
         ", ",
-        "0.786",
+        "0.772",
         "]"
       )
     )))
