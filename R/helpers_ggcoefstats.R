@@ -874,7 +874,6 @@ bf_meta_message <- function(data,
     tau = tau,
     iter = iter,
     summarize = summarize,
-    # cores = cores,  # note: sampling with cores=1 is faster than cores=4
     ...
   )
 

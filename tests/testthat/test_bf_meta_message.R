@@ -49,6 +49,10 @@ testthat::test_that(
       data = df2,
       k = 3,
       messages = FALSE,
+      d = "norm",
+      d.par = c(0, .3),
+      tau = "halfcauchy",
+      tau.par = .5,
       iter = 2000
     )
     # test prior defaults and use of metaBMA::prior()
@@ -87,5 +91,9 @@ testthat::test_that(
 
     # expecting error
     testthat::expect_error(ggstatsplot::bf_meta_message(df3))
+    testthat::expect_error(
+      ggstatsplot::bf_meta_message(data = df2,
+                                   k = 3,
+                                   d = 5, tau = 7))
   }
 )
