@@ -263,7 +263,7 @@
       "@type": "SoftwareApplication",
       "identifier": "boot",
       "name": "boot",
-      "version": ">= 1.3-23",
+      "version": ">= 1.3-22",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
