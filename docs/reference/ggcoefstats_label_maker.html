@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.12</span>
       </span>
     </div>
 
@@ -250,7 +250,7 @@ will be returned. Valid only for objects of class <code>aov</code>, <code>anova<
 
 <span class='co'>#------------------------- models with *t*-statistic ------------------</span>
 <span class='co'># model with t-statistic</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/ggcoefstats_label_maker.html'>ggcoefstats_label_maker</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='kw pkg'>broomExtra</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/broomExtra//reference/tidy.html'>tidy</a></span>(<span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats_label_maker.html'>ggcoefstats_label_maker</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='kw pkg'>broomExtra</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/broomExtra//reference/tidy.html'>tidy</a></span>(<span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>, <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>wt</span> ~ <span class='no'>cyl</span> * <span class='no'>mpg</span>
 )), <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='st'>"t"</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 4 x 9</span><span>
 #&gt;   term        estimate std.error statistic p.value significance
@@ -292,7 +292,7 @@ will be returned. Valid only for objects of class <code>aov</code>, <code>anova<
   )
 
 <span class='co'># model with t-statistic</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/ggcoefstats_label_maker.html'>ggcoefstats_label_maker</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats_label_maker.html'>ggcoefstats_label_maker</a></span>(
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>,
   <span class='kw'>tidy_df</span> <span class='kw'>=</span> <span class='kw pkg'>broomExtra</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/broomExtra//reference/tidy.html'>tidy</a></span>(
     <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>,
@@ -328,7 +328,7 @@ will be returned. Valid only for objects of class <code>aov</code>, <code>anova<
 )
 
 <span class='co'># creating tidy dataframe with label column</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/ggcoefstats_label_maker.html'>ggcoefstats_label_maker</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>tidy_df</span> <span class='kw'>=</span> <span class='kw pkg'>broomExtra</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/broomExtra//reference/tidy.html'>tidy</a></span>(<span class='no'>mod</span>))</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 5 x 9</span><span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats_label_maker.html'>ggcoefstats_label_maker</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>tidy_df</span> <span class='kw'>=</span> <span class='kw pkg'>broomExtra</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/broomExtra//reference/tidy.html'>tidy</a></span>(<span class='no'>mod</span>))</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 5 x 9</span><span>
 #&gt;   term         estimate std.error statistic   p.value significance
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       
 #&gt; </span><span style='color: #555555;'>1</span><span> (Intercept)  3.04</span><span style='color: #555555;'>e</span><span>+ 0     0.171 17.81      5.43</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-71</span><span> ***         
@@ -357,16 +357,16 @@ will be returned. Valid only for objects of class <code>aov</code>, <code>anova<
 
 <span class='co'># extracting a tidy dataframe with effect size estimate and their CIs</span>
 <span class='no'>tidy_df</span> <span class='kw'>&lt;-</span>
-  <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/reexports.html'>lm_effsize_ci</a></span>(
+  <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/reexports.html'>lm_effsize_ci</a></span>(
     <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>npk.aov</span>,
     <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"omega"</span>,
     <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
     <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>50</span>
   ) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/select.html'>rename</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='kw'>estimate</span> <span class='kw'>=</span> <span class='no'>omegasq</span>, <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='no'>F.value</span>)
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>rename</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='kw'>estimate</span> <span class='kw'>=</span> <span class='no'>omegasq</span>, <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='no'>F.value</span>)
 
 <span class='co'># including a new column with a label</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/ggcoefstats_label_maker.html'>ggcoefstats_label_maker</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats_label_maker.html'>ggcoefstats_label_maker</a></span>(
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>npk.aov</span>,
   <span class='kw'>tidy_df</span> <span class='kw'>=</span> <span class='no'>tidy_df</span>,
   <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"omega"</span>,

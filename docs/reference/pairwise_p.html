@@ -75,7 +75,7 @@ corrections for multiple testing." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.12</span>
       </span>
     </div>
 
@@ -286,8 +286,8 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 
 <span class='co'># parametric</span>
 <span class='co'># if `var.equal = TRUE`, then Student's *t*-test will be run</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/pairwise_p.html'>pairwise_p</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ggplot2/man/msleep.html'>msleep</a></span>,
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>brainwt</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
@@ -306,8 +306,8 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 #&gt; </span><span style='color: #555555;'>5</span><span> herbi   omni            -</span><span style='color: #BB0000;'>0.476</span><span>    0.979 ns           p = 0.979    
 #&gt; </span><span style='color: #555555;'>6</span><span> insecti omni             0.124    1     ns           p = 1.000    </div><div class='input'>
 <span class='co'># if `var.equal = FALSE`, then Games-Howell test will be run</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/pairwise_p.html'>pairwise_p</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ggplot2/man/msleep.html'>msleep</a></span>,
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>brainwt</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
@@ -334,8 +334,8 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 #&gt; </span><span style='color: #555555;'>5</span><span> p = 1.000    
 #&gt; </span><span style='color: #555555;'>6</span><span> p = 1.000    </div><div class='input'>
 <span class='co'># non-parametric</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/pairwise_p.html'>pairwise_p</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ggplot2/man/msleep.html'>msleep</a></span>,
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>brainwt</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"np"</span>,
@@ -353,8 +353,8 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 #&gt; </span><span style='color: #555555;'>5</span><span> herbi   omni    -</span><span style='color: #BB0000;'>0.948</span><span>  0.503  ns           p = 0.503    
 #&gt; </span><span style='color: #555555;'>6</span><span> insecti omni     1.61   0.256  ns           p = 0.256    </div><div class='input'>
 <span class='co'># robust</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/pairwise_p.html'>pairwise_p</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ggplot2/man/msleep.html'>msleep</a></span>,
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>brainwt</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"r"</span>,
@@ -378,11 +378,11 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 
 <span class='co'># converting to long format</span>
 <span class='no'>bugs_long</span> <span class='kw'>&lt;-</span> <span class='no'>bugs</span> <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tibble/man/as_tibble.html'>as_tibble</a></span>(<span class='no'>.</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>tidyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tidyr/man/gather.html'>gather</a></span>(<span class='no'>.</span>, <span class='no'>key</span>, <span class='no'>value</span>, <span class='no'>LDLF</span>:<span class='no'>HDHF</span>)
+  <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span>(<span class='no'>.</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>tidyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://tidyr.tidyverse.org/reference/gather.html'>gather</a></span>(<span class='no'>.</span>, <span class='no'>key</span>, <span class='no'>value</span>, <span class='no'>LDLF</span>:<span class='no'>HDHF</span>)
 
 <span class='co'># parametric</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/pairwise_p.html'>pairwise_p</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>bugs_long</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>key</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>value</span>,
@@ -401,7 +401,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 #&gt; </span><span style='color: #555555;'>5</span><span> HDLF   LDLF            -</span><span style='color: #BB0000;'>1.03</span><span>   1.39</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 3</span><span> **           p = 0.001    
 #&gt; </span><span style='color: #555555;'>6</span><span> LDHF   LDLF            -</span><span style='color: #BB0000;'>1.66</span><span>   6.67</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 9</span><span> ***          p &lt;= 0.001   </div><div class='input'>
 <span class='co'># non-parametric</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/pairwise_p.html'>pairwise_p</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>bugs_long</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>key</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>value</span>,
@@ -420,7 +420,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 #&gt; </span><span style='color: #555555;'>5</span><span> HDLF   LDLF        3.23 5.05</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 3</span><span> **           p = 0.005    
 #&gt; </span><span style='color: #555555;'>6</span><span> LDHF   LDLF        5.57 4.64</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 7</span><span> ***          p &lt;= 0.001   </div><div class='input'>
 <span class='co'># robust</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/pairwise_p.html'>pairwise_p</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>bugs_long</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>key</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>value</span>,

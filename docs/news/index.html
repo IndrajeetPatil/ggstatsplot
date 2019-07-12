@@ -198,6 +198,8 @@
 <code>ggcoefstats</code> supports the following class of objects: <code>epi.2by2</code>, <code>negbin</code>, <code>emmGrid</code>, <code>lmrob</code>, <code>glmrob</code>, <code>glmmPQL</code>, <code>data.table</code>.</li>
 <li>
 <code>bf_ttest</code> is introduced as a general function. The previously exported <code>bf_one_sample_ttest</code> and <code>bf_two_sample_ttest</code> become its aliases.</li>
+<li>
+<code>bf_meta_message</code> syntax changes to adapt to updates made to <code>metaBMA</code> package (thanks to <a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/259'>#259</a>).</li>
 </ul>
 <p>BREAKING CHANGES</p>
 <ul>
@@ -386,7 +388,7 @@
 <li>All vignettes have been removed from <code>CRAN</code> to reduce the size of the package. They are now available on the package website: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/</a>.</li>
 <li>
 <code>subtitle_t_robust</code> function can now handle dependent samples and gains <code>paired</code> argument.</li>
-<li>A number of tidyverse operators are now reexported by <code>ggstatsplot</code>: <code>%&gt;%</code>, <code>%&lt;&gt;%</code>, <code>%$%</code>.</li>
+<li>A number of tidyverse operators are now reexported by <code>ggstatsplot</code>: <code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code>, <code><a href="https://rdrr.io/pkg/magrittr/man/compound.html">%&lt;&gt;%</a></code>, <code><a href="https://rdrr.io/pkg/magrittr/man/exposition.html">%$%</a></code>.</li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>

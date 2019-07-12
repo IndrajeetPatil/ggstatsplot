@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.12</span>
       </span>
     </div>
 
@@ -188,18 +188,17 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>bf_meta_message</span>(<span class='no'>data</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>d</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='kw'>d.par</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0.3</span>),
-  <span class='kw'>tau</span> <span class='kw'>=</span> <span class='st'>"halfcauchy"</span>, <span class='kw'>tau.par</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>sample</span> <span class='kw'>=</span> <span class='fl'>10000</span>,
-  <span class='kw'>summarize</span> <span class='kw'>=</span> <span class='st'>"integrate"</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>bf_meta_message</span>(<span class='no'>data</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>d</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='kw'>d.par</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>sd</span> <span class='kw'>=</span>
+  <span class='fl'>0.3</span>), <span class='kw'>tau</span> <span class='kw'>=</span> <span class='st'>"halfcauchy"</span>, <span class='kw'>tau.par</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>0.5</span>), <span class='kw'>iter</span> <span class='kw'>=</span> <span class='fl'>10000</span>,
+  <span class='kw'>summarize</span> <span class='kw'>=</span> <span class='st'>"stan"</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>A dataframe. It <strong>must</strong> contain columns named <code>estimate</code>
-(corresponding estimates of coefficients or other quantities of interest)
-and <code>std.error</code> (the standard error of the regression term).</p></td>
+      <td><p>data frame containing the variables for effect size <code>y</code>,
+standard error <code>SE</code>, <code>labels</code>, and moderators per study.</p></td>
     </tr>
     <tr>
       <th>k</th>
@@ -208,27 +207,31 @@ and <code>std.error</code> (the standard error of the regression term).</p></td>
     </tr>
     <tr>
       <th>d</th>
-      <td><p>type of prior for mean effect \(d\) (see <code>prior</code>)</p></td>
+      <td><p>the prior distribution of the average effect size \(d\) specified
+either as the type of family (e.g., <code>"norm"</code>) or via <code><a href='https://rdrr.io/pkg/metaBMA/man/prior.html'>prior</a></code></p></td>
     </tr>
     <tr>
       <th>d.par</th>
-      <td><p>prior parameters for \(d\)</p></td>
+      <td><p>prior parameters for \(d\) (only used if <code>d</code> specifies the type of family)</p></td>
     </tr>
     <tr>
       <th>tau</th>
-      <td><p>type of prior for standard deviation of study effects \(\tau\) in random-effects meta-analysis (i.e., the SD of d across studies; see <code>prior</code>)</p></td>
+      <td><p>the prior distribution of the between-study heterogeneity \(\tau\) specified
+either as a character value (e.g., <code>"halfcauchy"</code>) or via <code><a href='https://rdrr.io/pkg/metaBMA/man/prior.html'>prior</a></code></p></td>
     </tr>
     <tr>
       <th>tau.par</th>
-      <td><p>prior parameters for \(\tau\)</p></td>
+      <td><p>prior parameters for \(\tau\)  (only used if <code>tau</code> specifies the type of family)</p></td>
     </tr>
     <tr>
-      <th>sample</th>
-      <td><p>number of samples in JAGS after burn-in and thinning (see <code><a href='https://rdrr.io/pkg/runjags/man/run.jags.html'>run.jags</a></code>). Samples are used to get posterior  estimates for each study effect (which will show shrinkage). Only works for priors defined in <code>prior</code>.</p></td>
+      <th>iter</th>
+      <td><p>number of MCMC iterations using Stan.</p></td>
     </tr>
     <tr>
       <th>summarize</th>
-      <td><p>whether and to compute parameter summaries (mean, median, SD, 95% quantile interval, HPD interval). If <code>summarize = "integrate"</code>, numerical integration is used  (which is precise but can require some seconds of computing time), <code>summarize = "jags"</code> summarizes the JAGS samples, and <code>summarize = "none"</code> suppresses parameter summaries.</p></td>
+      <td><p>how to estimate parameter summaries (mean, median, SD,
+etc.): Either by numerical integration (<code>summarize = "integrate"</code>) or
+based on MCMC/Stan samples (<code>summarize = "stan"</code>).</p></td>
     </tr>
     <tr>
       <th>caption</th>
@@ -241,7 +244,9 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>arguments passed to <a href='https://rdrr.io/pkg/runjags/man/run.jags.html'>run.jags</a> (e.g., MCMC parameters such as <code>sample</code>, <code>burnin</code>, <code>n.chains</code>, <code>thin</code> or <code>method="parallel"</code>)</p></td>
+      <td><p>further arguments passed to <code><a href='https://rdrr.io/pkg/rstan/man/stanmodel-method-sampling.html'>rstan::sampling</a></code> (see
+<code>stanmodel-method-sampling</code>). For instance:
+<code>warmup=500</code>, <code>chains=4</code>, <code>control=list(adapt_delta=.95)</code>).</p></td>
     </tr>
     </table>
     
@@ -250,8 +255,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     <pre class="examples"><div class='input'>
 </div><div class='input'><span class='co'># setup</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metaBMA</span>)
-
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metaBMA</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: Rcpp</span></div><div class='input'>
 <span class='co'># creating a dataframe</span>
 (<span class='no'>df</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span>(
@@ -282,15 +286,28 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 #&gt; </span><span style='color: #555555;'>3</span><span> 3        0.426    0.036</span><span style='text-decoration: underline;'>3</span><span>
 #&gt; </span><span style='color: #555555;'>4</span><span> 4        0.558    0.048</span><span style='text-decoration: underline;'>1</span><span>
 #&gt; </span><span style='color: #555555;'>5</span><span> 5        0.956    0.062</span><span style='text-decoration: underline;'>2</span><span></div><div class='input'>
-<span class='co'># getting bayes factor in favor of null hypothesis</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/bf_meta_message.html'>bf_meta_message</a></span>(
+<span class='co'># getting Bayes factor in favor of null hypothesis</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/bf_meta_message.html'>bf_meta_message</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>df</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>sample</span> <span class='kw'>=</span> <span class='fl'>50</span>,
-  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("In favor of null: ", "log"["e"], 
+  <span class='kw'>iter</span> <span class='kw'>=</span> <span class='fl'>1500</span>,
+  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</div><div class='output co'>#&gt; ### Bayesian Random-Effects Meta-Analysis ### 
+#&gt;    Prior on d:      'norm' (mean=0, sd=0.3) with support on the interval [-Inf,Inf]. 
+#&gt;    Prior on tau:    't' (location=0, scale=0.5, nu=1) truncated to the interval [0,Inf]. 
+#&gt; 
+#&gt; # Bayes factors:
+#&gt;            (denominator)
+#&gt; (numerator) random_H0 random_H1
+#&gt;   random_H0       1.0    0.0686
+#&gt;   random_H1      14.6    1.0000
+#&gt; 
+#&gt; # Posterior summary statistics of random-effects model:
+#&gt;      mean    sd  2.5%   50% 97.5% hpd95_lower hpd95_upper n_eff  Rhat
+#&gt; d   0.492 0.157 0.104 0.522 0.733       0.154       0.761 557.1 1.002
+#&gt; tau 0.335 0.171 0.144 0.288 0.802       0.111       0.672 603.7 1.002</div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("In favor of null: ", "log"["e"], 
 #&gt;     "(BF"["01"], ") = ", "-2.680", ", ", italic("d")["mean"]^"posterior", 
-#&gt;     " = ", "0.491", ", CI"["95%"], " [", "0.147", ", ", "0.775", 
+#&gt;     " = ", "0.492", ", CI"["95%"], " [", "0.154", ", ", "0.761", 
 #&gt;     "]"))</div></span><div class='input'>
 </div></pre>
   </div>

@@ -8,3 +8,4 @@
 0 errors | 0 warnings | 0 notes
 
   - Bug fix and maintenance release with some minor code refactoring.
+  - Makes the package compatible with `metaBMA` package updates.

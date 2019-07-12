@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.12</span>
       </span>
     </div>
 
@@ -204,12 +204,12 @@
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
 
 <span class='co'># creating a plot that is not of class `ggplot`</span>
-<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>ggExtra</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggExtra/man/ggMarginal.html'>ggMarginal</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/ggplot.html'>ggplot</a></span>(<span class='no'>mtcars</span>, <span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/aes.html'>aes</a></span>(<span class='no'>wt</span>, <span class='no'>mpg</span>)) + <span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/geom_point.html'>geom_point</a></span>())
+<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>ggExtra</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggExtra/man/ggMarginal.html'>ggMarginal</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>mtcars</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>wt</span>, <span class='no'>mpg</span>)) + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>())
 
 <span class='co'># checking class of object</span>
 <span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; [1] "ggExtraPlot" "gtable"      "gTree"       "grob"        "gDesc"      </div><div class='input'>
 <span class='co'># checking class of converted plot</span>
-<span class='no'>p_converted</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/ggplot_converter.html'>ggplot_converter</a></span>(<span class='no'>p</span>)
+<span class='no'>p_converted</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggplot_converter.html'>ggplot_converter</a></span>(<span class='no'>p</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>p_converted</span>)</div><div class='output co'>#&gt; [1] "gg"     "ggplot"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

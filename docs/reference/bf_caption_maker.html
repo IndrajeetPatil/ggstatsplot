@@ -75,7 +75,7 @@ factors in favor of the null hypothesis." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.12</span>
       </span>
     </div>
 
@@ -231,14 +231,14 @@ bayes factor caption/message).</p></td>
 
 <span class='co'># dataframe containing results</span>
 <span class='no'>bf_results</span> <span class='kw'>&lt;-</span>
-  <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/bf_extractor.html'>bf_extractor</a></span>(<span class='kw pkg'>BayesFactor</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BayesFactor/man/correlationBF.html'>correlationBF</a></span>(
+  <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/bf_extractor.html'>bf_extractor</a></span>(<span class='kw pkg'>BayesFactor</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BayesFactor/man/correlationBF.html'>correlationBF</a></span>(
     <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>iris</span>$<span class='no'>Sepal.Length</span>,
     <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>iris</span>$<span class='no'>Petal.Length</span>
   )) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/mutate.html'>mutate</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>)
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>)
 
 <span class='co'># creating caption (for null)</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/bf_caption_maker.html'>bf_caption_maker</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/bf_caption_maker.html'>bf_caption_maker</a></span>(
   <span class='kw'>bf.df</span> <span class='kw'>=</span> <span class='no'>bf_results</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"null"</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
@@ -247,7 +247,7 @@ bayes factor caption/message).</p></td>
 #&gt;     "log"["e"], "(BF"["01"], ") = ", "-99.770", ", ", italic("r")["Cauchy"]^"JZS", 
 #&gt;     " = ", "0.707"))</div><div class='input'>
 <span class='co'># creating caption (for alternative)</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/bf_caption_maker.html'>bf_caption_maker</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/bf_caption_maker.html'>bf_caption_maker</a></span>(
   <span class='kw'>bf.df</span> <span class='kw'>=</span> <span class='no'>bf_results</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"alternative"</span>
 )</div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("In favor of alternative: ", 

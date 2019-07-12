@@ -763,11 +763,15 @@ subtitle_meta_ggcoefstats <- function(data,
 #' @inheritParams subtitle_meta_ggcoefstats
 #' @inheritParams metaBMA::meta_random
 #' @param d the prior distribution of the average effect size \eqn{d} specified
-#'   either as the type of family (e.g., \code{"norm"}) or via \code{\link[metaBMA]{prior}}
-#' @param d.par prior parameters for \eqn{d} (only used if \code{d} specifies the type of family)
-#' @param tau the prior distribution of the between-study heterogeneity \eqn{\tau} specified
-#'   either as a character value (e.g., \code{"halfcauchy"}) or via \code{\link[metaBMA]{prior}}
-#' @param tau.par prior parameters for \eqn{\tau}  (only used if \code{tau} specifies the type of family)
+#'   either as the type of family (e.g., \code{"norm"}) or via
+#'   \code{\link[metaBMA]{prior}}.
+#' @param d.par prior parameters for \eqn{d} (only used if \code{d} specifies
+#'   the type of family).
+#' @param tau the prior distribution of the between-study heterogeneity
+#'   \eqn{\tau} specified either as a character value (e.g.,
+#'   \code{"halfcauchy"}) or via \code{\link[metaBMA]{prior}}.
+#' @param tau.par prior parameters for \eqn{\tau}  (only used if \code{tau}
+#'   specifies the type of family).
 #' @param iter number of MCMC iterations using Stan.
 #'
 #' @examples
@@ -850,19 +854,23 @@ bf_meta_message <- function(data,
 
   # check defintion of priors for d and tau
   # Note: "d.par" and "tau.par" are deprecated in metaBMA (>= 0.6.1)
-  if (class(d) == "character"){
+  if (class(d) == "character") {
     d <- metaBMA::prior(family = d, param = d.par)
-  } else if (!class(d) == "prior"){
-    stop("The argument 'd' must be ",
-         "\n  (A) a character such as 'norm' specifying the family of prior distribution",
-         "\n  (B) a prior distribution specified via metaBMA::prior()")
+  } else if (!class(d) == "prior") {
+    stop(
+      "The argument 'd' must be ",
+      "\n  (A) a character such as 'norm' specifying the family of prior distribution",
+      "\n  (B) a prior distribution specified via metaBMA::prior()"
+    )
   }
-  if (class(tau) == "character"){
+  if (class(tau) == "character") {
     tau <- metaBMA::prior(family = tau, param = tau.par)
-  } else if (!class(tau) == "prior"){
-    stop("The argument 'tau' must be ",
-         "\n  (A) a character such as 'halfcauchy' specifying the family of prior distribution",
-         "\n  (B) a non-negative prior distribution specified via metaBMA::prior()")
+  } else if (!class(tau) == "prior") {
+    stop(
+      "The argument 'tau' must be ",
+      "\n  (A) a character such as 'halfcauchy' specifying the family of prior distribution",
+      "\n  (B) a non-negative prior distribution specified via metaBMA::prior()"
+    )
   }
 
   # extracting results from random-effects meta-analysis
@@ -915,7 +923,7 @@ bf_meta_message <- function(data,
       ),
       env = list(
         top.text = caption,
-        bf = specify_decimal_p(x = log(bf_meta$BF["random_H0","random_H1"]), k = k),
+        bf = specify_decimal_p(x = log(bf_meta$BF["random_H0", "random_H1"]), k = k),
         d.pmean = specify_decimal_p(x = df_estimates$mean[[1]], k = k),
         d.pmean.LB = specify_decimal_p(x = df_estimates$hpd95_lower[[1]], k = k),
         d.pmean.UB = specify_decimal_p(x = df_estimates$hpd95_upper[[1]], k = k)

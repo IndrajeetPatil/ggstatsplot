@@ -16,14 +16,18 @@ standard error \code{SE}, \code{labels}, and moderators per study.}
 (Default: \code{k = 2}).}
 
 \item{d}{the prior distribution of the average effect size \eqn{d} specified
-either as the type of family (e.g., \code{"norm"}) or via \code{\link[metaBMA]{prior}}}
+either as the type of family (e.g., \code{"norm"}) or via
+\code{\link[metaBMA]{prior}}.}
 
-\item{d.par}{prior parameters for \eqn{d} (only used if \code{d} specifies the type of family)}
+\item{d.par}{prior parameters for \eqn{d} (only used if \code{d} specifies
+the type of family).}
 
-\item{tau}{the prior distribution of the between-study heterogeneity \eqn{\tau} specified
-either as a character value (e.g., \code{"halfcauchy"}) or via \code{\link[metaBMA]{prior}}}
+\item{tau}{the prior distribution of the between-study heterogeneity
+\eqn{\tau} specified either as a character value (e.g.,
+\code{"halfcauchy"}) or via \code{\link[metaBMA]{prior}}.}
 
-\item{tau.par}{prior parameters for \eqn{\tau}  (only used if \code{tau} specifies the type of family)}
+\item{tau.par}{prior parameters for \eqn{\tau}  (only used if \code{tau}
+specifies the type of family).}
 
 \item{iter}{number of MCMC iterations using Stan.}
 

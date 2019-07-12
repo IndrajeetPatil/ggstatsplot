@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.12</span>
       </span>
     </div>
 
@@ -139,7 +139,7 @@
       <h1>ggbetweenstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-07-08</h4>
+            <h4 class="date">2019-07-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggbetweenstats.Rmd"><code>vignettes/web_only/ggbetweenstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggbetweenstats.Rmd</code></div>
@@ -154,7 +154,7 @@
 <li><p>to check if a continuous variable differs across multiple groups/conditions</p></li>
 <li><p>to compare distributions visually and check for outliers</p></li>
 </ul>
-<p><strong>Note</strong>: This vignette uses the pipe operator (<code>%&gt;%</code>), if you are not familiar with this operator, here is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="uri">http://r4ds.had.co.nz/pipes.html</a></p>
+<p><strong>Note</strong>: This vignette uses the pipe operator (<code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code>), if you are not familiar with this operator, here is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="uri">http://r4ds.had.co.nz/pipes.html</a></p>
 <div id="comparisons-between-groups-with-ggbetweenstats" class="section level2">
 <h2 class="hasAnchor">
 <a href="#comparisons-between-groups-with-ggbetweenstats" class="anchor"></a>Comparisons between groups with <code>ggbetweenstats</code>
@@ -162,7 +162,7 @@
 <p>To illustrate how this function can be used, we will use the <code>gapminder</code> dataset throughout this vignette. This dataset provides values for life expectancy, GDP per capita, and population, at 5 year intervals, from 1952 to 2007, for each of 142 countries (courtesy <a href="https://www.gapminder.org/">Gapminder Foundation</a>). Let’s have a look at the data-</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(gapminder)</a>
 <a class="sourceLine" id="cb1-2" title="2"></a>
-<a class="sourceLine" id="cb1-3" title="3">dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/reexports.html">glimpse</a></span>(<span class="dt">x =</span> gapminder<span class="op">::</span>gapminder)</a>
+<a class="sourceLine" id="cb1-3" title="3">dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="dt">x =</span> gapminder<span class="op">::</span>gapminder)</a>
 <a class="sourceLine" id="cb1-4" title="4"><span class="co">#&gt; Observations: 1,704</span></a>
 <a class="sourceLine" id="cb1-5" title="5"><span class="co">#&gt; Variables: 6</span></a>
 <a class="sourceLine" id="cb1-6" title="6"><span class="co">#&gt; $ country   &lt;fct&gt; Afghanistan, Afghanistan, Afghanistan, Afghanistan, ...</span></a>
@@ -179,8 +179,8 @@
 <a class="sourceLine" id="cb2-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb2-4" title="4"></a>
 <a class="sourceLine" id="cb2-5" title="5"><span class="co"># function call</span></a>
-<a class="sourceLine" id="cb2-6" title="6">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb2-7" title="7">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder<span class="op">::</span>gapminder, </a>
+<a class="sourceLine" id="cb2-6" title="6">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb2-7" title="7">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder<span class="op">::</span>gapminder, </a>
 <a class="sourceLine" id="cb2-8" title="8">                       year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span>),</a>
 <a class="sourceLine" id="cb2-9" title="9">  <span class="dt">x =</span> continent,</a>
 <a class="sourceLine" id="cb2-10" title="10">  <span class="dt">y =</span> lifeExp,</a>
@@ -197,8 +197,8 @@
 <a class="sourceLine" id="cb3-5" title="5"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb3-6" title="6"></a>
 <a class="sourceLine" id="cb3-7" title="7"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb3-8" title="8">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb3-9" title="9">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder, </a>
+<a class="sourceLine" id="cb3-8" title="8">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb3-9" title="9">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder, </a>
 <a class="sourceLine" id="cb3-10" title="10">                        year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>, </a>
 <a class="sourceLine" id="cb3-11" title="11">                        continent <span class="op">!=</span><span class="st"> "Oceania"</span>),      <span class="co"># dataframe</span></a>
 <a class="sourceLine" id="cb3-12" title="12">  <span class="dt">x =</span> continent,                                      <span class="co"># grouping/independent variable</span></a>
@@ -217,13 +217,13 @@
 <a class="sourceLine" id="cb3-25" title="25">  <span class="dt">mean.plotting =</span> <span class="ot">TRUE</span>,                               <span class="co"># whether the mean is to be displayed</span></a>
 <a class="sourceLine" id="cb3-26" title="26">  <span class="dt">mean.color =</span> <span class="st">"darkblue"</span>,                            <span class="co"># color for mean</span></a>
 <a class="sourceLine" id="cb3-27" title="27">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,                                   <span class="co"># turn off messages</span></a>
-<a class="sourceLine" id="cb3-28" title="28">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_gray</a></span>(),                    <span class="co"># a different theme</span></a>
+<a class="sourceLine" id="cb3-28" title="28">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_gray</a></span>(),                    <span class="co"># a different theme</span></a>
 <a class="sourceLine" id="cb3-29" title="29">  <span class="dt">package =</span> <span class="st">"yarrr"</span>,                                  <span class="co"># package from which color palette is to be taken</span></a>
 <a class="sourceLine" id="cb3-30" title="30">  <span class="dt">palette =</span> <span class="st">"info2"</span>,                                  <span class="co"># choosing a different color palette</span></a>
 <a class="sourceLine" id="cb3-31" title="31">  <span class="dt">title =</span> <span class="st">"Comparison of life expectancy across continents (Year: 2007)"</span>,</a>
 <a class="sourceLine" id="cb3-32" title="32">  <span class="dt">caption =</span> <span class="st">"Source: Gapminder Foundation"</span></a>
 <a class="sourceLine" id="cb3-33" title="33">) <span class="op">+</span><span class="st">                                                   </span><span class="co"># modifying the plot further</span></a>
-<a class="sourceLine" id="cb3-34" title="34"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_y_continuous</a></span>(<span class="dt">limits =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">35</span>, <span class="dv">85</span>),</a>
+<a class="sourceLine" id="cb3-34" title="34"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span>(<span class="dt">limits =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">35</span>, <span class="dv">85</span>),</a>
 <a class="sourceLine" id="cb3-35" title="35">                              <span class="dt">breaks =</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dt">from =</span> <span class="dv">35</span>, <span class="dt">to =</span> <span class="dv">85</span>, <span class="dt">by =</span> <span class="dv">5</span>))</a></code></pre></div>
 <p><img src="ggbetweenstats_files/figure-html/ggbetweenstats2-1.png" width="768"></p>
 <p>As can be appreciated from the effect size (partial eta squared) of 0.635, there are large differences in the mean life expectancy across continents. Importantly, this plot also helps us appreciate the distributions within any given continent. For example, although Asian countries are doing much better than African countries, on average, Afghanistan has a particularly grim average for the Asian continent, possibly reflecting the war and the political turmoil.</p>
@@ -239,14 +239,14 @@
 <a class="sourceLine" id="cb4-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(gapminder)</a>
 <a class="sourceLine" id="cb4-3" title="3"></a>
 <a class="sourceLine" id="cb4-4" title="4"><span class="co"># selecting subset of the data</span></a>
-<a class="sourceLine" id="cb4-5" title="5">df_year &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder<span class="op">::</span>gapminder, </a>
+<a class="sourceLine" id="cb4-5" title="5">df_year &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder<span class="op">::</span>gapminder, </a>
 <a class="sourceLine" id="cb4-6" title="6">                         year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span> <span class="op">|</span><span class="st"> </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1957</span>)</a>
 <a class="sourceLine" id="cb4-7" title="7"></a>
 <a class="sourceLine" id="cb4-8" title="8"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb4-9" title="9"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb4-10" title="10"></a>
 <a class="sourceLine" id="cb4-11" title="11"><span class="co"># parametric t-test and box plot</span></a>
-<a class="sourceLine" id="cb4-12" title="12">p1 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb4-12" title="12">p1 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
 <a class="sourceLine" id="cb4-13" title="13">  <span class="dt">data =</span> df_year,</a>
 <a class="sourceLine" id="cb4-14" title="14">  <span class="dt">x =</span> year,</a>
 <a class="sourceLine" id="cb4-15" title="15">  <span class="dt">y =</span> lifeExp,</a>
@@ -262,7 +262,7 @@
 <a class="sourceLine" id="cb4-25" title="25">)</a>
 <a class="sourceLine" id="cb4-26" title="26"></a>
 <a class="sourceLine" id="cb4-27" title="27"><span class="co"># Mann-Whitney U test (nonparametric t) and violin plot</span></a>
-<a class="sourceLine" id="cb4-28" title="28">p2 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb4-28" title="28">p2 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
 <a class="sourceLine" id="cb4-29" title="29">  <span class="dt">data =</span> df_year,</a>
 <a class="sourceLine" id="cb4-30" title="30">  <span class="dt">x =</span> year,</a>
 <a class="sourceLine" id="cb4-31" title="31">  <span class="dt">y =</span> lifeExp,</a>
@@ -279,7 +279,7 @@
 <a class="sourceLine" id="cb4-42" title="42">)</a>
 <a class="sourceLine" id="cb4-43" title="43"></a>
 <a class="sourceLine" id="cb4-44" title="44"><span class="co"># robust t-test and boxviolin plot</span></a>
-<a class="sourceLine" id="cb4-45" title="45">p3 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb4-45" title="45">p3 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
 <a class="sourceLine" id="cb4-46" title="46">  <span class="dt">data =</span> df_year,</a>
 <a class="sourceLine" id="cb4-47" title="47">  <span class="dt">x =</span> year,</a>
 <a class="sourceLine" id="cb4-48" title="48">  <span class="dt">y =</span> lifeExp,</a>
@@ -298,7 +298,7 @@
 <a class="sourceLine" id="cb4-61" title="61">)</a>
 <a class="sourceLine" id="cb4-62" title="62"></a>
 <a class="sourceLine" id="cb4-63" title="63"><span class="co"># Bayes Factor for parametric t-test and boxviolin plot</span></a>
-<a class="sourceLine" id="cb4-64" title="64">p4 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb4-64" title="64">p4 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
 <a class="sourceLine" id="cb4-65" title="65">  <span class="dt">data =</span> df_year,</a>
 <a class="sourceLine" id="cb4-66" title="66">  <span class="dt">x =</span> year,</a>
 <a class="sourceLine" id="cb4-67" title="67">  <span class="dt">y =</span> lifeExp,</a>
@@ -314,7 +314,7 @@
 <a class="sourceLine" id="cb4-77" title="77">)</a>
 <a class="sourceLine" id="cb4-78" title="78"></a>
 <a class="sourceLine" id="cb4-79" title="79"><span class="co"># combining the individual plots into a single plot</span></a>
-<a class="sourceLine" id="cb4-80" title="80">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb4-80" title="80">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb4-81" title="81">  p1, p2, p3, p4, </a>
 <a class="sourceLine" id="cb4-82" title="82">  <span class="dt">nrow =</span> <span class="dv">2</span>, </a>
 <a class="sourceLine" id="cb4-83" title="83">  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>),</a>
@@ -335,9 +335,9 @@
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb5-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb5-3" title="3"></a>
-<a class="sourceLine" id="cb5-4" title="4">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/grouped_ggbetweenstats.html">grouped_ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb5-4" title="4">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggbetweenstats.html">grouped_ggbetweenstats</a></span>(</a>
 <a class="sourceLine" id="cb5-5" title="5">  <span class="co"># arguments relevant for ggstatsplot::ggbetweenstats</span></a>
-<a class="sourceLine" id="cb5-6" title="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(</a>
+<a class="sourceLine" id="cb5-6" title="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(</a>
 <a class="sourceLine" id="cb5-7" title="7">    <span class="dt">.data =</span> gapminder<span class="op">::</span>gapminder,</a>
 <a class="sourceLine" id="cb5-8" title="8">    year <span class="op">==</span><span class="st"> </span><span class="dv">1967</span> <span class="op">|</span></a>
 <a class="sourceLine" id="cb5-9" title="9"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1987</span> <span class="op">|</span></a>
