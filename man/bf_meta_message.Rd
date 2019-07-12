@@ -4,36 +4,41 @@
 \alias{bf_meta_message}
 \title{Bayes factor message for random-effects meta-analysis}
 \usage{
-bf_meta_message(data, k = 2, d = "norm", d.par = c(0, 0.3),
-  tau = "halfcauchy", tau.par = 0.5, sample = 10000,
-  summarize = "integrate", caption = NULL, messages = TRUE, ...)
+bf_meta_message(data, k = 2, d = "norm", d.par = c(mean = 0, sd =
+  0.3), tau = "halfcauchy", tau.par = c(scale = 0.5), iter = 10000,
+  summarize = "stan", caption = NULL, messages = TRUE, ...)
 }
 \arguments{
-\item{data}{A dataframe. It \strong{must} contain columns named \code{estimate}
-(corresponding estimates of coefficients or other quantities of interest)
-and \code{std.error} (the standard error of the regression term).}
+\item{data}{data frame containing the variables for effect size \code{y},
+standard error \code{SE}, \code{labels}, and moderators per study.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
 
-\item{d}{type of prior for mean effect \eqn{d} (see \code{\link{prior}})}
+\item{d}{the prior distribution of the average effect size \eqn{d} specified
+either as the type of family (e.g., \code{"norm"}) or via \code{\link[metaBMA]{prior}}}
 
-\item{d.par}{prior parameters for \eqn{d}}
+\item{d.par}{prior parameters for \eqn{d} (only used if \code{d} specifies the type of family)}
 
-\item{tau}{type of prior for standard deviation of study effects \eqn{\tau} in random-effects meta-analysis (i.e., the SD of d across studies; see \code{\link{prior}})}
+\item{tau}{the prior distribution of the between-study heterogeneity \eqn{\tau} specified
+either as a character value (e.g., \code{"halfcauchy"}) or via \code{\link[metaBMA]{prior}}}
 
-\item{tau.par}{prior parameters for \eqn{\tau}}
+\item{tau.par}{prior parameters for \eqn{\tau}  (only used if \code{tau} specifies the type of family)}
 
-\item{sample}{number of samples in JAGS after burn-in and thinning (see \code{\link[runjags]{run.jags}}). Samples are used to get posterior  estimates for each study effect (which will show shrinkage). Only works for priors defined in \code{\link{prior}}.}
+\item{iter}{number of MCMC iterations using Stan.}
 
-\item{summarize}{whether and to compute parameter summaries (mean, median, SD, 95\% quantile interval, HPD interval). If \code{summarize = "integrate"}, numerical integration is used  (which is precise but can require some seconds of computing time), \code{summarize = "jags"} summarizes the JAGS samples, and \code{summarize = "none"} suppresses parameter summaries.}
+\item{summarize}{how to estimate parameter summaries (mean, median, SD,
+etc.): Either by numerical integration (\code{summarize = "integrate"}) or
+based on MCMC/Stan samples (\code{summarize = "stan"}).}
 
 \item{caption}{The text for the plot caption.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
 
-\item{...}{arguments passed to \link[runjags]{run.jags} (e.g., MCMC parameters such as \code{sample}, \code{burnin}, \code{n.chains}, \code{thin} or \code{method="parallel"})}
+\item{...}{further arguments passed to \code{rstan::sampling} (see
+\code{\link[rstan]{stanmodel-method-sampling}}). For instance:
+\code{warmup=500}, \code{chains=4}, \code{control=list(adapt_delta=.95)}).}
 }
 \description{
 Bayes factor message for random-effects meta-analysis
@@ -69,12 +74,12 @@ library(metaBMA)
     class = c("tbl_df", "tbl", "data.frame")
   ))
 
-# getting bayes factor in favor of null hypothesis
+# getting Bayes factor in favor of null hypothesis
 ggstatsplot::bf_meta_message(
   data = df,
   k = 3,
-  sample = 50,
-  messages = FALSE
+  iter = 1500,
+  messages = TRUE
 )
 }
 
