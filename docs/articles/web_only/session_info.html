@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.12</span>
       </span>
     </div>
 
@@ -139,7 +139,7 @@
       <h1>session information</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-07-08</h4>
+            <h4 class="date">2019-07-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/session_info.Rmd"><code>vignettes/web_only/session_info.Rmd</code></a></small>
       <div class="hidden name"><code>session_info.Rmd</code></div>
@@ -152,7 +152,7 @@
 <h1 class="hasAnchor">
 <a href="#session-information" class="anchor"></a>Session information</h1>
 <p>This vignette provides exhaustive details about the session (attached packages, their versions, date, source, etc.) in which the vignettes were created and the website was generated. This is helpful information for reproducibility. If you see any divergences between function behavior as described on the website and what you see on your system, this information can come in handy for diagnosing the source of those divergences.</p>
-<p>This session information was generated on 2019-07-08:</p>
+<p>This session information was generated on 2019-07-12:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="dt">width =</span> <span class="dv">200</span>)</a>
 <a class="sourceLine" id="cb1-2" title="2">sessioninfo<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/sessioninfo/man/session_info.html">session_info</a></span>(<span class="dt">include_base =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="co">#&gt; - Session info ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span></a>
@@ -165,177 +165,191 @@
 <a class="sourceLine" id="cb1-10" title="10"><span class="co">#&gt;  collate  English_United States.1252  </span></a>
 <a class="sourceLine" id="cb1-11" title="11"><span class="co">#&gt;  ctype    English_United States.1252  </span></a>
 <a class="sourceLine" id="cb1-12" title="12"><span class="co">#&gt;  tz       Europe/Berlin               </span></a>
-<a class="sourceLine" id="cb1-13" title="13"><span class="co">#&gt;  date     2019-07-08                  </span></a>
+<a class="sourceLine" id="cb1-13" title="13"><span class="co">#&gt;  date     2019-07-12                  </span></a>
 <a class="sourceLine" id="cb1-14" title="14"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb1-15" title="15"><span class="co">#&gt; - Packages -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span></a>
-<a class="sourceLine" id="cb1-16" title="16"><span class="co">#&gt;  ! package       * version     date       lib source                                  </span></a>
-<a class="sourceLine" id="cb1-17" title="17"><span class="co">#&gt;    abind           1.4-5       2016-07-21 [1] CRAN (R 3.5.0)                          </span></a>
-<a class="sourceLine" id="cb1-18" title="18"><span class="co">#&gt;    assertthat      0.2.1       2019-03-21 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-19" title="19"><span class="co">#&gt;    backports       1.1.4       2019-04-10 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-20" title="20"><span class="co">#&gt;    base          * 3.6.1       2019-07-05 [?] local                                   </span></a>
-<a class="sourceLine" id="cb1-21" title="21"><span class="co">#&gt;    BayesFactor     0.9.12-4.2  2018-05-19 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-22" title="22"><span class="co">#&gt;    bayestestR      0.2.2       2019-06-20 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-23" title="23"><span class="co">#&gt;    boot            1.3-22      2019-04-02 [2] CRAN (R 3.6.1)                          </span></a>
-<a class="sourceLine" id="cb1-24" title="24"><span class="co">#&gt;    broom           0.5.2.9001  2019-06-26 [1] local                                   </span></a>
-<a class="sourceLine" id="cb1-25" title="25"><span class="co">#&gt;    broom.mixed     0.2.4.9000  2019-03-14 [1] Github (bbolker/broom.mixed@c2de407)    </span></a>
-<a class="sourceLine" id="cb1-26" title="26"><span class="co">#&gt;    broomExtra      0.0.4.9000  2019-06-26 [1] local                                   </span></a>
-<a class="sourceLine" id="cb1-27" title="27"><span class="co">#&gt;    car             3.0-3       2019-05-27 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-28" title="28"><span class="co">#&gt;    carData         3.0-2       2018-09-30 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-29" title="29"><span class="co">#&gt;    cellranger      1.1.0       2016-07-27 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-30" title="30"><span class="co">#&gt;    cli             1.1.0       2019-03-19 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-31" title="31"><span class="co">#&gt;    cluster         2.1.0       2019-06-19 [2] CRAN (R 3.6.1)                          </span></a>
-<a class="sourceLine" id="cb1-32" title="32"><span class="co">#&gt;    coda            0.19-3      2019-07-05 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-33" title="33"><span class="co">#&gt;    codetools       0.2-16      2018-12-24 [1] CRAN (R 3.5.2)                          </span></a>
-<a class="sourceLine" id="cb1-34" title="34"><span class="co">#&gt;    coin            1.3-0       2019-03-08 [1] CRAN (R 3.5.2)                          </span></a>
-<a class="sourceLine" id="cb1-35" title="35"><span class="co">#&gt;    colorspace      1.4-1       2019-03-18 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-36" title="36"><span class="co">#&gt;    commonmark      1.7         2018-12-01 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-37" title="37"><span class="co">#&gt;  P compiler        3.6.1       2019-07-05 [2] local                                   </span></a>
-<a class="sourceLine" id="cb1-38" title="38"><span class="co">#&gt;    cowplot         0.9.99      2019-06-09 [1] Github (wilkelab/cowplot@7520d81)       </span></a>
-<a class="sourceLine" id="cb1-39" title="39"><span class="co">#&gt;    crayon          1.3.4       2017-09-16 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-40" title="40"><span class="co">#&gt;    curl            3.3         2019-01-10 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-41" title="41"><span class="co">#&gt;    data.table      1.12.2      2019-04-07 [1] CRAN (R 3.5.3)                          </span></a>
-<a class="sourceLine" id="cb1-42" title="42"><span class="co">#&gt;  P datasets      * 3.6.1       2019-07-05 [2] local                                   </span></a>
-<a class="sourceLine" id="cb1-43" title="43"><span class="co">#&gt;    DEoptimR        1.0-8       2016-11-19 [1] CRAN (R 3.5.0)                          </span></a>
-<a class="sourceLine" id="cb1-44" title="44"><span class="co">#&gt;    desc            1.2.0       2019-04-03 [1] Github (r-lib/desc@c860e7b)             </span></a>
-<a class="sourceLine" id="cb1-45" title="45"><span class="co">#&gt;    DescTools       0.99.28     2019-03-17 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-46" title="46"><span class="co">#&gt;    digest          0.6.20      2019-07-04 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-47" title="47"><span class="co">#&gt;    dplyr           0.8.3       2019-07-04 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-48" title="48"><span class="co">#&gt;    ellipsis        0.2.0.1     2019-07-02 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-49" title="49"><span class="co">#&gt;    emmeans         1.3.5.1     2019-06-26 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-50" title="50"><span class="co">#&gt;    EMT             1.1         2013-01-29 [1] CRAN (R 3.5.2)                          </span></a>
-<a class="sourceLine" id="cb1-51" title="51"><span class="co">#&gt;    estimability    1.3         2018-02-11 [1] CRAN (R 3.5.0)                          </span></a>
-<a class="sourceLine" id="cb1-52" title="52"><span class="co">#&gt;    evaluate        0.14        2019-05-28 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-53" title="53"><span class="co">#&gt;    expm            0.999-4     2019-03-21 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-54" title="54"><span class="co">#&gt;    ez              4.4-0       2016-11-02 [1] CRAN (R 3.5.3)                          </span></a>
-<a class="sourceLine" id="cb1-55" title="55"><span class="co">#&gt;    fit.models      0.5-14      2017-04-06 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-56" title="56"><span class="co">#&gt;    forcats         0.4.0       2019-02-17 [1] CRAN (R 3.5.2)                          </span></a>
-<a class="sourceLine" id="cb1-57" title="57"><span class="co">#&gt;    foreign         0.8-71      2018-07-20 [2] CRAN (R 3.6.1)                          </span></a>
-<a class="sourceLine" id="cb1-58" title="58"><span class="co">#&gt;    fs              1.3.1       2019-05-06 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-59" title="59"><span class="co">#&gt;    generics        0.0.2       2019-03-05 [1] Github (r-lib/generics@c15ac43)         </span></a>
-<a class="sourceLine" id="cb1-60" title="60"><span class="co">#&gt;    ggcorrplot      0.1.3       2019-05-19 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-61" title="61"><span class="co">#&gt;    ggExtra         0.8         2019-02-23 [1] Github (daattali/ggExtra@dd74c0f)       </span></a>
-<a class="sourceLine" id="cb1-62" title="62"><span class="co">#&gt;    ggplot2         3.2.0.9000  2019-06-05 [1] Github (tidyverse/ggplot2@b560662)      </span></a>
-<a class="sourceLine" id="cb1-63" title="63"><span class="co">#&gt;    ggrepel         0.8.1       2019-05-07 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-64" title="64"><span class="co">#&gt;    ggsignif        0.5.0       2019-02-20 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-65" title="65"><span class="co">#&gt;    ggstatsplot   * 0.0.11.9000 2019-07-08 [1] local                                   </span></a>
-<a class="sourceLine" id="cb1-66" title="66"><span class="co">#&gt;    glue            1.3.1       2019-03-12 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-67" title="67"><span class="co">#&gt;  P graphics      * 3.6.1       2019-07-05 [2] local                                   </span></a>
-<a class="sourceLine" id="cb1-68" title="68"><span class="co">#&gt;  P grDevices     * 3.6.1       2019-07-05 [2] local                                   </span></a>
-<a class="sourceLine" id="cb1-69" title="69"><span class="co">#&gt;  P grid            3.6.1       2019-07-05 [2] local                                   </span></a>
-<a class="sourceLine" id="cb1-70" title="70"><span class="co">#&gt;    groupedstats    0.0.7.9005  2019-07-01 [1] local                                   </span></a>
-<a class="sourceLine" id="cb1-71" title="71"><span class="co">#&gt;    gtable          0.3.0       2019-03-25 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-72" title="72"><span class="co">#&gt;    gtools          3.8.1       2018-06-26 [1] CRAN (R 3.5.0)                          </span></a>
-<a class="sourceLine" id="cb1-73" title="73"><span class="co">#&gt;    haven           2.1.1       2019-07-04 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-74" title="74"><span class="co">#&gt;    hms             0.4.2       2018-03-10 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-75" title="75"><span class="co">#&gt;    htmltools       0.3.6       2017-04-28 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-76" title="76"><span class="co">#&gt;    httpuv          1.5.1       2019-04-05 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-77" title="77"><span class="co">#&gt;    insight         0.4.0       2019-07-01 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-78" title="78"><span class="co">#&gt;    jmv             0.9.6.1     2019-04-22 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-79" title="79"><span class="co">#&gt;    jmvcore         1.0.0       2019-05-28 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-80" title="80"><span class="co">#&gt;    knitr           1.23        2019-05-18 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-81" title="81"><span class="co">#&gt;    LaplacesDemon   16.1.1      2018-06-30 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-82" title="82"><span class="co">#&gt;    later           0.8.0       2019-02-11 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-83" title="83"><span class="co">#&gt;    lattice         0.20-38     2018-11-04 [2] CRAN (R 3.6.1)                          </span></a>
-<a class="sourceLine" id="cb1-84" title="84"><span class="co">#&gt;    lazyeval        0.2.2       2019-03-15 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-85" title="85"><span class="co">#&gt;    libcoin         1.0-4       2019-02-28 [1] CRAN (R 3.5.2)                          </span></a>
-<a class="sourceLine" id="cb1-86" title="86"><span class="co">#&gt;    lme4            1.1-21      2019-03-05 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-87" title="87"><span class="co">#&gt;    lmtest          0.9-37      2019-04-30 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-88" title="88"><span class="co">#&gt;    logspline       2.1.13      2019-06-13 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-89" title="89"><span class="co">#&gt;    magrittr        1.5         2014-11-22 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-90" title="90"><span class="co">#&gt;    manipulate      1.0.1       2014-12-24 [1] CRAN (R 3.5.0)                          </span></a>
-<a class="sourceLine" id="cb1-91" title="91"><span class="co">#&gt;    MASS            7.3-51.4    2019-03-31 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-92" title="92"><span class="co">#&gt;    Matrix          1.2-17      2019-03-22 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-93" title="93"><span class="co">#&gt;    MatrixModels    0.4-1       2015-08-22 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-94" title="94"><span class="co">#&gt;    matrixStats     0.54.0      2018-07-23 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-95" title="95"><span class="co">#&gt;    mc2d            0.1-18      2017-03-06 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-96" title="96"><span class="co">#&gt;    mcmc            0.9-6       2019-03-10 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-97" title="97"><span class="co">#&gt;    MCMCpack        1.4-4       2018-09-14 [1] CRAN (R 3.5.2)                          </span></a>
-<a class="sourceLine" id="cb1-98" title="98"><span class="co">#&gt;    memoise         1.1.0       2017-04-21 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-99" title="99"><span class="co">#&gt;    metaBMA         0.3.9       2017-08-04 [1] CRAN (R 3.5.3)                          </span></a>
-<a class="sourceLine" id="cb1-100" title="100"><span class="co">#&gt;    metafor         2.1-0       2019-05-14 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-101" title="101"><span class="co">#&gt;  P methods       * 3.6.1       2019-07-05 [2] local                                   </span></a>
-<a class="sourceLine" id="cb1-102" title="102"><span class="co">#&gt;    mgcv            1.8-28      2019-03-21 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-103" title="103"><span class="co">#&gt;    mime            0.7         2019-06-11 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-104" title="104"><span class="co">#&gt;    miniUI          0.1.1.1     2018-05-18 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-105" title="105"><span class="co">#&gt;    minqa           1.2.4       2014-10-09 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-106" title="106"><span class="co">#&gt;    mnormt          1.5-5       2016-10-15 [1] CRAN (R 3.5.0)                          </span></a>
-<a class="sourceLine" id="cb1-107" title="107"><span class="co">#&gt;    modelr          0.1.4       2019-02-18 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-108" title="108"><span class="co">#&gt;    modeltools      0.2-22      2018-07-16 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-109" title="109"><span class="co">#&gt;    multcomp        1.4-10      2019-03-05 [1] CRAN (R 3.5.2)                          </span></a>
-<a class="sourceLine" id="cb1-110" title="110"><span class="co">#&gt;    multcompView    0.1-7       2015-07-31 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-111" title="111"><span class="co">#&gt;    munsell         0.5.0       2018-06-12 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-112" title="112"><span class="co">#&gt;    mvtnorm         1.0-11      2019-06-19 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-113" title="113"><span class="co">#&gt;    nlme            3.1-140     2019-05-12 [2] CRAN (R 3.6.1)                          </span></a>
-<a class="sourceLine" id="cb1-114" title="114"><span class="co">#&gt;    nloptr          1.2.1       2018-10-03 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-115" title="115"><span class="co">#&gt;    nortest         1.0-4       2015-07-30 [1] CRAN (R 3.5.2)                          </span></a>
-<a class="sourceLine" id="cb1-116" title="116"><span class="co">#&gt;    openxlsx        4.1.0.1     2019-05-28 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-117" title="117"><span class="co">#&gt;    paletteer       0.2.1.9000  2019-03-25 [1] Github (EmilHvitfeldt/paletteer@38cdb34)</span></a>
-<a class="sourceLine" id="cb1-118" title="118"><span class="co">#&gt;  P parallel        3.6.1       2019-07-05 [2] local                                   </span></a>
-<a class="sourceLine" id="cb1-119" title="119"><span class="co">#&gt;    pbapply         1.4-0       2019-02-05 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-120" title="120"><span class="co">#&gt;    pcaPP           1.9-73      2018-01-14 [1] CRAN (R 3.5.0)                          </span></a>
-<a class="sourceLine" id="cb1-121" title="121"><span class="co">#&gt;    performance     0.2.0       2019-06-04 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-122" title="122"><span class="co">#&gt;    pillar          1.4.2       2019-06-29 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-123" title="123"><span class="co">#&gt;    pkgconfig       2.0.2       2018-08-16 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-124" title="124"><span class="co">#&gt;    pkgdown         1.3.0.9100  2019-07-03 [1] Github (r-lib/pkgdown@b7ca56b)          </span></a>
-<a class="sourceLine" id="cb1-125" title="125"><span class="co">#&gt;    plyr            1.8.4       2016-06-08 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-126" title="126"><span class="co">#&gt;    promises        1.0.1       2018-04-13 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-127" title="127"><span class="co">#&gt;    psych           1.8.12      2019-01-12 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-128" title="128"><span class="co">#&gt;    purrr           0.3.2       2019-03-15 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-129" title="129"><span class="co">#&gt;    purrrlyr        0.0.5       2019-03-15 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-130" title="130"><span class="co">#&gt;    quantreg        5.41        2019-06-28 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-131" title="131"><span class="co">#&gt;    R6              2.4.0       2019-02-14 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-132" title="132"><span class="co">#&gt;    rcompanion      2.2.1       2019-05-29 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-133" title="133"><span class="co">#&gt;    Rcpp            1.0.1       2019-03-17 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-134" title="134"><span class="co">#&gt;    readxl          1.3.1       2019-03-13 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-135" title="135"><span class="co">#&gt;    reshape         0.8.8       2018-10-23 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-136" title="136"><span class="co">#&gt;    reshape2        1.4.3       2017-12-11 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-137" title="137"><span class="co">#&gt;    rio             0.5.16      2018-11-26 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-138" title="138"><span class="co">#&gt;    rjson           0.2.20      2018-06-08 [1] CRAN (R 3.5.0)                          </span></a>
-<a class="sourceLine" id="cb1-139" title="139"><span class="co">#&gt;    rlang           0.4.0       2019-06-25 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-140" title="140"><span class="co">#&gt;    rmarkdown       1.13        2019-05-22 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-141" title="141"><span class="co">#&gt;    robust          0.4-18.1    2019-07-02 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-142" title="142"><span class="co">#&gt;    robustbase      0.93-5      2019-05-12 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-143" title="143"><span class="co">#&gt;    roxygen2        6.1.1       2018-11-07 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-144" title="144"><span class="co">#&gt;    rprojroot       1.3-2       2018-01-03 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-145" title="145"><span class="co">#&gt;    rrcov           1.4-7       2018-11-15 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-146" title="146"><span class="co">#&gt;    rsample         0.0.4       2019-01-07 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-147" title="147"><span class="co">#&gt;    rstudioapi      0.10        2019-03-19 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-148" title="148"><span class="co">#&gt;    runjags         2.0.4-2     2016-07-25 [1] CRAN (R 3.5.2)                          </span></a>
-<a class="sourceLine" id="cb1-149" title="149"><span class="co">#&gt;    sandwich        2.5-1       2019-04-06 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-150" title="150"><span class="co">#&gt;    scales          1.0.0       2018-08-09 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-151" title="151"><span class="co">#&gt;    sessioninfo     1.1.1       2018-11-05 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-152" title="152"><span class="co">#&gt;    shiny           1.3.2       2019-04-22 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-153" title="153"><span class="co">#&gt;    sjlabelled      1.1.0       2019-06-06 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-154" title="154"><span class="co">#&gt;    sjmisc          2.8.1       2019-06-17 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-155" title="155"><span class="co">#&gt;    sjstats         0.17.5      2019-06-04 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-156" title="156"><span class="co">#&gt;    skimr           1.0.7       2019-06-20 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-157" title="157"><span class="co">#&gt;    SparseM         1.77        2017-04-23 [1] CRAN (R 3.5.0)                          </span></a>
-<a class="sourceLine" id="cb1-158" title="158"><span class="co">#&gt;  P splines         3.6.1       2019-07-05 [2] local                                   </span></a>
-<a class="sourceLine" id="cb1-159" title="159"><span class="co">#&gt;  P stats         * 3.6.1       2019-07-05 [2] local                                   </span></a>
-<a class="sourceLine" id="cb1-160" title="160"><span class="co">#&gt;  P stats4          3.6.1       2019-07-05 [2] local                                   </span></a>
-<a class="sourceLine" id="cb1-161" title="161"><span class="co">#&gt;    stringi         1.4.3       2019-03-12 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-162" title="162"><span class="co">#&gt;    stringr         1.4.0       2019-02-10 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-163" title="163"><span class="co">#&gt;    survival        2.44-1.1    2019-04-01 [2] CRAN (R 3.6.1)                          </span></a>
-<a class="sourceLine" id="cb1-164" title="164"><span class="co">#&gt;    TH.data         1.0-10      2019-01-21 [1] CRAN (R 3.5.2)                          </span></a>
-<a class="sourceLine" id="cb1-165" title="165"><span class="co">#&gt;    tibble          2.1.3       2019-06-06 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-166" title="166"><span class="co">#&gt;    tidyr           0.8.3       2019-03-01 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-167" title="167"><span class="co">#&gt;    tidyselect      0.2.5       2018-10-11 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-168" title="168"><span class="co">#&gt;    TMB             1.7.15      2018-11-09 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-169" title="169"><span class="co">#&gt;  P tools           3.6.1       2019-07-05 [2] local                                   </span></a>
-<a class="sourceLine" id="cb1-170" title="170"><span class="co">#&gt;  P utils         * 3.6.1       2019-07-05 [2] local                                   </span></a>
-<a class="sourceLine" id="cb1-171" title="171"><span class="co">#&gt;    withr           2.1.2       2018-03-15 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-172" title="172"><span class="co">#&gt;    WRS2            1.0-0       2019-06-05 [1] R-Forge (R 3.6.0)                       </span></a>
-<a class="sourceLine" id="cb1-173" title="173"><span class="co">#&gt;    xfun            0.8         2019-06-25 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-174" title="174"><span class="co">#&gt;    xml2            1.2.0       2018-01-24 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-175" title="175"><span class="co">#&gt;    xtable          1.8-4       2019-04-21 [1] CRAN (R 3.5.3)                          </span></a>
-<a class="sourceLine" id="cb1-176" title="176"><span class="co">#&gt;    yaml            2.2.0       2018-07-25 [1] CRAN (R 3.5.1)                          </span></a>
-<a class="sourceLine" id="cb1-177" title="177"><span class="co">#&gt;    zip             2.0.3       2019-07-03 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-178" title="178"><span class="co">#&gt;    zoo             1.8-6       2019-05-28 [1] CRAN (R 3.6.0)                          </span></a>
-<a class="sourceLine" id="cb1-179" title="179"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb1-180" title="180"><span class="co">#&gt; [1] C:/Users/inp099/Documents/R/win-library/3.6</span></a>
-<a class="sourceLine" id="cb1-181" title="181"><span class="co">#&gt; [2] C:/Program Files/R/R-3.6.1/library</span></a>
-<a class="sourceLine" id="cb1-182" title="182"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb1-183" title="183"><span class="co">#&gt;  P -- Loaded and on-disk path mismatch.</span></a></code></pre></div>
+<a class="sourceLine" id="cb1-16" title="16"><span class="co">#&gt;  ! package        * version    date       lib source                                  </span></a>
+<a class="sourceLine" id="cb1-17" title="17"><span class="co">#&gt;    abind            1.4-5      2016-07-21 [1] CRAN (R 3.5.0)                          </span></a>
+<a class="sourceLine" id="cb1-18" title="18"><span class="co">#&gt;    assertthat       0.2.1      2019-03-21 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-19" title="19"><span class="co">#&gt;    backports        1.1.4      2019-04-10 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-20" title="20"><span class="co">#&gt;    base           * 3.6.1      2019-07-05 [?] local                                   </span></a>
+<a class="sourceLine" id="cb1-21" title="21"><span class="co">#&gt;    BayesFactor      0.9.12-4.2 2018-05-19 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-22" title="22"><span class="co">#&gt;    bayestestR       0.2.2      2019-06-20 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-23" title="23"><span class="co">#&gt;    boot             1.3-23     2019-07-05 [1] CRAN (R 3.6.1)                          </span></a>
+<a class="sourceLine" id="cb1-24" title="24"><span class="co">#&gt;    bridgesampling   0.6-0      2018-10-21 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-25" title="25"><span class="co">#&gt;    Brobdingnag      1.2-6      2018-08-13 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-26" title="26"><span class="co">#&gt;    broom            0.5.2.9001 2019-06-26 [1] local                                   </span></a>
+<a class="sourceLine" id="cb1-27" title="27"><span class="co">#&gt;    broom.mixed      0.2.4.9000 2019-03-14 [1] Github (bbolker/broom.mixed@c2de407)    </span></a>
+<a class="sourceLine" id="cb1-28" title="28"><span class="co">#&gt;    broomExtra       0.0.4.9000 2019-06-26 [1] local                                   </span></a>
+<a class="sourceLine" id="cb1-29" title="29"><span class="co">#&gt;    callr            3.3.0      2019-07-04 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-30" title="30"><span class="co">#&gt;    car              3.0-3      2019-05-27 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-31" title="31"><span class="co">#&gt;    carData          3.0-2      2018-09-30 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-32" title="32"><span class="co">#&gt;    cellranger       1.1.0      2016-07-27 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-33" title="33"><span class="co">#&gt;    cli              1.1.0      2019-03-19 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-34" title="34"><span class="co">#&gt;    cluster          2.1.0      2019-06-19 [2] CRAN (R 3.6.1)                          </span></a>
+<a class="sourceLine" id="cb1-35" title="35"><span class="co">#&gt;    coda             0.19-3     2019-07-05 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-36" title="36"><span class="co">#&gt;    codetools        0.2-16     2018-12-24 [1] CRAN (R 3.5.2)                          </span></a>
+<a class="sourceLine" id="cb1-37" title="37"><span class="co">#&gt;    coin             1.3-0      2019-03-08 [1] CRAN (R 3.5.2)                          </span></a>
+<a class="sourceLine" id="cb1-38" title="38"><span class="co">#&gt;    colorspace       1.4-1      2019-03-18 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-39" title="39"><span class="co">#&gt;    commonmark       1.7        2018-12-01 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-40" title="40"><span class="co">#&gt;  P compiler         3.6.1      2019-07-05 [2] local                                   </span></a>
+<a class="sourceLine" id="cb1-41" title="41"><span class="co">#&gt;    cowplot          1.0.0      2019-07-11 [1] CRAN (R 3.6.1)                          </span></a>
+<a class="sourceLine" id="cb1-42" title="42"><span class="co">#&gt;    crayon           1.3.4      2017-09-16 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-43" title="43"><span class="co">#&gt;    curl             3.3        2019-01-10 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-44" title="44"><span class="co">#&gt;    data.table       1.12.2     2019-04-07 [1] CRAN (R 3.5.3)                          </span></a>
+<a class="sourceLine" id="cb1-45" title="45"><span class="co">#&gt;  P datasets       * 3.6.1      2019-07-05 [2] local                                   </span></a>
+<a class="sourceLine" id="cb1-46" title="46"><span class="co">#&gt;    DEoptimR         1.0-8      2016-11-19 [1] CRAN (R 3.5.0)                          </span></a>
+<a class="sourceLine" id="cb1-47" title="47"><span class="co">#&gt;    desc             1.2.0      2019-04-03 [1] Github (r-lib/desc@c860e7b)             </span></a>
+<a class="sourceLine" id="cb1-48" title="48"><span class="co">#&gt;    DescTools        0.99.28    2019-03-17 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-49" title="49"><span class="co">#&gt;    digest           0.6.20     2019-07-04 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-50" title="50"><span class="co">#&gt;    dplyr            0.8.3      2019-07-04 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-51" title="51"><span class="co">#&gt;    ellipsis         0.2.0.1    2019-07-02 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-52" title="52"><span class="co">#&gt;    emmeans          1.3.5.1    2019-06-26 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-53" title="53"><span class="co">#&gt;    EMT              1.1        2013-01-29 [1] CRAN (R 3.5.2)                          </span></a>
+<a class="sourceLine" id="cb1-54" title="54"><span class="co">#&gt;    estimability     1.3        2018-02-11 [1] CRAN (R 3.5.0)                          </span></a>
+<a class="sourceLine" id="cb1-55" title="55"><span class="co">#&gt;    evaluate         0.14       2019-05-28 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-56" title="56"><span class="co">#&gt;    expm             0.999-4    2019-03-21 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-57" title="57"><span class="co">#&gt;    ez               4.4-0      2016-11-02 [1] CRAN (R 3.5.3)                          </span></a>
+<a class="sourceLine" id="cb1-58" title="58"><span class="co">#&gt;    fit.models       0.5-14     2017-04-06 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-59" title="59"><span class="co">#&gt;    forcats          0.4.0      2019-02-17 [1] CRAN (R 3.5.2)                          </span></a>
+<a class="sourceLine" id="cb1-60" title="60"><span class="co">#&gt;    foreign          0.8-71     2018-07-20 [2] CRAN (R 3.6.1)                          </span></a>
+<a class="sourceLine" id="cb1-61" title="61"><span class="co">#&gt;    fs               1.3.1      2019-05-06 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-62" title="62"><span class="co">#&gt;    generics         0.0.2      2019-03-05 [1] Github (r-lib/generics@c15ac43)         </span></a>
+<a class="sourceLine" id="cb1-63" title="63"><span class="co">#&gt;    ggcorrplot       0.1.3      2019-05-19 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-64" title="64"><span class="co">#&gt;    ggExtra          0.8        2019-02-23 [1] Github (daattali/ggExtra@dd74c0f)       </span></a>
+<a class="sourceLine" id="cb1-65" title="65"><span class="co">#&gt;    ggplot2          3.2.0.9000 2019-06-05 [1] Github (tidyverse/ggplot2@b560662)      </span></a>
+<a class="sourceLine" id="cb1-66" title="66"><span class="co">#&gt;    ggrepel          0.8.1      2019-05-07 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-67" title="67"><span class="co">#&gt;    ggsignif         0.5.0      2019-02-20 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-68" title="68"><span class="co">#&gt;    ggstatsplot    * 0.0.12     2019-07-12 [1] local                                   </span></a>
+<a class="sourceLine" id="cb1-69" title="69"><span class="co">#&gt;    glue             1.3.1      2019-03-12 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-70" title="70"><span class="co">#&gt;  P graphics       * 3.6.1      2019-07-05 [2] local                                   </span></a>
+<a class="sourceLine" id="cb1-71" title="71"><span class="co">#&gt;  P grDevices      * 3.6.1      2019-07-05 [2] local                                   </span></a>
+<a class="sourceLine" id="cb1-72" title="72"><span class="co">#&gt;  P grid             3.6.1      2019-07-05 [2] local                                   </span></a>
+<a class="sourceLine" id="cb1-73" title="73"><span class="co">#&gt;    gridExtra        2.3        2017-09-09 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-74" title="74"><span class="co">#&gt;    groupedstats     0.0.7.9005 2019-07-01 [1] local                                   </span></a>
+<a class="sourceLine" id="cb1-75" title="75"><span class="co">#&gt;    gtable           0.3.0      2019-03-25 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-76" title="76"><span class="co">#&gt;    gtools           3.8.1      2018-06-26 [1] CRAN (R 3.5.0)                          </span></a>
+<a class="sourceLine" id="cb1-77" title="77"><span class="co">#&gt;    haven            2.1.1      2019-07-04 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-78" title="78"><span class="co">#&gt;    hms              0.5.0      2019-07-09 [1] CRAN (R 3.6.1)                          </span></a>
+<a class="sourceLine" id="cb1-79" title="79"><span class="co">#&gt;    htmltools        0.3.6      2017-04-28 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-80" title="80"><span class="co">#&gt;    httpuv           1.5.1      2019-04-05 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-81" title="81"><span class="co">#&gt;    inline           0.3.15     2018-05-18 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-82" title="82"><span class="co">#&gt;    insight          0.4.0      2019-07-01 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-83" title="83"><span class="co">#&gt;    jmv              0.9.6.1    2019-04-22 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-84" title="84"><span class="co">#&gt;    jmvcore          1.0.0      2019-05-28 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-85" title="85"><span class="co">#&gt;    knitr            1.23       2019-05-18 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-86" title="86"><span class="co">#&gt;    LaplacesDemon    16.1.1     2018-06-30 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-87" title="87"><span class="co">#&gt;    later            0.8.0      2019-02-11 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-88" title="88"><span class="co">#&gt;    lattice          0.20-38    2018-11-04 [2] CRAN (R 3.6.1)                          </span></a>
+<a class="sourceLine" id="cb1-89" title="89"><span class="co">#&gt;    lazyeval         0.2.2      2019-03-15 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-90" title="90"><span class="co">#&gt;    libcoin          1.0-4      2019-02-28 [1] CRAN (R 3.5.2)                          </span></a>
+<a class="sourceLine" id="cb1-91" title="91"><span class="co">#&gt;    lme4             1.1-21     2019-03-05 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-92" title="92"><span class="co">#&gt;    lmtest           0.9-37     2019-04-30 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-93" title="93"><span class="co">#&gt;    logspline        2.1.13     2019-06-13 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-94" title="94"><span class="co">#&gt;    loo              2.1.0      2019-03-13 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-95" title="95"><span class="co">#&gt;    magrittr         1.5        2014-11-22 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-96" title="96"><span class="co">#&gt;    manipulate       1.0.1      2014-12-24 [1] CRAN (R 3.5.0)                          </span></a>
+<a class="sourceLine" id="cb1-97" title="97"><span class="co">#&gt;    MASS             7.3-51.4   2019-03-31 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-98" title="98"><span class="co">#&gt;    Matrix           1.2-17     2019-03-22 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-99" title="99"><span class="co">#&gt;    MatrixModels     0.4-1      2015-08-22 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-100" title="100"><span class="co">#&gt;    matrixStats      0.54.0     2018-07-23 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-101" title="101"><span class="co">#&gt;    mc2d             0.1-18     2017-03-06 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-102" title="102"><span class="co">#&gt;    mcmc             0.9-6      2019-03-10 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-103" title="103"><span class="co">#&gt;    MCMCpack         1.4-4      2018-09-14 [1] CRAN (R 3.5.2)                          </span></a>
+<a class="sourceLine" id="cb1-104" title="104"><span class="co">#&gt;    memoise          1.1.0      2017-04-21 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-105" title="105"><span class="co">#&gt;    metaBMA          0.6.1      2019-07-10 [1] CRAN (R 3.6.1)                          </span></a>
+<a class="sourceLine" id="cb1-106" title="106"><span class="co">#&gt;    metafor          2.1-0      2019-05-14 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-107" title="107"><span class="co">#&gt;  P methods        * 3.6.1      2019-07-05 [2] local                                   </span></a>
+<a class="sourceLine" id="cb1-108" title="108"><span class="co">#&gt;    mgcv             1.8-28     2019-03-21 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-109" title="109"><span class="co">#&gt;    mime             0.7        2019-06-11 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-110" title="110"><span class="co">#&gt;    miniUI           0.1.1.1    2018-05-18 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-111" title="111"><span class="co">#&gt;    minqa            1.2.4      2014-10-09 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-112" title="112"><span class="co">#&gt;    mnormt           1.5-5      2016-10-15 [1] CRAN (R 3.5.0)                          </span></a>
+<a class="sourceLine" id="cb1-113" title="113"><span class="co">#&gt;    modelr           0.1.4      2019-02-18 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-114" title="114"><span class="co">#&gt;    modeltools       0.2-22     2018-07-16 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-115" title="115"><span class="co">#&gt;    multcomp         1.4-10     2019-03-05 [1] CRAN (R 3.5.2)                          </span></a>
+<a class="sourceLine" id="cb1-116" title="116"><span class="co">#&gt;    multcompView     0.1-7      2015-07-31 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-117" title="117"><span class="co">#&gt;    munsell          0.5.0      2018-06-12 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-118" title="118"><span class="co">#&gt;    mvtnorm          1.0-11     2019-06-19 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-119" title="119"><span class="co">#&gt;    nlme             3.1-140    2019-05-12 [2] CRAN (R 3.6.1)                          </span></a>
+<a class="sourceLine" id="cb1-120" title="120"><span class="co">#&gt;    nloptr           1.2.1      2018-10-03 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-121" title="121"><span class="co">#&gt;    nortest          1.0-4      2015-07-30 [1] CRAN (R 3.5.2)                          </span></a>
+<a class="sourceLine" id="cb1-122" title="122"><span class="co">#&gt;    openxlsx         4.1.0.1    2019-05-28 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-123" title="123"><span class="co">#&gt;    paletteer        0.2.1.9000 2019-03-25 [1] Github (EmilHvitfeldt/paletteer@38cdb34)</span></a>
+<a class="sourceLine" id="cb1-124" title="124"><span class="co">#&gt;  P parallel         3.6.1      2019-07-05 [2] local                                   </span></a>
+<a class="sourceLine" id="cb1-125" title="125"><span class="co">#&gt;    pbapply          1.4-0      2019-02-05 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-126" title="126"><span class="co">#&gt;    pcaPP            1.9-73     2018-01-14 [1] CRAN (R 3.5.0)                          </span></a>
+<a class="sourceLine" id="cb1-127" title="127"><span class="co">#&gt;    performance      0.2.0      2019-06-04 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-128" title="128"><span class="co">#&gt;    pillar           1.4.2      2019-06-29 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-129" title="129"><span class="co">#&gt;    pkgbuild         1.0.3      2019-03-20 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-130" title="130"><span class="co">#&gt;    pkgconfig        2.0.2      2018-08-16 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-131" title="131"><span class="co">#&gt;    pkgdown          1.3.0.9100 2019-07-08 [1] Github (r-lib/pkgdown@eba908c)          </span></a>
+<a class="sourceLine" id="cb1-132" title="132"><span class="co">#&gt;    plyr             1.8.4      2016-06-08 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-133" title="133"><span class="co">#&gt;    prettyunits      1.0.2      2015-07-13 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-134" title="134"><span class="co">#&gt;    processx         3.4.0      2019-07-03 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-135" title="135"><span class="co">#&gt;    promises         1.0.1      2018-04-13 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-136" title="136"><span class="co">#&gt;    ps               1.3.0      2018-12-21 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-137" title="137"><span class="co">#&gt;    psych            1.8.12     2019-01-12 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-138" title="138"><span class="co">#&gt;    purrr            0.3.2      2019-03-15 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-139" title="139"><span class="co">#&gt;    purrrlyr         0.0.5      2019-03-15 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-140" title="140"><span class="co">#&gt;    quantreg         5.41       2019-06-28 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-141" title="141"><span class="co">#&gt;    R6               2.4.0      2019-02-14 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-142" title="142"><span class="co">#&gt;    rcompanion       2.2.1      2019-05-29 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-143" title="143"><span class="co">#&gt;    Rcpp             1.0.1      2019-03-17 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-144" title="144"><span class="co">#&gt;    readxl           1.3.1      2019-03-13 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-145" title="145"><span class="co">#&gt;    reshape          0.8.8      2018-10-23 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-146" title="146"><span class="co">#&gt;    reshape2         1.4.3      2017-12-11 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-147" title="147"><span class="co">#&gt;    rio              0.5.16     2018-11-26 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-148" title="148"><span class="co">#&gt;    rjson            0.2.20     2018-06-08 [1] CRAN (R 3.5.0)                          </span></a>
+<a class="sourceLine" id="cb1-149" title="149"><span class="co">#&gt;    rlang            0.4.0      2019-06-25 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-150" title="150"><span class="co">#&gt;    rmarkdown        1.14       2019-07-12 [1] CRAN (R 3.6.1)                          </span></a>
+<a class="sourceLine" id="cb1-151" title="151"><span class="co">#&gt;    robust           0.4-18.1   2019-07-02 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-152" title="152"><span class="co">#&gt;    robustbase       0.93-5     2019-05-12 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-153" title="153"><span class="co">#&gt;    roxygen2         6.1.1      2018-11-07 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-154" title="154"><span class="co">#&gt;    rprojroot        1.3-2      2018-01-03 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-155" title="155"><span class="co">#&gt;    rrcov            1.4-7      2018-11-15 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-156" title="156"><span class="co">#&gt;    rsample          0.0.4      2019-01-07 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-157" title="157"><span class="co">#&gt;    rstan            2.19.2     2019-07-09 [1] CRAN (R 3.6.1)                          </span></a>
+<a class="sourceLine" id="cb1-158" title="158"><span class="co">#&gt;    rstantools       1.5.1      2018-08-22 [1] CRAN (R 3.5.2)                          </span></a>
+<a class="sourceLine" id="cb1-159" title="159"><span class="co">#&gt;    rstudioapi       0.10       2019-03-19 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-160" title="160"><span class="co">#&gt;    sandwich         2.5-1      2019-04-06 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-161" title="161"><span class="co">#&gt;    scales           1.0.0      2018-08-09 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-162" title="162"><span class="co">#&gt;    sessioninfo      1.1.1      2018-11-05 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-163" title="163"><span class="co">#&gt;    shiny            1.3.2      2019-04-22 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-164" title="164"><span class="co">#&gt;    sjlabelled       1.1.0      2019-06-06 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-165" title="165"><span class="co">#&gt;    sjmisc           2.8.1      2019-06-17 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-166" title="166"><span class="co">#&gt;    sjstats          0.17.5     2019-06-04 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-167" title="167"><span class="co">#&gt;    skimr            1.0.7      2019-06-20 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-168" title="168"><span class="co">#&gt;    SparseM          1.77       2017-04-23 [1] CRAN (R 3.5.0)                          </span></a>
+<a class="sourceLine" id="cb1-169" title="169"><span class="co">#&gt;  P splines          3.6.1      2019-07-05 [2] local                                   </span></a>
+<a class="sourceLine" id="cb1-170" title="170"><span class="co">#&gt;    StanHeaders      2.18.1-10  2019-06-14 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-171" title="171"><span class="co">#&gt;  P stats          * 3.6.1      2019-07-05 [2] local                                   </span></a>
+<a class="sourceLine" id="cb1-172" title="172"><span class="co">#&gt;  P stats4           3.6.1      2019-07-05 [2] local                                   </span></a>
+<a class="sourceLine" id="cb1-173" title="173"><span class="co">#&gt;    stringi          1.4.3      2019-03-12 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-174" title="174"><span class="co">#&gt;    stringr          1.4.0      2019-02-10 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-175" title="175"><span class="co">#&gt;    survival         2.44-1.1   2019-04-01 [2] CRAN (R 3.6.1)                          </span></a>
+<a class="sourceLine" id="cb1-176" title="176"><span class="co">#&gt;    TH.data          1.0-10     2019-01-21 [1] CRAN (R 3.5.2)                          </span></a>
+<a class="sourceLine" id="cb1-177" title="177"><span class="co">#&gt;    tibble           2.1.3      2019-06-06 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-178" title="178"><span class="co">#&gt;    tidyr            0.8.3      2019-03-01 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-179" title="179"><span class="co">#&gt;    tidyselect       0.2.5      2018-10-11 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-180" title="180"><span class="co">#&gt;    TMB              1.7.15     2018-11-09 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-181" title="181"><span class="co">#&gt;  P tools            3.6.1      2019-07-05 [2] local                                   </span></a>
+<a class="sourceLine" id="cb1-182" title="182"><span class="co">#&gt;  P utils          * 3.6.1      2019-07-05 [2] local                                   </span></a>
+<a class="sourceLine" id="cb1-183" title="183"><span class="co">#&gt;    vctrs            0.2.0      2019-07-05 [1] CRAN (R 3.6.1)                          </span></a>
+<a class="sourceLine" id="cb1-184" title="184"><span class="co">#&gt;    withr            2.1.2      2018-03-15 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-185" title="185"><span class="co">#&gt;    WRS2             1.0-0      2019-06-05 [1] R-Forge (R 3.6.0)                       </span></a>
+<a class="sourceLine" id="cb1-186" title="186"><span class="co">#&gt;    xfun             0.8        2019-06-25 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-187" title="187"><span class="co">#&gt;    xml2             1.2.0      2018-01-24 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-188" title="188"><span class="co">#&gt;    xtable           1.8-4      2019-04-21 [1] CRAN (R 3.5.3)                          </span></a>
+<a class="sourceLine" id="cb1-189" title="189"><span class="co">#&gt;    yaml             2.2.0      2018-07-25 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-190" title="190"><span class="co">#&gt;    zeallot          0.1.0      2018-01-28 [1] CRAN (R 3.5.1)                          </span></a>
+<a class="sourceLine" id="cb1-191" title="191"><span class="co">#&gt;    zip              2.0.3      2019-07-03 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-192" title="192"><span class="co">#&gt;    zoo              1.8-6      2019-05-28 [1] CRAN (R 3.6.0)                          </span></a>
+<a class="sourceLine" id="cb1-193" title="193"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb1-194" title="194"><span class="co">#&gt; [1] C:/Users/inp099/Documents/R/win-library/3.6</span></a>
+<a class="sourceLine" id="cb1-195" title="195"><span class="co">#&gt; [2] C:/Program Files/R/R-3.6.1/library</span></a>
+<a class="sourceLine" id="cb1-196" title="196"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb1-197" title="197"><span class="co">#&gt;  P -- Loaded and on-disk path mismatch.</span></a></code></pre></div>
 </div>
 <div id="suggestions" class="section level1">
 <h1 class="hasAnchor">

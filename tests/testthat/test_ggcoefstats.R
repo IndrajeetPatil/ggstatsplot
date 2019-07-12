@@ -883,7 +883,7 @@ testthat::test_that(
         meta.analytic.effect = TRUE,
         bf.message = TRUE,
         iter = 2500,
-        summarize="int",
+        summarize = "int",
         messages = FALSE
       )
 

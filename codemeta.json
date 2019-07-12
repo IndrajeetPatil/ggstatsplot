@@ -263,7 +263,7 @@
       "@type": "SoftwareApplication",
       "identifier": "boot",
       "name": "boot",
-      "version": ">= 1.3-22",
+      "version": ">= 1.3-23",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -289,7 +289,7 @@
       "@type": "SoftwareApplication",
       "identifier": "cowplot",
       "name": "cowplot",
-      "version": ">= 0.9.4",
+      "version": ">= 1.0.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -514,7 +514,7 @@
       "@type": "SoftwareApplication",
       "identifier": "metaBMA",
       "name": "metaBMA",
-      "version": ">= 0.3.9",
+      "version": ">= 0.6.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -738,7 +738,8 @@
     "mixed-models",
     "statistical-measures",
     "robust-statistics",
-    "non-parametric-statistics"
+    "non-parametric-statistics",
+    "meta-analysis"
   ],
   "citation": [
     {

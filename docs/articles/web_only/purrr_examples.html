@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.12</span>
       </span>
     </div>
 
@@ -139,7 +139,7 @@
       <h1>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-07-08</h4>
+            <h4 class="date">2019-07-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -180,7 +180,7 @@
 <h1 class="hasAnchor">
 <a href="#ggbetweenstats" class="anchor"></a><code>ggbetweenstats</code>
 </h1>
-<p>Following our methodology above let’s start with <code>ggebtweenstats</code>. We’ll use the <code>gapminder</code> dataset. We’ll make a 3 item named <code>list</code> called <code>data_list</code> using <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">dplyr::filter</a></code> and <code>split</code>.</p>
+<p>Following our methodology above let’s start with <code>ggebtweenstats</code>. We’ll use the <code>gapminder</code> dataset. We’ll make a 3 item named <code>list</code> called <code>data_list</code> using <code><a href="https://dplyr.tidyverse.org/reference/filter.html">dplyr::filter</a></code> and <code>split</code>.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb1-2" title="2"></a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="co"># for reproducibility</span></a>
@@ -188,7 +188,7 @@
 <a class="sourceLine" id="cb1-5" title="5"></a>
 <a class="sourceLine" id="cb1-6" title="6"><span class="co"># let's split the dataframe and create a list by years of interest</span></a>
 <a class="sourceLine" id="cb1-7" title="7">year_list &lt;-<span class="st"> </span>gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(</a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(</a>
 <a class="sourceLine" id="cb1-9" title="9">    <span class="dt">.data =</span> .,</a>
 <a class="sourceLine" id="cb1-10" title="10">    year <span class="op">==</span><span class="st"> </span><span class="dv">1967</span> <span class="op">|</span></a>
 <a class="sourceLine" id="cb1-11" title="11"><span class="st">      </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1987</span> <span class="op">|</span></a>
@@ -247,7 +247,7 @@
 <a class="sourceLine" id="cb2-37" title="37">    <span class="dt">palette =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"aurora"</span>, <span class="st">"parliament"</span>, <span class="st">"ppalette"</span>),</a>
 <a class="sourceLine" id="cb2-38" title="38">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
 <a class="sourceLine" id="cb2-39" title="39">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_stata.html">theme_stata</a></span>(),</a>
-<a class="sourceLine" id="cb2-40" title="40">      ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_classic</a></span>(),</a>
+<a class="sourceLine" id="cb2-40" title="40">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),</a>
 <a class="sourceLine" id="cb2-41" title="41">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>()</a>
 <a class="sourceLine" id="cb2-42" title="42">    ),</a>
 <a class="sourceLine" id="cb2-43" title="43">    <span class="dt">ggstatsplot.layer =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>),</a>
@@ -258,7 +258,7 @@
 <a class="sourceLine" id="cb2-48" title="48">)</a></code></pre></div>
 <p>The final step is to pass the <code>plot_list</code> object we just created to the <code>combine_plots</code> function. While each of the 3 plots already has labeling information <code>combine_plots</code> gives us an opportunity to add additional details to the merged plots and specify the layout in rows and columns.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb3-2" title="2">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb3-2" title="2">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb3-3" title="3">  <span class="dt">plotlist =</span> plot_list,</a>
 <a class="sourceLine" id="cb3-4" title="4">  <span class="dt">title.text =</span> <span class="st">"Changes in life expectancy across continents (1967-2007)"</span>,</a>
 <a class="sourceLine" id="cb3-5" title="5">  <span class="dt">title.color =</span> <span class="st">"red"</span>,</a>
@@ -332,7 +332,7 @@
 <a class="sourceLine" id="cb4-59" title="59">    <span class="dt">package =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"ggsci"</span>, <span class="st">"palettetown"</span>, <span class="st">"vapoRwave"</span>, <span class="st">"wesanderson"</span>),</a>
 <a class="sourceLine" id="cb4-60" title="60">    <span class="dt">palette =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"lanonc_lancet"</span>, <span class="st">"venomoth"</span>, <span class="st">"hotlineBling"</span>, <span class="st">"GrandBudapest1"</span>),</a>
 <a class="sourceLine" id="cb4-61" title="61">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
-<a class="sourceLine" id="cb4-62" title="62">      ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_linedraw</a></span>(),</a>
+<a class="sourceLine" id="cb4-62" title="62">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_linedraw</a></span>(),</a>
 <a class="sourceLine" id="cb4-63" title="63">      hrbrthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_rc.html">theme_ft_rc</a></span>(),</a>
 <a class="sourceLine" id="cb4-64" title="64">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_solarized.html">theme_solarized</a></span>(),</a>
 <a class="sourceLine" id="cb4-65" title="65">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_gdocs.html">theme_gdocs</a></span>()</a>
@@ -345,7 +345,7 @@
 <a class="sourceLine" id="cb4-72" title="72">)</a>
 <a class="sourceLine" id="cb4-73" title="73"></a>
 <a class="sourceLine" id="cb4-74" title="74"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb4-75" title="75">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb4-75" title="75">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb4-76" title="76">  <span class="dt">plotlist =</span> plot_list,</a>
 <a class="sourceLine" id="cb4-77" title="77">  <span class="dt">title.text =</span> <span class="st">"Response times across flank conditions for each type of cue"</span>,</a>
 <a class="sourceLine" id="cb4-78" title="78">  <span class="dt">title.color =</span> <span class="st">"blue"</span>,</a>
@@ -366,8 +366,8 @@
 <a class="sourceLine" id="cb5-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb5-3" title="3"></a>
 <a class="sourceLine" id="cb5-4" title="4">mpaa_list &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span>movies_wide <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-5" title="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(<span class="dt">.data =</span> ., mpaa <span class="op">!=</span><span class="st"> "NC-17"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-6" title="6"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ., <span class="dt">size =</span> <span class="fl">0.25</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., mpaa <span class="op">!=</span><span class="st"> "NC-17"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ., <span class="dt">size =</span> <span class="fl">0.25</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb5-7" title="7"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="dt">x =</span> ., <span class="dt">f =</span> .<span class="op">$</span>mpaa, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb5-8" title="8"></a>
 <a class="sourceLine" id="cb5-9" title="9">plot_list &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(</a>
@@ -397,8 +397,8 @@
 <a class="sourceLine" id="cb5-33" title="33">    <span class="dt">yfill =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"#CC79A7"</span>, <span class="st">"#F0E442"</span>, <span class="st">"#D55E00"</span>),</a>
 <a class="sourceLine" id="cb5-34" title="34">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
 <a class="sourceLine" id="cb5-35" title="35">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),</a>
-<a class="sourceLine" id="cb5-36" title="36">      ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_classic</a></span>(),</a>
-<a class="sourceLine" id="cb5-37" title="37">      ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_light</a></span>()</a>
+<a class="sourceLine" id="cb5-36" title="36">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),</a>
+<a class="sourceLine" id="cb5-37" title="37">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span>()</a>
 <a class="sourceLine" id="cb5-38" title="38">    ),</a>
 <a class="sourceLine" id="cb5-39" title="39">    <span class="dt">ggstatsplot.layer =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>),</a>
 <a class="sourceLine" id="cb5-40" title="40">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
@@ -407,7 +407,7 @@
 <a class="sourceLine" id="cb5-43" title="43">)</a>
 <a class="sourceLine" id="cb5-44" title="44"></a>
 <a class="sourceLine" id="cb5-45" title="45"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb5-46" title="46">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb5-46" title="46">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb5-47" title="47">  <span class="dt">plotlist =</span> plot_list,</a>
 <a class="sourceLine" id="cb5-48" title="48">  <span class="dt">title.text =</span> <span class="st">"Relationship between movie budget and IMDB rating"</span>,</a>
 <a class="sourceLine" id="cb5-49" title="49">  <span class="dt">caption.text =</span> <span class="st">"Source: www.imdb.com"</span>,</a>
@@ -428,8 +428,8 @@
 <a class="sourceLine" id="cb6-2" title="2"><span class="co"># let's leave out "fair" cut</span></a>
 <a class="sourceLine" id="cb6-3" title="3"><span class="co"># also, to make this fast, let's only use 5% of the sample</span></a>
 <a class="sourceLine" id="cb6-4" title="4">cut_list &lt;-<span class="st"> </span>ggplot2<span class="op">::</span>diamonds <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ., <span class="dt">size =</span> <span class="fl">0.05</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(<span class="dt">.data =</span> ., cut <span class="op">!=</span><span class="st"> "Fair"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb6-5" title="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ., <span class="dt">size =</span> <span class="fl">0.05</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb6-6" title="6"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., cut <span class="op">!=</span><span class="st"> "Fair"</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb6-7" title="7"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="dt">x =</span> ., <span class="dt">f =</span> .<span class="op">$</span>cut, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb6-8" title="8"></a>
 <a class="sourceLine" id="cb6-9" title="9"><span class="co"># this created a list with 4 elements, one for each quality of cut</span></a>
@@ -471,8 +471,8 @@
 <a class="sourceLine" id="cb6-45" title="45">    ),</a>
 <a class="sourceLine" id="cb6-46" title="46">    <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</a>
 <a class="sourceLine" id="cb6-47" title="47">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
-<a class="sourceLine" id="cb6-48" title="48">      ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_grey</a></span>(),</a>
-<a class="sourceLine" id="cb6-49" title="49">      ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_classic</a></span>(),</a>
+<a class="sourceLine" id="cb6-48" title="48">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),</a>
+<a class="sourceLine" id="cb6-49" title="49">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),</a>
 <a class="sourceLine" id="cb6-50" title="50">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>(),</a>
 <a class="sourceLine" id="cb6-51" title="51">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>()</a>
 <a class="sourceLine" id="cb6-52" title="52">    ),</a>
@@ -483,7 +483,7 @@
 <a class="sourceLine" id="cb6-57" title="57"></a>
 <a class="sourceLine" id="cb6-58" title="58"><span class="co"># combining all individual plots from the list into a single plot using</span></a>
 <a class="sourceLine" id="cb6-59" title="59"><span class="co"># `combine_plots` function</span></a>
-<a class="sourceLine" id="cb6-60" title="60">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb6-60" title="60">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb6-61" title="61">  <span class="dt">plotlist =</span> plot_list,</a>
 <a class="sourceLine" id="cb6-62" title="62">  <span class="dt">title.text =</span> <span class="st">"Relationship between diamond attributes and price across cut"</span>,</a>
 <a class="sourceLine" id="cb6-63" title="63">  <span class="dt">title.size =</span> <span class="dv">14</span>,</a>
@@ -508,7 +508,7 @@
 <a class="sourceLine" id="cb7-7" title="7"><span class="co"># let's split the dataframe and create a list by continent</span></a>
 <a class="sourceLine" id="cb7-8" title="8"><span class="co"># let's leave out Oceania because it has just two data points</span></a>
 <a class="sourceLine" id="cb7-9" title="9">continent_list &lt;-<span class="st"> </span>gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-10" title="10"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(<span class="dt">.data =</span> ., year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-10" title="10"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb7-11" title="11"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="dt">x =</span> ., <span class="dt">f =</span> .<span class="op">$</span>continent, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb7-12" title="12"></a>
 <a class="sourceLine" id="cb7-13" title="13"><span class="co"># this created a list with 4 elements, one for each continent</span></a>
@@ -551,9 +551,9 @@
 <a class="sourceLine" id="cb7-50" title="50">    <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,</a>
 <a class="sourceLine" id="cb7-51" title="51">    <span class="dt">normal.curve =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb7-52" title="52">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
-<a class="sourceLine" id="cb7-53" title="53">      ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_classic</a></span>(),</a>
+<a class="sourceLine" id="cb7-53" title="53">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),</a>
 <a class="sourceLine" id="cb7-54" title="54">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>(),</a>
-<a class="sourceLine" id="cb7-55" title="55">      ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_minimal</a></span>(),</a>
+<a class="sourceLine" id="cb7-55" title="55">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>(),</a>
 <a class="sourceLine" id="cb7-56" title="56">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_few.html">theme_few</a></span>()</a>
 <a class="sourceLine" id="cb7-57" title="57">    ),</a>
 <a class="sourceLine" id="cb7-58" title="58">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
@@ -562,7 +562,7 @@
 <a class="sourceLine" id="cb7-61" title="61">)</a>
 <a class="sourceLine" id="cb7-62" title="62"></a>
 <a class="sourceLine" id="cb7-63" title="63"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb7-64" title="64">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb7-64" title="64">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb7-65" title="65">  <span class="dt">plotlist =</span> plot_list,</a>
 <a class="sourceLine" id="cb7-66" title="66">  <span class="dt">title.text =</span> <span class="st">"Improvement in life expectancy worldwide since 1950"</span>,</a>
 <a class="sourceLine" id="cb7-67" title="67">  <span class="dt">caption.text =</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>,</a>
@@ -585,7 +585,7 @@
 <a class="sourceLine" id="cb8-8" title="8"><span class="co"># let's split the dataframe and create a list by continent</span></a>
 <a class="sourceLine" id="cb8-9" title="9"><span class="co"># let's leave out Oceania because it has just two data points</span></a>
 <a class="sourceLine" id="cb8-10" title="10">continent_list &lt;-<span class="st"> </span>gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-11" title="11"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(<span class="dt">.data =</span> ., continent <span class="op">!=</span><span class="st"> "Oceania"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-11" title="11"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., continent <span class="op">!=</span><span class="st"> "Oceania"</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb8-12" title="12"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="dt">x =</span> ., <span class="dt">f =</span> .<span class="op">$</span>continent, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb8-13" title="13"></a>
 <a class="sourceLine" id="cb8-14" title="14"><span class="co"># this created a list with 4 elements, one for each continent</span></a>
@@ -626,7 +626,7 @@
 <a class="sourceLine" id="cb8-49" title="49">    <span class="dt">point.size =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>),</a>
 <a class="sourceLine" id="cb8-50" title="50">    <span class="dt">point.shape =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">17</span>, <span class="dv">18</span>),</a>
 <a class="sourceLine" id="cb8-51" title="51">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
-<a class="sourceLine" id="cb8-52" title="52">      ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_minimal</a></span>(<span class="dt">base_family =</span> <span class="st">"serif"</span>),</a>
+<a class="sourceLine" id="cb8-52" title="52">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>(<span class="dt">base_family =</span> <span class="st">"serif"</span>),</a>
 <a class="sourceLine" id="cb8-53" title="53">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),</a>
 <a class="sourceLine" id="cb8-54" title="54">      hrbrthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_rc.html">theme_ipsum_rc</a></span>(<span class="dt">axis_title_size =</span> <span class="dv">10</span>),</a>
 <a class="sourceLine" id="cb8-55" title="55">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_hc.html">theme_hc</a></span>(<span class="dt">bgcolor =</span> <span class="st">"darkunica"</span>)</a>
@@ -637,7 +637,7 @@
 <a class="sourceLine" id="cb8-60" title="60">)</a>
 <a class="sourceLine" id="cb8-61" title="61"></a>
 <a class="sourceLine" id="cb8-62" title="62"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb8-63" title="63">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb8-63" title="63">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb8-64" title="64">  <span class="dt">plotlist =</span> plot_list,</a>
 <a class="sourceLine" id="cb8-65" title="65">  <span class="dt">title.text =</span> <span class="st">"Improvement in GDP per capita from 1952-2007"</span>,</a>
 <a class="sourceLine" id="cb8-66" title="66">  <span class="dt">nrow =</span> <span class="dv">4</span>,</a>
@@ -689,8 +689,8 @@
 <a class="sourceLine" id="cb9-38" title="38">    <span class="dt">package =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"RColorBrewer"</span>, <span class="st">"ghibli"</span>, <span class="st">"palettetown"</span>, <span class="st">"yarrr"</span>),</a>
 <a class="sourceLine" id="cb9-39" title="39">    <span class="dt">palette =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"Accent"</span>, <span class="st">"MarnieMedium1"</span>, <span class="st">"pikachu"</span>, <span class="st">"nemo"</span>),</a>
 <a class="sourceLine" id="cb9-40" title="40">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
-<a class="sourceLine" id="cb9-41" title="41">      ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_grey</a></span>(),</a>
-<a class="sourceLine" id="cb9-42" title="42">      ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_bw</a></span>(),</a>
+<a class="sourceLine" id="cb9-41" title="41">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),</a>
+<a class="sourceLine" id="cb9-42" title="42">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>(),</a>
 <a class="sourceLine" id="cb9-43" title="43">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),</a>
 <a class="sourceLine" id="cb9-44" title="44">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_economist.html">theme_economist</a></span>()</a>
 <a class="sourceLine" id="cb9-45" title="45">    ),</a>
@@ -702,7 +702,7 @@
 <a class="sourceLine" id="cb9-51" title="51">)</a>
 <a class="sourceLine" id="cb9-52" title="52"></a>
 <a class="sourceLine" id="cb9-53" title="53"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb9-54" title="54">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb9-54" title="54">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb9-55" title="55">  <span class="dt">plotlist =</span> plot_list,</a>
 <a class="sourceLine" id="cb9-56" title="56">  <span class="dt">title.text =</span> <span class="st">"Survival in Titanic disaster by gender for all passenger classes"</span>,</a>
 <a class="sourceLine" id="cb9-57" title="57">  <span class="dt">caption.text =</span> <span class="st">"Asterisks denote results from proportion tests: </span><span class="ch">\n</span><span class="st">***: p &lt; 0.001, ns: non-significant"</span>,</a>
@@ -754,8 +754,8 @@
 <a class="sourceLine" id="cb10-37" title="37">    <span class="dt">package =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"RColorBrewer"</span>, <span class="st">"ghibli"</span>, <span class="st">"palettetown"</span>, <span class="st">"yarrr"</span>),</a>
 <a class="sourceLine" id="cb10-38" title="38">    <span class="dt">palette =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"Accent"</span>, <span class="st">"MarnieMedium1"</span>, <span class="st">"pikachu"</span>, <span class="st">"nemo"</span>),</a>
 <a class="sourceLine" id="cb10-39" title="39">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
-<a class="sourceLine" id="cb10-40" title="40">      ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_grey</a></span>(),</a>
-<a class="sourceLine" id="cb10-41" title="41">      ggplot2<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_bw</a></span>(),</a>
+<a class="sourceLine" id="cb10-40" title="40">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),</a>
+<a class="sourceLine" id="cb10-41" title="41">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>(),</a>
 <a class="sourceLine" id="cb10-42" title="42">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),</a>
 <a class="sourceLine" id="cb10-43" title="43">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_economist.html">theme_economist</a></span>()</a>
 <a class="sourceLine" id="cb10-44" title="44">    ),</a>
@@ -767,7 +767,7 @@
 <a class="sourceLine" id="cb10-50" title="50">)</a>
 <a class="sourceLine" id="cb10-51" title="51"></a>
 <a class="sourceLine" id="cb10-52" title="52"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb10-53" title="53">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb10-53" title="53">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb10-54" title="54">  <span class="dt">plotlist =</span> plot_list,</a>
 <a class="sourceLine" id="cb10-55" title="55">  <span class="dt">title.text =</span> <span class="st">"Survival in Titanic disaster by gender for all passenger classes"</span>,</a>
 <a class="sourceLine" id="cb10-56" title="56">  <span class="dt">caption.text =</span> <span class="st">"Asterisks denote results from proportion tests: </span><span class="ch">\n</span><span class="st">***: p &lt; 0.001, ns: non-significant"</span>,</a>

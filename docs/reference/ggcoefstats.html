@@ -77,7 +77,7 @@ caption." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.12</span>
       </span>
     </div>
 
@@ -195,9 +195,9 @@ caption.</p>
 
     <pre class="usage"><span class='fu'>ggcoefstats</span>(<span class='no'>x</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>, <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>scales</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>conf.method</span> <span class='kw'>=</span> <span class='st'>"Wald"</span>, <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"Wald"</span>, <span class='kw'>component</span> <span class='kw'>=</span> <span class='st'>"survival"</span>,
-  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>d</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='kw'>d.par</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0.3</span>),
-  <span class='kw'>tau</span> <span class='kw'>=</span> <span class='st'>"halfcauchy"</span>, <span class='kw'>tau.par</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>sample</span> <span class='kw'>=</span> <span class='fl'>10000</span>,
-  <span class='kw'>summarize</span> <span class='kw'>=</span> <span class='st'>"integrate"</span>, <span class='kw'>p.kr</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
+  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>d</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='kw'>d.par</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>0.3</span>),
+  <span class='kw'>tau</span> <span class='kw'>=</span> <span class='st'>"halfcauchy"</span>, <span class='kw'>tau.par</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>0.5</span>), <span class='kw'>iter</span> <span class='kw'>=</span> <span class='fl'>5000</span>,
+  <span class='kw'>summarize</span> <span class='kw'>=</span> <span class='st'>"stan"</span>, <span class='kw'>p.kr</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
   <span class='kw'>coefficient.type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"beta"</span>, <span class='st'>"location"</span>, <span class='st'>"coefficient"</span>),
   <span class='kw'>by.class</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"eta"</span>, <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>500</span>,
   <span class='kw'>meta.analytic.effect</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>point.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>point.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
@@ -218,7 +218,7 @@ caption.</p>
   <span class='kw'>label.force</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>label.max.iter</span> <span class='kw'>=</span> <span class='fl'>2000</span>, <span class='kw'>label.nudge.x</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>label.nudge.y</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>label.xlim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>), <span class='kw'>label.ylim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>),
   <span class='kw'>label.direction</span> <span class='kw'>=</span> <span class='st'>"y"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>, <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>,
-  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/ggtheme.html'>theme_bw</a></span>(),
+  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>return</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -283,27 +283,31 @@ should be displayed in caption. Defaults to <code>TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>d</th>
-      <td><p>type of prior for mean effect \(d\) (see <code>prior</code>)</p></td>
+      <td><p>the prior distribution of the average effect size \(d\) specified
+either as the type of family (e.g., <code>"norm"</code>) or via <code><a href='https://rdrr.io/pkg/metaBMA/man/prior.html'>prior</a></code></p></td>
     </tr>
     <tr>
       <th>d.par</th>
-      <td><p>prior parameters for \(d\)</p></td>
+      <td><p>prior parameters for \(d\) (only used if <code>d</code> specifies the type of family)</p></td>
     </tr>
     <tr>
       <th>tau</th>
-      <td><p>type of prior for standard deviation of study effects \(\tau\) in random-effects meta-analysis (i.e., the SD of d across studies; see <code>prior</code>)</p></td>
+      <td><p>the prior distribution of the between-study heterogeneity \(\tau\) specified
+either as a character value (e.g., <code>"halfcauchy"</code>) or via <code><a href='https://rdrr.io/pkg/metaBMA/man/prior.html'>prior</a></code></p></td>
     </tr>
     <tr>
       <th>tau.par</th>
-      <td><p>prior parameters for \(\tau\)</p></td>
+      <td><p>prior parameters for \(\tau\)  (only used if <code>tau</code> specifies the type of family)</p></td>
     </tr>
     <tr>
-      <th>sample</th>
-      <td><p>number of samples in JAGS after burn-in and thinning (see <code><a href='https://rdrr.io/pkg/runjags/man/run.jags.html'>run.jags</a></code>). Samples are used to get posterior  estimates for each study effect (which will show shrinkage). Only works for priors defined in <code>prior</code>.</p></td>
+      <th>iter</th>
+      <td><p>number of MCMC iterations using Stan.</p></td>
     </tr>
     <tr>
       <th>summarize</th>
-      <td><p>whether and to compute parameter summaries (mean, median, SD, 95% quantile interval, HPD interval). If <code>summarize = "integrate"</code>, numerical integration is used  (which is precise but can require some seconds of computing time), <code>summarize = "jags"</code> summarizes the JAGS samples, and <code>summarize = "none"</code> suppresses parameter summaries.</p></td>
+      <td><p>how to estimate parameter summaries (mean, median, SD,
+etc.): Either by numerical integration (<code>summarize = "integrate"</code>) or
+based on MCMC/Stan samples (<code>summarize = "stan"</code>).</p></td>
     </tr>
     <tr>
       <th>p.kr</th>
@@ -593,7 +597,7 @@ or symbol.</p></td>
     <tr>
       <th>ggtheme</th>
       <td><p>A function, <code>ggplot2</code> theme name. Default value is
-<code><a href='https://rdrr.io/pkg/ggplot2/man/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
+<code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
 extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>,
 <code><a href='https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html'>hrbrthemes::theme_ipsum_ps()</a></code>, etc.).</p></td>
     </tr>
@@ -634,9 +638,9 @@ confidence interval whiskers.</p>
 <span class='no'>mod</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span>(<span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>mpg</span> ~ <span class='no'>cyl</span> * <span class='no'>am</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>)
 
 <span class='co'># to get a plot</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/ggcoefstats.html'>ggcoefstats</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>)</div><div class='img'><img src='ggcoefstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html'>ggcoefstats</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>)</div><div class='img'><img src='ggcoefstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># to get a tidy dataframe</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/ggcoefstats.html'>ggcoefstats</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"tidy"</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 3 x 12</span><span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html'>ggcoefstats</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"tidy"</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 3 x 12</span><span>
 #&gt;   term  estimate conf.low conf.high std.error statistic p.value significance
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       
 #&gt; </span><span style='color: #555555;'>1</span><span> cyl      -</span><span style='color: #BB0000;'>1.98</span><span>    -</span><span style='color: #BB0000;'>2.89</span><span>    -</span><span style='color: #BB0000;'>1.06</span><span>      0.449 -4.40     1.41</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span> ***         
@@ -645,13 +649,13 @@ confidence interval whiskers.</p>
 #&gt; </span><span style='color: #555555;'># ... with 4 more variables: p.value.formatted </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, p.value.formatted2 </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
 #&gt; #   df.residual </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, label </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span></div><div class='input'>
 <span class='co'># to get a glance summary</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/ggcoefstats.html'>ggcoefstats</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"glance"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 12</span><span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html'>ggcoefstats</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"glance"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 12</span><span>
 #&gt;   r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
 #&gt;       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span>     0.785         0.762  2.94      34.1 1.73</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-9</span><span>     3  -</span><span style='color: #BB0000;'>77.8</span><span>  166.  173.
 #&gt; </span><span style='color: #555555;'># ... with 3 more variables: deviance </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, df.residual </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, nobs </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span></div><div class='input'>
 <span class='co'># to get augmented dataframe</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/ggcoefstats.html'>ggcoefstats</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"augment"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 32 x 10</span><span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html'>ggcoefstats</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"augment"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 32 x 10</span><span>
 #&gt;    .rownames     mpg   cyl    am .fitted .resid .std.resid   .hat .sigma .cooksd
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> Mazda RX4    21       6     1    21.4  0.364    -</span><span style='color: #BB0000;'>0.131</span><span>  0.106    2.99 5.10</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span>
@@ -733,12 +737,13 @@ confidence interval whiskers.</p>
   )
 
 <span class='co'># plotting the dataframe</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/ggcoefstats.html'>ggcoefstats</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html'>ggcoefstats</a></span>(
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>df</span>,
   <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='st'>"t"</span>,
   <span class='kw'>meta.analytic.effect</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>
-)</div><div class='img'><img src='ggcoefstats-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># -------------- getting model summary ------------------------------</span>
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: There were 9 divergent transitions after warmup. Increasing adapt_delta above 0.95 may help. See</span>
+#&gt; <span class='warning'>http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Examine the pairs() plot to diagnose sampling problems</span></div><div class='img'><img src='ggcoefstats-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># -------------- getting model summary ------------------------------</span>
 
 <span class='co'># model</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>lme4</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: Matrix</span></div><div class='input'><span class='no'>lmm1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>lme4</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lme4/man/lmer.html'>lmer</a></span>(
@@ -747,7 +752,7 @@ confidence interval whiskers.</p>
 )
 
 <span class='co'># dataframe with model summary</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/ggcoefstats.html'>ggcoefstats</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>lmm1</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"glance"</span>)</div><div class='output co'>#&gt; <span class='message'>Computing p-values via Kenward-Roger approximation. Use `p.kr = FALSE` if computation takes too long.</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 6</span><span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html'>ggcoefstats</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>lmm1</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"glance"</span>)</div><div class='output co'>#&gt; <span class='message'>Computing p-values via Kenward-Roger approximation. Use `p.kr = FALSE` if computation takes too long.</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 6</span><span>
 #&gt;   sigma logLik   AIC   BIC REMLcrit df.residual
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span>  25.6  -</span><span style='color: #BB0000;'>872.</span><span> </span><span style='text-decoration: underline;'>1</span><span>756. </span><span style='text-decoration: underline;'>1</span><span>775.    </span><span style='text-decoration: underline;'>1</span><span>744.         174</div><div class='input'>
@@ -762,7 +767,7 @@ confidence interval whiskers.</p>
   <span class='kw pkg'>survival</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/survival/man/coxph.html'>coxph</a></span>(<span class='kw'>formula</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/survival/man/Surv.html'>Surv</a></span>(<span class='no'>time</span>, <span class='no'>status</span>) ~ <span class='no'>age</span> + <span class='no'>sex</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>lung</span>)
 
 <span class='co'># augmented dataframe</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/ggcoefstats.html'>ggcoefstats</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html'>ggcoefstats</a></span>(
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>cfit</span>,
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>lung</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"augment"</span>,

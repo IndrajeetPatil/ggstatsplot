@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.12</span>
       </span>
     </div>
 
@@ -290,7 +290,7 @@ below.</p>
 
 <span class='co'># -------------- between-subjects design ------------------------</span>
 <span class='co'># simple function call</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/subtitle_mann_nonparametric.html'>subtitle_mann_nonparametric</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_mann_nonparametric.html'>subtitle_mann_nonparametric</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>sleep</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>group</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>extra</span>
@@ -300,13 +300,13 @@ below.</p>
 #&gt;     " [", "-0.85", ", ", "-0.04", "]", ", ", italic("n"), " = ", 
 #&gt;     20L)</div><div class='input'>
 <span class='co'># creating a smaller dataset</span>
-<span class='no'>msleep_short</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/filter.html'>filter</a></span>(
-  <span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ggplot2/man/msleep.html'>msleep</a></span>,
+<span class='no'>msleep_short</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
+  <span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='no'>vore</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"carni"</span>, <span class='st'>"herbi"</span>)
 )
 
 <span class='co'># modifying few things</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/subtitle_mann_nonparametric.html'>subtitle_mann_nonparametric</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_mann_nonparametric.html'>subtitle_mann_nonparametric</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>,
@@ -326,7 +326,7 @@ below.</p>
 
 <span class='co'># note the change in the reported *V* value but the identical</span>
 <span class='co'># value for *p* and the reversed effect size</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/subtitle_mann_nonparametric.html'>subtitle_mann_nonparametric</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_mann_nonparametric.html'>subtitle_mann_nonparametric</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>
@@ -337,7 +337,7 @@ below.</p>
 #&gt;     34L)</div><div class='input'>
 <span class='co'># -------------- within-subjects design ------------------------</span>
 <span class='co'># using dataset included in the package</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/subtitle_mann_nonparametric.html'>subtitle_mann_nonparametric</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_mann_nonparametric.html'>subtitle_mann_nonparametric</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>VR_dilemma</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>modality</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>score</span>,

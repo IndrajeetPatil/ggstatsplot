@@ -43,7 +43,7 @@ testthat::test_that(
       k = 3,
       messages = TRUE,
       iter = 2000,
-      summarize="integrate"
+      summarize = "integrate"
     )
     set.seed(123)
     subtitle2 <- ggstatsplot::bf_meta_message(
@@ -55,7 +55,7 @@ testthat::test_that(
       tau = "halfcauchy",
       tau.par = .5,
       iter = 2000,
-      summarize="integrate"
+      summarize = "integrate"
     )
     # test prior defaults and use of metaBMA::prior()
     set.seed(123)
@@ -63,10 +63,10 @@ testthat::test_that(
       data = df2,
       k = 3,
       messages = FALSE,
-      d = metaBMA::prior("norm", c(0,.3)),
+      d = metaBMA::prior("norm", c(0, .3)),
       tau = metaBMA::prior("halfcauchy", c(.5)),
       iter = 2000,
-      summarize="integrate"
+      summarize = "integrate"
     )
 
     testthat::expect_identical(subtitle1, subtitle2)
@@ -95,8 +95,11 @@ testthat::test_that(
     # expecting error
     testthat::expect_error(ggstatsplot::bf_meta_message(df3))
     testthat::expect_error(
-      ggstatsplot::bf_meta_message(data = df2,
-                                   k = 3,
-                                   d = 5, tau = 7))
+      ggstatsplot::bf_meta_message(
+        data = df2,
+        k = 3,
+        d = 5, tau = 7
+      )
+    )
   }
 )

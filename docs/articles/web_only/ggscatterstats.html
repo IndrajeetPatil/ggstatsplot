@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.12</span>
       </span>
     </div>
 
@@ -139,7 +139,7 @@
       <h1>ggscatterstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-07-08</h4>
+            <h4 class="date">2019-07-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggscatterstats.Rmd"><code>vignettes/web_only/ggscatterstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggscatterstats.Rmd</code></div>
@@ -154,7 +154,7 @@
 <li>to check linear association between two continuous variables</li>
 <li>to check distribution of two continuous variables</li>
 </ul>
-<p><strong>Note before</strong>: The following demo uses the pipe operator (<code>%&gt;%</code>), so in case you are not familiar with this operator, here is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="uri">http://r4ds.had.co.nz/pipes.html</a></p>
+<p><strong>Note before</strong>: The following demo uses the pipe operator (<code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code>), so in case you are not familiar with this operator, here is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="uri">http://r4ds.had.co.nz/pipes.html</a></p>
 <div id="correlation-plot-with-ggscatterstats" class="section level2">
 <h2 class="hasAnchor">
 <a href="#correlation-plot-with-ggscatterstats" class="anchor"></a>Correlation plot with <code>ggscatterstats</code>
@@ -163,7 +163,7 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb1-2" title="2"></a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="co"># see the selected data (we have data from 1813 movies)</span></a>
-<a class="sourceLine" id="cb1-4" title="4">dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/reexports.html">glimpse</a></span>(<span class="dt">x =</span> ggstatsplot<span class="op">::</span>movies_wide)</a>
+<a class="sourceLine" id="cb1-4" title="4">dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="dt">x =</span> ggstatsplot<span class="op">::</span>movies_wide)</a>
 <a class="sourceLine" id="cb1-5" title="5"><span class="co">#&gt; Observations: 1,579</span></a>
 <a class="sourceLine" id="cb1-6" title="6"><span class="co">#&gt; Variables: 13</span></a>
 <a class="sourceLine" id="cb1-7" title="7"><span class="co">#&gt; $ title     &lt;chr&gt; "'Til There Was You", "10 Things I Hate About You", ...</span></a>
@@ -185,10 +185,10 @@
 <a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb2-3" title="3"></a>
 <a class="sourceLine" id="cb2-4" title="4"><span class="co"># to speed up the calculation, let's use only 10% of the data</span></a>
-<a class="sourceLine" id="cb2-5" title="5">movies_<span class="dv">10</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>movies_long, <span class="dt">size =</span> <span class="fl">0.1</span>)</a>
+<a class="sourceLine" id="cb2-5" title="5">movies_<span class="dv">10</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>movies_long, <span class="dt">size =</span> <span class="fl">0.1</span>)</a>
 <a class="sourceLine" id="cb2-6" title="6"></a>
 <a class="sourceLine" id="cb2-7" title="7"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb2-8" title="8">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggscatterstats.html">ggscatterstats</a></span>(</a>
+<a class="sourceLine" id="cb2-8" title="8">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggscatterstats.html">ggscatterstats</a></span>(</a>
 <a class="sourceLine" id="cb2-9" title="9">  <span class="dt">data =</span> movies_<span class="dv">10</span>,                                            <span class="co"># dataframe from which variables are taken</span></a>
 <a class="sourceLine" id="cb2-10" title="10">  <span class="dt">x =</span> budget,                                                  <span class="co"># predictor/independent variable </span></a>
 <a class="sourceLine" id="cb2-11" title="11">  <span class="dt">y =</span> rating,                                                  <span class="co"># dependent variable</span></a>
@@ -227,7 +227,7 @@
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># include the following code in your code chunk inside R Notebook or Markdown</span></a>
 <a class="sourceLine" id="cb3-2" title="2">grid<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/grid/grid.newpage.html">grid.newpage</a></span>()</a>
 <a class="sourceLine" id="cb3-3" title="3">grid<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/grid/grid.draw.html">grid.draw</a></span>(</a>
-<a class="sourceLine" id="cb3-4" title="4">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/ggscatterstats.html">ggscatterstats</a></span>(</a>
+<a class="sourceLine" id="cb3-4" title="4">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggscatterstats.html">ggscatterstats</a></span>(</a>
 <a class="sourceLine" id="cb3-5" title="5">    <span class="dt">data =</span> ggstatsplot<span class="op">::</span>movies_wide,</a>
 <a class="sourceLine" id="cb3-6" title="6">    <span class="dt">x =</span> budget,</a>
 <a class="sourceLine" id="cb3-7" title="7">    <span class="dt">y =</span> rating,</a>
@@ -250,11 +250,11 @@
 <a class="sourceLine" id="cb4-4" title="4"><span class="co"># to speed up the calculation, let's use only 20% of the data</span></a>
 <a class="sourceLine" id="cb4-5" title="5"><span class="co"># also since there are only 7 movies with NC-17 ratings, leave them out</span></a>
 <a class="sourceLine" id="cb4-6" title="6">movies_<span class="dv">20</span> &lt;-</a>
-<a class="sourceLine" id="cb4-7" title="7"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(<span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_wide, mpaa <span class="op">!=</span><span class="st"> "NC-17"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-8" title="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ., <span class="dt">size =</span> <span class="fl">0.2</span>)</a>
+<a class="sourceLine" id="cb4-7" title="7"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_wide, mpaa <span class="op">!=</span><span class="st"> "NC-17"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-8" title="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ., <span class="dt">size =</span> <span class="fl">0.2</span>)</a>
 <a class="sourceLine" id="cb4-9" title="9"></a>
 <a class="sourceLine" id="cb4-10" title="10"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb4-11" title="11">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span>(</a>
+<a class="sourceLine" id="cb4-11" title="11">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span>(</a>
 <a class="sourceLine" id="cb4-12" title="12">  <span class="co"># arguments relevant for ggstatsplot::ggscatterstats</span></a>
 <a class="sourceLine" id="cb4-13" title="13">  <span class="dt">data =</span> movies_<span class="dv">10</span>,</a>
 <a class="sourceLine" id="cb4-14" title="14">  <span class="dt">title.prefix =</span> <span class="st">"MPAA Rating"</span>,</a>
@@ -340,7 +340,7 @@
 <a class="sourceLine" id="cb5-7" title="7">plot_list2 &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(</a>
 <a class="sourceLine" id="cb5-8" title="8">  <span class="dt">.l =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
 <a class="sourceLine" id="cb5-9" title="9">    <span class="co"># let's use only 5% of the data to speed up the calculations</span></a>
-<a class="sourceLine" id="cb5-10" title="10">    <span class="dt">data =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>movies_wide, <span class="dt">size =</span> <span class="fl">0.05</span>)),</a>
+<a class="sourceLine" id="cb5-10" title="10">    <span class="dt">data =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>movies_wide, <span class="dt">size =</span> <span class="fl">0.05</span>)),</a>
 <a class="sourceLine" id="cb5-11" title="11">    <span class="dt">x =</span> <span class="st">"budget"</span>,</a>
 <a class="sourceLine" id="cb5-12" title="12">    <span class="dt">y =</span> <span class="st">"rating"</span>,</a>
 <a class="sourceLine" id="cb5-13" title="13">    <span class="dt">title =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
@@ -373,7 +373,7 @@
 <a class="sourceLine" id="cb5-40" title="40"><span class="co">#&gt; (formula = y ~ x, method = 'lm'). Returning only the plot.</span></a>
 <a class="sourceLine" id="cb5-41" title="41"></a>
 <a class="sourceLine" id="cb5-42" title="42"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb5-43" title="43">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb5-43" title="43">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb5-44" title="44">  <span class="dt">plotlist =</span> plot_list2,</a>
 <a class="sourceLine" id="cb5-45" title="45">  <span class="dt">title.text =</span> <span class="st">"Trying out different smoothing functions with ggscatterstats"</span>,</a>
 <a class="sourceLine" id="cb5-46" title="46">  <span class="dt">caption.text =</span> <span class="st">"Source: www.imdb.com"</span>,</a>

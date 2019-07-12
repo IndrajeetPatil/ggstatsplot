@@ -280,25 +280,14 @@ testthat::test_that(
     testthat::expect_equal(dim(pb$data[[1]]), c(29L, 13L))
 
     # checking displayed mean labels
-    if (utils::packageVersion("skimr") != "2.0") {
-      testthat::expect_identical(
-        pb$data[[6]]$label,
-        c(
-          "2.290, 95% CI [1.907, 2.673]",
-          "3.120, 95% CI [2.787, 3.453]",
-          "4.000, 95% CI [3.561, 4.439]"
-        )
+    testthat::expect_identical(
+      pb$data[[6]]$label,
+      c(
+        "2.290, 95% CI [1.907, 2.673]",
+        "3.120, 95% CI [2.787, 3.453]",
+        "4.000, 95% CI [3.561, 4.439]"
       )
-    } else {
-      testthat::expect_identical(
-        pb$data[[6]]$label,
-        c(
-          "2.286, 95% CI [1.903, 2.668]",
-          "3.117, 95% CI [2.788, 3.447]",
-          "3.999, 95% CI [3.561, 4.438]"
-        )
-      )
-    }
+    )
 
     testthat::expect_identical(
       pb$data[[4]]$label,

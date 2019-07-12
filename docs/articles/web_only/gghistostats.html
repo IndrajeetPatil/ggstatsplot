@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.11.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.12</span>
       </span>
     </div>
 
@@ -139,7 +139,7 @@
       <h1>gghistostats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-07-08</h4>
+            <h4 class="date">2019-07-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/gghistostats.Rmd"><code>vignettes/web_only/gghistostats.Rmd</code></a></small>
       <div class="hidden name"><code>gghistostats.Rmd</code></div>
@@ -165,7 +165,7 @@
 <a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
 <a class="sourceLine" id="cb1-5" title="5"></a>
 <a class="sourceLine" id="cb1-6" title="6"><span class="co"># looking at the structure of the data using glimpse</span></a>
-<a class="sourceLine" id="cb1-7" title="7">dplyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/dplyr/man/reexports.html">glimpse</a></span>(<span class="dt">x =</span> psych<span class="op">::</span>sat.act)</a>
+<a class="sourceLine" id="cb1-7" title="7">dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="dt">x =</span> psych<span class="op">::</span>sat.act)</a>
 <a class="sourceLine" id="cb1-8" title="8"><span class="co">#&gt; Observations: 700</span></a>
 <a class="sourceLine" id="cb1-9" title="9"><span class="co">#&gt; Variables: 6</span></a>
 <a class="sourceLine" id="cb1-10" title="10"><span class="co">#&gt; $ gender    &lt;int&gt; 2, 2, 2, 1, 1, 1, 2, 1, 2, 2, 1, 2, 1, 2, 2, 2, 2, 2...</span></a>
@@ -175,7 +175,7 @@
 <a class="sourceLine" id="cb1-14" title="14"><span class="co">#&gt; $ SATV      &lt;int&gt; 500, 600, 480, 550, 600, 640, 610, 520, 400, 730, 76...</span></a>
 <a class="sourceLine" id="cb1-15" title="15"><span class="co">#&gt; $ SATQ      &lt;int&gt; 500, 500, 470, 520, 550, 640, 500, 560, 600, 800, 71...</span></a></code></pre></div>
 <p>To get a simple histogram with no statistics and no special information. <code>gghistostats</code> will by default choose a binwidth <code>max(x) - min(x) / sqrt(N)</code>. You should always check this value and explore multiple widths to find the best to illustrate the stories in your data since histograms are sensitive to binwidth.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/gghistostats.html">gghistostats</a></span>(</a>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</a>
 <a class="sourceLine" id="cb2-2" title="2">    <span class="dt">data =</span> psych<span class="op">::</span>sat.act,                              <span class="co"># data from which variable is to be taken</span></a>
 <a class="sourceLine" id="cb2-3" title="3">    <span class="dt">x =</span> ACT,                                            <span class="co"># numeric variable</span></a>
 <a class="sourceLine" id="cb2-4" title="4">    <span class="dt">results.subtitle =</span> <span class="ot">FALSE</span>,                           <span class="co"># don't run statistical tests</span></a>
@@ -204,7 +204,7 @@
 </li>
 <li>Compute information about the Bayes Factor (<code>bf.message = TRUE</code>, see below)</li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/gghistostats.html">gghistostats</a></span>(</a>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</a>
 <a class="sourceLine" id="cb3-2" title="2">    <span class="dt">data =</span> psych<span class="op">::</span>sat.act,                              <span class="co"># data from which variable is to be taken</span></a>
 <a class="sourceLine" id="cb3-3" title="3">    <span class="dt">x =</span> ACT,                                            <span class="co"># numeric variable</span></a>
 <a class="sourceLine" id="cb3-4" title="4">    <span class="dt">results.subtitle =</span> <span class="ot">TRUE</span>,                            <span class="co"># run statistical tests</span></a>
@@ -234,7 +234,7 @@
 <p>What if we want to do the same analysis separately for each gender? In that case, we will have to either write a <code>for</code> loop or use <code>purrr</code>, none of which seem like an exciting prospect.</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_gghistostats</code>. This is merely a wrapper function around <code><a href="../../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>gghistostats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines the individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
 <p>Let’s see how we can use this function to apply <code>gghistostats</code> to accomplish our task.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggstatsplot/man/grouped_gghistostats.html">grouped_gghistostats</a></span>(</a>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_gghistostats.html">grouped_gghistostats</a></span>(</a>
 <a class="sourceLine" id="cb4-2" title="2">  <span class="co"># arguments relevant for ggstatsplot::gghistostats</span></a>
 <a class="sourceLine" id="cb4-3" title="3">  <span class="dt">data =</span> psych<span class="op">::</span>sat.act,                        <span class="co"># same dataset</span></a>
 <a class="sourceLine" id="cb4-4" title="4">  <span class="dt">x =</span> ACT,                                      <span class="co"># same outcome variable</span></a>
