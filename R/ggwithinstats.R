@@ -146,7 +146,7 @@ ggwithinstats <- function(data,
     tibble::as_tibble(x = .)
 
   # figuring out number of levels in the grouping factor
-  x_n_levels <- length(levels(df$x))[[1]]
+  x_n_levels <- nlevels(df$x)[[1]]
 
   # removing observations that don't have all repeated values
   df %<>%

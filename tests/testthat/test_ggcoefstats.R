@@ -876,7 +876,7 @@ testthat::test_that(
       ggplot2::labs(x = "location", y = NULL)
     p5 <- ggstatsplot::ggcoefstats(x = df4, statistic = "t")
     p6 <-
-      ggstatsplot::ggcoefstats(
+      suppressWarnings(ggstatsplot::ggcoefstats(
         x = df5,
         statistic = "t",
         k = 3,
@@ -885,7 +885,7 @@ testthat::test_that(
         iter = 2500,
         summarize = "int",
         messages = FALSE
-      )
+      ))
 
     # meta subtitle
     meta_subtitle <-

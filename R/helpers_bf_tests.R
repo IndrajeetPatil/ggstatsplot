@@ -611,12 +611,8 @@ bf_ttest <- function(data,
   # ============================ data preparation ==========================
 
   # creating a dataframe
-  data <-
-    dplyr::select(
-      .data = data,
-      x = !!rlang::enquo(x),
-      y = !!rlang::enquo(y)
-    ) %>%
+  data %<>%
+    dplyr::select(.data = ., x = {{ x }}, y = {{ y }}) %>%
     tibble::as_tibble(.)
 
   # -------------------------- between-subjects design -------------------
@@ -624,11 +620,10 @@ bf_ttest <- function(data,
   if ("y" %in% names(data)) {
 
     # dropping unused factor levels from `x` variable
-    data %<>%
-      dplyr::mutate(.data = ., x = droplevels(as.factor(x)))
+    data %<>% dplyr::mutate(.data = ., x = droplevels(as.factor(x)))
 
     # running bayesian analysis
-    if (!isTRUE(paired)) {
+    if (isFALSE(paired)) {
 
       # removing NAs
       data %<>% tidyr::drop_na(.)
@@ -764,12 +759,8 @@ bf_oneway_anova <- function(data,
   # ============================ data preparation ==========================
 
   # creating a dataframe
-  data <-
-    dplyr::select(
-      .data = data,
-      x = !!rlang::enquo(x),
-      y = !!rlang::enquo(y)
-    ) %>%
+  data %<>%
+    dplyr::select(.data = ., x = {{ x }}, y = {{ y }}) %>%
     dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
     tibble::as_tibble(.)
 

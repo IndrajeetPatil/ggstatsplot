@@ -597,8 +597,7 @@ subtitle_anova_robust <- function(data,
       )
   } else {
     # remove NAs listwise for between-subjects design
-    data %<>%
-      tidyr::drop_na(data = .)
+    data %<>% tidyr::drop_na(data = .)
 
     # sample size
     sample_size <- nrow(data)
@@ -647,7 +646,7 @@ subtitle_anova_robust <- function(data,
 }
 
 
-#' @title Making text subtitle for the between-subject one-way anova designs.
+#' @title Subtitle expression for the between-subject one-way anova designs.
 #' @name subtitle_anova_bayes
 #' @author Indrajeet Patil
 #'

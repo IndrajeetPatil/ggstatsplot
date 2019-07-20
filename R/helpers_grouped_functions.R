@@ -23,16 +23,13 @@ grouped_list <- function(data, grouping.var) {
 
   # creating a nested dataframe
   data_list <- data %>%
-    dplyr::mutate(
-      .data = .,
-      !!rlang::enquo(grouping.var) := as.factor(!!rlang::enquo(grouping.var))
-    ) %>%
+    dplyr::mutate(.data = ., {{ grouping.var }} := as.factor({{ grouping.var }})) %>%
     dplyr::mutate_if(
       .tbl = .,
       .predicate = is.factor,
       .funs = ~ droplevels(.)
     ) %>%
-    dplyr::filter(.data = ., !is.na(!!rlang::enquo(grouping.var))) %>%
+    dplyr::filter(.data = ., !is.na({{ grouping.var }})) %>%
     tibble::as_tibble(x = .) %>%
     split(x = ., f = .[[rlang::quo_text(grouping.var)]], drop = TRUE)
 
