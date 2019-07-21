@@ -26,7 +26,7 @@ testthat::test_that(
       ggstatsplot::ggdotplotstats(
         data = morley_new,
         x = Speed,
-        y = Expt,
+        y = "Expt",
         test.value = 800,
         type = "p",
         k = 4,
@@ -175,7 +175,7 @@ testthat::test_that(
     # plot
     p <- ggstatsplot::ggdotplotstats(
       data = df,
-      x = mean,
+      x = "mean",
       y = Species,
       results.subtitle = FALSE,
       messages = FALSE

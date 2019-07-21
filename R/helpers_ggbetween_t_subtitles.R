@@ -602,19 +602,21 @@ subtitle_t_bayes <- function(data,
                              paired = FALSE,
                              k = 2,
                              ...) {
+  x <- rlang::ensym(x)
+  y <- rlang::ensym(y)
 
   # creating a dataframe
-  data <-
-    dplyr::select(.data = data, x = {{ x }}, y = {{ y }}) %>%
-    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
+  data %<>%
+    dplyr::select(.data = ., {{ x }}, {{ y }}) %>%
+    dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }}))) %>%
     tibble::as_tibble(.)
 
   # preparing the subtitle
   subtitle <-
     bf_ttest(
       data = data,
-      x = x,
-      y = y,
+      x = {{ x }},
+      y = {{ y }},
       paired = paired,
       bf.prior = bf.prior,
       caption = NULL,

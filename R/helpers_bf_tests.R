@@ -525,14 +525,15 @@ bf_contingency_tab <- function(data,
 #' @details If `y` is `NULL`, a one-sample *t*-test will be carried out,
 #'   otherwise a two-sample *t*-test will be carried out.
 #'
-#' @importFrom BayesFactor ttestBF
-#'
 #' @param x Either the grouping variable from the dataframe `data` if it's a
 #'   two-sample *t*-test or a numeric variable if it's a one-sample *t*-test.
 #' @inheritParams ggbetweenstats
 #' @inheritParams BayesFactor::ttestBF
 #' @inheritParams bf_corr_test
 #' @inheritParams subtitle_t_onesample
+#'
+#' @importFrom BayesFactor ttestBF
+#' @importFrom rlang !! quo_is_null new_formula ensym
 #'
 #' @seealso \code{\link{bf_contingency_tab}}, \code{\link{bf_corr_test}},
 #' \code{\link{bf_oneway_anova}}
@@ -608,30 +609,27 @@ bf_ttest <- function(data,
                      k = 2,
                      ...) {
 
-  # ============================ data preparation ==========================
-
-  # creating a dataframe
-  data %<>%
-    dplyr::select(.data = ., x = {{ x }}, y = {{ y }}) %>%
-    tibble::as_tibble(.)
+  # make sure both quoted and unquoted arguments are allowed
+  x <- rlang::ensym(x)
+  y <- if (!rlang::quo_is_null(rlang::enquo(y))) rlang::ensym(y)
 
   # -------------------------- between-subjects design -------------------
 
-  if ("y" %in% names(data)) {
+  if (!rlang::quo_is_null(rlang::enquo(y))) {
 
     # dropping unused factor levels from `x` variable
-    data %<>% dplyr::mutate(.data = ., x = droplevels(as.factor(x)))
+    data %<>% dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }})))
 
     # running bayesian analysis
     if (isFALSE(paired)) {
 
       # removing NAs
-      data %<>% tidyr::drop_na(.)
+      data %<>% dplyr::filter(.data = ., !is.na({{ x }}), !is.na({{ y }}))
 
       # extracting results from bayesian test and creating a dataframe
       bf_object <-
         BayesFactor::ttestBF(
-          formula = y ~ x,
+          formula = rlang::new_formula({{ y }}, {{ x }}),
           data = as.data.frame(data),
           rscale = bf.prior,
           paired = FALSE,
@@ -643,8 +641,8 @@ bf_ttest <- function(data,
       data_wide <-
         long_to_wide_converter(
           data = data,
-          x = x,
-          y = y
+          x = {{ x }},
+          y = {{ y }}
         )
 
       # change names for convenience
@@ -664,7 +662,7 @@ bf_ttest <- function(data,
   } else {
     bf_object <-
       BayesFactor::ttestBF(
-        x = data$x,
+        x = data %>% dplyr::pull({{ x }}),
         rscale = bf.prior,
         mu = test.value,
         nullInterval = NULL,

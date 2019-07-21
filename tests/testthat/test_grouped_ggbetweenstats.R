@@ -51,7 +51,7 @@ testthat::test_that(
       ggstatsplot::grouped_ggbetweenstats(
         data = dat,
         x = genre,
-        y = rating,
+        y = "rating",
         grouping.var = mpaa,
         type = "p",
         plot.type = "box",
@@ -69,7 +69,7 @@ testthat::test_that(
     testthat::expect_true(inherits(
       ggstatsplot::grouped_ggbetweenstats(
         data = dat,
-        x = genre,
+        x = "genre",
         y = rating,
         grouping.var = "mpaa",
         type = "np",
