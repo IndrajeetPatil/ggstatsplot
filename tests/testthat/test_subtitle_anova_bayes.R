@@ -87,22 +87,13 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
 
-    set.seed(123)
-    library(jmv, warn.conflicts = FALSE)
-    data("bugs", package = "jmv")
-
-    # proper exclusion of NAs
-    data_bugs <- bugs %>%
-      tibble::as_tibble(.) %>%
-      tidyr::gather(., key, value, LDLF:HDHF)
-
     # ggstatsplot output
     set.seed(123)
     using_function1 <-
       ggstatsplot::subtitle_anova_bayes(
-        data = data_bugs,
-        x = key,
-        y = value,
+        data = ggstatsplot::bugs_long,
+        x = condition,
+        y = desire,
         paired = TRUE,
         k = 3
       )

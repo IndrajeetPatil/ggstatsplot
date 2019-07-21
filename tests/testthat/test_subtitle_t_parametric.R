@@ -194,22 +194,13 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
 
-    # loading the dataset
-    data("bugs", package = "jmv")
-
-    # preparing long format dataframe
-    bugs_long <-
-      tibble::as_tibble(x = bugs) %>%
-      dplyr::select(.data = ., HDLF, HDHF) %>%
-      tidyr::gather(data = ., "key", "value", convert = TRUE)
-
     # output from ggstatsplot helper subtitle
     set.seed(123)
     subtitle <-
       ggstatsplot::subtitle_t_parametric(
-        data = bugs_long,
-        x = key,
-        y = value,
+        data = dplyr::filter(ggstatsplot::bugs_long, condition %in% c("HDHF", "HDLF")),
+        x = condition,
+        y = desire,
         paired = TRUE,
         effsize.type = "d",
         effsize.noncentral = TRUE,

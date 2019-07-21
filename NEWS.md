@@ -1,5 +1,10 @@
 # ggstatsplot 0.0.12.9000
 
+MINOR CHANGES
+
+  - New dataset included: `bugs_long`, for repeated measures designs with `NA`s
+    present in the data.
+
 # ggstatsplot 0.0.12
 
 BUG FIXES

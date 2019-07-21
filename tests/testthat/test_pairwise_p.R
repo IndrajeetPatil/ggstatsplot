@@ -5,7 +5,6 @@ context("pairwise_p")
 testthat::test_that(
   desc = "`pairwise_p()` works for between-subjects design",
   code = {
-    testthat::skip_on_cran()
 
     set.seed(123)
 
@@ -143,22 +142,13 @@ testthat::test_that(
 testthat::test_that(
   desc = "`pairwise_p()` works for within-subjects design",
   code = {
-    testthat::skip_on_cran()
-
-    set.seed(123)
-    library(jmv)
-    data("bugs", package = "jmv")
-
-    # converting to long format
-    bugs_long <- bugs %>%
-      tibble::as_tibble(.) %>%
-      tidyr::gather(., key, value, LDLF:HDHF)
 
     # student's t test
+    set.seed(123)
     df1 <- ggstatsplot::pairwise_p(
-      data = bugs_long,
-      x = key,
-      y = value,
+      data = ggstatsplot::bugs_long,
+      x = condition,
+      y = desire,
       type = "p",
       k = 3,
       paired = TRUE,
@@ -168,9 +158,9 @@ testthat::test_that(
 
     # Durbin-Conover test
     df2 <- ggstatsplot::pairwise_p(
-      data = bugs_long,
-      x = key,
-      y = value,
+      data = ggstatsplot::bugs_long,
+      x = condition,
+      y = desire,
       type = "np",
       k = 3,
       paired = TRUE,
@@ -180,9 +170,9 @@ testthat::test_that(
 
     # robust t test
     df3 <- ggstatsplot::pairwise_p(
-      data = bugs_long,
-      x = key,
-      y = value,
+      data = ggstatsplot::bugs_long,
+      x = condition,
+      y = desire,
       type = "r",
       k = 3,
       paired = TRUE,
@@ -376,19 +366,12 @@ testthat::test_that(
     testthat::skip_on_cran()
 
     set.seed(123)
-    library(jmv)
-    data("bugs", package = "jmv")
-
-    # converting to long format
-    bugs_long <- bugs %>%
-      tibble::as_tibble(.) %>%
-      tidyr::gather(., key, value, LDLF:HDHF)
 
     # student's t test
     messages1 <- capture.output(ggstatsplot::pairwise_p(
-      data = bugs_long,
-      x = key,
-      y = value,
+      data = ggstatsplot::bugs_long,
+      x = condition,
+      y = desire,
       type = "p",
       paired = TRUE,
       messages = TRUE,
@@ -400,9 +383,9 @@ testthat::test_that(
 
     # Durbin-Conover test
     messages2 <- capture.output(ggstatsplot::pairwise_p(
-      data = bugs_long,
-      x = key,
-      y = value,
+      data = ggstatsplot::bugs_long,
+      x = condition,
+      y = desire,
       type = "np",
       paired = TRUE,
       messages = TRUE,
@@ -414,9 +397,9 @@ testthat::test_that(
 
     # robust t test
     messages3 <- capture.output(ggstatsplot::pairwise_p(
-      data = bugs_long,
-      x = key,
-      y = value,
+      data = ggstatsplot::bugs_long,
+      x = condition,
+      y = desire,
       type = "r",
       paired = TRUE,
       messages = TRUE,
@@ -429,9 +412,9 @@ testthat::test_that(
     # bayes factor
     testthat::expect_error(
       ggstatsplot::pairwise_p(
-        data = bugs_long,
-        x = key,
-        y = value,
+        data = ggstatsplot::bugs_long,
+        x = condition,
+        y = desire,
         paired = TRUE,
         messages = TRUE,
         type = "bf",

@@ -316,19 +316,11 @@ subtitle_anova_parametric <- function(data,
 #'
 #' # -------------- within-subjects design --------------------------------
 #'
-#' library(jmv)
-#' data("bugs", package = "jmv")
-#'
-#' # converting to long format
-#' data_bugs <- bugs %>%
-#'   tibble::as_tibble(.) %>%
-#'   tidyr::gather(., key, value, LDLF:HDHF)
-#'
 #' # creating the subtitle
 #' ggstatsplot::subtitle_anova_nonparametric(
-#'   data = data_bugs,
-#'   x = key,
-#'   y = value,
+#'   data = bugs_long,
+#'   x = condition,
+#'   y = desire,
 #'   paired = TRUE,
 #'   conf.level = 0.99,
 #'   k = 2

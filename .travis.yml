@@ -64,6 +64,7 @@ matrix:
         - logspline
         - metaBMA
         - MCMCpack
+        - MCMCglmm
       r_packages:
         - rlang
         - bindrcpp
@@ -131,6 +132,7 @@ matrix:
         - logspline
         - metaBMA
         - MCMCpack
+        - MCMCglmm
       r_packages:
         - rlang
         - bindrcpp

@@ -7,7 +7,6 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
 
-
     # ggstatsplot output
     set.seed(123)
     using_function1 <-

@@ -607,7 +607,7 @@
 <a class="sourceLine" id="cb7-8" title="8"><span class="co">#&gt;   # returning the converted plot</span></a>
 <a class="sourceLine" id="cb7-9" title="9"><span class="co">#&gt;   return(p)</span></a>
 <a class="sourceLine" id="cb7-10" title="10"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt; &lt;bytecode: 0x0000000035282508&gt;</span></a>
+<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt; &lt;bytecode: 0x0000000035132868&gt;</span></a>
 <a class="sourceLine" id="cb7-12" title="12"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -872,29 +872,25 @@
 <p>As with the <code>ggbetweenstats</code>, this function also has a <code>grouped_</code> variant that makes repeating the same analysis across a single grouping variable quicker. We will see an example with only repeated measurements-</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co"># common setup</span></a>
 <a class="sourceLine" id="cb12-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb12-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(jmv)</a>
-<a class="sourceLine" id="cb12-4" title="4"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"bugs"</span>, <span class="dt">package =</span> <span class="st">"jmv"</span>)</a>
-<a class="sourceLine" id="cb12-5" title="5"></a>
-<a class="sourceLine" id="cb12-6" title="6"><span class="co"># getting data in tidy format</span></a>
-<a class="sourceLine" id="cb12-7" title="7">data_bugs &lt;-<span class="st"> </span>bugs <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-8" title="8"><span class="st">  </span>tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(<span class="dt">x =</span> .) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-9" title="9"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/gather.html">gather</a></span>(<span class="dt">data =</span> ., key, value, LDLF<span class="op">:</span>HDHF) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-10" title="10"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., Region <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Europe"</span>, <span class="st">"North America"</span>))</a>
-<a class="sourceLine" id="cb12-11" title="11"></a>
-<a class="sourceLine" id="cb12-12" title="12"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb12-13" title="13">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggwithinstats.html">grouped_ggwithinstats</a></span>(</a>
-<a class="sourceLine" id="cb12-14" title="14">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(data_bugs, key <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"LDLF"</span>, <span class="st">"LDHF"</span>)),</a>
-<a class="sourceLine" id="cb12-15" title="15">  <span class="dt">x =</span> key,</a>
-<a class="sourceLine" id="cb12-16" title="16">  <span class="dt">y =</span> value,</a>
-<a class="sourceLine" id="cb12-17" title="17">  <span class="dt">xlab =</span> <span class="st">"Condition"</span>,</a>
-<a class="sourceLine" id="cb12-18" title="18">  <span class="dt">ylab =</span> <span class="st">"Desire to kill an artrhopod"</span>,</a>
-<a class="sourceLine" id="cb12-19" title="19">  <span class="dt">grouping.var =</span> Region,</a>
-<a class="sourceLine" id="cb12-20" title="20">  <span class="dt">outlier.tagging =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb12-21" title="21">  <span class="dt">outlier.label =</span> Education,</a>
-<a class="sourceLine" id="cb12-22" title="22">  <span class="dt">ggtheme =</span> hrbrthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_tw.html">theme_ipsum_tw</a></span>(),</a>
-<a class="sourceLine" id="cb12-23" title="23">  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb12-24" title="24">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb12-25" title="25">)</a></code></pre></div>
+<a class="sourceLine" id="cb12-3" title="3"></a>
+<a class="sourceLine" id="cb12-4" title="4"><span class="co"># getting data in tidy format</span></a>
+<a class="sourceLine" id="cb12-5" title="5">data_bugs &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span>bugs_long <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-6" title="6"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., region <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Europe"</span>, <span class="st">"North America"</span>))</a>
+<a class="sourceLine" id="cb12-7" title="7"></a>
+<a class="sourceLine" id="cb12-8" title="8"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb12-9" title="9">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggwithinstats.html">grouped_ggwithinstats</a></span>(</a>
+<a class="sourceLine" id="cb12-10" title="10">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(data_bugs, condition <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"LDLF"</span>, <span class="st">"LDHF"</span>)),</a>
+<a class="sourceLine" id="cb12-11" title="11">  <span class="dt">x =</span> condition,</a>
+<a class="sourceLine" id="cb12-12" title="12">  <span class="dt">y =</span> desire,</a>
+<a class="sourceLine" id="cb12-13" title="13">  <span class="dt">xlab =</span> <span class="st">"Condition"</span>,</a>
+<a class="sourceLine" id="cb12-14" title="14">  <span class="dt">ylab =</span> <span class="st">"Desire to kill an artrhopod"</span>,</a>
+<a class="sourceLine" id="cb12-15" title="15">  <span class="dt">grouping.var =</span> region,</a>
+<a class="sourceLine" id="cb12-16" title="16">  <span class="dt">outlier.tagging =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb12-17" title="17">  <span class="dt">outlier.label =</span> education,</a>
+<a class="sourceLine" id="cb12-18" title="18">  <span class="dt">ggtheme =</span> hrbrthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_tw.html">theme_ipsum_tw</a></span>(),</a>
+<a class="sourceLine" id="cb12-19" title="19">  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb12-20" title="20">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb12-21" title="21">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggwithinstats2-1.png" width="100%"></p>
 <div id="summary-of-tests-1" class="section level3">
 <h3 class="hasAnchor">
