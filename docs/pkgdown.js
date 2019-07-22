@@ -4,6 +4,11 @@
 
     $('.navbar-fixed-top').headroom();
 
+    $('body').css('padding-top', $('.navbar').height() + 10);
+    $(window).resize(function(){
+      $('body').css('padding-top', $('.navbar').height() + 10);
+    });
+
     $('body').scrollspy({
       target: '#sidebar',
       offset: 60

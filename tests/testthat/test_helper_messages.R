@@ -28,13 +28,6 @@ testthat::test_that(
       "CI for effect size estimate was computed with",
       fixed = TRUE
     )
-
-    testthat::expect_equal(
-      readr::parse_number(capture.output(
-        ggstatsplot:::effsize_ci_message(conf.level = 0.99)
-      )),
-      99L
-    )
   }
 )
 

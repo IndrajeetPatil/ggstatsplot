@@ -1,18 +1,8 @@
 context(desc = "ggwithinstats")
 
-# common setup
-set.seed(123)
-library(WRS2)
-library(jmv)
-data("bugs", package = "jmv")
-
-# converting to long format
-data_bugs <- bugs %>%
-  tibble::as_tibble(.) %>%
-  tidyr::gather(., key, value, LDLF:HDHF)
-
 # for t-test
-data_bugs_2 <- dplyr::filter(.data = data_bugs, key %in% c("HDLF", "HDHF"))
+data_bugs_2 <- ggstatsplot::bugs_long %>%
+  dplyr::filter(.data = ., condition %in% c("HDLF", "HDHF"))
 
 # errors ------------------------------------------------------------------
 
@@ -40,15 +30,15 @@ testthat::test_that(
     set.seed(123)
     p1 <- ggstatsplot::ggwithinstats(
       data = data_bugs_2,
-      x = key,
-      y = value,
+      x = condition,
+      y = desire,
       type = "p",
       sort = "descending",
       sort.fun = mean,
       k = 4,
       conf.level = 0.99,
       outlier.tagging = TRUE,
-      outlier.label = "Region",
+      outlier.label = "region",
       outlier.coef = 1.5,
       bf.message = TRUE,
       pairwise.comparisons = TRUE,
@@ -64,8 +54,8 @@ testthat::test_that(
     set.seed(123)
     p1_subtitle <- ggstatsplot::subtitle_t_parametric(
       data = data_bugs_2,
-      x = key,
-      y = value,
+      x = condition,
+      y = desire,
       type = "p",
       k = 4,
       paired = TRUE,
@@ -117,8 +107,8 @@ testthat::test_that(
         )
       ))
     )
-    testthat::expect_identical(p1$labels$x, "key")
-    testthat::expect_identical(p1$labels$y, "value")
+    testthat::expect_identical(p1$labels$x, "condition")
+    testthat::expect_identical(p1$labels$y, "desire")
   }
 )
 
@@ -129,6 +119,7 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
     set.seed(123)
+    library(WRS2)
 
     # plot
     p1 <- ggstatsplot::ggwithinstats(
@@ -237,23 +228,13 @@ testthat::test_that(
     # checking pairwise comparisons
     testthat::expect_equal(levels(pb1$data[[8]]$annotation), c("*", "**"))
 
-    # checking data with NA
-    set.seed(123)
-    library(jmv, warn.conflicts = FALSE)
-    data("bugs", package = "jmv")
-
-    # proper exclusion of NAs
-    data_bugs <- bugs %>%
-      tibble::as_tibble(.) %>%
-      tidyr::gather(., key, value, LDLF:HDHF)
-
     # caption for the plot
     set.seed(254)
     plot_caption <-
       ggstatsplot::ggwithinstats(
-        data = data_bugs,
-        x = key,
-        y = value,
+        data = ggstatsplot::bugs_long,
+        x = condition,
+        y = desire,
         messages = FALSE,
         bf.prior = 0.85,
         k = 3,
@@ -264,9 +245,9 @@ testthat::test_that(
     set.seed(254)
     fun_output <-
       bf_oneway_anova(
-        data = data_bugs,
-        x = key,
-        y = value,
+        data = ggstatsplot::bugs_long,
+        x = condition,
+        y = desire,
         paired = TRUE,
         bf.prior = 0.85,
         k = 3
@@ -493,9 +474,9 @@ testthat::test_that(
 
     set.seed(123)
     p1 <- ggstatsplot::ggwithinstats(
-      data = data_bugs,
-      x = key,
-      y = value,
+      data = ggstatsplot::bugs_long,
+      x = condition,
+      y = desire,
       type = "np",
       outlier.tagging = TRUE,
       pairwise.comparisons = FALSE,
@@ -507,18 +488,18 @@ testthat::test_that(
 
     set.seed(123)
     p1_subtitle <- ggstatsplot::subtitle_anova_nonparametric(
-      data = data_bugs,
-      x = key,
-      y = value,
+      data = ggstatsplot::bugs_long,
+      x = condition,
+      y = desire,
       paired = TRUE,
       messages = FALSE
     )
 
     set.seed(123)
     p2 <- ggstatsplot::ggwithinstats(
-      data = data_bugs,
-      x = key,
-      y = value,
+      data = ggstatsplot::bugs_long,
+      x = condition,
+      y = desire,
       type = "r",
       outlier.tagging = TRUE,
       pairwise.comparisons = TRUE,
@@ -530,9 +511,9 @@ testthat::test_that(
 
     set.seed(123)
     p2_subtitle <- ggstatsplot::subtitle_anova_robust(
-      data = data_bugs,
-      x = key,
-      y = value,
+      data = ggstatsplot::bugs_long,
+      x = condition,
+      y = desire,
       type = "r",
       paired = TRUE,
       conf.level = 0.99,
@@ -542,8 +523,8 @@ testthat::test_that(
     set.seed(123)
     p3 <- ggstatsplot::ggwithinstats(
       data = data_bugs_2,
-      x = key,
-      y = value,
+      x = condition,
+      y = desire,
       type = "np",
       messages = FALSE
     )
@@ -551,8 +532,8 @@ testthat::test_that(
     set.seed(123)
     p3_subtitle <- ggstatsplot::subtitle_t_nonparametric(
       data = data_bugs_2,
-      x = key,
-      y = value,
+      x = condition,
+      y = desire,
       type = "np",
       paired = TRUE,
       messages = FALSE
@@ -561,8 +542,8 @@ testthat::test_that(
     set.seed(123)
     p4 <- ggstatsplot::ggwithinstats(
       data = data_bugs_2,
-      x = key,
-      y = value,
+      x = condition,
+      y = desire,
       type = "r",
       nboot = 20,
       conf.level = 0.90,
@@ -572,8 +553,8 @@ testthat::test_that(
     set.seed(123)
     p4_subtitle <- ggstatsplot::subtitle_t_robust(
       data = data_bugs_2,
-      x = key,
-      y = value,
+      x = condition,
+      y = desire,
       paired = TRUE,
       nboot = 20,
       conf.level = 0.90,
@@ -606,6 +587,10 @@ testthat::test_that(
   desc = "ggplot component addition works",
   code = {
     testthat::skip_on_cran()
+
+    # setup
+    set.seed(123)
+    library(WRS2)
 
     # plot
     p <- ggstatsplot::ggwithinstats(

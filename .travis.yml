@@ -63,6 +63,8 @@ matrix:
         - LaplacesDemon
         - logspline
         - metaBMA
+        - MCMCpack
+        - MCMCglmm
       r_packages:
         - rlang
         - bindrcpp
@@ -129,6 +131,8 @@ matrix:
         - LaplacesDemon
         - logspline
         - metaBMA
+        - MCMCpack
+        - MCMCglmm
       r_packages:
         - rlang
         - bindrcpp

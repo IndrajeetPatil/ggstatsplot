@@ -28,4 +28,4 @@ VR_dilemma %<>%
   dplyr::rename(.data = ., id = ID)
 
 # saving the data
-base::save(VR_dilemma, file = "data/VR_dilemma.rdata")
+save(VR_dilemma, file = "data/VR_dilemma.rdata")

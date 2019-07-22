@@ -234,23 +234,16 @@ games_howell <- function(data, x, y) {
 #'   paired = FALSE,
 #'   p.adjust.method = "fdr"
 #' )
-#' }
+#'
 #' #------------------- within-subjects design ----------------------------
 #'
 #' set.seed(123)
-#' library(jmv)
-#' data("bugs", package = "jmv")
-#'
-#' # converting to long format
-#' bugs_long <- bugs %>%
-#'   tibble::as_tibble(.) %>%
-#'   tidyr::gather(., key, value, LDLF:HDHF)
 #'
 #' # parametric
 #' ggstatsplot::pairwise_p(
 #'   data = bugs_long,
-#'   x = key,
-#'   y = value,
+#'   x = condition,
+#'   y = desire,
 #'   type = "p",
 #'   paired = TRUE,
 #'   p.adjust.method = "BH"
@@ -259,8 +252,8 @@ games_howell <- function(data, x, y) {
 #' # non-parametric
 #' ggstatsplot::pairwise_p(
 #'   data = bugs_long,
-#'   x = key,
-#'   y = value,
+#'   x = condition,
+#'   y = desire,
 #'   type = "np",
 #'   paired = TRUE,
 #'   p.adjust.method = "BY"
@@ -269,12 +262,13 @@ games_howell <- function(data, x, y) {
 #' # robust
 #' ggstatsplot::pairwise_p(
 #'   data = bugs_long,
-#'   x = key,
-#'   y = value,
+#'   x = condition,
+#'   y = desire,
 #'   type = "r",
 #'   paired = TRUE,
 #'   p.adjust.method = "hommel"
 #' )
+#' }
 #' @export
 
 # function body

@@ -302,7 +302,7 @@ ggbetweenstats <- function(data,
 
   # figure out which test to run based on the number of levels of the
   # independent variables
-  if (length(levels(as.factor(data$x))) < 3) {
+  if (nlevels(data$x)[[1]] < 3) {
     test <- "t-test"
   } else {
     test <- "anova"
@@ -493,16 +493,12 @@ ggbetweenstats <- function(data,
   # already created.
 
   if (isTRUE(outlier.tagging)) {
-    # finding and tagging the outliers
-    data_outlier_label <- data %>%
-      dplyr::filter(.data = ., isanoutlier) %>%
-      dplyr::select(.data = ., -outlier)
-
     # applying the labels to tagged outliers with ggrepel
     plot <-
       plot +
       ggrepel::geom_label_repel(
-        data = data_outlier_label,
+        data = dplyr::filter(.data = data, isanoutlier) %>%
+          dplyr::select(.data = ., -outlier),
         mapping = ggplot2::aes(x = x, y = y, label = outlier.label),
         fontface = "bold",
         color = outlier.label.color,

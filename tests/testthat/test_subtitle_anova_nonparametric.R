@@ -112,20 +112,12 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
 
-    library(jmv)
-    data("bugs", package = "jmv")
-
-    # converting to long format
-    data_bugs <- bugs %>%
-      tibble::as_tibble(.) %>%
-      tidyr::gather(., key, value, LDLF:HDHF)
-
     # ggstatsplot output
     set.seed(123)
     using_function1 <- ggstatsplot::subtitle_anova_nonparametric(
-      data = data_bugs,
-      x = key,
-      y = value,
+      data = ggstatsplot::bugs_long,
+      x = condition,
+      y = desire,
       k = 4,
       paired = TRUE,
       conf.level = 0.99,

@@ -316,19 +316,11 @@ subtitle_anova_parametric <- function(data,
 #'
 #' # -------------- within-subjects design --------------------------------
 #'
-#' library(jmv)
-#' data("bugs", package = "jmv")
-#'
-#' # converting to long format
-#' data_bugs <- bugs %>%
-#'   tibble::as_tibble(.) %>%
-#'   tidyr::gather(., key, value, LDLF:HDHF)
-#'
 #' # creating the subtitle
 #' ggstatsplot::subtitle_anova_nonparametric(
-#'   data = data_bugs,
-#'   x = key,
-#'   y = value,
+#'   data = bugs_long,
+#'   x = condition,
+#'   y = desire,
 #'   paired = TRUE,
 #'   conf.level = 0.99,
 #'   k = 2
@@ -597,8 +589,7 @@ subtitle_anova_robust <- function(data,
       )
   } else {
     # remove NAs listwise for between-subjects design
-    data %<>%
-      tidyr::drop_na(data = .)
+    data %<>% tidyr::drop_na(data = .)
 
     # sample size
     sample_size <- nrow(data)
@@ -647,7 +638,7 @@ subtitle_anova_robust <- function(data,
 }
 
 
-#' @title Making text subtitle for the between-subject one-way anova designs.
+#' @title Subtitle expression for the between-subject one-way anova designs.
 #' @name subtitle_anova_bayes
 #' @author Indrajeet Patil
 #'

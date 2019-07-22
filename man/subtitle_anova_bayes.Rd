@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers_ggbetween_anova_subtitles.R
 \name{subtitle_anova_bayes}
 \alias{subtitle_anova_bayes}
-\title{Making text subtitle for the between-subject one-way anova designs.}
+\title{Subtitle expression for the between-subject one-way anova designs.}
 \usage{
 subtitle_anova_bayes(data, x, y, paired = FALSE, bf.prior = 0.707,
   k = 2, ...)
@@ -30,7 +30,7 @@ to use in calculating Bayes factors.}
 \item{...}{Additional arguments.}
 }
 \description{
-Making text subtitle for the between-subject one-way anova designs.
+Subtitle expression for the between-subject one-way anova designs.
 }
 \examples{
 \donttest{

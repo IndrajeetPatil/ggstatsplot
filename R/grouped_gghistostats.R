@@ -101,12 +101,12 @@ grouped_gghistostats <- function(data,
 
   # maximum value for x
   binmax <-
-    dplyr::select(.data = data, !!rlang::enquo(x)) %>%
+    dplyr::select(.data = data, {{ x }}) %>%
     max(x = ., na.rm = TRUE)
 
   # minimum value for x
   binmin <-
-    dplyr::select(.data = data, !!rlang::enquo(x)) %>%
+    dplyr::select(.data = data, {{ x }}) %>%
     min(x = ., na.rm = TRUE)
 
   # number of datapoints
@@ -130,7 +130,6 @@ grouped_gghistostats <- function(data,
   # list with basic arguments
   flexiblelist <- list(
     data = df,
-    x = rlang::quo_text(rlang::ensym(x)),
     title = glue::glue("{title.prefix}: {names(df)}")
   )
 
@@ -139,6 +138,7 @@ grouped_gghistostats <- function(data,
     purrr::pmap(
       .l = flexiblelist,
       .f = ggstatsplot::gghistostats,
+      x = {{ x }},
       bar.measure = bar.measure,
       xlab = xlab,
       stat.title = stat.title,

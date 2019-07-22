@@ -47,7 +47,7 @@ testthat::test_that(
     df_results <- ggstatsplot::bf_ttest(
       data = ToothGrowth,
       x = supp,
-      y = len,
+      y = "len",
       paired = FALSE,
       bf.prior = 0.99,
       output = "results"
@@ -94,7 +94,7 @@ testthat::test_that(
     set.seed(123)
     df_results <- ggstatsplot::bf_ttest(
       data = dat_tidy,
-      x = key,
+      x = "key",
       y = value,
       paired = TRUE,
       bf.prior = 0.8,
