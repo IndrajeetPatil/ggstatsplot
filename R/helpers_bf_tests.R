@@ -638,12 +638,7 @@ bf_ttest <- function(data,
         )
     } else {
       # the data needs to be in wide format
-      data_wide <-
-        long_to_wide_converter(
-          data = data,
-          x = {{ x }},
-          y = {{ y }}
-        )
+      data_wide <- long_to_wide_converter(data = data, x = {{ x }}, y = {{ y }})
 
       # change names for convenience
       colnames(data_wide) <- c("rowid", "col1", "col2")
@@ -756,10 +751,14 @@ bf_oneway_anova <- function(data,
 
   # ============================ data preparation ==========================
 
+  # make sure both quoted and unquoted arguments are allowed
+  x <- rlang::ensym(x)
+  y <- rlang::ensym(y)
+
   # creating a dataframe
   data %<>%
-    dplyr::select(.data = ., x = {{ x }}, y = {{ y }}) %>%
-    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
+    dplyr::select(.data = ., {{ x }}, {{ y }}) %>%
+    dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }}))) %>%
     tibble::as_tibble(.)
 
   # ========================= subtitle preparation ==========================
@@ -768,11 +767,7 @@ bf_oneway_anova <- function(data,
     # converting to long format and then getting it back in wide so that the
     # rowid variable can be used as the block variable
     df <-
-      long_to_wide_converter(
-        data = data,
-        x = x,
-        y = y
-      ) %>%
+      long_to_wide_converter(data = data, x = {{ x }}, y = {{ y }}) %>%
       tidyr::gather(data = ., key, value, -rowid) %>%
       dplyr::arrange(.data = ., rowid) %>%
       dplyr::mutate(.data = ., rowid = as.factor(rowid), key = as.factor(key))
@@ -791,13 +786,13 @@ bf_oneway_anova <- function(data,
       dplyr::mutate(.data = ., bf.prior = bf.prior)
   } else {
     # remove NAs listwise for between-subjects design
-    df <- tidyr::drop_na(data = data)
+    df <- tidyr::drop_na(data)
 
     # extracting results from bayesian test and creating a dataframe
     bf_results <-
       bf_extractor(
         BayesFactor::anovaBF(
-          formula = y ~ x,
+          formula = rlang::new_formula({{ y }}, {{ x }}),
           data = as.data.frame(df),
           rscaleFixed = bf.prior,
           progress = FALSE,

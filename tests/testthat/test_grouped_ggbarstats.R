@@ -8,12 +8,7 @@ testthat::test_that(
     # --------------------- without counts -----------------------------------
 
     # creating a smaller dataframe
-    mpg_short <-
-      ggplot2::mpg %>%
-      dplyr::filter(
-        .data = .,
-        drv %in% c("4", "f")
-      )
+    mpg_short <- dplyr::filter(.data = ggplot2::mpg, drv %in% c("4", "f"))
 
     ## expecting error message
     testthat::expect_error(ggstatsplot::grouped_ggbarstats(
@@ -127,5 +122,127 @@ testthat::test_that(
     testthat::expect_null(ls_results[[1]], NULL)
     testthat::expect_null(ls_results[[2]], NULL)
     testthat::expect_null(ls_results[[3]], NULL)
+
+    # checking results
+    set.seed(123)
+    results_ls <- suppressWarnings(ggstatsplot::grouped_ggbarstats(
+      data = as.data.frame(HairEyeColor),
+      main = Hair,
+      condition = Eye,
+      counts = "Freq",
+      grouping.var = Sex,
+      return = "subtitle",
+      messages = FALSE
+    ))
+
+    # checking subtitle
+    testthat::expect_identical(
+      results_ls$Male,
+      ggplot2::expr(
+        paste(
+          NULL,
+          chi["Pearson"]^2,
+          "(",
+          "9",
+          ") = ",
+          "41.28",
+          ", ",
+          italic("p"),
+          " = ",
+          "< 0.001",
+          ", ",
+          italic("V")["Cramer"],
+          " = ",
+          "0.22",
+          ", CI"["95%"],
+          " [",
+          "0.14",
+          ", ",
+          "0.26",
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          279L
+        )
+      )
+    )
+
+    testthat::expect_identical(
+      results_ls$Female,
+      ggplot2::expr(
+        paste(
+          NULL,
+          chi["Pearson"]^2,
+          "(",
+          "9",
+          ") = ",
+          "106.66",
+          ", ",
+          italic("p"),
+          " = ",
+          "< 0.001",
+          ", ",
+          italic("V")["Cramer"],
+          " = ",
+          "0.34",
+          ", CI"["95%"],
+          " [",
+          "0.28",
+          ", ",
+          "0.38",
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          313L
+        )
+      )
+    )
+  }
+)
+
+# checking if results coincide with base version -----------------------------
+
+testthat::test_that(
+  desc = "checking if results coincide with base version",
+  code = {
+    testthat::skip_on_cran()
+
+    # creating new datasets from the existing one
+    mtcars2 <- dplyr::mutate(mtcars, grp = "1")
+    mtcars3 <- dplyr::filter(mtcars2, cyl != "8")
+
+    set.seed(123)
+    p1 <-
+      suppressWarnings(ggbarstats(mtcars, "am", cyl, messages = FALSE, return = "subtitle"))
+
+    set.seed(123)
+    p2 <-
+      suppressWarnings(ggbarstats(mtcars3, am, cyl, messages = FALSE, return = "subtitle"))
+
+    set.seed(123)
+    p3 <-
+      suppressWarnings(grouped_ggbarstats(mtcars2,
+        am,
+        "cyl",
+        grouping.var = grp,
+        messages = FALSE,
+        return = "subtitle"
+      ))
+
+    set.seed(123)
+    p4 <-
+      suppressWarnings(grouped_ggbarstats(mtcars3,
+        "am",
+        cyl,
+        grouping.var = "grp",
+        messages = FALSE,
+        return = "subtitle"
+      ))
+
+    # testing if grouped and base versions results are same
+    testthat::expect_identical(p1, p3$`1`)
+    testthat::expect_identical(p2, p4$`1`)
   }
 )

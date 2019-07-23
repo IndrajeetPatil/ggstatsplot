@@ -194,3 +194,63 @@ testthat::test_that(
     testthat::expect_null(ls_results[[3]], NULL)
   }
 )
+
+# checking if results coincide with base version -----------------------------
+
+testthat::test_that(
+  desc = "checking if results coincide with base version",
+  code = {
+    testthat::skip_on_cran()
+
+    # creating new datasets from the existing one
+    mtcars2 <- dplyr::mutate(mtcars, grp = "1")
+    mtcars3 <- dplyr::filter(mtcars2, cyl != "8")
+    msleep2 <- dplyr::mutate(ggplot2::msleep, grp = "1")
+
+    set.seed(123)
+    p1 <-
+      suppressWarnings(ggpiestats(mtcars, "am", cyl, messages = FALSE, return = "subtitle"))
+
+    set.seed(123)
+    p2 <-
+      suppressWarnings(ggpiestats(mtcars3, am, cyl, messages = FALSE, return = "subtitle"))
+
+    set.seed(123)
+    p3 <-
+      suppressWarnings(grouped_ggpiestats(mtcars2,
+        am,
+        "cyl",
+        grouping.var = grp,
+        messages = FALSE,
+        return = "subtitle"
+      ))
+
+    set.seed(123)
+    p4 <-
+      suppressWarnings(grouped_ggpiestats(mtcars3,
+        "am",
+        cyl,
+        grouping.var = "grp",
+        messages = FALSE,
+        return = "subtitle"
+      ))
+
+    set.seed(123)
+    p5 <-
+      suppressWarnings(ggpiestats(ggplot2::msleep, vore, messages = FALSE, return = "subtitle"))
+
+    set.seed(123)
+    p6 <-
+      suppressWarnings(grouped_ggpiestats(msleep2,
+        vore,
+        grouping.var = grp,
+        messages = FALSE,
+        return = "subtitle"
+      ))
+
+    # testing if grouped and base versions results are same
+    testthat::expect_identical(p1, p3$`1`)
+    testthat::expect_identical(p2, p4$`1`)
+    testthat::expect_identical(p5, p6$`1`)
+  }
+)
