@@ -341,7 +341,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ellipsis",
       "name": "ellipsis",
-      "version": ">= 0.2.0",
+      "version": ">= 0.2.0.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",

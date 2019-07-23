@@ -141,6 +141,9 @@ grouped_ggbarstats <- function(data,
 
   # ensure the grouping variable works quoted or unquoted
   grouping.var <- rlang::ensym(grouping.var)
+  main <- rlang::ensym(main)
+  condition <- rlang::ensym(condition)
+  counts <- if (!rlang::quo_is_null(rlang::enquo(counts))) rlang::ensym(counts)
 
   # if `title.prefix` is not provided, use the variable `grouping.var` name
   if (is.null(title.prefix)) {
@@ -151,45 +154,23 @@ grouped_ggbarstats <- function(data,
 
   # creating a dataframe
   df <-
-    data %>%
     dplyr::select(
-      .data = .,
-      {{ grouping.var }},
-      {{ main }},
-      {{ condition }},
-      {{ counts }}
+      .data = data,
+      {{ grouping.var }}, {{ main }}, {{ condition }}, {{ counts }}
     ) %>%
     tidyr::drop_na(data = .) %>% # creating a list for grouped analysis
     grouped_list(data = ., grouping.var = {{ grouping.var }})
 
-  # ============== build pmap list based on conditions =====================
-
-  if (missing(counts)) {
-    flexiblelist <- list(
-      data = df,
-      main = rlang::quo_text(ensym(main)),
-      condition = rlang::quo_text(ensym(condition)),
-      title = glue::glue("{title.prefix}: {names(df)}")
-    )
-  }
-
-  if (!missing(counts)) {
-    flexiblelist <- list(
-      data = df,
-      main = rlang::quo_text(ensym(main)),
-      condition = rlang::quo_text(ensym(condition)),
-      counts = rlang::quo_text(ensym(counts)),
-      title = glue::glue("{title.prefix}: {names(df)}")
-    )
-  }
-
-  # ==================== creating a list of plots =======================
+  # ================ creating a list of return objects ========================
 
   # creating a list of plots using `pmap`
   plotlist_purrr <-
     purrr::pmap(
-      .l = flexiblelist,
+      .l = list(data = df, title = glue::glue("{title.prefix}: {names(df)}")),
       .f = ggstatsplot::ggbarstats,
+      main = {{ main }},
+      condition = {{ condition }},
+      counts = {{ counts }},
       # put common parameters here
       ratio = ratio,
       paired = paired,

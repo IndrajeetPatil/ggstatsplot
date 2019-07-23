@@ -5,7 +5,6 @@ context("pairwise_p")
 testthat::test_that(
   desc = "`pairwise_p()` works for between-subjects design",
   code = {
-
     set.seed(123)
 
     # student's t

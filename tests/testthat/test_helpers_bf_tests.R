@@ -87,8 +87,7 @@ testthat::test_that(
     ))
 
     # creating a tidy dataframe
-    dat_tidy <- dat %>%
-      tidyr::gather(data = ., key, value, c(HDLF, HDHF))
+    dat_tidy <- tidyr::gather(data = dat, key, value, c(HDLF, HDHF))
 
     # extracting results from where this function is implemented
     set.seed(123)
@@ -286,7 +285,7 @@ testthat::test_that(
     df_results <- ggstatsplot::bf_oneway_anova(
       data = dat,
       x = Wine,
-      y = Taste,
+      y = "Taste",
       paired = TRUE,
       bf.prior = 0.99,
       output = "results"
@@ -296,7 +295,7 @@ testthat::test_that(
     set.seed(123)
     results1 <- ggstatsplot::bf_oneway_anova(
       data = dat,
-      x = Wine,
+      x = "Wine",
       y = Taste,
       k = 4,
       paired = TRUE,
