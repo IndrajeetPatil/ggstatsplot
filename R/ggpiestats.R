@@ -145,7 +145,7 @@ ggpiestats <- function(data,
                        return = "plot",
                        messages = TRUE) {
 
-  # ensure the grouping variable works quoted or unquoted
+  # ensure the variables work quoted or unquoted
   main <- rlang::ensym(main)
   condition <- if (!rlang::quo_is_null(rlang::enquo(condition))) rlang::ensym(condition)
   counts <- if (!rlang::quo_is_null(rlang::enquo(counts))) rlang::ensym(counts)
@@ -349,12 +349,9 @@ ggpiestats <- function(data,
       # display grouped proportion test results
       if (isTRUE(messages)) {
         # tell the user what these results are
-        proptest_message(
-          main = rlang::as_name(main),
-          condition = rlang::as_name(condition)
-        )
+        proptest_message(rlang::as_name(main), rlang::as_name(condition))
 
-        # print the tibble and leave out unnecessary columns
+        # print the tibble
         print(df_labels)
       }
 

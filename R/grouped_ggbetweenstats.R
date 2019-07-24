@@ -260,21 +260,11 @@ grouped_ggbetweenstats <- function(data,
     )
 
   # combining the list of plots into a single plot
+  # inform user this can't be modified further with ggplot commands
   if (return == "plot") {
-    combined_object <-
-      ggstatsplot::combine_plots(
-        plotlist = plotlist_purrr,
-        ...
-      )
-
-    # inform user this can't be modified further with ggplot commands
-    if (isTRUE(messages)) {
-      grouped_message()
-    }
+    if (isTRUE(messages)) grouped_message()
+    return(ggstatsplot::combine_plots(plotlist = plotlist_purrr, ...))
   } else {
-    combined_object <- plotlist_purrr
+    return(plotlist_purrr)
   }
-
-  # return the combined plot
-  return(combined_object)
 }

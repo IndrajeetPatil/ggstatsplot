@@ -110,7 +110,7 @@ grouped_gghistostats <- function(data,
     min(x = ., na.rm = TRUE)
 
   # number of datapoints
-  bincount <- as.integer(data %>% dplyr::count(x = .))
+  bincount <- as.integer(data %>% dplyr::count(.))
 
   # adding some binwidth sanity checking
   if (is.null(binwidth)) {
@@ -122,22 +122,16 @@ grouped_gghistostats <- function(data,
   # getting the dataframe ready
   # creating a dataframe
   df <-
-    data %>%
-    dplyr::select(.data = ., {{ grouping.var }}, {{ x }}) %>%
+    dplyr::select(.data = data, {{ grouping.var }}, {{ x }}) %>%
     tidyr::drop_na(data = .) %>% # creating a list for grouped analysis
     grouped_list(data = ., grouping.var = {{ grouping.var }})
-
-  # list with basic arguments
-  flexiblelist <- list(
-    data = df,
-    title = glue::glue("{title.prefix}: {names(df)}")
-  )
 
   # creating a list of plots
   plotlist_purrr <-
     purrr::pmap(
-      .l = flexiblelist,
+      .l = list(data = df, title = glue::glue("{title.prefix}: {names(df)}")),
       .f = ggstatsplot::gghistostats,
+      # put common parameters here
       x = {{ x }},
       bar.measure = bar.measure,
       xlab = xlab,
@@ -184,21 +178,11 @@ grouped_gghistostats <- function(data,
     )
 
   # combining the list of plots into a single plot
+  # inform user this can't be modified further with ggplot commands
   if (return == "plot") {
-    combined_object <-
-      ggstatsplot::combine_plots(
-        plotlist = plotlist_purrr,
-        ...
-      )
-
-    # inform user this can't be modified further with ggplot commands
-    if (isTRUE(messages)) {
-      grouped_message()
-    }
+    if (isTRUE(messages)) grouped_message()
+    return(ggstatsplot::combine_plots(plotlist = plotlist_purrr, ...))
   } else {
-    combined_object <- plotlist_purrr
+    return(plotlist_purrr)
   }
-
-  # return the combined plot
-  return(combined_object)
 }

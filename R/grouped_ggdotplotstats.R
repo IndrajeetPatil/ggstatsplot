@@ -94,6 +94,8 @@ grouped_ggdotplotstats <- function(data,
 
   # ensure the grouping variable works quoted or unquoted
   grouping.var <- rlang::ensym(grouping.var)
+  x <- rlang::ensym(x)
+  y <- rlang::ensym(y)
 
   # if `title.prefix` is not provided, use the variable `grouping.var` name
   if (is.null(title.prefix)) {
@@ -102,29 +104,17 @@ grouped_ggdotplotstats <- function(data,
 
   # creating a dataframe
   df <-
-    data %>%
-    dplyr::select(
-      .data = .,
-      {{ grouping.var }},
-      {{ x }},
-      {{ y }}
-    ) %>%
+    dplyr::select(.data = data, {{ grouping.var }}, {{ x }}, {{ y }}) %>%
     tidyr::drop_na(data = .) %>% # creating a list for grouped analysis
     grouped_list(data = ., grouping.var = {{ grouping.var }})
-
-  # list with basic arguments
-  flexiblelist <- list(
-    data = df,
-    x = rlang::quo_text(rlang::ensym(x)),
-    y = rlang::quo_text(rlang::ensym(y)),
-    title = glue::glue("{title.prefix}: {names(df)}")
-  )
 
   # creating a list of plots
   plotlist_purrr <-
     purrr::pmap(
-      .l = flexiblelist,
+      .l = list(data = df, title = glue::glue("{title.prefix}: {names(df)}")),
       .f = ggstatsplot::ggdotplotstats,
+      x = {{ x }},
+      y = {{ y }},
       xlab = xlab,
       ylab = ylab,
       stat.title = stat.title,
@@ -164,21 +154,11 @@ grouped_ggdotplotstats <- function(data,
     )
 
   # combining the list of plots into a single plot
+  # inform user this can't be modified further with ggplot commands
   if (return == "plot") {
-    combined_object <-
-      ggstatsplot::combine_plots(
-        plotlist = plotlist_purrr,
-        ...
-      )
-
-    # inform user this can't be modified further with ggplot commands
-    if (isTRUE(messages)) {
-      grouped_message()
-    }
+    if (isTRUE(messages)) grouped_message()
+    return(ggstatsplot::combine_plots(plotlist = plotlist_purrr, ...))
   } else {
-    combined_object <- plotlist_purrr
+    return(plotlist_purrr)
   }
-
-  # return the combined plot
-  return(combined_object)
 }

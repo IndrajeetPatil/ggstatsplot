@@ -138,14 +138,7 @@ grouped_ggcorrmat <- function(data,
   }
 
   # creating a list for grouped analysis
-  df %<>%
-    grouped_list(data = ., grouping.var = {{ grouping.var }})
-
-  # list with basic arguments
-  flexiblelist <- list(
-    data = df,
-    title = glue::glue("{title.prefix}: {names(df)}")
-  )
+  df %<>% grouped_list(data = ., grouping.var = {{ grouping.var }})
 
   # ===================== grouped analysis ===================================
 
@@ -156,7 +149,7 @@ grouped_ggcorrmat <- function(data,
   # creating a list of results
   plotlist_purrr <-
     purrr::pmap(
-      .l = flexiblelist,
+      .l = list(data = df, title = glue::glue("{title.prefix}: {names(df)}")),
       .f = ggstatsplot::ggcorrmat,
       cor.vars.names = cor.vars.names,
       output = output,
@@ -198,25 +191,12 @@ grouped_ggcorrmat <- function(data,
 
   # ===================== combining results ===================================
 
+  # combining the list of plots into a single plot
+  # inform user this can't be modified further with ggplot commands
   if (output == "plot") {
-    # combining the list of plots into a single plot
-    combined_object <-
-      ggstatsplot::combine_plots(
-        plotlist = plotlist_purrr,
-        ...
-      )
-
-    # show the note about grouped_ variant producing object which is not of
-    # class ggplot
-    if (isTRUE(messages)) {
-      grouped_message()
-    }
+    if (isTRUE(messages)) grouped_message()
+    return(ggstatsplot::combine_plots(plotlist = plotlist_purrr, ...))
   } else {
-    # combining all
-    combined_object <-
-      dplyr::bind_rows(plotlist_purrr, .id = title.prefix)
+    return(dplyr::bind_rows(plotlist_purrr, .id = title.prefix))
   }
-
-  # return the datafrmae
-  return(combined_object)
 }
