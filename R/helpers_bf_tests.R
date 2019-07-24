@@ -323,27 +323,27 @@ bf_contingency_tab <- function(data,
                                ...) {
   ellipsis::check_dots_used()
 
+  # ensure the variables work quoted or unquoted
+  main <- rlang::ensym(main)
+  condition <- if (!rlang::quo_is_null(rlang::enquo(condition))) rlang::ensym(condition)
+  counts <- if (!rlang::quo_is_null(rlang::enquo(counts))) rlang::ensym(counts)
+
   # =============================== dataframe ================================
 
   # creating a dataframe
   data %<>%
-    dplyr::select(
-      .data = .,
-      main = {{ main }},
-      condition = {{ condition }},
-      counts = {{ counts }}
-    ) %>%
+    dplyr::select(.data = ., {{ main }}, {{ condition }}, {{ counts }}) %>%
     tidyr::drop_na(data = .) %>%
     tibble::as_tibble(x = .)
 
   # =========================== converting counts ============================
 
-  # untable the dataframe based on the count for each obervation
-  if ("counts" %in% names(data)) {
+  # untable the dataframe based on the count for each observation
+  if (!rlang::quo_is_null(rlang::enquo(counts))) {
     data %<>%
       tidyr::uncount(
         data = .,
-        weights = counts,
+        weights = {{ counts }},
         .remove = TRUE,
         .id = "id"
       )
@@ -353,21 +353,21 @@ bf_contingency_tab <- function(data,
   # also drop the unused levels of the factors
 
   # main
-  data %<>%
-    dplyr::mutate(.data = ., main = droplevels(as.factor(main)))
+  data %<>% dplyr::mutate(.data = ., {{ main }} := droplevels(as.factor({{ main }})))
 
   # ratio
   if (is.null(ratio)) {
-    ratio <- rep(1 / length(table(data$main)), length(table(data$main)))
+    main_length <- length(table(data %>% dplyr::pull({{ main }})))
+    ratio <- rep(1 / main_length, main_length)
   }
 
   # ========================= caption preparation ==========================
 
-  if ("condition" %in% names(data)) {
+  if (!rlang::quo_is_null(rlang::enquo(condition))) {
 
     # dropping unused levels
     data %<>%
-      dplyr::mutate(.data = ., condition = droplevels(as.factor(condition)))
+      dplyr::mutate(.data = ., {{ condition }} := droplevels(as.factor({{ condition }})))
 
     # detailed text of sample plan
     sampling_plan_text <-
@@ -383,7 +383,10 @@ bf_contingency_tab <- function(data,
     bf_results <-
       bf_extractor(
         BayesFactor::contingencyTableBF(
-          x = table(data$main, data$condition),
+          x = table(
+            data %>% dplyr::pull({{ main }}),
+            data %>% dplyr::pull({{ condition }})
+          ),
           sampleType = sampling.plan,
           fixedMargin = fixed.margin,
           priorConcentration = prior.concentration,
@@ -398,14 +401,14 @@ bf_contingency_tab <- function(data,
       )
   } else {
     # no. of levels in `main` variable
-    n_levels <- length(as.vector(table(data$main)))
+    n_levels <- length(as.vector(table(data %>% dplyr::pull({{ main }}))))
 
     if (1 / n_levels == 0 || 1 / n_levels == 1) {
       return(NULL)
     }
 
     # one sample goodness of fit test for equal proportions
-    y <- as.matrix(table(data$main))
+    y <- as.matrix(table(data %>% dplyr::pull({{ main }})))
 
     # (log) prob of data under null
     pr_y_h0 <- stats::dmultinom(x = y, prob = ratio, log = TRUE)
@@ -453,7 +456,7 @@ bf_contingency_tab <- function(data,
   }
 
   # prepare the Bayes Factor message
-  if ("condition" %in% names(data)) {
+  if (!rlang::quo_is_null(rlang::enquo(condition))) {
     bf_message <-
       substitute(
         atop(

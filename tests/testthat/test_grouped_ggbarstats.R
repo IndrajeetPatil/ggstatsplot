@@ -106,6 +106,7 @@ testthat::test_that(
     testthat::skip_on_cran()
 
     # should return a list of length 3
+    set.seed(123)
     ls_results <- suppressWarnings(ggstatsplot::grouped_ggbarstats(
       data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
       main = relig,

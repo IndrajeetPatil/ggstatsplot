@@ -392,7 +392,7 @@ testthat::test_that(
     set.seed(123)
     caption_text <- ggstatsplot::bf_contingency_tab(
       data = mtcars,
-      main = cyl,
+      main = "cyl",
       output = "alternative",
       prior.concentration = 10
     )
@@ -449,7 +449,7 @@ testthat::test_that(
     caption_text <- ggstatsplot::bf_contingency_tab(
       data = mtcars,
       main = am,
-      condition = cyl,
+      condition = "cyl",
       sampling.plan = "jointMulti",
       fixed.margin = "rows",
       output = "alternative"
@@ -458,7 +458,7 @@ testthat::test_that(
     # with counts
     caption_text2 <- ggstatsplot::bf_contingency_tab(
       data = as.data.frame(Titanic),
-      main = Survived,
+      main = "Survived",
       condition = Sex,
       counts = "Freq",
       sampling.plan = "jointMulti",

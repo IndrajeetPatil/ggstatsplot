@@ -112,39 +112,40 @@ ggbarstats <- function(data,
                        ggplot.component = NULL,
                        return = "plot",
                        messages = TRUE) {
-  bar.label <- data.label %||% bar.label
+
+  # ensure the variables work quoted or unquoted
+  main <- rlang::ensym(main)
+  condition <- rlang::ensym(condition)
+  counts <- if (!rlang::quo_is_null(rlang::enquo(counts))) rlang::ensym(counts)
 
   # ================= extracting column names as labels  =====================
 
   # if legend title is not provided, use the 'main' variable name
   if (is.null(legend.title)) {
-    legend.title <- rlang::as_name(rlang::ensym(main))
+    legend.title <- rlang::as_name(main)
   }
 
   # if x-axis label is not specified, use the 'condition' variable
   if (is.null(xlab)) {
-    xlab <- rlang::as_name(rlang::ensym(condition))
+    xlab <- rlang::as_name(condition)
   }
 
   # =============================== dataframe ================================
 
   # creating a dataframe
   data %<>%
-    dplyr::select(
-      .data = .,
-      main = {{ main }}, condition = {{ condition }}, counts = {{ counts }}
-    ) %>%
+    dplyr::select(.data = ., {{ main }}, {{ condition }}, {{ counts }}) %>%
     tidyr::drop_na(data = .) %>%
     tibble::as_tibble(x = .)
 
   # =========================== converting counts ============================
 
   # untable the dataframe based on the count for each observation
-  if ("counts" %in% names(data)) {
+  if (!rlang::quo_is_null(rlang::enquo(counts))) {
     data %<>%
       tidyr::uncount(
         data = .,
-        weights = counts,
+        weights = {{ counts }},
         .remove = TRUE,
         .id = "id"
       )
@@ -155,14 +156,18 @@ ggbarstats <- function(data,
   # main and condition need to be a factor for this analysis
   # also drop the unused levels of the factors
   data %<>%
-    dplyr::mutate(.data = ., main = droplevels(as.factor(main))) %>%
-    dplyr::mutate(.data = ., condition = droplevels(as.factor(condition)))
+    dplyr::mutate(
+      .data = .,
+      {{ main }} := droplevels(as.factor({{ main }})),
+      {{ condition }} := droplevels(as.factor({{ condition }}))
+    )
 
   # convert the data into percentages; group by conditional variable
   # dataframe with summary labels
+  bar.label <- data.label %||% bar.label
   df <-
     cat_label_df(
-      data = cat_counter(data, main, condition),
+      data = cat_counter(data = data, main = {{ main }}, condition = {{ condition }}),
       label.col.name = "bar.label",
       label.content = bar.label,
       label.separator = label.separator,
@@ -172,71 +177,74 @@ ggbarstats <- function(data,
   # ============================ label dataframe ==========================
 
   # dataframe containing all details needed for sample size and prop test
-  df_labels <- df_facet_label(data = data, x = main, y = condition)
+  df_labels <- df_facet_label(data = data, x = {{ main }}, y = {{ condition }})
 
   # ====================== preparing names for legend  ======================
 
   # reorder the category factor levels to order the legend
-  df$main <- factor(x = df$main, levels = unique(df$main))
+  df %<>%
+    dplyr::mutate(.data = ., {{ main }} := factor({{ main }}, unique({{ main }})))
 
   # getting labels for all levels of the 'main' variable factor
   if (is.null(labels.legend)) {
-    legend.labels <- as.character(df$main)
+    legend.labels <- as.character(df %>% dplyr::pull({{ main }}))
   } else {
     legend.labels <- labels.legend
   }
 
   # =================================== plot =================================
 
-  # if no. of factor levels is greater than the default palette color count
-  palette_message(
-    package = package,
-    palette = palette,
-    min_length = length(unique(levels(data$main)))[[1]]
-  )
-
-  # plot
-  p <- ggplot2::ggplot(
-    data = df,
-    mapping = ggplot2::aes(fill = main, y = perc, x = condition)
-  ) +
-    ggplot2::geom_bar(
-      stat = "identity",
-      position = "fill",
-      color = bar.outline.color,
-      na.rm = TRUE
-    ) +
-    ggplot2::scale_y_continuous(
-      labels = scales::percent,
-      breaks = seq(from = 0, to = 1, by = 0.10),
-      minor_breaks = seq(from = 0.05, to = 0.95, by = 0.10)
-    ) +
-    ggplot2::geom_label(
-      mapping = ggplot2::aes(label = bar.label, group = main),
-      show.legend = FALSE,
-      position = ggplot2::position_fill(vjust = 0.5),
-      color = "black",
-      size = label.text.size,
-      fill = label.fill.color,
-      alpha = label.fill.alpha,
-      na.rm = TRUE
-    ) +
-    ggstatsplot::theme_mprl(
-      ggtheme = ggtheme,
-      ggstatsplot.layer = ggstatsplot.layer
-    ) +
-    ggplot2::theme(
-      panel.grid.major.x = ggplot2::element_blank(),
-      legend.position = legend.position
-    ) +
-    ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title)) +
-    paletteer::scale_fill_paletteer_d(
-      package = !!package,
-      palette = !!palette,
-      direction = direction,
-      name = "",
-      labels = unique(legend.labels)
+  if (return == "plot") {
+    # if no. of factor levels is greater than the default palette color count
+    palette_message(
+      package = package,
+      palette = palette,
+      min_length = nlevels(data %>% dplyr::pull({{ main }}))[[1]]
     )
+
+    # plot
+    p <- ggplot2::ggplot(
+      data = df,
+      mapping = ggplot2::aes(x = {{ condition }}, y = perc, fill = {{ main }})
+    ) +
+      ggplot2::geom_bar(
+        stat = "identity",
+        position = "fill",
+        color = bar.outline.color,
+        na.rm = TRUE
+      ) +
+      ggplot2::scale_y_continuous(
+        labels = scales::percent,
+        breaks = seq(from = 0, to = 1, by = 0.10),
+        minor_breaks = seq(from = 0.05, to = 0.95, by = 0.10)
+      ) +
+      ggplot2::geom_label(
+        mapping = ggplot2::aes(label = bar.label, group = {{ main }}),
+        show.legend = FALSE,
+        position = ggplot2::position_fill(vjust = 0.5),
+        color = "black",
+        size = label.text.size,
+        fill = label.fill.color,
+        alpha = label.fill.alpha,
+        na.rm = TRUE
+      ) +
+      ggstatsplot::theme_mprl(
+        ggtheme = ggtheme,
+        ggstatsplot.layer = ggstatsplot.layer
+      ) +
+      ggplot2::theme(
+        panel.grid.major.x = ggplot2::element_blank(),
+        legend.position = legend.position
+      ) +
+      ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title)) +
+      paletteer::scale_fill_paletteer_d(
+        package = !!package,
+        palette = !!palette,
+        direction = direction,
+        name = "",
+        labels = unique(legend.labels)
+      )
+  }
 
   # ========================= statistical analysis ===========================
 
@@ -246,8 +254,8 @@ ggbarstats <- function(data,
     subtitle <-
       subtitle_contingency_tab(
         data = data,
-        main = main,
-        condition = condition,
+        main = {{ main }},
+        condition = {{ condition }},
         ratio = ratio,
         nboot = nboot,
         paired = paired,
@@ -267,8 +275,8 @@ ggbarstats <- function(data,
       caption <-
         bf_contingency_tab(
           data = data,
-          main = main,
-          condition = condition,
+          main = {{ main }},
+          condition = {{ condition }},
           sampling.plan = sampling.plan,
           fixed.margin = fixed.margin,
           prior.concentration = prior.concentration,
@@ -281,27 +289,23 @@ ggbarstats <- function(data,
 
   # ================ sample size and proportion test labels ===================
 
-  # adding significance labels to bars for proportion tests
-  if (isTRUE(bar.proptest)) {
-    # display grouped proportion test results
-    if (isTRUE(messages)) {
-      # tell the user what these results are
-      proptest_message(
-        main = rlang::as_name(rlang::ensym(main)),
-        condition = rlang::as_name(rlang::ensym(condition))
-      )
+  if (return == "plot") {
+    # adding significance labels to bars for proportion tests
+    if (isTRUE(bar.proptest)) {
+      # display grouped proportion test results
+      if (isTRUE(messages)) {
+        # tell the user what these results are
+        proptest_message(rlang::as_name(main), rlang::as_name(condition))
 
-      # print the tibble and leave out unnecessary columns
-      print(df_labels)
-    }
+        # print the tibble
+        print(df_labels)
+      }
 
-    # modify plot
-    p <-
-      p +
-      ggplot2::geom_text(
+      # modify plot
+      p <- p + ggplot2::geom_text(
         data = df_labels,
         mapping = ggplot2::aes(
-          x = condition,
+          x = {{ condition }},
           y = 1.05,
           label = significance,
           fill = NULL
@@ -309,16 +313,14 @@ ggbarstats <- function(data,
         size = 5,
         na.rm = TRUE
       )
-  }
+    }
 
-  # adding sample size info
-  if (isTRUE(sample.size.label)) {
-    p <-
-      p +
-      ggplot2::geom_text(
+    # adding sample size info
+    if (isTRUE(sample.size.label)) {
+      p <- p + ggplot2::geom_text(
         data = df_labels,
         mapping = ggplot2::aes(
-          x = condition,
+          x = {{ condition }},
           y = -0.05,
           label = N,
           fill = NULL
@@ -326,23 +328,22 @@ ggbarstats <- function(data,
         size = 4,
         na.rm = TRUE
       )
-  }
-
-  # =========================== putting all together ========================
-
-  # if we need to modify `x`-axis orientation
-  if (!is.null(x.axis.orientation)) {
-    if (x.axis.orientation == "slant") {
-      angle <- 45
-      vjust <- 1
-    } else {
-      angle <- 90
-      vjust <- 0.5
     }
 
-    # adjusting plot label
-    p <-
-      p + ggplot2::theme(
+    # =========================== putting all together ========================
+
+    # if we need to modify `x`-axis orientation
+    if (!is.null(x.axis.orientation)) {
+      if (x.axis.orientation == "slant") {
+        angle <- 45
+        vjust <- 1
+      } else {
+        angle <- 90
+        vjust <- 0.5
+      }
+
+      # adjusting plot label
+      p <- p + ggplot2::theme(
         axis.text.x = ggplot2::element_text(
           angle = angle,
           vjust = vjust,
@@ -350,19 +351,18 @@ ggbarstats <- function(data,
           face = "bold"
         )
       )
-  }
+    }
 
-  # preparing the plot
-  p <-
-    p +
-    ggplot2::labs(
+    # preparing the plot
+    p <- p + ggplot2::labs(
       x = xlab,
       y = ylab,
       subtitle = subtitle,
       title = title,
       caption = caption
     ) + # adding ggplot component
-    ggplot.component
+      ggplot.component
+  }
 
   # return the final plot
   return(switch(

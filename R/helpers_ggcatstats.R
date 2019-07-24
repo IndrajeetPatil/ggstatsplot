@@ -118,15 +118,12 @@ cat_counter <- function(data, main, condition = NULL, ...) {
 #' @noRd
 #' @keywords internal
 
+# combine info about sample size plus
 df_facet_label <- function(data, x, y) {
-
-  # combine info about sample size plus
-  df <- data %>% {
+  data %>% {
     dplyr::full_join(
-      x = dplyr::group_by(.data = ., {{ y }}) %>%
-        dplyr::summarize(.data = ., N = dplyr::n()) %>%
-        dplyr::mutate(.data = ., N = paste0("(n = ", N, ")", sep = "")) %>%
-        dplyr::ungroup(x = .),
+      x = cat_counter(data = ., main = {{ y }}) %>%
+        dplyr::mutate(.data = ., N = paste0("(n = ", counts, ")", sep = "")),
       y = groupedstats::grouped_proptest(
         data = .,
         grouping.vars = {{ y }},
@@ -136,7 +133,4 @@ df_facet_label <- function(data, x, y) {
       by = rlang::as_name(rlang::ensym(y))
     )
   }
-
-  # return the final dataframe
-  return(df)
 }

@@ -168,10 +168,10 @@ grouped_ggbarstats <- function(data,
     purrr::pmap(
       .l = list(data = df, title = glue::glue("{title.prefix}: {names(df)}")),
       .f = ggstatsplot::ggbarstats,
+      # put common parameters here
       main = {{ main }},
       condition = {{ condition }},
       counts = {{ counts }},
-      # put common parameters here
       ratio = ratio,
       paired = paired,
       results.subtitle = results.subtitle,
@@ -215,21 +215,11 @@ grouped_ggbarstats <- function(data,
     )
 
   # combining the list of plots into a single plot
+  # inform user this can't be modified further with ggplot commands
   if (return == "plot") {
-    combined_object <-
-      ggstatsplot::combine_plots(
-        plotlist = plotlist_purrr,
-        ...
-      )
-
-    # inform user this can't be modified further with ggplot commands
-    if (isTRUE(messages)) {
-      grouped_message()
-    }
+    if (isTRUE(messages)) grouped_message()
+    return(ggstatsplot::combine_plots(plotlist = plotlist_purrr, ...))
   } else {
-    combined_object <- plotlist_purrr
+    return(plotlist_purrr)
   }
-
-  # return the combined plot
-  return(combined_object)
 }
