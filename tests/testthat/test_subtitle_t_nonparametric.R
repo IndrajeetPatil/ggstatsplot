@@ -5,8 +5,6 @@ context("subtitle_mann_nonparametric")
 testthat::test_that(
   desc = "subtitle_mann_nonparametric works - between-subjects design",
   code = {
-    testthat::skip_on_cran()
-
     # ggstatsplot output
     set.seed(123)
     using_function <-

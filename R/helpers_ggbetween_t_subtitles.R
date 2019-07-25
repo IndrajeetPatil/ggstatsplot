@@ -78,33 +78,33 @@ subtitle_t_parametric <- function(data,
                                   stat.title = NULL,
                                   ...) {
 
+  # make sure both quoted and unquoted arguments are supported
+  x <- rlang::ensym(x)
+  y <- rlang::ensym(y)
+
   # creating a dataframe
-  data <-
-    dplyr::select(.data = data, x = {{ x }}, y = {{ y }}) %>%
-    dplyr::mutate_if(.tbl = ., .predicate = is.character, .funs = as.factor) %>%
-    dplyr::mutate_if(.tbl = ., .predicate = is.factor, .funs = droplevels) %>%
+  data %<>%
+    dplyr::select(.data = ., {{ x }}, {{ y }}) %>%
+    dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }}))) %>%
     tibble::as_tibble(x = .)
 
   # properly removing NAs if it's a paired design
   if (isTRUE(paired)) {
     data %<>%
-      long_to_wide_converter(
-        data = .,
-        x = x,
-        y = y
-      ) %>%
+      long_to_wide_converter(data = ., x = {{ x }}, y = {{ y }}) %>%
       tidyr::gather(data = ., key, value, -rowid) %>%
-      dplyr::rename(.data = ., x = key, y = value) %>%
-      dplyr::mutate(x = factor(x))
+      dplyr::rename(.data = ., {{ x }} := key, {{ y }} := value) %>%
+      dplyr::mutate(.data = ., {{ x }} := factor({{ x }}))
 
     # sample size
     sample_size <- length(unique(data$rowid))
 
     # removing the unnecessary `rowid` column
-    data %<>%
-      dplyr::select(.data = ., -rowid)
-  } else {
-    # remove NAs listwise for between-subjects design
+    data %<>% dplyr::select(.data = ., -rowid)
+  }
+
+  # remove NAs listwise for between-subjects design
+  if (isFALSE(paired)) {
     data %<>% tidyr::drop_na(data = .)
 
     # sample size
@@ -122,7 +122,7 @@ subtitle_t_parametric <- function(data,
 
   # setting up the t-test model and getting its summary
   tobject <- stats::t.test(
-    formula = y ~ x,
+    formula = rlang::new_formula({{ y }}, {{ x }}),
     data = data,
     paired = paired,
     alternative = "two.sided",
@@ -136,7 +136,7 @@ subtitle_t_parametric <- function(data,
   # effect size object
   effsize_df <-
     effsize_t_parametric(
-      formula = y ~ x,
+      formula = rlang::new_formula({{ y }}, {{ x }}),
       data = data,
       paired = paired,
       hedges.correction = hedges.correction,
@@ -282,32 +282,33 @@ subtitle_mann_nonparametric <- function(data,
                                         messages = TRUE,
                                         ...) {
 
+  # make sure both quoted and unquoted arguments are supported
+  x <- rlang::ensym(x)
+  y <- rlang::ensym(y)
+
   # creating a dataframe
-  data <-
-    dplyr::select(.data = data, x = {{ x }}, y = {{ y }}) %>%
-    dplyr::mutate_if(.tbl = ., .predicate = is.character, .funs = as.factor) %>%
-    dplyr::mutate_if(.tbl = ., .predicate = is.factor, .funs = droplevels) %>%
+  data %<>%
+    dplyr::select(.data = ., {{ x }}, {{ y }}) %>%
+    dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }}))) %>%
     tibble::as_tibble(x = .)
 
   # properly removing NAs if it's a paired design
   if (isTRUE(paired)) {
     data %<>%
-      long_to_wide_converter(
-        data = .,
-        x = x,
-        y = y
-      ) %>%
+      long_to_wide_converter(data = ., x = {{ x }}, y = {{ y }}) %>%
       tidyr::gather(data = ., key, value, -rowid) %>%
-      dplyr::rename(.data = ., x = key, y = value) %>%
-      dplyr::mutate(x = factor(x))
+      dplyr::rename(.data = ., {{ x }} := key, {{ y }} := value) %>%
+      dplyr::mutate(.data = ., {{ x }} := factor({{ x }}))
 
     # sample size
     sample_size <- length(unique(data$rowid))
 
     # removing the unnecessary `rowid` column
     data %<>% dplyr::select(.data = ., -rowid)
-  } else {
-    # remove NAs listwise for between-subjects design
+  }
+
+  # remove NAs listwise for between-subjects design
+  if (isFALSE(paired)) {
     data %<>% tidyr::drop_na(data = .)
 
     # sample size
@@ -317,7 +318,7 @@ subtitle_mann_nonparametric <- function(data,
   # setting up the test and getting its summary
   stats_df <-
     broomExtra::tidy(stats::wilcox.test(
-      formula = y ~ x,
+      formula = rlang::new_formula({{ y }}, {{ x }}),
       data = data,
       paired = paired,
       alternative = "two.sided",
@@ -340,8 +341,8 @@ subtitle_mann_nonparametric <- function(data,
   # computing effect size
   effsize_df <- rlang::exec(
     .fn = .f,
-    x = data$y,
-    g = data$x,
+    x = data %>% dplyr::pull({{ y }}),
+    g = data %>% dplyr::pull({{ x }}),
     ci = TRUE,
     conf = conf.level,
     type = conf.type,
@@ -443,17 +444,20 @@ subtitle_t_robust <- function(data,
                               stat.title = NULL,
                               messages = TRUE,
                               ...) {
+  # make sure both quoted and unquoted arguments are supported
+  x <- rlang::ensym(x)
+  y <- rlang::ensym(y)
 
   # creating a dataframe
-  data <-
-    dplyr::select(.data = data, x = {{ x }}, y = {{ y }}) %>%
-    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
+  data %<>%
+    dplyr::select(.data = ., {{ x }}, {{ y }}) %>%
+    dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }}))) %>%
     tibble::as_tibble(x = .)
 
   # ---------------------------- between-subjects design --------------------
 
   # running bayesian analysis
-  if (!isTRUE(paired)) {
+  if (isFALSE(paired)) {
 
     # removing NAs
     data %<>% tidyr::drop_na(.)
@@ -464,7 +468,7 @@ subtitle_t_robust <- function(data,
     # Yuen's test for trimmed means
     stats_df <-
       WRS2::yuen(
-        formula = y ~ x,
+        formula = rlang::new_formula({{ y }}, {{ x }}),
         data = data,
         tr = tr
       )
@@ -472,7 +476,7 @@ subtitle_t_robust <- function(data,
     # computing effect size and its confidence interval
     effsize_df <-
       WRS2::yuen.effect.ci(
-        formula = y ~ x,
+        formula = rlang::new_formula({{ y }}, {{ x }}),
         data = data,
         tr = tr,
         nboot = nboot,
@@ -498,28 +502,25 @@ subtitle_t_robust <- function(data,
       k = k,
       k.parameter = k.df
     )
+  }
 
-    # ---------------------------- within-subjects design -------------------
-  } else {
+  # ---------------------------- within-subjects design -------------------
 
+  if (isTRUE(paired)) {
     # converting to long format and then getting it back in wide so that the
     # rowid variable can be used as the block variable
-    data_within <-
-      long_to_wide_converter(
-        data = data,
-        x = x,
-        y = y
-      ) %>%
+    data <-
+      long_to_wide_converter(data = data, x = {{ x }}, y = {{ y }}) %>%
       tidyr::gather(data = ., key, value, -rowid) %>%
       dplyr::arrange(.data = ., rowid)
 
     # sample size
-    sample_size <- length(unique(data_within$rowid))
+    sample_size <- length(unique(data$rowid))
 
     # getting dataframe of results from the custom function
     stats_df <-
       yuend_ci(
-        data = data_within,
+        data = data,
         x = key,
         y = value,
         tr = tr,
@@ -528,7 +529,7 @@ subtitle_t_robust <- function(data,
         conf.type = conf.type
       )
 
-    k.df <- 0
+    k.df <- 0L
 
     # preparing subtitle
     subtitle <- subtitle_template(
@@ -602,17 +603,15 @@ subtitle_t_bayes <- function(data,
                              paired = FALSE,
                              k = 2,
                              ...) {
+  # make sure both quoted and unquoted arguments are supported
   x <- rlang::ensym(x)
   y <- rlang::ensym(y)
 
   # creating a dataframe
-  data %<>%
-    dplyr::select(.data = ., {{ x }}, {{ y }}) %>%
-    dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }}))) %>%
-    tibble::as_tibble(.)
-
-  # preparing the subtitle
   subtitle <-
+    dplyr::select(.data = data, {{ x }}, {{ y }}) %>%
+    dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }}))) %>%
+    tibble::as_tibble(.) %>% # preparing the subtitle
     bf_ttest(
       data = data,
       x = {{ x }},

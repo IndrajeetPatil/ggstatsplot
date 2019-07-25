@@ -152,7 +152,7 @@ testthat::test_that(
       suppressWarnings(
         ggstatsplot::subtitle_t_onesample(
           data = movies_long,
-          x = length,
+          x = "length",
           test.value = 120,
           type = "p",
           effsize.type = "d",
@@ -270,7 +270,7 @@ testthat::test_that(
     using_function <-
       ggstatsplot::subtitle_t_onesample(
         data = anscombe,
-        x = x1,
+        x = "x1",
         test.value = 8,
         type = "r",
         k = 4,

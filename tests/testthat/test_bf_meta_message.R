@@ -98,8 +98,10 @@ testthat::test_that(
       ggstatsplot::bf_meta_message(
         data = df2,
         k = 3,
-        d = 5, tau = 7
+        d = 5,
+        tau = 7
       )
     )
+    testthat::expect_error(ggstatsplot::bf_meta_message(data = df2, k = 3, tau = 7))
   }
 )
