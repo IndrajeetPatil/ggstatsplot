@@ -56,12 +56,13 @@ subtitle_t_onesample <- function(data,
 
   # check the dots
   ellipsis::check_dots_used()
+  x <- rlang::ensym(x)
 
   # ====================== dataframe ========================================
 
   # preparing a dataframe out of provided inputs
-  data <-
-    dplyr::select(.data = data, x = !!rlang::enquo(x)) %>%
+  data %<>%
+    dplyr::select(.data = ., {{ x }}) %>%
     tidyr::drop_na(data = .) %>%
     tibble::as_tibble(x = .)
 
@@ -71,7 +72,7 @@ subtitle_t_onesample <- function(data,
   # standardize the type of statistics
   stats.type <- stats_type_switch(stats.type = type)
 
-  # ========================= parametric ======================================
+  # ========================= parametric ====================================
 
   if (stats.type == "parametric") {
 
@@ -86,7 +87,7 @@ subtitle_t_onesample <- function(data,
 
     # creating model object
     mod_object <- stats::t.test(
-      x = data$x,
+      x = data %>% dplyr::pull({{ x }}),
       mu = test.value,
       conf.level = conf.level,
       alternative = "two.sided",
@@ -98,7 +99,7 @@ subtitle_t_onesample <- function(data,
 
     # creating effect size info
     effsize_df <- effsize_t_parametric(
-      formula = ~x,
+      formula = rlang::new_formula(NULL, {{ x }}),
       data = data,
       tobject = mod_object,
       mu = test.value,
@@ -118,7 +119,7 @@ subtitle_t_onesample <- function(data,
     # setting up the Mann-Whitney U-test and getting its summary
     stats_df <-
       broomExtra::tidy(stats::wilcox.test(
-        x = data$x,
+        x = data %>% dplyr::pull({{ x }}),
         alternative = "two.sided",
         na.action = na.omit,
         mu = test.value,
@@ -129,7 +130,7 @@ subtitle_t_onesample <- function(data,
 
     # effect size dataframe
     effsize_df <- rcompanion::wilcoxonOneSampleR(
-      x = data$x,
+      x = data %>% dplyr::pull({{ x }}),
       mu = test.value,
       ci = TRUE,
       conf = conf.level,
@@ -183,7 +184,7 @@ subtitle_t_onesample <- function(data,
   if (stats.type == "robust") {
     # running one-sample percentile bootstrap
     stats_df <- WRS2::onesampb(
-      x = data$x,
+      x = data %>% dplyr::pull({{ x }}),
       est = robust.estimator,
       nboot = nboot,
       nv = test.value,
@@ -236,7 +237,7 @@ subtitle_t_onesample <- function(data,
   if (stats.type == "bayes") {
     subtitle <- bf_one_sample_ttest(
       data = data,
-      x = x,
+      x = {{ x }},
       test.value = test.value,
       bf.prior = bf.prior,
       caption = NULL,

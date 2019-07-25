@@ -141,7 +141,7 @@ subtitle_contingency_tab <- function(data,
       dplyr::mutate(.data = ., condition = droplevels(as.factor(condition)))
 
     # in case there is no variation, no subtitle will be shown
-    if (length(unique(levels(data$condition))) == 1L) {
+    if (nlevels(data$condition)[[1]] == 1L) {
       # display message
       message(cat(
         crayon::red("Error: "),
@@ -186,7 +186,7 @@ subtitle_contingency_tab <- function(data,
   if ("condition" %in% names(data)) {
 
     # running Pearson's Chi-square test of independence
-    if (!isTRUE(paired)) {
+    if (isFALSE(paired)) {
       # ======================== Pearson's test ==============================
 
       # object containing stats

@@ -5,8 +5,6 @@ context("subtitle_t_robust")
 testthat::test_that(
   desc = "subtitle_t_robust - within-subjects",
   code = {
-    testthat::skip_on_cran()
-
     # creating a dataframe
     df <- iris %>%
       tidyr::gather(key, value, Sepal.Length, Sepal.Width) %>%
@@ -16,7 +14,7 @@ testthat::test_that(
     set.seed(123)
     using_function1 <- subtitle_t_robust(
       data = df,
-      x = key,
+      x = "key",
       y = value,
       paired = TRUE,
       conf.level = 0.90,
@@ -93,7 +91,7 @@ testthat::test_that(
     using_function1 <- subtitle_t_robust(
       data = mtcars,
       x = am,
-      y = wt,
+      y = "wt",
       paired = FALSE,
       conf.level = 0.99,
       k = 3,

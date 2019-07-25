@@ -558,34 +558,34 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
 )</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>95%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>100</span><span style='color: #0000BB;'> bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Results from one-sample proportion tests for each level of the variable
 #&gt; </span><span style='color: #BBBB00;'>Eye</span><span style='color: #0000BB;'> testing for equal proportions of the variable </span><span style='color: #BBBB00;'>Hair</span><span style='color: #0000BB;'>.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 4 x 10</span><span>
-#&gt;   condition N         Black  Brown  Red    Blond  `Chi-squared`    df `p-value`
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> Brown     (n = 98)  32.65% 54.08% 10.20% 3.06%          62.9      3     0    
-#&gt; </span><span style='color: #555555;'>2</span><span> Blue      (n = 101) 10.89% 49.50% 9.90%  29.70%         42.4      3     0    
-#&gt; </span><span style='color: #555555;'>3</span><span> Hazel     (n = 47)  21.28% 53.19% 14.89% 10.64%         21        3     0    
-#&gt; </span><span style='color: #555555;'>4</span><span> Green     (n = 33)  9.09%  45.45% 21.21% 24.24%          9.06     3     0.028
-#&gt;   significance
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       
-#&gt; </span><span style='color: #555555;'>1</span><span> ***         
-#&gt; </span><span style='color: #555555;'>2</span><span> ***         
-#&gt; </span><span style='color: #555555;'>3</span><span> ***         
-#&gt; </span><span style='color: #555555;'>4</span><span> *           </div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>95%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>100</span><span style='color: #0000BB;'> bootstrap samples.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 4 x 12</span><span>
+#&gt;   Eye   counts  perc N         Black  Brown  Red    Blond  `Chi-squared`    df
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> Green     33  11.8 (n = 33)  9.09%  45.45% 21.21% 24.24%          9.06     3
+#&gt; </span><span style='color: #555555;'>2</span><span> Hazel     47  16.8 (n = 47)  21.28% 53.19% 14.89% 10.64%         21        3
+#&gt; </span><span style='color: #555555;'>3</span><span> Blue     101  36.2 (n = 101) 10.89% 49.50% 9.90%  29.70%         42.4      3
+#&gt; </span><span style='color: #555555;'>4</span><span> Brown     98  35.1 (n = 98)  32.65% 54.08% 10.20% 3.06%          62.9      3
+#&gt;   `p-value` significance
+#&gt;       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       
+#&gt; </span><span style='color: #555555;'>1</span><span>     0.028 *           
+#&gt; </span><span style='color: #555555;'>2</span><span>     0     ***         
+#&gt; </span><span style='color: #555555;'>3</span><span>     0     ***         
+#&gt; </span><span style='color: #555555;'>4</span><span>     0     ***         </div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>95%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>100</span><span style='color: #0000BB;'> bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Results from one-sample proportion tests for each level of the variable
 #&gt; </span><span style='color: #BBBB00;'>Eye</span><span style='color: #0000BB;'> testing for equal proportions of the variable </span><span style='color: #BBBB00;'>Hair</span><span style='color: #0000BB;'>.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 4 x 10</span><span>
-#&gt;   condition N         Black  Brown  Red    Blond  `Chi-squared`    df `p-value`
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> Brown     (n = 122) 29.51% 54.10% 13.11% 3.28%          72.2      3     0    
-#&gt; </span><span style='color: #555555;'>2</span><span> Blue      (n = 114) 7.89%  29.82% 6.14%  56.14%         74.8      3     0    
-#&gt; </span><span style='color: #555555;'>3</span><span> Hazel     (n = 46)  10.87% 63.04% 15.22% 10.87%         35.7      3     0    
-#&gt; </span><span style='color: #555555;'>4</span><span> Green     (n = 31)  6.45%  45.16% 22.58% 25.81%          9.39     3     0.025
-#&gt;   significance
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       
-#&gt; </span><span style='color: #555555;'>1</span><span> ***         
-#&gt; </span><span style='color: #555555;'>2</span><span> ***         
-#&gt; </span><span style='color: #555555;'>3</span><span> ***         
-#&gt; </span><span style='color: #555555;'>4</span><span> *           
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 4 x 12</span><span>
+#&gt;   Eye   counts  perc N         Black  Brown  Red    Blond  `Chi-squared`    df
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> Green     31  9.90 (n = 31)  6.45%  45.16% 22.58% 25.81%          9.39     3
+#&gt; </span><span style='color: #555555;'>2</span><span> Hazel     46 14.7  (n = 46)  10.87% 63.04% 15.22% 10.87%         35.7      3
+#&gt; </span><span style='color: #555555;'>3</span><span> Blue     114 36.4  (n = 114) 7.89%  29.82% 6.14%  56.14%         74.8      3
+#&gt; </span><span style='color: #555555;'>4</span><span> Brown    122 39.0  (n = 122) 29.51% 54.10% 13.11% 3.28%          72.2      3
+#&gt;   `p-value` significance
+#&gt;       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       
+#&gt; </span><span style='color: #555555;'>1</span><span>     0.025 *           
+#&gt; </span><span style='color: #555555;'>2</span><span>     0     ***         
+#&gt; </span><span style='color: #555555;'>3</span><span>     0     ***         
+#&gt; </span><span style='color: #555555;'>4</span><span>     0     ***         
 #&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Individual plots in the combined `grouped_` plot
 #&gt; can't be further modified with `ggplot2` functions.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggbarstats-1.png' alt='' width='700' height='433' /></div><div class='input'>

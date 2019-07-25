@@ -54,8 +54,7 @@ line_labeller <- function(plot,
   }
 
   # adding label to the plot
-  plot <-
-    plot +
+  plot <- plot +
     ggplot2::geom_label(
       mapping = ggplot2::aes(
         label = list(bquote(.(label.text) == .(
@@ -168,16 +167,15 @@ histo_labeller <- function(plot,
 
     # adding a text label with test value
     if (isTRUE(test.line.labeller)) {
-      plot <-
-        line_labeller(
-          plot = plot,
-          x = test.value,
-          y = y.label.position,
-          label.text = "test",
-          k = test.k,
-          jitter = -0.25,
-          color = test.value.color
-        )
+      plot <- line_labeller(
+        plot = plot,
+        x = test.value,
+        y = y.label.position,
+        label.text = "test",
+        k = test.k,
+        jitter = -0.25,
+        color = test.value.color
+      )
     }
   }
 
@@ -203,16 +201,15 @@ histo_labeller <- function(plot,
 
     # adding a text label with mean value
     if (isTRUE(centrality.line.labeller)) {
-      plot <-
-        line_labeller(
-          plot = plot,
-          x = x.intercept,
-          y = y.label.position,
-          label.text = label.text,
-          k = centrality.k,
-          jitter = 0.25,
-          color = centrality.color
-        )
+      plot <- line_labeller(
+        plot = plot,
+        x = x.intercept,
+        y = y.label.position,
+        label.text = label.text,
+        k = centrality.k,
+        jitter = 0.25,
+        color = centrality.color
+      )
     }
   }
 
