@@ -425,7 +425,7 @@ ggsignif_adder <- function(plot,
   # only significant or non-significant comparisons
   if (pairwise.display %in% c("s", "significant")) {
     df_pairwise %<>% dplyr::filter(.data = ., significance != "ns")
-  } else {
+  } else if (pairwise.display %in% c("ns", "nonsignificant", "non-significant")) {
     df_pairwise %<>% dplyr::filter(.data = ., significance == "ns")
   }
 

@@ -221,7 +221,6 @@ testthat::test_that(
   }
 )
 
-
 # robust test works -------------------------------------------------
 
 testthat::test_that(
