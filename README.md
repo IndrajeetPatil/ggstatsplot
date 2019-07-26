@@ -218,7 +218,6 @@ ggstatsplot::ggplot_converter
 #>   # returning the converted plot
 #>   return(p)
 #> }
-#> <bytecode: 0x0000000031c288e8>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -784,11 +783,14 @@ ggstatsplot::ggpiestats(
 #> Note: Results from one-sample proportion tests for each level of the variable
 #> 2nd survey testing for equal proportions of the variable 1st survey.
 #> # A tibble: 2 x 10
-#>   `2nd survey` counts  perc N     Approve Disapprove `Chi-squared`    df
-#>   <fct>         <int> <dbl> <chr> <chr>   <chr>              <dbl> <dbl>
-#> 1 Disapprove      720   45  (n =~ 20.83%  79.17%              245      1
-#> 2 Approve         880   55. (n =~ 90.23%  9.77%               570.     1
-#> # ... with 2 more variables: `p-value` <dbl>, significance <chr>
+#>   `2nd survey` counts  perc N         Approve Disapprove `Chi-squared`
+#>   <fct>         <int> <dbl> <chr>     <chr>   <chr>              <dbl>
+#> 1 Disapprove      720   45  (n = 720) 20.83%  79.17%              245 
+#> 2 Approve         880   55. (n = 880) 90.23%  9.77%               570.
+#>      df `p-value` significance
+#>   <dbl>     <dbl> <chr>       
+#> 1     1         0 ***         
+#> 2     1         0 ***
 ```
 
 <img src="man/figures/README-ggpiestats3-1.png" width="100%" />
@@ -1181,14 +1183,22 @@ ggstatsplot::ggcorrmat(
   p.adjust.method = "holm"
 )
 #> # A tibble: 6 x 7
-#>   variable  sleep_total sleep_rem sleep_cycle     awake   brainwt    bodywt
-#>   <chr>           <dbl>     <dbl>       <dbl>     <dbl>     <dbl>     <dbl>
-#> 1 sleep_to~   0.        5.291e-12   9.138e- 3 0.        3.170e- 5 2.568e- 6
-#> 2 sleep_rem   4.070e-13 0.          1.978e- 2 5.291e-12 9.698e- 3 3.762e- 3
-#> 3 sleep_cy~   2.285e- 3 1.978e- 2   0.        9.138e- 3 1.637e- 9 1.696e- 5
-#> 4 awake       0.        4.070e-13   2.285e- 3 0.        3.170e- 5 2.568e- 6
-#> 5 brainwt     4.528e- 6 4.849e- 3   1.488e-10 4.528e- 6 0.        4.509e-17
-#> 6 bodywt      2.568e- 7 7.524e- 4   2.120e- 6 2.568e- 7 3.221e-18 0.
+#>   variable    sleep_total sleep_rem sleep_cycle     awake   brainwt
+#>   <chr>             <dbl>     <dbl>       <dbl>     <dbl>     <dbl>
+#> 1 sleep_total   0.        5.291e-12   9.138e- 3 0.        3.170e- 5
+#> 2 sleep_rem     4.070e-13 0.          1.978e- 2 5.291e-12 9.698e- 3
+#> 3 sleep_cycle   2.285e- 3 1.978e- 2   0.        9.138e- 3 1.637e- 9
+#> 4 awake         0.        4.070e-13   2.285e- 3 0.        3.170e- 5
+#> 5 brainwt       4.528e- 6 4.849e- 3   1.488e-10 4.528e- 6 0.       
+#> 6 bodywt        2.568e- 7 7.524e- 4   2.120e- 6 2.568e- 7 3.221e-18
+#>      bodywt
+#>       <dbl>
+#> 1 2.568e- 6
+#> 2 3.762e- 3
+#> 3 1.696e- 5
+#> 4 2.568e- 6
+#> 5 4.509e-17
+#> 6 0.
 
 # getting the confidence intervals for correlations
 ggstatsplot::ggcorrmat(
@@ -1202,23 +1212,40 @@ ggstatsplot::ggcorrmat(
 #> the upper triangle: p-values adjusted for multiple comparisons
 #> the lower triangle: unadjusted p-values.
 #> # A tibble: 15 x 7
-#>    pair                 r     lower     upper         p lower.adj upper.adj
-#>    <chr>            <dbl>     <dbl>     <dbl>     <dbl>     <dbl>     <dbl>
-#>  1 sleep_total-s~  0.5922  4.000e-1  7.345e-1 4.981e- 7   0.3027    0.7817 
-#>  2 sleep_total-s~ -0.3481 -6.214e-1  6.818e-4 5.090e- 2  -0.6789    0.1002 
-#>  3 sleep_total-a~ -1      -1.000e+0 -1.000e+0 0.         -1        -1      
-#>  4 sleep_total-b~ -0.4293 -6.220e-1 -1.875e-1 9.621e- 4  -0.6858   -0.07796
-#>  5 sleep_total-b~ -0.3851 -5.547e-1 -1.847e-1 3.247e- 4  -0.6050   -0.1106 
-#>  6 sleep_rem-sle~ -0.2066 -5.180e-1  1.531e-1 2.566e- 1  -0.5180    0.1531 
-#>  7 sleep_rem-awa~ -0.5922 -7.345e-1 -4.000e-1 4.981e- 7  -0.7832   -0.2990 
-#>  8 sleep_rem-bra~ -0.2636 -5.096e-1  2.217e-2 7.022e- 2  -0.5400    0.06404
-#>  9 sleep_rem-bod~ -0.3163 -5.262e-1 -7.004e-2 1.302e- 2  -0.5662   -0.01317
-#> 10 sleep_cycle-a~  0.3481 -6.818e-4  6.214e-1 5.090e- 2  -0.1145    0.6867 
-#> 11 sleep_cycle-b~  0.7125  4.739e-1  8.536e-1 1.001e- 5   0.3239    0.8954 
-#> 12 sleep_cycle-b~  0.6545  3.962e-1  8.168e-1 4.834e- 5   0.2459    0.8656 
-#> 13 awake-brainwt   0.4293  1.875e-1  6.220e-1 9.621e- 4   0.08322   0.6829 
-#> 14 awake-bodywt    0.3851  1.847e-1  5.547e-1 3.247e- 4   0.1049    0.6087 
-#> 15 brainwt-bodywt  0.8378  7.373e-1  9.020e-1 8.181e-16   0.6716    0.9238
+#>    pair                          r      lower      upper         p
+#>    <chr>                     <dbl>      <dbl>      <dbl>     <dbl>
+#>  1 sleep_total-sleep_rem    0.5922  0.4000     0.7345    4.981e- 7
+#>  2 sleep_total-sleep_cycle -0.3481 -0.6214     0.0006818 5.090e- 2
+#>  3 sleep_total-awake       -1      -1         -1         0.       
+#>  4 sleep_total-brainwt     -0.4293 -0.6220    -0.1875    9.621e- 4
+#>  5 sleep_total-bodywt      -0.3851 -0.5547    -0.1847    3.247e- 4
+#>  6 sleep_rem-sleep_cycle   -0.2066 -0.5180     0.1531    2.566e- 1
+#>  7 sleep_rem-awake         -0.5922 -0.7345    -0.4000    4.981e- 7
+#>  8 sleep_rem-brainwt       -0.2636 -0.5096     0.02217   7.022e- 2
+#>  9 sleep_rem-bodywt        -0.3163 -0.5262    -0.07004   1.302e- 2
+#> 10 sleep_cycle-awake        0.3481 -0.0006818  0.6214    5.090e- 2
+#> 11 sleep_cycle-brainwt      0.7125  0.4739     0.8536    1.001e- 5
+#> 12 sleep_cycle-bodywt       0.6545  0.3962     0.8168    4.834e- 5
+#> 13 awake-brainwt            0.4293  0.1875     0.6220    9.621e- 4
+#> 14 awake-bodywt             0.3851  0.1847     0.5547    3.247e- 4
+#> 15 brainwt-bodywt           0.8378  0.7373     0.9020    8.181e-16
+#>    lower.adj upper.adj
+#>        <dbl>     <dbl>
+#>  1   0.3027    0.7817 
+#>  2  -0.6789    0.1002 
+#>  3  -1        -1      
+#>  4  -0.6858   -0.07796
+#>  5  -0.6050   -0.1106 
+#>  6  -0.5180    0.1531 
+#>  7  -0.7832   -0.2990 
+#>  8  -0.5400    0.06404
+#>  9  -0.5662   -0.01317
+#> 10  -0.1145    0.6867 
+#> 11   0.3239    0.8954 
+#> 12   0.2459    0.8656 
+#> 13   0.08322   0.6829 
+#> 14   0.1049    0.6087 
+#> 15   0.6716    0.9238
 
 # getting the sample sizes for all pairs
 ggstatsplot::ggcorrmat(

@@ -10,6 +10,9 @@ ggsignif_adder(plot, df_pairwise, data, pairwise.annotation = "asterisk",
 \arguments{
 \item{plot}{A \code{ggplot} object on which \code{geom_signif} needed to be added.}
 
+\item{df_pairwise}{A dataframe containing results from pairwise comparisons
+(produced by \code{ggstatsplot::pairwise_p()} function).}
+
 \item{data}{A dataframe (or a tibble) from which variables specified are to
 be taken. A matrix or tables will \strong{not} be accepted.}
 

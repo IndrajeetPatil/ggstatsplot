@@ -13,7 +13,7 @@ testthat::test_that(
       suppressWarnings(ggstatsplot::subtitle_ggscatterstats(
         data = movies_long,
         x = rating,
-        y = length,
+        y = "length",
         type = "nonparametric",
         k = 5,
         conf.level = 0.999,

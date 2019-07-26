@@ -255,21 +255,14 @@ ggbetweenstats <- function(data,
 
   # no pairwise comparisons are available for bayesian t-tests
   if (type %in% c("bf", "bayes") && isTRUE(pairwise.comparisons)) {
-    # turn off pairwise comparisons
     pairwise.comparisons <- FALSE
   }
 
   # ------------------------------ variable names ----------------------------
 
-  # if `xlab` is not provided, use the variable `x` name
-  if (is.null(xlab)) {
-    xlab <- rlang::as_name(rlang::ensym(x))
-  }
-
-  # if `ylab` is not provided, use the variable `y` name
-  if (is.null(ylab)) {
-    ylab <- rlang::as_name(rlang::ensym(y))
-  }
+  # if `xlab` and `ylab` is not provided, use the variable `x` and `y` name
+  if (is.null(xlab)) xlab <- rlang::as_name(rlang::ensym(x))
+  if (is.null(ylab)) ylab <- rlang::as_name(rlang::ensym(y))
 
   # --------------------------------- data -----------------------------------
 

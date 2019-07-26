@@ -156,22 +156,18 @@ ggscatterstats <- function(data,
 
   #---------------------- variable names --------------------------------
 
-  # if `xlab` is not provided, use the variable `x` name
-  if (is.null(xlab)) {
-    xlab <- rlang::as_name(rlang::ensym(x))
-  }
+  # if `xlab` and `ylab` is not provided, use the variable `x` and `y` name
+  if (is.null(xlab)) xlab <- rlang::as_name(rlang::ensym(x))
+  if (is.null(ylab)) ylab <- rlang::as_name(rlang::ensym(y))
 
-  # if `ylab` is not provided, use the variable `y` name
-  if (is.null(ylab)) {
-    ylab <- rlang::as_name(rlang::ensym(y))
-  }
+  #----------------------- linear model check ----------------------------
 
-  # check the formula and the method
   # subtitle statistics is valid only for linear models, so turn off the
   # analysis if the model is not linear
   # `method` argument can be a string (`"gam"`) or function (`MASS::rlm`)
   method_ch <- paste(deparse(method), collapse = "")
 
+  # check the formula and the method
   if (as.character(deparse(formula)) != "y ~ x" ||
     if (class(method) == "function") {
       method_ch != paste(deparse(lm), collapse = "")
@@ -190,7 +186,7 @@ ggscatterstats <- function(data,
     ))
   }
 
-  #----------------------- dataframe --------------------------------------
+  #----------------------- dataframe ---------------------------------------
 
   # preparing the dataframe
   data %<>% {

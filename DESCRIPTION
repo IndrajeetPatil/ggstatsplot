@@ -51,7 +51,7 @@ Imports:
     groupedstats (>= 0.0.7),
     jmv (>= 0.9.6.1),
     magrittr (>= 1.5),
-    MCMCpack,
+    MCMCpack (>= 1.4-4),
     metaBMA (>= 0.6.1),
     metafor (>= 2.1-0),
     methods,

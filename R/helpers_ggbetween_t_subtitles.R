@@ -115,7 +115,7 @@ subtitle_t_parametric <- function(data,
   if (effsize.type %in% c("unbiased", "g")) {
     hedges.correction <- TRUE
     effsize.text <- quote(italic("g"))
-  } else if (effsize.type %in% c("biased", "d")) {
+  } else {
     hedges.correction <- FALSE
     effsize.text <- quote(italic("d"))
   }

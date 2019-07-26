@@ -11,9 +11,9 @@ testthat::test_that(
     # dataframe with outlier column (data without NA)
     df1 <- ggstatsplot:::outlier_df(
       data = morley,
-      x = Expt,
+      x = "Expt",
       y = Speed,
-      outlier.label = Run,
+      outlier.label = "Run",
       outlier.coef = 2
     ) %>%
       dplyr::arrange(outlier)
@@ -25,7 +25,7 @@ testthat::test_that(
     df2 <- ggstatsplot:::outlier_df(
       data = ggplot2::msleep,
       x = vore,
-      y = brainwt,
+      y = "brainwt",
       outlier.label = genus,
       outlier.coef = 3
     ) %>%
