@@ -2,8 +2,7 @@
 % Please edit documentation in R/helpers_messages.R
 \name{effsize_ci_message}
 \alias{effsize_ci_message}
-\title{Message to display when bootstrapped confidence intervals are shown
-for effect size measure.}
+\title{Message about bootstrapped confidence intervals for effect sizes.}
 \usage{
 effsize_ci_message(nboot = 100, conf.level = 0.95)
 }
@@ -15,8 +14,7 @@ for the effect size (Default: \code{100}).}
 \code{95\%} lower and upper confidence intervals (\code{0.95}).}
 }
 \description{
-Message to display when bootstrapped confidence intervals are shown
-for effect size measure.
+Message about bootstrapped confidence intervals for effect sizes.
 }
 \seealso{
 Other helper_messages: \code{\link{bartlett_message}},

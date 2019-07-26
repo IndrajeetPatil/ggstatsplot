@@ -502,6 +502,7 @@
       "@type": "SoftwareApplication",
       "identifier": "MCMCpack",
       "name": "MCMCpack",
+      "version": ">= 1.4-4",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",

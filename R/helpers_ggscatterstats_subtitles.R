@@ -14,7 +14,7 @@
 #' @inheritParams subtitle_anova_parametric
 #'
 #' @importFrom dplyr select
-#' @importFrom rlang !! enquo
+#' @importFrom rlang !! enquo enexpr ensym enexpr
 #' @importFrom stats cor.test
 #' @importFrom DescTools SpearmanRho
 #'
@@ -53,13 +53,16 @@ subtitle_ggscatterstats <- function(data,
                                     stat.title = NULL,
                                     messages = TRUE,
                                     ...) {
+  # make sure both quoted and unquoted arguments are supported
+  x <- rlang::ensym(x)
+  y <- rlang::ensym(y)
   ellipsis::check_dots_used()
 
   #------------------------ dataframe -------------------------------------
 
   # if dataframe is provided
   data %<>%
-    dplyr::select(.data = ., x = {{ x }}, y = {{ y }}) %>%
+    dplyr::select(.data = ., {{ x }}, {{ y }}) %>%
     tidyr::drop_na(.) %>%
     tibble::as_tibble(x = .)
 
@@ -71,22 +74,31 @@ subtitle_ggscatterstats <- function(data,
 
   #------------------------ Pearson's r -------------------------------------
 
-  if (stats.type == "parametric") {
+  if (stats.type %in% c("parametric", "nonparametric")) {
+    # choosing appropriate method
+    if (stats.type == "parametric") cor.method <- "pearson"
+    if (stats.type == "nonparametric") cor.method <- "spearman"
 
-    # Pearson's r
+    # tidy dataframe with statistical details
     stats_df <-
       broomExtra::tidy(
         stats::cor.test(
-          formula = ~ x + y,
+          formula = rlang::new_formula(
+            NULL,
+            rlang::expr(!!rlang::enexpr(x) + !!rlang::enexpr(y))
+          ),
           data = data,
-          method = "pearson",
+          method = cor.method,
           alternative = "two.sided",
           exact = FALSE,
           conf.level = conf.level,
           na.action = na.omit
         )
       )
+  }
 
+  # preparing other needed objects
+  if (stats.type == "parametric") {
     # stats object already contains effect size info
     effsize_df <- stats_df
 
@@ -98,27 +110,16 @@ subtitle_ggscatterstats <- function(data,
   }
 
   #--------------------- Spearnman's rho ---------------------------------
-  if (stats.type == "nonparametric") {
 
-    # degrees of freedom calculated as df = (no. of pairs - 2)
-    stats_df <-
-      broomExtra::tidy(
-        stats::cor.test(
-          formula = ~ x + y,
-          data = data,
-          method = "spearman",
-          alternative = "two.sided",
-          exact = FALSE,
-          na.action = na.omit
-        )
-      ) %>%
-      dplyr::mutate(.data = ., statistic = log(statistic))
+  if (stats.type == "nonparametric") {
+    # tidy dataframe with statistical details
+    stats_df %<>% dplyr::mutate(.data = ., statistic = log(statistic))
 
     # getting confidence interval for rho using broom bootstrap
     effsize_df <-
       DescTools::SpearmanRho(
-        x = data$x,
-        y = data$y,
+        x = data %>% dplyr::pull({{ x }}),
+        y = data %>% dplyr::pull({{ y }}),
         use = "pairwise.complete.obs",
         conf.level = conf.level
       ) %>%
@@ -139,13 +140,14 @@ subtitle_ggscatterstats <- function(data,
   }
 
   #---------------------- robust percentage bend --------------------------
+
   if (stats.type == "robust") {
     # running robust correlation
     stats_df <-
       robcor_ci(
         data = data,
-        x = x,
-        y = y,
+        x = {{ x }},
+        y = {{ y }},
         beta = beta,
         nboot = nboot,
         conf.level = conf.level,
@@ -195,8 +197,8 @@ subtitle_ggscatterstats <- function(data,
     subtitle <-
       bf_corr_test(
         data = data,
-        x = x,
-        y = y,
+        x = {{ x }},
+        y = {{ y }},
         bf.prior = bf.prior,
         caption = NULL,
         output = "h1",

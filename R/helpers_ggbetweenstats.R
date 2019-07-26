@@ -270,6 +270,10 @@ outlier_df <- function(data,
                        outlier.label,
                        outlier.coef = 1.5,
                        ...) {
+  # make sure both quoted and unquoted arguments are allowed
+  x <- rlang::ensym(x)
+  y <- rlang::ensym(y)
+  outlier.label <- rlang::ensym(outlier.label)
   ellipsis::check_dots_used()
 
   # add a logical column indicating whether a point is or is not an outlier
@@ -327,6 +331,10 @@ long_to_wide_converter <- function(data,
                                    y,
                                    paired = TRUE) {
 
+  # make sure both quoted and unquoted arguments are allowed
+  x <- rlang::ensym(x)
+  y <- rlang::ensym(y)
+
   # creating a dataframe
   data %<>%
     dplyr::select(.data = ., {{ x }}, {{ y }}) %>%
@@ -372,6 +380,8 @@ long_to_wide_converter <- function(data,
 #' @title Adding `geom_signif` to the plot.
 #' @name ggsignif_adder
 #' @param plot A `ggplot` object on which `geom_signif` needed to be added.
+#' @param df_pairwise A dataframe containing results from pairwise comparisons
+#'   (produced by `ggstatsplot::pairwise_p()` function).
 #' @inheritParams ggbetweenstats
 #'
 #' @examples
@@ -415,7 +425,7 @@ ggsignif_adder <- function(plot,
   # only significant or non-significant comparisons
   if (pairwise.display %in% c("s", "significant")) {
     df_pairwise %<>% dplyr::filter(.data = ., significance != "ns")
-  } else if (pairwise.display %in% c("ns", "nonsignificant", "non-significant")) {
+  } else {
     df_pairwise %<>% dplyr::filter(.data = ., significance == "ns")
   }
 
@@ -425,15 +435,11 @@ ggsignif_adder <- function(plot,
     if (pairwise.annotation %in% c("p", "p-value", "p.value")) {
       # if p-values are to be displayed
       df_pairwise %<>% dplyr::rename(.data = ., label = p.value.label)
-
-      # for ggsignif
       textsize <- 3
       vjust <- 0
     } else {
       # otherwise just show the asterisks
       df_pairwise %<>% dplyr::rename(.data = ., label = significance)
-
-      # for ggsignif
       textsize <- 4
       vjust <- 0.2
     }
@@ -442,8 +448,7 @@ ggsignif_adder <- function(plot,
     df_pairwise %<>% dplyr::arrange(.data = ., group1)
 
     # computing y coordinates for ggsignif bars
-    ggsignif_y_position <-
-      ggsignif_position_calculator(x = data$x, y = data$y)
+    ggsignif_y_position <- ggsignif_position_calculator(x = data$x, y = data$y)
 
     # adding ggsignif comparisons to the plot
     plot <- plot +
@@ -471,6 +476,10 @@ sort_xy <- function(data,
                     sort = "none",
                     sort.fun = mean,
                     ...) {
+
+  # make sure both quoted and unquoted arguments are allowed
+  x <- rlang::ensym(x)
+  y <- rlang::ensym(y)
   ellipsis::check_dots_used()
 
   # decide the needed order

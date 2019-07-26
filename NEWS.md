@@ -1,5 +1,9 @@
 # ggstatsplot 0.0.12.9000
 
+MAJOR CHANGES
+
+  - Major refactoring to reduce the codesize and to rely fully on `rlang`.
+
 MINOR CHANGES
 
   - New dataset included: `bugs_long`, for repeated measures designs with `NA`s

@@ -1,4 +1,4 @@
-# context ------------------------------------------------------------
+# context ----------------------------------------------------------------
 context(desc = "helper_messages")
 
 # grouped_message is working ---------------------------------------------
@@ -6,8 +6,6 @@ context(desc = "helper_messages")
 testthat::test_that(
   desc = "grouped_message is working",
   code = {
-    testthat::skip_on_cran()
-
     testthat::expect_output(
       ggstatsplot:::grouped_message(),
       "Warning: Individual plots in the combined",
@@ -16,13 +14,11 @@ testthat::test_that(
   }
 )
 
-# effsize_ci_message is working ---------------------------------------------
+# effsize_ci_message is working -------------------------------------------
 
 testthat::test_that(
   desc = "effsize_ci_message is working",
   code = {
-    testthat::skip_on_cran()
-
     testthat::expect_output(
       ggstatsplot:::effsize_ci_message(),
       "CI for effect size estimate was computed with",
@@ -36,8 +32,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggcorrmat_matrix_message is working",
   code = {
-    testthat::skip_on_cran()
-
     testthat::expect_output(
       ggstatsplot:::ggcorrmat_matrix_message(),
       "the upper triangle: p-values adjusted for multiple comparisons",
@@ -51,8 +45,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "palette_message is working",
   code = {
-    testthat::skip_on_cran()
-
     testthat::expect_output(
       ggstatsplot:::palette_message(
         package = "RColorBrewer",
@@ -207,8 +199,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "proptest_message is working",
   code = {
-    testthat::skip_on_cran()
-
     testthat::expect_output(
       ggstatsplot:::proptest_message(main = "am", condition = "cyl"),
       "Results from one-sample proportion tests",
