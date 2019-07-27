@@ -635,34 +635,37 @@ testthat::test_that(
     )
 
     # tests
-    testthat::expect_identical(p_sub, ggplot2::expr(
-      paste(
-        NULL,
-        chi["Pearson"]^2,
-        "(",
-        "8",
-        ") = ",
-        "109.2007",
-        ", ",
-        italic("p"),
-        " = ",
-        "< 0.001",
-        ", ",
-        italic("V")["Cramer"],
-        " = ",
-        "0.1594",
-        ", CI"["95%"],
-        " [",
-        "0.0916",
-        ", ",
-        "0.1278",
-        "]",
-        ", ",
-        italic("n"),
-        " = ",
-        2148L
+    testthat::expect_identical(
+      p_sub,
+      ggplot2::expr(
+        paste(
+          NULL,
+          chi["Pearson"]^2,
+          "(",
+          "8",
+          ") = ",
+          "109.2007",
+          ", ",
+          italic("p"),
+          " = ",
+          "< 0.001",
+          ", ",
+          italic("V")["Cramer"],
+          " = ",
+          "0.1594",
+          ", CI"["95%"],
+          " [",
+          "0.1236",
+          ", ",
+          "0.1814",
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          2148L
+        )
       )
-    ))
+    )
 
     testthat::expect_identical(
       p_cap,

@@ -180,7 +180,7 @@ p1 <- ggstatsplot::ggwithinstats(
   messages = FALSE
 )
 
-# Mann-Whitney U test (nonparametric t) 
+# Mann-Whitney U test (nonparametric test) 
 p2 <- ggstatsplot::ggwithinstats(
   data = df_disgust,
   x = key,

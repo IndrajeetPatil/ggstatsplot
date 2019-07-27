@@ -16,7 +16,7 @@
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo enexpr ensym enexpr
 #' @importFrom stats cor.test
-#' @importFrom DescTools SpearmanRho
+#' @importFrom rcompanion spearmanRho
 #'
 #' @examples
 #'
@@ -117,19 +117,23 @@ subtitle_ggscatterstats <- function(data,
 
     # getting confidence interval for rho using broom bootstrap
     effsize_df <-
-      DescTools::SpearmanRho(
+      rcompanion::spearmanRho(
         x = data %>% dplyr::pull({{ x }}),
         y = data %>% dplyr::pull({{ y }}),
-        use = "pairwise.complete.obs",
-        conf.level = conf.level
+        method = "spearman",
+        ci = TRUE,
+        conf = conf.level,
+        type = conf.type,
+        R = nboot,
+        histogram = FALSE,
+        digits = 5
       ) %>%
-      tibble::enframe(x = .) %>%
-      tidyr::spread(data = ., key = "name", value = "value") %>%
-      dplyr::select(
+      tibble::as_tibble(x = .) %>%
+      dplyr::rename(
         .data = .,
         estimate = rho,
-        conf.low = lwr.ci,
-        conf.high = upr.ci
+        conf.low = lower.ci,
+        conf.high = upper.ci
       )
 
     # subtitle parameters

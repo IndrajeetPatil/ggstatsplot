@@ -297,7 +297,8 @@ subtitle_anova_parametric <- function(data,
 #'
 #' @description For paired designs, the effect size is Kendall's coefficient of
 #'   concordance (*W*), while for between-subjects designs, the effect size is
-#'   epsilon-squared (for more, see `?rcompanion::epsilonSquared`).
+#'   epsilon-squared (for more, see `?rcompanion::epsilonSquared` and
+#'   `?rcompanion::kendallW`).
 #'
 #' @inheritParams t1way_ci
 #' @inheritParams subtitle_anova_parametric
@@ -307,7 +308,7 @@ subtitle_anova_parametric <- function(data,
 #' @importFrom rlang !! enquo
 #' @importFrom stats friedman.test kruskal.test
 #' @importFrom broomExtra tidy
-#' @importFrom rcompanion epsilonSquared
+#' @importFrom rcompanion epsilonSquared kendallW
 #'
 #' @examples
 #' # setup
@@ -343,7 +344,7 @@ subtitle_anova_nonparametric <- function(data,
                                          x,
                                          y,
                                          paired = FALSE,
-                                         conf.type = "norm",
+                                         conf.type = "perc",
                                          conf.level = 0.95,
                                          k = 2,
                                          nboot = 100,
@@ -366,13 +367,24 @@ subtitle_anova_nonparametric <- function(data,
   # properly removing NAs if it's a paired design
   if (isTRUE(paired)) {
     # calculating Kendall's W and its CI
-    # calculated before stats_df because `data` will be modified
     effsize_df <-
-      kendall_w_ci(
-        data = dplyr::select(long_to_wide_converter(data, {{ x }}, {{ y }}), -rowid),
-        nboot = nboot,
-        conf.type = conf.type,
-        conf.level = conf.level
+      rcompanion::kendallW(
+        x = dplyr::select(long_to_wide_converter(data, {{ x }}, {{ y }}), -rowid),
+        correct = TRUE,
+        na.rm = TRUE,
+        ci = TRUE,
+        conf = conf.level,
+        type = conf.type,
+        R = nboot,
+        histogram = FALSE,
+        digits = 5
+      ) %>%
+      tibble::as_tibble(x = .) %>%
+      dplyr::rename(
+        .data = .,
+        estimate = W,
+        conf.low = lower.ci,
+        conf.high = upper.ci
       )
 
     # converting to long format and then getting it back in wide so that the

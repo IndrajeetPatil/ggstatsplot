@@ -5,7 +5,7 @@
 \title{Making text subtitle for nonparametric ANOVA.}
 \usage{
 subtitle_anova_nonparametric(data, x, y, paired = FALSE,
-  conf.type = "norm", conf.level = 0.95, k = 2, nboot = 100,
+  conf.type = "perc", conf.level = 0.95, k = 2, nboot = 100,
   stat.title = NULL, messages = TRUE, ...)
 }
 \arguments{
@@ -47,7 +47,8 @@ to be displayed (Default: \code{TRUE}).}
 \description{
 For paired designs, the effect size is Kendall's coefficient of
 concordance (\emph{W}), while for between-subjects designs, the effect size is
-epsilon-squared (for more, see \code{?rcompanion::epsilonSquared}).
+epsilon-squared (for more, see \code{?rcompanion::epsilonSquared} and
+\code{?rcompanion::kendallW}).
 }
 \examples{
 # setup
