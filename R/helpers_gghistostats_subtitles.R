@@ -75,12 +75,11 @@ subtitle_t_onesample <- function(data,
   # ========================= parametric ====================================
 
   if (stats.type == "parametric") {
-
     # deciding which effect size to use (Hedge's g or Cohen's d)
     if (effsize.type %in% c("unbiased", "g")) {
       hedges.correction <- TRUE
       effsize.text <- quote(italic("g"))
-    } else if (effsize.type %in% c("biased", "d")) {
+    } else {
       hedges.correction <- FALSE
       effsize.text <- quote(italic("d"))
     }
@@ -154,9 +153,7 @@ subtitle_t_onesample <- function(data,
     effsize.text <- quote(italic("r"))
 
     # message about effect size measure
-    if (isTRUE(messages)) {
-      effsize_ci_message(nboot = nboot, conf.level = conf.level)
-    }
+    if (isTRUE(messages)) effsize_ci_message(nboot, conf.level)
   }
 
   # preparing subtitle
@@ -192,9 +189,7 @@ subtitle_t_onesample <- function(data,
     )
 
     # displaying message about bootstrap
-    if (isTRUE(messages)) {
-      effsize_ci_message(nboot = nboot, conf.level = conf.level)
-    }
+    if (isTRUE(messages)) effsize_ci_message(nboot, conf.level)
 
     # preparing the subtitle
     subtitle <- substitute(
@@ -235,15 +230,16 @@ subtitle_t_onesample <- function(data,
   # ======================== bayes ============================================
 
   if (stats.type == "bayes") {
-    subtitle <- bf_one_sample_ttest(
-      data = data,
-      x = {{ x }},
-      test.value = test.value,
-      bf.prior = bf.prior,
-      caption = NULL,
-      output = "h1",
-      k = k
-    )
+    subtitle <-
+      bf_one_sample_ttest(
+        data = data,
+        x = {{ x }},
+        test.value = test.value,
+        bf.prior = bf.prior,
+        caption = NULL,
+        output = "h1",
+        k = k
+      )
   }
 
   # return the subtitle
