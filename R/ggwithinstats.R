@@ -195,10 +195,7 @@ ggwithinstats <- function(data,
   # --------------------------------- basic plot ------------------------------
 
   # plot
-  plot <- ggplot2::ggplot(
-    data = df,
-    mapping = ggplot2::aes(x = x, y = y, group = id)
-  ) +
+  plot <- ggplot2::ggplot(data = df, mapping = ggplot2::aes(x = x, y = y, group = id)) +
     ggplot2::geom_point(
       alpha = 0.5,
       size = 3,
@@ -298,16 +295,12 @@ ggwithinstats <- function(data,
   # already created.
 
   if (isTRUE(outlier.tagging)) {
-    # finding and tagging the outliers
-    data_outlier_label <- df %>%
-      dplyr::filter(.data = ., isanoutlier) %>%
-      dplyr::select(.data = ., -outlier)
-
     # applying the labels to tagged outliers with ggrepel
     plot <-
       plot +
       ggrepel::geom_label_repel(
-        data = data_outlier_label,
+        data = dplyr::filter(.data = df, isanoutlier) %>%
+          dplyr::select(.data = ., -outlier),
         mapping = ggplot2::aes(x = x, y = y, label = outlier.label),
         fontface = "bold",
         color = outlier.label.color,

@@ -162,10 +162,7 @@ mean_ggrepel <- function(plot,
   } else {
     plot <- plot +
       ggplot2::stat_summary(
-        mapping = ggplot2::aes(
-          x = x,
-          y = y
-        ),
+        mapping = ggplot2::aes(x = x, y = y),
         fun.y = mean,
         geom = "point",
         color = mean.color,
@@ -326,10 +323,7 @@ outlier_df <- function(data,
 #' )
 #' @keywords internal
 
-long_to_wide_converter <- function(data,
-                                   x,
-                                   y,
-                                   paired = TRUE) {
+long_to_wide_converter <- function(data, x, y, paired = TRUE) {
 
   # make sure both quoted and unquoted arguments are allowed
   x <- rlang::ensym(x)
@@ -422,10 +416,13 @@ ggsignif_adder <- function(plot,
     )
 
   # decide what needs to be displayed:
-  # only significant or non-significant comparisons
+  # only significant comparisons shown
   if (pairwise.display %in% c("s", "significant")) {
     df_pairwise %<>% dplyr::filter(.data = ., significance != "ns")
-  } else if (pairwise.display %in% c("ns", "nonsignificant", "non-significant")) {
+  }
+
+  # only non-significant comparisons shown
+  if (pairwise.display %in% c("ns", "nonsignificant", "non-significant")) {
     df_pairwise %<>% dplyr::filter(.data = ., significance == "ns")
   }
 

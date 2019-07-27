@@ -146,7 +146,7 @@ testthat::test_that(
       ggstatsplot::subtitle_anova_parametric(
         data = ggplot2::msleep,
         x = vore,
-        y = sleep_rem,
+        y = "sleep_rem",
         effsize.type = "partial_omega",
         k = 4,
         nboot = 10,
@@ -380,7 +380,7 @@ testthat::test_that(
     using_function1 <-
       ggstatsplot::subtitle_anova_parametric(
         data = ggstatsplot::iris_long,
-        x = condition,
+        x = "condition",
         y = value,
         paired = TRUE,
         nboot = 20,

@@ -91,6 +91,10 @@ subtitle_anova_parametric <- function(data,
                                       messages = TRUE,
                                       ...) {
 
+  # make sure both quoted and unquoted arguments are allowed
+  x <- rlang::ensym(x)
+  y <- rlang::ensym(y)
+
   # for paired designs, variance is going to be equal across grouping levels
   if (isTRUE(paired)) {
     var.equal <- TRUE
@@ -99,12 +103,8 @@ subtitle_anova_parametric <- function(data,
   }
 
   # number of decimal places for degree of freedom
-  if (isTRUE(var.equal)) {
-    if (isTRUE(sphericity.correction)) {
-      k.df2 <- k
-    } else {
-      k.df2 <- 0L
-    }
+  if (isTRUE(var.equal) && isFALSE(sphericity.correction)) {
+    k.df2 <- 0L
   } else {
     k.df2 <- k
   }
@@ -128,7 +128,7 @@ subtitle_anova_parametric <- function(data,
     }
   }
 
-  # preparing the subtitles with appropriate effect sizes
+  # omega
   if (effsize.type == "unbiased") {
     effsize <- "omega"
     if (isTRUE(partial)) {
@@ -136,7 +136,10 @@ subtitle_anova_parametric <- function(data,
     } else {
       effsize.text <- quote(omega^2)
     }
-  } else if (effsize.type == "biased") {
+  }
+
+  # eta
+  if (effsize.type == "biased") {
     effsize <- "eta"
     if (isTRUE(partial)) {
       effsize.text <- quote(eta["p"]^2)
@@ -146,29 +149,26 @@ subtitle_anova_parametric <- function(data,
   }
 
   # creating a dataframe
-  data <-
-    dplyr::select(.data = data, x = {{ x }}, y = {{ y }}) %>%
-    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
+  data %<>%
+    dplyr::select(.data = ., {{ x }}, {{ y }}) %>%
+    dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }}))) %>%
     tibble::as_tibble(x = .)
+
+  # -------------- within-subjects design --------------------------------
 
   # properly removing NAs if it's a paired design
   if (isTRUE(paired)) {
     # converting to long format and then getting it back in wide so that the
     # rowid variable can be used as the block variable
-    data_within <-
-      long_to_wide_converter(
-        data = data,
-        x = x,
-        y = y
-      ) %>%
+    data <- long_to_wide_converter(data = data, x = {{ x }}, y = {{ y }}) %>%
       tidyr::gather(data = ., key, value, -rowid) %>%
       dplyr::arrange(.data = ., rowid)
 
     # sample size
-    sample_size <- length(unique(data_within$rowid))
+    sample_size <- length(unique(data$rowid))
 
     # warn the user if
-    if (sample_size < nlevels(as.factor(data_within$key))) {
+    if (sample_size < nlevels(as.factor(data$key))) {
       # no sphericity correction applied
       sphericity.correction <- FALSE
       k.df1 <- 0L
@@ -187,7 +187,7 @@ subtitle_anova_parametric <- function(data,
     # run the ANOVA
     ez_df <-
       ez::ezANOVA(
-        data = data_within %>%
+        data = data %>%
           dplyr::mutate_if(
             .tbl = .,
             .predicate = purrr::is_bare_character,
@@ -224,11 +224,13 @@ subtitle_anova_parametric <- function(data,
 
     # creating a standardized dataframe with effect size and its CIs
     effsize_object <- ez_df$aov
-  } else {
+  }
 
+  # ------------------- between-subjects design ------------------------------
+
+  if (isFALSE(paired)) {
     # remove NAs listwise for between-subjects design
-    data %<>%
-      tidyr::drop_na(data = .)
+    data %<>% tidyr::drop_na(data = .)
 
     # sample size
     sample_size <- nrow(data)
@@ -236,7 +238,7 @@ subtitle_anova_parametric <- function(data,
     # Welch's ANOVA run by default
     stats_df <-
       stats::oneway.test(
-        formula = y ~ x,
+        formula = rlang::new_formula({{ y }}, {{ x }}),
         data = data,
         subset = NULL,
         na.action = na.omit,
@@ -246,7 +248,7 @@ subtitle_anova_parametric <- function(data,
     # creating a standardized dataframe with effect size and its CIs
     effsize_object <-
       stats::lm(
-        formula = y ~ x,
+        formula = rlang::new_formula({{ y }}, {{ x }}),
         data = data,
         na.action = na.omit
       )
@@ -283,9 +285,7 @@ subtitle_anova_parametric <- function(data,
   )
 
   # message about effect size measure
-  if (isTRUE(messages)) {
-    effsize_ci_message(nboot = nboot, conf.level = conf.level)
-  }
+  if (isTRUE(messages)) effsize_ci_message(nboot, conf.level)
 
   # return the subtitle
   return(subtitle)
@@ -351,51 +351,61 @@ subtitle_anova_nonparametric <- function(data,
                                          messages = TRUE,
                                          ...) {
 
+  # make sure both quoted and unquoted arguments are allowed
+  x <- rlang::ensym(x)
+  y <- rlang::ensym(y)
+
   # creating a dataframe
-  data <-
-    dplyr::select(.data = data, x = {{ x }}, y = {{ y }}) %>%
-    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
+  data %<>%
+    dplyr::select(.data = ., {{ x }}, {{ y }}) %>%
+    dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }}))) %>%
     tibble::as_tibble(x = .)
+
+  # ------------------- within-subjects design ------------------------------
 
   # properly removing NAs if it's a paired design
   if (isTRUE(paired)) {
-    # converting to long format and then getting it back in wide so that the
-    # rowid variable can be used as the block variable
-    data_within <-
-      long_to_wide_converter(
-        data = data,
-        x = x,
-        y = y
-      ) %>%
-      tidyr::gather(data = ., key, value, -rowid) %>%
-      dplyr::arrange(.data = ., rowid)
-
-    # sample size
-    sample_size <- length(unique(data_within$rowid))
-
-    # setting up the anova model and getting its summary
-    stats_df <-
-      broomExtra::tidy(stats::friedman.test(
-        formula = value ~ key | rowid,
-        data = data_within,
-        na.action = na.omit
-      ))
-
     # calculating Kendall's W and its CI
+    # calculated before stats_df because `data` will be modified
     effsize_df <-
       kendall_w_ci(
-        data = dplyr::select(long_to_wide_converter(data, x, y), -rowid),
+        data = dplyr::select(long_to_wide_converter(data, {{ x }}, {{ y }}), -rowid),
         nboot = nboot,
         conf.type = conf.type,
         conf.level = conf.level
       )
 
+    # converting to long format and then getting it back in wide so that the
+    # rowid variable can be used as the block variable
+    data %<>%
+      long_to_wide_converter(data = ., x = {{ x }}, y = {{ y }}) %>%
+      tidyr::gather(data = ., key, value, -rowid) %>%
+      dplyr::arrange(.data = ., rowid) %>%
+      dplyr::rename(.data = ., {{ x }} := key, {{ y }} := value)
+
+    # sample size
+    sample_size <- length(unique(data$rowid))
+
+    # setting up the anova model and getting its summary
+    stats_df <-
+      broomExtra::tidy(stats::friedman.test(
+        formula = rlang::new_formula(
+          {{ rlang::enexpr(y) }},
+          rlang::expr(!!rlang::enexpr(x) | rowid)
+        ),
+        data = data,
+        na.action = na.omit
+      ))
+
     # text for effect size
     effsize.text <- quote(italic("W")["Kendall"])
-  } else {
+  }
+
+  # ------------------- between-subjects design ------------------------------
+
+  if (isFALSE(paired)) {
     # remove NAs listwise for between-subjects design
-    data %<>%
-      tidyr::drop_na(data = .)
+    data %<>% tidyr::drop_na(data = .)
 
     # sample size
     sample_size <- nrow(data)
@@ -403,7 +413,7 @@ subtitle_anova_nonparametric <- function(data,
     # setting up the anova model and getting its summary
     stats_df <-
       broomExtra::tidy(stats::kruskal.test(
-        formula = y ~ x,
+        formula = rlang::new_formula({{ y }}, {{ x }}),
         data = data,
         na.action = na.omit
       ))
@@ -411,8 +421,8 @@ subtitle_anova_nonparametric <- function(data,
     # getting partial eta-squared based on H-statistic
     effsize_df <-
       rcompanion::epsilonSquared(
-        x = data$y,
-        g = data$x,
+        x = data %>% dplyr::pull({{ y }}),
+        g = data %>% dplyr::pull({{ x }}),
         group = "row",
         ci = TRUE,
         conf = conf.level,
@@ -434,9 +444,7 @@ subtitle_anova_nonparametric <- function(data,
   }
 
   # message about effect size measure
-  if (isTRUE(messages)) {
-    effsize_ci_message(nboot = nboot, conf.level = conf.level)
-  }
+  if (isTRUE(messages)) effsize_ci_message(nboot, conf.level)
 
   # preparing subtitle
   subtitle <- subtitle_template(
@@ -527,34 +535,36 @@ subtitle_anova_robust <- function(data,
                                   messages = TRUE,
                                   ...) {
 
+  # make sure both quoted and unquoted arguments are allowed
+  x <- rlang::ensym(x)
+  y <- rlang::ensym(y)
+
   # creating a dataframe
-  data <-
-    dplyr::select(.data = data, x = {{ x }}, y = {{ y }}) %>%
-    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
+  data %<>%
+    dplyr::select(.data = ., {{ x }}, {{ y }}) %>%
+    dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }}))) %>%
     tibble::as_tibble(x = .)
+
+  # -------------- within-subjects design --------------------------------
 
   # properly removing NAs if it's a paired design
   if (isTRUE(paired)) {
     # converting to long format and then getting it back in wide so that the
     # rowid variable can be used as the block variable
-    data_within <-
-      long_to_wide_converter(
-        data = data,
-        x = x,
-        y = y
-      ) %>%
+    data <-
+      long_to_wide_converter(data = data, x = {{ x }}, y = {{ y }}) %>%
       tidyr::gather(data = ., key, value, -rowid) %>%
       dplyr::arrange(.data = ., rowid)
 
     # sample size
-    sample_size <- length(unique(data_within$rowid))
+    sample_size <- length(unique(data$rowid))
 
     # test
     stats_df <-
       WRS2::rmanova(
-        y = data_within$value,
-        groups = data_within$key,
-        blocks = data_within$rowid,
+        y = data$value,
+        groups = data$key,
+        blocks = data$rowid,
         tr = tr
       )
 
@@ -587,7 +597,11 @@ subtitle_anova_robust <- function(data,
           n = sample_size
         )
       )
-  } else {
+  }
+
+  # -------------- between-subjects design --------------------------------
+
+  if (isFALSE(paired)) {
     # remove NAs listwise for between-subjects design
     data %<>% tidyr::drop_na(data = .)
 
@@ -599,8 +613,8 @@ subtitle_anova_robust <- function(data,
     stats_df <-
       t1way_ci(
         data = data,
-        x = x,
-        y = y,
+        x = {{ x }},
+        y = {{ y }},
         tr = tr,
         nboot = nboot,
         conf.level = conf.level,
@@ -628,9 +642,7 @@ subtitle_anova_robust <- function(data,
     )
 
     # message about effect size measure
-    if (isTRUE(messages)) {
-      effsize_ci_message(nboot = nboot, conf.level = conf.level)
-    }
+    if (isTRUE(messages)) effsize_ci_message(nboot, conf.level)
   }
 
   # return the subtitle
@@ -690,6 +702,10 @@ subtitle_anova_bayes <- function(data,
                                  k = 2,
                                  ...) {
 
+  # make sure both quoted and unquoted arguments are allowed
+  x <- rlang::ensym(x)
+  y <- rlang::ensym(y)
+
   # creating a dataframe
   data %<>%
     dplyr::select(.data = ., {{ x }}, {{ y }}) %>%
@@ -701,11 +717,7 @@ subtitle_anova_bayes <- function(data,
     # converting to long format and then getting it back in wide so that the
     # rowid variable can be used as the block variable
     data %<>%
-      long_to_wide_converter(
-        data = .,
-        x = {{ x }},
-        y = {{ y }}
-      ) %>%
+      long_to_wide_converter(data = ., x = {{ x }}, y = {{ y }}) %>%
       tidyr::gather(data = ., key, value, -rowid) %>%
       dplyr::arrange(.data = ., rowid) %>%
       dplyr::rename(.data = ., {{ x }} := key, {{ y }} := value)

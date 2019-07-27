@@ -376,9 +376,7 @@ subtitle_contingency_tab <- function(data,
   )
 
   # message about effect size measure
-  if (isTRUE(messages)) {
-    effsize_ci_message(nboot = nboot, conf.level = conf.level)
-  }
+  if (isTRUE(messages)) effsize_ci_message(nboot, conf.level)
 
   # return the subtitle
   return(subtitle)

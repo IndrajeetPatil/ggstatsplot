@@ -13,7 +13,7 @@ testthat::test_that(
       ggstatsplot::subtitle_anova_robust(
         data = dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.5),
         x = genre,
-        y = length,
+        y = "length",
         paired = FALSE,
         k = 5,
         tr = 0.00025,
@@ -117,22 +117,13 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
 
-    set.seed(123)
-    library(jmv)
-    data("bugs", package = "jmv")
-
-    # converting to long format
-    data_bugs <- bugs %>%
-      tibble::as_tibble(.) %>%
-      tidyr::gather(., key, value, LDLF:HDHF)
-
     # ggstatsplot output
     set.seed(123)
     using_function1 <-
       ggstatsplot::subtitle_anova_robust(
-        data = data_bugs,
-        x = key,
-        y = value,
+        data = bugs_long,
+        x = "condition",
+        y = desire,
         k = 4,
         tr = 0.2,
         paired = TRUE

@@ -164,9 +164,7 @@ subtitle_ggscatterstats <- function(data,
     effsize.text <- quote(italic(rho)["pb"])
 
     # message about effect size measure
-    if (isTRUE(messages)) {
-      effsize_ci_message(nboot = nboot, conf.level = conf.level)
-    }
+    if (isTRUE(messages)) effsize_ci_message(nboot, conf.level)
   }
 
   #---------------------- preparing subtitle ---------------------------------
