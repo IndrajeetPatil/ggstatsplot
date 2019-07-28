@@ -34,7 +34,7 @@ testthat::test_that(
       suppressWarnings(
         ggstatsplot::subtitle_contingency_tab(
           data = paired_data,
-          main = response_before,
+          main = "response_before",
           condition = response_after,
           paired = TRUE,
           counts = "Freq",
@@ -133,7 +133,7 @@ testthat::test_that(
         ggstatsplot::subtitle_contingency_tab(
           data = paired_data,
           main = response_before,
-          condition = response_after,
+          condition = "response_after",
           paired = TRUE,
           k = 3,
           conf.level = 0.90,

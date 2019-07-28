@@ -297,7 +297,8 @@ subtitle_anova_parametric <- function(data,
 #'
 #' @description For paired designs, the effect size is Kendall's coefficient of
 #'   concordance (*W*), while for between-subjects designs, the effect size is
-#'   epsilon-squared (for more, see `?rcompanion::epsilonSquared`).
+#'   epsilon-squared (for more, see `?rcompanion::epsilonSquared` and
+#'   `?rcompanion::kendallW`).
 #'
 #' @inheritParams t1way_ci
 #' @inheritParams subtitle_anova_parametric
@@ -307,7 +308,7 @@ subtitle_anova_parametric <- function(data,
 #' @importFrom rlang !! enquo
 #' @importFrom stats friedman.test kruskal.test
 #' @importFrom broomExtra tidy
-#' @importFrom rcompanion epsilonSquared
+#' @importFrom rcompanion epsilonSquared kendallW
 #'
 #' @examples
 #' # setup
@@ -343,7 +344,7 @@ subtitle_anova_nonparametric <- function(data,
                                          x,
                                          y,
                                          paired = FALSE,
-                                         conf.type = "norm",
+                                         conf.type = "perc",
                                          conf.level = 0.95,
                                          k = 2,
                                          nboot = 100,
@@ -366,14 +367,19 @@ subtitle_anova_nonparametric <- function(data,
   # properly removing NAs if it's a paired design
   if (isTRUE(paired)) {
     # calculating Kendall's W and its CI
-    # calculated before stats_df because `data` will be modified
     effsize_df <-
-      kendall_w_ci(
-        data = dplyr::select(long_to_wide_converter(data, {{ x }}, {{ y }}), -rowid),
-        nboot = nboot,
-        conf.type = conf.type,
-        conf.level = conf.level
-      )
+      rcompanion::kendallW(
+        x = dplyr::select(long_to_wide_converter(data, {{ x }}, {{ y }}), -rowid),
+        correct = TRUE,
+        na.rm = TRUE,
+        ci = TRUE,
+        conf = conf.level,
+        type = conf.type,
+        R = nboot,
+        histogram = FALSE,
+        digits = 5
+      ) %>%
+      rcompanion_cleaner(object = ., estimate.col = "W")
 
     # converting to long format and then getting it back in wide so that the
     # rowid variable can be used as the block variable
@@ -431,13 +437,7 @@ subtitle_anova_nonparametric <- function(data,
         histogram = FALSE,
         digits = 5
       ) %>%
-      tibble::as_tibble(x = .) %>%
-      dplyr::rename(
-        .data = .,
-        estimate = epsilon.squared,
-        conf.low = lower.ci,
-        conf.high = upper.ci
-      )
+      rcompanion_cleaner(object = ., estimate.col = "epsilon.squared")
 
     # text for effect size
     effsize.text <- quote(epsilon^2)
@@ -721,10 +721,10 @@ subtitle_anova_bayes <- function(data,
       tidyr::gather(data = ., key, value, -rowid) %>%
       dplyr::arrange(.data = ., rowid) %>%
       dplyr::rename(.data = ., {{ x }} := key, {{ y }} := value)
-  } else {
-    # remove NAs listwise for between-subjects design
-    data %<>% tidyr::drop_na(data = .)
   }
+
+  # remove NAs listwise for between-subjects design
+  if (isFALSE(paired)) data %<>% tidyr::drop_na(.)
 
   # bayes factor results
   subtitle <-

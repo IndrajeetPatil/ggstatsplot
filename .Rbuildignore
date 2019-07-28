@@ -34,3 +34,4 @@ tests\^spelling
 ^tests/manual$
 ^revdep$
 ^\.covrignore$
+^\.github/ISSUE_TEMPLATE$

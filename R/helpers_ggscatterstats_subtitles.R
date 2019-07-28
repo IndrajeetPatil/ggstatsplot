@@ -16,7 +16,7 @@
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo enexpr ensym enexpr
 #' @importFrom stats cor.test
-#' @importFrom DescTools SpearmanRho
+#' @importFrom rcompanion spearmanRho
 #'
 #' @examples
 #'
@@ -117,20 +117,18 @@ subtitle_ggscatterstats <- function(data,
 
     # getting confidence interval for rho using broom bootstrap
     effsize_df <-
-      DescTools::SpearmanRho(
+      rcompanion::spearmanRho(
         x = data %>% dplyr::pull({{ x }}),
         y = data %>% dplyr::pull({{ y }}),
-        use = "pairwise.complete.obs",
-        conf.level = conf.level
+        method = "spearman",
+        ci = TRUE,
+        conf = conf.level,
+        type = conf.type,
+        R = nboot,
+        histogram = FALSE,
+        digits = 5
       ) %>%
-      tibble::enframe(x = .) %>%
-      tidyr::spread(data = ., key = "name", value = "value") %>%
-      dplyr::select(
-        .data = .,
-        estimate = rho,
-        conf.low = lwr.ci,
-        conf.high = upr.ci
-      )
+      rcompanion_cleaner(object = ., estimate.col = "rho")
 
     # subtitle parameters
     no.parameters <- 0L
@@ -168,6 +166,7 @@ subtitle_ggscatterstats <- function(data,
   }
 
   #---------------------- preparing subtitle ---------------------------------
+
   if (stats.type %in% c("parametric", "nonparametric", "robust")) {
     # preparing subtitle
     subtitle <- subtitle_template(
@@ -189,8 +188,8 @@ subtitle_ggscatterstats <- function(data,
   }
 
   #---------------------- bayes factor -----------------------------------
-  if (stats.type == "bayes") {
 
+  if (stats.type == "bayes") {
     # bayes factor results
     subtitle <-
       bf_corr_test(

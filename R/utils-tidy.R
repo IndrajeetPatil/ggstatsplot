@@ -32,10 +32,5 @@ NULL
 
 # function body
 ggplot_converter <- function(plot) {
-  # convert the saved plot
-  p <- cowplot::ggdraw() +
-    cowplot::draw_grob(grid::grobTree(plot))
-
-  # returning the converted plot
-  return(p)
+  return(cowplot::ggdraw() + cowplot::draw_grob(grid::grobTree(plot)))
 }

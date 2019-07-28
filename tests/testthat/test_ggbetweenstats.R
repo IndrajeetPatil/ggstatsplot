@@ -266,6 +266,7 @@ testthat::test_that(
       outlier.label = "name",
       outlier.coef = 2.5,
       nboot = 5,
+      results.subtitle = FALSE,
       messages = FALSE
     ) +
       ggplot2::coord_cartesian(ylim = c(1, 6)) +

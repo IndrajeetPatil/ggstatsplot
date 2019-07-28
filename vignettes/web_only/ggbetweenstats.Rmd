@@ -71,8 +71,10 @@ set.seed(123)
 
 # function call
 ggstatsplot::ggbetweenstats(
-  data = dplyr::filter(.data = gapminder::gapminder, 
-                       year == 2007, continent != "Oceania"),
+  data = dplyr::filter(
+    .data = gapminder::gapminder,
+    year == 2007, continent != "Oceania"
+  ),
   x = continent,
   y = lifeExp,
   nboot = 10,
@@ -101,34 +103,35 @@ library(gapminder)
 set.seed(123)
 
 # plot
-ggstatsplot::ggbetweenstats(
-  data = dplyr::filter(.data = gapminder, 
-                        year == 2007, 
-                        continent != "Oceania"),      # dataframe
-  x = continent,                                      # grouping/independent variable
-  y = lifeExp,                                        # dependent variables
-  xlab = "Continent",                                 # label for the x-axis
-  ylab = "Life expectancy",                           # label for the y-axis
-  plot.type = "boxviolin",                            # type of plot
-  type = "parametric",                                # type of statistical test  
-  effsize.type = "biased",                            # type of effect size
-  nboot = 10,                                         # number of bootstrap samples used
-  bf.message = TRUE,                                  # display bayes factor in favor of null hypothesis
-  outlier.tagging = TRUE,                             # whether outliers should be flagged
-  outlier.coef = 1.5,                                 # coefficient for Tukey's rule
-  outlier.label = country,                            # label to attach to outlier values
-  outlier.label.color = "red",                        # outlier point label color
-  mean.plotting = TRUE,                               # whether the mean is to be displayed
-  mean.color = "darkblue",                            # color for mean
-  messages = FALSE,                                   # turn off messages
-  ggtheme = ggplot2::theme_gray(),                    # a different theme
-  package = "yarrr",                                  # package from which color palette is to be taken
-  palette = "info2",                                  # choosing a different color palette
-  title = "Comparison of life expectancy across continents (Year: 2007)",
-  caption = "Source: Gapminder Foundation"
-) +                                                   # modifying the plot further
-  ggplot2::scale_y_continuous(limits = c(35, 85),
-                              breaks = seq(from = 35, to = 85, by = 5))
+gapminder %>% # dataframe to use
+  ggstatsplot::ggbetweenstats(
+    data = dplyr::filter(.data = ., year == 2007, continent != "Oceania"),
+    x = continent, # grouping/independent variable
+    y = lifeExp, # dependent variables
+    xlab = "Continent", # label for the x-axis
+    ylab = "Life expectancy", # label for the y-axis
+    plot.type = "boxviolin", # type of plot
+    type = "parametric", # type of statistical test
+    effsize.type = "biased", # type of effect size
+    nboot = 10, # number of bootstrap samples used
+    bf.message = TRUE, # display bayes factor in favor of null hypothesis
+    outlier.tagging = TRUE, # whether outliers should be flagged
+    outlier.coef = 1.5, # coefficient for Tukey's rule
+    outlier.label = country, # label to attach to outlier values
+    outlier.label.color = "red", # outlier point label color
+    mean.plotting = TRUE, # whether the mean is to be displayed
+    mean.color = "darkblue", # color for mean
+    messages = FALSE, # turn off messages
+    ggtheme = ggplot2::theme_gray(), # a different theme
+    package = "yarrr", # package from which color palette is to be taken
+    palette = "info2", # choosing a different color palette
+    title = "Comparison of life expectancy across continents (Year: 2007)",
+    caption = "Source: Gapminder Foundation"
+  ) + # modifying the plot further
+  ggplot2::scale_y_continuous(
+    limits = c(35, 85),
+    breaks = seq(from = 35, to = 85, by = 5)
+  )
 ```
 
 As can be appreciated from the effect size (partial eta squared) of 0.635, there
@@ -163,8 +166,10 @@ library(ggstatsplot)
 library(gapminder)
 
 # selecting subset of the data
-df_year <- dplyr::filter(.data = gapminder::gapminder, 
-                         year == 2007 | year == 1957)
+df_year <- dplyr::filter(
+  .data = gapminder::gapminder,
+  year == 2007 | year == 1957
+)
 
 # for reproducibility
 set.seed(123)
@@ -190,8 +195,8 @@ p2 <- ggstatsplot::ggbetweenstats(
   data = df_year,
   x = year,
   y = lifeExp,
-  xlab = "Year", 
-  ylab = "Life expectancy", 
+  xlab = "Year",
+  ylab = "Life expectancy",
   plot.type = "violin",
   type = "np",
   conf.level = 0.99,
@@ -207,8 +212,8 @@ p3 <- ggstatsplot::ggbetweenstats(
   data = df_year,
   x = year,
   y = lifeExp,
-  xlab = "Year", 
-  ylab = "Life expectancy", 
+  xlab = "Year",
+  ylab = "Life expectancy",
   plot.type = "boxviolin",
   type = "r",
   conf.level = 0.99,
@@ -226,8 +231,8 @@ p4 <- ggstatsplot::ggbetweenstats(
   data = df_year,
   x = year,
   y = lifeExp,
-  xlab = "Year", 
-  ylab = "Life expectancy", 
+  xlab = "Year",
+  ylab = "Life expectancy",
   type = "bf",
   plot.type = "box",
   title = "Bayesian Test (box plot)",
@@ -239,8 +244,8 @@ p4 <- ggstatsplot::ggbetweenstats(
 
 # combining the individual plots into a single plot
 ggstatsplot::combine_plots(
-  p1, p2, p3, p4, 
-  nrow = 2, 
+  p1, p2, p3, p4,
+  nrow = 2,
   labels = c("(a)", "(b)", "(c)", "(d)"),
   title.text = "Comparison of life expectancy between 1957 and 2007",
   caption.text = "Source: Gapminder Foundation",
@@ -276,23 +281,23 @@ ggstatsplot::grouped_ggbetweenstats(
   data = dplyr::filter(
     .data = gapminder::gapminder,
     year == 1967 |
-    year == 1987 |
-    year == 2007, 
+      year == 1987 |
+      year == 2007,
     continent != "Oceania"
   ),
   x = continent,
   y = lifeExp,
   grouping.var = year,
-  xlab = "Continent", 
-  ylab = "Life expectancy", 
+  xlab = "Continent",
+  ylab = "Life expectancy",
   k = 2,
   nboot = 10,
-  effsize.type = "unbiased",           # type of effect size (unbiased = omega)
-  partial = FALSE,                     # partial omega or omega?
-  pairwise.comparisons = TRUE,         # display results from pairwise comparisons 
-  pairwise.display = "significant",    # display only significant pairwise comparisons 
-  pairwise.annotation = "p.value",     # annotate the pairwise comparisons using p-values
-  p.adjust.method = "fdr",             # adjust p-values for multiple tests using this method
+  effsize.type = "unbiased", # type of effect size (unbiased = omega)
+  partial = FALSE, # partial omega or omega?
+  pairwise.comparisons = TRUE, # display results from pairwise comparisons
+  pairwise.display = "significant", # display only significant pairwise comparisons
+  pairwise.annotation = "p.value", # annotate the pairwise comparisons using p-values
+  p.adjust.method = "fdr", # adjust p-values for multiple tests using this method
   ggtheme = ggthemes::theme_tufte(),
   package = "ggsci",
   palette = "default_jco",
@@ -304,7 +309,7 @@ ggstatsplot::grouped_ggbetweenstats(
   # arguments relevant for ggstatsplot::combine_plots
   title.text = "Changes in life expectancy across continents (1967-2007)",
   nrow = 3,
-  labels = c("(a)","(b)","(c)")
+  labels = c("(a)", "(b)", "(c)")
 )
 ```
 

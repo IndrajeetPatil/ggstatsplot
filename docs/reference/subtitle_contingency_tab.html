@@ -329,7 +329,7 @@ intervals were computed, see documentation in <code><a href='https://rdrr.io/pkg
 )</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>15</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(NULL, chi["Pearson"]^2, "(", "2", ") = ", "8.74", ", ", 
 #&gt;     italic("p"), " = ", "0.013", ", ", italic("V")["Cramer"], 
-#&gt;     " = ", "0.52", ", CI"["95%"], " [", "0.18", ", ", "0.59", 
+#&gt;     " = ", "0.52", ", CI"["95%"], " [", "0.20", ", ", "0.71", 
 #&gt;     "]", ", ", italic("n"), " = ", 32L)</div><div class='input'>
 <span class='co'># with counts data</span>
 <span class='co'># in case of no variation, a `NULL` will be returned.</span>
@@ -364,8 +364,7 @@ intervals were computed, see documentation in <code><a href='https://rdrr.io/pkg
 <span class='fu'>subtitle_contingency_tab</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind.data.frame</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='st'>"a"</span>, <span class='fl'>10</span>)),
   <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>x</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Proportion test will not be run because it requires  to have at least 
-#&gt; 2 levels with non-zero frequencies.</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("n"), " = ", 10L)</div></span></pre>
+)</div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Proportion test could not be run. Only sample size returned.</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("n"), " = ", 10L)</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

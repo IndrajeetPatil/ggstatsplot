@@ -5,7 +5,7 @@
 \title{Create labels with statistical details for \code{ggcoefstats}.}
 \usage{
 ggcoefstats_label_maker(x, tidy_df = NULL, glance_df = NULL,
-  statistic = NULL, k = 2, effsize = "eta", partial = TRUE)
+  statistic = NULL, k = 2, effsize = "eta", partial = TRUE, ...)
 }
 \arguments{
 \item{x}{A model object to be tidied with \code{broom::tidy}, or a tidy data frame
@@ -37,6 +37,8 @@ only for models objects of class \code{aov}, \code{anova}, and \code{aovlist}.}
 are returned (Default: \code{TRUE}). If \code{FALSE}, eta-squared or omega-squared
 will be returned. Valid only for objects of class \code{aov}, \code{anova}, or
 \code{aovlist}.}
+
+\item{...}{Currently ignored.}
 }
 \description{
 Create labels with statistical details for \code{ggcoefstats}.
@@ -127,5 +129,8 @@ ggstatsplot:::ggcoefstats_label_maker(
 )
 }
 
+}
+\author{
+Indrajeet Patil
 }
 \keyword{internal}

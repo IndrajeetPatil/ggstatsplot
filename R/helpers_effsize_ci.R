@@ -218,12 +218,7 @@ yuend_ci <- function(data,
     tibble::as_tibble(x = .)
 
   # jamovi needs data to be wide format and not long format
-  data_wide <-
-    long_to_wide_converter(
-      data = data,
-      x = x,
-      y = y
-    )
+  data_wide <- long_to_wide_converter(data = data, x = x, y = y)
 
   # sample size
   sample_size <- nrow(data_wide)

@@ -8,6 +8,8 @@ MINOR CHANGES
 
   - New dataset included: `bugs_long`, for repeated measures designs with `NA`s
     present in the data.
+  - `ggstatsplot` now uses `rcompanion` to compute Spearman's *rho* and
+    Kendall's *W*. Therefore, `DescTools` is removed from dependencies.
 
 # ggstatsplot 0.0.12
 

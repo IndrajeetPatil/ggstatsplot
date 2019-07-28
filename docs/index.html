@@ -186,7 +186,7 @@
 <td><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg" alt="minimal R version"></a></td>
 <td><a href="https://www.tidyverse.org/lifecycle/"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue" alt="Monthly downloads badge"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-23-red.svg" alt="Github Issues"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-24-red.svg" alt="Github Issues"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot/vignettes/"><img src="https://img.shields.io/badge/vignettes-0.0.12-orange.svg?colorB=FF5722" alt="vignettes"></a></td>
 </tr>
 <tr class="even">
@@ -200,12 +200,12 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
 <td><a href="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot"><img src="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2019--07--26-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2019--07--27-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg" alt="GitHub last commit"></a></td>
 </tr>
 <tr class="even">
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://tinyverse.netlify.com/badge/ggstatsplot" alt="status"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md"><img src="https://img.shields.io/badge/covrpage-Last_Build_2019_07_25-yellowgreen.svg" alt="Covrpage Summary"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md"><img src="https://img.shields.io/badge/covrpage-Last_Build_2019_07_27-yellowgreen.svg" alt="Covrpage Summary"></a></td>
 <td><a href="https://saythanks.io/to/IndrajeetPatil"><img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg" alt="saythanks"></a></td>
 <td><a href="http://www.repostatus.org/#active"><img src="http://www.repostatus.org/badges/latest/active.svg" alt="Project Status"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat" alt="contributions welcome"></a></td>
@@ -600,15 +600,10 @@
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># function to convert class of any object to `ggplot` class</span></a>
 <a class="sourceLine" id="cb7-2" title="2">ggstatsplot<span class="op">::</span>ggplot_converter</a>
 <a class="sourceLine" id="cb7-3" title="3"><span class="co">#&gt; function(plot) {</span></a>
-<a class="sourceLine" id="cb7-4" title="4"><span class="co">#&gt;   # convert the saved plot</span></a>
-<a class="sourceLine" id="cb7-5" title="5"><span class="co">#&gt;   p &lt;- cowplot::ggdraw() +</span></a>
-<a class="sourceLine" id="cb7-6" title="6"><span class="co">#&gt;     cowplot::draw_grob(grid::grobTree(plot))</span></a>
-<a class="sourceLine" id="cb7-7" title="7"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb7-8" title="8"><span class="co">#&gt;   # returning the converted plot</span></a>
-<a class="sourceLine" id="cb7-9" title="9"><span class="co">#&gt;   return(p)</span></a>
-<a class="sourceLine" id="cb7-10" title="10"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt; &lt;bytecode: 0x0000000038f24f40&gt;</span></a>
-<a class="sourceLine" id="cb7-12" title="12"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
+<a class="sourceLine" id="cb7-4" title="4"><span class="co">#&gt;   return(cowplot::ggdraw() + cowplot::draw_grob(grid::grobTree(plot)))</span></a>
+<a class="sourceLine" id="cb7-5" title="5"><span class="co">#&gt; }</span></a>
+<a class="sourceLine" id="cb7-6" title="6"><span class="co">#&gt; &lt;bytecode: 0x0000000038118648&gt;</span></a>
+<a class="sourceLine" id="cb7-7" title="7"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
 <li><a href="http://r-pkgs.had.co.nz/namespace.html" class="uri">http://r-pkgs.had.co.nz/namespace.html</a></li>
@@ -674,35 +669,31 @@
 <a class="sourceLine" id="cb9-8" title="8"></a>
 <a class="sourceLine" id="cb9-9" title="9"><span class="co"># let's change the levels of our factors, a common routine in data analysis</span></a>
 <a class="sourceLine" id="cb9-10" title="10"><span class="co"># pipeline, to see if this function respects the new factor levels</span></a>
-<a class="sourceLine" id="cb9-11" title="11">iris2<span class="op">$</span>Species &lt;-</a>
-<a class="sourceLine" id="cb9-12" title="12"><span class="st">  </span>base<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(</a>
-<a class="sourceLine" id="cb9-13" title="13">    <span class="dt">x =</span> iris2<span class="op">$</span>Species,</a>
-<a class="sourceLine" id="cb9-14" title="14">    <span class="dt">levels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"virginica"</span>, <span class="st">"versicolor"</span>)</a>
-<a class="sourceLine" id="cb9-15" title="15">  )</a>
-<a class="sourceLine" id="cb9-16" title="16"></a>
-<a class="sourceLine" id="cb9-17" title="17"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb9-18" title="18">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb9-19" title="19">  <span class="dt">data =</span> iris2,</a>
-<a class="sourceLine" id="cb9-20" title="20">  <span class="dt">x =</span> Species,</a>
-<a class="sourceLine" id="cb9-21" title="21">  <span class="dt">y =</span> Sepal.Length,</a>
-<a class="sourceLine" id="cb9-22" title="22">  <span class="dt">notch =</span> <span class="ot">TRUE</span>, <span class="co"># show notched box plot</span></a>
-<a class="sourceLine" id="cb9-23" title="23">  <span class="dt">mean.plotting =</span> <span class="ot">TRUE</span>, <span class="co"># whether mean for each group is to be displayed</span></a>
-<a class="sourceLine" id="cb9-24" title="24">  <span class="dt">mean.ci =</span> <span class="ot">TRUE</span>, <span class="co"># whether to display confidence interval for means</span></a>
-<a class="sourceLine" id="cb9-25" title="25">  <span class="dt">mean.label.size =</span> <span class="fl">2.5</span>, <span class="co"># size of the label for mean</span></a>
-<a class="sourceLine" id="cb9-26" title="26">  <span class="dt">type =</span> <span class="st">"p"</span>, <span class="co"># which type of test is to be run</span></a>
-<a class="sourceLine" id="cb9-27" title="27">  <span class="dt">k =</span> <span class="dv">3</span>, <span class="co"># number of decimal places for statistical results</span></a>
-<a class="sourceLine" id="cb9-28" title="28">  <span class="dt">outlier.tagging =</span> <span class="ot">TRUE</span>, <span class="co"># whether outliers need to be tagged</span></a>
-<a class="sourceLine" id="cb9-29" title="29">  <span class="dt">outlier.label =</span> Sepal.Width, <span class="co"># variable to be used for the outlier tag</span></a>
-<a class="sourceLine" id="cb9-30" title="30">  <span class="dt">outlier.label.color =</span> <span class="st">"darkgreen"</span>, <span class="co"># changing the color for the text label</span></a>
-<a class="sourceLine" id="cb9-31" title="31">  <span class="dt">xlab =</span> <span class="st">"Type of Species"</span>, <span class="co"># label for the x-axis variable</span></a>
-<a class="sourceLine" id="cb9-32" title="32">  <span class="dt">ylab =</span> <span class="st">"Attribute: Sepal Length"</span>, <span class="co"># label for the y-axis variable</span></a>
-<a class="sourceLine" id="cb9-33" title="33">  <span class="dt">title =</span> <span class="st">"Dataset: Iris flower data set"</span>, <span class="co"># title text for the plot</span></a>
-<a class="sourceLine" id="cb9-34" title="34">  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>(), <span class="co"># choosing a different theme</span></a>
-<a class="sourceLine" id="cb9-35" title="35">  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>, <span class="co"># turn off ggstatsplot theme layer</span></a>
-<a class="sourceLine" id="cb9-36" title="36">  <span class="dt">package =</span> <span class="st">"wesanderson"</span>, <span class="co"># package from which color palette is to be taken</span></a>
-<a class="sourceLine" id="cb9-37" title="37">  <span class="dt">palette =</span> <span class="st">"Darjeeling1"</span>, <span class="co"># choosing a different color palette</span></a>
-<a class="sourceLine" id="cb9-38" title="38">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb9-39" title="39">)</a></code></pre></div>
+<a class="sourceLine" id="cb9-11" title="11">iris2<span class="op">$</span>Species &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="dt">x =</span> iris2<span class="op">$</span>Species, <span class="dt">levels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"virginica"</span>, <span class="st">"versicolor"</span>))</a>
+<a class="sourceLine" id="cb9-12" title="12"></a>
+<a class="sourceLine" id="cb9-13" title="13"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb9-14" title="14">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb9-15" title="15">  <span class="dt">data =</span> iris2,</a>
+<a class="sourceLine" id="cb9-16" title="16">  <span class="dt">x =</span> Species,</a>
+<a class="sourceLine" id="cb9-17" title="17">  <span class="dt">y =</span> Sepal.Length,</a>
+<a class="sourceLine" id="cb9-18" title="18">  <span class="dt">notch =</span> <span class="ot">TRUE</span>, <span class="co"># show notched box plot</span></a>
+<a class="sourceLine" id="cb9-19" title="19">  <span class="dt">mean.plotting =</span> <span class="ot">TRUE</span>, <span class="co"># whether mean for each group is to be displayed</span></a>
+<a class="sourceLine" id="cb9-20" title="20">  <span class="dt">mean.ci =</span> <span class="ot">TRUE</span>, <span class="co"># whether to display confidence interval for means</span></a>
+<a class="sourceLine" id="cb9-21" title="21">  <span class="dt">mean.label.size =</span> <span class="fl">2.5</span>, <span class="co"># size of the label for mean</span></a>
+<a class="sourceLine" id="cb9-22" title="22">  <span class="dt">type =</span> <span class="st">"p"</span>, <span class="co"># which type of test is to be run</span></a>
+<a class="sourceLine" id="cb9-23" title="23">  <span class="dt">k =</span> <span class="dv">3</span>, <span class="co"># number of decimal places for statistical results</span></a>
+<a class="sourceLine" id="cb9-24" title="24">  <span class="dt">outlier.tagging =</span> <span class="ot">TRUE</span>, <span class="co"># whether outliers need to be tagged</span></a>
+<a class="sourceLine" id="cb9-25" title="25">  <span class="dt">outlier.label =</span> Sepal.Width, <span class="co"># variable to be used for the outlier tag</span></a>
+<a class="sourceLine" id="cb9-26" title="26">  <span class="dt">outlier.label.color =</span> <span class="st">"darkgreen"</span>, <span class="co"># changing the color for the text label</span></a>
+<a class="sourceLine" id="cb9-27" title="27">  <span class="dt">xlab =</span> <span class="st">"Type of Species"</span>, <span class="co"># label for the x-axis variable</span></a>
+<a class="sourceLine" id="cb9-28" title="28">  <span class="dt">ylab =</span> <span class="st">"Attribute: Sepal Length"</span>, <span class="co"># label for the y-axis variable</span></a>
+<a class="sourceLine" id="cb9-29" title="29">  <span class="dt">title =</span> <span class="st">"Dataset: Iris flower data set"</span>, <span class="co"># title text for the plot</span></a>
+<a class="sourceLine" id="cb9-30" title="30">  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>(), <span class="co"># choosing a different theme</span></a>
+<a class="sourceLine" id="cb9-31" title="31">  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>, <span class="co"># turn off ggstatsplot theme layer</span></a>
+<a class="sourceLine" id="cb9-32" title="32">  <span class="dt">package =</span> <span class="st">"wesanderson"</span>, <span class="co"># package from which color palette is to be taken</span></a>
+<a class="sourceLine" id="cb9-33" title="33">  <span class="dt">palette =</span> <span class="st">"Darjeeling1"</span>, <span class="co"># choosing a different color palette</span></a>
+<a class="sourceLine" id="cb9-34" title="34">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb9-35" title="35">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats2-1.png" width="100%"></p>
 <p>As can be seen from the plot, the function by default returns Bayes Factor for the test (here, Student’s <em>t</em>-test). If the null hypothesis can’t be rejected with the null hypothesis significance testing (NHST) approach, the Bayesian approach can help index evidence in favor of the null hypothesis (i.e., <span class="math inline">\(BF_{01}\)</span>).</p>
 <p>By default, natural logarithms are shown because Bayes Factor values can sometimes be pretty large. Having values on logarithmic scale also makes it easy to compare evidence in favor alternative (<span class="math inline">\(BF_{10}\)</span>) versus null (<span class="math inline">\(BF_{01}\)</span>) hypotheses (since <span class="math inline">\(log_{e}(BF_{01}) = - log_{e}(BF_{01})\)</span>).</p>
@@ -874,7 +865,7 @@
 <a class="sourceLine" id="cb12-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb12-3" title="3"></a>
 <a class="sourceLine" id="cb12-4" title="4"><span class="co"># getting data in tidy format</span></a>
-<a class="sourceLine" id="cb12-5" title="5">data_bugs &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span>bugs_long <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-5" title="5">data_bugs &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span>bugs_long <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb12-6" title="6"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., region <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Europe"</span>, <span class="st">"North America"</span>))</a>
 <a class="sourceLine" id="cb12-7" title="7"></a>
 <a class="sourceLine" id="cb12-8" title="8"><span class="co"># plot</span></a>

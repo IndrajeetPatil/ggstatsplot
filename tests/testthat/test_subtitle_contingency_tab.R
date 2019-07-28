@@ -43,9 +43,9 @@ testthat::test_that(
           "0.29412",
           ", CI"["99%"],
           " [",
-          "0.15228",
+          "0.26922",
           ", ",
-          "0.17109",
+          "0.31248",
           "]",
           ", ",
           italic("n"),
@@ -86,9 +86,9 @@ testthat::test_that(
           "0.46",
           ", CI"["95%"],
           " [",
-          "0.42",
+          "0.41",
           ", ",
-          "0.49",
+          "0.50",
           "]",
           ", ",
           italic("n"),
@@ -108,7 +108,6 @@ testthat::test_that(
   desc = "subtitle_contingency_tab works - data with NAs",
   code = {
     testthat::skip_on_cran()
-
 
     # introduce NAs
     # check that 2-by-2 doesn't produce continuity correction
@@ -160,9 +159,9 @@ testthat::test_that(
           "0.43",
           ", CI"["99%"],
           " [",
-          "0.05",
+          "0.02",
           ", ",
-          "0.87",
+          "0.83",
           "]",
           ", ",
           italic("n"),

@@ -128,23 +128,18 @@ subtitle_t_onesample <- function(data,
       dplyr::mutate(.data = ., statistic = log(statistic))
 
     # effect size dataframe
-    effsize_df <- rcompanion::wilcoxonOneSampleR(
-      x = data %>% dplyr::pull({{ x }}),
-      mu = test.value,
-      ci = TRUE,
-      conf = conf.level,
-      type = conf.type,
-      R = nboot,
-      histogram = FALSE,
-      digits = k
-    ) %>%
-      tibble::as_tibble(x = .) %>%
-      dplyr::rename(
-        .data = .,
-        estimate = r,
-        conf.low = lower.ci,
-        conf.high = upper.ci
-      )
+    effsize_df <-
+      rcompanion::wilcoxonOneSampleR(
+        x = data %>% dplyr::pull({{ x }}),
+        mu = test.value,
+        ci = TRUE,
+        conf = conf.level,
+        type = conf.type,
+        R = nboot,
+        histogram = FALSE,
+        digits = k
+      ) %>%
+      rcompanion_cleaner(object = ., estimate.col = "r")
 
     # preparing subtitle parameters
     statistic.text <- quote("log"["e"](italic("V")))

@@ -350,7 +350,7 @@ subtitle_mann_nonparametric <- function(data,
     histogram = FALSE,
     digits = k
   ) %>%
-    tibble::as_tibble(x = .)
+    rcompanion_cleaner(object = ., estimate.col = "r")
 
   # message about effect size measure
   if (isTRUE(messages)) effsize_ci_message(nboot, conf.level)
@@ -365,9 +365,9 @@ subtitle_mann_nonparametric <- function(data,
     statistic = log(stats_df$statistic[[1]]),
     p.value = stats_df$p.value[[1]],
     effsize.text = quote(italic(r)),
-    effsize.estimate = effsize_df$r[[1]],
-    effsize.LL = effsize_df$lower.ci[[1]],
-    effsize.UL = effsize_df$upper.ci[[1]],
+    effsize.estimate = effsize_df$estimate[[1]],
+    effsize.LL = effsize_df$conf.low[[1]],
+    effsize.UL = effsize_df$conf.high[[1]],
     n = sample_size,
     conf.level = conf.level,
     k = k
@@ -456,7 +456,6 @@ subtitle_t_robust <- function(data,
 
   # running bayesian analysis
   if (isFALSE(paired)) {
-
     # removing NAs
     data %<>% tidyr::drop_na(.)
 
