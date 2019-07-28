@@ -186,7 +186,7 @@
 <td><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg" alt="minimal R version"></a></td>
 <td><a href="https://www.tidyverse.org/lifecycle/"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue" alt="Monthly downloads badge"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-23-red.svg" alt="Github Issues"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-24-red.svg" alt="Github Issues"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot/vignettes/"><img src="https://img.shields.io/badge/vignettes-0.0.12-orange.svg?colorB=FF5722" alt="vignettes"></a></td>
 </tr>
 <tr class="even">
@@ -600,15 +600,10 @@
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># function to convert class of any object to `ggplot` class</span></a>
 <a class="sourceLine" id="cb7-2" title="2">ggstatsplot<span class="op">::</span>ggplot_converter</a>
 <a class="sourceLine" id="cb7-3" title="3"><span class="co">#&gt; function(plot) {</span></a>
-<a class="sourceLine" id="cb7-4" title="4"><span class="co">#&gt;   # convert the saved plot</span></a>
-<a class="sourceLine" id="cb7-5" title="5"><span class="co">#&gt;   p &lt;- cowplot::ggdraw() +</span></a>
-<a class="sourceLine" id="cb7-6" title="6"><span class="co">#&gt;     cowplot::draw_grob(grid::grobTree(plot))</span></a>
-<a class="sourceLine" id="cb7-7" title="7"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb7-8" title="8"><span class="co">#&gt;   # returning the converted plot</span></a>
-<a class="sourceLine" id="cb7-9" title="9"><span class="co">#&gt;   return(p)</span></a>
-<a class="sourceLine" id="cb7-10" title="10"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt; &lt;bytecode: 0x00000000382bd160&gt;</span></a>
-<a class="sourceLine" id="cb7-12" title="12"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
+<a class="sourceLine" id="cb7-4" title="4"><span class="co">#&gt;   return(cowplot::ggdraw() + cowplot::draw_grob(grid::grobTree(plot)))</span></a>
+<a class="sourceLine" id="cb7-5" title="5"><span class="co">#&gt; }</span></a>
+<a class="sourceLine" id="cb7-6" title="6"><span class="co">#&gt; &lt;bytecode: 0x0000000038118648&gt;</span></a>
+<a class="sourceLine" id="cb7-7" title="7"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
 <li><a href="http://r-pkgs.had.co.nz/namespace.html" class="uri">http://r-pkgs.had.co.nz/namespace.html</a></li>

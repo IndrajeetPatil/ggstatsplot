@@ -1,6 +1,8 @@
 #' @title Create labels with statistical details for `ggcoefstats`.
 #' @name ggcoefstats_label_maker
+#' @author Indrajeet Patil
 #'
+#' @param ... Currently ignored.
 #' @inheritParams ggcoefstats
 #' @inheritParams tfz_labeller
 #'
@@ -99,8 +101,10 @@ ggcoefstats_label_maker <- function(x,
                                     statistic = NULL,
                                     k = 2,
                                     effsize = "eta",
-                                    partial = TRUE) {
-  # ================================ list of objects ==========================
+                                    partial = TRUE,
+                                    ...) {
+
+  # =========================== list of objects ===============================
 
   # dataframe objects
   df.mods <- c(
@@ -196,115 +200,55 @@ ggcoefstats_label_maker <- function(x,
   # for z-statistic, the families are going to be "binomial" and "poisson"
   # but package-dependent; `robustbase` gives z for "Gamma" family, e.g.
 
-  # ================================ dataframe ================================
+  # ==================== dataframe, t-statistic, z-statistic ================
 
-  if (class(x)[[1]] %in% df.mods) {
-    tidy_df <-
-      tfz_labeller(
-        tidy_df = x,
-        glance_df = glance_df,
-        statistic = statistic,
-        effsize = effsize,
-        partial = partial,
-        k = k
-      )
-  }
+  if (class(x)[[1]] %in% df.mods) tidy_df <- x
+  if (class(x)[[1]] %in% t.mods) statistic <- "t"
+  if (class(x)[[1]] %in% z.mods) statistic <- "z"
 
-  # ================================ t-statistic labels =====================
-
-  if (class(x)[[1]] %in% t.mods) {
-    tidy_df %<>%
-      tfz_labeller(
-        tidy_df = .,
-        glance_df = glance_df,
-        statistic = "t",
-        k = k
-      )
-  }
-
-  # ======================= z-statistic labels ==============================
-
-  if (class(x)[[1]] %in% z.mods) {
-    tidy_df %<>%
-      tfz_labeller(
-        tidy_df = .,
-        glance_df = glance_df,
-        statistic = "z",
-        k = k
-      )
-  }
-
-  # ======================= t/z-statistic labels ==============================
+  # ======================= t/z-statistic labels ============================
 
   if (class(x)[[1]] %in% g.mods) {
     if (class(x)[[1]] == "glm") {
       if (summary(x)$family$family[[1]] %in% g.t.mods) {
-        tidy_df %<>%
-          tfz_labeller(
-            tidy_df = .,
-            glance_df = glance_df,
-            statistic = "t",
-            k = k
-          )
+        statistic <- "t"
       } else {
-        tidy_df %<>%
-          tfz_labeller(
-            tidy_df = .,
-            glance_df = glance_df,
-            statistic = "z",
-            k = k
-          )
+        statistic <- "z"
       }
     }
 
     if (class(x)[[1]] == "glmerMod") {
       # models with t-statistic
       if (summary(x)$family[[1]] %in% g.t.mods) {
-        tidy_df %<>%
-          tfz_labeller(
-            tidy_df = .,
-            glance_df = glance_df,
-            statistic = "t",
-            k = k
-          )
+        statistic <- "t"
       } else {
-        # models with z-statistic
-        tidy_df %<>%
-          tfz_labeller(
-            tidy_df = .,
-            glance_df = glance_df,
-            statistic = "z",
-            k = k
-          )
+        statistic <- "z"
       }
     }
 
     # robust models (always going to be z-statistic)
-    if (class(x)[[1]] %in% c("glmRob", "glmrob")) {
-      # only binomial and poisson families are implemented in `robust` package
-      tidy_df %<>%
-        tfz_labeller(
-          tidy_df = .,
-          glance_df = glance_df,
-          statistic = "z",
-          k = k
-        )
-    }
+    if (class(x)[[1]] %in% c("glmRob", "glmrob")) statistic <- "z"
   }
 
   # ====================== F-statistic ====================================
 
   if (class(x)[[1]] %in% f.mods) {
-    tidy_df %<>%
-      tfz_labeller(
-        tidy_df = .,
-        glance_df = NULL,
-        statistic = "f",
-        effsize = effsize,
-        partial = partial,
-        k = k
-      )
+    statistic <- "f"
+    glance_df <- NULL
   }
+
+  # ====================== output ===========================================
+
+  # creating a dataframe with labels
+  tidy_df %<>%
+    tfz_labeller(
+      tidy_df = .,
+      glance_df = glance_df,
+      statistic = statistic,
+      effsize = effsize,
+      partial = partial,
+      k = k
+    )
 
   # return the dataframe with a column with labels
   return(tidy_df)
@@ -320,6 +264,7 @@ ggcoefstats_label_maker <- function(x,
 #' @param glance_df Glance model summary dataframe from `broom::glance`
 #'   (default: `NULL`). This is optional argument. If provide, the `glance`
 #'   summary will be used to write `caption` for the final plot.
+#' @param ... Currently ignored.
 #' @inheritParams ggcoefstats
 #'
 #' @keywords internal
@@ -330,7 +275,8 @@ tfz_labeller <- function(tidy_df,
                          statistic,
                          effsize = "eta",
                          partial = TRUE,
-                         k = 2) {
+                         k = 2,
+                         ...) {
 
   #----------------------- p-value cleanup ------------------------------------
 
@@ -367,8 +313,7 @@ tfz_labeller <- function(tidy_df,
   if (statistic %in% c("t", "t.value", "t-value", "T")) {
     # if `df` column is in the tidy dataframe, rename it to `df.residual`
     if ("df" %in% names(tidy_df)) {
-      tidy_df %<>%
-        dplyr::mutate(.data = ., df.residual = df)
+      tidy_df %<>% dplyr::mutate(.data = ., df.residual = df)
     }
 
     # check if df info is available somewhere
@@ -458,7 +403,9 @@ tfz_labeller <- function(tidy_df,
       } else {
         tidy_df$effsize.text <- list(quote(italic(eta)^2))
       }
-    } else if (effsize == "omega") {
+    }
+
+    if (effsize == "omega") {
       if (isTRUE(partial)) {
         tidy_df$effsize.text <- list(quote(italic(omega)[p]^2))
       } else {
@@ -491,11 +438,8 @@ tfz_labeller <- function(tidy_df,
       )
   }
 
-  # convert to tibble
-  tidy_df %<>% tibble::as_tibble(.)
-
   # return the final dataframe
-  return(tidy_df)
+  return(tibble::as_tibble(tidy_df))
 }
 
 #' @title Prepare subtitle with meta-analysis results
@@ -620,13 +564,11 @@ subtitle_meta_ggcoefstats <- function(data,
   )
 
   # print the results
-  if (isTRUE(messages)) {
-    print(summary(meta_res))
-  }
+  if (isTRUE(messages)) print(summary(meta_res))
 
   #----------------------- tidy output and subtitle ---------------------------
 
-  # create a dataframe with coeffcients
+  # create a dataframe with coefficients
   df_tidy <- coef(summary(meta_res)) %>%
     tibble::as_tibble(x = .) %>%
     dplyr::rename(
@@ -852,7 +794,7 @@ bf_meta_message <- function(data,
       dplyr::mutate(.data = ., term = as.character(term))
   }
 
-  # check defintion of priors for d and tau
+  # check definition of priors for d and tau
   # Note: "d.par" and "tau.par" are deprecated in metaBMA (>= 0.6.1)
   if (class(d) == "character") {
     d <- metaBMA::prior(family = d, param = d.par)
@@ -886,14 +828,13 @@ bf_meta_message <- function(data,
   )
 
   # print results from meta-analysis
-  if (isTRUE(messages)) {
-    print(bf_meta)
-  }
+  if (isTRUE(messages)) print(bf_meta)
 
   #----------------------- preparing caption -------------------------------
 
   # creating a dataframe with posterior estimates
-  df_estimates <- as.data.frame(bf_meta$estimates) %>%
+  df_estimates <-
+    as.data.frame(bf_meta$estimates) %>%
     tibble::rownames_to_column(.data = ., var = "term") %>%
     tibble::as_tibble(x = .) %>%
     dplyr::filter(.data = ., term == "d")

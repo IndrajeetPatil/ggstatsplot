@@ -128,13 +128,7 @@ subtitle_ggscatterstats <- function(data,
         histogram = FALSE,
         digits = 5
       ) %>%
-      tibble::as_tibble(x = .) %>%
-      dplyr::rename(
-        .data = .,
-        estimate = rho,
-        conf.low = lower.ci,
-        conf.high = upper.ci
-      )
+      rcompanion_cleaner(object = ., estimate.col = "rho")
 
     # subtitle parameters
     no.parameters <- 0L
@@ -172,6 +166,7 @@ subtitle_ggscatterstats <- function(data,
   }
 
   #---------------------- preparing subtitle ---------------------------------
+
   if (stats.type %in% c("parametric", "nonparametric", "robust")) {
     # preparing subtitle
     subtitle <- subtitle_template(
@@ -193,8 +188,8 @@ subtitle_ggscatterstats <- function(data,
   }
 
   #---------------------- bayes factor -----------------------------------
-  if (stats.type == "bayes") {
 
+  if (stats.type == "bayes") {
     # bayes factor results
     subtitle <-
       bf_corr_test(

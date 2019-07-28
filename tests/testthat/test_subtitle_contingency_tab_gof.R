@@ -238,6 +238,6 @@ testthat::test_that(
     testthat::expect_identical(using_function1, results1)
 
     # testing message
-    testthat::expect_match(p_message[1], "Proportion test will not be run")
+    testthat::expect_match(p_message[1], "Proportion test could not be run")
   }
 )

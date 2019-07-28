@@ -5,7 +5,7 @@
 \title{Prepare labels with statistic for \code{ggcoefstats} function.}
 \usage{
 tfz_labeller(tidy_df, glance_df = NULL, statistic, effsize = "eta",
-  partial = TRUE, k = 2)
+  partial = TRUE, k = 2, ...)
 }
 \arguments{
 \item{tidy_df}{Tidy dataframe from \code{broomExtra::tidy}.}
@@ -30,6 +30,8 @@ will be returned. Valid only for objects of class \code{aov}, \code{anova}, or
 
 \item{k}{Number of decimal places expected for results displayed in labels
 (Default : \code{k = 2}).}
+
+\item{...}{Currently ignored.}
 }
 \description{
 Creates text labels for \code{ggcoefstats} plot with the appropriate

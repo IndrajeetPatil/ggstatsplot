@@ -80,9 +80,7 @@ subtitle_template <- function(no.parameters,
                               n.text = NULL) {
 
   # if sample size nature is not specified, use generic n
-  if (rlang::is_null(n.text)) {
-    n.text <- quote(italic("n"))
-  }
+  if (rlang::is_null(n.text)) n.text <- quote(italic("n"))
 
   # ------------------ statistic with 0 degrees of freedom --------------------
 

@@ -135,6 +135,17 @@ subtitle_contingency_tab <- function(data,
   data %<>%
     dplyr::mutate(.data = ., {{ main }} := droplevels(as.factor({{ main }})))
 
+  # untable the dataframe based on the count for each observation
+  if (!rlang::quo_is_null(rlang::enquo(counts))) {
+    data %<>%
+      tidyr::uncount(
+        data = .,
+        weights = {{ counts }},
+        .remove = TRUE,
+        .id = "id"
+      )
+  }
+
   # condition
   if (!rlang::quo_is_null(rlang::enquo(condition))) {
     data %<>%
@@ -158,19 +169,6 @@ subtitle_contingency_tab <- function(data,
     }
   }
 
-  # =========================== converting counts ============================
-
-  # untable the dataframe based on the count for each observation
-  if (!rlang::quo_is_null(rlang::enquo(counts))) {
-    data %<>%
-      tidyr::uncount(
-        data = .,
-        weights = {{ counts }},
-        .remove = TRUE,
-        .id = "id"
-      )
-  }
-
   # =============================== association tests ========================
 
   # sample size
@@ -189,7 +187,7 @@ subtitle_contingency_tab <- function(data,
 
     if (isFALSE(paired)) {
       # creating a matrix with frequencies and cleaning it up
-      mat_df <- as.matrix(table(
+      x_arg <- as.matrix(table(
         data %>% dplyr::pull({{ main }}),
         data %>% dplyr::pull({{ condition }})
       ))
@@ -197,7 +195,7 @@ subtitle_contingency_tab <- function(data,
       # object containing stats
       stats_df <-
         broomExtra::tidy(stats::chisq.test(
-          x = mat_df,
+          x = x_arg,
           correct = FALSE,
           rescale.p = FALSE,
           simulate.p.value = simulate.p.value,
@@ -208,22 +206,16 @@ subtitle_contingency_tab <- function(data,
       effsize_df <-
         tryCatch(
           expr = rcompanion::cramerV(
-            x = mat_df,
+            x = x_arg,
             ci = TRUE,
             conf = conf.level,
             type = conf.type,
             R = nboot,
             histogram = FALSE,
-            digits = k,
+            digits = 5,
             bias.correct = bias.correct
           ) %>%
-            tibble::as_tibble(x = .) %>%
-            dplyr::rename(
-              .data = .,
-              estimate = Cramer.V,
-              conf.low = lower.ci,
-              conf.high = upper.ci
-            ),
+            rcompanion_cleaner(object = ., estimate.col = "Cramer.V"),
           error = function(x) {
             tibble::tribble(
               ~estimate, ~conf.low, ~conf.high,
@@ -256,7 +248,7 @@ subtitle_contingency_tab <- function(data,
         )
 
       # creating a matrix with frequencies and cleaning it up
-      mat_df <- as.matrix(table(
+      x_arg <- as.matrix(table(
         data %>% dplyr::pull({{ main }}),
         data %>% dplyr::pull({{ condition }})
       ))
@@ -264,27 +256,22 @@ subtitle_contingency_tab <- function(data,
       # computing effect size + CI
       stats_df <-
         broomExtra::tidy(stats::mcnemar.test(
-          x = mat_df,
+          x = x_arg,
           correct = FALSE
         ))
 
       # computing effect size + CI
-      effsize_df <- rcompanion::cohenG(
-        x = mat_df,
-        ci = TRUE,
-        conf = conf.level,
-        type = conf.type,
-        R = nboot,
-        histogram = FALSE,
-        digits = 5
-      )$Global.statistics %>%
-        tibble::as_tibble(x = .) %>%
-        dplyr::rename(
-          .data = .,
-          estimate = Value,
-          conf.low = lower.ci,
-          conf.high = upper.ci
-        ) %>%
+      effsize_df <-
+        rcompanion::cohenG(
+          x = x_arg,
+          ci = TRUE,
+          conf = conf.level,
+          type = conf.type,
+          R = nboot,
+          histogram = FALSE,
+          digits = 5
+        )$Global.statistics %>%
+        rcompanion_cleaner(object = ., estimate.col = "Value") %>%
         dplyr::filter(.data = ., Statistic == "g")
 
       # effect size text
@@ -324,9 +311,7 @@ subtitle_contingency_tab <- function(data,
       # display message
       message(cat(
         crayon::red("Warning: "),
-        crayon::blue("Proportion test will not be run because it requires "),
-        crayon::yellow(legend.title),
-        crayon::blue(" to have at least \n2 levels with non-zero frequencies."),
+        crayon::blue("Proportion test could not be run. Only sample size returned."),
         sep = ""
       ))
 
@@ -337,24 +322,22 @@ subtitle_contingency_tab <- function(data,
     # tidying up the results
     stats_df <- broomExtra::tidy(stats_df)
 
+    # `x` argument for effect size function
+    x_arg <- as.vector(table(data %>% dplyr::pull({{ main }})))
+
     # dataframe with effect size and its confidence intervals
-    effsize_df <- rcompanion::cramerVFit(
-      x = as.vector(table(data %>% dplyr::pull({{ main }}))),
-      p = ratio,
-      ci = TRUE,
-      conf = conf.level,
-      type = conf.type,
-      R = nboot,
-      histogram = FALSE,
-      digits = 5
-    ) %>%
-      tibble::as_tibble(x = .) %>%
-      dplyr::rename(
-        .data = .,
-        estimate = Cramer.V,
-        conf.low = lower.ci,
-        conf.high = upper.ci
-      )
+    effsize_df <-
+      rcompanion::cramerVFit(
+        x = x_arg,
+        p = ratio,
+        ci = TRUE,
+        conf = conf.level,
+        type = conf.type,
+        R = nboot,
+        histogram = FALSE,
+        digits = 5
+      ) %>%
+      rcompanion_cleaner(object = ., estimate.col = "Cramer.V")
 
     # effect size text
     effsize.text <- quote(italic("V")["Cramer"])

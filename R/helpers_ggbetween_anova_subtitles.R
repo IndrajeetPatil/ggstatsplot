@@ -379,13 +379,7 @@ subtitle_anova_nonparametric <- function(data,
         histogram = FALSE,
         digits = 5
       ) %>%
-      tibble::as_tibble(x = .) %>%
-      dplyr::rename(
-        .data = .,
-        estimate = W,
-        conf.low = lower.ci,
-        conf.high = upper.ci
-      )
+      rcompanion_cleaner(object = ., estimate.col = "W")
 
     # converting to long format and then getting it back in wide so that the
     # rowid variable can be used as the block variable
@@ -443,13 +437,7 @@ subtitle_anova_nonparametric <- function(data,
         histogram = FALSE,
         digits = 5
       ) %>%
-      tibble::as_tibble(x = .) %>%
-      dplyr::rename(
-        .data = .,
-        estimate = epsilon.squared,
-        conf.low = lower.ci,
-        conf.high = upper.ci
-      )
+      rcompanion_cleaner(object = ., estimate.col = "epsilon.squared")
 
     # text for effect size
     effsize.text <- quote(epsilon^2)
@@ -733,10 +721,10 @@ subtitle_anova_bayes <- function(data,
       tidyr::gather(data = ., key, value, -rowid) %>%
       dplyr::arrange(.data = ., rowid) %>%
       dplyr::rename(.data = ., {{ x }} := key, {{ y }} := value)
-  } else {
-    # remove NAs listwise for between-subjects design
-    data %<>% tidyr::drop_na(data = .)
   }
+
+  # remove NAs listwise for between-subjects design
+  if (isFALSE(paired)) data %<>% tidyr::drop_na(.)
 
   # bayes factor results
   subtitle <-
