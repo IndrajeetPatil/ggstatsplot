@@ -110,6 +110,8 @@ grouped_ggpiestats <- function(data,
                                ggplot.component = NULL,
                                return = "plot",
                                messages = TRUE,
+                               x = NULL,
+                               y = NULL,
                                ...) {
 
   # ======================== check user input =============================
@@ -142,21 +144,20 @@ grouped_ggpiestats <- function(data,
   grouping.var <- rlang::ensym(grouping.var)
   main <- rlang::ensym(main)
   condition <- if (!rlang::quo_is_null(rlang::enquo(condition))) rlang::ensym(condition)
+  x <- if (!rlang::quo_is_null(rlang::enquo(x))) rlang::ensym(x)
+  y <- if (!rlang::quo_is_null(rlang::enquo(y))) rlang::ensym(y)
+  x <- x %||% main
+  y <- y %||% condition
   counts <- if (!rlang::quo_is_null(rlang::enquo(counts))) rlang::ensym(counts)
 
   # if `title.prefix` is not provided, use the variable `grouping.var` name
-  if (is.null(title.prefix)) {
-    title.prefix <- rlang::as_name(grouping.var)
-  }
+  if (is.null(title.prefix)) title.prefix <- rlang::as_name(grouping.var)
 
   # ======================== preparing dataframe =============================
 
   # creating a dataframe
   df <-
-    dplyr::select(
-      .data = data,
-      {{ grouping.var }}, {{ main }}, {{ condition }}, {{ counts }}
-    ) %>%
+    dplyr::select(.data = data, {{ grouping.var }}, {{ x }}, {{ y }}, {{ counts }}) %>%
     tidyr::drop_na(data = .) %>% # creating a list for grouped analysis
     grouped_list(data = ., grouping.var = {{ grouping.var }})
 
@@ -168,8 +169,8 @@ grouped_ggpiestats <- function(data,
       .l = list(data = df, title = glue::glue("{title.prefix}: {names(df)}")),
       .f = ggstatsplot::ggpiestats,
       # put common parameters here
-      main = {{ main }},
-      condition = {{ condition }},
+      x = {{ x }},
+      y = {{ y }},
       counts = {{ counts }},
       ratio = ratio,
       paired = paired,

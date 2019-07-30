@@ -208,7 +208,7 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
   <span class='kw'>bar.proptest</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>,
   <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>return</span> <span class='kw'>=</span> <span class='st'>"plot"</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>return</span> <span class='kw'>=</span> <span class='st'>"plot"</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -472,6 +472,17 @@ otherwise this will return a <code>NULL</code>.</p></td>
       <th>messages</th>
       <td><p>Decides whether messages references, notes, and warnings are
 to be displayed (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>x</th>
+      <td><p>The variable to use as the <strong>rows</strong> in the contingency table.</p></td>
+    </tr>
+    <tr>
+      <th>y</th>
+      <td><p>The variable to use as the <strong>columns</strong> in the contingency
+table. Default is <code>NULL</code>. If <code>NULL</code>, one-sample proportion test (a goodness
+of fit test) will be run for the <code>main</code> variable. Otherwise an appropriate
+association test will be run.</p></td>
     </tr>
     <tr>
       <th>...</th>

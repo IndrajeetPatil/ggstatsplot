@@ -95,12 +95,12 @@ Titanic_full_50 <- dplyr::sample_frac(tbl = ggstatsplot::Titanic_full, size = 0.
 
 # plot
 ggstatsplot::ggpiestats(
-  data = Titanic_full_50,                          
-  main = Survived,
-  title = "Passenger survival on the Titanic",       # title for the entire plot
-  caption = "Source: Titanic survival dataset",      # caption for the entire plot
-  legend.title = "Survived?",                        # legend title
-  messages = FALSE                                   # turn off messages
+  data = Titanic_full_50,
+  x = Survived,
+  title = "Passenger survival on the Titanic", # title for the entire plot
+  caption = "Source: Titanic survival dataset", # caption for the entire plot
+  legend.title = "Survived?", # legend title
+  messages = FALSE # turn off messages
 )
 ```
 
@@ -142,21 +142,21 @@ Titanic_full_50 <- dplyr::sample_frac(tbl = ggstatsplot::Titanic_full, size = 0.
 # plot
 ggstatsplot::ggpiestats(
   data = Titanic_full_50,
-  main = Survived,
-  condition = Sex,
-  title = "Passenger survival on the Titanic by gender",   # title for the entire plot
-  caption = "Source: Titanic survival dataset",            # caption for the entire plot
-  legend.title = "Survived?",                              # legend title
-  bf.message = TRUE,                                       # display bayes factor in favor of null hypothesis
-  ggtheme = ggplot2::theme_grey(),                         # changing plot theme 
-  palette = "category10_d3",                               # choosing a different color palette
-  package = "ggsci",                                       # package to which color palette belongs
-  stat.title = "Pearson's chi-squared test: ",             # title for statistical test
-  k = 3,                                                   # decimal places in result
-  perc.k = 1,                                              # decimal places in percentage labels
-  nboot = 10,                                              # no. of bootstrap sample for effect size CI
+  x = Survived,
+  y = Sex,
+  title = "Passenger survival on the Titanic by gender", # title for the entire plot
+  caption = "Source: Titanic survival dataset", # caption for the entire plot
+  legend.title = "Survived?", # legend title
+  bf.message = TRUE, # display bayes factor in favor of null hypothesis
+  ggtheme = ggplot2::theme_grey(), # changing plot theme
+  palette = "category10_d3", # choosing a different color palette
+  package = "ggsci", # package to which color palette belongs
+  stat.title = "Association test: ", # title for statistical test
+  k = 3, # decimal places in result
+  perc.k = 1, # decimal places in percentage labels
+  nboot = 10, # no. of bootstrap sample for effect size CI
   messages = FALSE
-)  +                                                       # further modification with `ggplot2` commands
+) + # further modification with `ggplot2` commands
   ggplot2::theme(plot.title = ggplot2::element_text(
     color = "black",
     size = 14,
@@ -165,7 +165,7 @@ ggstatsplot::ggpiestats(
 ```
 
 The plot clearly shows that survival rates were very different between males and
-females. The Pearson's chi-square test of independence is significant given our
+females. The Pearson's $\chi^2$-test of independence is significant given our
 large sample size. Additionally, for both females and males, the survival rates
 were significantly different than 50% as indicated by the `***` which is
 equivalent to a goodness of fit test for each gender.
@@ -193,10 +193,10 @@ set.seed(123)
 ggstatsplot::grouped_ggpiestats(
   # arguments relevant for ggstatsplot::gghistostats
   data = ggstatsplot::Titanic_full,
+  x = Survived,
+  y = Sex,
   grouping.var = Age,
   title.prefix = "Child or Adult?",
-  main = Survived,
-  condition = Sex,
   nboot = 10,
   perc.k = 1,
   package = "ggsci",
@@ -276,8 +276,8 @@ would be:
 # running `ggpiestats` with counts information
 ggstatsplot::ggpiestats(
   data = fishing,
-  main = Fish,
-  condition = Month,
+  x = Fish,
+  y = Month,
   counts = SumOfCaught,
   slice.label = "both",
   package = "ggsci",
@@ -290,7 +290,7 @@ ggstatsplot::ggpiestats(
 ```
 
 The results support our hypothesis that the type of fish caught is related to
-the month in which we're fishing. The chi squared independence test results at
+the month in which we're fishing. The $\chi^2$ independence test results at
 the top of the plot. In February we catch significantly more Haddock than we
 would hypothesize for an equal distribution. Whereas in March our results
 indicate there's no strong evidence that the distribution isn't equal.
@@ -299,12 +299,12 @@ indicate there's no strong evidence that the distribution isn't equal.
 
 For our final example let's imagine we're conducting clinical trials for some
 new imaginary wonder drug. We have 134 subjects entering the trial. Some of them
-enter healthy (N=96), some of them enter the trial already being sick (*n* = 38).
-All of them receive our treatment or intervention. Then we check back in a month
-to see if they are healthy or sick. A classic pre/post experimental design.
-We're interested in seeing the change in both groupings. In the case of
+enter healthy (*n* = 96), some of them enter the trial already being sick (*n* =
+38). All of them receive our treatment or intervention. Then we check back in a
+month to see if they are healthy or sick. A classic pre/post experimental
+design. We're interested in seeing the change in both groupings. In the case of
 within-subjects designs, you can set `paired = TRUE`, which will display results
-from **McNemar test** in the subtitle. 
+from **McNemar test** in the subtitle.
 
 (**Note:** If you forget to set `paired = TRUE`, the results you get will be
 inaccurate.)
@@ -314,30 +314,29 @@ inaccurate.)
 set.seed(123)
 
 # create our imaginary data
-clinical_trial <- 
+clinical_trial <-
   tibble::tribble(
-    ~SickBefore,	~SickAfter,	~Counts,
-    "No",	"Yes",	4,
-    "Yes",	"No",	25,
-    "Yes",	"Yes",	13,
-    "No",	"No",	92
+    ~SickBefore, ~SickAfter, ~Counts,
+    "No", "Yes", 4,
+    "Yes", "No", 25,
+    "Yes", "Yes", 13,
+    "No", "No", 92
   )
 
 # plot
 ggstatsplot::ggpiestats(
   data = clinical_trial,
-  condition = SickBefore,
-  main = SickAfter,
+  x = SickAfter,
+  y = SickBefore,
   counts = Counts,
   paired = TRUE,
   slice.label = "both",
-  stat.title = "McNemar test: ",
   title = "Results from imaginary clinical trial",
   package = "ggsci",
   palette = "default_ucscgb",
   direction = -1,
   messages = FALSE
-) 
+)
 ```
 
 The results bode well for our experimental wonder drug. Of the 96 who started

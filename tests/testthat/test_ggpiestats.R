@@ -34,7 +34,7 @@ testthat::test_that(
     p_subtitle <-
       ggstatsplot::subtitle_onesample_proptest(
         data = ggplot2::msleep,
-        main = "vore",
+        x = "vore",
         nboot = 25
       )
 
@@ -154,8 +154,8 @@ testthat::test_that(
     p_subtitle <-
       ggstatsplot::subtitle_contingency_tab(
         data = mtcars,
-        main = "am",
-        condition = "cyl",
+        x = "am",
+        y = "cyl",
         simulate.p.value = TRUE,
         nboot = 25,
         B = 3000,
@@ -356,8 +356,8 @@ testthat::test_that(
     set.seed(123)
     p_subtitle <- ggstatsplot::subtitle_contingency_tab(
       data = as.data.frame(Titanic),
-      main = Sex,
-      condition = Survived,
+      x = Sex,
+      y = Survived,
       counts = Freq,
       nboot = 25,
       conf.level = 0.95,
@@ -438,8 +438,8 @@ testthat::test_that(
     set.seed(123)
     p_subtitle <- ggstatsplot::subtitle_contingency_tab(
       data = survey.data,
-      main = `1st survey`,
-      condition = `2nd survey`,
+      x = `1st survey`,
+      y = `2nd survey`,
       counts = Counts,
       nboot = 25,
       paired = TRUE,

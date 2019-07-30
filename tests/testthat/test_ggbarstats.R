@@ -37,8 +37,8 @@ testthat::test_that(
     set.seed(123)
     p_subtitle <- ggstatsplot::subtitle_contingency_tab(
       data = as.data.frame(Titanic),
-      main = "Sex",
-      condition = "Survived",
+      x = "Sex",
+      y = "Survived",
       counts = Freq,
       conf.level = 0.95,
       messages = FALSE

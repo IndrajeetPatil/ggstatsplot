@@ -230,3 +230,93 @@ testthat::test_that(
     )
   }
 )
+
+# subtitle return --------------------------------------------------
+
+testthat::test_that(
+  desc = "subtitle return",
+  code = {
+    testthat::skip_on_cran()
+
+    # should return a list of length 3
+    set.seed(123)
+    ls_results <- ggstatsplot::grouped_ggwithinstats(
+      data = dplyr::filter(
+        ggstatsplot::bugs_long,
+        region %in% c("North America", "Europe")
+      ),
+      x = condition,
+      y = desire,
+      grouping.var = region,
+      return = "subtitle",
+      messages = FALSE
+    )
+
+    # tests
+    testthat::expect_equal(length(ls_results), 2L)
+    testthat::expect_identical(
+      ls_results[[1]],
+                               ggplot2::expr(
+                                 paste(
+                                   NULL,
+                                   italic("F"),
+                                   "(",
+                                   "2.13",
+                                   ",",
+                                   "14.91",
+                                   ") = ",
+                                   "0.93",
+                                   ", ",
+                                   italic("p"),
+                                   " = ",
+                                   "0.424",
+                                   ", ",
+                                   omega ^ 2,
+                                   " = ",
+                                   "0.00",
+                                   ", CI"["95%"],
+                                   " [",
+                                   "NA",
+                                   ", ",
+                                   "0.25",
+                                   "]",
+                                   ", ",
+                                   italic("n"),
+                                   " = ",
+                                   8L
+                                 )
+                               ))
+    testthat::expect_identical(
+      ls_results[[2]],
+                               ggplot2::expr(
+                                 paste(
+                                   NULL,
+                                   italic("F"),
+                                   "(",
+                                   "2.60",
+                                   ",",
+                                   "192.53",
+                                   ") = ",
+                                   "11.33",
+                                   ", ",
+                                   italic("p"),
+                                   " = ",
+                                   "< 0.001",
+                                   ", ",
+                                   omega ^ 2,
+                                   " = ",
+                                   "0.08",
+                                   ", CI"["95%"],
+                                   " [",
+                                   "0.04",
+                                   ", ",
+                                   "0.17",
+                                   "]",
+                                   ", ",
+                                   italic("n"),
+                                   " = ",
+                                   75L
+                                 )
+                               ))
+  }
+)

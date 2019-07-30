@@ -1,5 +1,5 @@
 #' @title Box/Violin plots for group or condition comparisons in
-#'   **within**-subjects (or repeated measures) designs.
+#'   within-subjects (or repeated measures) designs.
 #' @name ggwithinstats
 #' @description A combination of box and violin plots along with raw
 #'   (unjittered) data points for within-subjects designs with statistical

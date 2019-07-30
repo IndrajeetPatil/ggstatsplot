@@ -3,7 +3,7 @@
 \name{ggwithinstats}
 \alias{ggwithinstats}
 \title{Box/Violin plots for group or condition comparisons in
-\strong{within}-subjects (or repeated measures) designs.}
+within-subjects (or repeated measures) designs.}
 \usage{
 ggwithinstats(data, x, y, type = "parametric",
   pairwise.comparisons = FALSE, pairwise.annotation = "asterisk",

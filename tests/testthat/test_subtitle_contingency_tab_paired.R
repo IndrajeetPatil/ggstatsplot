@@ -34,8 +34,8 @@ testthat::test_that(
       suppressWarnings(
         ggstatsplot::subtitle_contingency_tab(
           data = paired_data,
-          main = "response_before",
-          condition = response_after,
+          x = "response_before",
+          y = response_after,
           paired = TRUE,
           counts = "Freq",
           k = 5,
@@ -132,8 +132,8 @@ testthat::test_that(
       suppressWarnings(
         ggstatsplot::subtitle_contingency_tab(
           data = paired_data,
-          main = response_before,
-          condition = "response_after",
+          x = response_before,
+          y = "response_after",
           paired = TRUE,
           k = 3,
           conf.level = 0.90,
@@ -210,8 +210,8 @@ testthat::test_that(
     set.seed(123)
     subtitle1 <- suppressWarnings(ggstatsplot::subtitle_contingency_tab(
       data = df,
-      main = Var1,
-      condition = Var2,
+      x = Var1,
+      y = Var2,
       counts = "Freq",
       paired = TRUE,
       k = 4,

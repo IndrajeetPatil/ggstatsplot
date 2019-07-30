@@ -240,7 +240,7 @@ ggcoefstats_label_maker <- function(x,
   # ====================== output ===========================================
 
   # creating a dataframe with labels
-  tidy_df %<>%
+  return(tidy_df %<>%
     tfz_labeller(
       tidy_df = .,
       glance_df = glance_df,
@@ -248,10 +248,7 @@ ggcoefstats_label_maker <- function(x,
       effsize = effsize,
       partial = partial,
       k = k
-    )
-
-  # return the dataframe with a column with labels
-  return(tidy_df)
+    ))
 }
 
 
@@ -794,7 +791,7 @@ bf_meta_message <- function(data,
       dplyr::mutate(.data = ., term = as.character(term))
   }
 
-  # check definition of priors for d and tau
+  # check definition of priors for d
   # Note: "d.par" and "tau.par" are deprecated in metaBMA (>= 0.6.1)
   if (class(d) == "character") {
     d <- metaBMA::prior(family = d, param = d.par)
@@ -805,6 +802,8 @@ bf_meta_message <- function(data,
       "\n  (B) a prior distribution specified via metaBMA::prior()"
     )
   }
+
+  # check definition of priors for tau
   if (class(tau) == "character") {
     tau <- metaBMA::prior(family = tau, param = tau.par)
   } else if (!class(tau) == "prior") {
@@ -816,16 +815,17 @@ bf_meta_message <- function(data,
   }
 
   # extracting results from random-effects meta-analysis
-  bf_meta <- metaBMA::meta_random(
-    y = data$estimate,
-    SE = data$std.error,
-    labels = data$term,
-    d = d,
-    tau = tau,
-    iter = iter,
-    summarize = summarize,
-    ...
-  )
+  bf_meta <-
+    metaBMA::meta_random(
+      y = data$estimate,
+      SE = data$std.error,
+      labels = data$term,
+      d = d,
+      tau = tau,
+      iter = iter,
+      summarize = summarize,
+      ...
+    )
 
   # print results from meta-analysis
   if (isTRUE(messages)) print(bf_meta)

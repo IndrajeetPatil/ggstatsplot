@@ -125,9 +125,7 @@ grouped_ggwithinstats <- function(data,
   grouping.var <- rlang::ensym(grouping.var)
 
   # if `title.prefix` is not provided, use the variable `grouping.var` name
-  if (is.null(title.prefix)) {
-    title.prefix <- rlang::as_name(grouping.var)
-  }
+  if (is.null(title.prefix)) title.prefix <- rlang::as_name(grouping.var)
 
   # ======================== preparing dataframe ==========================
 
@@ -144,45 +142,16 @@ grouped_ggwithinstats <- function(data,
     tidyr::drop_na(data = .) %>% # creating a list for grouped analysis
     grouped_list(data = ., grouping.var = {{ grouping.var }})
 
-  # ============== build pmap list based on conditions =====================
-
-  if (!"outlier.tagging" %in% names(param_list) || isFALSE(outlier.tagging)) {
-    flexiblelist <- list(
-      data = df,
-      x = rlang::quo_text(rlang::ensym(x)),
-      y = rlang::quo_text(rlang::ensym(y)),
-      title = glue::glue("{title.prefix}: {names(df)}")
-    )
-  }
-
-  if (isTRUE(outlier.tagging) && !"outlier.label" %in% names(param_list)) {
-    flexiblelist <- list(
-      data = df,
-      x = rlang::quo_text(rlang::ensym(x)),
-      y = rlang::quo_text(rlang::ensym(y)),
-      outlier.tagging = TRUE,
-      title = glue::glue("{title.prefix}: {names(df)}")
-    )
-  }
-
-  if (isTRUE(outlier.tagging) && "outlier.label" %in% names(param_list)) {
-    flexiblelist <- list(
-      data = df,
-      x = rlang::quo_text(rlang::ensym(x)),
-      y = rlang::quo_text(rlang::ensym(y)),
-      outlier.label = rlang::quo_text(rlang::ensym(outlier.label)),
-      outlier.tagging = TRUE,
-      title = glue::glue("{title.prefix}: {names(df)}")
-    )
-  }
-
   # ============== creating a list of plots using `pmap`=======================
 
   plotlist_purrr <-
     purrr::pmap(
-      .l = flexiblelist,
+      .l = list(data = df, title = glue::glue("{title.prefix}: {names(df)}")),
       .f = ggstatsplot::ggwithinstats,
       # put common parameters here
+      x = {{ x }},
+      y = {{ y }},
+      outlier.label = {{ outlier.label }},
       type = type,
       pairwise.comparisons = pairwise.comparisons,
       pairwise.annotation = pairwise.annotation,
@@ -215,6 +184,7 @@ grouped_ggwithinstats <- function(data,
       notch = notch,
       notchwidth = notchwidth,
       linetype = linetype,
+      outlier.tagging = outlier.tagging,
       outlier.label.color = outlier.label.color,
       outlier.color = outlier.color,
       outlier.shape = outlier.shape,

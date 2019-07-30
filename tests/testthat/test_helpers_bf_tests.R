@@ -365,7 +365,6 @@ testthat::test_that(
   }
 )
 
-
 # bayes factor (proportion test) --------------------------------------
 
 testthat::test_that(
@@ -377,7 +376,7 @@ testthat::test_that(
     set.seed(123)
     df <- ggstatsplot::bf_contingency_tab(
       data = mtcars,
-      main = am,
+      x = am,
       output = "results"
     )
 
@@ -392,7 +391,7 @@ testthat::test_that(
     set.seed(123)
     caption_text <- ggstatsplot::bf_contingency_tab(
       data = mtcars,
-      main = "cyl",
+      x = "cyl",
       output = "alternative",
       prior.concentration = 10
     )
@@ -438,8 +437,8 @@ testthat::test_that(
     set.seed(123)
     df_results <- ggstatsplot::bf_contingency_tab(
       data = mtcars,
-      main = am,
-      condition = cyl,
+      x = am,
+      y = cyl,
       sampling.plan = "jointMulti",
       fixed.margin = "rows",
       output = "results"
@@ -448,8 +447,8 @@ testthat::test_that(
     # caption
     caption_text <- ggstatsplot::bf_contingency_tab(
       data = mtcars,
-      main = am,
-      condition = "cyl",
+      x = am,
+      y = "cyl",
       sampling.plan = "jointMulti",
       fixed.margin = "rows",
       output = "alternative"
@@ -458,8 +457,8 @@ testthat::test_that(
     # with counts
     caption_text2 <- ggstatsplot::bf_contingency_tab(
       data = as.data.frame(Titanic),
-      main = "Survived",
-      condition = Sex,
+      x = "Survived",
+      y = Sex,
       counts = "Freq",
       sampling.plan = "jointMulti",
       fixed.margin = "rows",

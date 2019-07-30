@@ -1,8 +1,19 @@
 # ggstatsplot 0.0.12.9000
 
+BREAKING CHANGES
+
+  - To be consistent with all the other `subtitle_` and `bf_` functions,
+    `subtitle_contingency_tab` and `bf_contingency_tab` now use the arguments
+    `x` and `y` instead of `main` and `condition`.
+
 MAJOR CHANGES
 
   - Major refactoring to reduce the codesize and to rely fully on `rlang`.
+  - To be consistent with the rest of the functions, `ggpiestats` and
+    `ggbarstats` now uses the following aliases for arguments: `x` for `main`
+    and `y` for `condition`. This change is backward-compatible and should not
+    pose any problems for scripts that used `main` and `condition` arguments in
+    these functions.
 
 MINOR CHANGES
 

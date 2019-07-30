@@ -139,21 +139,183 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
 
-    # should return a list of length 3
+    # should return a list of length 5
+    set.seed(123)
     ls_results <- ggstatsplot::grouped_ggbetweenstats(
-      data = iris_long,
-      x = condition,
-      y = value,
-      grouping.var = Species,
+      data = dplyr::sample_frac(forcats::gss_cat, 0.25),
+      x = race,
+      y = tvhours,
+      grouping.var = marital,
       return = "subtitle",
-      results.subtitle = NULL,
       messages = FALSE
     )
 
     # tests
-    testthat::expect_equal(length(ls_results), 3L)
-    testthat::expect_null(ls_results[[1]], NULL)
-    testthat::expect_null(ls_results[[2]], NULL)
-    testthat::expect_null(ls_results[[3]], NULL)
+    testthat::expect_equal(length(ls_results), 5L)
+    testthat::expect_identical(
+      ls_results[[1]],
+      ggplot2::expr(
+        paste(
+          NULL,
+          italic("F"),
+          "(",
+          "2",
+          ",",
+          "287.06",
+          ") = ",
+          "14.02",
+          ", ",
+          italic("p"),
+          " = ",
+          "< 0.001",
+          ", ",
+          omega["p"]^2,
+          " = ",
+          "0.03",
+          ", CI"["95%"],
+          " [",
+          "0.01",
+          ", ",
+          "0.07",
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          779L
+        )
+      )
+    )
+    testthat::expect_identical(
+      ls_results[[2]],
+      ggplot2::expr(
+        paste(
+          NULL,
+          italic("F"),
+          "(",
+          "2",
+          ",",
+          "39.53",
+          ") = ",
+          "3.24",
+          ", ",
+          italic("p"),
+          " = ",
+          "0.050",
+          ", ",
+          omega["p"]^2,
+          " = ",
+          "0.06",
+          ", CI"["95%"],
+          " [",
+          "-0.04",
+          ", ",
+          "0.18",
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          107L
+        )
+      )
+    )
+    testthat::expect_identical(
+      ls_results[[3]],
+      ggplot2::expr(
+        paste(
+          NULL,
+          italic("F"),
+          "(",
+          "2",
+          ",",
+          "60.53",
+          ") = ",
+          "4.46",
+          ", ",
+          italic("p"),
+          " = ",
+          "0.016",
+          ", ",
+          omega["p"]^2,
+          " = ",
+          "0.02",
+          ", CI"["95%"],
+          " [",
+          "-0.01",
+          ", ",
+          "0.05",
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          451L
+        )
+      )
+    )
+    testthat::expect_identical(
+      ls_results[[4]],
+      ggplot2::expr(
+        paste(
+          NULL,
+          italic("F"),
+          "(",
+          "2",
+          ",",
+          "15.50",
+          ") = ",
+          "4.14",
+          ", ",
+          italic("p"),
+          " = ",
+          "0.036",
+          ", ",
+          omega["p"]^2,
+          " = ",
+          "0.05",
+          ", CI"["95%"],
+          " [",
+          "-0.01",
+          ", ",
+          "0.12",
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          249L
+        )
+      )
+    )
+    testthat::expect_identical(
+      ls_results[[5]],
+      ggplot2::expr(
+        paste(
+          NULL,
+          italic("F"),
+          "(",
+          "2",
+          ",",
+          "163.64",
+          ") = ",
+          "6.96",
+          ", ",
+          italic("p"),
+          " = ",
+          "0.001",
+          ", ",
+          omega["p"]^2,
+          " = ",
+          "0.02",
+          ", CI"["95%"],
+          " [",
+          "0.00",
+          ", ",
+          "0.04",
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          1264L
+        )
+      )
+    )
   }
 )

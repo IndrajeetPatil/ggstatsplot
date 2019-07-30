@@ -139,7 +139,7 @@
       <h1>ggpiestats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-07-27</h4>
+            <h4 class="date">2019-07-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggpiestats.Rmd"><code>vignettes/web_only/ggpiestats.Rmd</code></a></small>
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
@@ -200,12 +200,12 @@
 <a class="sourceLine" id="cb2-7" title="7"></a>
 <a class="sourceLine" id="cb2-8" title="8"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb2-9" title="9">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</a>
-<a class="sourceLine" id="cb2-10" title="10">  <span class="dt">data =</span> Titanic_full_<span class="dv">50</span>,                          </a>
-<a class="sourceLine" id="cb2-11" title="11">  <span class="dt">main =</span> Survived,</a>
-<a class="sourceLine" id="cb2-12" title="12">  <span class="dt">title =</span> <span class="st">"Passenger survival on the Titanic"</span>,       <span class="co"># title for the entire plot</span></a>
-<a class="sourceLine" id="cb2-13" title="13">  <span class="dt">caption =</span> <span class="st">"Source: Titanic survival dataset"</span>,      <span class="co"># caption for the entire plot</span></a>
-<a class="sourceLine" id="cb2-14" title="14">  <span class="dt">legend.title =</span> <span class="st">"Survived?"</span>,                        <span class="co"># legend title</span></a>
-<a class="sourceLine" id="cb2-15" title="15">  <span class="dt">messages =</span> <span class="ot">FALSE</span>                                   <span class="co"># turn off messages</span></a>
+<a class="sourceLine" id="cb2-10" title="10">  <span class="dt">data =</span> Titanic_full_<span class="dv">50</span>,</a>
+<a class="sourceLine" id="cb2-11" title="11">  <span class="dt">x =</span> Survived,</a>
+<a class="sourceLine" id="cb2-12" title="12">  <span class="dt">title =</span> <span class="st">"Passenger survival on the Titanic"</span>, <span class="co"># title for the entire plot</span></a>
+<a class="sourceLine" id="cb2-13" title="13">  <span class="dt">caption =</span> <span class="st">"Source: Titanic survival dataset"</span>, <span class="co"># caption for the entire plot</span></a>
+<a class="sourceLine" id="cb2-14" title="14">  <span class="dt">legend.title =</span> <span class="st">"Survived?"</span>, <span class="co"># legend title</span></a>
+<a class="sourceLine" id="cb2-15" title="15">  <span class="dt">messages =</span> <span class="ot">FALSE</span> <span class="co"># turn off messages</span></a>
 <a class="sourceLine" id="cb2-16" title="16">)</a></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats3-1.png" width="576"></p>
 <p><strong>Note:</strong> equal proportions per category are the default, e.g. 50/50, but you can specify any hypothesized ratio you like with <code>ratio</code> so if our hypothesis was that 80% died and 20% survived we would add <code>ratio = c(.80,.20)</code> when we entered the code.</p>
@@ -233,28 +233,28 @@
 <a class="sourceLine" id="cb3-8" title="8"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb3-9" title="9">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb3-10" title="10">  <span class="dt">data =</span> Titanic_full_<span class="dv">50</span>,</a>
-<a class="sourceLine" id="cb3-11" title="11">  <span class="dt">main =</span> Survived,</a>
-<a class="sourceLine" id="cb3-12" title="12">  <span class="dt">condition =</span> Sex,</a>
-<a class="sourceLine" id="cb3-13" title="13">  <span class="dt">title =</span> <span class="st">"Passenger survival on the Titanic by gender"</span>,   <span class="co"># title for the entire plot</span></a>
-<a class="sourceLine" id="cb3-14" title="14">  <span class="dt">caption =</span> <span class="st">"Source: Titanic survival dataset"</span>,            <span class="co"># caption for the entire plot</span></a>
-<a class="sourceLine" id="cb3-15" title="15">  <span class="dt">legend.title =</span> <span class="st">"Survived?"</span>,                              <span class="co"># legend title</span></a>
-<a class="sourceLine" id="cb3-16" title="16">  <span class="dt">bf.message =</span> <span class="ot">TRUE</span>,                                       <span class="co"># display bayes factor in favor of null hypothesis</span></a>
-<a class="sourceLine" id="cb3-17" title="17">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),                         <span class="co"># changing plot theme </span></a>
-<a class="sourceLine" id="cb3-18" title="18">  <span class="dt">palette =</span> <span class="st">"category10_d3"</span>,                               <span class="co"># choosing a different color palette</span></a>
-<a class="sourceLine" id="cb3-19" title="19">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,                                       <span class="co"># package to which color palette belongs</span></a>
-<a class="sourceLine" id="cb3-20" title="20">  <span class="dt">stat.title =</span> <span class="st">"Pearson's chi-squared test: "</span>,             <span class="co"># title for statistical test</span></a>
-<a class="sourceLine" id="cb3-21" title="21">  <span class="dt">k =</span> <span class="dv">3</span>,                                                   <span class="co"># decimal places in result</span></a>
-<a class="sourceLine" id="cb3-22" title="22">  <span class="dt">perc.k =</span> <span class="dv">1</span>,                                              <span class="co"># decimal places in percentage labels</span></a>
-<a class="sourceLine" id="cb3-23" title="23">  <span class="dt">nboot =</span> <span class="dv">10</span>,                                              <span class="co"># no. of bootstrap sample for effect size CI</span></a>
+<a class="sourceLine" id="cb3-11" title="11">  <span class="dt">x =</span> Survived,</a>
+<a class="sourceLine" id="cb3-12" title="12">  <span class="dt">y =</span> Sex,</a>
+<a class="sourceLine" id="cb3-13" title="13">  <span class="dt">title =</span> <span class="st">"Passenger survival on the Titanic by gender"</span>, <span class="co"># title for the entire plot</span></a>
+<a class="sourceLine" id="cb3-14" title="14">  <span class="dt">caption =</span> <span class="st">"Source: Titanic survival dataset"</span>, <span class="co"># caption for the entire plot</span></a>
+<a class="sourceLine" id="cb3-15" title="15">  <span class="dt">legend.title =</span> <span class="st">"Survived?"</span>, <span class="co"># legend title</span></a>
+<a class="sourceLine" id="cb3-16" title="16">  <span class="dt">bf.message =</span> <span class="ot">TRUE</span>, <span class="co"># display bayes factor in favor of null hypothesis</span></a>
+<a class="sourceLine" id="cb3-17" title="17">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(), <span class="co"># changing plot theme</span></a>
+<a class="sourceLine" id="cb3-18" title="18">  <span class="dt">palette =</span> <span class="st">"category10_d3"</span>, <span class="co"># choosing a different color palette</span></a>
+<a class="sourceLine" id="cb3-19" title="19">  <span class="dt">package =</span> <span class="st">"ggsci"</span>, <span class="co"># package to which color palette belongs</span></a>
+<a class="sourceLine" id="cb3-20" title="20">  <span class="dt">stat.title =</span> <span class="st">"Association test: "</span>, <span class="co"># title for statistical test</span></a>
+<a class="sourceLine" id="cb3-21" title="21">  <span class="dt">k =</span> <span class="dv">3</span>, <span class="co"># decimal places in result</span></a>
+<a class="sourceLine" id="cb3-22" title="22">  <span class="dt">perc.k =</span> <span class="dv">1</span>, <span class="co"># decimal places in percentage labels</span></a>
+<a class="sourceLine" id="cb3-23" title="23">  <span class="dt">nboot =</span> <span class="dv">10</span>, <span class="co"># no. of bootstrap sample for effect size CI</span></a>
 <a class="sourceLine" id="cb3-24" title="24">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb3-25" title="25">)  <span class="op">+</span><span class="st">                                                       </span><span class="co"># further modification with `ggplot2` commands</span></a>
+<a class="sourceLine" id="cb3-25" title="25">) <span class="op">+</span><span class="st"> </span><span class="co"># further modification with `ggplot2` commands</span></a>
 <a class="sourceLine" id="cb3-26" title="26"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">plot.title =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(</a>
 <a class="sourceLine" id="cb3-27" title="27">    <span class="dt">color =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb3-28" title="28">    <span class="dt">size =</span> <span class="dv">14</span>,</a>
 <a class="sourceLine" id="cb3-29" title="29">    <span class="dt">hjust =</span> <span class="dv">0</span></a>
 <a class="sourceLine" id="cb3-30" title="30">  ))</a></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats1-1.png" width="768"></p>
-<p>The plot clearly shows that survival rates were very different between males and females. The Pearson’s chi-square test of independence is significant given our large sample size. Additionally, for both females and males, the survival rates were significantly different than 50% as indicated by the <code>***</code> which is equivalent to a goodness of fit test for each gender.</p>
+<p>The plot clearly shows that survival rates were very different between males and females. The Pearson’s <span class="math inline">\(\chi^2\)</span>-test of independence is significant given our large sample size. Additionally, for both females and males, the survival rates were significantly different than 50% as indicated by the <code>***</code> which is equivalent to a goodness of fit test for each gender.</p>
 </div>
 <div id="grouped-analysis-with-grouped_ggpiestats" class="section level2">
 <h2 class="hasAnchor">
@@ -270,10 +270,10 @@
 <a class="sourceLine" id="cb4-6" title="6">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggpiestats.html">grouped_ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb4-7" title="7">  <span class="co"># arguments relevant for ggstatsplot::gghistostats</span></a>
 <a class="sourceLine" id="cb4-8" title="8">  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>Titanic_full,</a>
-<a class="sourceLine" id="cb4-9" title="9">  <span class="dt">grouping.var =</span> Age,</a>
-<a class="sourceLine" id="cb4-10" title="10">  <span class="dt">title.prefix =</span> <span class="st">"Child or Adult?"</span>,</a>
-<a class="sourceLine" id="cb4-11" title="11">  <span class="dt">main =</span> Survived,</a>
-<a class="sourceLine" id="cb4-12" title="12">  <span class="dt">condition =</span> Sex,</a>
+<a class="sourceLine" id="cb4-9" title="9">  <span class="dt">x =</span> Survived,</a>
+<a class="sourceLine" id="cb4-10" title="10">  <span class="dt">y =</span> Sex,</a>
+<a class="sourceLine" id="cb4-11" title="11">  <span class="dt">grouping.var =</span> Age,</a>
+<a class="sourceLine" id="cb4-12" title="12">  <span class="dt">title.prefix =</span> <span class="st">"Child or Adult?"</span>,</a>
 <a class="sourceLine" id="cb4-13" title="13">  <span class="dt">nboot =</span> <span class="dv">10</span>,</a>
 <a class="sourceLine" id="cb4-14" title="14">  <span class="dt">perc.k =</span> <span class="dv">1</span>,</a>
 <a class="sourceLine" id="cb4-15" title="15">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
@@ -353,8 +353,8 @@
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># running `ggpiestats` with counts information</span></a>
 <a class="sourceLine" id="cb6-2" title="2">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb6-3" title="3">  <span class="dt">data =</span> fishing,</a>
-<a class="sourceLine" id="cb6-4" title="4">  <span class="dt">main =</span> Fish,</a>
-<a class="sourceLine" id="cb6-5" title="5">  <span class="dt">condition =</span> Month,</a>
+<a class="sourceLine" id="cb6-4" title="4">  <span class="dt">x =</span> Fish,</a>
+<a class="sourceLine" id="cb6-5" title="5">  <span class="dt">y =</span> Month,</a>
 <a class="sourceLine" id="cb6-6" title="6">  <span class="dt">counts =</span> SumOfCaught,</a>
 <a class="sourceLine" id="cb6-7" title="7">  <span class="dt">slice.label =</span> <span class="st">"both"</span>,</a>
 <a class="sourceLine" id="cb6-8" title="8">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
@@ -365,41 +365,40 @@
 <a class="sourceLine" id="cb6-13" title="13">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb6-14" title="14">)</a></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats8-1.png" width="768"></p>
-<p>The results support our hypothesis that the type of fish caught is related to the month in which we’re fishing. The chi squared independence test results at the top of the plot. In February we catch significantly more Haddock than we would hypothesize for an equal distribution. Whereas in March our results indicate there’s no strong evidence that the distribution isn’t equal.</p>
+<p>The results support our hypothesis that the type of fish caught is related to the month in which we’re fishing. The <span class="math inline">\(\chi^2\)</span> independence test results at the top of the plot. In February we catch significantly more Haddock than we would hypothesize for an equal distribution. Whereas in March our results indicate there’s no strong evidence that the distribution isn’t equal.</p>
 </div>
 <div id="within-subjects-designs" class="section level2">
 <h2 class="hasAnchor">
 <a href="#within-subjects-designs" class="anchor"></a>Within-subjects designs</h2>
-<p>For our final example let’s imagine we’re conducting clinical trials for some new imaginary wonder drug. We have 134 subjects entering the trial. Some of them enter healthy (N=96), some of them enter the trial already being sick (<em>n</em> = 38). All of them receive our treatment or intervention. Then we check back in a month to see if they are healthy or sick. A classic pre/post experimental design. We’re interested in seeing the change in both groupings. In the case of within-subjects designs, you can set <code>paired = TRUE</code>, which will display results from <strong>McNemar test</strong> in the subtitle.</p>
+<p>For our final example let’s imagine we’re conducting clinical trials for some new imaginary wonder drug. We have 134 subjects entering the trial. Some of them enter healthy (<em>n</em> = 96), some of them enter the trial already being sick (<em>n</em> = 38). All of them receive our treatment or intervention. Then we check back in a month to see if they are healthy or sick. A classic pre/post experimental design. We’re interested in seeing the change in both groupings. In the case of within-subjects designs, you can set <code>paired = TRUE</code>, which will display results from <strong>McNemar test</strong> in the subtitle.</p>
 <p>(<strong>Note:</strong> If you forget to set <code>paired = TRUE</code>, the results you get will be inaccurate.)</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># seed for reproducibility</span></a>
 <a class="sourceLine" id="cb7-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb7-3" title="3"></a>
 <a class="sourceLine" id="cb7-4" title="4"><span class="co"># create our imaginary data</span></a>
-<a class="sourceLine" id="cb7-5" title="5">clinical_trial &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb7-5" title="5">clinical_trial &lt;-</a>
 <a class="sourceLine" id="cb7-6" title="6"><span class="st">  </span>tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span>(</a>
-<a class="sourceLine" id="cb7-7" title="7">    <span class="op">~</span>SickBefore,    <span class="op">~</span>SickAfter, <span class="op">~</span>Counts,</a>
-<a class="sourceLine" id="cb7-8" title="8">    <span class="st">"No"</span>,   <span class="st">"Yes"</span>,  <span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb7-9" title="9">    <span class="st">"Yes"</span>,  <span class="st">"No"</span>,   <span class="dv">25</span>,</a>
-<a class="sourceLine" id="cb7-10" title="10">    <span class="st">"Yes"</span>,  <span class="st">"Yes"</span>,  <span class="dv">13</span>,</a>
-<a class="sourceLine" id="cb7-11" title="11">    <span class="st">"No"</span>,   <span class="st">"No"</span>,   <span class="dv">92</span></a>
+<a class="sourceLine" id="cb7-7" title="7">    <span class="op">~</span>SickBefore, <span class="op">~</span>SickAfter, <span class="op">~</span>Counts,</a>
+<a class="sourceLine" id="cb7-8" title="8">    <span class="st">"No"</span>, <span class="st">"Yes"</span>, <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb7-9" title="9">    <span class="st">"Yes"</span>, <span class="st">"No"</span>, <span class="dv">25</span>,</a>
+<a class="sourceLine" id="cb7-10" title="10">    <span class="st">"Yes"</span>, <span class="st">"Yes"</span>, <span class="dv">13</span>,</a>
+<a class="sourceLine" id="cb7-11" title="11">    <span class="st">"No"</span>, <span class="st">"No"</span>, <span class="dv">92</span></a>
 <a class="sourceLine" id="cb7-12" title="12">  )</a>
 <a class="sourceLine" id="cb7-13" title="13"></a>
 <a class="sourceLine" id="cb7-14" title="14"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb7-15" title="15">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb7-16" title="16">  <span class="dt">data =</span> clinical_trial,</a>
-<a class="sourceLine" id="cb7-17" title="17">  <span class="dt">condition =</span> SickBefore,</a>
-<a class="sourceLine" id="cb7-18" title="18">  <span class="dt">main =</span> SickAfter,</a>
+<a class="sourceLine" id="cb7-17" title="17">  <span class="dt">x =</span> SickAfter,</a>
+<a class="sourceLine" id="cb7-18" title="18">  <span class="dt">y =</span> SickBefore,</a>
 <a class="sourceLine" id="cb7-19" title="19">  <span class="dt">counts =</span> Counts,</a>
 <a class="sourceLine" id="cb7-20" title="20">  <span class="dt">paired =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb7-21" title="21">  <span class="dt">slice.label =</span> <span class="st">"both"</span>,</a>
-<a class="sourceLine" id="cb7-22" title="22">  <span class="dt">stat.title =</span> <span class="st">"McNemar test: "</span>,</a>
-<a class="sourceLine" id="cb7-23" title="23">  <span class="dt">title =</span> <span class="st">"Results from imaginary clinical trial"</span>,</a>
-<a class="sourceLine" id="cb7-24" title="24">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
-<a class="sourceLine" id="cb7-25" title="25">  <span class="dt">palette =</span> <span class="st">"default_ucscgb"</span>,</a>
-<a class="sourceLine" id="cb7-26" title="26">  <span class="dt">direction =</span> <span class="dv">-1</span>,</a>
-<a class="sourceLine" id="cb7-27" title="27">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb7-28" title="28">) </a></code></pre></div>
+<a class="sourceLine" id="cb7-22" title="22">  <span class="dt">title =</span> <span class="st">"Results from imaginary clinical trial"</span>,</a>
+<a class="sourceLine" id="cb7-23" title="23">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
+<a class="sourceLine" id="cb7-24" title="24">  <span class="dt">palette =</span> <span class="st">"default_ucscgb"</span>,</a>
+<a class="sourceLine" id="cb7-25" title="25">  <span class="dt">direction =</span> <span class="dv">-1</span>,</a>
+<a class="sourceLine" id="cb7-26" title="26">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb7-27" title="27">)</a></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats9-1.png" width="768"></p>
 <p>The results bode well for our experimental wonder drug. Of the 96 who started out healthy only 4% were sick after a month. Ideally, we would have hoped for zero but reality is seldom perfect. On the other side of the 38 who started out sick that number has reduced to just 13 or 34% which is a marked improvement.</p>
 </div>

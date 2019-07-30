@@ -12,7 +12,7 @@ testthat::test_that(
     using_function1 <-
       ggstatsplot::subtitle_onesample_proptest(
         data = mtcars,
-        main = "am",
+        x = "am",
         legend.title = "Engine",
         conf.level = 0.99,
         messages = FALSE,
@@ -58,7 +58,7 @@ testthat::test_that(
     set.seed(123)
     using_function2 <- ggstatsplot::subtitle_contingency_tab(
       data = as.data.frame(Titanic),
-      main = Sex,
+      x = Sex,
       counts = "Freq",
       messages = FALSE
     )
@@ -110,7 +110,7 @@ testthat::test_that(
     using_function1 <-
       ggstatsplot::subtitle_onesample_proptest(
         data = as.data.frame(Titanic),
-        main = Sex,
+        x = Sex,
         counts = "Freq",
         k = 3,
         messages = FALSE
@@ -165,7 +165,7 @@ testthat::test_that(
     using_function <-
       ggstatsplot::subtitle_onesample_proptest(
         data = ggplot2::msleep,
-        main = vore,
+        x = vore,
         ratio = c(0.2, 0.2, 0.3, 0.3),
         conf.type = "perc",
         messages = TRUE
@@ -221,7 +221,7 @@ testthat::test_that(
     # subtitle
     using_function1 <- ggstatsplot::subtitle_onesample_proptest(
       data = df,
-      main = am
+      x = am
     )
 
     # expected output
@@ -231,7 +231,7 @@ testthat::test_that(
     p_message <-
       capture.output(ggstatsplot::subtitle_onesample_proptest(
         data = df,
-        main = am
+        x = am
       ))
 
     # testing overall call

@@ -139,7 +139,7 @@
       <h1>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-07-27</h4>
+            <h4 class="date">2019-07-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -650,65 +650,64 @@
 <a href="#ggpiestats" class="anchor"></a><code>ggpiestats</code>
 </h1>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># let's split the dataframe and create a list by passenger class</span></a>
-<a class="sourceLine" id="cb9-2" title="2">class_list &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span>Titanic_full <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-3" title="3"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="dt">x =</span> ., <span class="dt">f =</span> .<span class="op">$</span>Class, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb9-4" title="4"></a>
-<a class="sourceLine" id="cb9-5" title="5"><span class="co"># this created a list with 4 elements, one for each class</span></a>
-<a class="sourceLine" id="cb9-6" title="6"><span class="co"># you can check the structure of the file for yourself</span></a>
-<a class="sourceLine" id="cb9-7" title="7"><span class="co"># str(class_list)</span></a>
-<a class="sourceLine" id="cb9-8" title="8"></a>
-<a class="sourceLine" id="cb9-9" title="9"><span class="co"># checking the length and names of each element</span></a>
-<a class="sourceLine" id="cb9-10" title="10"><span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span>(class_list)</a>
-<a class="sourceLine" id="cb9-11" title="11"><span class="co">#&gt; [1] 4</span></a>
-<a class="sourceLine" id="cb9-12" title="12"><span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(class_list)</a>
-<a class="sourceLine" id="cb9-13" title="13"><span class="co">#&gt; [1] "1st"  "2nd"  "3rd"  "Crew"</span></a>
-<a class="sourceLine" id="cb9-14" title="14"></a>
-<a class="sourceLine" id="cb9-15" title="15"><span class="co"># running function on every element of this list note that if you want the same</span></a>
-<a class="sourceLine" id="cb9-16" title="16"><span class="co"># value for a given argument across all elements of the list, you need to</span></a>
-<a class="sourceLine" id="cb9-17" title="17"><span class="co"># specify it just once</span></a>
-<a class="sourceLine" id="cb9-18" title="18">plot_list &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(</a>
-<a class="sourceLine" id="cb9-19" title="19">  <span class="dt">.l =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
-<a class="sourceLine" id="cb9-20" title="20">    <span class="dt">data =</span> class_list,</a>
-<a class="sourceLine" id="cb9-21" title="21">    <span class="dt">main =</span> <span class="st">"Survived"</span>,</a>
-<a class="sourceLine" id="cb9-22" title="22">    <span class="dt">condition =</span> <span class="st">"Sex"</span>,</a>
-<a class="sourceLine" id="cb9-23" title="23">    <span class="dt">slice.label =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"both"</span>, <span class="st">"count"</span>, <span class="st">"percentage"</span>, <span class="st">"both"</span>),</a>
-<a class="sourceLine" id="cb9-24" title="24">    <span class="dt">nboot =</span> <span class="dv">10</span>,</a>
-<a class="sourceLine" id="cb9-25" title="25">    <span class="dt">facet.wrap.name =</span> <span class="st">"Gender"</span>,</a>
-<a class="sourceLine" id="cb9-26" title="26">    <span class="dt">title =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
-<a class="sourceLine" id="cb9-27" title="27">      <span class="st">"Passenger class: 1st"</span>,</a>
-<a class="sourceLine" id="cb9-28" title="28">      <span class="st">"Passenger class: 2nd"</span>,</a>
-<a class="sourceLine" id="cb9-29" title="29">      <span class="st">"Passenger class: 3rd"</span>,</a>
-<a class="sourceLine" id="cb9-30" title="30">      <span class="st">"Passenger class: Crew"</span></a>
-<a class="sourceLine" id="cb9-31" title="31">    ),</a>
-<a class="sourceLine" id="cb9-32" title="32">    <span class="dt">caption =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
-<a class="sourceLine" id="cb9-33" title="33">      <span class="st">"Total: 319, Died: 120, Survived: 199, % Survived: 62%"</span>,</a>
-<a class="sourceLine" id="cb9-34" title="34">      <span class="st">"Total: 272, Died: 155, Survived: 117, % Survived: 43%"</span>,</a>
-<a class="sourceLine" id="cb9-35" title="35">      <span class="st">"Total: 709, Died: 537, Survived: 172, % Survived: 25%"</span>,</a>
-<a class="sourceLine" id="cb9-36" title="36">      <span class="st">"Data not available for crew passengers"</span></a>
-<a class="sourceLine" id="cb9-37" title="37">    ),</a>
-<a class="sourceLine" id="cb9-38" title="38">    <span class="dt">package =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"RColorBrewer"</span>, <span class="st">"ghibli"</span>, <span class="st">"palettetown"</span>, <span class="st">"yarrr"</span>),</a>
-<a class="sourceLine" id="cb9-39" title="39">    <span class="dt">palette =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"Accent"</span>, <span class="st">"MarnieMedium1"</span>, <span class="st">"pikachu"</span>, <span class="st">"nemo"</span>),</a>
-<a class="sourceLine" id="cb9-40" title="40">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
-<a class="sourceLine" id="cb9-41" title="41">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),</a>
-<a class="sourceLine" id="cb9-42" title="42">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>(),</a>
-<a class="sourceLine" id="cb9-43" title="43">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),</a>
-<a class="sourceLine" id="cb9-44" title="44">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_economist.html">theme_economist</a></span>()</a>
-<a class="sourceLine" id="cb9-45" title="45">    ),</a>
-<a class="sourceLine" id="cb9-46" title="46">    <span class="dt">ggstatsplot.layer =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>),</a>
-<a class="sourceLine" id="cb9-47" title="47">    <span class="dt">sample.size.label =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>),</a>
-<a class="sourceLine" id="cb9-48" title="48">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb9-49" title="49">  ),</a>
-<a class="sourceLine" id="cb9-50" title="50">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggpiestats</a>
-<a class="sourceLine" id="cb9-51" title="51">)</a>
-<a class="sourceLine" id="cb9-52" title="52"></a>
-<a class="sourceLine" id="cb9-53" title="53"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb9-54" title="54">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb9-55" title="55">  <span class="dt">plotlist =</span> plot_list,</a>
-<a class="sourceLine" id="cb9-56" title="56">  <span class="dt">title.text =</span> <span class="st">"Survival in Titanic disaster by gender for all passenger classes"</span>,</a>
-<a class="sourceLine" id="cb9-57" title="57">  <span class="dt">caption.text =</span> <span class="st">"Asterisks denote results from proportion tests: </span><span class="ch">\n</span><span class="st">***: p &lt; 0.001, ns: non-significant"</span>,</a>
-<a class="sourceLine" id="cb9-58" title="58">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb9-59" title="59">  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>)</a>
-<a class="sourceLine" id="cb9-60" title="60">)</a></code></pre></div>
+<a class="sourceLine" id="cb9-2" title="2">class_list &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span>Titanic_full <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="dt">x =</span> ., <span class="dt">f =</span> .<span class="op">$</span>Class, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb9-3" title="3"></a>
+<a class="sourceLine" id="cb9-4" title="4"><span class="co"># this created a list with 4 elements, one for each class</span></a>
+<a class="sourceLine" id="cb9-5" title="5"><span class="co"># you can check the structure of the file for yourself</span></a>
+<a class="sourceLine" id="cb9-6" title="6"><span class="co"># str(class_list)</span></a>
+<a class="sourceLine" id="cb9-7" title="7"></a>
+<a class="sourceLine" id="cb9-8" title="8"><span class="co"># checking the length and names of each element</span></a>
+<a class="sourceLine" id="cb9-9" title="9"><span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span>(class_list)</a>
+<a class="sourceLine" id="cb9-10" title="10"><span class="co">#&gt; [1] 4</span></a>
+<a class="sourceLine" id="cb9-11" title="11"><span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(class_list)</a>
+<a class="sourceLine" id="cb9-12" title="12"><span class="co">#&gt; [1] "1st"  "2nd"  "3rd"  "Crew"</span></a>
+<a class="sourceLine" id="cb9-13" title="13"></a>
+<a class="sourceLine" id="cb9-14" title="14"><span class="co"># running function on every element of this list note that if you want the same</span></a>
+<a class="sourceLine" id="cb9-15" title="15"><span class="co"># value for a given argument across all elements of the list, you need to</span></a>
+<a class="sourceLine" id="cb9-16" title="16"><span class="co"># specify it just once</span></a>
+<a class="sourceLine" id="cb9-17" title="17">plot_list &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(</a>
+<a class="sourceLine" id="cb9-18" title="18">  <span class="dt">.l =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
+<a class="sourceLine" id="cb9-19" title="19">    <span class="dt">data =</span> class_list,</a>
+<a class="sourceLine" id="cb9-20" title="20">    <span class="dt">x =</span> <span class="st">"Survived"</span>,</a>
+<a class="sourceLine" id="cb9-21" title="21">    <span class="dt">y =</span> <span class="st">"Sex"</span>,</a>
+<a class="sourceLine" id="cb9-22" title="22">    <span class="dt">slice.label =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"both"</span>, <span class="st">"count"</span>, <span class="st">"percentage"</span>, <span class="st">"both"</span>),</a>
+<a class="sourceLine" id="cb9-23" title="23">    <span class="dt">nboot =</span> <span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb9-24" title="24">    <span class="dt">facet.wrap.name =</span> <span class="st">"Gender"</span>,</a>
+<a class="sourceLine" id="cb9-25" title="25">    <span class="dt">title =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
+<a class="sourceLine" id="cb9-26" title="26">      <span class="st">"Passenger class: 1st"</span>,</a>
+<a class="sourceLine" id="cb9-27" title="27">      <span class="st">"Passenger class: 2nd"</span>,</a>
+<a class="sourceLine" id="cb9-28" title="28">      <span class="st">"Passenger class: 3rd"</span>,</a>
+<a class="sourceLine" id="cb9-29" title="29">      <span class="st">"Passenger class: Crew"</span></a>
+<a class="sourceLine" id="cb9-30" title="30">    ),</a>
+<a class="sourceLine" id="cb9-31" title="31">    <span class="dt">caption =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
+<a class="sourceLine" id="cb9-32" title="32">      <span class="st">"Total: 319, Died: 120, Survived: 199, % Survived: 62%"</span>,</a>
+<a class="sourceLine" id="cb9-33" title="33">      <span class="st">"Total: 272, Died: 155, Survived: 117, % Survived: 43%"</span>,</a>
+<a class="sourceLine" id="cb9-34" title="34">      <span class="st">"Total: 709, Died: 537, Survived: 172, % Survived: 25%"</span>,</a>
+<a class="sourceLine" id="cb9-35" title="35">      <span class="st">"Data not available for crew passengers"</span></a>
+<a class="sourceLine" id="cb9-36" title="36">    ),</a>
+<a class="sourceLine" id="cb9-37" title="37">    <span class="dt">package =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"RColorBrewer"</span>, <span class="st">"ghibli"</span>, <span class="st">"palettetown"</span>, <span class="st">"yarrr"</span>),</a>
+<a class="sourceLine" id="cb9-38" title="38">    <span class="dt">palette =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"Accent"</span>, <span class="st">"MarnieMedium1"</span>, <span class="st">"pikachu"</span>, <span class="st">"nemo"</span>),</a>
+<a class="sourceLine" id="cb9-39" title="39">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
+<a class="sourceLine" id="cb9-40" title="40">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),</a>
+<a class="sourceLine" id="cb9-41" title="41">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>(),</a>
+<a class="sourceLine" id="cb9-42" title="42">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),</a>
+<a class="sourceLine" id="cb9-43" title="43">      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_economist.html">theme_economist</a></span>()</a>
+<a class="sourceLine" id="cb9-44" title="44">    ),</a>
+<a class="sourceLine" id="cb9-45" title="45">    <span class="dt">ggstatsplot.layer =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>),</a>
+<a class="sourceLine" id="cb9-46" title="46">    <span class="dt">sample.size.label =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>),</a>
+<a class="sourceLine" id="cb9-47" title="47">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb9-48" title="48">  ),</a>
+<a class="sourceLine" id="cb9-49" title="49">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggpiestats</a>
+<a class="sourceLine" id="cb9-50" title="50">)</a>
+<a class="sourceLine" id="cb9-51" title="51"></a>
+<a class="sourceLine" id="cb9-52" title="52"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
+<a class="sourceLine" id="cb9-53" title="53">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb9-54" title="54">  <span class="dt">plotlist =</span> plot_list,</a>
+<a class="sourceLine" id="cb9-55" title="55">  <span class="dt">title.text =</span> <span class="st">"Survival in Titanic disaster by gender for all passenger classes"</span>,</a>
+<a class="sourceLine" id="cb9-56" title="56">  <span class="dt">caption.text =</span> <span class="st">"Asterisks denote results from proportion tests: </span><span class="ch">\n</span><span class="st">***: p &lt; 0.001, ns: non-significant"</span>,</a>
+<a class="sourceLine" id="cb9-57" title="57">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb9-58" title="58">  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>)</a>
+<a class="sourceLine" id="cb9-59" title="59">)</a></code></pre></div>
 <p><img src="purrr_examples_files/figure-html/purrr_ggpiestats-1.png" width="864"></p>
 </div>
 <div id="ggbarstats" class="section level1">
@@ -735,8 +734,8 @@
 <a class="sourceLine" id="cb10-18" title="18">plot_list &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(</a>
 <a class="sourceLine" id="cb10-19" title="19">  <span class="dt">.l =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
 <a class="sourceLine" id="cb10-20" title="20">    <span class="dt">data =</span> class_list,</a>
-<a class="sourceLine" id="cb10-21" title="21">    <span class="dt">main =</span> <span class="st">"Survived"</span>,</a>
-<a class="sourceLine" id="cb10-22" title="22">    <span class="dt">condition =</span> <span class="st">"Sex"</span>,</a>
+<a class="sourceLine" id="cb10-21" title="21">    <span class="dt">x =</span> <span class="st">"Survived"</span>,</a>
+<a class="sourceLine" id="cb10-22" title="22">    <span class="dt">y =</span> <span class="st">"Sex"</span>,</a>
 <a class="sourceLine" id="cb10-23" title="23">    <span class="dt">nboot =</span> <span class="dv">10</span>,</a>
 <a class="sourceLine" id="cb10-24" title="24">    <span class="dt">bar.label =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"both"</span>, <span class="st">"count"</span>, <span class="st">"percentage"</span>, <span class="st">"both"</span>),</a>
 <a class="sourceLine" id="cb10-25" title="25">    <span class="dt">title =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>

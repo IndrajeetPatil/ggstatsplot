@@ -111,24 +111,26 @@ ggbarstats <- function(data,
                        direction = 1,
                        ggplot.component = NULL,
                        return = "plot",
-                       messages = TRUE) {
+                       messages = TRUE,
+                       x = NULL,
+                       y = NULL) {
 
   # ensure the variables work quoted or unquoted
   main <- rlang::ensym(main)
-  condition <- rlang::ensym(condition)
+  condition <- if (!rlang::quo_is_null(rlang::enquo(condition))) rlang::ensym(condition)
+  x <- if (!rlang::quo_is_null(rlang::enquo(x))) rlang::ensym(x)
+  y <- if (!rlang::quo_is_null(rlang::enquo(y))) rlang::ensym(y)
+  main <- x %||% main
+  condition <- y %||% condition
   counts <- if (!rlang::quo_is_null(rlang::enquo(counts))) rlang::ensym(counts)
 
   # ================= extracting column names as labels  =====================
 
   # if legend title is not provided, use the 'main' variable name
-  if (is.null(legend.title)) {
-    legend.title <- rlang::as_name(main)
-  }
+  if (rlang::is_null(legend.title)) legend.title <- rlang::as_name(main)
 
   # if x-axis label is not specified, use the 'condition' variable
-  if (is.null(xlab)) {
-    xlab <- rlang::as_name(condition)
-  }
+  if (is.null(xlab)) xlab <- rlang::as_name(condition)
 
   # =============================== dataframe ================================
 
@@ -167,14 +169,12 @@ ggbarstats <- function(data,
   bar.label <- data.label %||% bar.label
   df <-
     cat_label_df(
-      data = cat_counter(data = data, main = {{ main }}, condition = {{ condition }}),
+      data = cat_counter(data = data, x = {{ main }}, y = {{ condition }}),
       label.col.name = "bar.label",
       label.content = bar.label,
       label.separator = label.separator,
       perc.k = perc.k
     )
-
-  # ============================ label dataframe ==========================
 
   # dataframe containing all details needed for sample size and prop test
   df_labels <- df_facet_label(data = data, x = {{ main }}, y = {{ condition }})
@@ -254,8 +254,8 @@ ggbarstats <- function(data,
     subtitle <-
       subtitle_contingency_tab(
         data = data,
-        main = {{ main }},
-        condition = {{ condition }},
+        x = {{ main }},
+        y = {{ condition }},
         ratio = ratio,
         nboot = nboot,
         paired = paired,
@@ -275,8 +275,8 @@ ggbarstats <- function(data,
       caption <-
         bf_contingency_tab(
           data = data,
-          main = {{ main }},
-          condition = {{ condition }},
+          x = {{ main }},
+          y = {{ condition }},
           sampling.plan = sampling.plan,
           fixed.margin = fixed.margin,
           prior.concentration = prior.concentration,

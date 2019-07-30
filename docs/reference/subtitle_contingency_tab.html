@@ -194,17 +194,17 @@ categorical variable.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>subtitle_contingency_tab</span>(<span class='no'>data</span>, <span class='no'>main</span>, <span class='kw'>condition</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>counts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+    <pre class="usage"><span class='fu'>subtitle_contingency_tab</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>counts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>ratio</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>,
   <span class='kw'>simulate.p.value</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>2000</span>, <span class='kw'>bias.correct</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
-<span class='fu'>subtitle_onesample_proptest</span>(<span class='no'>data</span>, <span class='no'>main</span>, <span class='kw'>condition</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>counts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ratio</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='kw'>simulate.p.value</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>2000</span>,
-  <span class='kw'>bias.correct</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>subtitle_onesample_proptest</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>counts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>ratio</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>,
+  <span class='kw'>simulate.p.value</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>2000</span>, <span class='kw'>bias.correct</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -215,11 +215,11 @@ categorical variable.</p>
 be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
     </tr>
     <tr>
-      <th>main</th>
+      <th>x</th>
       <td><p>The variable to use as the <strong>rows</strong> in the contingency table.</p></td>
     </tr>
     <tr>
-      <th>condition</th>
+      <th>y</th>
       <td><p>The variable to use as the <strong>columns</strong> in the contingency
 table. Default is <code>NULL</code>. If <code>NULL</code>, one-sample proportion test (a goodness
 of fit test) will be run for the <code>main</code> variable. Otherwise an appropriate
@@ -319,12 +319,13 @@ intervals were computed, see documentation in <code><a href='https://rdrr.io/pkg
 <span class='co'># ------------------------ association tests -----------------------------</span>
 
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggstatsplot</span>)
 
 <span class='co'># without counts data</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_contingency_tab.html'>subtitle_contingency_tab</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
-  <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>am</span>,
-  <span class='kw'>condition</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>am</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>15</span>
 )</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>15</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(NULL, chi["Pearson"]^2, "(", "2", ") = ", "8.74", ", ", 
@@ -339,10 +340,10 @@ intervals were computed, see documentation in <code><a href='https://rdrr.io/pkg
   <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='no'>Sex</span> <span class='kw'>==</span> <span class='st'>"Male"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>subtitle_contingency_tab</span>(
     <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>.</span>,
-    <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>Hair</span>,
-    <span class='kw'>condition</span> <span class='kw'>=</span> <span class='no'>Sex</span>,
+    <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Hair</span>,
+    <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Sex</span>,
     <span class='kw'>counts</span> <span class='kw'>=</span> <span class='no'>Freq</span>
-  )</div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Error: </span><span style='color: #0000BB;'>Row variable 'condition' contains less than 2 levels.
+  )</div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Error: </span><span style='color: #0000BB;'>Row variable 'y' contains less than 2 levels.
 #&gt; Chi-squared test can't be run; no subtitle displayed.</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; NULL</div><div class='input'>
 <span class='co'># ------------------------ goodness of fit tests ---------------------------</span>
 
@@ -352,7 +353,7 @@ intervals were computed, see documentation in <code><a href='https://rdrr.io/pkg
 <span class='co'># with counts</span>
 <span class='fu'>subtitle_contingency_tab</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='no'>HairEyeColor</span>),
-  <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>Eye</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Eye</span>,
   <span class='kw'>counts</span> <span class='kw'>=</span> <span class='no'>Freq</span>,
   <span class='kw'>ratio</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.2</span>, <span class='fl'>0.2</span>, <span class='fl'>0.3</span>, <span class='fl'>0.3</span>)
 )</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>100</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
@@ -363,7 +364,7 @@ intervals were computed, see documentation in <code><a href='https://rdrr.io/pkg
 <span class='co'># in case of no variation, only sample size will be shown</span>
 <span class='fu'>subtitle_contingency_tab</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind.data.frame</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='st'>"a"</span>, <span class='fl'>10</span>)),
-  <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>x</span>
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>
 )</div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Proportion test could not be run. Only sample size returned.</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("n"), " = ", 10L)</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
