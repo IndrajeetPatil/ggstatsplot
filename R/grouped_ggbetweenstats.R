@@ -148,9 +148,7 @@ grouped_ggbetweenstats <- function(data,
   grouping.var <- rlang::ensym(grouping.var)
 
   # if `title.prefix` is not provided, use the variable `grouping.var` name
-  if (is.null(title.prefix)) {
-    title.prefix <- rlang::as_name(grouping.var)
-  }
+  if (is.null(title.prefix)) title.prefix <- rlang::as_name(grouping.var)
 
   # ======================== preparing dataframe ==========================
 
@@ -167,45 +165,16 @@ grouped_ggbetweenstats <- function(data,
     tidyr::drop_na(data = .) %>% # creating a list for grouped analysis
     grouped_list(data = ., grouping.var = {{ grouping.var }})
 
-  # ============== build pmap list based on conditions =====================
-
-  if (!"outlier.tagging" %in% names(param_list) || isFALSE(outlier.tagging)) {
-    flexiblelist <- list(
-      data = df,
-      x = rlang::quo_text(rlang::ensym(x)),
-      y = rlang::quo_text(rlang::ensym(y)),
-      title = glue::glue("{title.prefix}: {names(df)}")
-    )
-  }
-
-  if (isTRUE(outlier.tagging) && !"outlier.label" %in% names(param_list)) {
-    flexiblelist <- list(
-      data = df,
-      x = rlang::quo_text(rlang::ensym(x)),
-      y = rlang::quo_text(rlang::ensym(y)),
-      outlier.tagging = TRUE,
-      title = glue::glue("{title.prefix}: {names(df)}")
-    )
-  }
-
-  if (isTRUE(outlier.tagging) && "outlier.label" %in% names(param_list)) {
-    flexiblelist <- list(
-      data = df,
-      x = rlang::quo_text(rlang::ensym(x)),
-      y = rlang::quo_text(rlang::ensym(y)),
-      outlier.label = rlang::quo_text(rlang::ensym(outlier.label)),
-      outlier.tagging = TRUE,
-      title = glue::glue("{title.prefix}: {names(df)}")
-    )
-  }
-
   # ============== creating a list of plots using `pmap`=======================
 
   plotlist_purrr <-
     purrr::pmap(
-      .l = flexiblelist,
+      .l = list(data = df, title = glue::glue("{title.prefix}: {names(df)}")),
       .f = ggstatsplot::ggbetweenstats,
       # put common parameters here
+      x = {{ x }},
+      y = {{ y }},
+      outlier.label = {{ outlier.label }},
       plot.type = plot.type,
       type = type,
       pairwise.comparisons = pairwise.comparisons,
@@ -239,6 +208,7 @@ grouped_ggbetweenstats <- function(data,
       notchwidth = notchwidth,
       linetype = linetype,
       outlier.label.color = outlier.label.color,
+      outlier.tagging = outlier.tagging,
       outlier.color = outlier.color,
       outlier.shape = outlier.shape,
       outlier.coef = outlier.coef,

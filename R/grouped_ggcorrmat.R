@@ -126,9 +126,7 @@ grouped_ggcorrmat <- function(data,
   grouping.var <- rlang::ensym(grouping.var)
 
   # if `title.prefix` is not provided, use the variable `grouping.var` name
-  if (is.null(title.prefix)) {
-    title.prefix <- rlang::as_name(grouping.var)
-  }
+  if (is.null(title.prefix)) title.prefix <- rlang::as_name(grouping.var)
 
   # getting the dataframe ready
   if ("cor.vars" %in% names(param_list)) {

@@ -5,8 +5,8 @@
 #'   categorical variable.
 #' @author Indrajeet Patil
 #'
-#' @param main The variable to use as the **rows** in the contingency table.
-#' @param condition The variable to use as the **columns** in the contingency
+#' @param x The variable to use as the **rows** in the contingency table.
+#' @param y The variable to use as the **columns** in the contingency
 #'   table. Default is `NULL`. If `NULL`, one-sample proportion test (a goodness
 #'   of fit test) will be run for the `main` variable. Otherwise an appropriate
 #'   association test will be run.
@@ -53,12 +53,13 @@
 #' # ------------------------ association tests -----------------------------
 #'
 #' set.seed(123)
+#' library(ggstatsplot)
 #'
 #' # without counts data
 #' ggstatsplot::subtitle_contingency_tab(
 #'   data = mtcars,
-#'   main = am,
-#'   condition = cyl,
+#'   x = am,
+#'   y = cyl,
 #'   nboot = 15
 #' )
 #'
@@ -70,8 +71,8 @@
 #'   dplyr::filter(.data = ., Sex == "Male") %>%
 #'   subtitle_contingency_tab(
 #'     data = .,
-#'     main = Hair,
-#'     condition = Sex,
+#'     x = Hair,
+#'     y = Sex,
 #'     counts = Freq
 #'   )
 #'
@@ -83,7 +84,7 @@
 #' # with counts
 #' subtitle_contingency_tab(
 #'   data = as.data.frame(HairEyeColor),
-#'   main = Eye,
+#'   x = Eye,
 #'   counts = Freq,
 #'   ratio = c(0.2, 0.2, 0.3, 0.3)
 #' )
@@ -91,14 +92,14 @@
 #' # in case of no variation, only sample size will be shown
 #' subtitle_contingency_tab(
 #'   data = cbind.data.frame(x = rep("a", 10)),
-#'   main = x
+#'   x = x
 #' )
 #' @export
 
 # function body
 subtitle_contingency_tab <- function(data,
-                                     main,
-                                     condition = NULL,
+                                     x,
+                                     y = NULL,
                                      counts = NULL,
                                      ratio = NULL,
                                      nboot = 100,
@@ -115,8 +116,8 @@ subtitle_contingency_tab <- function(data,
                                      ...) {
 
   # ensure the variables work quoted or unquoted
-  main <- rlang::ensym(main)
-  condition <- if (!rlang::quo_is_null(rlang::enquo(condition))) rlang::ensym(condition)
+  x <- rlang::ensym(x)
+  y <- if (!rlang::quo_is_null(rlang::enquo(y))) rlang::ensym(y)
   counts <- if (!rlang::quo_is_null(rlang::enquo(counts))) rlang::ensym(counts)
   ellipsis::check_dots_used()
 
@@ -124,16 +125,15 @@ subtitle_contingency_tab <- function(data,
 
   # creating a dataframe
   data %<>%
-    dplyr::select(.data = ., {{ main }}, {{ condition }}, {{ counts }}) %>%
+    dplyr::select(.data = ., {{ x }}, {{ y }}, {{ counts }}) %>%
     tidyr::drop_na(data = .) %>%
     tibble::as_tibble(x = .)
 
-  # main and condition need to be a factor for this analysis
+  # x and y need to be a factor for this analysis
   # also drop the unused levels of the factors
 
-  # main
-  data %<>%
-    dplyr::mutate(.data = ., {{ main }} := droplevels(as.factor({{ main }})))
+  # x
+  data %<>% dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }})))
 
   # untable the dataframe based on the count for each observation
   if (!rlang::quo_is_null(rlang::enquo(counts))) {
@@ -146,26 +146,23 @@ subtitle_contingency_tab <- function(data,
       )
   }
 
-  # condition
-  if (!rlang::quo_is_null(rlang::enquo(condition))) {
-    data %<>%
-      dplyr::mutate(.data = ., {{ condition }} := droplevels(as.factor({{ condition }})))
+  # y
+  if (!rlang::quo_is_null(rlang::enquo(y))) {
+    # drop the unused levels of the column variable
+    data %<>% dplyr::mutate(.data = ., {{ y }} := droplevels(as.factor({{ y }})))
 
     # in case there is no variation, no subtitle will be shown
-    if (nlevels(data %>% dplyr::pull({{ condition }}))[[1]] == 1L) {
+    if (nlevels(data %>% dplyr::pull({{ y }}))[[1]] == 1L) {
       # display message
       message(cat(
         crayon::red("Error: "),
-        crayon::blue("Row variable 'condition' contains less than 2 levels.\n"),
+        crayon::blue("Row variable 'y' contains less than 2 levels.\n"),
         crayon::blue("Chi-squared test can't be run; no subtitle displayed."),
         sep = ""
       ))
 
-      # assigning NULL to subtitle
-      subtitle <- NULL
-
       # return early
-      return(subtitle)
+      return(NULL)
     }
   }
 
@@ -176,20 +173,20 @@ subtitle_contingency_tab <- function(data,
 
   # ratio
   if (is.null(ratio)) {
-    main_vec <- data %>% dplyr::pull({{ main }})
-    ratio <- rep(1 / length(table(main_vec)), length(table(main_vec)))
+    x_vec <- data %>% dplyr::pull({{ x }})
+    ratio <- rep(1 / length(table(x_vec)), length(table(x_vec)))
   }
 
   # association tests
-  if (!rlang::quo_is_null(rlang::enquo(condition))) {
+  if (!rlang::quo_is_null(rlang::enquo(y))) {
 
     # ======================== Pearson's test ================================
 
     if (isFALSE(paired)) {
       # creating a matrix with frequencies and cleaning it up
       x_arg <- as.matrix(table(
-        data %>% dplyr::pull({{ main }}),
-        data %>% dplyr::pull({{ condition }})
+        data %>% dplyr::pull({{ x }}),
+        data %>% dplyr::pull({{ y }})
       ))
 
       # object containing stats
@@ -234,23 +231,23 @@ subtitle_contingency_tab <- function(data,
     if (isTRUE(paired)) {
       # figuring out all unique factor levels across two variables
       factor.levels <- dplyr::union(
-        levels(data %>% dplyr::pull({{ main }})),
-        levels(data %>% dplyr::pull({{ condition }}))
+        levels(data %>% dplyr::pull({{ x }})),
+        levels(data %>% dplyr::pull({{ y }}))
       )
 
       # introducing dropped levels back into the variables
       data %<>%
         dplyr::mutate_at(
           .tbl = .,
-          .vars = dplyr::vars({{ main }}, {{ condition }}),
+          .vars = dplyr::vars({{ x }}, {{ y }}),
           .funs = factor,
           levels = factor.levels
         )
 
       # creating a matrix with frequencies and cleaning it up
       x_arg <- as.matrix(table(
-        data %>% dplyr::pull({{ main }}),
-        data %>% dplyr::pull({{ condition }})
+        data %>% dplyr::pull({{ x }}),
+        data %>% dplyr::pull({{ y }})
       ))
 
       # computing effect size + CI
@@ -282,12 +279,12 @@ subtitle_contingency_tab <- function(data,
 
   # ======================== goodness of fit test ========================
 
-  if (rlang::quo_is_null(rlang::enquo(condition))) {
+  if (rlang::quo_is_null(rlang::enquo(y))) {
     # checking if the chi-squared test can be run
     stats_df <-
       tryCatch(
         expr = stats::chisq.test(
-          x = table(data %>% dplyr::pull({{ main }})),
+          x = table(data %>% dplyr::pull({{ x }})),
           correct = FALSE,
           p = ratio,
           rescale.p = FALSE,
@@ -302,7 +299,7 @@ subtitle_contingency_tab <- function(data,
         }
       )
 
-    # if there is no value corresponding to one of the levels of the 'main'
+    # if there is no value corresponding to one of the levels of the 'x'
     # variable, then no subtitle is needed
     if (is.nan(stats_df$statistic[[1]])) {
       subtitle <-
@@ -323,7 +320,7 @@ subtitle_contingency_tab <- function(data,
     stats_df <- broomExtra::tidy(stats_df)
 
     # `x` argument for effect size function
-    x_arg <- as.vector(table(data %>% dplyr::pull({{ main }})))
+    x_arg <- as.vector(table(data %>% dplyr::pull({{ x }})))
 
     # dataframe with effect size and its confidence intervals
     effsize_df <-

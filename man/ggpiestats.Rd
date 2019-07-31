@@ -18,18 +18,12 @@ ggpiestats(data, main, condition = NULL, counts = NULL, ratio = NULL,
   slice.label = "percentage", facet.proptest = TRUE,
   ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
   package = "RColorBrewer", palette = "Dark2", direction = 1,
-  ggplot.component = NULL, return = "plot", messages = TRUE)
+  ggplot.component = NULL, return = "plot", messages = TRUE,
+  x = NULL, y = NULL)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
 be taken. A matrix or tables will \strong{not} be accepted.}
-
-\item{main}{The variable to use as the \strong{rows} in the contingency table.}
-
-\item{condition}{The variable to use as the \strong{columns} in the contingency
-table. Default is \code{NULL}. If \code{NULL}, one-sample proportion test (a goodness
-of fit test) will be run for the \code{main} variable. Otherwise an appropriate
-association test will be run.}
 
 \item{counts}{A string naming a variable in data containing counts, or \code{NULL}
 if each row represents a single observation (Default).}
@@ -169,6 +163,13 @@ otherwise this will return a \code{NULL}.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
+
+\item{x, main}{The variable to use as the \strong{rows} in the contingency table.}
+
+\item{y, condition}{The variable to use as the \strong{columns} in the contingency
+table. Default is \code{NULL}. If \code{NULL}, one-sample proportion test (a goodness
+of fit test) will be run for the \code{main} variable. Otherwise an appropriate
+association test will be run.}
 }
 \value{
 Unlike a number of statistical softwares, \code{ggstatsplot} doesn't

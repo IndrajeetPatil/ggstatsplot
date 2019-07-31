@@ -182,9 +182,14 @@
 <h1 class="page-header">
 <a href="#ggstatsplot-00129000" class="anchor"></a>ggstatsplot 0.0.12.9000<small> Unreleased </small>
 </h1>
+<p>BREAKING CHANGES</p>
+<ul>
+<li>To be consistent with all the other <code>subtitle_</code> and <code>bf_</code> functions, <code>subtitle_contingency_tab</code> and <code>bf_contingency_tab</code> now use the arguments <code>x</code> and <code>y</code> instead of <code>main</code> and <code>condition</code>.</li>
+</ul>
 <p>MAJOR CHANGES</p>
 <ul>
 <li>Major refactoring to reduce the codesize and to rely fully on <code>rlang</code>.</li>
+<li>To be consistent with the rest of the functions, <code>ggpiestats</code> and <code>ggbarstats</code> now uses the following aliases for arguments: <code>x</code> for <code>main</code> and <code>y</code> for <code>condition</code>. This change is backward-compatible and should not pose any problems for scripts that used <code>main</code> and <code>condition</code> arguments in these functions.</li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>

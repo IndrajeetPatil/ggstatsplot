@@ -4,6 +4,11 @@
 #'   included in the plot as a subtitle.
 #' @author Indrajeet Patil
 #'
+#' @param x,main The variable to use as the **rows** in the contingency table.
+#' @param y,condition The variable to use as the **columns** in the contingency
+#'   table. Default is `NULL`. If `NULL`, one-sample proportion test (a goodness
+#'   of fit test) will be run for the `main` variable. Otherwise an appropriate
+#'   association test will be run.
 #' @param factor.levels A character vector with labels for factor levels of
 #'   `main` variable.
 #' @param title The text for the plot title.
@@ -143,19 +148,23 @@ ggpiestats <- function(data,
                        direction = 1,
                        ggplot.component = NULL,
                        return = "plot",
-                       messages = TRUE) {
+                       messages = TRUE,
+                       x = NULL,
+                       y = NULL) {
 
   # ensure the variables work quoted or unquoted
   main <- rlang::ensym(main)
   condition <- if (!rlang::quo_is_null(rlang::enquo(condition))) rlang::ensym(condition)
+  x <- if (!rlang::quo_is_null(rlang::enquo(x))) rlang::ensym(x)
+  y <- if (!rlang::quo_is_null(rlang::enquo(y))) rlang::ensym(y)
+  main <- x %||% main
+  condition <- y %||% condition
   counts <- if (!rlang::quo_is_null(rlang::enquo(counts))) rlang::ensym(counts)
 
   # ================= extracting column names as labels  =====================
 
   # saving the column label for the 'main' variables
-  if (rlang::is_null(legend.title)) {
-    legend.title <- rlang::as_name(main)
-  }
+  if (rlang::is_null(legend.title)) legend.title <- rlang::as_name(main)
 
   # if facetting variable name is not specified, use 'condition' variable name
   if (!rlang::quo_is_null(rlang::enquo(condition)) && rlang::is_null(facet.wrap.name)) {
@@ -202,7 +211,7 @@ ggpiestats <- function(data,
   # dataframe with summary labels
   df <-
     cat_label_df(
-      data = cat_counter(data = data, main = {{ main }}, condition = {{ condition }}),
+      data = cat_counter(data = data, x = {{ main }}, y = {{ condition }}),
       label.col.name = "slice.label",
       label.content = slice.label,
       label.separator = label.separator,
@@ -306,8 +315,8 @@ ggpiestats <- function(data,
     subtitle <-
       subtitle_contingency_tab(
         data = data,
-        main = {{ main }},
-        condition = {{ condition }},
+        x = {{ main }},
+        y = {{ condition }},
         ratio = ratio,
         nboot = nboot,
         paired = paired,
@@ -326,8 +335,8 @@ ggpiestats <- function(data,
     if (isTRUE(bf.message) && !is.null(subtitle)) {
       caption <- bf_contingency_tab(
         data = data,
-        main = {{ main }},
-        condition = {{ condition }},
+        x = {{ main }},
+        y = {{ condition }},
         sampling.plan = sampling.plan,
         fixed.margin = fixed.margin,
         prior.concentration = prior.concentration,
@@ -345,7 +354,6 @@ ggpiestats <- function(data,
 
     # adding significance labels to pie charts for grouped proportion tests
     if (isTRUE(facet.proptest)) {
-
       # display grouped proportion test results
       if (isTRUE(messages)) {
         # tell the user what these results are

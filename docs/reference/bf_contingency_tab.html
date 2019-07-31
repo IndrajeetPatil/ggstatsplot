@@ -188,8 +188,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>bf_contingency_tab</span>(<span class='no'>data</span>, <span class='no'>main</span>, <span class='kw'>condition</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>counts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ratio</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sampling.plan</span> <span class='kw'>=</span> <span class='st'>"indepMulti"</span>, <span class='kw'>fixed.margin</span> <span class='kw'>=</span> <span class='st'>"rows"</span>,
+    <pre class="usage"><span class='fu'>bf_contingency_tab</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>counts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ratio</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>sampling.plan</span> <span class='kw'>=</span> <span class='st'>"indepMulti"</span>, <span class='kw'>fixed.margin</span> <span class='kw'>=</span> <span class='st'>"rows"</span>,
   <span class='kw'>prior.concentration</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"null"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
   <span class='no'>...</span>)</pre>
     
@@ -202,11 +202,11 @@
 be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
     </tr>
     <tr>
-      <th>main</th>
-      <td><p>The variable to use as the <strong>rows</strong> in the contingency table.</p></td>
+      <th>x</th>
+      <td><p>an m by n matrix of counts (integers m,n &gt; 1)</p></td>
     </tr>
     <tr>
-      <th>condition</th>
+      <th>y</th>
       <td><p>The variable to use as the <strong>columns</strong> in the contingency
 table. Default is <code>NULL</code>. If <code>NULL</code>, one-sample proportion test (a goodness
 of fit test) will be run for the <code>main</code> variable. Otherwise an appropriate
@@ -290,8 +290,8 @@ Richard Morey:
 <span class='co'># to get caption (in favor of null)</span>
 <span class='fu'>bf_contingency_tab</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
-  <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>am</span>,
-  <span class='kw'>condition</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>am</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
   <span class='kw'>fixed.margin</span> <span class='kw'>=</span> <span class='st'>"cols"</span>
 )</div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("In favor of null: ", "log"["e"], 
 #&gt;     "(BF"["01"], ") = ", "-2.72", ", sampling = ", "independent multinomial", 
@@ -299,8 +299,8 @@ Richard Morey:
 <span class='co'># to get caption (in favor of alternative)</span>
 <span class='fu'>bf_contingency_tab</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
-  <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>am</span>,
-  <span class='kw'>condition</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>am</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
   <span class='kw'>fixed.margin</span> <span class='kw'>=</span> <span class='st'>"rows"</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"alternative"</span>
 )</div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("In favor of alternative: ", 
@@ -309,8 +309,8 @@ Richard Morey:
 <span class='co'># to see results</span>
 <span class='fu'>bf_contingency_tab</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
-  <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>am</span>,
-  <span class='kw'>condition</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>am</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
   <span class='kw'>sampling.plan</span> <span class='kw'>=</span> <span class='st'>"jointMulti"</span>,
   <span class='kw'>fixed.margin</span> <span class='kw'>=</span> <span class='st'>"rows"</span>,
   <span class='kw'>prior.concentration</span> <span class='kw'>=</span> <span class='fl'>1</span>
@@ -321,7 +321,7 @@ Richard Morey:
 
 <span class='fu'>bf_contingency_tab</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
-  <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>am</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>am</span>,
   <span class='kw'>prior.concentration</span> <span class='kw'>=</span> <span class='fl'>10</span>
 )</div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("In favor of null: ", "log"["e"], 
 #&gt;     "(BF"["01"], ") = ", "0.30", ", ", italic("a"), " = ", "10.00"))</div></pre>

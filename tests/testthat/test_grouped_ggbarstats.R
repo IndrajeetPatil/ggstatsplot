@@ -216,17 +216,32 @@ testthat::test_that(
 
     set.seed(123)
     p1 <-
-      suppressWarnings(ggbarstats(mtcars, "am", cyl, messages = FALSE, return = "subtitle"))
+      suppressWarnings(
+        ggbarstats(
+          data = mtcars,
+          main = "am",
+          condition = cyl,
+          messages = FALSE,
+          return = "subtitle"
+        )
+      )
 
     set.seed(123)
     p2 <-
-      suppressWarnings(ggbarstats(mtcars3, am, cyl, messages = FALSE, return = "subtitle"))
+      suppressWarnings(ggbarstats(
+        data = mtcars3,
+        x = am,
+        y = cyl,
+        messages = FALSE,
+        return = "subtitle"
+      ))
 
     set.seed(123)
     p3 <-
-      suppressWarnings(grouped_ggbarstats(mtcars2,
-        am,
-        "cyl",
+      suppressWarnings(grouped_ggbarstats(
+        data = mtcars2,
+        main = am,
+        y = "cyl",
         grouping.var = grp,
         messages = FALSE,
         return = "subtitle"
@@ -234,9 +249,10 @@ testthat::test_that(
 
     set.seed(123)
     p4 <-
-      suppressWarnings(grouped_ggbarstats(mtcars3,
-        "am",
-        cyl,
+      suppressWarnings(grouped_ggbarstats(
+        data = mtcars3,
+        x = "am",
+        condition = cyl,
         grouping.var = "grp",
         messages = FALSE,
         return = "subtitle"

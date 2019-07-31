@@ -12,8 +12,8 @@ testthat::test_that(
     using_function1 <-
       suppressWarnings(ggstatsplot::subtitle_contingency_tab(
         data = ggstatsplot::Titanic_full,
-        main = "Survived",
-        condition = Class,
+        x = "Survived",
+        y = Class,
         stat.title = "Testing",
         k = 5,
         conf.level = 0.99,
@@ -61,8 +61,8 @@ testthat::test_that(
     set.seed(123)
     using_function2 <- ggstatsplot::subtitle_contingency_tab(
       data = as.data.frame(Titanic),
-      main = Sex,
-      condition = Survived,
+      x = Sex,
+      y = Survived,
       counts = "Freq",
       messages = FALSE
     )
@@ -129,8 +129,8 @@ testthat::test_that(
     using_function1 <-
       suppressWarnings(ggstatsplot::subtitle_contingency_tab(
         data = df,
-        main = am,
-        condition = "cyl",
+        x = am,
+        y = "cyl",
         conf.level = .990,
         conf.type = "perc",
         nboot = 15,

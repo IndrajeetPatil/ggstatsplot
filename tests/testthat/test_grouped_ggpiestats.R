@@ -110,8 +110,8 @@ testthat::test_that(
     testthat::expect_true(inherits(suppressWarnings(
       ggstatsplot::grouped_ggpiestats(
         data = mpg_short,
-        main = cyl,
-        condition = class,
+        x = cyl,
+        y = class,
         grouping.var = drv,
         messages = TRUE
       )
@@ -209,17 +209,30 @@ testthat::test_that(
 
     set.seed(123)
     p1 <-
-      suppressWarnings(ggpiestats(mtcars, "am", cyl, messages = FALSE, return = "subtitle"))
+      suppressWarnings(ggpiestats(
+        data = mtcars,
+        main = "am",
+        condition = cyl,
+        messages = FALSE,
+        return = "subtitle"
+      ))
 
     set.seed(123)
     p2 <-
-      suppressWarnings(ggpiestats(mtcars3, am, cyl, messages = FALSE, return = "subtitle"))
+      suppressWarnings(ggpiestats(
+        data = mtcars3,
+        x = am,
+        y = cyl,
+        messages = FALSE,
+        return = "subtitle"
+      ))
 
     set.seed(123)
     p3 <-
-      suppressWarnings(grouped_ggpiestats(mtcars2,
-        am,
-        "cyl",
+      suppressWarnings(grouped_ggpiestats(
+        data = mtcars2,
+        main = am,
+        y = "cyl",
         grouping.var = grp,
         messages = FALSE,
         return = "subtitle"
@@ -227,9 +240,10 @@ testthat::test_that(
 
     set.seed(123)
     p4 <-
-      suppressWarnings(grouped_ggpiestats(mtcars3,
-        "am",
-        cyl,
+      suppressWarnings(grouped_ggpiestats(
+        data = mtcars3,
+        x = "am",
+        condition = cyl,
         grouping.var = "grp",
         messages = FALSE,
         return = "subtitle"
@@ -237,7 +251,7 @@ testthat::test_that(
 
     set.seed(123)
     p5 <-
-      suppressWarnings(ggpiestats(ggplot2::msleep, vore, messages = FALSE, return = "subtitle"))
+      suppressWarnings(ggpiestats(data = ggplot2::msleep, x = vore, messages = FALSE, return = "subtitle"))
 
     set.seed(123)
     p6 <-

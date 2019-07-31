@@ -60,6 +60,7 @@ otherwise a two-sample \emph{t}-test will be carried out.
 
 # for reproducibility
 set.seed(123)
+library(ggstatsplot)
 
 # to get caption (default)
 bf_ttest(

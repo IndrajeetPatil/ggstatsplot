@@ -21,8 +21,7 @@
 #' @export
 
 # function body
-bf_extractor <- function(bf.object,
-                         ...) {
+bf_extractor <- function(bf.object, ...) {
   ellipsis::check_dots_used()
 
   # preparing the dataframe
@@ -275,16 +274,16 @@ bf_corr_test <- function(data,
 #' # to get caption (in favor of null)
 #' bf_contingency_tab(
 #'   data = mtcars,
-#'   main = am,
-#'   condition = cyl,
+#'   x = am,
+#'   y = cyl,
 #'   fixed.margin = "cols"
 #' )
 #'
 #' # to get caption (in favor of alternative)
 #' bf_contingency_tab(
 #'   data = mtcars,
-#'   main = am,
-#'   condition = cyl,
+#'   x = am,
+#'   y = cyl,
 #'   fixed.margin = "rows",
 #'   output = "alternative"
 #' )
@@ -292,8 +291,8 @@ bf_corr_test <- function(data,
 #' # to see results
 #' bf_contingency_tab(
 #'   data = mtcars,
-#'   main = am,
-#'   condition = cyl,
+#'   x = am,
+#'   y = cyl,
 #'   sampling.plan = "jointMulti",
 #'   fixed.margin = "rows",
 #'   prior.concentration = 1
@@ -303,15 +302,15 @@ bf_corr_test <- function(data,
 #'
 #' bf_contingency_tab(
 #'   data = mtcars,
-#'   main = am,
+#'   x = am,
 #'   prior.concentration = 10
 #' )
 #' @export
 
 # function body
 bf_contingency_tab <- function(data,
-                               main,
-                               condition = NULL,
+                               x,
+                               y = NULL,
                                counts = NULL,
                                ratio = NULL,
                                sampling.plan = "indepMulti",
@@ -323,8 +322,8 @@ bf_contingency_tab <- function(data,
                                ...) {
 
   # ensure the variables work quoted or unquoted
-  main <- rlang::ensym(main)
-  condition <- if (!rlang::quo_is_null(rlang::enquo(condition))) rlang::ensym(condition)
+  x <- rlang::ensym(x)
+  y <- if (!rlang::quo_is_null(rlang::enquo(y))) rlang::ensym(y)
   counts <- if (!rlang::quo_is_null(rlang::enquo(counts))) rlang::ensym(counts)
   ellipsis::check_dots_used()
 
@@ -332,7 +331,7 @@ bf_contingency_tab <- function(data,
 
   # creating a dataframe
   data %<>%
-    dplyr::select(.data = ., {{ main }}, {{ condition }}, {{ counts }}) %>%
+    dplyr::select(.data = ., {{ x }}, {{ y }}, {{ counts }}) %>%
     tidyr::drop_na(data = .) %>%
     tibble::as_tibble(x = .)
 
@@ -347,18 +346,17 @@ bf_contingency_tab <- function(data,
       )
   }
 
-  # main and condition need to be a factor for this analysis
+  # x and y need to be a factor for this analysis
   # also drop the unused levels of the factors
 
-  # main
-  data %<>% dplyr::mutate(.data = ., {{ main }} := droplevels(as.factor({{ main }})))
+  # x
+  data %<>% dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }})))
 
   # ========================= contingency tabs =============================
 
-  if (!rlang::quo_is_null(rlang::enquo(condition))) {
+  if (!rlang::quo_is_null(rlang::enquo(y))) {
     # dropping unused levels
-    data %<>%
-      dplyr::mutate(.data = ., {{ condition }} := droplevels(as.factor({{ condition }})))
+    data %<>% dplyr::mutate(.data = ., {{ y }} := droplevels(as.factor({{ y }})))
 
     # detailed text of sample plan
     sampling_plan_text <-
@@ -375,8 +373,8 @@ bf_contingency_tab <- function(data,
       bf_extractor(
         BayesFactor::contingencyTableBF(
           x = table(
-            data %>% dplyr::pull({{ main }}),
-            data %>% dplyr::pull({{ condition }})
+            data %>% dplyr::pull({{ x }}),
+            data %>% dplyr::pull({{ y }})
           ),
           sampleType = sampling.plan,
           fixedMargin = fixed.margin,
@@ -394,15 +392,15 @@ bf_contingency_tab <- function(data,
 
   # ========================= goodness of fit =============================
 
-  if (rlang::quo_is_null(rlang::enquo(condition))) {
+  if (rlang::quo_is_null(rlang::enquo(y))) {
     # ratio
     if (is.null(ratio)) {
-      main_length <- length(table(data %>% dplyr::pull({{ main }})))
-      ratio <- rep(1 / main_length, main_length)
+      x_length <- length(table(data %>% dplyr::pull({{ x }})))
+      ratio <- rep(1 / x_length, x_length)
     }
 
-    # no. of levels in `main` variable
-    n_levels <- length(as.vector(table(data %>% dplyr::pull({{ main }}))))
+    # no. of levels in `x` variable
+    n_levels <- length(as.vector(table(data %>% dplyr::pull({{ x }}))))
 
     # probability can't be exactly 0 or 1
     if (1 / n_levels == 0 || 1 / n_levels == 1) {
@@ -410,10 +408,10 @@ bf_contingency_tab <- function(data,
     }
 
     # one sample goodness of fit test for equal proportions
-    y <- as.matrix(table(data %>% dplyr::pull({{ main }})))
+    x_vec <- as.matrix(table(data %>% dplyr::pull({{ x }})))
 
     # (log) prob of data under null
-    pr_y_h0 <- stats::dmultinom(x = y, prob = ratio, log = TRUE)
+    pr_y_h0 <- stats::dmultinom(x = x_vec, prob = ratio, log = TRUE)
 
     # estimate log prob of data under null with Monte Carlo
     M <- 100000
@@ -421,8 +419,13 @@ bf_contingency_tab <- function(data,
     tmp_pr_h1 <-
       sapply(
         X = 1:M,
-        FUN = function(i)
-          stats::dmultinom(x = y, prob = p1s[i, ], log = TRUE)
+        FUN = function(i) {
+          stats::dmultinom(
+            x = x_vec,
+            prob = p1s[i, ],
+            log = TRUE
+          )
+        }
       )
 
     # estimate log prob of data under alternative
@@ -460,7 +463,7 @@ bf_contingency_tab <- function(data,
   }
 
   # prepare the Bayes Factor message
-  if (!rlang::quo_is_null(rlang::enquo(condition))) {
+  if (!rlang::quo_is_null(rlang::enquo(y))) {
     bf_message <-
       substitute(
         atop(
@@ -551,6 +554,7 @@ bf_contingency_tab <- function(data,
 #'
 #' # for reproducibility
 #' set.seed(123)
+#' library(ggstatsplot)
 #'
 #' # to get caption (default)
 #' bf_ttest(

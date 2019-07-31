@@ -4,8 +4,8 @@
 \alias{bf_contingency_tab}
 \title{Bayesian contingency table analysis.}
 \usage{
-bf_contingency_tab(data, main, condition = NULL, counts = NULL,
-  ratio = NULL, sampling.plan = "indepMulti", fixed.margin = "rows",
+bf_contingency_tab(data, x, y = NULL, counts = NULL, ratio = NULL,
+  sampling.plan = "indepMulti", fixed.margin = "rows",
   prior.concentration = 1, caption = NULL, output = "null", k = 2,
   ...)
 }
@@ -13,9 +13,9 @@ bf_contingency_tab(data, main, condition = NULL, counts = NULL,
 \item{data}{A dataframe (or a tibble) from which variables specified are to
 be taken. A matrix or tables will \strong{not} be accepted.}
 
-\item{main}{The variable to use as the \strong{rows} in the contingency table.}
+\item{x}{an m by n matrix of counts (integers m,n > 1)}
 
-\item{condition}{The variable to use as the \strong{columns} in the contingency
+\item{y}{The variable to use as the \strong{columns} in the contingency
 table. Default is \code{NULL}. If \code{NULL}, one-sample proportion test (a goodness
 of fit test) will be run for the \code{main} variable. Otherwise an appropriate
 association test will be run.}
@@ -74,16 +74,16 @@ library(ggstatsplot)
 # to get caption (in favor of null)
 bf_contingency_tab(
   data = mtcars,
-  main = am,
-  condition = cyl,
+  x = am,
+  y = cyl,
   fixed.margin = "cols"
 )
 
 # to get caption (in favor of alternative)
 bf_contingency_tab(
   data = mtcars,
-  main = am,
-  condition = cyl,
+  x = am,
+  y = cyl,
   fixed.margin = "rows",
   output = "alternative"
 )
@@ -91,8 +91,8 @@ bf_contingency_tab(
 # to see results
 bf_contingency_tab(
   data = mtcars,
-  main = am,
-  condition = cyl,
+  x = am,
+  y = cyl,
   sampling.plan = "jointMulti",
   fixed.margin = "rows",
   prior.concentration = 1
@@ -102,7 +102,7 @@ bf_contingency_tab(
 
 bf_contingency_tab(
   data = mtcars,
-  main = am,
+  x = am,
   prior.concentration = 10
 )
 }
