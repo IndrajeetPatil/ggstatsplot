@@ -5,9 +5,9 @@
 \title{Scatterplot with marginal distributions for all levels of a grouping
 variable}
 \usage{
-grouped_ggscatterstats(data, x, y, type = "pearson", conf.level = 0.95,
-  bf.prior = 0.707, bf.message = TRUE, label.var = NULL,
-  label.expression = NULL, grouping.var, title.prefix = NULL,
+grouped_ggscatterstats(data, x, y, grouping.var, type = "pearson",
+  conf.level = 0.95, bf.prior = 0.707, bf.message = TRUE,
+  label.var = NULL, label.expression = NULL, title.prefix = NULL,
   xlab = NULL, ylab = NULL, method = "lm", method.args = list(),
   formula = y ~ x, point.color = "black", point.size = 3,
   point.alpha = 0.4, line.size = 1.5, point.width.jitter = 0,
@@ -27,12 +27,15 @@ grouped_ggscatterstats(data, x, y, type = "pearson", conf.level = 0.95,
 be taken. A matrix or tables will \strong{not} be accepted.}
 
 \item{x}{The column in \code{data} containing the explanatory variable to be
-plotted on the x axis. Can be entered either as
-a character string (e.g., \code{"x"}) or as a bare expression (e.g, \code{x}).}
+plotted on the x axis. Can be entered either as a character string (e.g.,
+\code{"x"}) or as a bare expression (e.g, \code{x}).}
 
 \item{y}{The column in \code{data} containing the response (outcome) variable to
-be plotted on the y axis. Can be entered either as
-a character string (e.g., \code{"y"}) or as a bare expression (e.g, \code{y}).}
+be plotted on the y axis. Can be entered either as a character string
+(e.g., \code{"y"}) or as a bare expression (e.g, \code{y}).}
+
+\item{grouping.var}{A single grouping variable (can be entered either as a
+bare name \code{x} or as a string \code{"x"}).}
 
 \item{type}{Type of association between paired samples required
 ("\code{"parametric"}: Pearson's product moment correlation coefficient" or
@@ -59,9 +62,6 @@ a character string (e.g., \code{"var1"}) or as a bare expression (e.g, \code{var
 determines the subset of data points to label. This argument can be entered
 either as a character string (e.g., \code{"y < 4 & z < 20"}) or as a bare
 expression (e.g., \code{y < 4 & z < 20}).}
-
-\item{grouping.var}{A single grouping variable (can be entered either as a
-bare name \code{x} or as a string \code{"x"}).}
 
 \item{title.prefix}{Character string specifying the prefix text for the fixed
 plot title (name of each factor level) (Default: \code{NULL}). If \code{NULL}, the
@@ -272,7 +272,6 @@ subtitle.
 }
 \examples{
 
-\donttest{
 # to ensure reproducibility
 set.seed(123)
 
@@ -326,7 +325,6 @@ ggstatsplot::grouped_ggscatterstats(
   caption.text = "All movies have IMDB rating equal to 7."
 )
 }
-}
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html}
 }
@@ -335,5 +333,5 @@ ggstatsplot::grouped_ggscatterstats(
 \code{\link{grouped_ggcorrmat}}
 }
 \author{
-Indrajeet Patil, Chuck Powell
+Indrajeet Patil
 }

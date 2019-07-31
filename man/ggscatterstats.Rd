@@ -25,12 +25,12 @@ ggscatterstats(data, x, y, type = "pearson", conf.level = 0.95,
 be taken. A matrix or tables will \strong{not} be accepted.}
 
 \item{x}{The column in \code{data} containing the explanatory variable to be
-plotted on the x axis. Can be entered either as
-a character string (e.g., \code{"x"}) or as a bare expression (e.g, \code{x}).}
+plotted on the x axis. Can be entered either as a character string (e.g.,
+\code{"x"}) or as a bare expression (e.g, \code{x}).}
 
 \item{y}{The column in \code{data} containing the response (outcome) variable to
-be plotted on the y axis. Can be entered either as
-a character string (e.g., \code{"y"}) or as a bare expression (e.g, \code{y}).}
+be plotted on the y axis. Can be entered either as a character string
+(e.g., \code{"y"}) or as a bare expression (e.g, \code{y}).}
 
 \item{type}{Type of association between paired samples required
 ("\code{"parametric"}: Pearson's product moment correlation coefficient" or

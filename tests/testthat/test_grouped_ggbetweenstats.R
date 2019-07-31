@@ -122,6 +122,8 @@ testthat::test_that(
         ),
         x = genre,
         y = rating,
+        outlier.tagging = TRUE,
+        outlier.label = votes,
         grouping.var = mpaa,
         results.subtitle = FALSE,
         ggplot.component = ggplot2::scale_y_continuous(breaks = seq(1, 9, 1)),
@@ -137,15 +139,13 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle return",
   code = {
-    testthat::skip_on_cran()
-
     # should return a list of length 5
     set.seed(123)
     ls_results <- ggstatsplot::grouped_ggbetweenstats(
       data = dplyr::sample_frac(forcats::gss_cat, 0.25),
       x = race,
-      y = tvhours,
-      grouping.var = marital,
+      y = "tvhours",
+      grouping.var = "marital",
       return = "subtitle",
       messages = FALSE
     )

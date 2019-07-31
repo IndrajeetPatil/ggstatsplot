@@ -55,7 +55,7 @@ testthat::test_that(
         data = df,
         x = length,
         y = rating,
-        label.expression = "budget > 150",
+        label.expression = "length > 150",
         label.var = "title",
         grouping.var = mpaa,
         type = "bf",
@@ -124,7 +124,7 @@ testthat::test_that(
         x = "length",
         y = rating,
         grouping.var = mpaa,
-        label.expression = "budget > 150",
+        label.expression = "length > 150",
         type = "np",
         results.subtitle = FALSE,
         messages = FALSE,
@@ -142,6 +142,7 @@ testthat::test_that(
         y = rating,
         grouping.var = mpaa,
         label.var = title,
+        label.expression = NULL,
         type = "np",
         results.subtitle = FALSE,
         messages = FALSE,
@@ -178,23 +179,147 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle return",
   code = {
-    testthat::skip_on_cran()
-
     # should return a list of length 3
+    set.seed(123)
     ls_results <- ggstatsplot::grouped_ggscatterstats(
-      data = iris,
-      x = Sepal.Length,
-      y = Petal.Width,
-      grouping.var = Species,
+      data = dplyr::filter(
+        .data = ggstatsplot::movies_long,
+        genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
+      ),
+      x = rating,
+      y = length,
+      k = 3,
+      conf.level = 0.99,
+      grouping.var = genre,
       return = "subtitle",
-      results.subtitle = NULL,
       messages = FALSE
     )
 
     # tests
-    testthat::expect_equal(length(ls_results), 3L)
-    testthat::expect_null(ls_results[[1]], NULL)
-    testthat::expect_null(ls_results[[2]], NULL)
-    testthat::expect_null(ls_results[[3]], NULL)
+    testthat::expect_equal(length(ls_results), 4L)
+    testthat::expect_identical(
+      ls_results[[1]],
+      ggplot2::expr(
+        paste(
+          NULL,
+          italic("t"),
+          "(",
+          "184",
+          ") = ",
+          "10.145",
+          ", ",
+          italic("p"),
+          " = ",
+          "< 0.001",
+          ", ",
+          italic("r")["Pearson"],
+          " = ",
+          "0.599",
+          ", CI"["99%"],
+          " [",
+          "0.463",
+          ", ",
+          "0.707",
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          186L
+        )
+      )
+    )
+    testthat::expect_identical(
+      ls_results[[2]],
+      ggplot2::expr(
+        paste(
+          NULL,
+          italic("t"),
+          "(",
+          "86",
+          ") = ",
+          "3.626",
+          ", ",
+          italic("p"),
+          " = ",
+          "< 0.001",
+          ", ",
+          italic("r")["Pearson"],
+          " = ",
+          "0.364",
+          ", CI"["99%"],
+          " [",
+          "0.102",
+          ", ",
+          "0.579",
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          88L
+        )
+      )
+    )
+    testthat::expect_identical(
+      ls_results[[3]],
+      ggplot2::expr(
+        paste(
+          NULL,
+          italic("t"),
+          "(",
+          "120",
+          ") = ",
+          "7.173",
+          ", ",
+          italic("p"),
+          " = ",
+          "< 0.001",
+          ", ",
+          italic("r")["Pearson"],
+          " = ",
+          "0.548",
+          ", CI"["99%"],
+          " [",
+          "0.362",
+          ", ",
+          "0.692",
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          122L
+        )
+      )
+    )
+    testthat::expect_identical(
+      ls_results[[4]],
+      ggplot2::expr(
+        paste(
+          NULL,
+          italic("t"),
+          "(",
+          "258",
+          ") = ",
+          "5.202",
+          ", ",
+          italic("p"),
+          " = ",
+          "< 0.001",
+          ", ",
+          italic("r")["Pearson"],
+          " = ",
+          "0.308",
+          ", CI"["99%"],
+          " [",
+          "0.156",
+          ", ",
+          "0.446",
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          260L
+        )
+      )
+    )
   }
 )
