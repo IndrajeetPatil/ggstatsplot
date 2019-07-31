@@ -45,12 +45,12 @@ testthat::test_that(
     ggrepel_dims <- dim(p$plot_env$label_data)
 
     # testing everything is okay with imported and ggrepel data
-    testthat::expect_equal(data_dims, c(83L, 13L))
+    testthat::expect_equal(data_dims, c(83L, 11L))
     testthat::expect_equal(
       ggrepel_dims[1],
       dim(dplyr::filter(ggplot2::msleep, bodywt > 2000))[1]
     )
-    testthat::expect_equal(ggrepel_dims[2], 13L)
+    testthat::expect_equal(ggrepel_dims[2], 11L)
 
     # checking layer data
     testthat::expect_equal(length(pb$data), 7L)
@@ -462,6 +462,21 @@ testthat::test_that(
         x = sleep_total,
         y = sleep_cycle,
         label.expression = "sleep_total > 17",
+        label.var = order,
+        results.subtitle = FALSE,
+        marginal = FALSE,
+        messages = TRUE
+      ),
+      what = "gg"
+    ))
+
+    # label.expression not specified
+    testthat::expect_true(inherits(
+      ggstatsplot::ggscatterstats(
+        data = dplyr::sample_frac(ggplot2::msleep, 0.1),
+        x = sleep_total,
+        y = sleep_cycle,
+        label.expression = NULL,
         label.var = order,
         results.subtitle = FALSE,
         marginal = FALSE,

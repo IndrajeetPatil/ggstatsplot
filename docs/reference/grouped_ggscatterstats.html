@@ -195,9 +195,9 @@ subtitle.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>grouped_ggscatterstats</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>label.var</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>label.expression</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>grouping.var</span>, <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+    <pre class="usage"><span class='fu'>grouped_ggscatterstats</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>grouping.var</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>,
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>label.var</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>label.expression</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"lm"</span>, <span class='kw'>method.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
   <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>x</span>, <span class='kw'>point.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>point.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
   <span class='kw'>point.alpha</span> <span class='kw'>=</span> <span class='fl'>0.4</span>, <span class='kw'>line.size</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>point.width.jitter</span> <span class='kw'>=</span> <span class='fl'>0</span>,
@@ -223,14 +223,19 @@ be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
     <tr>
       <th>x</th>
       <td><p>The column in <code>data</code> containing the explanatory variable to be
-plotted on the x axis. Can be entered either as
-a character string (e.g., <code>"x"</code>) or as a bare expression (e.g, <code>x</code>).</p></td>
+plotted on the x axis. Can be entered either as a character string (e.g.,
+<code>"x"</code>) or as a bare expression (e.g, <code>x</code>).</p></td>
     </tr>
     <tr>
       <th>y</th>
       <td><p>The column in <code>data</code> containing the response (outcome) variable to
-be plotted on the y axis. Can be entered either as
-a character string (e.g., <code>"y"</code>) or as a bare expression (e.g, <code>y</code>).</p></td>
+be plotted on the y axis. Can be entered either as a character string
+(e.g., <code>"y"</code>) or as a bare expression (e.g, <code>y</code>).</p></td>
+    </tr>
+    <tr>
+      <th>grouping.var</th>
+      <td><p>A single grouping variable (can be entered either as a
+bare name <code>x</code> or as a string <code>"x"</code>).</p></td>
     </tr>
     <tr>
       <th>type</th>
@@ -269,11 +274,6 @@ a character string (e.g., <code>"var1"</code>) or as a bare expression (e.g, <co
 determines the subset of data points to label. This argument can be entered
 either as a character string (e.g., <code>"y &lt; 4 &amp; z &lt; 20"</code>) or as a bare
 expression (e.g., <code>y &lt; 4 &amp; z &lt; 20</code>).</p></td>
-    </tr>
-    <tr>
-      <th>grouping.var</th>
-      <td><p>A single grouping variable (can be entered either as a
-bare name <code>x</code> or as a string <code>"x"</code>).</p></td>
     </tr>
     <tr>
       <th>title.prefix</th>
@@ -570,7 +570,7 @@ combining (plot, caption).</p></dd>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-</div><div class='input'><span class='co'># to ensure reproducibility</span>
+<span class='co'># to ensure reproducibility</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
 
 <span class='co'># basic function call</span>
@@ -644,7 +644,7 @@ combining (plot, caption).</p></dd>
     </ul>
 
     <h2>Author</h2>
-    <p>Indrajeet Patil, Chuck Powell</p>
+    <p>Indrajeet Patil</p>
   </div>
 </div>
 

@@ -6,11 +6,11 @@
 #'   subtitle.
 #'
 #' @param x The column in `data` containing the explanatory variable to be
-#'   plotted on the x axis. Can be entered either as
-#'   a character string (e.g., `"x"`) or as a bare expression (e.g, `x`).
+#'   plotted on the x axis. Can be entered either as a character string (e.g.,
+#'   `"x"`) or as a bare expression (e.g, `x`).
 #' @param y The column in `data` containing the response (outcome) variable to
-#'   be plotted on the y axis. Can be entered either as
-#'   a character string (e.g., `"y"`) or as a bare expression (e.g, `y`).
+#'   be plotted on the y axis. Can be entered either as a character string
+#'   (e.g., `"y"`) or as a bare expression (e.g, `y`).
 #' @param label.var Variable to use for points labels. Can be entered either as
 #'   a character string (e.g., `"var1"`) or as a bare expression (e.g, `var1`).
 #' @param label.expression An expression evaluating to a logical vector that
@@ -188,51 +188,49 @@ ggscatterstats <- function(data,
 
   #----------------------- dataframe ---------------------------------------
 
+  # ensure the arguments work quoted or unquoted
+  x <- rlang::ensym(x)
+  y <- rlang::ensym(y)
+  label.var <- if (!rlang::quo_is_null(rlang::enquo(label.var))) rlang::ensym(label.var)
+
   # preparing the dataframe
-  data %<>% {
-    dplyr::full_join(
-      # bizarre names like "x...internal" and "y...internal" are used to protect
-      # against the possibility that user has already used "x" and "y"
-      x = dplyr::select(.data = ., x...internal = {{ x }}, y...internal = {{ y }}) %>%
-        tibble::rowid_to_column(., var = "rowid"),
-      # dataframe where x and y retain their original names
-      y = tibble::rowid_to_column(., var = "rowid"),
-      by = "rowid"
-    ) %>%
-      dplyr::select(.data = ., -rowid) %>% # remove NAs only from x & y columns
-      dplyr::filter(.data = ., !is.na(x...internal), !is.na(y...internal)) %>%
-      tibble::as_tibble(x = .)
-  }
+  data %<>%
+    dplyr::filter(.data = ., !is.na({{ x }}), !is.na({{ y }})) %>%
+    tibble::as_tibble(.)
 
   #---------------------------- user expression -------------------------
 
-  # create a list of function call to check for label.expression
-  param_list <- as.list(match.call())
-
   # check labeling variable has been entered
-  if ("label.var" %in% names(param_list)) {
+  if (!rlang::quo_is_null(rlang::enquo(label.var))) {
     point.labelling <- TRUE
+
+    # is expression provided?
+    if (!rlang::quo_is_null(rlang::enquo(label.expression))) {
+      expression.present <- TRUE
+    } else {
+      expression.present <- FALSE
+    }
+
+    # creating a new dataframe for showing labels
+    if (isTRUE(expression.present)) {
+      if (!rlang::quo_is_null(rlang::enquo(label.expression))) {
+        label.expression <- rlang::enexpr(label.expression)
+      }
+
+      # testing for whether we received bare or quoted
+      if (typeof(label.expression) == "language") {
+        # unquoted case
+        label_data <- dplyr::filter(.data = data, !!label.expression)
+      } else {
+        # quoted case
+        label_data <- dplyr::filter(.data = data, !!rlang::parse_expr(label.expression))
+      }
+    } else {
+      label_data <- data
+    }
   } else {
     point.labelling <- FALSE
   }
-
-  # creating a new dataframe for showing labels
-  label_expr_enxpr <- rlang::enexpr(label.expression)
-  label_data <-
-    data %>% {
-      if ("label.expression" %in% names(param_list)) {
-        # testing for whether we received bare or quoted
-        if (typeof(label_expr_enxpr) == "language") {
-          # unquoted case
-          dplyr::filter(.data = ., !!label_expr_enxpr)
-        } else {
-          # quoted case
-          dplyr::filter(.data = ., !!rlang::parse_expr(label_expr_enxpr))
-        }
-      } else {
-        (.)
-      }
-    }
 
   #----------------------- creating results subtitle ------------------------
 
@@ -240,8 +238,8 @@ ggscatterstats <- function(data,
   if (isTRUE(results.subtitle)) {
     subtitle <- subtitle_ggscatterstats(
       data = data,
-      x = x...internal,
-      y = y...internal,
+      x = {{ x }},
+      y = {{ y }},
       nboot = nboot,
       beta = beta,
       type = type,
@@ -257,8 +255,8 @@ ggscatterstats <- function(data,
       bf.caption.text <-
         bf_corr_test(
           data = data,
-          x = x...internal,
-          y = y...internal,
+          x = {{ x }},
+          y = {{ y }},
           bf.prior = bf.prior,
           caption = caption,
           output = "caption",
@@ -273,7 +271,9 @@ ggscatterstats <- function(data,
   }
 
   #--------------------------------- basic plot ---------------------------
-  pos <- position_jitter(
+
+  # creating jittered positions
+  pos <- ggplot2::position_jitter(
     width = point.width.jitter,
     height = point.height.jitter,
     seed = 123
@@ -296,13 +296,7 @@ ggscatterstats <- function(data,
 
   # preparing the scatterplot
   plot <-
-    ggplot2::ggplot(
-      data = data,
-      mapping = ggplot2::aes(
-        x = x...internal,
-        y = y...internal
-      )
-    ) +
+    ggplot2::ggplot(data = data, mapping = ggplot2::aes(x = {{ x }}, y = {{ y }})) +
     ggplot2::geom_point(
       color = point.color,
       size = point.size,
@@ -336,10 +330,10 @@ ggscatterstats <- function(data,
   #----------------------- adding centrality parameters --------------------
 
   # computing summary statistics needed for displaying labels
-  x_mean <- mean(x = data$x...internal, na.rm = TRUE)
-  x_median <- median(x = data$x...internal, na.rm = TRUE)
-  y_mean <- mean(x = data$y...internal, na.rm = TRUE)
-  y_median <- median(x = data$y...internal, na.rm = TRUE)
+  x_mean <- mean(x = data %>% dplyr::pull({{ x }}), na.rm = TRUE)
+  x_median <- median(x = data %>% dplyr::pull({{ x }}), na.rm = TRUE)
+  y_mean <- mean(x = data %>% dplyr::pull({{ y }}), na.rm = TRUE)
+  y_median <- median(x = data %>% dplyr::pull({{ y }}), na.rm = TRUE)
   x_label_pos <- median(
     x = ggplot2::layer_scales(plot)$x$range$range,
     na.rm = TRUE
@@ -371,8 +365,7 @@ ggscatterstats <- function(data,
     }
 
     # adding lines
-    plot <-
-      plot +
+    plot <- plot +
       # vertical line
       ggplot2::geom_vline(
         xintercept = x.intercept,
@@ -422,29 +415,23 @@ ggscatterstats <- function(data,
   if (isTRUE(axes.range.restrict)) {
     plot <- plot +
       ggplot2::coord_cartesian(xlim = c(
-        min(data$x...internal, na.rm = TRUE),
-        max(data$x...internal, na.rm = TRUE)
+        min(data %>% dplyr::pull({{ x }}), na.rm = TRUE),
+        max(data %>% dplyr::pull({{ x }}), na.rm = TRUE)
       )) +
       ggplot2::coord_cartesian(ylim = c(
-        min(data$y...internal, na.rm = TRUE),
-        max(data$y...internal, na.rm = TRUE)
+        min(data %>% dplyr::pull({{ y }}), na.rm = TRUE),
+        max(data %>% dplyr::pull({{ y }}), na.rm = TRUE)
       ))
   }
 
   #-------------------- adding point labels --------------------------------
 
+  # using geom_repel_label
   if (isTRUE(point.labelling)) {
-    #   If we were passed a bare variable convert to char string for ggrepel
-    if (typeof(param_list$label.var) == "symbol") {
-      label.var <- deparse(substitute(label.var)) # unquoted case
-    }
-
-    # using geom_repel_label
-    plot <-
-      plot +
+    plot <- plot +
       ggrepel::geom_label_repel(
         data = label_data,
-        mapping = ggplot2::aes_string(label = label.var),
+        mapping = ggplot2::aes(label = {{ label.var }}),
         fontface = "bold",
         color = "black",
         max.iter = 3e2,
@@ -468,25 +455,24 @@ ggscatterstats <- function(data,
   # creating the `ggMarginal` plot of a given `marginal.type`
   if (isTRUE(marginal)) {
     # adding marginals to plot
-    plot <-
-      ggExtra::ggMarginal(
-        p = plot,
-        type = marginal.type,
-        margins = margins,
-        size = marginal.size,
-        xparams = list(
-          fill = xfill,
-          alpha = xalpha,
-          size = xsize,
-          col = "black"
-        ),
-        yparams = list(
-          fill = yfill,
-          alpha = yalpha,
-          size = ysize,
-          col = "black"
-        )
+    plot <- ggExtra::ggMarginal(
+      p = plot,
+      type = marginal.type,
+      margins = margins,
+      size = marginal.size,
+      xparams = list(
+        fill = xfill,
+        alpha = xalpha,
+        size = xsize,
+        col = "black"
+      ),
+      yparams = list(
+        fill = yfill,
+        alpha = yalpha,
+        size = ysize,
+        col = "black"
       )
+    )
   }
 
   #------------------------- messages  ------------------------------------

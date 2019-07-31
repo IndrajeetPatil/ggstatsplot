@@ -146,6 +146,11 @@ grouped_ggbetweenstats <- function(data,
 
   # ensure the grouping variable works quoted or unquoted
   grouping.var <- rlang::ensym(grouping.var)
+  x <- rlang::ensym(x)
+  y <- rlang::ensym(y)
+  outlier.label <- if (!rlang::quo_is_null(rlang::enquo(outlier.label))) {
+    rlang::ensym(outlier.label)
+  }
 
   # if `title.prefix` is not provided, use the variable `grouping.var` name
   if (is.null(title.prefix)) title.prefix <- rlang::as_name(grouping.var)

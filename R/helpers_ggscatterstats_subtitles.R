@@ -53,6 +53,7 @@ subtitle_ggscatterstats <- function(data,
                                     stat.title = NULL,
                                     messages = TRUE,
                                     ...) {
+
   # make sure both quoted and unquoted arguments are supported
   x <- rlang::ensym(x)
   y <- rlang::ensym(y)
