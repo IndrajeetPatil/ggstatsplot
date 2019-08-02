@@ -35,7 +35,7 @@
 #' }
 #'
 #' @examples
-#' \donttest{
+#'
 #' #---------------- two-sample test ------------------------------------
 #'
 #' # creating a smaller dataset
@@ -90,7 +90,7 @@
 #'   noncentral = TRUE,
 #'   tobject = tobj3
 #' )
-#' }
+#'
 #' @keywords internal
 
 # function body

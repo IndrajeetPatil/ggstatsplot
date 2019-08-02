@@ -107,7 +107,6 @@ mean_labeller <- function(data,
 #'
 #' @examples
 #'
-#' \dontrun{
 #' # this internal function may not have much utility outside of the package
 #' set.seed(123)
 #' library(ggplot2)
@@ -123,20 +122,23 @@ mean_labeller <- function(data,
 #'   y = Sepal.Length,
 #'   mean.ci = TRUE,
 #'   k = 3
-#' ) %>%
-#'   dplyr::rename(.data = ., x = Species, y = Sepal.Length)
+#' )
 #'
 #' # add means
 #' ggstatsplot:::mean_ggrepel(
 #'   plot = p,
+#'   x = Species,
+#'   y = Sepal.Length,
 #'   mean.data = mean_dat,
 #'   mean.color = "darkgreen"
 #' )
-#' }
+#'
 #' @keywords internal
 
 # function body
 mean_ggrepel <- function(plot,
+                         x,
+                         y,
                          mean.data,
                          mean.size = 5,
                          mean.color = "darkred",
@@ -146,7 +148,7 @@ mean_ggrepel <- function(plot,
                          inherit.aes = TRUE,
                          ...) {
 
-  # check any misspecified argumenta
+  # check any misspecified arguments
   ellipsis::check_dots_used()
 
   # highlight the mean of each group
@@ -162,7 +164,7 @@ mean_ggrepel <- function(plot,
   } else {
     plot <- plot +
       ggplot2::stat_summary(
-        mapping = ggplot2::aes(x = x, y = y),
+        mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),
         fun.y = mean,
         geom = "point",
         color = mean.color,
@@ -176,7 +178,7 @@ mean_ggrepel <- function(plot,
   plot <- plot +
     ggrepel::geom_label_repel(
       data = mean.data,
-      mapping = ggplot2::aes(x = x, y = y, label = label),
+      mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, label = label),
       size = mean.label.size,
       fontface = mean.label.fontface,
       color = mean.label.color,
@@ -336,7 +338,7 @@ long_to_wide_converter <- function(data, x, y, paired = TRUE) {
     tibble::as_tibble(x = .)
 
   # figuring out number of levels in the grouping factor
-  x_n_levels <- nlevels(data[[rlang::as_name(rlang::enquo(x))]])
+  x_n_levels <- nlevels(data %>% dplyr::pull({{ x }}))[[1]]
 
   # wide format
   data_wide <-
@@ -379,31 +381,30 @@ long_to_wide_converter <- function(data, x, y, paired = TRUE) {
 #' @inheritParams ggbetweenstats
 #'
 #' @examples
-#' \dontrun{
 #' library(ggplot2)
 #'
-#' # data
-#' df <- data.frame(x = iris$Species, y = iris$Sepal.Length)
-#'
 #' # plot
-#' p <- ggplot(df, aes(x, y)) + geom_boxplot()
+#' p <- ggplot(iris, aes(Species, Sepal.Length)) + geom_boxplot()
 #'
 #' # dataframe with pairwise comparison test results
-#' df_pair <- ggstatsplot::pairwise_p(df, x, y)
+#' df_pair <- ggstatsplot::pairwise_p(data = iris, x = Species, y = Sepal.Length)
 #'
 #' # adding plot with
 #' ggstatsplot:::ggsignif_adder(
 #'   plot = p,
-#'   df_pairwise = df_pair,
-#'   data = df
+#'   data = iris,
+#'   x = Species,
+#'   y = Sepal.Length,
+#'   df_pairwise = df_pair
 #' )
-#' }
 #'
 #' @keywords internal
 
 ggsignif_adder <- function(plot,
                            df_pairwise,
                            data,
+                           x,
+                           y,
                            pairwise.annotation = "asterisk",
                            pairwise.display = "significant") {
   # creating a column for group combinations
@@ -445,7 +446,10 @@ ggsignif_adder <- function(plot,
     df_pairwise %<>% dplyr::arrange(.data = ., group1)
 
     # computing y coordinates for ggsignif bars
-    ggsignif_y_position <- ggsignif_position_calculator(x = data$x, y = data$y)
+    ggsignif_y_position <- ggsignif_position_calculator(
+      x = data %>% dplyr::pull({{ x }}),
+      y = data %>% dplyr::pull({{ y }})
+    )
 
     # adding ggsignif comparisons to the plot
     plot <- plot +
@@ -465,6 +469,40 @@ ggsignif_adder <- function(plot,
   # return the plot
   return(plot)
 }
+
+#' @title Calculating `y` coordinates for the `ggsignif` comparison bars.
+#' @inheritParams ggbetweenstats
+#'
+#' @keywords internal
+
+ggsignif_position_calculator <- function(x, y) {
+  # number of comparisons
+  n_comparions <-
+    length(utils::combn(
+      x = unique(x),
+      m = 2,
+      simplify = FALSE
+    ))
+
+  # start position on y-axis for the ggsignif lines
+  y_start <- max(y, na.rm = TRUE) * (1 + 0.025)
+
+  # steps in which the y values need to increase
+  step_length <- (max(y, na.rm = TRUE) - min(y, na.rm = TRUE)) / 20
+
+  # end position on y-axis for the ggsignif lines
+  y_end <- y_start + (step_length * n_comparions)
+
+  # creating a vector of positions for the ggsignif lines
+  return(
+    seq(
+      from = y_start,
+      to = y_end,
+      length.out = n_comparions
+    )
+  )
+}
+
 
 # function body
 sort_xy <- function(data,

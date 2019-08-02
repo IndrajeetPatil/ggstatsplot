@@ -9,7 +9,7 @@
 | [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)                      | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Forks](https://img.shields.io/badge/forks-68-blue.svg)](https://github.com/IndrajeetPatil/ggstatsplot/)                                                     | [![Rdoc](https://www.rdocumentation.org/badges/version/ggstatsplot)](https://www.rdocumentation.org/packages/ggstatsplot)                                       |
 | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/)                                                      | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                                               | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](https://img.shields.io/badge/issues-23-red.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)                                       | [![vignettes](https://img.shields.io/badge/vignettes-0.0.12-orange.svg?colorB=FF5722)](https://CRAN.R-project.org/package=ggstatsplot/vignettes/)               |
 | [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot) | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2074621.svg)](https://doi.org/10.5281/zenodo.2074621)                                                       |
-| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2019--08--01-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
+| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2019--08--02-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
 | [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                                    | [![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2019_07_31-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md)                | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil)                                    | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)                                                     | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
 | [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ggstatsplot/community)                                                         |                                                                                                                                                                                              |                                                                                                                                                   |                                                                                                                                                                |                                                                                                                                                                 |
 
@@ -27,17 +27,26 @@ method, and so on and so forth. The central idea of `ggstatsplot` is
 simple: combine these two phases into one in the form of graphics with
 statistical details, which makes data exploration simpler and faster.
 
-But why would combining statistical analysis with data visualization be
-helpful? We list few reasons below-
+# Summary of available plots
 
-  - A recent survey (Nuijten, Hartgerink, van Assen, Epskamp, &
-    Wicherts, 2016) revealed that one in eight papers in major
-    psychology journals contained a grossly inconsistent *p*-value that
-    may have affected the statistical conclusion. `ggstatsplot` helps
-    avoid such reporting errors: Since the plot and the statistical
-    analysis are yoked together, the chances of making an error in
-    reporting the results are minimized. You never have to write the
-    results manually or copy-paste them from someplace else.
+It, therefore, produces a limited kinds of plots for the supported
+analyses:
+
+| Function         | Plot                      | Description                                     |
+| ---------------- | ------------------------- | ----------------------------------------------- |
+| `ggbetweenstats` | **violin plots**          | for comparisons *between* groups/conditions     |
+| `ggwithinstats`  | **violin plots**          | for comparisons *within* groups/conditions      |
+| `gghistostats`   | **histograms**            | for distribution about numeric variable         |
+| `ggdotplotstats` | **dot plots/charts**      | for distribution about labeled numeric variable |
+| `ggpiestats`     | **pie charts**            | for categorical data                            |
+| `ggbarstats`     | **bar charts**            | for categorical data                            |
+| `ggscatterstats` | **scatterplots**          | for correlations between two variables          |
+| `ggcorrmat`      | **correlation matrices**  | for correlations between multiple variables     |
+| `ggcoefstats`    | **dot-and-whisker plots** | for regression models                           |
+
+In addition to these basic plots, `ggstatsplot` also provides
+**`grouped_`** versions (see below) that makes it easy to repeat the
+same analysis for any grouping variable.
 
 # Summary of types of statistical analyses
 
@@ -45,25 +54,6 @@ Currently, it supports only the most common types of statistical tests:
 **parametric**, **nonparametric**, **robust**, and **bayesian** versions
 of **t-test**/**anova**, **correlation** analyses, **contingency table**
 analysis, and **regression** analyses.
-
-It, therefore, produces a limited kinds of plots for the supported
-analyses:
-
-  - **violin plots** (for comparisons *between* groups or conditions),
-  - **pie charts** and **bar charts** (for categorical data),
-  - **scatterplots** (for correlations between two variables),
-  - **correlation matrices** (for correlations between multiple
-    variables),
-  - **histograms** and **dot plots/charts** (for hypothesis about
-    distributions),
-  - **dot-and-whisker plots** (for regression models).
-
-In addition to these basic plots, `ggstatsplot` also provides
-**`grouped_`** versions for most functions that makes it easy to repeat
-the same analysis for any grouping variable.
-
-Future versions will include other types of statistical analyses and
-plots as well.
 
 The table below summarizes all the different types of analyses currently
 supported in this package-
@@ -225,7 +215,7 @@ ggstatsplot::ggplot_converter
 #> function(plot) {
 #>   return(cowplot::ggdraw() + cowplot::draw_grob(grid::grobTree(plot)))
 #> }
-#> <bytecode: 0x00000000333103f8>
+#> <bytecode: 0x0000000032b41728>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -1490,8 +1480,6 @@ Additionally, all functions share the `ggtheme` and `palette` arguments
 that can be used to specify your favorite `ggplot` theme and color
 palette.
 
-# References
-
 # Code coverage
 
 As the code stands right now, here is the code coverage for all primary
@@ -1525,19 +1513,6 @@ By participating in this project you agree to abide by its terms.
 
 # Session Information
 
-For details about the session information in which this `README` file
-was rendered, see-
+For reproducibility purposes, the details about the session information
+in which this document was rendered, see-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>
-
-<div id="refs" class="references">
-
-<div id="ref-nuijtenPrevalenceStatisticalReporting2016">
-
-Nuijten, M. B., Hartgerink, C. H. J., van Assen, M. A. L. M., Epskamp,
-S., & Wicherts, J. M. (2016). The prevalence of statistical reporting
-errors in psychology (19852013). *Behavior Research Methods*, *48*(4),
-1205–1226. <https://doi.org/10.3758/s13428-015-0664-2>
-
-</div>
-
-</div>

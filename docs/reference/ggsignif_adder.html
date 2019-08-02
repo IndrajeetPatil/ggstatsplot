@@ -188,8 +188,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>ggsignif_adder</span>(<span class='no'>plot</span>, <span class='no'>df_pairwise</span>, <span class='no'>data</span>, <span class='kw'>pairwise.annotation</span> <span class='kw'>=</span> <span class='st'>"asterisk"</span>,
-  <span class='kw'>pairwise.display</span> <span class='kw'>=</span> <span class='st'>"significant"</span>)</pre>
+    <pre class="usage"><span class='fu'>ggsignif_adder</span>(<span class='no'>plot</span>, <span class='no'>df_pairwise</span>, <span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>,
+  <span class='kw'>pairwise.annotation</span> <span class='kw'>=</span> <span class='st'>"asterisk"</span>, <span class='kw'>pairwise.display</span> <span class='kw'>=</span> <span class='st'>"significant"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -207,6 +207,15 @@
       <th>data</th>
       <td><p>A dataframe (or a tibble) from which variables specified are to
 be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
+    </tr>
+    <tr>
+      <th>x</th>
+      <td><p>The grouping variable from the dataframe <code>data</code>.</p></td>
+    </tr>
+    <tr>
+      <th>y</th>
+      <td><p>The response (a.k.a. outcome or dependent) variable from the
+dataframe <code>data</code>.</p></td>
     </tr>
     <tr>
       <th>pairwise.annotation</th>
@@ -229,23 +238,22 @@ displayed.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
 
-<span class='co'># data</span>
-<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>iris</span>$<span class='no'>Species</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>iris</span>$<span class='no'>Sepal.Length</span>)
-
 <span class='co'># plot</span>
-<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>df</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>x</span>, <span class='no'>y</span>)) + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_boxplot.html'>geom_boxplot</a></span>()
+<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>iris</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>Species</span>, <span class='no'>Sepal.Length</span>)) + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_boxplot.html'>geom_boxplot</a></span>()
 
 <span class='co'># dataframe with pairwise comparison test results</span>
-<span class='no'>df_pair</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(<span class='no'>df</span>, <span class='no'>x</span>, <span class='no'>y</span>)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>The parametric pairwise multiple comparisons test used-
+<span class='no'>df_pair</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Species</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>The parametric pairwise multiple comparisons test used-
 #&gt;  Games-Howell test.
 #&gt;  Adjustment method for p-values: </span><span style='color: #BBBB00;'>holm</span><span></div><div class='output co'>#&gt; </div><div class='input'>
 <span class='co'># adding plot with</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggsignif_adder.html'>ggsignif_adder</a></span>(
   <span class='kw'>plot</span> <span class='kw'>=</span> <span class='no'>p</span>,
-  <span class='kw'>df_pairwise</span> <span class='kw'>=</span> <span class='no'>df_pair</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>df</span>
-)</div><div class='img'><img src='ggsignif_adder-1.png' alt='' width='700' height='433' /></div></span><div class='input'>
-</div></pre>
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Species</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>,
+  <span class='kw'>df_pairwise</span> <span class='kw'>=</span> <span class='no'>df_pair</span>
+)</div><div class='img'><img src='ggsignif_adder-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

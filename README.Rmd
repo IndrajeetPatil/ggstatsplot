@@ -2,8 +2,6 @@
 output:
   github_document:
     pandoc_args: --webtex
-bibliography: ./references.bib
-csl: paper/apa.csl    
 ---
 
   <!-- README.md is generated from README.Rmd. Please edit that file -->

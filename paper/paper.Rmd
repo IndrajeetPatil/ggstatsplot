@@ -7,16 +7,16 @@ output:
   pdf_document:
     toc: true
   latex_engine: xelatex
-preamble: >
-  \usepackage{amsmath}
-  \usepackage{amssymb}
-  \usepackage{longtable}
-  \usepackage{booktabs}
-  \usepackage{amsfonts}
-  \usepackage{hyperref}
-  \usepackage{booktabs}
-  \usepackage{xcolor}
-  \usepackage{fontawesome}
+header-includes: 
+  - \usepackage{amsmath}
+  - \usepackage{amssymb}
+  - \usepackage{longtable}
+  - \usepackage{booktabs}
+  - \usepackage{amsfonts}
+  - \usepackage{hyperref}
+  - \usepackage{booktabs}
+  - \usepackage[dvipsnames]{xcolor}
+  - \usepackage{fontawesome}
 bibliography: ./references.bib
 csl: ./apa.csl
 ---
@@ -101,14 +101,14 @@ currently supported in this package-
 
 Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
 ------- | ------------------ | ---- | ----- | ----| ----- 
-`ggbetweenstats` | Between group/condition comparisons | \textcolor{green}{Yes} | \textcolor{green}{Yes} | \textcolor{green}{Yes} | \textcolor{green}{Yes}
-`ggwithinstats` | Within group/condition comparisons | \textcolor{green}{Yes} | \textcolor{green}{Yes} | \textcolor{green}{Yes} | \textcolor{green}{Yes}
-`gghistostats`, `ggdotplotstats` | Distribution of a numeric variable | \textcolor{green}{Yes} | \textcolor{green}{Yes} | \textcolor{green}{Yes} | \textcolor{green}{Yes}
-`ggcorrmat` | Correlation matrix | \textcolor{green}{Yes} | \textcolor{green}{Yes} | \textcolor{green}{Yes} | \textcolor{red}{No}
-`ggscatterstats` | Correlation between two variables | \textcolor{green}{Yes} | \textcolor{green}{Yes} | \textcolor{green}{Yes} | \textcolor{green}{Yes}
-`ggpiestats`, `ggbarstats` | Association between categorical variables | \textcolor{green}{Yes} | `NA` | `NA` | \textcolor{green}{Yes}
-`ggpiestats`, `ggbarstats` | Equal proportions for categorical variable levels | \textcolor{green}{Yes} | `NA` | `NA` | \textcolor{green}{Yes}
-`ggcoefstats` | Regression model coefficients | \textcolor{green}{Yes} | \textcolor{red}{No} | \textcolor{green}{Yes} | \textcolor{red}{No}
+`ggbetweenstats` | Between group/condition comparisons | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes}
+`ggwithinstats` | Within group/condition comparisons | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes}
+`gghistostats`, `ggdotplotstats` | Distribution of a numeric variable | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes}
+`ggcorrmat` | Correlation matrix | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{red}{No}
+`ggscatterstats` | Correlation between two variables | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes}
+`ggpiestats`, `ggbarstats` | Association between categorical variables | \textcolor{ForestGreen}{Yes} | `NA` | `NA` | \textcolor{ForestGreen}{Yes}
+`ggpiestats`, `ggbarstats` | Equal proportions for categorical variable levels | \textcolor{ForestGreen}{Yes} | `NA` | `NA` | \textcolor{ForestGreen}{Yes}
+`ggcoefstats` | Regression model coefficients | \textcolor{ForestGreen}{Yes} | \textcolor{red}{No} | \textcolor{ForestGreen}{Yes} | \textcolor{red}{No}
 
 # Statistical reporting
 
@@ -127,28 +127,28 @@ various functions:
 
 Functions | Type | Test | Effect size | 95% CI available? 
 ------------ | ------------- | ------------------ | ------------------ | -----  
-`ggbetweenstats` | Parametric | Student's and Welch's *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{green}{$\checkmark$} 
-`ggbetweenstats` | Parametric | Fisher's and Welch's one-way ANOVA | $$\eta^2, \eta^2_p, \omega^2, \omega^2_p$$ |  \textcolor{green}{$\checkmark$} 
-`ggbetweenstats` | Non-parametric | Mann-Whitney *U*-test | *r* |  \textcolor{green}{$\checkmark$} 
-`ggbetweenstats` | Non-parametric | Kruskal-Wallis Rank Sum Test | $$\epsilon^2$$ |  \textcolor{green}{$\checkmark$} 
-`ggbetweenstats` | Robust | Yuen's test for trimmed means | $$\xi$$ |  \textcolor{green}{$\checkmark$} 
-`ggbetweenstats` | Robust | Heteroscedastic one-way ANOVA for trimmed means | $$\xi$$ |  \textcolor{green}{$\checkmark$} 
-`ggwithinstats` | Parametric | Student's *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{green}{$\checkmark$} 
-`ggwithinstats` | Parametric | Fisher's one-way repeated measures ANOVA | $$\eta^2_p, \omega^2$$ |  \textcolor{green}{$\checkmark$} 
-`ggwithinstats` | Non-parametric | Wilcoxon signed-rank test | *r* |  \textcolor{green}{$\checkmark$} 
-`ggwithinstats` | Non-parametric | Friedman test | $$W_{Kendall}$$ |  \textcolor{green}{$\checkmark$}
-`ggwithinstats` | Robust | Yuen's test on trimmed means for dependent samples | $$\xi$$ |  \textcolor{green}{$\checkmark$} 
+`ggbetweenstats` | Parametric | Student's and Welch's *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggbetweenstats` | Parametric | Fisher's and Welch's one-way ANOVA | $$\eta^2, \eta^2_p, \omega^2, \omega^2_p$$ |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggbetweenstats` | Non-parametric | Mann-Whitney *U*-test | *r* |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggbetweenstats` | Non-parametric | Kruskal-Wallis Rank Sum Test | $$\epsilon^2$$ |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggbetweenstats` | Robust | Yuen's test for trimmed means | $$\xi$$ |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggbetweenstats` | Robust | Heteroscedastic one-way ANOVA for trimmed means | $$\xi$$ |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggwithinstats` | Parametric | Student's *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggwithinstats` | Parametric | Fisher's one-way repeated measures ANOVA | $$\eta^2_p, \omega^2$$ |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggwithinstats` | Non-parametric | Wilcoxon signed-rank test | *r* |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggwithinstats` | Non-parametric | Friedman test | $$W_{Kendall}$$ |  \textcolor{ForestGreen}{$\checkmark$}
+`ggwithinstats` | Robust | Yuen's test on trimmed means for dependent samples | $$\xi$$ |  \textcolor{ForestGreen}{$\checkmark$} 
 `ggwithinstats` | Robust | Heteroscedastic one-way repeated measures ANOVA for trimmed means |  \textcolor{red}{$\times$} |  \textcolor{red}{$\times$}
-`ggpiestats` | Parametric | $$\text{Pearson's}~ \chi^2 ~\text{test}$$ | Cramér's *V* |  \textcolor{green}{$\checkmark$}
-`ggpiestats` | Parametric | McNemar's test | Cohen's *g* |  \textcolor{green}{$\checkmark$}
-`ggpiestats` | Parametric | One-sample proportion test | Cramér's *V* |  \textcolor{green}{$\checkmark$}
-`ggscatterstats` and `ggcorrmat` | Parametric | Pearson's *r* | *r* |  \textcolor{green}{$\checkmark$}
-`ggscatterstats` and `ggcorrmat` | Non-parametric | $$\text{Spearman's}~ \rho$$ | $$\rho$$ |  \textcolor{green}{$\checkmark$}
-`ggscatterstats`and `ggcorrmat` | Robust | Percentage bend correlation | *r* |  \textcolor{green}{$\checkmark$}
-`gghistostats` and `ggdotplotstats` | Parametric | One-sample *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{green}{$\checkmark$}
-`gghistostats` | Non-parametric | One-sample Wilcoxon signed rank test | *r* |  \textcolor{green}{$\checkmark$} 
-`gghistostats` and `ggdotplotstats` | Robust | One-sample percentile bootstrap | robust estimator |  \textcolor{green}{$\checkmark$}
-`gghistostats` and `ggdotplotstats` | Parametric | Regression models | $$\beta$$ |  \textcolor{green}{$\checkmark$}
+`ggpiestats` | Parametric | $$\text{Pearson's}~ \chi^2 ~\text{test}$$ | Cramér's *V* |  \textcolor{ForestGreen}{$\checkmark$}
+`ggpiestats` | Parametric | McNemar's test | Cohen's *g* |  \textcolor{ForestGreen}{$\checkmark$}
+`ggpiestats` | Parametric | One-sample proportion test | Cramér's *V* |  \textcolor{ForestGreen}{$\checkmark$}
+`ggscatterstats` and `ggcorrmat` | Parametric | Pearson's *r* | *r* |  \textcolor{ForestGreen}{$\checkmark$}
+`ggscatterstats` and `ggcorrmat` | Non-parametric | $$\text{Spearman's}~ \rho$$ | $$\rho$$ |  \textcolor{ForestGreen}{$\checkmark$}
+`ggscatterstats`and `ggcorrmat` | Robust | Percentage bend correlation | *r* |  \textcolor{ForestGreen}{$\checkmark$}
+`gghistostats` and `ggdotplotstats` | Parametric | One-sample *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{ForestGreen}{$\checkmark$}
+`gghistostats` | Non-parametric | One-sample Wilcoxon signed rank test | *r* |  \textcolor{ForestGreen}{$\checkmark$} 
+`gghistostats` and `ggdotplotstats` | Robust | One-sample percentile bootstrap | robust estimator |  \textcolor{ForestGreen}{$\checkmark$}
+`gghistostats` and `ggdotplotstats` | Parametric | Regression models | $$\beta$$ |  \textcolor{ForestGreen}{$\checkmark$}
 
 Work is in progress to add some of the currently missing functionality. 
 
@@ -156,7 +156,7 @@ Work is in progress to add some of the currently missing functionality.
 
 Here are examples of the main functions currently supported in `ggstatsplot`.
 
-## ggbetweenstats
+## `ggbetweenstats`
 
 This function creates either a violin plot, a box plot, or a mix of two for
 **between**-group or **between**-condition comparisons with results from
@@ -299,17 +299,17 @@ comparison* tests supported in *ggbetweenstats*-
 
 Type | Equal variance? | Test | *p*-value adjustment? 
 ----------- | --- | ------------------------- | ---
-Parametric | No | Games-Howell test | \textcolor{green}{Yes}  
-Parametric | Yes | Student's *t*-test | \textcolor{green}{Yes}  
-Non-parametric | No | Dwass-Steel-Crichtlow-Fligner test | \textcolor{green}{Yes}  
-Robust | No | Yuen's trimmed means test | \textcolor{green}{Yes}  
+Parametric | No | Games-Howell test | \textcolor{ForestGreen}{Yes}  
+Parametric | Yes | Student's *t*-test | \textcolor{ForestGreen}{Yes}  
+Non-parametric | No | Dwass-Steel-Crichtlow-Fligner test | \textcolor{ForestGreen}{Yes}  
+Robust | No | Yuen's trimmed means test | \textcolor{ForestGreen}{Yes}  
 Bayes Factor | No | \textcolor{red}{No} | \textcolor{red}{No}
 Bayes Factor | Yes | \textcolor{red}{No} | \textcolor{red}{No}
 
 For more, see the `ggbetweenstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>
 
-## ggwithinstats
+## `ggwithinstats`
 
 `ggbetweenstats` function has an identical twin function `ggwithinstats` for
 repeated measures designs that behaves in the same fashion with a few minor
@@ -390,15 +390,15 @@ comparison* tests supported in *ggwithinstats*-
 
 Type | Test | *p*-value adjustment? 
 ---------------- | ---------------------------- | -----------
-Parametric | Student's *t*-test | \textcolor{green}{Yes}  
-Non-parametric | Durbin-Conover test | \textcolor{green}{Yes}  
-Robust | Yuen's trimmed means test | \textcolor{green}{Yes}  
+Parametric | Student's *t*-test | \textcolor{ForestGreen}{Yes}  
+Non-parametric | Durbin-Conover test | \textcolor{ForestGreen}{Yes}  
+Robust | Yuen's trimmed means test | \textcolor{ForestGreen}{Yes}  
 Bayes Factor | \textcolor{red}{No} | \textcolor{red}{No}
 
 For more, see the `ggwithinstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
 
-## ggscatterstats
+## `ggscatterstats`
 
 This function creates a scatterplot with marginal distributions overlaid on the
 axes (from `ggExtra::ggMarginal`) and results from statistical tests in the
@@ -538,7 +538,7 @@ Bayes Factor | Pearson's correlation coefficient | <font color="red">No<font>
 For more, see the `ggscatterstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>
 
-## ggpiestats
+## `ggpiestats`
 
 This function creates a pie chart for categorical or nominal variables with
 results from contingency table analysis (Pearson's $\chi^2$ test for
@@ -679,7 +679,7 @@ Goodness of fit | *V*  | <font color="green">Yes<font>
 For more, see the `ggpiestats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
 
-## ggbarstats
+## `ggbarstats`
 
 In case you are not a fan of pie charts (for very good reasons), you can
 alternatively use `ggbarstats` function which has a similar syntax-
@@ -744,7 +744,7 @@ ggstatsplot::grouped_ggbarstats(
 
 This is identical to the `ggpiestats` function summary of tests.
 
-## gghistostats
+## `gghistostats`
 
 In case you would like to see the distribution of a single variable and check if
 it is significantly different from a specified value with a one sample test,
@@ -840,7 +840,7 @@ For more, including information about the variant of this function
 `grouped_gghistostats`, see the `gghistostats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html>
 
-## ggdotplotstats
+## `ggdotplotstats`
 
 This function is similar to `gghistostats`, but is intended to be used when the
 numeric variable also has a label.
@@ -1294,54 +1294,54 @@ ggstatsplot::combine_plots(
 
 Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
 ------- | ------------------ | ---- | ----- | ----| ----- 
-`ggbetweenstats` | Between group/condition comparisons |  \textcolor{green}{$\checkmark$} |  \textcolor{green}{$\checkmark$} |  \textcolor{green}{$\checkmark$} |  \textcolor{green}{$\checkmark$}
-`ggwithinstats` | Within group/condition comparisons |  \textcolor{green}{$\checkmark$} |  \textcolor{green}{$\checkmark$} |  \textcolor{green}{$\checkmark$} |  \textcolor{green}{$\checkmark$}
-`gghistostats`, `ggdotplotstats` | Distribution of a numeric variable |  \textcolor{green}{$\checkmark$} |  \textcolor{green}{$\checkmark$} |  \textcolor{green}{$\checkmark$} |  \textcolor{green}{$\checkmark$}
-`ggcorrmat` | Correlation matrix |  \textcolor{green}{$\checkmark$} |  \textcolor{green}{$\checkmark$} |  \textcolor{green}{$\checkmark$} |  \textcolor{red}{$\times$}
-`ggscatterstats` | Correlation between two variables |  \textcolor{green}{$\checkmark$} |  \textcolor{green}{$\checkmark$} |  \textcolor{green}{$\checkmark$} |  \textcolor{green}{$\checkmark$}
-`ggpiestats`, `ggbarstats` | Association between categorical variables |  \textcolor{green}{$\checkmark$} | `NA` | `NA` |  \textcolor{green}{$\checkmark$}
-`ggpiestats`, `ggbarstats` | Equal proportions for categorical variable levels |  \textcolor{green}{$\checkmark$} | `NA` | `NA` |  \textcolor{red}{$\times$}
-`ggcoefstats` | Regression model coefficients |  \textcolor{green}{$\checkmark$} |  \textcolor{red}{$\times$}|  \textcolor{green}{$\checkmark$} |  \textcolor{red}{$\times$}
+`ggbetweenstats` | Between group/condition comparisons |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$}
+`ggwithinstats` | Within group/condition comparisons |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$}
+`gghistostats`, `ggdotplotstats` | Distribution of a numeric variable |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$}
+`ggcorrmat` | Correlation matrix |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{red}{$\times$}
+`ggscatterstats` | Correlation between two variables |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$}
+`ggpiestats`, `ggbarstats` | Association between categorical variables |  \textcolor{ForestGreen}{$\checkmark$} | `NA` | `NA` |  \textcolor{ForestGreen}{$\checkmark$}
+`ggpiestats`, `ggbarstats` | Equal proportions for categorical variable levels |  \textcolor{ForestGreen}{$\checkmark$} | `NA` | `NA` |  \textcolor{red}{$\times$}
+`ggcoefstats` | Regression model coefficients |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{red}{$\times$}|  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{red}{$\times$}
 
 ## Types of statistical tests supported
 
 Functions | Type | Test | Effect size | 95% CI available? 
 ----------- | ----------- | ------------------ | ------------------ | -----  
-`ggbetweenstats` | Parametric | Student's and Welch's *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{green}{$\checkmark$} 
-`ggbetweenstats` | Parametric | Fisher's and Welch's one-way ANOVA | $$\eta^2, \eta^2_p, \omega^2, \omega^2_p$$ |  \textcolor{green}{$\checkmark$} 
-`ggbetweenstats` | Non-parametric | Mann-Whitney *U*-test | *r* |  \textcolor{green}{$\checkmark$} 
-`ggbetweenstats` | Non-parametric | Kruskal-Wallis Rank Sum Test | $$\epsilon^2$$ |  \textcolor{green}{$\checkmark$} 
-`ggbetweenstats` | Robust | Yuen's test for trimmed means | $$\xi$$ |  \textcolor{green}{$\checkmark$} 
-`ggbetweenstats` | Robust | Heteroscedastic one-way ANOVA for trimmed means | $$\xi$$ |  \textcolor{green}{$\checkmark$} 
-`ggwithinstats` | Parametric | Student's *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{green}{$\checkmark$} 
-`ggwithinstats` | Parametric | Fisher's one-way repeated measures ANOVA | $$\eta^2_p, \omega^2$$ |  \textcolor{green}{$\checkmark$} 
-`ggwithinstats` | Non-parametric | Wilcoxon signed-rank test | *r* |  \textcolor{green}{$\checkmark$} 
-`ggwithinstats` | Non-parametric | Friedman test | $$W_{Kendall}$$ |  \textcolor{green}{$\checkmark$}
-`ggwithinstats` | Robust | Yuen's test on trimmed means for dependent samples | $$\xi$$ |  \textcolor{green}{$\checkmark$} 
+`ggbetweenstats` | Parametric | Student's and Welch's *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggbetweenstats` | Parametric | Fisher's and Welch's one-way ANOVA | $$\eta^2, \eta^2_p, \omega^2, \omega^2_p$$ |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggbetweenstats` | Non-parametric | Mann-Whitney *U*-test | *r* |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggbetweenstats` | Non-parametric | Kruskal-Wallis Rank Sum Test | $$\epsilon^2$$ |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggbetweenstats` | Robust | Yuen's test for trimmed means | $$\xi$$ |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggbetweenstats` | Robust | Heteroscedastic one-way ANOVA for trimmed means | $$\xi$$ |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggwithinstats` | Parametric | Student's *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggwithinstats` | Parametric | Fisher's one-way repeated measures ANOVA | $$\eta^2_p, \omega^2$$ |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggwithinstats` | Non-parametric | Wilcoxon signed-rank test | *r* |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggwithinstats` | Non-parametric | Friedman test | $$W_{Kendall}$$ |  \textcolor{ForestGreen}{$\checkmark$}
+`ggwithinstats` | Robust | Yuen's test on trimmed means for dependent samples | $$\xi$$ |  \textcolor{ForestGreen}{$\checkmark$} 
 `ggwithinstats` | Robust | Heteroscedastic one-way repeated measures ANOVA for trimmed means |  \textcolor{red}{$\times$} |  \textcolor{red}{$\times$}
-`ggpiestats` | Parametric | $$\text{Pearson's}~ \chi^2 ~\text{test}$$ | Cramér's *V* |  \textcolor{green}{$\checkmark$}
-`ggpiestats` | Parametric | McNemar's test | Cohen's *g* |  \textcolor{green}{$\checkmark$}
-`ggpiestats` | Parametric | One-sample proportion test | Cramér's *V* |  \textcolor{green}{$\checkmark$}
-`ggscatterstats`/`ggcorrmat` | Parametric | Pearson's *r* | *r* |  \textcolor{green}{$\checkmark$}
-`ggscatterstats`/`ggcorrmat` | Non-parametric | $$\text{Spearman's}~ \rho$$ | $$\rho$$ |  \textcolor{green}{$\checkmark$}
-`ggscatterstats`/`ggcorrmat` | Robust | Percentage bend correlation | *r* |  \textcolor{green}{$\checkmark$}
-`gghistostats`/`ggdotplotstats` | Parametric | One-sample *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{green}{$\checkmark$}
-`gghistostats` | Non-parametric | One-sample Wilcoxon signed rank test | *r* |  \textcolor{green}{$\checkmark$} 
-`gghistostats`/`ggdotplotstats` | Robust | One-sample percentile bootstrap | robust estimator |  \textcolor{green}{$\checkmark$}
-`gghistostats`/`ggdotplotstats` | Parametric | Regression models | $$\beta$$ |  \textcolor{green}{$\checkmark$}
+`ggpiestats` | Parametric | $$\text{Pearson's}~ \chi^2 ~\text{test}$$ | Cramér's *V* |  \textcolor{ForestGreen}{$\checkmark$}
+`ggpiestats` | Parametric | McNemar's test | Cohen's *g* |  \textcolor{ForestGreen}{$\checkmark$}
+`ggpiestats` | Parametric | One-sample proportion test | Cramér's *V* |  \textcolor{ForestGreen}{$\checkmark$}
+`ggscatterstats`/`ggcorrmat` | Parametric | Pearson's *r* | *r* |  \textcolor{ForestGreen}{$\checkmark$}
+`ggscatterstats`/`ggcorrmat` | Non-parametric | $$\text{Spearman's}~ \rho$$ | $$\rho$$ |  \textcolor{ForestGreen}{$\checkmark$}
+`ggscatterstats`/`ggcorrmat` | Robust | Percentage bend correlation | *r* |  \textcolor{ForestGreen}{$\checkmark$}
+`gghistostats`/`ggdotplotstats` | Parametric | One-sample *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{ForestGreen}{$\checkmark$}
+`gghistostats` | Non-parametric | One-sample Wilcoxon signed rank test | *r* |  \textcolor{ForestGreen}{$\checkmark$} 
+`gghistostats`/`ggdotplotstats` | Robust | One-sample percentile bootstrap | robust estimator |  \textcolor{ForestGreen}{$\checkmark$}
+`gghistostats`/`ggdotplotstats` | Parametric | Regression models | $$\beta$$ |  \textcolor{ForestGreen}{$\checkmark$}
 
 For the `ggbetweenstats` function, the following post-hoc tests are available
 for (adjusted) pairwise multiple comparisons:
 
 Type | Design | Equal variance assumed? |  Pairwise comparison test | *p*-value adjustment? 
 ----------- | ----------- | --------- | ----------------------- | -----
-Parametric | between-subjects | No | Games-Howell test |  \textcolor{green}{$\checkmark$} 
-Parametric | between-subjects | Yes | Student's *t*-test |  \textcolor{green}{$\checkmark$} 
-Parametric | within-subjects | `NA` | Student's *t*-test |  \textcolor{green}{$\checkmark$} 
-Non-parametric | between-subjects | No | Dwass-Steel-Crichtlow-Fligner test |  \textcolor{green}{$\checkmark$} 
-Non-parametric | within-subjects | No | Durbin-Conover test |  \textcolor{green}{$\checkmark$} 
-Robust | between-subjects | No | Yuen's two-sample trimmed means *t*-test |  \textcolor{green}{$\checkmark$} 
-Robust | within-subjects | `NA` | Yuen's trimmed means test |  \textcolor{green}{$\checkmark$}
+Parametric | between-subjects | No | Games-Howell test |  \textcolor{ForestGreen}{$\checkmark$} 
+Parametric | between-subjects | Yes | Student's *t*-test |  \textcolor{ForestGreen}{$\checkmark$} 
+Parametric | within-subjects | `NA` | Student's *t*-test |  \textcolor{ForestGreen}{$\checkmark$} 
+Non-parametric | between-subjects | No | Dwass-Steel-Crichtlow-Fligner test |  \textcolor{ForestGreen}{$\checkmark$} 
+Non-parametric | within-subjects | No | Durbin-Conover test |  \textcolor{ForestGreen}{$\checkmark$} 
+Robust | between-subjects | No | Yuen's two-sample trimmed means *t*-test |  \textcolor{ForestGreen}{$\checkmark$} 
+Robust | within-subjects | `NA` | Yuen's trimmed means test |  \textcolor{ForestGreen}{$\checkmark$}
 Bayes Factor | between-subjects | No |  \textcolor{red}{$\times$} |  \textcolor{red}{$\times$}
 Bayes Factor | between-subjects | Yes |  \textcolor{red}{$\times$} |  \textcolor{red}{$\times$}
 Bayes Factor | within-subjects | `NA` |  \textcolor{red}{$\times$} |  \textcolor{red}{$\times$}

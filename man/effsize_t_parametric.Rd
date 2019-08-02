@@ -64,7 +64,7 @@ Confidence Intervals on Effect Size
 }
 }
 \examples{
-\donttest{
+
 #---------------- two-sample test ------------------------------------
 
 # creating a smaller dataset
@@ -119,7 +119,7 @@ ggstatsplot:::effsize_t_parametric(
   noncentral = TRUE,
   tobject = tobj3
 )
-}
+
 }
 \author{
 Chuck Powell
