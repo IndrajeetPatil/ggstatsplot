@@ -144,7 +144,7 @@ effsize_t_parametric <- function(formula = NULL,
   # ---------------two independent samples by factor -------------------
 
   # two samples by factor
-  if (length(formula) == 3 & !isTRUE(paired)) {
+  if (length(formula) == 3 & isFALSE(paired)) {
     # getting `x` and `y` in required format
     outcome <- eval(formula[[2]], data)
     group <- eval(formula[[3]], data)

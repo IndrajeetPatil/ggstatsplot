@@ -87,7 +87,7 @@ testthat::test_that(
     df1 <- ggstatsplot::grouped_ggcorrmat(
       data = ggplot2::msleep,
       grouping.var = vore,
-      output = "r",
+      return = "r",
       k = 3,
       messages = FALSE
     )

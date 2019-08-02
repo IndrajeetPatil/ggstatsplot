@@ -186,7 +186,7 @@
 <td><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg" alt="minimal R version"></a></td>
 <td><a href="https://www.tidyverse.org/lifecycle/"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue" alt="Monthly downloads badge"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-23-red.svg" alt="Github Issues"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-24-red.svg" alt="Github Issues"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot/vignettes/"><img src="https://img.shields.io/badge/vignettes-0.0.12-orange.svg?colorB=FF5722" alt="vignettes"></a></td>
 </tr>
 <tr class="even">
@@ -602,7 +602,7 @@
 <a class="sourceLine" id="cb7-3" title="3"><span class="co">#&gt; function(plot) {</span></a>
 <a class="sourceLine" id="cb7-4" title="4"><span class="co">#&gt;   return(cowplot::ggdraw() + cowplot::draw_grob(grid::grobTree(plot)))</span></a>
 <a class="sourceLine" id="cb7-5" title="5"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb7-6" title="6"><span class="co">#&gt; &lt;bytecode: 0x0000000038118a30&gt;</span></a>
+<a class="sourceLine" id="cb7-6" title="6"><span class="co">#&gt; &lt;bytecode: 0x0000000038016ce0&gt;</span></a>
 <a class="sourceLine" id="cb7-7" title="7"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -1022,21 +1022,23 @@
 <a class="sourceLine" id="cb15-9" title="9">  ),</a>
 <a class="sourceLine" id="cb15-10" title="10">  <span class="dt">x =</span> rating,</a>
 <a class="sourceLine" id="cb15-11" title="11">  <span class="dt">y =</span> length,</a>
-<a class="sourceLine" id="cb15-12" title="12">  <span class="dt">conf.level =</span> <span class="fl">0.99</span>,</a>
-<a class="sourceLine" id="cb15-13" title="13">  <span class="dt">k =</span> <span class="dv">3</span>, <span class="co"># no. of decimal places in the results</span></a>
-<a class="sourceLine" id="cb15-14" title="14">  <span class="dt">xfill =</span> <span class="st">"#E69F00"</span>,</a>
-<a class="sourceLine" id="cb15-15" title="15">  <span class="dt">yfill =</span> <span class="st">"#8b3058"</span>,</a>
-<a class="sourceLine" id="cb15-16" title="16">  <span class="dt">xlab =</span> <span class="st">"IMDB rating"</span>,</a>
-<a class="sourceLine" id="cb15-17" title="17">  <span class="dt">grouping.var =</span> genre, <span class="co"># grouping variable</span></a>
-<a class="sourceLine" id="cb15-18" title="18">  <span class="dt">title.prefix =</span> <span class="st">"Movie genre"</span>,</a>
-<a class="sourceLine" id="cb15-19" title="19">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),</a>
-<a class="sourceLine" id="cb15-20" title="20">  <span class="dt">ggplot.component =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
-<a class="sourceLine" id="cb15-21" title="21">    ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span>(<span class="dt">breaks =</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dv">2</span>, <span class="dv">9</span>, <span class="dv">1</span>), <span class="dt">limits =</span> (<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>, <span class="dv">9</span>)))</a>
-<a class="sourceLine" id="cb15-22" title="22">  ),</a>
-<a class="sourceLine" id="cb15-23" title="23">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb15-24" title="24">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb15-25" title="25">  <span class="dt">title.text =</span> <span class="st">"Relationship between movie length by IMDB ratings for different genres"</span></a>
-<a class="sourceLine" id="cb15-26" title="26">)</a></code></pre></div>
+<a class="sourceLine" id="cb15-12" title="12">  <span class="dt">label.var =</span> title,</a>
+<a class="sourceLine" id="cb15-13" title="13">  <span class="dt">label.expression =</span> length <span class="op">&gt;</span><span class="st"> </span><span class="dv">200</span>,</a>
+<a class="sourceLine" id="cb15-14" title="14">  <span class="dt">conf.level =</span> <span class="fl">0.99</span>,</a>
+<a class="sourceLine" id="cb15-15" title="15">  <span class="dt">k =</span> <span class="dv">3</span>, <span class="co"># no. of decimal places in the results</span></a>
+<a class="sourceLine" id="cb15-16" title="16">  <span class="dt">xfill =</span> <span class="st">"#E69F00"</span>,</a>
+<a class="sourceLine" id="cb15-17" title="17">  <span class="dt">yfill =</span> <span class="st">"#8b3058"</span>,</a>
+<a class="sourceLine" id="cb15-18" title="18">  <span class="dt">xlab =</span> <span class="st">"IMDB rating"</span>,</a>
+<a class="sourceLine" id="cb15-19" title="19">  <span class="dt">grouping.var =</span> genre, <span class="co"># grouping variable</span></a>
+<a class="sourceLine" id="cb15-20" title="20">  <span class="dt">title.prefix =</span> <span class="st">"Movie genre"</span>,</a>
+<a class="sourceLine" id="cb15-21" title="21">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),</a>
+<a class="sourceLine" id="cb15-22" title="22">  <span class="dt">ggplot.component =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
+<a class="sourceLine" id="cb15-23" title="23">    ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span>(<span class="dt">breaks =</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dv">2</span>, <span class="dv">9</span>, <span class="dv">1</span>), <span class="dt">limits =</span> (<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>, <span class="dv">9</span>)))</a>
+<a class="sourceLine" id="cb15-24" title="24">  ),</a>
+<a class="sourceLine" id="cb15-25" title="25">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb15-26" title="26">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb15-27" title="27">  <span class="dt">title.text =</span> <span class="st">"Relationship between movie length by IMDB ratings for different genres"</span></a>
+<a class="sourceLine" id="cb15-28" title="28">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggscatterstats3-1.png" width="100%"></p>
 <p><strong>Using <code><a href="reference/ggscatterstats.html">ggscatterstats()</a></code> in R Notebooks or R Markdown</strong></p>
 <p>If you include a <code><a href="reference/ggscatterstats.html">ggscatterstats()</a></code> plot inside an <code>R Notebook</code> or <code>R Markdown</code> code chunk, you will notice that running the chunk doesn’t return any output nor does it give any error. In order to get a <code><a href="reference/ggscatterstats.html">ggscatterstats()</a></code> to show up in these contexts, you need to save the <code>ggscatterstats</code> plot as a variable in one code chunk, and explicitly print it using the <code>grid</code> package in another chunk, like this:</p>

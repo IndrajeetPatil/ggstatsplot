@@ -209,20 +209,65 @@ set.seed(123)
 
 # to get correlations
 ggstatsplot::ggcorrmat(
-  data = dplyr::sample_frac(tbl = ggplot2::diamonds, size = 0.15),
-  cor.vars = c(price, carat, depth:table, x:z),
-  output = "correlations",
+  data = dplyr::sample_frac(tbl = ggplot2::txhousing, size = 0.15),
+  cor.vars = sales:inventory,
+  return = "correlations",
   corr.method = "robust",
   digits = 3
 )
 
 # to get p-values
 ggstatsplot::ggcorrmat(
-  data = dplyr::sample_frac(tbl = ggplot2::diamonds, size = 0.15),
-  cor.vars = c(price, carat, depth:table, x:z),
-  output = "p-values",
-  corr.method = "robust",
+  data = dplyr::sample_frac(tbl = ggplot2::txhousing, size = 0.15),
+  cor.vars = c(volume, listings:inventory),
+  return = "p-values",
+  corr.method = "nonparametric",
   digits = 3
+)
+```
+
+Note that if `cor.vars` are not specified, all numeric variables will be used.
+Moreover, you can also use abbreviations to specify what output you want in
+return.
+
+```{r ggcorrmat6, message = FALSE, warning = FALSE}
+# for reproducibility
+set.seed(123)
+
+# show four digits in a tibble
+options(pillar.sigfig = 4)
+
+# getting the correlation coefficient matrix
+ggstatsplot::ggcorrmat(
+  data = iris, # all numeric variables from data will be used
+  corr.method = "np", # non-parametric
+  return = "corr" # correlations
+)
+
+# getting the p-value matrix
+ggstatsplot::ggcorrmat(
+  data = ggplot2::msleep,
+  cor.vars = sleep_total:bodywt,
+  corr.method = "r", # robust
+  return = "p", # p-values
+  p.adjust.method = "holm"
+)
+
+# getting the confidence intervals for correlations
+ggstatsplot::ggcorrmat(
+  data = ggplot2::msleep,
+  cor.vars = sleep_total:bodywt,
+  corr.method = "p", # parametric
+  return = "ci", # confidence intervals
+  p.adjust.method = "holm"
+)
+
+# getting the sample sizes for all pairs
+ggstatsplot::ggcorrmat(
+  data = ggplot2::msleep,
+  cor.vars = sleep_total:bodywt,
+  corr.method = "robust",
+  return = "n" # note that n is different due to NAs
 )
 ```
 
@@ -240,7 +285,7 @@ a specified **grouping variable** and then combines list of individual plots
 into a single plot. Note that the grouping variable can be anything: conditions
 in a given study, groups in a study sample, different studies, etc. 
 
-```{r ggcorrmat6, warning = FALSE, message = FALSE, fig.height = 16, fig.width = 10}
+```{r ggcorrmat7, warning = FALSE, message = FALSE, fig.height = 16, fig.width = 10}
 # for reproducibility
 set.seed(123)
 
@@ -282,18 +327,15 @@ across different levels of a factor/grouping variable. For example, if we wanted
 to get the same correlation coefficient matrix for `color` of the diamond, we
 can do the following-
 
-```{r ggcorrmat7, warning = FALSE, message = FALSE}
+```{r ggcorrmat8, warning = FALSE, message = FALSE}
 # for reproducibility
 set.seed(123)
 
-# let's use just 5% of the data to speed it up
+# let's obtain correlation coefficients with their CIs
 ggstatsplot::grouped_ggcorrmat(
-  data = dplyr::sample_frac(tbl = ggplot2::diamonds, size = 0.05),
-  grouping.var = cut,
-  cor.vars = c(price, carat, depth:table, x:z),
-  output = "correlations",
-  corr.method = "robust",
-  digits = 3
+  data = ggplot2::msleep,
+  grouping.var = vore,
+  return = "ci"
 )
 ```
 

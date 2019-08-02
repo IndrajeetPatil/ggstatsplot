@@ -134,28 +134,9 @@ grouped_ggscatterstats <- function(data,
                                    messages = TRUE,
                                    ...) {
 
-  # create a list of function call
-  param_list <- as.list(match.call())
-
   # check that there is a grouping.var
-  if (!"grouping.var" %in% names(param_list)) {
+  if (!"grouping.var" %in% names(as.list(match.call()))) {
     stop("You must specify a grouping variable")
-  }
-
-  # check that label.var and grouping.var are different
-  if ("label.var" %in% names(param_list)) {
-    if (as.character(param_list$label.var) == as.character(param_list$grouping.var)) {
-      message(cat(
-        crayon::red("\nError: "),
-        crayon::blue(
-          "Identical variable (",
-          crayon::yellow(param_list$label.var),
-          ") was used for both grouping and labeling, which is not allowed.\n"
-        ),
-        sep = ""
-      ))
-      return(invisible(param_list$label.var))
-    }
   }
 
   # ensure the grouping variable works quoted or unquoted

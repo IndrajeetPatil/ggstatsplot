@@ -14,17 +14,6 @@ testthat::test_that(
       )
     )
 
-    # when the grouping and labelling variable are the same, expect error message
-    testthat::expect_output(
-      grouped_ggscatterstats(
-        data = iris,
-        x = Sepal.Length,
-        y = Petal.Width,
-        grouping.var = Species,
-        label.var = Species
-      ), "Error:"
-    )
-
     # without any labelling
     set.seed(123)
     testthat::expect_true(inherits(

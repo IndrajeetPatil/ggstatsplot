@@ -145,9 +145,9 @@ grouped_ggbetweenstats <- function(data,
   }
 
   # ensure the grouping variable works quoted or unquoted
-  grouping.var <- rlang::ensym(grouping.var)
   x <- rlang::ensym(x)
   y <- rlang::ensym(y)
+  grouping.var <- rlang::ensym(grouping.var)
   outlier.label <- if (!rlang::quo_is_null(rlang::enquo(outlier.label))) {
     rlang::ensym(outlier.label)
   }

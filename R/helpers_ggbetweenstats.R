@@ -487,18 +487,17 @@ sort_xy <- function(data,
   }
 
   # reordering `x` based on its mean values
-  data %<>%
-    dplyr::mutate(
-      .data = .,
-      {{ x }} := forcats::fct_reorder(
-        .f = {{ x }},
-        .x = {{ y }},
-        .fun = sort.fun,
-        na.rm = TRUE,
-        .desc = .desc
+  return(
+    data %<>%
+      dplyr::mutate(
+        .data = .,
+        {{ x }} := forcats::fct_reorder(
+          .f = {{ x }},
+          .x = {{ y }},
+          .fun = sort.fun,
+          na.rm = TRUE,
+          .desc = .desc
+        )
       )
-    )
-
-  # return the final dataframe
-  return(data)
+  )
 }
