@@ -123,7 +123,7 @@
 #' @importFrom dplyr select group_by arrange mutate mutate_at mutate_if
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom stats na.omit t.test oneway.test
-#' @importFrom rlang enquo quo_name as_name !!
+#' @importFrom rlang enquo quo_name as_name !! as_string
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom crayon blue green red yellow
 #' @importFrom paletteer scale_color_paletteer_d scale_fill_paletteer_d
@@ -260,42 +260,44 @@ ggbetweenstats <- function(data,
 
   # ------------------------------ variable names ----------------------------
 
+  # ensure the variables work quoted or unquoted
+  x <- rlang::ensym(x)
+  y <- rlang::ensym(y)
+  outlier.label <- if (!rlang::quo_is_null(rlang::enquo(outlier.label))) {
+    rlang::ensym(outlier.label)
+  }
+
   # if `xlab` and `ylab` is not provided, use the variable `x` and `y` name
-  if (is.null(xlab)) xlab <- rlang::as_name(rlang::ensym(x))
-  if (is.null(ylab)) ylab <- rlang::as_name(rlang::ensym(y))
+  if (is.null(xlab)) xlab <- rlang::as_name(x)
+  if (is.null(ylab)) ylab <- rlang::as_name(y)
 
   # --------------------------------- data -----------------------------------
 
   # creating a dataframe
   data %<>%
-    dplyr::select(
-      .data = .,
-      x = {{ x }},
-      y = {{ y }},
-      outlier.label = {{ outlier.label }}
-    ) %>%
+    dplyr::select(.data = ., {{ x }}, {{ y }}, outlier.label = {{ outlier.label }}) %>%
     tidyr::drop_na(data = .) %>%
-    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
+    dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }}))) %>%
     tibble::as_tibble(x = .)
 
   # if outlier.label column is not present, just use the values from `y` column
-  if (!"outlier.label" %in% names(data)) {
-    data %<>% dplyr::mutate(.data = ., outlier.label = y)
+  if (rlang::quo_is_null(rlang::enquo(outlier.label))) {
+    data %<>% dplyr::mutate(.data = ., outlier.label = {{ y }})
   }
 
   # add a logical column indicating whether a point is or is not an outlier
   data %<>%
     outlier_df(
       data = .,
-      x = x,
-      y = y,
+      x = {{ x }},
+      y = {{ y }},
       outlier.coef = outlier.coef,
       outlier.label = outlier.label
     )
 
   # figure out which test to run based on the number of levels of the
   # independent variables
-  if (nlevels(data$x)[[1]] < 3) {
+  if (nlevels(data %>% dplyr::pull({{ x }}))[[1]] < 3) {
     test <- "t-test"
   } else {
     test <- "anova"
@@ -308,8 +310,8 @@ ggbetweenstats <- function(data,
     data %<>%
       sort_xy(
         data = .,
-        x = x,
-        y = y,
+        x = {{ x }},
+        y = {{ y }},
         sort = sort,
         sort.fun = sort.fun
       )
@@ -317,12 +319,18 @@ ggbetweenstats <- function(data,
 
   # -------------------------- basic plot -----------------------------------
 
+  # single component for creating geom_violin
+  ggbetweenstats_geom_violin <-
+    ggplot2::geom_violin(
+      width = 0.5,
+      alpha = 0.2,
+      fill = "white",
+      na.rm = TRUE
+    )
+
   # create the basic plot
   plot <-
-    ggplot2::ggplot(
-      data = data,
-      mapping = ggplot2::aes(x = x, y = y)
-    ) +
+    ggplot2::ggplot(data = data, mapping = ggplot2::aes(x = {{ x }}, y = {{ y }})) +
     # add all points which are not outliers
     ggplot2::geom_point(
       data = dplyr::filter(.data = data, !isanoutlier),
@@ -335,7 +343,7 @@ ggbetweenstats <- function(data,
       size = 3,
       stroke = 0,
       na.rm = TRUE,
-      ggplot2::aes(color = factor(x))
+      ggplot2::aes(color = factor({{ x }}))
     )
 
   # decide how to plot outliers if it's desired
@@ -353,7 +361,7 @@ ggbetweenstats <- function(data,
         size = 3,
         stroke = 0,
         na.rm = TRUE,
-        ggplot2::aes(color = factor(x))
+        ggplot2::aes(color = factor({{ x }}))
       )
   } else {
     if (plot.type == "violin") {
@@ -371,17 +379,8 @@ ggbetweenstats <- function(data,
     }
   }
 
-  # single component for creating geom_violin
-  ggbetweenstats_geom_violin <-
-    ggplot2::geom_violin(
-      width = 0.5,
-      alpha = 0.2,
-      fill = "white",
-      na.rm = TRUE
-    )
-
+  # adding a boxplot
   if (plot.type %in% c("box", "boxviolin")) {
-    # adding a boxplot
     if (isTRUE(outlier.tagging)) {
       plot <- plot +
         ggplot2::stat_boxplot(
@@ -414,12 +413,10 @@ ggbetweenstats <- function(data,
         )
     }
     if (plot.type == "boxviolin") {
-      plot <- plot +
-        ggbetweenstats_geom_violin
+      plot <- plot + ggbetweenstats_geom_violin
     }
   } else if (plot.type == "violin") {
-    plot <- plot +
-      ggbetweenstats_geom_violin
+    plot <- plot + ggbetweenstats_geom_violin
   }
 
   # --------------------- subtitle/caption preparation ------------------------
@@ -442,8 +439,8 @@ ggbetweenstats <- function(data,
         rlang::exec(
           .fn = .f,
           data = data,
-          x = "x",
-          y = "y",
+          x = rlang::as_string(x),
+          y = rlang::as_string(y),
           bf.prior = bf.prior,
           caption = caption,
           paired = FALSE,
@@ -460,8 +457,8 @@ ggbetweenstats <- function(data,
         test = test,
         # arguments relevant for subtitle helper functions
         data = data,
-        x = x,
-        y = y,
+        x = {{ x }},
+        y = {{ y }},
         paired = FALSE,
         effsize.type = effsize.type,
         partial = partial,
@@ -487,12 +484,11 @@ ggbetweenstats <- function(data,
 
   if (isTRUE(outlier.tagging)) {
     # applying the labels to tagged outliers with ggrepel
-    plot <-
-      plot +
+    plot <- plot +
       ggrepel::geom_label_repel(
         data = dplyr::filter(.data = data, isanoutlier) %>%
           dplyr::select(.data = ., -outlier),
-        mapping = ggplot2::aes(x = x, y = y, label = outlier.label),
+        mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, label = outlier.label),
         fontface = "bold",
         color = outlier.label.color,
         max.iter = 3e2,
@@ -513,8 +509,8 @@ ggbetweenstats <- function(data,
   mean_dat <-
     mean_labeller(
       data = data,
-      x = x,
-      y = y,
+      x = {{ x }},
+      y = {{ y }},
       mean.ci = mean.ci,
       k = k
     )
@@ -522,6 +518,8 @@ ggbetweenstats <- function(data,
   # add labels for mean values
   if (isTRUE(mean.plotting)) {
     plot <- mean_ggrepel(
+      x = {{ x }},
+      y = {{ y }},
       plot = plot,
       mean.data = mean_dat,
       mean.size = mean.size,
@@ -536,8 +534,7 @@ ggbetweenstats <- function(data,
 
   # adding sample size labels to the x axes
   if (isTRUE(sample.size.label)) {
-    plot <- plot +
-      ggplot2::scale_x_discrete(labels = c(unique(mean_dat$n_label)))
+    plot <- plot + ggplot2::scale_x_discrete(labels = c(unique(mean_dat$n_label)))
   }
 
   # ggsignif labels -----------------------------------------------------------
@@ -547,8 +544,8 @@ ggbetweenstats <- function(data,
     df_pairwise <-
       pairwise_p(
         data = data,
-        x = x,
-        y = y,
+        x = {{ x }},
+        y = {{ y }},
         type = type,
         tr = tr,
         paired = FALSE,
@@ -559,15 +556,15 @@ ggbetweenstats <- function(data,
       )
 
     # display the results if needed
-    if (isTRUE(messages)) {
-      print(df_pairwise)
-    }
+    if (isTRUE(messages)) print(df_pairwise)
 
     # adding the layer for pairwise comparisons
     plot <- ggsignif_adder(
       plot = plot,
       df_pairwise = df_pairwise,
       data = data,
+      x = {{ x }},
+      y = {{ y }},
       pairwise.annotation = pairwise.annotation,
       pairwise.display = pairwise.display
     )
@@ -590,7 +587,7 @@ ggbetweenstats <- function(data,
     plot <-
       aesthetic_addon(
         plot = plot,
-        x = data$x,
+        x = data %>% dplyr::pull({{ x }}),
         xlab = xlab,
         ylab = ylab,
         title = title,
@@ -606,10 +603,14 @@ ggbetweenstats <- function(data,
   }
 
   # don't do scale restriction in case of post hoc comparisons
-  if (isTRUE(axes.range.restrict) && !isTRUE(pairwise.comparisons)) {
+  if (isTRUE(axes.range.restrict) && isFALSE(pairwise.comparisons)) {
+    # pull out vector for y-values
+    y_vec <- data %>% dplyr::pull({{ y }})
+
+    # restricting axes
     plot <- plot +
-      ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y))) +
-      ggplot2::scale_y_continuous(limits = c(min(data$y), max(data$y)))
+      ggplot2::coord_cartesian(ylim = c(min(y_vec), max(y_vec))) +
+      ggplot2::scale_y_continuous(limits = c(min(y_vec), max(y_vec)))
   }
 
   # --------------------- messages ------------------------------------------
@@ -617,7 +618,7 @@ ggbetweenstats <- function(data,
   if (isTRUE(messages)) {
     # display normality test result as a message
     normality_message(
-      x = data$y,
+      x = data %>% dplyr::pull({{ y }}),
       lab = ylab,
       k = k,
       output = "message"
@@ -626,8 +627,8 @@ ggbetweenstats <- function(data,
     # display homogeneity of variance test as a message
     bartlett_message(
       data = data,
-      x = x,
-      y = y,
+      x = {{ x }},
+      y = {{ y }},
       lab = xlab,
       k = k,
       output = "message"

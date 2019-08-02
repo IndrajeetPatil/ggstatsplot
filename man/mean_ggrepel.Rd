@@ -4,12 +4,18 @@
 \alias{mean_ggrepel}
 \title{Adding labels for mean values.}
 \usage{
-mean_ggrepel(plot, mean.data, mean.size = 5, mean.color = "darkred",
-  mean.label.size = 3, mean.label.fontface = "bold",
-  mean.label.color = "black", inherit.aes = TRUE, ...)
+mean_ggrepel(plot, x, y, mean.data, mean.size = 5,
+  mean.color = "darkred", mean.label.size = 3,
+  mean.label.fontface = "bold", mean.label.color = "black",
+  inherit.aes = TRUE, ...)
 }
 \arguments{
 \item{plot}{A \code{ggplot} object for which means are to be displayed.}
+
+\item{x}{The grouping variable from the dataframe \code{data}.}
+
+\item{y}{The response (a.k.a. outcome or dependent) variable from the
+dataframe \code{data}.}
 
 \item{mean.data}{A dataframe containing means for each level of the factor.
 The columns should be titled \code{x}, \code{y}, and \code{label}.}
@@ -41,7 +47,6 @@ Adding labels for mean values.
 }
 \examples{
 
-\dontrun{
 # this internal function may not have much utility outside of the package
 set.seed(123)
 library(ggplot2)
@@ -57,16 +62,17 @@ mean_dat <- ggstatsplot:::mean_labeller(
   y = Sepal.Length,
   mean.ci = TRUE,
   k = 3
-) \%>\%
-  dplyr::rename(.data = ., x = Species, y = Sepal.Length)
+)
 
 # add means
 ggstatsplot:::mean_ggrepel(
   plot = p,
+  x = Species,
+  y = Sepal.Length,
   mean.data = mean_dat,
   mean.color = "darkgreen"
 )
-}
+
 }
 \author{
 Indrajeet Patil

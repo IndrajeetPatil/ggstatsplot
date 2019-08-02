@@ -21,6 +21,8 @@ testthat::test_that(
     # adding plot with
     p_new <- ggstatsplot:::ggsignif_adder(
       plot = p,
+      x = x,
+      y = y,
       df_pairwise = df_pair,
       data = df
     )

@@ -122,57 +122,59 @@ ggwithinstats <- function(data,
 
   # ------------------------------ variable names ----------------------------
 
+  # ensure the variables work quoted or unquoted
+  x <- rlang::ensym(x)
+  y <- rlang::ensym(y)
+  outlier.label <- if (!rlang::quo_is_null(rlang::enquo(outlier.label))) {
+    rlang::ensym(outlier.label)
+  }
+
   # if `xlab` and `ylab` is not provided, use the variable `x` and `y` name
-  if (is.null(xlab)) xlab <- rlang::as_name(rlang::ensym(x))
-  if (is.null(ylab)) ylab <- rlang::as_name(rlang::ensym(y))
+  if (is.null(xlab)) xlab <- rlang::as_name(x)
+  if (is.null(ylab)) ylab <- rlang::as_name(y)
 
   # --------------------------------- data -----------------------------------
 
   # creating a dataframe
-  df <- data %>%
-    dplyr::select(
-      .data = .,
-      x = {{ x }},
-      y = {{ y }},
-      outlier.label = {{ outlier.label }}
-    ) %>%
-    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
+  data %<>%
+    dplyr::select(.data = ., {{ x }}, {{ y }}, outlier.label = {{ outlier.label }}) %>%
+    dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }}))) %>%
     tibble::as_tibble(x = .)
 
   # figuring out number of levels in the grouping factor
-  x_n_levels <- nlevels(df$x)[[1]]
+  x_n_levels <- nlevels(data %>% dplyr::pull({{ x }}))[[1]]
 
   # removing observations that don't have all repeated values
-  df %<>%
-    dplyr::filter(.data = ., !is.na(x)) %>%
-    dplyr::group_by(.data = ., x) %>%
+  data %<>%
+    dplyr::filter(.data = ., !is.na({{ x }})) %>%
+    dplyr::group_by(.data = ., {{ x }}) %>%
     dplyr::mutate(.data = ., id = dplyr::row_number()) %>%
     dplyr::ungroup(x = .) %>%
-    dplyr::filter(.data = ., !is.na(y)) %>%
+    dplyr::filter(.data = ., !is.na({{ y }})) %>%
     dplyr::group_by(.data = ., id) %>%
     dplyr::mutate(.data = ., n = dplyr::n()) %>%
     dplyr::ungroup(x = .) %>%
     dplyr::filter(.data = ., n == x_n_levels) %>%
     dplyr::select(.data = ., -n)
 
-  # if outlier.label column is not present, just use the values from `y` column
-  if (!"outlier.label" %in% names(df)) {
-    df %<>% dplyr::mutate(.data = ., outlier.label = y)
+  # if `outlier.label` column is not present, just use the values from `y` column
+  if (rlang::quo_is_null(rlang::enquo(outlier.label))) {
+    data %<>% dplyr::mutate(.data = ., outlier.label = {{ y }})
   }
 
   # add a logical column indicating whether a point is or is not an outlier
-  df %<>%
+  data %<>%
     outlier_df(
       data = .,
-      x = x,
-      y = y,
+      x = {{ x }},
+      y = {{ y }},
       outlier.coef = outlier.coef,
       outlier.label = outlier.label
     )
 
   # figure out which test to run based on the number of levels of the
   # independent variables
-  if (length(levels(as.factor(df$x))) < 3) {
+  if (nlevels(data %>% dplyr::pull({{ x }}))[[1]] < 3) {
     test <- "t-test"
   } else {
     test <- "anova"
@@ -182,11 +184,11 @@ ggwithinstats <- function(data,
 
   # if sorting is happening
   if (sort != "none") {
-    df %<>%
+    data %<>%
       sort_xy(
         data = .,
-        x = x,
-        y = y,
+        x = {{ x }},
+        y = {{ y }},
         sort = sort,
         sort.fun = sort.fun
       )
@@ -195,15 +197,18 @@ ggwithinstats <- function(data,
   # --------------------------------- basic plot ------------------------------
 
   # plot
-  plot <- ggplot2::ggplot(data = df, mapping = ggplot2::aes(x = x, y = y, group = id)) +
+  plot <- ggplot2::ggplot(
+    data = data,
+    mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, group = id)
+  ) +
     ggplot2::geom_point(
       alpha = 0.5,
       size = 3,
       na.rm = TRUE,
-      ggplot2::aes(color = factor(x))
+      ggplot2::aes(color = factor({{ x }}))
     ) +
     ggplot2::geom_boxplot(
-      mapping = ggplot2::aes(x = x, y = y),
+      mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),
       inherit.aes = FALSE,
       fill = "white",
       width = 0.2,
@@ -212,7 +217,7 @@ ggwithinstats <- function(data,
       notchwidth = notchwidth
     ) +
     ggplot2::geom_violin(
-      mapping = ggplot2::aes(x = x, y = y),
+      mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),
       inherit.aes = FALSE,
       width = 0.5,
       alpha = 0.2,
@@ -250,9 +255,9 @@ ggwithinstats <- function(data,
       caption <-
         rlang::exec(
           .fn = .f,
-          data = df,
-          x = "x",
-          y = "y",
+          data = data,
+          x = rlang::as_string(x),
+          y = rlang::as_string(y),
           bf.prior = bf.prior,
           caption = caption,
           paired = TRUE,
@@ -268,9 +273,9 @@ ggwithinstats <- function(data,
         type = type,
         test = test,
         # arguments relevant for subtitle helper functions
-        data = df,
-        x = x,
-        y = y,
+        data = data,
+        x = {{ x }},
+        y = {{ y }},
         paired = TRUE,
         effsize.type = effsize.type,
         partial = partial,
@@ -299,9 +304,9 @@ ggwithinstats <- function(data,
     plot <-
       plot +
       ggrepel::geom_label_repel(
-        data = dplyr::filter(.data = df, isanoutlier) %>%
+        data = dplyr::filter(.data = data, isanoutlier) %>%
           dplyr::select(.data = ., -outlier),
-        mapping = ggplot2::aes(x = x, y = y, label = outlier.label),
+        mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, label = outlier.label),
         fontface = "bold",
         color = outlier.label.color,
         max.iter = 3e2,
@@ -321,9 +326,9 @@ ggwithinstats <- function(data,
   # mean plus its CI
   mean_dat <-
     mean_labeller(
-      data = df,
-      x = x,
-      y = y,
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
       mean.ci = mean.ci,
       k = k
     )
@@ -332,6 +337,8 @@ ggwithinstats <- function(data,
   if (isTRUE(mean.plotting)) {
     plot <- mean_ggrepel(
       plot = plot,
+      x = {{ x }},
+      y = {{ y }},
       mean.data = mean_dat,
       mean.size = mean.size,
       mean.color = mean.color,
@@ -346,7 +353,7 @@ ggwithinstats <- function(data,
       plot <- plot +
         ggplot2::geom_path(
           data = mean_dat,
-          mapping = ggplot2::aes(x = x, y = y, group = 1),
+          mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, group = 1),
           color = "red",
           size = 2,
           alpha = 0.5,
@@ -359,8 +366,7 @@ ggwithinstats <- function(data,
 
   # adding sample size labels to the x axes
   if (isTRUE(sample.size.label)) {
-    plot <- plot +
-      ggplot2::scale_x_discrete(labels = c(unique(mean_dat$n_label)))
+    plot <- plot + ggplot2::scale_x_discrete(labels = c(unique(mean_dat$n_label)))
   }
 
   # ggsignif labels -----------------------------------------------------------
@@ -369,9 +375,9 @@ ggwithinstats <- function(data,
     # creating dataframe with pairwise comparison results
     df_pairwise <-
       pairwise_p(
-        data = df,
-        x = x,
-        y = y,
+        data = data,
+        x = {{ x }},
+        y = {{ y }},
         type = type,
         tr = tr,
         paired = TRUE,
@@ -382,15 +388,15 @@ ggwithinstats <- function(data,
       )
 
     # display the results if needed
-    if (isTRUE(messages)) {
-      print(df_pairwise)
-    }
+    if (isTRUE(messages)) print(df_pairwise)
 
     # adding the layer for pairwise comparisons
     plot <- ggsignif_adder(
       plot = plot,
       df_pairwise = df_pairwise,
-      data = df,
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
       pairwise.annotation = pairwise.annotation,
       pairwise.display = pairwise.display
     )
@@ -413,7 +419,7 @@ ggwithinstats <- function(data,
     plot <-
       aesthetic_addon(
         plot = plot,
-        x = df$x,
+        x = data %>% dplyr::pull({{ x }}),
         xlab = xlab,
         ylab = ylab,
         title = title,
@@ -428,10 +434,14 @@ ggwithinstats <- function(data,
       )
 
     # don't do scale restriction in case of post hoc comparisons
-    if (isTRUE(axes.range.restrict) && !isTRUE(pairwise.comparisons)) {
+    if (isTRUE(axes.range.restrict) && isFALSE(pairwise.comparisons)) {
+      # pull out vector for y-values
+      y_vec <- data %>% dplyr::pull({{ y }})
+
+      # restricting axes
       plot <- plot +
-        ggplot2::coord_cartesian(ylim = c(min(df$y), max(df$y))) +
-        ggplot2::scale_y_continuous(limits = c(min(df$y), max(df$y)))
+        ggplot2::coord_cartesian(ylim = c(min(y_vec), max(y_vec))) +
+        ggplot2::scale_y_continuous(limits = c(min(y_vec), max(y_vec)))
     }
   }
   # --------------------- messages ------------------------------------------
@@ -439,7 +449,7 @@ ggwithinstats <- function(data,
   if (isTRUE(messages)) {
     # display normality test result as a message
     normality_message(
-      x = df$y,
+      x = data %>% dplyr::pull({{ y }}),
       lab = ylab,
       k = k,
       output = "message"
@@ -447,9 +457,9 @@ ggwithinstats <- function(data,
 
     # display homogeneity of variance test as a message
     bartlett_message(
-      data = df,
-      x = x,
-      y = y,
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
       lab = xlab,
       k = k,
       output = "message"

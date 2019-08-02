@@ -19,18 +19,21 @@ testthat::test_that(
       x = vore,
       y = brainwt,
       mean.ci = TRUE
-    ) %>%
-      dplyr::rename(.data = ., x = vore, y = brainwt)
+    )
 
     # add means
     p_mean <- ggstatsplot:::mean_ggrepel(
       plot = p,
+      x = vore,
+      y = brainwt,
       mean.data = p_dat,
       mean.color = "blue"
     )
 
     p_new <- ggstatsplot:::mean_ggrepel(
       plot = p,
+      x = vore,
+      y = brainwt,
       mean.data = p_dat,
       mean.color = "blue",
       inherit.aes = FALSE

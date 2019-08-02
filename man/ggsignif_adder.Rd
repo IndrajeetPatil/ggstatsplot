@@ -4,8 +4,8 @@
 \alias{ggsignif_adder}
 \title{Adding \code{geom_signif} to the plot.}
 \usage{
-ggsignif_adder(plot, df_pairwise, data, pairwise.annotation = "asterisk",
-  pairwise.display = "significant")
+ggsignif_adder(plot, df_pairwise, data, x, y,
+  pairwise.annotation = "asterisk", pairwise.display = "significant")
 }
 \arguments{
 \item{plot}{A \code{ggplot} object on which \code{geom_signif} needed to be added.}
@@ -15,6 +15,11 @@ ggsignif_adder(plot, df_pairwise, data, pairwise.annotation = "asterisk",
 
 \item{data}{A dataframe (or a tibble) from which variables specified are to
 be taken. A matrix or tables will \strong{not} be accepted.}
+
+\item{x}{The grouping variable from the dataframe \code{data}.}
+
+\item{y}{The response (a.k.a. outcome or dependent) variable from the
+dataframe \code{data}.}
 
 \item{pairwise.annotation}{Character that decides the annotations to use for
 pairwise comparisons. Either \code{"p.value"} or \code{"asterisk"} (default).}
@@ -31,25 +36,22 @@ displayed.}
 Adding \code{geom_signif} to the plot.
 }
 \examples{
-\dontrun{
 library(ggplot2)
 
-# data
-df <- data.frame(x = iris$Species, y = iris$Sepal.Length)
-
 # plot
-p <- ggplot(df, aes(x, y)) + geom_boxplot()
+p <- ggplot(iris, aes(Species, Sepal.Length)) + geom_boxplot()
 
 # dataframe with pairwise comparison test results
-df_pair <- ggstatsplot::pairwise_p(df, x, y)
+df_pair <- ggstatsplot::pairwise_p(data = iris, x = Species, y = Sepal.Length)
 
 # adding plot with
 ggstatsplot:::ggsignif_adder(
   plot = p,
-  df_pairwise = df_pair,
-  data = df
+  data = iris,
+  x = Species,
+  y = Sepal.Length,
+  df_pairwise = df_pair
 )
-}
 
 }
 \keyword{internal}

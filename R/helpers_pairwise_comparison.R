@@ -171,7 +171,7 @@ games_howell <- function(data, x, y) {
 #' @importFrom stringr str_replace
 #' @importFrom WRS2 lincon rmmcp
 #' @importFrom tidyr gather spread separate
-#' @importFrom rlang !! enquo
+#' @importFrom rlang !! enquo as_string ensym
 #' @importFrom tibble as_tibble rowid_to_column enframe
 #' @importFrom jmv anovaNP anovaRMNP
 #' @importFrom forcats fct_relabel
@@ -283,17 +283,18 @@ pairwise_p <- function(data,
                        k = 2,
                        messages = TRUE,
                        ...) {
+
+  # ensure the arguments work quoted or unquoted
+  x <- rlang::ensym(x)
+  y <- rlang::ensym(y)
   ellipsis::check_dots_used()
 
   # ---------------------------- data cleanup -------------------------------
+
   # creating a dataframe
-  data <-
-    dplyr::select(
-      .data = data,
-      x = !!rlang::enquo(x),
-      y = !!rlang::enquo(y)
-    ) %>%
-    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
+  data %<>%
+    dplyr::select(.data = ., {{ x }}, {{ y }}) %>%
+    dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }}))) %>%
     tibble::as_tibble(x = .)
 
   # ---------------------------- parametric ---------------------------------
@@ -301,14 +302,17 @@ pairwise_p <- function(data,
   if (type %in% c("parametric", "p")) {
     if (isTRUE(var.equal) || isTRUE(paired)) {
       # anova model
-      aovmodel <- stats::aov(formula = y ~ x, data = data)
+      aovmodel <- stats::aov(
+        formula = rlang::new_formula({{ y }}, {{ x }}),
+        data = data
+      )
 
       # safeguarding against edge cases
       aovmodel$model %<>%
         dplyr::mutate(
           .data = .,
-          x = forcats::fct_relabel(
-            .f = x,
+          {{ x }} := forcats::fct_relabel(
+            .f = {{ x }},
             .fun = ~ stringr::str_replace(
               string = .x,
               pattern = "-",
@@ -341,8 +345,8 @@ pairwise_p <- function(data,
       # tidy dataframe with results from pairwise tests
       df_tidy <- broomExtra::tidy(
         stats::pairwise.t.test(
-          x = data$y,
-          g = data$x,
+          x = data %>% dplyr::pull({{ y }}),
+          g = data %>% dplyr::pull({{ x }}),
           p.adjust.method = p.adjust.method,
           paired = paired,
           alternative = "two.sided",
@@ -378,7 +382,7 @@ pairwise_p <- function(data,
 
       # dataframe with Games-Howell test results
       df <-
-        games_howell(data = data, x = x, y = y) %>%
+        games_howell(data = data, x = {{ x }}, y = {{ y }}) %>%
         p_adjust_column_adder(df = ., p.adjust.method = p.adjust.method) %>%
         dplyr::select(.data = ., -conf.low, -conf.high)
 
@@ -406,8 +410,8 @@ pairwise_p <- function(data,
       jmv_pairs <-
         jmv::anovaNP(
           data = data,
-          deps = "y",
-          group = "x",
+          deps = rlang::as_string(y),
+          group = rlang::as_string(x),
           pairs = TRUE
         )
 
@@ -438,11 +442,7 @@ pairwise_p <- function(data,
       }
     } else {
       # converting the entered long format data to wide format
-      data_wide <- long_to_wide_converter(
-        data = data,
-        x = x,
-        y = y
-      )
+      data_wide <- long_to_wide_converter(data = data, x = {{ x }}, y = {{ y }})
 
       # running Durbin-Conover test using `jmv` package
       jmv_pairs <-
@@ -489,7 +489,7 @@ pairwise_p <- function(data,
       # object with all details about pairwise comparisons
       rob_pairwise_df <-
         WRS2::lincon(
-          formula = y ~ x,
+          formula = rlang::new_formula({{ y }}, {{ x }}),
           data = data,
           tr = tr
         )
@@ -497,11 +497,7 @@ pairwise_p <- function(data,
       # converting to long format and then getting it back in wide so that the
       # rowid variable can be used as the block variable for WRS2 functions
       data_within <-
-        long_to_wide_converter(
-          data = data,
-          x = x,
-          y = y
-        ) %>%
+        long_to_wide_converter(data = data, x = {{ x }}, y = {{ y }}) %>%
         tidyr::gather(data = ., key, value, -rowid) %>%
         dplyr::arrange(.data = ., rowid)
 
@@ -552,9 +548,7 @@ pairwise_p <- function(data,
       dplyr::select(.data = ., group1, group2, dplyr::everything())
 
     # for paired designs, there will be an unnecessary column to remove
-    if (("p.crit") %in% names(df)) {
-      df %<>% dplyr::select(.data = ., -p.crit)
-    }
+    if (("p.crit") %in% names(df)) df %<>% dplyr::select(.data = ., -p.crit)
 
     # renaming confidence interval names
     df %<>% dplyr::rename(.data = ., conf.low = ci.lower, conf.high = ci.upper)
@@ -718,38 +712,4 @@ pairwise_p_caption <- function(type,
 
   # return the caption
   return(pairwise_caption)
-}
-
-
-#' @title Calculating `y` coordinates for the `ggsignif` comparison bars.
-#' @inheritParams ggbetweenstats
-#'
-#' @keywords internal
-
-ggsignif_position_calculator <- function(x, y) {
-  # number of comparisons
-  n_comparions <-
-    length(utils::combn(
-      x = unique(x),
-      m = 2,
-      simplify = FALSE
-    ))
-
-  # start position on y-axis for the ggsignif lines
-  y_start <- max(y, na.rm = TRUE) * (1 + 0.025)
-
-  # steps in which the y values need to increase
-  step_length <- (max(y, na.rm = TRUE) - min(y, na.rm = TRUE)) / 20
-
-  # end position on y-axis for the ggsignif lines
-  y_end <- y_start + (step_length * n_comparions)
-
-  # creating a vector of positions for the ggsignif lines
-  return(
-    seq(
-      from = y_start,
-      to = y_end,
-      length.out = n_comparions
-    )
-  )
 }
