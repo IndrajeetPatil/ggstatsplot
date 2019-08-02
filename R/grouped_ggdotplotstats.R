@@ -93,9 +93,9 @@ grouped_ggdotplotstats <- function(data,
   # ======================== preparing dataframe ============================
 
   # ensure the grouping variable works quoted or unquoted
-  grouping.var <- rlang::ensym(grouping.var)
   x <- rlang::ensym(x)
   y <- rlang::ensym(y)
+  grouping.var <- rlang::ensym(grouping.var)
 
   # if `title.prefix` is not provided, use the variable `grouping.var` name
   if (is.null(title.prefix)) title.prefix <- rlang::as_name(grouping.var)

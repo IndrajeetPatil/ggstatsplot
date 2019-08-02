@@ -124,7 +124,6 @@ ggdotplotstats <- function(data,
         bf_one_sample_ttest(
           data = data,
           x = x,
-          y = NULL,
           test.value = test.value,
           bf.prior = bf.prior,
           caption = caption,

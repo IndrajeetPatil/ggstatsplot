@@ -251,7 +251,12 @@ testthat::test_that(
 
     set.seed(123)
     p5 <-
-      suppressWarnings(ggpiestats(data = ggplot2::msleep, x = vore, messages = FALSE, return = "subtitle"))
+      suppressWarnings(ggpiestats(
+        data = ggplot2::msleep,
+        x = vore,
+        messages = FALSE,
+        return = "subtitle"
+      ))
 
     set.seed(123)
     p6 <-

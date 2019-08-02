@@ -117,28 +117,9 @@ grouped_ggbarstats <- function(data,
 
   # ======================== check user input =============================
 
-  # create a list of function call to check
-  param_list <- as.list(match.call())
-
   # check that there is a grouping.var
-  if (!"grouping.var" %in% names(param_list)) {
+  if (!"grouping.var" %in% names(as.list(match.call()))) {
     stop("You must specify a grouping variable")
-  }
-
-  # check that conditioning and grouping.var are different
-  if ("condition" %in% names(param_list)) {
-    if (as.character(param_list$condition) == as.character(param_list$grouping.var)) {
-      message(cat(
-        crayon::red("\nError: "),
-        crayon::blue(
-          "Identical variable (",
-          crayon::yellow(param_list$condition),
-          ") was used for both grouping and conditioning, which is not allowed.\n"
-        ),
-        sep = ""
-      ))
-      return(invisible(param_list$condition))
-    }
   }
 
   # ensure the grouping variable works quoted or unquoted
@@ -150,6 +131,20 @@ grouped_ggbarstats <- function(data,
   x <- x %||% main
   y <- y %||% condition
   counts <- if (!rlang::quo_is_null(rlang::enquo(counts))) rlang::ensym(counts)
+
+  # check that conditioning and grouping.var are different
+  if (rlang::as_name(y) == rlang::as_name(grouping.var)) {
+    message(cat(
+      crayon::red("\nError: "),
+      crayon::blue(
+        "Identical variable (",
+        crayon::yellow(rlang::as_name(y)),
+        ") was used for both grouping and conditioning, which is not allowed.\n"
+      ),
+      sep = ""
+    ))
+    return(invisible(rlang::as_name(y)))
+  }
 
   # if `title.prefix` is not provided, use the variable `grouping.var` name
   if (is.null(title.prefix)) title.prefix <- rlang::as_name(grouping.var)

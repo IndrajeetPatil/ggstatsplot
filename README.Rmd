@@ -2,6 +2,8 @@
 output:
   github_document:
     pandoc_args: --webtex
+bibliography: ./references.bib
+csl: paper/apa.csl    
 ---
 
   <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -28,7 +30,7 @@ Package | Status | Usage | GitHub | References
 [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot) | [![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2019_07_31-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md) | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil) | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues)
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ggstatsplot/community) | | | |
 
-# Overview
+# Raison d'être
 
 [`ggstatsplot`](https://indrajeetpatil.github.io/ggstatsplot/) is an extension
 of [`ggplot2`](https://github.com/tidyverse/ggplot2) package for creating
@@ -38,9 +40,29 @@ code to produce information-rich plots. In a typical exploratory data analysis
 workflow, data visualization and statistical modeling are two different phases:
 visualization informs modeling, and modeling in its turn can suggest a
 different visualization method, and so on and so forth. The central idea of
-*ggstatsplot* is simple: combine these two phases into one in the form of
+`ggstatsplot` is simple: combine these two phases into one in the form of
 graphics with statistical details, which makes data exploration simpler and
 faster.
+
+# Summary of available plots
+
+It, therefore, produces a limited kinds of plots for the supported analyses:
+
+Function | Plot | Description
+------- | ------------------ | --------- 
+`ggbetweenstats` | **violin plots** | for comparisons *between* groups/conditions
+`ggwithinstats` | **violin plots** | for comparisons *within* groups/conditions
+`gghistostats` | **histograms** | for distribution about numeric variable
+`ggdotplotstats` | **dot plots/charts** | for distribution about labeled numeric variable
+`ggpiestats`  | **pie charts** | for categorical data 
+`ggbarstats`  | **bar charts** | for categorical data 
+`ggscatterstats` | **scatterplots** | for correlations between two variables
+`ggcorrmat`  | **correlation matrices** | for correlations between multiple variables
+`ggcoefstats`  | **dot-and-whisker plots** | for regression models
+
+In addition to these basic plots, `ggstatsplot` also provides **`grouped_`**
+versions (see below) that makes it easy to repeat the same analysis for
+any grouping variable.
 
 # Summary of types of statistical analyses
 
@@ -48,22 +70,6 @@ Currently, it supports only the most common types of statistical tests:
 **parametric**, **nonparametric**, **robust**, and **bayesian** versions of
 **t-test**/**anova**, **correlation** analyses, **contingency table** analysis,
 and **regression** analyses.
-
-It, therefore, produces a limited kinds of plots for the supported analyses:
-
-  - **violin plots** (for comparisons *between* groups or conditions), 
-  - **pie charts** and **bar charts** (for categorical data),
-  - **scatterplots** (for correlations between two variables),
-  - **correlation matrices** (for correlations between multiple variables),
-  - **histograms** and **dot plots/charts** (for hypothesis about distributions),
-  - **dot-and-whisker plots** (for regression models).
-
-In addition to these basic plots, `ggstatsplot` also provides **`grouped_`**
-versions for most functions that makes it easy to repeat the same analysis for
-any grouping variable.
-
-Future versions will include other types of statistical analyses and plots as
-well.
 
 The table below summarizes all the different types of analyses currently
 supported in this package-
@@ -1331,7 +1337,6 @@ location in the plot.
 Additionally, all functions share the `ggtheme` and `palette` arguments that can
 be used to specify your favorite `ggplot` theme and color palette.
 
-
 # Code coverage
 
 As the code stands right now, here is the code coverage for all primary
@@ -1361,10 +1366,8 @@ of commitment):
 Please note that this project is released with a 
 [Contributor Code of Conduct](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
-
 # Session Information
 
-For details about the session information in which this `README` file was
-rendered, see-
+For reproducibility purposes, the details about the session information in which
+this document was rendered, see-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>
-

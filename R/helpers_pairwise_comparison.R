@@ -745,13 +745,11 @@ ggsignif_position_calculator <- function(x, y) {
   y_end <- y_start + (step_length * n_comparions)
 
   # creating a vector of positions for the ggsignif lines
-  ggsignif_position <-
+  return(
     seq(
       from = y_start,
       to = y_end,
       length.out = n_comparions
     )
-
-  # return the position vector
-  return(ggsignif_position)
+  )
 }

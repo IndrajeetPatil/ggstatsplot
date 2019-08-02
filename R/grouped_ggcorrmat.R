@@ -130,19 +130,18 @@ grouped_ggcorrmat <- function(data,
 
   # getting the dataframe ready
   if ("cor.vars" %in% names(param_list)) {
-    df <- dplyr::select(.data = data, {{ grouping.var }}, {{ cor.vars }})
-  } else {
-    df <- data
+    data %<>% dplyr::select(.data = ., {{ grouping.var }}, {{ cor.vars }})
   }
 
   # creating a list for grouped analysis
-  df %<>% grouped_list(data = ., grouping.var = {{ grouping.var }})
+  df <- grouped_list(data = data, grouping.var = {{ grouping.var }})
 
   # ===================== grouped analysis ===================================
 
   # see which method was used to specify type of correlation
   corr.method <- type %||% corr.method
   digits <- k %||% digits
+  output <- return %||% output
 
   # creating a list of results
   plotlist_purrr <-

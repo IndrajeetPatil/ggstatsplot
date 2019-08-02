@@ -249,11 +249,11 @@ ggcorrmat <- function(data,
   output <- return %||% output
 
   # if any of the abbreviations have been entered, change them
-  if (corr.method == "p") {
+  if (corr.method %in% c("pearson", "p", "parametric")) {
     corr.method <- "pearson"
-  } else if (corr.method == "np") {
+  } else if (corr.method %in% c("np", "nonparametric", "non-parametric")) {
     corr.method <- "spearman"
-  } else if (corr.method == "r") {
+  } else if (corr.method %in% c("r")) {
     corr.method <- "robust"
   }
 

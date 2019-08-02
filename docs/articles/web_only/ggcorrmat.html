@@ -139,7 +139,7 @@
       <h1>ggcorrmat</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-07-31</h4>
+            <h4 class="date">2019-08-02</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcorrmat.Rmd"><code>vignettes/web_only/ggcorrmat.Rmd</code></a></small>
       <div class="hidden name"><code>ggcorrmat.Rmd</code></div>
@@ -297,41 +297,120 @@
 <a class="sourceLine" id="cb7-3" title="3"></a>
 <a class="sourceLine" id="cb7-4" title="4"><span class="co"># to get correlations</span></a>
 <a class="sourceLine" id="cb7-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
-<a class="sourceLine" id="cb7-6" title="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.15</span>),</a>
-<a class="sourceLine" id="cb7-7" title="7">  <span class="dt">cor.vars =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(price, carat, depth<span class="op">:</span>table, x<span class="op">:</span>z),</a>
-<a class="sourceLine" id="cb7-8" title="8">  <span class="dt">output =</span> <span class="st">"correlations"</span>,</a>
+<a class="sourceLine" id="cb7-6" title="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>txhousing, <span class="dt">size =</span> <span class="fl">0.15</span>),</a>
+<a class="sourceLine" id="cb7-7" title="7">  <span class="dt">cor.vars =</span> sales<span class="op">:</span>inventory,</a>
+<a class="sourceLine" id="cb7-8" title="8">  <span class="dt">return =</span> <span class="st">"correlations"</span>,</a>
 <a class="sourceLine" id="cb7-9" title="9">  <span class="dt">corr.method =</span> <span class="st">"robust"</span>,</a>
 <a class="sourceLine" id="cb7-10" title="10">  <span class="dt">digits =</span> <span class="dv">3</span></a>
 <a class="sourceLine" id="cb7-11" title="11">)</a>
-<a class="sourceLine" id="cb7-12" title="12"><span class="co">#&gt; # A tibble: 7 x 8</span></a>
-<a class="sourceLine" id="cb7-13" title="13"><span class="co">#&gt;   variable  price carat  depth  table      x      y     z</span></a>
-<a class="sourceLine" id="cb7-14" title="14"><span class="co">#&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb7-15" title="15"><span class="co">#&gt; 1 price     1     0.939 -0.003  0.153  0.905  0.906 0.9  </span></a>
-<a class="sourceLine" id="cb7-16" title="16"><span class="co">#&gt; 2 carat     0.939 1      0.027  0.197  0.984  0.983 0.981</span></a>
-<a class="sourceLine" id="cb7-17" title="17"><span class="co">#&gt; 3 depth    -0.003 0.027  1     -0.274 -0.019 -0.02  0.088</span></a>
-<a class="sourceLine" id="cb7-18" title="18"><span class="co">#&gt; 4 table     0.153 0.197 -0.274  1      0.204  0.2   0.171</span></a>
-<a class="sourceLine" id="cb7-19" title="19"><span class="co">#&gt; 5 x         0.905 0.984 -0.019  0.204  1      0.999 0.992</span></a>
-<a class="sourceLine" id="cb7-20" title="20"><span class="co">#&gt; 6 y         0.906 0.983 -0.02   0.2    0.999  1     0.991</span></a>
-<a class="sourceLine" id="cb7-21" title="21"><span class="co">#&gt; 7 z         0.9   0.981  0.088  0.171  0.992  0.991 1</span></a>
-<a class="sourceLine" id="cb7-22" title="22"></a>
-<a class="sourceLine" id="cb7-23" title="23"><span class="co"># to get p-values</span></a>
-<a class="sourceLine" id="cb7-24" title="24">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
-<a class="sourceLine" id="cb7-25" title="25">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.15</span>),</a>
-<a class="sourceLine" id="cb7-26" title="26">  <span class="dt">cor.vars =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(price, carat, depth<span class="op">:</span>table, x<span class="op">:</span>z),</a>
-<a class="sourceLine" id="cb7-27" title="27">  <span class="dt">output =</span> <span class="st">"p-values"</span>,</a>
-<a class="sourceLine" id="cb7-28" title="28">  <span class="dt">corr.method =</span> <span class="st">"robust"</span>,</a>
-<a class="sourceLine" id="cb7-29" title="29">  <span class="dt">digits =</span> <span class="dv">3</span></a>
-<a class="sourceLine" id="cb7-30" title="30">)</a>
-<a class="sourceLine" id="cb7-31" title="31"><span class="co">#&gt; # A tibble: 7 x 8</span></a>
-<a class="sourceLine" id="cb7-32" title="32"><span class="co">#&gt;   variable    price    carat     depth     table        x        y        z</span></a>
-<a class="sourceLine" id="cb7-33" title="33"><span class="co">#&gt;   &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb7-34" title="34"><span class="co">#&gt; 1 price    0.       0.       6.53e-  1 1.03e- 37 0.       0.       0.      </span></a>
-<a class="sourceLine" id="cb7-35" title="35"><span class="co">#&gt; 2 carat    0.       0.       2.99e-  3 4.87e- 68 0.       0.       0.      </span></a>
-<a class="sourceLine" id="cb7-36" title="36"><span class="co">#&gt; 3 depth    6.53e- 1 2.99e- 3 0.        4.92e-151 2.80e- 1 2.42e- 1 5.19e-17</span></a>
-<a class="sourceLine" id="cb7-37" title="37"><span class="co">#&gt; 4 table    1.03e-37 4.87e-68 4.92e-151 0.        4.72e-73 9.62e-69 2.72e-49</span></a>
-<a class="sourceLine" id="cb7-38" title="38"><span class="co">#&gt; 5 x        0.       0.       2.80e-  1 4.72e- 73 0.       0.       0.      </span></a>
-<a class="sourceLine" id="cb7-39" title="39"><span class="co">#&gt; 6 y        0.       0.       2.42e-  1 9.62e- 69 0.       0.       0.      </span></a>
-<a class="sourceLine" id="cb7-40" title="40"><span class="co">#&gt; 7 z        0.       0.       5.19e- 17 2.72e- 49 0.       0.       0.</span></a></code></pre></div>
+<a class="sourceLine" id="cb7-12" title="12"><span class="co">#&gt; # A tibble: 5 x 6</span></a>
+<a class="sourceLine" id="cb7-13" title="13"><span class="co">#&gt;   variable   sales volume median listings inventory</span></a>
+<a class="sourceLine" id="cb7-14" title="14"><span class="co">#&gt;   &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb7-15" title="15"><span class="co">#&gt; 1 sales      1      0.98   0.469    0.93     -0.385</span></a>
+<a class="sourceLine" id="cb7-16" title="16"><span class="co">#&gt; 2 volume     0.98   1      0.55     0.898    -0.368</span></a>
+<a class="sourceLine" id="cb7-17" title="17"><span class="co">#&gt; 3 median     0.469  0.55   1        0.403    -0.203</span></a>
+<a class="sourceLine" id="cb7-18" title="18"><span class="co">#&gt; 4 listings   0.93   0.898  0.403    1        -0.163</span></a>
+<a class="sourceLine" id="cb7-19" title="19"><span class="co">#&gt; 5 inventory -0.385 -0.368 -0.203   -0.163     1</span></a>
+<a class="sourceLine" id="cb7-20" title="20"></a>
+<a class="sourceLine" id="cb7-21" title="21"><span class="co"># to get p-values</span></a>
+<a class="sourceLine" id="cb7-22" title="22">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb7-23" title="23">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>txhousing, <span class="dt">size =</span> <span class="fl">0.15</span>),</a>
+<a class="sourceLine" id="cb7-24" title="24">  <span class="dt">cor.vars =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(volume, listings<span class="op">:</span>inventory),</a>
+<a class="sourceLine" id="cb7-25" title="25">  <span class="dt">return =</span> <span class="st">"p-values"</span>,</a>
+<a class="sourceLine" id="cb7-26" title="26">  <span class="dt">corr.method =</span> <span class="st">"nonparametric"</span>,</a>
+<a class="sourceLine" id="cb7-27" title="27">  <span class="dt">digits =</span> <span class="dv">3</span></a>
+<a class="sourceLine" id="cb7-28" title="28">)</a>
+<a class="sourceLine" id="cb7-29" title="29"><span class="co">#&gt; # A tibble: 3 x 4</span></a>
+<a class="sourceLine" id="cb7-30" title="30"><span class="co">#&gt;   variable    volume listings inventory</span></a>
+<a class="sourceLine" id="cb7-31" title="31"><span class="co">#&gt;   &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb7-32" title="32"><span class="co">#&gt; 1 volume    0.         0       1.84e-43</span></a>
+<a class="sourceLine" id="cb7-33" title="33"><span class="co">#&gt; 2 listings  0.         0       8.83e- 2</span></a>
+<a class="sourceLine" id="cb7-34" title="34"><span class="co">#&gt; 3 inventory 1.84e-43   0.0883  0.</span></a></code></pre></div>
+<p>Note that if <code>cor.vars</code> are not specified, all numeric variables will be used. Moreover, you can also use abbreviations to specify what output you want in return.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co"># for reproducibility</span></a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb8-3" title="3"></a>
+<a class="sourceLine" id="cb8-4" title="4"><span class="co"># show four digits in a tibble</span></a>
+<a class="sourceLine" id="cb8-5" title="5"><span class="kw"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="dt">pillar.sigfig =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb8-6" title="6"></a>
+<a class="sourceLine" id="cb8-7" title="7"><span class="co"># getting the correlation coefficient matrix</span></a>
+<a class="sourceLine" id="cb8-8" title="8">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb8-9" title="9">  <span class="dt">data =</span> iris, <span class="co"># all numeric variables from data will be used</span></a>
+<a class="sourceLine" id="cb8-10" title="10">  <span class="dt">corr.method =</span> <span class="st">"np"</span>, <span class="co"># non-parametric</span></a>
+<a class="sourceLine" id="cb8-11" title="11">  <span class="dt">return =</span> <span class="st">"corr"</span> <span class="co"># correlations</span></a>
+<a class="sourceLine" id="cb8-12" title="12">)</a>
+<a class="sourceLine" id="cb8-13" title="13"><span class="co">#&gt; # A tibble: 4 x 5</span></a>
+<a class="sourceLine" id="cb8-14" title="14"><span class="co">#&gt;   variable     Sepal.Length Sepal.Width Petal.Length Petal.Width</span></a>
+<a class="sourceLine" id="cb8-15" title="15"><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb8-16" title="16"><span class="co">#&gt; 1 Sepal.Length         1         -0.17          0.88       0.83 </span></a>
+<a class="sourceLine" id="cb8-17" title="17"><span class="co">#&gt; 2 Sepal.Width         -0.17       1            -0.31      -0.290</span></a>
+<a class="sourceLine" id="cb8-18" title="18"><span class="co">#&gt; 3 Petal.Length         0.88      -0.31          1          0.94 </span></a>
+<a class="sourceLine" id="cb8-19" title="19"><span class="co">#&gt; 4 Petal.Width          0.83      -0.290         0.94       1</span></a>
+<a class="sourceLine" id="cb8-20" title="20"></a>
+<a class="sourceLine" id="cb8-21" title="21"><span class="co"># getting the p-value matrix</span></a>
+<a class="sourceLine" id="cb8-22" title="22">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb8-23" title="23">  <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</a>
+<a class="sourceLine" id="cb8-24" title="24">  <span class="dt">cor.vars =</span> sleep_total<span class="op">:</span>bodywt,</a>
+<a class="sourceLine" id="cb8-25" title="25">  <span class="dt">corr.method =</span> <span class="st">"r"</span>, <span class="co"># robust</span></a>
+<a class="sourceLine" id="cb8-26" title="26">  <span class="dt">return =</span> <span class="st">"p"</span>, <span class="co"># p-values</span></a>
+<a class="sourceLine" id="cb8-27" title="27">  <span class="dt">p.adjust.method =</span> <span class="st">"holm"</span></a>
+<a class="sourceLine" id="cb8-28" title="28">)</a>
+<a class="sourceLine" id="cb8-29" title="29"><span class="co">#&gt; # A tibble: 6 x 7</span></a>
+<a class="sourceLine" id="cb8-30" title="30"><span class="co">#&gt;   variable  sleep_total sleep_rem sleep_cycle     awake   brainwt    bodywt</span></a>
+<a class="sourceLine" id="cb8-31" title="31"><span class="co">#&gt;   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb8-32" title="32"><span class="co">#&gt; 1 sleep_to~   0.        5.291e-12   9.138e- 3 0.        3.170e- 5 2.568e- 6</span></a>
+<a class="sourceLine" id="cb8-33" title="33"><span class="co">#&gt; 2 sleep_rem   4.070e-13 0.          1.978e- 2 5.291e-12 9.698e- 3 3.762e- 3</span></a>
+<a class="sourceLine" id="cb8-34" title="34"><span class="co">#&gt; 3 sleep_cy~   2.285e- 3 1.978e- 2   0.        9.138e- 3 1.637e- 9 1.696e- 5</span></a>
+<a class="sourceLine" id="cb8-35" title="35"><span class="co">#&gt; 4 awake       0.        4.070e-13   2.285e- 3 0.        3.170e- 5 2.568e- 6</span></a>
+<a class="sourceLine" id="cb8-36" title="36"><span class="co">#&gt; 5 brainwt     4.528e- 6 4.849e- 3   1.488e-10 4.528e- 6 0.        4.509e-17</span></a>
+<a class="sourceLine" id="cb8-37" title="37"><span class="co">#&gt; 6 bodywt      2.568e- 7 7.524e- 4   2.120e- 6 2.568e- 7 3.221e-18 0.</span></a>
+<a class="sourceLine" id="cb8-38" title="38"></a>
+<a class="sourceLine" id="cb8-39" title="39"><span class="co"># getting the confidence intervals for correlations</span></a>
+<a class="sourceLine" id="cb8-40" title="40">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb8-41" title="41">  <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</a>
+<a class="sourceLine" id="cb8-42" title="42">  <span class="dt">cor.vars =</span> sleep_total<span class="op">:</span>bodywt,</a>
+<a class="sourceLine" id="cb8-43" title="43">  <span class="dt">corr.method =</span> <span class="st">"p"</span>, <span class="co"># parametric</span></a>
+<a class="sourceLine" id="cb8-44" title="44">  <span class="dt">return =</span> <span class="st">"ci"</span>, <span class="co"># confidence intervals</span></a>
+<a class="sourceLine" id="cb8-45" title="45">  <span class="dt">p.adjust.method =</span> <span class="st">"holm"</span></a>
+<a class="sourceLine" id="cb8-46" title="46">)</a>
+<a class="sourceLine" id="cb8-47" title="47"><span class="co">#&gt; Note: In the correlation matrix,</span></a>
+<a class="sourceLine" id="cb8-48" title="48"><span class="co">#&gt; the upper triangle: p-values adjusted for multiple comparisons</span></a>
+<a class="sourceLine" id="cb8-49" title="49"><span class="co">#&gt; the lower triangle: unadjusted p-values.</span></a>
+<a class="sourceLine" id="cb8-50" title="50"><span class="co">#&gt; # A tibble: 15 x 7</span></a>
+<a class="sourceLine" id="cb8-51" title="51"><span class="co">#&gt;    pair                 r    lower    upper          p lower.adj  upper.adj</span></a>
+<a class="sourceLine" id="cb8-52" title="52"><span class="co">#&gt;    &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb8-53" title="53"><span class="co">#&gt;  1 sleep_total-s~  0.7518  0.6167   0.8438  2.916e- 12  0.5402     8.740e-1</span></a>
+<a class="sourceLine" id="cb8-54" title="54"><span class="co">#&gt;  2 sleep_total-s~ -0.4737 -0.7058  -0.1498  6.169e-  3 -0.7738     7.215e-5</span></a>
+<a class="sourceLine" id="cb8-55" title="55"><span class="co">#&gt;  3 sleep_total-a~ -1.0000 -1.0000  -1.0000  2.419e-226 -1.0000   -10.000e-1</span></a>
+<a class="sourceLine" id="cb8-56" title="56"><span class="co">#&gt;  4 sleep_total-b~ -0.3605 -0.5694  -0.1078  6.348e-  3 -0.6290    -1.505e-2</span></a>
+<a class="sourceLine" id="cb8-57" title="57"><span class="co">#&gt;  5 sleep_total-b~ -0.3120 -0.4944  -0.1033  4.085e-  3 -0.5302    -5.506e-2</span></a>
+<a class="sourceLine" id="cb8-58" title="58"><span class="co">#&gt;  6 sleep_rem-sle~ -0.3381 -0.6144   0.01198 5.839e-  2 -0.6806     1.257e-1</span></a>
+<a class="sourceLine" id="cb8-59" title="59"><span class="co">#&gt;  7 sleep_rem-awa~ -0.7518 -0.8438  -0.6167  2.911e- 12 -0.8748    -5.376e-1</span></a>
+<a class="sourceLine" id="cb8-60" title="60"><span class="co">#&gt;  8 sleep_rem-bra~ -0.2213 -0.4756   0.06701 1.306e-  1 -0.4756     6.701e-2</span></a>
+<a class="sourceLine" id="cb8-61" title="61"><span class="co">#&gt;  9 sleep_rem-bod~ -0.3277 -0.5353  -0.08265 9.947e-  3 -0.5838    -1.223e-2</span></a>
+<a class="sourceLine" id="cb8-62" title="62"><span class="co">#&gt; 10 sleep_cycle-a~  0.4737  0.1498   0.7058  6.169e-  3 -0.006407   7.763e-1</span></a>
+<a class="sourceLine" id="cb8-63" title="63"><span class="co">#&gt; 11 sleep_cycle-b~  0.8516  0.7088   0.9274  2.420e-  9  0.6080     9.487e-1</span></a>
+<a class="sourceLine" id="cb8-64" title="64"><span class="co">#&gt; 12 sleep_cycle-b~  0.4178  0.08089  0.6690  1.734e-  2 -0.06265    7.410e-1</span></a>
+<a class="sourceLine" id="cb8-65" title="65"><span class="co">#&gt; 13 awake-brainwt   0.3605  0.1078   0.5694  6.348e-  3  0.007931   6.333e-1</span></a>
+<a class="sourceLine" id="cb8-66" title="66"><span class="co">#&gt; 14 awake-bodywt    0.3120  0.1032   0.4944  4.089e-  3  0.07202    5.178e-1</span></a>
+<a class="sourceLine" id="cb8-67" title="67"><span class="co">#&gt; 15 brainwt-bodywt  0.9338  0.8892   0.9608  9.155e- 26  0.8583     9.697e-1</span></a>
+<a class="sourceLine" id="cb8-68" title="68"></a>
+<a class="sourceLine" id="cb8-69" title="69"><span class="co"># getting the sample sizes for all pairs</span></a>
+<a class="sourceLine" id="cb8-70" title="70">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb8-71" title="71">  <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</a>
+<a class="sourceLine" id="cb8-72" title="72">  <span class="dt">cor.vars =</span> sleep_total<span class="op">:</span>bodywt,</a>
+<a class="sourceLine" id="cb8-73" title="73">  <span class="dt">corr.method =</span> <span class="st">"robust"</span>,</a>
+<a class="sourceLine" id="cb8-74" title="74">  <span class="dt">return =</span> <span class="st">"n"</span> <span class="co"># note that n is different due to NAs</span></a>
+<a class="sourceLine" id="cb8-75" title="75">)</a>
+<a class="sourceLine" id="cb8-76" title="76"><span class="co">#&gt; # A tibble: 6 x 7</span></a>
+<a class="sourceLine" id="cb8-77" title="77"><span class="co">#&gt;   variable    sleep_total sleep_rem sleep_cycle awake brainwt bodywt</span></a>
+<a class="sourceLine" id="cb8-78" title="78"><span class="co">#&gt;   &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb8-79" title="79"><span class="co">#&gt; 1 sleep_total          83        61          32    83      56     83</span></a>
+<a class="sourceLine" id="cb8-80" title="80"><span class="co">#&gt; 2 sleep_rem            61        61          32    61      48     61</span></a>
+<a class="sourceLine" id="cb8-81" title="81"><span class="co">#&gt; 3 sleep_cycle          32        32          32    32      30     32</span></a>
+<a class="sourceLine" id="cb8-82" title="82"><span class="co">#&gt; 4 awake                83        61          32    83      56     83</span></a>
+<a class="sourceLine" id="cb8-83" title="83"><span class="co">#&gt; 5 brainwt              56        48          30    56      56     56</span></a>
+<a class="sourceLine" id="cb8-84" title="84"><span class="co">#&gt; 6 bodywt               83        61          32    83      56     83</span></a></code></pre></div>
 </div>
 <div id="grouped-analysis-with-grouped_ggcorrmat" class="section level2">
 <h2 class="hasAnchor">
@@ -339,70 +418,67 @@
 </h2>
 <p>What if we want to do the same analysis separately for each quality of the diamond <code>cut</code> (Fair, Good, Very Good, Premium, Ideal)? In that case, we will have to either write a <code>for</code> loop or use <code>purrr</code>, none of which seem like an exciting prospect.</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggcorrmat</code>. This is merely a wrapper function around <code><a href="../../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggcorrmat</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co"># for reproducibility</span></a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb8-3" title="3"></a>
-<a class="sourceLine" id="cb8-4" title="4"><span class="co"># let's use just 5% of the data to speed it up</span></a>
-<a class="sourceLine" id="cb8-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span>(</a>
-<a class="sourceLine" id="cb8-6" title="6">  <span class="co"># arguments relevant for ggstatsplot::ggcorrmat</span></a>
-<a class="sourceLine" id="cb8-7" title="7">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.05</span>),</a>
-<a class="sourceLine" id="cb8-8" title="8">  <span class="dt">corr.method =</span> <span class="st">"r"</span>, <span class="co"># percentage bend correlation coefficient</span></a>
-<a class="sourceLine" id="cb8-9" title="9">  <span class="dt">beta =</span> <span class="fl">0.2</span>, <span class="co"># bending constant</span></a>
-<a class="sourceLine" id="cb8-10" title="10">  <span class="dt">p.adjust.method =</span> <span class="st">"holm"</span>, <span class="co"># method to adjust p-values for multiple comparisons</span></a>
-<a class="sourceLine" id="cb8-11" title="11">  <span class="dt">grouping.var =</span> cut,</a>
-<a class="sourceLine" id="cb8-12" title="12">  <span class="dt">title.prefix =</span> <span class="st">"Quality of cut"</span>,</a>
-<a class="sourceLine" id="cb8-13" title="13">  <span class="dt">cor.vars =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(carat, depth<span class="op">:</span>z),</a>
-<a class="sourceLine" id="cb8-14" title="14">  <span class="dt">cor.vars.names =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(</a>
-<a class="sourceLine" id="cb8-15" title="15">    <span class="st">"carat"</span>,</a>
-<a class="sourceLine" id="cb8-16" title="16">    <span class="st">"total depth"</span>,</a>
-<a class="sourceLine" id="cb8-17" title="17">    <span class="st">"table"</span>,</a>
-<a class="sourceLine" id="cb8-18" title="18">    <span class="st">"price"</span>,</a>
-<a class="sourceLine" id="cb8-19" title="19">    <span class="st">"length (in mm)"</span>,</a>
-<a class="sourceLine" id="cb8-20" title="20">    <span class="st">"width (in mm)"</span>,</a>
-<a class="sourceLine" id="cb8-21" title="21">    <span class="st">"depth (in mm)"</span></a>
-<a class="sourceLine" id="cb8-22" title="22">  ),</a>
-<a class="sourceLine" id="cb8-23" title="23">  <span class="dt">lab.size =</span> <span class="fl">3.5</span>,</a>
-<a class="sourceLine" id="cb8-24" title="24">  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></a>
-<a class="sourceLine" id="cb8-25" title="25">  <span class="dt">title.text =</span> <span class="st">"Relationship between diamond attributes and price across cut"</span>,</a>
-<a class="sourceLine" id="cb8-26" title="26">  <span class="dt">title.size =</span> <span class="dv">16</span>,</a>
-<a class="sourceLine" id="cb8-27" title="27">  <span class="dt">title.color =</span> <span class="st">"red"</span>,</a>
-<a class="sourceLine" id="cb8-28" title="28">  <span class="dt">caption.text =</span> <span class="st">"Dataset: Diamonds from ggplot2 package"</span>,</a>
-<a class="sourceLine" id="cb8-29" title="29">  <span class="dt">caption.size =</span> <span class="dv">14</span>,</a>
-<a class="sourceLine" id="cb8-30" title="30">  <span class="dt">caption.color =</span> <span class="st">"blue"</span>,</a>
-<a class="sourceLine" id="cb8-31" title="31">  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>, <span class="st">"(e)"</span>),</a>
-<a class="sourceLine" id="cb8-32" title="32">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb8-33" title="33">  <span class="dt">ncol =</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb8-34" title="34">)</a>
-<a class="sourceLine" id="cb8-35" title="35"><span class="co">#&gt; Warning: Individual plots in the combined `grouped_` plot</span></a>
-<a class="sourceLine" id="cb8-36" title="36"><span class="co">#&gt; can't be further modified with `ggplot2` functions.</span></a></code></pre></div>
-<p><img src="ggcorrmat_files/figure-html/ggcorrmat6-1.png" width="960"></p>
-<p>Note that this function also makes it easy to run the same correlation matrix across different levels of a factor/grouping variable. For example, if we wanted to get the same correlation coefficient matrix for <code>color</code> of the diamond, we can do the following-</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb9-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb9-3" title="3"></a>
 <a class="sourceLine" id="cb9-4" title="4"><span class="co"># let's use just 5% of the data to speed it up</span></a>
 <a class="sourceLine" id="cb9-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span>(</a>
-<a class="sourceLine" id="cb9-6" title="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.05</span>),</a>
-<a class="sourceLine" id="cb9-7" title="7">  <span class="dt">grouping.var =</span> cut,</a>
-<a class="sourceLine" id="cb9-8" title="8">  <span class="dt">cor.vars =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(price, carat, depth<span class="op">:</span>table, x<span class="op">:</span>z),</a>
-<a class="sourceLine" id="cb9-9" title="9">  <span class="dt">output =</span> <span class="st">"correlations"</span>,</a>
-<a class="sourceLine" id="cb9-10" title="10">  <span class="dt">corr.method =</span> <span class="st">"robust"</span>,</a>
-<a class="sourceLine" id="cb9-11" title="11">  <span class="dt">digits =</span> <span class="dv">3</span></a>
-<a class="sourceLine" id="cb9-12" title="12">)</a>
-<a class="sourceLine" id="cb9-13" title="13"><span class="co">#&gt; # A tibble: 35 x 9</span></a>
-<a class="sourceLine" id="cb9-14" title="14"><span class="co">#&gt;    cut   variable  price  carat  depth  table      x      y      z</span></a>
-<a class="sourceLine" id="cb9-15" title="15"><span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb9-16" title="16"><span class="co">#&gt;  1 Fair  price     1      0.842 -0.006 -0.056  0.833  0.843  0.765</span></a>
-<a class="sourceLine" id="cb9-17" title="17"><span class="co">#&gt;  2 Fair  carat     0.842  1      0.187 -0.191  0.978  0.976  0.964</span></a>
-<a class="sourceLine" id="cb9-18" title="18"><span class="co">#&gt;  3 Fair  depth    -0.006  0.187  1     -0.577  0.024  0.014  0.397</span></a>
-<a class="sourceLine" id="cb9-19" title="19"><span class="co">#&gt;  4 Fair  table    -0.056 -0.191 -0.577  1     -0.097 -0.104 -0.307</span></a>
-<a class="sourceLine" id="cb9-20" title="20"><span class="co">#&gt;  5 Fair  x         0.833  0.978  0.024 -0.097  1      0.997  0.92 </span></a>
-<a class="sourceLine" id="cb9-21" title="21"><span class="co">#&gt;  6 Fair  y         0.843  0.976  0.014 -0.104  0.997  1      0.916</span></a>
-<a class="sourceLine" id="cb9-22" title="22"><span class="co">#&gt;  7 Fair  z         0.765  0.964  0.397 -0.307  0.92   0.916  1    </span></a>
-<a class="sourceLine" id="cb9-23" title="23"><span class="co">#&gt;  8 Good  price     1      0.946 -0.098  0.204  0.928  0.931  0.928</span></a>
-<a class="sourceLine" id="cb9-24" title="24"><span class="co">#&gt;  9 Good  carat     0.946  1     -0.095  0.238  0.988  0.989  0.988</span></a>
-<a class="sourceLine" id="cb9-25" title="25"><span class="co">#&gt; 10 Good  depth    -0.098 -0.095  1     -0.506 -0.182 -0.184  0.002</span></a>
-<a class="sourceLine" id="cb9-26" title="26"><span class="co">#&gt; # ... with 25 more rows</span></a></code></pre></div>
+<a class="sourceLine" id="cb9-6" title="6">  <span class="co"># arguments relevant for ggstatsplot::ggcorrmat</span></a>
+<a class="sourceLine" id="cb9-7" title="7">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.05</span>),</a>
+<a class="sourceLine" id="cb9-8" title="8">  <span class="dt">corr.method =</span> <span class="st">"r"</span>, <span class="co"># percentage bend correlation coefficient</span></a>
+<a class="sourceLine" id="cb9-9" title="9">  <span class="dt">beta =</span> <span class="fl">0.2</span>, <span class="co"># bending constant</span></a>
+<a class="sourceLine" id="cb9-10" title="10">  <span class="dt">p.adjust.method =</span> <span class="st">"holm"</span>, <span class="co"># method to adjust p-values for multiple comparisons</span></a>
+<a class="sourceLine" id="cb9-11" title="11">  <span class="dt">grouping.var =</span> cut,</a>
+<a class="sourceLine" id="cb9-12" title="12">  <span class="dt">title.prefix =</span> <span class="st">"Quality of cut"</span>,</a>
+<a class="sourceLine" id="cb9-13" title="13">  <span class="dt">cor.vars =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(carat, depth<span class="op">:</span>z),</a>
+<a class="sourceLine" id="cb9-14" title="14">  <span class="dt">cor.vars.names =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(</a>
+<a class="sourceLine" id="cb9-15" title="15">    <span class="st">"carat"</span>,</a>
+<a class="sourceLine" id="cb9-16" title="16">    <span class="st">"total depth"</span>,</a>
+<a class="sourceLine" id="cb9-17" title="17">    <span class="st">"table"</span>,</a>
+<a class="sourceLine" id="cb9-18" title="18">    <span class="st">"price"</span>,</a>
+<a class="sourceLine" id="cb9-19" title="19">    <span class="st">"length (in mm)"</span>,</a>
+<a class="sourceLine" id="cb9-20" title="20">    <span class="st">"width (in mm)"</span>,</a>
+<a class="sourceLine" id="cb9-21" title="21">    <span class="st">"depth (in mm)"</span></a>
+<a class="sourceLine" id="cb9-22" title="22">  ),</a>
+<a class="sourceLine" id="cb9-23" title="23">  <span class="dt">lab.size =</span> <span class="fl">3.5</span>,</a>
+<a class="sourceLine" id="cb9-24" title="24">  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></a>
+<a class="sourceLine" id="cb9-25" title="25">  <span class="dt">title.text =</span> <span class="st">"Relationship between diamond attributes and price across cut"</span>,</a>
+<a class="sourceLine" id="cb9-26" title="26">  <span class="dt">title.size =</span> <span class="dv">16</span>,</a>
+<a class="sourceLine" id="cb9-27" title="27">  <span class="dt">title.color =</span> <span class="st">"red"</span>,</a>
+<a class="sourceLine" id="cb9-28" title="28">  <span class="dt">caption.text =</span> <span class="st">"Dataset: Diamonds from ggplot2 package"</span>,</a>
+<a class="sourceLine" id="cb9-29" title="29">  <span class="dt">caption.size =</span> <span class="dv">14</span>,</a>
+<a class="sourceLine" id="cb9-30" title="30">  <span class="dt">caption.color =</span> <span class="st">"blue"</span>,</a>
+<a class="sourceLine" id="cb9-31" title="31">  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>, <span class="st">"(e)"</span>),</a>
+<a class="sourceLine" id="cb9-32" title="32">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb9-33" title="33">  <span class="dt">ncol =</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb9-34" title="34">)</a>
+<a class="sourceLine" id="cb9-35" title="35"><span class="co">#&gt; Warning: Individual plots in the combined `grouped_` plot</span></a>
+<a class="sourceLine" id="cb9-36" title="36"><span class="co">#&gt; can't be further modified with `ggplot2` functions.</span></a></code></pre></div>
+<p><img src="ggcorrmat_files/figure-html/ggcorrmat7-1.png" width="960"></p>
+<p>Note that this function also makes it easy to run the same correlation matrix across different levels of a factor/grouping variable. For example, if we wanted to get the same correlation coefficient matrix for <code>color</code> of the diamond, we can do the following-</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co"># for reproducibility</span></a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb10-3" title="3"></a>
+<a class="sourceLine" id="cb10-4" title="4"><span class="co"># let's obtain correlation coefficients with their CIs</span></a>
+<a class="sourceLine" id="cb10-5" title="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb10-6" title="6">  <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</a>
+<a class="sourceLine" id="cb10-7" title="7">  <span class="dt">grouping.var =</span> vore,</a>
+<a class="sourceLine" id="cb10-8" title="8">  <span class="dt">return =</span> <span class="st">"ci"</span></a>
+<a class="sourceLine" id="cb10-9" title="9">)</a>
+<a class="sourceLine" id="cb10-10" title="10"><span class="co">#&gt; # A tibble: 60 x 8</span></a>
+<a class="sourceLine" id="cb10-11" title="11"><span class="co">#&gt;    vore  pair              r   lower    upper         p lower.adj upper.adj</span></a>
+<a class="sourceLine" id="cb10-12" title="12"><span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;         &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb10-13" title="13"><span class="co">#&gt;  1 carni sleep_tota~  0.9189  0.6864  0.9810  1.714e- 4    0.4403    0.9909</span></a>
+<a class="sourceLine" id="cb10-14" title="14"><span class="co">#&gt;  2 carni sleep_tota~  0.3764 -0.7574  0.9449  5.323e- 1   -0.9328    0.9858</span></a>
+<a class="sourceLine" id="cb10-15" title="15"><span class="co">#&gt;  3 carni sleep_tota~ -1.0000 -1.0000 -1.0000  2.140e-44   -1.0000   -1.0000</span></a>
+<a class="sourceLine" id="cb10-16" title="16"><span class="co">#&gt;  4 carni sleep_tota~ -0.5244 -0.8815  0.2144  1.473e- 1   -0.9448    0.5483</span></a>
+<a class="sourceLine" id="cb10-17" title="17"><span class="co">#&gt;  5 carni sleep_tota~ -0.4427 -0.7468  0.01441 5.768e- 2   -0.8365    0.2526</span></a>
+<a class="sourceLine" id="cb10-18" title="18"><span class="co">#&gt;  6 carni sleep_rem-~  0.1216 -0.8521  0.9066  8.456e- 1   -0.9606    0.9756</span></a>
+<a class="sourceLine" id="cb10-19" title="19"><span class="co">#&gt;  7 carni sleep_rem-~ -0.9189 -0.9810 -0.6865  1.713e- 4   -0.9909   -0.4403</span></a>
+<a class="sourceLine" id="cb10-20" title="20"><span class="co">#&gt;  8 carni sleep_rem-~ -0.5006 -0.9331  0.5237  3.118e- 1   -0.9778    0.8159</span></a>
+<a class="sourceLine" id="cb10-21" title="21"><span class="co">#&gt;  9 carni sleep_rem-~ -0.4786 -0.8516  0.2162  1.617e- 1   -0.9261    0.5286</span></a>
+<a class="sourceLine" id="cb10-22" title="22"><span class="co">#&gt; 10 carni sleep_cycl~ -0.3764 -0.9449  0.7574  5.323e- 1   -0.9858    0.9328</span></a>
+<a class="sourceLine" id="cb10-23" title="23"><span class="co">#&gt; # ... with 50 more rows</span></a></code></pre></div>
 <p>As this example illustrates, there is a minimal coding overhead to explore correlations in your dataset with the <code>grouped_ggcorrmat</code> function.</p>
 </div>
 <div id="grouped-analysis-with-ggcorrmat-purrr" class="section level2">

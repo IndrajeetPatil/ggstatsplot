@@ -304,8 +304,7 @@ ggpiestats <- function(data,
     theme_pie(
       ggtheme = ggtheme,
       ggstatsplot.layer = ggstatsplot.layer
-    ) +
-    # remove black diagonal line from legend
+    ) + # remove black diagonal line from legend
     ggplot2::guides(fill = ggplot2::guide_legend(override.aes = list(color = NA)))
 
   # ========================= statistical analysis ==========================

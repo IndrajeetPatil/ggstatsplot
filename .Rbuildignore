@@ -35,3 +35,5 @@ tests\^spelling
 ^revdep$
 ^\.covrignore$
 ^\.github/ISSUE_TEMPLATE$
+^paper.*$
+references.bib
