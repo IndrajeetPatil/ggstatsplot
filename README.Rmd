@@ -368,10 +368,10 @@ Following (between-subjects) tests are carried out for each type of analyses-
 
 Type | No. of groups | Test
 ----------- | --- | -------------------------
-Parametric | > 2 | Student's or Welch's one-way ANOVA
+Parametric | > 2 | Fisher's or Welch's one-way ANOVA
 Non-parametric | > 2 | Kruskal–Wallis one-way ANOVA
 Robust | > 2 | Heteroscedastic one-way ANOVA for trimmed means
-Bayes Factor | > 2 | Student's ANOVA
+Bayes Factor | > 2 | Fisher's ANOVA
 Parametric | 2 | Student's or Welch's *t*-test
 Non-parametric | 2 | Mann–Whitney *U* test
 Robust | 2 |  Yuen's test for trimmed means
@@ -920,6 +920,16 @@ Non-parametric | One-sample Wilcoxon test
 Robust | One-sample percentile bootstrap
 Bayes Factor | One-sample Student's *t*-test
 
+Following effect sizes (and confidence intervals/CI) are available for each type
+of test-
+
+Type | Effect size | CI?
+----------- | ------------------------- | --- 
+Parametric | Cohen's *d*, Hedge's *g* (central-and noncentral-*t* distribution based) | <font color="green">Yes<font>
+Non-parametric | *r* (computed as $Z/\sqrt{N}$) | <font color="green">Yes<font>
+Robust | $M_{robust}$ (Robust location measure) | <font color="green">Yes<font>
+Bayes Factor | <font color="red">No<font> | <font color="red">No<font>
+
 For more, including information about the variant of this function
 `grouped_gghistostats`, see the `gghistostats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html>
@@ -1118,8 +1128,27 @@ For examples and more information, see the `ggcorrmat` vignette:
 
 ## `ggcoefstats`
 
-`ggcoefstats` creates a dot-and-whisker plot point estimates for regression
-coefficients as dots with confidence intervals as whiskers.
+`ggcoefstats` creates a dot-and-whisker plot for regression models. Although the
+statistical models displayed in the plot may differ based on the class of models
+being investigated, there are few aspects of the plot that will be invariant
+across models:
+
+- The dot-whisker plot contains a dot representing the **estimate** and their
+**confidence intervals** (`95%` is the default). The estimate can either be
+  effect sizes (for tests that depend on the `F` statistic) or regression
+  coefficients (for tests with `t` and `z` statistic), etc. The function will, by
+  default, display a helpful `x`-axis label that should clear up what estimates are
+  being displayed. The confidence intervals can sometimes be asymmetric if
+  bootstrapping was used.
+  
+- The caption will always contain diagnostic information, if available, about
+  models that can be useful for model selection: The smaller the Akaike's
+  Information Criterion (**AIC**) and the Bayesian Information Criterion (**BIC**)
+  values, the "better" the model is. Additionally, the higher the
+**log-likelihood** value the "better" is the model fit.
+
+- The output of this function will be a `ggplot2` object and, thus, it can be
+  further modified (e.g., change themes, etc.) with `ggplot2` functions.
 
 ```{r ggcoefstats1, message = FALSE, warning = FALSE, fig.height = 5, fig.width = 6}
 # for reproducibility

@@ -1,0 +1,2388 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={ggstatsplot: ggplot2 Based Plots with Statistical Details},
+            pdfauthor={Indrajeet Patil, Mina Cikara, Fiery Cushman},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{ggstatsplot: ggplot2 Based Plots with Statistical Details}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{Indrajeet Patil, Mina Cikara, Fiery Cushman}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{2019-08-03}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{fontawesome}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\hypertarget{introduction-raison-detre}{%
+\section{Introduction: Raison d'être}\label{introduction-raison-detre}}
+
+\href{https://indrajeetpatil.github.io/ggstatsplot/}{\texttt{ggstatsplot}}
+is an extension of
+\href{https://github.com/tidyverse/ggplot2}{\texttt{ggplot2}} package
+for creating graphics with details from statistical tests included in
+the plots themselves and targeted primarily at behavioral sciences
+community to provide a one-line code to produce information-rich plots.
+In a typical exploratory data analysis workflow, data visualization and
+statistical modeling are two different phases: visualization informs
+modeling, and modeling in its turn can suggest a different visualization
+method, and so on and so forth. The central idea of \texttt{ggstatsplot}
+is simple: combine these two phases into one in the form of graphics
+with statistical details, which makes data exploration simpler and
+faster.
+
+But why would combining statistical analysis with data visualization be
+helpful? We list few reasons below-
+
+\begin{itemize}
+\tightlist
+\item
+  A recent survey (Nuijten, Hartgerink, van Assen, Epskamp, \& Wicherts,
+  2016) revealed that one in eight papers in major psychology journals
+  contained a grossly inconsistent \emph{p}-value that may have affected
+  the statistical conclusion. \texttt{ggstatsplot} helps avoid such
+  reporting errors: Since the plot and the statistical analysis are
+  yoked together, the chances of making an error in reporting the
+  results are minimized. One need not write the results manually or
+  copy-paste them from a different statistics software program (like
+  SPSS, SAS, and so on).
+\end{itemize}
+
+\hypertarget{summary-of-available-plots}{%
+\section{Summary of available plots}\label{summary-of-available-plots}}
+
+It produces a limited kinds of ready-made plots for the supported
+analyses:
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\begin{minipage}[b]{0.19\columnwidth}\raggedright
+Function\strut
+\end{minipage} & \begin{minipage}[b]{0.19\columnwidth}\raggedright
+Plot\strut
+\end{minipage} & \begin{minipage}[b]{0.54\columnwidth}\raggedright
+Description\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.19\columnwidth}\raggedright
+\texttt{ggbetweenstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\textbf{violin plots}\strut
+\end{minipage} & \begin{minipage}[t]{0.54\columnwidth}\raggedright
+for comparisons \emph{between} groups/conditions\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.19\columnwidth}\raggedright
+\texttt{ggwithinstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\textbf{violin plots}\strut
+\end{minipage} & \begin{minipage}[t]{0.54\columnwidth}\raggedright
+for comparisons \emph{within} groups/conditions\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.19\columnwidth}\raggedright
+\texttt{gghistostats}\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\textbf{histograms}\strut
+\end{minipage} & \begin{minipage}[t]{0.54\columnwidth}\raggedright
+for distribution about numeric variable\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.19\columnwidth}\raggedright
+\texttt{ggdotplotstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\textbf{dot plots/charts}\strut
+\end{minipage} & \begin{minipage}[t]{0.54\columnwidth}\raggedright
+for distribution about labeled numeric variable\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.19\columnwidth}\raggedright
+\texttt{ggpiestats}\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\textbf{pie charts}\strut
+\end{minipage} & \begin{minipage}[t]{0.54\columnwidth}\raggedright
+for categorical data\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.19\columnwidth}\raggedright
+\texttt{ggbarstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\textbf{bar charts}\strut
+\end{minipage} & \begin{minipage}[t]{0.54\columnwidth}\raggedright
+for categorical data\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.19\columnwidth}\raggedright
+\texttt{ggscatterstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\textbf{scatterplots}\strut
+\end{minipage} & \begin{minipage}[t]{0.54\columnwidth}\raggedright
+for correlations between two variables\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.19\columnwidth}\raggedright
+\texttt{ggcorrmat}\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\textbf{correlation matrices}\strut
+\end{minipage} & \begin{minipage}[t]{0.54\columnwidth}\raggedright
+for correlations between multiple variables\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.19\columnwidth}\raggedright
+\texttt{ggcoefstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\textbf{dot-and-whisker plots}\strut
+\end{minipage} & \begin{minipage}[t]{0.54\columnwidth}\raggedright
+for regression models\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+In addition to these basic plots, \texttt{ggstatsplot} also provides
+\textbf{\texttt{grouped\_}} versions (see below) that makes it easy to
+repeat the same analysis for any grouping variable.
+
+\hypertarget{summary-of-types-of-statistical-analyses}{%
+\section{Summary of types of statistical
+analyses}\label{summary-of-types-of-statistical-analyses}}
+
+Most functions share a \texttt{type} (of test) argument that is helpful
+to specify the type of statistical analysis:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{"parametric"} (for \textbf{parametric})
+\item
+  \texttt{"nonparametric"} (for \textbf{non-parametric})
+\item
+  \texttt{"robust"} (for \textbf{robust})
+\item
+  \texttt{"bayes"} (for \textbf{Bayes Factor})
+\end{itemize}
+
+The table below summarizes all the different types of analyses currently
+supported in this package-
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule
+\begin{minipage}[b]{0.14\columnwidth}\raggedright
+Functions\strut
+\end{minipage} & \begin{minipage}[b]{0.35\columnwidth}\raggedright
+Description\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\raggedright
+Parametric\strut
+\end{minipage} & \begin{minipage}[b]{0.10\columnwidth}\raggedright
+Non-parametric\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\raggedright
+Robust\strut
+\end{minipage} & \begin{minipage}[b]{0.10\columnwidth}\raggedright
+Bayes Factor\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\texttt{ggbetweenstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\raggedright
+Between group/condition comparisons\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\texttt{ggwithinstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\raggedright
+Within group/condition comparisons\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\texttt{gghistostats}, \texttt{ggdotplotstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\raggedright
+Distribution of a numeric variable\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\texttt{ggcorrmat}\strut
+\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\raggedright
+Correlation matrix\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\textcolor{red}{No}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\texttt{ggscatterstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\raggedright
+Correlation between two variables\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\texttt{ggpiestats}, \texttt{ggbarstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\raggedright
+Association between categorical variables\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\texttt{NA}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\texttt{NA}\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\texttt{ggpiestats}, \texttt{ggbarstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\raggedright
+Equal proportions for categorical variable levels\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\texttt{NA}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\texttt{NA}\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\texttt{ggcoefstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\raggedright
+Regression model coefficients\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\textcolor{red}{No}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\textcolor{red}{No}\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{primary-functions}{%
+\section{Primary functions}\label{primary-functions}}
+
+Here are examples of the main functions currently supported in
+\texttt{ggstatsplot}.
+
+\hypertarget{ggbetweenstats}{%
+\subsection{\texorpdfstring{\texttt{ggbetweenstats}}{ggbetweenstats}}\label{ggbetweenstats}}
+
+This function creates either a violin plot, a box plot, or a mix of two
+for \textbf{between}-group or \textbf{between}-condition comparisons
+with results from statistical tests in the subtitle. The simplest
+function call looks like this-
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# loading needed libraries}
+\KeywordTok{library}\NormalTok{(ggstatsplot)}
+
+\CommentTok{# for reproducibility}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{# plot}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{ggbetweenstats}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ iris,}
+  \DataTypeTok{x =}\NormalTok{ Species,}
+  \DataTypeTok{y =}\NormalTok{ Sepal.Length,}
+  \DataTypeTok{messages =} \OtherTok{FALSE}
+\NormalTok{) }\OperatorTok{+}\StringTok{ }\CommentTok{# further modification outside of ggstatsplot}
+\StringTok{  }\NormalTok{ggplot2}\OperatorTok{::}\KeywordTok{coord_cartesian}\NormalTok{(}\DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{8}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\NormalTok{ggplot2}\OperatorTok{::}\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{breaks =} \KeywordTok{seq}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DataTypeTok{by =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1\linewidth]{./figures/paper-ggbetweenstats1-1}
+
+Note that this function returns a \texttt{ggplot2} object and thus any
+of the graphics layers can be further modified.
+
+A number of other arguments can be specified to make this plot even more
+informative or change some of the default options.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+
+\CommentTok{# for reproducibility}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{# let's leave out one of the factor levels and see if instead of anova, a t-test will be run}
+\NormalTok{iris2 <-}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(}\DataTypeTok{.data =}\NormalTok{ iris, Species }\OperatorTok{!=}\StringTok{ "setosa"}\NormalTok{)}
+
+\CommentTok{# let's change the levels of our factors, a common routine in data analysis}
+\CommentTok{# pipeline, to see if this function respects the new factor levels}
+\NormalTok{iris2}\OperatorTok{$}\NormalTok{Species <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ iris2}\OperatorTok{$}\NormalTok{Species, }\DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"virginica"}\NormalTok{, }\StringTok{"versicolor"}\NormalTok{))}
+
+\CommentTok{# plot}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{ggbetweenstats}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ iris2,}
+  \DataTypeTok{x =}\NormalTok{ Species,}
+  \DataTypeTok{y =}\NormalTok{ Sepal.Length,}
+  \DataTypeTok{notch =} \OtherTok{TRUE}\NormalTok{, }\CommentTok{# show notched box plot}
+  \DataTypeTok{mean.plotting =} \OtherTok{TRUE}\NormalTok{, }\CommentTok{# whether mean for each group is to be displayed}
+  \DataTypeTok{mean.ci =} \OtherTok{TRUE}\NormalTok{, }\CommentTok{# whether to display confidence interval for means}
+  \DataTypeTok{mean.label.size =} \FloatTok{2.5}\NormalTok{, }\CommentTok{# size of the label for mean}
+  \DataTypeTok{type =} \StringTok{"parametric"}\NormalTok{, }\CommentTok{# which type of test is to be run}
+  \DataTypeTok{k =} \DecValTok{3}\NormalTok{, }\CommentTok{# number of decimal places for statistical results}
+  \DataTypeTok{outlier.tagging =} \OtherTok{TRUE}\NormalTok{, }\CommentTok{# whether outliers need to be tagged}
+  \DataTypeTok{outlier.label =}\NormalTok{ Sepal.Width, }\CommentTok{# variable to be used for the outlier tag}
+  \DataTypeTok{outlier.label.color =} \StringTok{"darkgreen"}\NormalTok{, }\CommentTok{# changing the color for the text label}
+  \DataTypeTok{xlab =} \StringTok{"Type of Species"}\NormalTok{, }\CommentTok{# label for the x-axis variable}
+  \DataTypeTok{ylab =} \StringTok{"Attribute: Sepal Length"}\NormalTok{, }\CommentTok{# label for the y-axis variable}
+  \DataTypeTok{title =} \StringTok{"Dataset: Iris flower data set"}\NormalTok{, }\CommentTok{# title text for the plot}
+  \DataTypeTok{ggtheme =}\NormalTok{ ggthemes}\OperatorTok{::}\KeywordTok{theme_fivethirtyeight}\NormalTok{(), }\CommentTok{# choosing a different theme}
+  \DataTypeTok{ggstatsplot.layer =} \OtherTok{FALSE}\NormalTok{, }\CommentTok{# turn off ggstatsplot theme layer}
+  \DataTypeTok{package =} \StringTok{"wesanderson"}\NormalTok{, }\CommentTok{# package from which color palette is to be taken}
+  \DataTypeTok{palette =} \StringTok{"Darjeeling1"}\NormalTok{, }\CommentTok{# choosing a different color palette}
+  \DataTypeTok{messages =} \OtherTok{FALSE}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1\linewidth]{./figures/paper-ggbetweenstats2-1}
+
+As can be seen from the plot, the function by default returns Bayes
+Factor for the test. If the null hypothesis can't be rejected with the
+null hypothesis significance testing (NHST) approach, the Bayesian
+approach can help index evidence in favor of the null hypothesis (i.e.,
+\(BF_{01}\)).
+
+By default, natural logarithms are shown because Bayes Factor values can
+sometimes be pretty large. Having values on logarithmic scale also makes
+it easy to compare evidence in favor alternative (\(BF_{10}\)) versus
+null (\(BF_{01}\)) hypotheses (since
+\(log_{e}(BF_{01}) = - log_{e}(BF_{01})\)).
+
+Additionally, there is also a \texttt{grouped\_} variant of this
+function that makes it easy to repeat the same operation across a
+\textbf{single} grouping variable:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# for reproducibility}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{# plot}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{grouped_ggbetweenstats}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(}
+    \DataTypeTok{.data =}\NormalTok{ ggstatsplot}\OperatorTok{::}\NormalTok{movies_long,}
+\NormalTok{    genre }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Action"}\NormalTok{, }\StringTok{"Action Comedy"}\NormalTok{, }\StringTok{"Action Drama"}\NormalTok{, }\StringTok{"Comedy"}\NormalTok{)}
+\NormalTok{  ),}
+  \DataTypeTok{x =}\NormalTok{ mpaa,}
+  \DataTypeTok{y =}\NormalTok{ length,}
+  \DataTypeTok{grouping.var =}\NormalTok{ genre, }\CommentTok{# grouping variable}
+  \DataTypeTok{pairwise.comparisons =} \OtherTok{TRUE}\NormalTok{, }\CommentTok{# display significant pairwise comparisons}
+  \DataTypeTok{pairwise.annotation =} \StringTok{"p.value"}\NormalTok{, }\CommentTok{# how do you want to annotate the pairwise comparisons}
+  \DataTypeTok{p.adjust.method =} \StringTok{"bonferroni"}\NormalTok{, }\CommentTok{# method for adjusting p-values for multiple comparisons}
+  \DataTypeTok{conf.level =} \FloatTok{0.99}\NormalTok{, }\CommentTok{# changing confidence level to 99%}
+  \DataTypeTok{ggplot.component =} \KeywordTok{list}\NormalTok{( }\CommentTok{# adding new components to `ggstatsplot` default}
+\NormalTok{    ggplot2}\OperatorTok{::}\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{sec.axis =}\NormalTok{ ggplot2}\OperatorTok{::}\KeywordTok{dup_axis}\NormalTok{())}
+\NormalTok{  ),}
+  \DataTypeTok{k =} \DecValTok{3}\NormalTok{,}
+  \DataTypeTok{title.prefix =} \StringTok{"Movie genre"}\NormalTok{,}
+  \DataTypeTok{caption =} \KeywordTok{substitute}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}
+    \KeywordTok{italic}\NormalTok{(}\StringTok{"Source"}\NormalTok{),}
+    \StringTok{":IMDb (Internet Movie Database)"}
+\NormalTok{  )),}
+  \DataTypeTok{palette =} \StringTok{"default_jama"}\NormalTok{,}
+  \DataTypeTok{package =} \StringTok{"ggsci"}\NormalTok{,}
+  \DataTypeTok{messages =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{nrow =} \DecValTok{2}\NormalTok{,}
+  \DataTypeTok{title.text =} \StringTok{"Differences in movie length by mpaa ratings for different genres"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1\linewidth]{./figures/paper-ggbetweenstats3-1}
+
+\hypertarget{summary-of-tests}{%
+\subsubsection{Summary of tests}\label{summary-of-tests}}
+
+Following (between-subjects) tests are carried out for each type of
+analyses-
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+Type & No.~of groups & Test\tabularnewline
+\midrule
+\endhead
+Parametric & \textgreater{} 2 & Fisher's or Welch's one-way
+ANOVA\tabularnewline
+Non-parametric & \textgreater{} 2 & Kruskal--Wallis one-way
+ANOVA\tabularnewline
+Robust & \textgreater{} 2 & Heteroscedastic one-way ANOVA for trimmed
+means\tabularnewline
+Bayes Factor & \textgreater{} 2 & Fisher's ANOVA\tabularnewline
+Parametric & 2 & Student's or Welch's \emph{t}-test\tabularnewline
+Non-parametric & 2 & Mann--Whitney \emph{U} test\tabularnewline
+Robust & 2 & Yuen's test for trimmed means\tabularnewline
+Bayes Factor & 2 & Student's \emph{t}-test\tabularnewline
+\bottomrule
+\end{longtable}
+
+The omnibus effect in one-way ANOVA design can also be followed up with
+more focal pairwise comparison tests. Here is a summary of
+\emph{multiple pairwise comparison} tests supported in
+\emph{ggbetweenstats}-
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+Type & Equal variance? & Test & \emph{p}-value
+adjustment?\tabularnewline
+\midrule
+\endhead
+Parametric & No & Games-Howell test &
+\textcolor{ForestGreen}{Yes}\tabularnewline
+Parametric & Yes & Student's \emph{t}-test &
+\textcolor{ForestGreen}{Yes}\tabularnewline
+Non-parametric & No & Dwass-Steel-Crichtlow-Fligner test &
+\textcolor{ForestGreen}{Yes}\tabularnewline
+Robust & No & Yuen's trimmed means test &
+\textcolor{ForestGreen}{Yes}\tabularnewline
+Bayes Factor & No & \textcolor{red}{No} &
+\textcolor{red}{No}\tabularnewline
+Bayes Factor & Yes & \textcolor{red}{No} &
+\textcolor{red}{No}\tabularnewline
+\bottomrule
+\end{longtable}
+
+For more, see the \texttt{ggbetweenstats} vignette:
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}
+
+\hypertarget{ggwithinstats}{%
+\subsection{\texorpdfstring{\texttt{ggwithinstats}}{ggwithinstats}}\label{ggwithinstats}}
+
+\texttt{ggbetweenstats} function has an identical twin function
+\texttt{ggwithinstats} for repeated measures designs that behaves in the
+same fashion with a few minor tweaks introduced to properly visualize
+the repeated measures design. As can be seen from an example below, the
+only difference between the plot structure is that now the group means
+are connected by paths to highlight the fact that these data are paired
+with each other.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# for reproducibility and data}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\KeywordTok{library}\NormalTok{(WRS2)}
+
+\CommentTok{# plot}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{ggwithinstats}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ WRS2}\OperatorTok{::}\NormalTok{WineTasting,}
+  \DataTypeTok{x =}\NormalTok{ Wine,}
+  \DataTypeTok{y =}\NormalTok{ Taste,}
+  \DataTypeTok{sort =} \StringTok{"descending"}\NormalTok{, }\CommentTok{# ordering groups along the x-axis based on}
+  \DataTypeTok{sort.fun =}\NormalTok{ median, }\CommentTok{# values of `y` variable}
+  \DataTypeTok{pairwise.comparisons =} \OtherTok{TRUE}\NormalTok{,}
+  \DataTypeTok{pairwise.display =} \StringTok{"s"}\NormalTok{,}
+  \DataTypeTok{pairwise.annotation =} \StringTok{"p"}\NormalTok{,}
+  \DataTypeTok{title =} \StringTok{"Wine tasting"}\NormalTok{,}
+  \DataTypeTok{caption =} \StringTok{"Data from: `WRS2` R package"}\NormalTok{,}
+  \DataTypeTok{ggtheme =}\NormalTok{ ggthemes}\OperatorTok{::}\KeywordTok{theme_fivethirtyeight}\NormalTok{(),}
+  \DataTypeTok{ggstatsplot.layer =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{messages =} \OtherTok{FALSE}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1\linewidth]{./figures/paper-ggwithinstats1-1}
+
+As with the \texttt{ggbetweenstats}, this function also has a
+\texttt{grouped\_} variant that makes repeating the same analysis across
+a single grouping variable quicker. We will see an example with only
+repeated measurements-
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# common setup}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{# getting data in tidy format}
+\NormalTok{data_bugs <-}\StringTok{ }\NormalTok{ggstatsplot}\OperatorTok{::}\NormalTok{bugs_long }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(}\DataTypeTok{.data =}\NormalTok{ ., region }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Europe"}\NormalTok{, }\StringTok{"North America"}\NormalTok{))}
+
+\CommentTok{# plot}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{grouped_ggwithinstats}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(data_bugs, condition }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"LDLF"}\NormalTok{, }\StringTok{"LDHF"}\NormalTok{)),}
+  \DataTypeTok{x =}\NormalTok{ condition,}
+  \DataTypeTok{y =}\NormalTok{ desire,}
+  \DataTypeTok{xlab =} \StringTok{"Condition"}\NormalTok{,}
+  \DataTypeTok{ylab =} \StringTok{"Desire to kill an artrhopod"}\NormalTok{,}
+  \DataTypeTok{grouping.var =}\NormalTok{ region,}
+  \DataTypeTok{outlier.tagging =} \OtherTok{TRUE}\NormalTok{,}
+  \DataTypeTok{outlier.label =}\NormalTok{ education,}
+  \DataTypeTok{ggtheme =}\NormalTok{ ggthemes}\OperatorTok{::}\KeywordTok{theme_fivethirtyeight}\NormalTok{(),}
+  \DataTypeTok{ggstatsplot.layer =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{messages =} \OtherTok{FALSE}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1\linewidth]{./figures/paper-ggwithinstats2-1}
+
+\hypertarget{summary-of-tests-1}{%
+\subsubsection{Summary of tests}\label{summary-of-tests-1}}
+
+Following (within-subjects) tests are carried out for each type of
+analyses-
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\begin{minipage}[b]{0.26\columnwidth}\raggedright
+Type\strut
+\end{minipage} & \begin{minipage}[b]{0.07\columnwidth}\raggedright
+No.~of groups\strut
+\end{minipage} & \begin{minipage}[b]{0.59\columnwidth}\raggedright
+Test\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.26\columnwidth}\raggedright
+Parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textgreater{} 2\strut
+\end{minipage} & \begin{minipage}[t]{0.59\columnwidth}\raggedright
+One-way repeated measures ANOVA\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.26\columnwidth}\raggedright
+Non-parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textgreater{} 2\strut
+\end{minipage} & \begin{minipage}[t]{0.59\columnwidth}\raggedright
+Friedman test\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.26\columnwidth}\raggedright
+Robust\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textgreater{} 2\strut
+\end{minipage} & \begin{minipage}[t]{0.59\columnwidth}\raggedright
+Heteroscedastic one-way repeated measures ANOVA for trimmed means\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.26\columnwidth}\raggedright
+Bayes Factor\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textgreater{} 2\strut
+\end{minipage} & \begin{minipage}[t]{0.59\columnwidth}\raggedright
+One-way repeated measures ANOVA\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.26\columnwidth}\raggedright
+Parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+2\strut
+\end{minipage} & \begin{minipage}[t]{0.59\columnwidth}\raggedright
+Student's \emph{t}-test\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.26\columnwidth}\raggedright
+Non-parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+2\strut
+\end{minipage} & \begin{minipage}[t]{0.59\columnwidth}\raggedright
+Wilcoxon signed-rank test\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.26\columnwidth}\raggedright
+Robust\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+2\strut
+\end{minipage} & \begin{minipage}[t]{0.59\columnwidth}\raggedright
+Yuen's test on trimmed means for dependent samples\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.26\columnwidth}\raggedright
+Bayes Factor\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+2\strut
+\end{minipage} & \begin{minipage}[t]{0.59\columnwidth}\raggedright
+Student's \emph{t}-test\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+The omnibus effect in one-way ANOVA design can also be followed up with
+more focal pairwise comparison tests. Here is a summary of
+\emph{multiple pairwise comparison} tests supported in
+\emph{ggwithinstats}-
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+Type & Test & \emph{p}-value adjustment?\tabularnewline
+\midrule
+\endhead
+Parametric & Student's \emph{t}-test &
+\textcolor{ForestGreen}{Yes}\tabularnewline
+Non-parametric & Durbin-Conover test &
+\textcolor{ForestGreen}{Yes}\tabularnewline
+Robust & Yuen's trimmed means test &
+\textcolor{ForestGreen}{Yes}\tabularnewline
+Bayes Factor & \textcolor{red}{No} & \textcolor{red}{No}\tabularnewline
+\bottomrule
+\end{longtable}
+
+For more, see the \texttt{ggwithinstats} vignette:
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html}
+
+\hypertarget{ggscatterstats}{%
+\subsection{\texorpdfstring{\texttt{ggscatterstats}}{ggscatterstats}}\label{ggscatterstats}}
+
+This function creates a scatterplot with marginal distributions overlaid
+on the axes (from \texttt{ggExtra::ggMarginal}) and results from
+statistical tests in the subtitle:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{ggscatterstats}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ ggplot2}\OperatorTok{::}\NormalTok{msleep,}
+  \DataTypeTok{x =}\NormalTok{ sleep_rem,}
+  \DataTypeTok{y =}\NormalTok{ awake,}
+  \DataTypeTok{xlab =} \StringTok{"REM sleep (in hours)"}\NormalTok{,}
+  \DataTypeTok{ylab =} \StringTok{"Amount of time spent awake (in hours)"}\NormalTok{,}
+  \DataTypeTok{title =} \StringTok{"Understanding mammalian sleep"}\NormalTok{,}
+  \DataTypeTok{messages =} \OtherTok{FALSE}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1\linewidth]{./figures/paper-ggscatterstats1-1}
+
+The available marginal distributions are-
+
+\begin{itemize}
+\tightlist
+\item
+  histograms
+\item
+  boxplots
+\item
+  density
+\item
+  violin
+\item
+  densigram (density + histogram)
+\end{itemize}
+
+Number of other arguments can be specified to modify this basic plot-
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# for reproducibility}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{# plot}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{ggscatterstats}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(}\DataTypeTok{.data =}\NormalTok{ ggstatsplot}\OperatorTok{::}\NormalTok{movies_long, genre }\OperatorTok{==}\StringTok{ "Action"}\NormalTok{),}
+  \DataTypeTok{x =}\NormalTok{ budget,}
+  \DataTypeTok{y =}\NormalTok{ rating,}
+  \DataTypeTok{type =} \StringTok{"robust"}\NormalTok{, }\CommentTok{# type of test that needs to be run}
+  \DataTypeTok{conf.level =} \FloatTok{0.99}\NormalTok{, }\CommentTok{# confidence level}
+  \DataTypeTok{xlab =} \StringTok{"Movie budget (in million/ US$)"}\NormalTok{, }\CommentTok{# label for x axis}
+  \DataTypeTok{ylab =} \StringTok{"IMDB rating"}\NormalTok{, }\CommentTok{# label for y axis}
+  \DataTypeTok{label.var =} \StringTok{"title"}\NormalTok{, }\CommentTok{# variable for labeling data points}
+  \DataTypeTok{label.expression =} \StringTok{"rating < 5 & budget > 100"}\NormalTok{, }\CommentTok{# expression that decides which points to label}
+  \DataTypeTok{line.color =} \StringTok{"yellow"}\NormalTok{, }\CommentTok{# changing regression line color line}
+  \DataTypeTok{title =} \StringTok{"Movie budget and IMDB rating (action)"}\NormalTok{, }\CommentTok{# title text for the plot}
+  \DataTypeTok{caption =} \KeywordTok{expression}\NormalTok{( }\CommentTok{# caption text for the plot}
+    \KeywordTok{paste}\NormalTok{(}\KeywordTok{italic}\NormalTok{(}\StringTok{"Note"}\NormalTok{), }\StringTok{": IMDB stands for Internet Movie DataBase"}\NormalTok{)}
+\NormalTok{  ),}
+  \DataTypeTok{ggtheme =}\NormalTok{ hrbrthemes}\OperatorTok{::}\KeywordTok{theme_ipsum_ps}\NormalTok{(), }\CommentTok{# choosing a different theme}
+  \DataTypeTok{ggstatsplot.layer =} \OtherTok{FALSE}\NormalTok{, }\CommentTok{# turn off ggstatsplot theme layer}
+  \DataTypeTok{marginal.type =} \StringTok{"density"}\NormalTok{, }\CommentTok{# type of marginal distribution to be displayed}
+  \DataTypeTok{xfill =} \StringTok{"#0072B2"}\NormalTok{, }\CommentTok{# color fill for x-axis marginal distribution}
+  \DataTypeTok{yfill =} \StringTok{"#009E73"}\NormalTok{, }\CommentTok{# color fill for y-axis marginal distribution}
+  \DataTypeTok{xalpha =} \FloatTok{0.6}\NormalTok{, }\CommentTok{# transparency for x-axis marginal distribution}
+  \DataTypeTok{yalpha =} \FloatTok{0.6}\NormalTok{, }\CommentTok{# transparency for y-axis marginal distribution}
+  \DataTypeTok{centrality.para =} \StringTok{"median"}\NormalTok{, }\CommentTok{# central tendency lines to be displayed}
+  \DataTypeTok{messages =} \OtherTok{FALSE} \CommentTok{# turn off messages and notes}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1\linewidth]{./figures/paper-ggscatterstats2-1}
+
+Additionally, there is also a \texttt{grouped\_} variant of this
+function that makes it easy to repeat the same operation across a
+\textbf{single} grouping variable. Also, note that, as opposed to the
+other functions, this function does not return a \texttt{ggplot} object
+and any modification you want to make can be made in advance using
+\texttt{ggplot.component} argument (available for all functions, but
+especially useful for this particular function):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# for reproducibility}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{# plot}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{grouped_ggscatterstats}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(}
+    \DataTypeTok{.data =}\NormalTok{ ggstatsplot}\OperatorTok{::}\NormalTok{movies_long,}
+\NormalTok{    genre }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Action"}\NormalTok{, }\StringTok{"Action Comedy"}\NormalTok{, }\StringTok{"Action Drama"}\NormalTok{, }\StringTok{"Comedy"}\NormalTok{)}
+\NormalTok{  ),}
+  \DataTypeTok{x =}\NormalTok{ rating,}
+  \DataTypeTok{y =}\NormalTok{ length,}
+  \DataTypeTok{label.var =}\NormalTok{ title,}
+  \DataTypeTok{label.expression =}\NormalTok{ length }\OperatorTok{>}\StringTok{ }\DecValTok{200}\NormalTok{,}
+  \DataTypeTok{conf.level =} \FloatTok{0.99}\NormalTok{,}
+  \DataTypeTok{k =} \DecValTok{3}\NormalTok{, }\CommentTok{# no. of decimal places in the results}
+  \DataTypeTok{xfill =} \StringTok{"#E69F00"}\NormalTok{,}
+  \DataTypeTok{yfill =} \StringTok{"#8b3058"}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"IMDB rating"}\NormalTok{,}
+  \DataTypeTok{grouping.var =}\NormalTok{ genre, }\CommentTok{# grouping variable}
+  \DataTypeTok{title.prefix =} \StringTok{"Movie genre"}\NormalTok{,}
+  \DataTypeTok{ggtheme =}\NormalTok{ ggplot2}\OperatorTok{::}\KeywordTok{theme_grey}\NormalTok{(),}
+  \DataTypeTok{ggplot.component =} \KeywordTok{list}\NormalTok{(}
+\NormalTok{    ggplot2}\OperatorTok{::}\KeywordTok{scale_x_continuous}\NormalTok{(}\DataTypeTok{breaks =} \KeywordTok{seq}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{1}\NormalTok{), }\DataTypeTok{limits =}\NormalTok{ (}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{9}\NormalTok{)))}
+\NormalTok{  ),}
+  \DataTypeTok{messages =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{nrow =} \DecValTok{2}\NormalTok{,}
+  \DataTypeTok{title.text =} \StringTok{"Relationship between movie length by IMDB ratings for different genres"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1\linewidth]{./figures/paper-ggscatterstats3-1}
+
+\hypertarget{summary-of-tests-2}{%
+\subsubsection{Summary of tests}\label{summary-of-tests-2}}
+
+Following tests are carried out for each type of analyses. Additionally,
+the correlation coefficients (and their confidence intervals) are used
+as effect sizes-
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+Type & Test & CI?\tabularnewline
+\midrule
+\endhead
+Parametric & Pearson's correlation coefficient &
+\textcolor{ForestGreen}{Yes}\tabularnewline
+Non-parametric & Spearman's rank correlation coefficient &
+\textcolor{ForestGreen}{Yes}\tabularnewline
+Robust & Percentage bend correlation coefficient &
+\textcolor{ForestGreen}{Yes}\tabularnewline
+Bayes Factor & Pearson's correlation coefficient &
+\textcolor{red}{No}\tabularnewline
+\bottomrule
+\end{longtable}
+
+For more, see the \texttt{ggscatterstats} vignette:
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html}
+
+\hypertarget{ggpiestats}{%
+\subsection{\texorpdfstring{\texttt{ggpiestats}}{ggpiestats}}\label{ggpiestats}}
+
+This function creates a pie chart for categorical or nominal variables
+with results from contingency table analysis (Pearson's \(\chi^2\) test
+for between-subjects design and McNemar's \(\chi^2\) test for
+within-subjects design) included in the subtitle of the plot. If only
+one categorical variable is entered, results from one-sample proportion
+test (i.e., a \(\chi^2\) goodness of fit test) will be displayed as a
+subtitle.
+
+Here is an example of a case where the theoretical question is about
+proportions for different levels of a single nominal variable:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# for reproducibility}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{# plot}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{ggpiestats}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ ggplot2}\OperatorTok{::}\NormalTok{msleep,}
+  \DataTypeTok{x =}\NormalTok{ vore,}
+  \DataTypeTok{title =} \StringTok{"Composition of vore types among mammals"}\NormalTok{,}
+  \DataTypeTok{messages =} \OtherTok{FALSE}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1\linewidth]{./figures/paper-ggpiestats1-1}
+
+This function can also be used to study an interaction between two
+categorical variables:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# for reproducibility}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{# plot}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{ggpiestats}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mtcars,}
+  \DataTypeTok{x =}\NormalTok{ am,}
+  \DataTypeTok{y =}\NormalTok{ cyl,}
+  \DataTypeTok{conf.level =} \FloatTok{0.99}\NormalTok{, }\CommentTok{# confidence interval for effect size measure}
+  \DataTypeTok{title =} \StringTok{"Dataset: Motor Trend Car Road Tests"}\NormalTok{, }\CommentTok{# title for the plot}
+  \DataTypeTok{stat.title =} \StringTok{"interaction: "}\NormalTok{, }\CommentTok{# title for the results}
+  \DataTypeTok{legend.title =} \StringTok{"Transmission"}\NormalTok{, }\CommentTok{# title for the legend}
+  \DataTypeTok{factor.levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"1 = manual"}\NormalTok{, }\StringTok{"0 = automatic"}\NormalTok{), }\CommentTok{# renaming the factor level names (`x`)}
+  \DataTypeTok{facet.wrap.name =} \StringTok{"No. of cylinders"}\NormalTok{, }\CommentTok{# name for the facetting variable}
+  \DataTypeTok{slice.label =} \StringTok{"counts"}\NormalTok{, }\CommentTok{# show counts data instead of percentages}
+  \DataTypeTok{package =} \StringTok{"ggsci"}\NormalTok{, }\CommentTok{# package from which color palette is to be taken}
+  \DataTypeTok{palette =} \StringTok{"default_jama"}\NormalTok{, }\CommentTok{# choosing a different color palette}
+  \DataTypeTok{caption =} \KeywordTok{substitute}\NormalTok{( }\CommentTok{# text for the caption}
+    \KeywordTok{paste}\NormalTok{(}\KeywordTok{italic}\NormalTok{(}\StringTok{"Source"}\NormalTok{), }\StringTok{": 1974 Motor Trend US magazine"}\NormalTok{)}
+\NormalTok{  ),}
+  \DataTypeTok{messages =} \OtherTok{FALSE} \CommentTok{# turn off messages and notes}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1\linewidth]{./figures/paper-ggpiestats2-1}
+
+In case of repeated measures designs, setting \texttt{paired\ =\ TRUE}
+will produce results from McNemar's \(\chi^2\) test-
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# for reproducibility}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{# data}
+\NormalTok{survey.data <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
+  \StringTok{`}\DataTypeTok{1st survey}\StringTok{`}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Approve"}\NormalTok{, }\StringTok{"Approve"}\NormalTok{, }\StringTok{"Disapprove"}\NormalTok{, }\StringTok{"Disapprove"}\NormalTok{),}
+  \StringTok{`}\DataTypeTok{2nd survey}\StringTok{`}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Approve"}\NormalTok{, }\StringTok{"Disapprove"}\NormalTok{, }\StringTok{"Approve"}\NormalTok{, }\StringTok{"Disapprove"}\NormalTok{),}
+  \StringTok{`}\DataTypeTok{Counts}\StringTok{`}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{794}\NormalTok{, }\DecValTok{150}\NormalTok{, }\DecValTok{86}\NormalTok{, }\DecValTok{570}\NormalTok{),}
+  \DataTypeTok{check.names =} \OtherTok{FALSE}
+\NormalTok{)}
+
+\CommentTok{# plot}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{ggpiestats}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ survey.data,}
+  \DataTypeTok{x =} \StringTok{`}\DataTypeTok{1st survey}\StringTok{`}\NormalTok{,}
+  \DataTypeTok{y =} \StringTok{`}\DataTypeTok{2nd survey}\StringTok{`}\NormalTok{,}
+  \DataTypeTok{counts =}\NormalTok{ Counts,}
+  \DataTypeTok{paired =} \OtherTok{TRUE}\NormalTok{, }\CommentTok{# within-subjects design}
+  \DataTypeTok{conf.level =} \FloatTok{0.99}\NormalTok{, }\CommentTok{# confidence interval for effect size measure}
+  \DataTypeTok{package =} \StringTok{"wesanderson"}\NormalTok{,}
+  \DataTypeTok{palette =} \StringTok{"Royal1"}
+\NormalTok{)}
+\CommentTok{#> Note: 99% CI for effect size estimate was computed with 100 bootstrap samples.}
+\CommentTok{#> Note: Results from one-sample proportion tests for each level of the variable}
+\CommentTok{#> 2nd survey testing for equal proportions of the variable 1st survey.}
+\CommentTok{#> # A tibble: 2 x 10}
+\CommentTok{#>   `2nd survey` counts  perc N     Approve Disapprove `Chi-squared`    df}
+\CommentTok{#>   <fct>         <int> <dbl> <chr> <chr>   <chr>              <dbl> <dbl>}
+\CommentTok{#> 1 Disapprove      720   45  (n =~ 20.83%  79.17%              245      1}
+\CommentTok{#> 2 Approve         880   55. (n =~ 90.23%  9.77%               570.     1}
+\CommentTok{#> # ... with 2 more variables: `p-value` <dbl>, significance <chr>}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1\linewidth]{./figures/paper-ggpiestats3-1}
+
+Note that when a two-way table is present (i.e., when both \texttt{x}
+and \texttt{y} arguments are specified), \emph{p}-values for results
+from one-sample proportion tests are displayed in each facet in the form
+of asterisks with the following convention:
+
+\begin{itemize}
+\tightlist
+\item
+  \(***\): \(p < 0.001\)
+\item
+  \(**\): \(p < 0.01\)
+\item
+  \(*\): \(p < 0.05\)
+\item
+  \(ns\): \(p > 0.05\)
+\end{itemize}
+
+Additionally, there is also a \texttt{grouped\_} variant of this
+function that makes it easy to repeat the same operation across a
+\textbf{single} grouping variable:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# for reproducibility}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{# plot}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{grouped_ggpiestats}\NormalTok{(}
+\NormalTok{  dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(}
+    \DataTypeTok{.data =}\NormalTok{ ggstatsplot}\OperatorTok{::}\NormalTok{movies_long,}
+\NormalTok{    genre }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Action"}\NormalTok{, }\StringTok{"Action Comedy"}\NormalTok{, }\StringTok{"Action Drama"}\NormalTok{, }\StringTok{"Comedy"}\NormalTok{)}
+\NormalTok{  ),}
+  \DataTypeTok{x =}\NormalTok{ mpaa,}
+  \DataTypeTok{grouping.var =}\NormalTok{ genre, }\CommentTok{# grouping variable}
+  \DataTypeTok{title.prefix =} \StringTok{"Movie genre"}\NormalTok{, }\CommentTok{# prefix for the facetted title}
+  \DataTypeTok{label.text.size =} \DecValTok{3}\NormalTok{, }\CommentTok{# text size for slice labels}
+  \DataTypeTok{slice.label =} \StringTok{"both"}\NormalTok{, }\CommentTok{# show both counts and percentage data}
+  \DataTypeTok{perc.k =} \DecValTok{1}\NormalTok{, }\CommentTok{# no. of decimal places for percentages}
+  \DataTypeTok{palette =} \StringTok{"brightPastel"}\NormalTok{,}
+  \DataTypeTok{package =} \StringTok{"quickpalette"}\NormalTok{,}
+  \DataTypeTok{messages =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{nrow =} \DecValTok{2}\NormalTok{,}
+  \DataTypeTok{title.text =} \StringTok{"Composition of MPAA ratings for different genres"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1\linewidth]{./figures/paper-ggpiestats4-1}
+
+\hypertarget{summary-of-tests-3}{%
+\subsubsection{Summary of tests}\label{summary-of-tests-3}}
+
+Following tests are carried out for each type of analyses-
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+Type of data & Design & Test\tabularnewline
+\midrule
+\endhead
+Unpaired & \(n \times p\) contingency table & Pearson's \(\chi^{2}\)
+test\tabularnewline
+Paired & \(n \times p\) contingency table & McNemar's \(\chi^{2}\)
+test\tabularnewline
+Frequency & \(n \times 1\) contingency table & Goodness of fit
+(\(\chi^{2}\))\tabularnewline
+\bottomrule
+\end{longtable}
+
+Following effect sizes (and confidence intervals/CI) are available for
+each type of test-
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+Type & Effect size & CI?\tabularnewline
+\midrule
+\endhead
+Pearson's chi-squared test & Cramér's \emph{V} &
+\textcolor{ForestGreen}{Yes}\tabularnewline
+McNemar's test & Cohen's \emph{g} &
+\textcolor{ForestGreen}{Yes}\tabularnewline
+Goodness of fit & Cramér's \emph{V} &
+\textcolor{ForestGreen}{Yes}\tabularnewline
+\bottomrule
+\end{longtable}
+
+For more, see the \texttt{ggpiestats} vignette:
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
+
+\hypertarget{ggbarstats}{%
+\subsection{\texorpdfstring{\texttt{ggbarstats}}{ggbarstats}}\label{ggbarstats}}
+
+In case you are not a fan of pie charts (for very good reasons), you can
+alternatively use \texttt{ggbarstats} function which has a similar
+syntax-
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# for reproducibility}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{# plot}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{ggbarstats}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ ggstatsplot}\OperatorTok{::}\NormalTok{movies_long,}
+  \DataTypeTok{x =}\NormalTok{ mpaa,}
+  \DataTypeTok{y =}\NormalTok{ genre,}
+  \DataTypeTok{sampling.plan =} \StringTok{"jointMulti"}\NormalTok{,}
+  \DataTypeTok{title =} \StringTok{"MPAA Ratings by Genre"}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"movie genre"}\NormalTok{,}
+  \DataTypeTok{perc.k =} \DecValTok{1}\NormalTok{,}
+  \DataTypeTok{x.axis.orientation =} \StringTok{"slant"}\NormalTok{,}
+  \DataTypeTok{ggtheme =}\NormalTok{ hrbrthemes}\OperatorTok{::}\KeywordTok{theme_modern_rc}\NormalTok{(),}
+  \DataTypeTok{ggstatsplot.layer =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{ggplot.component =}\NormalTok{ ggplot2}\OperatorTok{::}\KeywordTok{theme}\NormalTok{(}\DataTypeTok{axis.text.x =}\NormalTok{ ggplot2}\OperatorTok{::}\KeywordTok{element_text}\NormalTok{(}\DataTypeTok{face =} \StringTok{"italic"}\NormalTok{)),}
+  \DataTypeTok{palette =} \StringTok{"Set2"}\NormalTok{,}
+  \DataTypeTok{messages =} \OtherTok{FALSE}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1\linewidth]{./figures/paper-ggbarstats1-1}
+
+And, needless to say, there is also a \texttt{grouped\_} variant of this
+function-
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# setup}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{# smaller dataset}
+\NormalTok{df <-}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(}
+  \DataTypeTok{.data =}\NormalTok{ forcats}\OperatorTok{::}\NormalTok{gss_cat,}
+\NormalTok{  race }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\StringTok{"White"}\NormalTok{),}
+\NormalTok{  relig }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Protestant"}\NormalTok{, }\StringTok{"Catholic"}\NormalTok{, }\StringTok{"None"}\NormalTok{),}
+  \OperatorTok{!}\NormalTok{partyid }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"No answer"}\NormalTok{, }\StringTok{"Don't know"}\NormalTok{, }\StringTok{"Other party"}\NormalTok{)}
+\NormalTok{)}
+
+\CommentTok{# plot}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{grouped_ggbarstats}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ df,}
+  \DataTypeTok{x =}\NormalTok{ relig,}
+  \DataTypeTok{y =}\NormalTok{ partyid,}
+  \DataTypeTok{grouping.var =}\NormalTok{ race,}
+  \DataTypeTok{title.prefix =} \StringTok{"Race"}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"Party affiliation"}\NormalTok{,}
+  \DataTypeTok{ggtheme =}\NormalTok{ ggthemes}\OperatorTok{::}\KeywordTok{theme_tufte}\NormalTok{(}\DataTypeTok{base_size =} \DecValTok{12}\NormalTok{),}
+  \DataTypeTok{ggstatsplot.layer =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{messages =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{title.text =} \StringTok{"Race, religion, and political affiliation"}\NormalTok{,}
+  \DataTypeTok{nrow =} \DecValTok{2}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1\linewidth]{./figures/paper-ggbarstats2-1}
+
+\hypertarget{summary-of-tests-4}{%
+\subsubsection{Summary of tests}\label{summary-of-tests-4}}
+
+This is identical to the \texttt{ggpiestats} function summary of tests.
+
+\hypertarget{gghistostats}{%
+\subsection{\texorpdfstring{\texttt{gghistostats}}{gghistostats}}\label{gghistostats}}
+
+In case you would like to see the distribution of a single variable and
+check if it is significantly different from a specified value with a one
+sample test, this function will let you do that.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# for reproducibility}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{# plot}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{gghistostats}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ iris, }\CommentTok{# dataframe from which variable is to be taken}
+  \DataTypeTok{x =}\NormalTok{ Sepal.Length, }\CommentTok{# numeric variable whose distribution is of interest}
+  \DataTypeTok{title =} \StringTok{"Distribution of Iris sepal length"}\NormalTok{, }\CommentTok{# title for the plot}
+  \DataTypeTok{caption =} \KeywordTok{substitute}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\KeywordTok{italic}\NormalTok{(}\StringTok{"Source:"}\NormalTok{, }\StringTok{"Ronald Fisher's Iris data set"}\NormalTok{))),}
+  \DataTypeTok{type =} \StringTok{"parametric"}\NormalTok{, }\CommentTok{# one sample t-test}
+  \DataTypeTok{conf.level =} \FloatTok{0.99}\NormalTok{, }\CommentTok{# changing confidence level for effect size}
+  \DataTypeTok{bar.measure =} \StringTok{"mix"}\NormalTok{, }\CommentTok{# what does the bar length denote}
+  \DataTypeTok{test.value =} \DecValTok{5}\NormalTok{, }\CommentTok{# default value is 0}
+  \DataTypeTok{test.value.line =} \OtherTok{TRUE}\NormalTok{, }\CommentTok{# display a vertical line at test value}
+  \DataTypeTok{test.value.color =} \StringTok{"#0072B2"}\NormalTok{, }\CommentTok{# color for the line for test value}
+  \DataTypeTok{centrality.para =} \StringTok{"mean"}\NormalTok{, }\CommentTok{# which measure of central tendency is to be plotted}
+  \DataTypeTok{centrality.color =} \StringTok{"darkred"}\NormalTok{, }\CommentTok{# decides color for central tendency line}
+  \DataTypeTok{binwidth =} \FloatTok{0.10}\NormalTok{, }\CommentTok{# binwidth value (experiment)}
+  \DataTypeTok{bf.prior =} \FloatTok{0.8}\NormalTok{, }\CommentTok{# prior width for computing bayes factor}
+  \DataTypeTok{messages =} \OtherTok{FALSE}\NormalTok{, }\CommentTok{# turn off the messages}
+  \DataTypeTok{ggtheme =}\NormalTok{ hrbrthemes}\OperatorTok{::}\KeywordTok{theme_ipsum_tw}\NormalTok{(), }\CommentTok{# choosing a different theme}
+  \DataTypeTok{ggstatsplot.layer =} \OtherTok{FALSE} \CommentTok{# turn off ggstatsplot theme layer}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1\linewidth]{./figures/paper-gghistostats1-1}
+
+Additionally, there is also a \texttt{grouped\_} variant of this
+function that makes it easy to repeat the same operation across a
+\textbf{single} grouping variable:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# for reproducibility}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{# plot}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{grouped_gghistostats}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(}
+    \DataTypeTok{.data =}\NormalTok{ ggstatsplot}\OperatorTok{::}\NormalTok{movies_long,}
+\NormalTok{    genre }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Action"}\NormalTok{, }\StringTok{"Action Comedy"}\NormalTok{, }\StringTok{"Action Drama"}\NormalTok{, }\StringTok{"Comedy"}\NormalTok{)}
+\NormalTok{  ),}
+  \DataTypeTok{x =}\NormalTok{ budget,}
+  \DataTypeTok{xlab =} \StringTok{"Movies budget (in million US$)"}\NormalTok{,}
+  \DataTypeTok{type =} \StringTok{"robust"}\NormalTok{, }\CommentTok{# use robust location measure}
+  \DataTypeTok{grouping.var =}\NormalTok{ genre, }\CommentTok{# grouping variable}
+  \DataTypeTok{normal.curve =} \OtherTok{TRUE}\NormalTok{, }\CommentTok{# superimpose a normal distribution curve}
+  \DataTypeTok{normal.curve.color =} \StringTok{"red"}\NormalTok{,}
+  \DataTypeTok{title.prefix =} \StringTok{"Movie genre"}\NormalTok{,}
+  \DataTypeTok{ggtheme =}\NormalTok{ ggthemes}\OperatorTok{::}\KeywordTok{theme_tufte}\NormalTok{(),}
+  \DataTypeTok{ggplot.component =} \KeywordTok{list}\NormalTok{( }\CommentTok{# modify the defaults from `ggstatsplot` for each plot}
+\NormalTok{    ggplot2}\OperatorTok{::}\KeywordTok{scale_x_continuous}\NormalTok{(}\DataTypeTok{breaks =} \KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{200}\NormalTok{, }\DecValTok{50}\NormalTok{), }\DataTypeTok{limits =}\NormalTok{ (}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{200}\NormalTok{)))}
+\NormalTok{  ),}
+  \DataTypeTok{messages =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{nrow =} \DecValTok{2}\NormalTok{,}
+  \DataTypeTok{title.text =} \StringTok{"Movies budgets for different genres"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1\linewidth]{./figures/paper-gghistostats4-1}
+
+\hypertarget{summary-of-tests-5}{%
+\subsubsection{Summary of tests}\label{summary-of-tests-5}}
+
+Following tests are carried out for each type of analyses-
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Type & Test\tabularnewline
+\midrule
+\endhead
+Parametric & One-sample Student's \emph{t}-test\tabularnewline
+Non-parametric & One-sample Wilcoxon test\tabularnewline
+Robust & One-sample percentile bootstrap\tabularnewline
+Bayes Factor & One-sample Student's \emph{t}-test\tabularnewline
+\bottomrule
+\end{longtable}
+
+Following effect sizes (and confidence intervals/CI) are available for
+each type of test-
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\begin{minipage}[b]{0.26\columnwidth}\raggedright
+Type\strut
+\end{minipage} & \begin{minipage}[b]{0.59\columnwidth}\raggedright
+Effect size\strut
+\end{minipage} & \begin{minipage}[b]{0.07\columnwidth}\raggedright
+CI?\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.26\columnwidth}\raggedright
+Parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.59\columnwidth}\raggedright
+Cohen's \emph{d}, Hedge's \emph{g} (central-and noncentral-\emph{t}
+distribution based)\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.26\columnwidth}\raggedright
+Non-parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.59\columnwidth}\raggedright
+\emph{r} (computed as \(Z/\sqrt{N}\))\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.26\columnwidth}\raggedright
+Robust\strut
+\end{minipage} & \begin{minipage}[t]{0.59\columnwidth}\raggedright
+\(M_{robust}\) (Robust location measure)\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.26\columnwidth}\raggedright
+Bayes Factor\strut
+\end{minipage} & \begin{minipage}[t]{0.59\columnwidth}\raggedright
+\textcolor{red}{No}\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{red}{No}\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+For more, including information about the variant of this function
+\texttt{grouped\_gghistostats}, see the \texttt{gghistostats} vignette:
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
+
+\hypertarget{ggdotplotstats}{%
+\subsection{\texorpdfstring{\texttt{ggdotplotstats}}{ggdotplotstats}}\label{ggdotplotstats}}
+
+This function is similar to \texttt{gghistostats}, but is intended to be
+used when the numeric variable also has a label.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# for reproducibility}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{# plot}
+\KeywordTok{ggdotplotstats}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(}\DataTypeTok{.data =}\NormalTok{ gapminder}\OperatorTok{::}\NormalTok{gapminder, continent }\OperatorTok{==}\StringTok{ "Asia"}\NormalTok{),}
+  \DataTypeTok{y =}\NormalTok{ country,}
+  \DataTypeTok{x =}\NormalTok{ lifeExp,}
+  \DataTypeTok{test.value =} \DecValTok{55}\NormalTok{,}
+  \DataTypeTok{test.value.line =} \OtherTok{TRUE}\NormalTok{,}
+  \DataTypeTok{test.line.labeller =} \OtherTok{TRUE}\NormalTok{,}
+  \DataTypeTok{test.value.color =} \StringTok{"red"}\NormalTok{,}
+  \DataTypeTok{centrality.para =} \StringTok{"median"}\NormalTok{,}
+  \DataTypeTok{centrality.k =} \DecValTok{0}\NormalTok{,}
+  \DataTypeTok{title =} \StringTok{"Distribution of life expectancy in Asian continent"}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"Life expectancy"}\NormalTok{,}
+  \DataTypeTok{messages =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{caption =} \KeywordTok{substitute}\NormalTok{(}
+    \KeywordTok{paste}\NormalTok{(}
+      \KeywordTok{italic}\NormalTok{(}\StringTok{"Source"}\NormalTok{),}
+      \StringTok{": Gapminder dataset from https://www.gapminder.org/"}
+\NormalTok{    )}
+\NormalTok{  )}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1\linewidth]{./figures/paper-ggdotplotstats1-1}
+
+As with the rest of the functions in this package, there is also a
+\texttt{grouped\_} variant of this function to facilitate looping the
+same operation for all levels of a single grouping variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# for reproducibility}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{# removing factor level with very few no. of observations}
+\NormalTok{df <-}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(}\DataTypeTok{.data =}\NormalTok{ ggplot2}\OperatorTok{::}\NormalTok{mpg, cyl }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"4"}\NormalTok{, }\StringTok{"6"}\NormalTok{))}
+
+\CommentTok{# plot}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{grouped_ggdotplotstats}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ df,}
+  \DataTypeTok{x =}\NormalTok{ cty,}
+  \DataTypeTok{y =}\NormalTok{ manufacturer,}
+  \DataTypeTok{xlab =} \StringTok{"city miles per gallon"}\NormalTok{,}
+  \DataTypeTok{ylab =} \StringTok{"car manufacturer"}\NormalTok{,}
+  \DataTypeTok{type =} \StringTok{"nonparametric"}\NormalTok{, }\CommentTok{# non-parametric test}
+  \DataTypeTok{grouping.var =}\NormalTok{ cyl, }\CommentTok{# grouping variable}
+  \DataTypeTok{test.value =} \FloatTok{15.5}\NormalTok{,}
+  \DataTypeTok{title.prefix =} \StringTok{"cylinder count"}\NormalTok{,}
+  \DataTypeTok{point.color =} \StringTok{"red"}\NormalTok{,}
+  \DataTypeTok{point.size =} \DecValTok{5}\NormalTok{,}
+  \DataTypeTok{point.shape =} \DecValTok{13}\NormalTok{,}
+  \DataTypeTok{test.value.line =} \OtherTok{TRUE}\NormalTok{,}
+  \DataTypeTok{ggtheme =}\NormalTok{ ggthemes}\OperatorTok{::}\KeywordTok{theme_par}\NormalTok{(),}
+  \DataTypeTok{messages =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{title.text =} \StringTok{"Fuel economy data"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1\linewidth]{./figures/paper-ggdotplotstats2-1}
+
+\hypertarget{summary-of-tests-6}{%
+\subsubsection{Summary of tests}\label{summary-of-tests-6}}
+
+This is identical to summary of tests for \texttt{gghistostats}.
+
+\hypertarget{ggcorrmat}{%
+\subsection{ggcorrmat}\label{ggcorrmat}}
+
+\texttt{ggcorrmat} makes a correlalogram (a matrix of correlation
+coefficients) with minimal amount of code. Just sticking to the defaults
+itself produces publication-ready correlation matrices. But, for the
+sake of exploring the available options, let's change some of the
+defaults. For example, multiple aesthetics-related arguments can be
+modified to change the appearance of the correlation matrix.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# for reproducibility}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{# as a default this function outputs a correlalogram plot}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{ggcorrmat}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ ggplot2}\OperatorTok{::}\NormalTok{msleep,}
+  \DataTypeTok{corr.method =} \StringTok{"robust"}\NormalTok{, }\CommentTok{# correlation method}
+  \DataTypeTok{sig.level =} \FloatTok{0.001}\NormalTok{, }\CommentTok{# threshold of significance}
+  \DataTypeTok{p.adjust.method =} \StringTok{"holm"}\NormalTok{, }\CommentTok{# p-value adjustment method for multiple comparisons}
+  \DataTypeTok{cor.vars =} \KeywordTok{c}\NormalTok{(sleep_rem, awake}\OperatorTok{:}\NormalTok{bodywt), }\CommentTok{# a range of variables can be selected}
+  \DataTypeTok{cor.vars.names =} \KeywordTok{c}\NormalTok{(}
+    \StringTok{"REM sleep"}\NormalTok{, }\CommentTok{# variable names}
+    \StringTok{"time awake"}\NormalTok{,}
+    \StringTok{"brain weight"}\NormalTok{,}
+    \StringTok{"body weight"}
+\NormalTok{  ),}
+  \DataTypeTok{matrix.type =} \StringTok{"upper"}\NormalTok{, }\CommentTok{# type of visualization matrix}
+  \DataTypeTok{colors =} \KeywordTok{c}\NormalTok{(}\StringTok{"#B2182B"}\NormalTok{, }\StringTok{"white"}\NormalTok{, }\StringTok{"#4D4D4D"}\NormalTok{),}
+  \DataTypeTok{title =} \StringTok{"Correlalogram for mammals sleep dataset"}\NormalTok{,}
+  \DataTypeTok{subtitle =} \StringTok{"sleep units: hours; weight units: kilograms"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1\linewidth]{./figures/paper-ggcorrmat1-1}
+
+Note that if there are \texttt{NA}s present in the selected variables,
+the legend will display minimum, median, and maximum number of pairs
+used for correlation tests.
+
+There is a \texttt{grouped\_} variant of this function that makes it
+easy to repeat the same operation across a \textbf{single} grouping
+variable:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# for reproducibility}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{# plot}
+\CommentTok{# let's use only 50% of the data to speed up the process}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{grouped_ggcorrmat}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(}
+    \DataTypeTok{.data =}\NormalTok{ ggstatsplot}\OperatorTok{::}\NormalTok{movies_long,}
+\NormalTok{    genre }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Action"}\NormalTok{, }\StringTok{"Action Comedy"}\NormalTok{, }\StringTok{"Action Drama"}\NormalTok{, }\StringTok{"Comedy"}\NormalTok{)}
+\NormalTok{  ),}
+  \DataTypeTok{cor.vars =}\NormalTok{ length}\OperatorTok{:}\NormalTok{votes,}
+  \DataTypeTok{corr.method =} \StringTok{"np"}\NormalTok{,}
+  \DataTypeTok{colors =} \KeywordTok{c}\NormalTok{(}\StringTok{"#cbac43"}\NormalTok{, }\StringTok{"white"}\NormalTok{, }\StringTok{"#550000"}\NormalTok{),}
+  \DataTypeTok{grouping.var =}\NormalTok{ genre, }\CommentTok{# grouping variable}
+  \DataTypeTok{digits =} \DecValTok{3}\NormalTok{, }\CommentTok{# number of digits after decimal point}
+  \DataTypeTok{title.prefix =} \StringTok{"Movie genre"}\NormalTok{,}
+  \DataTypeTok{messages =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{nrow =} \DecValTok{2}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1\linewidth]{./figures/paper-ggcorrmat3-1}
+
+\hypertarget{summary-of-tests-7}{%
+\subsubsection{Summary of tests}\label{summary-of-tests-7}}
+
+Following tests are carried out for each type of analyses. Additionally,
+the correlation coefficients (and their confidence intervals) are used
+as effect sizes-
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+Type & Test & CI?\tabularnewline
+\midrule
+\endhead
+Parametric & Pearson's correlation coefficient &
+\textcolor{ForestGreen}{Yes}\tabularnewline
+Non-parametric & Spearman's rank correlation coefficient &
+\textcolor{ForestGreen}{Yes}\tabularnewline
+Robust & Percentage bend correlation coefficient &
+\textcolor{red}{No}\tabularnewline
+Bayes Factor & Pearson's correlation coefficient &
+\textcolor{red}{No}\tabularnewline
+\bottomrule
+\end{longtable}
+
+For examples and more information, see the \texttt{ggcorrmat} vignette:
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html}
+
+\hypertarget{ggcoefstats}{%
+\subsection{\texorpdfstring{\texttt{ggcoefstats}}{ggcoefstats}}\label{ggcoefstats}}
+
+\texttt{ggcoefstats} creates a dot-and-whisker plot for regression
+models. Although the statistical models displayed in the plot may differ
+based on the class of models being investigated, there are few aspects
+of the plot that will be invariant across models:
+
+\begin{itemize}
+\item
+  The dot-whisker plot contains a dot representing the \textbf{estimate}
+  and their \textbf{confidence intervals} (\texttt{95\%} is the
+  default). The estimate can either be effect sizes (for tests that
+  depend on the \texttt{F} statistic) or regression coefficients (for
+  tests with \texttt{t} and \texttt{z} statistic), etc. The function
+  will, by default, display a helpful \texttt{x}-axis label that should
+  clear up what estimates are being displayed. The confidence intervals
+  can sometimes be asymmetric if bootstrapping was used.
+\item
+  The caption will always contain diagnostic information, if available,
+  about models that can be useful for model selection: The smaller the
+  Akaike's Information Criterion (\textbf{AIC}) and the Bayesian
+  Information Criterion (\textbf{BIC}) values, the ``better'' the model
+  is. Additionally, the higher the \textbf{log-likelihood} value the
+  ``better'' is the model fit.
+\item
+  The output of this function will be a \texttt{ggplot2} object and,
+  thus, it can be further modified (e.g., change themes, etc.) with
+  \texttt{ggplot2} functions.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# for reproducibility}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{# model}
+\NormalTok{mod <-}\StringTok{ }\NormalTok{stats}\OperatorTok{::}\KeywordTok{lm}\NormalTok{(}\DataTypeTok{formula =}\NormalTok{ mpg }\OperatorTok{~}\StringTok{ }\NormalTok{am }\OperatorTok{*}\StringTok{ }\NormalTok{cyl, }\DataTypeTok{data =}\NormalTok{ mtcars)}
+
+\CommentTok{# plot}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{ggcoefstats}\NormalTok{(mod)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1\linewidth]{./figures/paper-ggcoefstats1-1}
+
+This default plot can be further modified to one's liking with
+additional arguments (also, let's use a robust linear model instead of a
+simple linear model now):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# for reproducibility}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{# model}
+\NormalTok{mod <-}\StringTok{ }\NormalTok{MASS}\OperatorTok{::}\KeywordTok{rlm}\NormalTok{(}\DataTypeTok{formula =}\NormalTok{ mpg }\OperatorTok{~}\StringTok{ }\NormalTok{am }\OperatorTok{*}\StringTok{ }\NormalTok{cyl, }\DataTypeTok{data =}\NormalTok{ mtcars)}
+
+\CommentTok{# plot}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{ggcoefstats}\NormalTok{(}
+  \DataTypeTok{x =}\NormalTok{ mod,}
+  \DataTypeTok{point.color =} \StringTok{"red"}\NormalTok{,}
+  \DataTypeTok{point.shape =} \DecValTok{15}\NormalTok{,}
+  \DataTypeTok{vline.color =} \StringTok{"#CC79A7"}\NormalTok{,}
+  \DataTypeTok{vline.linetype =} \StringTok{"dotdash"}\NormalTok{,}
+  \DataTypeTok{stats.label.size =} \FloatTok{3.5}\NormalTok{,}
+  \DataTypeTok{stats.label.color =} \KeywordTok{c}\NormalTok{(}\StringTok{"#0072B2"}\NormalTok{, }\StringTok{"#D55E00"}\NormalTok{, }\StringTok{"darkgreen"}\NormalTok{),}
+  \DataTypeTok{title =} \StringTok{"Car performance predicted by transmission & cylinder count"}\NormalTok{,}
+  \DataTypeTok{subtitle =} \StringTok{"Source: 1974 Motor Trend US magazine"}\NormalTok{,}
+  \DataTypeTok{ggtheme =}\NormalTok{ hrbrthemes}\OperatorTok{::}\KeywordTok{theme_ipsum_ps}\NormalTok{(),}
+  \DataTypeTok{ggstatsplot.layer =} \OtherTok{FALSE}
+\NormalTok{) }\OperatorTok{+}\StringTok{ }\CommentTok{# further modification with the ggplot2 commands}
+\StringTok{  }\NormalTok{ggplot2}\OperatorTok{::}\KeywordTok{scale_y_discrete}\NormalTok{(}\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"transmission"}\NormalTok{, }\StringTok{"cylinders"}\NormalTok{, }\StringTok{"interaction"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\NormalTok{ggplot2}\OperatorTok{::}\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"regression coefficient"}\NormalTok{, }\DataTypeTok{y =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1\linewidth]{./figures/paper-ggcoefstats2-1}
+
+Most of the regression models that are supported in the \texttt{broom}
+and \texttt{broom.mixed} packages with \texttt{tidy} and \texttt{glance}
+methods are also supported by \texttt{ggcoefstats}. For example-
+
+\texttt{aareg}, \texttt{anova}, \texttt{aov}, \texttt{aovlist},
+\texttt{Arima}, \texttt{bigglm}, \texttt{biglm}, \texttt{brmsfit},
+\texttt{btergm}, \texttt{cch}, \texttt{clm}, \texttt{clmm},
+\texttt{confusionMatrix}, \texttt{coxph}, \texttt{drc},
+\texttt{emmGrid}, \texttt{epi.2by2}, \texttt{ergm}, \texttt{felm},
+\texttt{fitdistr}, \texttt{glmerMod}, \texttt{glmmTMB}, \texttt{gls},
+\texttt{gam}, \texttt{Gam}, \texttt{gamlss}, \texttt{garch},
+\texttt{glm}, \texttt{glmmadmb}, \texttt{glmmPQL}, \texttt{glmmTMB},
+\texttt{glmRob}, \texttt{glmrob}, \texttt{gmm}, \texttt{ivreg},
+\texttt{lm}, \texttt{lm.beta}, \texttt{lmerMod}, \texttt{lmodel2},
+\texttt{lmRob}, \texttt{lmrob}, \texttt{mcmc}, \texttt{MCMCglmm},
+\texttt{mediate}, \texttt{mjoint}, \texttt{mle2}, \texttt{mlm},
+\texttt{multinom}, \texttt{negbin}, \texttt{nlmerMod}, \texttt{nlrq},
+\texttt{nls}, \texttt{orcutt}, \texttt{plm}, \texttt{polr},
+\texttt{ridgelm}, \texttt{rjags}, \texttt{rlm}, \texttt{rlmerMod},
+\texttt{rq}, \texttt{speedglm}, \texttt{speedlm}, \texttt{stanreg},
+\texttt{survreg}, \texttt{svyglm}, \texttt{svyolr}, \texttt{svyglm},
+etc.
+
+Although not shown here, this function can also be used to carry out
+both frequentist and Bayesian random-effects meta-analysis.
+
+For a more exhaustive account of this function, see the associated
+vignette-
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}
+
+\hypertarget{combine_plots}{%
+\subsection{combine\_plots}\label{combine_plots}}
+
+\texttt{ggstatsplot} contains a helper function \texttt{combine\_plots}
+to combine multiple plots, which can be useful for combining a list of
+plots produced with \texttt{purrr}. This is a wrapper around
+\texttt{cowplot::plot\_grid} and lets you combine multiple plots and add
+a combination of title, caption, and annotation texts with suitable
+defaults.
+
+For examples (both with \texttt{plyr} and \texttt{purrr}), see the
+associated vignette-
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html}
+
+\hypertarget{working-with-custom-plots}{%
+\subsection{Working with custom plots}\label{working-with-custom-plots}}
+
+Sometimes you may not like the defaults in a plot produced by
+\texttt{ggstatsplot}. In such cases, you can use other custom plots
+(from \texttt{ggplot2} or other graphics packages in \texttt{R}) and
+still use \texttt{ggstatsplot} functions to display results from
+relevant statistical test.
+
+For example, in the following chunk, we will create plot
+(\emph{pirateplot}) using \texttt{yarrr} package and use
+\texttt{ggstatsplot} function for extracting results.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# for reproducibility}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{# loading the needed libraries}
+\KeywordTok{library}\NormalTok{(yarrr)}
+\KeywordTok{library}\NormalTok{(ggstatsplot)}
+
+\CommentTok{# using `ggstatsplot` to get call with statistical results}
+\NormalTok{stats_results <-}
+\StringTok{  }\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{ggbetweenstats}\NormalTok{(}
+    \DataTypeTok{data =}\NormalTok{ ChickWeight,}
+    \DataTypeTok{x =}\NormalTok{ Time,}
+    \DataTypeTok{y =}\NormalTok{ weight,}
+    \DataTypeTok{return =} \StringTok{"subtitle"}\NormalTok{,}
+    \DataTypeTok{messages =} \OtherTok{FALSE}
+\NormalTok{  )}
+
+\CommentTok{# using `yarrr` to create plot}
+\NormalTok{yarrr}\OperatorTok{::}\KeywordTok{pirateplot}\NormalTok{(}
+  \DataTypeTok{formula =}\NormalTok{ weight }\OperatorTok{~}\StringTok{ }\NormalTok{Time,}
+  \DataTypeTok{data =}\NormalTok{ ChickWeight,}
+  \DataTypeTok{theme =} \DecValTok{1}\NormalTok{,}
+  \DataTypeTok{main =}\NormalTok{ stats_results}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1\linewidth]{./figures/paper-pirateplot-1}
+
+\hypertarget{graphic-design-principles}{%
+\section{Graphic design principles}\label{graphic-design-principles}}
+
+\hypertarget{graphical-excellence}{%
+\subsection{Graphical excellence}\label{graphical-excellence}}
+
+Graphical excellence consists of communicating complex ideas with
+clarity and in a way that the viewer understands the greatest number of
+ideas in a short amount of time all the while not quoting the data out
+of context. The package follows the principles for \emph{graphical
+integrity} (({\textbf{???}})):
+
+\begin{itemize}
+\item
+  The physical representation of numbers is proportional to the
+  numerical quantities they represent (e.g., Figure-1 and Figure-2 show
+  how means (in \texttt{ggbetweenstats}) or percentages
+  (\texttt{ggpiestats}) are proportional to the vertical distance or the
+  area, respectively).
+\item
+  All important events in the data have clear, detailed, and thorough
+  labeling (e.g., Figure-1 plot shows how \texttt{ggbetweenstats} labels
+  means, sample size information, outliers, and pairwise comparisons;
+  same can be appreciated for \texttt{ggpiestats} in Figure-2 and
+  \texttt{gghistostats} in Figure-5). Note that data labels in the data
+  region are designed in a way that they don't interfere with our
+  ability to assess the overall pattern of the data (Cleveland, 1985;
+  p.44-45). This is achieved by using \texttt{ggrepel} package to place
+  labels in a way that reduces their visual prominence.
+\item
+  None of the plots have \emph{design} variation (e.g., abrupt change in
+  scales) over the surface of a same graphic because this can lead to a
+  false impression about variation in \emph{data}.
+\item
+  The number of information-carrying dimensions never exceed the number
+  of dimensions in the data (e.g., using area to show one-dimensional
+  data).
+\item
+  All plots are designed to have no \textbf{chartjunk} (like moiré
+  vibrations, fake perspective, dark grid lines, etc.) (Tufte, 2001,
+  Chapter 5).
+\end{itemize}
+
+There are some instances where \texttt{ggstatsplot} graphs don't follow
+principles of clean graphics, as formulated in the Tufte theory of data
+graphics (Tufte, 2001, Chapter 4). The theory has four key principles:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Above all else show the data.
+\item
+  Maximize the data-ink ratio.
+\item
+  Erase non-data-ink.
+\item
+  Erase redundant data-ink, within reason.
+\end{enumerate}
+
+In particular, default plots in \texttt{ggstatsplot} can sometimes
+violate one of the principles from 2-4. According to these principles,
+every bit of ink should have reason for its inclusion in the graphic and
+should convey some new information to the viewer. If not, such ink
+should be removed. One instance of this is bilateral symmetry of data
+measures. For example, in Figure-1, we can see that both the box and
+violin plots are mirrored, which consumes twice the space in the graphic
+without adding any new information. But this redundancy is tolerated for
+the sake of beauty that such symmetrical shapes can bring to the
+graphic. Even Tufte admits that efficiency is but one consideration in
+the design of statistical graphics (Tufte, 2001, p.~137). Additionally,
+these principles were formulated in an era in which computer graphics
+had yet to revolutionize the ease with which graphics could be produced
+and thus some of the concerns about minimizing data-ink for easier
+production of graphics are not as relevant as they were.
+
+\hypertarget{statistical-variation}{%
+\subsection{Statistical variation}\label{statistical-variation}}
+
+One of the important functions of a plot is to show the variation in the
+data, which comes in two forms:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Measurement noise}: In \texttt{ggstatsplot}, the actual
+  variation in measurements is shown by plotting a combination of
+  (jittered) raw data points with a boxplot laid on top (Figure-1) or a
+  histogram (Figure-5). None of the plots, where empirical distribution
+  of the data is concerned, show the sample standard deviation because
+  they are poor at conveying information about limits of the sample and
+  presence of outliers (Cleveland, 1985, p.220).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# for reproducibility}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{# plot}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{gghistostats}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ morley,}
+  \DataTypeTok{x =}\NormalTok{ Speed,}
+  \DataTypeTok{test.value =} \DecValTok{792}\NormalTok{,}
+  \DataTypeTok{test.value.line =} \OtherTok{TRUE}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"Speed of light (km/sec, with 299000 subtracted)"}\NormalTok{,}
+  \DataTypeTok{title =} \StringTok{"Figure-5: Distribution of Speed of light"}\NormalTok{,}
+  \DataTypeTok{caption =} \StringTok{"Note: Data collected across 5 experiments (20 measurements each)"}\NormalTok{,}
+  \DataTypeTok{messages =} \OtherTok{FALSE}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\includegraphics[width=1\linewidth]{./figures/paper-example5-1} \caption{**Figure-5**. Distribution of a variable shown using `gghistostats`.}\label{fig:example5}
+\end{figure}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Sample-to-sample statistic variation}: Although,
+  traditionally, this variation has been shown using the standard error
+  of the mean (SEM) of the statistic, \texttt{ggstatsplot} plots instead
+  use 95\% confidence intervals (e.g., Figure-6). This is because the
+  interval formed by error bars correspond to a 68\% confidence
+  interval, which is not a particularly interesting interval (Cleveland,
+  1985, p.222-225).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# for reproducibility}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{# creating model object}
+\NormalTok{mod <-}\StringTok{ }\NormalTok{lme4}\OperatorTok{::}\KeywordTok{lmer}\NormalTok{(}
+  \DataTypeTok{formula =}\NormalTok{ total.fruits }\OperatorTok{~}\StringTok{ }\NormalTok{nutrient }\OperatorTok{+}\StringTok{ }\NormalTok{rack }\OperatorTok{+}\StringTok{ }\NormalTok{(nutrient }\OperatorTok{|}\StringTok{ }\NormalTok{popu }\OperatorTok{/}\StringTok{ }\NormalTok{gen),}
+  \DataTypeTok{data =}\NormalTok{ lme4}\OperatorTok{::}\NormalTok{Arabidopsis}
+\NormalTok{)}
+\CommentTok{#> boundary (singular) fit: see ?isSingular}
+
+\CommentTok{# plot}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{ggcoefstats}\NormalTok{(}
+  \DataTypeTok{x =}\NormalTok{ mod,}
+  \DataTypeTok{p.kr =} \OtherTok{FALSE}
+\NormalTok{)}
+\CommentTok{#> Computing p-values via Wald-statistics approximation (treating t as Wald z).}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\includegraphics[width=1\linewidth]{./figures/paper-example6-1} \caption{**Figure-6**. Sample-to-sample variation in regression estimates is displayed using confidence intervals in `ggcoefstats`.}\label{fig:example6}
+\end{figure}
+
+\hypertarget{statistical-analysis}{%
+\section{Statistical analysis}\label{statistical-analysis}}
+
+As an extension of \texttt{ggplot2}, \texttt{ggstatsplot} has the same
+expectations about the structure of the data. More specifically,
+
+\begin{itemize}
+\item
+  The \texttt{data} should be an object of class \texttt{data.frame} (a
+  \texttt{tibble} dataframe will also work).
+\item
+  The data should be organized following the principles of \emph{tidy
+  data}, which specify how statistical structure of a data frame
+  (variables and observations) should be mapped to physical structure
+  (columns and rows). More specifically, tidy data means all variables
+  have their own columns and each row corresponds to a unique
+  observation (Wickham, 2014).
+\item
+  All \texttt{ggstatsplot} functions remove \texttt{NA}s from variables
+  of interest (similar to \texttt{ggplot2}; Wickham, 2016, p.207) in the
+  data and display total sample size (\emph{n}, either observations for
+  between-subjects or pairs for within-subjects designs) in the subtitle
+  to inform the user/reader about the number of observations included
+  for both the statistical analysis and the visualization. But, when
+  sample sizes differ \emph{across} tests in the same function,
+  \texttt{ggstatsplot} makes an effort to inform the user of this
+  aspect. For example, \texttt{ggcorrmat} features several correlation
+  test pairs and, depending on variables in a given pair, the sample
+  sizes may vary (Figure-4).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{# creating a new dataset without any NAs in variables of interest}
+\NormalTok{msleep_no_na <-}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(}
+    \DataTypeTok{.data =}\NormalTok{ ggplot2}\OperatorTok{::}\NormalTok{msleep,}
+    \OperatorTok{!}\KeywordTok{is.na}\NormalTok{(sleep_rem), }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(awake), }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(brainwt), }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(bodywt)}
+\NormalTok{  )}
+
+\CommentTok{# variable names vector}
+\NormalTok{var_names <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"REM sleep"}\NormalTok{, }\StringTok{"time awake"}\NormalTok{, }\StringTok{"brain weight"}\NormalTok{, }\StringTok{"body weight"}\NormalTok{)}
+
+\CommentTok{# combining two plots using helper function in `ggstatsplot`}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{combine_plots}\NormalTok{(}
+  \CommentTok{# plot *without* any NAs}
+\NormalTok{  ggstatsplot}\OperatorTok{::}\KeywordTok{ggcorrmat}\NormalTok{(}
+    \DataTypeTok{data =}\NormalTok{ msleep_no_na,}
+    \DataTypeTok{p.adjust.method =} \StringTok{"holm"}\NormalTok{,}
+    \DataTypeTok{cor.vars =} \KeywordTok{c}\NormalTok{(sleep_rem, awake}\OperatorTok{:}\NormalTok{bodywt),}
+    \DataTypeTok{cor.vars.names =}\NormalTok{ var_names,}
+    \DataTypeTok{matrix.type =} \StringTok{"upper"}\NormalTok{,}
+    \DataTypeTok{colors =} \KeywordTok{c}\NormalTok{(}\StringTok{"#B2182B"}\NormalTok{, }\StringTok{"white"}\NormalTok{, }\StringTok{"#4D4D4D"}\NormalTok{),}
+    \DataTypeTok{title =} \StringTok{"Correlalogram for mammals sleep dataset"}\NormalTok{,}
+    \DataTypeTok{subtitle =} \StringTok{"sleep units: hours; weight units: kilograms"}\NormalTok{,}
+    \DataTypeTok{messages =} \OtherTok{FALSE}
+\NormalTok{  ),}
+  \CommentTok{# plot *with* NAs}
+\NormalTok{  ggstatsplot}\OperatorTok{::}\KeywordTok{ggcorrmat}\NormalTok{(}
+    \DataTypeTok{data =}\NormalTok{ ggplot2}\OperatorTok{::}\NormalTok{msleep,}
+    \DataTypeTok{p.adjust.method =} \StringTok{"holm"}\NormalTok{,}
+    \DataTypeTok{cor.vars =} \KeywordTok{c}\NormalTok{(sleep_rem, awake}\OperatorTok{:}\NormalTok{bodywt),}
+    \DataTypeTok{cor.vars.names =}\NormalTok{ var_names,}
+    \DataTypeTok{matrix.type =} \StringTok{"upper"}\NormalTok{,}
+    \DataTypeTok{colors =} \KeywordTok{c}\NormalTok{(}\StringTok{"#B2182B"}\NormalTok{, }\StringTok{"white"}\NormalTok{, }\StringTok{"#4D4D4D"}\NormalTok{),}
+    \DataTypeTok{title =} \StringTok{"Correlalogram for mammals sleep dataset"}\NormalTok{,}
+    \DataTypeTok{subtitle =} \StringTok{"sleep units: hours; weight units: kilograms"}\NormalTok{,}
+    \DataTypeTok{messages =} \OtherTok{FALSE}
+\NormalTok{  ),}
+  \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"(a)"}\NormalTok{, }\StringTok{"(b)"}\NormalTok{),}
+  \DataTypeTok{nrow =} \DecValTok{1}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\includegraphics[width=1\linewidth]{./figures/paper-example4-1} \caption{**Figure-4**. `ggstatsplot` functions remove `NA`s from variables of interest and display total sample size *n*, but they can give more nuanced information about sample sizes when *n* differs across tests. For example, `ggcorrmat` will display (a) only one total sample size once when no `NA`s present, but (b) will instead show minimum, median, and maximum sample sizes across all correlation tests when `NA`s are present across correlation variables.}\label{fig:example4}
+\end{figure}
+
+\hypertarget{summary-of-statistical-tests-and-effect-sizes}{%
+\section{Summary of statistical tests and effect
+sizes}\label{summary-of-statistical-tests-and-effect-sizes}}
+
+\hypertarget{statistical-reporting}{%
+\subsection{Statistical reporting}\label{statistical-reporting}}
+
+For \textbf{all} statistical tests reported in the plots, the default
+template abides by the
+\href{https://my.ilstu.edu/~jhkahn/apastats.html}{APA} gold standard for
+statistical reporting. For example, here are results from Yuen's test
+for trimmed means (robust \emph{t}-test):
+
+\begin{figure}
+\centering
+\includegraphics{figures/stats_reporting_format.png}
+\caption{Template for reporting statistical details}
+\end{figure}
+
+Here is a summary table of all the statistical tests currently supported
+across various functions:
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+\begin{minipage}[b]{0.20\columnwidth}\raggedright
+Functions\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\raggedright
+Type\strut
+\end{minipage} & \begin{minipage}[b]{0.31\columnwidth}\raggedright
+Test\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\raggedright
+Effect size\strut
+\end{minipage} & \begin{minipage}[b]{0.07\columnwidth}\raggedright
+95\% CI available?\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggbetweenstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Student's and Welch's \emph{t}-test\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+Cohen's \emph{d}, Hedge's \emph{g}\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggbetweenstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Fisher's and Welch's one-way ANOVA\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\[\eta^2, \eta^2_p, \omega^2, \omega^2_p\]\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggbetweenstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Non-parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Mann-Whitney \emph{U}-test\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\emph{r}\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggbetweenstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Non-parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Kruskal-Wallis Rank Sum Test\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\[\epsilon^2\]\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggbetweenstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Robust\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Yuen's test for trimmed means\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\[\xi\]\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggbetweenstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Robust\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Heteroscedastic one-way ANOVA for trimmed means\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\[\xi\]\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggwithinstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Student's \emph{t}-test\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+Cohen's \emph{d}, Hedge's \emph{g}\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggwithinstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Fisher's one-way repeated measures ANOVA\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\[\eta^2_p, \omega^2\]\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggwithinstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Non-parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Wilcoxon signed-rank test\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\emph{r}\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggwithinstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Non-parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Friedman test\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\[W_{Kendall}\]\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggwithinstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Robust\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Yuen's test on trimmed means for dependent samples\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\[\xi\]\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggwithinstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Robust\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Heteroscedastic one-way repeated measures ANOVA for trimmed means\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\textcolor{red}{$\times$}\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{red}{$\times$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggpiestats}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\[\text{Pearson's}~ \chi^2 ~\text{test}\]\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+Cramér's \emph{V}\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggpiestats}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+McNemar's test\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+Cohen's \emph{g}\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggpiestats}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+One-sample proportion test\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+Cramér's \emph{V}\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggscatterstats} and \texttt{ggcorrmat}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Pearson's \emph{r}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\emph{r}\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggscatterstats} and \texttt{ggcorrmat}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Non-parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\[\text{Spearman's}~ \rho\]\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\[\rho\]\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggscatterstats}and \texttt{ggcorrmat}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Robust\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Percentage bend correlation\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\emph{r}\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{gghistostats} and \texttt{ggdotplotstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+One-sample \emph{t}-test\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+Cohen's \emph{d}, Hedge's \emph{g}\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{gghistostats}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Non-parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+One-sample Wilcoxon signed rank test\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\emph{r}\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{gghistostats} and \texttt{ggdotplotstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Robust\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+One-sample percentile bootstrap\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+robust estimator\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{gghistostats} and \texttt{ggdotplotstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Regression models\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\[\beta\]\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{reporting-results}{%
+\subsection{Reporting results}\label{reporting-results}}
+
+The default setting in \texttt{ggstatsplot} is to produce plots with
+statistical details included. Most often than not, the results are
+displayed as a \texttt{subtitle} in the plot. Great care has been taken
+into which details are included in statistical reporting and why.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{APA guidelines} (APA, 2009) are followed (for the most part)
+  by default:\\
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Percentages are displayed with no decimal places (Figure-2).
+\item
+  Correlations, \emph{t}-tests, and \(\chi^2\)-tests are reported with
+  the degrees of freedom in parentheses and the significance level
+  (Figure-2, Figure-3b, Figure-5).
+\item
+  ANOVAs are reported with two degrees of freedom and the significance
+  level (Figure-1).
+\item
+  Regression results are presented with the unstandardized or
+  standardized estimate (beta), whichever was specified by the user,
+  along with the statistic (depending on the model, this can be a
+  \emph{t} or \emph{z} statistic) and the corresponding significance
+  level (Figure-6).
+\item
+  With the exception of \emph{p}-values, most statistics are rounded to
+  two decimal places by default.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Default statistical tests:
+\item
+  Dealing with \textbf{null results}:
+\item
+  Avoiding the \textbf{``p-value error''}:\\
+  The \emph{p}-value indexes the probability that the researchers have
+  falsely rejected a true null hypothesis (Type I error, i.e.) and can
+  rarely be \emph{exactly} 0. And yet over 97,000 manuscripts on Google
+  Scholar report the \emph{p}-value to be \texttt{p\ =\ 0.000}
+  (Lilienfeld et al., 2015), putatively due to relying on default
+  computer outputs. All \emph{p}-values displayed in
+  \texttt{ggstatsplot} plots avoid this mistake. Anything less than
+  \texttt{p\ \textless{}\ 0.001} is displayed as such (e.g, Figure-1).
+  The package deems it unimportant how infinitesimally small the
+  \emph{p}-values are and, instead, puts emphasis on the effect size
+  magnitudes and their 95\% CIs.
+\end{enumerate}
+
+\hypertarget{usage-and-syntax-simplicity}{%
+\section{Usage and syntax
+simplicity}\label{usage-and-syntax-simplicity}}
+
+\hypertarget{overall-consistency-in-api}{%
+\subsection{Overall consistency in
+API}\label{overall-consistency-in-api}}
+
+Attempt has been made to make the application program interface (API)
+consistent enough that no struggle is expected while thinking about
+specifying function calls-
+
+\begin{itemize}
+\tightlist
+\item
+  When a given function depends on variables in a dataframe,
+  \texttt{data} argument must always be specified.
+\item
+  Often, package functions relevant for between-subjects versus
+  within-subjects design expect tidy/long versus Cartesian/wide format
+  data, respectively. \texttt{ggstatsplot} functions consistently expect
+  tidy/long form data.
+\item
+  All functions accept both quoted (\texttt{x\ =\ "var1"}) and unquoted
+  (\texttt{x\ =\ var1}) arguments.
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics{figures/arguments.png}
+\caption{Consistent API}
+\end{figure}
+
+These set principles combined with the fact that almost all functions
+produce publication-ready plots that require very few arguments if one
+finds the aesthetic and statistical defaults satisfying make the syntax
+much less cognitively demanding and easy to remember/reconstruct.
+
+\hypertarget{helpful-messages-and-aesthetic-modifications}{%
+\subsection{Helpful messages and aesthetic
+modifications}\label{helpful-messages-and-aesthetic-modifications}}
+
+\texttt{ggstatsplot} is a very chatty package and will by default print
+helpful notes on assumptions about statistical tests, warnings, etc. If
+you don't want your console to be cluttered with such messages, they can
+be turned off by setting argument \texttt{messages\ =\ FALSE} in the
+function call.
+
+All relevant functions in \texttt{ggstatsplot} have a \texttt{return}
+argument which can be used to not only return plots (which is the
+default), but also to return a \texttt{subtitle} or \texttt{caption},
+which are objects of type \texttt{call} and can be used to display
+statistical details in conjunction with a custom plot and at a custom
+location in the plot.
+
+Additionally, all functions share the \texttt{ggtheme} and
+\texttt{palette} arguments that can be used to specify your favorite
+\texttt{ggplot} theme and color palette.
+
+\hypertarget{appendix}{%
+\section{Appendix}\label{appendix}}
+
+\hypertarget{appendix-a-documentation}{%
+\subsection{Appendix A: Documentation}\label{appendix-a-documentation}}
+
+There are three main documents one can rely on to learn how to use
+\texttt{ggstatsplot}:
+
+\begin{itemize}
+\item
+  \textbf{Presentation}: The quickest (and the most fun) way to get an
+  overview of the philosophy behind this package and the offered
+  functionality is to go through the following slides:
+  \url{https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html\#1}
+\item
+  \textbf{Manual}:\\
+  The \texttt{CRAN} reference manual provides detailed documentation
+  about arguments for each function and examples:
+  \url{https://cran.r-project.org/web/packages/ggstatsplot/ggstatsplot.pdf}
+\item
+  \textbf{Vignettes}:\\
+  Vignettes contain probably the most detailed exposition. Every single
+  function in \texttt{ggstatsplot} has an associated vignette which
+  describes in depth how to use the function and modify the defaults to
+  customize the plot to your liking. All these vignettes can be accessed
+  from the package website:
+  \url{https://indrajeetpatil.github.io/ggstatsplot/articles/}
+\end{itemize}
+
+\hypertarget{appendix-b-suggestions}{%
+\subsection{Appendix B: Suggestions}\label{appendix-b-suggestions}}
+
+If you find any bugs or have any suggestions/remarks, please file an
+issue on \texttt{GitHub} repository for this package:
+\url{https://github.com/IndrajeetPatil/ggstatsplot/issues}
+
+\hypertarget{contributing}{%
+\subsection{Contributing}\label{contributing}}
+
+\texttt{ggstatsplot} is happy to receive bug reports, suggestions,
+questions, and (most of all) contributions to fix problems and add
+features. Pull Requests for contributions are encouraged.
+
+Here are some simple ways in which one can contribute (in the increasing
+order of commitment):
+
+\begin{itemize}
+\item
+  Read and correct any inconsistencies in the
+  \href{https://indrajeetpatil.github.io/ggstatsplot/}{documentation}
+\item
+  Raise issues about bugs or wanted features
+\item
+  Review code
+\item
+  Add new functionality (in the form of new plotting functions or
+  helpers for preparing subtitles)
+\end{itemize}
+
+Please note that this project is released with a
+\href{https://github.com/IndrajeetPatil/ggstatsplot/blob/master/CODE_OF_CONDUCT.md}{Contributor
+Code of Conduct}. By participating in this project you agree to abide by
+its terms.
+
+\hypertarget{appendix-d-session-information}{%
+\subsection{Appendix D: Session
+information}\label{appendix-d-session-information}}
+
+For reproducibility purposes, the details about the session information
+in which this document was rendered, see-
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html}
+
+\hypertarget{references}{%
+\section*{References}\label{references}}
+\addcontentsline{toc}{section}{References}
+
+\hypertarget{refs}{}
+\leavevmode\hypertarget{ref-nuijtenPrevalenceStatisticalReporting2016}{}%
+Nuijten, M. B., Hartgerink, C. H. J., van Assen, M. A. L. M., Epskamp,
+S., \& Wicherts, J. M. (2016). The prevalence of statistical reporting
+errors in psychology (19852013). \emph{Behavior Research Methods},
+\emph{48}(4), 1205--1226.
+\url{https://doi.org/10.3758/s13428-015-0664-2}
+
+
+\end{document}
