@@ -25,7 +25,7 @@
 \usepackage{hyperref}
 \hypersetup{unicode=true,
             pdftitle={ggstatsplot: ggplot2 Based Plots with Statistical Details},
-            pdfauthor={Indrajeet Patil, Mina Cikara, Fiery Cushman},
+            pdfauthor={Indrajeet Patil; Fiery Cushman; Mina Cikara},
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
@@ -118,7 +118,12 @@
   \title{ggstatsplot: ggplot2 Based Plots with Statistical Details}
     \pretitle{\vspace{\droptitle}\centering\huge}
   \posttitle{\par}
-    \author{Indrajeet Patil, Mina Cikara, Fiery Cushman}
+    \author{Indrajeet Patil\footnote{Harvard University,
+  \href{mailto:patilindrajeet.science@gmail.com}{\nolinkurl{patilindrajeet.science@gmail.com}}} \\ Fiery Cushman\footnote{Harvard University,
+  \href{mailto:cushman@fas.harvard.edu}{\nolinkurl{cushman@fas.harvard.edu}}
+} \\ Mina Cikara\footnote{Harvard University,
+  \href{mailto:mcikara@fas.harvard.edu}{\nolinkurl{mcikara@fas.harvard.edu}}
+}}
     \preauthor{\centering\large\emph}
   \postauthor{\par}
       \predate{\centering\large\emph}
@@ -176,8 +181,9 @@ helpful? We list few reasons below-
   SPSS, SAS, and so on).
 \end{itemize}
 
-\hypertarget{summary-of-available-plots}{%
-\section{Summary of available plots}\label{summary-of-available-plots}}
+\hypertarget{ggstatsplot-at-a-glance}{%
+\section{\texorpdfstring{\texttt{ggstatsplot} at a
+glance}{ggstatsplot at a glance}}\label{ggstatsplot-at-a-glance}}
 
 It produces a limited kinds of ready-made plots for the supported
 analyses:
@@ -409,8 +415,581 @@ Regression model coefficients\strut
 \bottomrule
 \end{longtable}
 
-\hypertarget{primary-functions}{%
-\section{Primary functions}\label{primary-functions}}
+\hypertarget{graphic-design-principles}{%
+\section{Graphic design principles}\label{graphic-design-principles}}
+
+\hypertarget{graphical-excellence}{%
+\subsection{Graphical excellence}\label{graphical-excellence}}
+
+Graphical excellence consists of communicating complex ideas with
+clarity and in a way that the viewer understands the greatest number of
+ideas in a short amount of time all the while not quoting the data out
+of context. The package follows the principles for \emph{graphical
+integrity} (({\textbf{???}})):
+
+\begin{itemize}
+\item
+  The physical representation of numbers is proportional to the
+  numerical quantities they represent (e.g., Figure-1 and Figure-2 show
+  how means (in \texttt{ggbetweenstats}) or percentages
+  (\texttt{ggpiestats}) are proportional to the vertical distance or the
+  area, respectively).
+\item
+  All important events in the data have clear, detailed, and thorough
+  labeling (e.g., Figure-1 plot shows how \texttt{ggbetweenstats} labels
+  means, sample size information, outliers, and pairwise comparisons;
+  same can be appreciated for \texttt{ggpiestats} in Figure-2 and
+  \texttt{gghistostats} in Figure-5). Note that data labels in the data
+  region are designed in a way that they don't interfere with our
+  ability to assess the overall pattern of the data (Cleveland, 1985;
+  p.44-45). This is achieved by using \texttt{ggrepel} package to place
+  labels in a way that reduces their visual prominence.
+\item
+  None of the plots have \emph{design} variation (e.g., abrupt change in
+  scales) over the surface of a same graphic because this can lead to a
+  false impression about variation in \emph{data}.
+\item
+  The number of information-carrying dimensions never exceed the number
+  of dimensions in the data (e.g., using area to show one-dimensional
+  data).
+\item
+  All plots are designed to have no \textbf{chartjunk} (like moiré
+  vibrations, fake perspective, dark grid lines, etc.)
+  ({\textbf{???}})({\textbf{???}})(Tufte, 2001, Chapter 5).
+\end{itemize}
+
+There are some instances where \texttt{ggstatsplot} graphs don't follow
+principles of clean graphics, as formulated in the Tufte theory of data
+graphics (({\textbf{???}}), Chapter 4). The theory has four key
+principles:({\textbf{???}})
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Above all else show the data.
+\item
+  Maximize the data-ink ratio.
+\item
+  Erase non-data-ink.
+\item
+  Erase redundant data-ink, within reason.
+\end{enumerate}
+
+In particular, default plots in \texttt{ggstatsplot} can sometimes
+violate one of the principles from 2-4. According to these principles,
+every bit of ink should have reason for its inclusion in the graphic and
+should convey some new information to the viewer. If not, such ink
+should be removed. One instance of this is bilateral symmetry of data
+measures. For example, in Figure-1, we can see that both the box and
+violin plots are mirrored, which consumes twice the space in the graphic
+without adding any new information. But this redundancy is tolerated for
+the sake of beauty that such symmetrical shapes can bring to the
+graphic. Even Tufte admits that efficiency is but one consideration in
+the design of statistical graphics (Tufte, 2001, p.~137). Additionally,
+these principles were formulated in an era in which computer graphics
+had yet to revolutionize the ease with which graphics could be produced
+and thus some of the concerns about minimizing data-ink for easier
+production of graphics are not as relevant as they were.
+
+\hypertarget{statistical-variation}{%
+\subsection{Statistical variation}\label{statistical-variation}}
+
+One of the important functions of a plot is to show the variation in the
+data, which comes in two forms:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Measurement noise}: In \texttt{ggstatsplot}, the actual
+  variation in measurements is shown by plotting a combination of
+  (jittered) raw data points with a boxplot laid on top (Figure-1) or a
+  histogram (Figure-5). None of the plots, where empirical distribution
+  of the data is concerned, show the sample standard deviation because
+  they are poor at conveying information about limits of the sample and
+  presence of outliers (Cleveland, 1985, p.220).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# for reproducibility}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{# plot}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{gghistostats}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ morley,}
+  \DataTypeTok{x =}\NormalTok{ Speed,}
+  \DataTypeTok{test.value =} \DecValTok{792}\NormalTok{,}
+  \DataTypeTok{test.value.line =} \OtherTok{TRUE}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"Speed of light (km/sec, with 299000 subtracted)"}\NormalTok{,}
+  \DataTypeTok{title =} \StringTok{"Figure-5: Distribution of Speed of light"}\NormalTok{,}
+  \DataTypeTok{caption =} \StringTok{"Note: Data collected across 5 experiments (20 measurements each)"}\NormalTok{,}
+  \DataTypeTok{messages =} \OtherTok{FALSE}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\includegraphics[width=1\linewidth]{./figures/paper-example5-1} \caption{**Figure-5**. Distribution of a variable shown using `gghistostats`.}\label{fig:example5}
+\end{figure}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Sample-to-sample statistic variation}: Although,
+  traditionally, this variation has been shown using the standard error
+  of the mean (SEM) of the statistic, \texttt{ggstatsplot} plots instead
+  use 95\% confidence intervals (e.g., Figure-6). This is because the
+  interval formed by error bars correspond to a 68\% confidence
+  interval, which is not a particularly interesting interval (Cleveland,
+  1985, p.222-225).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# for reproducibility}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{# creating model object}
+\NormalTok{mod <-}\StringTok{ }\NormalTok{lme4}\OperatorTok{::}\KeywordTok{lmer}\NormalTok{(}
+  \DataTypeTok{formula =}\NormalTok{ total.fruits }\OperatorTok{~}\StringTok{ }\NormalTok{nutrient }\OperatorTok{+}\StringTok{ }\NormalTok{rack }\OperatorTok{+}\StringTok{ }\NormalTok{(nutrient }\OperatorTok{|}\StringTok{ }\NormalTok{popu }\OperatorTok{/}\StringTok{ }\NormalTok{gen),}
+  \DataTypeTok{data =}\NormalTok{ lme4}\OperatorTok{::}\NormalTok{Arabidopsis}
+\NormalTok{)}
+\CommentTok{#> boundary (singular) fit: see ?isSingular}
+
+\CommentTok{# plot}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{ggcoefstats}\NormalTok{(}
+  \DataTypeTok{x =}\NormalTok{ mod,}
+  \DataTypeTok{p.kr =} \OtherTok{FALSE}
+\NormalTok{)}
+\CommentTok{#> Computing p-values via Wald-statistics approximation (treating t as Wald z).}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\includegraphics[width=1\linewidth]{./figures/paper-example6-1} \caption{**Figure-6**. Sample-to-sample variation in regression estimates is displayed using confidence intervals in `ggcoefstats`.}\label{fig:example6}
+\end{figure}
+
+\hypertarget{statistical-analysis}{%
+\section{Statistical analysis}\label{statistical-analysis}}
+
+As an extension of \texttt{ggplot2}, \texttt{ggstatsplot} has the same
+expectations about the structure of the data. More specifically,
+
+\begin{itemize}
+\item
+  The \texttt{data} should be an object of class \texttt{data.frame} (a
+  \texttt{tibble} dataframe will also work).
+\item
+  The data should be organized following the principles of \emph{tidy
+  data}, which specify how statistical structure of a data frame
+  (variables and observations) should be mapped to physical structure
+  (columns and rows). More specifically, tidy data means all variables
+  have their own columns and each row corresponds to a unique
+  observation (Wickham, 2014).
+\item
+  All \texttt{ggstatsplot} functions remove \texttt{NA}s from variables
+  of interest (similar to \texttt{ggplot2}; Wickham, 2016, p.207) in the
+  data and display total sample size (\emph{n}, either observations for
+  between-subjects or pairs for within-subjects designs) in the subtitle
+  to inform the user/reader about the number of observations included
+  for both the statistical analysis and the visualization. But, when
+  sample sizes differ \emph{across} tests in the same function,
+  \texttt{ggstatsplot} makes an effort to inform the user of this
+  aspect. For example, \texttt{ggcorrmat} features several correlation
+  test pairs and, depending on variables in a given pair, the sample
+  sizes may vary (Figure-4).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{# creating a new dataset without any NAs in variables of interest}
+\NormalTok{msleep_no_na <-}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(}
+    \DataTypeTok{.data =}\NormalTok{ ggplot2}\OperatorTok{::}\NormalTok{msleep,}
+    \OperatorTok{!}\KeywordTok{is.na}\NormalTok{(sleep_rem), }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(awake), }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(brainwt), }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(bodywt)}
+\NormalTok{  )}
+
+\CommentTok{# variable names vector}
+\NormalTok{var_names <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"REM sleep"}\NormalTok{, }\StringTok{"time awake"}\NormalTok{, }\StringTok{"brain weight"}\NormalTok{, }\StringTok{"body weight"}\NormalTok{)}
+
+\CommentTok{# combining two plots using helper function in `ggstatsplot`}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{combine_plots}\NormalTok{(}
+  \CommentTok{# plot *without* any NAs}
+\NormalTok{  ggstatsplot}\OperatorTok{::}\KeywordTok{ggcorrmat}\NormalTok{(}
+    \DataTypeTok{data =}\NormalTok{ msleep_no_na,}
+    \DataTypeTok{p.adjust.method =} \StringTok{"holm"}\NormalTok{,}
+    \DataTypeTok{cor.vars =} \KeywordTok{c}\NormalTok{(sleep_rem, awake}\OperatorTok{:}\NormalTok{bodywt),}
+    \DataTypeTok{cor.vars.names =}\NormalTok{ var_names,}
+    \DataTypeTok{matrix.type =} \StringTok{"upper"}\NormalTok{,}
+    \DataTypeTok{colors =} \KeywordTok{c}\NormalTok{(}\StringTok{"#B2182B"}\NormalTok{, }\StringTok{"white"}\NormalTok{, }\StringTok{"#4D4D4D"}\NormalTok{),}
+    \DataTypeTok{title =} \StringTok{"Correlalogram for mammals sleep dataset"}\NormalTok{,}
+    \DataTypeTok{subtitle =} \StringTok{"sleep units: hours; weight units: kilograms"}\NormalTok{,}
+    \DataTypeTok{messages =} \OtherTok{FALSE}
+\NormalTok{  ),}
+  \CommentTok{# plot *with* NAs}
+\NormalTok{  ggstatsplot}\OperatorTok{::}\KeywordTok{ggcorrmat}\NormalTok{(}
+    \DataTypeTok{data =}\NormalTok{ ggplot2}\OperatorTok{::}\NormalTok{msleep,}
+    \DataTypeTok{p.adjust.method =} \StringTok{"holm"}\NormalTok{,}
+    \DataTypeTok{cor.vars =} \KeywordTok{c}\NormalTok{(sleep_rem, awake}\OperatorTok{:}\NormalTok{bodywt),}
+    \DataTypeTok{cor.vars.names =}\NormalTok{ var_names,}
+    \DataTypeTok{matrix.type =} \StringTok{"upper"}\NormalTok{,}
+    \DataTypeTok{colors =} \KeywordTok{c}\NormalTok{(}\StringTok{"#B2182B"}\NormalTok{, }\StringTok{"white"}\NormalTok{, }\StringTok{"#4D4D4D"}\NormalTok{),}
+    \DataTypeTok{title =} \StringTok{"Correlalogram for mammals sleep dataset"}\NormalTok{,}
+    \DataTypeTok{subtitle =} \StringTok{"sleep units: hours; weight units: kilograms"}\NormalTok{,}
+    \DataTypeTok{messages =} \OtherTok{FALSE}
+\NormalTok{  ),}
+  \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"(a)"}\NormalTok{, }\StringTok{"(b)"}\NormalTok{),}
+  \DataTypeTok{nrow =} \DecValTok{1}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\includegraphics[width=1\linewidth]{./figures/paper-example4-1} \caption{**Figure-4**. `ggstatsplot` functions remove `NA`s from variables of interest and display total sample size *n*, but they can give more nuanced information about sample sizes when *n* differs across tests. For example, `ggcorrmat` will display (a) only one total sample size once when no `NA`s present, but (b) will instead show minimum, median, and maximum sample sizes across all correlation tests when `NA`s are present across correlation variables.}\label{fig:example4}
+\end{figure}
+
+\hypertarget{statistical-reporting}{%
+\subsection{Statistical reporting}\label{statistical-reporting}}
+
+For \textbf{all} statistical tests reported in the plots, the default
+template abides by the
+\href{https://my.ilstu.edu/~jhkahn/apastats.html}{APA} gold standard for
+statistical reporting. For example, here are results from Yuen's test
+for trimmed means (robust \emph{t}-test):
+
+\begin{figure}
+\centering
+\includegraphics{figures/stats_reporting_format.png}
+\caption{Template for reporting statistical details}
+\end{figure}
+
+Here is a summary table of all the statistical tests currently supported
+across various functions:
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+\begin{minipage}[b]{0.20\columnwidth}\raggedright
+Functions\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\raggedright
+Type\strut
+\end{minipage} & \begin{minipage}[b]{0.31\columnwidth}\raggedright
+Test\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\raggedright
+Effect size\strut
+\end{minipage} & \begin{minipage}[b]{0.07\columnwidth}\raggedright
+95\% CI available?\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggbetweenstats} (2 groups)\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Student's and Welch's \emph{t}-test\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+Cohen's \emph{d}, Hedge's \emph{g}\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggbetweenstats} (\textgreater{} 2 groups)\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Fisher's and Welch's one-way ANOVA\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\[\eta^2, \eta^2_p, \omega^2, \omega^2_p\]\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggbetweenstats} (2 groups)\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Non-parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Mann-Whitney \emph{U}-test\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\emph{r}\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggbetweenstats} (\textgreater{} 2 groups)\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Non-parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Kruskal-Wallis Rank Sum Test\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\[\epsilon^2\]\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggbetweenstats} (2 groups)\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Robust\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Yuen's test for trimmed means\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\[\xi\]\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggbetweenstats} (\textgreater{} 2 groups)\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Robust\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Heteroscedastic one-way ANOVA for trimmed means\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\[\xi\]\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggwithinstats} (2 groups)\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Student's \emph{t}-test\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+Cohen's \emph{d}, Hedge's \emph{g}\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggwithinstats} (\textgreater{} 2 groups)\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Fisher's one-way repeated measures ANOVA\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\[\eta^2_p, \omega^2\]\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggwithinstats} (2 groups)\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Non-parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Wilcoxon signed-rank test\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\emph{r}\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggwithinstats} (\textgreater{} 2 groups)\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Non-parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Friedman rank sum test\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\[W_{Kendall}\]\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggwithinstats} (2 groups)\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Robust\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Yuen's test on trimmed means for dependent samples\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\[\xi\]\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggwithinstats} (\textgreater{} 2 groups)\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Robust\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Heteroscedastic one-way repeated measures ANOVA for trimmed means\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\textcolor{red}{$\times$}\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{red}{$\times$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggpiestats} and \texttt{ggbarstats} (unpaired)\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\[\text{Pearson's}~ \chi^2 ~\text{test}\]\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+Cramér's \emph{V}\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggpiestats} and \texttt{ggbarstats} (paired)\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+McNemar's test\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+Cohen's \emph{g}\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggpiestats}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+One-sample proportion test\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+Cramér's \emph{V}\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggscatterstats} and \texttt{ggcorrmat}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Pearson's \emph{r}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\emph{r}\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggscatterstats} and \texttt{ggcorrmat}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Non-parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\[\text{Spearman's}~ \rho\]\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\[\rho\]\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggscatterstats}and \texttt{ggcorrmat}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Robust\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Percentage bend correlation\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\emph{r}\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{gghistostats} and \texttt{ggdotplotstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+One-sample \emph{t}-test\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+Cohen's \emph{d}, Hedge's \emph{g}\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{gghistostats}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Non-parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+One-sample Wilcoxon signed rank test\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\emph{r}\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{gghistostats} and \texttt{ggdotplotstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Robust\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+One-sample percentile bootstrap\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+robust estimator\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\texttt{ggcoefstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+Parametric\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+Regression models\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\[\beta\]\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\textcolor{ForestGreen}{$\checkmark$}\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{reporting-results}{%
+\subsection{Reporting results}\label{reporting-results}}
+
+The default setting in \texttt{ggstatsplot} is to produce plots with
+statistical details included. Most often than not, the results are
+displayed as a \texttt{subtitle} in the plot. Great care has been taken
+into which details are included in statistical reporting and why.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{APA guidelines} (APA, 2009) are followed (for the most part)
+  by default:\\
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Percentages are displayed with no decimal places (Figure-2).
+\item
+  Correlations, \emph{t}-tests, and \(\chi^2\)-tests are reported with
+  the degrees of freedom in parentheses and the significance level
+  (Figure-2, Figure-3b, Figure-5).
+\item
+  ANOVAs are reported with two degrees of freedom and the significance
+  level (Figure-1).
+\item
+  Regression results are presented with the unstandardized or
+  standardized estimate (beta), whichever was specified by the user,
+  along with the statistic (depending on the model, this can be a
+  \emph{t} or \emph{z} statistic) and the corresponding significance
+  level (Figure-6).
+\item
+  With the exception of \emph{p}-values, most statistics are rounded to
+  two decimal places by default.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Default statistical tests:
+\item
+  Dealing with \textbf{null results}:
+\item
+  Avoiding the \textbf{``p-value error''}:\\
+  The \emph{p}-value indexes the probability that the researchers have
+  falsely rejected a true null hypothesis (Type I error, i.e.) and can
+  rarely be \emph{exactly} 0. And yet over 97,000 manuscripts on Google
+  Scholar report the \emph{p}-value to be \texttt{p\ =\ 0.000}
+  ({\textbf{???}}), putatively due to relying on default computer
+  outputs. All \emph{p}-values displayed in \texttt{ggstatsplot} plots
+  avoid this mistake. Anything less than \texttt{p\ \textless{}\ 0.001}
+  is displayed as such (e.g, Figure-1). The package deems it unimportant
+  how infinitesimally small the \emph{p}-values are and, instead, puts
+  emphasis on the effect size magnitudes and their 95\% CIs.
+\end{enumerate}
+
+\hypertarget{short-tutorial-on-primary-functions}{%
+\section{Short tutorial on primary
+functions}\label{short-tutorial-on-primary-functions}}
 
 Here are examples of the main functions currently supported in
 \texttt{ggstatsplot}.
@@ -925,8 +1504,8 @@ with results from contingency table analysis (Pearson's \(\chi^2\) test
 for between-subjects design and McNemar's \(\chi^2\) test for
 within-subjects design) included in the subtitle of the plot. If only
 one categorical variable is entered, results from one-sample proportion
-test (i.e., a \(\chi^2\) goodness of fit test) will be displayed as a
-subtitle.
+test (i.e., a \(\chi^2\) goodness of fit/gof test) will be displayed as
+a subtitle.
 
 Here is an example of a case where the theoretical question is about
 proportions for different levels of a single nominal variable:
@@ -1537,7 +2116,7 @@ of the plot that will be invariant across models:
 \NormalTok{mod <-}\StringTok{ }\NormalTok{stats}\OperatorTok{::}\KeywordTok{lm}\NormalTok{(}\DataTypeTok{formula =}\NormalTok{ mpg }\OperatorTok{~}\StringTok{ }\NormalTok{am }\OperatorTok{*}\StringTok{ }\NormalTok{cyl, }\DataTypeTok{data =}\NormalTok{ mtcars)}
 
 \CommentTok{# plot}
-\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{ggcoefstats}\NormalTok{(mod)}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{ggcoefstats}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ mod, }\DataTypeTok{title =} \StringTok{"linear model"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1606,20 +2185,6 @@ For a more exhaustive account of this function, see the associated
 vignette-
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}
 
-\hypertarget{combine_plots}{%
-\subsection{combine\_plots}\label{combine_plots}}
-
-\texttt{ggstatsplot} contains a helper function \texttt{combine\_plots}
-to combine multiple plots, which can be useful for combining a list of
-plots produced with \texttt{purrr}. This is a wrapper around
-\texttt{cowplot::plot\_grid} and lets you combine multiple plots and add
-a combination of title, caption, and annotation texts with suitable
-defaults.
-
-For examples (both with \texttt{plyr} and \texttt{purrr}), see the
-associated vignette-
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html}
-
 \hypertarget{working-with-custom-plots}{%
 \subsection{Working with custom plots}\label{working-with-custom-plots}}
 
@@ -1664,584 +2229,8 @@ For example, in the following chunk, we will create plot
 
 \includegraphics[width=1\linewidth]{./figures/paper-pirateplot-1}
 
-\hypertarget{graphic-design-principles}{%
-\section{Graphic design principles}\label{graphic-design-principles}}
-
-\hypertarget{graphical-excellence}{%
-\subsection{Graphical excellence}\label{graphical-excellence}}
-
-Graphical excellence consists of communicating complex ideas with
-clarity and in a way that the viewer understands the greatest number of
-ideas in a short amount of time all the while not quoting the data out
-of context. The package follows the principles for \emph{graphical
-integrity} (({\textbf{???}})):
-
-\begin{itemize}
-\item
-  The physical representation of numbers is proportional to the
-  numerical quantities they represent (e.g., Figure-1 and Figure-2 show
-  how means (in \texttt{ggbetweenstats}) or percentages
-  (\texttt{ggpiestats}) are proportional to the vertical distance or the
-  area, respectively).
-\item
-  All important events in the data have clear, detailed, and thorough
-  labeling (e.g., Figure-1 plot shows how \texttt{ggbetweenstats} labels
-  means, sample size information, outliers, and pairwise comparisons;
-  same can be appreciated for \texttt{ggpiestats} in Figure-2 and
-  \texttt{gghistostats} in Figure-5). Note that data labels in the data
-  region are designed in a way that they don't interfere with our
-  ability to assess the overall pattern of the data (Cleveland, 1985;
-  p.44-45). This is achieved by using \texttt{ggrepel} package to place
-  labels in a way that reduces their visual prominence.
-\item
-  None of the plots have \emph{design} variation (e.g., abrupt change in
-  scales) over the surface of a same graphic because this can lead to a
-  false impression about variation in \emph{data}.
-\item
-  The number of information-carrying dimensions never exceed the number
-  of dimensions in the data (e.g., using area to show one-dimensional
-  data).
-\item
-  All plots are designed to have no \textbf{chartjunk} (like moiré
-  vibrations, fake perspective, dark grid lines, etc.) (Tufte, 2001,
-  Chapter 5).
-\end{itemize}
-
-There are some instances where \texttt{ggstatsplot} graphs don't follow
-principles of clean graphics, as formulated in the Tufte theory of data
-graphics (Tufte, 2001, Chapter 4). The theory has four key principles:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Above all else show the data.
-\item
-  Maximize the data-ink ratio.
-\item
-  Erase non-data-ink.
-\item
-  Erase redundant data-ink, within reason.
-\end{enumerate}
-
-In particular, default plots in \texttt{ggstatsplot} can sometimes
-violate one of the principles from 2-4. According to these principles,
-every bit of ink should have reason for its inclusion in the graphic and
-should convey some new information to the viewer. If not, such ink
-should be removed. One instance of this is bilateral symmetry of data
-measures. For example, in Figure-1, we can see that both the box and
-violin plots are mirrored, which consumes twice the space in the graphic
-without adding any new information. But this redundancy is tolerated for
-the sake of beauty that such symmetrical shapes can bring to the
-graphic. Even Tufte admits that efficiency is but one consideration in
-the design of statistical graphics (Tufte, 2001, p.~137). Additionally,
-these principles were formulated in an era in which computer graphics
-had yet to revolutionize the ease with which graphics could be produced
-and thus some of the concerns about minimizing data-ink for easier
-production of graphics are not as relevant as they were.
-
-\hypertarget{statistical-variation}{%
-\subsection{Statistical variation}\label{statistical-variation}}
-
-One of the important functions of a plot is to show the variation in the
-data, which comes in two forms:
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Measurement noise}: In \texttt{ggstatsplot}, the actual
-  variation in measurements is shown by plotting a combination of
-  (jittered) raw data points with a boxplot laid on top (Figure-1) or a
-  histogram (Figure-5). None of the plots, where empirical distribution
-  of the data is concerned, show the sample standard deviation because
-  they are poor at conveying information about limits of the sample and
-  presence of outliers (Cleveland, 1985, p.220).
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# for reproducibility}
-\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
-
-\CommentTok{# plot}
-\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{gghistostats}\NormalTok{(}
-  \DataTypeTok{data =}\NormalTok{ morley,}
-  \DataTypeTok{x =}\NormalTok{ Speed,}
-  \DataTypeTok{test.value =} \DecValTok{792}\NormalTok{,}
-  \DataTypeTok{test.value.line =} \OtherTok{TRUE}\NormalTok{,}
-  \DataTypeTok{xlab =} \StringTok{"Speed of light (km/sec, with 299000 subtracted)"}\NormalTok{,}
-  \DataTypeTok{title =} \StringTok{"Figure-5: Distribution of Speed of light"}\NormalTok{,}
-  \DataTypeTok{caption =} \StringTok{"Note: Data collected across 5 experiments (20 measurements each)"}\NormalTok{,}
-  \DataTypeTok{messages =} \OtherTok{FALSE}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\includegraphics[width=1\linewidth]{./figures/paper-example5-1} \caption{**Figure-5**. Distribution of a variable shown using `gghistostats`.}\label{fig:example5}
-\end{figure}
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Sample-to-sample statistic variation}: Although,
-  traditionally, this variation has been shown using the standard error
-  of the mean (SEM) of the statistic, \texttt{ggstatsplot} plots instead
-  use 95\% confidence intervals (e.g., Figure-6). This is because the
-  interval formed by error bars correspond to a 68\% confidence
-  interval, which is not a particularly interesting interval (Cleveland,
-  1985, p.222-225).
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# for reproducibility}
-\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
-
-\CommentTok{# creating model object}
-\NormalTok{mod <-}\StringTok{ }\NormalTok{lme4}\OperatorTok{::}\KeywordTok{lmer}\NormalTok{(}
-  \DataTypeTok{formula =}\NormalTok{ total.fruits }\OperatorTok{~}\StringTok{ }\NormalTok{nutrient }\OperatorTok{+}\StringTok{ }\NormalTok{rack }\OperatorTok{+}\StringTok{ }\NormalTok{(nutrient }\OperatorTok{|}\StringTok{ }\NormalTok{popu }\OperatorTok{/}\StringTok{ }\NormalTok{gen),}
-  \DataTypeTok{data =}\NormalTok{ lme4}\OperatorTok{::}\NormalTok{Arabidopsis}
-\NormalTok{)}
-\CommentTok{#> boundary (singular) fit: see ?isSingular}
-
-\CommentTok{# plot}
-\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{ggcoefstats}\NormalTok{(}
-  \DataTypeTok{x =}\NormalTok{ mod,}
-  \DataTypeTok{p.kr =} \OtherTok{FALSE}
-\NormalTok{)}
-\CommentTok{#> Computing p-values via Wald-statistics approximation (treating t as Wald z).}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\includegraphics[width=1\linewidth]{./figures/paper-example6-1} \caption{**Figure-6**. Sample-to-sample variation in regression estimates is displayed using confidence intervals in `ggcoefstats`.}\label{fig:example6}
-\end{figure}
-
-\hypertarget{statistical-analysis}{%
-\section{Statistical analysis}\label{statistical-analysis}}
-
-As an extension of \texttt{ggplot2}, \texttt{ggstatsplot} has the same
-expectations about the structure of the data. More specifically,
-
-\begin{itemize}
-\item
-  The \texttt{data} should be an object of class \texttt{data.frame} (a
-  \texttt{tibble} dataframe will also work).
-\item
-  The data should be organized following the principles of \emph{tidy
-  data}, which specify how statistical structure of a data frame
-  (variables and observations) should be mapped to physical structure
-  (columns and rows). More specifically, tidy data means all variables
-  have their own columns and each row corresponds to a unique
-  observation (Wickham, 2014).
-\item
-  All \texttt{ggstatsplot} functions remove \texttt{NA}s from variables
-  of interest (similar to \texttt{ggplot2}; Wickham, 2016, p.207) in the
-  data and display total sample size (\emph{n}, either observations for
-  between-subjects or pairs for within-subjects designs) in the subtitle
-  to inform the user/reader about the number of observations included
-  for both the statistical analysis and the visualization. But, when
-  sample sizes differ \emph{across} tests in the same function,
-  \texttt{ggstatsplot} makes an effort to inform the user of this
-  aspect. For example, \texttt{ggcorrmat} features several correlation
-  test pairs and, depending on variables in a given pair, the sample
-  sizes may vary (Figure-4).
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-
-\CommentTok{# creating a new dataset without any NAs in variables of interest}
-\NormalTok{msleep_no_na <-}
-\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(}
-    \DataTypeTok{.data =}\NormalTok{ ggplot2}\OperatorTok{::}\NormalTok{msleep,}
-    \OperatorTok{!}\KeywordTok{is.na}\NormalTok{(sleep_rem), }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(awake), }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(brainwt), }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(bodywt)}
-\NormalTok{  )}
-
-\CommentTok{# variable names vector}
-\NormalTok{var_names <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"REM sleep"}\NormalTok{, }\StringTok{"time awake"}\NormalTok{, }\StringTok{"brain weight"}\NormalTok{, }\StringTok{"body weight"}\NormalTok{)}
-
-\CommentTok{# combining two plots using helper function in `ggstatsplot`}
-\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{combine_plots}\NormalTok{(}
-  \CommentTok{# plot *without* any NAs}
-\NormalTok{  ggstatsplot}\OperatorTok{::}\KeywordTok{ggcorrmat}\NormalTok{(}
-    \DataTypeTok{data =}\NormalTok{ msleep_no_na,}
-    \DataTypeTok{p.adjust.method =} \StringTok{"holm"}\NormalTok{,}
-    \DataTypeTok{cor.vars =} \KeywordTok{c}\NormalTok{(sleep_rem, awake}\OperatorTok{:}\NormalTok{bodywt),}
-    \DataTypeTok{cor.vars.names =}\NormalTok{ var_names,}
-    \DataTypeTok{matrix.type =} \StringTok{"upper"}\NormalTok{,}
-    \DataTypeTok{colors =} \KeywordTok{c}\NormalTok{(}\StringTok{"#B2182B"}\NormalTok{, }\StringTok{"white"}\NormalTok{, }\StringTok{"#4D4D4D"}\NormalTok{),}
-    \DataTypeTok{title =} \StringTok{"Correlalogram for mammals sleep dataset"}\NormalTok{,}
-    \DataTypeTok{subtitle =} \StringTok{"sleep units: hours; weight units: kilograms"}\NormalTok{,}
-    \DataTypeTok{messages =} \OtherTok{FALSE}
-\NormalTok{  ),}
-  \CommentTok{# plot *with* NAs}
-\NormalTok{  ggstatsplot}\OperatorTok{::}\KeywordTok{ggcorrmat}\NormalTok{(}
-    \DataTypeTok{data =}\NormalTok{ ggplot2}\OperatorTok{::}\NormalTok{msleep,}
-    \DataTypeTok{p.adjust.method =} \StringTok{"holm"}\NormalTok{,}
-    \DataTypeTok{cor.vars =} \KeywordTok{c}\NormalTok{(sleep_rem, awake}\OperatorTok{:}\NormalTok{bodywt),}
-    \DataTypeTok{cor.vars.names =}\NormalTok{ var_names,}
-    \DataTypeTok{matrix.type =} \StringTok{"upper"}\NormalTok{,}
-    \DataTypeTok{colors =} \KeywordTok{c}\NormalTok{(}\StringTok{"#B2182B"}\NormalTok{, }\StringTok{"white"}\NormalTok{, }\StringTok{"#4D4D4D"}\NormalTok{),}
-    \DataTypeTok{title =} \StringTok{"Correlalogram for mammals sleep dataset"}\NormalTok{,}
-    \DataTypeTok{subtitle =} \StringTok{"sleep units: hours; weight units: kilograms"}\NormalTok{,}
-    \DataTypeTok{messages =} \OtherTok{FALSE}
-\NormalTok{  ),}
-  \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"(a)"}\NormalTok{, }\StringTok{"(b)"}\NormalTok{),}
-  \DataTypeTok{nrow =} \DecValTok{1}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\includegraphics[width=1\linewidth]{./figures/paper-example4-1} \caption{**Figure-4**. `ggstatsplot` functions remove `NA`s from variables of interest and display total sample size *n*, but they can give more nuanced information about sample sizes when *n* differs across tests. For example, `ggcorrmat` will display (a) only one total sample size once when no `NA`s present, but (b) will instead show minimum, median, and maximum sample sizes across all correlation tests when `NA`s are present across correlation variables.}\label{fig:example4}
-\end{figure}
-
-\hypertarget{summary-of-statistical-tests-and-effect-sizes}{%
-\section{Summary of statistical tests and effect
-sizes}\label{summary-of-statistical-tests-and-effect-sizes}}
-
-\hypertarget{statistical-reporting}{%
-\subsection{Statistical reporting}\label{statistical-reporting}}
-
-For \textbf{all} statistical tests reported in the plots, the default
-template abides by the
-\href{https://my.ilstu.edu/~jhkahn/apastats.html}{APA} gold standard for
-statistical reporting. For example, here are results from Yuen's test
-for trimmed means (robust \emph{t}-test):
-
-\begin{figure}
-\centering
-\includegraphics{figures/stats_reporting_format.png}
-\caption{Template for reporting statistical details}
-\end{figure}
-
-Here is a summary table of all the statistical tests currently supported
-across various functions:
-
-\begin{longtable}[]{@{}lllll@{}}
-\toprule
-\begin{minipage}[b]{0.20\columnwidth}\raggedright
-Functions\strut
-\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\raggedright
-Type\strut
-\end{minipage} & \begin{minipage}[b]{0.31\columnwidth}\raggedright
-Test\strut
-\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\raggedright
-Effect size\strut
-\end{minipage} & \begin{minipage}[b]{0.07\columnwidth}\raggedright
-95\% CI available?\strut
-\end{minipage}\tabularnewline
-\midrule
-\endhead
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
-\texttt{ggbetweenstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
-Parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
-Student's and Welch's \emph{t}-test\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
-Cohen's \emph{d}, Hedge's \emph{g}\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-\textcolor{ForestGreen}{$\checkmark$}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
-\texttt{ggbetweenstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
-Parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
-Fisher's and Welch's one-way ANOVA\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
-\[\eta^2, \eta^2_p, \omega^2, \omega^2_p\]\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-\textcolor{ForestGreen}{$\checkmark$}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
-\texttt{ggbetweenstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
-Non-parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
-Mann-Whitney \emph{U}-test\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
-\emph{r}\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-\textcolor{ForestGreen}{$\checkmark$}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
-\texttt{ggbetweenstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
-Non-parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
-Kruskal-Wallis Rank Sum Test\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
-\[\epsilon^2\]\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-\textcolor{ForestGreen}{$\checkmark$}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
-\texttt{ggbetweenstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
-Robust\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
-Yuen's test for trimmed means\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
-\[\xi\]\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-\textcolor{ForestGreen}{$\checkmark$}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
-\texttt{ggbetweenstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
-Robust\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
-Heteroscedastic one-way ANOVA for trimmed means\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
-\[\xi\]\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-\textcolor{ForestGreen}{$\checkmark$}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
-\texttt{ggwithinstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
-Parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
-Student's \emph{t}-test\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
-Cohen's \emph{d}, Hedge's \emph{g}\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-\textcolor{ForestGreen}{$\checkmark$}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
-\texttt{ggwithinstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
-Parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
-Fisher's one-way repeated measures ANOVA\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
-\[\eta^2_p, \omega^2\]\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-\textcolor{ForestGreen}{$\checkmark$}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
-\texttt{ggwithinstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
-Non-parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
-Wilcoxon signed-rank test\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
-\emph{r}\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-\textcolor{ForestGreen}{$\checkmark$}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
-\texttt{ggwithinstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
-Non-parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
-Friedman test\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
-\[W_{Kendall}\]\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-\textcolor{ForestGreen}{$\checkmark$}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
-\texttt{ggwithinstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
-Robust\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
-Yuen's test on trimmed means for dependent samples\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
-\[\xi\]\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-\textcolor{ForestGreen}{$\checkmark$}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
-\texttt{ggwithinstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
-Robust\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
-Heteroscedastic one-way repeated measures ANOVA for trimmed means\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
-\textcolor{red}{$\times$}\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-\textcolor{red}{$\times$}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
-\texttt{ggpiestats}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
-Parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
-\[\text{Pearson's}~ \chi^2 ~\text{test}\]\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
-Cramér's \emph{V}\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-\textcolor{ForestGreen}{$\checkmark$}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
-\texttt{ggpiestats}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
-Parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
-McNemar's test\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
-Cohen's \emph{g}\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-\textcolor{ForestGreen}{$\checkmark$}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
-\texttt{ggpiestats}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
-Parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
-One-sample proportion test\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
-Cramér's \emph{V}\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-\textcolor{ForestGreen}{$\checkmark$}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
-\texttt{ggscatterstats} and \texttt{ggcorrmat}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
-Parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
-Pearson's \emph{r}\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
-\emph{r}\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-\textcolor{ForestGreen}{$\checkmark$}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
-\texttt{ggscatterstats} and \texttt{ggcorrmat}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
-Non-parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
-\[\text{Spearman's}~ \rho\]\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
-\[\rho\]\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-\textcolor{ForestGreen}{$\checkmark$}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
-\texttt{ggscatterstats}and \texttt{ggcorrmat}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
-Robust\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
-Percentage bend correlation\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
-\emph{r}\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-\textcolor{ForestGreen}{$\checkmark$}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
-\texttt{gghistostats} and \texttt{ggdotplotstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
-Parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
-One-sample \emph{t}-test\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
-Cohen's \emph{d}, Hedge's \emph{g}\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-\textcolor{ForestGreen}{$\checkmark$}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
-\texttt{gghistostats}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
-Non-parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
-One-sample Wilcoxon signed rank test\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
-\emph{r}\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-\textcolor{ForestGreen}{$\checkmark$}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
-\texttt{gghistostats} and \texttt{ggdotplotstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
-Robust\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
-One-sample percentile bootstrap\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
-robust estimator\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-\textcolor{ForestGreen}{$\checkmark$}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
-\texttt{gghistostats} and \texttt{ggdotplotstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
-Parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
-Regression models\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
-\[\beta\]\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-\textcolor{ForestGreen}{$\checkmark$}\strut
-\end{minipage}\tabularnewline
-\bottomrule
-\end{longtable}
-
-\hypertarget{reporting-results}{%
-\subsection{Reporting results}\label{reporting-results}}
-
-The default setting in \texttt{ggstatsplot} is to produce plots with
-statistical details included. Most often than not, the results are
-displayed as a \texttt{subtitle} in the plot. Great care has been taken
-into which details are included in statistical reporting and why.
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  \textbf{APA guidelines} (APA, 2009) are followed (for the most part)
-  by default:\\
-\end{enumerate}
-
-\begin{itemize}
-\tightlist
-\item
-  Percentages are displayed with no decimal places (Figure-2).
-\item
-  Correlations, \emph{t}-tests, and \(\chi^2\)-tests are reported with
-  the degrees of freedom in parentheses and the significance level
-  (Figure-2, Figure-3b, Figure-5).
-\item
-  ANOVAs are reported with two degrees of freedom and the significance
-  level (Figure-1).
-\item
-  Regression results are presented with the unstandardized or
-  standardized estimate (beta), whichever was specified by the user,
-  along with the statistic (depending on the model, this can be a
-  \emph{t} or \emph{z} statistic) and the corresponding significance
-  level (Figure-6).
-\item
-  With the exception of \emph{p}-values, most statistics are rounded to
-  two decimal places by default.
-\end{itemize}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
-\item
-  Default statistical tests:
-\item
-  Dealing with \textbf{null results}:
-\item
-  Avoiding the \textbf{``p-value error''}:\\
-  The \emph{p}-value indexes the probability that the researchers have
-  falsely rejected a true null hypothesis (Type I error, i.e.) and can
-  rarely be \emph{exactly} 0. And yet over 97,000 manuscripts on Google
-  Scholar report the \emph{p}-value to be \texttt{p\ =\ 0.000}
-  (Lilienfeld et al., 2015), putatively due to relying on default
-  computer outputs. All \emph{p}-values displayed in
-  \texttt{ggstatsplot} plots avoid this mistake. Anything less than
-  \texttt{p\ \textless{}\ 0.001} is displayed as such (e.g, Figure-1).
-  The package deems it unimportant how infinitesimally small the
-  \emph{p}-values are and, instead, puts emphasis on the effect size
-  magnitudes and their 95\% CIs.
-\end{enumerate}
-
 \hypertarget{usage-and-syntax-simplicity}{%
-\section{Usage and syntax
+\subsection{Usage and syntax
 simplicity}\label{usage-and-syntax-simplicity}}
 
 \hypertarget{overall-consistency-in-api}{%
