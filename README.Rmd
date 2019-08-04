@@ -98,31 +98,30 @@ Here is a summary table of all the statistical tests currently supported across
 various functions:
 
 Functions | Type | Test | Effect size | 95% CI available? 
------------ | ----------- | ------------------ | ------------------ | -----  
-`ggbetweenstats` | Parametric | Student's and Welch's *t*-test | Cohen's *d*, Hedge's *g* | <font color="green">$\checkmark$</font> 
-`ggbetweenstats` | Parametric | Fisher's and Welch's one-way ANOVA | $$\eta^2, \eta^2_p, \omega^2, \omega^2_p$$ | <font color="green">$\checkmark$</font> 
-`ggbetweenstats` | Non-parametric | Mann-Whitney *U*-test | *r* | <font color="green">$\checkmark$</font> 
-`ggbetweenstats` | Non-parametric | Kruskal-Wallis Rank Sum Test | $$\epsilon^2$$ | <font color="green">$\checkmark$</font> 
-`ggbetweenstats` | Robust | Yuen's test for trimmed means | $$\xi$$ | <font color="green">$\checkmark$</font> 
-`ggbetweenstats` | Robust | Heteroscedastic one-way ANOVA for trimmed means | $$\xi$$ | <font color="green">$\checkmark$</font> 
-`ggwithinstats` | Parametric | Student's *t*-test | Cohen's *d*, Hedge's *g* | <font color="green">$\checkmark$</font> 
-`ggwithinstats` | Parametric | Fisher's one-way repeated measures ANOVA | $$\eta^2_p, \omega^2$$ | <font color="green">$\checkmark$</font> 
-`ggwithinstats` | Non-parametric | Wilcoxon signed-rank test | *r* | <font color="green">$\checkmark$</font> 
-`ggwithinstats` | Non-parametric | Friedman test | $$W_{Kendall}$$ | <font color="green">$\checkmark$</font>
-`ggwithinstats` | Robust | Yuen's test on trimmed means for dependent samples | $$\xi$$ | <font color="green">$\checkmark$</font> 
-`ggwithinstats` | Robust | Heteroscedastic one-way repeated measures ANOVA for trimmed means | <font color="red">$\times$</font> | <font color="red">$\times$</font>
-`ggpiestats` | Parametric | $$\text{Pearson's}~ \chi^2 ~\text{test}$$ | Cramér's *V* | <font color="green">$\checkmark$</font>
-`ggpiestats` | Parametric | McNemar's test | Cohen's *g* | <font color="green">$\checkmark$</font>
-`ggpiestats` | Parametric | One-sample proportion test | Cramér's *V* | <font color="green">$\checkmark$</font>
-`ggscatterstats`/`ggcorrmat` | Parametric | Pearson's *r* | *r* | <font color="green">$\checkmark$</font>
-`ggscatterstats`/`ggcorrmat` | Non-parametric | $$\text{Spearman's}~ \rho$$ | $$\rho$$ | <font color="green">$\checkmark$</font>
-`ggscatterstats`/`ggcorrmat` | Robust | Percentage bend correlation | *r* | <font color="green">$\checkmark$</font>
-`gghistostats`/`ggdotplotstats` | Parametric | One-sample *t*-test | Cohen's *d*, Hedge's *g* | <font color="green">$\checkmark$</font>
-`gghistostats` | Non-parametric | One-sample Wilcoxon signed rank test | *r* | <font color="green">$\checkmark$</font> 
-`gghistostats`/`ggdotplotstats` | Robust | One-sample percentile bootstrap | robust estimator | <font color="green">$\checkmark$</font>
-`gghistostats`/`ggdotplotstats` | Parametric | Regression models | $$\beta$$ | <font color="green">$\checkmark$</font>
+-------------- | ----------- | --------------------- | -------- | -----  
+`ggbetweenstats` (2 groups) | Parametric | Student's and Welch's *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggbetweenstats` (> 2 groups) | Parametric | Fisher's and Welch's one-way ANOVA | $$\eta^2, \eta^2_p, \omega^2, \omega^2_p$$ |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggbetweenstats` (2 groups) | Non-parametric | Mann-Whitney *U*-test | *r* |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggbetweenstats` (> 2 groups) | Non-parametric | Kruskal-Wallis Rank Sum Test | $$\epsilon^2$$ |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggbetweenstats` (2 groups) | Robust | Yuen's test for trimmed means | $$\xi$$ |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggbetweenstats` (> 2 groups) | Robust | Heteroscedastic one-way ANOVA for trimmed means | $$\xi$$ |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggwithinstats` (2 groups) | Parametric | Student's *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggwithinstats` (> 2 groups) | Parametric | Fisher's one-way repeated measures ANOVA | $$\eta^2_p, \omega^2$$ |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggwithinstats` (2 groups) | Non-parametric | Wilcoxon signed-rank test | *r* |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggwithinstats` (> 2 groups) | Non-parametric | Friedman rank sum test | $$W_{Kendall}$$ |  \textcolor{ForestGreen}{$\checkmark$}
+`ggwithinstats` (2 groups) | Robust | Yuen's test on trimmed means for dependent samples | $$\xi$$ |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggwithinstats` (> 2 groups) | Robust | Heteroscedastic one-way repeated measures ANOVA for trimmed means |  \textcolor{red}{$\times$} |  \textcolor{red}{$\times$}
+`ggpiestats` and `ggbarstats` (unpaired) | Parametric | $$\text{Pearson's}~ \chi^2 ~\text{test}$$ | Cramér's *V* |  \textcolor{ForestGreen}{$\checkmark$}
+`ggpiestats` and `ggbarstats` (paired) | Parametric | McNemar's test | Cohen's *g* |  \textcolor{ForestGreen}{$\checkmark$}
+`ggpiestats` | Parametric | One-sample proportion test | Cramér's *V* |  \textcolor{ForestGreen}{$\checkmark$}
+`ggscatterstats` and `ggcorrmat` | Parametric | Pearson's *r* | *r* |  \textcolor{ForestGreen}{$\checkmark$}
+`ggscatterstats` and `ggcorrmat` | Non-parametric | $$\text{Spearman's}~ \rho$$ | $$\rho$$ |  \textcolor{ForestGreen}{$\checkmark$}
+`ggscatterstats`and `ggcorrmat` | Robust | Percentage bend correlation | *r* |  \textcolor{ForestGreen}{$\checkmark$}
+`gghistostats` and `ggdotplotstats` | Parametric | One-sample *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{ForestGreen}{$\checkmark$}
+`gghistostats` | Non-parametric | One-sample Wilcoxon signed rank test | *r* |  \textcolor{ForestGreen}{$\checkmark$} 
+`gghistostats` and `ggdotplotstats` | Robust | One-sample percentile bootstrap | robust estimator |  \textcolor{ForestGreen}{$\checkmark$}
+`ggcoefstats` | Parametric | Regression models | $$\beta$$ |  \textcolor{ForestGreen}{$\checkmark$}
 
-Work is in progress to add some of the currently missing functionality. 
 
 # Installation
 
@@ -368,10 +367,10 @@ Following (between-subjects) tests are carried out for each type of analyses-
 
 Type | No. of groups | Test
 ----------- | --- | -------------------------
-Parametric | > 2 | Student's or Welch's one-way ANOVA
+Parametric | > 2 | Fisher's or Welch's one-way ANOVA
 Non-parametric | > 2 | Kruskal–Wallis one-way ANOVA
 Robust | > 2 | Heteroscedastic one-way ANOVA for trimmed means
-Bayes Factor | > 2 | Student's ANOVA
+Bayes Factor | > 2 | Fisher's ANOVA
 Parametric | 2 | Student's or Welch's *t*-test
 Non-parametric | 2 | Mann–Whitney *U* test
 Robust | 2 |  Yuen's test for trimmed means
@@ -920,6 +919,16 @@ Non-parametric | One-sample Wilcoxon test
 Robust | One-sample percentile bootstrap
 Bayes Factor | One-sample Student's *t*-test
 
+Following effect sizes (and confidence intervals/CI) are available for each type
+of test-
+
+Type | Effect size | CI?
+----------- | ------------------------- | --- 
+Parametric | Cohen's *d*, Hedge's *g* (central-and noncentral-*t* distribution based) | <font color="green">Yes<font>
+Non-parametric | *r* (computed as $Z/\sqrt{N}$) | <font color="green">Yes<font>
+Robust | $M_{robust}$ (Robust location measure) | <font color="green">Yes<font>
+Bayes Factor | <font color="red">No<font> | <font color="red">No<font>
+
 For more, including information about the variant of this function
 `grouped_gghistostats`, see the `gghistostats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html>
@@ -1118,8 +1127,27 @@ For examples and more information, see the `ggcorrmat` vignette:
 
 ## `ggcoefstats`
 
-`ggcoefstats` creates a dot-and-whisker plot point estimates for regression
-coefficients as dots with confidence intervals as whiskers.
+`ggcoefstats` creates a dot-and-whisker plot for regression models. Although the
+statistical models displayed in the plot may differ based on the class of models
+being investigated, there are few aspects of the plot that will be invariant
+across models:
+
+- The dot-whisker plot contains a dot representing the **estimate** and their
+**confidence intervals** (`95%` is the default). The estimate can either be
+  effect sizes (for tests that depend on the `F` statistic) or regression
+  coefficients (for tests with `t` and `z` statistic), etc. The function will, by
+  default, display a helpful `x`-axis label that should clear up what estimates are
+  being displayed. The confidence intervals can sometimes be asymmetric if
+  bootstrapping was used.
+  
+- The caption will always contain diagnostic information, if available, about
+  models that can be useful for model selection: The smaller the Akaike's
+  Information Criterion (**AIC**) and the Bayesian Information Criterion (**BIC**)
+  values, the "better" the model is. Additionally, the higher the
+**log-likelihood** value the "better" is the model fit.
+
+- The output of this function will be a `ggplot2` object and, thus, it can be
+  further modified (e.g., change themes, etc.) with `ggplot2` functions.
 
 ```{r ggcoefstats1, message = FALSE, warning = FALSE, fig.height = 5, fig.width = 6}
 # for reproducibility

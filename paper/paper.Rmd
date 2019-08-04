@@ -1,11 +1,17 @@
 ---
 title: "ggstatsplot: ggplot2 Based Plots with Statistical Details"
-author: Indrajeet Patil, Mina Cikara, Fiery Cushman
-affiliation: Harvard University
+author:
+- Indrajeet Patil^[Harvard University, patilindrajeet.science@gmail.com]
+- Fiery Cushman^[Harvard University, cushman@fas.harvard.edu ]
+- Mina Cikara^[Harvard University, mcikara@fas.harvard.edu ]
 date: "`r Sys.Date()`"
 output: 
+  html_document:
+    toc: true
   pdf_document:
     toc: true
+    keep_tex: true
+    keep_md: true
   latex_engine: xelatex
 header-includes: 
   - \usepackage{amsmath}
@@ -17,8 +23,8 @@ header-includes:
   - \usepackage{booktabs}
   - \usepackage[dvipsnames]{xcolor}
   - \usepackage{fontawesome}
-bibliography: ./references.bib
-csl: ./apa.csl
+bibliography: references.bib
+csl: apa.csl
 ---
 
 ```{r, echo = FALSE, warning = FALSE, message = FALSE}
@@ -31,14 +37,14 @@ knitr::opts_chunk$set(
   dpi = 450,
   comment = "#>",
   fig.path = "./figures/paper-",
-  dev = 'png'
+  dev = "png"
 )
 options(device = function(file, width, height) {
   png(tempfile(), width = width, height = height)
 })
 ```
 
-# Raison d'être
+# Introduction: Raison d'être
 
 [`ggstatsplot`](https://indrajeetpatil.github.io/ggstatsplot/) is an extension
 of [`ggplot2`](https://github.com/tidyverse/ggplot2) package for creating
@@ -60,13 +66,13 @@ We list few reasons below-
     inconsistent *p*-value that may have affected the statistical conclusion.
     `ggstatsplot` helps avoid such reporting errors: Since the plot and the
     statistical analysis are yoked together, the chances of making an error in
-    reporting the results are minimized. You never have to write the results
-    manually or copy-paste them from someplace else.
+    reporting the results are minimized. One need not write the results manually
+    or copy-paste them from a different statistics software program (like SPSS,
+    SAS, and so on).
 
+# `ggstatsplot` at a glance
 
-# Summary of available plots
-
-It, therefore, produces a limited kinds of plots for the supported analyses:
+It produces a limited kinds of ready-made plots for the supported analyses:
 
 Function | Plot | Description
 ------- | ------- | -------------------- 
@@ -94,9 +100,7 @@ type of statistical analysis:
   - `"robust"` (for **robust**)
   - `"bayes"` (for **Bayes Factor**)
 
-Currently, it supports only the most common types of statistical tests:
-**correlation** analyses, **contingency table** analysis, and **regression**
-analyses. The table below summarizes all the different types of analyses
+The table below summarizes all the different types of analyses
 currently supported in this package-
 
 Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
@@ -110,7 +114,189 @@ Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
 `ggpiestats`, `ggbarstats` | Equal proportions for categorical variable levels | \textcolor{ForestGreen}{Yes} | `NA` | `NA` | \textcolor{ForestGreen}{Yes}
 `ggcoefstats` | Regression model coefficients | \textcolor{ForestGreen}{Yes} | \textcolor{red}{No} | \textcolor{ForestGreen}{Yes} | \textcolor{red}{No}
 
-# Statistical reporting
+# Graphic design principles
+
+## Graphical excellence
+   
+Graphical excellence consists of communicating complex ideas with clarity and in
+a way that the viewer understands the greatest number of ideas in a short amount
+of time all the while not quoting the data out of context. The package follows
+the principles for *graphical integrity* ([@tufteVisualDisplayQuantitative2001]):
+
+  - The physical representation of numbers is proportional to the numerical
+    quantities they represent (e.g., Figure-1 and Figure-2 show how means (in
+    `ggbetweenstats`) or percentages (`ggpiestats`) are proportional to the
+    vertical distance or the area, respectively).
+  
+  - All important events in the data have clear, detailed, and thorough labeling
+    (e.g., Figure-1 plot shows how `ggbetweenstats` labels means, sample size
+    information, outliers, and pairwise comparisons; same can be appreciated for
+    `ggpiestats` in Figure-2 and `gghistostats` in Figure-5). Note that data
+    labels in the data region are designed in a way that they don't interfere
+    with our ability to assess the overall pattern of the data (Cleveland, 1985;
+    p.44-45). This is achieved by using `ggrepel` package to place labels in a
+    way that reduces their visual prominence.
+  
+  - None of the plots have *design* variation (e.g., abrupt change in scales)
+    over the surface of a same graphic because this can lead to a false
+    impression about variation in *data*.
+  
+  - The number of information-carrying dimensions never exceed the number of
+    dimensions in the data (e.g., using area to show one-dimensional data).
+
+  - All plots are designed to have no **chartjunk** (like moiré vibrations, fake
+    perspective, dark grid lines, etc.) [@tufteVisualDisplayQuantitative2001][@tufteVisualDisplayQuantitative2001](Tufte, 2001, Chapter 5).
+
+There are some instances where `ggstatsplot` graphs don't follow principles of
+clean graphics, as formulated in the Tufte theory of data graphics
+([@tufteVisualDisplayQuantitative2001], Chapter 4). The theory has four key
+principles:[@aczelQuantifyingSupportNull]
+
+  1. Above all else show the data.
+  2. Maximize the data-ink ratio.
+  3. Erase non-data-ink.
+  4. Erase redundant data-ink, within reason.
+
+In particular, default plots in `ggstatsplot` can sometimes violate one of the
+principles from 2-4. According to these principles, every bit of ink should have
+reason for its inclusion in the graphic and should convey some new information
+to the viewer. If not, such ink should be removed. One instance of this is
+bilateral symmetry of data measures. For example, in Figure-1, we can see that
+both the box and violin plots are mirrored, which consumes twice the space in
+the graphic without adding any new information. But this redundancy is tolerated
+for the sake of beauty that such symmetrical shapes can bring to the graphic.
+Even Tufte admits that efficiency is but one consideration in the design of
+statistical graphics (Tufte, 2001, p. 137). Additionally, these principles were
+formulated in an era in which computer graphics had yet to revolutionize the
+ease with which graphics could be produced and thus some of the concerns about
+minimizing data-ink for easier production of graphics are not as relevant as
+they were.
+
+## Statistical variation
+
+One of the important functions of a plot is to show the variation in the data,
+which comes in two forms:
+
+  - **Measurement noise**: In `ggstatsplot`, the actual variation in
+    measurements is shown by plotting a combination of (jittered) raw data
+    points with a boxplot laid on top (Figure-1) or a histogram (Figure-5). None
+    of the plots, where empirical distribution of the data is concerned, show
+    the sample standard deviation because they are poor at conveying information
+    about limits of the sample and presence of outliers (Cleveland, 1985,
+    p.220).
+
+```{r example5, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8, fig.cap = "**Figure-5**. Distribution of a variable shown using `gghistostats`."}
+# for reproducibility
+set.seed(123)
+
+# plot
+ggstatsplot::gghistostats(
+  data = morley,
+  x = Speed,
+  test.value = 792,
+  test.value.line = TRUE,
+  xlab = "Speed of light (km/sec, with 299000 subtracted)",
+  title = "Figure-5: Distribution of Speed of light",
+  caption = "Note: Data collected across 5 experiments (20 measurements each)",
+  messages = FALSE
+)
+```
+
+  - **Sample-to-sample statistic variation**: Although, traditionally, this
+    variation has been shown using the standard error of the mean (SEM) of the
+    statistic, `ggstatsplot` plots instead use 95% confidence intervals (e.g.,
+    Figure-6). This is because the interval formed by error bars correspond to
+    a 68% confidence interval, which is not a particularly interesting interval
+    (Cleveland, 1985, p.222-225).
+
+```{r example6, fig.height = 5, fig.width = 5, fig.cap = "**Figure-6**. Sample-to-sample variation in regression estimates is displayed using confidence intervals in `ggcoefstats`."}
+# for reproducibility
+set.seed(123)
+
+# creating model object
+mod <- lme4::lmer(
+  formula = total.fruits ~ nutrient + rack + (nutrient | popu / gen),
+  data = lme4::Arabidopsis
+)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
+  p.kr = FALSE
+)
+```
+
+
+# Statistical analysis
+
+As an extension of `ggplot2`, `ggstatsplot` has the same expectations about the
+structure of the data. More specifically,
+
+  - The `data` should be an object of class `data.frame` (a `tibble` dataframe
+    will also work).
+    
+  - The data should be organized following the principles of *tidy data*, which
+    specify how statistical structure of a data frame (variables and
+    observations) should be mapped to physical structure (columns and rows).
+    More specifically, tidy data means all variables have their own columns and
+    each row corresponds to a unique observation (Wickham, 2014).
+    
+  - All `ggstatsplot` functions remove `NA`s from variables of interest (similar
+    to `ggplot2`; Wickham, 2016, p.207) in the data and display total sample
+    size (*n*, either observations for between-subjects or pairs for
+    within-subjects designs) in the subtitle to inform the user/reader about the
+    number of observations included for both the statistical analysis and the
+    visualization. But, when sample sizes differ *across* tests in the same
+    function, `ggstatsplot` makes an effort to inform the user of this aspect.
+    For example, `ggcorrmat` features several correlation test pairs and,
+    depending on variables in a given pair, the sample sizes may vary
+    (Figure-4).
+
+```{r example4, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 10, fig.cap = "**Figure-4**. `ggstatsplot` functions remove `NA`s from variables of interest and display total sample size *n*, but they can give more nuanced information about sample sizes when *n* differs across tests. For example, `ggcorrmat` will display (a) only one total sample size once when no `NA`s present, but (b) will instead show minimum, median, and maximum sample sizes across all correlation tests when `NA`s are present across correlation variables."}
+
+# creating a new dataset without any NAs in variables of interest
+msleep_no_na <-
+  dplyr::filter(
+    .data = ggplot2::msleep,
+    !is.na(sleep_rem), !is.na(awake), !is.na(brainwt), !is.na(bodywt)
+  )
+
+# variable names vector
+var_names <- c("REM sleep", "time awake", "brain weight", "body weight")
+
+# combining two plots using helper function in `ggstatsplot`
+ggstatsplot::combine_plots(
+  # plot *without* any NAs
+  ggstatsplot::ggcorrmat(
+    data = msleep_no_na,
+    p.adjust.method = "holm",
+    cor.vars = c(sleep_rem, awake:bodywt),
+    cor.vars.names = var_names,
+    matrix.type = "upper",
+    colors = c("#B2182B", "white", "#4D4D4D"),
+    title = "Correlalogram for mammals sleep dataset",
+    subtitle = "sleep units: hours; weight units: kilograms",
+    messages = FALSE
+  ),
+  # plot *with* NAs
+  ggstatsplot::ggcorrmat(
+    data = ggplot2::msleep,
+    p.adjust.method = "holm",
+    cor.vars = c(sleep_rem, awake:bodywt),
+    cor.vars.names = var_names,
+    matrix.type = "upper",
+    colors = c("#B2182B", "white", "#4D4D4D"),
+    title = "Correlalogram for mammals sleep dataset",
+    subtitle = "sleep units: hours; weight units: kilograms",
+    messages = FALSE
+  ),
+  labels = c("(a)", "(b)"),
+  nrow = 1
+)
+```
+   
+
+## Statistical reporting
 
 For **all** statistical tests reported in the plots, the default template abides
 by the [APA](https://my.ilstu.edu/~jhkahn/apastats.html) gold standard for
@@ -119,28 +305,25 @@ trimmed means (robust *t*-test):
 
 ![Template for reporting statistical details](figures/stats_reporting_format.png)
 
-
-# Summary of statistical tests and effect sizes
-
 Here is a summary table of all the statistical tests currently supported across
 various functions:
 
 Functions | Type | Test | Effect size | 95% CI available? 
------------- | ------------- | ------------------ | ------------------ | -----  
-`ggbetweenstats` | Parametric | Student's and Welch's *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggbetweenstats` | Parametric | Fisher's and Welch's one-way ANOVA | $$\eta^2, \eta^2_p, \omega^2, \omega^2_p$$ |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggbetweenstats` | Non-parametric | Mann-Whitney *U*-test | *r* |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggbetweenstats` | Non-parametric | Kruskal-Wallis Rank Sum Test | $$\epsilon^2$$ |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggbetweenstats` | Robust | Yuen's test for trimmed means | $$\xi$$ |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggbetweenstats` | Robust | Heteroscedastic one-way ANOVA for trimmed means | $$\xi$$ |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggwithinstats` | Parametric | Student's *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggwithinstats` | Parametric | Fisher's one-way repeated measures ANOVA | $$\eta^2_p, \omega^2$$ |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggwithinstats` | Non-parametric | Wilcoxon signed-rank test | *r* |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggwithinstats` | Non-parametric | Friedman test | $$W_{Kendall}$$ |  \textcolor{ForestGreen}{$\checkmark$}
-`ggwithinstats` | Robust | Yuen's test on trimmed means for dependent samples | $$\xi$$ |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggwithinstats` | Robust | Heteroscedastic one-way repeated measures ANOVA for trimmed means |  \textcolor{red}{$\times$} |  \textcolor{red}{$\times$}
-`ggpiestats` | Parametric | $$\text{Pearson's}~ \chi^2 ~\text{test}$$ | Cramér's *V* |  \textcolor{ForestGreen}{$\checkmark$}
-`ggpiestats` | Parametric | McNemar's test | Cohen's *g* |  \textcolor{ForestGreen}{$\checkmark$}
+-------------- | ----------- | --------------------- | -------- | -----  
+`ggbetweenstats` (2 groups) | Parametric | Student's and Welch's *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggbetweenstats` (> 2 groups) | Parametric | Fisher's and Welch's one-way ANOVA | $$\eta^2, \eta^2_p, \omega^2, \omega^2_p$$ |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggbetweenstats` (2 groups) | Non-parametric | Mann-Whitney *U*-test | *r* |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggbetweenstats` (> 2 groups) | Non-parametric | Kruskal-Wallis Rank Sum Test | $$\epsilon^2$$ |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggbetweenstats` (2 groups) | Robust | Yuen's test for trimmed means | $$\xi$$ |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggbetweenstats` (> 2 groups) | Robust | Heteroscedastic one-way ANOVA for trimmed means | $$\xi$$ |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggwithinstats` (2 groups) | Parametric | Student's *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggwithinstats` (> 2 groups) | Parametric | Fisher's one-way repeated measures ANOVA | $$\eta^2_p, \omega^2$$ |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggwithinstats` (2 groups) | Non-parametric | Wilcoxon signed-rank test | *r* |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggwithinstats` (> 2 groups) | Non-parametric | Friedman rank sum test | $$W_{Kendall}$$ |  \textcolor{ForestGreen}{$\checkmark$}
+`ggwithinstats` (2 groups) | Robust | Yuen's test on trimmed means for dependent samples | $$\xi$$ |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggwithinstats` (> 2 groups) | Robust | Heteroscedastic one-way repeated measures ANOVA for trimmed means |  \textcolor{red}{$\times$} |  \textcolor{red}{$\times$}
+`ggpiestats` and `ggbarstats` (unpaired) | Parametric | $$\text{Pearson's}~ \chi^2 ~\text{test}$$ | Cramér's *V* |  \textcolor{ForestGreen}{$\checkmark$}
+`ggpiestats` and `ggbarstats` (paired) | Parametric | McNemar's test | Cohen's *g* |  \textcolor{ForestGreen}{$\checkmark$}
 `ggpiestats` | Parametric | One-sample proportion test | Cramér's *V* |  \textcolor{ForestGreen}{$\checkmark$}
 `ggscatterstats` and `ggcorrmat` | Parametric | Pearson's *r* | *r* |  \textcolor{ForestGreen}{$\checkmark$}
 `ggscatterstats` and `ggcorrmat` | Non-parametric | $$\text{Spearman's}~ \rho$$ | $$\rho$$ |  \textcolor{ForestGreen}{$\checkmark$}
@@ -148,11 +331,46 @@ Functions | Type | Test | Effect size | 95% CI available?
 `gghistostats` and `ggdotplotstats` | Parametric | One-sample *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{ForestGreen}{$\checkmark$}
 `gghistostats` | Non-parametric | One-sample Wilcoxon signed rank test | *r* |  \textcolor{ForestGreen}{$\checkmark$} 
 `gghistostats` and `ggdotplotstats` | Robust | One-sample percentile bootstrap | robust estimator |  \textcolor{ForestGreen}{$\checkmark$}
-`gghistostats` and `ggdotplotstats` | Parametric | Regression models | $$\beta$$ |  \textcolor{ForestGreen}{$\checkmark$}
+`ggcoefstats` | Parametric | Regression models | $$\beta$$ |  \textcolor{ForestGreen}{$\checkmark$}
 
-Work is in progress to add some of the currently missing functionality. 
+## Reporting results
 
-# Primary functions
+The default setting in `ggstatsplot` is to produce plots with statistical
+details included. Most often than not, the results are displayed as a `subtitle`
+in the plot. Great care has been taken into which details are included in
+statistical reporting and why.
+
+1. **APA guidelines** (APA, 2009) are followed (for the most part) by default:   
+  - Percentages are displayed with no decimal places (Figure-2).
+  - Correlations, *t*-tests, and $\chi^2$-tests are reported with the degrees
+    of freedom in parentheses and the significance level (Figure-2, Figure-3b,
+    Figure-5).
+  - ANOVAs are reported with two degrees of freedom and the significance level
+    (Figure-1).
+  - Regression results are presented with the unstandardized or standardized
+    estimate (beta), whichever was specified by the user, along with the
+    statistic (depending on the model, this can be a *t* or *z* statistic) and
+    the corresponding significance level (Figure-6).
+  - With the exception of *p*-values, most statistics are rounded to two decimal
+    places by default.
+
+2. Default statistical tests: 
+
+3.  Dealing with **null results**:
+
+4.  Avoiding the **"p-value error"**:  
+    The *p*-value indexes the probability that the researchers have falsely
+    rejected a true null hypothesis (Type I error, i.e.) and can rarely be
+    *exactly* 0. And yet over 97,000 manuscripts on Google Scholar report the
+    *p*-value to be `p = 0.000`
+    [@lilienfeldFiftyPsychologicalPsychiatric2015], putatively due to relying
+    on default computer outputs. All *p*-values displayed in `ggstatsplot` plots
+    avoid this mistake. Anything less than `p < 0.001` is displayed as such
+    (e.g, Figure-1). The package deems it unimportant how infinitesimally small
+    the *p*-values are and, instead, puts emphasis on the effect size magnitudes
+    and their 95% CIs.
+
+# Short tutorial on primary functions
 
 Here are examples of the main functions currently supported in `ggstatsplot`.
 
@@ -182,12 +400,6 @@ ggstatsplot::ggbetweenstats(
 
 Note that this function returns a `ggplot2` object and thus any of the graphics
 layers can be further modified.
-
-The `type` (of test) argument
-also accepts the following abbreviations: `"p"` (for *parametric*) or `"np"`
-(for *nonparametric*) or `"r"` (for *robust*) or `"bf"` (for *Bayes Factor*).
-Additionally, the type of plot to be displayed can also be modified (`"box"`,
-`"violin"`, or `"boxviolin"`).
 
 A number of other arguments can be specified to make this plot even more
 informative or change some of the default options. 
@@ -231,7 +443,7 @@ ggstatsplot::ggbetweenstats(
 ```
 
 As can be seen from the plot, the function by default returns Bayes Factor for
-the test (here, Student's *t*-test). If the null hypothesis can't be rejected
+the test. If the null hypothesis can't be rejected
 with the null hypothesis significance testing (NHST) approach, the Bayesian
 approach can help index evidence in favor of the null hypothesis (i.e.,
 $BF_{01}$).
@@ -284,10 +496,10 @@ Following (between-subjects) tests are carried out for each type of analyses-
 
 Type | No. of groups | Test
 ----------- | --- | -------------------------
-Parametric | > 2 | Student's or Welch's one-way ANOVA
+Parametric | > 2 | Fisher's or Welch's one-way ANOVA
 Non-parametric | > 2 | Kruskal–Wallis one-way ANOVA
 Robust | > 2 | Heteroscedastic one-way ANOVA for trimmed means
-Bayes Factor | > 2 | Student's ANOVA
+Bayes Factor | > 2 | Fisher's ANOVA
 Parametric | 2 | Student's or Welch's *t*-test
 Non-parametric | 2 | Mann–Whitney *U* test
 Robust | 2 |  Yuen's test for trimmed means
@@ -496,32 +708,6 @@ ggstatsplot::grouped_ggscatterstats(
 )
 ```
 
-**Using `ggscatterstats()` in R Notebooks or R Markdown**
-
-If you include a `ggscatterstats()` plot inside an `R Notebook` or `R Markdown`
-code chunk, you will notice that running the chunk doesn't return any output nor
-does it give any error. In order to get a `ggscatterstats()` to show up in these
-contexts, you need to save the `ggscatterstats` plot as a variable in one code
-chunk, and explicitly print it using the `grid` package in another chunk, like
-this:
-
-```{r ggscatterstats_notebook, eval = FALSE}
-# include the following code in your code chunk inside R Notebook or Markdown
-grid::grid.newpage()
-grid::grid.draw(
-  ggstatsplot::ggscatterstats(
-    data = ggstatsplot::movies_wide,
-    x = budget,
-    y = rating,
-    marginal = TRUE,
-    messages = FALSE
-  )
-)
-```
-
-Another option - or rather a compromise - is not to include marginal
-distribution at all by setting `marginal = FALSE`.
-
 ### Summary of tests
 
 Following tests are carried out for each type of analyses. Additionally, the
@@ -530,10 +716,10 @@ sizes-
 
 Type | Test | CI?
 ----------- | ------------------------- | ---
-Parametric | Pearson's correlation coefficient | <font color="green">Yes<font>
-Non-parametric | Spearman's rank correlation coefficient | <font color="green">Yes<font>
-Robust | Percentage bend correlation coefficient | <font color="green">Yes<font>
-Bayes Factor | Pearson's correlation coefficient | <font color="red">No<font>
+Parametric | Pearson's correlation coefficient | \textcolor{ForestGreen}{Yes}
+Non-parametric | Spearman's rank correlation coefficient | \textcolor{ForestGreen}{Yes}
+Robust | Percentage bend correlation coefficient | \textcolor{ForestGreen}{Yes}
+Bayes Factor | Pearson's correlation coefficient | \textcolor{red}{No}
 
 For more, see the `ggscatterstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>
@@ -545,7 +731,7 @@ results from contingency table analysis (Pearson's $\chi^2$ test for
 between-subjects design and McNemar's $\chi^2$ test for within-subjects design)
 included in the subtitle of the plot. If only one categorical variable is
 entered, results from one-sample proportion test (i.e., a $\chi^2$ goodness of
-fit test) will be displayed as a subtitle.
+fit/gof test) will be displayed as a subtitle.
 
 Here is an example of a case where the theoretical question is about proportions
 for different levels of a single nominal variable:
@@ -614,7 +800,6 @@ ggstatsplot::ggpiestats(
   counts = Counts,
   paired = TRUE, # within-subjects design
   conf.level = 0.99, # confidence interval for effect size measure
-  stat.title = "McNemar's Test: ",
   package = "wesanderson",
   palette = "Royal1"
 )
@@ -672,9 +857,9 @@ of test-
 
 Type | Effect size | CI?
 --------------- | ------------------------- | --- 
-Pearson's chi-squared test | Cramer's *V* | <font color="green">Yes<font>
-McNemar's test | *g*  | <font color="green">Yes<font>
-Goodness of fit | *V*  | <font color="green">Yes<font>
+Pearson's chi-squared test | Cramér's *V* | \textcolor{ForestGreen}{Yes}
+McNemar's test | Cohen's *g*  | \textcolor{ForestGreen}{Yes}
+Goodness of fit | Cramér's *V*  | \textcolor{ForestGreen}{Yes}
 
 For more, see the `ggpiestats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
@@ -708,34 +893,30 @@ ggstatsplot::ggbarstats(
 
 And, needless to say, there is also a `grouped_` variant of this function-
 
-```{r ggbarstats2, message = FALSE, warning = FALSE, fig.height = 16, fig.width = 10}
+```{r ggbarstats2, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 10}
 # setup
-library(ggstatsplot)
 set.seed(123)
 
-# let's create a smaller dataframe
-diamonds_short <- ggplot2::diamonds %>%
-  dplyr::filter(.data = ., cut %in% c("Very Good", "Ideal")) %>%
-  dplyr::filter(.data = ., clarity %in% c("SI1", "SI2", "VS1", "VS2", "VVS1")) %>%
-  dplyr::sample_frac(tbl = ., size = 0.05)
+# smaller dataset
+df <- dplyr::filter(
+  .data = forcats::gss_cat,
+  race %in% c("Black", "White"),
+  relig %in% c("Protestant", "Catholic", "None"),
+  !partyid %in% c("No answer", "Don't know", "Other party")
+)
 
 # plot
 ggstatsplot::grouped_ggbarstats(
-  data = diamonds_short,
-  x = color,
-  y = clarity,
-  grouping.var = cut,
-  sampling.plan = "poisson",
-  title.prefix = "Quality",
-  data.label = "both",
-  label.text.size = 3,
-  perc.k = 1,
-  package = "palettetown",
-  palette = "charizard",
+  data = df,
+  x = relig,
+  y = partyid,
+  grouping.var = race,
+  title.prefix = "Race",
+  xlab = "Party affiliation",
   ggtheme = ggthemes::theme_tufte(base_size = 12),
   ggstatsplot.layer = FALSE,
   messages = FALSE,
-  title.text = "Diamond quality and color combination",
+  title.text = "Race, religion, and political affiliation",
   nrow = 2
 )
 ```
@@ -751,22 +932,6 @@ it is significantly different from a specified value with a one sample test,
 this function will let you do that.
 
 ```{r gghistostats1, message = FALSE, warning = FALSE}
-ggstatsplot::gghistostats(
-  data = ToothGrowth, # dataframe from which variable is to be taken
-  x = len, # numeric variable whose distribution is of interest
-  title = "Distribution of Sepal.Length", # title for the plot
-  fill.gradient = TRUE, # use color gradient
-  test.value = 10, # the comparison value for t-test
-  test.value.line = TRUE, # display a vertical line at test value
-  type = "bayes", # bayes factor for one sample t-test
-  bf.prior = 0.8, # prior width for calculating the bayes factor
-  messages = FALSE # turn off the messages
-)
-```
-
-The aesthetic defaults can be easily modified-
-
-```{r gghistostats2, message = FALSE, warning = FALSE}
 # for reproducibility
 set.seed(123)
 
@@ -791,9 +956,6 @@ ggstatsplot::gghistostats(
   ggstatsplot.layer = FALSE # turn off ggstatsplot theme layer
 )
 ```
-
-As can be seen from the plot, bayes factor can be attached (`bf.message = TRUE`)
-to assess evidence in favor of the null hypothesis.
 
 Additionally, there is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable:
@@ -835,6 +997,16 @@ Parametric | One-sample Student's *t*-test
 Non-parametric | One-sample Wilcoxon test 
 Robust | One-sample percentile bootstrap
 Bayes Factor | One-sample Student's *t*-test
+
+Following effect sizes (and confidence intervals/CI) are available for each type
+of test-
+
+Type | Effect size | CI?
+----------- | ------------------------- | --- 
+Parametric | Cohen's *d*, Hedge's *g* (central-and noncentral-*t* distribution based) | \textcolor{ForestGreen}{Yes}
+Non-parametric | *r* (computed as $Z/\sqrt{N}$) | \textcolor{ForestGreen}{Yes}
+Robust | $M_{robust}$ (Robust location measure) | \textcolor{ForestGreen}{Yes}
+Bayes Factor | \textcolor{red}{No} | \textcolor{red}{No}
 
 For more, including information about the variant of this function
 `grouped_gghistostats`, see the `gghistostats` vignette:
@@ -977,31 +1149,48 @@ sizes-
 
 Type | Test | CI?
 ----------- | ------------------------- | ---
-Parametric | Pearson's correlation coefficient | <font color="green">Yes<font>
-Non-parametric | Spearman's rank correlation coefficient | <font color="green">Yes<font>
-Robust | Percentage bend correlation coefficient | <font color="red">No<font>
-Bayes Factor | Pearson's correlation coefficient | <font color="red">No<font>
+Parametric | Pearson's correlation coefficient | \textcolor{ForestGreen}{Yes}
+Non-parametric | Spearman's rank correlation coefficient | \textcolor{ForestGreen}{Yes}
+Robust | Percentage bend correlation coefficient | \textcolor{red}{No}
+Bayes Factor | Pearson's correlation coefficient | \textcolor{red}{No}
 
 For examples and more information, see the `ggcorrmat` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html>
 
-## ggcoefstats
+## `ggcoefstats`
 
-`ggcoefstats` creates a dot-and-whisker plot point estimates for regression
-coefficients as dots with confidence intervals as whiskers.
+`ggcoefstats` creates a dot-and-whisker plot for regression models. Although the
+statistical models displayed in the plot may differ based on the class of models
+being investigated, there are few aspects of the plot that will be invariant
+across models:
+
+- The dot-whisker plot contains a dot representing the **estimate** and their
+**confidence intervals** (`95%` is the default). The estimate can either be
+  effect sizes (for tests that depend on the `F` statistic) or regression
+  coefficients (for tests with `t` and `z` statistic), etc. The function will, by
+  default, display a helpful `x`-axis label that should clear up what estimates are
+  being displayed. The confidence intervals can sometimes be asymmetric if
+  bootstrapping was used.
+  
+- The caption will always contain diagnostic information, if available, about
+  models that can be useful for model selection: The smaller the Akaike's
+  Information Criterion (**AIC**) and the Bayesian Information Criterion (**BIC**)
+  values, the "better" the model is. Additionally, the higher the
+**log-likelihood** value the "better" is the model fit.
+
+- The output of this function will be a `ggplot2` object and, thus, it can be
+  further modified (e.g., change themes, etc.) with `ggplot2` functions.
+
 
 ```{r ggcoefstats1, message = FALSE, warning = FALSE, fig.height = 5, fig.width = 6}
 # for reproducibility
 set.seed(123)
 
 # model
-mod <- stats::lm(
-  formula = mpg ~ am * cyl,
-  data = mtcars
-)
+mod <- stats::lm(formula = mpg ~ am * cyl, data = mtcars)
 
 # plot
-ggstatsplot::ggcoefstats(x = mod)
+ggstatsplot::ggcoefstats(x = mod, title = "linear model")
 ```
 
 This default plot can be further modified to one's liking with additional arguments
@@ -1012,10 +1201,7 @@ This default plot can be further modified to one's liking with additional argume
 set.seed(123)
 
 # model
-mod <- MASS::rlm(
-  formula = mpg ~ am * cyl,
-  data = mtcars
-)
+mod <- MASS::rlm(formula = mpg ~ am * cyl, data = mtcars)
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -1031,12 +1217,8 @@ ggstatsplot::ggcoefstats(
   ggtheme = hrbrthemes::theme_ipsum_ps(),
   ggstatsplot.layer = FALSE
 ) + # further modification with the ggplot2 commands
-  # note the order in which the labels are entered
   ggplot2::scale_y_discrete(labels = c("transmission", "cylinders", "interaction")) +
-  ggplot2::labs(
-    x = "regression coefficient",
-    y = NULL
-  )
+  ggplot2::labs(x = "regression coefficient", y = NULL)
 ```
 
 Most of the regression models that are supported in the `broom` and
@@ -1059,69 +1241,11 @@ frequentist and Bayesian random-effects meta-analysis.
 For a more exhaustive account of this function, see the associated vignette-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>
 
-## combine_plots
-
-`ggstatsplot` contains a helper function `combine_plots` to
-combine multiple plots, which can be useful for combining a list of plots
-produced with `purrr`. This is a wrapper around `cowplot::plot_grid` and lets
-you combine multiple plots and add a combination of title, caption, and
-annotation texts with suitable defaults.
-
-For examples (both with `plyr` and `purrr`), see the associated vignette-
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html>
-
-## theme_ggstatsplot
-
-All plots from `ggstatsplot` have a default theme: `theme_ggstatsplot`. You can
-change this theme by using the `ggtheme` argument. It is important to note that
-irrespective of which `ggplot` theme you choose, `ggstatsplot` in the backdrop
-adds a new layer with its idiosyncratic theme settings, chosen to make the
-graphs more readable or aesthetically pleasing.
-
-Let's see an example with `gghistostats` and see how a certain theme from
-`hrbrthemes` package looks like with and without the `ggstatsplot` layer.
-
-```{r theme_ggstatsplot, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 13}
-set.seed(123)
-# to use hrbrthemes themes, first make sure you have all the necessary fonts
-library(hrbrthemes)
-
-# try this yourself
-ggstatsplot::combine_plots(
-  # with the ggstatsplot layer
-  ggstatsplot::gghistostats(
-    data = iris,
-    x = Sepal.Width,
-    messages = FALSE,
-    title = "Distribution of Sepal Width",
-    test.value = 5,
-    ggtheme = hrbrthemes::theme_ipsum(),
-    ggstatsplot.layer = TRUE
-  ),
-  # without the ggstatsplot layer
-  ggstatsplot::gghistostats(
-    data = iris,
-    x = Sepal.Width,
-    messages = FALSE,
-    title = "Distribution of Sepal Width",
-    test.value = 5,
-    ggtheme = hrbrthemes::theme_ipsum_ps(),
-    ggstatsplot.layer = FALSE
-  ),
-  nrow = 1,
-  labels = c("(a)", "(b)"),
-  title.text = "Behavior of ggstatsplot theme layer with and without chosen ggtheme"
-)
-```
-
-For more on how to modify it, see the associated vignette-
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html>
-
 ## Working with custom plots
 
 Sometimes you may not like the defaults in a plot produced by `ggstatsplot`. In
-such cases, you can use other custom plots (from `ggplot2` or other plotting
-packages) and still use `ggstatsplot` functions to display results from relevant
+such cases, you can use other custom plots (from `ggplot2` or other graphics
+packages in `R`) and still use `ggstatsplot` functions to display results from relevant
 statistical test.
 
 For example, in the following chunk, we will create plot (*pirateplot*) using
@@ -1154,295 +1278,7 @@ yarrr::pirateplot(
 )
 ```
 
-# Graphical integrity (and clean design)
-   
-Graphical excellence consists of communicating complex ideas with clarity and in
-a way that the viewer understands the greatest number of ideas in a short amount
-of time all the while not quoting the data out of context. The package follows
-the principles for **graphical integrity** (as outlined in Tufte, 2001):
-
-  - The physical representation of numbers is proportional to the numerical
-    quantities they represent (e.g., Figure-1 and Figure-2 show how means (in
-    `ggbetweenstats`) or percentages (`ggpiestats`) are proportional to the
-    vertical distance or the area, respectively).
-  
-  - All important events in the data have clear, detailed, and thorough labeling
-    (e.g., Figure-1 plot shows how `ggbetweenstats` labels means, sample size
-    information, outliers, and pairwise comparisons; same can be appreciated for
-    `ggpiestats` in Figure-2 and `gghistostats` in Figure-5). Note that data
-    labels in the data region are designed in a way that they don't interfere
-    with our ability to assess the overall pattern of the data (Cleveland, 1985;
-    p.44-45). This is achieved by using `ggrepel` package to place labels in a
-    way that reduces their visual prominence.
-  
-  - None of the plots have *design* variation (e.g., abrupt change in scales)
-    over the surface of a same graphic because this can lead to a false
-    impression about variation in *data*.
-  
-  - The number of information-carrying dimensions never exceed the number of
-    dimensions in the data (e.g., using area to show one-dimensional data).
-
-  - All plots are designed to have no **chartjunk** (like moiré vibrations, fake
-    perspective, dark grid lines, etc.) (Tufte, 2001, Chapter 5).
-
-There are some instances where `ggstatsplot` graphs don't follow principles of
-clean graphics, as formulated in the Tufte theory of data graphics (Tufte, 2001,
-Chapter 4). The theory has four key principles:
-
-  1. Above all else show the data.
-  2. Maximize the data-ink ratio.
-  3. Erase non-data-ink.
-  4. Erase redundant data-ink, within reason.
-
-In particular, default plots in `ggstatsplot` can sometimes violate one of the
-principles from 2-4. According to these principles, every bit of ink should have
-reason for its inclusion in the graphic and should convey some new information
-to the viewer. If not, such ink should be removed. One instance of this is
-bilateral symmetry of data measures. For example, in Figure-1, we can see that
-both the box and violin plots are mirrored, which consumes twice the space in
-the graphic without adding any new information. But this redundancy is tolerated
-for the sake of beauty that such symmetrical shapes can bring to the graphic.
-Even Tufte admits that efficiency is but one consideration in the design of
-statistical graphics (Tufte, 2001, p. 137). Additionally, these principles were
-formulated in an era in which computer graphics had yet to revolutionize the
-ease with which graphics could be produced and thus some of the concerns about
-minimizing data-ink for easier production of graphics are not as relevant as
-they were.
-
-
-# Statistical analysis
-
-As an extension of `ggplot2`, `ggstatsplot` has the same expectations about the
-structure of the data. More specifically,
-
-  - The `data` should be an object of class `data.frame` (a `tibble` dataframe
-    will also work).
-    
-  - The data should be organized following the principles of *tidy data*, which
-    specify how statistical structure of a data frame (variables and
-    observations) should be mapped to physical structure (columns and rows).
-    More specifically, tidy data means all variables have their own columns and
-    each row corresponds to a unique observation (Wickham, 2014).
-    
-  - All `ggstatsplot` functions remove `NA`s from variables of interest (similar
-    to `ggplot2`; Wickham, 2016, p.207) in the data and display total sample
-    size (*n*, either observations for between-subjects or pairs for
-    within-subjects designs) in the subtitle to inform the user/reader about the
-    number of observations included for both the statistical analysis and the
-    visualization. But, when sample sizes differ *across* tests in the same
-    function, `ggstatsplot` makes an effort to inform the user of this aspect.
-    For example, `ggcorrmat` features several correlation test pairs and,
-    depending on variables in a given pair, the sample sizes may vary
-    (Figure-4).
-
-```{r example4, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 10, fig.cap = "**Figure-4**. `ggstatsplot` functions remove `NA`s from variables of interest and display total sample size *n*, but they can give more nuanced information about sample sizes when *n* differs across tests. For example, `ggcorrmat` will display (a) only one total sample size once when no `NA`s present, but (b) will instead show minimum, median, and maximum sample sizes across all correlation tests when `NA`s are present across correlation variables."}
-
-# creating a new dataset without any NAs in variables of interest
-msleep_no_na <-
-  dplyr::filter(
-    .data = ggplot2::msleep,
-    !is.na(sleep_rem),
-    !is.na(awake),
-    !is.na(brainwt),
-    !is.na(bodywt)
-  )
-
-# variable names vector
-var_names <- c(
-  "REM sleep",
-  "time awake",
-  "brain weight",
-  "body weight"
-)
-
-# combining two plots
-ggstatsplot::combine_plots(
-  # plot *without* any NAs
-  ggstatsplot::ggcorrmat(
-    data = msleep_no_na,
-    corr.method = "kendall",
-    sig.level = 0.001,
-    p.adjust.method = "holm",
-    cor.vars = c(sleep_rem, awake:bodywt),
-    cor.vars.names = var_names,
-    matrix.type = "upper",
-    colors = c("#B2182B", "white", "#4D4D4D"),
-    title = "Correlalogram for mammals sleep dataset",
-    subtitle = "sleep units: hours; weight units: kilograms",
-    messages = FALSE
-  ),
-  # plot *with* NAs
-  ggstatsplot::ggcorrmat(
-    data = ggplot2::msleep,
-    corr.method = "kendall",
-    sig.level = 0.001,
-    p.adjust.method = "holm",
-    cor.vars = c(sleep_rem, awake:bodywt),
-    cor.vars.names = var_names,
-    matrix.type = "upper",
-    colors = c("#B2182B", "white", "#4D4D4D"),
-    title = "Correlalogram for mammals sleep dataset",
-    subtitle = "sleep units: hours; weight units: kilograms",
-    messages = FALSE
-  ),
-  labels = c("(a)", "(b)"),
-  nrow = 1
-)
-```
-   
-## Types of statistics supported
-
-Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
-------- | ------------------ | ---- | ----- | ----| ----- 
-`ggbetweenstats` | Between group/condition comparisons |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$}
-`ggwithinstats` | Within group/condition comparisons |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$}
-`gghistostats`, `ggdotplotstats` | Distribution of a numeric variable |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$}
-`ggcorrmat` | Correlation matrix |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{red}{$\times$}
-`ggscatterstats` | Correlation between two variables |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{ForestGreen}{$\checkmark$}
-`ggpiestats`, `ggbarstats` | Association between categorical variables |  \textcolor{ForestGreen}{$\checkmark$} | `NA` | `NA` |  \textcolor{ForestGreen}{$\checkmark$}
-`ggpiestats`, `ggbarstats` | Equal proportions for categorical variable levels |  \textcolor{ForestGreen}{$\checkmark$} | `NA` | `NA` |  \textcolor{red}{$\times$}
-`ggcoefstats` | Regression model coefficients |  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{red}{$\times$}|  \textcolor{ForestGreen}{$\checkmark$} |  \textcolor{red}{$\times$}
-
-## Types of statistical tests supported
-
-Functions | Type | Test | Effect size | 95% CI available? 
------------ | ----------- | ------------------ | ------------------ | -----  
-`ggbetweenstats` | Parametric | Student's and Welch's *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggbetweenstats` | Parametric | Fisher's and Welch's one-way ANOVA | $$\eta^2, \eta^2_p, \omega^2, \omega^2_p$$ |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggbetweenstats` | Non-parametric | Mann-Whitney *U*-test | *r* |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggbetweenstats` | Non-parametric | Kruskal-Wallis Rank Sum Test | $$\epsilon^2$$ |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggbetweenstats` | Robust | Yuen's test for trimmed means | $$\xi$$ |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggbetweenstats` | Robust | Heteroscedastic one-way ANOVA for trimmed means | $$\xi$$ |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggwithinstats` | Parametric | Student's *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggwithinstats` | Parametric | Fisher's one-way repeated measures ANOVA | $$\eta^2_p, \omega^2$$ |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggwithinstats` | Non-parametric | Wilcoxon signed-rank test | *r* |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggwithinstats` | Non-parametric | Friedman test | $$W_{Kendall}$$ |  \textcolor{ForestGreen}{$\checkmark$}
-`ggwithinstats` | Robust | Yuen's test on trimmed means for dependent samples | $$\xi$$ |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggwithinstats` | Robust | Heteroscedastic one-way repeated measures ANOVA for trimmed means |  \textcolor{red}{$\times$} |  \textcolor{red}{$\times$}
-`ggpiestats` | Parametric | $$\text{Pearson's}~ \chi^2 ~\text{test}$$ | Cramér's *V* |  \textcolor{ForestGreen}{$\checkmark$}
-`ggpiestats` | Parametric | McNemar's test | Cohen's *g* |  \textcolor{ForestGreen}{$\checkmark$}
-`ggpiestats` | Parametric | One-sample proportion test | Cramér's *V* |  \textcolor{ForestGreen}{$\checkmark$}
-`ggscatterstats`/`ggcorrmat` | Parametric | Pearson's *r* | *r* |  \textcolor{ForestGreen}{$\checkmark$}
-`ggscatterstats`/`ggcorrmat` | Non-parametric | $$\text{Spearman's}~ \rho$$ | $$\rho$$ |  \textcolor{ForestGreen}{$\checkmark$}
-`ggscatterstats`/`ggcorrmat` | Robust | Percentage bend correlation | *r* |  \textcolor{ForestGreen}{$\checkmark$}
-`gghistostats`/`ggdotplotstats` | Parametric | One-sample *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{ForestGreen}{$\checkmark$}
-`gghistostats` | Non-parametric | One-sample Wilcoxon signed rank test | *r* |  \textcolor{ForestGreen}{$\checkmark$} 
-`gghistostats`/`ggdotplotstats` | Robust | One-sample percentile bootstrap | robust estimator |  \textcolor{ForestGreen}{$\checkmark$}
-`gghistostats`/`ggdotplotstats` | Parametric | Regression models | $$\beta$$ |  \textcolor{ForestGreen}{$\checkmark$}
-
-For the `ggbetweenstats` function, the following post-hoc tests are available
-for (adjusted) pairwise multiple comparisons:
-
-Type | Design | Equal variance assumed? |  Pairwise comparison test | *p*-value adjustment? 
------------ | ----------- | --------- | ----------------------- | -----
-Parametric | between-subjects | No | Games-Howell test |  \textcolor{ForestGreen}{$\checkmark$} 
-Parametric | between-subjects | Yes | Student's *t*-test |  \textcolor{ForestGreen}{$\checkmark$} 
-Parametric | within-subjects | `NA` | Student's *t*-test |  \textcolor{ForestGreen}{$\checkmark$} 
-Non-parametric | between-subjects | No | Dwass-Steel-Crichtlow-Fligner test |  \textcolor{ForestGreen}{$\checkmark$} 
-Non-parametric | within-subjects | No | Durbin-Conover test |  \textcolor{ForestGreen}{$\checkmark$} 
-Robust | between-subjects | No | Yuen's two-sample trimmed means *t*-test |  \textcolor{ForestGreen}{$\checkmark$} 
-Robust | within-subjects | `NA` | Yuen's trimmed means test |  \textcolor{ForestGreen}{$\checkmark$}
-Bayes Factor | between-subjects | No |  \textcolor{red}{$\times$} |  \textcolor{red}{$\times$}
-Bayes Factor | between-subjects | Yes |  \textcolor{red}{$\times$} |  \textcolor{red}{$\times$}
-Bayes Factor | within-subjects | `NA` |  \textcolor{red}{$\times$} |  \textcolor{red}{$\times$}
-
-*Note*- 
-
-  - `NA`: not applicable
-  - available methods for *p*-value adjustment: "holm", "hochberg", "hommel",
-    "bonferroni", "BH", "BY", "fdr", "none"
-
-## Statistical variation
-
-One of the important functions of a plot is to show the variation in the data,
-which comes in two forms:
-
-  - **Measurement noise**: In `ggstatsplot`, the actual variation in
-    measurements is shown by plotting a combination of (jittered) raw data
-    points with a boxplot laid on top (Figure-1) or a histogram (Figure-5). None
-    of the plots, where empirical distribution of the data is concerned, show
-    the sample standard deviation because they are poor at conveying information
-    about limits of the sample and presence of outliers (Cleveland, 1985,
-    p.220).
-
-```{r example5, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8, fig.cap = "**Figure-5**. Distribution of a variable shown using `gghistostats`."}
-# for reproducibility
-set.seed(123)
-
-# plot
-ggstatsplot::gghistostats(
-  data = morley,
-  x = Speed,
-  test.value = 792,
-  test.value.line = TRUE,
-  xlab = "Speed of light (km/sec, with 299000 subtracted)",
-  title = "Figure-5: Distribution of Speed of light",
-  caption = "Note: Data collected across 5 experiments (20 measurements each)",
-  messages = FALSE
-)
-```
-
-  - **Sample-to-sample statistic variation**: Although, traditionally, this
-    variation has been shown using the standard error of the mean (SEM) of the
-    statistic, `ggstatsplot` plots instead use 95% confidence intervals (e.g.,
-    Figure-6). This is because the interval formed by error bars correspond to
-    a 68% confidence interval, which is not a particularly interesting interval
-    (Cleveland, 1985, p.222-225).
-
-```{r example6, fig.height = 5, fig.width = 5, fig.cap = "**Figure-6**. Sample-to-sample variation in regression estimates is displayed using confidence intervals in `ggcoefstats`."}
-# for reproducibility
-set.seed(123)
-
-# creating model object
-mod <- lme4::lmer(
-  formula = total.fruits ~ nutrient + rack + (nutrient | popu / gen),
-  data = lme4::Arabidopsis
-)
-
-# plot
-ggstatsplot::ggcoefstats(
-  x = mod,
-  p.kr = FALSE
-)
-```
-
-## Reporting results
-
-The default setting in `ggstatsplot` is to produce plots with statistical
-details included. Most often than not, the results are displayed as a `subtitle`
-in the plot. Great care has been taken into which details are included in
-statistical reporting and why.
-
-1. **APA guidelines** (APA, 2009) are followed (for the most part) by default:   
-  - Percentages are displayed with no decimal places (Figure-2).
-  - Correlations, *t*-tests, and $\chi^2$-tests are reported with the degrees
-    of freedom in parentheses and the significance level (Figure-2, Figure-3b,
-    Figure-5).
-  - ANOVAs are reported with two degrees of freedom and the significance level
-    (Figure-1).
-  - Regression results are presented with the unstandardized or standardized
-    estimate (beta), whichever was specified by the user, along with the
-    statistic (depending on the model, this can be a *t* or *z* statistic) and
-    the corresponding significance level (Figure-6).
-  - With the exception of *p*-values, most statistics are rounded to two decimal
-    places by default.
-
-2. Default statistical tests: 
-
-3. Dealing with **null results**: 
-
-4.  Avoiding the **"p-value error"**:  
-    The *p*-value indexes the probability that the researchers have falsely
-    rejected a true null hypothesis (Type I error, i.e.) and can rarely be
-    *exactly* 0. And yet over 97,000 manuscripts on Google Scholar report the
-    *p*-value to be `p = 0.000` (Lilienfeld et al., 2015), putatively due to
-    relying on default computer outputs. All *p*-values displayed in
-    `ggstatsplot` plots avoid this mistake. Anything less than `p < 0.001` is
-    displayed as such (e.g, Figure-1). The package deems it unimportant how
-    infinitesimally small the *p*-values are and, instead, puts emphasis on the
-    effect size magnitudes and their 95% CIs.
-
-# Usage and syntax simplicity
+## Usage and syntax simplicity
 
 ## Overall consistency in API
 
@@ -1513,7 +1349,7 @@ If you find any bugs or have any suggestions/remarks, please file an issue on
 `GitHub` repository for this package:
 <https://github.com/IndrajeetPatil/ggstatsplot/issues>
 
-## Contributing
+## Appendix C: Contributing
 
 `ggstatsplot` is happy to receive bug reports, suggestions, questions, and (most
 of all) contributions to fix problems and add features. Pull Requests for
