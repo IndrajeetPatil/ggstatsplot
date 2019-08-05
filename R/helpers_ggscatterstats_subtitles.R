@@ -2,6 +2,12 @@
 #' @name subtitle_ggscatterstats
 #' @author Indrajeet Patil
 #'
+#' @param x The column in `data` containing the explanatory variable to be
+#'   plotted on the `x`-axis. Can be entered either as a character string (e.g.,
+#'   `"x"`) or as a bare expression (e.g, `x`).
+#' @param y The column in `data` containing the response (outcome) variable to
+#'   be plotted on the `y`-axis. Can be entered either as a character string
+#'   (e.g., `"y"`) or as a bare expression (e.g, `y`).
 #' @param type Type of association between paired samples required
 #'   ("`"parametric"`: Pearson's product moment correlation coefficient" or
 #'   "`"nonparametric"`: Spearman's rho" or "`"robust"`: percentage bend

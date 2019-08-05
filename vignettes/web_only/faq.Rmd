@@ -50,12 +50,13 @@ Such summary tables are available for each function.
 The `plotly` R graphing library makes it easy to produce interactive web
 graphics via 'plotly.js'. `ggstatsplot` functions are compatible with `plotly`.
  
-```{r plotly, message = FALSE, warning = FALSE, fig.height = 4, fig.width = 4}
+```{r plotly, message = FALSE, warning = FALSE}
+# for reproducibility
 set.seed(123)
 library(ggstatsplot)
 library(plotly)
 
-# will work
+# creating ggplot object with ggstatsplot
 p <- ggstatsplot::ggbetweenstats(
   data = mtcars,
   x = cyl,

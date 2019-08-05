@@ -132,7 +132,6 @@ mean_labeller <- function(data,
 #'   mean.data = mean_dat,
 #'   mean.color = "darkgreen"
 #' )
-#'
 #' @keywords internal
 
 # function body
@@ -397,7 +396,6 @@ long_to_wide_converter <- function(data, x, y, paired = TRUE) {
 #'   y = Sepal.Length,
 #'   df_pairwise = df_pair
 #' )
-#'
 #' @keywords internal
 
 ggsignif_adder <- function(plot,

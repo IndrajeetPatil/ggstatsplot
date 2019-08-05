@@ -13,9 +13,13 @@ subtitle_ggscatterstats(data, x, y, nboot = 100, beta = 0.1,
 \item{data}{A dataframe (or a tibble) from which variables specified are to
 be taken. A matrix or tables will \strong{not} be accepted.}
 
-\item{x}{A vector containing the explanatory variable.}
+\item{x}{The column in \code{data} containing the explanatory variable to be
+plotted on the \code{x}-axis. Can be entered either as a character string (e.g.,
+\code{"x"}) or as a bare expression (e.g, \code{x}).}
 
-\item{y}{The response - a vector of length the number of rows of \code{x}.}
+\item{y}{The column in \code{data} containing the response (outcome) variable to
+be plotted on the \code{y}-axis. Can be entered either as a character string
+(e.g., \code{"y"}) or as a bare expression (e.g, \code{y}).}
 
 \item{nboot}{Number of bootstrap samples for computing confidence interval
 for the effect size (Default: \code{100}).}

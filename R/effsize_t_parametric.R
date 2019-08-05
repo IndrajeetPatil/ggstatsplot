@@ -90,7 +90,6 @@
 #'   noncentral = TRUE,
 #'   tobject = tobj3
 #' )
-#'
 #' @keywords internal
 
 # function body

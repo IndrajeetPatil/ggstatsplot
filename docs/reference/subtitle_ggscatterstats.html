@@ -130,9 +130,6 @@
       <a href="../articles/web_only/ggscatterstats.html">ggscatterstats</a>
     </li>
     <li>
-      <a href="../articles/web_only/ggstatsplot_paper.html">ggstatsplot: ggplot2 Based Plots with Statistical Details</a>
-    </li>
-    <li>
       <a href="../articles/web_only/ggwithinstats.html">ggwithinstats</a>
     </li>
     <li>
@@ -203,11 +200,15 @@ be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
     </tr>
     <tr>
       <th>x</th>
-      <td><p>A vector containing the explanatory variable.</p></td>
+      <td><p>The column in <code>data</code> containing the explanatory variable to be
+plotted on the x axis. Can be entered either as a character string (e.g.,
+<code>"x"</code>) or as a bare expression (e.g, <code>x</code>).</p></td>
     </tr>
     <tr>
       <th>y</th>
-      <td><p>The response - a vector of length the number of rows of <code>x</code>.</p></td>
+      <td><p>The column in <code>data</code> containing the response (outcome) variable to
+be plotted on the y axis. Can be entered either as a character string
+(e.g., <code>"y"</code>) or as a bare expression (e.g, <code>y</code>).</p></td>
     </tr>
     <tr>
       <th>nboot</th>

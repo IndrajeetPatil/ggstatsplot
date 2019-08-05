@@ -23,10 +23,14 @@
 }{}
 \usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
+\PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
 \hypersetup{unicode=true,
             pdftitle={ggstatsplot: ggplot2 Based Plots with Statistical Details},
             pdfauthor={Indrajeet Patil; Fiery Cushman; Mina Cikara},
-            pdfborder={0 0 0},
+            colorlinks=true,
+            linkcolor=blue,
+            citecolor=Blue,
+            urlcolor=Blue,
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
 \usepackage{color}
@@ -88,7 +92,7 @@
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{0}
+\setcounter{secnumdepth}{5}
 % Redefines (sub)paragraphs to behave more like sections
 \ifx\paragraph\undefined\else
 \let\oldparagraph\paragraph
@@ -118,17 +122,12 @@
   \title{ggstatsplot: ggplot2 Based Plots with Statistical Details}
     \pretitle{\vspace{\droptitle}\centering\huge}
   \posttitle{\par}
-    \author{Indrajeet Patil\footnote{Harvard University,
-  \href{mailto:patilindrajeet.science@gmail.com}{\nolinkurl{patilindrajeet.science@gmail.com}}} \\ Fiery Cushman\footnote{Harvard University,
-  \href{mailto:cushman@fas.harvard.edu}{\nolinkurl{cushman@fas.harvard.edu}}
-} \\ Mina Cikara\footnote{Harvard University,
-  \href{mailto:mcikara@fas.harvard.edu}{\nolinkurl{mcikara@fas.harvard.edu}}
-}}
+    \author{Indrajeet Patil\footnote{Harvard University, \href{mailto:patilindrajeet.science@gmail.com}{\nolinkurl{patilindrajeet.science@gmail.com}}} \\ Fiery Cushman\footnote{Harvard University} \\ Mina Cikara\footnote{Harvard University}}
     \preauthor{\centering\large\emph}
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-08-03}
+    \date{2019-08-05}
 
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -137,6 +136,7 @@
 \usepackage{amsfonts}
 \usepackage{hyperref}
 \usepackage{booktabs}
+\usepackage{float}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{fontawesome}
 
@@ -144,152 +144,157 @@
 \maketitle
 
 {
+\hypersetup{linkcolor=black}
 \setcounter{tocdepth}{2}
 \tableofcontents
 }
+\begin{quote}
+``What is to be sought in designs for the display of information is the clear
+portrayal of complexity. Not the complication of the simple; rather \ldots{} the
+revelation of the complex.''\\
+- Edward R. Tufte
+\end{quote}
+
 \hypertarget{introduction-raison-detre}{%
 \section{Introduction: Raison d'être}\label{introduction-raison-detre}}
 
-\href{https://indrajeetpatil.github.io/ggstatsplot/}{\texttt{ggstatsplot}}
-is an extension of
-\href{https://github.com/tidyverse/ggplot2}{\texttt{ggplot2}} package
-for creating graphics with details from statistical tests included in
-the plots themselves and targeted primarily at behavioral sciences
-community to provide a one-line code to produce information-rich plots.
-In a typical exploratory data analysis workflow, data visualization and
-statistical modeling are two different phases: visualization informs
-modeling, and modeling in its turn can suggest a different visualization
-method, and so on and so forth. The central idea of \texttt{ggstatsplot}
-is simple: combine these two phases into one in the form of graphics
-with statistical details, which makes data exploration simpler and
+\href{https://indrajeetpatil.github.io/ggstatsplot/}{\texttt{ggstatsplot}} is an extension
+of \href{https://github.com/tidyverse/ggplot2}{\texttt{ggplot2}} package for creating
+graphics with details from statistical tests included in the plots themselves
+and targeted primarily at behavioral sciences community to provide a one-line
+code to produce information-rich plots. In a typical exploratory data analysis
+workflow, data visualization and statistical modeling are two different phases:
+visualization informs modeling, and modeling in its turn can suggest a
+different visualization method, and so on and so forth. The central idea of
+\texttt{ggstatsplot} is simple: combine these two phases into one in the form of
+graphics with statistical details, which makes data exploration simpler and
 faster.
 
-But why would combining statistical analysis with data visualization be
-helpful? We list few reasons below-
+But why would combining statistical analysis with data visualization be helpful?
+We list few reasons below-
 
 \begin{itemize}
 \tightlist
 \item
-  A recent survey (Nuijten, Hartgerink, van Assen, Epskamp, \& Wicherts,
-  2016) revealed that one in eight papers in major psychology journals
-  contained a grossly inconsistent \emph{p}-value that may have affected
-  the statistical conclusion. \texttt{ggstatsplot} helps avoid such
-  reporting errors: Since the plot and the statistical analysis are
-  yoked together, the chances of making an error in reporting the
-  results are minimized. One need not write the results manually or
-  copy-paste them from a different statistics software program (like
-  SPSS, SAS, and so on).
+  A recent survey (Nuijten, Hartgerink, van Assen, Epskamp, \& Wicherts, \protect\hyperlink{ref-nuijtenPrevalenceStatisticalReporting2016}{2016}) revealed that
+  one in eight papers in major psychology journals contained a grossly
+  inconsistent \emph{p}-value that may have affected the statistical conclusion.
+  \texttt{ggstatsplot} helps avoid such reporting errors: Since the plot and the
+  statistical analysis are yoked together, the chances of making an error in
+  reporting the results are minimized. One need not write the results manually
+  or copy-paste them from a different statistics software program (like SPSS,
+  SAS, and so on).
 \end{itemize}
 
 \hypertarget{ggstatsplot-at-a-glance}{%
-\section{\texorpdfstring{\texttt{ggstatsplot} at a
-glance}{ggstatsplot at a glance}}\label{ggstatsplot-at-a-glance}}
+\section{\texorpdfstring{\texttt{ggstatsplot} at a glance}{ggstatsplot at a glance}}\label{ggstatsplot-at-a-glance}}
 
-It produces a limited kinds of ready-made plots for the supported
-analyses:
+\hypertarget{summary-of-types-of-plots-included}{%
+\subsection{Summary of types of plots included}\label{summary-of-types-of-plots-included}}
+
+It produces a limited kinds of ready-made plots for the supported analyses:
 
 \begin{longtable}[]{@{}lll@{}}
 \toprule
-\begin{minipage}[b]{0.19\columnwidth}\raggedright
+\begin{minipage}[b]{0.17\columnwidth}\raggedright
 Function\strut
-\end{minipage} & \begin{minipage}[b]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{0.25\columnwidth}\raggedright
 Plot\strut
-\end{minipage} & \begin{minipage}[b]{0.54\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{0.49\columnwidth}\raggedright
 Description\strut
 \end{minipage}\tabularnewline
 \midrule
 \endhead
-\begin{minipage}[t]{0.19\columnwidth}\raggedright
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
 \texttt{ggbetweenstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
 \textbf{violin plots}\strut
-\end{minipage} & \begin{minipage}[t]{0.54\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{0.49\columnwidth}\raggedright
 for comparisons \emph{between} groups/conditions\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.19\columnwidth}\raggedright
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
 \texttt{ggwithinstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
 \textbf{violin plots}\strut
-\end{minipage} & \begin{minipage}[t]{0.54\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{0.49\columnwidth}\raggedright
 for comparisons \emph{within} groups/conditions\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.19\columnwidth}\raggedright
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
 \texttt{gghistostats}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
 \textbf{histograms}\strut
-\end{minipage} & \begin{minipage}[t]{0.54\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{0.49\columnwidth}\raggedright
 for distribution about numeric variable\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.19\columnwidth}\raggedright
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
 \texttt{ggdotplotstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
 \textbf{dot plots/charts}\strut
-\end{minipage} & \begin{minipage}[t]{0.54\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{0.49\columnwidth}\raggedright
 for distribution about labeled numeric variable\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.19\columnwidth}\raggedright
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
 \texttt{ggpiestats}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
 \textbf{pie charts}\strut
-\end{minipage} & \begin{minipage}[t]{0.54\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{0.49\columnwidth}\raggedright
 for categorical data\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.19\columnwidth}\raggedright
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
 \texttt{ggbarstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
 \textbf{bar charts}\strut
-\end{minipage} & \begin{minipage}[t]{0.54\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{0.49\columnwidth}\raggedright
 for categorical data\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.19\columnwidth}\raggedright
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
 \texttt{ggscatterstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
 \textbf{scatterplots}\strut
-\end{minipage} & \begin{minipage}[t]{0.54\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{0.49\columnwidth}\raggedright
 for correlations between two variables\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.19\columnwidth}\raggedright
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
 \texttt{ggcorrmat}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
 \textbf{correlation matrices}\strut
-\end{minipage} & \begin{minipage}[t]{0.54\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{0.49\columnwidth}\raggedright
 for correlations between multiple variables\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.19\columnwidth}\raggedright
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
 \texttt{ggcoefstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
 \textbf{dot-and-whisker plots}\strut
-\end{minipage} & \begin{minipage}[t]{0.54\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{0.49\columnwidth}\raggedright
 for regression models\strut
 \end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
 
-In addition to these basic plots, \texttt{ggstatsplot} also provides
-\textbf{\texttt{grouped\_}} versions (see below) that makes it easy to
-repeat the same analysis for any grouping variable.
+In addition to these basic plots, \texttt{ggstatsplot} also provides \textbf{\texttt{grouped\_}}
+versions (see below) that makes it easy to repeat the same analysis for
+any grouping variable.
 
 \hypertarget{summary-of-types-of-statistical-analyses}{%
-\section{Summary of types of statistical
-analyses}\label{summary-of-types-of-statistical-analyses}}
+\subsection{Summary of types of statistical analyses}\label{summary-of-types-of-statistical-analyses}}
 
-Most functions share a \texttt{type} (of test) argument that is helpful
-to specify the type of statistical analysis:
+Most functions share a \texttt{type} (of test) argument that is helpful to specify the
+type of statistical analysis:
 
 \begin{itemize}
 \tightlist
 \item
-  \texttt{"parametric"} (for \textbf{parametric})
+  \texttt{"parametric"} (for \textbf{parametric} tests)
 \item
-  \texttt{"nonparametric"} (for \textbf{non-parametric})
+  \texttt{"nonparametric"} (for \textbf{non-parametric} tests)
 \item
-  \texttt{"robust"} (for \textbf{robust})
+  \texttt{"robust"} (for \textbf{robust} tests)
 \item
-  \texttt{"bayes"} (for \textbf{Bayes Factor})
+  \texttt{"bayes"} (for \textbf{Bayes Factor} tests)
 \end{itemize}
 
-The table below summarizes all the different types of analyses currently
-supported in this package-
+The table below summarizes all the different types of analyses
+currently supported in this package-
 
 \begin{longtable}[]{@{}llllll@{}}
 \toprule
@@ -415,53 +420,236 @@ Regression model coefficients\strut
 \bottomrule
 \end{longtable}
 
+In the following sections, we will discuss at depth justification for why the
+plots have been designed in certain ways and what principles were followed to
+report statistical details on the plots.
+
 \hypertarget{graphic-design-principles}{%
 \section{Graphic design principles}\label{graphic-design-principles}}
+
+\hypertarget{graphical-perception}{%
+\subsection{Graphical perception}\label{graphical-perception}}
+
+Graphical perception involves visual decoding of the encoded information in
+graphs. \texttt{ggstatsplot} incorporates the paradigm proposed in
+((Cleveland, \protect\hyperlink{ref-clevelandElementsGraphingData1985}{1985}), Chapter 4) to facilitate making visual
+judgments about quantitative information effortless and almost instantaneous.
+Based on experiments, Cleveland proposes that there are ten elementary
+graphical-perception tasks that we perform to visually decode quantitative
+information in graphs (organized from most to least accurate;
+(Cleveland, \protect\hyperlink{ref-clevelandElementsGraphingData1985}{1985}), p.254)-
+
+\begin{itemize}
+\tightlist
+\item
+  Position along a common scale
+\item
+  Position along identical, non-aligned scales
+\item
+  Length
+\item
+  Angle (Slope)
+\item
+  Area
+\item
+  Volume
+\item
+  Color hue
+\end{itemize}
+
+So the key principle of Cleveland's paradigm for data display is-
+
+\begin{quote}
+``We should encode data on a graph so that the visual decoding involves
+{[}graphical-perception{]} tasks as high in the ordering as possible.''
+\end{quote}
+
+For example, decoding the data point values in \texttt{ggbetweenstats} requires
+position judgments along a common scale (Figure \ref{fig:fig1}):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# for reproducibility}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{# plot}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{ggbetweenstats}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(}
+    \DataTypeTok{.data =}\NormalTok{ ggstatsplot}\OperatorTok{::}\NormalTok{movies_long,}
+\NormalTok{    genre }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Action"}\NormalTok{, }\StringTok{"Action Comedy"}\NormalTok{, }\StringTok{"Action Drama"}\NormalTok{, }\StringTok{"Comedy"}\NormalTok{)}
+\NormalTok{  ),}
+  \DataTypeTok{x =}\NormalTok{ genre,}
+  \DataTypeTok{y =}\NormalTok{ rating,}
+  \DataTypeTok{title =} \StringTok{"IMDB rating by film genre"}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"Genre"}\NormalTok{,}
+  \DataTypeTok{ylab =} \StringTok{"IMDB rating (average)"}\NormalTok{,}
+  \DataTypeTok{pairwise.comparisons =} \OtherTok{TRUE}\NormalTok{,}
+  \DataTypeTok{p.adjust.method =} \StringTok{"bonferroni"}\NormalTok{,}
+  \DataTypeTok{ggtheme =}\NormalTok{ hrbrthemes}\OperatorTok{::}\KeywordTok{theme_ipsum_tw}\NormalTok{(),}
+  \DataTypeTok{ggstatsplot.layer =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{outlier.tagging =} \OtherTok{TRUE}\NormalTok{,}
+  \DataTypeTok{outlier.label =}\NormalTok{ title,}
+  \DataTypeTok{messages =} \OtherTok{FALSE}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+\includegraphics[width=1\linewidth]{./figures/paper-fig1-1} \caption{Note that assessing differences in mean values between groups has been made easier with the help of \textit{position} of data points along a common scale (the Y-axis) and labels.}\label{fig:fig1}
+\end{figure}
+
+There are few instances where \texttt{ggstatsplot} diverges from recommendations made
+in Cleveland's paradigm:
+
+\begin{itemize}
+\tightlist
+\item
+  For the categorical/nominal data, \texttt{ggstatsplot} uses pie charts (see Figure
+  \ref{fig:fig2}) which rely on \emph{angle} judgments, which are less accurate (as
+  compared to bar graphs, e.g., which require \emph{position} judgments). This
+  shortcoming is assuaged to some degree by using plenty of labels that
+  describe percentages for all slices. This makes angle judgment unnecessary
+  and pre-vacates any concerns about inaccurate judgments about percentages.
+  Additionally, it also provides alternative function to \texttt{ggpiestats} for
+  working with categorical variables: \texttt{ggbarstats}.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# for reproducibility}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{# plot}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{ggpiestats}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ ggstatsplot}\OperatorTok{::}\NormalTok{movies_long,}
+  \DataTypeTok{main =}\NormalTok{ genre,}
+  \DataTypeTok{condition =}\NormalTok{ mpaa,}
+  \DataTypeTok{title =} \StringTok{"Distribution of MPAA ratings by film genre"}\NormalTok{,}
+  \DataTypeTok{legend.title =} \StringTok{"layout"}\NormalTok{,}
+  \DataTypeTok{caption =} \KeywordTok{substitute}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}
+    \KeywordTok{italic}\NormalTok{(}\StringTok{"MPAA"}\NormalTok{), }\StringTok{": Motion Picture Association of America"}
+\NormalTok{  )),}
+  \DataTypeTok{palette =} \StringTok{"Paired"}\NormalTok{,}
+  \DataTypeTok{messages =} \OtherTok{FALSE}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+\includegraphics[width=1\linewidth]{./figures/paper-fig2-1} \caption{Pie charts don't follow Cleveland's paradigm to data display because they rely on less accurate angle judgments. `ggstatsplot` sidesteps this issue by always labelling percentages for pie slices, which makes angle judgments unnecessary.}\label{fig:fig2}
+\end{figure}
+
+\begin{itemize}
+\tightlist
+\item
+  Cleveland's paradigm also emphasizes that \emph{superposition} of data is better
+  than \emph{juxtaposition} ((Cleveland, \protect\hyperlink{ref-clevelandElementsGraphingData1985}{1985}), p.201) because
+  this allows for a more incisive comparison of the values from different
+  parts of the dataset. This recommendation is violated in all \texttt{grouped\_}
+  variants of the function (see Figure \ref{fig:fig3}). Note that the range
+  for Y-axes are no longer the same across juxtaposed subplots and so visually
+  comparing the data becomes difficult. On the other hand, in the superposed
+  plot, all data have the same range and coloring different parts makes the
+  visual discrimination of different components of the data, and their
+  comparison, easier. But the goal of \texttt{grouped\_} variants of functions is to
+  not only show different aspects of the data but also to run statistical
+  tests and showing detailed results for all aspects of the data in a
+  superposed plot is difficult. Therefore, this is a compromise \texttt{ggstatsplot}
+  is comfortable with, at least to produce plots for quick exploration of
+  different aspects of the data.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# for reproducibility}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+
+\CommentTok{# creating a smaller dataframe}
+\NormalTok{df <-}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(ggstatsplot}\OperatorTok{::}\NormalTok{movies_long, genre }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Comedy"}\NormalTok{, }\StringTok{"Drama"}\NormalTok{))}
+
+\CommentTok{# plot}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{combine_plots}\NormalTok{(}
+  \CommentTok{# plot 1: superposition}
+  \KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ df, }\DataTypeTok{mapping =}\NormalTok{ ggplot2}\OperatorTok{::}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ length, }\DataTypeTok{y =}\NormalTok{ rating, }\DataTypeTok{color =}\NormalTok{ genre)) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom_jitter}\NormalTok{(}\DataTypeTok{size =} \DecValTok{3}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"superposition (recommended in Cleveland's paradigm)"}\NormalTok{) }\OperatorTok{+}
+\StringTok{    }\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{theme_ggstatsplot}\NormalTok{(),}
+  \CommentTok{# plot 2: juxtaposition}
+\NormalTok{  ggstatsplot}\OperatorTok{::}\KeywordTok{grouped_ggscatterstats}\NormalTok{(}
+    \DataTypeTok{data =}\NormalTok{ df,}
+    \DataTypeTok{x =}\NormalTok{ length,}
+    \DataTypeTok{y =}\NormalTok{ rating,}
+    \DataTypeTok{grouping.var =}\NormalTok{ genre,}
+    \DataTypeTok{marginal =} \OtherTok{FALSE}\NormalTok{,}
+    \DataTypeTok{messages =} \OtherTok{FALSE}\NormalTok{,}
+    \DataTypeTok{title.prefix =} \StringTok{"Genre"}\NormalTok{,}
+    \DataTypeTok{title.text =} \StringTok{"juxtaposition (`ggstatsplot` implementation in `grouped_` functions)"}\NormalTok{,}
+    \DataTypeTok{title.size =} \DecValTok{12}
+\NormalTok{  ),}
+  \CommentTok{# combine for comparison}
+  \DataTypeTok{title.text =} \StringTok{"Two ways to compare different aspects of data"}\NormalTok{,}
+  \DataTypeTok{nrow =} \DecValTok{2}\NormalTok{,}
+  \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"(a)"}\NormalTok{, }\StringTok{"(b)"}\NormalTok{)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+\includegraphics[width=1\linewidth]{./figures/paper-fig3-1} \caption{Comparing different aspects of data is much more accurate in (\textit{a}) a \textit{superposed} plot, which is recommended in Cleveland's paradigm, than in (\textit{b}) a \textit{juxtaposed} plot, which is how it is implemented in `ggstatsplot` package. This is because displaying detailed results from statistical tests would be difficult in a superposed plot.}\label{fig:fig3}
+\end{figure}
+
+The \texttt{grouped\_} plots follow the \emph{Shrink Principle}
+((Tufte, \protect\hyperlink{ref-tufteVisualDisplayQuantitative2001}{2001}), p.166-7) for high-information graphics,
+which dictates that the data density and the size of the data matrix can be
+maximized to exploit maximum resolution of the available data-display
+technology. Given the large maximum resolution afforded by most computer
+monitors today, saving \texttt{grouped\_} plots with appropriate resolution ensures no
+loss in legibility with reduced graphics area.
 
 \hypertarget{graphical-excellence}{%
 \subsection{Graphical excellence}\label{graphical-excellence}}
 
-Graphical excellence consists of communicating complex ideas with
-clarity and in a way that the viewer understands the greatest number of
-ideas in a short amount of time all the while not quoting the data out
-of context. The package follows the principles for \emph{graphical
-integrity} (({\textbf{???}})):
+Graphical excellence consists of communicating complex ideas with clarity and in
+a way that the viewer understands the greatest number of ideas in a short amount
+of time all the while not quoting the data out of context. The package follows
+the principles for \emph{graphical integrity} (Tufte, \protect\hyperlink{ref-tufteVisualDisplayQuantitative2001}{2001}):
 
 \begin{itemize}
 \item
-  The physical representation of numbers is proportional to the
-  numerical quantities they represent (e.g., Figure-1 and Figure-2 show
-  how means (in \texttt{ggbetweenstats}) or percentages
-  (\texttt{ggpiestats}) are proportional to the vertical distance or the
-  area, respectively).
+  The physical representation of numbers is proportional to the numerical
+  quantities they represent (e.g., Figure \ref{fig:fig1} and Figure
+  \ref{fig:fig2} show how means (in \texttt{ggbetweenstats}) or percentages
+  (\texttt{ggpiestats}) are proportional to the vertical distance or the area,
+  respectively).
 \item
-  All important events in the data have clear, detailed, and thorough
-  labeling (e.g., Figure-1 plot shows how \texttt{ggbetweenstats} labels
-  means, sample size information, outliers, and pairwise comparisons;
-  same can be appreciated for \texttt{ggpiestats} in Figure-2 and
-  \texttt{gghistostats} in Figure-5). Note that data labels in the data
-  region are designed in a way that they don't interfere with our
-  ability to assess the overall pattern of the data (Cleveland, 1985;
-  p.44-45). This is achieved by using \texttt{ggrepel} package to place
-  labels in a way that reduces their visual prominence.
+  All important events in the data have clear, detailed, and thorough labeling
+  (e.g., Figure \ref{fig:fig1} plot shows how \texttt{ggbetweenstats} labels means,
+  sample size information, outliers, and pairwise comparisons; same can be
+  appreciated for \texttt{ggpiestats} in Figure \ref{fig:fig2} and \texttt{gghistostats} in
+  Figure \ref{fig:fig5}). Note that data labels in the data region are
+  designed in a way that they don't interfere with our ability to assess the
+  overall pattern of the data ((Cleveland, \protect\hyperlink{ref-clevelandElementsGraphingData1985}{1985});
+  p.44-45). This is achieved by using \texttt{ggrepel} package to place labels in a
+  way that reduces their visual prominence.
 \item
-  None of the plots have \emph{design} variation (e.g., abrupt change in
-  scales) over the surface of a same graphic because this can lead to a
-  false impression about variation in \emph{data}.
+  None of the plots have \emph{design} variation (e.g., abrupt change in scales)
+  over the surface of a same graphic because this can lead to a false
+  impression about variation in \emph{data}.
 \item
-  The number of information-carrying dimensions never exceed the number
-  of dimensions in the data (e.g., using area to show one-dimensional
-  data).
+  The number of information-carrying dimensions never exceed the number of
+  dimensions in the data (e.g., using area to show one-dimensional data).
 \item
-  All plots are designed to have no \textbf{chartjunk} (like moiré
-  vibrations, fake perspective, dark grid lines, etc.)
-  ({\textbf{???}})({\textbf{???}})(Tufte, 2001, Chapter 5).
+  All plots are designed to have no \textbf{chartjunk} (like moiré vibrations, fake
+  perspective, dark grid lines, etc.)
+  ((Tufte, \protect\hyperlink{ref-tufteVisualDisplayQuantitative2001}{2001}), Chapter 5).
 \end{itemize}
 
-There are some instances where \texttt{ggstatsplot} graphs don't follow
-principles of clean graphics, as formulated in the Tufte theory of data
-graphics (({\textbf{???}}), Chapter 4). The theory has four key
-principles:({\textbf{???}})
+There are some instances where \texttt{ggstatsplot} graphs don't follow principles of
+clean graphics, as formulated in the Tufte theory of data graphics
+((Tufte, \protect\hyperlink{ref-tufteVisualDisplayQuantitative2001}{2001}), Chapter 4). The theory has four key
+principles:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -476,38 +664,37 @@ principles:({\textbf{???}})
   Erase redundant data-ink, within reason.
 \end{enumerate}
 
-In particular, default plots in \texttt{ggstatsplot} can sometimes
-violate one of the principles from 2-4. According to these principles,
-every bit of ink should have reason for its inclusion in the graphic and
-should convey some new information to the viewer. If not, such ink
-should be removed. One instance of this is bilateral symmetry of data
-measures. For example, in Figure-1, we can see that both the box and
-violin plots are mirrored, which consumes twice the space in the graphic
-without adding any new information. But this redundancy is tolerated for
-the sake of beauty that such symmetrical shapes can bring to the
-graphic. Even Tufte admits that efficiency is but one consideration in
-the design of statistical graphics (Tufte, 2001, p.~137). Additionally,
-these principles were formulated in an era in which computer graphics
-had yet to revolutionize the ease with which graphics could be produced
-and thus some of the concerns about minimizing data-ink for easier
+In particular, default plots in \texttt{ggstatsplot} can sometimes violate one of the
+principles from 2-4. According to these principles, every bit of ink should have
+reason for its inclusion in the graphic and should convey some new information
+to the viewer. If not, such ink should be removed. One instance of this is
+bilateral symmetry of data measures. For example, in Figure \ref{fig:fig1}, we
+can see that both the box and violin plots are mirrored, which consumes twice
+the space in the graphic without adding any new information. But this redundancy
+is tolerated for the sake of beauty that such symmetrical shapes can bring to
+the graphic. Even Tufte admits that efficiency is but one consideration in the
+design of statistical graphics ((Tufte, \protect\hyperlink{ref-tufteVisualDisplayQuantitative2001}{2001}),
+p.~137). Additionally, these principles were formulated in an era in which
+computer graphics had yet to revolutionize the ease with which graphics could be
+produced and thus some of the concerns about minimizing data-ink for easier
 production of graphics are not as relevant as they were.
 
 \hypertarget{statistical-variation}{%
 \subsection{Statistical variation}\label{statistical-variation}}
 
-One of the important functions of a plot is to show the variation in the
-data, which comes in two forms:
+One of the important functions of a plot is to show the variation in the data,
+which comes in two forms:
 
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Measurement noise}: In \texttt{ggstatsplot}, the actual
-  variation in measurements is shown by plotting a combination of
-  (jittered) raw data points with a boxplot laid on top (Figure-1) or a
-  histogram (Figure-5). None of the plots, where empirical distribution
-  of the data is concerned, show the sample standard deviation because
-  they are poor at conveying information about limits of the sample and
-  presence of outliers (Cleveland, 1985, p.220).
+  \textbf{Measurement noise}: In \texttt{ggstatsplot}, the actual variation in
+  measurements is shown by plotting a combination of (jittered) raw data
+  points with a boxplot laid on top (Figure \ref{fig:fig1}) or a histogram
+  (Figure \ref{fig:fig5}). None of the plots, where empirical distribution of
+  the data is concerned, show the sample standard deviation because they are
+  poor at conveying information about limits of the sample and presence of
+  outliers ((Cleveland, \protect\hyperlink{ref-clevelandElementsGraphingData1985}{1985}), p.220).
 \end{itemize}
 
 \begin{Shaded}
@@ -522,27 +709,26 @@ data, which comes in two forms:
   \DataTypeTok{test.value =} \DecValTok{792}\NormalTok{,}
   \DataTypeTok{test.value.line =} \OtherTok{TRUE}\NormalTok{,}
   \DataTypeTok{xlab =} \StringTok{"Speed of light (km/sec, with 299000 subtracted)"}\NormalTok{,}
-  \DataTypeTok{title =} \StringTok{"Figure-5: Distribution of Speed of light"}\NormalTok{,}
+  \DataTypeTok{title =} \StringTok{"Distribution of measured Speed of light"}\NormalTok{,}
   \DataTypeTok{caption =} \StringTok{"Note: Data collected across 5 experiments (20 measurements each)"}\NormalTok{,}
   \DataTypeTok{messages =} \OtherTok{FALSE}
 \NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}
-\includegraphics[width=1\linewidth]{./figures/paper-example5-1} \caption{**Figure-5**. Distribution of a variable shown using `gghistostats`.}\label{fig:example5}
+\begin{figure}[H]
+\includegraphics[width=1\linewidth]{./figures/paper-fig5-1} \caption{Distribution of a variable shown using `gghistostats`.}\label{fig:fig5}
 \end{figure}
 
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Sample-to-sample statistic variation}: Although,
-  traditionally, this variation has been shown using the standard error
-  of the mean (SEM) of the statistic, \texttt{ggstatsplot} plots instead
-  use 95\% confidence intervals (e.g., Figure-6). This is because the
-  interval formed by error bars correspond to a 68\% confidence
-  interval, which is not a particularly interesting interval (Cleveland,
-  1985, p.222-225).
+  \textbf{Sample-to-sample statistic variation}: Although, traditionally, this
+  variation has been shown using the standard error of the mean (SEM) of the
+  statistic, \texttt{ggstatsplot} plots instead use 95\% confidence intervals (e.g.,
+  Figure \ref{fig:fig6}). This is because the interval formed by error bars
+  correspond to a 68\% confidence interval, which is not a particularly
+  interesting interval ((Cleveland, \protect\hyperlink{ref-clevelandElementsGraphingData1985}{1985}), p.222-225).
 \end{itemize}
 
 \begin{Shaded}
@@ -552,57 +738,52 @@ data, which comes in two forms:
 
 \CommentTok{# creating model object}
 \NormalTok{mod <-}\StringTok{ }\NormalTok{lme4}\OperatorTok{::}\KeywordTok{lmer}\NormalTok{(}
-  \DataTypeTok{formula =}\NormalTok{ total.fruits }\OperatorTok{~}\StringTok{ }\NormalTok{nutrient }\OperatorTok{+}\StringTok{ }\NormalTok{rack }\OperatorTok{+}\StringTok{ }\NormalTok{(nutrient }\OperatorTok{|}\StringTok{ }\NormalTok{popu }\OperatorTok{/}\StringTok{ }\NormalTok{gen),}
+  \DataTypeTok{formula =}\NormalTok{ total.fruits }\OperatorTok{~}\StringTok{ }\NormalTok{nutrient }\OperatorTok{+}\StringTok{ }\NormalTok{rack }\OperatorTok{+}\StringTok{ }\NormalTok{(nutrient }\OperatorTok{|}\StringTok{ }\NormalTok{gen),}
   \DataTypeTok{data =}\NormalTok{ lme4}\OperatorTok{::}\NormalTok{Arabidopsis}
 \NormalTok{)}
-\CommentTok{#> boundary (singular) fit: see ?isSingular}
 
 \CommentTok{# plot}
-\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{ggcoefstats}\NormalTok{(}
-  \DataTypeTok{x =}\NormalTok{ mod,}
-  \DataTypeTok{p.kr =} \OtherTok{FALSE}
-\NormalTok{)}
-\CommentTok{#> Computing p-values via Wald-statistics approximation (treating t as Wald z).}
+\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{ggcoefstats}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ mod)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}
-\includegraphics[width=1\linewidth]{./figures/paper-example6-1} \caption{**Figure-6**. Sample-to-sample variation in regression estimates is displayed using confidence intervals in `ggcoefstats`.}\label{fig:example6}
+\begin{figure}[H]
+\includegraphics[width=1\linewidth]{./figures/paper-fig6-1} \caption{Sample-to-sample variation in regression estimates is displayed using confidence intervals in `ggcoefstats`.}\label{fig:fig6}
 \end{figure}
 
 \hypertarget{statistical-analysis}{%
 \section{Statistical analysis}\label{statistical-analysis}}
 
-As an extension of \texttt{ggplot2}, \texttt{ggstatsplot} has the same
-expectations about the structure of the data. More specifically,
+\hypertarget{data-requirements}{%
+\subsection{Data requirements}\label{data-requirements}}
+
+As an extension of \texttt{ggplot2}, \texttt{ggstatsplot} has the same expectations about the
+structure of the data. More specifically,
 
 \begin{itemize}
 \item
-  The \texttt{data} should be an object of class \texttt{data.frame} (a
-  \texttt{tibble} dataframe will also work).
+  The data should be organized following the principles of \emph{tidy data}, which
+  specify how statistical structure of a data frame (variables and
+  observations) should be mapped to physical structure (columns and rows).
+  More specifically, tidy data means all variables have their own columns and
+  each row corresponds to a unique observation ((Wickham, \protect\hyperlink{ref-wickhamTidyData2014}{2014})).
 \item
-  The data should be organized following the principles of \emph{tidy
-  data}, which specify how statistical structure of a data frame
-  (variables and observations) should be mapped to physical structure
-  (columns and rows). More specifically, tidy data means all variables
-  have their own columns and each row corresponds to a unique
-  observation (Wickham, 2014).
-\item
-  All \texttt{ggstatsplot} functions remove \texttt{NA}s from variables
-  of interest (similar to \texttt{ggplot2}; Wickham, 2016, p.207) in the
-  data and display total sample size (\emph{n}, either observations for
-  between-subjects or pairs for within-subjects designs) in the subtitle
-  to inform the user/reader about the number of observations included
-  for both the statistical analysis and the visualization. But, when
-  sample sizes differ \emph{across} tests in the same function,
-  \texttt{ggstatsplot} makes an effort to inform the user of this
-  aspect. For example, \texttt{ggcorrmat} features several correlation
-  test pairs and, depending on variables in a given pair, the sample
-  sizes may vary (Figure-4).
+  All \texttt{ggstatsplot} functions remove \texttt{NA}s from variables of interest (similar
+  to \texttt{ggplot2}; (Wickham, \protect\hyperlink{ref-wickhamGgplot2ElegantGraphics2016}{2016}), p.207) in the data and
+  display total sample size (\emph{n}, either observations for between-subjects or
+  pairs for within-subjects designs) in the subtitle to inform the user/reader
+  about the number of observations included for both the statistical analysis
+  and the visualization. But, when sample sizes differ \emph{across} tests in the
+  same function, \texttt{ggstatsplot} makes an effort to inform the user of this
+  aspect. For example, \texttt{ggcorrmat} features several correlation test pairs
+  and, depending on variables in a given pair, the sample sizes may vary
+  (Figure \ref{fig:fig4}).
 \end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{# for reproducibility}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
 
 \CommentTok{# creating a new dataset without any NAs in variables of interest}
 \NormalTok{msleep_no_na <-}
@@ -616,21 +797,9 @@ expectations about the structure of the data. More specifically,
 
 \CommentTok{# combining two plots using helper function in `ggstatsplot`}
 \NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{combine_plots}\NormalTok{(}
-  \CommentTok{# plot *without* any NAs}
-\NormalTok{  ggstatsplot}\OperatorTok{::}\KeywordTok{ggcorrmat}\NormalTok{(}
-    \DataTypeTok{data =}\NormalTok{ msleep_no_na,}
-    \DataTypeTok{p.adjust.method =} \StringTok{"holm"}\NormalTok{,}
-    \DataTypeTok{cor.vars =} \KeywordTok{c}\NormalTok{(sleep_rem, awake}\OperatorTok{:}\NormalTok{bodywt),}
-    \DataTypeTok{cor.vars.names =}\NormalTok{ var_names,}
-    \DataTypeTok{matrix.type =} \StringTok{"upper"}\NormalTok{,}
-    \DataTypeTok{colors =} \KeywordTok{c}\NormalTok{(}\StringTok{"#B2182B"}\NormalTok{, }\StringTok{"white"}\NormalTok{, }\StringTok{"#4D4D4D"}\NormalTok{),}
-    \DataTypeTok{title =} \StringTok{"Correlalogram for mammals sleep dataset"}\NormalTok{,}
-    \DataTypeTok{subtitle =} \StringTok{"sleep units: hours; weight units: kilograms"}\NormalTok{,}
-    \DataTypeTok{messages =} \OtherTok{FALSE}
-\NormalTok{  ),}
-  \CommentTok{# plot *with* NAs}
-\NormalTok{  ggstatsplot}\OperatorTok{::}\KeywordTok{ggcorrmat}\NormalTok{(}
-    \DataTypeTok{data =}\NormalTok{ ggplot2}\OperatorTok{::}\NormalTok{msleep,}
+  \DataTypeTok{plotlist =}\NormalTok{ purrr}\OperatorTok{::}\KeywordTok{pmap}\NormalTok{(}
+    \DataTypeTok{.l =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{list}\NormalTok{(msleep_no_na, ggplot2}\OperatorTok{::}\NormalTok{msleep)),}
+    \DataTypeTok{.f =}\NormalTok{ ggstatsplot}\OperatorTok{::}\NormalTok{ggcorrmat,}
     \DataTypeTok{p.adjust.method =} \StringTok{"holm"}\NormalTok{,}
     \DataTypeTok{cor.vars =} \KeywordTok{c}\NormalTok{(sleep_rem, awake}\OperatorTok{:}\NormalTok{bodywt),}
     \DataTypeTok{cor.vars.names =}\NormalTok{ var_names,}
@@ -646,18 +815,18 @@ expectations about the structure of the data. More specifically,
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}
-\includegraphics[width=1\linewidth]{./figures/paper-example4-1} \caption{**Figure-4**. `ggstatsplot` functions remove `NA`s from variables of interest and display total sample size *n*, but they can give more nuanced information about sample sizes when *n* differs across tests. For example, `ggcorrmat` will display (a) only one total sample size once when no `NA`s present, but (b) will instead show minimum, median, and maximum sample sizes across all correlation tests when `NA`s are present across correlation variables.}\label{fig:example4}
+\begin{figure}[H]
+\includegraphics[width=1\linewidth]{./figures/paper-fig4-1} \caption{`ggstatsplot` functions remove `NA`s from variables of interest and display total sample size \textit{n}, but they can give more nuanced information about sample sizes when \textit{n} differs across tests. For example, `ggcorrmat` will display (\textit{a}) only one total sample size once when no `NA`s present, but (\textit{b}) will instead show minimum, median, and maximum sample sizes across all correlation tests when `NA`s are present across correlation variables.}\label{fig:fig4}
 \end{figure}
 
 \hypertarget{statistical-reporting}{%
 \subsection{Statistical reporting}\label{statistical-reporting}}
 
-For \textbf{all} statistical tests reported in the plots, the default
-template abides by the
-\href{https://my.ilstu.edu/~jhkahn/apastats.html}{APA} gold standard for
-statistical reporting. For example, here are results from Yuen's test
-for trimmed means (robust \emph{t}-test):
+The default setting in \texttt{ggstatsplot} is to produce plots with statistical
+details included. Most often than not, these results are displayed as a \texttt{subtitle}
+in the plot. Great care has been taken into which details are included in
+statistical reporting and why. For example, the template below is used to show
+results from Yuen's test for trimmed means (robust \emph{t}-test):
 
 \begin{figure}
 \centering
@@ -665,8 +834,35 @@ for trimmed means (robust \emph{t}-test):
 \caption{Template for reporting statistical details}
 \end{figure}
 
-Here is a summary table of all the statistical tests currently supported
-across various functions:
+APA guidelines (Association, \protect\hyperlink{ref-associationPublicationManualAmerican2009}{2009}) are followed by
+default while reporting statistical details:
+
+\begin{itemize}
+\tightlist
+\item
+  Percentages are displayed with no decimal places (Figure \ref{fig:fig2}).
+\item
+  Correlations, \emph{t}-tests, and \(\chi^2\)-tests are reported with the degrees
+  of freedom in parentheses and the significance level (Figure \ref{fig:fig4},
+  Figure \ref{fig:fig3}, Figure \ref{fig:fig5}).
+\item
+  ANOVAs are reported with two degrees of freedom and the significance level
+  (Figure \ref{fig:fig1}).
+\item
+  Regression results are presented with the unstandardized or standardized
+  estimate (beta), whichever was specified by the user, along with the
+  statistic (depending on the model, this can be a \emph{t}, \emph{F}, or \emph{z} statistic)
+  and the corresponding significance level (Figure \ref{fig:fig6}).
+\item
+  With the exception of \emph{p}-values, most statistics are rounded to two decimal
+  places by default.
+\end{itemize}
+
+\hypertarget{statistical-tests}{%
+\subsection{Statistical tests:}\label{statistical-tests}}
+
+Here is a summary table of all the statistical tests currently supported across
+various functions:
 
 \begin{longtable}[]{@{}lllll@{}}
 \toprule
@@ -928,79 +1124,44 @@ Regression models\strut
 \bottomrule
 \end{longtable}
 
-\hypertarget{reporting-results}{%
-\subsection{Reporting results}\label{reporting-results}}
+\hypertarget{dealing-with-null-results}{%
+\subsection{\texorpdfstring{Dealing with \textbf{null results}:}{Dealing with null results:}}\label{dealing-with-null-results}}
 
-The default setting in \texttt{ggstatsplot} is to produce plots with
-statistical details included. Most often than not, the results are
-displayed as a \texttt{subtitle} in the plot. Great care has been taken
-into which details are included in statistical reporting and why.
+All functions therefore by default return Bayes Factor
+in favor of the null hypothesis by default. If the null hypothesis can't be
+rejected with the null hypothesis significance testing (NHST) approach, the
+Bayesian approach can help index evidence in favor of the null hypothesis (i.e.,
+\(BF\_{01}\)). By default, natural logarithms are shown because Bayes Factor
+values can sometimes be pretty large. Having values on logarithmic scale also
+makes it easy to compare evidence in favor alternative (\(BF\_{10}\)) versus null
+(\(BF\_{01}\)) hypotheses (since \(log\_{e}(BF\_{01}) = - log\_{e}(BF\_{01})\)).
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  \textbf{APA guidelines} (APA, 2009) are followed (for the most part)
-  by default:\\
-\end{enumerate}
+\hypertarget{avoiding-the-p-value-error}{%
+\subsection{\texorpdfstring{Avoiding the \textbf{``p-value error''}:}{Avoiding the ``p-value error'':}}\label{avoiding-the-p-value-error}}
 
-\begin{itemize}
-\tightlist
-\item
-  Percentages are displayed with no decimal places (Figure-2).
-\item
-  Correlations, \emph{t}-tests, and \(\chi^2\)-tests are reported with
-  the degrees of freedom in parentheses and the significance level
-  (Figure-2, Figure-3b, Figure-5).
-\item
-  ANOVAs are reported with two degrees of freedom and the significance
-  level (Figure-1).
-\item
-  Regression results are presented with the unstandardized or
-  standardized estimate (beta), whichever was specified by the user,
-  along with the statistic (depending on the model, this can be a
-  \emph{t} or \emph{z} statistic) and the corresponding significance
-  level (Figure-6).
-\item
-  With the exception of \emph{p}-values, most statistics are rounded to
-  two decimal places by default.
-\end{itemize}
+The \emph{p}-value indexes the probability that the researchers have falsely rejected
+a true null hypothesis (Type I error, i.e.) and can rarely be \emph{exactly} 0. And
+yet over 97,000 manuscripts on Google Scholar report the \emph{p}-value to be \texttt{p\ =0.000},
+putatively due to relying on default computer software outputs
+(Lilienfeld et al., \protect\hyperlink{ref-lilienfeldFiftyPsychologicalPsychiatric2015}{2015}). All \emph{p}-values displayed in
+\texttt{ggstatsplot} plots avoid this mistake. Anything less than \texttt{p\ \textless{}\ 0.001} is
+displayed as such (e.g, Figure \ref{fig:fig1}). The package deems it unimportant how
+infinitesimally small the \emph{p}-values are and, instead, puts emphasis on the
+effect size magnitudes and their 95\% CIs.
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
-\item
-  Default statistical tests:
-\item
-  Dealing with \textbf{null results}:
-\item
-  Avoiding the \textbf{``p-value error''}:\\
-  The \emph{p}-value indexes the probability that the researchers have
-  falsely rejected a true null hypothesis (Type I error, i.e.) and can
-  rarely be \emph{exactly} 0. And yet over 97,000 manuscripts on Google
-  Scholar report the \emph{p}-value to be \texttt{p\ =\ 0.000}
-  ({\textbf{???}}), putatively due to relying on default computer
-  outputs. All \emph{p}-values displayed in \texttt{ggstatsplot} plots
-  avoid this mistake. Anything less than \texttt{p\ \textless{}\ 0.001}
-  is displayed as such (e.g, Figure-1). The package deems it unimportant
-  how infinitesimally small the \emph{p}-values are and, instead, puts
-  emphasis on the effect size magnitudes and their 95\% CIs.
-\end{enumerate}
+\newpage
 
 \hypertarget{short-tutorial-on-primary-functions}{%
-\section{Short tutorial on primary
-functions}\label{short-tutorial-on-primary-functions}}
+\section{Short tutorial on primary functions}\label{short-tutorial-on-primary-functions}}
 
-Here are examples of the main functions currently supported in
-\texttt{ggstatsplot}.
+Here are examples of the main functions currently supported in \texttt{ggstatsplot}.
 
 \hypertarget{ggbetweenstats}{%
 \subsection{\texorpdfstring{\texttt{ggbetweenstats}}{ggbetweenstats}}\label{ggbetweenstats}}
 
-This function creates either a violin plot, a box plot, or a mix of two
-for \textbf{between}-group or \textbf{between}-condition comparisons
-with results from statistical tests in the subtitle. The simplest
-function call looks like this-
+This function creates either a violin plot, a box plot, or a mix of two for
+\textbf{between}-group or \textbf{between}-condition comparisons with results from
+statistical tests in the subtitle. The simplest function call looks like this-
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1024,18 +1185,19 @@ function call looks like this-
 
 \includegraphics[width=1\linewidth]{./figures/paper-ggbetweenstats1-1}
 
-Note that this function returns a \texttt{ggplot2} object and thus any
-of the graphics layers can be further modified.
+Note that this function returns object of class \texttt{ggplot} and thus can be further
+modified using \texttt{ggplot2} functions.
 
 A number of other arguments can be specified to make this plot even more
-informative or change some of the default options.
+informative or change some of the default options. Additionally, this time we
+will use a grouping variable that has only two levels. The function will
+automatically switch from carrying out an ANOVA analysis to a \emph{t}-test.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(ggplot2)}
-
 \CommentTok{# for reproducibility}
 \KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
 
 \CommentTok{# let's leave out one of the factor levels and see if instead of anova, a t-test will be run}
 \NormalTok{iris2 <-}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(}\DataTypeTok{.data =}\NormalTok{ iris, Species }\OperatorTok{!=}\StringTok{ "setosa"}\NormalTok{)}
@@ -1072,21 +1234,8 @@ informative or change some of the default options.
 
 \includegraphics[width=1\linewidth]{./figures/paper-ggbetweenstats2-1}
 
-As can be seen from the plot, the function by default returns Bayes
-Factor for the test. If the null hypothesis can't be rejected with the
-null hypothesis significance testing (NHST) approach, the Bayesian
-approach can help index evidence in favor of the null hypothesis (i.e.,
-\(BF_{01}\)).
-
-By default, natural logarithms are shown because Bayes Factor values can
-sometimes be pretty large. Having values on logarithmic scale also makes
-it easy to compare evidence in favor alternative (\(BF_{10}\)) versus
-null (\(BF_{01}\)) hypotheses (since
-\(log_{e}(BF_{01}) = - log_{e}(BF_{01})\)).
-
-Additionally, there is also a \texttt{grouped\_} variant of this
-function that makes it easy to repeat the same operation across a
-\textbf{single} grouping variable:
+Additionally, there is also a \texttt{grouped\_} variant of this function that makes it
+easy to repeat the same operation across a \textbf{single} grouping variable:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1111,10 +1260,7 @@ function that makes it easy to repeat the same operation across a
 \NormalTok{  ),}
   \DataTypeTok{k =} \DecValTok{3}\NormalTok{,}
   \DataTypeTok{title.prefix =} \StringTok{"Movie genre"}\NormalTok{,}
-  \DataTypeTok{caption =} \KeywordTok{substitute}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}
-    \KeywordTok{italic}\NormalTok{(}\StringTok{"Source"}\NormalTok{),}
-    \StringTok{":IMDb (Internet Movie Database)"}
-\NormalTok{  )),}
+  \DataTypeTok{caption =} \KeywordTok{substitute}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\KeywordTok{italic}\NormalTok{(}\StringTok{"Source"}\NormalTok{), }\StringTok{":IMDb (Internet Movie Database)"}\NormalTok{)),}
   \DataTypeTok{palette =} \StringTok{"default_jama"}\NormalTok{,}
   \DataTypeTok{package =} \StringTok{"ggsci"}\NormalTok{,}
   \DataTypeTok{messages =} \OtherTok{FALSE}\NormalTok{,}
@@ -1129,20 +1275,16 @@ function that makes it easy to repeat the same operation across a
 \hypertarget{summary-of-tests}{%
 \subsubsection{Summary of tests}\label{summary-of-tests}}
 
-Following (between-subjects) tests are carried out for each type of
-analyses-
+Following (between-subjects) tests are carried out for each type of analyses-
 
 \begin{longtable}[]{@{}lll@{}}
 \toprule
 Type & No.~of groups & Test\tabularnewline
 \midrule
 \endhead
-Parametric & \textgreater{} 2 & Fisher's or Welch's one-way
-ANOVA\tabularnewline
-Non-parametric & \textgreater{} 2 & Kruskal--Wallis one-way
-ANOVA\tabularnewline
-Robust & \textgreater{} 2 & Heteroscedastic one-way ANOVA for trimmed
-means\tabularnewline
+Parametric & \textgreater{} 2 & Fisher's or Welch's one-way ANOVA\tabularnewline
+Non-parametric & \textgreater{} 2 & Kruskal--Wallis one-way ANOVA\tabularnewline
+Robust & \textgreater{} 2 & Heteroscedastic one-way ANOVA for trimmed means\tabularnewline
 Bayes Factor & \textgreater{} 2 & Fisher's ANOVA\tabularnewline
 Parametric & 2 & Student's or Welch's \emph{t}-test\tabularnewline
 Non-parametric & 2 & Mann--Whitney \emph{U} test\tabularnewline
@@ -1151,29 +1293,21 @@ Bayes Factor & 2 & Student's \emph{t}-test\tabularnewline
 \bottomrule
 \end{longtable}
 
-The omnibus effect in one-way ANOVA design can also be followed up with
-more focal pairwise comparison tests. Here is a summary of
-\emph{multiple pairwise comparison} tests supported in
-\emph{ggbetweenstats}-
+The omnibus effect in one-way ANOVA design can also be followed up with more
+focal pairwise comparison tests. Here is a summary of \emph{multiple pairwise
+comparison} tests supported in \emph{ggbetweenstats}-
 
 \begin{longtable}[]{@{}llll@{}}
 \toprule
-Type & Equal variance? & Test & \emph{p}-value
-adjustment?\tabularnewline
+Type & Equal variance? & Test & \emph{p}-value adjustment?\tabularnewline
 \midrule
 \endhead
-Parametric & No & Games-Howell test &
-\textcolor{ForestGreen}{Yes}\tabularnewline
-Parametric & Yes & Student's \emph{t}-test &
-\textcolor{ForestGreen}{Yes}\tabularnewline
-Non-parametric & No & Dwass-Steel-Crichtlow-Fligner test &
-\textcolor{ForestGreen}{Yes}\tabularnewline
-Robust & No & Yuen's trimmed means test &
-\textcolor{ForestGreen}{Yes}\tabularnewline
-Bayes Factor & No & \textcolor{red}{No} &
-\textcolor{red}{No}\tabularnewline
-Bayes Factor & Yes & \textcolor{red}{No} &
-\textcolor{red}{No}\tabularnewline
+Parametric & No & Games-Howell test & \textcolor{ForestGreen}{Yes}\tabularnewline
+Parametric & Yes & Student's \emph{t}-test & \textcolor{ForestGreen}{Yes}\tabularnewline
+Non-parametric & No & Dwass-Steel-Crichtlow-Fligner test & \textcolor{ForestGreen}{Yes}\tabularnewline
+Robust & No & Yuen's trimmed means test & \textcolor{ForestGreen}{Yes}\tabularnewline
+Bayes Factor & No & \textcolor{red}{No} & \textcolor{red}{No}\tabularnewline
+Bayes Factor & Yes & \textcolor{red}{No} & \textcolor{red}{No}\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -1183,13 +1317,12 @@ For more, see the \texttt{ggbetweenstats} vignette:
 \hypertarget{ggwithinstats}{%
 \subsection{\texorpdfstring{\texttt{ggwithinstats}}{ggwithinstats}}\label{ggwithinstats}}
 
-\texttt{ggbetweenstats} function has an identical twin function
-\texttt{ggwithinstats} for repeated measures designs that behaves in the
-same fashion with a few minor tweaks introduced to properly visualize
-the repeated measures design. As can be seen from an example below, the
-only difference between the plot structure is that now the group means
-are connected by paths to highlight the fact that these data are paired
-with each other.
+\texttt{ggbetweenstats} function has an identical twin function \texttt{ggwithinstats} for
+repeated measures designs that behaves in the same fashion with a few minor
+tweaks introduced to properly visualize the repeated measures design. As can be
+seen from an example below, the only difference between the plot structure is
+that now the group means are connected by paths to highlight the fact that these
+data are paired with each other.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1218,10 +1351,8 @@ with each other.
 
 \includegraphics[width=1\linewidth]{./figures/paper-ggwithinstats1-1}
 
-As with the \texttt{ggbetweenstats}, this function also has a
-\texttt{grouped\_} variant that makes repeating the same analysis across
-a single grouping variable quicker. We will see an example with only
-repeated measurements-
+As with the \texttt{ggbetweenstats}, this function also has a \texttt{grouped\_} variant that
+makes repeating the same analysis across a single grouping variable quicker.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1254,8 +1385,7 @@ repeated measurements-
 \hypertarget{summary-of-tests-1}{%
 \subsubsection{Summary of tests}\label{summary-of-tests-1}}
 
-Following (within-subjects) tests are carried out for each type of
-analyses-
+Following (within-subjects) tests are carried out for each type of analyses-
 
 \begin{longtable}[]{@{}lll@{}}
 \toprule
@@ -1327,22 +1457,18 @@ Student's \emph{t}-test\strut
 \bottomrule
 \end{longtable}
 
-The omnibus effect in one-way ANOVA design can also be followed up with
-more focal pairwise comparison tests. Here is a summary of
-\emph{multiple pairwise comparison} tests supported in
-\emph{ggwithinstats}-
+The omnibus effect in one-way ANOVA design can also be followed up with more
+focal pairwise comparison tests. Here is a summary of \emph{multiple pairwise
+comparison} tests supported in \emph{ggwithinstats}-
 
 \begin{longtable}[]{@{}lll@{}}
 \toprule
 Type & Test & \emph{p}-value adjustment?\tabularnewline
 \midrule
 \endhead
-Parametric & Student's \emph{t}-test &
-\textcolor{ForestGreen}{Yes}\tabularnewline
-Non-parametric & Durbin-Conover test &
-\textcolor{ForestGreen}{Yes}\tabularnewline
-Robust & Yuen's trimmed means test &
-\textcolor{ForestGreen}{Yes}\tabularnewline
+Parametric & Student's \emph{t}-test & \textcolor{ForestGreen}{Yes}\tabularnewline
+Non-parametric & Durbin-Conover test & \textcolor{ForestGreen}{Yes}\tabularnewline
+Robust & Yuen's trimmed means test & \textcolor{ForestGreen}{Yes}\tabularnewline
 Bayes Factor & \textcolor{red}{No} & \textcolor{red}{No}\tabularnewline
 \bottomrule
 \end{longtable}
@@ -1353,9 +1479,9 @@ For more, see the \texttt{ggwithinstats} vignette:
 \hypertarget{ggscatterstats}{%
 \subsection{\texorpdfstring{\texttt{ggscatterstats}}{ggscatterstats}}\label{ggscatterstats}}
 
-This function creates a scatterplot with marginal distributions overlaid
-on the axes (from \texttt{ggExtra::ggMarginal}) and results from
-statistical tests in the subtitle:
+This function creates a scatterplot with marginal distributions overlaid on the
+axes (from \texttt{ggExtra::ggMarginal}) and results from statistical tests in the
+subtitle:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1427,13 +1553,12 @@ Number of other arguments can be specified to modify this basic plot-
 
 \includegraphics[width=1\linewidth]{./figures/paper-ggscatterstats2-1}
 
-Additionally, there is also a \texttt{grouped\_} variant of this
-function that makes it easy to repeat the same operation across a
-\textbf{single} grouping variable. Also, note that, as opposed to the
-other functions, this function does not return a \texttt{ggplot} object
-and any modification you want to make can be made in advance using
-\texttt{ggplot.component} argument (available for all functions, but
-especially useful for this particular function):
+Additionally, there is also a \texttt{grouped\_} variant of this function that makes it
+easy to repeat the same operation across a \textbf{single} grouping variable. Also,
+note that, as opposed to the other functions, this function does not return a
+\texttt{ggplot} object and any modification you want to make can be made in advance
+using \texttt{ggplot.component} argument (available for all functions, but especially
+useful for this particular function):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1473,23 +1598,19 @@ especially useful for this particular function):
 \hypertarget{summary-of-tests-2}{%
 \subsubsection{Summary of tests}\label{summary-of-tests-2}}
 
-Following tests are carried out for each type of analyses. Additionally,
-the correlation coefficients (and their confidence intervals) are used
-as effect sizes-
+Following tests are carried out for each type of analyses. Additionally, the
+correlation coefficients (and their confidence intervals) are used as effect
+sizes-
 
 \begin{longtable}[]{@{}lll@{}}
 \toprule
 Type & Test & CI?\tabularnewline
 \midrule
 \endhead
-Parametric & Pearson's correlation coefficient &
-\textcolor{ForestGreen}{Yes}\tabularnewline
-Non-parametric & Spearman's rank correlation coefficient &
-\textcolor{ForestGreen}{Yes}\tabularnewline
-Robust & Percentage bend correlation coefficient &
-\textcolor{ForestGreen}{Yes}\tabularnewline
-Bayes Factor & Pearson's correlation coefficient &
-\textcolor{red}{No}\tabularnewline
+Parametric & Pearson's correlation coefficient & \textcolor{ForestGreen}{Yes}\tabularnewline
+Non-parametric & Spearman's rank correlation coefficient & \textcolor{ForestGreen}{Yes}\tabularnewline
+Robust & Percentage bend correlation coefficient & \textcolor{ForestGreen}{Yes}\tabularnewline
+Bayes Factor & Pearson's correlation coefficient & \textcolor{red}{No}\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -1499,16 +1620,15 @@ For more, see the \texttt{ggscatterstats} vignette:
 \hypertarget{ggpiestats}{%
 \subsection{\texorpdfstring{\texttt{ggpiestats}}{ggpiestats}}\label{ggpiestats}}
 
-This function creates a pie chart for categorical or nominal variables
-with results from contingency table analysis (Pearson's \(\chi^2\) test
-for between-subjects design and McNemar's \(\chi^2\) test for
-within-subjects design) included in the subtitle of the plot. If only
-one categorical variable is entered, results from one-sample proportion
-test (i.e., a \(\chi^2\) goodness of fit/gof test) will be displayed as
-a subtitle.
+This function creates a pie chart for categorical or nominal variables with
+results from contingency table analysis (Pearson's \(\chi^2\) test for
+between-subjects design and McNemar's \(\chi^2\) test for within-subjects design)
+included in the subtitle of the plot. If only one categorical variable is
+entered, results from one-sample proportion test (i.e., a \(\chi^2\) goodness of
+fit/gof test) will be displayed as a subtitle.
 
-Here is an example of a case where the theoretical question is about
-proportions for different levels of a single nominal variable:
+Here is an example of a case where the theoretical question is about proportions
+for different levels of a single nominal variable:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1527,8 +1647,8 @@ proportions for different levels of a single nominal variable:
 
 \includegraphics[width=1\linewidth]{./figures/paper-ggpiestats1-1}
 
-This function can also be used to study an interaction between two
-categorical variables:
+This function can also be used to study an interaction between two categorical
+variables:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1559,8 +1679,8 @@ categorical variables:
 
 \includegraphics[width=1\linewidth]{./figures/paper-ggpiestats2-1}
 
-In case of repeated measures designs, setting \texttt{paired\ =\ TRUE}
-will produce results from McNemar's \(\chi^2\) test-
+In case of repeated measures designs, setting \texttt{paired\ =\ TRUE} will produce
+results from McNemar's \(\chi^2\) test-
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1600,10 +1720,10 @@ will produce results from McNemar's \(\chi^2\) test-
 
 \includegraphics[width=1\linewidth]{./figures/paper-ggpiestats3-1}
 
-Note that when a two-way table is present (i.e., when both \texttt{x}
-and \texttt{y} arguments are specified), \emph{p}-values for results
-from one-sample proportion tests are displayed in each facet in the form
-of asterisks with the following convention:
+Note that when a two-way table is present (i.e., when both \texttt{x} and
+\texttt{y} arguments are specified), \emph{p}-values for results from one-sample
+proportion tests are displayed in each facet in the form of asterisks with the
+following convention:
 
 \begin{itemize}
 \tightlist
@@ -1617,9 +1737,8 @@ of asterisks with the following convention:
   \(ns\): \(p > 0.05\)
 \end{itemize}
 
-Additionally, there is also a \texttt{grouped\_} variant of this
-function that makes it easy to repeat the same operation across a
-\textbf{single} grouping variable:
+Additionally, there is also a \texttt{grouped\_} variant of this function that makes it
+easy to repeat the same operation across a \textbf{single} grouping variable:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1659,29 +1778,23 @@ Following tests are carried out for each type of analyses-
 Type of data & Design & Test\tabularnewline
 \midrule
 \endhead
-Unpaired & \(n \times p\) contingency table & Pearson's \(\chi^{2}\)
-test\tabularnewline
-Paired & \(n \times p\) contingency table & McNemar's \(\chi^{2}\)
-test\tabularnewline
-Frequency & \(n \times 1\) contingency table & Goodness of fit
-(\(\chi^{2}\))\tabularnewline
+Unpaired & \(n \times p\) contingency table & Pearson's \(\chi^{2}\) test\tabularnewline
+Paired & \(n \times p\) contingency table & McNemar's \(\chi^{2}\) test\tabularnewline
+Frequency & \(n \times 1\) contingency table & Goodness of fit (\(\chi^{2}\))\tabularnewline
 \bottomrule
 \end{longtable}
 
-Following effect sizes (and confidence intervals/CI) are available for
-each type of test-
+Following effect sizes (and confidence intervals/CI) are available for each type
+of test-
 
 \begin{longtable}[]{@{}lll@{}}
 \toprule
 Type & Effect size & CI?\tabularnewline
 \midrule
 \endhead
-Pearson's chi-squared test & Cramér's \emph{V} &
-\textcolor{ForestGreen}{Yes}\tabularnewline
-McNemar's test & Cohen's \emph{g} &
-\textcolor{ForestGreen}{Yes}\tabularnewline
-Goodness of fit & Cramér's \emph{V} &
-\textcolor{ForestGreen}{Yes}\tabularnewline
+Pearson's chi-squared test & Cramér's \emph{V} & \textcolor{ForestGreen}{Yes}\tabularnewline
+McNemar's test & Cohen's \emph{g} & \textcolor{ForestGreen}{Yes}\tabularnewline
+Goodness of fit & Cramér's \emph{V} & \textcolor{ForestGreen}{Yes}\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -1692,8 +1805,7 @@ For more, see the \texttt{ggpiestats} vignette:
 \subsection{\texorpdfstring{\texttt{ggbarstats}}{ggbarstats}}\label{ggbarstats}}
 
 In case you are not a fan of pie charts (for very good reasons), you can
-alternatively use \texttt{ggbarstats} function which has a similar
-syntax-
+alternatively use \texttt{ggbarstats} function which has a similar syntax-
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1721,8 +1833,7 @@ syntax-
 
 \includegraphics[width=1\linewidth]{./figures/paper-ggbarstats1-1}
 
-And, needless to say, there is also a \texttt{grouped\_} variant of this
-function-
+And, needless to say, there is also a \texttt{grouped\_} variant of this function-
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1764,9 +1875,9 @@ This is identical to the \texttt{ggpiestats} function summary of tests.
 \hypertarget{gghistostats}{%
 \subsection{\texorpdfstring{\texttt{gghistostats}}{gghistostats}}\label{gghistostats}}
 
-In case you would like to see the distribution of a single variable and
-check if it is significantly different from a specified value with a one
-sample test, this function will let you do that.
+In case you would like to see the distribution of a single variable and check if
+it is significantly different from a specified value with a one sample test,
+this function will let you do that.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1798,9 +1909,8 @@ sample test, this function will let you do that.
 
 \includegraphics[width=1\linewidth]{./figures/paper-gghistostats1-1}
 
-Additionally, there is also a \texttt{grouped\_} variant of this
-function that makes it easy to repeat the same operation across a
-\textbf{single} grouping variable:
+Additionally, there is also a \texttt{grouped\_} variant of this function that makes it
+easy to repeat the same operation across a \textbf{single} grouping variable:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1850,8 +1960,8 @@ Bayes Factor & One-sample Student's \emph{t}-test\tabularnewline
 \bottomrule
 \end{longtable}
 
-Following effect sizes (and confidence intervals/CI) are available for
-each type of test-
+Following effect sizes (and confidence intervals/CI) are available for each type
+of test-
 
 \begin{longtable}[]{@{}lll@{}}
 \toprule
@@ -1867,8 +1977,7 @@ CI?\strut
 \begin{minipage}[t]{0.26\columnwidth}\raggedright
 Parametric\strut
 \end{minipage} & \begin{minipage}[t]{0.59\columnwidth}\raggedright
-Cohen's \emph{d}, Hedge's \emph{g} (central-and noncentral-\emph{t}
-distribution based)\strut
+Cohen's \emph{d}, Hedge's \emph{g} (central-and noncentral-\emph{t} distribution based)\strut
 \end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
 \end{minipage}\tabularnewline
@@ -1903,8 +2012,8 @@ For more, including information about the variant of this function
 \hypertarget{ggdotplotstats}{%
 \subsection{\texorpdfstring{\texttt{ggdotplotstats}}{ggdotplotstats}}\label{ggdotplotstats}}
 
-This function is similar to \texttt{gghistostats}, but is intended to be
-used when the numeric variable also has a label.
+This function is similar to \texttt{gghistostats}, but is intended to be used when the
+numeric variable also has a label.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1937,9 +2046,9 @@ used when the numeric variable also has a label.
 
 \includegraphics[width=1\linewidth]{./figures/paper-ggdotplotstats1-1}
 
-As with the rest of the functions in this package, there is also a
-\texttt{grouped\_} variant of this function to facilitate looping the
-same operation for all levels of a single grouping variable.
+As with the rest of the functions in this package, there is also a \texttt{grouped\_}
+variant of this function to facilitate looping the same operation for all levels
+of a single grouping variable.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1981,12 +2090,12 @@ This is identical to summary of tests for \texttt{gghistostats}.
 \hypertarget{ggcorrmat}{%
 \subsection{ggcorrmat}\label{ggcorrmat}}
 
-\texttt{ggcorrmat} makes a correlalogram (a matrix of correlation
-coefficients) with minimal amount of code. Just sticking to the defaults
-itself produces publication-ready correlation matrices. But, for the
-sake of exploring the available options, let's change some of the
-defaults. For example, multiple aesthetics-related arguments can be
-modified to change the appearance of the correlation matrix.
+\texttt{ggcorrmat} makes a correlalogram (a matrix of correlation coefficients) with
+minimal amount of code. Just sticking to the defaults itself produces
+publication-ready correlation matrices. But, for the sake of exploring the
+available options, let's change some of the defaults. For example, multiple
+aesthetics-related arguments can be modified to change the appearance of the
+correlation matrix.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2016,13 +2125,11 @@ modified to change the appearance of the correlation matrix.
 
 \includegraphics[width=1\linewidth]{./figures/paper-ggcorrmat1-1}
 
-Note that if there are \texttt{NA}s present in the selected variables,
-the legend will display minimum, median, and maximum number of pairs
-used for correlation tests.
+Note that if there are \texttt{NA}s present in the selected variables, the legend will
+display minimum, median, and maximum number of pairs used for correlation tests.
 
 There is a \texttt{grouped\_} variant of this function that makes it
-easy to repeat the same operation across a \textbf{single} grouping
-variable:
+easy to repeat the same operation across a \textbf{single} grouping variable:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2053,23 +2160,19 @@ variable:
 \hypertarget{summary-of-tests-7}{%
 \subsubsection{Summary of tests}\label{summary-of-tests-7}}
 
-Following tests are carried out for each type of analyses. Additionally,
-the correlation coefficients (and their confidence intervals) are used
-as effect sizes-
+Following tests are carried out for each type of analyses. Additionally, the
+correlation coefficients (and their confidence intervals) are used as effect
+sizes-
 
 \begin{longtable}[]{@{}lll@{}}
 \toprule
 Type & Test & CI?\tabularnewline
 \midrule
 \endhead
-Parametric & Pearson's correlation coefficient &
-\textcolor{ForestGreen}{Yes}\tabularnewline
-Non-parametric & Spearman's rank correlation coefficient &
-\textcolor{ForestGreen}{Yes}\tabularnewline
-Robust & Percentage bend correlation coefficient &
-\textcolor{red}{No}\tabularnewline
-Bayes Factor & Pearson's correlation coefficient &
-\textcolor{red}{No}\tabularnewline
+Parametric & Pearson's correlation coefficient & \textcolor{ForestGreen}{Yes}\tabularnewline
+Non-parametric & Spearman's rank correlation coefficient & \textcolor{ForestGreen}{Yes}\tabularnewline
+Robust & Percentage bend correlation coefficient & \textcolor{red}{No}\tabularnewline
+Bayes Factor & Pearson's correlation coefficient & \textcolor{red}{No}\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -2079,32 +2182,29 @@ For examples and more information, see the \texttt{ggcorrmat} vignette:
 \hypertarget{ggcoefstats}{%
 \subsection{\texorpdfstring{\texttt{ggcoefstats}}{ggcoefstats}}\label{ggcoefstats}}
 
-\texttt{ggcoefstats} creates a dot-and-whisker plot for regression
-models. Although the statistical models displayed in the plot may differ
-based on the class of models being investigated, there are few aspects
-of the plot that will be invariant across models:
+\texttt{ggcoefstats} creates a dot-and-whisker plot for regression models. Although the
+statistical models displayed in the plot may differ based on the class of models
+being investigated, there are few aspects of the plot that will be invariant
+across models:
 
 \begin{itemize}
 \item
-  The dot-whisker plot contains a dot representing the \textbf{estimate}
-  and their \textbf{confidence intervals} (\texttt{95\%} is the
-  default). The estimate can either be effect sizes (for tests that
-  depend on the \texttt{F} statistic) or regression coefficients (for
-  tests with \texttt{t} and \texttt{z} statistic), etc. The function
-  will, by default, display a helpful \texttt{x}-axis label that should
-  clear up what estimates are being displayed. The confidence intervals
-  can sometimes be asymmetric if bootstrapping was used.
+  The dot-whisker plot contains a dot representing the \textbf{estimate} and their
+  \textbf{confidence intervals} (\texttt{95\%} is the default). The estimate can either be
+  effect sizes (for tests that depend on the \texttt{F} statistic) or regression
+  coefficients (for tests with \texttt{t} and \texttt{z} statistic), etc. The function will, by
+  default, display a helpful \texttt{x}-axis label that should clear up what estimates are
+  being displayed. The confidence intervals can sometimes be asymmetric if
+  bootstrapping was used.
 \item
-  The caption will always contain diagnostic information, if available,
-  about models that can be useful for model selection: The smaller the
-  Akaike's Information Criterion (\textbf{AIC}) and the Bayesian
-  Information Criterion (\textbf{BIC}) values, the ``better'' the model
-  is. Additionally, the higher the \textbf{log-likelihood} value the
-  ``better'' is the model fit.
+  The caption will always contain diagnostic information, if available, about
+  models that can be useful for model selection: The smaller the Akaike's
+  Information Criterion (\textbf{AIC}) and the Bayesian Information Criterion (\textbf{BIC})
+  values, the ``better'' the model is. Additionally, the higher the
+  \textbf{log-likelihood} value the ``better'' is the model fit.
 \item
-  The output of this function will be a \texttt{ggplot2} object and,
-  thus, it can be further modified (e.g., change themes, etc.) with
-  \texttt{ggplot2} functions.
+  The output of this function will be a \texttt{ggplot2} object and, thus, it can be
+  further modified (e.g., change themes, etc.) with \texttt{ggplot2} functions.
 \end{itemize}
 
 \begin{Shaded}
@@ -2122,9 +2222,8 @@ of the plot that will be invariant across models:
 
 \includegraphics[width=1\linewidth]{./figures/paper-ggcoefstats1-1}
 
-This default plot can be further modified to one's liking with
-additional arguments (also, let's use a robust linear model instead of a
-simple linear model now):
+This default plot can be further modified to one's liking with additional arguments
+(also, let's use a robust linear model instead of a simple linear model now):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2155,48 +2254,36 @@ simple linear model now):
 
 \includegraphics[width=1\linewidth]{./figures/paper-ggcoefstats2-1}
 
-Most of the regression models that are supported in the \texttt{broom}
-and \texttt{broom.mixed} packages with \texttt{tidy} and \texttt{glance}
-methods are also supported by \texttt{ggcoefstats}. For example-
+Most of the regression models that are supported in the \texttt{broom} and
+\texttt{broom.mixed} packages with \texttt{tidy} and \texttt{glance} methods are also supported by
+\texttt{ggcoefstats}. For example-
 
-\texttt{aareg}, \texttt{anova}, \texttt{aov}, \texttt{aovlist},
-\texttt{Arima}, \texttt{bigglm}, \texttt{biglm}, \texttt{brmsfit},
-\texttt{btergm}, \texttt{cch}, \texttt{clm}, \texttt{clmm},
-\texttt{confusionMatrix}, \texttt{coxph}, \texttt{drc},
-\texttt{emmGrid}, \texttt{epi.2by2}, \texttt{ergm}, \texttt{felm},
-\texttt{fitdistr}, \texttt{glmerMod}, \texttt{glmmTMB}, \texttt{gls},
-\texttt{gam}, \texttt{Gam}, \texttt{gamlss}, \texttt{garch},
-\texttt{glm}, \texttt{glmmadmb}, \texttt{glmmPQL}, \texttt{glmmTMB},
-\texttt{glmRob}, \texttt{glmrob}, \texttt{gmm}, \texttt{ivreg},
-\texttt{lm}, \texttt{lm.beta}, \texttt{lmerMod}, \texttt{lmodel2},
-\texttt{lmRob}, \texttt{lmrob}, \texttt{mcmc}, \texttt{MCMCglmm},
-\texttt{mediate}, \texttt{mjoint}, \texttt{mle2}, \texttt{mlm},
-\texttt{multinom}, \texttt{negbin}, \texttt{nlmerMod}, \texttt{nlrq},
-\texttt{nls}, \texttt{orcutt}, \texttt{plm}, \texttt{polr},
-\texttt{ridgelm}, \texttt{rjags}, \texttt{rlm}, \texttt{rlmerMod},
-\texttt{rq}, \texttt{speedglm}, \texttt{speedlm}, \texttt{stanreg},
-\texttt{survreg}, \texttt{svyglm}, \texttt{svyolr}, \texttt{svyglm},
-etc.
+\texttt{aareg}, \texttt{anova}, \texttt{aov}, \texttt{aovlist}, \texttt{Arima}, \texttt{bigglm}, \texttt{biglm}, \texttt{brmsfit},
+\texttt{btergm}, \texttt{cch}, \texttt{clm}, \texttt{clmm}, \texttt{confusionMatrix}, \texttt{coxph}, \texttt{drc}, \texttt{emmGrid},
+\texttt{epi.2by2}, \texttt{ergm}, \texttt{felm}, \texttt{fitdistr}, \texttt{glmerMod}, \texttt{glmmTMB}, \texttt{gls}, \texttt{gam},
+\texttt{Gam}, \texttt{gamlss}, \texttt{garch}, \texttt{glm}, \texttt{glmmadmb}, \texttt{glmmPQL}, \texttt{glmmTMB}, \texttt{glmRob},
+\texttt{glmrob}, \texttt{gmm}, \texttt{ivreg}, \texttt{lm}, \texttt{lm.beta}, \texttt{lmerMod}, \texttt{lmodel2}, \texttt{lmRob},
+\texttt{lmrob}, \texttt{mcmc}, \texttt{MCMCglmm}, \texttt{mediate}, \texttt{mjoint}, \texttt{mle2}, \texttt{mlm}, \texttt{multinom},
+\texttt{negbin}, \texttt{nlmerMod}, \texttt{nlrq}, \texttt{nls}, \texttt{orcutt}, \texttt{plm}, \texttt{polr}, \texttt{ridgelm},
+\texttt{rjags}, \texttt{rlm}, \texttt{rlmerMod}, \texttt{rq}, \texttt{speedglm}, \texttt{speedlm}, \texttt{stanreg}, \texttt{survreg},
+\texttt{svyglm}, \texttt{svyolr}, \texttt{svyglm}, etc.
 
-Although not shown here, this function can also be used to carry out
-both frequentist and Bayesian random-effects meta-analysis.
+Although not shown here, this function can also be used to carry out both
+frequentist and Bayesian random-effects meta-analysis.
 
-For a more exhaustive account of this function, see the associated
-vignette-
+For a more exhaustive account of this function, see the associated vignette-
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}
 
 \hypertarget{working-with-custom-plots}{%
 \subsection{Working with custom plots}\label{working-with-custom-plots}}
 
-Sometimes you may not like the defaults in a plot produced by
-\texttt{ggstatsplot}. In such cases, you can use other custom plots
-(from \texttt{ggplot2} or other graphics packages in \texttt{R}) and
-still use \texttt{ggstatsplot} functions to display results from
-relevant statistical test.
+Sometimes you may not like the defaults in a plot produced by \texttt{ggstatsplot}. In
+such cases, you can use other custom plots (from \texttt{ggplot2} or other graphics
+packages in \texttt{R}) and still use \texttt{ggstatsplot} functions to display results from relevant
+statistical test.
 
-For example, in the following chunk, we will create plot
-(\emph{pirateplot}) using \texttt{yarrr} package and use
-\texttt{ggstatsplot} function for extracting results.
+For example, in the following chunk, we will create plot (\emph{pirateplot}) using
+\texttt{yarrr} package and use \texttt{ggstatsplot} function for extracting results.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2229,31 +2316,26 @@ For example, in the following chunk, we will create plot
 
 \includegraphics[width=1\linewidth]{./figures/paper-pirateplot-1}
 
-\hypertarget{usage-and-syntax-simplicity}{%
-\subsection{Usage and syntax
-simplicity}\label{usage-and-syntax-simplicity}}
-
 \hypertarget{overall-consistency-in-api}{%
-\subsection{Overall consistency in
-API}\label{overall-consistency-in-api}}
+\subsection{Overall consistency in API}\label{overall-consistency-in-api}}
 
-Attempt has been made to make the application program interface (API)
-consistent enough that no struggle is expected while thinking about
-specifying function calls-
+Attempt has been made to make the application program interface (API) consistent
+enough that no struggle is expected while thinking about specifying function
+calls-
 
 \begin{itemize}
 \tightlist
 \item
-  When a given function depends on variables in a dataframe,
-  \texttt{data} argument must always be specified.
+  When a given function depends on variables in a dataframe, \texttt{data} argument
+  must always be specified.
 \item
   Often, package functions relevant for between-subjects versus
-  within-subjects design expect tidy/long versus Cartesian/wide format
-  data, respectively. \texttt{ggstatsplot} functions consistently expect
-  tidy/long form data.
+  within-subjects design expect tidy/long versus Cartesian/wide format data,
+  respectively. \texttt{ggstatsplot} functions consistently expect tidy/long form
+  data.
 \item
-  All functions accept both quoted (\texttt{x\ =\ "var1"}) and unquoted
-  (\texttt{x\ =\ var1}) arguments.
+  All functions accept both quoted (\texttt{x\ =\ "var1"}) and unquoted (\texttt{x\ =\ var1})
+  arguments.
 \end{itemize}
 
 \begin{figure}
@@ -2262,31 +2344,29 @@ specifying function calls-
 \caption{Consistent API}
 \end{figure}
 
-These set principles combined with the fact that almost all functions
-produce publication-ready plots that require very few arguments if one
-finds the aesthetic and statistical defaults satisfying make the syntax
-much less cognitively demanding and easy to remember/reconstruct.
+These set principles combined with the fact that almost all functions produce
+publication-ready plots that require very few arguments if one finds the
+aesthetic and statistical defaults satisfying make the syntax much less
+cognitively demanding and easy to remember/reconstruct.
 
 \hypertarget{helpful-messages-and-aesthetic-modifications}{%
-\subsection{Helpful messages and aesthetic
-modifications}\label{helpful-messages-and-aesthetic-modifications}}
+\subsection{Helpful messages and aesthetic modifications}\label{helpful-messages-and-aesthetic-modifications}}
 
-\texttt{ggstatsplot} is a very chatty package and will by default print
-helpful notes on assumptions about statistical tests, warnings, etc. If
-you don't want your console to be cluttered with such messages, they can
-be turned off by setting argument \texttt{messages\ =\ FALSE} in the
-function call.
+\texttt{ggstatsplot} is a very chatty package and will by default print helpful notes
+on assumptions about statistical tests, warnings, etc. If you don't want your
+console to be cluttered with such messages, they can be turned off by setting
+argument \texttt{messages\ =\ FALSE} in the function call.
 
-All relevant functions in \texttt{ggstatsplot} have a \texttt{return}
-argument which can be used to not only return plots (which is the
-default), but also to return a \texttt{subtitle} or \texttt{caption},
-which are objects of type \texttt{call} and can be used to display
-statistical details in conjunction with a custom plot and at a custom
+All relevant functions in \texttt{ggstatsplot} have a \texttt{return} argument which can be
+used to not only return plots (which is the default), but also to return a
+\texttt{subtitle} or \texttt{caption}, which are objects of type \texttt{call} and can be used to
+display statistical details in conjunction with a custom plot and at a custom
 location in the plot.
 
-Additionally, all functions share the \texttt{ggtheme} and
-\texttt{palette} arguments that can be used to specify your favorite
-\texttt{ggplot} theme and color palette.
+Additionally, all functions share the \texttt{ggtheme} and \texttt{palette} arguments that can
+be used to specify your favorite \texttt{ggplot} theme and color palette.
+
+\newpage
 
 \hypertarget{appendix}{%
 \section{Appendix}\label{appendix}}
@@ -2299,41 +2379,41 @@ There are three main documents one can rely on to learn how to use
 
 \begin{itemize}
 \item
-  \textbf{Presentation}: The quickest (and the most fun) way to get an
-  overview of the philosophy behind this package and the offered
-  functionality is to go through the following slides:
+  \textbf{Presentation}:
+  The quickest (and the most fun) way to get an overview of
+  the philosophy behind this package and the offered functionality is to go
+  through the following slides:
   \url{https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html\#1}
 \item
   \textbf{Manual}:\\
-  The \texttt{CRAN} reference manual provides detailed documentation
-  about arguments for each function and examples:
+  The \texttt{CRAN} reference manual provides detailed documentation about arguments
+  for each function and examples:
   \url{https://cran.r-project.org/web/packages/ggstatsplot/ggstatsplot.pdf}
 \item
   \textbf{Vignettes}:\\
   Vignettes contain probably the most detailed exposition. Every single
-  function in \texttt{ggstatsplot} has an associated vignette which
-  describes in depth how to use the function and modify the defaults to
-  customize the plot to your liking. All these vignettes can be accessed
-  from the package website:
-  \url{https://indrajeetpatil.github.io/ggstatsplot/articles/}
+  function in \texttt{ggstatsplot} has an associated vignette which describes in
+  depth how to use the function and modify the defaults to customize the plot
+  to your liking. All these vignettes can be accessed from the package
+  website: \url{https://indrajeetpatil.github.io/ggstatsplot/articles/}
 \end{itemize}
 
 \hypertarget{appendix-b-suggestions}{%
 \subsection{Appendix B: Suggestions}\label{appendix-b-suggestions}}
 
-If you find any bugs or have any suggestions/remarks, please file an
-issue on \texttt{GitHub} repository for this package:
+If you find any bugs or have any suggestions/remarks, please file an issue on
+\texttt{GitHub} repository for this package:
 \url{https://github.com/IndrajeetPatil/ggstatsplot/issues}
 
-\hypertarget{contributing}{%
-\subsection{Contributing}\label{contributing}}
+\hypertarget{appendix-c-contributing}{%
+\subsection{Appendix C: Contributing}\label{appendix-c-contributing}}
 
-\texttt{ggstatsplot} is happy to receive bug reports, suggestions,
-questions, and (most of all) contributions to fix problems and add
-features. Pull Requests for contributions are encouraged.
+\texttt{ggstatsplot} is happy to receive bug reports, suggestions, questions, and (most
+of all) contributions to fix problems and add features. Pull Requests for
+contributions are encouraged.
 
-Here are some simple ways in which one can contribute (in the increasing
-order of commitment):
+Here are some simple ways in which one can contribute (in the increasing order
+of commitment):
 
 \begin{itemize}
 \item
@@ -2344,34 +2424,47 @@ order of commitment):
 \item
   Review code
 \item
-  Add new functionality (in the form of new plotting functions or
-  helpers for preparing subtitles)
+  Add new functionality (in the form of new plotting functions or helpers for
+  preparing subtitles)
 \end{itemize}
 
 Please note that this project is released with a
-\href{https://github.com/IndrajeetPatil/ggstatsplot/blob/master/CODE_OF_CONDUCT.md}{Contributor
-Code of Conduct}. By participating in this project you agree to abide by
-its terms.
+\href{https://github.com/IndrajeetPatil/ggstatsplot/blob/master/CODE_OF_CONDUCT.md}{Contributor Code of Conduct}. By participating in this project you agree to abide by its terms.
 
 \hypertarget{appendix-d-session-information}{%
-\subsection{Appendix D: Session
-information}\label{appendix-d-session-information}}
+\subsection{Appendix D: Session information}\label{appendix-d-session-information}}
 
-For reproducibility purposes, the details about the session information
-in which this document was rendered, see-
+For reproducibility purposes, the details about the session information in which
+this document was rendered, see-
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html}
+
+\newpage
 
 \hypertarget{references}{%
 \section*{References}\label{references}}
 \addcontentsline{toc}{section}{References}
 
 \hypertarget{refs}{}
+\leavevmode\hypertarget{ref-associationPublicationManualAmerican2009}{}%
+Association, A. P. (2009). \emph{Publication Manual of the American Psychological Association, 6th Edition}. Washington, DC: American Psychological Association.
+
+\leavevmode\hypertarget{ref-clevelandElementsGraphingData1985}{}%
+Cleveland, W. S. (1985). \emph{The Elements of Graphing Data} (1st edition). Monterey, Cal: Wadsworth, Inc.
+
+\leavevmode\hypertarget{ref-lilienfeldFiftyPsychologicalPsychiatric2015}{}%
+Lilienfeld, S. O., Sauvign\a'e, K. C., Lynn, S. J., Cautin, R. L., Latzman, R. D., \& Waldman, I. D. (2015). Fifty psychological and psychiatric terms to avoid: A list of inaccurate, misleading, misused, ambiguous, and logically confused words and phrases. \emph{Frontiers in Psychology}, \emph{6}. \url{https://doi.org/10.3389/fpsyg.2015.01100}
+
 \leavevmode\hypertarget{ref-nuijtenPrevalenceStatisticalReporting2016}{}%
-Nuijten, M. B., Hartgerink, C. H. J., van Assen, M. A. L. M., Epskamp,
-S., \& Wicherts, J. M. (2016). The prevalence of statistical reporting
-errors in psychology (19852013). \emph{Behavior Research Methods},
-\emph{48}(4), 1205--1226.
-\url{https://doi.org/10.3758/s13428-015-0664-2}
+Nuijten, M. B., Hartgerink, C. H. J., van Assen, M. A. L. M., Epskamp, S., \& Wicherts, J. M. (2016). The prevalence of statistical reporting errors in psychology (19852013). \emph{Behavior Research Methods}, \emph{48}(4), 1205--1226. \url{https://doi.org/10.3758/s13428-015-0664-2}
+
+\leavevmode\hypertarget{ref-tufteVisualDisplayQuantitative2001}{}%
+Tufte, E. R. (2001). \emph{The Visual Display of Quantitative Information} (2nd edition edition). Cheshire, Conn: Graphics Press.
+
+\leavevmode\hypertarget{ref-wickhamTidyData2014}{}%
+Wickham, H. (2014). Tidy Data. \emph{Journal of Statistical Software}, \emph{59}(1), 1--23. \url{https://doi.org/10.18637/jss.v059.i10}
+
+\leavevmode\hypertarget{ref-wickhamGgplot2ElegantGraphics2016}{}%
+Wickham, H. (2016). \emph{Ggplot2: Elegant Graphics for Data Analysis} (2nd ed. 2016 edition). New York, NY: Springer.
 
 
 \end{document}

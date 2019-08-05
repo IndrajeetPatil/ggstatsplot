@@ -119,7 +119,6 @@ ggstatsplot:::effsize_t_parametric(
   noncentral = TRUE,
   tobject = tobj3
 )
-
 }
 \author{
 Chuck Powell
