@@ -343,7 +343,7 @@ ggbetweenstats <- function(data,
       size = 3,
       stroke = 0,
       na.rm = TRUE,
-      ggplot2::aes(color = factor({{ x }}))
+      ggplot2::aes(color = {{ x }})
     )
 
   # decide how to plot outliers if it's desired
@@ -361,7 +361,7 @@ ggbetweenstats <- function(data,
         size = 3,
         stroke = 0,
         na.rm = TRUE,
-        ggplot2::aes(color = factor({{ x }}))
+        ggplot2::aes(color = {{ x }})
       )
   } else {
     if (plot.type == "violin") {

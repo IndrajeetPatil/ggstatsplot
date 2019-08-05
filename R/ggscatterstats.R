@@ -5,12 +5,6 @@
 #'   histograms/boxplots/density plots with statistical details added as a
 #'   subtitle.
 #'
-#' @param x The column in `data` containing the explanatory variable to be
-#'   plotted on the x axis. Can be entered either as a character string (e.g.,
-#'   `"x"`) or as a bare expression (e.g, `x`).
-#' @param y The column in `data` containing the response (outcome) variable to
-#'   be plotted on the y axis. Can be entered either as a character string
-#'   (e.g., `"y"`) or as a bare expression (e.g, `y`).
 #' @param label.var Variable to use for points labels. Can be entered either as
 #'   a character string (e.g., `"var1"`) or as a bare expression (e.g, `var1`).
 #' @param label.expression An expression evaluating to a logical vector that
@@ -156,9 +150,14 @@ ggscatterstats <- function(data,
 
   #---------------------- variable names --------------------------------
 
+  # ensure the arguments work quoted or unquoted
+  x <- rlang::ensym(x)
+  y <- rlang::ensym(y)
+  label.var <- if (!rlang::quo_is_null(rlang::enquo(label.var))) rlang::ensym(label.var)
+
   # if `xlab` and `ylab` is not provided, use the variable `x` and `y` name
-  if (is.null(xlab)) xlab <- rlang::as_name(rlang::ensym(x))
-  if (is.null(ylab)) ylab <- rlang::as_name(rlang::ensym(y))
+  if (is.null(xlab)) xlab <- rlang::as_name(x)
+  if (is.null(ylab)) ylab <- rlang::as_name(y)
 
   #----------------------- linear model check ----------------------------
 
@@ -187,11 +186,6 @@ ggscatterstats <- function(data,
   }
 
   #----------------------- dataframe ---------------------------------------
-
-  # ensure the arguments work quoted or unquoted
-  x <- rlang::ensym(x)
-  y <- rlang::ensym(y)
-  label.var <- if (!rlang::quo_is_null(rlang::enquo(label.var))) rlang::ensym(label.var)
 
   # preparing the dataframe
   data %<>%

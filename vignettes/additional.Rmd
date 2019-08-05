@@ -32,8 +32,8 @@ knitr::opts_chunk$set(
 # Additional vignettes
 
 Due to constraints on the size of the `R` package, all available vignettes are
-not included in the package and thus can't be accessed on `CRAN`. There are few
-additional vignettes that are only available on the website for this package:
+only available on the website for this package: <br>
+<https://indrajeetpatil.github.io/ggstatsplot/articles/>
 
 ## Vignettes for individual functions
 
@@ -70,7 +70,7 @@ additional vignettes that are only available on the website for this package:
 
   - Introduction to `ggstatsplot` (publication describing philosophy and
     principles behind this package):
-    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggstatsplot_paper.html>)
+    (<https://github.com/IndrajeetPatil/ggstatsplot/blob/master/paper/paper.pdf>)
     
   - Interpreting effect sizes for different tests:
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html>)

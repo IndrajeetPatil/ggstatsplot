@@ -41,10 +41,10 @@ health.
 **Test**: One-sample *t*-test <br>
 **Effect size**: Cohen's *d*, Hedge's *g* 
 
-Effect size | Small | Medium | Large
------ | ---------- | ---------- | ----------
-Cohen's *d* | 0 – < 0.20 | 0.20 – < 0.50 | ≥ 0.80
-Hedge's *d* | 0 – < 0.20 | 0.20 – < 0.50 | ≥ 0.80
+Effect size | Small | Medium | Large | Range
+---- | ---------- | ---------- | ---------- | ---------- 
+Cohen's *d* | 0 – < 0.20 | 0.20 – < 0.50 | ≥ 0.80 | [0,1]  
+Hedge's *g* | 0 – < 0.20 | 0.20 – < 0.50 | ≥ 0.80 | [0,1] 
 
 ## non-parametric
 
@@ -70,7 +70,7 @@ Effect size | Small | Medium | Large
 Effect size | Small | Medium | Large
 ----- | ---------- | ---------- | ---------- 
 Cohen's *d* | 0.20 | 0.50 | 0.80
-Hedge's *d* | 0.20 | 0.50 | 0.80
+Hedge's *g* | 0.20 | 0.50 | 0.80
 
 ## non-parametric
 
@@ -139,7 +139,7 @@ rated.
 Effect size | Small | Medium | Large
 ----- | ---------- | ---------- | ---------- 
 Cohen's *d* | 0.20 | 0.50 | 0.80
-Hedge's *d* | 0.20 | 0.50 | 0.80
+Hedge's *g* | 0.20 | 0.50 | 0.80
 
 ## non-parametric
 

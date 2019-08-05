@@ -205,7 +205,7 @@ ggwithinstats <- function(data,
       alpha = 0.5,
       size = 3,
       na.rm = TRUE,
-      ggplot2::aes(color = factor({{ x }}))
+      ggplot2::aes(color = {{ x }})
     ) +
     ggplot2::geom_boxplot(
       mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),

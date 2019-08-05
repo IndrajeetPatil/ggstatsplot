@@ -30,6 +30,11 @@ Package | Status | Usage | GitHub | References
 
 # Raison d'être
 
+> "What is to be sought in designs for the display of information is the clear
+portrayal of complexity. Not the complication of the simple; rather ... the
+revelation of the complex."   
+- Edward R. Tufte
+
 [`ggstatsplot`](https://indrajeetpatil.github.io/ggstatsplot/) is an extension
 of [`ggplot2`](https://github.com/tidyverse/ggplot2) package for creating
 graphics with details from statistical tests included in the plots themselves
@@ -99,29 +104,28 @@ various functions:
 
 Functions | Type | Test | Effect size | 95% CI available? 
 -------------- | ----------- | --------------------- | -------- | -----  
-`ggbetweenstats` (2 groups) | Parametric | Student's and Welch's *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggbetweenstats` (> 2 groups) | Parametric | Fisher's and Welch's one-way ANOVA | $$\eta^2, \eta^2_p, \omega^2, \omega^2_p$$ |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggbetweenstats` (2 groups) | Non-parametric | Mann-Whitney *U*-test | *r* |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggbetweenstats` (> 2 groups) | Non-parametric | Kruskal-Wallis Rank Sum Test | $$\epsilon^2$$ |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggbetweenstats` (2 groups) | Robust | Yuen's test for trimmed means | $$\xi$$ |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggbetweenstats` (> 2 groups) | Robust | Heteroscedastic one-way ANOVA for trimmed means | $$\xi$$ |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggwithinstats` (2 groups) | Parametric | Student's *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggwithinstats` (> 2 groups) | Parametric | Fisher's one-way repeated measures ANOVA | $$\eta^2_p, \omega^2$$ |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggwithinstats` (2 groups) | Non-parametric | Wilcoxon signed-rank test | *r* |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggwithinstats` (> 2 groups) | Non-parametric | Friedman rank sum test | $$W_{Kendall}$$ |  \textcolor{ForestGreen}{$\checkmark$}
-`ggwithinstats` (2 groups) | Robust | Yuen's test on trimmed means for dependent samples | $$\xi$$ |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggwithinstats` (> 2 groups) | Robust | Heteroscedastic one-way repeated measures ANOVA for trimmed means |  \textcolor{red}{$\times$} |  \textcolor{red}{$\times$}
-`ggpiestats` and `ggbarstats` (unpaired) | Parametric | $$\text{Pearson's}~ \chi^2 ~\text{test}$$ | Cramér's *V* |  \textcolor{ForestGreen}{$\checkmark$}
-`ggpiestats` and `ggbarstats` (paired) | Parametric | McNemar's test | Cohen's *g* |  \textcolor{ForestGreen}{$\checkmark$}
-`ggpiestats` | Parametric | One-sample proportion test | Cramér's *V* |  \textcolor{ForestGreen}{$\checkmark$}
-`ggscatterstats` and `ggcorrmat` | Parametric | Pearson's *r* | *r* |  \textcolor{ForestGreen}{$\checkmark$}
-`ggscatterstats` and `ggcorrmat` | Non-parametric | $$\text{Spearman's}~ \rho$$ | $$\rho$$ |  \textcolor{ForestGreen}{$\checkmark$}
-`ggscatterstats`and `ggcorrmat` | Robust | Percentage bend correlation | *r* |  \textcolor{ForestGreen}{$\checkmark$}
-`gghistostats` and `ggdotplotstats` | Parametric | One-sample *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{ForestGreen}{$\checkmark$}
-`gghistostats` | Non-parametric | One-sample Wilcoxon signed rank test | *r* |  \textcolor{ForestGreen}{$\checkmark$} 
-`gghistostats` and `ggdotplotstats` | Robust | One-sample percentile bootstrap | robust estimator |  \textcolor{ForestGreen}{$\checkmark$}
-`ggcoefstats` | Parametric | Regression models | $$\beta$$ |  \textcolor{ForestGreen}{$\checkmark$}
-
+`ggbetweenstats` (2 groups) | Parametric | Student's and Welch's *t*-test | Cohen's *d*, Hedge's *g* |  <font color="green">$\checkmark$</font>
+`ggbetweenstats` (> 2 groups) | Parametric | Fisher's and Welch's one-way ANOVA | $$\eta^2, \eta^2_p, \omega^2, \omega^2_p$$ |  <font color="green">$\checkmark$</font>
+`ggbetweenstats` (2 groups) | Non-parametric | Mann-Whitney *U*-test | *r* |  <font color="green">$\checkmark$</font>
+`ggbetweenstats` (> 2 groups) | Non-parametric | Kruskal-Wallis Rank Sum Test | $$\epsilon^2$$ |  <font color="green">$\checkmark$</font>
+`ggbetweenstats` (2 groups) | Robust | Yuen's test for trimmed means | $$\xi$$ |  <font color="green">$\checkmark$</font>
+`ggbetweenstats` (> 2 groups) | Robust | Heteroscedastic one-way ANOVA for trimmed means | $$\xi$$ |  <font color="green">$\checkmark$</font>
+`ggwithinstats` (2 groups) | Parametric | Student's *t*-test | Cohen's *d*, Hedge's *g* |  <font color="green">$\checkmark$</font>
+`ggwithinstats` (> 2 groups) | Parametric | Fisher's one-way repeated measures ANOVA | $$\eta^2_p, \omega^2$$ |  <font color="green">$\checkmark$</font>
+`ggwithinstats` (2 groups) | Non-parametric | Wilcoxon signed-rank test | *r* |  <font color="green">$\checkmark$</font>
+`ggwithinstats` (> 2 groups) | Non-parametric | Friedman rank sum test | $$W_{Kendall}$$ |  <font color="green">$\checkmark$</font>
+`ggwithinstats` (2 groups) | Robust | Yuen's test on trimmed means for dependent samples | $$\xi$$ |  <font color="green">$\checkmark$</font>
+`ggwithinstats` (> 2 groups) | Robust | Heteroscedastic one-way repeated measures ANOVA for trimmed means |  <font color="red">$\times$</font> | <font color="red">$\times$</font>
+`ggpiestats` and `ggbarstats` (unpaired) | Parametric | $$\text{Pearson's}~ \chi^2 ~\text{test}$$ | Cramér's *V* |  <font color="green">$\checkmark$</font>
+`ggpiestats` and `ggbarstats` (paired) | Parametric | McNemar's test | Cohen's *g* |  <font color="green">$\checkmark$</font>
+`ggpiestats` | Parametric | One-sample proportion test | Cramér's *V* |  <font color="green">$\checkmark$</font>
+`ggscatterstats` and `ggcorrmat` | Parametric | Pearson's *r* | *r* |  <font color="green">$\checkmark$</font>
+`ggscatterstats` and `ggcorrmat` | Non-parametric | $$\text{Spearman's}~ \rho$$ | $$\rho$$ |  <font color="green">$\checkmark$</font>
+`ggscatterstats`and `ggcorrmat` | Robust | Percentage bend correlation | *r* |  <font color="green">$\checkmark$</font>
+`gghistostats` and `ggdotplotstats` | Parametric | One-sample *t*-test | Cohen's *d*, Hedge's *g* |  <font color="green">$\checkmark$</font>
+`gghistostats` | Non-parametric | One-sample Wilcoxon signed rank test | *r* |  <font color="green">$\checkmark$</font>
+`gghistostats` and `ggdotplotstats` | Robust | One-sample percentile bootstrap | robust estimator |  <font color="green">$\checkmark$</font>
+`ggcoefstats` | Parametric | Regression models | $$\beta$$ |  <font color="green">$\checkmark$</font>
 
 # Installation
 
@@ -263,8 +267,13 @@ ggstatsplot::ggbetweenstats(
   ggplot2::scale_y_continuous(breaks = seq(3, 8, by = 1))
 ```
 
-Note that this function returns a `ggplot2` object and thus any of the graphics
-layers can be further modified.
+Note that this function returns object of class `ggplot` and thus can be further
+modified using `ggplot2` functions.
+
+A number of other arguments can be specified to make this plot even more
+informative or change some of the default options. Additionally, this time we
+will use a grouping variable that has only two levels. The function will
+automatically switch from carrying out an ANOVA analysis to a *t*-test.
 
 The `type` (of test) argument
 also accepts the following abbreviations: `"p"` (for *parametric*) or `"np"`

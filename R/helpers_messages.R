@@ -59,7 +59,7 @@ normality_message <- function(x,
       # exact message
       message(cat(
         crayon::green("Note: "),
-        crayon::blue("Shapiro-Wilk Normality Test for"),
+        crayon::blue("Shapiro-Wilk Normality Test for "),
         crayon::yellow(lab),
         crayon::blue(": p-value = "),
         crayon::yellow(specify_decimal_p(x = p_value, k = k, p.value = TRUE)),

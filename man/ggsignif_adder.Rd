@@ -52,6 +52,5 @@ ggstatsplot:::ggsignif_adder(
   y = Sepal.Length,
   df_pairwise = df_pair
 )
-
 }
 \keyword{internal}

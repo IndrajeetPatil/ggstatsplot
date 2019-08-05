@@ -72,7 +72,6 @@ ggstatsplot:::mean_ggrepel(
   mean.data = mean_dat,
   mean.color = "darkgreen"
 )
-
 }
 \author{
 Indrajeet Patil
