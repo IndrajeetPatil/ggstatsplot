@@ -14,6 +14,9 @@ MAJOR CHANGES
     and `y` for `condition`. This change is backward-compatible and should not
     pose any problems for scripts that used `main` and `condition` arguments in
     these functions.
+  - Most subtitle expressions now report details about the design. In case of
+    between-subjects design, this will be $n_{obs}$, while in case of repeated
+    measures design, this will be $n_{pairs}$.
 
 MINOR CHANGES
 

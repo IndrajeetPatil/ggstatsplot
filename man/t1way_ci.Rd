@@ -167,7 +167,6 @@ measure for robust ANOVA.
 }
 \examples{
 
-\donttest{
 set.seed(123)
 ggstatsplot:::t1way_ci(
   data = dplyr::filter(ggplot2::msleep, vore != "insecti"),
@@ -178,7 +177,5 @@ ggstatsplot:::t1way_ci(
   conf.level = 0.99,
   conf.type = "perc"
 )
-}
-
 }
 \keyword{internal}

@@ -33,7 +33,7 @@ to use in calculating Bayes factors.}
 Subtitle expression for the between-subject one-way anova designs.
 }
 \examples{
-\donttest{
+
 set.seed(123)
 
 # between-subjects ---------------------------------------
@@ -61,7 +61,6 @@ ggstatsplot::subtitle_anova_bayes(
   paired = TRUE,
   k = 4
 )
-}
 }
 \author{
 Indrajeet Patil

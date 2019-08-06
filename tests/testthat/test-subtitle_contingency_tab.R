@@ -50,7 +50,7 @@ testthat::test_that(
           "0.31248",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["obs"],
           " = ",
           2201L
         )
@@ -93,7 +93,7 @@ testthat::test_that(
           "0.50",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["obs"],
           " = ",
           2201L
         )
@@ -166,7 +166,7 @@ testthat::test_that(
           "0.83",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["obs"],
           " = ",
           17L
         )
@@ -250,7 +250,7 @@ testthat::test_that(
           "-0.18628",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["pairs"],
           " = ",
           100L
         )
@@ -349,7 +349,7 @@ testthat::test_that(
           "-0.192",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["pairs"],
           " = ",
           67L
         )
@@ -428,7 +428,7 @@ testthat::test_that(
           "0.5092",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["pairs"],
           " = ",
           89L
         )
@@ -488,7 +488,7 @@ testthat::test_that(
           "0.52301",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["obs"],
           " = ",
           32L
         )
@@ -530,7 +530,7 @@ testthat::test_that(
           "0.61",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["obs"],
           " = ",
           2201L
         )
@@ -585,7 +585,7 @@ testthat::test_that(
           "0.607",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["obs"],
           " = ",
           2201L
         )
@@ -639,7 +639,7 @@ testthat::test_that(
           "0.51",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["obs"],
           " = ",
           76L
         )

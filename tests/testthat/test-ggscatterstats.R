@@ -640,7 +640,7 @@ testthat::test_that(
         "0.87",
         "]",
         ", ",
-        italic("n"),
+        italic("n")["pairs"],
         " = ",
         59L
       )

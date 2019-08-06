@@ -78,7 +78,7 @@ reordering your factor levels if appropriate as shown in the second example
 below.
 }
 \examples{
-\donttest{
+
 set.seed(123)
 
 # -------------- between-subjects design ------------------------
@@ -131,7 +131,6 @@ ggstatsplot::subtitle_mann_nonparametric(
   nboot = 200,
   k = 5
 )
-}
 }
 \author{
 Indrajeet Patil, Chuck Powell

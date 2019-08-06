@@ -55,7 +55,6 @@ Making text subtitle for the robust ANOVA
 }
 \examples{
 
-\donttest{
 # for reproducibility
 set.seed(123)
 
@@ -91,7 +90,6 @@ ggstatsplot::subtitle_anova_robust(
   tr = 0.2,
   k = 3
 )
-}
 }
 \author{
 Indrajeet Patil

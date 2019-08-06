@@ -50,7 +50,7 @@ Such summary tables are available for each function.
 The `plotly` R graphing library makes it easy to produce interactive web
 graphics via 'plotly.js'. `ggstatsplot` functions are compatible with `plotly`.
  
-```{r plotly, message = FALSE, warning = FALSE}
+```{r plotly, message = FALSE, warning = FALSE, fig.width = 4, fig.height = 4}
 # for reproducibility
 set.seed(123)
 library(ggstatsplot)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers_ggbetween_t_subtitles.R
 \name{subtitle_t_bayes}
 \alias{subtitle_t_bayes}
-\title{Making text subtitle for the bayesian t-test.}
+\title{Making text subtitle for the Bayesian \emph{t}-test.}
 \usage{
 subtitle_t_bayes(data, x, y, bf.prior = 0.707, paired = FALSE, k = 2,
   ...)
@@ -30,7 +30,7 @@ test will be carried out). The default is \code{FALSE}.}
 \item{...}{Additional arguments.}
 }
 \description{
-Making text subtitle for the bayesian t-test.
+Making text subtitle for the Bayesian \emph{t}-test.
 }
 \examples{
 # for reproducibility

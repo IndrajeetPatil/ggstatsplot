@@ -201,13 +201,13 @@ be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
     <tr>
       <th>x</th>
       <td><p>The column in <code>data</code> containing the explanatory variable to be
-plotted on the x axis. Can be entered either as a character string (e.g.,
+plotted on the <code>x</code>-axis. Can be entered either as a character string (e.g.,
 <code>"x"</code>) or as a bare expression (e.g, <code>x</code>).</p></td>
     </tr>
     <tr>
       <th>y</th>
       <td><p>The column in <code>data</code> containing the response (outcome) variable to
-be plotted on the y axis. Can be entered either as a character string
+be plotted on the <code>y</code>-axis. Can be entered either as a character string
 (e.g., <code>"y"</code>) or as a bare expression (e.g, <code>y</code>).</p></td>
     </tr>
     <tr>
@@ -277,7 +277,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>percblack</span>
 )</div><div class='output co'>#&gt; paste(NULL, italic("t"), "(", "435", ") = ", "-0.97", ", ", italic("p"), 
 #&gt;     " = ", "0.332", ", ", italic("r")["Pearson"], " = ", "-0.05", 
-#&gt;     ", CI"["95%"], " [", "-0.14", ", ", "0.05", "]", ", ", italic("n"), 
+#&gt;     ", CI"["95%"], " [", "-0.14", ", ", "0.05", "]", ", ", italic("n")["pairs"], 
 #&gt;     " = ", 437L)</div><div class='input'>
 <span class='co'># changing defaults</span>
 <span class='fu'>subtitle_ggscatterstats</span>(
@@ -291,8 +291,8 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 )</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>25</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(NULL, italic("t"), "(", "435", ") = ", "0.1", ", ", italic("p"), 
 #&gt;     " = ", "0.960", ", ", italic(rho)["pb"], " = ", "0.0", ", CI"["95%"], 
-#&gt;     " [", "-0.1", ", ", "0.1", "]", ", ", italic("n"), " = ", 
-#&gt;     437L)</div></span></pre>
+#&gt;     " [", "-0.1", ", ", "0.1", "]", ", ", italic("n")["pairs"], 
+#&gt;     " = ", 437L)</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

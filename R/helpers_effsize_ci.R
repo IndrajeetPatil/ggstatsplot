@@ -32,7 +32,6 @@
 #'
 #' @examples
 #'
-#' \donttest{
 #' set.seed(123)
 #' ggstatsplot:::t1way_ci(
 #'   data = dplyr::filter(ggplot2::msleep, vore != "insecti"),
@@ -43,8 +42,6 @@
 #'   conf.level = 0.99,
 #'   conf.type = "perc"
 #' )
-#' }
-#'
 #' @keywords internal
 
 t1way_ci <- function(data,
@@ -182,7 +179,6 @@ t1way_ci <- function(data,
 #'
 #' @examples
 #'
-#' \donttest{
 #' ggstatsplot:::yuend_ci(
 #'   data = dplyr::filter(
 #'     .data = ggstatsplot::iris_long,
@@ -193,8 +189,6 @@ t1way_ci <- function(data,
 #'   nboot = 50,
 #'   tr = 0.2
 #' )
-#' }
-#'
 #' @keywords internal
 
 # function body
@@ -344,7 +338,6 @@ yuend_ci <- function(data,
 #'
 #' @examples
 #'
-#' \donttest{
 #' ggstatsplot:::robcor_ci(
 #'   data = mtcars,
 #'   x = "hp",
@@ -354,8 +347,6 @@ yuend_ci <- function(data,
 #'   conf.level = .99,
 #'   conf.type = c("basic")
 #' )
-#' }
-#'
 #' @keywords internal
 
 # function body

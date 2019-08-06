@@ -521,7 +521,7 @@ testthat::test_that(
         "1.01",
         "]",
         ", ",
-        italic("n"),
+        italic("n")["obs"],
         " = ",
         60L
       )
@@ -641,7 +641,7 @@ testthat::test_that(
         "0.69",
         "]",
         ", ",
-        italic("n"),
+        italic("n")["obs"],
         " = ",
         150L
       ))

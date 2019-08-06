@@ -179,7 +179,7 @@ testthat::test_that(
           "0.07",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["obs"],
           " = ",
           779L
         )
@@ -212,7 +212,7 @@ testthat::test_that(
           "0.18",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["obs"],
           " = ",
           107L
         )
@@ -245,7 +245,7 @@ testthat::test_that(
           "0.05",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["obs"],
           " = ",
           451L
         )
@@ -278,7 +278,7 @@ testthat::test_that(
           "0.12",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["obs"],
           " = ",
           249L
         )
@@ -311,7 +311,7 @@ testthat::test_that(
           "0.04",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["obs"],
           " = ",
           1264L
         )

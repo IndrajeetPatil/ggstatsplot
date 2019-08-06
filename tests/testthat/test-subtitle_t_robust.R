@@ -3,18 +3,16 @@ context("subtitle_t_robust")
 # within-subjects ------------------------------------------------------------
 
 testthat::test_that(
-  desc = "subtitle_t_robust - within-subjects",
+  desc = "subtitle_t_robust - within-subjects - without NAs",
   code = {
-    # creating a dataframe
-    df <- iris %>%
-      tidyr::gather(key, value, Sepal.Length, Sepal.Width) %>%
-      tibble::as_tibble(x = .)
-
     # subtitle
     set.seed(123)
     using_function1 <- subtitle_t_robust(
-      data = df,
-      x = "key",
+      data = dplyr::filter(
+        ggstatsplot::iris_long,
+        condition %in% c("Sepal.Length", "Sepal.Width")
+      ),
+      x = "condition",
       y = value,
       paired = TRUE,
       conf.level = 0.90,
@@ -46,7 +44,7 @@ testthat::test_that(
         "0.9367",
         "]",
         ", ",
-        italic("n"),
+        italic("n")["pairs"],
         " = ",
         150L
       )
@@ -59,8 +57,11 @@ testthat::test_that(
     set.seed(123)
     p_message <- capture.output(
       ggstatsplot::subtitle_t_robust(
-        data = df,
-        x = key,
+        data = dplyr::filter(
+          ggstatsplot::iris_long,
+          condition %in% c("Sepal.Length", "Sepal.Width")
+        ),
+        x = condition,
         y = value,
         paired = TRUE,
         conf.level = 0.99,
@@ -78,11 +79,61 @@ testthat::test_that(
   }
 )
 
+testthat::test_that(
+  desc = "subtitle_t_robust - within-subjects - with NAs",
+  code = {
+    # subtitle
+    set.seed(123)
+    using_function1 <- subtitle_t_robust(
+      data = dplyr::filter(ggstatsplot::bugs_long, condition %in% c("HDHF", "HDLF")),
+      x = "condition",
+      y = desire,
+      paired = TRUE,
+      conf.level = 0.99,
+      k = 3,
+      messages = FALSE
+    )
+
+    # expected
+    results1 <- ggplot2::expr(
+      paste(
+        NULL,
+        italic("t"),
+        "(",
+        "71",
+        ") = ",
+        "3.274",
+        ", ",
+        italic("p"),
+        " = ",
+        "0.002",
+        ", ",
+        italic(xi),
+        " = ",
+        "0.273",
+        ", CI"["99%"],
+        " [",
+        "0.066",
+        ", ",
+        "0.490",
+        "]",
+        ", ",
+        italic("n")["pairs"],
+        " = ",
+        90L
+      )
+    )
+
+    # testing overall call
+    testthat::expect_identical(using_function1, results1)
+  }
+)
+
 
 # between-subjects ------------------------------------------------------------
 
 testthat::test_that(
-  desc = "subtitle_t_robust - between-subjects",
+  desc = "subtitle_t_robust - between-subjects - without NAs",
   code = {
     testthat::skip_on_cran()
 
@@ -122,7 +173,7 @@ testthat::test_that(
         "0.986",
         "]",
         ", ",
-        italic("n"),
+        italic("n")["obs"],
         " = ",
         32L
       )

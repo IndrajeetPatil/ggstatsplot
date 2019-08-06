@@ -219,7 +219,7 @@ ggstatsplot::ggbarstats(
   labels.legend = c("0 = V-shaped", "1 = straight"),
   legend.title = "Engine"
 )
-\donttest{
+
 # simple function call with the defaults (with count data)
 library(jmv)
 
@@ -229,7 +229,6 @@ ggstatsplot::ggbarstats(
   condition = Hair,
   counts = Freq
 )
-}
 }
 \seealso{
 \code{\link{grouped_ggbarstats}}, \code{\link{ggpiestats}},

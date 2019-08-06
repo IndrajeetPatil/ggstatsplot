@@ -224,6 +224,7 @@ subtitle_contingency_tab <- function(data,
       # effect size text
       effsize.text <- quote(italic("V")["Cramer"])
       statistic.text <- quote(chi["Pearson"]^2)
+      n.text <- quote(italic("n")["obs"])
     }
 
     # ======================== McNemar's test ================================
@@ -274,6 +275,7 @@ subtitle_contingency_tab <- function(data,
       # effect size text
       effsize.text <- quote(italic("g")["Cohen"])
       statistic.text <- quote(chi["McNemar"]^2)
+      n.text <- quote(italic("n")["pairs"])
     }
   }
 
@@ -339,6 +341,7 @@ subtitle_contingency_tab <- function(data,
     # effect size text
     effsize.text <- quote(italic("V")["Cramer"])
     statistic.text <- quote(chi["gof"]^2)
+    n.text <- quote(italic("n")["obs"])
   }
 
   # preparing subtitle
@@ -354,6 +357,7 @@ subtitle_contingency_tab <- function(data,
     effsize.LL = effsize_df$conf.low[[1]],
     effsize.UL = effsize_df$conf.high[[1]],
     n = sample_size,
+    n.text = n.text,
     conf.level = conf.level,
     k = k,
     k.parameter = 0L
