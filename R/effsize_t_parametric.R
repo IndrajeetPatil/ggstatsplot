@@ -232,12 +232,13 @@ effsize_t_parametric <- function(formula = NULL,
       end1 <- end1 + st
     }
     ncp1 <- uniroot(
-      function(x)
+      function(x) {
         (1 - civalue) / 2 - stats::pt(
           q = tvalue,
           df = dfvalue,
           ncp = x
-        ),
+        )
+      },
       c(2 * tvalue - end1, end1)
     )$root
     end2 <- tvalue
@@ -245,12 +246,13 @@ effsize_t_parametric <- function(formula = NULL,
       end2 <- end2 - st
     }
     ncp2 <- uniroot(
-      function(x)
+      function(x) {
         (1 + civalue) / 2 - stats::pt(
           q = tvalue,
           df = dfvalue,
           ncp = x
-        ),
+        )
+      },
       c(end2, 2 * tvalue - end2)
     )$root
 

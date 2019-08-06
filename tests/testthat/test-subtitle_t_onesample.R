@@ -44,7 +44,7 @@ testthat::test_that(
           "-0.52675",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["obs"],
           " = ",
           1579L
         )
@@ -91,7 +91,7 @@ testthat::test_that(
           "-0.510",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["obs"],
           " = ",
           1579L
         )
@@ -140,7 +140,7 @@ testthat::test_that(
           "-0.5353",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["obs"],
           " = ",
           1579L
         )
@@ -189,7 +189,7 @@ testthat::test_that(
           "-0.56",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["obs"],
           " = ",
           1579L
         )
@@ -246,7 +246,7 @@ testthat::test_that(
           "0.1545",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["obs"],
           " = ",
           60L
         )
@@ -283,7 +283,7 @@ testthat::test_that(
     results <-
       ggplot2::expr(
         paste(
-          italic("M")[robust],
+          italic("M")["robust"],
           " = ",
           "9.0000",
           ", CI"["99%"],
@@ -296,7 +296,7 @@ testthat::test_that(
           " = ",
           "0.3000",
           ", ",
-          italic("n"),
+          italic("n")["obs"],
           " = ",
           11L
         )

@@ -52,7 +52,7 @@ faster.
 It, therefore, produces a limited kinds of plots for the supported analyses:
 
 Function | Plot | Description
-------- | ------------------ | --------- 
+------- | ---------- | ----------------- 
 `ggbetweenstats` | **violin plots** | for comparisons *between* groups/conditions
 `ggwithinstats` | **violin plots** | for comparisons *within* groups/conditions
 `gghistostats` | **histograms** | for distribution about numeric variable
@@ -706,7 +706,6 @@ ggstatsplot::ggpiestats(
   counts = Counts,
   paired = TRUE, # within-subjects design
   conf.level = 0.99, # confidence interval for effect size measure
-  stat.title = "McNemar's Test: ",
   package = "wesanderson",
   palette = "Royal1"
 )
@@ -764,9 +763,9 @@ of test-
 
 Type | Effect size | CI?
 --------------- | ------------------------- | --- 
-Pearson's chi-squared test | Cramer's *V* | <font color="green">Yes<font>
-McNemar's test | *g*  | <font color="green">Yes<font>
-Goodness of fit | *V*  | <font color="green">Yes<font>
+Pearson's chi-squared test | Cramér's *V* | <font color="green">Yes<font>
+McNemar's test | Cohen's *g*  | <font color="green">Yes<font>
+Goodness of fit | Cramér's *V*  | <font color="green">Yes<font>
 
 For more, see the `ggpiestats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
@@ -800,34 +799,30 @@ ggstatsplot::ggbarstats(
 
 And, needless to say, there is also a `grouped_` variant of this function-
 
-```{r ggbarstats2, message = FALSE, warning = FALSE, fig.height = 16, fig.width = 10}
+```{r ggbarstats2, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 10}
 # setup
-library(ggstatsplot)
 set.seed(123)
 
-# let's create a smaller dataframe
-diamonds_short <- ggplot2::diamonds %>%
-  dplyr::filter(.data = ., cut %in% c("Very Good", "Ideal")) %>%
-  dplyr::filter(.data = ., clarity %in% c("SI1", "SI2", "VS1", "VS2", "VVS1")) %>%
-  dplyr::sample_frac(tbl = ., size = 0.05)
+# smaller dataset
+df <- dplyr::filter(
+  .data = forcats::gss_cat,
+  race %in% c("Black", "White"),
+  relig %in% c("Protestant", "Catholic", "None"),
+  !partyid %in% c("No answer", "Don't know", "Other party")
+)
 
 # plot
 ggstatsplot::grouped_ggbarstats(
-  data = diamonds_short,
-  x = color,
-  y = clarity,
-  grouping.var = cut,
-  sampling.plan = "poisson",
-  title.prefix = "Quality",
-  data.label = "both",
-  label.text.size = 3,
-  perc.k = 1,
-  package = "palettetown",
-  palette = "charizard",
+  data = df,
+  x = relig,
+  y = partyid,
+  grouping.var = race,
+  title.prefix = "Race",
+  xlab = "Party affiliation",
   ggtheme = ggthemes::theme_tufte(base_size = 12),
   ggstatsplot.layer = FALSE,
   messages = FALSE,
-  title.text = "Diamond quality and color combination",
+  title.text = "Race, religion, and political affiliation",
   nrow = 2
 )
 ```
@@ -838,17 +833,18 @@ This is identical to the `ggpiestats` function summary of tests.
 
 ## `gghistostats`
 
-In case you would like to see the distribution of a single variable and check if
-it is significantly different from a specified value with a one sample test,
-this function will let you do that.
+To visualize the distribution of a single variable and check if its mean is
+significantly different from a specified value with a one-sample test,
+`gghistostats` can be used.
 
 ```{r gghistostats1, message = FALSE, warning = FALSE}
 ggstatsplot::gghistostats(
   data = ToothGrowth, # dataframe from which variable is to be taken
   x = len, # numeric variable whose distribution is of interest
-  title = "Distribution of Sepal.Length", # title for the plot
+  xlab = "Tooth length", # `x`-axis label
+  title = "Distribution of  Tooth Length", # title for the plot
   fill.gradient = TRUE, # use color gradient
-  test.value = 10, # the comparison value for t-test
+  test.value = 10, # the comparison value for one-sample test
   test.value.line = TRUE, # display a vertical line at test value
   type = "bayes", # bayes factor for one sample t-test
   bf.prior = 0.8, # prior width for calculating the bayes factor
@@ -867,7 +863,7 @@ ggstatsplot::gghistostats(
   data = iris, # dataframe from which variable is to be taken
   x = Sepal.Length, # numeric variable whose distribution is of interest
   title = "Distribution of Iris sepal length", # title for the plot
-  caption = substitute(paste(italic("Source:", "Ronald Fisher's Iris data set"))),
+  caption = substitute(paste(italic("Source:"), "Ronald Fisher's Iris data set")),
   type = "parametric", # one sample t-test
   conf.level = 0.99, # changing confidence level for effect size
   bar.measure = "mix", # what does the bar length denote
@@ -934,7 +930,7 @@ of test-
 Type | Effect size | CI?
 ----------- | ------------------------- | --- 
 Parametric | Cohen's *d*, Hedge's *g* (central-and noncentral-*t* distribution based) | <font color="green">Yes<font>
-Non-parametric | *r* (computed as $Z/\sqrt{N}$) | <font color="green">Yes<font>
+Non-parametric | *r* (computed as $Z/\sqrt{N_{obs}}$) | <font color="green">Yes<font>
 Robust | $M_{robust}$ (Robust location measure) | <font color="green">Yes<font>
 Bayes Factor | <font color="red">No<font> | <font color="red">No<font>
 
@@ -1077,7 +1073,7 @@ ggstatsplot::ggcorrmat(
 ggstatsplot::ggcorrmat(
   data = ggplot2::msleep,
   cor.vars = sleep_total:bodywt,
-  corr.method = "kendall",
+  corr.method = "spearman",
   output = "ci",
   p.adjust.method = "holm"
 )
@@ -1201,10 +1197,7 @@ ggstatsplot::ggcoefstats(
 ) + # further modification with the ggplot2 commands
   # note the order in which the labels are entered
   ggplot2::scale_y_discrete(labels = c("transmission", "cylinders", "interaction")) +
-  ggplot2::labs(
-    x = "regression coefficient",
-    y = NULL
-  )
+  ggplot2::labs(x = "regression coefficient", y = NULL)
 ```
 
 Most of the regression models that are supported in the `broom` and

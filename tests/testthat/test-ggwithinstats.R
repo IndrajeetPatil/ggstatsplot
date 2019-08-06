@@ -716,7 +716,7 @@ testthat::test_that(
         "0.93",
         "]",
         ", ",
-        italic("n"),
+        italic("n")["pairs"],
         " = ",
         5L
       ))

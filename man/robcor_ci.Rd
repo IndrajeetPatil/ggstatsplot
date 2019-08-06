@@ -167,7 +167,6 @@ correlation coefficient.
 }
 \examples{
 
-\donttest{
 ggstatsplot:::robcor_ci(
   data = mtcars,
   x = "hp",
@@ -177,7 +176,5 @@ ggstatsplot:::robcor_ci(
   conf.level = .99,
   conf.type = c("basic")
 )
-}
-
 }
 \keyword{internal}

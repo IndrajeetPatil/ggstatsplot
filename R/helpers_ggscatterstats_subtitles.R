@@ -190,7 +190,8 @@ subtitle_ggscatterstats <- function(data,
       n = sample_size,
       conf.level = conf.level,
       k = k,
-      k.parameter = 0L
+      k.parameter = 0L,
+      n.text = quote(italic("n")["pairs"])
     )
   }
 

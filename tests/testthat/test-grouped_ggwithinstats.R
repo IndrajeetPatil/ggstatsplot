@@ -156,7 +156,7 @@ testthat::test_that(
           "0.99",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["pairs"],
           " = ",
           50L
         )
@@ -189,7 +189,7 @@ testthat::test_that(
           "0.98",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["pairs"],
           " = ",
           50L
         )
@@ -222,7 +222,7 @@ testthat::test_that(
           "0.97",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["pairs"],
           " = ",
           50L
         )
@@ -279,7 +279,7 @@ testthat::test_that(
           "0.25",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["pairs"],
           " = ",
           8L
         )
@@ -312,7 +312,7 @@ testthat::test_that(
           "0.17",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["pairs"],
           " = ",
           75L
         )

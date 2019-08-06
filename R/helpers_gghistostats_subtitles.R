@@ -165,6 +165,7 @@ subtitle_t_onesample <- function(data,
       effsize.LL = effsize_df$conf.low[[1]],
       effsize.UL = effsize_df$conf.high[[1]],
       n = sample_size,
+      n.text = quote(italic("n")["obs"]),
       conf.level = conf.level,
       k = k,
       k.parameter = 0L
@@ -190,7 +191,7 @@ subtitle_t_onesample <- function(data,
     subtitle <- substitute(
       expr =
         paste(
-          italic("M")[robust],
+          italic("M")["robust"],
           " = ",
           estimate,
           ", CI"[conf.level],
@@ -203,7 +204,7 @@ subtitle_t_onesample <- function(data,
           " = ",
           p.value,
           ", ",
-          italic("n"),
+          italic("n")["obs"],
           " = ",
           n
         ),

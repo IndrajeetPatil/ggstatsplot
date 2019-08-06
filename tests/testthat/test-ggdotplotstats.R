@@ -261,7 +261,7 @@ testthat::test_that(
           "0.91",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["obs"],
           " = ",
           5L
         )

@@ -48,7 +48,7 @@ testthat::test_that(
           "0.58374",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["obs"],
           " = ",
           790L
         )
@@ -99,7 +99,7 @@ testthat::test_that(
           "0.2206",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["obs"],
           " = ",
           71L
         )
@@ -121,7 +121,7 @@ testthat::test_that(
     set.seed(123)
     using_function1 <-
       ggstatsplot::subtitle_anova_robust(
-        data = bugs_long,
+        data = ggstatsplot::bugs_long,
         x = "condition",
         y = desire,
         k = 4,
@@ -145,7 +145,7 @@ testthat::test_that(
           " = ",
           "< 0.001",
           ", ",
-          italic("n"),
+          italic("n")["pairs"],
           " = ",
           88L
         )
@@ -181,7 +181,7 @@ testthat::test_that(
           " = ",
           "< 0.001",
           ", ",
-          italic("n"),
+          italic("n")["pairs"],
           " = ",
           150L
         )

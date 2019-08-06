@@ -350,7 +350,7 @@ intervals were computed, see documentation in <code><a href='https://rdrr.io/pkg
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(NULL, chi["Pearson"]^2, "(", "2", ") = ", "8.74", ", ", 
 #&gt;     italic("p"), " = ", "0.013", ", ", italic("V")["Cramer"], 
 #&gt;     " = ", "0.52", ", CI"["95%"], " [", "0.20", ", ", "0.71", 
-#&gt;     "]", ", ", italic("n"), " = ", 32L)</div><div class='input'>
+#&gt;     "]", ", ", italic("n")["obs"], " = ", 32L)</div><div class='input'>
 <span class='co'># with counts data</span>
 <span class='co'># in case of no variation, a `NULL` will be returned.</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>jmv</span>)
@@ -378,7 +378,7 @@ intervals were computed, see documentation in <code><a href='https://rdrr.io/pkg
 )</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>100</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(NULL, chi["gof"]^2, "(", "3", ") = ", "278.96", ", ", italic("p"), 
 #&gt;     " = ", "&lt; 0.001", ", ", italic("V")["Cramer"], " = ", "0.40", 
-#&gt;     ", CI"["95%"], " [", "0.35", ", ", "0.43", "]", ", ", italic("n"), 
+#&gt;     ", CI"["95%"], " [", "0.35", ", ", "0.43", "]", ", ", italic("n")["obs"], 
 #&gt;     " = ", 592L)</div><div class='input'>
 <span class='co'># in case of no variation, only sample size will be shown</span>
 <span class='fu'>subtitle_contingency_tab</span>(

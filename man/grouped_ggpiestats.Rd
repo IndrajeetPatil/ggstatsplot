@@ -252,7 +252,6 @@ resulting plots using \code{ggstatsplot::combine_plots}.
 }
 \examples{
 
-\donttest{
 # grouped one-sample proportion tests
 ggstatsplot::grouped_ggpiestats(
   data = mtcars,
@@ -285,6 +284,7 @@ ggstatsplot::grouped_ggpiestats(
   main = color,
   condition = clarity,
   grouping.var = cut,
+  nboot = 20,
   sampling.plan = "poisson",
   title.prefix = "Quality",
   slice.label = "both",
@@ -292,7 +292,6 @@ ggstatsplot::grouped_ggpiestats(
   perc.k = 1,
   nrow = 3
 )
-}
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}

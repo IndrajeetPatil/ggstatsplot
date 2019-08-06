@@ -166,6 +166,7 @@ subtitle_anova_parametric <- function(data,
 
     # sample size
     sample_size <- length(unique(data$rowid))
+    n.text <- quote(italic("n")["pairs"])
 
     # warn the user if
     if (sample_size < nlevels(as.factor(data$key))) {
@@ -234,6 +235,7 @@ subtitle_anova_parametric <- function(data,
 
     # sample size
     sample_size <- nrow(data)
+    n.text <- quote(italic("n")["obs"])
 
     # Welch's ANOVA run by default
     stats_df <-
@@ -278,6 +280,7 @@ subtitle_anova_parametric <- function(data,
     effsize.LL = effsize_df$conf.low[[1]],
     effsize.UL = effsize_df$conf.high[[1]],
     n = sample_size,
+    n.text = n.text,
     conf.level = conf.level,
     k = k,
     k.parameter = k.df1,
@@ -391,6 +394,7 @@ subtitle_anova_nonparametric <- function(data,
 
     # sample size
     sample_size <- length(unique(data$rowid))
+    n.text <- quote(italic("n")["pairs"])
 
     # setting up the anova model and getting its summary
     stats_df <-
@@ -415,6 +419,7 @@ subtitle_anova_nonparametric <- function(data,
 
     # sample size
     sample_size <- nrow(data)
+    n.text <- quote(italic("n")["obs"])
 
     # setting up the anova model and getting its summary
     stats_df <-
@@ -459,6 +464,7 @@ subtitle_anova_nonparametric <- function(data,
     effsize.LL = effsize_df$conf.low[[1]],
     effsize.UL = effsize_df$conf.high[[1]],
     n = sample_size,
+    n.text = n.text,
     conf.level = conf.level,
     k = k,
     k.parameter = 0L
@@ -482,7 +488,6 @@ subtitle_anova_nonparametric <- function(data,
 #'
 #' @examples
 #'
-#' \donttest{
 #' # for reproducibility
 #' set.seed(123)
 #'
@@ -518,7 +523,6 @@ subtitle_anova_nonparametric <- function(data,
 #'   tr = 0.2,
 #'   k = 3
 #' )
-#' }
 #' @export
 
 # function body
@@ -585,7 +589,7 @@ subtitle_anova_robust <- function(data,
             " = ",
             p.value,
             ", ",
-            italic("n"),
+            italic("n")["pairs"],
             " = ",
             n
           ),
@@ -607,19 +611,19 @@ subtitle_anova_robust <- function(data,
 
     # sample size
     sample_size <- nrow(data)
+    n.text <- quote(italic("n")["obs"])
 
     # setting up the Bootstrap version of the heteroscedastic one-way ANOVA for
     # trimmed means
-    stats_df <-
-      t1way_ci(
-        data = data,
-        x = {{ x }},
-        y = {{ y }},
-        tr = tr,
-        nboot = nboot,
-        conf.level = conf.level,
-        conf.type = conf.type
-      )
+    stats_df <- t1way_ci(
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
+      tr = tr,
+      nboot = nboot,
+      conf.level = conf.level,
+      conf.type = conf.type
+    )
 
     # preparing subtitle
     subtitle <- subtitle_template(
@@ -635,6 +639,7 @@ subtitle_anova_robust <- function(data,
       effsize.LL = stats_df$conf.low[[1]],
       effsize.UL = stats_df$conf.high[[1]],
       n = sample_size,
+      n.text = n.text,
       conf.level = conf.level,
       k = k,
       k.parameter = 0L,
@@ -662,7 +667,7 @@ subtitle_anova_robust <- function(data,
 #' @importFrom stats lm oneway.test na.omit
 #'
 #' @examples
-#' \donttest{
+#'
 #' set.seed(123)
 #'
 #' # between-subjects ---------------------------------------
@@ -690,7 +695,6 @@ subtitle_anova_robust <- function(data,
 #'   paired = TRUE,
 #'   k = 4
 #' )
-#' }
 #' @export
 
 # function body

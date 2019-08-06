@@ -351,8 +351,8 @@ Following tests are carried out for each type of analyses-
 Type of data | Design | Test
 ----------- | ------------ | -------------------------
 Unpaired | $n \times p$ contingency table | Pearson's $\chi^2$ test
-Paired | $n \times p$ contingency table | McNemar's test
-Frequency | $n \times 1$ contingency table | Goodness of fit
+Paired | $n \times p$ contingency table | McNemar's $\chi^2$ test
+Frequency | $n \times 1$ contingency table | Goodness of fit ($\chi^2$ test)
 
 Following effect sizes (and confidence intervals/CI) are available for each type
 of test-

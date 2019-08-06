@@ -4,7 +4,7 @@ author:
 - Indrajeet Patil^[Harvard University, patilindrajeet.science@gmail.com]
 - Fiery Cushman^[Harvard University]
 - Mina Cikara^[Harvard University]
-date: "2019-08-05"
+date: "2019-08-06"
 output: 
   bookdown::pdf_document2:
     fig_caption: true

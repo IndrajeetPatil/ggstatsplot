@@ -98,6 +98,7 @@ subtitle_t_parametric <- function(data,
 
     # sample size
     sample_size <- length(unique(data$rowid))
+    n.text <- quote(italic("n")["pairs"])
 
     # removing the unnecessary `rowid` column
     data %<>% dplyr::select(.data = ., -rowid)
@@ -109,6 +110,7 @@ subtitle_t_parametric <- function(data,
 
     # sample size
     sample_size <- nrow(data)
+    n.text <- quote(italic("n")["obs"])
   }
 
   # deciding which effect size to use (Hedge's g or Cohen's d)
@@ -169,7 +171,8 @@ subtitle_t_parametric <- function(data,
     n = sample_size,
     conf.level = conf.level,
     k = k,
-    k.parameter = k.df
+    k.parameter = k.df,
+    n.text = n.text
   )
 
   # return the subtitle
@@ -213,7 +216,7 @@ subtitle_t_parametric <- function(data,
 #'   below.
 #'
 #' @examples
-#' \donttest{
+#'
 #' set.seed(123)
 #'
 #' # -------------- between-subjects design ------------------------
@@ -266,7 +269,6 @@ subtitle_t_parametric <- function(data,
 #'   nboot = 200,
 #'   k = 5
 #' )
-#' }
 #' @export
 
 # function body
@@ -302,6 +304,7 @@ subtitle_mann_nonparametric <- function(data,
 
     # sample size
     sample_size <- length(unique(data$rowid))
+    n.text <- quote(italic("n")["pairs"])
 
     # removing the unnecessary `rowid` column
     data %<>% dplyr::select(.data = ., -rowid)
@@ -313,6 +316,7 @@ subtitle_mann_nonparametric <- function(data,
 
     # sample size
     sample_size <- nrow(data)
+    n.text <- quote(italic("n")["obs"])
   }
 
   # setting up the test and getting its summary
@@ -369,6 +373,7 @@ subtitle_mann_nonparametric <- function(data,
     effsize.LL = effsize_df$conf.low[[1]],
     effsize.UL = effsize_df$conf.high[[1]],
     n = sample_size,
+    n.text = n.text,
     conf.level = conf.level,
     k = k
   )
@@ -480,25 +485,13 @@ subtitle_t_robust <- function(data,
         alpha = 1 - conf.level
       )
 
-    k.df <- k
-
-    # preparing subtitle
-    subtitle <- subtitle_template(
-      no.parameters = 1L,
-      stat.title = stat.title,
-      statistic.text = quote(italic("t")),
-      statistic = stats_df$test[[1]],
-      parameter = stats_df$df[[1]],
-      p.value = stats_df$p.value[[1]],
-      effsize.text = quote(italic(xi)),
-      effsize.estimate = effsize_df$effsize[[1]],
-      effsize.LL = effsize_df$CI[[1]][[1]],
-      effsize.UL = effsize_df$CI[[2]][[1]],
-      n = sample_size,
-      conf.level = conf.level,
-      k = k,
-      k.parameter = k.df
-    )
+    # subtitle parameters
+    k.parameter <- k
+    statistic <- stats_df$test[[1]]
+    effsize.estimate <- effsize_df$effsize[[1]]
+    effsize.LL <- effsize_df$CI[[1]][[1]]
+    effsize.UL <- effsize_df$CI[[2]][[1]]
+    n.text <- quote(italic("n")["obs"])
   }
 
   # ---------------------------- within-subjects design -------------------
@@ -526,26 +519,33 @@ subtitle_t_robust <- function(data,
         conf.type = conf.type
       )
 
-    k.df <- 0L
-
-    # preparing subtitle
-    subtitle <- subtitle_template(
-      no.parameters = 1L,
-      stat.title = NULL,
-      statistic.text = quote(italic("t")),
-      statistic = stats_df$t.value[[1]],
-      parameter = stats_df$df[[1]],
-      p.value = stats_df$p.value[[1]],
-      effsize.text = quote(italic(xi)),
-      effsize.estimate = stats_df$xi[[1]],
-      effsize.LL = stats_df$conf.low[[1]],
-      effsize.UL = stats_df$conf.high[[1]],
-      n = sample_size,
-      conf.level = conf.level,
-      k = k,
-      k.parameter = k.df
-    )
+    # subtitle parameters
+    k.parameter <- 0L
+    statistic <- stats_df$t.value[[1]]
+    effsize.estimate <- stats_df$xi[[1]]
+    effsize.LL <- stats_df$conf.low[[1]]
+    effsize.UL <- stats_df$conf.high[[1]]
+    n.text <- quote(italic("n")["pairs"])
   }
+
+  # preparing subtitle
+  subtitle <- subtitle_template(
+    no.parameters = 1L,
+    stat.title = stat.title,
+    statistic.text = quote(italic("t")),
+    statistic = statistic,
+    parameter = stats_df$df[[1]],
+    p.value = stats_df$p.value[[1]],
+    effsize.text = quote(italic(xi)),
+    effsize.estimate = effsize.estimate,
+    effsize.LL = effsize.LL,
+    effsize.UL = effsize.UL,
+    n = sample_size,
+    n.text = n.text,
+    conf.level = conf.level,
+    k = k,
+    k.parameter = k.parameter
+  )
 
   # message about effect size measure
   if (isTRUE(messages)) effsize_ci_message(nboot, conf.level)
@@ -554,7 +554,7 @@ subtitle_t_robust <- function(data,
   return(subtitle)
 }
 
-#' @title Making text subtitle for the bayesian t-test.
+#' @title Making text subtitle for the Bayesian *t*-test.
 #' @name subtitle_t_bayes
 #' @author Indrajeet Patil
 #'

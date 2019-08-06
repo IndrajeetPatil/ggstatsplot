@@ -602,7 +602,7 @@ testthat::test_that(
           "-0.38",
           "]",
           ", ",
-          italic("n"),
+          italic("n")["obs"],
           " = ",
           56L
         )

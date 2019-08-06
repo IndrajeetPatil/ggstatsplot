@@ -9,11 +9,16 @@
 | [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)                      | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Forks](https://img.shields.io/badge/forks-67-blue.svg)](https://github.com/IndrajeetPatil/ggstatsplot/)                                                     | [![Rdoc](https://www.rdocumentation.org/badges/version/ggstatsplot)](https://www.rdocumentation.org/packages/ggstatsplot)                                       |
 | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/)                                                      | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                                               | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](https://img.shields.io/badge/issues-22-red.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)                                       | [![vignettes](https://img.shields.io/badge/vignettes-0.0.12-orange.svg?colorB=FF5722)](https://CRAN.R-project.org/package=ggstatsplot/vignettes/)               |
 | [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot) | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2074621.svg)](https://doi.org/10.5281/zenodo.2074621)                                                       |
-| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2019--08--05-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
+| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2019--08--06-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
 | [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                                    | [![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2019_07_31-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md)                | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil)                                    | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)                                                     | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
 | [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ggstatsplot/community)                                                         |                                                                                                                                                                                              |                                                                                                                                                   |                                                                                                                                                                |                                                                                                                                                                 |
 
 # Raison d’être
+
+> “What is to be sought in designs for the display of information is the
+> clear portrayal of complexity. Not the complication of the simple;
+> rather … the revelation of the complex.”  
+> \- Edward R. Tufte
 
 [`ggstatsplot`](https://indrajeetpatil.github.io/ggstatsplot/) is an
 extension of [`ggplot2`](https://github.com/tidyverse/ggplot2) package
@@ -213,7 +218,7 @@ ggstatsplot::ggplot_converter
 #> function(plot) {
 #>   return(cowplot::ggdraw() + cowplot::draw_grob(grid::grobTree(plot)))
 #> }
-#> <bytecode: 0x000000002eb6cf78>
+#> <bytecode: 0x000000002eb80628>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -739,7 +744,6 @@ ggstatsplot::ggpiestats(
   counts = Counts,
   paired = TRUE, # within-subjects design
   conf.level = 0.99, # confidence interval for effect size measure
-  stat.title = "McNemar's Test: ",
   package = "wesanderson",
   palette = "Royal1"
 )
@@ -820,8 +824,8 @@ each type of test-
 | Type                       | Effect size  | CI?                           |
 | -------------------------- | ------------ | ----------------------------- |
 | Pearson’s chi-squared test | Cramer’s *V* | <font color="green">Yes<font> |
-| McNemar’s test             | *g*          | <font color="green">Yes<font> |
-| Goodness of fit            | *V*          | <font color="green">Yes<font> |
+| McNemar’s test             | Cohen’s *g*  | <font color="green">Yes<font> |
+| Goodness of fit            | Cramer’s *V* | <font color="green">Yes<font> |
 
 For more, see the `ggpiestats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
@@ -860,32 +864,28 @@ function-
 
 ``` r
 # setup
-library(ggstatsplot)
 set.seed(123)
 
-# let's create a smaller dataframe
-diamonds_short <- ggplot2::diamonds %>%
-  dplyr::filter(.data = ., cut %in% c("Very Good", "Ideal")) %>%
-  dplyr::filter(.data = ., clarity %in% c("SI1", "SI2", "VS1", "VS2", "VVS1")) %>%
-  dplyr::sample_frac(tbl = ., size = 0.05)
+# smaller dataset
+df <- dplyr::filter(
+  .data = forcats::gss_cat,
+  race %in% c("Black", "White"),
+  relig %in% c("Protestant", "Catholic", "None"),
+  !partyid %in% c("No answer", "Don't know", "Other party")
+)
 
 # plot
 ggstatsplot::grouped_ggbarstats(
-  data = diamonds_short,
-  x = color,
-  y = clarity,
-  grouping.var = cut,
-  sampling.plan = "poisson",
-  title.prefix = "Quality",
-  data.label = "both",
-  label.text.size = 3,
-  perc.k = 1,
-  package = "palettetown",
-  palette = "charizard",
+  data = df,
+  x = relig,
+  y = partyid,
+  grouping.var = race,
+  title.prefix = "Race",
+  xlab = "Party affiliation",
   ggtheme = ggthemes::theme_tufte(base_size = 12),
   ggstatsplot.layer = FALSE,
   messages = FALSE,
-  title.text = "Diamond quality and color combination",
+  title.text = "Race, religion, and political affiliation",
   nrow = 2
 )
 ```
@@ -898,17 +898,18 @@ This is identical to the `ggpiestats` function summary of tests.
 
 ## `gghistostats`
 
-In case you would like to see the distribution of a single variable and
-check if it is significantly different from a specified value with a one
-sample test, this function will let you do that.
+To visualize the distribution of a single variable and check if its mean
+is significantly different from a specified value with a one-sample
+test, `gghistostats` can be used.
 
 ``` r
 ggstatsplot::gghistostats(
   data = ToothGrowth, # dataframe from which variable is to be taken
   x = len, # numeric variable whose distribution is of interest
-  title = "Distribution of Sepal.Length", # title for the plot
+  xlab = "Tooth length", # `x`-axis label
+  title = "Distribution of  Tooth Length", # title for the plot
   fill.gradient = TRUE, # use color gradient
-  test.value = 10, # the comparison value for t-test
+  test.value = 10, # the comparison value for one-sample test
   test.value.line = TRUE, # display a vertical line at test value
   type = "bayes", # bayes factor for one sample t-test
   bf.prior = 0.8, # prior width for calculating the bayes factor
@@ -998,12 +999,12 @@ Following tests are carried out for each type of analyses-
 Following effect sizes (and confidence intervals/CI) are available for
 each type of test-
 
-| Type           | Effect size                                                                                                | CI?                           |
-| -------------- | ---------------------------------------------------------------------------------------------------------- | ----------------------------- |
-| Parametric     | Cohen’s *d*, Hedge’s *g* (central-and noncentral-*t* distribution based)                                   | <font color="green">Yes<font> |
-| Non-parametric | *r* (computed as ![Z/\\sqrt{N}](https://latex.codecogs.com/png.latex?Z%2F%5Csqrt%7BN%7D "Z/\\sqrt{N}"))    | <font color="green">Yes<font> |
-| Robust         | ![M\_{robust}](https://latex.codecogs.com/png.latex?M_%7Brobust%7D "M_{robust}") (Robust location measure) | <font color="green">Yes<font> |
-| Bayes Factor   | <font color="red">No<font>                                                                                 | <font color="red">No<font>    |
+| Type           | Effect size                                                                                                                    | CI?                           |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------ | ----------------------------- |
+| Parametric     | Cohen’s *d*, Hedge’s *g* (central-and noncentral-*t* distribution based)                                                       | <font color="green">Yes<font> |
+| Non-parametric | *r* (computed as ![Z/\\sqrt{N\_{obs}}](https://latex.codecogs.com/png.latex?Z%2F%5Csqrt%7BN_%7Bobs%7D%7D "Z/\\sqrt{N_{obs}}")) | <font color="green">Yes<font> |
+| Robust         | ![M\_{robust}](https://latex.codecogs.com/png.latex?M_%7Brobust%7D "M_{robust}") (Robust location measure)                     | <font color="green">Yes<font> |
+| Bayes Factor   | <font color="red">No<font>                                                                                                     | <font color="red">No<font>    |
 
 For more, including information about the variant of this function
 `grouped_gghistostats`, see the `gghistostats` vignette:
@@ -1167,7 +1168,7 @@ ggstatsplot::ggcorrmat(
 ggstatsplot::ggcorrmat(
   data = ggplot2::msleep,
   cor.vars = sleep_total:bodywt,
-  corr.method = "kendall",
+  corr.method = "spearman",
   output = "ci",
   p.adjust.method = "holm"
 )
@@ -1175,23 +1176,23 @@ ggstatsplot::ggcorrmat(
 #> the upper triangle: p-values adjusted for multiple comparisons
 #> the lower triangle: unadjusted p-values.
 #> # A tibble: 15 x 7
-#>    pair                 r     lower     upper         p lower.adj upper.adj
-#>    <chr>            <dbl>     <dbl>     <dbl>     <dbl>     <dbl>     <dbl>
-#>  1 sleep_total-s~  0.5922  4.000e-1  7.345e-1 4.981e- 7   0.3027    0.7817 
-#>  2 sleep_total-s~ -0.3481 -6.214e-1  6.818e-4 5.090e- 2  -0.6789    0.1002 
-#>  3 sleep_total-a~ -1      -1.000e+0 -1.000e+0 0.         -1        -1      
-#>  4 sleep_total-b~ -0.4293 -6.220e-1 -1.875e-1 9.621e- 4  -0.6858   -0.07796
-#>  5 sleep_total-b~ -0.3851 -5.547e-1 -1.847e-1 3.247e- 4  -0.6050   -0.1106 
-#>  6 sleep_rem-sle~ -0.2066 -5.180e-1  1.531e-1 2.566e- 1  -0.5180    0.1531 
-#>  7 sleep_rem-awa~ -0.5922 -7.345e-1 -4.000e-1 4.981e- 7  -0.7832   -0.2990 
-#>  8 sleep_rem-bra~ -0.2636 -5.096e-1  2.217e-2 7.022e- 2  -0.5400    0.06404
-#>  9 sleep_rem-bod~ -0.3163 -5.262e-1 -7.004e-2 1.302e- 2  -0.5662   -0.01317
-#> 10 sleep_cycle-a~  0.3481 -6.818e-4  6.214e-1 5.090e- 2  -0.1145    0.6867 
-#> 11 sleep_cycle-b~  0.7125  4.739e-1  8.536e-1 1.001e- 5   0.3239    0.8954 
-#> 12 sleep_cycle-b~  0.6545  3.962e-1  8.168e-1 4.834e- 5   0.2459    0.8656 
-#> 13 awake-brainwt   0.4293  1.875e-1  6.220e-1 9.621e- 4   0.08322   0.6829 
-#> 14 awake-bodywt    0.3851  1.847e-1  5.547e-1 3.247e- 4   0.1049    0.6087 
-#> 15 brainwt-bodywt  0.8378  7.373e-1  9.020e-1 8.181e-16   0.6716    0.9238
+#>    pair                    r   lower    upper         p lower.adj upper.adj
+#>    <chr>               <dbl>   <dbl>    <dbl>     <dbl>     <dbl>     <dbl>
+#>  1 sleep_total-slee~  0.7641  0.6344  0.8520  7.806e-13   0.5632    0.8798 
+#>  2 sleep_total-slee~ -0.4888 -0.7155 -0.1689  4.530e- 3  -0.7609   -0.07055
+#>  3 sleep_total-awake -1      -1      -1       0.         -1        -1      
+#>  4 sleep_total-brai~ -0.5935 -0.7408 -0.3918  1.426e- 6  -0.7852   -0.2982 
+#>  5 sleep_total-body~ -0.5346 -0.6727 -0.3605  1.931e- 7  -0.7121   -0.2928 
+#>  6 sleep_rem-sleep_~ -0.3344 -0.6118  0.01617 6.139e- 2  -0.6118    0.01617
+#>  7 sleep_rem-awake   -0.7641 -0.8520 -0.6344  7.806e-13  -0.8807   -0.5605 
+#>  8 sleep_rem-brainwt -0.4139 -0.6246 -0.1471  3.451e- 3  -0.6495   -0.1058 
+#>  9 sleep_rem-bodywt  -0.4517 -0.6317 -0.2255  2.580e- 4  -0.6647   -0.1708 
+#> 10 sleep_cycle-awake  0.4888  0.1689  0.7155  4.530e- 3   0.05610   0.7669 
+#> 11 sleep_cycle-brai~  0.8727  0.7474  0.9380  3.250e-10   0.6573    0.9563 
+#> 12 sleep_cycle-body~  0.8464  0.7061  0.9228  1.040e- 9   0.6115    0.9442 
+#> 13 awake-brainwt      0.5935  0.3918  0.7408  1.426e- 6   0.2934    0.7872 
+#> 14 awake-bodywt       0.5346  0.3605  0.6727  1.931e- 7   0.2875    0.7150 
+#> 15 brainwt-bodywt     0.9572  0.9277  0.9748  9.694e-31   0.9071    0.9805
 
 # getting the sample sizes for all pairs
 ggstatsplot::ggcorrmat(
@@ -1332,10 +1333,7 @@ ggstatsplot::ggcoefstats(
 ) + # further modification with the ggplot2 commands
   # note the order in which the labels are entered
   ggplot2::scale_y_discrete(labels = c("transmission", "cylinders", "interaction")) +
-  ggplot2::labs(
-    x = "regression coefficient",
-    y = NULL
-  )
+  ggplot2::labs(x = "regression coefficient", y = NULL)
 ```
 
 <img src="man/figures/README-ggcoefstats2-1.png" width="100%" />

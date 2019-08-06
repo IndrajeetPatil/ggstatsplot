@@ -167,7 +167,6 @@ measure for paired samples robust t-tests.
 }
 \examples{
 
-\donttest{
 ggstatsplot:::yuend_ci(
   data = dplyr::filter(
     .data = ggstatsplot::iris_long,
@@ -178,7 +177,5 @@ ggstatsplot:::yuend_ci(
   nboot = 50,
   tr = 0.2
 )
-}
-
 }
 \keyword{internal}

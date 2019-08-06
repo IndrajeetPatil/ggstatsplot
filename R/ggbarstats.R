@@ -53,7 +53,7 @@
 #'   labels.legend = c("0 = V-shaped", "1 = straight"),
 #'   legend.title = "Engine"
 #' )
-#' \donttest{
+#'
 #' # simple function call with the defaults (with count data)
 #' library(jmv)
 #'
@@ -63,7 +63,6 @@
 #'   condition = Hair,
 #'   counts = Freq
 #' )
-#' }
 #' @export
 
 # defining the function
