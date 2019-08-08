@@ -508,11 +508,9 @@ ggcoefstats <- function(x,
     if (!"estimate" %in% names(tidy_df)) {
       stop(message(cat(
         crayon::red("Error: "),
-        crayon::blue(
-          "The object of class",
-          crayon::yellow(class(x)[[1]]),
-          "*must* contain the following column: 'estimate'.\n"
-        ),
+        crayon::blue("The object of class "),
+        crayon::yellow(class(x)[[1]]),
+        crayon::blue(" *must* contain the following column: 'estimate'.\n"),
         sep = ""
       )),
       call. = FALSE
@@ -572,20 +570,15 @@ ggcoefstats <- function(x,
       } else {
         xlab <- "eta-squared"
       }
-    } else if (effsize == "omega") {
+    }
+
+    if (effsize == "omega") {
       if (isTRUE(partial)) {
         xlab <- "partial omega-squared"
       } else {
         xlab <- "omega-squared"
       }
     }
-    # ============ tidying robust models =====================================
-  } else if (class(x)[[1]] %in% c("lmRob", "glmRob", "lmrob", "glmrob")) {
-    tidy_df <-
-      broomExtra::tidy(
-        x = x,
-        ...
-      )
     # ==================== tidying everything else ===========================
   } else {
     tidy_df <-
@@ -609,7 +602,6 @@ ggcoefstats <- function(x,
   if (!"term" %in% names(tidy_df)) {
     tidy_df %<>%
       dplyr::mutate(.data = ., term = dplyr::row_number()) %>%
-      dplyr::mutate(.data = ., term = as.character(term)) %>%
       dplyr::mutate(.data = ., term = paste("term", term, sep = "_"))
   }
 
@@ -732,7 +724,6 @@ ggcoefstats <- function(x,
           conf.high = estimate + stats::qnorm(prob) * std.error
         )
     } else {
-
       # add NAs so that only dots will be shown
       tidy_df %<>%
         dplyr::mutate(
@@ -776,11 +767,7 @@ ggcoefstats <- function(x,
     tidy_df %<>%
       dplyr::filter(
         .data = .,
-        !grepl(
-          pattern = "(Intercept)",
-          x = term,
-          ignore.case = TRUE
-        )
+        !grepl(pattern = "(Intercept)", x = term, ignore.case = TRUE)
       )
   }
 
@@ -810,8 +797,7 @@ ggcoefstats <- function(x,
     # adjust the p-values based on the adjustment used
     tidy_df %<>%
       dplyr::mutate(
-        .data = .,
-        p.value = stats::p.adjust(p = p.value, method = p.adjust.method)
+        .data = ., p.value = stats::p.adjust(p = p.value, method = p.adjust.method)
       )
   }
 
@@ -819,10 +805,8 @@ ggcoefstats <- function(x,
 
   # adding a column with labels to be used with `ggrepel`
   if (isTRUE(stats.labels)) {
-    if (class(x)[[1]] %in% df.mods) {
-      # in case a dataframe was entered, `x` and `tidy_df` are going to be same
-      x <- tidy_df
-    }
+    # in case a dataframe was entered, `x` and `tidy_df` are going to be same
+    if (class(x)[[1]] %in% df.mods) x <- tidy_df
 
     # adding a column with labels using custom function
     tidy_df %<>%
@@ -955,11 +939,10 @@ ggcoefstats <- function(x,
   tidy_df$term <- factor(x = tidy_df$term, levels = tidy_df$term[new_order])
   tidy_df %<>% dplyr::select(.data = ., -rowid)
 
+  # ========================== basic plot ===================================
+
   # palette check is necessary only if output is a plot
   if (output == "plot") {
-
-    # ========================== basic plot ===================================
-
     # setting up the basic architecture
     plot <-
       ggplot2::ggplot(
@@ -1045,9 +1028,7 @@ ggcoefstats <- function(x,
         dplyr::select(.data = ., length)
 
       # if insufficient number of colors are available in a given palette
-      if (palette_df$length[[1]] < count_term) {
-        stats.label.color <- "black"
-      }
+      if (palette_df$length[[1]] < count_term) stats.label.color <- "black"
 
       # if user has not specified colors, then use a color palette
       if (is.null(stats.label.color)) {

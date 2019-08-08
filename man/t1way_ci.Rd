@@ -166,16 +166,12 @@ Custom function to get confidence intervals for effect size
 measure for robust ANOVA.
 }
 \examples{
-
 set.seed(123)
 ggstatsplot:::t1way_ci(
-  data = dplyr::filter(ggplot2::msleep, vore != "insecti"),
-  x = vore,
-  y = brainwt,
-  tr = 0.05,
-  nboot = 50,
-  conf.level = 0.99,
-  conf.type = "perc"
+  data = morley,
+  x = Expt,
+  y = Speed,
+  nboot = 10
 )
 }
 \keyword{internal}

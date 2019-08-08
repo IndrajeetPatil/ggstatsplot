@@ -182,6 +182,7 @@ games_howell <- function(data, x, y) {
 #'
 #' @examples
 #'
+#' \donttest{
 #' # show all columns in a tibble
 #' options(tibble.width = Inf)
 #'
@@ -266,6 +267,7 @@ games_howell <- function(data, x, y) {
 #'   paired = TRUE,
 #'   p.adjust.method = "hommel"
 #' )
+#' }
 #' @export
 
 # function body

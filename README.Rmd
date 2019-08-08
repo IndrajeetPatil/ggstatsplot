@@ -590,12 +590,11 @@ ggstatsplot::grouped_ggscatterstats(
 
 **Using `ggscatterstats()` in R Notebooks or R Markdown**
 
-If you include a `ggscatterstats()` plot inside an `R Notebook` or `R Markdown`
-code chunk, you will notice that running the chunk doesn't return any output nor
-does it give any error. In order to get a `ggscatterstats()` to show up in these
-contexts, you need to save the `ggscatterstats` plot as a variable in one code
-chunk, and explicitly print it using the `grid` package in another chunk, like
-this:
+If you try including a `ggscatterstats()` plot inside an `R Notebook` or `R
+Markdown` code chunk, you will notice that the plot is not returned in the
+output. In order to get a `ggscatterstats()` to show up in these contexts, you
+need to save the `ggscatterstats` plot as a variable in one code chunk, and
+explicitly print it using the `grid` package in another chunk, like this:
 
 ```{r ggscatterstats_notebook, eval = FALSE}
 # include the following code in your code chunk inside R Notebook or Markdown

@@ -464,6 +464,12 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 
     
 <ul>
+<li><p>If you try including a <code>ggscatterstats()</code> plot inside an R Notebook or
+R Markdown code chunk, you will notice that the plot is not returned in the
+output. In order to get a <code>ggscatterstats()</code> to show up in these contexts,
+you need to save the <code>ggscatterstats</code> plot as a variable in one code chunk,
+and explicitly print it using the <code>grid</code> package in another chunk:
+<a href='https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html#using-ggscatterstats-in-r-notebook-or-r-markdown'>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html#using-ggscatterstats-in-r-notebook-or-r-markdown</a></p></li>
 <li><p><code>marginal.type = "densigram"</code> will work only with the development
 version of <code>ggExtra</code> that you can download from <code>GitHub</code>:
 <code><a href='https://rdrr.io/pkg/remotes/man/install_github.html'>remotes::install_github("daattali/ggExtra")</a></code>.</p></li>

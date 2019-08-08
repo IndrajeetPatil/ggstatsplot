@@ -42,7 +42,7 @@ aesthetic_addon <- function(plot,
       caption = caption,
       color = xlab
     ) +
-    ggstatsplot::theme_mprl(
+    ggstatsplot::theme_ggstatsplot(
       ggtheme = ggtheme,
       ggstatsplot.layer = ggstatsplot.layer
     ) +

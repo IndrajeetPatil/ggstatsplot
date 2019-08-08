@@ -76,9 +76,8 @@ cat_label_df <- function(data,
 }
 
 
-#' @title Dataframe with counts and percentages for categorical
-#'   variables.
-#' @name subtitle_contingency_tab
+#' @title Counts and percentages across grouping variables.
+#' @name cat_counter
 #' @author Indrajeet Patil
 #'
 #' @param ... Additional grouping variables.

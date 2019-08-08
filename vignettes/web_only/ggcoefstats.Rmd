@@ -812,7 +812,7 @@ different types of harm)? For this, we can use ordinal mixed-effects regression
 model (with random effects for type of harm) to see how intent and outcome
 contribute towards variation in moral judgment ratings-
 
-```{r clmm1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6, eval = FALSE}
+```{r clmm1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
 # for reproducibility
 set.seed(123)
 
@@ -846,7 +846,7 @@ with these four types of (minor) harms.
 Note that, by default, `beta` parameters are shown for `clm` and `clmm` models,
 but you can also plot either just `alpha` or `both` using `ggcoefstats`.
 
-```{r clmm2, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6, eval = FALSE}
+```{r clmm2, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
 # for reproducibility
 set.seed(123)
 
@@ -1069,7 +1069,7 @@ ggstatsplot::combine_plots(
   ),
   # arguments relevant for `combine_plots` function
   labels = c("(a)", "(b)"),
-  title.text = "Robust variants of `lmRob` and `glmRob` (\nfrom`robust` package)",
+  title.text = "Robust variants of `lmRob` and `glmRob` \n(from`robust` package)",
   nrow = 2
 )
 ```
@@ -1079,7 +1079,7 @@ ggstatsplot::combine_plots(
 Another alternative is to use robust models, as implemented in the `robustbase`
 package.
 
-```{r robustbase, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 6, eval = FALSE}
+```{r robustbase, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 6}
 # setup
 set.seed(123)
 library(robustbase)
@@ -1110,7 +1110,7 @@ ggstatsplot::combine_plots(
   ),
   # arguments relevant for `combine_plots` function
   labels = c("(i)", "(ii)"),
-  title.text = "Robust variants of `lmRob` and `glmRob` (\nfrom`robustbase` package)",
+  title.text = "Robust variants of `lmRob` and `glmRob` \n(from`robustbase` package)",
   nrow = 2
 )
 ```
@@ -1161,8 +1161,10 @@ library(plm)
 data("Produc", package = "plm")
 
 # model
-plm.mod <- plm(log(gsp) ~ log(pcap) + log(pc) + log(emp) + unemp,
-  data = Produc, index = c("state", "year")
+plm.mod <- plm::plm(
+  formula = log(gsp) ~ log(pcap) + log(pc) + log(emp) + unemp,
+  data = Produc,
+  index = c("state", "year")
 )
 
 # plot
@@ -1219,6 +1221,7 @@ ggstatsplot::ggcoefstats(
   title = "autoregressive integrated moving average"
 )
 ```
+
 ## high performance linear model (`speedlm`/`speedglm`)
 
 Example of high performance linear model-
@@ -1768,7 +1771,7 @@ ggstatsplot::ggcoefstats(
 
 ## exponential-family random graph models (`ergm`)
 
-```{r ergm, eval = FALSE, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+```{r ergm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
 # load the Florentine marriage network data
 set.seed(123)
 suppressPackageStartupMessages(library(ergm))
