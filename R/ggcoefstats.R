@@ -541,7 +541,7 @@ ggcoefstats <- function(x,
     tidy_df <-
       broomExtra::tidy(
         x = x,
-        conf.int = TRUE,
+        conf.int = conf.int,
         # exponentiate = exponentiate,
         conf.level = conf.level,
         effects = "fixed",
@@ -584,7 +584,7 @@ ggcoefstats <- function(x,
     tidy_df <-
       broomExtra::tidy(
         x = x,
-        conf.int = TRUE,
+        conf.int = conf.int,
         conf.level = conf.level,
         se.type = se.type,
         by_class = by.class,

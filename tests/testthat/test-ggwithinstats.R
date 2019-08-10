@@ -42,6 +42,7 @@ testthat::test_that(
       outlier.coef = 1.5,
       bf.message = TRUE,
       pairwise.comparisons = TRUE,
+      pairwise.annotation = "asterisk",
       title = "bugs dataset",
       caption = "From `jmv` package",
       messages = FALSE
@@ -135,6 +136,7 @@ testthat::test_that(
       outlier.tagging = TRUE,
       outlier.coef = 2.5,
       pairwise.comparisons = TRUE,
+      pairwise.annotation = "asterisk",
       title = "wine tasting data",
       caption = "From `WRS2` package",
       messages = TRUE
@@ -350,7 +352,7 @@ testthat::test_that(
       pairwise.display = "ns",
       outlier.tagging = FALSE,
       pairwise.comparisons = TRUE,
-      pairwise.annotation = "p",
+      pairwise.annotation = "p-value",
       conf.level = 0.90,
       messages = FALSE
     )

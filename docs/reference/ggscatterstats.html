@@ -123,6 +123,9 @@ subtitle." />
       <a href="../articles/web_only/ggcorrmat.html">ggcorrmat</a>
     </li>
     <li>
+      <a href="../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
+    </li>
+    <li>
       <a href="../articles/web_only/gghistostats.html">gghistostats</a>
     </li>
     <li>
@@ -279,7 +282,7 @@ variable names for <code>x</code> and <code>y</code> will be used.</p></td>
 e.g. <code>"auto"</code>, <code>"lm"</code>, <code>"glm"</code>, <code>"gam"</code>, <code>"loess"</code> or a function, e.g.
 <code><a href='https://rdrr.io/pkg/MASS/man/rlm.html'>MASS::rlm</a></code> or <code><a href='https://rdrr.io/pkg/mgcv/man/gam.html'>mgcv::gam</a></code>, <code><a href='https://rdrr.io/r/stats/lm.html'>stats::lm</a></code>, or <code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess</a></code>.</p>
 <p>For <code>method = "auto"</code> the smoothing method is chosen based on the
-size of the largest group (across all panels). <code><a href='https://rdrr.io/r/stats/loess.html'>loess()</a></code> is
+size of the largest group (across all panels). <code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess()</a></code> is
 used for less than 1,000 observations; otherwise <code><a href='https://rdrr.io/pkg/mgcv/man/gam.html'>mgcv::gam()</a></code> is
 used with <code>formula = y ~ s(x, bs = "cs")</code>. Somewhat anecdotally,
 <code>loess</code> gives a better appearance, but is \(O(N^{2})\) in memory,

@@ -75,10 +75,10 @@ Most of the regression models that are supported in the `broom` and
 `epi.2by2`, `ergm`, `felm`, `fitdistr`, `glmerMod`, `glmmTMB`, `gls`, `gam`,
 `Gam`, `gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmmTMB`, `glmRob`,
 `glmrob`, `gmm`, `ivreg`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`, `lmRob`,
-`lmrob`, `mcmc`, `MCMCglmm`, `mediate`, `mjoint`, `mle2`, `mlm`, `multinom`,
-`negbin`, `nlmerMod`, `nlrq`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`,
-`rjags`, `rlm`, `rlmerMod`, `rq`, `speedglm`, `speedlm`, `stanreg`, `survreg`,
-`svyglm`, `svyolr`, `svyglm`, etc.
+`lmrob`, `mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`, `mediate`, `mjoint`, `mle2`,
+`mlm`, `multinom`, `negbin`, `nlmerMod`, `nlrq`, `nls`, `orcutt`, `plm`, `polr`,
+`ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `speedglm`, `speedlm`, `stanreg`,
+`survreg`, `svyglm`, `svyolr`, `svyglm`, etc.
 
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
@@ -1171,6 +1171,51 @@ plm.mod <- plm::plm(
 ggstatsplot::ggcoefstats(
   x = plm.mod,
   title = "linear models for panel data"
+)
+```
+
+## conditional logit models (`mclogit`)
+
+```{r mclogit, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+# setup
+set.seed(123)
+library(mclogit)
+data(Transport)
+
+# model
+mod <- mclogit::mclogit(
+  formula = cbind(resp, suburb) ~ distance + cost,
+  data = Transport
+)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
+  conf.int = FALSE,
+  title = "Conditional Logit Models"
+)
+```
+
+## mixed conditional logit models (`mmclogit`)
+
+```{r mmclogit, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+# setup
+set.seed(123)
+library(mclogit)
+data(electors)
+
+# model
+mod <- mclogit::mclogit(
+  formula = cbind(Freq, interaction(time, class)) ~ econ.left / class + welfare / class + auth / class,
+  random = ~ 1 | party.time,
+  data = within(electors, party.time <- interaction(party, time))
+)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
+  conf.int = FALSE,
+  title = "Mixed Conditional Logit Models"
 )
 ```
 

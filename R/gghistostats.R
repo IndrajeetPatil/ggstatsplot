@@ -47,6 +47,9 @@
 #' @importFrom stats dnorm
 #' @importFrom crayon green blue yellow red
 #'
+#' @references
+#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
+#'
 #' @examples
 #'
 #' # most basic function call with the defaults
@@ -71,9 +74,6 @@
 #'   binwidth = 0.10,
 #'   bar.fill = "grey50"
 #' )
-#' @references
-#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
-#'
 #' @export
 
 # function body

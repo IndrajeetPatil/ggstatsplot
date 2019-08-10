@@ -4,7 +4,7 @@ author:
 - Indrajeet Patil^[Harvard University, patilindrajeet.science@gmail.com]
 - Fiery Cushman^[Harvard University]
 - Mina Cikara^[Harvard University]
-date: "2019-08-08"
+date: "2019-08-09"
 output: 
   bookdown::pdf_document2:
     fig_caption: true
@@ -1477,10 +1477,10 @@ Most of the regression models that are supported in the `broom` and
 `epi.2by2`, `ergm`, `felm`, `fitdistr`, `glmerMod`, `glmmTMB`, `gls`, `gam`,
 `Gam`, `gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmmTMB`, `glmRob`,
 `glmrob`, `gmm`, `ivreg`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`, `lmRob`,
-`lmrob`, `mcmc`, `MCMCglmm`, `mediate`, `mjoint`, `mle2`, `mlm`, `multinom`,
-`negbin`, `nlmerMod`, `nlrq`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`,
-`rjags`, `rlm`, `rlmerMod`, `rq`, `speedglm`, `speedlm`, `stanreg`, `survreg`,
-`svyglm`, `svyolr`, `svyglm`, etc.
+`lmrob`, `mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`, `mediate`, `mjoint`, `mle2`,
+`mlm`, `multinom`, `negbin`, `nlmerMod`, `nlrq`, `nls`, `orcutt`, `plm`, `polr`,
+`ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `speedglm`, `speedlm`, `stanreg`,
+`survreg`, `svyglm`, `svyolr`, `svyglm`, etc.
 
 Although not shown here, this function can also be used to carry out both
 frequentist and Bayesian random-effects meta-analysis.

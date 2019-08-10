@@ -16,14 +16,14 @@
 #'   `"p"` (for parametric), `"np"` (nonparametric), `"r"` (robust), or
 #'   `"bf"`resp.
 #' @param pairwise.comparisons Logical that decides whether pairwise comparisons
-#'   are to be displayed. **Only significant comparisons** will be shown by
-#'   default. (default: `FALSE`). To change this behavior, select appropriate
-#'   option with `pairwise.display` argument.
+#'   are to be displayed (default: `FALSE`). Please note that **only significant
+#'   comparisons** will be shown by default. To change this behavior, select
+#'   appropriate option with `pairwise.display` argument.
 #' @param p.adjust.method Adjustment method for *p*-values for multiple
 #'   comparisons. Possible methods are: `"holm"` (default), `"hochberg"`,
 #'   `"hommel"`, `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`, `"none"`.
 #' @param pairwise.annotation Character that decides the annotations to use for
-#'   pairwise comparisons. Either `"p.value"` or `"asterisk"` (default).
+#'   pairwise comparisons. Either `"p.value"` (default) or `"asterisk"`.
 #' @param pairwise.display Decides which pairwise comparisons to display.
 #'   Available options are `"significant"` (abbreviation accepted: `"s"`) or
 #'   `"non-significant"` (abbreviation accepted: `"ns"`) or
@@ -201,7 +201,7 @@ ggbetweenstats <- function(data,
                            plot.type = "boxviolin",
                            type = "parametric",
                            pairwise.comparisons = FALSE,
-                           pairwise.annotation = "asterisk",
+                           pairwise.annotation = "p.value",
                            pairwise.display = "significant",
                            p.adjust.method = "holm",
                            effsize.type = "unbiased",
@@ -556,7 +556,7 @@ ggbetweenstats <- function(data,
       )
 
     # display the results if needed
-    if (isTRUE(messages)) print(df_pairwise)
+    if (isTRUE(messages)) print(dplyr::select(df_pairwise, -p.value.label))
 
     # adding the layer for pairwise comparisons
     plot <- ggsignif_adder(

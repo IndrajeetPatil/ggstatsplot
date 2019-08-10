@@ -60,10 +60,10 @@ corrections for multiple testing.
 # show all columns in a tibble
 options(tibble.width = Inf)
 
+#------------------- between-subjects design ----------------------------
+
 # for reproducibility
 set.seed(123)
-
-#------------------- between-subjects design ----------------------------
 
 # parametric
 # if `var.equal = TRUE`, then Student's *t*-test will be run
@@ -110,6 +110,7 @@ ggstatsplot::pairwise_p(
 
 #------------------- within-subjects design ----------------------------
 
+# for reproducibility
 set.seed(123)
 
 # parametric

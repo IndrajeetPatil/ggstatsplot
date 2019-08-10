@@ -163,6 +163,8 @@ ggcoefstats_label_maker <- function(x,
       "lavaan",
       "mjoint",
       "mle2",
+      "mclogit",
+      "mmclogit",
       "negbin",
       "survreg"
     )

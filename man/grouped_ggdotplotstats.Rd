@@ -38,7 +38,7 @@ variable name entered for \code{grouping.var} will be used.}
 \item{xlab}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
 variable names for \code{x} and \code{y} will be used.}
 
-\item{ylab}{Label for \code{y} axis variable.}
+\item{ylab}{Label for \code{y} axis variable (Default: \code{"term"}).}
 
 \item{stat.title}{A character describing the test being run, which will be
 added as a prefix in the subtitle. The default is \code{NULL}. An example of a
@@ -237,6 +237,9 @@ ggstatsplot::grouped_ggdotplotstats(
   ),
   messages = FALSE
 )
+}
+\references{
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html}
 }
 \seealso{
 \code{\link{grouped_gghistostats}}, \code{\link{ggdotplotstats}},

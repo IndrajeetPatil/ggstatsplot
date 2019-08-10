@@ -374,6 +374,8 @@ long_to_wide_converter <- function(data, x, y, paired = TRUE) {
 
 #' @title Adding `geom_signif` to the plot.
 #' @name ggsignif_adder
+#' @author Indrajeet Patil
+#'
 #' @param plot A `ggplot` object on which `geom_signif` needed to be added.
 #' @param df_pairwise A dataframe containing results from pairwise comparisons
 #'   (produced by `ggstatsplot::pairwise_p()` function).
@@ -403,7 +405,7 @@ ggsignif_adder <- function(plot,
                            data,
                            x,
                            y,
-                           pairwise.annotation = "asterisk",
+                           pairwise.annotation = "p.value",
                            pairwise.display = "significant") {
   # creating a column for group combinations
   df_pairwise %<>%
@@ -433,11 +435,13 @@ ggsignif_adder <- function(plot,
       df_pairwise %<>% dplyr::rename(.data = ., label = p.value.label)
       textsize <- 3
       vjust <- 0
+      parse <- TRUE
     } else {
       # otherwise just show the asterisks
       df_pairwise %<>% dplyr::rename(.data = ., label = significance)
       textsize <- 4
       vjust <- 0.2
+      parse <- FALSE
     }
 
     # arrange the dataframe so that annotations are properly aligned
@@ -460,7 +464,8 @@ ggsignif_adder <- function(plot,
         y_position = ggsignif_y_position,
         annotations = df_pairwise$label,
         test = NULL,
-        na.rm = TRUE
+        na.rm = TRUE,
+        parse = parse
       )
   }
 

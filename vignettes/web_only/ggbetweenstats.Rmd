@@ -257,9 +257,7 @@ ggstatsplot::combine_plots(
 ## Grouped analysis with `grouped_ggbetweenstats`
 
 What if we want to analyze both by continent and between 1957 and 2007? A
-combination of our two previous efforts. In that case, we could write a `for`
-loop or use `purrr`, both of which are time consuming and can be a bit of a
-struggle.
+combination of our two previous efforts. 
 
 `ggstatsplot` provides a special helper function for such instances:
 `grouped_ggbetweenstats`. This is merely a wrapper function around

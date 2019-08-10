@@ -64,7 +64,7 @@ ggwithinstats <- function(data,
                           y,
                           type = "parametric",
                           pairwise.comparisons = FALSE,
-                          pairwise.annotation = "asterisk",
+                          pairwise.annotation = "p.value",
                           pairwise.display = "significant",
                           p.adjust.method = "holm",
                           effsize.type = "unbiased",
@@ -388,7 +388,7 @@ ggwithinstats <- function(data,
       )
 
     # display the results if needed
-    if (isTRUE(messages)) print(df_pairwise)
+    if (isTRUE(messages)) print(dplyr::select(df_pairwise, -p.value.label))
 
     # adding the layer for pairwise comparisons
     plot <- ggsignif_adder(

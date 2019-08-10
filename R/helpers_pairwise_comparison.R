@@ -186,10 +186,10 @@ games_howell <- function(data, x, y) {
 #' # show all columns in a tibble
 #' options(tibble.width = Inf)
 #'
+#' #------------------- between-subjects design ----------------------------
+#'
 #' # for reproducibility
 #' set.seed(123)
-#'
-#' #------------------- between-subjects design ----------------------------
 #'
 #' # parametric
 #' # if `var.equal = TRUE`, then Student's *t*-test will be run
@@ -236,6 +236,7 @@ games_howell <- function(data, x, y) {
 #'
 #' #------------------- within-subjects design ----------------------------
 #'
+#' # for reproducibility
 #' set.seed(123)
 #'
 #' # parametric
@@ -603,8 +604,8 @@ pairwise_p <- function(data,
     dplyr::mutate(
       .data = .,
       p.value.label = dplyr::case_when(
-        label == "< 0.001" ~ "p <= 0.001",
-        TRUE ~ paste("p = ", label, sep = "")
+        label == "< 0.001" ~ paste("list(~italic(p)<=", "0.001", ")", sep = " "),
+        TRUE ~ paste("list(~italic(p)==", label, ")", sep = " ")
       )
     ) %>%
     dplyr::select(.data = ., -label)

@@ -8,7 +8,6 @@ testthat::test_that(
 
     # creating a new dataset
     morley_new <- morley %>%
-      tibble::as_tibble(x = .) %>%
       dplyr::mutate(
         .data = .,
         Expt = dplyr::case_when(
@@ -18,7 +17,8 @@ testthat::test_that(
           Expt == 4 ~ "4th",
           Expt == 5 ~ "5th"
         )
-      )
+      ) %>%
+      tibble::as_tibble(x = .)
 
     # creating the plot
     set.seed(123)
@@ -70,9 +70,7 @@ testthat::test_that(
     # testing labels
     testthat::expect_identical(
       p$labels$x,
-      ggplot2::expr(
-        paste("Speed of light (", italic("c"), ")")
-      )
+      ggplot2::expr(paste("Speed of light (", italic("c"), ")"))
     )
     testthat::expect_identical(pb$plot$labels$y, "Experimental run")
     testthat::expect_identical(pb$plot$labels$title, "Michelson-Morley experiment")
@@ -218,7 +216,65 @@ testthat::test_that(
   }
 )
 
-# subtitle return --------------------------------------------------
+# messing with factors --------------------------------------------------
+
+testthat::test_that(
+  desc = "subtitle return",
+  code = {
+    testthat::skip_on_cran()
+
+    # creating a new label for the dataset
+    df_msleep <- ggplot2::msleep
+
+    # leaving out a level
+    df_msleep %<>% dplyr::filter(., vore != "omni")
+
+    # reordering factor levels
+    df_msleep %<>%
+      dplyr::mutate(.data = ., vore = forcats::fct_relevel(vore, "herbi", "insecti", "carni"))
+
+    # plot with original data
+    p1 <- ggdotplotstats(
+      data = df_msleep,
+      y = vore,
+      x = brainwt,
+      results.subtitle = FALSE,
+      messages = FALSE
+    )
+
+    # plot with modified data
+    p2 <- ggdotplotstats(
+      data = dplyr::filter(ggplot2::msleep, vore != "omni"),
+      y = vore,
+      x = brainwt,
+      results.subtitle = FALSE,
+      messages = FALSE
+    )
+
+    # build those plots
+    pb1 <- ggplot2::ggplot_build(p1)
+    pb2 <- ggplot2::ggplot_build(p2)
+
+    # tests
+    testthat::expect_identical(
+      levels(pb1$plot$data$vore),
+      c("herbi", "insecti", "carni")
+    )
+    testthat::expect_identical(
+      levels(pb2$plot$data$vore),
+      c("carni", "herbi", "insecti")
+    )
+    testthat::expect_identical(
+      dplyr::select(pb1$plot$data, -vore),
+      dplyr::select(pb2$plot$data, -vore)
+    )
+    testthat::expect_identical(pb1$data[[1]], pb2$data[[1]])
+    testthat::expect_identical(pb1$data[[2]], pb2$data[[2]])
+    testthat::expect_identical(pb1$data[[3]], pb2$data[[3]])
+  }
+)
+
+# subtitle return -------------------------------------------------------
 
 testthat::test_that(
   desc = "subtitle return",
@@ -238,6 +294,21 @@ testthat::test_that(
     ))
 
     # tests
+    set.seed(123)
+    testthat::expect_identical(
+      p_sub,
+      suppressWarnings(ggstatsplot::gghistostats(
+        data = dplyr::group_by(.data = morley, Expt) %>%
+          dplyr::summarise(mean = mean(Speed)),
+        x = mean,
+        test.value = 800,
+        return = "subtitle",
+        type = "np",
+        messages = FALSE
+      ))
+    )
+
+    set.seed(123)
     testthat::expect_identical(
       p_sub,
       ggplot2::expr(

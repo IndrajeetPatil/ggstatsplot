@@ -81,6 +81,9 @@
       <a href="../../articles/web_only/ggcorrmat.html">ggcorrmat</a>
     </li>
     <li>
+      <a href="../../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
+    </li>
+    <li>
       <a href="../../articles/web_only/gghistostats.html">gghistostats</a>
     </li>
     <li>
@@ -136,7 +139,7 @@
       <h1>ggcorrmat</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-08-08</h4>
+            <h4 class="date">2019-08-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcorrmat.Rmd"><code>vignettes/web_only/ggcorrmat.Rmd</code></a></small>
       <div class="hidden name"><code>ggcorrmat.Rmd</code></div>
@@ -413,7 +416,7 @@
 <h2 class="hasAnchor">
 <a href="#grouped-analysis-with-grouped_ggcorrmat" class="anchor"></a>Grouped analysis with <code>grouped_ggcorrmat</code>
 </h2>
-<p>What if we want to do the same analysis separately for each quality of the diamond <code>cut</code> (Fair, Good, Very Good, Premium, Ideal)? In that case, we will have to either write a <code>for</code> loop or use <code>purrr</code>, none of which seem like an exciting prospect.</p>
+<p>What if we want to do the same analysis separately for each quality of the diamond <code>cut</code> (Fair, Good, Very Good, Premium, Ideal)?</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggcorrmat</code>. This is merely a wrapper function around <code><a href="../../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggcorrmat</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb9-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>

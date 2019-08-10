@@ -1,19 +1,20 @@
 #' @title Dot plot/chart for labeled numeric data.
 #' @name ggdotplotstats
-#' @aliases ggdotchartstats
 #' @description A dot chart with statistical details from one-sample test
 #'   included in the plot as a subtitle.
 #' @author Indrajeet Patil
 #'
 #' @param y Label or grouping variable.
-#' @param ylab Label for `y` axis variable.
 #' @param point.color Character describing color for the point (Default:
 #'   `"black"`).
 #' @inheritParams histo_labeller
 #' @inheritParams gghistostats
 #' @inheritParams ggcoefstats
 #'
-#' @importFrom dplyr row_number percent_rank
+#' @importFrom dplyr row_number percent_rank pull
+#'
+#' @references
+#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html}
 #'
 #' @seealso \code{\link{grouped_gghistostats}}, \code{\link{gghistostats}},
 #'  \code{\link{grouped_ggdotplotstats}}
@@ -86,31 +87,28 @@ ggdotplotstats <- function(data,
 
   # ------------------------------ variable names ----------------------------
 
-  # if `xlab` is not provided, use the variable `x` name
-  if (is.null(xlab)) {
-    xlab <- rlang::as_name(rlang::ensym(x))
-  }
+  # ensure the variables work quoted or unquoted
+  x <- rlang::ensym(x)
+  y <- rlang::ensym(y)
 
-  # if `ylab` is not provided, use the variable `y` name
-  if (is.null(ylab)) {
-    ylab <- rlang::as_name(rlang::ensym(y))
-  }
+  # if `xlab` and `ylab` is not provided, use the variable `x` and `y` name
+  if (is.null(xlab)) xlab <- rlang::as_name(x)
+  if (is.null(ylab)) ylab <- rlang::as_name(y)
 
   # --------------------------- data preparation ----------------------------
 
   # creating a dataframe
   data %<>%
-    dplyr::select(.data = ., x = {{ x }}, y = {{ y }}) %>%
+    dplyr::select(.data = ., {{ x }}, {{ y }}) %>%
     tidyr::drop_na(data = .) %>%
-    dplyr::mutate(.data = ., y = droplevels(as.factor(y))) %>%
-    dplyr::group_by(.data = ., y) %>%
-    dplyr::summarise(.data = ., x = mean(x, na.rm = TRUE)) %>%
+    dplyr::mutate(.data = ., {{ y }} := droplevels(as.factor({{ y }}))) %>%
+    dplyr::group_by(.data = ., {{ y }}) %>%
+    dplyr::summarise(.data = ., {{ x }} := mean({{ x }}, na.rm = TRUE)) %>%
     dplyr::ungroup(x = .) %>% # rank ordering the data
-    dplyr::arrange(.data = ., x) %>%
-    dplyr::mutate(.data = ., y = factor(y, levels = .$y)) %>%
+    dplyr::arrange(.data = ., {{ x }}) %>%
     dplyr::mutate(
       .data = .,
-      percent_rank = dplyr::percent_rank(x),
+      percent_rank = dplyr::percent_rank({{ x }}),
       rank = dplyr::row_number()
     ) %>%
     tibble::as_tibble(x = .)
@@ -119,11 +117,11 @@ ggdotplotstats <- function(data,
 
   if (isTRUE(results.subtitle)) {
     # preparing the BF message for NULL
-    if (isTRUE(bf.message)) {
-      bf.caption.text <-
+    if (isTRUE(bf.message) && type %in% c("parametric", "p")) {
+      caption <-
         bf_one_sample_ttest(
           data = data,
-          x = x,
+          x = {{ x }},
           test.value = test.value,
           bf.prior = bf.prior,
           caption = caption,
@@ -136,7 +134,7 @@ ggdotplotstats <- function(data,
     subtitle <-
       subtitle_t_onesample(
         data = data,
-        x = x,
+        x = {{ x }},
         type = type,
         test.value = test.value,
         bf.prior = bf.prior,
@@ -154,17 +152,8 @@ ggdotplotstats <- function(data,
 
   # ------------------------------ basic plot ----------------------------
 
-  # if bayes factor message needs to be displayed
-  if (isTRUE(results.subtitle) &&
-    type %in% c("parametric", "p") && isTRUE(bf.message)) {
-    caption <- bf.caption.text
-  }
-
   # creating the basic plot
-  plot <- ggplot2::ggplot(
-    data = data,
-    mapping = ggplot2::aes(x = x, y = rank)
-  ) +
+  plot <- ggplot2::ggplot(data = data, mapping = ggplot2::aes(x = {{ x }}, y = rank)) +
     ggplot2::geom_point(
       color = point.color,
       size = point.size,
@@ -173,7 +162,7 @@ ggdotplotstats <- function(data,
     ) +
     ggplot2::scale_y_continuous(
       name = ylab,
-      labels = data$y,
+      labels = data %>% dplyr::pull({{ y }}),
       breaks = data$rank,
       sec.axis = ggplot2::dup_axis(
         name = "percentile",
@@ -193,15 +182,12 @@ ggdotplotstats <- function(data,
   # ====================== centrality line and label ========================
 
   # computing statistics needed for displaying labels
-  y_label_pos <- median(
-    x = ggplot2::layer_scales(plot)$y$range$range,
-    na.rm = TRUE
-  )
+  y_label_pos <- median(ggplot2::layer_scales(plot)$y$range$range, na.rm = TRUE)
 
   # using custom function for adding labels
   plot <- histo_labeller(
     plot = plot,
-    x = data$x,
+    x = data %>% dplyr::pull({{ x }}),
     y.label.position = y_label_pos,
     centrality.para = centrality.para,
     centrality.color = centrality.color,
@@ -253,7 +239,7 @@ ggdotplotstats <- function(data,
   # display normality test result as a message
   if (isTRUE(messages)) {
     normality_message(
-      x = data$x,
+      x = data %>% dplyr::pull({{ x }}),
       lab = xlab,
       k = k,
       output = "message"

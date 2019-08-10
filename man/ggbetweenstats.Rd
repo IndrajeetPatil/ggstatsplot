@@ -7,7 +7,7 @@ between-subjects designs.}
 \usage{
 ggbetweenstats(data, x, y, plot.type = "boxviolin",
   type = "parametric", pairwise.comparisons = FALSE,
-  pairwise.annotation = "asterisk", pairwise.display = "significant",
+  pairwise.annotation = "p.value", pairwise.display = "significant",
   p.adjust.method = "holm", effsize.type = "unbiased",
   partial = TRUE, effsize.noncentral = TRUE, bf.prior = 0.707,
   bf.message = TRUE, results.subtitle = TRUE, xlab = NULL,
@@ -46,12 +46,12 @@ or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accep
 \code{"bf"}resp.}
 
 \item{pairwise.comparisons}{Logical that decides whether pairwise comparisons
-are to be displayed. \strong{Only significant comparisons} will be shown by
-default. (default: \code{FALSE}). To change this behavior, select appropriate
-option with \code{pairwise.display} argument.}
+are to be displayed (default: \code{FALSE}). Please note that \strong{only significant
+comparisons} will be shown by default. To change this behavior, select
+appropriate option with \code{pairwise.display} argument.}
 
 \item{pairwise.annotation}{Character that decides the annotations to use for
-pairwise comparisons. Either \code{"p.value"} or \code{"asterisk"} (default).}
+pairwise comparisons. Either \code{"p.value"} (default) or \code{"asterisk"}.}
 
 \item{pairwise.display}{Decides which pairwise comparisons to display.
 Available options are \code{"significant"} (abbreviation accepted: \code{"s"}) or

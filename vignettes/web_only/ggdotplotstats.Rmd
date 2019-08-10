@@ -1,0 +1,180 @@
+---
+title: "ggdotplotstats"
+author: "Indrajeet Patil"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    fig_width: 6
+    fig.align: 'center'
+    fig.asp: 0.618
+    dpi: 300
+    toc: true
+    warning: FALSE
+    message: FALSE
+vignette: >
+  %\VignetteIndexEntry{ggdotplotstats}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE, warning = FALSE, message = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The function `ggstatsplot::ggdotplotstats` can be used for **data exploration**
+and to provide an easy way to make **publication-ready dot plots/charts** with
+appropriate and selected statistical details embedded in the plot itself. In
+this vignette we will explore several examples of how to use it.
+
+This function is a sister function of `gghistostats` with the difference being
+it expects a labeled numeric variable.
+
+## Distribution of a sample with `ggdotplotstats`
+
+Let's begin with a very simple example from the `ggplot2` package
+(`ggplot2::mpg`), a subset of the fuel economy data that the EPA makes available
+on <http://fueleconomy.gov>.
+
+```{r mpg, warning = FALSE, message = FALSE}
+# loading needed libraries
+library(ggplot2)
+
+# looking at the structure of the data using glimpse
+dplyr::glimpse(x = ggplot2::mpg)
+```
+
+Let's say we want to visualize the distribution of mileage by car manufacturer. 
+
+```{r mpg2, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 9}
+# for reproducibility
+set.seed(123)
+
+# removing factor level with very few no. of observations
+df <- dplyr::filter(.data = ggplot2::mpg, cyl %in% c("4", "6"))
+
+# creating a vector of colors using `paletteer` package
+paletter_vector <- paletteer::paletteer_d(
+  package = "palettetown",
+  palette = "venusaur",
+  n = nlevels(as.factor(df$manufacturer)),
+  type = "discrete"
+)
+
+# plot
+ggstatsplot::ggdotplotstats(
+  data = df,
+  x = cty,
+  y = manufacturer,
+  xlab = "city miles per gallon",
+  ylab = "car manufacturer",
+  test.value = 15.5,
+  point.color = paletter_vector,
+  point.size = 5,
+  test.value.line = TRUE,
+  title = "Distribution of mileage of cars",
+  ggtheme = hrbrthemes::theme_ipsum_ps(),
+  ggstatsplot.layer = FALSE,
+  messages = FALSE
+)
+```
+
+## Grouped analysis with `grouped_ggdotplotstats`
+
+What if we want to do the same analysis separately for different engines with
+different numbers of cylinders?
+
+`ggstatsplot` provides a special helper function for such instances:
+`grouped_ggdotplotstats`. This is merely a wrapper function around
+`ggstatsplot::combine_plots`. It applies `ggdotplotstats` across all **levels** of
+a specified **grouping variable** and then combines the individual plots into a
+single plot. 
+
+Let's see how we can use this function to apply `ggdotplotstats` to accomplish our
+task. 
+
+```{r grouped1, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 7}
+# for reproducibility
+set.seed(123)
+
+# removing factor level with very few no. of observations
+df <- dplyr::filter(.data = ggplot2::mpg, cyl %in% c("4", "6"))
+
+# plot
+ggstatsplot::grouped_ggdotplotstats(
+  # arguments relevant for ggstatsplot::ggdotplotstats
+  data = df,
+  x = cty,
+  y = manufacturer,
+  xlab = "city miles per gallon",
+  ylab = "car manufacturer",
+  grouping.var = cyl, # grouping variable
+  type = "bayes", # bayes factor test
+  bf.prior = 0.9,
+  test.value = 15.5,
+  title.prefix = "cylinder count",
+  point.color = "red",
+  point.size = 5,
+  point.shape = 13,
+  test.value.line = TRUE,
+  ggtheme = ggthemes::theme_fivethirtyeight(),
+  messages = FALSE,
+  # arguments relevant for ggstatsplot::combine_plots
+  title.text = "Fuel economy data",
+  nrow = 2,
+  labels = c("(i)", "(ii)")
+)
+```
+
+## Grouped analysis with `purrr`
+
+Although this is a quick and dirty way to explore a large amount of data with
+minimal effort, it does come with an important limitation: reduced flexibility.
+For example, if we wanted to add, let's say, a separate `test.value` argument
+for each gender, this is not possible with `grouped_ggdotplotstats`. For cases
+like these, or to run separate  kinds of tests (robust for some, parametric for
+other, while Bayesian for some other levels of the group) it would be better to
+use `purrr`.   
+
+See the associated vignette here:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
+
+## Summary of tests
+
+Following tests are carried out for each type of analyses-
+
+Type | Test
+------------------ | -------------------------
+Parametric | One-sample Student's *t*-test
+Non-parametric | One-sample Wilcoxon test 
+Robust | One-sample percentile bootstrap
+Bayes Factor | One-sample Student's *t*-test
+
+Following effect sizes (and confidence intervals/CI) are available for each type
+of test-
+
+Type | Effect size | CI?
+----------- | ------------------------- | --- 
+Parametric | Cohen's *d*, Hedge's *g* (central-and noncentral-*t* distribution based) | <font color="green">Yes<font>
+Non-parametric | *r* (computed as $Z/\sqrt{N_{obs}}$) | <font color="green">Yes<font>
+Robust | $M_{robust}$ (Robust location measure) | <font color="green">Yes<font>
+Bayes Factor | <font color="red">No<font> | <font color="red">No<font>
+
+
+## Effect size interpretation
+
+To see how the effect sizes displayed in these tests can be interpreted, see:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html>
+
+# Suggestions
+
+If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: 
+<https://github.com/IndrajeetPatil/ggstatsplot/issues>
+
+# Session Information
+
+For details, see-
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>
+
