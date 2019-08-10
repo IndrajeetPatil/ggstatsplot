@@ -292,16 +292,11 @@ ggbarstats <- function(data,
     # adding significance labels to bars for proportion tests
     if (isTRUE(bar.proptest)) {
       # display grouped proportion test results
-      if (isTRUE(messages)) {
-        # tell the user what these results are
-        proptest_message(rlang::as_name(main), rlang::as_name(condition))
-
-        # print the tibble
-        print(df_labels)
-      }
+      if (isTRUE(messages))  print(df_labels)
 
       # modify plot
-      p <- p + ggplot2::geom_text(
+      p <- p +
+        ggplot2::geom_text(
         data = df_labels,
         mapping = ggplot2::aes(
           x = {{ condition }},
@@ -316,7 +311,8 @@ ggbarstats <- function(data,
 
     # adding sample size info
     if (isTRUE(sample.size.label)) {
-      p <- p + ggplot2::geom_text(
+      p <- p +
+        ggplot2::geom_text(
         data = df_labels,
         mapping = ggplot2::aes(
           x = {{ condition }},

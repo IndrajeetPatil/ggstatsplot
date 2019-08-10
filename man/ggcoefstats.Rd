@@ -2,8 +2,7 @@
 % Please edit documentation in R/ggcoefstats.R
 \name{ggcoefstats}
 \alias{ggcoefstats}
-\title{Model coefficients for fitted models with the model summary as a
-caption.}
+\title{Dot-and-whisker plots for regression analyses}
 \usage{
 ggcoefstats(x, output = "plot", statistic = NULL, scales = NULL,
   conf.method = "Wald", conf.type = "Wald", component = "survival",
@@ -58,7 +57,7 @@ intervals (for more, see \code{?lme4::confint.merMod} and
 \code{?broom.mixed::tidy.brmsfit}). This argument has different defaults
 depending on the model object. For the \code{merMod} class model objects
 (\code{lmer}, \code{glmer}, \code{nlmer}, etc.), the default is \code{"Wald"} (other options
-are: \code{"profile"}, \code{"boot"}). For MCMC or brms fit model objects (Stan,
+are: \code{"profile"}, \code{"boot"}). For \code{MCMC} or \code{brms} fit model objects (Stan,
 JAGS, etc.), the default is \code{"quantile"}, while the only other options is
 \code{"HPDinterval"}.}
 
@@ -96,8 +95,8 @@ etc.): Either by numerical integration (\code{summarize = "integrate"}) or
 based on MCMC/Stan samples (\code{summarize = "stan"}).}
 
 \item{p.kr}{Logical, if \code{TRUE}, the computation of \emph{p}-values for \code{lmer} is
-based on conditional F-tests with Kenward-Roger approximation for the df.
-For details, see \code{?sjstats::p_value}.}
+based on conditional \emph{F}-tests with Kenward-Roger approximation for the
+\code{df}. For details, see \code{?sjstats::p_value}.}
 
 \item{p.adjust.method}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"}, \code{"hochberg"}, \code{"hommel"},
@@ -204,7 +203,7 @@ excluded from the plot (Default: \code{TRUE}).}
 increasing coefficient value, or \code{"descending"} sort by decreasing
 coefficient value.}
 
-\item{xlab}{Label for \code{x} axis variable (Default: \code{"estimate"}).}
+\item{xlab}{Label for \code{x} axis variable (Default: \code{"regression coefficient"}).}
 
 \item{ylab}{Label for \code{y} axis variable (Default: \code{"term"}).}
 
@@ -262,9 +261,9 @@ overlaps. Defaults to \code{2000}.}
 \item{label.nudge.x, label.nudge.y}{Horizontal and vertical adjustments to
 nudge the starting position of each text label. Defaults to \code{0}.}
 
-\item{label.xlim, label.ylim}{Limits for the x and y axes. Text labels will be
-constrained to these limits. By default, text labels are constrained to the
-entire plot area. Defaults to \code{c(NA, NA)}.}
+\item{label.xlim, label.ylim}{Limits for the \code{x} and \code{y} axes. Text labels
+will be constrained to these limits. By default, text labels are
+constrained to the entire plot area. Defaults to \code{c(NA, NA)}.}
 
 \item{label.direction}{Character (\code{"both"}, \code{"x"}, or \code{"y"}) -- direction in
 which to adjust position of labels (Default: \code{"y"}).}
@@ -292,11 +291,11 @@ to be displayed (Default: \code{TRUE}).}
 }
 \value{
 Plot with the regression coefficients' point estimates as dots with
-confidence interval whiskers.
+confidence interval whiskers and other statistical details included as
+labels.
 }
 \description{
-Model coefficients for fitted models with the model summary as a
-caption.
+Dot-and-whisker plots for regression analyses
 }
 \examples{
 # for reproducibility
@@ -429,5 +428,5 @@ ggstatsplot::ggcoefstats(
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }

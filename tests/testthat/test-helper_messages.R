@@ -193,16 +193,3 @@ testthat::test_that(
     testthat::expect_equal(df$parameter, df_broom$parameter)
   }
 )
-
-# proptest_message is working ---------------------------------------------
-
-testthat::test_that(
-  desc = "proptest_message is working",
-  code = {
-    testthat::expect_output(
-      ggstatsplot:::proptest_message(main = "am", condition = "cyl"),
-      "Results from one-sample proportion tests",
-      fixed = TRUE
-    )
-  }
-)

@@ -1471,8 +1471,8 @@ ggstatsplot::ggcoefstats(
 
 ## generalized additive models with integrated smoothness estimation (`gam`)
 
-These model outputs contains both parametric and smooth terms. `ggcoefstats`
-only displays parametric terms.
+**Important**: These model outputs contains both parametric and smooth terms.
+`ggcoefstats` only displays the parametric terms.
 
 ```{r gam_mgcv, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
 # setup
@@ -2183,6 +2183,55 @@ ggstatsplot::ggcoefstats(
   x = jagsfit,
   title = "Markov Chain Monte Carlo with\nJust Another Gibbs Sampler",
   point.color = "darkgreen"
+)
+```
+
+## regression models with `list` outputs
+
+Note that a number of regression models will return an object of class `list`,
+in which case this function will fail. But often you can extract the object of
+interest from this list and use it to plot the regression coefficients.
+
+```{r list_gamm4, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 10}
+# setup
+library(gamm4)
+set.seed(123)
+
+# data
+dat <- gamSim(1, n = 400, scale = 2)
+
+# now add 20 level random effect `fac'...
+dat$fac <- fac <- as.factor(sample(1:20, 400, replace = TRUE))
+dat$y <- dat$y + model.matrix(~ fac - 1) %*% rnorm(20) * .5
+
+# model object
+br <- gamm4::gamm4(
+  formula = y ~ s(x0) + x1 + s(x2),
+  data = dat,
+  random = ~ (1 | fac)
+)
+
+# looking at the classes of the objects contained in the list
+purrr::map(br, class)
+
+# plotting
+ggstatsplot::combine_plots(
+  # first object plot (only parametric terms are shown)
+  ggstatsplot::ggcoefstats(
+    x = br$gam,
+    exclude.intercept = FALSE,
+    title = "generalized additive model (parametric terms)",
+    k = 3
+  ),
+  # second object plot
+  ggstatsplot::ggcoefstats(
+    x = br$mer,
+    exclude.intercept = FALSE,
+    title = "linear mixed-effects model",
+    k = 3
+  ),
+  labels = c("(a)", "(b)"),
+  nrow = 1
 )
 ```
 

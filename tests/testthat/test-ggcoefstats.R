@@ -1269,13 +1269,6 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
 
-    # mod-1
-    set.seed(123)
-    mod1 <- stats::kmeans(
-      x = dplyr::select(iris, -Species),
-      centers = 3
-    )
-
     # mod-2
     mod2 <- stats::aov(
       formula = value ~ attribute * measure + Error(id / (attribute * measure)),
@@ -1287,7 +1280,6 @@ testthat::test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # test failures
-    testthat::expect_error(ggstatsplot::ggcoefstats(mod1))
     testthat::expect_error(ggstatsplot::ggcoefstats(stats::acf(lh, plot = FALSE)))
     testthat::expect_null(pb$plot$labels$subtitle, NULL)
     testthat::expect_null(pb$plot$labels$caption, NULL)

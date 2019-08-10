@@ -107,10 +107,12 @@ ggcoefstats_label_maker <- function(x,
   # dataframe objects
   df.mods <- c(
     "data.frame",
+    "data.table",
     "grouped_df",
     "tbl",
     "tbl_df",
-    "data.table"
+    "spec_tbl_df",
+    "resampled_df"
   )
 
   # models for which statistic is t-value
@@ -209,25 +211,13 @@ ggcoefstats_label_maker <- function(x,
   # ======================= t/z-statistic labels ============================
 
   if (class(x)[[1]] %in% g.mods) {
-    if (class(x)[[1]] == "glm") {
-      if (summary(x)$family$family[[1]] %in% g.t.mods) {
-        statistic <- "t"
-      } else {
-        statistic <- "z"
-      }
+    if (class(x)[[1]] == "glm" && summary(x)$family$family[[1]] %in% g.t.mods) {
+      statistic <- "t"
+    } else if (class(x)[[1]] == "glmerMod" && summary(x)$family[[1]] %in% g.t.mods) {
+      statistic <- "t"
+    } else {
+      statistic <- "z"
     }
-
-    if (class(x)[[1]] == "glmerMod") {
-      # models with t-statistic
-      if (summary(x)$family[[1]] %in% g.t.mods) {
-        statistic <- "t"
-      } else {
-        statistic <- "z"
-      }
-    }
-
-    # robust models (always going to be z-statistic)
-    if (class(x)[[1]] %in% c("glmRob", "glmrob")) statistic <- "z"
   }
 
   # ====================== F-statistic ====================================
