@@ -50,12 +50,7 @@ formals_comparator <- function(.f1, .f2) {
     ) %>%
     dplyr::filter(
       .data = .,
-      !name %in% c(
-        "data",
-        "grouping.var",
-        "...",
-        "condition"
-      )
+      !name %in% c("data", "grouping.var", "...", "condition")
     )
 
   # comparison list
@@ -64,7 +59,7 @@ formals_comparator <- function(.f1, .f2) {
   # count the number of discrepancies between formals defaults
   discrepancies <-
     purrr::map_dfc(.x = df_list, .f = rlang::is_false) %>%
-    tidyr::gather(data = .) %>%
+    tidyr::gather(.) %>%
     dplyr::summarise(.data = ., error = sum(value))
 
   # retuen the dataframe

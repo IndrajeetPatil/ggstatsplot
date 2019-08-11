@@ -30,7 +30,7 @@ MINOR CHANGES
     Kendall's *W*. Therefore, `DescTools` is removed from dependencies.
   - `ggcoefstats` supports following objects: `mclogit`, `mmclogit`.
   - `ggcoefstats` now respects `conf.int`. It internally always defaulted to
-    `conf.int = TRUE` in `broom::tidy` irrespective of what was spcified by the
+    `conf.int = TRUE` in `broom::tidy` irrespective of what was specified by the
     user.
 
 # ggstatsplot 0.0.12

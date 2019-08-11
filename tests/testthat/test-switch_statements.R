@@ -13,11 +13,14 @@ testthat::test_that(
       p_adjust_text("fdr"),
       p_adjust_text("BH")
     )
+    testthat::expect_identical(p_adjust_text("hochberg"), "Hochberg")
+    testthat::expect_identical(p_adjust_text("hommel"), "Hommel")
+    testthat::expect_identical(p_adjust_text("BY"), "Benjamini & Yekutieli")
     testthat::expect_identical(p_adjust_text("xyz"), "Holm")
   }
 )
 
-# switch for effct size type works ------------------------------------------
+# switch for effect size type works ------------------------------------------
 
 testthat::test_that(
   desc = "switch for effct size type works",
