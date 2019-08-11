@@ -46,7 +46,7 @@
 #'
 #' # simple function call with the defaults (with condition)
 #' ggstatsplot::ggbarstats(
-#'   data = datasets::mtcars,
+#'   data = mtcars,
 #'   main = vs,
 #'   condition = cyl,
 #'   nboot = 10,
