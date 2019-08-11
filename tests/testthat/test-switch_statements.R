@@ -7,13 +7,13 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
 
-    testthat::expect_error(p.adjust.method.description(NULL))
-    testthat::expect_identical(p.adjust.method.description("none"), "None")
+    testthat::expect_error(p_adjust_text(NULL))
+    testthat::expect_identical(p_adjust_text("none"), "None")
     testthat::expect_identical(
-      p.adjust.method.description("fdr"),
-      p.adjust.method.description("BH")
+      p_adjust_text("fdr"),
+      p_adjust_text("BH")
     )
-    testthat::expect_identical(p.adjust.method.description("xyz"), "Holm")
+    testthat::expect_identical(p_adjust_text("xyz"), "Holm")
   }
 )
 

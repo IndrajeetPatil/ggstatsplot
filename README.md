@@ -10,7 +10,7 @@
 | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/)                                                      | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                                               | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](https://img.shields.io/badge/issues-20-red.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)                                       | [![vignettes](https://img.shields.io/badge/vignettes-0.0.12-orange.svg?colorB=FF5722)](https://CRAN.R-project.org/package=ggstatsplot/vignettes/)               |
 | [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot) | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2074621.svg)](https://doi.org/10.5281/zenodo.2074621)                                                       |
 | [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2019--08--10-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
-| [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                                    | [![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2019_08_10-red.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md)                        | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil)                                    | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)                                                     | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
+| [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                                    | [![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2019_08_10-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md)                | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil)                                    | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)                                                     | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
 | [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ggstatsplot/community)                                                         |                                                                                                                                                                                              |                                                                                                                                                   |                                                                                                                                                                |                                                                                                                                                                 |
 
 # Raison d’être
@@ -216,9 +216,8 @@ just type the name of the function without the parentheses:
 # function to convert class of any object to `ggplot` class
 ggstatsplot::ggplot_converter
 #> function(plot) {
-#>   return(cowplot::ggdraw() + cowplot::draw_grob(grid::grobTree(plot)))
+#>   cowplot::ggdraw() + cowplot::draw_grob(grid::grobTree(plot))
 #> }
-#> <bytecode: 0x000000002dcc3e58>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -751,12 +750,12 @@ ggstatsplot::ggpiestats(
 #> # A tibble: 2 x 11
 #>   `2nd survey` counts  perc N         Approve Disapprove `Chi-squared`
 #>   <fct>         <int> <dbl> <chr>     <chr>   <chr>              <dbl>
-#> 1 Disapprove      720   45  (n = 720) 20.83%  79.17%              245 
-#> 2 Approve         880   55. (n = 880) 90.23%  9.77%               570.
-#>     p.value    df method                                   significance
-#>       <dbl> <dbl> <chr>                                    <chr>       
-#> 1 3.20e- 55     1 Chi-squared test for given probabilities ***         
-#> 2 6.80e-126     1 Chi-squared test for given probabilities ***
+#> 1 Disapprove      720   45  (n = 720) 20.83%  79.17%             245  
+#> 2 Approve         880   55. (n = 880) 90.23%  9.77%              569.6
+#>      p.value    df method                                   significance
+#>        <dbl> <dbl> <chr>                                    <chr>       
+#> 1 3.195e- 55     1 Chi-squared test for given probabilities ***         
+#> 2 6.798e-126     1 Chi-squared test for given probabilities ***
 ```
 
 <img src="man/figures/README-ggpiestats3-1.png" width="100%" />

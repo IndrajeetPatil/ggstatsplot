@@ -10,6 +10,7 @@
 \alias{\%>\%}
 \alias{\%<>\%}
 \alias{\%$\%}
+\alias{tibble}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -20,5 +21,7 @@ below to see their documentation.
   \item{groupedstats}{\code{\link[groupedstats]{specify_decimal_p}}, \code{\link[groupedstats]{signif_column}}, \code{\link[groupedstats]{lm_effsize_ci}}, \code{\link[groupedstats]{set_cwd}}}
 
   \item{magrittr}{\code{\link[magrittr]{\%>\%}}, \code{\link[magrittr]{\%<>\%}}, \code{\link[magrittr]{\%$\%}}}
+
+  \item{tibble}{\code{\link[tibble]{tibble}}}
 }}
 

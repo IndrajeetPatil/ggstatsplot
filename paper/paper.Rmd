@@ -30,8 +30,12 @@ linkcolor: blue
 ---
 
 ```{r, echo = FALSE, warning = FALSE, message = FALSE}
+# needed libraries
 library(tidyverse)
 library(ggstatsplot)
+
+# show me all columns
+options(tibble.width = Inf) 
 
 knitr::opts_chunk$set(
   collapse = TRUE,

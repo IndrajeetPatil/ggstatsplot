@@ -405,7 +405,7 @@ pairwise_p <- function(data,
   # ---------------------------- nonparametric ----------------------------
 
   if (type %in% c("nonparametric", "np")) {
-    if (!isTRUE(paired)) {
+    if (isFALSE(paired)) {
       # running Dwass-Steel-Crichtlow-Fligner test using `jmv` package
       jmv_pairs <-
         jmv::anovaNP(
@@ -440,7 +440,9 @@ pairwise_p <- function(data,
           sep = ""
         ))
       }
-    } else {
+    }
+
+    if (isTRUE(paired)) {
       # converting the entered long format data to wide format
       data_wide <- long_to_wide_converter(data = data, x = {{ x }}, y = {{ y }})
 
@@ -485,7 +487,7 @@ pairwise_p <- function(data,
   # ---------------------------- robust ----------------------------------
 
   if (type %in% c("robust", "r")) {
-    if (!isTRUE(paired)) {
+    if (isFALSE(paired)) {
       # object with all details about pairwise comparisons
       rob_pairwise_df <-
         WRS2::lincon(
@@ -493,7 +495,9 @@ pairwise_p <- function(data,
           data = data,
           tr = tr
         )
-    } else {
+    }
+
+    if (isTRUE(paired)) {
       # converting to long format and then getting it back in wide so that the
       # rowid variable can be used as the block variable for WRS2 functions
       data_within <-
@@ -682,12 +686,6 @@ pairwise_p_caption <- function(type,
     test.description <- "Yuen's trimmed means test"
   }
 
-  # ======================= adjustment method ==============================
-
-  # p value adjustment method description
-  p.adjust.method.text <-
-    p.adjust.method.description(p.adjust.method = p.adjust.method)
-
   # ==================== combining into a caption ==========================
 
   # prepare the bayes factor message
@@ -695,21 +693,44 @@ pairwise_p_caption <- function(type,
     substitute(
       atop(
         displaystyle(top.text),
-        expr =
-          paste(
-            "Pairwise comparisons: ",
-            bold(test.description),
-            "; Adjustment (p-value): ",
-            bold(p.adjust.method.text)
-          )
+        expr = paste(
+          "Pairwise comparisons: ",
+          bold(test.description),
+          "; Adjustment (p-value): ",
+          bold(p.adjust.method.text)
+        )
       ),
       env = list(
         top.text = caption,
         test.description = test.description,
-        p.adjust.method.text = p.adjust.method.text
+        p.adjust.method.text = p_adjust_text(p.adjust.method)
       )
     )
 
   # return the caption
   return(pairwise_caption)
+}
+
+
+#' @title Preparing text to describe which *p*-value adjustment method was used.
+#' @name p_adjust_text
+#' @return Standardized text description for what method was used.
+#'
+#' @inheritParams pairwise_p
+#'
+#' @keywords internal
+
+p_adjust_text <- function(p.adjust.method) {
+  switch(
+    EXPR = p.adjust.method,
+    none = "None",
+    bonferroni = "Bonferroni",
+    holm = "Holm",
+    hochberg = "Hochberg",
+    hommel = "Hommel",
+    BH = "Benjamini & Hochberg",
+    fdr = "Benjamini & Hochberg",
+    BY = "Benjamini & Yekutieli",
+    "Holm"
+  )
 }

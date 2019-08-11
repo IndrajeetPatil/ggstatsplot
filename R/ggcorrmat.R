@@ -424,14 +424,9 @@ ggcorrmat <- function(data,
       # if `caption` is not specified, use the generic version only if
       # `caption.default` is `TRUE`
       if (is.null(caption) && pch == 4 && isTRUE(caption.default)) {
-
         # p value adjustment method description
         p.adjust.method.text <-
-          paste(
-            "Adjustment (p-value): ",
-            p.adjust.method.description(p.adjust.method = p.adjust.method),
-            sep = ""
-          )
+          paste("Adjustment (p-value): ", p_adjust_text(p.adjust.method), sep = "")
 
         # preparing the caption
         caption <-
@@ -465,9 +460,7 @@ ggcorrmat <- function(data,
         )
 
       # adding ggstatsplot theme for correlation matrix
-      if (isTRUE(ggstatsplot.layer)) {
-        plot <- plot + theme_corrmat()
-      }
+      if (isTRUE(ggstatsplot.layer)) plot <- plot + theme_corrmat()
     }
   }
 

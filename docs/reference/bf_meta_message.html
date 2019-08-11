@@ -178,7 +178,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Bayes factor message for random-effects meta-analysis</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggcoefstats.R'><code>R/helpers_ggcoefstats.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_bf_tests.R'><code>R/helpers_bf_tests.R</code></a></small>
     <div class="hidden name"><code>bf_meta_message.Rd</code></div>
     </div>
 
@@ -259,7 +259,8 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     <pre class="examples"><div class='input'>
 </div><div class='input'><span class='co'># setup</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metaBMA</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: Rcpp</span></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metaBMA</span>)
+
 <span class='co'># creating a dataframe</span>
 (<span class='no'>df</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span>(
@@ -282,14 +283,14 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     ),
     <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, -<span class='fl'>5L</span>),
     <span class='kw'>class</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"tbl_df"</span>, <span class='st'>"tbl"</span>, <span class='st'>"data.frame"</span>)
-  ))</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 5 x 3</span><span>
+  ))</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 5 x 3</span><span>
 #&gt;   study estimate std.error
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> 1        0.382    0.046</span><span style='text-decoration: underline;'>6</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span> 2        0.781    0.033</span><span style='text-decoration: underline;'>0</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span> 3        0.426    0.036</span><span style='text-decoration: underline;'>3</span><span>
-#&gt; </span><span style='color: #555555;'>4</span><span> 4        0.558    0.048</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #555555;'>5</span><span> 5        0.956    0.062</span><span style='text-decoration: underline;'>2</span><span></div><div class='input'>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 1       0.382</span><span style='text-decoration: underline;'>0</span><span>   0.046</span><span style='text-decoration: underline;'>56</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 2       0.780</span><span style='text-decoration: underline;'>8</span><span>   0.033</span><span style='text-decoration: underline;'>02</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 3       0.425</span><span style='text-decoration: underline;'>6</span><span>   0.036</span><span style='text-decoration: underline;'>28</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> 4       0.558</span><span style='text-decoration: underline;'>4</span><span>   0.048</span><span style='text-decoration: underline;'>06</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> 5       0.956</span><span style='text-decoration: underline;'>5</span><span>   0.062</span><span style='text-decoration: underline;'>22</span><span></div><div class='input'>
 <span class='co'># getting Bayes factor in favor of null hypothesis</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/bf_meta_message.html'>bf_meta_message</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>df</span>,

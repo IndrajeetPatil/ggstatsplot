@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers_effsize_ci.R
 \name{t1way_ci}
 \alias{t1way_ci}
-\title{#' @title A heteroscedastic one-way ANOVA for trimmed means with confidence
+\title{A heteroscedastic one-way ANOVA for trimmed means with confidence
 interval for effect size.}
 \usage{
 t1way_ci(data, x, y, tr = 0.1, nboot = 100, conf.level = 0.95,
