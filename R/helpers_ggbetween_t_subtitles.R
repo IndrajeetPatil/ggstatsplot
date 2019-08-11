@@ -1,5 +1,5 @@
-#' @title Making text subtitle for the t-test (between-/within-subjects
-#'   designs).
+#' @title Making expression containing results for a *t*-test
+#'   (between-/within-subjects designs).
 #' @name subtitle_t_parametric
 #' @author Indrajeet Patil, Chuck Powell
 #'

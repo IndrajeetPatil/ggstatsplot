@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Message about results from a single-sample proportion test. — proptest_message • ggstatsplot</title>
+<title>Preparing text to describe which <em>p</em>-value adjustment method was used. — p_adjust_text • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -40,9 +40,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Message about results from a single-sample proportion test. — proptest_message" />
+<meta property="og:title" content="Preparing text to describe which <em>p</em>-value adjustment method was used. — p_adjust_text" />
 
-<meta property="og:description" content="Message about results from a single-sample proportion test." />
+<meta property="og:description" content="Preparing text to describe which p-value adjustment method was used." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -121,6 +121,9 @@
       <a href="../articles/web_only/ggcorrmat.html">ggcorrmat</a>
     </li>
     <li>
+      <a href="../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
+    </li>
+    <li>
       <a href="../articles/web_only/gghistostats.html">gghistostats</a>
     </li>
     <li>
@@ -174,46 +177,44 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Message about results from a single-sample proportion test.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_messages.R'><code>R/helpers_messages.R</code></a></small>
-    <div class="hidden name"><code>proptest_message.Rd</code></div>
+    <h1>Preparing text to describe which <em>p</em>-value adjustment method was used.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_pairwise_comparison.R'><code>R/helpers_pairwise_comparison.R</code></a></small>
+    <div class="hidden name"><code>p_adjust_text.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Message about results from a single-sample proportion test.</p>
+    <p>Preparing text to describe which <em>p</em>-value adjustment method was used.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>proptest_message</span>(<span class='no'>main</span>, <span class='no'>condition</span>)</pre>
+    <pre class="usage"><span class='fu'>p_adjust_text</span>(<span class='no'>p.adjust.method</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>main, condition</th>
-      <td><p>Character specifying names of variables used for
-contingency table analyses.</p></td>
+      <th>p.adjust.method</th>
+      <td><p>Adjustment method for <em>p</em>-values for multiple
+comparisons. Possible methods are: <code>"holm"</code> (default), <code>"hochberg"</code>,
+<code>"hommel"</code>, <code>"bonferroni"</code>, <code>"BH"</code>, <code>"BY"</code>, <code>"fdr"</code>, <code>"none"</code>.</p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/proptest_message.html'>proptest_message</a></span>(<span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"am"</span>, <span class='kw'>condition</span> <span class='kw'>=</span> <span class='st'>"cyl"</span>)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Results from one-sample proportion tests for each level of the variable
-#&gt; </span><span style='color: #BBBB00;'>cyl</span><span style='color: #0000BB;'> testing for equal proportions of the variable </span><span style='color: #BBBB00;'>am</span><span style='color: #0000BB;'>.
-#&gt; </span><span></div><div class='output co'>#&gt; </div></span><div class='input'>
-</div></pre>
+    <p>Standardized text description for what method was used.</p>
+    
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+      
+      <li><a href="#value">Value</a></li>
+          </ul>
 
-    <h2>Author</h2>
-    <p>Indrajeet Patil</p>
   </div>
 </div>
 

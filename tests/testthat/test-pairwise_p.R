@@ -156,6 +156,7 @@ testthat::test_that(
     )
 
     # Durbin-Conover test
+    set.seed(123)
     df2 <- ggstatsplot::pairwise_p(
       data = ggstatsplot::bugs_long,
       x = condition,
@@ -168,6 +169,7 @@ testthat::test_that(
     )
 
     # robust t test
+    set.seed(123)
     df3 <- ggstatsplot::pairwise_p(
       data = ggstatsplot::bugs_long,
       x = condition,
@@ -196,12 +198,12 @@ testthat::test_that(
     testthat::expect_identical(
       df1$p.value.label,
       c(
-        "p = 0.003",
-        "p = 0.424",
-        "p <= 0.001",
-        "p = 0.274",
-        "p = 0.006",
-        "p <= 0.001"
+        "list(~italic(p)== 0.003 )",
+        "list(~italic(p)== 0.424 )",
+        "list(~italic(p)<= 0.001 )",
+        "list(~italic(p)== 0.274 )",
+        "list(~italic(p)== 0.006 )",
+        "list(~italic(p)<= 0.001 )"
       )
     )
 
@@ -219,12 +221,12 @@ testthat::test_that(
     testthat::expect_identical(
       df2$p.value.label,
       c(
-        "p <= 0.001",
-        "p = 0.045",
-        "p <= 0.001",
-        "p = 0.050",
-        "p = 0.005",
-        "p <= 0.001"
+        "list(~italic(p)<= 0.001 )",
+        "list(~italic(p)== 0.045 )",
+        "list(~italic(p)<= 0.001 )",
+        "list(~italic(p)== 0.050 )",
+        "list(~italic(p)== 0.005 )",
+        "list(~italic(p)<= 0.001 )"
       )
     )
 
@@ -249,12 +251,12 @@ testthat::test_that(
     testthat::expect_identical(
       df3$p.value.label,
       c(
-        "p = 0.062",
-        "p = 0.062",
-        "p = 0.014",
-        "p = 0.001",
-        "p <= 0.001",
-        "p <= 0.001"
+        "list(~italic(p)== 0.062 )",
+        "list(~italic(p)== 0.062 )",
+        "list(~italic(p)== 0.014 )",
+        "list(~italic(p)== 0.001 )",
+        "list(~italic(p)<= 0.001 )",
+        "list(~italic(p)<= 0.001 )"
       )
     )
 

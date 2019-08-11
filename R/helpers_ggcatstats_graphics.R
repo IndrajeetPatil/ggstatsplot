@@ -38,21 +38,19 @@ cat_label_df <- function(data,
                          label.content = "percentage",
                          label.separator = c("\n", " "),
                          perc.k = 1) {
-  # checking what needs to be displayed in a label
 
+  # checking what needs to be displayed in a label
   # only percentage
   if (label.content %in% c("percentage", "perc", "proportion", "prop", "%")) {
     data %<>%
       dplyr::mutate(
-        .data = .,
-        !!label.col.name := paste0(round(x = perc, digits = perc.k), "%")
+        .data = ., !!label.col.name := paste0(round(x = perc, digits = perc.k), "%")
       )
   }
 
   # only raw counts
   if (label.content %in% c("counts", "n", "count", "N")) {
-    data %<>%
-      dplyr::mutate(.data = ., !!label.col.name := paste0("n = ", counts))
+    data %<>% dplyr::mutate(.data = ., !!label.col.name := paste0("n = ", counts))
   }
 
   # both raw counts and percentages
@@ -76,9 +74,8 @@ cat_label_df <- function(data,
 }
 
 
-#' @title Dataframe with counts and percentages for categorical
-#'   variables.
-#' @name subtitle_contingency_tab
+#' @title Counts and percentages across grouping variables.
+#' @name cat_counter
 #' @author Indrajeet Patil
 #'
 #' @param ... Additional grouping variables.

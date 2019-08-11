@@ -354,13 +354,7 @@ ggpiestats <- function(data,
     # adding significance labels to pie charts for grouped proportion tests
     if (isTRUE(facet.proptest)) {
       # display grouped proportion test results
-      if (isTRUE(messages)) {
-        # tell the user what these results are
-        proptest_message(rlang::as_name(main), rlang::as_name(condition))
-
-        # print the tibble
-        print(df_labels)
-      }
+      if (isTRUE(messages)) print(df_labels)
 
       # adding labels
       p <- p +

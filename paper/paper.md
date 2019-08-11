@@ -4,7 +4,7 @@ author:
 - Indrajeet Patil^[Harvard University, patilindrajeet.science@gmail.com]
 - Fiery Cushman^[Harvard University]
 - Mina Cikara^[Harvard University]
-date: "2019-08-06"
+date: "2019-08-10"
 output: 
   bookdown::pdf_document2:
     fig_caption: true
@@ -201,6 +201,8 @@ ggstatsplot::ggpiestats(
   palette = "Paired",
   messages = FALSE
 )
+#> Warning: `cols` is now required.
+#> Please use `cols = c(percentage, chi_sq)`
 ```
 
 \begin{figure}[H]
@@ -995,14 +997,15 @@ ggstatsplot::ggpiestats(
   palette = "Royal1"
 )
 #> Note: 99% CI for effect size estimate was computed with 100 bootstrap samples.
-#> Note: Results from one-sample proportion tests for each level of the variable
-#> 2nd survey testing for equal proportions of the variable 1st survey.
-#> # A tibble: 2 x 10
-#>   `2nd survey` counts  perc N     Approve Disapprove `Chi-squared`    df
-#>   <fct>         <int> <dbl> <chr> <chr>   <chr>              <dbl> <dbl>
-#> 1 Disapprove      720   45  (n =~ 20.83%  79.17%              245      1
-#> 2 Approve         880   55. (n =~ 90.23%  9.77%               570.     1
-#> # ... with 2 more variables: `p-value` <dbl>, significance <chr>
+#> # A tibble: 2 x 11
+#>   `2nd survey` counts  perc N         Approve Disapprove `Chi-squared`
+#>   <fct>         <int> <dbl> <chr>     <chr>   <chr>              <dbl>
+#> 1 Disapprove      720   45  (n = 720) 20.83%  79.17%              245 
+#> 2 Approve         880   55. (n = 880) 90.23%  9.77%               570.
+#>     p.value    df method                                   significance
+#>       <dbl> <dbl> <chr>                                    <chr>       
+#> 1 3.20e- 55     1 Chi-squared test for given probabilities ***         
+#> 2 6.80e-126     1 Chi-squared test for given probabilities ***
 ```
 
 
@@ -1477,10 +1480,10 @@ Most of the regression models that are supported in the `broom` and
 `epi.2by2`, `ergm`, `felm`, `fitdistr`, `glmerMod`, `glmmTMB`, `gls`, `gam`,
 `Gam`, `gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmmTMB`, `glmRob`,
 `glmrob`, `gmm`, `ivreg`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`, `lmRob`,
-`lmrob`, `mcmc`, `MCMCglmm`, `mediate`, `mjoint`, `mle2`, `mlm`, `multinom`,
-`negbin`, `nlmerMod`, `nlrq`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`,
-`rjags`, `rlm`, `rlmerMod`, `rq`, `speedglm`, `speedlm`, `stanreg`, `survreg`,
-`svyglm`, `svyolr`, `svyglm`, etc.
+`lmrob`, `mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`, `mediate`, `mjoint`, `mle2`,
+`mlm`, `multinom`, `negbin`, `nlmerMod`, `nlrq`, `nls`, `orcutt`, `plm`, `polr`,
+`ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `speedglm`, `speedlm`, `stanreg`,
+`survreg`, `svyglm`, `svyolr`, `svyglm`, etc.
 
 Although not shown here, this function can also be used to carry out both
 frequentist and Bayesian random-effects meta-analysis.

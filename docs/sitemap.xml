@@ -34,6 +34,9 @@
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/bugs_long.html</loc>
   </url>
   <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/cat_counter.html</loc>
+  </url>
+  <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/cat_label_df.html</loc>
   </url>
   <url>
@@ -178,9 +181,6 @@
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/palette_message.html</loc>
   </url>
   <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/proptest_message.html</loc>
-  </url>
-  <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/reexports.html</loc>
   </url>
   <url>
@@ -278,6 +278,9 @@
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/web_only/ggcorrmat.html</loc>
+  </url>
+  <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/web_only/ggdotplotstats.html</loc>
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/web_only/gghistostats.html</loc>

@@ -562,40 +562,6 @@ testthat::test_that(
   }
 )
 
-# check lmRob output ----------------------------------------------
-
-testthat::test_that(
-  desc = "check lmRob output",
-  code = {
-    testthat::skip_on_cran()
-
-    # set up
-    set.seed(123)
-    library(robust)
-    data(stack.dat)
-
-    # model
-    stack.rob <- robust::lmRob(formula = Loss ~ ., data = stack.dat)
-
-    # broom outputs
-    broom_df <- broom::tidy(stack.rob)
-
-    # ggcoefstats outputs
-    tidy_df <- ggstatsplot::ggcoefstats(
-      x = stack.rob,
-      exclude.intercept = FALSE,
-      conf.int = 0.90,
-      output = "tidy"
-    )
-
-    # testing
-    testthat::expect_identical(broom_df$term, as.character(tidy_df$term))
-    testthat::expect_equal(broom_df$estimate, tidy_df$estimate, tolerance = 0.001)
-    testthat::expect_equal(broom_df$std.error, tidy_df$std.error, tolerance = 0.001)
-    testthat::expect_equal(broom_df$p.value, tidy_df$p.value, tolerance = 0.001)
-  }
-)
-
 # check mlm output ----------------------------------------------
 
 testthat::test_that(
@@ -1303,13 +1269,6 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
 
-    # mod-1
-    set.seed(123)
-    mod1 <- stats::kmeans(
-      x = dplyr::select(iris, -Species),
-      centers = 3
-    )
-
     # mod-2
     mod2 <- stats::aov(
       formula = value ~ attribute * measure + Error(id / (attribute * measure)),
@@ -1321,7 +1280,6 @@ testthat::test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # test failures
-    testthat::expect_error(ggstatsplot::ggcoefstats(mod1))
     testthat::expect_error(ggstatsplot::ggcoefstats(stats::acf(lh, plot = FALSE)))
     testthat::expect_null(pb$plot$labels$subtitle, NULL)
     testthat::expect_null(pb$plot$labels$caption, NULL)

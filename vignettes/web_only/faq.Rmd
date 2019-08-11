@@ -65,7 +65,7 @@ p <- ggstatsplot::ggbetweenstats(
 )
 
 # converting to plotly object
-plotly::ggplotly(p)
+plotly::ggplotly(p, width = 480, height = 480)
 ```
 
 ## How can I use `grouped_` functions with more than one group?

@@ -10,6 +10,7 @@ articles:
   ggbetweenstats: web_only/ggbetweenstats.html
   ggcoefstats: web_only/ggcoefstats.html
   ggcorrmat: web_only/ggcorrmat.html
+  ggdotplotstats: web_only/ggdotplotstats.html
   gghistostats: web_only/gghistostats.html
   ggpiestats: web_only/ggpiestats.html
   ggscatterstats: web_only/ggscatterstats.html

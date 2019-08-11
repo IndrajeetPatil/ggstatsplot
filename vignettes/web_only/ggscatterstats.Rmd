@@ -113,12 +113,11 @@ Currently trying to find a workaround this problem.
 
 ## Using `ggscatterstats` in `R Notebook` or `R Markdown`
 
-If you try including a `ggscatterstats()` plot inside an `R Notebook` or
-`R Markdown` code chunk, you'll notice that the plot doesn't get output. In
-order to get a `ggscatterstats()` to show up in these contexts, you need
-to save the `ggscatterstats` plot as a variable in one code chunk, and
-explicitly print it using the `grid` package in another chunk, like
-this:
+If you try including a `ggscatterstats()` plot inside an `R Notebook` or `R
+Markdown` code chunk, you will notice that the plot is not returned in the
+output. In order to get a `ggscatterstats()` to show up in these contexts, you
+need to save the `ggscatterstats` plot as a variable in one code chunk, and
+explicitly print it using the `grid` package in another chunk, like this:
 
 ```{r ggscatterstats2, eval = FALSE}
 # include the following code in your code chunk inside R Notebook or Markdown
@@ -138,8 +137,7 @@ grid::grid.draw(
 
 What if we want to do the same analysis do the same analysis for movies with
 different MPAA (Motion Picture Association of America) film ratings (NC-17, PG,
-PG-13, R)? In that case, we will have to either write a `for` loop or use
-`purrr`, none of which seem like an exciting prospect.
+PG-13, R)? 
 
 `ggstatsplot` provides a special helper function for such instances:
 `grouped_ggstatsplot`. This is merely a wrapper function around

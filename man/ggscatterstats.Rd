@@ -69,7 +69,7 @@ e.g. \code{"auto"}, \code{"lm"}, \code{"glm"}, \code{"gam"}, \code{"loess"} or a
 \code{MASS::rlm} or \code{mgcv::gam}, \code{stats::lm}, or \code{stats::loess}.
 
 For \code{method = "auto"} the smoothing method is chosen based on the
-size of the largest group (across all panels). \code{\link[=loess]{loess()}} is
+size of the largest group (across all panels). \code{\link[stats:loess]{stats::loess()}} is
 used for less than 1,000 observations; otherwise \code{\link[mgcv:gam]{mgcv::gam()}} is
 used with \code{formula = y ~ s(x, bs = "cs")}. Somewhat anecdotally,
 \code{loess} gives a better appearance, but is \eqn{O(N^{2})}{O(N^2)} in memory,
@@ -194,6 +194,13 @@ subtitle.
 }
 \note{
 \itemize{
+\item If you try including a \code{ggscatterstats()} plot inside an R Notebook or
+R Markdown code chunk, you will notice that the plot is not returned in the
+output. In order to get a \code{ggscatterstats()} to show up in these contexts,
+you need to save the \code{ggscatterstats} plot as a variable in one code chunk,
+and explicitly print it using the \code{grid} package in another chunk:
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html#using-ggscatterstats-in-r-notebook-or-r-markdown}
+
 \item \code{marginal.type = "densigram"} will work only with the development
 version of \code{ggExtra} that you can download from \code{GitHub}:
 \code{remotes::install_github("daattali/ggExtra")}.

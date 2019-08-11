@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Dataframe with counts and percentages for categorical
-variables. — subtitle_contingency_tab • ggstatsplot</title>
+<title>Subtitle for categorical tests — subtitle_contingency_tab • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -41,8 +40,7 @@ variables. — subtitle_contingency_tab • ggstatsplot</title>
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Dataframe with counts and percentages for categorical
-variables. — subtitle_contingency_tab" />
+<meta property="og:title" content="Subtitle for categorical tests — subtitle_contingency_tab" />
 
 <meta property="og:description" content="Making text subtitle for contingency analysis (Pearson's
 chi-square test for independence for between-subjects design or McNemar's
@@ -126,6 +124,9 @@ categorical variable." />
       <a href="../articles/web_only/ggcorrmat.html">ggcorrmat</a>
     </li>
     <li>
+      <a href="../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
+    </li>
+    <li>
       <a href="../articles/web_only/gghistostats.html">gghistostats</a>
     </li>
     <li>
@@ -179,9 +180,8 @@ categorical variable." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Dataframe with counts and percentages for categorical
-variables.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggcatstats.R'><code>R/helpers_ggcatstats.R</code></a>, <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggpiestats_subtitles.R'><code>R/helpers_ggpiestats_subtitles.R</code></a></small>
+    <h1>Subtitle for categorical tests</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggcatstats_subtitles.R'><code>R/helpers_ggcatstats_subtitles.R</code></a></small>
     <div class="hidden name"><code>subtitle_contingency_tab.Rd</code></div>
     </div>
 
@@ -194,9 +194,7 @@ categorical variable.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>cat_counter</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
-
-<span class='fu'>subtitle_contingency_tab</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>counts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+    <pre class="usage"><span class='fu'>subtitle_contingency_tab</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>counts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>ratio</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>,
   <span class='kw'>simulate.p.value</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>2000</span>, <span class='kw'>bias.correct</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
@@ -226,10 +224,6 @@ be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
 table. Default is <code>NULL</code>. If <code>NULL</code>, one-sample proportion test (a goodness
 of fit test) will be run for the <code>main</code> variable. Otherwise an appropriate
 association test will be run.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional grouping variables.</p></td>
     </tr>
     <tr>
       <th>counts</th>
@@ -321,20 +315,7 @@ intervals were computed, see documentation in <code><a href='https://rdrr.io/pkg
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_contingency_tab.html'>cat_counter</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/mpg.html'>mpg</a></span>, <span class='st'>"drv"</span>, <span class='no'>cyl</span>, <span class='st'>"fl"</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 22 x 5</span><span>
-#&gt;      cyl drv   fl    counts   perc
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>     6 r     r          4 100   
-#&gt; </span><span style='color: #555555;'> 2</span><span>     8 r     e          1   4.76
-#&gt; </span><span style='color: #555555;'> 3</span><span>     8 r     p          7  33.3 
-#&gt; </span><span style='color: #555555;'> 4</span><span>     8 r     r         13  61.9 
-#&gt; </span><span style='color: #555555;'> 5</span><span>     4 f     c          1   1.72
-#&gt; </span><span style='color: #555555;'> 6</span><span>     4 f     d          3   5.17
-#&gt; </span><span style='color: #555555;'> 7</span><span>     4 f     p         14  24.1 
-#&gt; </span><span style='color: #555555;'> 8</span><span>     4 f     r         40  69.0 
-#&gt; </span><span style='color: #555555;'> 9</span><span>     5 f     r          4 100   
-#&gt; </span><span style='color: #555555;'>10</span><span>     6 f     e          1   2.33
-#&gt; </span><span style='color: #555555;'># ... with 12 more rows</span><span></div><div class='input'>
+    <pre class="examples"><div class='input'>
 <span class='co'># ------------------------ association tests -----------------------------</span>
 
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
@@ -346,7 +327,7 @@ intervals were computed, see documentation in <code><a href='https://rdrr.io/pkg
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>am</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>15</span>
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>15</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>15</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(NULL, chi["Pearson"]^2, "(", "2", ") = ", "8.74", ", ", 
 #&gt;     italic("p"), " = ", "0.013", ", ", italic("V")["Cramer"], 
 #&gt;     " = ", "0.52", ", CI"["95%"], " [", "0.20", ", ", "0.71", 
@@ -400,7 +381,6 @@ intervals were computed, see documentation in <code><a href='https://rdrr.io/pkg
 
     <h2>Author</h2>
     <p>Indrajeet Patil</p>
-<p>Indrajeet Patil</p>
   </div>
 </div>
 

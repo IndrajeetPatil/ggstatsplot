@@ -14,7 +14,6 @@ bbolker
 behaviour
 binwidth
 boxviolin
-brms
 Camilli
 cbu
 cex
@@ -33,7 +32,6 @@ Cramer
 Cramer's
 Cramér's
 Cramer'V
-Cramer’s
 Cramér’s
 cran
 Crichtlow
@@ -42,7 +40,6 @@ d'être
 d’être
 Delacre
 densigram
-df
 disgustingness
 DOI
 ds
@@ -58,12 +55,13 @@ exressions
 faq
 Feinberg
 Fligner
-ForestGreen
 freighteningness
+fueleconomy
 Gapminder
 ggbetweenstats
 ggcoefstats
 ggcorrmat
+ggdotplotstats
 gghistostats
 ggpiestats
 ggplot
@@ -179,11 +177,11 @@ stype
 svg
 tblr
 TERGM
-textcolor
 tibble
 tibbles
 tidiers
 tidyverse
+Tufte
 uber
 uk
 unadjusted

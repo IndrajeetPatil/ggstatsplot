@@ -56,13 +56,14 @@ corrections for multiple testing.
 }
 \examples{
 
+\donttest{
 # show all columns in a tibble
 options(tibble.width = Inf)
 
+#------------------- between-subjects design ----------------------------
+
 # for reproducibility
 set.seed(123)
-
-#------------------- between-subjects design ----------------------------
 
 # parametric
 # if `var.equal = TRUE`, then Student's *t*-test will be run
@@ -109,6 +110,7 @@ ggstatsplot::pairwise_p(
 
 #------------------- within-subjects design ----------------------------
 
+# for reproducibility
 set.seed(123)
 
 # parametric
@@ -140,6 +142,7 @@ ggstatsplot::pairwise_p(
   paired = TRUE,
   p.adjust.method = "hommel"
 )
+}
 }
 \seealso{
 \code{\link{ggbetweenstats}}, \code{\link{grouped_ggbetweenstats}}

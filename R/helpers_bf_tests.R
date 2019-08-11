@@ -844,3 +844,186 @@ bf_oneway_anova <- function(data,
     bf_message
   ))
 }
+
+
+#' @title Bayes factor message for random-effects meta-analysis
+#' @name bf_meta_message
+#' @importFrom metaBMA meta_random
+#'
+#' @inherit metaBMA::meta_random return Description
+#'
+#' @inheritParams subtitle_meta_ggcoefstats
+#' @inheritParams metaBMA::meta_random
+#' @param d the prior distribution of the average effect size \eqn{d} specified
+#'   either as the type of family (e.g., \code{"norm"}) or via
+#'   \code{\link[metaBMA]{prior}}.
+#' @param d.par prior parameters for \eqn{d} (only used if \code{d} specifies
+#'   the type of family).
+#' @param tau the prior distribution of the between-study heterogeneity
+#'   \eqn{\tau} specified either as a character value (e.g.,
+#'   \code{"halfcauchy"}) or via \code{\link[metaBMA]{prior}}.
+#' @param tau.par prior parameters for \eqn{\tau}  (only used if \code{tau}
+#'   specifies the type of family).
+#' @param iter number of MCMC iterations using Stan.
+#'
+#' @examples
+#'
+#' \donttest{
+#' # setup
+#' set.seed(123)
+#' library(metaBMA)
+#'
+#' # creating a dataframe
+#' (df <-
+#'   structure(
+#'     .Data = list(
+#'       study = c("1", "2", "3", "4", "5"),
+#'       estimate = c(
+#'         0.382047603321706,
+#'         0.780783111514665,
+#'         0.425607573765058,
+#'         0.558365541235078,
+#'         0.956473848429961
+#'       ),
+#'       std.error = c(
+#'         0.0465576338644502,
+#'         0.0330218199731529,
+#'         0.0362834986178494,
+#'         0.0480571500648261,
+#'         0.062215818388157
+#'       )
+#'     ),
+#'     row.names = c(NA, -5L),
+#'     class = c("tbl_df", "tbl", "data.frame")
+#'   ))
+#'
+#' # getting Bayes factor in favor of null hypothesis
+#' ggstatsplot::bf_meta_message(
+#'   data = df,
+#'   k = 3,
+#'   iter = 1500,
+#'   messages = TRUE
+#' )
+#' }
+#'
+#' @export
+
+# function body
+bf_meta_message <- function(data,
+                            k = 2,
+                            d = "norm",
+                            d.par = c(mean = 0, sd = 0.3),
+                            tau = "halfcauchy",
+                            tau.par = c(scale = 0.5),
+                            iter = 10000,
+                            summarize = "stan",
+                            caption = NULL,
+                            messages = TRUE,
+                            ...) {
+
+  #----------------------- input checking ------------------------------------
+
+  # check if the two columns needed are present
+  if (sum(c("estimate", "std.error") %in% names(data)) != 2) {
+    # inform the user that skipping labels for the same reason
+    stop(message(cat(
+      crayon::red("Error"),
+      crayon::blue(": The dataframe **must** contain the following two columns:\n"),
+      crayon::blue("`estimate` and `std.error`.\n"),
+      sep = ""
+    )),
+    call. = FALSE
+    )
+  }
+
+  #----------------------- create labels column -------------------------------
+
+  if (!"term" %in% names(data)) {
+    data %<>%
+      dplyr::mutate(.data = ., term = dplyr::row_number()) %>%
+      dplyr::mutate(.data = ., term = as.character(term))
+  }
+
+  # check definition of priors for d
+  # Note: "d.par" and "tau.par" are deprecated in metaBMA (>= 0.6.1)
+  if (class(d) == "character") {
+    d <- metaBMA::prior(family = d, param = d.par)
+  } else if (!class(d) == "prior") {
+    stop(
+      "The argument 'd' must be ",
+      "\n  (A) a character such as 'norm' specifying the family of prior distribution",
+      "\n  (B) a prior distribution specified via metaBMA::prior()"
+    )
+  }
+
+  # check definition of priors for tau
+  if (class(tau) == "character") {
+    tau <- metaBMA::prior(family = tau, param = tau.par)
+  } else if (!class(tau) == "prior") {
+    stop(
+      "The argument 'tau' must be ",
+      "\n  (A) a character such as 'halfcauchy' specifying the family of prior distribution",
+      "\n  (B) a non-negative prior distribution specified via metaBMA::prior()"
+    )
+  }
+
+  # extracting results from random-effects meta-analysis
+  bf_meta <-
+    metaBMA::meta_random(
+      y = data$estimate,
+      SE = data$std.error,
+      labels = data$term,
+      d = d,
+      tau = tau,
+      iter = iter,
+      summarize = summarize,
+      ...
+    )
+
+  # print results from meta-analysis
+  if (isTRUE(messages)) print(bf_meta)
+
+  #----------------------- preparing caption -------------------------------
+
+  # creating a dataframe with posterior estimates
+  df_estimates <-
+    as.data.frame(bf_meta$estimates) %>%
+    tibble::rownames_to_column(.data = ., var = "term") %>%
+    tibble::as_tibble(x = .) %>%
+    dplyr::filter(.data = ., term == "d")
+
+  # prepare the bayes factor message
+  bf_text <-
+    substitute(
+      atop(displaystyle(top.text),
+        expr =
+          paste(
+            "In favor of null: ",
+            "log"["e"],
+            "(BF"["01"],
+            ") = ",
+            bf,
+            ", ",
+            italic("d")["mean"]^"posterior",
+            " = ",
+            d.pmean,
+            ", CI"["95%"],
+            " [",
+            d.pmean.LB,
+            ", ",
+            d.pmean.UB,
+            "]"
+          )
+      ),
+      env = list(
+        top.text = caption,
+        bf = specify_decimal_p(x = log(bf_meta$BF["random_H0", "random_H1"]), k = k),
+        d.pmean = specify_decimal_p(x = df_estimates$mean[[1]], k = k),
+        d.pmean.LB = specify_decimal_p(x = df_estimates$hpd95_lower[[1]], k = k),
+        d.pmean.UB = specify_decimal_p(x = df_estimates$hpd95_upper[[1]], k = k)
+      )
+    )
+
+  # return the caption
+  return(bf_text)
+}

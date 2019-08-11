@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers_effsize_ci.R
 \name{t1way_ci}
 \alias{t1way_ci}
-\title{#' @title A heteroscedastic one-way ANOVA for trimmed means with confidence
+\title{A heteroscedastic one-way ANOVA for trimmed means with confidence
 interval for effect size.}
 \usage{
 t1way_ci(data, x, y, tr = 0.1, nboot = 100, conf.level = 0.95,
@@ -166,16 +166,12 @@ Custom function to get confidence intervals for effect size
 measure for robust ANOVA.
 }
 \examples{
-
 set.seed(123)
 ggstatsplot:::t1way_ci(
-  data = dplyr::filter(ggplot2::msleep, vore != "insecti"),
-  x = vore,
-  y = brainwt,
-  tr = 0.05,
-  nboot = 50,
-  conf.level = 0.99,
-  conf.type = "perc"
+  data = morley,
+  x = Expt,
+  y = Speed,
+  nboot = 10
 )
 }
 \keyword{internal}

@@ -32,7 +32,8 @@ testthat::test_that(
         palette = "Set3",
         outlier.tagging = TRUE,
         outlier.label = length,
-        pairwise.comparisons = TRUE
+        pairwise.comparisons = TRUE,
+        pairwise.annotation = "asterisk"
       ),
       what = "gg"
     ))
@@ -367,7 +368,8 @@ testthat::test_that(
       messages = TRUE,
       k = 4,
       type = "bf",
-      pairwise.comparisons = TRUE
+      pairwise.comparisons = TRUE,
+      pairwise.annotation = "asterisk"
     )
 
     # subtitle

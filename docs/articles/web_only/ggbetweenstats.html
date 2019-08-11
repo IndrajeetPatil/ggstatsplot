@@ -81,6 +81,9 @@
       <a href="../../articles/web_only/ggcorrmat.html">ggcorrmat</a>
     </li>
     <li>
+      <a href="../../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
+    </li>
+    <li>
       <a href="../../articles/web_only/gghistostats.html">gghistostats</a>
     </li>
     <li>
@@ -136,7 +139,7 @@
       <h1>ggbetweenstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-08-06</h4>
+            <h4 class="date">2019-08-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggbetweenstats.Rmd"><code>vignettes/web_only/ggbetweenstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggbetweenstats.Rmd</code></div>
@@ -331,7 +334,7 @@
 <h2 class="hasAnchor">
 <a href="#grouped-analysis-with-grouped_ggbetweenstats" class="anchor"></a>Grouped analysis with <code>grouped_ggbetweenstats</code>
 </h2>
-<p>What if we want to analyze both by continent and between 1957 and 2007? A combination of our two previous efforts. In that case, we could write a <code>for</code> loop or use <code>purrr</code>, both of which are time consuming and can be a bit of a struggle.</p>
+<p>What if we want to analyze both by continent and between 1957 and 2007? A combination of our two previous efforts.</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggbetweenstats</code>. This is merely a wrapper function around <code><a href="../../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggbetweenstats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
 <p>Let’s focus on the same 4 continents for the following years: 1967, 1987, 2007. Also, let’s carry out pairwise comparisons to see if there differences between every pair of continents.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># for reproducibility</span></a>

@@ -122,6 +122,9 @@ corrections for multiple testing." />
       <a href="../articles/web_only/ggcorrmat.html">ggcorrmat</a>
     </li>
     <li>
+      <a href="../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
+    </li>
+    <li>
       <a href="../articles/web_only/gghistostats.html">gghistostats</a>
     </li>
     <li>
@@ -272,13 +275,13 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='co'># show all columns in a tibble</span>
+</div><div class='input'><span class='co'># show all columns in a tibble</span>
 <span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span>(<span class='kw'>tibble.width</span> <span class='kw'>=</span> <span class='fl'>Inf</span>)
+
+<span class='co'>#------------------- between-subjects design ----------------------------</span>
 
 <span class='co'># for reproducibility</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
-
-<span class='co'>#------------------- between-subjects design ----------------------------</span>
 
 <span class='co'># parametric</span>
 <span class='co'># if `var.equal = TRUE`, then Student's *t*-test will be run</span>
@@ -293,14 +296,14 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 )</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>The parametric pairwise multiple comparisons test used-
 #&gt;  Student's t-test.
 #&gt;  Adjustment method for p-values: </span><span style='color: #BBBB00;'>bonferroni</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 6</span><span>
-#&gt;   group1  group2  mean.difference p.value significance p.value.label
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        
-#&gt; </span><span style='color: #555555;'>1</span><span> carni   herbi            0.542    1     ns           p = 1.000    
-#&gt; </span><span style='color: #555555;'>2</span><span> carni   insecti         -</span><span style='color: #BB0000;'>0.057</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span>   1     ns           p = 1.000    
-#&gt; </span><span style='color: #555555;'>3</span><span> carni   omni             0.066</span><span style='text-decoration: underline;'>5</span><span>   1     ns           p = 1.000    
-#&gt; </span><span style='color: #555555;'>4</span><span> herbi   insecti         -</span><span style='color: #BB0000;'>0.600</span><span>    1     ns           p = 1.000    
-#&gt; </span><span style='color: #555555;'>5</span><span> herbi   omni            -</span><span style='color: #BB0000;'>0.476</span><span>    0.979 ns           p = 0.979    
-#&gt; </span><span style='color: #555555;'>6</span><span> insecti omni             0.124    1     ns           p = 1.000    </div><div class='input'>
+#&gt;   group1  group2  mean.difference p.value significance p.value.label            
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                    
+#&gt; </span><span style='color: #555555;'>1</span><span> carni   herbi            0.542    1     ns           list(~italic(p)== 1.000 )
+#&gt; </span><span style='color: #555555;'>2</span><span> carni   insecti         -</span><span style='color: #BB0000;'>0.057</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span>   1     ns           list(~italic(p)== 1.000 )
+#&gt; </span><span style='color: #555555;'>3</span><span> carni   omni             0.066</span><span style='text-decoration: underline;'>5</span><span>   1     ns           list(~italic(p)== 1.000 )
+#&gt; </span><span style='color: #555555;'>4</span><span> herbi   insecti         -</span><span style='color: #BB0000;'>0.600</span><span>    1     ns           list(~italic(p)== 1.000 )
+#&gt; </span><span style='color: #555555;'>5</span><span> herbi   omni            -</span><span style='color: #BB0000;'>0.476</span><span>    0.979 ns           list(~italic(p)== 0.979 )
+#&gt; </span><span style='color: #555555;'>6</span><span> insecti omni             0.124    1     ns           list(~italic(p)== 1.000 )</div><div class='input'>
 <span class='co'># if `var.equal = FALSE`, then Games-Howell test will be run</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
@@ -321,14 +324,14 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 #&gt; </span><span style='color: #555555;'>4</span><span> herbi  carni            -</span><span style='color: #BB0000;'>0.542</span><span> 0.25    1.54   19.4       1 ns          
 #&gt; </span><span style='color: #555555;'>5</span><span> herbi  insecti          -</span><span style='color: #BB0000;'>0.6</span><span>   0.249   1.70   19.1       1 ns          
 #&gt; </span><span style='color: #555555;'>6</span><span> carni  insecti          -</span><span style='color: #BB0000;'>0.058</span><span> 0.027   1.53   10.7       1 ns          
-#&gt;   p.value.label
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        
-#&gt; </span><span style='color: #555555;'>1</span><span> p = 1.000    
-#&gt; </span><span style='color: #555555;'>2</span><span> p = 1.000    
-#&gt; </span><span style='color: #555555;'>3</span><span> p = 1.000    
-#&gt; </span><span style='color: #555555;'>4</span><span> p = 1.000    
-#&gt; </span><span style='color: #555555;'>5</span><span> p = 1.000    
-#&gt; </span><span style='color: #555555;'>6</span><span> p = 1.000    </div><div class='input'>
+#&gt;   p.value.label            
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                    
+#&gt; </span><span style='color: #555555;'>1</span><span> list(~italic(p)== 1.000 )
+#&gt; </span><span style='color: #555555;'>2</span><span> list(~italic(p)== 1.000 )
+#&gt; </span><span style='color: #555555;'>3</span><span> list(~italic(p)== 1.000 )
+#&gt; </span><span style='color: #555555;'>4</span><span> list(~italic(p)== 1.000 )
+#&gt; </span><span style='color: #555555;'>5</span><span> list(~italic(p)== 1.000 )
+#&gt; </span><span style='color: #555555;'>6</span><span> list(~italic(p)== 1.000 )</div><div class='input'>
 <span class='co'># non-parametric</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
@@ -340,14 +343,14 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 )</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>The nonparametric pairwise multiple comparisons test used-
 #&gt;  Dwass-Steel-Crichtlow-Fligner test.
 #&gt;  Adjustment method for p-values: </span><span style='color: #BBBB00;'>none</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 6</span><span>
-#&gt;   group1  group2       W p.value significance p.value.label
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        
-#&gt; </span><span style='color: #555555;'>1</span><span> carni   herbi   -</span><span style='color: #BB0000;'>0.8</span><span>    0.572  ns           p = 0.572    
-#&gt; </span><span style='color: #555555;'>2</span><span> carni   insecti -</span><span style='color: #BB0000;'>2.36</span><span>   0.095</span><span style='text-decoration: underline;'>6</span><span> ns           p = 0.096    
-#&gt; </span><span style='color: #555555;'>3</span><span> carni   omni    -</span><span style='color: #BB0000;'>1.72</span><span>   0.225  ns           p = 0.225    
-#&gt; </span><span style='color: #555555;'>4</span><span> herbi   insecti -</span><span style='color: #BB0000;'>2.40</span><span>   0.089</span><span style='text-decoration: underline;'>5</span><span> ns           p = 0.089    
-#&gt; </span><span style='color: #555555;'>5</span><span> herbi   omni    -</span><span style='color: #BB0000;'>0.948</span><span>  0.503  ns           p = 0.503    
-#&gt; </span><span style='color: #555555;'>6</span><span> insecti omni     1.61   0.256  ns           p = 0.256    </div><div class='input'>
+#&gt;   group1  group2       W p.value significance p.value.label            
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                    
+#&gt; </span><span style='color: #555555;'>1</span><span> carni   herbi   -</span><span style='color: #BB0000;'>0.8</span><span>    0.572  ns           list(~italic(p)== 0.572 )
+#&gt; </span><span style='color: #555555;'>2</span><span> carni   insecti -</span><span style='color: #BB0000;'>2.36</span><span>   0.095</span><span style='text-decoration: underline;'>6</span><span> ns           list(~italic(p)== 0.096 )
+#&gt; </span><span style='color: #555555;'>3</span><span> carni   omni    -</span><span style='color: #BB0000;'>1.72</span><span>   0.225  ns           list(~italic(p)== 0.225 )
+#&gt; </span><span style='color: #555555;'>4</span><span> herbi   insecti -</span><span style='color: #BB0000;'>2.40</span><span>   0.089</span><span style='text-decoration: underline;'>5</span><span> ns           list(~italic(p)== 0.089 )
+#&gt; </span><span style='color: #555555;'>5</span><span> herbi   omni    -</span><span style='color: #BB0000;'>0.948</span><span>  0.503  ns           list(~italic(p)== 0.503 )
+#&gt; </span><span style='color: #555555;'>6</span><span> insecti omni     1.61   0.256  ns           list(~italic(p)== 0.256 )</div><div class='input'>
 <span class='co'># robust</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
@@ -359,16 +362,25 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 )</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>The robust pairwise multiple comparisons test used-
 #&gt;  Yuen's trimmed means comparisons test.
 #&gt;  Adjustment method for p-values: </span><span style='color: #BBBB00;'>fdr</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 8</span><span>
-#&gt;   group1  group2    psihat conf.low conf.high p.value significance p.value.label
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        
-#&gt; </span><span style='color: #555555;'>1</span><span> insecti omni    -</span><span style='color: #BB0000;'>0.055</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>   -</span><span style='color: #BB0000;'>0.184</span><span>     0.072</span><span style='text-decoration: underline;'>8</span><span>   0.969 ns           p = 0.969    
-#&gt; </span><span style='color: #555555;'>2</span><span> carni   herbi   -</span><span style='color: #BB0000;'>0.053</span><span style='color: #BB0000;text-decoration: underline;'>0</span><span>   -</span><span style='color: #BB0000;'>0.274</span><span>     0.168    0.969 ns           p = 0.969    
-#&gt; </span><span style='color: #555555;'>3</span><span> carni   omni     0.002</span><span style='text-decoration: underline;'>10</span><span>  -</span><span style='color: #BB0000;'>0.151</span><span>     0.155    0.969 ns           p = 0.969    
-#&gt; </span><span style='color: #555555;'>4</span><span> herbi   omni     0.055</span><span style='text-decoration: underline;'>1</span><span>   -</span><span style='color: #BB0000;'>0.173</span><span>     0.283    0.969 ns           p = 0.969    
-#&gt; </span><span style='color: #555555;'>5</span><span> carni   insecti  0.057</span><span style='text-decoration: underline;'>7</span><span>   -</span><span style='color: #BB0000;'>0.060</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span>    0.176    0.969 ns           p = 0.969    
-#&gt; </span><span style='color: #555555;'>6</span><span> herbi   insecti  0.111    -</span><span style='color: #BB0000;'>0.098</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span>    0.320    0.969 ns           p = 0.969    </div><div class='input'>
+#&gt;   group1  group2    psihat conf.low conf.high p.value significance
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       
+#&gt; </span><span style='color: #555555;'>1</span><span> insecti omni    -</span><span style='color: #BB0000;'>0.055</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>   -</span><span style='color: #BB0000;'>0.184</span><span>     0.072</span><span style='text-decoration: underline;'>8</span><span>   0.969 ns          
+#&gt; </span><span style='color: #555555;'>2</span><span> carni   herbi   -</span><span style='color: #BB0000;'>0.053</span><span style='color: #BB0000;text-decoration: underline;'>0</span><span>   -</span><span style='color: #BB0000;'>0.274</span><span>     0.168    0.969 ns          
+#&gt; </span><span style='color: #555555;'>3</span><span> carni   omni     0.002</span><span style='text-decoration: underline;'>10</span><span>  -</span><span style='color: #BB0000;'>0.151</span><span>     0.155    0.969 ns          
+#&gt; </span><span style='color: #555555;'>4</span><span> herbi   omni     0.055</span><span style='text-decoration: underline;'>1</span><span>   -</span><span style='color: #BB0000;'>0.173</span><span>     0.283    0.969 ns          
+#&gt; </span><span style='color: #555555;'>5</span><span> carni   insecti  0.057</span><span style='text-decoration: underline;'>7</span><span>   -</span><span style='color: #BB0000;'>0.060</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span>    0.176    0.969 ns          
+#&gt; </span><span style='color: #555555;'>6</span><span> herbi   insecti  0.111    -</span><span style='color: #BB0000;'>0.098</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span>    0.320    0.969 ns          
+#&gt;   p.value.label            
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                    
+#&gt; </span><span style='color: #555555;'>1</span><span> list(~italic(p)== 0.969 )
+#&gt; </span><span style='color: #555555;'>2</span><span> list(~italic(p)== 0.969 )
+#&gt; </span><span style='color: #555555;'>3</span><span> list(~italic(p)== 0.969 )
+#&gt; </span><span style='color: #555555;'>4</span><span> list(~italic(p)== 0.969 )
+#&gt; </span><span style='color: #555555;'>5</span><span> list(~italic(p)== 0.969 )
+#&gt; </span><span style='color: #555555;'>6</span><span> list(~italic(p)== 0.969 )</div><div class='input'>
 <span class='co'>#------------------- within-subjects design ----------------------------</span>
 
+<span class='co'># for reproducibility</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
 
 <span class='co'># parametric</span>
@@ -382,14 +394,14 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 )</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>The parametric pairwise multiple comparisons test used-
 #&gt;  Student's t-test.
 #&gt;  Adjustment method for p-values: </span><span style='color: #BBBB00;'>BH</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 6</span><span>
-#&gt;   group1 group2 mean.difference   p.value significance p.value.label
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        
-#&gt; </span><span style='color: #555555;'>1</span><span> HDHF   HDLF            -</span><span style='color: #BB0000;'>1.11</span><span>  10.00</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 4</span><span> ***          p = 0.001    
-#&gt; </span><span style='color: #555555;'>2</span><span> HDHF   LDHF            -</span><span style='color: #BB0000;'>0.474</span><span>  7.07</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span> ns           p = 0.071    
-#&gt; </span><span style='color: #555555;'>3</span><span> HDHF   LDLF            -</span><span style='color: #BB0000;'>2.14</span><span>   7.64</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-12</span><span> ***          p &lt;= 0.001   
-#&gt; </span><span style='color: #555555;'>4</span><span> HDLF   LDHF             0.637  5.47</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span> ns           p = 0.055    
-#&gt; </span><span style='color: #555555;'>5</span><span> HDLF   LDLF            -</span><span style='color: #BB0000;'>1.03</span><span>   1.39</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 3</span><span> **           p = 0.001    
-#&gt; </span><span style='color: #555555;'>6</span><span> LDHF   LDLF            -</span><span style='color: #BB0000;'>1.66</span><span>   6.67</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 9</span><span> ***          p &lt;= 0.001   </div><div class='input'>
+#&gt;   group1 group2 mean.difference   p.value significance p.value.label            
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                    
+#&gt; </span><span style='color: #555555;'>1</span><span> HDHF   HDLF            -</span><span style='color: #BB0000;'>1.11</span><span>  10.00</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 4</span><span> ***          list(~italic(p)== 0.001 )
+#&gt; </span><span style='color: #555555;'>2</span><span> HDHF   LDHF            -</span><span style='color: #BB0000;'>0.474</span><span>  7.07</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span> ns           list(~italic(p)== 0.071 )
+#&gt; </span><span style='color: #555555;'>3</span><span> HDHF   LDLF            -</span><span style='color: #BB0000;'>2.14</span><span>   7.64</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-12</span><span> ***          list(~italic(p)&lt;= 0.001 )
+#&gt; </span><span style='color: #555555;'>4</span><span> HDLF   LDHF             0.637  5.47</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span> ns           list(~italic(p)== 0.055 )
+#&gt; </span><span style='color: #555555;'>5</span><span> HDLF   LDLF            -</span><span style='color: #BB0000;'>1.03</span><span>   1.39</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 3</span><span> **           list(~italic(p)== 0.001 )
+#&gt; </span><span style='color: #555555;'>6</span><span> LDHF   LDLF            -</span><span style='color: #BB0000;'>1.66</span><span>   6.67</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 9</span><span> ***          list(~italic(p)&lt;= 0.001 )</div><div class='input'>
 <span class='co'># non-parametric</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>bugs_long</span>,
@@ -401,14 +413,14 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 )</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>The nonparametric pairwise multiple comparisons test used-
 #&gt;  Durbin-Conover test.
 #&gt;  Adjustment method for p-values: </span><span style='color: #BBBB00;'>BY</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 6</span><span>
-#&gt;   group1 group2 statistic  p.value significance p.value.label
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        
-#&gt; </span><span style='color: #555555;'>1</span><span> HDHF   HDLF        4.78 1.44</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 5</span><span> ***          p &lt;= 0.001   
-#&gt; </span><span style='color: #555555;'>2</span><span> HDHF   LDHF        2.44 4.47</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span> *            p = 0.045    
-#&gt; </span><span style='color: #555555;'>3</span><span> HDHF   LDLF        8.01 5.45</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-13</span><span> ***          p &lt;= 0.001   
-#&gt; </span><span style='color: #555555;'>4</span><span> HDLF   LDHF        2.34 4.96</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span> *            p = 0.050    
-#&gt; </span><span style='color: #555555;'>5</span><span> HDLF   LDLF        3.23 5.05</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 3</span><span> **           p = 0.005    
-#&gt; </span><span style='color: #555555;'>6</span><span> LDHF   LDLF        5.57 4.64</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 7</span><span> ***          p &lt;= 0.001   </div><div class='input'>
+#&gt;   group1 group2 statistic  p.value significance p.value.label            
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                    
+#&gt; </span><span style='color: #555555;'>1</span><span> HDHF   HDLF        4.78 1.44</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 5</span><span> ***          list(~italic(p)&lt;= 0.001 )
+#&gt; </span><span style='color: #555555;'>2</span><span> HDHF   LDHF        2.44 4.47</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span> *            list(~italic(p)== 0.045 )
+#&gt; </span><span style='color: #555555;'>3</span><span> HDHF   LDLF        8.01 5.45</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-13</span><span> ***          list(~italic(p)&lt;= 0.001 )
+#&gt; </span><span style='color: #555555;'>4</span><span> HDLF   LDHF        2.34 4.96</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span> *            list(~italic(p)== 0.050 )
+#&gt; </span><span style='color: #555555;'>5</span><span> HDLF   LDLF        3.23 5.05</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 3</span><span> **           list(~italic(p)== 0.005 )
+#&gt; </span><span style='color: #555555;'>6</span><span> LDHF   LDLF        5.57 4.64</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 7</span><span> ***          list(~italic(p)&lt;= 0.001 )</div><div class='input'>
 <span class='co'># robust</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>bugs_long</span>,
@@ -420,15 +432,22 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 )</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>The robust pairwise multiple comparisons test used-
 #&gt;  Yuen's trimmed means comparisons test.
 #&gt;  Adjustment method for p-values: </span><span style='color: #BBBB00;'>hommel</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 8</span><span>
-#&gt;   group1 group2 psihat conf.low conf.high  p.value significance p.value.label
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        
-#&gt; </span><span style='color: #555555;'>1</span><span> HDLF   LDHF   -</span><span style='color: #BB0000;'>0.701</span><span>  -</span><span style='color: #BB0000;'>1.71</span><span>       0.303 6.20</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span> ns           p = 0.062    
-#&gt; </span><span style='color: #555555;'>2</span><span> HDHF   LDHF    0.5    -</span><span style='color: #BB0000;'>0.188</span><span>      1.19  6.20</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span> ns           p = 0.062    
-#&gt; </span><span style='color: #555555;'>3</span><span> HDLF   LDLF    0.938   0.069</span><span style='text-decoration: underline;'>4</span><span>     1.81  1.36</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span> *            p = 0.014    
-#&gt; </span><span style='color: #555555;'>4</span><span> HDHF   HDLF    1.16    0.318      2.00  1.49</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 3</span><span> **           p = 0.001    
-#&gt; </span><span style='color: #555555;'>5</span><span> LDHF   LDLF    1.54    0.810      2.27  1.16</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 6</span><span> ***          p &lt;= 0.001   
-#&gt; </span><span style='color: #555555;'>6</span><span> HDHF   LDLF    2.10    1.37       2.82  1.79</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-10</span><span> ***          p &lt;= 0.001   </div><div class='input'>
-</div></span></pre>
+#&gt;   group1 group2 psihat conf.low conf.high  p.value significance
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       
+#&gt; </span><span style='color: #555555;'>1</span><span> HDLF   LDHF   -</span><span style='color: #BB0000;'>0.701</span><span>  -</span><span style='color: #BB0000;'>1.71</span><span>       0.303 6.20</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span> ns          
+#&gt; </span><span style='color: #555555;'>2</span><span> HDHF   LDHF    0.5    -</span><span style='color: #BB0000;'>0.188</span><span>      1.19  6.20</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span> ns          
+#&gt; </span><span style='color: #555555;'>3</span><span> HDLF   LDLF    0.938   0.069</span><span style='text-decoration: underline;'>4</span><span>     1.81  1.36</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span> *           
+#&gt; </span><span style='color: #555555;'>4</span><span> HDHF   HDLF    1.16    0.318      2.00  1.49</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 3</span><span> **          
+#&gt; </span><span style='color: #555555;'>5</span><span> LDHF   LDLF    1.54    0.810      2.27  1.16</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 6</span><span> ***         
+#&gt; </span><span style='color: #555555;'>6</span><span> HDHF   LDLF    2.10    1.37       2.82  1.79</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-10</span><span> ***         
+#&gt;   p.value.label            
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                    
+#&gt; </span><span style='color: #555555;'>1</span><span> list(~italic(p)== 0.062 )
+#&gt; </span><span style='color: #555555;'>2</span><span> list(~italic(p)== 0.062 )
+#&gt; </span><span style='color: #555555;'>3</span><span> list(~italic(p)== 0.014 )
+#&gt; </span><span style='color: #555555;'>4</span><span> list(~italic(p)== 0.001 )
+#&gt; </span><span style='color: #555555;'>5</span><span> list(~italic(p)&lt;= 0.001 )
+#&gt; </span><span style='color: #555555;'>6</span><span> list(~italic(p)&lt;= 0.001 )</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

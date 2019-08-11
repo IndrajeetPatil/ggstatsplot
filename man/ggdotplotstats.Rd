@@ -2,7 +2,6 @@
 % Please edit documentation in R/ggdotplotstats.R
 \name{ggdotplotstats}
 \alias{ggdotplotstats}
-\alias{ggdotchartstats}
 \title{Dot plot/chart for labeled numeric data.}
 \usage{
 ggdotplotstats(data, x, y, xlab = NULL, ylab = NULL, title = NULL,
@@ -32,7 +31,7 @@ be taken. A matrix or tables will \strong{not} be accepted.}
 \item{xlab}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
 variable names for \code{x} and \code{y} will be used.}
 
-\item{ylab}{Label for \code{y} axis variable.}
+\item{ylab}{Label for \code{y} axis variable (Default: \code{"term"}).}
 
 \item{title}{The text for the plot title.}
 
@@ -182,6 +181,9 @@ ggdotplotstats(
     paste(italic("Source"), ": EPA dataset on http://fueleconomy.gov")
   )
 )
+}
+\references{
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html}
 }
 \seealso{
 \code{\link{grouped_gghistostats}}, \code{\link{gghistostats}},

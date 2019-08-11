@@ -124,6 +124,9 @@ grouping variable." />
       <a href="../articles/web_only/ggcorrmat.html">ggcorrmat</a>
     </li>
     <li>
+      <a href="../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
+    </li>
+    <li>
       <a href="../articles/web_only/gghistostats.html">gghistostats</a>
     </li>
     <li>
@@ -192,7 +195,7 @@ grouping variable.</p>
 
     <pre class="usage"><span class='fu'>grouped_ggbetweenstats</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>grouping.var</span>, <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>plot.type</span> <span class='kw'>=</span> <span class='st'>"boxviolin"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>,
-  <span class='kw'>pairwise.comparisons</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>pairwise.annotation</span> <span class='kw'>=</span> <span class='st'>"asterisk"</span>,
+  <span class='kw'>pairwise.comparisons</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>pairwise.annotation</span> <span class='kw'>=</span> <span class='st'>"p.value"</span>,
   <span class='kw'>pairwise.display</span> <span class='kw'>=</span> <span class='st'>"significant"</span>, <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"holm"</span>,
   <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"unbiased"</span>, <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>effsize.noncentral</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
@@ -257,14 +260,14 @@ or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations ar
     <tr>
       <th>pairwise.comparisons</th>
       <td><p>Logical that decides whether pairwise comparisons
-are to be displayed. <strong>Only significant comparisons</strong> will be shown by
-default. (default: <code>FALSE</code>). To change this behavior, select appropriate
-option with <code>pairwise.display</code> argument.</p></td>
+are to be displayed (default: <code>FALSE</code>). Please note that <strong>only significant
+comparisons</strong> will be shown by default. To change this behavior, select
+appropriate option with <code>pairwise.display</code> argument.</p></td>
     </tr>
     <tr>
       <th>pairwise.annotation</th>
       <td><p>Character that decides the annotations to use for
-pairwise comparisons. Either <code>"p.value"</code> or <code>"asterisk"</code> (default).</p></td>
+pairwise comparisons. Either <code>"p.value"</code> (default) or <code>"asterisk"</code>.</p></td>
     </tr>
     <tr>
       <th>pairwise.display</th>

@@ -218,19 +218,19 @@ mean_ggrepel <- function(plot,
 check_outlier <- function(var, coef = 1.5) {
 
   # compute the quantiles
-  quantiles <- stats::quantile(
-    x = var,
-    probs = c(0.25, 0.75),
-    na.rm = TRUE
-  )
+  quantiles <-
+    stats::quantile(
+      x = var,
+      probs = c(0.25, 0.75),
+      na.rm = TRUE
+    )
 
   # compute the interquartile range
   IQR <- quantiles[2] - quantiles[1]
 
   # check for outlier and output a logical
   res <-
-    ((var < (quantiles[1] - coef * IQR)) |
-      (var > (quantiles[2] + coef * IQR)))
+    ((var < (quantiles[1] - coef * IQR)) | (var > (quantiles[2] + coef * IQR)))
 
   # return the result
   return(res)
@@ -280,10 +280,7 @@ outlier_df <- function(data,
     dplyr::mutate(
       .data = .,
       isanoutlier = ifelse(
-        test = check_outlier(
-          var = {{ y }},
-          coef = outlier.coef
-        ),
+        test = check_outlier(var = {{ y }}, coef = outlier.coef),
         yes = TRUE,
         no = FALSE
       )
@@ -374,6 +371,8 @@ long_to_wide_converter <- function(data, x, y, paired = TRUE) {
 
 #' @title Adding `geom_signif` to the plot.
 #' @name ggsignif_adder
+#' @author Indrajeet Patil
+#'
 #' @param plot A `ggplot` object on which `geom_signif` needed to be added.
 #' @param df_pairwise A dataframe containing results from pairwise comparisons
 #'   (produced by `ggstatsplot::pairwise_p()` function).
@@ -403,7 +402,7 @@ ggsignif_adder <- function(plot,
                            data,
                            x,
                            y,
-                           pairwise.annotation = "asterisk",
+                           pairwise.annotation = "p.value",
                            pairwise.display = "significant") {
   # creating a column for group combinations
   df_pairwise %<>%
@@ -433,11 +432,13 @@ ggsignif_adder <- function(plot,
       df_pairwise %<>% dplyr::rename(.data = ., label = p.value.label)
       textsize <- 3
       vjust <- 0
+      parse <- TRUE
     } else {
       # otherwise just show the asterisks
       df_pairwise %<>% dplyr::rename(.data = ., label = significance)
       textsize <- 4
       vjust <- 0.2
+      parse <- FALSE
     }
 
     # arrange the dataframe so that annotations are properly aligned
@@ -460,7 +461,8 @@ ggsignif_adder <- function(plot,
         y_position = ggsignif_y_position,
         annotations = df_pairwise$label,
         test = NULL,
-        na.rm = TRUE
+        na.rm = TRUE,
+        parse = parse
       )
   }
 
@@ -536,4 +538,75 @@ sort_xy <- function(data,
         )
       )
   )
+}
+
+
+#' @title Making aesthetic modifications to the plot.
+#' @name aesthetic_addon
+#' @author Indrajeet Patil
+#'
+#' @param plot Plot to be aesthetically modified.
+#' @param x A numeric vector for `x` axis.
+#' @inheritParams ggbetweenstats
+#' @param ... Additional arguments.
+#'
+#' @keywords internal
+
+aesthetic_addon <- function(plot,
+                            x,
+                            xlab = NULL,
+                            ylab = NULL,
+                            title = NULL,
+                            subtitle = NULL,
+                            caption = NULL,
+                            ggtheme = ggplot2::theme_bw(),
+                            ggstatsplot.layer = TRUE,
+                            package = "RColorBrewer",
+                            palette = "Dark2",
+                            direction = 1,
+                            ggplot.component = NULL,
+                            ...) {
+  ellipsis::check_dots_used()
+
+  # if no. of factor levels is greater than the default palette color count
+  palette_message(
+    package = package,
+    palette = palette,
+    min_length = length(unique(levels(x)))[[1]]
+  )
+
+  # modifying the plot
+  plot <- plot +
+    ggplot2::labs(
+      x = xlab,
+      y = ylab,
+      title = title,
+      subtitle = subtitle,
+      caption = caption,
+      color = xlab
+    ) +
+    ggstatsplot::theme_ggstatsplot(
+      ggtheme = ggtheme,
+      ggstatsplot.layer = ggstatsplot.layer
+    ) +
+    ggplot2::theme(legend.position = "none") +
+    paletteer::scale_color_paletteer_d(
+      package = !!package,
+      palette = !!palette,
+      direction = direction
+    ) +
+    paletteer::scale_fill_paletteer_d(
+      package = !!package,
+      palette = !!palette,
+      direction = direction
+    )
+
+  # ---------------- adding ggplot component ---------------------------------
+
+  # if any additional modification needs to be made to the plot
+  # this is primarily useful for grouped_ variant of this function
+  plot <- plot + ggplot.component
+
+  # return the changed plot
+  return(plot)
 }

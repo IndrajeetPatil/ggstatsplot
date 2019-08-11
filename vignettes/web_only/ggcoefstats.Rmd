@@ -75,10 +75,10 @@ Most of the regression models that are supported in the `broom` and
 `epi.2by2`, `ergm`, `felm`, `fitdistr`, `glmerMod`, `glmmTMB`, `gls`, `gam`,
 `Gam`, `gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmmTMB`, `glmRob`,
 `glmrob`, `gmm`, `ivreg`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`, `lmRob`,
-`lmrob`, `mcmc`, `MCMCglmm`, `mediate`, `mjoint`, `mle2`, `mlm`, `multinom`,
-`negbin`, `nlmerMod`, `nlrq`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`,
-`rjags`, `rlm`, `rlmerMod`, `rq`, `speedglm`, `speedlm`, `stanreg`, `survreg`,
-`svyglm`, `svyolr`, `svyglm`, etc.
+`lmrob`, `mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`, `mediate`, `mjoint`, `mle2`,
+`mlm`, `multinom`, `negbin`, `nlmerMod`, `nlrq`, `nls`, `orcutt`, `plm`, `polr`,
+`ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `speedglm`, `speedlm`, `stanreg`,
+`survreg`, `svyglm`, `svyolr`, `svyglm`, etc.
 
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
@@ -812,7 +812,7 @@ different types of harm)? For this, we can use ordinal mixed-effects regression
 model (with random effects for type of harm) to see how intent and outcome
 contribute towards variation in moral judgment ratings-
 
-```{r clmm1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6, eval = FALSE}
+```{r clmm1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
 # for reproducibility
 set.seed(123)
 
@@ -846,7 +846,7 @@ with these four types of (minor) harms.
 Note that, by default, `beta` parameters are shown for `clm` and `clmm` models,
 but you can also plot either just `alpha` or `both` using `ggcoefstats`.
 
-```{r clmm2, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6, eval = FALSE}
+```{r clmm2, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
 # for reproducibility
 set.seed(123)
 
@@ -1069,7 +1069,7 @@ ggstatsplot::combine_plots(
   ),
   # arguments relevant for `combine_plots` function
   labels = c("(a)", "(b)"),
-  title.text = "Robust variants of `lmRob` and `glmRob` (\nfrom`robust` package)",
+  title.text = "Robust variants of `lmRob` and `glmRob` \n(from`robust` package)",
   nrow = 2
 )
 ```
@@ -1079,7 +1079,7 @@ ggstatsplot::combine_plots(
 Another alternative is to use robust models, as implemented in the `robustbase`
 package.
 
-```{r robustbase, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 6, eval = FALSE}
+```{r robustbase, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 6}
 # setup
 set.seed(123)
 library(robustbase)
@@ -1110,7 +1110,7 @@ ggstatsplot::combine_plots(
   ),
   # arguments relevant for `combine_plots` function
   labels = c("(i)", "(ii)"),
-  title.text = "Robust variants of `lmRob` and `glmRob` (\nfrom`robustbase` package)",
+  title.text = "Robust variants of `lmRob` and `glmRob` \n(from`robustbase` package)",
   nrow = 2
 )
 ```
@@ -1161,14 +1161,61 @@ library(plm)
 data("Produc", package = "plm")
 
 # model
-plm.mod <- plm(log(gsp) ~ log(pcap) + log(pc) + log(emp) + unemp,
-  data = Produc, index = c("state", "year")
+plm.mod <- plm::plm(
+  formula = log(gsp) ~ log(pcap) + log(pc) + log(emp) + unemp,
+  data = Produc,
+  index = c("state", "year")
 )
 
 # plot
 ggstatsplot::ggcoefstats(
   x = plm.mod,
   title = "linear models for panel data"
+)
+```
+
+## conditional logit models (`mclogit`)
+
+```{r mclogit, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+# setup
+set.seed(123)
+library(mclogit)
+data(Transport)
+
+# model
+mod <- mclogit::mclogit(
+  formula = cbind(resp, suburb) ~ distance + cost,
+  data = Transport
+)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
+  conf.int = FALSE,
+  title = "Conditional Logit Models"
+)
+```
+
+## mixed conditional logit models (`mmclogit`)
+
+```{r mmclogit, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+# setup
+set.seed(123)
+library(mclogit)
+data(electors)
+
+# model
+mod <- mclogit::mclogit(
+  formula = cbind(Freq, interaction(time, class)) ~ econ.left / class + welfare / class + auth / class,
+  random = ~ 1 | party.time,
+  data = within(electors, party.time <- interaction(party, time))
+)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
+  conf.int = FALSE,
+  title = "Mixed Conditional Logit Models"
 )
 ```
 
@@ -1219,6 +1266,7 @@ ggstatsplot::ggcoefstats(
   title = "autoregressive integrated moving average"
 )
 ```
+
 ## high performance linear model (`speedlm`/`speedglm`)
 
 Example of high performance linear model-
@@ -1423,8 +1471,8 @@ ggstatsplot::ggcoefstats(
 
 ## generalized additive models with integrated smoothness estimation (`gam`)
 
-These model outputs contains both parametric and smooth terms. `ggcoefstats`
-only displays parametric terms.
+**Important**: These model outputs contains both parametric and smooth terms.
+`ggcoefstats` only displays the parametric terms.
 
 ```{r gam_mgcv, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
 # setup
@@ -1768,7 +1816,7 @@ ggstatsplot::ggcoefstats(
 
 ## exponential-family random graph models (`ergm`)
 
-```{r ergm, eval = FALSE, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+```{r ergm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
 # load the Florentine marriage network data
 set.seed(123)
 suppressPackageStartupMessages(library(ergm))
@@ -2135,6 +2183,55 @@ ggstatsplot::ggcoefstats(
   x = jagsfit,
   title = "Markov Chain Monte Carlo with\nJust Another Gibbs Sampler",
   point.color = "darkgreen"
+)
+```
+
+## regression models with `list` outputs
+
+Note that a number of regression models will return an object of class `list`,
+in which case this function will fail. But often you can extract the object of
+interest from this list and use it to plot the regression coefficients.
+
+```{r list_gamm4, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 10}
+# setup
+library(gamm4)
+set.seed(123)
+
+# data
+dat <- gamSim(1, n = 400, scale = 2)
+
+# now add 20 level random effect `fac'...
+dat$fac <- fac <- as.factor(sample(1:20, 400, replace = TRUE))
+dat$y <- dat$y + model.matrix(~ fac - 1) %*% rnorm(20) * .5
+
+# model object
+br <- gamm4::gamm4(
+  formula = y ~ s(x0) + x1 + s(x2),
+  data = dat,
+  random = ~ (1 | fac)
+)
+
+# looking at the classes of the objects contained in the list
+purrr::map(br, class)
+
+# plotting
+ggstatsplot::combine_plots(
+  # first object plot (only parametric terms are shown)
+  ggstatsplot::ggcoefstats(
+    x = br$gam,
+    exclude.intercept = FALSE,
+    title = "generalized additive model (parametric terms)",
+    k = 3
+  ),
+  # second object plot
+  ggstatsplot::ggcoefstats(
+    x = br$mer,
+    exclude.intercept = FALSE,
+    title = "linear mixed-effects model",
+    k = 3
+  ),
+  labels = c("(a)", "(b)"),
+  nrow = 1
 )
 ```
 

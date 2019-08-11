@@ -267,32 +267,3 @@ effsize_ci_message <- function(nboot = 100, conf.level = 0.95) {
   sep = ""
   )
 }
-
-
-#' @title Message about results from a single-sample proportion test.
-#' @name proptest_message
-#' @author Indrajeet Patil
-#'
-#' @param main,condition Character specifying names of variables used for
-#'   contingency table analyses.
-#'
-#' @examples
-#' \donttest{
-#' ggstatsplot:::proptest_message(main = "am", condition = "cyl")
-#' }
-#'
-#' @keywords internal
-
-# function body
-proptest_message <- function(main, condition) {
-  # tell the user what these results are
-  message(cat(
-    crayon::green("Note: "),
-    crayon::blue("Results from one-sample proportion tests for each level of the variable\n"),
-    crayon::yellow(condition),
-    crayon::blue(" testing for equal proportions of the variable "),
-    crayon::yellow(main),
-    crayon::blue(".\n"),
-    sep = ""
-  ))
-}

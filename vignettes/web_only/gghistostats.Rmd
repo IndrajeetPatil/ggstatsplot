@@ -120,10 +120,7 @@ that this sample is different.
 
 ## Grouped analysis with `grouped_gghistostats`
 
-What if we want to do the same analysis separately for each gender? In
-that case, we will have to either write a `for` loop or use `purrr`, none of
-which seem like an exciting prospect.
-
+What if we want to do the same analysis separately for each gender? 
 `ggstatsplot` provides a special helper function for such instances:
 `grouped_gghistostats`. This is merely a wrapper function around
 `ggstatsplot::combine_plots`. It applies `gghistostats` across all **levels** of

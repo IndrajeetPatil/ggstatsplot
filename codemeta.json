@@ -192,18 +192,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "robust",
-      "name": "robust",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=robust"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "spelling",
       "name": "spelling",
       "provider": {
@@ -393,7 +381,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggplot2",
       "name": "ggplot2",
-      "version": ">= 3.2.0",
+      "version": ">= 3.2.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -419,7 +407,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggsignif",
       "name": "ggsignif",
-      "version": ">= 0.5.0",
+      "version": ">= 0.6.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -450,7 +438,7 @@
       "@type": "SoftwareApplication",
       "identifier": "groupedstats",
       "name": "groupedstats",
-      "version": ">= 0.0.7",
+      "version": ">= 0.0.8",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",

@@ -80,18 +80,29 @@ testthat::test_that(
     # data for geom_signif layer
     data_signif <- tibble::as_tibble(pb$data[[7]])
 
-
+    # tests
     testthat::expect_equal(length(pb$data), 7L)
     testthat::expect_identical(
       as.character(unique(data_signif$annotation)),
-      c("p = 0.079", "p = 0.139", "p = 0.825")
+      c(
+        "list(~italic(p)== 0.079 )",
+        "list(~italic(p)== 0.139 )",
+        "list(~italic(p)== 0.825 )"
+      )
     )
     testthat::expect_equal(data_dims, c(3L, 9L))
 
     # checking comparison groups and labels
     testthat::expect_identical(dat$group1, c("PG-13", "PG-13", "R"))
     testthat::expect_identical(dat$group2, c("R", "PG", "PG"))
-    testthat::expect_identical(dat$p.value.label, c("p = 0.079", "p = 0.139", "p = 0.825"))
+    testthat::expect_identical(
+      dat$p.value.label,
+      c(
+        "list(~italic(p)== 0.079 )",
+        "list(~italic(p)== 0.139 )",
+        "list(~italic(p)== 0.825 )"
+      )
+    )
     testthat::expect_identical(
       p$labels$caption,
       ggplot2::expr(atop(
@@ -125,10 +136,7 @@ testthat::test_that(
       tolerance = 0.01
     )
     testthat::expect_equal(ggsignif_stat$comparisons[[2]], c("PG-13", "PG"))
-    testthat::expect_equal(
-      ggsignif_stat$annotations,
-      c("p = 0.079", "p = 0.139", "p = 0.825")
-    )
+    testthat::expect_equal(ggsignif_stat$annotations, dat$p.value.label)
   }
 )
 
@@ -152,6 +160,7 @@ testthat::test_that(
       messages = FALSE,
       bf.message = FALSE,
       pairwise.comparisons = TRUE,
+      pairwise.annotation = "xyz",
       p.adjust.method = "fdr",
       pairwise.display = "all",
       k = 3,
@@ -179,7 +188,11 @@ testthat::test_that(
     testthat::expect_identical(dat$significance, c("ns", "***", "***"))
     testthat::expect_identical(
       dat$p.value.label,
-      c("p = 0.687", "p = 0.001", "p <= 0.001")
+      c(
+        "list(~italic(p)== 0.687 )",
+        "list(~italic(p)== 0.001 )",
+        "list(~italic(p)<= 0.001 )"
+      )
     )
     testthat::expect_identical(
       p$labels$caption,
@@ -284,17 +297,15 @@ testthat::test_that(
     )
 
     # checking ggsignif layers
-    testthat::expect_equal(ggsignif_stat$y_position,
+    testthat::expect_equal(
+      ggsignif_stat$y_position,
       c(35.875, 37.825, 39.775),
       tolerance = 0.001
     )
     testthat::expect_equal(ggsignif_stat$comparisons[[2]], c("f", "r"))
     testthat::expect_equal(
       ggsignif_stat$annotations,
-      c(
-        "p <= 0.001",
-        "p <= 0.001"
-      )
+      c("list(~italic(p)<= 0.001 )", "list(~italic(p)<= 0.001 )")
     )
   }
 )
@@ -372,9 +383,9 @@ testthat::test_that(
     testthat::expect_equal(
       ggsignif_stat$annotations,
       c(
-        "p = 0.032",
-        "p <= 0.001",
-        "p = 0.015"
+        "list(~italic(p)== 0.032 )",
+        "list(~italic(p)<= 0.001 )",
+        "list(~italic(p)== 0.015 )"
       )
     )
 

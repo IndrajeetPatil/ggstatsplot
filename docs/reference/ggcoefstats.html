@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Model coefficients for fitted models with the model summary as a
-caption. — ggcoefstats • ggstatsplot</title>
+<title>Dot-and-whisker plots for regression analyses — ggcoefstats • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -41,11 +40,9 @@ caption. — ggcoefstats • ggstatsplot</title>
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Model coefficients for fitted models with the model summary as a
-caption. — ggcoefstats" />
+<meta property="og:title" content="Dot-and-whisker plots for regression analyses — ggcoefstats" />
 
-<meta property="og:description" content="Model coefficients for fitted models with the model summary as a
-caption." />
+<meta property="og:description" content="Dot-and-whisker plots for regression analyses" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -124,6 +121,9 @@ caption." />
       <a href="../articles/web_only/ggcorrmat.html">ggcorrmat</a>
     </li>
     <li>
+      <a href="../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
+    </li>
+    <li>
       <a href="../articles/web_only/gghistostats.html">gghistostats</a>
     </li>
     <li>
@@ -177,16 +177,14 @@ caption." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Model coefficients for fitted models with the model summary as a
-caption.</h1>
+    <h1>Dot-and-whisker plots for regression analyses</h1>
     <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/ggcoefstats.R'><code>R/ggcoefstats.R</code></a></small>
     <div class="hidden name"><code>ggcoefstats.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Model coefficients for fitted models with the model summary as a
-caption.</p>
+    <p>Dot-and-whisker plots for regression analyses</p>
     
     </div>
 
@@ -255,7 +253,7 @@ intervals (for more, see <code><a href='https://rdrr.io/pkg/lme4/man/confint.mer
 <code><a href='https://rdrr.io/pkg/broom.mixed/man/brms_tidiers.html'>?broom.mixed::tidy.brmsfit</a></code>). This argument has different defaults
 depending on the model object. For the <code>merMod</code> class model objects
 (<code>lmer</code>, <code>glmer</code>, <code>nlmer</code>, etc.), the default is <code>"Wald"</code> (other options
-are: <code>"profile"</code>, <code>"boot"</code>). For MCMC or brms fit model objects (Stan,
+are: <code>"profile"</code>, <code>"boot"</code>). For <code>MCMC</code> or <code>brms</code> fit model objects (Stan,
 JAGS, etc.), the default is <code>"quantile"</code>, while the only other options is
 <code>"HPDinterval"</code>.</p></td>
     </tr>
@@ -313,8 +311,8 @@ based on MCMC/Stan samples (<code>summarize = "stan"</code>).</p></td>
     <tr>
       <th>p.kr</th>
       <td><p>Logical, if <code>TRUE</code>, the computation of <em>p</em>-values for <code>lmer</code> is
-based on conditional F-tests with Kenward-Roger approximation for the df.
-For details, see <code><a href='https://rdrr.io/pkg/sjstats/man/p_value.html'>?sjstats::p_value</a></code>.</p></td>
+based on conditional <em>F</em>-tests with Kenward-Roger approximation for the
+<code>df</code>. For details, see <code><a href='https://rdrr.io/pkg/sjstats/man/p_value.html'>?sjstats::p_value</a></code>.</p></td>
     </tr>
     <tr>
       <th>p.adjust.method</th>
@@ -475,7 +473,7 @@ coefficient value.</p></td>
     </tr>
     <tr>
       <th>xlab</th>
-      <td><p>Label for <code>x</code> axis variable (Default: <code>"estimate"</code>).</p></td>
+      <td><p>Label for <code>x</code> axis variable (Default: <code>"regression coefficient"</code>).</p></td>
     </tr>
     <tr>
       <th>ylab</th>
@@ -573,9 +571,9 @@ nudge the starting position of each text label. Defaults to <code>0</code>.</p><
     </tr>
     <tr>
       <th>label.xlim, label.ylim</th>
-      <td><p>Limits for the x and y axes. Text labels will be
-constrained to these limits. By default, text labels are constrained to the
-entire plot area. Defaults to <code><a href='https://rdrr.io/r/base/c.html'>c(NA, NA)</a></code>.</p></td>
+      <td><p>Limits for the <code>x</code> and <code>y</code> axes. Text labels
+will be constrained to these limits. By default, text labels are
+constrained to the entire plot area. Defaults to <code><a href='https://rdrr.io/r/base/c.html'>c(NA, NA)</a></code>.</p></td>
     </tr>
     <tr>
       <th>label.direction</th>
@@ -622,7 +620,8 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Plot with the regression coefficients' point estimates as dots with
-confidence interval whiskers.</p>
+confidence interval whiskers and other statistical details included as
+labels.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -802,7 +801,7 @@ confidence interval whiskers.</p>
     </ul>
 
     <h2>Author</h2>
-    <p>Indrajeet Patil</p>
+    <p><a href='https://github.com/IndrajeetPatil'>Indrajeet Patil</a></p>
   </div>
 </div>
 

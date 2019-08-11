@@ -194,7 +194,9 @@ ggstatsplot::ggcorrmat(
 )
 ```
 
-As seen here, and unsurprisingly, the strongest predictor of the diamond price is its carat value, which a unit of mass equal to 200 mg. In other words, the heavier the diamond, the more expensive it is going to be.
+As seen here, and unsurprisingly, the strongest predictor of the diamond price
+is its carat value, which a unit of mass equal to 200 mg. In other words, the
+heavier the diamond, the more expensive it is going to be.
 
 ## Correlation statistics matrix with `ggcorrmat`
 
@@ -274,9 +276,7 @@ ggstatsplot::ggcorrmat(
 ## Grouped analysis with `grouped_ggcorrmat`
 
 What if we want to do the same analysis separately for each quality of the
-diamond `cut` (Fair, Good, Very Good, Premium, Ideal)? In that case, we will
-have to either write a `for` loop or use `purrr`, none of which seem like an
-exciting prospect.
+diamond `cut` (Fair, Good, Very Good, Premium, Ideal)? 
 
 `ggstatsplot` provides a special helper function for such instances:
 `grouped_ggcorrmat`. This is merely a wrapper function around

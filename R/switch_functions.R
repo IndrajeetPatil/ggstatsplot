@@ -69,28 +69,6 @@ ggbetweenstats_switch <- function(type, test, ...) {
 
 ggwithinstats_switch <- ggbetweenstats_switch
 
-#' @title Preparing text to describe which *p*-value adjustment method was used.
-#' @name p.adjust.method.description
-#' @return Standardized text description for what method was used.
-#'
-#' @inheritParams pairwise_p
-#'
-#' @keywords internal
-
-p.adjust.method.description <- function(p.adjust.method) {
-  base::switch(
-    EXPR = p.adjust.method,
-    none = "None",
-    bonferroni = "Bonferroni",
-    holm = "Holm",
-    hochberg = "Hochberg",
-    hommel = "Hommel",
-    BH = "Benjamini & Hochberg",
-    fdr = "Benjamini & Hochberg",
-    BY = "Benjamini & Yekutieli",
-    "Holm"
-  )
-}
 
 #' @title Switch function to determine which effect size is to computed.
 #' @name effsize_type_switch

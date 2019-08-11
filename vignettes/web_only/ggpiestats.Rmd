@@ -174,15 +174,14 @@ equivalent to a goodness of fit test for each gender.
 
 What if we want to do the same analysis of gender but also factor in the
 passenger's age (Age)? We have information that classifies the passengers as
-Child or Adult, perhaps that makes a difference to their survival rate? We could
-write a `for` loop or use `purrr`, but `ggstatsplot` provides a special helper
-function for such instances: `grouped_ggpiestats`.
+Child or Adult, perhaps that makes a difference to their survival rate? 
 
-It is a convenient wrapper function around `ggstatsplot::combine_plots`. It
-applies `ggpiestats` across all **levels** of a specified **grouping variable**
-and then combines the list of individual plots into a single plot. Note that the
-grouping variable can be anything: conditions in a given study, groups in a
-study sample, different studies, etc.
+`ggstatsplot` provides a special helper function for such instances:
+`grouped_ggpiestats`. It is a convenient wrapper function around
+`ggstatsplot::combine_plots`. It applies `ggpiestats` across all **levels** of a
+specified **grouping variable** and then combines the list of individual plots
+into a single plot. Note that the grouping variable can be anything: conditions
+in a given study, groups in a study sample, different studies, etc.
 
 ```{r ggpiestats4, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 8}
 # since effect size confidence intervals are computed using bootstrapping, let's

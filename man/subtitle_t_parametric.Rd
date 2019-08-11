@@ -2,8 +2,8 @@
 % Please edit documentation in R/helpers_ggbetween_t_subtitles.R
 \name{subtitle_t_parametric}
 \alias{subtitle_t_parametric}
-\title{Making text subtitle for the t-test (between-/within-subjects
-designs).}
+\title{Making expression containing results for a \emph{t}-test
+(between-/within-subjects designs).}
 \usage{
 subtitle_t_parametric(data, x, y, paired = FALSE, effsize.type = "g",
   effsize.noncentral = TRUE, conf.level = 0.95, var.equal = FALSE,
@@ -53,8 +53,8 @@ added as a prefix in the subtitle. The default is \code{NULL}. An example of a
 \item{...}{Additional arguments.}
 }
 \description{
-Making text subtitle for the t-test (between-/within-subjects
-designs).
+Making expression containing results for a \emph{t}-test
+(between-/within-subjects designs).
 }
 \details{
 Cohen's \emph{d} is calculated in the traditional fashion as the

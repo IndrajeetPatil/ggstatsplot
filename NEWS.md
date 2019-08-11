@@ -15,8 +15,12 @@ MAJOR CHANGES
     pose any problems for scripts that used `main` and `condition` arguments in
     these functions.
   - Most subtitle expressions now report details about the design. In case of
-    between-subjects design, this will be $n_{obs}$, while in case of repeated
-    measures design, this will be $n_{pairs}$.
+    between-subjects design, this will be $n\_{obs}$, while in case of repeated
+    measures design, this will be $n\_{pairs}$.
+  - `pairwise.annotation` now defaults to `"p.value"` rather than `"asterisk"`
+    for `ggbetweenstats` and `ggwithinstats` (and their `grouped_` variants)
+    functions. This was done because the asterisk conventions are not consistent
+    across various scientific disciplines.
 
 MINOR CHANGES
 
@@ -24,6 +28,10 @@ MINOR CHANGES
     present in the data.
   - `ggstatsplot` now uses `rcompanion` to compute Spearman's *rho* and
     Kendall's *W*. Therefore, `DescTools` is removed from dependencies.
+  - `ggcoefstats` supports following objects: `mclogit`, `mmclogit`.
+  - `ggcoefstats` now respects `conf.int`. It internally always defaulted to
+    `conf.int = TRUE` in `broom::tidy` irrespective of what was specified by the
+    user.
 
 # ggstatsplot 0.0.12
 
