@@ -31,7 +31,7 @@ testthat::test_that(
     testthat::expect_equal(
       df$label,
       c(
-        "list(~italic(beta)==0.09, ~italic(z)==0.38, ~italic(p)==0.706)",
+        "list(~italic(beta)==0.09, ~italic(z)==0.38, ~italic(p)== 0.706)",
         "list(~italic(beta)==1.14, ~italic(z)==4.64, ~italic(p)<= 0.001)",
         "list(~italic(beta)==1.14, ~italic(z)==4.85, ~italic(p)<= 0.001)",
         "list(~italic(beta)==-1.74, ~italic(z)==-6.63, ~italic(p)<= 0.001)"

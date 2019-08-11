@@ -617,6 +617,7 @@ plot_list <- purrr::pmap(
     ),
     ggstatsplot.layer = list(TRUE, TRUE, FALSE, FALSE),
     sample.size.label = list(TRUE, FALSE, TRUE, FALSE),
+    facet.proptest = list(TRUE, FALSE, TRUE, FALSE),
     messages = FALSE
   ),
   .f = ggstatsplot::ggpiestats
@@ -626,7 +627,6 @@ plot_list <- purrr::pmap(
 ggstatsplot::combine_plots(
   plotlist = plot_list,
   title.text = "Survival in Titanic disaster by gender for all passenger classes",
-  caption.text = "Asterisks denote results from proportion tests: \n***: p < 0.001, ns: non-significant",
   ncol = 1,
   labels = c("(a)", "(b)", "(c)", "(d)")
 )
@@ -634,7 +634,7 @@ ggstatsplot::combine_plots(
 
 # `ggbarstats`
 
-```{r purrr_ggbarstats, warning = FALSE, message = FALSE, fig.height = 20, fig.width = 9}
+```{r purrr_ggbarstats, warning = FALSE, message = FALSE, fig.height = 20, fig.width = 7}
 # let's split the dataframe and create a list by passenger class
 class_list <- ggstatsplot::Titanic_full %>%
   split(x = ., f = .$Class, drop = TRUE)
@@ -679,6 +679,7 @@ plot_list <- purrr::pmap(
     ),
     ggstatsplot.layer = list(TRUE, TRUE, FALSE, FALSE),
     sample.size.label = list(TRUE, FALSE, TRUE, FALSE),
+    bar.proptest = list(TRUE, FALSE, TRUE, FALSE),
     messages = FALSE
   ),
   .f = ggstatsplot::ggbarstats

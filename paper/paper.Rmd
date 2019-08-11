@@ -44,7 +44,9 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.pos = 'H',
   fig.path = "./figures/paper-",
-  dev = "png"
+  dev = "png",
+  message = FALSE,
+  warning = FALSE
 )
 options(device = function(file, width, height) {
   png(tempfile(), width = width, height = height)

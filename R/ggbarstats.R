@@ -46,7 +46,7 @@
 #'
 #' # simple function call with the defaults (with condition)
 #' ggstatsplot::ggbarstats(
-#'   data = datasets::mtcars,
+#'   data = mtcars,
 #'   main = vs,
 #'   condition = cyl,
 #'   nboot = 10,
@@ -176,7 +176,12 @@ ggbarstats <- function(data,
     )
 
   # dataframe containing all details needed for sample size and prop test
-  df_labels <- df_facet_label(data = data, x = {{ main }}, y = {{ condition }})
+  df_labels <- df_facet_label(
+    data = data,
+    x = {{ main }},
+    y = {{ condition }},
+    k = k
+  )
 
   # ====================== preparing names for legend  ======================
 
@@ -292,7 +297,7 @@ ggbarstats <- function(data,
     # adding significance labels to bars for proportion tests
     if (isTRUE(bar.proptest)) {
       # display grouped proportion test results
-      if (isTRUE(messages)) print(df_labels)
+      if (isTRUE(messages)) print(dplyr::select(df_labels, -label))
 
       # modify plot
       p <- p +

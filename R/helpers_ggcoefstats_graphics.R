@@ -275,24 +275,7 @@ tfz_labeller <- function(tidy_df,
       .funs = ~ specify_decimal_p(x = ., k = k)
     ) %>%
     signif_column(data = ., p = p.value) %>%
-    purrrlyr::by_row(
-      .d = .,
-      ..f = ~ specify_decimal_p(
-        x = .$p.value,
-        k = k,
-        p.value = TRUE
-      ),
-      .collate = "rows",
-      .to = "p.value.formatted",
-      .labels = TRUE
-    ) %>%
-    dplyr::mutate(
-      .data = .,
-      p.value.formatted2 = dplyr::case_when(
-        p.value.formatted == "< 0.001" ~ "<= 0.001",
-        TRUE ~ paste("==", p.value.formatted, sep = "")
-      )
-    )
+    p_value_formatter(df = ., k = k)
 
   #--------------------------- t-statistic ------------------------------------
 
@@ -325,7 +308,7 @@ tfz_labeller <- function(tidy_df,
             ")==",
             .$statistic,
             ", ~italic(p)",
-            .$p.value.formatted2,
+            .$p.value.formatted,
             ")",
             sep = ""
           ),
@@ -345,7 +328,7 @@ tfz_labeller <- function(tidy_df,
             "==",
             .$statistic,
             ", ~italic(p)",
-            .$p.value.formatted2,
+            .$p.value.formatted,
             ")",
             sep = ""
           ),
@@ -369,7 +352,7 @@ tfz_labeller <- function(tidy_df,
           ", ~italic(z)==",
           .$statistic,
           ", ~italic(p)",
-          .$p.value.formatted2,
+          .$p.value.formatted,
           ")",
           sep = ""
         ),
@@ -413,7 +396,7 @@ tfz_labeller <- function(tidy_df,
           ")==",
           .$statistic,
           ", ~italic(p)",
-          .$p.value.formatted2,
+          .$p.value.formatted,
           ", ~", .$effsize.text, "==",
           specify_decimal_p(x = .$estimate, k = k),
           ")",
