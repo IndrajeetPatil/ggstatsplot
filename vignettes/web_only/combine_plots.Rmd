@@ -61,9 +61,9 @@ set.seed(123)
 # creating a list column with `ggstatsplot` plots
 plots <- datasets::iris %>%
   dplyr::mutate(.data = ., Species2 = Species) %>% # just creates a copy of this variable
-  dplyr::group_by(.data = ., Species) %>%                
-  tidyr::nest(data = .) %>%                        # a nested dataframe with list column called `data`
-  dplyr::mutate(                                   # creating a new list column of ggstatsplot outputs
+  dplyr::group_by(.data = ., Species) %>%
+  tidyr::nest(.) %>% # a nested dataframe with list column called `data`
+  dplyr::mutate( # creating a new list column of ggstatsplot outputs
     .data = .,
     plot = data %>%
       purrr::map(
@@ -76,7 +76,7 @@ plots <- datasets::iris %>%
           yfill = "#009E73",
           ggtheme = ggthemes::theme_fivethirtyeight(),
           ggstatsplot.layer = FALSE,
-          messages = FALSE,                        # turns off warnings and notes messages   
+          messages = FALSE, # turns off warnings and notes messages
           marginal.type = "boxplot",
           title =
             glue::glue("Species: {.$Species2} (n = {length(.$Sepal.Length)})")
@@ -90,7 +90,7 @@ plots
 
 # creating a grid with cowplot
 ggstatsplot::combine_plots(
-  plotlist = plots$plot,                           # list column containing all ggstatsplot objects
+  plotlist = plots$plot, # list column containing all ggstatsplot objects
   nrow = 3,
   ncol = 1,
   title.text = "Relationship between sepal length and width for each Iris species",
@@ -134,10 +134,12 @@ dplyr::glimpse(x = gapminder::gapminder)
 
 # creating a list of plots
 plots <- plyr::dlply(
-  .data = dplyr::filter(gapminder::gapminder, 
-                        year == 2007, continent != "Oceania"),
+  .data = dplyr::filter(
+    gapminder::gapminder,
+    year == 2007, continent != "Oceania"
+  ),
   .variables = .(continent),
-  .fun = function(data)
+  .fun = function(data) {
     ggstatsplot::ggscatterstats(
       data = data,
       x = gdpPercap,
@@ -149,7 +151,8 @@ plots <- plyr::dlply(
       title = glue::glue("Continent: {data$continent}"),
       marginal = FALSE
     ) +
-    ggplot2::scale_x_continuous(labels = scales::comma)
+      ggplot2::scale_x_continuous(labels = scales::comma)
+  }
 )
 
 # combining individual plots
@@ -199,15 +202,15 @@ ggstatsplot::combine_plots(
         "2nd degree (b2)",
         "3rd degree (b3)"
       )
-    ) + 
+    ) +
     ggplot2::labs(y = "term (polynomial regression)"),
   # adding additional text element to the plot since title, subtitle, caption are all already occupied
   sub.text = expression(
     paste(
       "linear model: ", bolditalic(y),
       " ~ ",
-      italic(c) + italic(b)[1] * bolditalic(x) + italic(b)[2] * bolditalic(x) ^
-        2 + italic(b)[3] * bolditalic(x) ^ 3,
+      italic(c) + italic(b)[1] * bolditalic(x) + italic(b)[2] * bolditalic(x)^
+        2 + italic(b)[3] * bolditalic(x)^3,
       sep = ""
     )
   ),

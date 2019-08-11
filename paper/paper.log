@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.8.9)  10 AUG 2019 21:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.8.9)  11 AUG 2019 11:14
 entering extended mode
 **./paper.tex
 (paper.tex
@@ -816,66 +816,66 @@ l.515 \end{itemize}
 
 Package xcolor Warning: Incompatible color definition on input line 517.
 
-LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 535
-.
-("C:\Program Files\MiKTeX 2.9\tex/latex/lm\ts1lmtt.fd"
-File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
 
-Package xcolor Warning: Incompatible color definition on input line 538.
+Package xcolor Warning: Incompatible color definition on input line 536.
 
 
-Package xcolor Warning: Incompatible color definition on input line 538.
+Package xcolor Warning: Incompatible color definition on input line 536.
 
 <./figures/paper-fig2-1.png, id=226, 722.7pt x 433.62pt>
 File: ./figures/paper-fig2-1.png Graphic file (type png)
 <use ./figures/paper-fig2-1.png>
-Package pdftex.def Info: ./figures/paper-fig2-1.png  used on input line 541.
+Package pdftex.def Info: ./figures/paper-fig2-1.png  used on input line 539.
 (pdftex.def)             Requested size: 469.76045pt x 281.85628pt.
 [5pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) 
 has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.562 \end{itemize}
+l.560 \end{itemize}
                     <./figures/paper-fig2-1.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 564.
+Package xcolor Warning: Incompatible color definition on input line 562.
+
+LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 577
+.
+("C:\Program Files\MiKTeX 2.9\tex/latex/lm\ts1lmtt.fd"
+File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+
+Package xcolor Warning: Incompatible color definition on input line 597.
 
 
-Package xcolor Warning: Incompatible color definition on input line 599.
+Package xcolor Warning: Incompatible color definition on input line 597.
 
-
-Package xcolor Warning: Incompatible color definition on input line 599.
-
-<./figures/paper-fig3-1.png, id=236, 722.7pt x 867.24pt>
+<./figures/paper-fig3-1.png, id=235, 722.7pt x 867.24pt>
 File: ./figures/paper-fig3-1.png Graphic file (type png)
 <use ./figures/paper-fig3-1.png>
-Package pdftex.def Info: ./figures/paper-fig3-1.png  used on input line 602.
+Package pdftex.def Info: ./figures/paper-fig3-1.png  used on input line 600.
 (pdftex.def)             Requested size: 469.76045pt x 563.71257pt.
 [6] [7pdfTeX warning (ext4): destination with the same identifier (name{figure.
 3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.612 
+l.610 
        <./figures/paper-fig3-1.png (PNG copy)>] [8]
 
-Package xcolor Warning: Incompatible color definition on input line 702.
+Package xcolor Warning: Incompatible color definition on input line 700.
 
 
-Package xcolor Warning: Incompatible color definition on input line 719.
+Package xcolor Warning: Incompatible color definition on input line 717.
 
 
-Package xcolor Warning: Incompatible color definition on input line 719.
+Package xcolor Warning: Incompatible color definition on input line 717.
 
-<./figures/paper-fig5-1.png, id=274, 578.16pt x 433.62pt>
+<./figures/paper-fig5-1.png, id=273, 578.16pt x 433.62pt>
 File: ./figures/paper-fig5-1.png Graphic file (type png)
 <use ./figures/paper-fig5-1.png>
-Package pdftex.def Info: ./figures/paper-fig5-1.png  used on input line 722.
+Package pdftex.def Info: ./figures/paper-fig5-1.png  used on input line 720.
 (pdftex.def)             Requested size: 469.75385pt x 352.31538pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 722--722
+Underfull \hbox (badness 10000) in paragraph at lines 720--720
 [][]
  []
 
@@ -884,556 +884,556 @@ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.734 \end{itemize}
+l.732 \end{itemize}
                     <./figures/paper-fig5-1.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 736.
+Package xcolor Warning: Incompatible color definition on input line 734.
 
 
-Package xcolor Warning: Incompatible color definition on input line 750.
+Package xcolor Warning: Incompatible color definition on input line 748.
 
 
-Package xcolor Warning: Incompatible color definition on input line 750.
+Package xcolor Warning: Incompatible color definition on input line 748.
 
-<./figures/paper-fig6-1.png, id=283, 361.35pt x 361.35pt>
+<./figures/paper-fig6-1.png, id=282, 361.35pt x 361.35pt>
 File: ./figures/paper-fig6-1.png Graphic file (type png)
 <use ./figures/paper-fig6-1.png>
-Package pdftex.def Info: ./figures/paper-fig6-1.png  used on input line 753.
+Package pdftex.def Info: ./figures/paper-fig6-1.png  used on input line 751.
 (pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
 [10pdfTeX warning (ext4): destination with the same identifier (name{figure.5})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.773   A
+l.771   A
          ll \texttt{ggstatsplot} functions remove \texttt{NA}s from variable...
  <./figures/paper-fig6-1.png (PNG copy)>]
 
-Package xcolor Warning: Incompatible color definition on input line 785.
+Package xcolor Warning: Incompatible color definition on input line 783.
 
 
-Package xcolor Warning: Incompatible color definition on input line 818.
+Package xcolor Warning: Incompatible color definition on input line 816.
 
 
-Package xcolor Warning: Incompatible color definition on input line 818.
+Package xcolor Warning: Incompatible color definition on input line 816.
 
-<./figures/paper-fig4-1.png, id=293, 722.7pt x 361.35pt>
+<./figures/paper-fig4-1.png, id=292, 722.7pt x 361.35pt>
 File: ./figures/paper-fig4-1.png Graphic file (type png)
 <use ./figures/paper-fig4-1.png>
-Package pdftex.def Info: ./figures/paper-fig4-1.png  used on input line 821.
+Package pdftex.def Info: ./figures/paper-fig4-1.png  used on input line 819.
 (pdftex.def)             Requested size: 469.76045pt x 234.88023pt.
 [11]
 <figures/stats_reporting_format.png, id=301, 871.75688pt x 183.68625pt>
 File: figures/stats_reporting_format.png Graphic file (type png)
 <use figures/stats_reporting_format.png>
 Package pdftex.def Info: figures/stats_reporting_format.png  used on input line
- 835.
+ 833.
 (pdftex.def)             Requested size: 469.75737pt x 98.98167pt.
 [12pdfTeX warning (ext4): destination with the same identifier (name{figure.7})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.859   W
+l.857   W
          ith the exception of \emph{p}-values, most statistics are rounded t...
 pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) ha
 s been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.859   W
+l.857   W
          ith the exception of \emph{p}-values, most statistics are rounded t...
  <./figures/stats_reporting_format.png> <./figures/paper-fig4-1.png (PNG copy)>
 ]
-Overfull \hbox (8.74693pt too wide) in paragraph at lines 880--881
+Overfull \hbox (8.74693pt too wide) in paragraph at lines 878--879
 \T1/lmr/m/n/10 (-20) available?|  
  []
 
 [13] [14]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1162.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1160.
 
-Package xcolor Warning: Incompatible color definition on input line 1168.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1186.
+Package xcolor Warning: Incompatible color definition on input line 1166.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1186.
+Package xcolor Warning: Incompatible color definition on input line 1184.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1184.
 
 <./figures/paper-ggbetweenstats1-1.png, id=338, 469.755pt x 325.215pt>
 File: ./figures/paper-ggbetweenstats1-1.png Graphic file (type png)
 <use ./figures/paper-ggbetweenstats1-1.png>
 Package pdftex.def Info: ./figures/paper-ggbetweenstats1-1.png  used on input l
-ine 1188.
+ine 1186.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [15 <./figures/paper-ggbetweenstats1-1.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 1198.
+Package xcolor Warning: Incompatible color definition on input line 1196.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1235.
+Package xcolor Warning: Incompatible color definition on input line 1233.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1235.
+Package xcolor Warning: Incompatible color definition on input line 1233.
 
 <./figures/paper-ggbetweenstats2-1.png, id=346, 469.755pt x 325.215pt>
 File: ./figures/paper-ggbetweenstats2-1.png Graphic file (type png)
 <use ./figures/paper-ggbetweenstats2-1.png>
 Package pdftex.def Info: ./figures/paper-ggbetweenstats2-1.png  used on input l
-ine 1237.
+ine 1235.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [16]
 
-Package xcolor Warning: Incompatible color definition on input line 1242.
+Package xcolor Warning: Incompatible color definition on input line 1240.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1273.
+Package xcolor Warning: Incompatible color definition on input line 1271.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1273.
+Package xcolor Warning: Incompatible color definition on input line 1271.
 
 
-Overfull \vbox (0.99692pt too high) detected at line 1273
+Overfull \vbox (0.99692pt too high) detected at line 1271
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 1273.
+Package xcolor Warning: Incompatible color definition on input line 1271.
 
 [17 <./figures/paper-ggbetweenstats2-1.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 1273.
+Package xcolor Warning: Incompatible color definition on input line 1271.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1273.
+Package xcolor Warning: Incompatible color definition on input line 1271.
 
 <./figures/paper-ggbetweenstats3-1.png, id=356, 867.24pt x 1011.78pt>
 File: ./figures/paper-ggbetweenstats3-1.png Graphic file (type png)
 <use ./figures/paper-ggbetweenstats3-1.png>
 Package pdftex.def Info: ./figures/paper-ggbetweenstats3-1.png  used on input l
-ine 1275.
+ine 1273.
 (pdftex.def)             Requested size: 469.75827pt x 548.0513pt.
 [18 <./figures/paper-ggbetweenstats3-1.png (PNG copy)>]
 
-Package xcolor Warning: Incompatible color definition on input line 1329.
+Package xcolor Warning: Incompatible color definition on input line 1327.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1352.
+Package xcolor Warning: Incompatible color definition on input line 1350.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1352.
+Package xcolor Warning: Incompatible color definition on input line 1350.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1352.
+Package xcolor Warning: Incompatible color definition on input line 1350.
 
 [19]
 
-Package xcolor Warning: Incompatible color definition on input line 1352.
+Package xcolor Warning: Incompatible color definition on input line 1350.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1352.
+Package xcolor Warning: Incompatible color definition on input line 1350.
 
 <./figures/paper-ggwithinstats1-1.png, id=373, 505.89pt x 361.35pt>
 File: ./figures/paper-ggwithinstats1-1.png Graphic file (type png)
 <use ./figures/paper-ggwithinstats1-1.png>
 Package pdftex.def Info: ./figures/paper-ggwithinstats1-1.png  used on input li
-ne 1354.
+ne 1352.
 (pdftex.def)             Requested size: 469.76265pt x 335.54477pt.
 
-Package xcolor Warning: Incompatible color definition on input line 1359.
+Package xcolor Warning: Incompatible color definition on input line 1357.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1383.
+Package xcolor Warning: Incompatible color definition on input line 1381.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1383.
+Package xcolor Warning: Incompatible color definition on input line 1381.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1383.
+Package xcolor Warning: Incompatible color definition on input line 1381.
 
 [20 <./figures/paper-ggwithinstats1-1.png (PNG copy)>]
 
-Package xcolor Warning: Incompatible color definition on input line 1383.
+Package xcolor Warning: Incompatible color definition on input line 1381.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1383.
+Package xcolor Warning: Incompatible color definition on input line 1381.
 
 <./figures/paper-ggwithinstats2-1.png, id=378, 867.24pt x 433.62pt>
 File: ./figures/paper-ggwithinstats2-1.png Graphic file (type png)
 <use ./figures/paper-ggwithinstats2-1.png>
 Package pdftex.def Info: ./figures/paper-ggwithinstats2-1.png  used on input li
-ne 1385.
+ne 1383.
 (pdftex.def)             Requested size: 469.75827pt x 234.87912pt.
 
-Overfull \hbox (5.80695pt too wide) in paragraph at lines 1484--1487
+Overfull \hbox (5.80695pt too wide) in paragraph at lines 1482--1485
 \T1/lmr/m/n/10 (-20) This func-tion cre-ates a scat-ter-plot with marginal dis-
 tri-bu-tions over-laid on the axes (from \T1/lmtt/m/n/10 ggExtra::ggMarginal\T1
 /lmr/m/n/10 (-20) )
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 1488.
+Package xcolor Warning: Incompatible color definition on input line 1486.
 
 [21 <./figures/paper-ggwithinstats2-1.png (PNG copy)>]
 
-Package xcolor Warning: Incompatible color definition on input line 1500.
+Package xcolor Warning: Incompatible color definition on input line 1498.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1500.
+Package xcolor Warning: Incompatible color definition on input line 1498.
 
 <./figures/paper-ggscatterstats1-1.png, id=390, 469.755pt x 325.215pt>
 File: ./figures/paper-ggscatterstats1-1.png Graphic file (type png)
 <use ./figures/paper-ggscatterstats1-1.png>
 Package pdftex.def Info: ./figures/paper-ggscatterstats1-1.png  used on input l
-ine 1502.
+ine 1500.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Package xcolor Warning: Incompatible color definition on input line 1522.
+Package xcolor Warning: Incompatible color definition on input line 1520.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1554.
+Package xcolor Warning: Incompatible color definition on input line 1552.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1554.
+Package xcolor Warning: Incompatible color definition on input line 1552.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1554.
+Package xcolor Warning: Incompatible color definition on input line 1552.
 
 [22 <./figures/paper-ggscatterstats1-1.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 1554.
+Package xcolor Warning: Incompatible color definition on input line 1552.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1554.
+Package xcolor Warning: Incompatible color definition on input line 1552.
 
 <./figures/paper-ggscatterstats2-1.png, id=396, 469.755pt x 325.215pt>
 File: ./figures/paper-ggscatterstats2-1.png Graphic file (type png)
 <use ./figures/paper-ggscatterstats2-1.png>
 Package pdftex.def Info: ./figures/paper-ggscatterstats2-1.png  used on input l
-ine 1556.
+ine 1554.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [23 <./figures/paper-ggscatterstats2-1.png (PNG copy)>]
 
-Package xcolor Warning: Incompatible color definition on input line 1565.
+Package xcolor Warning: Incompatible color definition on input line 1563.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1596.
+Package xcolor Warning: Incompatible color definition on input line 1594.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1596.
+Package xcolor Warning: Incompatible color definition on input line 1594.
 
 <./figures/paper-ggscatterstats3-1.png, id=401, 1011.78pt x 867.24pt>
 File: ./figures/paper-ggscatterstats3-1.png Graphic file (type png)
 <use ./figures/paper-ggscatterstats3-1.png>
 Package pdftex.def Info: ./figures/paper-ggscatterstats3-1.png  used on input l
-ine 1598.
+ine 1596.
 (pdftex.def)             Requested size: 469.76266pt x 402.65372pt.
 [24] [25 <./figures/paper-ggscatterstats3-1.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 1635.
+Package xcolor Warning: Incompatible color definition on input line 1633.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1648.
+Package xcolor Warning: Incompatible color definition on input line 1646.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1648.
+Package xcolor Warning: Incompatible color definition on input line 1646.
 
 <./figures/paper-ggpiestats1-1.png, id=418, 469.755pt x 325.215pt>
 File: ./figures/paper-ggpiestats1-1.png Graphic file (type png)
 <use ./figures/paper-ggpiestats1-1.png>
 Package pdftex.def Info: ./figures/paper-ggpiestats1-1.png  used on input line 
-1650.
+1648.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Package xcolor Warning: Incompatible color definition on input line 1655.
+Package xcolor Warning: Incompatible color definition on input line 1653.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1680.
+Package xcolor Warning: Incompatible color definition on input line 1678.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1680.
+Package xcolor Warning: Incompatible color definition on input line 1678.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1680.
+Package xcolor Warning: Incompatible color definition on input line 1678.
 
 [26 <./figures/paper-ggpiestats1-1.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 1680.
+Package xcolor Warning: Incompatible color definition on input line 1678.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1680.
+Package xcolor Warning: Incompatible color definition on input line 1678.
 
 <./figures/paper-ggpiestats2-1.png, id=424, 469.755pt x 325.215pt>
 File: ./figures/paper-ggpiestats2-1.png Graphic file (type png)
 <use ./figures/paper-ggpiestats2-1.png>
 Package pdftex.def Info: ./figures/paper-ggpiestats2-1.png  used on input line 
-1682.
+1680.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Package xcolor Warning: Incompatible color definition on input line 1687.
+Package xcolor Warning: Incompatible color definition on input line 1685.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1722.
+Package xcolor Warning: Incompatible color definition on input line 1720.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1722.
+Package xcolor Warning: Incompatible color definition on input line 1720.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1722.
+Package xcolor Warning: Incompatible color definition on input line 1720.
 
 [27 <./figures/paper-ggpiestats2-1.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 1722.
+Package xcolor Warning: Incompatible color definition on input line 1720.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1722.
+Package xcolor Warning: Incompatible color definition on input line 1720.
 
 <./figures/paper-ggpiestats3-1.png, id=430, 469.755pt x 325.215pt>
 File: ./figures/paper-ggpiestats3-1.png Graphic file (type png)
 <use ./figures/paper-ggpiestats3-1.png>
 Package pdftex.def Info: ./figures/paper-ggpiestats3-1.png  used on input line 
-1724.
+1722.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [28 <./figures/paper-ggpiestats3-1.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 1746.
+Package xcolor Warning: Incompatible color definition on input line 1744.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1770.
+Package xcolor Warning: Incompatible color definition on input line 1768.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1770.
+Package xcolor Warning: Incompatible color definition on input line 1768.
 
 <./figures/paper-ggpiestats4-1.png, id=436, 722.7pt x 722.7pt>
 File: ./figures/paper-ggpiestats4-1.png Graphic file (type png)
 <use ./figures/paper-ggpiestats4-1.png>
 Package pdftex.def Info: ./figures/paper-ggpiestats4-1.png  used on input line 
-1772.
+1770.
 (pdftex.def)             Requested size: 469.76045pt x 469.76045pt.
 [29] [30 <./figures/paper-ggpiestats4-1.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 1813.
+Package xcolor Warning: Incompatible color definition on input line 1811.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1835.
+Package xcolor Warning: Incompatible color definition on input line 1833.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1835.
+Package xcolor Warning: Incompatible color definition on input line 1833.
 
 <./figures/paper-ggbarstats1-1.png, id=451, 722.7pt x 578.16pt>
 File: ./figures/paper-ggbarstats1-1.png Graphic file (type png)
 <use ./figures/paper-ggbarstats1-1.png>
 Package pdftex.def Info: ./figures/paper-ggbarstats1-1.png  used on input line 
-1837.
+1835.
 (pdftex.def)             Requested size: 469.76045pt x 375.80836pt.
 [31]
 
-Package xcolor Warning: Incompatible color definition on input line 1841.
+Package xcolor Warning: Incompatible color definition on input line 1839.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1869.
+Package xcolor Warning: Incompatible color definition on input line 1867.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1869.
+Package xcolor Warning: Incompatible color definition on input line 1867.
 
 
-Underfull \vbox (badness 10000) detected at line 1869
+Underfull \vbox (badness 10000) detected at line 1867
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 1869.
+Package xcolor Warning: Incompatible color definition on input line 1867.
 
 [32 <./figures/paper-ggbarstats1-1.png (PNG copy)>]
 
-Package xcolor Warning: Incompatible color definition on input line 1869.
+Package xcolor Warning: Incompatible color definition on input line 1867.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1869.
+Package xcolor Warning: Incompatible color definition on input line 1867.
 
 <./figures/paper-ggbarstats2-1.png, id=463, 722.7pt x 867.24pt>
 File: ./figures/paper-ggbarstats2-1.png Graphic file (type png)
 <use ./figures/paper-ggbarstats2-1.png>
 Package pdftex.def Info: ./figures/paper-ggbarstats2-1.png  used on input line 
-1871.
+1869.
 (pdftex.def)             Requested size: 469.76045pt x 563.71257pt.
 [33 <./figures/paper-ggbarstats2-1.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 1885.
+Package xcolor Warning: Incompatible color definition on input line 1883.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1911.
+Package xcolor Warning: Incompatible color definition on input line 1909.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1911.
+Package xcolor Warning: Incompatible color definition on input line 1909.
 
 <./figures/paper-gghistostats1-1.png, id=470, 469.755pt x 325.215pt>
 File: ./figures/paper-gghistostats1-1.png Graphic file (type png)
 <use ./figures/paper-gghistostats1-1.png>
 Package pdftex.def Info: ./figures/paper-gghistostats1-1.png  used on input lin
-e 1913.
+e 1911.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [34]
 
-Package xcolor Warning: Incompatible color definition on input line 1918.
+Package xcolor Warning: Incompatible color definition on input line 1916.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1945.
+Package xcolor Warning: Incompatible color definition on input line 1943.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1945.
+Package xcolor Warning: Incompatible color definition on input line 1943.
 
 <./figures/paper-gghistostats4-1.png, id=477, 722.7pt x 722.7pt>
 File: ./figures/paper-gghistostats4-1.png Graphic file (type png)
 <use ./figures/paper-gghistostats4-1.png>
 Package pdftex.def Info: ./figures/paper-gghistostats4-1.png  used on input lin
-e 1947.
+e 1945.
 (pdftex.def)             Requested size: 469.76045pt x 469.76045pt.
 [35 <./figures/paper-gghistostats1-1.png (PNG copy)>] [36 <./figures/paper-gghi
 stostats4-1.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 2021.
+Package xcolor Warning: Incompatible color definition on input line 2019.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2048.
+Package xcolor Warning: Incompatible color definition on input line 2046.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2048.
+Package xcolor Warning: Incompatible color definition on input line 2046.
 
 <./figures/paper-ggdotplotstats1-1.png, id=492, 578.16pt x 722.7pt>
 File: ./figures/paper-ggdotplotstats1-1.png Graphic file (type png)
 <use ./figures/paper-ggdotplotstats1-1.png>
 Package pdftex.def Info: ./figures/paper-ggdotplotstats1-1.png  used on input l
-ine 2050.
+ine 2048.
 (pdftex.def)             Requested size: 469.75385pt x 587.1923pt.
 [37]
 
-Package xcolor Warning: Incompatible color definition on input line 2056.
+Package xcolor Warning: Incompatible color definition on input line 2054.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2084.
+Package xcolor Warning: Incompatible color definition on input line 2082.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2084.
+Package xcolor Warning: Incompatible color definition on input line 2082.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2084.
+Package xcolor Warning: Incompatible color definition on input line 2082.
 
 [38 <./figures/paper-ggdotplotstats1-1.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 2084.
+Package xcolor Warning: Incompatible color definition on input line 2082.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2084.
+Package xcolor Warning: Incompatible color definition on input line 2082.
 
 <./figures/paper-ggdotplotstats2-1.png, id=504, 722.7pt x 433.62pt>
 File: ./figures/paper-ggdotplotstats2-1.png Graphic file (type png)
 <use ./figures/paper-ggdotplotstats2-1.png>
 Package pdftex.def Info: ./figures/paper-ggdotplotstats2-1.png  used on input l
-ine 2086.
+ine 2084.
 (pdftex.def)             Requested size: 469.76045pt x 281.85628pt.
 [39 <./figures/paper-ggdotplotstats2-1.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 2103.
+Package xcolor Warning: Incompatible color definition on input line 2101.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2127.
+Package xcolor Warning: Incompatible color definition on input line 2125.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2127.
+Package xcolor Warning: Incompatible color definition on input line 2125.
 
 <./figures/paper-ggcorrmat1-1.png, id=513, 469.755pt x 325.215pt>
 File: ./figures/paper-ggcorrmat1-1.png Graphic file (type png)
 <use ./figures/paper-ggcorrmat1-1.png>
 Package pdftex.def Info: ./figures/paper-ggcorrmat1-1.png  used on input line 2
-129.
+127.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [40]
 
-Package xcolor Warning: Incompatible color definition on input line 2137.
+Package xcolor Warning: Incompatible color definition on input line 2135.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2159.
+Package xcolor Warning: Incompatible color definition on input line 2157.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2159.
+Package xcolor Warning: Incompatible color definition on input line 2157.
 
 <./figures/paper-ggcorrmat3-1.png, id=518, 722.7pt x 722.7pt>
 File: ./figures/paper-ggcorrmat3-1.png Graphic file (type png)
 <use ./figures/paper-ggcorrmat3-1.png>
 Package pdftex.def Info: ./figures/paper-ggcorrmat3-1.png  used on input line 2
-161.
+159.
 (pdftex.def)             Requested size: 469.76045pt x 469.76045pt.
 [41 <./figures/paper-ggcorrmat1-1.png (PNG copy)>] [42 <./figures/paper-ggcorrm
 at3-1.png (PNG copy)>]
 
-Package xcolor Warning: Incompatible color definition on input line 2213.
+Package xcolor Warning: Incompatible color definition on input line 2211.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2224.
+Package xcolor Warning: Incompatible color definition on input line 2222.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2224.
+Package xcolor Warning: Incompatible color definition on input line 2222.
 
 <./figures/paper-ggcoefstats1-1.png, id=533, 433.62pt x 361.35pt>
 File: ./figures/paper-ggcoefstats1-1.png Graphic file (type png)
 <use ./figures/paper-ggcoefstats1-1.png>
 Package pdftex.def Info: ./figures/paper-ggcoefstats1-1.png  used on input line
- 2226.
+ 2224.
 (pdftex.def)             Requested size: 433.61894pt x 361.34912pt.
 [43]
 
-Package xcolor Warning: Incompatible color definition on input line 2231.
+Package xcolor Warning: Incompatible color definition on input line 2229.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2256.
+Package xcolor Warning: Incompatible color definition on input line 2254.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2256.
+Package xcolor Warning: Incompatible color definition on input line 2254.
 
 
-Overfull \vbox (1.13184pt too high) detected at line 2256
+Overfull \vbox (1.13184pt too high) detected at line 2254
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 2256.
+Package xcolor Warning: Incompatible color definition on input line 2254.
 
 [44 <./figures/paper-ggcoefstats1-1.png (PNG copy)>]
 
-Package xcolor Warning: Incompatible color definition on input line 2256.
+Package xcolor Warning: Incompatible color definition on input line 2254.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2256.
+Package xcolor Warning: Incompatible color definition on input line 2254.
 
 <./figures/paper-ggcoefstats2-1.png, id=543, 578.16pt x 433.62pt>
 File: ./figures/paper-ggcoefstats2-1.png Graphic file (type png)
 <use ./figures/paper-ggcoefstats2-1.png>
 Package pdftex.def Info: ./figures/paper-ggcoefstats2-1.png  used on input line
- 2258.
+ 2256.
 (pdftex.def)             Requested size: 469.75385pt x 352.31538pt.
 
-Package xcolor Warning: Incompatible color definition on input line 2291.
+Package xcolor Warning: Incompatible color definition on input line 2289.
 
 [45 <./figures/paper-ggcoefstats2-1.png (PNG copy)>]
 
-Package xcolor Warning: Incompatible color definition on input line 2318.
+Package xcolor Warning: Incompatible color definition on input line 2316.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2318.
+Package xcolor Warning: Incompatible color definition on input line 2316.
 
 <./figures/paper-pirateplot-1.png, id=551, 578.16pt x 433.62pt>
 File: ./figures/paper-pirateplot-1.png Graphic file (type png)
 <use ./figures/paper-pirateplot-1.png>
 Package pdftex.def Info: ./figures/paper-pirateplot-1.png  used on input line 2
-320.
+318.
 (pdftex.def)             Requested size: 469.75385pt x 352.31538pt.
 [46]
 <figures/arguments.png, id=556, 1806.75pt x 2368.85pt>
 File: figures/arguments.png Graphic file (type png)
 <use figures/arguments.png>
-Package pdftex.def Info: figures/arguments.png  used on input line 2346.
+Package pdftex.def Info: figures/arguments.png  used on input line 2344.
 (pdftex.def)             Requested size: 469.74393pt x 615.88649pt.
 
-LaTeX Warning: Float too large for page by 1.40091pt on input line 2348.
+LaTeX Warning: Float too large for page by 1.40091pt on input line 2346.
 
 [47 <./figures/paper-pirateplot-1.png (PNG copy)>] [48pdfTeX warning (ext4): de
 stination with the same identifier (name{figure.8}) has been already used, dupl
@@ -1441,18 +1441,18 @@ icate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.2372 \newpage
+l.2370 \newpage
                 <./figures/arguments.png>] [49] [50]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2473.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2471.
 [51]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2473.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2471.
 (paper.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2473.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2473.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2471.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2471.
 
 Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: FB2017FCFB1FFA7A7DDEAE38FC9110CD;5511.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2473.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2471.
  ) 
 Here is how much of TeX's memory you used:
  15638 strings out of 492895
@@ -1479,7 +1479,7 @@ sy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtk10.pfb><C:/Prog
 ram Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX 
 2.9/fonts/type1/public/lm/lmtti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
 public/amsfonts/symbols/msam10.pfb>
-Output written on paper.pdf (51 pages, 6302405 bytes).
+Output written on paper.pdf (51 pages, 6313194 bytes).
 PDF statistics:
  701 PDF objects out of 1000 (max. 8388607)
  171 named destinations out of 1000 (max. 500000)

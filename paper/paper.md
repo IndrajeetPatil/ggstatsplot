@@ -4,7 +4,7 @@ author:
 - Indrajeet Patil^[Harvard University, patilindrajeet.science@gmail.com]
 - Fiery Cushman^[Harvard University]
 - Mina Cikara^[Harvard University]
-date: "2019-08-10"
+date: "2019-08-11"
 output: 
   bookdown::pdf_document2:
     fig_caption: true
@@ -201,8 +201,6 @@ ggstatsplot::ggpiestats(
   palette = "Paired",
   messages = FALSE
 )
-#> Warning: `cols` is now required.
-#> Please use `cols = c(percentage, chi_sq)`
 ```
 
 \begin{figure}[H]

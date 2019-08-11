@@ -114,7 +114,7 @@ cat_counter <- function(data, x, y = NULL, ...) {
 #' @keywords internal
 
 # combine info about sample size plus
-df_facet_label <- function(data, x, y) {
+df_facet_label <- function(data, x, y, k = 3L) {
   data %>% {
     dplyr::full_join(
       x = cat_counter(data = ., x = {{ y }}) %>%
@@ -126,6 +126,25 @@ df_facet_label <- function(data, x, y) {
       ) %>%
         dplyr::filter(.data = ., !is.na(significance)),
       by = rlang::as_name(rlang::ensym(y))
-    )
+    ) %>%
+      p_value_formatter(df = ., k = k) %>%
+      purrrlyr::by_row(
+        .d = .,
+        ..f = ~ paste(
+          "list(~chi['gof']^2~",
+          "(",
+          .$df,
+          ")==",
+          specify_decimal_p(x = .$`Chi-squared`, k = k),
+          ", ~italic(p)",
+          .$p.value.formatted,
+          ")",
+          sep = " "
+        ),
+        .collate = "rows",
+        .to = "label",
+        .labels = TRUE
+      ) %>%
+      dplyr::select(.data = ., -dplyr::matches("p.value.formatted"))
   }
 }

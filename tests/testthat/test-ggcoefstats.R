@@ -41,7 +41,7 @@ testthat::test_that(
     testthat::expect_identical(tidy_df$significance, c("***", "***", "*", "ns"))
     testthat::expect_identical(
       tidy_df$p.value.formatted,
-      c("< 0.001", "< 0.001", "0.014", "0.064")
+      c("<= 0.001", "<= 0.001", "== 0.014", "== 0.064")
     )
 
     # checking panel parameters
@@ -74,8 +74,8 @@ testthat::test_that(
       c(
         "list(~italic(beta)==6.438, ~italic(t)(28)==13.765, ~italic(p)<= 0.001)",
         "list(~italic(beta)==-0.156, ~italic(t)(28)==-5.840, ~italic(p)<= 0.001)",
-        "list(~italic(beta)==-1.809, ~italic(t)(28)==-2.615, ~italic(p)==0.014)",
-        "list(~italic(beta)==0.065, ~italic(t)(28)==1.932, ~italic(p)==0.064)"
+        "list(~italic(beta)==-1.809, ~italic(t)(28)==-2.615, ~italic(p)== 0.014)",
+        "list(~italic(beta)==0.065, ~italic(t)(28)==1.932, ~italic(p)== 0.064)"
       )
     )
     testthat::expect_identical(
@@ -221,18 +221,14 @@ testthat::test_that(
     testthat::expect_identical(tidy_df$significance, c("***", "*", "ns"))
     testthat::expect_identical(
       tidy_df$p.value.formatted,
-      c("< 0.001", "0.012", "0.064")
-    )
-    testthat::expect_identical(
-      tidy_df$p.value.formatted2,
-      c("<= 0.001", "==0.012", "==0.064")
+      c("<= 0.001", "== 0.012", "== 0.064")
     )
     testthat::expect_identical(
       tidy_df$label,
       c(
         "list(~italic(F)(1*\",\"*28)==118.89, ~italic(p)<= 0.001, ~italic(eta)[p]^2==0.81)",
-        "list(~italic(F)(1*\",\"*28)==7.30, ~italic(p)==0.012, ~italic(eta)[p]^2==0.21)",
-        "list(~italic(F)(1*\",\"*28)==3.73, ~italic(p)==0.064, ~italic(eta)[p]^2==0.12)"
+        "list(~italic(F)(1*\",\"*28)==7.30, ~italic(p)== 0.012, ~italic(eta)[p]^2==0.21)",
+        "list(~italic(F)(1*\",\"*28)==3.73, ~italic(p)== 0.064, ~italic(eta)[p]^2==0.12)"
       )
     )
 
@@ -319,19 +315,15 @@ testthat::test_that(
     testthat::expect_identical(
       tidy_df$label,
       c(
-        "list(~italic(F)(3*\",\"*35)==7.388, ~italic(p)==0.001, ~italic(omega)[p]^2==0.308)",
-        "list(~italic(F)(1*\",\"*35)==2.034, ~italic(p)==0.163, ~italic(omega)[p]^2==0.023)",
-        "list(~italic(F)(3*\",\"*35)==4.012, ~italic(p)==0.015, ~italic(omega)[p]^2==0.174)"
+        "list(~italic(F)(3*\",\"*35)==7.388, ~italic(p)== 0.001, ~italic(omega)[p]^2==0.308)",
+        "list(~italic(F)(1*\",\"*35)==2.034, ~italic(p)== 0.163, ~italic(omega)[p]^2==0.023)",
+        "list(~italic(F)(3*\",\"*35)==4.012, ~italic(p)== 0.015, ~italic(omega)[p]^2==0.174)"
       )
     )
     testthat::expect_identical(tidy_df$significance, c("***", "ns", "*"))
     testthat::expect_identical(
       tidy_df$p.value.formatted,
-      c("0.001", "0.163", "0.015")
-    )
-    testthat::expect_identical(
-      tidy_df$p.value.formatted2,
-      c("==0.001", "==0.163", "==0.015")
+      c("== 0.001", "== 0.163", "== 0.015")
     )
 
     # checking panel parameters
@@ -401,18 +393,18 @@ testthat::test_that(
     testthat::expect_identical(
       pb1$data[[4]]$label,
       c(
-        "list(~italic(F)(1*\",\"*35)==3.72, ~italic(p)==0.062, ~italic(eta)^2==0.05)",
-        "list(~italic(F)(3*\",\"*35)==6.83, ~italic(p)==0.001, ~italic(eta)^2==0.29)",
-        "list(~italic(F)(3*\",\"*35)==4.01, ~italic(p)==0.015, ~italic(eta)^2==0.17)"
+        "list(~italic(F)(1*\",\"*35)==3.72, ~italic(p)== 0.062, ~italic(eta)^2==0.05)",
+        "list(~italic(F)(3*\",\"*35)==6.83, ~italic(p)== 0.001, ~italic(eta)^2==0.29)",
+        "list(~italic(F)(3*\",\"*35)==4.01, ~italic(p)== 0.015, ~italic(eta)^2==0.17)"
       )
     )
 
     testthat::expect_identical(
       pb2$data[[4]]$label,
       c(
-        "list(~italic(F)(1*\",\"*35)==3.72, ~italic(p)==0.062, ~italic(omega)^2==0.04)",
-        "list(~italic(F)(3*\",\"*35)==6.83, ~italic(p)==0.001, ~italic(omega)^2==0.24)",
-        "list(~italic(F)(3*\",\"*35)==4.01, ~italic(p)==0.015, ~italic(omega)^2==0.13)"
+        "list(~italic(F)(1*\",\"*35)==3.72, ~italic(p)== 0.062, ~italic(omega)^2==0.04)",
+        "list(~italic(F)(3*\",\"*35)==6.83, ~italic(p)== 0.001, ~italic(omega)^2==0.24)",
+        "list(~italic(F)(3*\",\"*35)==4.01, ~italic(p)== 0.015, ~italic(omega)^2==0.13)"
       )
     )
   }
@@ -583,7 +575,7 @@ testthat::test_that(
     )
 
     # tests
-    testthat::expect_equal(dim(df), c(4L, 11L))
+    testthat::expect_equal(dim(df), c(4L, 10L))
     testthat::expect_identical(as.character(df$term[[1]]), "mpg_(Intercept)")
   }
 )
@@ -662,8 +654,8 @@ testthat::test_that(
       pb$data[[4]]$label,
       c(
         "list(~italic(beta)==3.41, ~italic(t)(169)==6.58, ~italic(p)<= 0.001)",
-        "list(~italic(beta)==-1.25, ~italic(t)(47)==-1.94, ~italic(p)==0.059)",
-        "list(~italic(beta)==-0.75, ~italic(t)(47)==-1.17, ~italic(p)==0.248)",
+        "list(~italic(beta)==-1.25, ~italic(t)(47)==-1.94, ~italic(p)== 0.059)",
+        "list(~italic(beta)==-0.75, ~italic(t)(47)==-1.17, ~italic(p)== 0.248)",
         "list(~italic(beta)==-1.61, ~italic(t)(169)==-4.49, ~italic(p)<= 0.001)"
       )
     )
@@ -714,10 +706,10 @@ testthat::test_that(
       )
 
     # dimensions
-    testthat::expect_equal(dim(df.clm1), c(9L, 12L))
-    testthat::expect_equal(dim(df.clm2), c(6L, 12L))
-    testthat::expect_equal(dim(df.clm3), c(3L, 12L))
-    testthat::expect_equal(dim(df.clm4), c(9L, 12L))
+    testthat::expect_equal(dim(df.clm1), c(9L, 11L))
+    testthat::expect_equal(dim(df.clm2), c(6L, 11L))
+    testthat::expect_equal(dim(df.clm3), c(3L, 11L))
+    testthat::expect_equal(dim(df.clm4), c(9L, 11L))
   }
 )
 
@@ -874,17 +866,17 @@ testthat::test_that(
     testthat::expect_identical(
       pb1$data[[4]]$label,
       c(
-        "list(~italic(beta)==0.07, ~italic(t)(5)==0.16, ~italic(p)==0.875)",
-        "list(~italic(beta)==0.54, ~italic(t)(10)==1.33, ~italic(p)==0.191)",
-        "list(~italic(beta)==0.04, ~italic(t)(12)==1.24, ~italic(p)==0.001)"
+        "list(~italic(beta)==0.07, ~italic(t)(5)==0.16, ~italic(p)== 0.875)",
+        "list(~italic(beta)==0.54, ~italic(t)(10)==1.33, ~italic(p)== 0.191)",
+        "list(~italic(beta)==0.04, ~italic(t)(12)==1.24, ~italic(p)== 0.001)"
       )
     )
     testthat::expect_identical(
       pb5$data[[4]]$label,
       c(
-        "list(~italic(beta)==0.07, ~italic(t)==0.16, ~italic(p)==0.875)",
-        "list(~italic(beta)==0.54, ~italic(t)==1.33, ~italic(p)==0.191)",
-        "list(~italic(beta)==0.04, ~italic(t)==1.24, ~italic(p)==0.001)"
+        "list(~italic(beta)==0.07, ~italic(t)==0.16, ~italic(p)== 0.875)",
+        "list(~italic(beta)==0.54, ~italic(t)==1.33, ~italic(p)== 0.191)",
+        "list(~italic(beta)==0.04, ~italic(t)==1.24, ~italic(p)== 0.001)"
       )
     )
 
@@ -892,9 +884,9 @@ testthat::test_that(
     testthat::expect_identical(
       pb2$data[[4]]$label,
       c(
-        "list(~italic(beta)==0.07, ~italic(z)==0.16, ~italic(p)==0.875)",
-        "list(~italic(beta)==0.54, ~italic(z)==1.33, ~italic(p)==0.191)",
-        "list(~italic(beta)==0.04, ~italic(z)==1.24, ~italic(p)==0.001)"
+        "list(~italic(beta)==0.07, ~italic(z)==0.16, ~italic(p)== 0.875)",
+        "list(~italic(beta)==0.54, ~italic(z)==1.33, ~italic(p)== 0.191)",
+        "list(~italic(beta)==0.04, ~italic(z)==1.24, ~italic(p)== 0.001)"
       )
     )
 
@@ -1021,8 +1013,8 @@ testthat::test_that(
     testthat::expect_identical(
       pb$data[[4]]$label,
       c(
-        "list(~italic(beta)==0.07, ~italic(t)==0.16, ~italic(p)==0.875)",
-        "list(~italic(beta)==0.04, ~italic(t)==1.24, ~italic(p)==0.001)"
+        "list(~italic(beta)==0.07, ~italic(t)==0.16, ~italic(p)== 0.875)",
+        "list(~italic(beta)==0.04, ~italic(t)==1.24, ~italic(p)== 0.001)"
       )
     )
   }
@@ -1221,7 +1213,15 @@ testthat::test_that(
     # checking adjusted p-values
     testthat::expect_identical(
       df$p.value.formatted,
-      c("< 0.001", "< 0.001", "0.200", "0.570", "0.570", "0.570", "0.570")
+      c(
+        "<= 0.001",
+        "<= 0.001",
+        "== 0.200",
+        "== 0.570",
+        "== 0.570",
+        "== 0.570",
+        "== 0.570"
+      )
     )
   }
 )

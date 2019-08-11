@@ -81,6 +81,9 @@
       <a href="../../articles/web_only/ggcorrmat.html">ggcorrmat</a>
     </li>
     <li>
+      <a href="../../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
+    </li>
+    <li>
       <a href="../../articles/web_only/gghistostats.html">gghistostats</a>
     </li>
     <li>
@@ -136,7 +139,7 @@
       <h1>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-08-08</h4>
+            <h4 class="date">2019-08-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -692,16 +695,16 @@
 <a class="sourceLine" id="cb9-44" title="44">    ),</a>
 <a class="sourceLine" id="cb9-45" title="45">    <span class="dt">ggstatsplot.layer =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>),</a>
 <a class="sourceLine" id="cb9-46" title="46">    <span class="dt">sample.size.label =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>),</a>
-<a class="sourceLine" id="cb9-47" title="47">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb9-48" title="48">  ),</a>
-<a class="sourceLine" id="cb9-49" title="49">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggpiestats</a>
-<a class="sourceLine" id="cb9-50" title="50">)</a>
-<a class="sourceLine" id="cb9-51" title="51"></a>
-<a class="sourceLine" id="cb9-52" title="52"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb9-53" title="53">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb9-54" title="54">  <span class="dt">plotlist =</span> plot_list,</a>
-<a class="sourceLine" id="cb9-55" title="55">  <span class="dt">title.text =</span> <span class="st">"Survival in Titanic disaster by gender for all passenger classes"</span>,</a>
-<a class="sourceLine" id="cb9-56" title="56">  <span class="dt">caption.text =</span> <span class="st">"Asterisks denote results from proportion tests: </span><span class="ch">\n</span><span class="st">***: p &lt; 0.001, ns: non-significant"</span>,</a>
+<a class="sourceLine" id="cb9-47" title="47">    <span class="dt">facet.proptest =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>),</a>
+<a class="sourceLine" id="cb9-48" title="48">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb9-49" title="49">  ),</a>
+<a class="sourceLine" id="cb9-50" title="50">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggpiestats</a>
+<a class="sourceLine" id="cb9-51" title="51">)</a>
+<a class="sourceLine" id="cb9-52" title="52"></a>
+<a class="sourceLine" id="cb9-53" title="53"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
+<a class="sourceLine" id="cb9-54" title="54">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb9-55" title="55">  <span class="dt">plotlist =</span> plot_list,</a>
+<a class="sourceLine" id="cb9-56" title="56">  <span class="dt">title.text =</span> <span class="st">"Survival in Titanic disaster by gender for all passenger classes"</span>,</a>
 <a class="sourceLine" id="cb9-57" title="57">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
 <a class="sourceLine" id="cb9-58" title="58">  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>)</a>
 <a class="sourceLine" id="cb9-59" title="59">)</a></code></pre></div>
@@ -757,20 +760,21 @@
 <a class="sourceLine" id="cb10-44" title="44">    ),</a>
 <a class="sourceLine" id="cb10-45" title="45">    <span class="dt">ggstatsplot.layer =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>),</a>
 <a class="sourceLine" id="cb10-46" title="46">    <span class="dt">sample.size.label =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>),</a>
-<a class="sourceLine" id="cb10-47" title="47">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb10-48" title="48">  ),</a>
-<a class="sourceLine" id="cb10-49" title="49">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggbarstats</a>
-<a class="sourceLine" id="cb10-50" title="50">)</a>
-<a class="sourceLine" id="cb10-51" title="51"></a>
-<a class="sourceLine" id="cb10-52" title="52"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb10-53" title="53">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb10-54" title="54">  <span class="dt">plotlist =</span> plot_list,</a>
-<a class="sourceLine" id="cb10-55" title="55">  <span class="dt">title.text =</span> <span class="st">"Survival in Titanic disaster by gender for all passenger classes"</span>,</a>
-<a class="sourceLine" id="cb10-56" title="56">  <span class="dt">caption.text =</span> <span class="st">"Asterisks denote results from proportion tests: </span><span class="ch">\n</span><span class="st">***: p &lt; 0.001, ns: non-significant"</span>,</a>
-<a class="sourceLine" id="cb10-57" title="57">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb10-58" title="58">  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>)</a>
-<a class="sourceLine" id="cb10-59" title="59">)</a></code></pre></div>
-<p><img src="purrr_examples_files/figure-html/purrr_ggbarstats-1.png" width="864"></p>
+<a class="sourceLine" id="cb10-47" title="47">    <span class="dt">bar.proptest =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>),</a>
+<a class="sourceLine" id="cb10-48" title="48">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb10-49" title="49">  ),</a>
+<a class="sourceLine" id="cb10-50" title="50">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggbarstats</a>
+<a class="sourceLine" id="cb10-51" title="51">)</a>
+<a class="sourceLine" id="cb10-52" title="52"></a>
+<a class="sourceLine" id="cb10-53" title="53"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
+<a class="sourceLine" id="cb10-54" title="54">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb10-55" title="55">  <span class="dt">plotlist =</span> plot_list,</a>
+<a class="sourceLine" id="cb10-56" title="56">  <span class="dt">title.text =</span> <span class="st">"Survival in Titanic disaster by gender for all passenger classes"</span>,</a>
+<a class="sourceLine" id="cb10-57" title="57">  <span class="dt">caption.text =</span> <span class="st">"Asterisks denote results from proportion tests: </span><span class="ch">\n</span><span class="st">***: p &lt; 0.001, ns: non-significant"</span>,</a>
+<a class="sourceLine" id="cb10-58" title="58">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb10-59" title="59">  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>)</a>
+<a class="sourceLine" id="cb10-60" title="60">)</a></code></pre></div>
+<p><img src="purrr_examples_files/figure-html/purrr_ggbarstats-1.png" width="672"></p>
 </div>
 <div id="grouped_-variants" class="section level1">
 <h1 class="hasAnchor">

@@ -32,6 +32,11 @@ MINOR CHANGES
   - `ggcoefstats` now respects `conf.int`. It internally always defaulted to
     `conf.int = TRUE` in `broom::tidy` irrespective of what was specified by the
     user.
+  - It was painfully confusing for a lot of users what exactly the asterisks in
+    each facet of `ggpiestats` signified. So instead now `ggpiestats` displays
+    more detailed results from a goodness of fit (gof) test. No such change is
+    made for `ggbarstats` because there is no space to include more details
+    above the bar.
 
 # ggstatsplot 0.0.12
 

@@ -294,7 +294,14 @@ testthat::test_that(
       pb$data[[2]]$label,
       c("n = 3", "n = 8", "n = 4", "n = 3", "n = 12", "n = 2")
     )
-    testthat::expect_identical(pb$data[[3]]$label, c("ns", "ns", "**"))
+    testthat::expect_identical(
+      pb$data[[3]]$label,
+      c(
+        "list(~chi['gof']^2~ ( 1 )== 2.27 , ~italic(p) == 0.132 )",
+        "list(~chi['gof']^2~ ( 1 )== 0.14 , ~italic(p) == 0.705 )",
+        "list(~chi['gof']^2~ ( 1 )== 7.14 , ~italic(p) == 0.008 )"
+      )
+    )
     testthat::expect_identical(
       pb$data[[4]]$label,
       c("(n = 11)", "(n = 7)", "(n = 14)")
@@ -450,7 +457,21 @@ testthat::test_that(
     # checking plot labels
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
     testthat::expect_identical(pb$plot$plot_env$facet.wrap.name, "2nd survey")
-    testthat::expect_identical(pb$plot$plot_env$legend.title, "1st survey")
+    testthat::expect_identical(pb$plot$labels$group, "1st survey")
+    testthat::expect_identical(pb$plot$labels$fill, "1st survey")
+    testthat::expect_identical(pb$plot$labels$label, "slice.label")
+    testthat::expect_null(pb$plot$labels$x, NULL)
+    testthat::expect_null(pb$plot$labels$y, NULL)
+    testthat::expect_null(pb$plot$labels$title, NULL)
+
+    # labels
+    testthat::expect_identical(
+      pb$data[[3]]$label,
+      c(
+        "list(~chi['gof']^2~ ( 1 )== 569.62 , ~italic(p) <= 0.001 )",
+        "list(~chi['gof']^2~ ( 1 )== 245.00 , ~italic(p) <= 0.001 )"
+      )
+    )
   }
 )
 

@@ -222,7 +222,12 @@ ggpiestats <- function(data,
 
   # dataframe containing all details needed for sample size and prop test
   if (!rlang::quo_is_null(rlang::enquo(condition))) {
-    df_labels <- df_facet_label(data = data, x = {{ main }}, y = {{ condition }})
+    df_labels <- df_facet_label(
+      data = data,
+      x = {{ main }},
+      y = {{ condition }},
+      k = k
+    )
   }
 
   # reorder the category factor levels to order the legend
@@ -259,11 +264,11 @@ ggpiestats <- function(data,
       position = "fill",
       color = "black",
       width = 1,
-      ggplot2::aes(fill = factor({{ main }})),
+      ggplot2::aes(fill = {{ main }}),
       na.rm = TRUE
     ) +
     ggplot2::geom_label(
-      ggplot2::aes(label = slice.label, group = factor({{ main }})),
+      ggplot2::aes(label = slice.label, group = {{ main }}),
       position = ggplot2::position_fill(vjust = 0.5),
       color = "black",
       size = label.text.size,
@@ -354,16 +359,17 @@ ggpiestats <- function(data,
     # adding significance labels to pie charts for grouped proportion tests
     if (isTRUE(facet.proptest)) {
       # display grouped proportion test results
-      if (isTRUE(messages)) print(df_labels)
+      if (isTRUE(messages)) print(dplyr::select(df_labels, -label))
 
       # adding labels
       p <- p +
         ggplot2::geom_text(
           data = df_labels,
-          mapping = ggplot2::aes(label = significance, x = 1.65, y = 0.5),
+          mapping = ggplot2::aes(label = label, x = 1.65, y = 0.5),
           position = ggplot2::position_fill(vjust = 1),
-          size = 5,
-          na.rm = TRUE
+          size = 2.8,
+          na.rm = TRUE,
+          parse = TRUE
         )
     }
 
