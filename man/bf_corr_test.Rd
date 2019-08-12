@@ -11,25 +11,30 @@ bf_corr_test(data, x, y, bf.prior = 0.707, caption = NULL,
 \item{data}{A dataframe (or a tibble) from which variables specified are to
 be taken. A matrix or tables will \strong{not} be accepted.}
 
-\item{x}{second continuous variable}
+\item{x}{The column in \code{data} containing the explanatory variable to be
+plotted on the \code{x}-axis. Can be entered either as a character string (e.g.,
+\code{"x"}) or as a bare expression (e.g, \code{x}).}
 
-\item{y}{first continuous variable}
+\item{y}{The column in \code{data} containing the response (outcome) variable to
+be plotted on the \code{y}-axis. Can be entered either as a character string
+(e.g., \code{"y"}) or as a bare expression (e.g, \code{y}).}
 
-\item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
-to use in calculating Bayes factors.}
+\item{bf.prior}{A numeric value between \code{0.5} and \code{2} (default \code{0.707}), the
+prior width to use in calculating Bayes Factors.}
 
 \item{caption}{Text to display as caption (will be displayed on top of the
 bayes factor caption/message).}
 
-\item{output}{Can either be \code{"null"} (or \code{"caption"} or \code{"H0"}, which will
-contain text for evidence in favor of the null hypothesis or H0)  or
-\code{"alternative"} (or \code{"title"} or \code{"H1"}) or \code{"results"}, which will return
-a dataframe with results all the details).}
+\item{output}{Can either be \code{"null"} (or \code{"caption"} or \code{"H0"} or \code{"h0"}),
+which will return expression with evidence in favor of the null hypothesis,
+or \code{"alternative"} (or \code{"title"} or \code{"H1"} or \code{"h1"}), which will return
+expression with evidence in favor of the alternative hypothesis, or
+\code{"results"}, which will return a dataframe with results all the details).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
 
-\item{...}{further arguments to be passed to or from methods.}
+\item{...}{Additional arguments (currently ignored).}
 }
 \description{
 Bayesian correlation test.
@@ -61,5 +66,5 @@ bf_corr_test(
 \code{\link{bf_ttest}}
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }

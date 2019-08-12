@@ -3,8 +3,7 @@
 \name{subtitle_mann_nonparametric}
 \alias{subtitle_mann_nonparametric}
 \alias{subtitle_t_nonparametric}
-\title{Making text subtitle for the Mann-Whitney \emph{U}-test
-(between-subjects designs).}
+\title{Making expression for Mann-Whitney \emph{U}-test/Wilcoxon test results}
 \usage{
 subtitle_mann_nonparametric(data, x, y, paired = FALSE, k = 2,
   conf.level = 0.95, conf.type = "norm", nboot = 100,
@@ -23,10 +22,9 @@ be taken. A matrix or tables will \strong{not} be accepted.}
 \item{y}{The response (a.k.a. outcome or dependent) variable from the
 dataframe \code{data}.}
 
-\item{paired}{Logical that decides whether the design is repeated
-measures/within-subjects (in which case one-way Friedman Rank Sum Test will
-be carried out) or between-subjects (in which case one-way Kruskal–Wallis H
-test will be carried out). The default is \code{FALSE}.}
+\item{paired}{Logical that decides whether the experimental design is
+repeated measures/within-subjects or between-subjects. The default is
+\code{FALSE}.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
@@ -48,16 +46,12 @@ added as a prefix in the subtitle. The default is \code{NULL}. An example of a
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
 
-\item{...}{Additional arguments.}
+\item{...}{Additional arguments (currently ignored).}
 }
 \description{
-Making text subtitle for the Mann-Whitney \emph{U}-test
-(between-subjects designs).
+Making expression for Mann-Whitney \emph{U}-test/Wilcoxon test results
 }
 \details{
-Two-sample Wilcoxon test, also known as Mann-Whitney test, is
-carried out.
-
 For the two independent samples case, the Mann-Whitney \emph{U}-test is
 calculated and \emph{W} is reported from \emph{stats::wilcox.test}. For the paired
 samples case the Wilcoxon signed rank test is run and \emph{V} is reported.
@@ -133,5 +127,5 @@ ggstatsplot::subtitle_mann_nonparametric(
 )
 }
 \author{
-Indrajeet Patil, Chuck Powell
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}, Chuck Powell
 }

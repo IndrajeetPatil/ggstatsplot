@@ -1,20 +1,23 @@
-#' @title Making text subtitle for one sample t-test and its nonparametric and
-#'   robust equivalents.
+#' @title Expression for one sample *t*-test and its non-parametric and
+#'   robust equivalents
 #' @name subtitle_t_onesample
-#' @author Indrajeet Patil
+#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @param x A numeric variable.
 #' @param test.value A number specifying the value of the null hypothesis
 #'   (Default: `0`).
-#' @param robust.estimator If `test = "robust"` robust estimator to be used
+#' @param type Type of statistic expected (`"parametric"` or `"nonparametric"`
+#'   or `"robust"` or `"bayes"`).Corresponding abbreviations are also accepted:
+#'   `"p"` (for parametric), `"np"` (nonparametric), `"r"` (robust), or
+#'   `"bf"`resp.
+#' @param robust.estimator If `type = "robust"`, a robust estimator to be used
 #'   (`"onestep"` (Default), `"mom"`, or `"median"`). For more, see
 #'   `?WRS2::onesampb`.
-#' @param effsize.type Type of effect size needed for *parametric* tests. The
-#'   argument can be `"biased"` (`"d"` for Cohen's *d*) or `"unbiased"`
-#'   (`"g"` Hedge's *g* for **t-test**). The default is
-#' @param ... Additional arguments.
-#' @inheritParams ggbetweenstats
+#' @param ... Additional arguments (currently ignored).
+#' @inheritParams subtitle_t_parametric
 #' @inheritParams t1way_ci
+#' @inheritParams bf_ttest
+#' @inheritParams subtitle_anova_parametric
 #'
 #' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
 #' @importFrom dplyr group_by n arrange
@@ -189,25 +192,24 @@ subtitle_t_onesample <- function(data,
 
     # preparing the subtitle
     subtitle <- substitute(
-      expr =
-        paste(
-          italic("M")["robust"],
-          " = ",
-          estimate,
-          ", CI"[conf.level],
-          " [",
-          LL,
-          ", ",
-          UL,
-          "], ",
-          italic("p"),
-          " = ",
-          p.value,
-          ", ",
-          italic("n")["obs"],
-          " = ",
-          n
-        ),
+      expr = paste(
+        italic("M")["robust"],
+        " = ",
+        estimate,
+        ", CI"[conf.level],
+        " [",
+        LL,
+        ", ",
+        UL,
+        "], ",
+        italic("p"),
+        " = ",
+        p.value,
+        ", ",
+        italic("n")["obs"],
+        " = ",
+        n
+      ),
       env = list(
         estimate = specify_decimal_p(x = stats_df$estimate[[1]], k = k),
         conf.level = paste(conf.level * 100, "%", sep = ""),

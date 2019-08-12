@@ -11,7 +11,6 @@
 #' @param noncentral Logical indicating whether to use non-central
 #'   *t*-distributions for computing the confidence intervals (Default: `TRUE`).
 #' @param tobject Object with the *t*-test specification.
-#' @inheritParams ggbetweenstats
 #' @inheritParams subtitle_t_parametric
 #'
 #' @importFrom stats t.test na.omit cor qt pt uniroot
@@ -180,8 +179,7 @@ effsize_t_parametric <- function(formula = NULL,
 
   # if the data is in tidy format
   if (length(formula) == 3 & isTRUE(paired)) {
-    if (is.factor(eval(formula[[3]], data)) ||
-      is.character(eval(formula[[3]], data))) {
+    if (is.factor(eval(formula[[3]], data)) || is.character(eval(formula[[3]], data))) {
       # getting `x` and `y` in required format
       outcome <- eval(formula[[2]], data)
       group <- eval(formula[[3]], data)

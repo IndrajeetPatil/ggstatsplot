@@ -161,7 +161,7 @@ into one plot with some common labeling. It is possible, but not necessarily
 recommended, to make each plot have different colors or themes.
 
 For example,
-```{r ggbetweenstats3, message = FALSE, warning = FALSE, fig.height = 10, fig.width = 10}
+```{r ggbetweenstats3, message = FALSE, warning = FALSE, fig.height = 10, fig.width = 12}
 library(ggstatsplot)
 library(gapminder)
 
@@ -270,7 +270,7 @@ Let's focus on the same 4 continents for the following years: 1967, 1987, 2007.
 Also, let's carry out pairwise comparisons to see if there differences between
 every pair of continents.
 
-```{r grouped1, warning = FALSE, message = FALSE, fig.height = 15, fig.width = 7}
+```{r grouped1, warning = FALSE, message = FALSE, fig.height = 16, fig.width = 7}
 # for reproducibility
 set.seed(123)
 

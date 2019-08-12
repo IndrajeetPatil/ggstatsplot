@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers_ggbetween_anova_subtitles.R
 \name{subtitle_anova_bayes}
 \alias{subtitle_anova_bayes}
-\title{Subtitle expression for the between-subject one-way anova designs.}
+\title{Making expression containing Bayesian one-way ANOVA results.}
 \usage{
 subtitle_anova_bayes(data, x, y, paired = FALSE, bf.prior = 0.707,
   k = 2, ...)
@@ -16,21 +16,20 @@ be taken. A matrix or tables will \strong{not} be accepted.}
 \item{y}{The response (a.k.a. outcome or dependent) variable from the
 dataframe \code{data}.}
 
-\item{paired}{Logical that decides whether the design is repeated
-measures/within-subjects (in which case one-way Friedman Rank Sum Test will
-be carried out) or between-subjects (in which case one-way Kruskal–Wallis H
-test will be carried out). The default is \code{FALSE}.}
+\item{paired}{Logical that decides whether the experimental design is
+repeated measures/within-subjects or between-subjects. The default is
+\code{FALSE}.}
 
-\item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
-to use in calculating Bayes factors.}
+\item{bf.prior}{A numeric value between \code{0.5} and \code{2} (default \code{0.707}), the
+prior width to use in calculating Bayes Factors.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
 
-\item{...}{Additional arguments.}
+\item{...}{Additional arguments (currently ignored).}
 }
 \description{
-Subtitle expression for the between-subject one-way anova designs.
+Making expression containing Bayesian one-way ANOVA results.
 }
 \examples{
 
@@ -63,5 +62,5 @@ ggstatsplot::subtitle_anova_bayes(
 )
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }

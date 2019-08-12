@@ -2,8 +2,7 @@
 % Please edit documentation in R/helpers_subtitle_templates.R
 \name{subtitle_template}
 \alias{subtitle_template}
-\title{Template for subtitles with statistical details for tests with a
-single parameter (e.g., t, chi-squared, etc.)}
+\title{Template for subtitles with statistical details for tests}
 \usage{
 subtitle_template(no.parameters, stat.title = NULL, statistic.text,
   statistic, parameter = NULL, parameter2 = NULL, p.value,
@@ -63,8 +62,7 @@ can be \code{quote(italic("n")["obs"])}. If \code{NULL}, defaults to generic
 \code{quote(italic("n"))}.}
 }
 \description{
-Template for subtitles with statistical details for tests with a
-single parameter (e.g., t, chi-squared, etc.)
+Template for subtitles with statistical details for tests
 }
 \examples{
 set.seed(123)
@@ -87,5 +85,5 @@ ggstatsplot::subtitle_template(
 )
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }

@@ -307,5 +307,5 @@ ggstatsplot::ggbetweenstats(
 \code{\link{grouped_ggwithinstats}}, \code{\link{pairwise_p}}
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }

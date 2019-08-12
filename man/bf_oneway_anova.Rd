@@ -8,25 +8,29 @@ bf_oneway_anova(data, x, y, bf.prior = 0.707, caption = NULL,
   output = "null", paired = FALSE, k = 2, ...)
 }
 \arguments{
-\item{data}{a data frame containing data for all factors in the formula}
+\item{data}{A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will \strong{not} be accepted.}
 
 \item{x}{The grouping variable from the dataframe \code{data}.}
 
 \item{y}{The response (a.k.a. outcome or dependent) variable from the
 dataframe \code{data}.}
 
-\item{bf.prior}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
-width to use in calculating Bayes factors.}
+\item{bf.prior}{A numeric value between \code{0.5} and \code{2} (default \code{0.707}), the
+prior width to use in calculating Bayes Factors.}
 
-\item{caption}{The text for the plot caption.}
+\item{caption}{Text to display as caption (will be displayed on top of the
+bayes factor caption/message).}
 
-\item{output}{Can either be \code{"null"} (or \code{"caption"} or \code{"H0"}, which will
-contain text for evidence in favor of the null hypothesis or H0)  or
-\code{"alternative"} (or \code{"title"} or \code{"H1"}) or \code{"results"}, which will return
-a dataframe with results all the details).}
+\item{output}{Can either be \code{"null"} (or \code{"caption"} or \code{"H0"} or \code{"h0"}),
+which will return expression with evidence in favor of the null hypothesis,
+or \code{"alternative"} (or \code{"title"} or \code{"H1"} or \code{"h1"}), which will return
+expression with evidence in favor of the alternative hypothesis, or
+\code{"results"}, which will return a dataframe with results all the details).}
 
-\item{paired}{a logical indicating whether you want a paired
-    t-test.}
+\item{paired}{Logical that decides whether the experimental design is
+repeated measures/within-subjects or between-subjects. The default is
+\code{FALSE}.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
@@ -60,5 +64,5 @@ bf_oneway_anova(
 \code{\link{bf_ttest}}
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }

@@ -3,7 +3,7 @@
 \name{subtitle_contingency_tab}
 \alias{subtitle_contingency_tab}
 \alias{subtitle_onesample_proptest}
-\title{Subtitle for categorical tests}
+\title{Making expression for contingency table and goodness of fit tests}
 \usage{
 subtitle_contingency_tab(data, x, y = NULL, counts = NULL,
   ratio = NULL, nboot = 100, paired = FALSE, stat.title = NULL,
@@ -77,7 +77,7 @@ to be displayed (Default: \code{TRUE}).}
 \item{...}{Additional arguments (currently ignored).}
 }
 \description{
-Making text subtitle for contingency analysis (Pearson's
+Making expression for contingency analysis (Pearson's
 chi-square test for independence for between-subjects design or McNemar's
 test for within-subjects design) or goodness of fit test for a single
 categorical variable.
@@ -138,5 +138,5 @@ subtitle_contingency_tab(
 \code{\link{ggpiestats}}
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }

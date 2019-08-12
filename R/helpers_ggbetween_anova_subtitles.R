@@ -1,15 +1,14 @@
-#' @title Making text subtitle for parametric ANOVA.
+#' @title Making expression containing parametric ANOVA results
 #' @name subtitle_anova_parametric
-#' @author Indrajeet Patil
+#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @note For repeated measures designs (`paired = TRUE`), only omega-squared and
 #'   partial eta-squared effect sizes are supported.
 #'
 #' @inheritParams t1way_ci
-#' @param paired Logical that decides whether the design is repeated
-#'   measures/within-subjects (in which case one-way Friedman Rank Sum Test will
-#'   be carried out) or between-subjects (in which case one-way Kruskal–Wallis H
-#'   test will be carried out). The default is `FALSE`.
+#' @param paired Logical that decides whether the experimental design is
+#'   repeated measures/within-subjects or between-subjects. The default is
+#'   `FALSE`.
 #' @param effsize.type Type of effect size needed for *parametric* tests. The
 #'   argument can be `"biased"` (equivalent to `"d"` for Cohen's *d* for
 #'   **t-test**; `"partial_eta"` for partial eta-squared for **anova**) or
@@ -18,15 +17,13 @@
 #' @param sphericity.correction Logical that decides whether to apply correction
 #'   to account for violation of sphericity in a repeated measures design ANOVA
 #'   (Default: `TRUE`).
-#' @param k Number of digits after decimal point (should be an integer)
-#'   (Default: `k = 2`).
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
-#' @param ... Additional arguments.
-#' @inheritParams stats::oneway.test
-#' @inheritParams subtitle_t_parametric
-#' @inheritParams groupedstats::lm_effsize_standardizer
 #' @inheritParams subtitle_template
+#' @param ... Additional arguments (currently ignored).
+#' @inheritParams stats::oneway.test
+#' @inheritParams groupedstats::lm_effsize_standardizer
+#'
 #'
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
@@ -160,7 +157,8 @@ subtitle_anova_parametric <- function(data,
   if (isTRUE(paired)) {
     # converting to long format and then getting it back in wide so that the
     # rowid variable can be used as the block variable
-    data <- long_to_wide_converter(data = data, x = {{ x }}, y = {{ y }}) %>%
+    data <-
+      long_to_wide_converter(data = data, x = {{ x }}, y = {{ y }}) %>%
       tidyr::gather(data = ., key, value, -rowid) %>%
       dplyr::arrange(.data = ., rowid)
 
@@ -296,7 +294,7 @@ subtitle_anova_parametric <- function(data,
 
 #' @title Making text subtitle for nonparametric ANOVA.
 #' @name subtitle_anova_nonparametric
-#' @author Indrajeet Patil
+#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @description For paired designs, the effect size is Kendall's coefficient of
 #'   concordance (*W*), while for between-subjects designs, the effect size is
@@ -396,12 +394,11 @@ subtitle_anova_nonparametric <- function(data,
     sample_size <- length(unique(data$rowid))
     n.text <- quote(italic("n")["pairs"])
 
-    # setting up the anova model and getting its summary
+    # setting up the anova model (`y ~ x | id`) and getting its summary
     stats_df <-
       broomExtra::tidy(stats::friedman.test(
         formula = rlang::new_formula(
-          {{ rlang::enexpr(y) }},
-          rlang::expr(!!rlang::enexpr(x) | rowid)
+          {{ rlang::enexpr(y) }}, rlang::expr(!!rlang::enexpr(x) | rowid)
         ),
         data = data,
         na.action = na.omit
@@ -476,7 +473,7 @@ subtitle_anova_nonparametric <- function(data,
 
 #' @title Making text subtitle for the robust ANOVA
 #' @name subtitle_anova_robust
-#' @author Indrajeet Patil
+#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @inheritParams t1way_ci
 #' @inheritParams subtitle_anova_nonparametric
@@ -655,9 +652,9 @@ subtitle_anova_robust <- function(data,
 }
 
 
-#' @title Subtitle expression for the between-subject one-way anova designs.
+#' @title Making expression containing Bayesian one-way ANOVA results.
 #' @name subtitle_anova_bayes
-#' @author Indrajeet Patil
+#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @inheritParams subtitle_anova_parametric
 #' @inheritParams subtitle_t_bayes

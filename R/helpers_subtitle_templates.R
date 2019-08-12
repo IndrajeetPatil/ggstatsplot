@@ -1,7 +1,6 @@
-#' @title Template for subtitles with statistical details for tests with a
-#'   single parameter (e.g., t, chi-squared, etc.)
+#' @title Template for subtitles with statistical details for tests
 #' @name subtitle_template
-#' @author Indrajeet Patil
+#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @param no.parameters An integer that specifies that the number of parameters
 #'   for the statistical test. Can be `0` for non-parametric tests, `1` for
@@ -88,31 +87,30 @@ subtitle_template <- function(no.parameters,
     # preparing subtitle
     subtitle <-
       substitute(
-        expr =
-          paste(
-            stat.title,
-            statistic.text,
-            " = ",
-            statistic,
-            ", ",
-            italic("p"),
-            " = ",
-            p.value,
-            ", ",
-            effsize.text,
-            " = ",
-            effsize.estimate,
-            ", CI"[conf.level],
-            " [",
-            effsize.LL,
-            ", ",
-            effsize.UL,
-            "]",
-            ", ",
-            n.text,
-            " = ",
-            n
-          ),
+        expr = paste(
+          stat.title,
+          statistic.text,
+          " = ",
+          statistic,
+          ", ",
+          italic("p"),
+          " = ",
+          p.value,
+          ", ",
+          effsize.text,
+          " = ",
+          effsize.estimate,
+          ", CI"[conf.level],
+          " [",
+          effsize.LL,
+          ", ",
+          effsize.UL,
+          "]",
+          ", ",
+          n.text,
+          " = ",
+          n
+        ),
         env = list(
           stat.title = stat.title,
           statistic.text = statistic.text,
@@ -136,10 +134,8 @@ subtitle_template <- function(no.parameters,
     if (rlang::is_null(parameter)) {
       stop(message(cat(
         crayon::red("Error: "),
-        crayon::blue(
-          "For tests with statistic that have two parameters, \n",
-          "the argument `parameter` **must** be specified.\n"
-        ),
+        crayon::blue("For tests with statistic that have two parameters, \n"),
+        crayon::blue("the argument `parameter` **must** be specified.\n"),
         sep = ""
       )),
       call. = FALSE
@@ -149,33 +145,32 @@ subtitle_template <- function(no.parameters,
     # preparing subtitle
     subtitle <-
       substitute(
-        expr =
-          paste(
-            stat.title,
-            statistic.text,
-            "(",
-            parameter,
-            ") = ",
-            statistic,
-            ", ",
-            italic("p"),
-            " = ",
-            p.value,
-            ", ",
-            effsize.text,
-            " = ",
-            effsize.estimate,
-            ", CI"[conf.level],
-            " [",
-            effsize.LL,
-            ", ",
-            effsize.UL,
-            "]",
-            ", ",
-            n.text,
-            " = ",
-            n
-          ),
+        expr = paste(
+          stat.title,
+          statistic.text,
+          "(",
+          parameter,
+          ") = ",
+          statistic,
+          ", ",
+          italic("p"),
+          " = ",
+          p.value,
+          ", ",
+          effsize.text,
+          " = ",
+          effsize.estimate,
+          ", CI"[conf.level],
+          " [",
+          effsize.LL,
+          ", ",
+          effsize.UL,
+          "]",
+          ", ",
+          n.text,
+          " = ",
+          n
+        ),
         env = list(
           stat.title = stat.title,
           statistic.text = statistic.text,
@@ -213,35 +208,34 @@ subtitle_template <- function(no.parameters,
     # preparing subtitle
     subtitle <-
       substitute(
-        expr =
-          paste(
-            stat.title,
-            statistic.text,
-            "(",
-            parameter1,
-            ",",
-            parameter2,
-            ") = ",
-            statistic,
-            ", ",
-            italic("p"),
-            " = ",
-            p.value,
-            ", ",
-            effsize.text,
-            " = ",
-            effsize.estimate,
-            ", CI"[conf.level],
-            " [",
-            effsize.LL,
-            ", ",
-            effsize.UL,
-            "]",
-            ", ",
-            n.text,
-            " = ",
-            n
-          ),
+        expr = paste(
+          stat.title,
+          statistic.text,
+          "(",
+          parameter1,
+          ",",
+          parameter2,
+          ") = ",
+          statistic,
+          ", ",
+          italic("p"),
+          " = ",
+          p.value,
+          ", ",
+          effsize.text,
+          " = ",
+          effsize.estimate,
+          ", CI"[conf.level],
+          " [",
+          effsize.LL,
+          ", ",
+          effsize.UL,
+          "]",
+          ", ",
+          n.text,
+          " = ",
+          n
+        ),
         env = list(
           stat.title = stat.title,
           statistic.text = statistic.text,
@@ -283,5 +277,19 @@ p_value_formatter <- function(df, k = 3L) {
         p.value.formatted == "< 0.001" ~ "<= 0.001",
         TRUE ~ paste("==", p.value.formatted, sep = " ")
       )
+    )
+}
+
+#' @noRd
+#' @keywords internal
+
+rcompanion_cleaner <- function(object, estimate.col) {
+  object %>%
+    tibble::as_tibble(x = .) %>%
+    dplyr::rename(
+      .data = .,
+      estimate = estimate.col,
+      conf.low = lower.ci,
+      conf.high = upper.ci
     )
 }

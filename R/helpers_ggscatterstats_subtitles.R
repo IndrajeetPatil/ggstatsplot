@@ -1,6 +1,6 @@
-#' @title Making text subtitle for the correlation test.
+#' @title Making expression for correlation analysis
 #' @name subtitle_ggscatterstats
-#' @author Indrajeet Patil
+#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @param x The column in `data` containing the explanatory variable to be
 #'   plotted on the `x`-axis. Can be entered either as a character string (e.g.,
@@ -25,6 +25,9 @@
 #' @importFrom rcompanion spearmanRho
 #'
 #' @examples
+#'
+#' # for reproducibility
+#' set.seed(123)
 #'
 #' # without changing defaults
 #' subtitle_ggscatterstats(

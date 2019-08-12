@@ -1,9 +1,9 @@
-#' @title Subtitle for categorical tests
-#' @description Making text subtitle for contingency analysis (Pearson's
+#' @title Making expression for contingency table and goodness of fit tests
+#' @description Making expression for contingency analysis (Pearson's
 #'   chi-square test for independence for between-subjects design or McNemar's
 #'   test for within-subjects design) or goodness of fit test for a single
 #'   categorical variable.
-#' @author Indrajeet Patil
+#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @param x The variable to use as the **rows** in the contingency table.
 #' @param y The variable to use as the **columns** in the contingency

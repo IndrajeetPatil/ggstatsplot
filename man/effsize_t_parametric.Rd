@@ -18,10 +18,9 @@ be taken. A matrix or tables will \strong{not} be accepted.}
 
 \item{mu}{If conducting a single sample test against a mean (Default: \code{0}).}
 
-\item{paired}{Logical that decides whether the design is repeated
-measures/within-subjects (in which case one-way Friedman Rank Sum Test will
-be carried out) or between-subjects (in which case one-way Kruskal–Wallis H
-test will be carried out). The default is \code{FALSE}.}
+\item{paired}{Logical that decides whether the experimental design is
+repeated measures/within-subjects or between-subjects. The default is
+\code{FALSE}.}
 
 \item{hedges.correction}{Logical indicating whether to apply Hedges
 correction, Hedge's \emph{g} (Default: \code{TRUE}).}
@@ -41,7 +40,7 @@ correction, Hedge's \emph{g} (Default: \code{TRUE}).}
 
 \item{tobject}{Object with the \emph{t}-test specification.}
 
-\item{...}{Additional arguments.}
+\item{...}{Additional arguments (currently ignored).}
 }
 \description{
 Calculating Cohen's \emph{d} or Hedge's \emph{g} (for between-/within- or one

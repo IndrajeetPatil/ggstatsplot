@@ -7,7 +7,7 @@
 bf_extractor(bf.object, ...)
 }
 \arguments{
-\item{bf.object}{An object from \code{BayesFactor} package test results.}
+\item{bf.object}{An object from \code{BayesFactor} package.}
 
 \item{...}{Currently ignored.}
 }
