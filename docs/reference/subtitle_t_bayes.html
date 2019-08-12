@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Making text subtitle for the Bayesian <em>t</em>-test. — subtitle_t_bayes • ggstatsplot</title>
+<title>Making expression containing Bayesian <em>t</em>-test results — subtitle_t_bayes • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -40,9 +40,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Making text subtitle for the Bayesian <em>t</em>-test. — subtitle_t_bayes" />
+<meta property="og:title" content="Making expression containing Bayesian <em>t</em>-test results — subtitle_t_bayes" />
 
-<meta property="og:description" content="Making text subtitle for the Bayesian t-test." />
+<meta property="og:description" content="Making expression containing Bayesian t-test results" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -177,14 +177,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Making text subtitle for the Bayesian <em>t</em>-test.</h1>
+    <h1>Making expression containing Bayesian <em>t</em>-test results</h1>
     <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggbetween_t_subtitles.R'><code>R/helpers_ggbetween_t_subtitles.R</code></a></small>
     <div class="hidden name"><code>subtitle_t_bayes.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Making text subtitle for the Bayesian <em>t</em>-test.</p>
+    <p>Making expression containing Bayesian <em>t</em>-test results</p>
     
     </div>
 
@@ -210,15 +210,14 @@ dataframe <code>data</code>.</p></td>
     </tr>
     <tr>
       <th>bf.prior</th>
-      <td><p>A number between 0.5 and 2 (default <code>0.707</code>), the prior width
-to use in calculating Bayes factors.</p></td>
+      <td><p>A numeric value between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the
+prior width to use in calculating Bayes Factors.</p></td>
     </tr>
     <tr>
       <th>paired</th>
-      <td><p>Logical that decides whether the design is repeated
-measures/within-subjects (in which case one-way Friedman Rank Sum Test will
-be carried out) or between-subjects (in which case one-way Kruskal–Wallis H
-test will be carried out). The default is <code>FALSE</code>.</p></td>
+      <td><p>Logical that decides whether the experimental design is
+repeated measures/within-subjects or between-subjects. The default is
+<code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>k</th>
@@ -227,7 +226,7 @@ test will be carried out). The default is <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional arguments.</p></td>
+      <td><p>Additional arguments (currently ignored).</p></td>
     </tr>
     </table>
     
@@ -236,7 +235,7 @@ test will be carried out). The default is <code>FALSE</code>.</p></td>
     <pre class="examples"><div class='input'><span class='co'># for reproducibility</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
 
-<span class='co'># between-subjects design</span>
+<span class='co'># ------------- between-subjects design --------------------------</span>
 
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_t_bayes.html'>subtitle_t_bayes</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
@@ -246,7 +245,7 @@ test will be carried out). The default is <code>FALSE</code>.</p></td>
 )</div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("In favor of alternative: ", 
 #&gt;     "log"["e"], "(BF"["10"], ") = ", "7.23", ", ", italic("r")["Cauchy"]^"JZS", 
 #&gt;     " = ", "0.71"))</div><div class='input'>
-<span class='co'># within-subjects design</span>
+<span class='co'># ------------- within-subjects design -----------------------------</span>
 
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_t_bayes.html'>subtitle_t_bayes</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
@@ -270,7 +269,7 @@ test will be carried out). The default is <code>FALSE</code>.</p></td>
     </ul>
 
     <h2>Author</h2>
-    <p>Indrajeet Patil</p>
+    <p><a href='https://github.com/IndrajeetPatil'>Indrajeet Patil</a></p>
   </div>
 </div>
 

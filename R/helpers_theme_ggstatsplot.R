@@ -58,7 +58,7 @@ theme_ggstatsplot <- function(ggtheme = ggplot2::theme_bw(),
         ),
         plot.subtitle = ggplot2::element_text(
           color = "black",
-          size = 11,
+          size = 10,
           face = "plain",
           hjust = 0.5
         )

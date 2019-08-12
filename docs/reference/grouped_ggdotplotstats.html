@@ -273,8 +273,8 @@ or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations ar
     </tr>
     <tr>
       <th>bf.prior</th>
-      <td><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
-width to use in calculating Bayes factors.</p></td>
+      <td><p>A numeric value between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the
+prior width to use in calculating Bayes Factors.</p></td>
     </tr>
     <tr>
       <th>bf.message</th>
@@ -284,7 +284,7 @@ parametric test</strong> (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>robust.estimator</th>
-      <td><p>If <code>test = "robust"</code> robust estimator to be used
+      <td><p>If <code>type = "robust"</code>, a robust estimator to be used
 (<code>"onestep"</code> (Default), <code>"mom"</code>, or <code>"median"</code>). For more, see
 <code><a href='https://rdrr.io/pkg/WRS2/man/onesampb.html'>?WRS2::onesampb</a></code>.</p></td>
     </tr>
@@ -297,7 +297,7 @@ parametric test</strong> (Default: <code>TRUE</code>).</p></td>
       <th>effsize.type</th>
       <td><p>Type of effect size needed for <em>parametric</em> tests. The
 argument can be <code>"biased"</code> (<code>"d"</code> for Cohen's <em>d</em>) or <code>"unbiased"</code>
-(<code>"g"</code> Hedge's <em>g</em> for <strong>t-test</strong>). The default is</p></td>
+(<code>"g"</code> Hedge's <em>g</em> for <strong>t-test</strong>). The default is <code>"g"</code>.</p></td>
     </tr>
     <tr>
       <th>effsize.noncentral</th>

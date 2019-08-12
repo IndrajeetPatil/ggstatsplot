@@ -4,17 +4,13 @@
 #' @description A combination of box and violin plots along with jittered data
 #'   points for between-subjects designs with statistical details included in
 #'   the plot as a subtitle.
-#' @author Indrajeet Patil
+#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @param plot.type Character describing the *type* of plot. Currently supported
 #'   plots are `"box"` (for pure boxplots), `"violin"` (for pure violin plots),
 #'   and `"boxviolin"` (for a combination of box and violin plots; default).
 #' @param xlab,ylab Labels for `x` and `y` axis variables. If `NULL` (default),
 #'   variable names for `x` and `y` will be used.
-#' @param type Type of statistic expected (`"parametric"` or `"nonparametric"`
-#'   or `"robust"` or `"bayes"`).Corresponding abbreviations are also accepted:
-#'   `"p"` (for parametric), `"np"` (nonparametric), `"r"` (robust), or
-#'   `"bf"`resp.
 #' @param pairwise.comparisons Logical that decides whether pairwise comparisons
 #'   are to be displayed (default: `FALSE`). Please note that **only significant
 #'   comparisons** will be shown by default. To change this behavior, select
@@ -117,6 +113,7 @@
 #' @inheritParams t1way_ci
 #' @inheritParams subtitle_anova_parametric
 #' @inheritParams subtitle_t_parametric
+#' @inheritParams subtitle_t_onesample
 #'
 #' @import ggplot2
 #'

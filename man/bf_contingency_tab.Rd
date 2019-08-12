@@ -45,10 +45,11 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 \item{caption}{Text to display as caption (will be displayed on top of the
 bayes factor caption/message).}
 
-\item{output}{Can either be \code{"null"} (or \code{"caption"} or \code{"H0"}, which will
-contain text for evidence in favor of the null hypothesis or H0)  or
-\code{"alternative"} (or \code{"title"} or \code{"H1"}) or \code{"results"}, which will return
-a dataframe with results all the details).}
+\item{output}{Can either be \code{"null"} (or \code{"caption"} or \code{"H0"} or \code{"h0"}),
+which will return expression with evidence in favor of the null hypothesis,
+or \code{"alternative"} (or \code{"title"} or \code{"H1"} or \code{"h1"}), which will return
+expression with evidence in favor of the alternative hypothesis, or
+\code{"results"}, which will return a dataframe with results all the details).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
@@ -111,5 +112,5 @@ bf_contingency_tab(
 \code{\link{bf_ttest}}
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }

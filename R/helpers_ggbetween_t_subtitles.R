@@ -1,8 +1,10 @@
-#' @title Making expression containing results for a *t*-test
-#'   (between-/within-subjects designs).
+#' @title Making expression containing *t*-test results
 #' @name subtitle_t_parametric
-#' @author Indrajeet Patil, Chuck Powell
+#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}, Chuck Powell
 #'
+#' @param effsize.type Type of effect size needed for *parametric* tests. The
+#'   argument can be `"biased"` (`"d"` for Cohen's *d*) or `"unbiased"`
+#'   (`"g"` Hedge's *g* for **t-test**). The default is `"g"`.
 #' @param effsize.noncentral Logical indicating whether to use non-central
 #'   *t*-distributions for computing the confidence interval for Cohen's *d*
 #'   or Hedge's *g* (Default: `TRUE`).
@@ -13,8 +15,6 @@
 #' @importFrom dplyr select mutate_at
 #' @importFrom rlang !! enquo
 #' @importFrom stats t.test na.omit qt pt uniroot
-#'
-#' @seealso subtitle_t_parametric
 #'
 #' @details Cohen's *d* is calculated in the traditional fashion as the
 #'   difference between means or mean minus *mu* divided by the estimated
@@ -180,11 +180,8 @@ subtitle_t_parametric <- function(data,
 }
 
 
-#' @title Making text subtitle for the Mann-Whitney *U*-test
-#'   (between-subjects designs).
-#' @author Indrajeet Patil, Chuck Powell
-#' @details Two-sample Wilcoxon test, also known as Mann-Whitney test, is
-#'   carried out.
+#' @title Making expression for Mann-Whitney *U*-test/Wilcoxon test results
+#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}, Chuck Powell
 #'
 #' @inheritParams subtitle_anova_parametric
 #' @inheritParams subtitle_t_parametric
@@ -388,10 +385,9 @@ subtitle_mann_nonparametric <- function(data,
 
 subtitle_t_nonparametric <- subtitle_mann_nonparametric
 
-#' @title Making text subtitle for the robust t-test
-#'   (between- and within-subjects designs).
+#' @title Expression containing results from a robust *t*-test
 #' @name subtitle_t_robust
-#' @author Indrajeet Patil
+#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @inheritParams subtitle_t_parametric
 #' @inheritParams yuend_ci
@@ -403,15 +399,18 @@ subtitle_t_nonparametric <- subtitle_mann_nonparametric
 #'
 #' @examples
 #'
+#' # for reproducibility
+#' set.seed(123)
+#'
 #' # with defaults
-#' subtitle_t_robust(
+#' ggstatsplot::subtitle_t_robust(
 #'   data = sleep,
 #'   x = group,
 #'   y = extra
 #' )
 #'
 #' # changing defaults
-#' subtitle_t_robust(
+#' ggstatsplot::subtitle_t_robust(
 #'   data = ToothGrowth,
 #'   x = supp,
 #'   y = len,
@@ -502,7 +501,8 @@ subtitle_t_robust <- function(data,
     data <-
       long_to_wide_converter(data = data, x = {{ x }}, y = {{ y }}) %>%
       tidyr::gather(data = ., key, value, -rowid) %>%
-      dplyr::arrange(.data = ., rowid)
+      dplyr::arrange(.data = ., rowid) %>%
+      dplyr::rename(.data = ., {{ x }} := key, {{ y }} := value)
 
     # sample size
     sample_size <- length(unique(data$rowid))
@@ -511,8 +511,8 @@ subtitle_t_robust <- function(data,
     stats_df <-
       yuend_ci(
         data = data,
-        x = key,
-        y = value,
+        x = {{ x }},
+        y = {{ y }},
         tr = tr,
         nboot = nboot,
         conf.level = conf.level,
@@ -554,20 +554,19 @@ subtitle_t_robust <- function(data,
   return(subtitle)
 }
 
-#' @title Making text subtitle for the Bayesian *t*-test.
+#' @title Making expression containing Bayesian *t*-test results
 #' @name subtitle_t_bayes
-#' @author Indrajeet Patil
+#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
-#' @param bf.prior A number between 0.5 and 2 (default `0.707`), the prior width
-#'   to use in calculating Bayes factors.
 #' @inheritParams subtitle_t_parametric
 #' @inheritParams subtitle_anova_parametric
+#' @inheritParams bf_ttest
 #'
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
 #'
-#' # between-subjects design
+#' # ------------- between-subjects design --------------------------
 #'
 #' ggstatsplot::subtitle_t_bayes(
 #'   data = mtcars,
@@ -576,7 +575,7 @@ subtitle_t_robust <- function(data,
 #'   paired = FALSE
 #' )
 #'
-#' # within-subjects design
+#' # ------------- within-subjects design -----------------------------
 #'
 #' ggstatsplot::subtitle_t_bayes(
 #'   data = dplyr::filter(

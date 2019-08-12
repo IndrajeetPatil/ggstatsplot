@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers_ggscatterstats_subtitles.R
 \name{subtitle_ggscatterstats}
 \alias{subtitle_ggscatterstats}
-\title{Making text subtitle for the correlation test.}
+\title{Making expression for correlation analysis}
 \usage{
 subtitle_ggscatterstats(data, x, y, nboot = 100, beta = 0.1,
   type = "pearson", bf.prior = 0.707, conf.level = 0.95,
@@ -34,8 +34,8 @@ Corresponding abbreviations are also accepted: \code{"p"} (for
 parametric/pearson's), \code{"np"} (nonparametric/spearman), \code{"r"} (robust),
 \code{"bf"} (for bayes factor), resp.}
 
-\item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
-to use in calculating Bayes factors.}
+\item{bf.prior}{A numeric value between \code{0.5} and \code{2} (default \code{0.707}), the
+prior width to use in calculating Bayes Factors.}
 
 \item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
 \code{95\%} lower and upper confidence intervals (\code{0.95}).}
@@ -54,12 +54,15 @@ added as a prefix in the subtitle. The default is \code{NULL}. An example of a
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
 
-\item{...}{Additional arguments.}
+\item{...}{Additional arguments (currently ignored).}
 }
 \description{
-Making text subtitle for the correlation test.
+Making expression for correlation analysis
 }
 \examples{
+
+# for reproducibility
+set.seed(123)
 
 # without changing defaults
 subtitle_ggscatterstats(
@@ -80,5 +83,5 @@ subtitle_ggscatterstats(
 )
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }

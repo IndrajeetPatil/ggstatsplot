@@ -30,22 +30,26 @@ dataframe \code{data}.}
 \item{test.value}{A number specifying the value of the null hypothesis
 (Default: \code{0}).}
 
-\item{paired}{if \code{TRUE}, observations are paired}
+\item{paired}{Logical that decides whether the experimental design is
+repeated measures/within-subjects or between-subjects. The default is
+\code{FALSE}.}
 
-\item{bf.prior}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
-width to use in calculating Bayes factors.}
+\item{bf.prior}{A numeric value between \code{0.5} and \code{2} (default \code{0.707}), the
+prior width to use in calculating Bayes Factors.}
 
-\item{caption}{The text for the plot caption.}
+\item{caption}{Text to display as caption (will be displayed on top of the
+bayes factor caption/message).}
 
-\item{output}{Can either be \code{"null"} (or \code{"caption"} or \code{"H0"}, which will
-contain text for evidence in favor of the null hypothesis or H0)  or
-\code{"alternative"} (or \code{"title"} or \code{"H1"}) or \code{"results"}, which will return
-a dataframe with results all the details).}
+\item{output}{Can either be \code{"null"} (or \code{"caption"} or \code{"H0"} or \code{"h0"}),
+which will return expression with evidence in favor of the null hypothesis,
+or \code{"alternative"} (or \code{"title"} or \code{"H1"} or \code{"h1"}), which will return
+expression with evidence in favor of the alternative hypothesis, or
+\code{"results"}, which will return a dataframe with results all the details).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
 
-\item{...}{further arguments to be passed to or from methods.}
+\item{...}{Additional arguments (currently ignored).}
 }
 \description{
 Bayes Factor for \emph{t}-test
@@ -118,5 +122,5 @@ bf_ttest(
 \code{\link{bf_oneway_anova}}
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }

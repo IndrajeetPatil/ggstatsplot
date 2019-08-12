@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers_ggbetween_t_subtitles.R
 \name{subtitle_t_bayes}
 \alias{subtitle_t_bayes}
-\title{Making text subtitle for the Bayesian \emph{t}-test.}
+\title{Making expression containing Bayesian \emph{t}-test results}
 \usage{
 subtitle_t_bayes(data, x, y, bf.prior = 0.707, paired = FALSE, k = 2,
   ...)
@@ -16,27 +16,26 @@ be taken. A matrix or tables will \strong{not} be accepted.}
 \item{y}{The response (a.k.a. outcome or dependent) variable from the
 dataframe \code{data}.}
 
-\item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
-to use in calculating Bayes factors.}
+\item{bf.prior}{A numeric value between \code{0.5} and \code{2} (default \code{0.707}), the
+prior width to use in calculating Bayes Factors.}
 
-\item{paired}{Logical that decides whether the design is repeated
-measures/within-subjects (in which case one-way Friedman Rank Sum Test will
-be carried out) or between-subjects (in which case one-way Kruskal–Wallis H
-test will be carried out). The default is \code{FALSE}.}
+\item{paired}{Logical that decides whether the experimental design is
+repeated measures/within-subjects or between-subjects. The default is
+\code{FALSE}.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
 
-\item{...}{Additional arguments.}
+\item{...}{Additional arguments (currently ignored).}
 }
 \description{
-Making text subtitle for the Bayesian \emph{t}-test.
+Making expression containing Bayesian \emph{t}-test results
 }
 \examples{
 # for reproducibility
 set.seed(123)
 
-# between-subjects design
+# ------------- between-subjects design --------------------------
 
 ggstatsplot::subtitle_t_bayes(
   data = mtcars,
@@ -45,7 +44,7 @@ ggstatsplot::subtitle_t_bayes(
   paired = FALSE
 )
 
-# within-subjects design
+# ------------- within-subjects design -----------------------------
 
 ggstatsplot::subtitle_t_bayes(
   data = dplyr::filter(
@@ -59,5 +58,5 @@ ggstatsplot::subtitle_t_bayes(
 )
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }

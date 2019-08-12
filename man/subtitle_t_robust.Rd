@@ -2,8 +2,7 @@
 % Please edit documentation in R/helpers_ggbetween_t_subtitles.R
 \name{subtitle_t_robust}
 \alias{subtitle_t_robust}
-\title{Making text subtitle for the robust t-test
-(between- and within-subjects designs).}
+\title{Expression containing results from a robust \emph{t}-test}
 \usage{
 subtitle_t_robust(data, x, y, tr = 0.1, paired = FALSE, nboot = 100,
   conf.level = 0.95, conf.type = "norm", k = 2, stat.title = NULL,
@@ -24,10 +23,9 @@ variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
 try to play around with the value of \code{tr}, which is by default set to
 \code{0.1}. Lowering the value might help.}
 
-\item{paired}{Logical that decides whether the design is repeated
-measures/within-subjects (in which case one-way Friedman Rank Sum Test will
-be carried out) or between-subjects (in which case one-way Kruskal–Wallis H
-test will be carried out). The default is \code{FALSE}.}
+\item{paired}{Logical that decides whether the experimental design is
+repeated measures/within-subjects or between-subjects. The default is
+\code{FALSE}.}
 
 \item{nboot}{Number of bootstrap samples for computing confidence interval
 for the effect size (Default: \code{100}).}
@@ -49,23 +47,25 @@ added as a prefix in the subtitle. The default is \code{NULL}. An example of a
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
 
-\item{...}{Additional arguments.}
+\item{...}{Additional arguments (currently ignored).}
 }
 \description{
-Making text subtitle for the robust t-test
-(between- and within-subjects designs).
+Expression containing results from a robust \emph{t}-test
 }
 \examples{
 
+# for reproducibility
+set.seed(123)
+
 # with defaults
-subtitle_t_robust(
+ggstatsplot::subtitle_t_robust(
   data = sleep,
   x = group,
   y = extra
 )
 
 # changing defaults
-subtitle_t_robust(
+ggstatsplot::subtitle_t_robust(
   data = ToothGrowth,
   x = supp,
   y = len,
@@ -88,5 +88,5 @@ ggstatsplot::subtitle_t_robust(
 )
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }

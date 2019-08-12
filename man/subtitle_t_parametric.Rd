@@ -2,8 +2,7 @@
 % Please edit documentation in R/helpers_ggbetween_t_subtitles.R
 \name{subtitle_t_parametric}
 \alias{subtitle_t_parametric}
-\title{Making expression containing results for a \emph{t}-test
-(between-/within-subjects designs).}
+\title{Making expression containing \emph{t}-test results}
 \usage{
 subtitle_t_parametric(data, x, y, paired = FALSE, effsize.type = "g",
   effsize.noncentral = TRUE, conf.level = 0.95, var.equal = FALSE,
@@ -18,16 +17,13 @@ be taken. A matrix or tables will \strong{not} be accepted.}
 \item{y}{The response (a.k.a. outcome or dependent) variable from the
 dataframe \code{data}.}
 
-\item{paired}{Logical that decides whether the design is repeated
-measures/within-subjects (in which case one-way Friedman Rank Sum Test will
-be carried out) or between-subjects (in which case one-way Kruskal–Wallis H
-test will be carried out). The default is \code{FALSE}.}
+\item{paired}{Logical that decides whether the experimental design is
+repeated measures/within-subjects or between-subjects. The default is
+\code{FALSE}.}
 
 \item{effsize.type}{Type of effect size needed for \emph{parametric} tests. The
-argument can be \code{"biased"} (equivalent to \code{"d"} for Cohen's \emph{d} for
-\strong{t-test}; \code{"partial_eta"} for partial eta-squared for \strong{anova}) or
-\code{"unbiased"} (equivalent to \code{"g"} Hedge's \emph{g} for \strong{t-test};
-\code{"partial_omega"} for partial omega-squared for \strong{anova})).}
+argument can be \code{"biased"} (\code{"d"} for Cohen's \emph{d}) or \code{"unbiased"}
+(\code{"g"} Hedge's \emph{g} for \strong{t-test}). The default is \code{"g"}.}
 
 \item{effsize.noncentral}{Logical indicating whether to use non-central
 \emph{t}-distributions for computing the confidence interval for Cohen's \emph{d}
@@ -50,11 +46,10 @@ or Hedge's \emph{g} (Default: \code{TRUE}).}
 added as a prefix in the subtitle. The default is \code{NULL}. An example of a
 \code{stat.title} argument will be something like \code{"Student's t-test: "}.}
 
-\item{...}{Additional arguments.}
+\item{...}{Additional arguments (currently ignored).}
 }
 \description{
-Making expression containing results for a \emph{t}-test
-(between-/within-subjects designs).
+Making expression containing \emph{t}-test results
 }
 \details{
 Cohen's \emph{d} is calculated in the traditional fashion as the
@@ -104,9 +99,6 @@ subtitle_t_parametric(
   effsize.type = "d"
 )
 }
-\seealso{
-subtitle_t_parametric
-}
 \author{
-Indrajeet Patil, Chuck Powell
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}, Chuck Powell
 }

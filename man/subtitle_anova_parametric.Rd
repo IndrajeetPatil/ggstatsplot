@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers_ggbetween_anova_subtitles.R
 \name{subtitle_anova_parametric}
 \alias{subtitle_anova_parametric}
-\title{Making text subtitle for parametric ANOVA.}
+\title{Making expression containing parametric ANOVA results}
 \usage{
 subtitle_anova_parametric(data, x, y, paired = FALSE,
   effsize.type = "unbiased", partial = TRUE, conf.level = 0.95,
@@ -18,10 +18,9 @@ be taken. A matrix or tables will \strong{not} be accepted.}
 \item{y}{The response (a.k.a. outcome or dependent) variable from the
 dataframe \code{data}.}
 
-\item{paired}{Logical that decides whether the design is repeated
-measures/within-subjects (in which case one-way Friedman Rank Sum Test will
-be carried out) or between-subjects (in which case one-way Kruskal–Wallis H
-test will be carried out). The default is \code{FALSE}.}
+\item{paired}{Logical that decides whether the experimental design is
+repeated measures/within-subjects or between-subjects. The default is
+\code{FALSE}.}
 
 \item{effsize.type}{Type of effect size needed for \emph{parametric} tests. The
 argument can be \code{"biased"} (equivalent to \code{"d"} for Cohen's \emph{d} for
@@ -61,10 +60,10 @@ added as a prefix in the subtitle. The default is \code{NULL}. An example of a
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
 
-\item{...}{Additional arguments.}
+\item{...}{Additional arguments (currently ignored).}
 }
 \description{
-Making text subtitle for parametric ANOVA.
+Making expression containing parametric ANOVA results
 }
 \note{
 For repeated measures designs (\code{paired = TRUE}), only omega-squared and
@@ -111,5 +110,5 @@ ggstatsplot::subtitle_anova_parametric(
 )
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }

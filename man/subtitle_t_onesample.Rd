@@ -2,8 +2,8 @@
 % Please edit documentation in R/helpers_gghistostats_subtitles.R
 \name{subtitle_t_onesample}
 \alias{subtitle_t_onesample}
-\title{Making text subtitle for one sample t-test and its nonparametric and
-robust equivalents.}
+\title{Expression for one sample \emph{t}-test and its non-parametric and
+robust equivalents}
 \usage{
 subtitle_t_onesample(data, x, type = "parametric", test.value = 0,
   bf.prior = 0.707, robust.estimator = "onestep", effsize.type = "g",
@@ -24,16 +24,16 @@ or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accep
 \item{test.value}{A number specifying the value of the null hypothesis
 (Default: \code{0}).}
 
-\item{bf.prior}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
-width to use in calculating Bayes factors.}
+\item{bf.prior}{A numeric value between \code{0.5} and \code{2} (default \code{0.707}), the
+prior width to use in calculating Bayes Factors.}
 
-\item{robust.estimator}{If \code{test = "robust"} robust estimator to be used
+\item{robust.estimator}{If \code{type = "robust"}, a robust estimator to be used
 (\code{"onestep"} (Default), \code{"mom"}, or \code{"median"}). For more, see
 \code{?WRS2::onesampb}.}
 
 \item{effsize.type}{Type of effect size needed for \emph{parametric} tests. The
 argument can be \code{"biased"} (\code{"d"} for Cohen's \emph{d}) or \code{"unbiased"}
-(\code{"g"} Hedge's \emph{g} for \strong{t-test}). The default is}
+(\code{"g"} Hedge's \emph{g} for \strong{t-test}). The default is \code{"g"}.}
 
 \item{effsize.noncentral}{Logical indicating whether to use non-central
 \emph{t}-distributions for computing the confidence interval for Cohen's \emph{d}
@@ -59,11 +59,11 @@ added as a prefix in the subtitle. The default is \code{NULL}. An example of a
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
 
-\item{...}{Additional arguments.}
+\item{...}{Additional arguments (currently ignored).}
 }
 \description{
-Making text subtitle for one sample t-test and its nonparametric and
-robust equivalents.
+Expression for one sample \emph{t}-test and its non-parametric and
+robust equivalents
 }
 \examples{
 
@@ -81,5 +81,5 @@ ggstatsplot::subtitle_t_onesample(
 \code{\link{gghistostats}}
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }
