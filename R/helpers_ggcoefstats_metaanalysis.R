@@ -1,7 +1,8 @@
-#' @title Making expression with frequentist meta-analysis results
-#' @description Making expression for meta-analysis via linear (mixed-effects)
-#'   models as implemented in the `metafor` package.
-#' @name subtitle_meta_ggcoefstats
+#' @title Making expression with frequentist random-effects meta-analysis
+#'   results
+#' @description This analysis is carried out using the `metafor` package. For
+#'   more, see `?metafor::rma`.
+#' @name subtitle_meta_parametric
 #' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @param data A dataframe. It **must** contain columns named `estimate`
@@ -49,21 +50,21 @@
 #'   )
 #'
 #' # making subtitle
-#' ggstatsplot::subtitle_meta_ggcoefstats(
+#' ggstatsplot::subtitle_meta_parametric(
 #'   data = df_results,
 #'   k = 3,
 #'   messages = FALSE
 #' )
 #'
 #' # getting tidy data frame with coefficients
-#' ggstatsplot::subtitle_meta_ggcoefstats(
+#' ggstatsplot::subtitle_meta_parametric(
 #'   data = df_results,
 #'   messages = FALSE,
 #'   output = "tidy"
 #' )
 #'
 #' # making caption
-#' ggstatsplot::subtitle_meta_ggcoefstats(
+#' ggstatsplot::subtitle_meta_parametric(
 #'   data = df_results,
 #'   k = 2,
 #'   messages = FALSE,
@@ -71,7 +72,7 @@
 #' )
 #'
 #' # getting dataframe with model summary
-#' ggstatsplot::subtitle_meta_ggcoefstats(
+#' ggstatsplot::subtitle_meta_parametric(
 #'   data = df_results,
 #'   messages = FALSE,
 #'   output = "glance"
@@ -79,12 +80,12 @@
 #' @export
 
 # function body
-subtitle_meta_ggcoefstats <- function(data,
-                                      k = 2,
-                                      messages = TRUE,
-                                      output = "subtitle",
-                                      caption = NULL,
-                                      ...) {
+subtitle_meta_parametric <- function(data,
+                                     k = 2,
+                                     messages = TRUE,
+                                     output = "subtitle",
+                                     caption = NULL,
+                                     ...) {
 
   #----------------------- input checking ------------------------------------
 
@@ -431,3 +432,9 @@ bf_meta_message <- function(data,
   # return the caption
   return(bf_text)
 }
+
+#' @rdname subtitle_meta_parametric
+#' @aliases subtitle_meta_parametric
+#' @export
+
+subtitle_meta_ggcoefstats <- subtitle_meta_parametric

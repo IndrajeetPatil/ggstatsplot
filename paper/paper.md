@@ -4,7 +4,7 @@ author:
 - Indrajeet Patil^[Harvard University, patilindrajeet.science@gmail.com]
 - Fiery Cushman^[Harvard University]
 - Mina Cikara^[Harvard University]
-date: "2019-08-11"
+date: "2019-08-12"
 output: 
   bookdown::pdf_document2:
     fig_caption: true
@@ -191,8 +191,8 @@ set.seed(123)
 # plot
 ggstatsplot::ggpiestats(
   data = ggstatsplot::movies_long,
-  main = genre,
-  condition = mpaa,
+  x = genre,
+  y = mpaa,
   title = "Distribution of MPAA ratings by film genre",
   legend.title = "layout",
   caption = substitute(paste(

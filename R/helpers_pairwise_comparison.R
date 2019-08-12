@@ -322,7 +322,8 @@ pairwise_p <- function(data,
         )
 
       # extracting and cleaning up Tukey's HSD output
-      df_tukey <- stats::TukeyHSD(x = aovmodel, conf.level = 0.95) %>%
+      df_tukey <-
+        stats::TukeyHSD(x = aovmodel, conf.level = 0.95) %>%
         broomExtra::tidy(x = .) %>%
         dplyr::select(.data = ., comparison, estimate) %>%
         tidyr::separate(
@@ -343,16 +344,17 @@ pairwise_p <- function(data,
         )
 
       # tidy dataframe with results from pairwise tests
-      df_tidy <- broomExtra::tidy(
-        stats::pairwise.t.test(
-          x = data %>% dplyr::pull({{ y }}),
-          g = data %>% dplyr::pull({{ x }}),
-          p.adjust.method = p.adjust.method,
-          paired = paired,
-          alternative = "two.sided",
-          na.action = na.omit
-        )
-      ) %>%
+      df_tidy <-
+        broomExtra::tidy(
+          stats::pairwise.t.test(
+            x = data %>% dplyr::pull({{ y }}),
+            g = data %>% dplyr::pull({{ x }}),
+            p.adjust.method = p.adjust.method,
+            paired = paired,
+            alternative = "two.sided",
+            na.action = na.omit
+          )
+        ) %>%
         signif_column(data = ., p = p.value)
 
       # combining mean difference and results from pairwise t-test
@@ -542,7 +544,7 @@ pairwise_p <- function(data,
             value = "rowid",
             group1:group2
           ),
-        # dataframe with factor level codings
+        # dataframe with factor levels
         y = rob_pairwise_df$fnames %>%
           tibble::enframe(x = ., name = "rowid"),
         by = "rowid"

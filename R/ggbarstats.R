@@ -2,15 +2,15 @@
 #' @name ggbarstats
 #' @description Bar charts for categorical data with statistical details
 #'   included in the plot as a subtitle.
-#' @author Chuck Powell, Indrajeet Patil
+#' @author Chuck Powell, \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @param labels.legend A character vector with custom labels for levels of
-#'   the `main` variable displayed in the legend.
+#'   the `x` variable displayed in the legend.
 #' @param xlab Custom text for the `x` axis label (Default: `NULL`, which
-#'   will cause the `x` axis label to be the `main` variable).
+#'   will cause the `x` axis label to be the `x` variable).
 #' @param ylab Custom text for the `y` axis label (Default: `"percent"`).
 #' @param bar.proptest Decides whether proportion test for `main` variable is
-#'   to be carried out for each level of `condition` (Default: `TRUE`).
+#'   to be carried out for each level of `y` (Default: `TRUE`).
 #' @param bar.label,data.label Character decides what information needs to be
 #'   displayed on the label in each pie slice. Possible options are
 #'   `"percentage"` (default), `"counts"`, `"both"`.
@@ -44,7 +44,7 @@
 #' # for reproducibility
 #' set.seed(123)
 #'
-#' # simple function call with the defaults (with condition)
+#' # association test (or contingency table analysis)
 #' ggstatsplot::ggbarstats(
 #'   data = mtcars,
 #'   main = vs,
@@ -54,13 +54,13 @@
 #'   legend.title = "Engine"
 #' )
 #'
-#' # simple function call with the defaults (with count data)
+#' # using `counts` argument
 #' library(jmv)
 #'
 #' ggstatsplot::ggbarstats(
 #'   data = as.data.frame(HairEyeColor),
-#'   main = Eye,
-#'   condition = Hair,
+#'   x = Eye,
+#'   y = Hair,
 #'   counts = Freq
 #' )
 #' @export
@@ -119,23 +119,23 @@ ggbarstats <- function(data,
   condition <- if (!rlang::quo_is_null(rlang::enquo(condition))) rlang::ensym(condition)
   x <- if (!rlang::quo_is_null(rlang::enquo(x))) rlang::ensym(x)
   y <- if (!rlang::quo_is_null(rlang::enquo(y))) rlang::ensym(y)
-  main <- x %||% main
-  condition <- y %||% condition
+  x <- x %||% main
+  y <- y %||% condition
   counts <- if (!rlang::quo_is_null(rlang::enquo(counts))) rlang::ensym(counts)
 
   # ================= extracting column names as labels  =====================
 
-  # if legend title is not provided, use the 'main' variable name
-  if (rlang::is_null(legend.title)) legend.title <- rlang::as_name(main)
+  # if legend title is not provided, use the 'x' variable name
+  if (rlang::is_null(legend.title)) legend.title <- rlang::as_name(x)
 
-  # if x-axis label is not specified, use the 'condition' variable
-  if (is.null(xlab)) xlab <- rlang::as_name(condition)
+  # if x-axis label is not specified, use the 'y' variable
+  if (is.null(xlab)) xlab <- rlang::as_name(y)
 
   # =============================== dataframe ================================
 
   # creating a dataframe
   data %<>%
-    dplyr::select(.data = ., {{ main }}, {{ condition }}, {{ counts }}) %>%
+    dplyr::select(.data = ., {{ x }}, {{ y }}, {{ counts }}) %>%
     tidyr::drop_na(data = .) %>%
     tibble::as_tibble(x = .)
 
@@ -154,21 +154,21 @@ ggbarstats <- function(data,
 
   # ============================ percentage dataframe ========================
 
-  # main and condition need to be a factor for this analysis
+  # x and y need to be a factor for this analysis
   # also drop the unused levels of the factors
   data %<>%
     dplyr::mutate(
       .data = .,
-      {{ main }} := droplevels(as.factor({{ main }})),
-      {{ condition }} := droplevels(as.factor({{ condition }}))
+      {{ x }} := droplevels(as.factor({{ x }})),
+      {{ y }} := droplevels(as.factor({{ y }}))
     )
 
-  # convert the data into percentages; group by conditional variable
+  # convert the data into percentages; group by yal variable
   # dataframe with summary labels
   bar.label <- data.label %||% bar.label
   df <-
     cat_label_df(
-      data = cat_counter(data = data, x = {{ main }}, y = {{ condition }}),
+      data = cat_counter(data = data, x = {{ x }}, y = {{ y }}),
       label.col.name = "bar.label",
       label.content = bar.label,
       label.separator = label.separator,
@@ -178,20 +178,19 @@ ggbarstats <- function(data,
   # dataframe containing all details needed for sample size and prop test
   df_labels <- df_facet_label(
     data = data,
-    x = {{ main }},
-    y = {{ condition }},
+    x = {{ x }},
+    y = {{ y }},
     k = k
   )
 
   # ====================== preparing names for legend  ======================
 
   # reorder the category factor levels to order the legend
-  df %<>%
-    dplyr::mutate(.data = ., {{ main }} := factor({{ main }}, unique({{ main }})))
+  df %<>% dplyr::mutate(.data = ., {{ x }} := factor({{ x }}, unique({{ x }})))
 
-  # getting labels for all levels of the 'main' variable factor
+  # getting labels for all levels of the 'x' variable factor
   if (is.null(labels.legend)) {
-    legend.labels <- as.character(df %>% dplyr::pull({{ main }}))
+    legend.labels <- as.character(df %>% dplyr::pull({{ x }}))
   } else {
     legend.labels <- labels.legend
   }
@@ -203,13 +202,13 @@ ggbarstats <- function(data,
     palette_message(
       package = package,
       palette = palette,
-      min_length = nlevels(data %>% dplyr::pull({{ main }}))[[1]]
+      min_length = nlevels(data %>% dplyr::pull({{ x }}))[[1]]
     )
 
     # plot
     p <- ggplot2::ggplot(
       data = df,
-      mapping = ggplot2::aes(x = {{ condition }}, y = perc, fill = {{ main }})
+      mapping = ggplot2::aes(x = {{ y }}, y = perc, fill = {{ x }})
     ) +
       ggplot2::geom_bar(
         stat = "identity",
@@ -223,7 +222,7 @@ ggbarstats <- function(data,
         minor_breaks = seq(from = 0.05, to = 0.95, by = 0.10)
       ) +
       ggplot2::geom_label(
-        mapping = ggplot2::aes(label = bar.label, group = {{ main }}),
+        mapping = ggplot2::aes(label = bar.label, group = {{ x }}),
         show.legend = FALSE,
         position = ggplot2::position_fill(vjust = 0.5),
         color = "black",
@@ -258,8 +257,8 @@ ggbarstats <- function(data,
     subtitle <-
       subtitle_contingency_tab(
         data = data,
-        x = {{ main }},
-        y = {{ condition }},
+        x = {{ x }},
+        y = {{ y }},
         ratio = ratio,
         nboot = nboot,
         paired = paired,
@@ -279,8 +278,8 @@ ggbarstats <- function(data,
       caption <-
         bf_contingency_tab(
           data = data,
-          x = {{ main }},
-          y = {{ condition }},
+          x = {{ x }},
+          y = {{ y }},
           sampling.plan = sampling.plan,
           fixed.margin = fixed.margin,
           prior.concentration = prior.concentration,
@@ -304,7 +303,7 @@ ggbarstats <- function(data,
         ggplot2::geom_text(
           data = df_labels,
           mapping = ggplot2::aes(
-            x = {{ condition }},
+            x = {{ y }},
             y = 1.05,
             label = significance,
             fill = NULL
@@ -320,7 +319,7 @@ ggbarstats <- function(data,
         ggplot2::geom_text(
           data = df_labels,
           mapping = ggplot2::aes(
-            x = {{ condition }},
+            x = {{ y }},
             y = -0.05,
             label = N,
             fill = NULL
@@ -343,24 +342,26 @@ ggbarstats <- function(data,
       }
 
       # adjusting plot label
-      p <- p + ggplot2::theme(
-        axis.text.x = ggplot2::element_text(
-          angle = angle,
-          vjust = vjust,
-          hjust = 1,
-          face = "bold"
+      p <- p +
+        ggplot2::theme(
+          axis.text.x = ggplot2::element_text(
+            angle = angle,
+            vjust = vjust,
+            hjust = 1,
+            face = "bold"
+          )
         )
-      )
     }
 
     # preparing the plot
-    p <- p + ggplot2::labs(
-      x = xlab,
-      y = ylab,
-      subtitle = subtitle,
-      title = title,
-      caption = caption
-    ) + # adding ggplot component
+    p <- p +
+      ggplot2::labs(
+        x = xlab,
+        y = ylab,
+        subtitle = subtitle,
+        title = title,
+        caption = caption
+      ) +
       ggplot.component
   }
 

@@ -12,8 +12,6 @@
 #' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
 #' @importFrom dplyr group_by n arrange
 #' @importFrom rlang !! enquo quo_name ensym
-#' @importFrom glue glue
-#' @importFrom purrr map set_names
 #'
 #' @seealso \code{\link{ggbarstats}}, \code{\link{ggpiestats}},
 #'  \code{\link{grouped_ggbarstats}}
@@ -29,7 +27,7 @@
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = mtcars,
 #'   grouping.var = am,
-#'   main = cyl
+#'   x = cyl
 #' )
 #'
 #' # without condition and with count data
@@ -37,7 +35,7 @@
 #'
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = as.data.frame(HairEyeColor),
-#'   main = Hair,
+#'   x = Hair,
 #'   counts = Freq,
 #'   grouping.var = Sex
 #' )
@@ -54,8 +52,8 @@
 #' # plot
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = diamonds_short,
-#'   main = color,
-#'   condition = clarity,
+#'   x = color,
+#'   y = clarity,
 #'   grouping.var = cut,
 #'   nboot = 20,
 #'   sampling.plan = "poisson",
@@ -167,7 +165,7 @@ grouped_ggpiestats <- function(data,
   # creating a list of plots using `pmap`
   plotlist_purrr <-
     purrr::pmap(
-      .l = list(data = df, title = glue::glue("{title.prefix}: {names(df)}")),
+      .l = list(data = df, title = paste(title.prefix, ": ", names(df), sep = "")),
       .f = ggstatsplot::ggpiestats,
       # put common parameters here
       x = {{ x }},

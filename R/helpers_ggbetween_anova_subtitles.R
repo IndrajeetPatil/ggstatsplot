@@ -157,8 +157,8 @@ subtitle_anova_parametric <- function(data,
   if (isTRUE(paired)) {
     # converting to long format and then getting it back in wide so that the
     # rowid variable can be used as the block variable
-    data <-
-      long_to_wide_converter(data = data, x = {{ x }}, y = {{ y }}) %>%
+    data %<>%
+      long_to_wide_converter(data = ., x = {{ x }}, y = {{ y }}) %>%
       tidyr::gather(data = ., key, value, -rowid) %>%
       dplyr::arrange(.data = ., rowid)
 
@@ -384,11 +384,7 @@ subtitle_anova_nonparametric <- function(data,
 
     # converting to long format and then getting it back in wide so that the
     # rowid variable can be used as the block variable
-    data %<>%
-      long_to_wide_converter(data = ., x = {{ x }}, y = {{ y }}) %>%
-      tidyr::gather(data = ., key, value, -rowid) %>%
-      dplyr::arrange(.data = ., rowid) %>%
-      dplyr::rename(.data = ., {{ x }} := key, {{ y }} := value)
+    data %<>% df_cleanup_paired(data = ., x = {{ x }}, y = {{ y }})
 
     # sample size
     sample_size <- length(unique(data$rowid))
@@ -471,7 +467,8 @@ subtitle_anova_nonparametric <- function(data,
   return(subtitle)
 }
 
-#' @title Making text subtitle for the robust ANOVA
+#' @title Expression containing results from heteroscedastic one-way ANOVA for
+#'   trimmed means
 #' @name subtitle_anova_robust
 #' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
@@ -480,7 +477,7 @@ subtitle_anova_nonparametric <- function(data,
 #' @inheritParams subtitle_template
 #'
 #' @importFrom dplyr select
-#' @importFrom rlang !! enquo
+#' @importFrom rlang !! enquo ensym as_name
 #' @importFrom WRS2 rmanova
 #'
 #' @examples
@@ -552,10 +549,7 @@ subtitle_anova_robust <- function(data,
   if (isTRUE(paired)) {
     # converting to long format and then getting it back in wide so that the
     # rowid variable can be used as the block variable
-    data <-
-      long_to_wide_converter(data = data, x = {{ x }}, y = {{ y }}) %>%
-      tidyr::gather(data = ., key, value, -rowid) %>%
-      dplyr::arrange(.data = ., rowid)
+    data %<>% df_cleanup_paired(data = ., x = {{ x }}, y = {{ y }})
 
     # sample size
     sample_size <- length(unique(data$rowid))
@@ -563,33 +557,32 @@ subtitle_anova_robust <- function(data,
     # test
     stats_df <-
       WRS2::rmanova(
-        y = data$value,
-        groups = data$key,
-        blocks = data$rowid,
+        y = data[[rlang::as_name(y)]],
+        groups = data[[rlang::as_name(x)]],
+        blocks = data[["rowid"]],
         tr = tr
       )
 
     # preparing the subtitle
     subtitle <-
       substitute(
-        expr =
-          paste(
-            italic("F"),
-            "(",
-            df1,
-            ",",
-            df2,
-            ") = ",
-            estimate,
-            ", ",
-            italic("p"),
-            " = ",
-            p.value,
-            ", ",
-            italic("n")["pairs"],
-            " = ",
-            n
-          ),
+        expr = paste(
+          italic("F"),
+          "(",
+          df1,
+          ",",
+          df2,
+          ") = ",
+          estimate,
+          ", ",
+          italic("p"),
+          " = ",
+          p.value,
+          ", ",
+          italic("n")["pairs"],
+          " = ",
+          n
+        ),
         env = list(
           estimate = specify_decimal_p(x = stats_df$test[[1]], k = k),
           df1 = specify_decimal_p(x = stats_df$df1[[1]], k = k),
@@ -612,15 +605,16 @@ subtitle_anova_robust <- function(data,
 
     # setting up the Bootstrap version of the heteroscedastic one-way ANOVA for
     # trimmed means
-    stats_df <- t1way_ci(
-      data = data,
-      x = {{ x }},
-      y = {{ y }},
-      tr = tr,
-      nboot = nboot,
-      conf.level = conf.level,
-      conf.type = conf.type
-    )
+    stats_df <-
+      t1way_ci(
+        data = data,
+        x = {{ x }},
+        y = {{ y }},
+        tr = tr,
+        nboot = nboot,
+        conf.level = conf.level,
+        conf.type = conf.type
+      )
 
     # preparing subtitle
     subtitle <- subtitle_template(
@@ -714,15 +708,9 @@ subtitle_anova_bayes <- function(data,
     tibble::as_tibble(x = .)
 
   # properly removing NAs if it's a paired design
-  if (isTRUE(paired)) {
-    # converting to long format and then getting it back in wide so that the
-    # rowid variable can be used as the block variable
-    data %<>%
-      long_to_wide_converter(data = ., x = {{ x }}, y = {{ y }}) %>%
-      tidyr::gather(data = ., key, value, -rowid) %>%
-      dplyr::arrange(.data = ., rowid) %>%
-      dplyr::rename(.data = ., {{ x }} := key, {{ y }} := value)
-  }
+  # converting to long format and then getting it back in wide so that the
+  # rowid variable can be used as the block variable
+  if (isTRUE(paired)) data %<>% df_cleanup_paired(data = ., x = {{ x }}, y = {{ y }})
 
   # remove NAs listwise for between-subjects design
   if (isFALSE(paired)) data %<>% tidyr::drop_na(.)

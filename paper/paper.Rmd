@@ -207,8 +207,8 @@ set.seed(123)
 # plot
 ggstatsplot::ggpiestats(
   data = ggstatsplot::movies_long,
-  main = genre,
-  condition = mpaa,
+  x = genre,
+  y = mpaa,
   title = "Distribution of MPAA ratings by film genre",
   legend.title = "layout",
   caption = substitute(paste(

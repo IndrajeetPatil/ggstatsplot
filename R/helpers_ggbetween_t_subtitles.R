@@ -90,18 +90,11 @@ subtitle_t_parametric <- function(data,
 
   # properly removing NAs if it's a paired design
   if (isTRUE(paired)) {
-    data %<>%
-      long_to_wide_converter(data = ., x = {{ x }}, y = {{ y }}) %>%
-      tidyr::gather(data = ., key, value, -rowid) %>%
-      dplyr::rename(.data = ., {{ x }} := key, {{ y }} := value) %>%
-      dplyr::mutate(.data = ., {{ x }} := factor({{ x }}))
+    data %<>% df_cleanup_paired(data = ., x = {{ x }}, y = {{ y }})
 
     # sample size
     sample_size <- length(unique(data$rowid))
     n.text <- quote(italic("n")["pairs"])
-
-    # removing the unnecessary `rowid` column
-    data %<>% dplyr::select(.data = ., -rowid)
   }
 
   # remove NAs listwise for between-subjects design
@@ -293,18 +286,13 @@ subtitle_mann_nonparametric <- function(data,
 
   # properly removing NAs if it's a paired design
   if (isTRUE(paired)) {
-    data %<>%
-      long_to_wide_converter(data = ., x = {{ x }}, y = {{ y }}) %>%
-      tidyr::gather(data = ., key, value, -rowid) %>%
-      dplyr::rename(.data = ., {{ x }} := key, {{ y }} := value) %>%
-      dplyr::mutate(.data = ., {{ x }} := factor({{ x }}))
+    data %<>% df_cleanup_paired(data = ., x = {{ x }}, y = {{ y }})
 
     # sample size
     sample_size <- length(unique(data$rowid))
     n.text <- quote(italic("n")["pairs"])
-
-    # removing the unnecessary `rowid` column
-    data %<>% dplyr::select(.data = ., -rowid)
+    .f <- rcompanion::wilcoxonPairedR
+    statistic.text <- quote("log"["e"](italic("V")))
   }
 
   # remove NAs listwise for between-subjects design
@@ -314,6 +302,8 @@ subtitle_mann_nonparametric <- function(data,
     # sample size
     sample_size <- nrow(data)
     n.text <- quote(italic("n")["obs"])
+    .f <- rcompanion::wilcoxonR
+    statistic.text <- quote("log"["e"](italic("W")))
   }
 
   # setting up the test and getting its summary
@@ -330,27 +320,19 @@ subtitle_mann_nonparametric <- function(data,
       conf.level = conf.level
     ))
 
-  # function to compute effect sizes
-  if (isTRUE(paired)) {
-    .f <- rcompanion::wilcoxonPairedR
-    statistic.text <- quote("log"["e"](italic("V")))
-  } else {
-    .f <- rcompanion::wilcoxonR
-    statistic.text <- quote("log"["e"](italic("W")))
-  }
-
   # computing effect size
-  effsize_df <- rlang::exec(
-    .fn = .f,
-    x = data %>% dplyr::pull({{ y }}),
-    g = data %>% dplyr::pull({{ x }}),
-    ci = TRUE,
-    conf = conf.level,
-    type = conf.type,
-    R = nboot,
-    histogram = FALSE,
-    digits = k
-  ) %>%
+  effsize_df <-
+    rlang::exec(
+      .fn = .f,
+      x = data %>% dplyr::pull({{ y }}),
+      g = data %>% dplyr::pull({{ x }}),
+      ci = TRUE,
+      conf = conf.level,
+      type = conf.type,
+      R = nboot,
+      histogram = FALSE,
+      digits = k
+    ) %>%
     rcompanion_cleaner(object = ., estimate.col = "r")
 
   # message about effect size measure
@@ -498,11 +480,7 @@ subtitle_t_robust <- function(data,
   if (isTRUE(paired)) {
     # converting to long format and then getting it back in wide so that the
     # rowid variable can be used as the block variable
-    data <-
-      long_to_wide_converter(data = data, x = {{ x }}, y = {{ y }}) %>%
-      tidyr::gather(data = ., key, value, -rowid) %>%
-      dplyr::arrange(.data = ., rowid) %>%
-      dplyr::rename(.data = ., {{ x }} := key, {{ y }} := value)
+    data %<>% df_cleanup_paired(data = ., x = {{ x }}, y = {{ y }})
 
     # sample size
     sample_size <- length(unique(data$rowid))

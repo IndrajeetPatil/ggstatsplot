@@ -30,7 +30,7 @@ be taken. A matrix or tables will \strong{not} be accepted.}
 
 \item{condition}{The variable to use as the \strong{columns} in the contingency
 table. Default is \code{NULL}. If \code{NULL}, one-sample proportion test (a goodness
-of fit test) will be run for the \code{main} variable. Otherwise an appropriate
+of fit test) will be run for the \code{x} variable. Otherwise an appropriate
 association test will be run.}
 
 \item{counts}{A string naming a variable in data containing counts, or \code{NULL}
@@ -59,7 +59,7 @@ to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, on
 the plot will be returned.}
 
 \item{labels.legend}{A character vector with custom labels for levels of
-the \code{main} variable displayed in the legend.}
+the \code{x} variable displayed in the legend.}
 
 \item{stat.title}{Title for the effect being investigated with the chi-square
 test. The default is \code{NULL}, i.e. no title will be added to describe the
@@ -67,7 +67,7 @@ effect being shown. An example of a \code{stat.title} argument will be something
 like \code{"main x condition"} or \code{"interaction"}.}
 
 \item{sample.size.label}{Logical that decides whether sample size information
-should be displayed for each level of the grouping variable \code{condition}
+should be displayed for each level of the grouping variable \code{y}
 (Default: \code{TRUE}).}
 
 \item{label.separator}{If \code{"both"} counts and proportion information is to be
@@ -134,7 +134,7 @@ for the effect size (Default: \code{100}).}
 \item{legend.title}{Title text for the legend.}
 
 \item{xlab}{Custom text for the \code{x} axis label (Default: \code{NULL}, which
-will cause the \code{x} axis label to be the \code{main} variable).}
+will cause the \code{x} axis label to be the \code{x} variable).}
 
 \item{ylab}{Custom text for the \code{y} axis label (Default: \code{"percent"}).}
 
@@ -153,7 +153,7 @@ displayed on the label in each pie slice. Possible options are
 \code{"percentage"} (default), \code{"counts"}, \code{"both"}.}
 
 \item{bar.proptest}{Decides whether proportion test for \code{main} variable is
-to be carried out for each level of \code{condition} (Default: \code{TRUE}).}
+to be carried out for each level of \code{y} (Default: \code{TRUE}).}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
@@ -195,7 +195,7 @@ to be displayed (Default: \code{TRUE}).}
 
 \item{y}{The variable to use as the \strong{columns} in the contingency
 table. Default is \code{NULL}. If \code{NULL}, one-sample proportion test (a goodness
-of fit test) will be run for the \code{main} variable. Otherwise an appropriate
+of fit test) will be run for the \code{x} variable. Otherwise an appropriate
 association test will be run.}
 
 \item{...}{Arguments passed on to \code{combine_plots}
@@ -273,8 +273,8 @@ library(jmv)
 
 ggstatsplot::grouped_ggbarstats(
   data = as.data.frame(HairEyeColor),
-  main = Hair,
-  condition = Eye,
+  x = Hair,
+  y = Eye,
   counts = Freq,
   grouping.var = Sex
 )
@@ -292,8 +292,8 @@ diamonds_short <- ggplot2::diamonds \%>\%
 # plot
 ggstatsplot::grouped_ggbarstats(
   data = diamonds_short,
-  main = color,
-  condition = clarity,
+  x = color,
+  y = clarity,
   grouping.var = cut,
   sampling.plan = "poisson",
   title.prefix = "Quality",
