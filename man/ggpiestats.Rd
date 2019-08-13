@@ -52,7 +52,7 @@ effect being shown. An example of a \code{stat.title} argument will be something
 like \code{"main x condition"} or \code{"interaction"}.}
 
 \item{sample.size.label}{Logical that decides whether sample size information
-should be displayed for each level of the grouping variable \code{condition}
+should be displayed for each level of the grouping variable \code{y}
 (Default: \code{TRUE}).}
 
 \item{label.separator}{If \code{"both"} counts and proportion information is to be
@@ -168,7 +168,7 @@ to be displayed (Default: \code{TRUE}).}
 
 \item{y, condition}{The variable to use as the \strong{columns} in the contingency
 table. Default is \code{NULL}. If \code{NULL}, one-sample proportion test (a goodness
-of fit test) will be run for the \code{main} variable. Otherwise an appropriate
+of fit test) will be run for the \code{x} variable. Otherwise an appropriate
 association test will be run.}
 }
 \value{
@@ -193,32 +193,32 @@ included in the plot as a subtitle.
 # for reproducibility
 set.seed(123)
 
-# simple function call with the defaults (without condition)
+# one sample goodness of fit proportion test
 ggstatsplot::ggpiestats(
   data = ggplot2::msleep,
-  main = vore,
+  x = vore,
   perc.k = 1,
   bf.message = FALSE,
   k = 3
 )
 
-# simple function call with the defaults (with condition)
+# association test (or contingency table analysis)
 ggstatsplot::ggpiestats(
-  data = datasets::mtcars,
-  main = vs,
-  condition = cyl,
+  data = mtcars,
+  x = vs,
+  y = cyl,
   bf.message = TRUE,
   nboot = 10,
   factor.levels = c("0 = V-shaped", "1 = straight"),
   legend.title = "Engine"
 )
 
-# simple function call with the defaults (without condition; with count data)
+# using `counts` argument
 library(jmv, warn.conflicts = FALSE)
 
 ggstatsplot::ggpiestats(
   data = as.data.frame(HairEyeColor),
-  main = Eye,
+  x = Eye,
   counts = Freq
 )
 }
@@ -230,5 +230,5 @@ ggstatsplot::ggpiestats(
 \code{\link{grouped_ggbarstats}}
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }

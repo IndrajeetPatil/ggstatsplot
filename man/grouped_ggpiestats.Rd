@@ -29,7 +29,7 @@ be taken. A matrix or tables will \strong{not} be accepted.}
 
 \item{condition}{The variable to use as the \strong{columns} in the contingency
 table. Default is \code{NULL}. If \code{NULL}, one-sample proportion test (a goodness
-of fit test) will be run for the \code{main} variable. Otherwise an appropriate
+of fit test) will be run for the \code{x} variable. Otherwise an appropriate
 association test will be run.}
 
 \item{counts}{A string naming a variable in data containing counts, or \code{NULL}
@@ -66,7 +66,7 @@ effect being shown. An example of a \code{stat.title} argument will be something
 like \code{"main x condition"} or \code{"interaction"}.}
 
 \item{sample.size.label}{Logical that decides whether sample size information
-should be displayed for each level of the grouping variable \code{condition}
+should be displayed for each level of the grouping variable \code{y}
 (Default: \code{TRUE}).}
 
 \item{label.separator}{If \code{"both"} counts and proportion information is to be
@@ -180,7 +180,7 @@ to be displayed (Default: \code{TRUE}).}
 
 \item{y}{The variable to use as the \strong{columns} in the contingency
 table. Default is \code{NULL}. If \code{NULL}, one-sample proportion test (a goodness
-of fit test) will be run for the \code{main} variable. Otherwise an appropriate
+of fit test) will be run for the \code{x} variable. Otherwise an appropriate
 association test will be run.}
 
 \item{...}{Arguments passed on to \code{combine_plots}
@@ -257,7 +257,7 @@ resulting plots using \code{ggstatsplot::combine_plots}.
 ggstatsplot::grouped_ggpiestats(
   data = mtcars,
   grouping.var = am,
-  main = cyl
+  x = cyl
 )
 
 # without condition and with count data
@@ -265,7 +265,7 @@ library(jmv)
 
 ggstatsplot::grouped_ggpiestats(
   data = as.data.frame(HairEyeColor),
-  main = Hair,
+  x = Hair,
   counts = Freq,
   grouping.var = Sex
 )
@@ -282,8 +282,8 @@ diamonds_short <- ggplot2::diamonds \%>\%
 # plot
 ggstatsplot::grouped_ggpiestats(
   data = diamonds_short,
-  main = color,
-  condition = clarity,
+  x = color,
+  y = clarity,
   grouping.var = cut,
   nboot = 20,
   sampling.plan = "poisson",

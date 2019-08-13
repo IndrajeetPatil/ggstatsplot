@@ -14,7 +14,7 @@ be taken. A matrix or tables will \strong{not} be accepted.}
 
 \item{y}{The variable to use as the \strong{columns} in the contingency
 table. Default is \code{NULL}. If \code{NULL}, one-sample proportion test (a goodness
-of fit test) will be run for the \code{main} variable. Otherwise an appropriate
+of fit test) will be run for the \code{x} variable. Otherwise an appropriate
 association test will be run.}
 
 \item{...}{Additional grouping variables.}

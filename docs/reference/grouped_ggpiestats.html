@@ -225,7 +225,7 @@ be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
       <th>condition</th>
       <td><p>The variable to use as the <strong>columns</strong> in the contingency
 table. Default is <code>NULL</code>. If <code>NULL</code>, one-sample proportion test (a goodness
-of fit test) will be run for the <code>main</code> variable. Otherwise an appropriate
+of fit test) will be run for the <code>x</code> variable. Otherwise an appropriate
 association test will be run.</p></td>
     </tr>
     <tr>
@@ -280,7 +280,7 @@ like <code>"main x condition"</code> or <code>"interaction"</code>.</p></td>
     <tr>
       <th>sample.size.label</th>
       <td><p>Logical that decides whether sample size information
-should be displayed for each level of the grouping variable <code>condition</code>
+should be displayed for each level of the grouping variable <code>y</code>
 (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
@@ -458,7 +458,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
       <th>y</th>
       <td><p>The variable to use as the <strong>columns</strong> in the contingency
 table. Default is <code>NULL</code>. If <code>NULL</code>, one-sample proportion test (a goodness
-of fit test) will be run for the <code>main</code> variable. Otherwise an appropriate
+of fit test) will be run for the <code>x</code> variable. Otherwise an appropriate
 association test will be run.</p></td>
     </tr>
     <tr>
@@ -542,7 +542,7 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggpiestats.html'>grouped_ggpiestats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>am</span>,
-  <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>cyl</span>
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>cyl</span>
 )</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>100</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>100</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Individual plots in the combined `grouped_` plot
@@ -553,7 +553,7 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
 
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggpiestats.html'>grouped_ggpiestats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='no'>HairEyeColor</span>),
-  <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>Hair</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Hair</span>,
   <span class='kw'>counts</span> <span class='kw'>=</span> <span class='no'>Freq</span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>Sex</span>
 )</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>100</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
@@ -573,8 +573,8 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
 <span class='co'># plot</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggpiestats.html'>grouped_ggpiestats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>diamonds_short</span>,
-  <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>color</span>,
-  <span class='kw'>condition</span> <span class='kw'>=</span> <span class='no'>clarity</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>color</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>clarity</span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>cut</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>20</span>,
   <span class='kw'>sampling.plan</span> <span class='kw'>=</span> <span class='st'>"poisson"</span>,

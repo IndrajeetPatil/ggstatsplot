@@ -10,7 +10,9 @@
 \alias{\%>\%}
 \alias{\%<>\%}
 \alias{\%$\%}
+\alias{\%||\%}
 \alias{tibble}
+\alias{as_tibble}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -22,6 +24,8 @@ below to see their documentation.
 
   \item{magrittr}{\code{\link[magrittr]{\%>\%}}, \code{\link[magrittr]{\%<>\%}}, \code{\link[magrittr]{\%$\%}}}
 
-  \item{tibble}{\code{\link[tibble]{tibble}}}
+  \item{rlang}{\code{\link[rlang]{\%||\%}}}
+
+  \item{tibble}{\code{\link[tibble]{tibble}}, \code{\link[tibble]{as_tibble}}}
 }}
 

@@ -2,7 +2,8 @@
 % Please edit documentation in R/helpers_ggbetween_anova_subtitles.R
 \name{subtitle_anova_robust}
 \alias{subtitle_anova_robust}
-\title{Making text subtitle for the robust ANOVA}
+\title{Expression containing results from heteroscedastic one-way ANOVA for
+trimmed means}
 \usage{
 subtitle_anova_robust(data, x, y, paired = FALSE, tr = 0.1,
   nboot = 100, conf.level = 0.95, conf.type = "norm", k = 2,
@@ -50,7 +51,8 @@ to be displayed (Default: \code{TRUE}).}
 \item{...}{Additional arguments (currently ignored).}
 }
 \description{
-Making text subtitle for the robust ANOVA
+Expression containing results from heteroscedastic one-way ANOVA for
+trimmed means
 }
 \examples{
 

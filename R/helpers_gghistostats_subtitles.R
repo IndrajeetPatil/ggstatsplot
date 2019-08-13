@@ -100,14 +100,15 @@ subtitle_t_onesample <- function(data,
     stats_df <- broomExtra::tidy(mod_object)
 
     # creating effect size info
-    effsize_df <- effsize_t_parametric(
-      formula = rlang::new_formula(NULL, {{ x }}),
-      data = data,
-      tobject = mod_object,
-      mu = test.value,
-      hedges.correction = hedges.correction,
-      conf.level = conf.level
-    )
+    effsize_df <-
+      effsize_t_parametric(
+        formula = rlang::new_formula(NULL, {{ x }}),
+        data = data,
+        tobject = mod_object,
+        mu = test.value,
+        hedges.correction = hedges.correction,
+        conf.level = conf.level
+      )
 
     # preparing subtitle parameters
     statistic.text <- quote(italic("t"))
@@ -191,42 +192,44 @@ subtitle_t_onesample <- function(data,
     if (isTRUE(messages)) effsize_ci_message(nboot, conf.level)
 
     # preparing the subtitle
-    subtitle <- substitute(
-      expr = paste(
-        italic("M")["robust"],
-        " = ",
-        estimate,
-        ", CI"[conf.level],
-        " [",
-        LL,
-        ", ",
-        UL,
-        "], ",
-        italic("p"),
-        " = ",
-        p.value,
-        ", ",
-        italic("n")["obs"],
-        " = ",
-        n
-      ),
-      env = list(
-        estimate = specify_decimal_p(x = stats_df$estimate[[1]], k = k),
-        conf.level = paste(conf.level * 100, "%", sep = ""),
-        LL = specify_decimal_p(x = stats_df$ci[[1]], k = k),
-        UL = specify_decimal_p(x = stats_df$ci[[2]], k = k),
-        p.value = specify_decimal_p(
-          x = stats_df$p.value[[1]],
-          k = k,
-          p.value = TRUE
+    subtitle <-
+      substitute(
+        expr = paste(
+          italic("M")["robust"],
+          " = ",
+          estimate,
+          ", CI"[conf.level],
+          " [",
+          LL,
+          ", ",
+          UL,
+          "], ",
+          italic("p"),
+          " = ",
+          p.value,
+          ", ",
+          italic("n")["obs"],
+          " = ",
+          n
         ),
-        n = sample_size
+        env = list(
+          estimate = specify_decimal_p(x = stats_df$estimate[[1]], k = k),
+          conf.level = paste(conf.level * 100, "%", sep = ""),
+          LL = specify_decimal_p(x = stats_df$ci[[1]], k = k),
+          UL = specify_decimal_p(x = stats_df$ci[[2]], k = k),
+          p.value = specify_decimal_p(
+            x = stats_df$p.value[[1]],
+            k = k,
+            p.value = TRUE
+          ),
+          n = sample_size
+        )
       )
-    )
   }
 
   # ======================== bayes ============================================
 
+  # running Bayesian one-sample t-test
   if (stats.type == "bayes") {
     subtitle <-
       bf_one_sample_ttest(

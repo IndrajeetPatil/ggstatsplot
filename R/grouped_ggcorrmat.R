@@ -12,9 +12,8 @@
 #'
 #' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
 #' @importFrom dplyr group_by n arrange
-#' @importFrom rlang !! enquo quo_name ensym
-#' @importFrom glue glue
-#' @importFrom purrr map set_names %||%
+#' @importFrom rlang !! enquo quo_name ensym %||%
+#' @importFrom purrr map
 #'
 #' @seealso \code{\link{ggcorrmat}}, \code{\link{ggscatterstats}},
 #'   \code{\link{grouped_ggscatterstats}}
@@ -146,7 +145,7 @@ grouped_ggcorrmat <- function(data,
   # creating a list of results
   plotlist_purrr <-
     purrr::pmap(
-      .l = list(data = df, title = glue::glue("{title.prefix}: {names(df)}")),
+      .l = list(data = df, title = paste(title.prefix, ": ", names(df), sep = "")),
       .f = ggstatsplot::ggcorrmat,
       cor.vars.names = cor.vars.names,
       output = output,

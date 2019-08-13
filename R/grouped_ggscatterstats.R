@@ -16,8 +16,7 @@
 #' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
 #' @importFrom dplyr group_by n arrange
 #' @importFrom rlang !! enquo enexpr ensym
-#' @importFrom glue glue
-#' @importFrom purrr map set_names pmap
+#' @importFrom purrr pmap
 #'
 #' @seealso \code{\link{ggscatterstats}}, \code{\link{ggcorrmat}},
 #' \code{\link{grouped_ggcorrmat}}
@@ -158,7 +157,7 @@ grouped_ggscatterstats <- function(data,
   # creating a list of plots using `pmap`
   plotlist_purrr <-
     purrr::pmap(
-      .l = list(data = df, title = glue::glue("{title.prefix}: {names(df)}")),
+      .l = list(data = df, title = paste(title.prefix, ": ", names(df), sep = "")),
       .f = ggstatsplot::ggscatterstats,
       # put common parameters here
       x = {{ x }},

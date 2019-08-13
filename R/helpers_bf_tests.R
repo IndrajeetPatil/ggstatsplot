@@ -5,9 +5,8 @@
 #' @param ... Currently ignored.
 #'
 #' @importFrom BayesFactor extractBF
-#' @importFrom groupedstats grouped_summary
-#' @importFrom tibble as_tibble tribble enframe
-#' @importFrom dplyr rename select mutate everything bind_cols
+#' @importFrom tibble as_tibble enframe
+#' @importFrom dplyr rename select mutate
 #'
 #' @examples
 #' # getting only bayes factors
@@ -254,6 +253,8 @@ bf_corr_test <- function(data,
 #' @importFrom BayesFactor contingencyTableBF logMeanExpLogs
 #' @importFrom stats dmultinom
 #' @importFrom MCMCpack rdirichlet
+#' @importFrom dplyr pull select rename mutate
+#' @importFrom tidyr uncount drop_na
 #'
 #' @seealso \code{\link{bf_corr_test}}, \code{\link{bf_oneway_anova}},
 #' \code{\link{bf_ttest}}
@@ -534,7 +535,7 @@ bf_contingency_tab <- function(data,
 #' @inheritParams subtitle_t_onesample
 #'
 #' @importFrom BayesFactor ttestBF
-#' @importFrom rlang !! quo_is_null new_formula ensym
+#' @importFrom rlang !! quo_is_null new_formula ensym enquo
 #'
 #' @seealso \code{\link{bf_contingency_tab}}, \code{\link{bf_corr_test}},
 #' \code{\link{bf_oneway_anova}}
@@ -774,11 +775,8 @@ bf_oneway_anova <- function(data,
     # converting to long format and then getting it back in wide so that the
     # rowid variable can be used as the block variable
     data %<>%
-      long_to_wide_converter(data = ., x = {{ x }}, y = {{ y }}) %>%
-      tidyr::gather(data = ., key, value, -rowid) %>%
-      dplyr::arrange(.data = ., rowid) %>%
-      dplyr::rename(.data = ., {{ x }} := key, {{ y }} := value) %>%
-      dplyr::mutate(.data = ., rowid = as.factor(rowid), {{ x }} := as.factor({{ x }}))
+      df_cleanup_paired(data = ., x = {{ x }}, y = {{ y }}) %>%
+      dplyr::mutate(.data = ., rowid = as.factor(rowid))
 
     # extracting results from Bayesian test (`y ~ x + id`) and creating a dataframe
     bf_results <-
