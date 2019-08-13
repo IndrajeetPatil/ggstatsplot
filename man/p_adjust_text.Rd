@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers_pairwise_comparison.R
 \name{p_adjust_text}
 \alias{p_adjust_text}
-\title{Preparing text to describe which \emph{p}-value adjustment method was used.}
+\title{Preparing text to describe which \emph{p}-value adjustment method was used}
 \usage{
 p_adjust_text(p.adjust.method)
 }
@@ -15,6 +15,9 @@ comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 Standardized text description for what method was used.
 }
 \description{
-Preparing text to describe which \emph{p}-value adjustment method was used.
+Preparing text to describe which \emph{p}-value adjustment method was used
+}
+\author{
+Indrajeet Patil
 }
 \keyword{internal}

@@ -293,33 +293,15 @@ subtitle_contingency_tab <- function(data,
           simulate.p.value = simulate.p.value,
           B = B
         ),
-        error = function(x) {
-          tibble::tribble(
-            ~statistic, ~parameter, ~p.value,
-            NaN, NaN, NaN
-          )
-        }
+        error = function(x) NULL
       )
 
-    # if there is no value corresponding to one of the levels of the 'x'
-    # variable, then no subtitle is needed
-    if (is.nan(stats_df$statistic[[1]])) {
-      subtitle <-
-        substitute(expr = paste(italic("n"), " = ", n), env = list(n = sample_size))
-
-      # display message
-      message(cat(
-        crayon::red("Warning: "),
-        crayon::blue("Proportion test could not be run. Only sample size returned."),
-        sep = ""
-      ))
-
-      # return early
-      return(subtitle)
+    # if the function worked, then return tidy output
+    if (is.null(stats_df)) {
+      return(NULL)
+    } else {
+      stats_df <- broomExtra::tidy(stats_df)
     }
-
-    # tidying up the results
-    stats_df <- broomExtra::tidy(stats_df)
 
     # `x` argument for effect size function
     x_arg <- as.vector(table(data %>% dplyr::pull({{ x }})))
@@ -345,23 +327,24 @@ subtitle_contingency_tab <- function(data,
   }
 
   # preparing subtitle
-  subtitle <- subtitle_template(
-    no.parameters = 1L,
-    stat.title = stat.title,
-    statistic.text = statistic.text,
-    statistic = stats_df$statistic[[1]],
-    parameter = stats_df$parameter[[1]],
-    p.value = stats_df$p.value[[1]],
-    effsize.text = effsize.text,
-    effsize.estimate = effsize_df$estimate[[1]],
-    effsize.LL = effsize_df$conf.low[[1]],
-    effsize.UL = effsize_df$conf.high[[1]],
-    n = sample_size,
-    n.text = n.text,
-    conf.level = conf.level,
-    k = k,
-    k.parameter = 0L
-  )
+  subtitle <-
+    subtitle_template(
+      no.parameters = 1L,
+      stat.title = stat.title,
+      statistic.text = statistic.text,
+      statistic = stats_df$statistic[[1]],
+      parameter = stats_df$parameter[[1]],
+      p.value = stats_df$p.value[[1]],
+      effsize.text = effsize.text,
+      effsize.estimate = effsize_df$estimate[[1]],
+      effsize.LL = effsize_df$conf.low[[1]],
+      effsize.UL = effsize_df$conf.high[[1]],
+      n = sample_size,
+      n.text = n.text,
+      conf.level = conf.level,
+      k = k,
+      k.parameter = 0L
+    )
 
   # message about effect size measure
   if (isTRUE(messages)) effsize_ci_message(nboot, conf.level)

@@ -610,18 +610,10 @@ testthat::test_that(
     )
 
     # subtitle
-    p1 <- ggstatsplot::ggpiestats(data = df, main = x)
-
-    # expected output
-    p_subtitle1 <- ggplot2::expr(paste(italic("n"), " = ", 1L))
-
-    # testing overall call
-    testthat::expect_identical(p1$labels$subtitle, p_subtitle1)
-    testthat::expect_null(p1$labels$caption, NULL)
-    testthat::expect_error(ggstatsplot::ggpiestats(
+    testthat::expect_null(ggstatsplot::ggpiestats(
       data = df,
       main = x,
-      condition = y
+      return = "subtitle"
     ))
   }
 )

@@ -265,25 +265,26 @@ subtitle_anova_parametric <- function(data,
     )
 
   # preparing subtitle
-  subtitle <- subtitle_template(
-    no.parameters = 2L,
-    stat.title = stat.title,
-    statistic.text = quote(italic("F")),
-    statistic = stats_df$statistic[[1]],
-    parameter = stats_df$parameter[[1]],
-    parameter2 = stats_df$parameter[[2]],
-    p.value = stats_df$p.value[[1]],
-    effsize.text = effsize.text,
-    effsize.estimate = effsize_df$estimate[[1]],
-    effsize.LL = effsize_df$conf.low[[1]],
-    effsize.UL = effsize_df$conf.high[[1]],
-    n = sample_size,
-    n.text = n.text,
-    conf.level = conf.level,
-    k = k,
-    k.parameter = k.df1,
-    k.parameter2 = k.df2
-  )
+  subtitle <-
+    subtitle_template(
+      no.parameters = 2L,
+      stat.title = stat.title,
+      statistic.text = quote(italic("F")),
+      statistic = stats_df$statistic[[1]],
+      parameter = stats_df$parameter[[1]],
+      parameter2 = stats_df$parameter[[2]],
+      p.value = stats_df$p.value[[1]],
+      effsize.text = effsize.text,
+      effsize.estimate = effsize_df$estimate[[1]],
+      effsize.LL = effsize_df$conf.low[[1]],
+      effsize.UL = effsize_df$conf.high[[1]],
+      n = sample_size,
+      n.text = n.text,
+      conf.level = conf.level,
+      k = k,
+      k.parameter = k.df1,
+      k.parameter2 = k.df2
+    )
 
   # message about effect size measure
   if (isTRUE(messages)) effsize_ci_message(nboot, conf.level)
@@ -445,23 +446,24 @@ subtitle_anova_nonparametric <- function(data,
   if (isTRUE(messages)) effsize_ci_message(nboot, conf.level)
 
   # preparing subtitle
-  subtitle <- subtitle_template(
-    no.parameters = 1L,
-    stat.title = stat.title,
-    statistic.text = quote(italic(chi)^2),
-    statistic = stats_df$statistic[[1]],
-    parameter = stats_df$parameter[[1]],
-    p.value = stats_df$p.value[[1]],
-    effsize.text = effsize.text,
-    effsize.estimate = effsize_df$estimate[[1]],
-    effsize.LL = effsize_df$conf.low[[1]],
-    effsize.UL = effsize_df$conf.high[[1]],
-    n = sample_size,
-    n.text = n.text,
-    conf.level = conf.level,
-    k = k,
-    k.parameter = 0L
-  )
+  subtitle <-
+    subtitle_template(
+      no.parameters = 1L,
+      stat.title = stat.title,
+      statistic.text = quote(italic(chi)^2),
+      statistic = stats_df$statistic[[1]],
+      parameter = stats_df$parameter[[1]],
+      p.value = stats_df$p.value[[1]],
+      effsize.text = effsize.text,
+      effsize.estimate = effsize_df$estimate[[1]],
+      effsize.LL = effsize_df$conf.low[[1]],
+      effsize.UL = effsize_df$conf.high[[1]],
+      n = sample_size,
+      n.text = n.text,
+      conf.level = conf.level,
+      k = k,
+      k.parameter = 0L
+    )
 
   # return the subtitle
   return(subtitle)
@@ -617,25 +619,26 @@ subtitle_anova_robust <- function(data,
       )
 
     # preparing subtitle
-    subtitle <- subtitle_template(
-      no.parameters = 2L,
-      stat.title = stat.title,
-      statistic.text = quote(italic("F")),
-      statistic = stats_df$F.value[[1]],
-      parameter = stats_df$df1[[1]],
-      parameter2 = stats_df$df2[[1]],
-      p.value = stats_df$p.value[[1]],
-      effsize.text = quote(italic(xi)),
-      effsize.estimate = stats_df$xi[[1]][[1]],
-      effsize.LL = stats_df$conf.low[[1]],
-      effsize.UL = stats_df$conf.high[[1]],
-      n = sample_size,
-      n.text = n.text,
-      conf.level = conf.level,
-      k = k,
-      k.parameter = 0L,
-      k.parameter2 = k
-    )
+    subtitle <-
+      subtitle_template(
+        no.parameters = 2L,
+        stat.title = stat.title,
+        statistic.text = quote(italic("F")),
+        statistic = stats_df$F.value[[1]],
+        parameter = stats_df$df1[[1]],
+        parameter2 = stats_df$df2[[1]],
+        p.value = stats_df$p.value[[1]],
+        effsize.text = quote(italic(xi)),
+        effsize.estimate = stats_df$xi[[1]][[1]],
+        effsize.LL = stats_df$conf.low[[1]],
+        effsize.UL = stats_df$conf.high[[1]],
+        n = sample_size,
+        n.text = n.text,
+        conf.level = conf.level,
+        k = k,
+        k.parameter = 0L,
+        k.parameter2 = k
+      )
 
     # message about effect size measure
     if (isTRUE(messages)) effsize_ci_message(nboot, conf.level)

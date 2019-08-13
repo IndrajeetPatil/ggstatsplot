@@ -662,25 +662,9 @@ testthat::test_that(
     df <- dplyr::filter(mtcars, am == "0")
 
     # subtitle
-    using_function1 <- ggstatsplot::subtitle_onesample_proptest(
+    testthat::expect_null(ggstatsplot::subtitle_onesample_proptest(
       data = df,
       x = am
-    )
-
-    # expected output
-    results1 <- ggplot2::expr(paste(italic("n"), " = ", 19L))
-
-    # capturing message
-    p_message <-
-      capture.output(ggstatsplot::subtitle_onesample_proptest(
-        data = df,
-        x = am
-      ))
-
-    # testing overall call
-    testthat::expect_identical(using_function1, results1)
-
-    # testing message
-    testthat::expect_match(p_message[1], "Proportion test could not be run")
+    ), NULL)
   }
 )
