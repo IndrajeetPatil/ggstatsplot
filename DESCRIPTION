@@ -70,7 +70,6 @@ Imports:
 Suggests:
     broom,
     broom.mixed,
-    glmmTMB,
     knitr,
     lme4,
     MASS,

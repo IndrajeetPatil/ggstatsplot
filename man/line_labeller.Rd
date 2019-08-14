@@ -2,9 +2,13 @@
 % Please edit documentation in R/helpers_gghistostats_graphics.R
 \name{line_labeller}
 \alias{line_labeller}
+\alias{line_labeler}
 \title{Adds a label to the horizontal or vertical line.}
 \usage{
 line_labeller(plot, x, y, k = 2, color, label.text,
+  line.direction = "vline", jitter = 0.25)
+
+line_labeler(plot, x, y, k = 2, color, label.text,
   line.direction = "vline", jitter = 0.25)
 }
 \arguments{
@@ -47,6 +51,6 @@ ggstatsplot:::line_labeller(
 )
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }
 \keyword{internal}

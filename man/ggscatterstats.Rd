@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggscatterstats.R
 \name{ggscatterstats}
 \alias{ggscatterstats}
-\title{Scatterplot with marginal distributions}
+\title{Scatterplot with marginal distributions and statistical results}
 \usage{
 ggscatterstats(data, x, y, type = "pearson", conf.level = 0.95,
   bf.prior = 0.707, bf.message = TRUE, label.var = NULL,
@@ -199,7 +199,7 @@ R Markdown code chunk, you will notice that the plot is not returned in the
 output. In order to get a \code{ggscatterstats()} to show up in these contexts,
 you need to save the \code{ggscatterstats} plot as a variable in one code chunk,
 and explicitly print it using the \code{grid} package in another chunk:
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html#using-ggscatterstats-in-r-notebook-or-r-markdown}
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html}
 
 \item \code{marginal.type = "densigram"} will work only with the development
 version of \code{ggExtra} that you can download from \code{GitHub}:

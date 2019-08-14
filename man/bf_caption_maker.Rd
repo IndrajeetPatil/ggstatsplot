@@ -21,7 +21,7 @@ expression with evidence in favor of the alternative hypothesis, or
 \code{"results"}, which will return a dataframe with results all the details).}
 
 \item{caption}{Text to display as caption (will be displayed on top of the
-bayes factor caption/message).}
+Bayes Factor caption/message).}
 
 \item{...}{Additional arguments (ignored).}
 }

@@ -614,6 +614,13 @@ pairwise_p <- function(data,
 }
 
 
+#' @name pairwise_p
+#' @aliases  pairwise_p
+#' @export
+
+pairwise_comparisons <- pairwise_p
+
+
 #' @noRd
 #' @keywords internal
 

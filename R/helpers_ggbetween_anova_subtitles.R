@@ -182,22 +182,22 @@ subtitle_anova_parametric <- function(data,
 
     # run the ANOVA
     ez_df <-
-    rlang::eval_tidy(rlang::expr(
-      ez::ezANOVA(
-        data = data %>%
-          dplyr::mutate_if(
-            .tbl = .,
-            .predicate = purrr::is_bare_character,
-            .funs = as.factor
-          ) %>%
-          dplyr::mutate(.data = ., rowid = as.factor(rowid)),
-        dv = !!rlang::ensym(y),
-        wid = rowid,
-        within = !!rlang::ensym(x),
-        detailed = TRUE,
-        return_aov = TRUE
-      )
-    ))
+      rlang::eval_tidy(rlang::expr(
+        ez::ezANOVA(
+          data = data %>%
+            dplyr::mutate_if(
+              .tbl = .,
+              .predicate = purrr::is_bare_character,
+              .funs = as.factor
+            ) %>%
+            dplyr::mutate(.data = ., rowid = as.factor(rowid)),
+          dv = !!rlang::ensym(y),
+          wid = rowid,
+          within = !!rlang::ensym(x),
+          detailed = TRUE,
+          return_aov = TRUE
+        )
+      ))
 
     # list with results
     if (isTRUE(sphericity.correction)) {

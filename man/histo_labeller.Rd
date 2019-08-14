@@ -2,7 +2,8 @@
 % Please edit documentation in R/helpers_gghistostats_graphics.R
 \name{histo_labeller}
 \alias{histo_labeller}
-\title{Custom function for adding labelled lines for \code{x}-axis variable.}
+\alias{histo_labeler}
+\title{Custom function for adding labeled lines for \code{x}-axis variable.}
 \usage{
 histo_labeller(plot, x, y.label.position, centrality.para = "mean",
   centrality.color = "blue", centrality.size = 1,
@@ -11,9 +12,17 @@ histo_labeller(plot, x, y.label.position, centrality.para = "mean",
   test.value.color = "black", test.value.size = 1,
   test.value.linetype = "dashed", test.line.labeller = TRUE,
   test.k = 0)
+
+histo_labeler(plot, x, y.label.position, centrality.para = "mean",
+  centrality.color = "blue", centrality.size = 1,
+  centrality.linetype = "dashed", centrality.line.labeller = TRUE,
+  centrality.k = 2, test.value = 0, test.value.line = FALSE,
+  test.value.color = "black", test.value.size = 1,
+  test.value.linetype = "dashed", test.line.labeller = TRUE,
+  test.k = 0)
 }
 \arguments{
-\item{plot}{A \code{ggplot} object for which the labelled lines need to be
+\item{plot}{A \code{ggplot} object for which the labeled lines need to be
 added for a test value and/or a centrality parameter (mean/median) value.}
 
 \item{x}{A numeric variable.}
@@ -84,6 +93,6 @@ ggstatsplot:::histo_labeller(
 
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }
 \keyword{internal}

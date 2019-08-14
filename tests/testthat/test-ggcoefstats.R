@@ -677,6 +677,18 @@ testthat::test_that(
       data = ggstatsplot::intent_morality
     )
 
+    # plot
+    set.seed(123)
+    p <- ggstatsplot::ggcoefstats(
+      x = mod.clm,
+      exclude.intercept = FALSE,
+      conf.int = 0.99,
+      k = 4L
+    )
+
+    # build the plot
+    pb <- ggplot2::ggplot_build(p)
+
     # dataframes
     df.clm1 <-
       ggstatsplot::ggcoefstats(
@@ -1158,10 +1170,10 @@ testthat::test_that(
   }
 )
 
-# augment with clm works ----------------------------------------
+# augment with lm works ----------------------------------------
 
 testthat::test_that(
-  desc = "augment with clm works",
+  desc = "augment with lm works",
   code = {
     testthat::skip_on_cran()
     testthat::skip_on_appveyor()

@@ -15,7 +15,7 @@ bf_extractor(bf.object, ...)
 Extract Bayes Factors from \code{BayesFactor} model object.
 }
 \examples{
-# getting only bayes factors
+# getting only Bayes Factors
 ggstatsplot::bf_extractor(
   BayesFactor::anovaBF(
     formula = Sepal.Length ~ Species,
