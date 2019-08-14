@@ -179,23 +179,24 @@ subtitle_ggscatterstats <- function(data,
 
   if (stats.type %in% c("parametric", "nonparametric", "robust")) {
     # preparing subtitle
-    subtitle <- subtitle_template(
-      no.parameters = no.parameters,
-      stat.title = stat.title,
-      statistic.text = statistic.text,
-      statistic = stats_df$statistic[[1]],
-      parameter = parameter,
-      p.value = stats_df$p.value[[1]],
-      effsize.text = effsize.text,
-      effsize.estimate = effsize_df$estimate[[1]],
-      effsize.LL = effsize_df$conf.low[[1]],
-      effsize.UL = effsize_df$conf.high[[1]],
-      n = sample_size,
-      conf.level = conf.level,
-      k = k,
-      k.parameter = 0L,
-      n.text = quote(italic("n")["pairs"])
-    )
+    subtitle <-
+      subtitle_template(
+        no.parameters = no.parameters,
+        stat.title = stat.title,
+        statistic.text = statistic.text,
+        statistic = stats_df$statistic[[1]],
+        parameter = parameter,
+        p.value = stats_df$p.value[[1]],
+        effsize.text = effsize.text,
+        effsize.estimate = effsize_df$estimate[[1]],
+        effsize.LL = effsize_df$conf.low[[1]],
+        effsize.UL = effsize_df$conf.high[[1]],
+        n = sample_size,
+        conf.level = conf.level,
+        k = k,
+        k.parameter = 0L,
+        n.text = quote(italic("n")["pairs"])
+      )
   }
 
   #---------------------- bayes factor -----------------------------------

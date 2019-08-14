@@ -201,15 +201,16 @@ histo_labeller <- function(plot,
 
     # adding a text label with mean value
     if (isTRUE(centrality.line.labeller)) {
-      plot <- line_labeller(
-        plot = plot,
-        x = x.intercept,
-        y = y.label.position,
-        label.text = label.text,
-        k = centrality.k,
-        jitter = 0.25,
-        color = centrality.color
-      )
+      plot <-
+        line_labeller(
+          plot = plot,
+          x = x.intercept,
+          y = y.label.position,
+          label.text = label.text,
+          k = centrality.k,
+          jitter = 0.25,
+          color = centrality.color
+        )
     }
   }
 

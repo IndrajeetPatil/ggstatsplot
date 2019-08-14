@@ -296,3 +296,26 @@ testthat::test_that(
     )
   }
 )
+
+# without enough data ---------------------------------------------------------
+
+testthat::test_that(
+  desc = "checking if functions work without enough data",
+  code = {
+    testthat::skip_on_cran()
+    set.seed(123)
+
+    # creating a dataframe
+    df <- tibble::tribble(
+      ~x, ~y,
+      "one", "one"
+    )
+
+    # should not work
+    testthat::expect_error(ggstatsplot::ggbarstats(
+      data = df,
+      main = x,
+      condition = y
+    ))
+  }
+)

@@ -2,7 +2,6 @@
 title: "ggstatsplot: ggplot2 Based Plots with Statistical Details"
 author:
 - Indrajeet Patil^[Harvard University, patilindrajeet.science@gmail.com]
-- Fiery Cushman^[Harvard University]
 - Mina Cikara^[Harvard University]
 date: "`r Sys.Date()`"
 output: 
@@ -71,6 +70,10 @@ different visualization method, and so on and so forth. The central idea of
 `ggstatsplot` is simple: combine these two phases into one in the form of
 graphics with statistical details, which makes data exploration simpler and
 faster.
+
+## Need for informative visualizations
+
+## Need for better statistical reporting
 
 But why would combining statistical analysis with data visualization be helpful?
 We list few reasons below-

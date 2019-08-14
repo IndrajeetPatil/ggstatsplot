@@ -516,6 +516,18 @@ testthat::test_that(
   }
 )
 
+# check edge cases --------------------------------------------
+
+testthat::test_that(
+  desc = "bayes factor caption maker check",
+  code = {
+    testthat::skip_on_cran()
+
+    df <- data.frame(x = c("a"))
+
+    testthat::expect_null(bf_onesample_proptest(df, x))
+  }
+)
 
 # bayes factor caption maker check --------------------------
 

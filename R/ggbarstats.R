@@ -255,22 +255,25 @@ ggbarstats <- function(data,
   # unpaired: Pearson's Chi-square test of independence
   if (isTRUE(results.subtitle)) {
     subtitle <-
-      subtitle_contingency_tab(
-        data = data,
-        x = {{ x }},
-        y = {{ y }},
-        ratio = ratio,
-        nboot = nboot,
-        paired = paired,
-        stat.title = stat.title,
-        legend.title = legend.title,
-        conf.level = conf.level,
-        conf.type = "norm",
-        bias.correct = bias.correct,
-        simulate.p.value = simulate.p.value,
-        B = B,
-        k = k,
-        messages = messages
+      tryCatch(
+        expr = subtitle_contingency_tab(
+          data = data,
+          x = {{ x }},
+          y = {{ y }},
+          ratio = ratio,
+          nboot = nboot,
+          paired = paired,
+          stat.title = stat.title,
+          legend.title = legend.title,
+          conf.level = conf.level,
+          conf.type = "norm",
+          bias.correct = bias.correct,
+          simulate.p.value = simulate.p.value,
+          B = B,
+          k = k,
+          messages = messages
+        ),
+        error = function(e) NULL
       )
 
     # preparing the BF message for null hypothesis support

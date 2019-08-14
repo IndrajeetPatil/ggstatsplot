@@ -467,7 +467,6 @@ testthat::test_that(
   }
 )
 
-
 # irregular names --------------------------------------------------
 
 testthat::test_that(
@@ -491,6 +490,8 @@ testthat::test_that(
     testthat::expect_equal(df$group2, c("PG-13", "R", "R"))
   }
 )
+
+# pairwise_p_caption --------------------------------------------------------
 
 context("pairwise_p_caption")
 

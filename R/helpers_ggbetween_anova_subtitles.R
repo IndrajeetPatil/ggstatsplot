@@ -26,7 +26,7 @@
 #'
 #'
 #' @importFrom dplyr select
-#' @importFrom rlang !! enquo
+#' @importFrom rlang !! enquo eval_tidy expr ensym
 #' @importFrom stats lm oneway.test na.omit
 #' @importFrom ez ezANOVA
 #' @importFrom groupedstats lm_effsize_standardizer
@@ -157,17 +157,14 @@ subtitle_anova_parametric <- function(data,
   if (isTRUE(paired)) {
     # converting to long format and then getting it back in wide so that the
     # rowid variable can be used as the block variable
-    data %<>%
-      long_to_wide_converter(data = ., x = {{ x }}, y = {{ y }}) %>%
-      tidyr::gather(data = ., key, value, -rowid) %>%
-      dplyr::arrange(.data = ., rowid)
+    data %<>% df_cleanup_paired(data = ., x = {{ x }}, y = {{ y }})
 
     # sample size
     sample_size <- length(unique(data$rowid))
     n.text <- quote(italic("n")["pairs"])
 
     # warn the user if
-    if (sample_size < nlevels(as.factor(data$key))) {
+    if (sample_size < nlevels(as.factor(data %>% dplyr::pull({{ x }})))) {
       # no sphericity correction applied
       sphericity.correction <- FALSE
       k.df1 <- 0L
@@ -185,6 +182,7 @@ subtitle_anova_parametric <- function(data,
 
     # run the ANOVA
     ez_df <-
+    rlang::eval_tidy(rlang::expr(
       ez::ezANOVA(
         data = data %>%
           dplyr::mutate_if(
@@ -193,23 +191,21 @@ subtitle_anova_parametric <- function(data,
             .funs = as.factor
           ) %>%
           dplyr::mutate(.data = ., rowid = as.factor(rowid)),
-        dv = value,
+        dv = !!rlang::ensym(y),
         wid = rowid,
-        within = key,
+        within = !!rlang::ensym(x),
         detailed = TRUE,
         return_aov = TRUE
       )
+    ))
 
     # list with results
     if (isTRUE(sphericity.correction)) {
-      epsilon_corr <- ez_df$`Sphericity Corrections`$GGe
+      e_corr <- ez_df$`Sphericity Corrections`$GGe
       stats_df <-
         list(
           statistic = ez_df$ANOVA$F[2],
-          parameter = c(
-            epsilon_corr * ez_df$ANOVA$DFn[2],
-            epsilon_corr * ez_df$ANOVA$DFd[2]
-          ),
+          parameter = c(e_corr * ez_df$ANOVA$DFn[2], e_corr * ez_df$ANOVA$DFd[2]),
           p.value = ez_df$`Sphericity Corrections`$`p[GG]`[[1]]
         )
     } else {
@@ -265,25 +261,26 @@ subtitle_anova_parametric <- function(data,
     )
 
   # preparing subtitle
-  subtitle <- subtitle_template(
-    no.parameters = 2L,
-    stat.title = stat.title,
-    statistic.text = quote(italic("F")),
-    statistic = stats_df$statistic[[1]],
-    parameter = stats_df$parameter[[1]],
-    parameter2 = stats_df$parameter[[2]],
-    p.value = stats_df$p.value[[1]],
-    effsize.text = effsize.text,
-    effsize.estimate = effsize_df$estimate[[1]],
-    effsize.LL = effsize_df$conf.low[[1]],
-    effsize.UL = effsize_df$conf.high[[1]],
-    n = sample_size,
-    n.text = n.text,
-    conf.level = conf.level,
-    k = k,
-    k.parameter = k.df1,
-    k.parameter2 = k.df2
-  )
+  subtitle <-
+    subtitle_template(
+      no.parameters = 2L,
+      stat.title = stat.title,
+      statistic.text = quote(italic("F")),
+      statistic = stats_df$statistic[[1]],
+      parameter = stats_df$parameter[[1]],
+      parameter2 = stats_df$parameter[[2]],
+      p.value = stats_df$p.value[[1]],
+      effsize.text = effsize.text,
+      effsize.estimate = effsize_df$estimate[[1]],
+      effsize.LL = effsize_df$conf.low[[1]],
+      effsize.UL = effsize_df$conf.high[[1]],
+      n = sample_size,
+      n.text = n.text,
+      conf.level = conf.level,
+      k = k,
+      k.parameter = k.df1,
+      k.parameter2 = k.df2
+    )
 
   # message about effect size measure
   if (isTRUE(messages)) effsize_ci_message(nboot, conf.level)
@@ -445,23 +442,24 @@ subtitle_anova_nonparametric <- function(data,
   if (isTRUE(messages)) effsize_ci_message(nboot, conf.level)
 
   # preparing subtitle
-  subtitle <- subtitle_template(
-    no.parameters = 1L,
-    stat.title = stat.title,
-    statistic.text = quote(italic(chi)^2),
-    statistic = stats_df$statistic[[1]],
-    parameter = stats_df$parameter[[1]],
-    p.value = stats_df$p.value[[1]],
-    effsize.text = effsize.text,
-    effsize.estimate = effsize_df$estimate[[1]],
-    effsize.LL = effsize_df$conf.low[[1]],
-    effsize.UL = effsize_df$conf.high[[1]],
-    n = sample_size,
-    n.text = n.text,
-    conf.level = conf.level,
-    k = k,
-    k.parameter = 0L
-  )
+  subtitle <-
+    subtitle_template(
+      no.parameters = 1L,
+      stat.title = stat.title,
+      statistic.text = quote(italic(chi)^2),
+      statistic = stats_df$statistic[[1]],
+      parameter = stats_df$parameter[[1]],
+      p.value = stats_df$p.value[[1]],
+      effsize.text = effsize.text,
+      effsize.estimate = effsize_df$estimate[[1]],
+      effsize.LL = effsize_df$conf.low[[1]],
+      effsize.UL = effsize_df$conf.high[[1]],
+      n = sample_size,
+      n.text = n.text,
+      conf.level = conf.level,
+      k = k,
+      k.parameter = 0L
+    )
 
   # return the subtitle
   return(subtitle)
@@ -617,25 +615,26 @@ subtitle_anova_robust <- function(data,
       )
 
     # preparing subtitle
-    subtitle <- subtitle_template(
-      no.parameters = 2L,
-      stat.title = stat.title,
-      statistic.text = quote(italic("F")),
-      statistic = stats_df$F.value[[1]],
-      parameter = stats_df$df1[[1]],
-      parameter2 = stats_df$df2[[1]],
-      p.value = stats_df$p.value[[1]],
-      effsize.text = quote(italic(xi)),
-      effsize.estimate = stats_df$xi[[1]][[1]],
-      effsize.LL = stats_df$conf.low[[1]],
-      effsize.UL = stats_df$conf.high[[1]],
-      n = sample_size,
-      n.text = n.text,
-      conf.level = conf.level,
-      k = k,
-      k.parameter = 0L,
-      k.parameter2 = k
-    )
+    subtitle <-
+      subtitle_template(
+        no.parameters = 2L,
+        stat.title = stat.title,
+        statistic.text = quote(italic("F")),
+        statistic = stats_df$F.value[[1]],
+        parameter = stats_df$df1[[1]],
+        parameter2 = stats_df$df2[[1]],
+        p.value = stats_df$p.value[[1]],
+        effsize.text = quote(italic(xi)),
+        effsize.estimate = stats_df$xi[[1]][[1]],
+        effsize.LL = stats_df$conf.low[[1]],
+        effsize.UL = stats_df$conf.high[[1]],
+        n = sample_size,
+        n.text = n.text,
+        conf.level = conf.level,
+        k = k,
+        k.parameter = 0L,
+        k.parameter2 = k
+      )
 
     # message about effect size measure
     if (isTRUE(messages)) effsize_ci_message(nboot, conf.level)

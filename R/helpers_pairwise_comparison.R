@@ -156,7 +156,6 @@ games_howell <- function(data, x, y) {
 
 #' @title Pairwise comparison tests
 #' @name pairwise_p
-#' @aliases pairwise_p
 #' @description Calculate pairwise comparisons between group levels with
 #'   corrections for multiple testing.
 #' @author Indrajeet Patil
@@ -444,8 +443,8 @@ pairwise_p <- function(data,
       }
     }
 
+    # converting the entered long format data to wide format
     if (isTRUE(paired)) {
-      # converting the entered long format data to wide format
       data_wide <- long_to_wide_converter(data = data, x = {{ x }}, y = {{ y }})
 
       # running Durbin-Conover test using `jmv` package
@@ -499,24 +498,18 @@ pairwise_p <- function(data,
         )
     }
 
+    # converting to long format and then getting it back in wide so that the
+    # rowid variable can be used as the block variable
     if (isTRUE(paired)) {
-      # converting to long format and then getting it back in wide so that the
-      # rowid variable can be used as the block variable for WRS2 functions
-      data_within <-
-        long_to_wide_converter(data = data, x = {{ x }}, y = {{ y }}) %>%
-        tidyr::gather(data = ., key, value, -rowid) %>%
-        dplyr::arrange(.data = ., rowid)
+      data %<>% df_cleanup_paired(data = ., x = {{ x }}, y = {{ y }})
 
       # running pairwise multiple comparison tests
       rob_pairwise_df <-
-        with(
-          data = data_within,
-          expr = WRS2::rmmcp(
-            y = value,
-            groups = key,
-            blocks = rowid,
-            tr = tr
-          )
+        WRS2::rmmcp(
+          y = data[[rlang::as_name(y)]],
+          groups = data[[rlang::as_name(x)]],
+          blocks = data[["rowid"]],
+          tr = tr
         )
     }
 
@@ -652,17 +645,18 @@ pairwise_p_caption <- function(type,
   # ======================= pairwise test run ==============================
 
   # figuring out type of test needed to run
-  test.type <- switch(
-    EXPR = type,
-    parametric = "p",
-    p = "p",
-    robust = "r",
-    r = "r",
-    nonparametric = "np",
-    np = "np",
-    bayes = "bf",
-    bf = "bf"
-  )
+  test.type <-
+    switch(
+      EXPR = type,
+      parametric = "p",
+      p = "p",
+      robust = "r",
+      r = "r",
+      nonparametric = "np",
+      np = "np",
+      bayes = "bf",
+      bf = "bf"
+    )
 
   # figuring out which pairwise comparison test was run
   # parametric
@@ -690,7 +684,7 @@ pairwise_p_caption <- function(type,
 
   # ==================== combining into a caption ==========================
 
-  # prepare the bayes factor message
+  # prepare the caption containing details about which pairwise test was run
   pairwise_caption <-
     substitute(
       atop(
@@ -714,8 +708,9 @@ pairwise_p_caption <- function(type,
 }
 
 
-#' @title Preparing text to describe which *p*-value adjustment method was used.
+#' @title Preparing text to describe which *p*-value adjustment method was used
 #' @name p_adjust_text
+#' @author Indrajeet Patil
 #' @return Standardized text description for what method was used.
 #'
 #' @inheritParams pairwise_p
