@@ -38,7 +38,7 @@ repeated measures/within-subjects or between-subjects. The default is
 prior width to use in calculating Bayes Factors.}
 
 \item{caption}{Text to display as caption (will be displayed on top of the
-bayes factor caption/message).}
+Bayes Factor caption/message).}
 
 \item{output}{Can either be \code{"null"} (or \code{"caption"} or \code{"H0"} or \code{"h0"}),
 which will return expression with evidence in favor of the null hypothesis,

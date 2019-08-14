@@ -1,6 +1,6 @@
 #' @title Adds a label to the horizontal or vertical line.
 #' @name line_labeller
-#' @author Indrajeet Patil
+#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @param plot A `ggplot` object in which the label needs to be displayed.
 #' @param x,y The `x`- and `y`-axes coordinates for the label.
@@ -74,15 +74,22 @@ line_labeller <- function(plot,
   return(plot)
 }
 
-#' @title Custom function for adding labelled lines for `x`-axis variable.
+#' @name line_labeller
+#' @aliases  line_labeller
+#' @keywords internal
+
+line_labeler <- line_labeller
+
+#'
+#' @title Custom function for adding labeled lines for `x`-axis variable.
 #' @name histo_labeller
 #' @description Helper function for adding centrality parameter value and/or a
 #'   test value for the continuous, numeric `x`-axis variable.
-#' @author Indrajeet Patil
+#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @import ggplot2
 #'
-#' @param plot A `ggplot` object for which the labelled lines need to be
+#' @param plot A `ggplot` object for which the labeled lines need to be
 #'   added for a test value and/or a centrality parameter (mean/median) value.
 #' @inheritParams subtitle_t_onesample
 #' @param centrality.para Decides *which* measure of central tendency (`"mean"`
@@ -217,3 +224,10 @@ histo_labeller <- function(plot,
   # return the plot with labels
   return(plot)
 }
+
+
+#' @name histo_labeller
+#' @aliases  histo_labeller
+#' @keywords internal
+
+histo_labeler <- histo_labeller

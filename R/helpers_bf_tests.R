@@ -9,7 +9,7 @@
 #' @importFrom dplyr rename select mutate
 #'
 #' @examples
-#' # getting only bayes factors
+#' # getting only Bayes Factors
 #' ggstatsplot::bf_extractor(
 #'   BayesFactor::anovaBF(
 #'     formula = Sepal.Length ~ Species,
@@ -42,7 +42,7 @@ bf_extractor <- function(bf.object, ...) {
       log_10_bf01 = log10(bf01)
     )
 
-  # return the dataframe with bayes factors
+  # return the dataframe with Bayes Factors
   return(bf_df)
 }
 
@@ -55,7 +55,7 @@ bf_extractor <- function(bf.object, ...) {
 #'   favor of null hypothesis) and `bf.prior`. If dataframe contains more than
 #'   two rows, only the first row will be used.
 #' @param caption Text to display as caption (will be displayed on top of the
-#'   bayes factor caption/message).
+#'   Bayes Factor caption/message).
 #' @param output Can either be `"null"` (or `"caption"` or `"H0"` or `"h0"`),
 #'   which will return expression with evidence in favor of the null hypothesis,
 #'   or `"alternative"` (or `"title"` or `"H1"` or `"h1"`), which will return
@@ -110,7 +110,7 @@ bf_caption_maker <- function(bf.df,
     bf.subscript <- "10"
   }
 
-  # prepare the bayes factor message
+  # prepare the Bayes Factor message
   bf_text <-
     substitute(
       atop(displaystyle(top.text),
@@ -210,7 +210,7 @@ bf_corr_test <- function(data,
     ) %>% # adding prior width column
     dplyr::mutate(.data = ., bf.prior = bf.prior)
 
-  # prepare the bayes factor message
+  # prepare the Bayes Factor message
   if (output != "results") {
     bf_message <-
       bf_caption_maker(
@@ -400,7 +400,9 @@ bf_contingency_tab <- function(data,
     n_levels <- length(as.vector(table(data %>% dplyr::pull({{ x }}))))
 
     # probability can't be exactly 0 or 1
-    if (1 / n_levels == 0 || 1 / n_levels == 1) return(NULL)
+    if (1 / n_levels == 0 || 1 / n_levels == 1) {
+      return(NULL)
+    }
 
     # one sample goodness of fit test for equal proportions
     x_vec <- as.matrix(table(data %>% dplyr::pull({{ x }})))
@@ -822,7 +824,7 @@ bf_oneway_anova <- function(data,
 
   # ============================ return ==================================
 
-  # prepare the bayes factor message
+  # prepare the Bayes Factor message
   if (output != "results") {
     bf_message <-
       bf_caption_maker(

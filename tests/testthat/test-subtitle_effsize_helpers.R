@@ -1,6 +1,6 @@
-context("effsize_t_parametric")
-
 # effsize works for Cohen's d and Hedge's g (between - without NA) ------------
+
+context("effsize_t_parametric")
 
 testthat::test_that(
   desc = "effsize works for Cohen's d and Hedge's g (between - without NA)",
@@ -780,5 +780,356 @@ testthat::test_that(
 
     testthat::expect_equal(df4$conf.level, 0.90, tolerance = 0.01)
     testthat::expect_equal(df3$conf.level, 0.99, tolerance = 0.01)
+  }
+)
+
+
+# t1way_ci works ------------------------------------------------------------
+
+context("t1way_ci")
+
+testthat::test_that(
+  desc = "t1way_ci works",
+  code = {
+    testthat::skip_on_cran()
+
+    # normal
+    set.seed(123)
+    df1 <-
+      ggstatsplot:::t1way_ci(
+        data = dplyr::filter(.data = ggplot2::msleep, vore != "insecti"),
+        x = vore,
+        y = brainwt,
+        nboot = 25,
+        conf.level = 0.99,
+        tr = 0.05,
+        conf.type = c("norm")
+      )
+
+    # percentile
+    set.seed(123)
+    df2 <-
+      suppressWarnings(ggstatsplot:::t1way_ci(
+        data = dplyr::filter(.data = ggplot2::msleep, vore != "insecti"),
+        x = vore,
+        y = brainwt,
+        tr = 0.1,
+        nboot = 50,
+        conf.level = 0.99,
+        conf.type = "perc"
+      ))
+
+    # bca
+    set.seed(123)
+    df3 <-
+      suppressWarnings(ggstatsplot:::t1way_ci(
+        data = dplyr::filter(.data = ggplot2::msleep, vore != "insecti"),
+        x = vore,
+        y = brainwt,
+        nboot = 50,
+        conf.level = 0.99,
+        tr = 0.05,
+        conf.type = c("bca")
+      ))
+
+    # test normal CI
+    testthat::expect_equal(df1$xi, 0.7639015, tolerance = 0.00002)
+    testthat::expect_equal(df1$conf.low, 0.06259349, tolerance = 0.00002)
+    testthat::expect_equal(df1$conf.high, 1.838343, tolerance = 0.00002)
+    testthat::expect_equal(df1$F.value, 0.6146867, tolerance = 0.00002)
+    testthat::expect_equal(df1$p.value, 0.5487093, tolerance = 0.00002)
+
+    # test percentile CI
+    testthat::expect_equal(df2$xi, 1.452066, tolerance = 0.00002)
+    testthat::expect_equal(df2$conf.low, 0.1435678, tolerance = 0.00002)
+    testthat::expect_equal(df2$conf.high, 2.357306, tolerance = 0.00002)
+    testthat::expect_equal(df2$F.value, 0.260884, tolerance = 0.00002)
+    testthat::expect_equal(df2$p.value, 0.772501, tolerance = 0.00002)
+
+    # test bca
+    testthat::expect_equal(df3$xi, 0.5664255, tolerance = 0.00002)
+    testthat::expect_equal(df3$conf.low, 0.2904682, tolerance = 0.00002)
+    testthat::expect_equal(df3$conf.high, 1.724382, tolerance = 0.00002)
+  }
+)
+
+# test_yuend_ci works ---------------------------------------------------------
+
+context("test_yuend_ci")
+
+testthat::test_that(
+  desc = "Yuen's test on trimmed means for dependent samples works",
+  code = {
+    testthat::skip_on_cran()
+
+    # made up data
+    mydata <-
+      structure(list(
+        time = structure(
+          c(
+            1L,
+            1L,
+            1L,
+            1L,
+            1L,
+            1L,
+            1L,
+            1L,
+            1L,
+            1L,
+            1L,
+            1L,
+            1L,
+            1L,
+            1L,
+            1L,
+            1L,
+            1L,
+            1L,
+            1L,
+            2L,
+            2L,
+            2L,
+            2L,
+            2L,
+            2L,
+            2L,
+            2L,
+            2L,
+            2L,
+            2L,
+            2L,
+            2L,
+            2L,
+            2L,
+            2L,
+            2L,
+            2L,
+            2L,
+            2L
+          ),
+          .Label = c("test1", "test2"),
+          class = "factor"
+        ),
+        grade = c(
+          42.9,
+          51.8,
+          71.7,
+          51.6,
+          63.5,
+          58,
+          59.8,
+          50.8,
+          62.5,
+          61.9,
+          50.4,
+          52.6,
+          63,
+          58.3,
+          53.3,
+          58.7,
+          50.1,
+          64.2,
+          57.4,
+          57.1,
+          44.6,
+          54,
+          72.3,
+          53.4,
+          63.8,
+          59.3,
+          60.8,
+          51.6,
+          64.3,
+          63.2,
+          51.8,
+          52.2,
+          63,
+          60.5,
+          57.1,
+          60.1,
+          51.7,
+          65.6,
+          58.3,
+          60.1
+        )
+      ),
+      row.names = c(NA, -40L),
+      class = "data.frame"
+      )
+
+    # ggstatsplot output
+    set.seed(123)
+    df1 <-
+      ggstatsplot:::yuend_ci(
+        data = mydata,
+        x = time,
+        y = grade
+      )
+
+    # creating a dataframe with NAs
+    mydata1 <- purrr::map_df(
+      .x = mydata,
+      .f = ~ .[sample(
+        x = c(TRUE, NA),
+        prob = c(0.8, 0.2),
+        size = length(.),
+        replace = TRUE
+      )]
+    )
+
+    # creating a dataframe
+    set.seed(123)
+    df2 <-
+      ggstatsplot:::yuend_ci(
+        data = mydata1,
+        x = time,
+        y = grade,
+        conf.level = 0.90,
+        conf.type = "basic"
+      )
+
+    # percentile CI
+    set.seed(123)
+    df3 <-
+      ggstatsplot:::yuend_ci(
+        data = mydata1,
+        x = time,
+        y = grade,
+        conf.level = 0.50,
+        conf.type = "perc"
+      )
+
+    # bca CI
+    set.seed(123)
+    df4 <-
+      suppressWarnings(ggstatsplot:::yuend_ci(
+        data = mydata1,
+        x = time,
+        y = grade,
+        conf.level = 0.85,
+        conf.type = "bca"
+      ))
+
+    # testing (dataframe without NAs)
+    testthat::expect_equal(df1$t.value, -5.268876, tolerance = .001)
+    testthat::expect_equal(df1$xi, 0.166875, tolerance = 0.0001)
+    testthat::expect_equal(df1$conf.low, 0.07917537, tolerance = 0.0001)
+    testthat::expect_equal(df1$conf.high, 0.2513106, tolerance = 0.001)
+    testthat::expect_equal(df1$df, 15L)
+    testthat::expect_equal(df1$p.value, 0.0000945, tolerance = 0.000001)
+
+    # testing (dataframe with NAs)
+    testthat::expect_equal(df2$t.value, -0.3976015, tolerance = .001)
+    testthat::expect_equal(df2$xi, 0.1607089, tolerance = 0.0001)
+    testthat::expect_equal(df2$conf.low, -0.408429, tolerance = 0.0001)
+    testthat::expect_equal(df2$conf.high, 0.3024555, tolerance = 0.001)
+    testthat::expect_equal(df2$df, 7L)
+    testthat::expect_equal(df2$p.value, 0.7027698, tolerance = 0.000001)
+
+    # testing (dataframe with NAs + percentile CI)
+    testthat::expect_equal(df3$xi, 0.1607089, tolerance = 0.0001)
+    testthat::expect_equal(df3$conf.low, 0.1566501, tolerance = 0.0001)
+    testthat::expect_equal(df3$conf.high, 0.4350129, tolerance = 0.0001)
+
+    # testing (dataframe with NAs + bca CI)
+    testthat::expect_equal(df4$xi, 0.1607089, tolerance = 0.0001)
+    testthat::expect_equal(df4$conf.low, 0.00291321, tolerance = 0.0001)
+    testthat::expect_equal(df4$conf.high, 0.3079085, tolerance = 0.0001)
+  }
+)
+
+# robcor_ci works ---------------------------------------------------------
+
+context("robcor_ci")
+
+testthat::test_that(
+  desc = "robcor_ci works",
+  code = {
+    testthat::skip_on_cran()
+
+    # using mtcars dataset
+    set.seed(123)
+    df1 <- ggstatsplot:::robcor_ci(
+      data = datasets::mtcars,
+      x = hp,
+      y = mpg,
+      beta = .01,
+      nboot = 125,
+      conf.level = .99,
+      conf.type = c("norm")
+    )
+
+    # induce an NA
+    mtcars2 <- datasets::mtcars
+    mtcars2[1, 1] <- NA
+    set.seed(123)
+
+    # this also makes sure that the quoted arguments work
+    df2 <-
+      suppressWarnings(ggstatsplot:::robcor_ci(
+        data = mtcars2,
+        x = "hp",
+        y = "mpg",
+        beta = .01,
+        nboot = 125,
+        conf.level = .99,
+        conf.type = c("basic")
+      ))
+
+    # percentile CI
+    set.seed(123)
+    df3 <- suppressWarnings(ggstatsplot:::robcor_ci(
+      data = ggplot2::msleep,
+      x = brainwt,
+      y = sleep_rem,
+      beta = 0.1,
+      nboot = 55,
+      conf.level = 0.99,
+      conf.type = "perc"
+    ))
+
+    # bca CI
+    set.seed(123)
+    df4 <- suppressWarnings(ggstatsplot:::robcor_ci(
+      data = ggplot2::msleep,
+      x = brainwt,
+      y = sleep_rem,
+      beta = 0.2,
+      nboot = 100,
+      conf.level = 0.90,
+      conf.type = "bca"
+    ))
+
+    # data without NAs
+    testthat::expect_equal(df1$estimate, -0.8042457, tolerance = 0.00001)
+    testthat::expect_equal(df1$conf.low, -0.9367074, tolerance = 0.00001)
+    testthat::expect_equal(df1$conf.high, -0.6795268, tolerance = 0.00001)
+    testthat::expect_equal(df1$p.value, 2.933186e-08, tolerance = 0.00001)
+    testthat::expect_equal(df1$statistic, -7.412179, tolerance = 0.00001)
+    testthat::expect_identical(class(df1)[[1]], "tbl_df")
+
+    # data with NAs
+    testthat::expect_equal(df2$estimate, -0.8052814, tolerance = 0.00001)
+    testthat::expect_equal(df2$conf.low, -0.9576768, tolerance = 0.00001)
+    testthat::expect_equal(df2$conf.high, -0.717556, tolerance = 0.00001)
+    testthat::expect_equal(df2$p.value, 4.677899e-08, tolerance = 0.00001)
+    testthat::expect_equal(df2$statistic, -7.314263, tolerance = 0.00001)
+
+    # percentile CI
+    testthat::expect_equal(df3$estimate, -0.3956043, tolerance = 0.00001)
+    testthat::expect_equal(df3$conf.low, -0.5488374, tolerance = 0.00001)
+    testthat::expect_equal(df3$conf.high, -0.1557196, tolerance = 0.00001)
+    testthat::expect_equal(df3$p.value, 0.005384018, tolerance = 0.00001)
+    testthat::expect_equal(df3$statistic, -2.921448, tolerance = 0.00001)
+    testthat::expect_equal(df3$conf, 0.99, tolerance = 0.001)
+    testthat::expect_equal(df3$beta, 0.1, tolerance = 0.01)
+    testthat::expect_equal(df3$nboot, 55L)
+    testthat::expect_equal(df3$n, 48L)
+
+    # bca CI
+    testthat::expect_equal(df4$estimate, -0.4085762, tolerance = 0.00001)
+    testthat::expect_equal(df4$conf.low, -0.5629717, tolerance = 0.00001)
+    testthat::expect_equal(df4$conf.high, -0.1625011, tolerance = 0.00001)
   }
 )

@@ -49,7 +49,7 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 (1974) \code{"a"} parameter.}
 
 \item{caption}{Text to display as caption (will be displayed on top of the
-bayes factor caption/message).}
+Bayes Factor caption/message).}
 
 \item{output}{Can either be \code{"null"} (or \code{"caption"} or \code{"H0"} or \code{"h0"}),
 which will return expression with evidence in favor of the null hypothesis,

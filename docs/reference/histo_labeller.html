@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Custom function for adding labelled lines for <code>x</code>-axis variable. — histo_labeller • ggstatsplot</title>
+<title>Custom function for adding labeled lines for <code>x</code>-axis variable. — histo_labeller • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -40,7 +40,7 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Custom function for adding labelled lines for <code>x</code>-axis variable. — histo_labeller" />
+<meta property="og:title" content="Custom function for adding labeled lines for <code>x</code>-axis variable. — histo_labeller" />
 
 <meta property="og:description" content="Helper function for adding centrality parameter value and/or a
 test value for the continuous, numeric x-axis variable." />
@@ -178,7 +178,7 @@ test value for the continuous, numeric x-axis variable." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Custom function for adding labelled lines for <code>x</code>-axis variable.</h1>
+    <h1>Custom function for adding labeled lines for <code>x</code>-axis variable.</h1>
     <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_gghistostats_graphics.R'><code>R/helpers_gghistostats_graphics.R</code></a></small>
     <div class="hidden name"><code>histo_labeller.Rd</code></div>
     </div>
@@ -196,6 +196,14 @@ test value for the continuous, numeric <code>x</code>-axis variable.</p>
   <span class='kw'>centrality.k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>test.value.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>test.value.size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>test.value.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>, <span class='kw'>test.line.labeller</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>test.k</span> <span class='kw'>=</span> <span class='fl'>0</span>)
+
+<span class='fu'>histo_labeler</span>(<span class='no'>plot</span>, <span class='no'>x</span>, <span class='no'>y.label.position</span>, <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='st'>"mean"</span>,
+  <span class='kw'>centrality.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>centrality.size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>centrality.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>, <span class='kw'>centrality.line.labeller</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>centrality.k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>test.value.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>test.value.size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>test.value.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>, <span class='kw'>test.line.labeller</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>test.k</span> <span class='kw'>=</span> <span class='fl'>0</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -203,7 +211,7 @@ test value for the continuous, numeric <code>x</code>-axis variable.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>plot</th>
-      <td><p>A <code>ggplot</code> object for which the labelled lines need to be
+      <td><p>A <code>ggplot</code> object for which the labeled lines need to be
 added for a test value and/or a centrality parameter (mean/median) value.</p></td>
     </tr>
     <tr>
@@ -307,7 +315,7 @@ be displayed for <strong>test.value</strong> line (Default: <code>TRUE</code>).<
     </ul>
 
     <h2>Author</h2>
-    <p>Indrajeet Patil</p>
+    <p><a href='https://github.com/IndrajeetPatil'>Indrajeet Patil</a></p>
   </div>
 </div>
 

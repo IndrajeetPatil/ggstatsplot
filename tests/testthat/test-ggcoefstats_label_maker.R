@@ -1,40 +1,43 @@
 context("ggcoefstats_label_maker")
 
-# glmmTMB works -------------------------------------------------------
+# glm works -------------------------------------------------------
 
 testthat::test_that(
-  desc = "glmmTMB works",
+  desc = "glm works",
   code = {
-    testthat::skip_on_cran()
 
-    library(glmmTMB)
+    # setup
+    set.seed(123)
+    counts <- c(18, 17, 15, 20, 10, 20, 25, 13, 12)
+    outcome <- gl(3, 1, 9)
+    treatment <- gl(3, 3)
+    d.AD <- data.frame(treatment, outcome, counts)
 
     # model
     set.seed(123)
-    m1 <- glmmTMB::glmmTMB(
-      formula = count ~ mined + (1 | site),
-      ziformula = ~mined,
-      family = poisson,
-      data = Salamanders
+    m1 <- stats::glm(
+      formula = counts ~ outcome + treatment,
+      family = stats::poisson(),
+      data = d.AD
     )
 
     # tidy dataframe
     df <-
       ggstatsplot:::ggcoefstats_label_maker(
         x = m1,
-        tidy_df = broom.mixed::tidy(m1),
-        glance_df = broom.mixed::glance(m1)
-      ) %>%
-      dplyr::filter(.data = ., !is.na(std.error))
+        tidy_df = broom::tidy(m1),
+        glance_df = broom::glance(m1)
+      )
 
     # checking the labels
     testthat::expect_equal(
       df$label,
       c(
-        "list(~italic(beta)==0.09, ~italic(z)==0.38, ~italic(p)== 0.706)",
-        "list(~italic(beta)==1.14, ~italic(z)==4.64, ~italic(p)<= 0.001)",
-        "list(~italic(beta)==1.14, ~italic(z)==4.85, ~italic(p)<= 0.001)",
-        "list(~italic(beta)==-1.74, ~italic(z)==-6.63, ~italic(p)<= 0.001)"
+        "list(~italic(beta)==3.04, ~italic(z)==17.81, ~italic(p)<= 0.001)",
+        "list(~italic(beta)==-0.45, ~italic(z)==-2.25, ~italic(p)== 0.025)",
+        "list(~italic(beta)==-0.29, ~italic(z)==-1.52, ~italic(p)== 0.128)",
+        "list(~italic(beta)==0.00, ~italic(z)==0.00, ~italic(p)== 1.000)",
+        "list(~italic(beta)==0.00, ~italic(z)==0.00, ~italic(p)== 1.000)"
       )
     )
   }
