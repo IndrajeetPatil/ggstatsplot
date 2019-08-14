@@ -400,9 +400,7 @@ bf_contingency_tab <- function(data,
     n_levels <- length(as.vector(table(data %>% dplyr::pull({{ x }}))))
 
     # probability can't be exactly 0 or 1
-    if (1 / n_levels == 0 || 1 / n_levels == 1) {
-      return(NULL)
-    }
+    if (1 / n_levels == 0 || 1 / n_levels == 1) return(NULL)
 
     # one sample goodness of fit test for equal proportions
     x_vec <- as.matrix(table(data %>% dplyr::pull({{ x }})))
@@ -521,6 +519,14 @@ bf_contingency_tab <- function(data,
     bf_message
   ))
 }
+
+
+#' @rdname bf_contingency_tab
+#' @aliases bf_contingency_tab
+#' @export
+
+bf_onesample_proptest <- bf_contingency_tab
+
 
 #' @title Bayes Factor for *t*-test
 #' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
