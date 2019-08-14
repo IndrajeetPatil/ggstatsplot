@@ -722,15 +722,6 @@ testthat::test_that(
     testthat::expect_equal(dim(df.clm2), c(6L, 11L))
     testthat::expect_equal(dim(df.clm3), c(3L, 11L))
     testthat::expect_equal(dim(df.clm4), c(9L, 11L))
-
-    # expressions
-    testthat::expect_identical(
-      pb$data[[3]]$label,
-      c("list(~italic(beta)==-2.3892, ~italic(z)==-27.4527, ~italic(p)<= 0.001)",
-        "list(~italic(beta)==-1.5018, ~italic(z)==-18.0550, ~italic(p)<= 0.001)",
-        "list(~italic(beta)==-0.0791, ~italic(z)==-0.6368, ~italic(p)== 0.5242)"
-      )
-    )
   }
 )
 
