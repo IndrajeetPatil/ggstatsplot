@@ -47,7 +47,10 @@ only available on the website for this package: <br>
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html>)
     
   - `gghistostats`:
-    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html>)    
+    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html>)  
+  
+  - `ggdotplotstats`:
+    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html>)    
 
   - `ggpiestats`:
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>)

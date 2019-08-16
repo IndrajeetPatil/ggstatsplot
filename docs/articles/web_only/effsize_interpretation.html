@@ -139,7 +139,7 @@
       <h1>effect size interpretation</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-08-11</h4>
+            <h4 class="date">2019-08-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/effsize_interpretation.Rmd"><code>vignettes/web_only/effsize_interpretation.Rmd</code></a></small>
       <div class="hidden name"><code>effsize_interpretation.Rmd</code></div>
@@ -195,12 +195,14 @@
 <th>Small</th>
 <th>Medium</th>
 <th>Large</th>
+<th>Range</th>
 </tr></thead>
 <tbody><tr class="odd">
 <td><em>r</em></td>
 <td>0.10 – &lt; 0.30</td>
 <td>0.30 – &lt; 0.50</td>
 <td>≥ 0.50</td>
+<td>[0,1]</td>
 </tr></tbody>
 </table>
 </div>
@@ -223,6 +225,7 @@
 <th>Small</th>
 <th>Medium</th>
 <th>Large</th>
+<th>Range</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -231,6 +234,7 @@
 <td>0.20</td>
 <td>0.50</td>
 <td>0.80</td>
+<td>[0,1]</td>
 </tr>
 <tr class="even">
 <td>Hedge’s <em>g</em>
@@ -238,6 +242,7 @@
 <td>0.20</td>
 <td>0.50</td>
 <td>0.80</td>
+<td>[0,1]</td>
 </tr>
 </tbody>
 </table>
@@ -252,12 +257,14 @@
 <th>Small</th>
 <th>Medium</th>
 <th>Large</th>
+<th>Range</th>
 </tr></thead>
 <tbody><tr class="odd">
 <td><em>r</em></td>
 <td>0.10 – &lt; 0.30</td>
 <td>0.30 – &lt; 0.50</td>
 <td>≥ 0.50</td>
+<td>[0,1]</td>
 </tr></tbody>
 </table>
 </div>
@@ -271,12 +278,14 @@
 <th>Small</th>
 <th>Medium</th>
 <th>Large</th>
+<th>Range</th>
 </tr></thead>
 <tbody><tr class="odd">
 <td><span class="math inline">\(\xi\)</span></td>
 <td>0.10 – &lt; 0.30</td>
 <td>0.30 – &lt; 0.50</td>
 <td>≥ 0.50</td>
+<td>[0,1]</td>
 </tr></tbody>
 </table>
 <p><strong>Reference</strong>: <a href="https://cran.r-project.org/web/packages/WRS2/vignettes/WRS2.pdf" class="uri">https://cran.r-project.org/web/packages/WRS2/vignettes/WRS2.pdf</a></p>
@@ -295,6 +304,7 @@
 <th>Small</th>
 <th>Medium</th>
 <th>Large</th>
+<th>Range</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -302,12 +312,14 @@
 <td>0.01 – &lt; 0.06</td>
 <td>0.06 – &lt; 0.14</td>
 <td>≥ 0.14</td>
+<td>[0,1]</td>
 </tr>
 <tr class="even">
 <td><span class="math inline">\(\eta^2_p\)</span></td>
 <td>0.01 – &lt; 0.06</td>
 <td>0.06 – &lt; 0.14</td>
 <td>≥ 0.14</td>
+<td>[0,1]</td>
 </tr>
 </tbody>
 </table>
@@ -320,7 +332,7 @@
 <div id="non-parametric-2" class="section level2">
 <h2 class="hasAnchor">
 <a href="#non-parametric-2" class="anchor"></a>non-parametric</h2>
-<p><strong>Test</strong>: Friedman’s rank sum test <br><strong>Effect size</strong>: Kendall’s <em>W</em></p>
+<p><strong>Test</strong>: Friedman’s rank sum test <br><strong>Effect size</strong>: Kendall’s <em>W</em> 0 (no agreement) to 1 (complete agreement)</p>
 <p>In the following table, <em>k</em> is the number of treatments, groups, or things being rated.</p>
 <table class="table">
 <thead><tr class="header">
@@ -328,6 +340,7 @@
 <th>Small</th>
 <th>Medium</th>
 <th>Large</th>
+<th>Range</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -336,6 +349,7 @@
 <td>&lt; 0.10</td>
 <td>0.10 – &lt; 0.30</td>
 <td>≥ 0.30</td>
+<td>[0,1]</td>
 </tr>
 <tr class="even">
 <td>
@@ -343,6 +357,7 @@
 <td>&lt; 0.10</td>
 <td>0.10 – &lt; 0.25</td>
 <td>≥ 0.25</td>
+<td>[0,1]</td>
 </tr>
 <tr class="odd">
 <td>
@@ -350,6 +365,7 @@
 <td>&lt; 0.10</td>
 <td>0.10 – &lt; 0.20</td>
 <td>≥ 0.20</td>
+<td>[0,1]</td>
 </tr>
 <tr class="even">
 <td>
@@ -357,6 +373,7 @@
 <td>&lt; 0.10</td>
 <td>0.10 – &lt; 0.20</td>
 <td>≥ 0.20</td>
+<td>[0,1]</td>
 </tr>
 </tbody>
 </table>
@@ -380,6 +397,7 @@
 <th>Small</th>
 <th>Medium</th>
 <th>Large</th>
+<th>Range</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -388,6 +406,7 @@
 <td>0.20</td>
 <td>0.50</td>
 <td>0.80</td>
+<td>[0,1]</td>
 </tr>
 <tr class="even">
 <td>Hedge’s <em>g</em>
@@ -395,6 +414,7 @@
 <td>0.20</td>
 <td>0.50</td>
 <td>0.80</td>
+<td>[0,1]</td>
 </tr>
 </tbody>
 </table>
@@ -409,12 +429,14 @@
 <th>Small</th>
 <th>Medium</th>
 <th>Large</th>
+<th>Range</th>
 </tr></thead>
 <tbody><tr class="odd">
 <td><em>r</em></td>
 <td>0.10 – &lt; 0.30</td>
 <td>0.30 – &lt; 0.50</td>
 <td>≥ 0.50</td>
+<td>[0,1]</td>
 </tr></tbody>
 </table>
 <p><strong>Reference</strong>: <a href="https://rcompanion.org/handbook/F_04.html" class="uri">https://rcompanion.org/handbook/F_04.html</a></p>
@@ -429,12 +451,14 @@
 <th>Small</th>
 <th>Medium</th>
 <th>Large</th>
+<th>Range</th>
 </tr></thead>
 <tbody><tr class="odd">
 <td><span class="math inline">\(\xi\)</span></td>
 <td>0.10 – &lt; 0.30</td>
 <td>0.30 – &lt; 0.50</td>
 <td>≥ 0.50</td>
+<td>[0,1]</td>
 </tr></tbody>
 </table>
 <p><strong>Reference</strong>: <a href="https://cran.r-project.org/web/packages/WRS2/vignettes/WRS2.pdf" class="uri">https://cran.r-project.org/web/packages/WRS2/vignettes/WRS2.pdf</a></p>
@@ -453,6 +477,7 @@
 <th>Small</th>
 <th>Medium</th>
 <th>Large</th>
+<th>Range</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -460,24 +485,28 @@
 <td>0.01 – &lt; 0.06</td>
 <td>0.06 – &lt; 0.14</td>
 <td>≥ 0.14</td>
+<td>[0,1]</td>
 </tr>
 <tr class="even">
 <td><span class="math inline">\(\omega^2\)</span></td>
 <td>0.01 – &lt; 0.06</td>
 <td>0.06 – &lt; 0.14</td>
 <td>≥ 0.14</td>
+<td>[0,1]</td>
 </tr>
 <tr class="odd">
 <td><span class="math inline">\(\eta^2_p\)</span></td>
 <td>0.01 – &lt; 0.06</td>
 <td>0.06 – &lt; 0.14</td>
 <td>≥ 0.14</td>
+<td>[0,1]</td>
 </tr>
 <tr class="even">
 <td><span class="math inline">\(\omega^2_p\)</span></td>
 <td>0.01 – &lt; 0.06</td>
 <td>0.06 – &lt; 0.14</td>
 <td>≥ 0.14</td>
+<td>[0,1]</td>
 </tr>
 </tbody>
 </table>
@@ -497,12 +526,14 @@
 <th>Small</th>
 <th>Medium</th>
 <th>Large</th>
+<th>Range</th>
 </tr></thead>
 <tbody><tr class="odd">
 <td><span class="math inline">\(\epsilon^2\)</span></td>
 <td>0.01 – &lt; 0.08</td>
 <td>0.08 – &lt; 0.26</td>
 <td>≥ 0.26</td>
+<td>[0,1]</td>
 </tr></tbody>
 </table>
 <p><strong>Reference</strong>: <a href="https://rcompanion.org/handbook/F_08.html" class="uri">https://rcompanion.org/handbook/F_08.html</a></p>
@@ -517,12 +548,14 @@
 <th>Small</th>
 <th>Medium</th>
 <th>Large</th>
+<th>Range</th>
 </tr></thead>
 <tbody><tr class="odd">
 <td><span class="math inline">\(\xi\)</span></td>
 <td>0.10 – &lt; 0.30</td>
 <td>0.30 – &lt; 0.50</td>
 <td>≥ 0.50</td>
+<td>[0,1]</td>
 </tr></tbody>
 </table>
 <p><strong>Reference</strong>: <a href="https://cran.r-project.org/web/packages/WRS2/vignettes/WRS2.pdf" class="uri">https://cran.r-project.org/web/packages/WRS2/vignettes/WRS2.pdf</a></p>
@@ -543,6 +576,7 @@
 <th>Small</th>
 <th>Medium</th>
 <th>Large</th>
+<th>Range</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -551,6 +585,7 @@
 <td>0.10 – &lt; 0.30</td>
 <td>0.30 – &lt; 0.50</td>
 <td>≥ 0.50</td>
+<td>[0,1]</td>
 </tr>
 <tr class="even">
 <td>
@@ -558,6 +593,7 @@
 <td>0.07 – &lt; 0.20</td>
 <td>0.20 – &lt; 0.35</td>
 <td>≥ 0.35</td>
+<td>[0,1]</td>
 </tr>
 <tr class="odd">
 <td>
@@ -565,6 +601,7 @@
 <td>0.06 – &lt; 0.17</td>
 <td>0.17 – &lt; 0.29</td>
 <td>≥ 0.29</td>
+<td>[0,1]</td>
 </tr>
 </tbody>
 </table>
@@ -580,6 +617,7 @@
 <th>Small</th>
 <th>Medium</th>
 <th>Large</th>
+<th>Range</th>
 </tr></thead>
 <tbody><tr class="odd">
 <td>Cohen’s <em>g</em>
@@ -587,6 +625,7 @@
 <td>0.05 – &lt; 0.15</td>
 <td>0.15 – &lt; 0.25</td>
 <td>≥ 0.25</td>
+<td>[0,1]</td>
 </tr></tbody>
 </table>
 <p><strong>Reference</strong>: <a href="https://rcompanion.org/handbook/H_05.html" class="uri">https://rcompanion.org/handbook/H_05.html</a></p>
@@ -602,6 +641,7 @@
 <th>Small</th>
 <th>Medium</th>
 <th>Large</th>
+<th>Range</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -610,6 +650,7 @@
 <td>0.100 – &lt; 0.300</td>
 <td>0.300 – &lt; 0.500</td>
 <td>≥ 0.500</td>
+<td>[0,1]</td>
 </tr>
 <tr class="even">
 <td>
@@ -617,6 +658,7 @@
 <td>0.071 – &lt; 0.212</td>
 <td>0.212 – &lt; 0.354</td>
 <td>≥ 0.354</td>
+<td>[0,1]</td>
 </tr>
 <tr class="odd">
 <td>
@@ -624,6 +666,7 @@
 <td>0.058 – &lt; 0.173</td>
 <td>0.173 – &lt; 0.289</td>
 <td>≥ 0.289</td>
+<td>[0,1]</td>
 </tr>
 <tr class="even">
 <td>
@@ -631,6 +674,7 @@
 <td>0.050 – &lt; 0.150</td>
 <td>0.150 – &lt; 0.250</td>
 <td>≥ 0.250</td>
+<td>[0,1]</td>
 </tr>
 <tr class="odd">
 <td>
@@ -638,6 +682,7 @@
 <td>0.045 – &lt; 0.134</td>
 <td>0.134 – &lt; 0.224</td>
 <td>≥ 0.224</td>
+<td>[0,1]</td>
 </tr>
 <tr class="even">
 <td>
@@ -645,6 +690,7 @@
 <td>0.043 – &lt; 0.130</td>
 <td>0.130 – &lt; 0.217</td>
 <td>≥ 0.217</td>
+<td>[0,1]</td>
 </tr>
 <tr class="odd">
 <td>
@@ -652,6 +698,7 @@
 <td>0.042 – &lt; 0.127</td>
 <td>0.127 – &lt; 0.212</td>
 <td>≥ 0.212</td>
+<td>[0,1]</td>
 </tr>
 <tr class="even">
 <td>
@@ -659,6 +706,7 @@
 <td>0.042 – &lt; 0.125</td>
 <td>0.125 – &lt; 0.209</td>
 <td>≥ 0.209</td>
+<td>[0,1]</td>
 </tr>
 <tr class="odd">
 <td>
@@ -666,6 +714,7 @@
 <td>0.041 – &lt; 0.124</td>
 <td>0.124 – &lt; 0.207</td>
 <td>≥ 0.207</td>
+<td>[0,1]</td>
 </tr>
 </tbody>
 </table>
@@ -686,6 +735,7 @@
 <th>Small</th>
 <th>Medium</th>
 <th>Large</th>
+<th>Range</th>
 </tr></thead>
 <tbody><tr class="odd">
 <td>Pearson’s <em>r</em>
@@ -693,6 +743,7 @@
 <td>0.10 – &lt; 0.30</td>
 <td>0.30 – &lt; 0.50</td>
 <td>≥ 0.50</td>
+<td>[-1,1]</td>
 </tr></tbody>
 </table>
 </div>
@@ -706,6 +757,7 @@
 <th>Small</th>
 <th>Medium</th>
 <th>Large</th>
+<th>Range</th>
 </tr></thead>
 <tbody><tr class="odd">
 <td>Spearman’s <span class="math inline">\(\rho\)</span>
@@ -713,6 +765,7 @@
 <td>0.10 – &lt; 0.30</td>
 <td>0.30 – &lt; 0.50</td>
 <td>≥ 0.50</td>
+<td>[-1,1]</td>
 </tr></tbody>
 </table>
 </div>
@@ -726,12 +779,14 @@
 <th>Small</th>
 <th>Medium</th>
 <th>Large</th>
+<th>Range</th>
 </tr></thead>
 <tbody><tr class="odd">
 <td><span class="math inline">\(\rho_{pb}\)</span></td>
 <td>0.10 – &lt; 0.30</td>
 <td>0.30 – &lt; 0.50</td>
 <td>≥ 0.50</td>
+<td>[-1,1]</td>
 </tr></tbody>
 </table>
 </div>

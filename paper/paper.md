@@ -3,7 +3,7 @@ title: "ggstatsplot: ggplot2 Based Plots with Statistical Details"
 author:
 - Indrajeet Patil^[Harvard University, patilindrajeet.science@gmail.com]
 - Mina Cikara^[Harvard University]
-date: "2019-08-13"
+date: "2019-08-16"
 output: 
   bookdown::pdf_document2:
     fig_caption: true
@@ -1570,6 +1570,14 @@ location in the plot.
 
 Additionally, all functions share the `ggtheme` and `palette` arguments that can
 be used to specify your favorite `ggplot` theme and color palette.
+
+# Acknowledgments
+
+The authors would like to thank Chuck Powell, Daniel Heck, and Will Beasley for
+their contributions to the package. The authors would also like to acknowledge
+the help and support provided by the larger `#rstats` community on Twitter and
+StackOverflow for the development of this package. We also appreciate helpful
+discussions with Fiery Cushman.
 
 \newpage
 
