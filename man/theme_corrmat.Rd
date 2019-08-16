@@ -13,5 +13,5 @@ A \code{ggplot2} object with the \code{theme_ggstatsplot} overlaid.
 Default theme used for correlation matrix
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }

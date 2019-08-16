@@ -18,10 +18,11 @@ extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
 
 \item{ggstatsplot.layer}{Logical that decides whether \code{theme_ggstatsplot}
 theme elements are to be displayed along with the selected \code{ggtheme}
-(Default: \code{TRUE}).}
+(Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
+override some aspects of the selected \code{ggtheme}.}
 }
 \value{
-A \code{ggplot2} object with the \code{theme_ggstatsplot} theme.
+A \code{ggplot2} object with the \code{theme_ggstatsplot} theme overlaid.
 }
 \description{
 Common theme used across all plots generated in \code{ggstatsplot}
@@ -32,5 +33,5 @@ user/reader.
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html}
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }

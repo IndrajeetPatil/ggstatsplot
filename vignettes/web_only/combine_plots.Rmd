@@ -20,7 +20,9 @@ vignette: >
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  message = FALSE,
+  warning = FALSE
 )
 ```
 
@@ -37,7 +39,38 @@ for each `factor` of this variable the `grouped_` variants
 `ggstatsplot` functions will allow you do to this. They specifically use the
 `combine_plots` function under the covers.
 
-## Combining multiple plots: Example #1 using `purrr`
+## Combining multiple plots: Example-1 using `dplyr::group_map`
+
+The easiest way to run the same `ggstatsplot` operation across multiple grouping
+variables is by using `dplyr::group_map` functions and then - of course - one
+would like to combine these plots in a single plot.
+
+```{r ggscatterstats_groupmap, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 10}
+# libraries
+set.seed(123)
+library(tidyverse)
+
+# creating a list of plots
+p_list <- mtcars %>%
+  dplyr::group_by(.data = ., am) %>%
+  dplyr::group_map(
+    .tbl = .,
+    .f = ~ ggstatsplot::ggbetweenstats(
+    data = .,
+    x = cyl,
+    y = wt,
+    messages = FALSE
+  ))
+
+# combining plots
+cowplot::plot_grid(
+  plotlist = p_list,
+  labels = rlang::set_names(levels(as.factor(mtcars$am)))
+)
+```
+
+
+## Combining multiple plots: Example-2 using `purrr`
 
 The full power of `ggstatsplot` can be leveraged with a functional programming
 package like [`purrr`](http://purrr.tidyverse.org/) which can replace many `for`
@@ -59,7 +92,7 @@ library(ggstatsplot)
 set.seed(123)
 
 # creating a list column with `ggstatsplot` plots
-plots <- datasets::iris %>%
+plots <- iris %>%
   dplyr::mutate(.data = ., Species2 = Species) %>% # just creates a copy of this variable
   dplyr::group_by(.data = ., Species) %>%
   tidyr::nest(.) %>% # a nested dataframe with list column called `data`
@@ -106,7 +139,7 @@ ggstatsplot::combine_plots(
 )
 ```
 
-## Combining multiple plots: Example #2 with `plyr`
+## Combining multiple plots: Example-3 with `plyr`
 
 Another popular package for handling big datasets is `plyr`, which allows us to
 repeatedly apply a common function on smaller pieces and then combine the
@@ -130,7 +163,7 @@ library(gapminder)
 set.seed(123)
 
 # let's have a look at the structure of the data
-dplyr::glimpse(x = gapminder::gapminder)
+dplyr::glimpse(gapminder::gapminder)
 
 # creating a list of plots
 plots <- plyr::dlply(
@@ -163,7 +196,7 @@ ggstatsplot::combine_plots(
 )
 ```
 
-## Adding additional textual information: Example #3 
+# Adding additional details to plots
 
 The `combine_plots` function can also be useful for adding additional textual
 information that can not be added by making a single call to a `ggstatsplot`

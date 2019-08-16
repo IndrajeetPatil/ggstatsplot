@@ -134,13 +134,13 @@ NumGenre
 nz
 Oneway
 OpenGL
+ORCID
 Orcutt
 pandoc
 pb
 pch
 pearson's
 piechart
-pirateplot
 pkgs
 plotgrid
 plotly
@@ -160,6 +160,7 @@ Rdoc
 readme
 README
 reproducibility
+ridgeplot
 rlbt
 Royston
 rpubs

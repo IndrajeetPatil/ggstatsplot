@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggcorrmat.R
 \name{ggcorrmat}
 \alias{ggcorrmat}
-\title{Visualization of a correlalogram (or correlation matrix)}
+\title{Visualization of a correlation matrix}
 \usage{
 ggcorrmat(data, cor.vars = NULL, cor.vars.names = NULL,
   output = "plot", matrix.type = "full", method = "square",
@@ -113,7 +113,8 @@ extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
 
 \item{ggstatsplot.layer}{Logical that decides whether \code{theme_ggstatsplot}
 theme elements are to be displayed along with the selected \code{ggtheme}
-(Default: \code{TRUE}).}
+(Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
+override some aspects of the selected \code{ggtheme}.}
 
 \item{title}{The text for the plot title.}
 
@@ -154,7 +155,7 @@ Correlation matrix plot or correlation coefficient matrix or matrix
 of \emph{p}-values.
 }
 \description{
-Visualization of a correlalogram (or correlation matrix)
+Visualization of a correlation matrix
 }
 \examples{
 
@@ -219,5 +220,5 @@ ggstatsplot::ggcorrmat(
 \code{\link{grouped_ggscatterstats}}
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }

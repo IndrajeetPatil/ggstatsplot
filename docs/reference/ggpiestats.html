@@ -389,7 +389,8 @@ extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggtheme
       <th>ggstatsplot.layer</th>
       <td><p>Logical that decides whether <code>theme_ggstatsplot</code>
 theme elements are to be displayed along with the selected <code>ggtheme</code>
-(Default: <code>TRUE</code>).</p></td>
+(Default: <code>TRUE</code>). <code>theme_ggstatsplot</code> is an opinionated theme layer that
+override some aspects of the selected <code>ggtheme</code>.</p></td>
     </tr>
     <tr>
       <th>package</th>
@@ -492,11 +493,11 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
 )</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `cols` is now required.</span>
 #&gt; <span class='warning'>Please use `cols = c(percentage, chi_sq)`</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>10</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 3 x 11</span><span>
-#&gt;   cyl   counts  perc N        `0`     `1`    `Chi-squared`   p.value    df
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 8         14 43.75 (n = 14) 100.00% </span><span style='color: #BB0000;'>NA</span><span>           14      0.000</span><span style='text-decoration: underline;'>182</span><span>8     1
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 6          7 21.88 (n = 7)  42.86%  57.14%        0.142</span><span style='text-decoration: underline;'>9</span><span> 0.705</span><span style='text-decoration: underline;'>5</span><span>        1
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 4         11 34.38 (n = 11) 9.09%   90.91%        7.364  0.006</span><span style='text-decoration: underline;'>656</span><span>      1
+#&gt;   cyl   counts  perc N        `0`     `1`    `Chi-squared`  p.value    df
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 8         14  43.8 (n = 14) 100.00% </span><span style='color: #BB0000;'>NA</span><span>            14     0.000</span><span style='text-decoration: underline;'>183</span><span>     1
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 6          7  21.9 (n = 7)  42.86%  57.14%         0.143 0.705        1
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 4         11  34.4 (n = 11) 9.09%   90.91%         7.36  0.006</span><span style='text-decoration: underline;'>66</span><span>      1
 #&gt;   method                                   significance
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span> Chi-squared test for given probabilities ***         

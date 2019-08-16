@@ -1287,39 +1287,52 @@ For more on how to modify it, see the associated vignette-
 
 ## Using `ggstatsplot` statistical details with custom plots
 
-Sometimes you may not like the defaults in a plot produced by `ggstatsplot`. In
-such cases, you can use other custom plots (from `ggplot2` or other plotting
+Sometimes you may not like the default plots produced by `ggstatsplot`. In such
+cases, you can use other **custom** plots (from `ggplot2` or other plotting
 packages) and still use `ggstatsplot` functions to display results from relevant
 statistical test.
 
-For example, in the following chunk, we will create plot (*pirateplot*) using
-`yarrr` package and use `ggstatsplot` function for extracting results.
+For example, in the following chunk, we will create plot (*ridgeplot*) using
+`ggridges` package and use `ggstatsplot` function for extracting results.
 
-```{r pirateplot, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
-# for reproducibility
+```{r ridgeplot, message = FALSE, warning = FALSE, fig.height = 10, fig.width = 7}
 set.seed(123)
 
 # loading the needed libraries
-library(yarrr)
+library(ggridges)
+library(ggplot2)
 library(ggstatsplot)
 
 # using `ggstatsplot` to get call with statistical results
 stats_results <-
   ggstatsplot::ggbetweenstats(
-    data = ChickWeight,
-    x = Time,
-    y = weight,
+    data = morley,
+    x = Expt,
+    y = Speed,
     return = "subtitle",
     messages = FALSE
   )
 
-# using `yarrr` to create plot
-yarrr::pirateplot(
-  formula = weight ~ Time,
-  data = ChickWeight,
-  theme = 1,
-  main = stats_results
-)
+# using `ggridges` to create plot
+ggplot(morley, aes(x = Speed, y = as.factor(Expt), fill = as.factor(Expt))) +
+  geom_density_ridges(
+    jittered_points = TRUE,
+    quantile_lines = TRUE,
+    scale = 0.9,
+    alpha = 0.7,
+    vline_size = 1,
+    vline_color = "red",
+    point_size = 0.4,
+    point_alpha = 1,
+    position = position_raincloud(adjust_vlines = TRUE)
+  ) + # adding annotations
+  labs(
+    title = "Michelson-Morley experiments",
+    subtitle = stats_results,
+    x = "Speed of light",
+    y = "Experiment number"
+  ) + # remove the legend
+  theme(legend.position = "none")
 ```
 
 # Usage and syntax simplicity

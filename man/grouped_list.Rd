@@ -22,6 +22,6 @@ element of the list will be a tibble.
 ggstatsplot:::grouped_list(data = ggplot2::msleep, grouping.var = vore)
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }
 \keyword{internal}

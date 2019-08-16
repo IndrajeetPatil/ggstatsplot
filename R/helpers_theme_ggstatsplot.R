@@ -1,5 +1,5 @@
 #' @title Default theme used in all `ggstatsplot` package plots
-#' @author Indrajeet Patil
+#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #' @description Common theme used across all plots generated in `ggstatsplot`
 #'   and *assumed* by the author to be aesthetically pleasing to the
 #'   user/reader.
@@ -10,9 +10,10 @@
 #'   `hrbrthemes::theme_ipsum_ps()`, etc.).
 #' @param ggstatsplot.layer Logical that decides whether `theme_ggstatsplot`
 #'   theme elements are to be displayed along with the selected `ggtheme`
-#'   (Default: `TRUE`).
+#'   (Default: `TRUE`). `theme_ggstatsplot` is an opinionated theme layer that
+#'   override some aspects of the selected `ggtheme`.
 #'
-#' @return A `ggplot2` object with the `theme_ggstatsplot` theme.
+#' @return A `ggplot2` object with the `theme_ggstatsplot` theme overlaid.
 #'
 #' @import ggplot2
 #' @importFrom grid unit
@@ -23,8 +24,7 @@
 #' @export
 
 # function body
-theme_ggstatsplot <- function(ggtheme = ggplot2::theme_bw(),
-                              ggstatsplot.layer = TRUE) {
+theme_ggstatsplot <- function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE) {
 
   # if ggstatsplot-specific layer is to be added on top of the default theme
   if (isTRUE(ggstatsplot.layer)) {
@@ -76,7 +76,7 @@ theme_mprl <- theme_ggstatsplot
 
 #' @title Default theme used for pie chart
 #' @name theme_pie
-#' @author Indrajeet Patil
+#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @return A `ggplot2` object with the `theme_ggstatsplot` theme.
 #'
@@ -88,8 +88,7 @@ theme_mprl <- theme_ggstatsplot
 #'
 #' @export
 
-theme_pie <- function(ggtheme = ggplot2::theme_bw(),
-                      ggstatsplot.layer = TRUE) {
+theme_pie <- function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE) {
   if (isTRUE(ggstatsplot.layer)) {
     ggtheme +
       ggplot2::theme(
@@ -137,7 +136,7 @@ theme_pie <- function(ggtheme = ggplot2::theme_bw(),
 
 #' @title Default theme used for correlation matrix
 #' @name theme_corrmat
-#' @author Indrajeet Patil
+#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #' @return A `ggplot2` object with the `theme_ggstatsplot` overlaid.
 #'
 #' @import ggplot2

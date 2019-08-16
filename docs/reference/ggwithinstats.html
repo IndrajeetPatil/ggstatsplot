@@ -488,7 +488,8 @@ extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggtheme
       <th>ggstatsplot.layer</th>
       <td><p>Logical that decides whether <code>theme_ggstatsplot</code>
 theme elements are to be displayed along with the selected <code>ggtheme</code>
-(Default: <code>TRUE</code>).</p></td>
+(Default: <code>TRUE</code>). <code>theme_ggstatsplot</code> is an opinionated theme layer that
+override some aspects of the selected <code>ggtheme</code>.</p></td>
     </tr>
     <tr>
       <th>package</th>
@@ -558,8 +559,10 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
   <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Proportion of utilitarian decisions"</span>
 )</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Shapiro-Wilk Normality Test for </span><span style='color: #BBBB00;'>Proportion of utilitarian decisions</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>&lt; 0.001</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Bartlett's test for homogeneity of variances for factor </span><span style='color: #BBBB00;'>Presentation modality</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>&lt; 0.001</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggwithinstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># more than two groups (anova)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>WRS2</span>)
-
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>WRS2</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘WRS2’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:jmv’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    ancova</span></div><div class='input'>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggwithinstats.html'>ggwithinstats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span>(<span class='no'>WineTasting</span>),
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Wine</span>,
@@ -591,7 +594,7 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
     </ul>
 
     <h2>Author</h2>
-    <p>Indrajeet Patil</p>
+    <p><a href='https://github.com/IndrajeetPatil'>Indrajeet Patil</a></p>
   </div>
 </div>
 

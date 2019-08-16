@@ -1461,6 +1461,14 @@ location in the plot.
 Additionally, all functions share the `ggtheme` and `palette` arguments that can
 be used to specify your favorite `ggplot` theme and color palette.
 
+# Acknowledgments
+
+The authors would like to thank Chuck Powell, Daniel Heck, and Will Beasley for
+their contributions to the package. The authors would also like to acknowledge
+the help and support provided by the larger `#rstats` community on Twitter and
+StackOverflow for the development of this package. We also appreciate helpful
+discussions with Fiery Cushman.
+
 \newpage
 
 # Appendix

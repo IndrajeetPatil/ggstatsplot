@@ -51,9 +51,9 @@ Hedge's *g* | 0 – < 0.20 | 0.20 – < 0.50 | ≥ 0.80 | [0,1]
 **Test**: One-sample Wilcoxon Signed-rank Test <br>
 **Effect size**: *r* ( = $Z/\sqrt(N_{obs})$) 
 
-Effect size | Small | Medium | Large
------ | ---------- | ---------- | ---------- 
-*r* | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50
+Effect size | Small | Medium | Large | Range
+----- | ---------- | ---------- | ---------- | -------
+*r* | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50 | [0,1]
 
 ## robust
 
@@ -67,28 +67,28 @@ Effect size | Small | Medium | Large
 **Test**: Student's dependent samples *t*-test <br>
 **Effect size**: Cohen's *d*, Hedge's *g* 
 
-Effect size | Small | Medium | Large
------ | ---------- | ---------- | ---------- 
-Cohen's *d* | 0.20 | 0.50 | 0.80
-Hedge's *g* | 0.20 | 0.50 | 0.80
+Effect size | Small | Medium | Large | Range
+----- | ---------- | ---------- | ---------- | -------
+Cohen's *d* | 0.20 | 0.50 | 0.80 | [0,1]
+Hedge's *g* | 0.20 | 0.50 | 0.80 | [0,1]
 
 ## non-parametric
 
 **Test**: Wilcoxon signed-rank test <br>
 **Effect size**: *r* ( = $Z/\sqrt(N_{pairs})$) 
 
-Effect size | Small | Medium | Large
------ | ---------- | ---------- | ---------- 
-*r* | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50
+Effect size | Small | Medium | Large | Range
+----- | ---------- | ---------- | ---------- | -------
+*r* | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50 | [0,1]
 
 ## robust
 
 **Test**: Yuen's dependent sample trimmed means *t*-test <br>
 **Effect size**: Explanatory measure of effect size ($\xi$)
 
-Effect size | Small | Medium | Large
------ | ---------- | ---------- | ---------- 
-$\xi$ | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50
+Effect size | Small | Medium | Large | Range
+----- | ---------- | ---------- | ---------- | -------
+$\xi$ | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50 | [0,1]
 
 **Reference**: <https://cran.r-project.org/web/packages/WRS2/vignettes/WRS2.pdf>
 
@@ -99,10 +99,10 @@ $\xi$ | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50
 **Test**: Fisher's repeated measures one-way ANOVA  <br>
 **Effect size**: $\eta^2_p$, $\omega^2$
 
-Effect size | Small | Medium | Large
------ | ---------- | ---------- | ---------- 
-$\omega^2$ | 0.01 – < 0.06 | 0.06 – < 0.14 | ≥ 0.14
-$\eta^2_p$ | 0.01 – < 0.06 | 0.06 – < 0.14 | ≥ 0.14
+Effect size | Small | Medium | Large | Range
+----- | ---------- | ---------- | ---------- | ------
+$\omega^2$ | 0.01 – < 0.06 | 0.06 – < 0.14 | ≥ 0.14 | [0,1]
+$\eta^2_p$ | 0.01 – < 0.06 | 0.06 – < 0.14 | ≥ 0.14 | [0,1]
 
 **Reference**: <br>
 
@@ -113,16 +113,17 @@ $\eta^2_p$ | 0.01 – < 0.06 | 0.06 – < 0.14 | ≥ 0.14
 
 **Test**: Friedman's rank sum test <br>
 **Effect size**: Kendall's *W*
+0 (no agreement) to 1 (complete agreement)
 
 In the following table, *k* is the number of treatments, groups, or things being
 rated.
 
-*k* | Small | Medium | Large
------ | ---------- | ---------- | ---------- 
-*k* = 3 | < 0.10 | 0.10 – < 0.30 | ≥ 0.30
-*k* = 5 | < 0.10 | 0.10 – < 0.25 | ≥ 0.25
-*k* = 7 | < 0.10 | 0.10 – < 0.20 | ≥ 0.20
-*k* = 9 | < 0.10 | 0.10 – < 0.20 | ≥ 0.20
+*k* | Small | Medium | Large | Range
+----- | ---------- | ---------- | ---------- | -------- 
+*k* = 3 | < 0.10 | 0.10 – < 0.30 | ≥ 0.30 | [0,1]
+*k* = 5 | < 0.10 | 0.10 – < 0.25 | ≥ 0.25 | [0,1]
+*k* = 7 | < 0.10 | 0.10 – < 0.20 | ≥ 0.20 | [0,1]
+*k* = 9 | < 0.10 | 0.10 – < 0.20 | ≥ 0.20 | [0,1]
 
 ## robust
 
@@ -136,19 +137,19 @@ rated.
 **Test**: Student's and Welch's independent samples *t*-test <br>
 **Effect size**: Cohen's *d*, Hedge's *g* 
 
-Effect size | Small | Medium | Large
------ | ---------- | ---------- | ---------- 
-Cohen's *d* | 0.20 | 0.50 | 0.80
-Hedge's *g* | 0.20 | 0.50 | 0.80
+Effect size | Small | Medium | Large | Range
+----- | ---------- | ---------- | ---------- | -------
+Cohen's *d* | 0.20 | 0.50 | 0.80 | [0,1]
+Hedge's *g* | 0.20 | 0.50 | 0.80 | [0,1]
 
 ## non-parametric
 
 **Test**: Two-sample Mann–Whitney *U* Test <br>
 **Effect size**: *r* ( = $Z/\sqrt(N_{obs})$) 
 
-Effect size | Small | Medium | Large
------ | ---------- | ---------- | ---------- 
-*r* | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50
+Effect size | Small | Medium | Large | Range
+----- | ---------- | ---------- | ---------- | ---------- 
+*r* | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50 | [0,1]
 
 **Reference**: <https://rcompanion.org/handbook/F_04.html>
 
@@ -157,9 +158,9 @@ Effect size | Small | Medium | Large
 **Test**: Yuen's independent sample trimmed means *t*-test <br>
 **Effect size**: Explanatory measure of effect size ($\xi$)
 
-Effect size | Small | Medium | Large
------ | ---------- | ---------- | ---------- 
-$\xi$ | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50
+Effect size | Small | Medium | Large | Range
+----- | ---------- | ---------- | ---------- | --------
+$\xi$ | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50 | [0,1]
 
 **Reference**: <https://cran.r-project.org/web/packages/WRS2/vignettes/WRS2.pdf>
 
@@ -170,12 +171,12 @@ $\xi$ | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50
 **Test**: Fisher's or Welch's one-way ANOVA  <br>
 **Effect size**: $\eta^2$, $\eta^2_p$, $\omega^2$, $\omega^2_p$
 
-Effect size | Small | Medium | Large
------ | ---------- | ---------- | ---------- 
-$\eta^2$ | 0.01 – < 0.06 | 0.06 – < 0.14 | ≥ 0.14
-$\omega^2$ | 0.01 – < 0.06 | 0.06 – < 0.14 | ≥ 0.14
-$\eta^2_p$ | 0.01 – < 0.06 | 0.06 – < 0.14 | ≥ 0.14
-$\omega^2_p$ | 0.01 – < 0.06 | 0.06 – < 0.14 | ≥ 0.14
+Effect size | Small | Medium | Large | Range
+----- | ---------- | ---------- | ---------- | --------
+$\eta^2$ | 0.01 – < 0.06 | 0.06 – < 0.14 | ≥ 0.14 | [0,1]
+$\omega^2$ | 0.01 – < 0.06 | 0.06 – < 0.14 | ≥ 0.14 | [0,1]
+$\eta^2_p$ | 0.01 – < 0.06 | 0.06 – < 0.14 | ≥ 0.14 | [0,1]
+$\omega^2_p$ | 0.01 – < 0.06 | 0.06 – < 0.14 | ≥ 0.14 | [0,1]
 
 **Reference**: <br>
 
@@ -187,9 +188,9 @@ $\omega^2_p$ | 0.01 – < 0.06 | 0.06 – < 0.14 | ≥ 0.14
 **Test**: Kruskal–Wallis test <br>
 **Effect size**: $\epsilon^2$
 
-Effect size | Small | Medium | Large
------ | ---------- | ---------- | ---------- 
-$\epsilon^2$ | 0.01 – < 0.08 | 0.08 – < 0.26 | ≥ 0.26
+Effect size | Small | Medium | Large | Range
+----- | ---------- | ---------- | ---------- | -------- 
+$\epsilon^2$ | 0.01 – < 0.08 | 0.08 – < 0.26 | ≥ 0.26 | [0,1]
 
 **Reference**:  <https://rcompanion.org/handbook/F_08.html>
 
@@ -198,9 +199,9 @@ $\epsilon^2$ | 0.01 – < 0.08 | 0.08 – < 0.26 | ≥ 0.26
 **Test**: Heteroscedastic one-way ANOVA for trimmed means <br>
 **Effect size**: Explanatory measure of effect size ($\xi$)
 
-Effect size | Small | Medium | Large
------ | ---------- | ---------- | ---------- 
-$\xi$ | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50
+Effect size | Small | Medium | Large | Range
+----- | ---------- | ---------- | ---------- | --------
+$\xi$ | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50 | [0,1]
 
 **Reference**: <https://cran.r-project.org/web/packages/WRS2/vignettes/WRS2.pdf>
 
@@ -214,11 +215,11 @@ $\xi$ | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50
 In the following table, *k* is the minimum number of categories in either rows
 or columns.
 
-*k* | Small | Medium | Large
------ | ---------- | ---------- | ---------- 
-*k* = 2 | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50
-*k* = 3 | 0.07 – < 0.20 | 0.20 – < 0.35 | ≥ 0.35
-*k* = 4 | 0.06 – < 0.17 | 0.17 – < 0.29 | ≥ 0.29
+*k* | Small | Medium | Large | Range
+----- | ---------- | ---------- | ---------- | --------
+*k* = 2 | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50 | [0,1]
+*k* = 3 | 0.07 – < 0.20 | 0.20 – < 0.35 | ≥ 0.35 | [0,1]
+*k* = 4 | 0.06 – < 0.17 | 0.17 – < 0.29 | ≥ 0.29 | [0,1]
 
 **Reference**: <https://rcompanion.org/handbook/H_10.html>
 
@@ -227,9 +228,9 @@ or columns.
 **Test**: McNemar's test <br>
 **Effect size**: Cohen’s *g*
 
-Effect size | Small | Medium | Large
------ | ---------- | ---------- | ---------- 
-Cohen’s *g* | 0.05 – < 0.15 | 0.15 – < 0.25 | ≥ 0.25
+Effect size | Small | Medium | Large | Range
+----- | ---------- | ---------- | ---------- | --------
+Cohen’s *g* | 0.05 – < 0.15 | 0.15 – < 0.25 | ≥ 0.25 | [0,1]
 
 **Reference**: <https://rcompanion.org/handbook/H_05.html>
 
@@ -240,17 +241,17 @@ Cohen’s *g* | 0.05 – < 0.15 | 0.15 – < 0.25 | ≥ 0.25
 
 In the following table, *k* is the number of categories.
 
-*k* | Small | Medium | Large
------ | ---------- | ---------- | ---------- 
-*k* = 2 | 0.100 – < 0.300 | 0.300 – < 0.500 | ≥ 0.500
-*k* = 3 | 0.071 – < 0.212 | 0.212 – < 0.354 | ≥ 0.354
-*k* = 4 | 0.058 – < 0.173 | 0.173 – < 0.289 | ≥ 0.289
-*k* = 5 | 0.050 – < 0.150 | 0.150 – < 0.250 | ≥ 0.250
-*k* = 6 | 0.045 – < 0.134 | 0.134 – < 0.224 | ≥ 0.224
-*k* = 7 | 0.043 – < 0.130 | 0.130 – < 0.217 | ≥ 0.217
-*k* = 8 | 0.042 – < 0.127 | 0.127 – < 0.212 | ≥ 0.212
-*k* = 9 | 0.042 – < 0.125 | 0.125 – < 0.209 | ≥ 0.209
-*k* = 10 | 0.041 – < 0.124 | 0.124 – < 0.207 | ≥ 0.207
+*k* | Small | Medium | Large | Range
+----- | ---------- | ---------- | ---------- | ---------- 
+*k* = 2 | 0.100 – < 0.300 | 0.300 – < 0.500 | ≥ 0.500 | [0,1]
+*k* = 3 | 0.071 – < 0.212 | 0.212 – < 0.354 | ≥ 0.354 | [0,1]
+*k* = 4 | 0.058 – < 0.173 | 0.173 – < 0.289 | ≥ 0.289 | [0,1]
+*k* = 5 | 0.050 – < 0.150 | 0.150 – < 0.250 | ≥ 0.250 | [0,1]
+*k* = 6 | 0.045 – < 0.134 | 0.134 – < 0.224 | ≥ 0.224 | [0,1]
+*k* = 7 | 0.043 – < 0.130 | 0.130 – < 0.217 | ≥ 0.217 | [0,1]
+*k* = 8 | 0.042 – < 0.127 | 0.127 – < 0.212 | ≥ 0.212 | [0,1]
+*k* = 9 | 0.042 – < 0.125 | 0.125 – < 0.209 | ≥ 0.209 | [0,1]
+*k* = 10 | 0.041 – < 0.124 | 0.124 – < 0.207 | ≥ 0.207 | [0,1]
 
 **Reference**: <https://rcompanion.org/handbook/H_03.html>
 
@@ -261,27 +262,27 @@ In the following table, *k* is the number of categories.
 **Test**:  Pearson product-moment correlation coefficient <br>
 **Effect size**: Pearson's correlation coefficient (*r*) 
 
-Effect size | Small | Medium | Large
------ | ---------- | ---------- | ---------- 
-Pearson's *r* | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50
+Effect size | Small | Medium | Large | Range
+----- | ---------- | ---------- | ---------- | ---------
+Pearson's *r* | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50 | [-1,1]
 
 ## non-parametric
 
 **Test**: Spearman's rank correlation coefficient <br>
 **Effect size**: Spearman's rank correlation coefficient ($\rho$) 
 
-Effect size | Small | Medium | Large
------ | ---------- | ---------- | ---------- 
-Spearman's $\rho$ | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50
+Effect size | Small | Medium | Large | Range
+----- | ---------- | ---------- | ---------- | ---------
+Spearman's $\rho$ | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50 | [-1,1]
 
 ## robust
 
 **Test**: Percentage bend correlation coefficient <br>
 **Effect size**: Percentage bend correlation coefficient ($\rho_{pb}$) 
 
-Effect size | Small | Medium | Large
------ | ---------- | ---------- | ---------- 
-$\rho_{pb}$ | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50
+Effect size | Small | Medium | Large | Range
+----- | ---------- | ---------- | ---------- | ---------
+$\rho_{pb}$ | 0.10 – < 0.30 | 0.30 – < 0.50 | ≥ 0.50 | [-1,1]
 
 # Suggestions
 
