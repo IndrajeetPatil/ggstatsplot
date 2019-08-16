@@ -27,9 +27,11 @@ or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accep
 \code{"p"} (for parametric), \code{"np"} (nonparametric), \code{"r"} (robust), or
 \code{"bf"}resp.}
 
-\item{tr}{
-trim level for the mean.
-}
+\item{tr}{Trim level for the mean when carrying out \code{robust} tests. If you
+get error stating "Standard error cannot be computed because of Winsorized
+variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
+try to play around with the value of \code{tr}, which is by default set to
+\code{0.1}. Lowering the value might help.}
 
 \item{paired}{a logical indicating whether you want a paired
     t-test.}

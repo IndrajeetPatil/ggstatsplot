@@ -365,6 +365,14 @@ should be displayed for each level of the grouping variable <code>x</code> (Defa
 for the effect size (Default: <code>100</code>).</p></td>
     </tr>
     <tr>
+      <th>tr</th>
+      <td><p>Trim level for the mean when carrying out <code>robust</code> tests. If you
+get error stating "Standard error cannot be computed because of Winsorized
+variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
+try to play around with the value of <code>tr</code>, which is by default set to
+<code>0.1</code>. Lowering the value might help.</p></td>
+    </tr>
+    <tr>
       <th>path.point</th>
       <td><p>Logical that decides whether individual data
 points and means, respectively, should be connected using <code>geom_path</code>. Both

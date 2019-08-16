@@ -113,6 +113,7 @@
 #' @inheritParams statsExpressions::expr_anova_parametric
 #' @inheritParams statsExpressions::expr_t_parametric
 #' @inheritParams statsExpressions::expr_t_onesample
+#' @inheritParams statsExpressions::expr_anova_robust
 #'
 #' @import ggplot2
 #'

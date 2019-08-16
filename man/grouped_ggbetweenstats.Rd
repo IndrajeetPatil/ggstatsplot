@@ -134,6 +134,12 @@ should be displayed for each level of the grouping variable \code{x} (Default:
 \item{nboot}{Number of bootstrap samples for computing confidence interval
 for the effect size (Default: \code{100}).}
 
+\item{tr}{Trim level for the mean when carrying out \code{robust} tests. If you
+get error stating "Standard error cannot be computed because of Winsorized
+variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
+try to play around with the value of \code{tr}, which is by default set to
+\code{0.1}. Lowering the value might help.}
+
 \item{sort}{If \code{"ascending"} (default), \code{x}-axis variable factor levels will
 be sorted based on increasing values of \code{y}-axis variable. If
 \code{"descending"}, the opposite. If \code{"none"}, no sorting will happen.}
