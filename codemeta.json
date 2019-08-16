@@ -374,7 +374,7 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=groupedstats"
+      "sameAs": "https://github.com/IndrajeetPatil/groupedstats"
     },
     {
       "@type": "SoftwareApplication",
@@ -529,7 +529,7 @@
       "identifier": "statsExpressions",
       "name": "statsExpressions",
       "version": ">= 0.0.1",
-      "sameAs": "https://github.com/IndrajeetPatil/groupedstats\n    IndrajeetPatil/statsExpressions"
+      "sameAs": "https://github.com/IndrajeetPatil/statsExpressions"
     },
     {
       "@type": "SoftwareApplication",

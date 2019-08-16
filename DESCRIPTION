@@ -75,7 +75,7 @@ Suggests:
     survival,
     testthat
 Remotes:
-    IndrajeetPatil/groupedstats
+    IndrajeetPatil/groupedstats,
     IndrajeetPatil/statsExpressions
 VignetteBuilder: 
     knitr
