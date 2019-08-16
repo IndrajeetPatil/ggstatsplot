@@ -91,7 +91,7 @@ line_labeler <- line_labeller
 #'
 #' @param plot A `ggplot` object for which the labeled lines need to be
 #'   added for a test value and/or a centrality parameter (mean/median) value.
-#' @inheritParams subtitle_t_onesample
+#' @inheritParams statsExpressions::expr_t_onesample
 #' @param centrality.para Decides *which* measure of central tendency (`"mean"`
 #'   or `"median"`) is to be displayed as a vertical line.
 #' @param centrality.color Decides color for the vertical line for centrality

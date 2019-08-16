@@ -39,7 +39,7 @@
 #' @param point.width.jitter,point.height.jitter Degree of jitter in `x` and `y`
 #'   direction, respectively. Defaults to `0` (0%) of the resolution of the
 #'   data.
-#' @inheritParams subtitle_ggscatterstats
+#' @inheritParams statsExpressions::expr_corr_test
 #' @inheritParams ggplot2::geom_smooth
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams paletteer::paletteer_d
@@ -54,6 +54,7 @@
 #' @importFrom stats cor.test
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom tibble as_tibble
+#' @importFrom statsExpressions expr_corr_test bf_corr_test
 #'
 #' @seealso \code{\link{grouped_ggscatterstats}}, \code{\link{ggcorrmat}},
 #' \code{\link{grouped_ggcorrmat}}
@@ -238,7 +239,7 @@ ggscatterstats <- function(data,
   # adding a subtitle with statistical results
   if (isTRUE(results.subtitle)) {
     subtitle <-
-      subtitle_ggscatterstats(
+      statsExpressions::expr_corr_test(
         data = data,
         x = {{ x }},
         y = {{ y }},
@@ -255,7 +256,7 @@ ggscatterstats <- function(data,
     # preparing the BF message for null hypothesis support
     if (isTRUE(bf.message)) {
       bf.caption.text <-
-        bf_corr_test(
+        statsExpressions::bf_corr_test(
           data = data,
           x = {{ x }},
           y = {{ y }},

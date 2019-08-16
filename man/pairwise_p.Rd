@@ -27,11 +27,9 @@ or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accep
 \code{"p"} (for parametric), \code{"np"} (nonparametric), \code{"r"} (robust), or
 \code{"bf"}resp.}
 
-\item{tr}{Trim level for the mean when carrying out \code{robust} tests. If you
-get error stating "Standard error cannot be computed because of Winsorized
-variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
-try to play around with the value of \code{tr}, which is by default set to
-\code{0.1}. Lowering the value might help.}
+\item{tr}{
+trim level for the mean.
+}
 
 \item{paired}{a logical indicating whether you want a paired
     t-test.}
@@ -153,7 +151,6 @@ ggstatsplot::pairwise_p(
 \code{\link{ggbetweenstats}}, \code{\link{grouped_ggbetweenstats}}
 
 Other helper_messages: \code{\link{bartlett_message}},
-  \code{\link{effsize_ci_message}},
   \code{\link{ggcorrmat_matrix_message}},
   \code{\link{grouped_message}},
   \code{\link{normality_message}},

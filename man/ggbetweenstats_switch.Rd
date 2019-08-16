@@ -19,7 +19,7 @@ or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accep
 \item{test}{Decides which test to run (can be either \code{"t-test"} or
 \code{"anova"}).}
 
-\item{...}{Arguments for respective subtitle helper function.}
+\item{...}{Arguments passed to respective subtitle helper functions.}
 }
 \description{
 Switch function to use helper function to create subtitle for the

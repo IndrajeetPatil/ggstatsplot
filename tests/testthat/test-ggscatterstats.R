@@ -104,7 +104,7 @@ testthat::test_that(
 
     # subtitle
     set.seed(123)
-    p_subtitle <- ggstatsplot::subtitle_ggscatterstats(
+    p_subtitle <- statsExpressions::expr_corr_test(
       data = ggplot2::msleep,
       x = sleep_total,
       y = bodywt,
@@ -146,7 +146,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking ggscatterstats - without NAs - spearman's rho",
   code = {
-    testthat::skip_on_cran()
+
 
     # creating the plot
     set.seed(123)
@@ -167,7 +167,7 @@ testthat::test_that(
 
     # subtitle
     set.seed(123)
-    p_subtitle <- ggstatsplot::subtitle_ggscatterstats(
+    p_subtitle <- statsExpressions::expr_corr_test(
       data = ggplot2::msleep,
       x = sleep_total,
       y = bodywt,
@@ -189,7 +189,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking ggscatterstats - without NAs - percentage bend",
   code = {
-    testthat::skip_on_cran()
+
 
     # creating the plot
     set.seed(123)
@@ -211,7 +211,7 @@ testthat::test_that(
 
     # subtitle
     set.seed(123)
-    p_subtitle <- ggstatsplot::subtitle_ggscatterstats(
+    p_subtitle <- statsExpressions::expr_corr_test(
       data = ggplot2::msleep,
       x = sleep_total,
       y = bodywt,
@@ -250,7 +250,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking median display",
   code = {
-    testthat::skip_on_cran()
+
 
     # creating the plot
     set.seed(123)
@@ -317,7 +317,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "bayes factor plus class of object",
   code = {
-    testthat::skip_on_cran()
+
 
     # creating the plot
     set.seed(123)
@@ -336,7 +336,7 @@ testthat::test_that(
       )
 
     # subtitle
-    p_subtitle <- ggstatsplot::subtitle_ggscatterstats(
+    p_subtitle <- statsExpressions::expr_corr_test(
       data = ggplot2::msleep,
       x = sleep_total,
       y = bodywt,
@@ -373,7 +373,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "aesthetic modifications work",
   code = {
-    testthat::skip_on_cran()
+
 
     # creating the plot
     set.seed(123)
@@ -408,7 +408,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking ggscatterstats with different kinds of inputs to labeling",
   code = {
-    testthat::skip_on_cran()
+
 
     # both quoted
     testthat::expect_true(inherits(
@@ -492,7 +492,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "with marginals",
   code = {
-    testthat::skip_on_cran()
+
 
     # creating the plot
     set.seed(123)
@@ -543,7 +543,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking formula specification",
   code = {
-    testthat::skip_on_cran()
+
 
     # creating the messages
     set.seed(123)
@@ -602,7 +602,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle return",
   code = {
-    testthat::skip_on_cran()
+
 
     # creating the messages
     set.seed(123)
@@ -654,7 +654,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "message checks",
   code = {
-    testthat::skip_on_cran()
+
 
     # creating the messages
     p_message1 <- capture.output(

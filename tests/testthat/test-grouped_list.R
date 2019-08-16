@@ -6,7 +6,6 @@ context(desc = "grouped_list works")
 testthat::test_that(
   desc = "grouped_list works",
   code = {
-    testthat::skip_on_cran()
     set.seed(123)
 
     # creating lists

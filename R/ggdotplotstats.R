@@ -12,6 +12,7 @@
 #' @inheritParams ggcoefstats
 #'
 #' @importFrom dplyr row_number percent_rank pull
+#' @importFrom statsExpressions expr_t_onesample bf_ttest
 #'
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html}
@@ -119,7 +120,7 @@ ggdotplotstats <- function(data,
     # preparing the BF message for NULL
     if (isTRUE(bf.message) && type %in% c("parametric", "p")) {
       caption <-
-        bf_one_sample_ttest(
+        statsExpressions::bf_ttest(
           data = data,
           x = {{ x }},
           test.value = test.value,
@@ -132,7 +133,7 @@ ggdotplotstats <- function(data,
 
     # preparing the subtitle with statistical results
     subtitle <-
-      subtitle_t_onesample(
+      statsExpressions::expr_t_onesample(
         data = data,
         x = {{ x }},
         type = type,

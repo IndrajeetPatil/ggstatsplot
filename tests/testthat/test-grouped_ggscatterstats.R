@@ -3,7 +3,7 @@ context("grouped_ggscatterstats")
 testthat::test_that(
   desc = "grouped_ggscatterstats works",
   code = {
-    testthat::skip_on_cran()
+
 
     # expect error if no grouping variable is specified
     testthat::expect_error(

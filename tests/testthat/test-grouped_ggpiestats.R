@@ -3,7 +3,7 @@ context("grouped_ggpiestats")
 testthat::test_that(
   desc = "grouped_ggpiestats works",
   code = {
-    testthat::skip_on_cran()
+
 
     #--------------------- only main variable -------------------------------
 
@@ -26,22 +26,9 @@ testthat::test_that(
       ggstatsplot::grouped_ggpiestats(
         data = mtcars,
         grouping.var = am,
-        main = cyl,
+        main = "cyl",
         simulate.p.value = TRUE,
         B = 3000,
-        messages = FALSE
-      )
-    ),
-    what = "gg"
-    ))
-
-    # when arguments are entered as character
-    set.seed(123)
-    testthat::expect_true(inherits(suppressWarnings(
-      ggstatsplot::grouped_ggpiestats(
-        data = mtcars,
-        grouping.var = "am",
-        main = "cyl",
         messages = FALSE
       )
     ),
@@ -57,22 +44,8 @@ testthat::test_that(
     testthat::expect_true(inherits(suppressWarnings(
       ggstatsplot::grouped_ggpiestats(
         data = as.data.frame(HairEyeColor),
-        main = Hair,
-        counts = Freq,
-        grouping.var = Sex,
-        messages = FALSE
-      )
-    ),
-    what = "gg"
-    ))
-
-    # when arguments are entered as character
-    set.seed(123)
-    testthat::expect_true(inherits(suppressWarnings(
-      ggstatsplot::grouped_ggpiestats(
-        data = as.data.frame(HairEyeColor),
         main = "Hair",
-        counts = "Freq",
+        counts = Freq,
         grouping.var = "Sex",
         messages = FALSE
       )
@@ -98,7 +71,7 @@ testthat::test_that(
     testthat::expect_output(
       ggstatsplot::grouped_ggpiestats(
         data = mpg_short,
-        main = cyl,
+        main = "cyl",
         condition = class,
         grouping.var = class,
         messages = TRUE
@@ -111,22 +84,8 @@ testthat::test_that(
       ggstatsplot::grouped_ggpiestats(
         data = mpg_short,
         x = cyl,
-        y = class,
+        y = "class",
         grouping.var = drv,
-        messages = TRUE
-      )
-    ),
-    what = "gg"
-    ))
-
-    # when arguments are entered as character
-    set.seed(123)
-    testthat::expect_true(inherits(suppressWarnings(
-      ggstatsplot::grouped_ggpiestats(
-        data = mpg_short,
-        main = "cyl",
-        condition = "class",
-        grouping.var = "drv",
         messages = TRUE
       )
     ),
@@ -143,21 +102,6 @@ testthat::test_that(
         grouping.var = Class,
         main = Sex,
         condition = Survived,
-        counts = Freq,
-        messages = FALSE
-      )
-    ),
-    what = "gg"
-    ))
-
-    # when arguments are entered as character
-    set.seed(123)
-    testthat::expect_true(inherits(suppressWarnings(
-      ggstatsplot::grouped_ggpiestats(
-        data = as.data.frame(Titanic),
-        grouping.var = "Class",
-        main = "Sex",
-        condition = "Survived",
         counts = "Freq",
         messages = FALSE
       )
@@ -172,7 +116,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle return",
   code = {
-    testthat::skip_on_cran()
 
     # should return a list of length 3
     set.seed(123)
@@ -200,7 +143,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking if results coincide with base version",
   code = {
-    testthat::skip_on_cran()
 
     # creating new datasets from the existing one
     mtcars2 <- dplyr::mutate(mtcars, grp = "1")

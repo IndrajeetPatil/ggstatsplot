@@ -5,7 +5,6 @@ context(desc = "gghistostats")
 testthat::test_that(
   desc = "checking gghistostats plot and parametric stats - data with NAs",
   code = {
-    testthat::skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -91,7 +90,7 @@ testthat::test_that(
     # checking subtitle
     set.seed(123)
     p_subtitle <-
-      ggstatsplot::subtitle_t_onesample(
+      statsExpressions::expr_t_onesample(
         data = dplyr::starwars,
         x = height,
         type = "p",
@@ -150,7 +149,7 @@ testthat::test_that(
     # checking subtitle
     set.seed(123)
     p_subtitle <-
-      ggstatsplot::subtitle_t_onesample(
+      statsExpressions::expr_t_onesample(
         data = ggplot2::mpg,
         x = cty,
         type = "np",
@@ -251,7 +250,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking robust stats and proportions",
   code = {
-    testthat::skip_on_cran()
+
 
     # creating the plot
     set.seed(123)
@@ -275,7 +274,7 @@ testthat::test_that(
     # checking subtitle
     set.seed(123)
     p_subtitle <-
-      ggstatsplot::subtitle_t_onesample(
+      statsExpressions::expr_t_onesample(
         data = mtcars,
         x = wt,
         test.value = 2.5,
@@ -338,7 +337,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking bayes stats and density",
   code = {
-    testthat::skip_on_cran()
+
 
     # creating the plot
     set.seed(123)
@@ -361,7 +360,7 @@ testthat::test_that(
     # checking subtitle
     set.seed(123)
     p_subtitle <-
-      ggstatsplot::subtitle_t_onesample(
+      statsExpressions::expr_t_onesample(
         data = morley,
         x = Speed,
         test.value = 2.5,
@@ -406,7 +405,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking with default binwidth",
   code = {
-    testthat::skip_on_cran()
+
 
     # creating a subset of the dataset
     set.seed(123)
@@ -511,7 +510,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking with default binwidth",
   code = {
-    testthat::skip_on_cran()
+
 
     # creating the plot
     set.seed(123)
@@ -565,7 +564,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle return",
   code = {
-    testthat::skip_on_cran()
+
 
     # should return a list of length 3
     set.seed(123)

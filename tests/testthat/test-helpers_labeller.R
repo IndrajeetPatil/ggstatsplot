@@ -8,8 +8,6 @@ context("line_labeller")
 testthat::test_that(
   desc = "line_labeller works",
   code = {
-    testthat::skip_on_cran()
-
     set.seed(123)
     library(ggplot2)
 
@@ -101,8 +99,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking if labeling works",
   code = {
-    testthat::skip_on_cran()
-
     set.seed(123)
     library(ggplot2)
 

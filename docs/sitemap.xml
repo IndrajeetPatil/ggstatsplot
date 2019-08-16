@@ -10,25 +10,7 @@
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/bartlett_message.html</loc>
   </url>
   <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/bf_caption_maker.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/bf_contingency_tab.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/bf_corr_test.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/bf_extractor.html</loc>
-  </url>
-  <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/bf_meta_message.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/bf_oneway_anova.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/bf_ttest.html</loc>
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/bugs_long.html</loc>
@@ -46,13 +28,7 @@
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html</loc>
   </url>
   <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/effsize_ci_message.html</loc>
-  </url>
-  <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/effsize_type_switch.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/effsize_t_parametric.html</loc>
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/games_howell.html</loc>
@@ -148,9 +124,6 @@
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/line_labeller.html</loc>
   </url>
   <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/long_to_wide_converter.html</loc>
-  </url>
-  <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/mean_ggrepel.html</loc>
   </url>
   <url>
@@ -184,52 +157,7 @@
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/reexports.html</loc>
   </url>
   <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/robcor_ci.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/stats_type_switch.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_anova_bayes.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_anova_nonparametric.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_anova_parametric.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_anova_robust.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_contingency_tab.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_ggscatterstats.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_mann_nonparametric.html</loc>
-  </url>
-  <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_meta_parametric.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_template.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_t_bayes.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_t_onesample.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_t_parametric.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_t_robust.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/t1way_ci.html</loc>
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/tfz_labeller.html</loc>
@@ -250,10 +178,10 @@
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/VR_dilemma.html</loc>
   </url>
   <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/yuend_ci.html</loc>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/additional.html</loc>
   </url>
   <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/additional.html</loc>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/tests_and_coverage.html</loc>
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/web_only/combine_plots.html</loc>

@@ -28,13 +28,12 @@ ggstatsplot:::palette_message(
 }
 \seealso{
 Other helper_messages: \code{\link{bartlett_message}},
-  \code{\link{effsize_ci_message}},
   \code{\link{ggcorrmat_matrix_message}},
   \code{\link{grouped_message}},
   \code{\link{normality_message}}, \code{\link{pairwise_p}}
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }
 \concept{helper_messages}
 \keyword{internal}

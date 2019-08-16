@@ -101,6 +101,9 @@ corrections for multiple testing." />
       <a href="../articles/additional.html">additional vignettes</a>
     </li>
     <li>
+      <a href="../articles/tests_and_coverage.html">Tests and Coverage</a>
+    </li>
+    <li>
       <a href="../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
@@ -224,11 +227,7 @@ or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations ar
     </tr>
     <tr>
       <th>tr</th>
-      <td><p>Trim level for the mean when carrying out <code>robust</code> tests. If you
-get error stating "Standard error cannot be computed because of Winsorized
-variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
-try to play around with the value of <code>tr</code>, which is by default set to
-<code>0.1</code>. Lowering the value might help.</p></td>
+      <td><p>trim level for the mean.</p></td>
     </tr>
     <tr>
       <th>paired</th>
@@ -270,7 +269,6 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 
     <div class='dont-index'><p><code><a href='ggbetweenstats.html'>ggbetweenstats</a></code>, <code><a href='grouped_ggbetweenstats.html'>grouped_ggbetweenstats</a></code></p>
 <p>Other helper_messages: <code><a href='bartlett_message.html'>bartlett_message</a></code>,
-  <code><a href='effsize_ci_message.html'>effsize_ci_message</a></code>,
   <code><a href='ggcorrmat_matrix_message.html'>ggcorrmat_matrix_message</a></code>,
   <code><a href='grouped_message.html'>grouped_message</a></code>,
   <code><a href='normality_message.html'>normality_message</a></code>,
@@ -471,7 +469,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://sites.google.com/site/indrajeetspatilmorality/'>Indrajeet Patil</a>, <a href='https://ibecav.github.io/'>Chuck Powell</a>.</p>
+  <p>Developed by <a href='https://sites.google.com/site/indrajeetspatilmorality/'>Indrajeet Patil</a>.</p>
 </div>
 
 <div class="pkgdown">

@@ -174,6 +174,7 @@ games_howell <- function(data, x, y) {
 #' @importFrom tibble as_tibble rowid_to_column enframe
 #' @importFrom jmv anovaNP anovaRMNP
 #' @importFrom forcats fct_relabel
+#' @importFrom statsExpressions long_to_wide_converter
 #'
 #' @seealso \code{\link{ggbetweenstats}}, \code{\link{grouped_ggbetweenstats}}
 #'
@@ -445,7 +446,8 @@ pairwise_p <- function(data,
 
     # converting the entered long format data to wide format
     if (isTRUE(paired)) {
-      data_wide <- long_to_wide_converter(data = data, x = {{ x }}, y = {{ y }})
+      data_wide <-
+        statsExpressions::long_to_wide_converter(data = data, x = {{ x }}, y = {{ y }})
 
       # running Durbin-Conover test using `jmv` package
       jmv_pairs <-
@@ -737,4 +739,17 @@ p_adjust_text <- function(p.adjust.method) {
     BY = "Benjamini & Yekutieli",
     "Holm"
   )
+}
+
+
+#' @noRd
+#' @keywords internal
+
+df_cleanup_paired <- function(data, x, y) {
+  data %<>%
+    statsExpressions::long_to_wide_converter(data = ., x = {{ x }}, y = {{ y }}) %>%
+    tidyr::gather(data = ., key, value, -rowid) %>%
+    dplyr::arrange(.data = ., rowid) %>%
+    dplyr::rename(.data = ., {{ x }} := key, {{ y }} := value) %>%
+    dplyr::mutate(.data = ., {{ x }} := factor({{ x }}))
 }

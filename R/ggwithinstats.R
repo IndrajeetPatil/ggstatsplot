@@ -13,13 +13,13 @@
 #'   there are two groups (i.e., in case of a *t*-test). In case of large number
 #'   of data points, it is advisable to set `path.point = FALSE` as these lines
 #'   can overwhelm the plot.
-#' @inheritParams subtitle_anova_parametric
+#' @inheritParams statsExpressions::expr_anova_parametric
 #'
 #' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggbetweenstats}},
 #'  \code{\link{grouped_ggwithinstats}}, \code{\link{pairwise_p}}
 #'
-#' @importFrom forcats fct_reorder
-#' @importFrom rlang exec
+#' @importFrom rlang exec !! enquo :=
+#' @importFrom statsExpressions bf_ttest bf_oneway_anova
 #'
 #' @details
 #'
@@ -246,9 +246,9 @@ ggwithinstats <- function(data,
     if (type %in% c("parametric", "p") && isTRUE(bf.message)) {
       # choosing the appropriate test
       if (test == "t-test") {
-        .f <- bf_ttest
+        .f <- statsExpressions::bf_ttest
       } else {
-        .f <- bf_oneway_anova
+        .f <- statsExpressions::bf_oneway_anova
       }
 
       # preparing the BF message for null

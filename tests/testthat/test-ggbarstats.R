@@ -35,7 +35,7 @@ testthat::test_that(
 
     # subtitle
     set.seed(123)
-    p_subtitle <- ggstatsplot::subtitle_contingency_tab(
+    p_subtitle <- statsExpressions::expr_contingency_tab(
       data = as.data.frame(Titanic),
       x = "Sex",
       y = "Survived",
@@ -136,7 +136,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "aesthetic modifications",
   code = {
-    testthat::skip_on_cran()
+
 
     # plot
     set.seed(123)
@@ -218,7 +218,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle return",
   code = {
-    testthat::skip_on_cran()
+
 
     # subtitle return
     set.seed(123)
@@ -302,7 +302,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking if functions work without enough data",
   code = {
-    testthat::skip_on_cran()
     set.seed(123)
 
     # creating a dataframe

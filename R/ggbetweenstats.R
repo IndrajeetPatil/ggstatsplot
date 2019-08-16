@@ -110,10 +110,9 @@
 #'   otherwise this will return a `NULL`.
 #' @inheritParams paletteer::scale_color_paletteer_d
 #' @inheritParams theme_ggstatsplot
-#' @inheritParams t1way_ci
-#' @inheritParams subtitle_anova_parametric
-#' @inheritParams subtitle_t_parametric
-#' @inheritParams subtitle_t_onesample
+#' @inheritParams statsExpressions::expr_anova_parametric
+#' @inheritParams statsExpressions::expr_t_parametric
+#' @inheritParams statsExpressions::expr_t_onesample
 #'
 #' @import ggplot2
 #'
@@ -126,6 +125,7 @@
 #' @importFrom paletteer scale_color_paletteer_d scale_fill_paletteer_d
 #' @importFrom ggsignif geom_signif
 #' @importFrom purrrlyr by_row
+#' @importFrom statsExpressions bf_ttest bf_oneway_anova
 #'
 #' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggwithinstats}},
 #'  \code{\link{grouped_ggwithinstats}}, \code{\link{pairwise_p}}
@@ -422,13 +422,13 @@ ggbetweenstats <- function(data,
     # figuring out which effect size to use
     effsize.type <- effsize_type_switch(effsize.type)
 
-    # preparing the bayes factor message
+    # preparing the Bayes factor message
     if (type %in% c("parametric", "p") && isTRUE(bf.message)) {
       # choosing the appropriate test
       if (test == "t-test") {
-        .f <- bf_ttest
+        .f <- statsExpressions::bf_ttest
       } else {
-        .f <- bf_oneway_anova
+        .f <- statsExpressions::bf_oneway_anova
       }
 
       # preparing the BF message for null

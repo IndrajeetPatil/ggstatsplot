@@ -7,8 +7,6 @@ context(desc = "mean_ggrepel")
 testthat::test_that(
   desc = "mean_ggrepel works",
   code = {
-    testthat::skip_on_cran()
-
     set.seed(123)
     library(ggplot2)
 
@@ -72,7 +70,7 @@ context(desc = "mean_labeller")
 testthat::test_that(
   desc = "mean_labeller works",
   code = {
-    testthat::skip_on_cran()
+
 
     # ----------------------- data without NAs ------------------------------
 
@@ -154,7 +152,6 @@ context(desc = "outlier_df")
 testthat::test_that(
   desc = "outlier_df works as expected",
   code = {
-    testthat::skip_on_cran()
     set.seed(123)
 
     # dataframe with outlier column (data without NA)

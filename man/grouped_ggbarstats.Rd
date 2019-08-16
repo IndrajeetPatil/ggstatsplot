@@ -88,7 +88,7 @@ labels (Default: \code{white}).}
 \code{"black"}).}
 
 \item{bf.message}{Logical that decides whether to display a caption with
-results from bayes factor test in favor of the null hypothesis (default:
+results from Bayes Factor test in favor of the null hypothesis (default:
 \code{FALSE}).}
 
 \item{sampling.plan}{Character describing the sampling plan. Possible options
