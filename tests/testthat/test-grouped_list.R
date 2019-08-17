@@ -29,6 +29,7 @@ testthat::test_that(
         .x = ., .p = purrr::is_character
       ))
     )
+    df6 <- ggstatsplot:::grouped_list(data = ggplot2::msleep, grouping.var = NULL)
 
     # testing lengths of lists
     testthat::expect_equal(length(df1), 4L)
@@ -37,5 +38,6 @@ testthat::test_that(
     testthat::expect_identical(df1$carni, df5$carni)
     testthat::expect_equal(sum(df3[2, ]), 16L)
     testthat::expect_equal(sum(df4[2, ]), 12L)
+    testthat::expect_identical(ggplot2::msleep, df6)
   }
 )

@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.12.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.9000</span>
       </span>
     </div>
 
@@ -181,12 +181,20 @@
       <small>Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="ggstatsplot-00129000" class="section level1">
+    <div id="ggstatsplot-019000" class="section level1">
 <h1 class="page-header">
-<a href="#ggstatsplot-00129000" class="anchor"></a>ggstatsplot 0.0.12.9000<small> Unreleased </small>
+<a href="#ggstatsplot-019000" class="anchor"></a>ggstatsplot 0.1.9000<small> Unreleased </small>
 </h1>
+<p>ANNOUNCEMENTS</p>
+<p><code>ggstatsplot</code> is undergoing <em>conscious uncoupling</em> whereby all the statistical processing functions are being moved to a new package called <code>statsExpressions</code>. This new package will act as a backend that handles all things statistical processing. This <strong>will not</strong> affect the end users of <code>ggstatsplot</code> unless you have been using the helper functions.</p>
+<p>This uncoupling is designed to achieve two things:</p>
+<ul>
+<li><p>Make the code base of more mangeable size in <code>ggstatsplot</code>, which will make package development a bit easier.</p></li>
+<li><p>Make the workflow more customizable since now you can prepare your own plots and then use <code>statsExpressions</code> to display results in the plot rather than relying on <code>ggstatsplot</code> default plots which are heavily opinionated and not appealing to everyone.</p></li>
+</ul>
 <p>BREAKING CHANGES</p>
 <ul>
+<li>All helper functions <code>subtitle_*</code> and <code>bf_*</code> have been moved to the new <code>statsExpressions</code> package.</li>
 <li>To be consistent with all the other <code>subtitle_</code> and <code>bf_</code> functions, <code>subtitle_contingency_tab</code> and <code>bf_contingency_tab</code> now use the arguments <code>x</code> and <code>y</code> instead of <code>main</code> and <code>condition</code>.</li>
 </ul>
 <p>MAJOR CHANGES</p>
@@ -629,7 +637,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#ggstatsplot-00129000">0.0.12.9000</a></li>
+        <li><a href="#ggstatsplot-019000">0.1.9000</a></li>
         <li><a href="#ggstatsplot-0012">0.0.12</a></li>
         <li><a href="#ggstatsplot-0011">0.0.11</a></li>
         <li><a href="#ggstatsplot-0010">0.0.10</a></li>

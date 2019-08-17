@@ -16,8 +16,8 @@ be taken. A matrix or tables will \strong{not} be accepted.}
 \item{y}{The response (a.k.a. outcome or dependent) variable from the
 dataframe \code{data}.}
 
-\item{mean.ci}{Logical that decides whether 95% confidence interval for mean
-is to be displayed (Default: \code{FALSE}).}
+\item{mean.ci}{Logical that decides whether \code{95\%} confidence interval for
+mean is to be displayed (Default: \code{FALSE}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}

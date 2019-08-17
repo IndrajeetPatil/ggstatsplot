@@ -1,7 +1,7 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.0.12.9000
+Version: 0.1.9000
 Authors@R: 
     c(person(given = "Indrajeet",
              family = "Patil",
@@ -61,7 +61,7 @@ Imports:
     tibble (>= 2.1.3),
     tidyr (>= 0.8.3),
     utils,
-    WRS2 (>= 1.0.0)
+    WRS2 (>= 1.0-0)
 Suggests:
     broom,
     broom.mixed,

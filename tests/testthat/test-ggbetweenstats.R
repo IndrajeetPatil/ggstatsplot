@@ -250,7 +250,6 @@ testthat::test_that(
   desc = "checking mean labels are working",
   code = {
 
-
     # creating the plot
     set.seed(123)
     p <- ggstatsplot::ggbetweenstats(
@@ -360,6 +359,8 @@ testthat::test_that(
         data = ToothGrowth,
         x = supp,
         y = len,
+        type = "bf",
+        pairwise.comparisons = TRUE,
         plot.type = "box",
         results.subtitle = FALSE,
         outlier.tagging = TRUE,
@@ -477,7 +478,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggplot component addition works",
   code = {
-
 
     # plot
     p <- ggstatsplot::ggbetweenstats(

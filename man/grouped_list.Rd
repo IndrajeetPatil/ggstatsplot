@@ -4,7 +4,7 @@
 \alias{grouped_list}
 \title{Split dataframe into a list by grouping variable.}
 \usage{
-grouped_list(data, grouping.var)
+grouped_list(data, grouping.var = NULL)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to

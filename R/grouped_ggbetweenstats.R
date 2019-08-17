@@ -5,12 +5,11 @@
 #'   grouping variable.
 #' @author Indrajeet Patil, Chuck Powell
 #'
-#' @param grouping.var A single grouping variable (can be entered either as a
-#'   bare name `x` or as a string `"x"`).
 #' @param title.prefix Character string specifying the prefix text for the fixed
 #'   plot title (name of each factor level) (Default: `NULL`). If `NULL`, the
 #'   variable name entered for `grouping.var` will be used.
 #' @inheritParams ggbetweenstats
+#' @inheritParams grouped_list
 #' @inheritDotParams combine_plots
 #'
 #' @import ggplot2

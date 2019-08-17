@@ -54,6 +54,7 @@ testthat::test_that(
         y = "rating",
         grouping.var = mpaa,
         type = "p",
+        effsize.type = "biased",
         plot.type = "box",
         bf.message = TRUE,
         outlier.tagging = TRUE,

@@ -14,7 +14,7 @@
   ],
   "issueTracker": "https://github.com/IndrajeetPatil/ggstatsplot/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.12.9000",
+  "version": "0.1.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -579,7 +579,7 @@
       "@type": "SoftwareApplication",
       "identifier": "WRS2",
       "name": "WRS2",
-      "version": ">= 1.0.0",
+      "version": ">= 1.0-0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",

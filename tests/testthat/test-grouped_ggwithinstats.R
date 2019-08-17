@@ -35,6 +35,7 @@ testthat::test_that(
         y = score,
         grouping.var = order,
         outlier.tagging = FALSE,
+        type = "bayes",
         messages = TRUE
       ),
       "ggplot"

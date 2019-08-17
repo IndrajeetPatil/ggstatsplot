@@ -32,7 +32,7 @@ testthat::test_that(
       data = data_bugs_2,
       x = condition,
       y = desire,
-      type = "p",
+      type = "bayes",
       sort = "descending",
       sort.fun = mean,
       k = 4,
@@ -53,11 +53,10 @@ testthat::test_that(
 
     # subtitle
     set.seed(123)
-    p1_subtitle <- statsExpressions::expr_t_parametric(
+    p1_subtitle <- statsExpressions::expr_t_bayes(
       data = data_bugs_2,
       x = condition,
       y = desire,
-      type = "p",
       k = 4,
       paired = TRUE,
       conf.level = 0.99,
@@ -91,23 +90,6 @@ testthat::test_that(
     # checking plot labels
     testthat::expect_identical(p1$labels$title, "bugs dataset")
     testthat::expect_identical(p1$labels$subtitle, p1_subtitle)
-    testthat::expect_identical(
-      p1$labels$caption,
-      ggplot2::expr(atop(
-        displaystyle("From `jmv` package"),
-        expr = paste(
-          "In favor of null: ",
-          "log"["e"],
-          "(BF"["01"],
-          ") = ",
-          "-3.7724",
-          ", ",
-          italic("r")["Cauchy"]^"JZS",
-          " = ",
-          "0.7070"
-        )
-      ))
-    )
     testthat::expect_identical(p1$labels$x, "condition")
     testthat::expect_identical(p1$labels$y, "desire")
   }
@@ -467,7 +449,6 @@ testthat::test_that(
   desc = "ggplot component addition works",
   code = {
 
-
     # setup
     set.seed(123)
     library(WRS2)
@@ -477,6 +458,7 @@ testthat::test_that(
       data = WineTasting,
       x = Wine,
       y = Taste,
+      axes.range.restrict = TRUE,
       results.subtitle = FALSE,
       messages = FALSE,
       ggplot.component = ggplot2::labs(y = "Taste rating")

@@ -87,30 +87,21 @@ ggwithinstats_switch <- ggbetweenstats_switch
 #'
 #' @keywords internal
 
-effsize_type_switch <- function(effsize.type = NULL) {
+effsize_type_switch <- function(effsize.type) {
   # figuring out which effect size to use
-  if (!is.null(effsize.type)) {
-    effsize.type <-
-      switch(
-        EXPR = effsize.type,
-        d = "biased",
-        g = "unbiased",
-        eta = "biased",
-        omega = "unbiased",
-        partial_eta = "biased",
-        partial_omega = "unbiased",
-        partial.eta = "biased",
-        partial.omega = "unbiased",
-        p_eta = "biased",
-        p_omega = "unbiased",
-        biased = "biased",
-        unbiased = "unbiased",
-        "unbiased"
-      )
-  } else {
-    effsize.type <- "unbiased"
-  }
-
-  # return the value
-  return(effsize.type)
+  switch(
+    EXPR = effsize.type,
+    d = "biased",
+    g = "unbiased",
+    eta = "biased",
+    omega = "unbiased",
+    partial_eta = "biased",
+    partial_omega = "unbiased",
+    partial.eta = "biased",
+    partial.omega = "unbiased",
+    p_eta = "biased",
+    biased = "biased",
+    p_omega = "unbiased",
+    "unbiased"
+  )
 }

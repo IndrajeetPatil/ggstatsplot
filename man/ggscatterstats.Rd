@@ -174,16 +174,16 @@ override some aspects of the selected \code{ggtheme}.}
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
 of the current function. Default is \code{NULL}. The argument should be entered
 as a function. If the given function has an argument \code{axes.range.restrict}
-and if it has been set to \code{TRUE}, the added ggplot component \emph{might} not
+and if it has been set to \code{TRUE}, the added \code{ggplot} component \emph{might} not
 work as expected.}
 
 \item{return}{Character that describes what is to be returned: can be
 \code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to
-\code{"subtitle"} will return the expression containing statistical results,
-which will be a \code{NULL} if you set \code{results.subtitle = FALSE}. Setting this
-to \code{"caption"} will return the expression containing details about Bayes
-Factor analysis, but valid only when \code{type = "p"} and \code{bf.message = TRUE},
-otherwise this will return a \code{NULL}.}
+\code{"subtitle"} will return the expression containing statistical results. If
+you have set \code{results.subtitle = FALSE}, then this will return a \code{NULL}.
+Setting this to \code{"caption"} will return the expression containing details
+about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
+\code{bf.message = TRUE}, otherwise this will return a \code{NULL}.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

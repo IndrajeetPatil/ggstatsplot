@@ -24,6 +24,16 @@ testthat::test_that(
       messages = TRUE
     ))
 
+    testthat::expect_output(
+      ggstatsplot::grouped_ggbarstats(
+        data = mpg_short,
+        main = cyl,
+        condition = class,
+        grouping.var = class,
+        messages = TRUE
+      )
+    )
+
     # when arguments are entered as bare expressions
     set.seed(123)
     testthat::expect_true(inherits(suppressWarnings(

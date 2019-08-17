@@ -5,24 +5,30 @@
 #' @name grouped_list
 #' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
-#' @inheritParams grouped_ggbetweenstats
+#' @inheritParams ggbetweenstats
+#' @param grouping.var A single grouping variable (can be entered either as a
+#'   bare name `x` or as a string `"x"`).
 #'
 #' @importFrom dplyr filter mutate_if
 #' @importFrom tibble as_tibble
-#' @importFrom rlang !! enquo quo_name ensym :=
+#' @importFrom rlang !! enquo quo_text ensym := quo_is_null
 #'
 #' @examples
 #' ggstatsplot:::grouped_list(data = ggplot2::msleep, grouping.var = vore)
 #' @keywords internal
 
 # function body
-grouped_list <- function(data, grouping.var) {
+grouped_list <- function(data, grouping.var = NULL) {
 
   # ensure the grouping variable works quoted or unquoted
-  grouping.var <- rlang::ensym(grouping.var)
+  if (!rlang::quo_is_null(rlang::enquo(grouping.var))) {
+    grouping.var <- rlang::ensym(grouping.var)
+  } else {
+    return(tibble::as_tibble(data))
+  }
 
   # creating a nested dataframe
-  data_list <- data %>%
+  data %>%
     dplyr::mutate(.data = ., {{ grouping.var }} := as.factor({{ grouping.var }})) %>%
     dplyr::mutate_if(
       .tbl = .,
@@ -32,7 +38,4 @@ grouped_list <- function(data, grouping.var) {
     dplyr::filter(.data = ., !is.na({{ grouping.var }})) %>%
     tibble::as_tibble(x = .) %>%
     split(x = ., f = .[[rlang::quo_text(grouping.var)]], drop = TRUE)
-
-  # return the list
-  return(data_list)
 }

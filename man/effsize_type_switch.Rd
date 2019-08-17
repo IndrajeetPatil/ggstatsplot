@@ -4,7 +4,7 @@
 \alias{effsize_type_switch}
 \title{Switch function to determine which effect size is to computed.}
 \usage{
-effsize_type_switch(effsize.type = NULL)
+effsize_type_switch(effsize.type)
 }
 \arguments{
 \item{effsize.type}{Character describing the needed effect size.}
