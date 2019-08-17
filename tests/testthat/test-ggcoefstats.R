@@ -108,7 +108,6 @@ testthat::test_that(
       ggstatsplot::ggcoefstats(
         x = mod,
         conf.level = 0.90,
-        exponentiate = TRUE,
         exclude.intercept = FALSE
       )
 
@@ -123,14 +122,13 @@ testthat::test_that(
     set.seed(123)
     broom_df <- broom.mixed::tidy(
       x = mod,
-      exponentiate = TRUE,
       conf.int = TRUE,
       conf.level = 0.90,
       effects = "fixed"
     )
 
     testthat::expect_equal(tidy_df$estimate, broom_df$estimate, tolerance = 1e-3)
-    # testthat::expect_equal(tidy_df$std.error, broom_df$std.error, tolerance = 1e-3)
+    testthat::expect_equal(tidy_df$std.error, broom_df$std.error, tolerance = 1e-3)
     testthat::expect_equal(tidy_df$conf.low, broom_df$conf.low, tolerance = 1e-3)
     testthat::expect_equal(tidy_df$conf.high, broom_df$conf.high, tolerance = 1e-3)
     testthat::expect_equal(tidy_df$p.value, broom_df$p.value, tolerance = 1e-3)
@@ -415,7 +413,6 @@ testthat::test_that(
   desc = "check merMod output",
   code = {
 
-
     # setup
     set.seed(123)
     library(lme4)
@@ -486,7 +483,7 @@ testthat::test_that(
     testthat::expect_equal(broom_df2$estimate, tidy_df2$estimate, tolerance = 0.001)
     testthat::expect_equal(broom_df1$std.error, tidy_df1$std.error, tolerance = 0.001)
     testthat::expect_equal(broom_df2$std.error, tidy_df2$std.error, tolerance = 0.001)
-    # testthat::expect_equal(broom_df1$p.value, tidy_df1$p.value, tolerance = 0.001)
+    testthat::expect_equal(broom_df1$p.value, tidy_df1$p.value, tolerance = 0.001)
     testthat::expect_equal(broom_df2$p.value, tidy_df2$p.value, tolerance = 0.001)
   }
 )

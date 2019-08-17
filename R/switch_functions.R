@@ -73,35 +73,3 @@ ggbetweenstats_switch <- function(type, test, ...) {
 #' @export
 
 ggwithinstats_switch <- ggbetweenstats_switch
-
-
-#' @title Switch function to determine which effect size is to computed.
-#' @name effsize_type_switch
-#' @description Takes in all allowed characters describing the needed effect
-#'   size (e.g., `"d"`, `"partial_eta"`, etc.) and converts it into standard
-#'   terms (`"biased"` or `"unbiased"`) to reduce the complexity of conditional
-#'   statements.
-#' @author Indrajeet Patil
-#'
-#' @param effsize.type Character describing the needed effect size.
-#'
-#' @keywords internal
-
-effsize_type_switch <- function(effsize.type) {
-  # figuring out which effect size to use
-  switch(
-    EXPR = effsize.type,
-    d = "biased",
-    g = "unbiased",
-    eta = "biased",
-    omega = "unbiased",
-    partial_eta = "biased",
-    partial_omega = "unbiased",
-    partial.eta = "biased",
-    partial.omega = "unbiased",
-    p_eta = "biased",
-    biased = "biased",
-    p_omega = "unbiased",
-    "unbiased"
-  )
-}

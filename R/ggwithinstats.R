@@ -239,9 +239,6 @@ ggwithinstats <- function(data,
   # --------------------- subtitle/caption preparation ------------------------
 
   if (isTRUE(results.subtitle)) {
-    # figuring out which effect size to use
-    effsize.type <- effsize_type_switch(effsize.type)
-
     # preparing the bayes factor message
     if (type %in% c("parametric", "p") && isTRUE(bf.message)) {
       # choosing the appropriate test
