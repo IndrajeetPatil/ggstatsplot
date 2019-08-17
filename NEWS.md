@@ -10,7 +10,7 @@ have been using the helper functions.
 
 This uncoupling is designed to achieve two things:
 
-  - Make the code base of more mangeable size in `ggstatsplot`, which will make
+  - Make the code base of more manageable size in `ggstatsplot`, which will make
     package development a bit easier.
     
   - Make the workflow more customizable since now you can prepare your own plots

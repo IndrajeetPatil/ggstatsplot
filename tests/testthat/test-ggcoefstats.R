@@ -494,7 +494,6 @@ testthat::test_that(
   desc = "check glm output",
   code = {
 
-
     # set up
     set.seed(123)
 
@@ -512,15 +511,25 @@ testthat::test_that(
 
     # models
     mod1 <- stats::glm(counts ~ outcome + treatment, family = poisson())
-    mod2 <- stats::glm(
-      formula = y ~ x,
-      family = quasi(variance = "mu", link = "log"),
-      data = df
-    )
+    mod2 <-
+      stats::glm(
+        formula = y ~ x,
+        family = quasi(variance = "mu", link = "log"),
+        data = df
+      )
 
     # broom outputs
     broom_df1 <- broom::tidy(mod1, conf.int = 0.90)
     broom_df2 <- broom::tidy(mod2, conf.int = 0.99)
+
+    # exponentiation
+    p <- ggstatsplot::ggcoefstats(
+      x = mod2,
+      exponentiate = TRUE,
+      exclude.intercept = FALSE
+    )
+
+    pb <- ggplot2::ggplot_build(p)
 
     # ggcoefstats outputs
     tidy_df1 <- ggstatsplot::ggcoefstats(
@@ -547,6 +556,7 @@ testthat::test_that(
     testthat::expect_equal(broom_df2$std.error, tidy_df2$std.error, tolerance = 0.001)
     testthat::expect_equal(broom_df1$p.value, tidy_df1$p.value, tolerance = 0.001)
     testthat::expect_equal(broom_df2$p.value, tidy_df2$p.value, tolerance = 0.001)
+    testthat::expect_equal(pb$plot$data$std.error[[1]], 0.09532848, tolerance = 0.001)
   }
 )
 

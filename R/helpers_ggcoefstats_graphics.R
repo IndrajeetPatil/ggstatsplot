@@ -1,10 +1,14 @@
 #' @title Create labels with statistical details for `ggcoefstats`.
 #' @name ggcoefstats_label_maker
-#' @author Indrajeet Patil
+#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @param ... Currently ignored.
+#' @param tidy_df Tidy dataframe from `broomExtra::tidy`.
+#' @param glance_df Glance model summary dataframe from `broom::glance`
+#'   (default: `NULL`). This is optional argument. If provide, the `glance`
+#'   summary will be used to write `caption` for the final plot.
+#' @param ... Currently ignored.
 #' @inheritParams ggcoefstats
-#' @inheritParams tfz_labeller
 #'
 #' @examples
 #'
@@ -226,44 +230,6 @@ ggcoefstats_label_maker <- function(x,
     statistic <- "f"
     glance_df <- NULL
   }
-
-  # ====================== output ===========================================
-
-  # creating a dataframe with labels
-  return(tidy_df %<>%
-    tfz_labeller(
-      tidy_df = .,
-      glance_df = glance_df,
-      statistic = statistic,
-      effsize = effsize,
-      partial = partial,
-      k = k
-    ))
-}
-
-
-#' @title Prepare labels with statistic for `ggcoefstats` function.
-#' @description Creates text labels for `ggcoefstats` plot with the appropriate
-#'   statistic (*t*, *z*, or *f*) displayed in the label.
-#' @name tfz_labeller
-#'
-#' @param tidy_df Tidy dataframe from `broomExtra::tidy`.
-#' @param glance_df Glance model summary dataframe from `broom::glance`
-#'   (default: `NULL`). This is optional argument. If provide, the `glance`
-#'   summary will be used to write `caption` for the final plot.
-#' @param ... Currently ignored.
-#' @inheritParams ggcoefstats
-#'
-#' @keywords internal
-
-# function body
-tfz_labeller <- function(tidy_df,
-                         glance_df = NULL,
-                         statistic,
-                         effsize = "eta",
-                         partial = TRUE,
-                         k = 2,
-                         ...) {
 
   #----------------------- p-value cleanup ------------------------------------
 

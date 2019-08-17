@@ -10,18 +10,19 @@ coverage:
   status:
     project:
       default:
-        target: auto
+        target: 95%
         threshold: 1%
         branches: null
 
     patch:
       default:
-        target: auto
+        target: 95%
         branches: null
         threshold: 1%
 
     changes:
       default:
+        target: 95%
         branches: null
         threshold: 1%
 
