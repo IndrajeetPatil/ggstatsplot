@@ -31,7 +31,7 @@
 #'   and explore multiple widths to find the best to illustrate the stories in
 #'   your data.
 #' @inheritParams theme_ggstatsplot
-#' @inheritParams subtitle_t_onesample
+#' @inheritParams statsExpressions::expr_t_onesample
 #' @inheritParams histo_labeller
 #' @inheritParams ggbetweenstats
 #'
@@ -46,6 +46,7 @@
 #' @importFrom scales percent percent_format
 #' @importFrom stats dnorm
 #' @importFrom crayon green blue yellow red
+#' @importFrom statsExpressions expr_t_onesample bf_ttest
 #'
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
@@ -153,7 +154,7 @@ gghistostats <- function(data,
     # preparing the BF message for NULL
     if (isTRUE(bf.message)) {
       bf.caption.text <-
-        bf_ttest(
+        statsExpressions::bf_ttest(
           data = df,
           x = {{ x }},
           y = NULL,
@@ -167,7 +168,7 @@ gghistostats <- function(data,
 
     # preparing the subtitle with statistical results
     subtitle <-
-      subtitle_t_onesample(
+      statsExpressions::expr_t_onesample(
         data = df,
         x = {{ x }},
         type = type,

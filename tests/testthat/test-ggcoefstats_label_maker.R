@@ -48,8 +48,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "glmerMod works",
   code = {
-    testthat::skip_on_cran()
-
     library(lme4)
 
     # data

@@ -59,10 +59,11 @@
 #' @param outlier.color Default aesthetics for outliers (Default: `"black"`).
 #' @param outlier.tagging Decides whether outliers should be tagged (Default:
 #'   `FALSE`).
-#' @param outlier.label Label to put on the outliers that have been tagged.
+#' @param outlier.label Label to put on the outliers that have been tagged. This
+#'   **can't** be the same as `x` argument.
 #' @param outlier.shape Hiding the outliers can be achieved by setting
-#'   outlier.shape = NA. Importantly, this does not remove the outliers,
-#'   it only hides them, so the range calculated for the y-axis will be
+#'   `outlier.shape = NA`. Importantly, this does not remove the outliers,
+#'   it only hides them, so the range calculated for the `y`-axis will be
 #'   the same with outliers shown and outliers hidden.
 #' @param outlier.label.color Color for the label to to put on the outliers that
 #'   have been tagged (Default: `"black"`).
@@ -72,8 +73,8 @@
 #'   `1.5`).
 #' @param mean.plotting Logical that decides whether mean is to be highlighted
 #'   and its value to be displayed (Default: `TRUE`).
-#' @param mean.ci Logical that decides whether 95% confidence interval for mean
-#'   is to be displayed (Default: `FALSE`).
+#' @param mean.ci Logical that decides whether `95%` confidence interval for
+#'   mean is to be displayed (Default: `FALSE`).
 #' @param mean.color Color for the data point corresponding to mean (Default:
 #'   `"darkred"`).
 #' @param mean.size Point size for the data point corresponding to mean
@@ -91,7 +92,7 @@
 #'   by `ggstatsplot`. This argument is primarily helpful for `grouped_` variant
 #'   of the current function. Default is `NULL`. The argument should be entered
 #'   as a function. If the given function has an argument `axes.range.restrict`
-#'   and if it has been set to `TRUE`, the added ggplot component *might* not
+#'   and if it has been set to `TRUE`, the added `ggplot` component *might* not
 #'   work as expected.
 #' @param axes.range.restrict Logical that decides whether to restrict the axes
 #'   values ranges to `min` and `max` values of the axes variables (Default:
@@ -103,17 +104,17 @@
 #' @param sort.fun The function used to sort (default: `mean`).
 #' @param return Character that describes what is to be returned: can be
 #'   `"plot"` (default) or `"subtitle"` or `"caption"`. Setting this to
-#'   `"subtitle"` will return the expression containing statistical results,
-#'   which will be a `NULL` if you set `results.subtitle = FALSE`. Setting this
-#'   to `"caption"` will return the expression containing details about Bayes
-#'   Factor analysis, but valid only when `type = "p"` and `bf.message = TRUE`,
-#'   otherwise this will return a `NULL`.
+#'   `"subtitle"` will return the expression containing statistical results. If
+#'   you have set `results.subtitle = FALSE`, then this will return a `NULL`.
+#'   Setting this to `"caption"` will return the expression containing details
+#'   about Bayes Factor analysis, but valid only when `type = "parametric"` and
+#'   `bf.message = TRUE`, otherwise this will return a `NULL`.
 #' @inheritParams paletteer::scale_color_paletteer_d
 #' @inheritParams theme_ggstatsplot
-#' @inheritParams t1way_ci
-#' @inheritParams subtitle_anova_parametric
-#' @inheritParams subtitle_t_parametric
-#' @inheritParams subtitle_t_onesample
+#' @inheritParams statsExpressions::expr_anova_parametric
+#' @inheritParams statsExpressions::expr_t_parametric
+#' @inheritParams statsExpressions::expr_t_onesample
+#' @inheritParams statsExpressions::expr_anova_robust
 #'
 #' @import ggplot2
 #'
@@ -126,6 +127,7 @@
 #' @importFrom paletteer scale_color_paletteer_d scale_fill_paletteer_d
 #' @importFrom ggsignif geom_signif
 #' @importFrom purrrlyr by_row
+#' @importFrom statsExpressions bf_ttest bf_oneway_anova
 #'
 #' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggwithinstats}},
 #'  \code{\link{grouped_ggwithinstats}}, \code{\link{pairwise_p}}
@@ -419,16 +421,14 @@ ggbetweenstats <- function(data,
   # --------------------- subtitle/caption preparation ------------------------
 
   if (isTRUE(results.subtitle)) {
-    # figuring out which effect size to use
-    effsize.type <- effsize_type_switch(effsize.type)
 
-    # preparing the bayes factor message
+    # preparing the Bayes factor message
     if (type %in% c("parametric", "p") && isTRUE(bf.message)) {
       # choosing the appropriate test
       if (test == "t-test") {
-        .f <- bf_ttest
+        .f <- statsExpressions::bf_ttest
       } else {
-        .f <- bf_oneway_anova
+        .f <- statsExpressions::bf_oneway_anova
       }
 
       # preparing the BF message for null

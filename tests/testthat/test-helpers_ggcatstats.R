@@ -6,8 +6,6 @@ context(desc = "cat_label_df")
 testthat::test_that(
   desc = "cat_label_df works",
   code = {
-    testthat::skip_on_cran()
-
     set.seed(123)
     # creating a dataframe with counts and percentage
     summary_df <-
@@ -78,8 +76,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "cat_couter works",
   code = {
-    testthat::skip_on_cran()
-
     set.seed(123)
     data_tooth <- dplyr::filter(ToothGrowth, supp != "VC")
     data_mtcars <- dplyr::filter(mtcars, cyl != "4")

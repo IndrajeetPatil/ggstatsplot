@@ -36,6 +36,7 @@
 #' @importFrom tidyr uncount drop_na
 #' @importFrom tibble as_tibble
 #' @importFrom scales percent
+#' @importFrom statsExpressions expr_contingency_tab bf_contingency_tab
 #'
 #' @inherit ggpiestats return details
 #'
@@ -176,12 +177,13 @@ ggbarstats <- function(data,
     )
 
   # dataframe containing all details needed for sample size and prop test
-  df_labels <- df_facet_label(
-    data = data,
-    x = {{ x }},
-    y = {{ y }},
-    k = k
-  )
+  df_labels <-
+    df_facet_label(
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
+      k = k
+    )
 
   # ====================== preparing names for legend  ======================
 
@@ -207,8 +209,7 @@ ggbarstats <- function(data,
 
     # plot
     p <- ggplot2::ggplot(
-      data = df,
-      mapping = ggplot2::aes(x = {{ y }}, y = perc, fill = {{ x }})
+      data = df, mapping = ggplot2::aes(x = {{ y }}, y = perc, fill = {{ x }})
     ) +
       ggplot2::geom_bar(
         stat = "identity",
@@ -256,7 +257,7 @@ ggbarstats <- function(data,
   if (isTRUE(results.subtitle)) {
     subtitle <-
       tryCatch(
-        expr = subtitle_contingency_tab(
+        expr = statsExpressions::expr_contingency_tab(
           data = data,
           x = {{ x }},
           y = {{ y }},
@@ -279,7 +280,7 @@ ggbarstats <- function(data,
     # preparing the BF message for null hypothesis support
     if (isTRUE(bf.message) && !is.null(subtitle)) {
       caption <-
-        bf_contingency_tab(
+        statsExpressions::bf_contingency_tab(
           data = data,
           x = {{ x }},
           y = {{ y }},

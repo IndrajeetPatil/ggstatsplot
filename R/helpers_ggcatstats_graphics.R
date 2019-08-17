@@ -148,3 +148,25 @@ df_facet_label <- function(data, x, y, k = 3L) {
       dplyr::select(.data = ., -dplyr::matches("p.value.formatted"))
   }
 }
+
+
+#' @noRd
+#' @keywords internal
+
+p_value_formatter <- function(df, k = 3L) {
+  df %>%
+    purrrlyr::by_row(
+      .d = .,
+      ..f = ~ specify_decimal_p(x = .$p.value, k = k, p.value = TRUE),
+      .collate = "rows",
+      .to = "p.value.formatted",
+      .labels = TRUE
+    ) %>%
+    dplyr::mutate(
+      .data = .,
+      p.value.formatted = dplyr::case_when(
+        p.value.formatted == "< 0.001" ~ "<= 0.001",
+        TRUE ~ paste("==", p.value.formatted, sep = " ")
+      )
+    )
+}

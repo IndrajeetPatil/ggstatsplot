@@ -6,7 +6,12 @@
 #' @inheritParams ggbetweenstats
 #' @param test Decides which test to run (can be either `"t-test"` or
 #'   `"anova"`).
-#' @param ... Arguments for respective subtitle helper function.
+#' @param ... Arguments passed to respective subtitle helper functions.
+#'
+#' @importFrom statsExpressions expr_t_parametric expr_t_nonparametric
+#' @importFrom statsExpressions expr_t_robust expr_t_bayes
+#' @importFrom statsExpressions expr_anova_parametric expr_anova_nonparametric
+#' @importFrom statsExpressions expr_anova_robust expr_anova_bayes
 #'
 #' @keywords internal
 
@@ -29,32 +34,32 @@ ggbetweenstats_switch <- function(type, test, ...) {
     subtitle <- switch(
       EXPR = test.type,
       p = {
-        subtitle_t_parametric(...)
+        statsExpressions::expr_t_parametric(...)
       },
       np = {
-        subtitle_mann_nonparametric(...)
+        statsExpressions::expr_t_nonparametric(...)
       },
       r = {
-        subtitle_t_robust(...)
+        statsExpressions::expr_t_robust(...)
       },
       bf = {
-        subtitle_t_bayes(...)
+        statsExpressions::expr_t_bayes(...)
       }
     )
   } else {
     subtitle <- switch(
       EXPR = test.type,
       p = {
-        subtitle_anova_parametric(...)
+        statsExpressions::expr_anova_parametric(...)
       },
       np = {
-        subtitle_anova_nonparametric(...)
+        statsExpressions::expr_anova_nonparametric(...)
       },
       r = {
-        subtitle_anova_robust(...)
+        statsExpressions::expr_anova_robust(...)
       },
       bf = {
-        subtitle_anova_bayes(...)
+        statsExpressions::expr_anova_bayes(...)
       }
     )
   }
@@ -68,84 +73,3 @@ ggbetweenstats_switch <- function(type, test, ...) {
 #' @export
 
 ggwithinstats_switch <- ggbetweenstats_switch
-
-
-#' @title Switch function to determine which effect size is to computed.
-#' @name effsize_type_switch
-#' @description Takes in all allowed characters describing the needed effect
-#'   size (e.g., `"d"`, `"partial_eta"`, etc.) and converts it into standard
-#'   terms (`"biased"` or `"unbiased"`) to reduce the complexity of conditional
-#'   statements.
-#' @author Indrajeet Patil
-#'
-#' @param effsize.type Character describing the needed effect size.
-#'
-#' @keywords internal
-
-effsize_type_switch <- function(effsize.type = NULL) {
-  # figuring out which effect size to use
-  if (!is.null(effsize.type)) {
-    effsize.type <-
-      switch(
-        EXPR = effsize.type,
-        d = "biased",
-        g = "unbiased",
-        eta = "biased",
-        omega = "unbiased",
-        partial_eta = "biased",
-        partial_omega = "unbiased",
-        partial.eta = "biased",
-        partial.omega = "unbiased",
-        p_eta = "biased",
-        p_omega = "unbiased",
-        biased = "biased",
-        unbiased = "unbiased",
-        "unbiased"
-      )
-  } else {
-    effsize.type <- "unbiased"
-  }
-
-  # return the value
-  return(effsize.type)
-}
-
-#' @title Switch function to determine which type of statistics is to be run.
-#' @name stats_type_switch
-#' @description Takes in all allowed characters describing the needed type of
-#'   test and converts it into standard terms to reduce the complexity of
-#'   conditional statements.
-#' @author Indrajeet Patil
-#'
-#' @param stats.type Character describing the needed type of statistics (e.g.,
-#'   `"parametric"`, `"nonparametric"`, `"robust"`, `"bayes"``, etc.).
-#'
-#' @keywords internal
-
-stats_type_switch <- function(stats.type) {
-  # figuring out which effect size to use
-  if (!is.null(stats.type)) {
-    stats.type <-
-      switch(
-        EXPR = stats.type,
-        parametric = "parametric",
-        p = "parametric",
-        pearson = "parametric",
-        nonparametric = "nonparametric",
-        np = "nonparametric",
-        "non-parametric" = "nonparametric",
-        spearman = "nonparametric",
-        robust = "robust",
-        r = "robust",
-        pb = "robust",
-        bayes = "bayes",
-        bf = "bayes",
-        "parametric"
-      )
-  } else {
-    stats.type <- "parametric"
-  }
-
-  # return the value
-  return(stats.type)
-}

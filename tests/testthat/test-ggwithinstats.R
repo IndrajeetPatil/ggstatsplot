@@ -32,7 +32,7 @@ testthat::test_that(
       data = data_bugs_2,
       x = condition,
       y = desire,
-      type = "p",
+      type = "bayes",
       sort = "descending",
       sort.fun = mean,
       k = 4,
@@ -53,11 +53,10 @@ testthat::test_that(
 
     # subtitle
     set.seed(123)
-    p1_subtitle <- ggstatsplot::subtitle_t_parametric(
+    p1_subtitle <- statsExpressions::expr_t_bayes(
       data = data_bugs_2,
       x = condition,
       y = desire,
-      type = "p",
       k = 4,
       paired = TRUE,
       conf.level = 0.99,
@@ -91,23 +90,6 @@ testthat::test_that(
     # checking plot labels
     testthat::expect_identical(p1$labels$title, "bugs dataset")
     testthat::expect_identical(p1$labels$subtitle, p1_subtitle)
-    testthat::expect_identical(
-      p1$labels$caption,
-      ggplot2::expr(atop(
-        displaystyle("From `jmv` package"),
-        expr = paste(
-          "In favor of null: ",
-          "log"["e"],
-          "(BF"["01"],
-          ") = ",
-          "-3.7724",
-          ", ",
-          italic("r")["Cauchy"]^"JZS",
-          " = ",
-          "0.7070"
-        )
-      ))
-    )
     testthat::expect_identical(p1$labels$x, "condition")
     testthat::expect_identical(p1$labels$y, "desire")
   }
@@ -118,7 +100,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "basic plotting works - more than two groups",
   code = {
-    testthat::skip_on_cran()
     set.seed(123)
     library(WRS2)
 
@@ -147,7 +128,7 @@ testthat::test_that(
 
     # subtitle
     set.seed(123)
-    p1_subtitle <- ggstatsplot::subtitle_anova_parametric(
+    p1_subtitle <- statsExpressions::expr_anova_parametric(
       data = WineTasting,
       x = "Wine",
       y = Taste,
@@ -265,8 +246,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking sorting",
   code = {
-    testthat::skip_on_cran()
-
     set.seed(123)
     p1 <- ggstatsplot::ggwithinstats(
       data = WineTasting,
@@ -315,8 +294,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking subtitle outputs - without NAs",
   code = {
-    testthat::skip_on_cran()
-
     set.seed(123)
     p1 <- ggstatsplot::ggwithinstats(
       data = ggstatsplot::iris_long,
@@ -333,7 +310,7 @@ testthat::test_that(
     )
 
     set.seed(123)
-    p1_subtitle <- ggstatsplot::subtitle_anova_nonparametric(
+    p1_subtitle <- statsExpressions::expr_anova_nonparametric(
       data = ggstatsplot::iris_long,
       x = condition,
       y = value,
@@ -358,7 +335,7 @@ testthat::test_that(
     )
 
     set.seed(123)
-    p2_subtitle <- ggstatsplot::subtitle_anova_robust(
+    p2_subtitle <- statsExpressions::expr_anova_robust(
       data = ggstatsplot::iris_long,
       x = condition,
       y = value,
@@ -383,7 +360,7 @@ testthat::test_that(
     ))
 
     set.seed(123)
-    p3_subtitle <- suppressWarnings(ggstatsplot::subtitle_t_robust(
+    p3_subtitle <- suppressWarnings(statsExpressions::expr_t_robust(
       data = ggstatsplot::VR_dilemma,
       x = modality,
       y = score,
@@ -410,7 +387,7 @@ testthat::test_that(
     )
 
     set.seed(123)
-    p4_subtitle <- ggstatsplot::subtitle_t_nonparametric(
+    p4_subtitle <- statsExpressions::expr_t_nonparametric(
       data = ggstatsplot::VR_dilemma,
       x = modality,
       y = score,
@@ -466,129 +443,11 @@ testthat::test_that(
   }
 )
 
-# checking subtitle outputs - with NAs ----------------------------------------
-
-testthat::test_that(
-  desc = "checking subtitle outputs - with NAs",
-  code = {
-    testthat::skip_on_cran()
-    set.seed(123)
-
-    set.seed(123)
-    p1 <- ggstatsplot::ggwithinstats(
-      data = ggstatsplot::bugs_long,
-      x = condition,
-      y = desire,
-      type = "np",
-      outlier.tagging = TRUE,
-      pairwise.comparisons = FALSE,
-      axes.range.restrict = TRUE,
-      pairwise.annotation = "p",
-      bf.message = TRUE,
-      messages = FALSE
-    )
-
-    set.seed(123)
-    p1_subtitle <- ggstatsplot::subtitle_anova_nonparametric(
-      data = ggstatsplot::bugs_long,
-      x = condition,
-      y = desire,
-      paired = TRUE,
-      messages = FALSE
-    )
-
-    set.seed(123)
-    p2 <- ggstatsplot::ggwithinstats(
-      data = ggstatsplot::bugs_long,
-      x = condition,
-      y = desire,
-      type = "r",
-      outlier.tagging = TRUE,
-      pairwise.comparisons = TRUE,
-      pairwise.annotation = "p",
-      conf.level = 0.99,
-      bf.message = TRUE,
-      messages = FALSE
-    )
-
-    set.seed(123)
-    p2_subtitle <- ggstatsplot::subtitle_anova_robust(
-      data = ggstatsplot::bugs_long,
-      x = condition,
-      y = desire,
-      type = "r",
-      paired = TRUE,
-      conf.level = 0.99,
-      messages = FALSE
-    )
-
-    set.seed(123)
-    p3 <- ggstatsplot::ggwithinstats(
-      data = data_bugs_2,
-      x = condition,
-      y = desire,
-      type = "np",
-      messages = FALSE
-    )
-
-    set.seed(123)
-    p3_subtitle <- ggstatsplot::subtitle_t_nonparametric(
-      data = data_bugs_2,
-      x = condition,
-      y = desire,
-      type = "np",
-      paired = TRUE,
-      messages = FALSE
-    )
-
-    set.seed(123)
-    p4 <- ggstatsplot::ggwithinstats(
-      data = data_bugs_2,
-      x = condition,
-      y = desire,
-      type = "r",
-      nboot = 20,
-      conf.level = 0.90,
-      messages = FALSE
-    )
-
-    set.seed(123)
-    p4_subtitle <- ggstatsplot::subtitle_t_robust(
-      data = data_bugs_2,
-      x = condition,
-      y = desire,
-      paired = TRUE,
-      nboot = 20,
-      conf.level = 0.90,
-      messages = FALSE
-    )
-
-    # testing subtitle and caption
-    testthat::expect_identical(p1$labels$subtitle, p1_subtitle)
-    testthat::expect_identical(p2$labels$subtitle, p2_subtitle)
-    testthat::expect_identical(p3$labels$subtitle, p3_subtitle)
-    testthat::expect_identical(p4$labels$subtitle, p4_subtitle)
-    testthat::expect_null(p1$labels$caption, NULL)
-    testthat::expect_identical(p2$labels$caption, ggplot2::expr(atop(
-      displaystyle(NULL),
-      expr = paste(
-        "Pairwise comparisons: ",
-        bold("Yuen's trimmed means test"),
-        "; Adjustment (p-value): ",
-        bold("Holm")
-      )
-    )))
-    testthat::expect_null(p3$labels$caption, NULL)
-    testthat::expect_null(p4$labels$caption, NULL)
-  }
-)
-
 # ggplot component addition works ------------------------------------------
 
 testthat::test_that(
   desc = "ggplot component addition works",
   code = {
-    testthat::skip_on_cran()
 
     # setup
     set.seed(123)
@@ -599,6 +458,7 @@ testthat::test_that(
       data = WineTasting,
       x = Wine,
       y = Taste,
+      axes.range.restrict = TRUE,
       results.subtitle = FALSE,
       messages = FALSE,
       ggplot.component = ggplot2::labs(y = "Taste rating")
@@ -617,7 +477,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking warning message when too few obs",
   code = {
-    testthat::skip_on_cran()
     set.seed(123)
 
     # dataframe

@@ -1,7 +1,7 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.0.12.9000
+Version: 0.1.9000
 Authors@R: 
     c(person(given = "Indrajeet",
              family = "Patil",
@@ -10,7 +10,7 @@ Authors@R:
              comment = c(ORCID = "0000-0003-1995-6531")),
       person(given = "Chuck",
              family = "Powell",
-             role = c("aut", "ctb"),
+             role = "ctb",
              email = "ibecav@gmail.com",
              comment = c(ORCID = "0000-0002-3606-2188")))
 Maintainer: Indrajeet Patil <patilindrajeet.science@gmail.com>
@@ -31,14 +31,11 @@ BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
 Depends: 
     R (>= 3.5.0)
 Imports:
-    BayesFactor (>= 0.9.12-4.2),
-    boot (>= 1.3-22),
     broomExtra (>= 0.0.4),
     cowplot (>= 1.0.0),
     crayon (>= 1.3.4),
     dplyr (>= 0.8.3),
     ellipsis (>= 0.2.0.1),
-    ez (>= 4.4-0),
     forcats (>= 0.4.0),
     ggcorrplot (>= 0.1.3),
     ggExtra (>= 0.8),
@@ -49,19 +46,17 @@ Imports:
     groupedstats (>= 0.0.8.9000),
     jmv (>= 0.9.6.1),
     magrittr (>= 1.5),
-    MCMCpack (>= 1.4-4),
     metaBMA (>= 0.6.1),
     metafor (>= 2.1-0),
-    methods,
     paletteer (>= 0.2.1),
     psych (>= 1.8.12),
     purrr (>= 0.3.2),
     purrrlyr (>= 0.0.5),
-    rcompanion (>= 2.2.2),
     rlang (>= 0.4.0),
     scales (>= 1.0.0),
     sjstats (>= 0.17.5),
     stats,
+    statsExpressions (>= 0.0.1),
     stringr (>= 1.4.0),
     tibble (>= 2.1.3),
     tidyr (>= 0.8.3),
@@ -80,10 +75,11 @@ Suggests:
     spelling,
     survival,
     testthat
-Remotes:
-    IndrajeetPatil/groupedstats
 VignetteBuilder: 
     knitr
+Remotes:
+    IndrajeetPatil/groupedstats,
+    IndrajeetPatil/statsExpressions
 Encoding: UTF-8
 Language: en-US
 LazyData: true

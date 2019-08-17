@@ -6,7 +6,7 @@ context(desc = "grouped_ggbetweenstats")
 testthat::test_that(
   desc = "grouping.var works across vector types",
   code = {
-    testthat::skip_on_cran()
+
 
     # creating a smaller dataframe
     set.seed(123)
@@ -54,6 +54,7 @@ testthat::test_that(
         y = "rating",
         grouping.var = mpaa,
         type = "p",
+        effsize.type = "biased",
         plot.type = "box",
         bf.message = TRUE,
         outlier.tagging = TRUE,
@@ -99,40 +100,14 @@ testthat::test_that(
         pairwise.comparisons = TRUE,
         outlier.tagging = TRUE,
         outlier.label = "title",
-        outlier.coef = 5
-      ),
-      what = "gg"
-    ))
-  }
-)
-
-# outlier labeling works --------------------------------------------------
-
-testthat::test_that(
-  desc = "grouping.var works across vector types",
-  code = {
-    testthat::skip_on_cran()
-
-    testthat::expect_true(inherits(
-      ggstatsplot::grouped_ggbetweenstats(
-        data = dplyr::filter(
-          ggstatsplot::movies_long,
-          genre %in% c("Action", "Comedy"),
-          mpaa %in% c("R", "PG")
-        ),
-        x = genre,
-        y = rating,
-        outlier.tagging = TRUE,
-        outlier.label = votes,
-        grouping.var = mpaa,
-        results.subtitle = FALSE,
+        outlier.coef = 5,
         ggplot.component = ggplot2::scale_y_continuous(breaks = seq(1, 9, 1)),
-        messages = FALSE
       ),
       what = "gg"
     ))
   }
 )
+
 
 # subtitle return --------------------------------------------------
 

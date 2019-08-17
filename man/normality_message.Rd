@@ -51,12 +51,11 @@ ggstatsplot::normality_message(
 \code{\link{ggbetweenstats}}
 
 Other helper_messages: \code{\link{bartlett_message}},
-  \code{\link{effsize_ci_message}},
   \code{\link{ggcorrmat_matrix_message}},
   \code{\link{grouped_message}}, \code{\link{pairwise_p}},
   \code{\link{palette_message}}
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }
 \concept{helper_messages}

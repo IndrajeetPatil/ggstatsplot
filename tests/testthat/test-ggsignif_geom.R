@@ -7,7 +7,6 @@ context("ggsignif_adder")
 testthat::test_that(
   desc = "ggsignif_adder works",
   code = {
-    testthat::skip_on_cran()
     set.seed(123)
     library(ggplot2)
 
@@ -54,7 +53,7 @@ context(desc = "ggsignif_position_calculator")
 testthat::test_that(
   desc = "y coordinates for ggsignif are accurate",
   code = {
-    testthat::skip_on_cran()
+
 
     # shouldn't work with NAs
     testthat::expect_error(ggstatsplot:::ggsignif_position_calculator(NA, NA))

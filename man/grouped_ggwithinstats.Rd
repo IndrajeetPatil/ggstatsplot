@@ -179,7 +179,8 @@ of line to draw box plots (Default: \code{"solid"}). Alternatively, the numbers
 \item{outlier.tagging}{Decides whether outliers should be tagged (Default:
 \code{FALSE}).}
 
-\item{outlier.label}{Label to put on the outliers that have been tagged.}
+\item{outlier.label}{Label to put on the outliers that have been tagged. This
+\strong{can't} be the same as \code{x} argument.}
 
 \item{outlier.label.color}{Color for the label to to put on the outliers that
 have been tagged (Default: \code{"black"}).}
@@ -187,8 +188,8 @@ have been tagged (Default: \code{"black"}).}
 \item{outlier.color}{Default aesthetics for outliers (Default: \code{"black"}).}
 
 \item{outlier.shape}{Hiding the outliers can be achieved by setting
-outlier.shape = NA. Importantly, this does not remove the outliers,
-it only hides them, so the range calculated for the y-axis will be
+\code{outlier.shape = NA}. Importantly, this does not remove the outliers,
+it only hides them, so the range calculated for the \code{y}-axis will be
 the same with outliers shown and outliers hidden.}
 
 \item{outlier.coef}{Coefficient for outlier detection using Tukey's method.
@@ -199,8 +200,8 @@ Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
 \item{mean.plotting}{Logical that decides whether mean is to be highlighted
 and its value to be displayed (Default: \code{TRUE}).}
 
-\item{mean.ci}{Logical that decides whether 95% confidence interval for mean
-is to be displayed (Default: \code{FALSE}).}
+\item{mean.ci}{Logical that decides whether \code{95\%} confidence interval for
+mean is to be displayed (Default: \code{FALSE}).}
 
 \item{mean.size}{Point size for the data point corresponding to mean
 (Default: \code{5}).}
@@ -231,16 +232,16 @@ type. Default palette is \code{"Dark2"}.}
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
 of the current function. Default is \code{NULL}. The argument should be entered
 as a function. If the given function has an argument \code{axes.range.restrict}
-and if it has been set to \code{TRUE}, the added ggplot component \emph{might} not
+and if it has been set to \code{TRUE}, the added \code{ggplot} component \emph{might} not
 work as expected.}
 
 \item{return}{Character that describes what is to be returned: can be
 \code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to
-\code{"subtitle"} will return the expression containing statistical results,
-which will be a \code{NULL} if you set \code{results.subtitle = FALSE}. Setting this
-to \code{"caption"} will return the expression containing details about Bayes
-Factor analysis, but valid only when \code{type = "p"} and \code{bf.message = TRUE},
-otherwise this will return a \code{NULL}.}
+\code{"subtitle"} will return the expression containing statistical results. If
+you have set \code{results.subtitle = FALSE}, then this will return a \code{NULL}.
+Setting this to \code{"caption"} will return the expression containing details
+about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
+\code{bf.message = TRUE}, otherwise this will return a \code{NULL}.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

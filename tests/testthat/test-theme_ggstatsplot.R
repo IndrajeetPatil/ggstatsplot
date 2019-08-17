@@ -5,8 +5,6 @@ context("theme_ggstatsplot")
 testthat::test_that(
   desc = "`theme_ggstatsplot()` works",
   code = {
-    testthat::skip_on_cran()
-
     set.seed(123)
     library(ggplot2)
 
@@ -35,7 +33,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "`theme_pie()` works",
   code = {
-    testthat::skip_on_cran()
     set.seed(123)
     library(ggplot2)
 

@@ -30,16 +30,6 @@ reference:
     contents:
       - starts_with("grouped_")
 
-  - title: Helper functions for preparing statistics subtitles
-    desc: Functions used to create statistical subtitles that can be used outside of `ggstatsplot` package.
-    contents:
-      - starts_with("subtitle_")
-
-  - title: Helper functions for preparing Bayes Factor captions
-    desc: Functions used to create Bayes Factor (in favor of null) captions that can be used outside of `ggstatsplot` package.
-    contents:
-      - starts_with("bf_")
-
   - title: Reexported functions
     desc:  Useful functions re-exported from other packages.
     contents:
@@ -60,6 +50,7 @@ reference:
     desc: Sundry of helpful statistical functions.
     contents:
       - pairwise_p
+      - subtitle_meta_parametric
 
   - title: Themes used
     desc: The `ggplot2` themes used as default in `ggstatsplot`.

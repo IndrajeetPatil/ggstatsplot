@@ -282,8 +282,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "`pairwise_p()` messages are correct for between-subjects",
   code = {
-    testthat::skip_on_cran()
-
     set.seed(123)
 
     # student's t
@@ -364,8 +362,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "`pairwise_p()` messages are correct for within-subjects",
   code = {
-    testthat::skip_on_cran()
-
     set.seed(123)
 
     # student's t test
@@ -430,8 +426,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "dropped levels are not included",
   code = {
-    testthat::skip_on_cran()
-
     set.seed(123)
 
     # drop levels
@@ -472,8 +466,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "check if everything works fine with irregular factor level names",
   code = {
-    testthat::skip_on_cran()
-
     set.seed(123)
 
     df <- ggstatsplot::pairwise_p(
@@ -500,8 +492,6 @@ context("pairwise_p_caption")
 testthat::test_that(
   desc = "`pairwise_p_caption()` works",
   code = {
-    testthat::skip_on_cran()
-
     set.seed(123)
 
     p_message1 <- ggstatsplot:::pairwise_p_caption(

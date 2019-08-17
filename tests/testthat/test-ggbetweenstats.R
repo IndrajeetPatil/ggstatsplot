@@ -19,7 +19,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "outlier.labeling works across vector types",
   code = {
-    testthat::skip_on_cran()
+
 
     # `outlier.label` is numeric
     set.seed(123)
@@ -83,8 +83,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking sorting",
   code = {
-    testthat::skip_on_cran()
-
     set.seed(123)
     p1 <- ggstatsplot::ggbetweenstats(
       data = iris,
@@ -153,7 +151,7 @@ testthat::test_that(
 
     # subtitle
     set.seed(123)
-    p_subtitle <- ggstatsplot::subtitle_anova_parametric(
+    p_subtitle <- statsExpressions::expr_anova_parametric(
       data = ggplot2::msleep,
       x = vore,
       y = brainwt,
@@ -251,7 +249,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking mean labels are working",
   code = {
-    testthat::skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -318,8 +315,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking mean labels are working",
   code = {
-    testthat::skip_on_cran()
-
     library(ggplot2)
 
     # caption for the plot
@@ -351,109 +346,11 @@ testthat::test_that(
   }
 )
 
-# subtitles with bayesian tests work -----------------------------------------
-
-testthat::test_that(
-  desc = "subtitles with bayesian tests work",
-  code = {
-    testthat::skip_on_cran()
-
-    # plot
-    set.seed(123)
-    p1 <- ggstatsplot::ggbetweenstats(
-      data = ggplot2::mpg,
-      x = drv,
-      y = cty,
-      bf.prior = 0.8,
-      messages = TRUE,
-      k = 4,
-      type = "bf",
-      pairwise.comparisons = TRUE,
-      pairwise.annotation = "asterisk"
-    )
-
-    # subtitle
-    set.seed(123)
-    p1_subtitle <- ggstatsplot::subtitle_anova_bayes(
-      data = ggplot2::mpg,
-      x = drv,
-      y = cty,
-      bf.prior = 0.8,
-      messages = FALSE,
-      k = 4
-    )
-
-    # plot
-    set.seed(123)
-    p2 <- ggstatsplot::ggbetweenstats(
-      data = ToothGrowth,
-      x = supp,
-      y = len,
-      messages = FALSE,
-      k = 3,
-      type = "bayes"
-    )
-
-    # subtitle
-    set.seed(123)
-    p2_subtitle <- ggstatsplot::subtitle_t_bayes(
-      data = ToothGrowth,
-      x = supp,
-      y = len,
-      messages = FALSE,
-      k = 3
-    )
-
-    # checking if these two are equal
-    testthat::expect_identical(p1$labels$subtitle, p1_subtitle)
-    testthat::expect_identical(p2$labels$subtitle, p2_subtitle)
-  }
-)
-
-# subtitle works with equal variance -----------------------------------------
-
-testthat::test_that(
-  desc = "subtitle works with equal variance assumption",
-  code = {
-    testthat::skip_on_cran()
-
-    # plot
-    set.seed(123)
-    p <- ggstatsplot::ggbetweenstats(
-      data = mtcars,
-      x = cyl,
-      y = wt,
-      nboot = 10,
-      effsize.type = "partial.eta",
-      var.equal = TRUE,
-      messages = FALSE,
-      k = 3
-    )
-
-    # subtitle
-    set.seed(123)
-    p_subtitle <- ggstatsplot::subtitle_anova_parametric(
-      data = mtcars,
-      x = cyl,
-      y = wt,
-      nboot = 10,
-      effsize.type = "partial.eta",
-      var.equal = TRUE,
-      messages = FALSE,
-      k = 3
-    )
-
-    # checking if these two are equal
-    testthat::expect_identical(p$labels$subtitle, p_subtitle)
-  }
-)
-
 # checking if plot.type argument works --------------------------------------
 
 testthat::test_that(
   desc = "checking if plot.type argument works",
   code = {
-    testthat::skip_on_cran()
     set.seed(123)
 
     # boxplot
@@ -462,6 +359,8 @@ testthat::test_that(
         data = ToothGrowth,
         x = supp,
         y = len,
+        type = "bf",
+        pairwise.comparisons = TRUE,
         plot.type = "box",
         results.subtitle = FALSE,
         outlier.tagging = TRUE,
@@ -579,7 +478,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggplot component addition works",
   code = {
-    testthat::skip_on_cran()
 
     # plot
     p <- ggstatsplot::ggbetweenstats(
@@ -604,7 +502,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle return works",
   code = {
-    testthat::skip_on_cran()
 
     # plot
     set.seed(123)

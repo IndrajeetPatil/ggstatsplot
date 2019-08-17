@@ -3,7 +3,7 @@ context("grouped_ggbarstats")
 testthat::test_that(
   desc = "grouped_ggbarstats works",
   code = {
-    testthat::skip_on_cran()
+
 
     # --------------------- without counts -----------------------------------
 
@@ -39,7 +39,7 @@ testthat::test_that(
     testthat::expect_true(inherits(suppressWarnings(
       ggstatsplot::grouped_ggbarstats(
         data = mpg_short,
-        main = cyl,
+        main = "cyl",
         condition = class,
         grouping.var = drv,
         x.axis.orientation = "horizontal",
@@ -54,7 +54,7 @@ testthat::test_that(
     testthat::expect_true(inherits(suppressWarnings(
       ggstatsplot::grouped_ggbarstats(
         data = mpg_short,
-        main = "cyl",
+        main = cyl,
         condition = "class",
         grouping.var = "drv",
         x.axis.orientation = "slant",
@@ -103,7 +103,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle return",
   code = {
-    testthat::skip_on_cran()
+
 
     # should return a list of length 3
     set.seed(123)
@@ -208,7 +208,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking if results coincide with base version",
   code = {
-    testthat::skip_on_cran()
 
     # creating new datasets from the existing one
     mtcars2 <- dplyr::mutate(mtcars, grp = "1")
@@ -230,7 +229,7 @@ testthat::test_that(
     p2 <-
       suppressWarnings(ggbarstats(
         data = mtcars3,
-        x = am,
+        x = "am",
         y = cyl,
         messages = FALSE,
         return = "subtitle"

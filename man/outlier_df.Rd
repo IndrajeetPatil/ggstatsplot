@@ -15,7 +15,8 @@ be taken. A matrix or tables will \strong{not} be accepted.}
 \item{y}{The response (a.k.a. outcome or dependent) variable from the
 dataframe \code{data}.}
 
-\item{outlier.label}{Label to put on the outliers that have been tagged.}
+\item{outlier.label}{Label to put on the outliers that have been tagged. This
+\strong{can't} be the same as \code{x} argument.}
 
 \item{outlier.coef}{Coefficient for outlier detection using Tukey's method.
 With Tukey's method, outliers are below (1st Quartile) or above (3rd

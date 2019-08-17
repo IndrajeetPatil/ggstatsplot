@@ -99,6 +99,18 @@ In addition to these vignettes, another quick way to get an overview of this
 package is to go through the following slides:
 <https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1>
 
+# Components of `ggstatsplot`
+
+To make the maintenance and development of `ggstatsplot` more manageable, it is
+being broken into smaller pieces.
+
+## `statsExpressions`
+
+The statistical backend that processes data and creates expressions containing
+results from statistical tests is `statsExpressions`. For more exhaustive
+documentation for this package, see:
+<https://indrajeetpatil.github.io/statsExpressions/>
+
 # Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on

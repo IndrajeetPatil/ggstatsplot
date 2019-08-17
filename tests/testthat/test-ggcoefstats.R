@@ -91,7 +91,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggcoefstats with glmer model",
   code = {
-    testthat::skip_on_cran()
     library(lme4)
 
     # model
@@ -109,7 +108,6 @@ testthat::test_that(
       ggstatsplot::ggcoefstats(
         x = mod,
         conf.level = 0.90,
-        exponentiate = TRUE,
         exclude.intercept = FALSE
       )
 
@@ -124,14 +122,13 @@ testthat::test_that(
     set.seed(123)
     broom_df <- broom.mixed::tidy(
       x = mod,
-      exponentiate = TRUE,
       conf.int = TRUE,
       conf.level = 0.90,
       effects = "fixed"
     )
 
     testthat::expect_equal(tidy_df$estimate, broom_df$estimate, tolerance = 1e-3)
-    # testthat::expect_equal(tidy_df$std.error, broom_df$std.error, tolerance = 1e-3)
+    testthat::expect_equal(tidy_df$std.error, broom_df$std.error, tolerance = 1e-3)
     testthat::expect_equal(tidy_df$conf.low, broom_df$conf.low, tolerance = 1e-3)
     testthat::expect_equal(tidy_df$conf.high, broom_df$conf.high, tolerance = 1e-3)
     testthat::expect_equal(tidy_df$p.value, broom_df$p.value, tolerance = 1e-3)
@@ -154,7 +151,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggcoefstats with partial variants of effect size for f-statistic",
   code = {
-    testthat::skip_on_cran()
+
 
     ## partial eta-squared
 
@@ -355,7 +352,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggcoefstats with non-partial variants of effect size for f-statistic",
   code = {
-    testthat::skip_on_cran()
+
 
     # model
     set.seed(123)
@@ -415,7 +412,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "check merMod output",
   code = {
-    testthat::skip_on_cran()
 
     # setup
     set.seed(123)
@@ -487,7 +483,7 @@ testthat::test_that(
     testthat::expect_equal(broom_df2$estimate, tidy_df2$estimate, tolerance = 0.001)
     testthat::expect_equal(broom_df1$std.error, tidy_df1$std.error, tolerance = 0.001)
     testthat::expect_equal(broom_df2$std.error, tidy_df2$std.error, tolerance = 0.001)
-    # testthat::expect_equal(broom_df1$p.value, tidy_df1$p.value, tolerance = 0.001)
+    testthat::expect_equal(broom_df1$p.value, tidy_df1$p.value, tolerance = 0.001)
     testthat::expect_equal(broom_df2$p.value, tidy_df2$p.value, tolerance = 0.001)
   }
 )
@@ -497,7 +493,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "check glm output",
   code = {
-    testthat::skip_on_cran()
 
     # set up
     set.seed(123)
@@ -516,15 +511,25 @@ testthat::test_that(
 
     # models
     mod1 <- stats::glm(counts ~ outcome + treatment, family = poisson())
-    mod2 <- stats::glm(
-      formula = y ~ x,
-      family = quasi(variance = "mu", link = "log"),
-      data = df
-    )
+    mod2 <-
+      stats::glm(
+        formula = y ~ x,
+        family = quasi(variance = "mu", link = "log"),
+        data = df
+      )
 
     # broom outputs
     broom_df1 <- broom::tidy(mod1, conf.int = 0.90)
     broom_df2 <- broom::tidy(mod2, conf.int = 0.99)
+
+    # exponentiation
+    p <- ggstatsplot::ggcoefstats(
+      x = mod2,
+      exponentiate = TRUE,
+      exclude.intercept = FALSE
+    )
+
+    pb <- ggplot2::ggplot_build(p)
 
     # ggcoefstats outputs
     tidy_df1 <- ggstatsplot::ggcoefstats(
@@ -551,6 +556,7 @@ testthat::test_that(
     testthat::expect_equal(broom_df2$std.error, tidy_df2$std.error, tolerance = 0.001)
     testthat::expect_equal(broom_df1$p.value, tidy_df1$p.value, tolerance = 0.001)
     testthat::expect_equal(broom_df2$p.value, tidy_df2$p.value, tolerance = 0.001)
+    testthat::expect_equal(pb$plot$data$std.error[[1]], 0.09532848, tolerance = 0.001)
   }
 )
 
@@ -559,7 +565,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "check mlm output",
   code = {
-    testthat::skip_on_cran()
+
 
     # model (converting all numeric columns in data to z-scores)
     res <- stats::lm(
@@ -585,7 +591,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "check aareg output",
   code = {
-    testthat::skip_on_cran()
+
 
     # model
     library(survival)
@@ -624,7 +630,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggcoefstats works with glmmPQL object",
   code = {
-    testthat::skip_on_cran()
+
 
     # setup
     set.seed(123)
@@ -667,7 +673,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "check clm models (minimal)",
   code = {
-    testthat::skip_on_cran()
+
 
     # clm model
     set.seed(123)
@@ -730,7 +736,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggcoefstats works with data frames",
   code = {
-    testthat::skip_on_cran()
+
 
     # setup
     library(lme4)
@@ -791,7 +797,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggcoefstats works with data frames",
   code = {
-    testthat::skip_on_cran()
     set.seed(123)
 
     # creating dataframe
@@ -994,7 +999,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggcoefstats works with data frames (with NAs)",
   code = {
-    testthat::skip_on_cran()
     set.seed(123)
 
     # creating dataframe
@@ -1037,7 +1041,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "check computing confidence intervals",
   code = {
-    testthat::skip_on_cran()
+
 
     # creating broom dataframes
     set.seed(123)
@@ -1093,7 +1097,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "check if glance works",
   code = {
-    testthat::skip_on_cran()
     library(lme4)
 
     # creating broom and ggstatsplot output
@@ -1128,7 +1131,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "check if augment works",
   code = {
-    testthat::skip_on_cran()
+
 
     # set up
     library(lme4)
@@ -1175,7 +1178,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "augment with lm works",
   code = {
-    testthat::skip_on_cran()
     testthat::skip_on_appveyor()
     testthat::skip_on_travis()
 
@@ -1204,8 +1206,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "check if p-value adjustment works",
   code = {
-    testthat::skip_on_cran()
-
     set.seed(123)
 
     # model
@@ -1243,7 +1243,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "testing aesthetic modifications",
   code = {
-    testthat::skip_on_cran()
+
 
     # model
     set.seed(123)
@@ -1279,7 +1279,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "unsupported model objects",
   code = {
-    testthat::skip_on_cran()
+
 
     # mod-2
     mod2 <- stats::aov(

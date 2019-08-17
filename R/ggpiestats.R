@@ -34,11 +34,10 @@
 #' @param label.fill.alpha Numeric that specifies fill color transparency or
 #'   `"alpha"` for slice/bar labels (Default: `1` range `0` to `1`).
 #' @param bf.message Logical that decides whether to display a caption with
-#'   results from bayes factor test in favor of the null hypothesis (default:
+#'   results from Bayes Factor test in favor of the null hypothesis (default:
 #'   `FALSE`).
-#' @inheritParams bf_contingency_tab
-#' @inheritParams subtitle_contingency_tab
-#' @inheritParams subtitle_onesample_proptest
+#' @inheritParams statsExpressions::bf_contingency_tab
+#' @inheritParams statsExpressions::expr_contingency_tab
 #' @inheritParams paletteer::scale_fill_paletteer_d
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams gghistostats
@@ -316,7 +315,7 @@ ggpiestats <- function(data,
   if (isTRUE(results.subtitle)) {
     subtitle <-
       tryCatch(
-        expr = subtitle_contingency_tab(
+        expr = statsExpressions::expr_contingency_tab(
           data = data,
           x = {{ x }},
           y = {{ y }},

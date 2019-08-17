@@ -50,7 +50,7 @@ type. Default palette is \code{"Dark2"}.}
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
 of the current function. Default is \code{NULL}. The argument should be entered
 as a function. If the given function has an argument \code{axes.range.restrict}
-and if it has been set to \code{TRUE}, the added ggplot component \emph{might} not
+and if it has been set to \code{TRUE}, the added \code{ggplot} component \emph{might} not
 work as expected.}
 
 \item{...}{Additional arguments.}

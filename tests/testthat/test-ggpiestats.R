@@ -6,7 +6,7 @@ context(desc = "ggpiestats")
 testthat::test_that(
   desc = "checking one sample proportion test",
   code = {
-    testthat::skip_on_cran()
+
 
     # creating the plot
     set.seed(123)
@@ -32,7 +32,7 @@ testthat::test_that(
     # subtitle used
     set.seed(123)
     p_subtitle <-
-      ggstatsplot::subtitle_onesample_proptest(
+      statsExpressions::expr_onesample_proptest(
         data = ggplot2::msleep,
         x = "vore",
         nboot = 25
@@ -152,7 +152,7 @@ testthat::test_that(
     # subtitle used
     set.seed(123)
     p_subtitle <-
-      ggstatsplot::subtitle_contingency_tab(
+      statsExpressions::expr_contingency_tab(
         data = mtcars,
         x = "am",
         y = "cyl",
@@ -341,7 +341,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking labels with counts",
   code = {
-    testthat::skip_on_cran()
+
 
     # plot
     set.seed(123)
@@ -361,7 +361,7 @@ testthat::test_that(
 
     # subtitle
     set.seed(123)
-    p_subtitle <- ggstatsplot::subtitle_contingency_tab(
+    p_subtitle <- statsExpressions::expr_contingency_tab(
       data = as.data.frame(Titanic),
       x = Sex,
       y = Survived,
@@ -413,7 +413,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking labels with contingency tab (paired)",
   code = {
-    testthat::skip_on_cran()
+
 
     # data
     set.seed(123)
@@ -443,7 +443,7 @@ testthat::test_that(
 
     # subtitle
     set.seed(123)
-    p_subtitle <- ggstatsplot::subtitle_contingency_tab(
+    p_subtitle <- statsExpressions::expr_contingency_tab(
       data = survey.data,
       x = `1st survey`,
       y = `2nd survey`,
@@ -480,7 +480,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking one sample prop test bf caption",
   code = {
-    testthat::skip_on_cran()
+
 
     # plots
     set.seed(123)
@@ -600,7 +600,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking if functions work without enough data",
   code = {
-    testthat::skip_on_cran()
     set.seed(123)
 
     # creating a dataframe
@@ -623,7 +622,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle return",
   code = {
-    testthat::skip_on_cran()
 
     # subtitle return
     set.seed(123)

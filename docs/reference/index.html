@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.12.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.9000</span>
       </span>
     </div>
 
@@ -95,6 +95,9 @@
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/additional.html">additional vignettes</a>
+    </li>
+    <li>
+      <a href="../articles/tests_and_coverage.html">Tests and Coverage</a>
     </li>
     <li>
       <a href="../articles/web_only/combine_plots.html">combine_plots</a>
@@ -330,145 +333,6 @@ designs repeated across all levels of a grouping variable.</p></td>
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-helper-functions-for-preparing-statistics-subtitles" class="hasAnchor"><a href="#section-helper-functions-for-preparing-statistics-subtitles" class="anchor"></a>Helper functions for preparing statistics subtitles</h2>
-          <p class="section-desc"><p>Functions used to create statistical subtitles that can be used outside of <code>ggstatsplot</code> package.</p></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="subtitle_anova_bayes.html">subtitle_anova_bayes()</a></code> </p>
-        </td>
-        <td><p>Making expression containing Bayesian one-way ANOVA results.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="subtitle_anova_nonparametric.html">subtitle_anova_nonparametric()</a></code> </p>
-        </td>
-        <td><p>Making text subtitle for nonparametric ANOVA.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="subtitle_anova_parametric.html">subtitle_anova_parametric()</a></code> </p>
-        </td>
-        <td><p>Making expression containing parametric ANOVA results</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="subtitle_anova_robust.html">subtitle_anova_robust()</a></code> </p>
-        </td>
-        <td><p>Expression containing results from heteroscedastic one-way ANOVA for
-trimmed means</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="subtitle_contingency_tab.html">subtitle_contingency_tab()</a></code> <code><a href="subtitle_contingency_tab.html">subtitle_onesample_proptest()</a></code> </p>
-        </td>
-        <td><p>Making expression for contingency table and goodness of fit tests</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="subtitle_ggscatterstats.html">subtitle_ggscatterstats()</a></code> </p>
-        </td>
-        <td><p>Making expression for correlation analysis</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="subtitle_mann_nonparametric.html">subtitle_mann_nonparametric()</a></code> <code><a href="subtitle_mann_nonparametric.html">subtitle_t_nonparametric()</a></code> </p>
-        </td>
-        <td><p>Making expression for Mann-Whitney <em>U</em>-test/Wilcoxon test results</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="subtitle_meta_parametric.html">subtitle_meta_parametric()</a></code> <code><a href="subtitle_meta_parametric.html">subtitle_meta_ggcoefstats()</a></code> </p>
-        </td>
-        <td><p>Making expression with frequentist random-effects meta-analysis
-results</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="subtitle_template.html">subtitle_template()</a></code> </p>
-        </td>
-        <td><p>Template for subtitles with statistical details for tests</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="subtitle_t_bayes.html">subtitle_t_bayes()</a></code> </p>
-        </td>
-        <td><p>Making expression containing Bayesian <em>t</em>-test results</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="subtitle_t_onesample.html">subtitle_t_onesample()</a></code> </p>
-        </td>
-        <td><p>Expression for one sample <em>t</em>-test and its non-parametric and
-robust equivalents</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="subtitle_t_parametric.html">subtitle_t_parametric()</a></code> </p>
-        </td>
-        <td><p>Making expression containing <em>t</em>-test results</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="subtitle_t_robust.html">subtitle_t_robust()</a></code> </p>
-        </td>
-        <td><p>Expression containing results from a robust <em>t</em>-test</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-helper-functions-for-preparing-bayes-factor-captions" class="hasAnchor"><a href="#section-helper-functions-for-preparing-bayes-factor-captions" class="anchor"></a>Helper functions for preparing Bayes Factor captions</h2>
-          <p class="section-desc"><p>Functions used to create Bayes Factor (in favor of null) captions that can be used outside of <code>ggstatsplot</code> package.</p></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="bf_caption_maker.html">bf_caption_maker()</a></code> </p>
-        </td>
-        <td><p>Prepare caption with expression for Bayes Factor results</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="bf_contingency_tab.html">bf_contingency_tab()</a></code> <code><a href="bf_contingency_tab.html">bf_onesample_proptest()</a></code> </p>
-        </td>
-        <td><p>Bayesian contingency table analysis.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="bf_corr_test.html">bf_corr_test()</a></code> </p>
-        </td>
-        <td><p>Bayesian correlation test.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="bf_extractor.html">bf_extractor()</a></code> </p>
-        </td>
-        <td><p>Extract Bayes Factors from <code>BayesFactor</code> model object.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="bf_meta_message.html">bf_meta_message()</a></code> </p>
-        </td>
-        <td><p>Bayes factor message for random-effects meta-analysis</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="bf_oneway_anova.html">bf_oneway_anova()</a></code> </p>
-        </td>
-        <td><p>Bayesian one-way analysis of variance.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="bf_ttest.html">bf_ttest()</a></code> <code><a href="bf_ttest.html">bf_one_sample_ttest()</a></code> <code><a href="bf_ttest.html">bf_two_sample_ttest()</a></code> </p>
-        </td>
-        <td><p>Bayes Factor for <em>t</em>-test</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
           <h2 id="section-reexported-functions" class="hasAnchor"><a href="#section-reexported-functions" class="anchor"></a>Reexported functions</h2>
           <p class="section-desc"><p>Useful functions re-exported from other packages.</p></p>
         </th>
@@ -519,6 +383,13 @@ robust equivalents</p></td>
           <p><code><a href="pairwise_p.html">pairwise_p()</a></code> <code><a href="pairwise_p.html">pairwise_comparisons()</a></code> </p>
         </td>
         <td><p>Pairwise comparison tests</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="subtitle_meta_parametric.html">subtitle_meta_parametric()</a></code> <code><a href="subtitle_meta_parametric.html">subtitle_meta_ggcoefstats()</a></code> </p>
+        </td>
+        <td><p>Making expression with frequentist random-effects meta-analysis
+results</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -605,8 +476,6 @@ robust equivalents</p></td>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#section-primary-functions">Primary functions</a></li>
       <li><a href="#section-grouped-variants-of-primary-functions">Grouped variants of primary functions</a></li>
-      <li><a href="#section-helper-functions-for-preparing-statistics-subtitles">Helper functions for preparing statistics subtitles</a></li>
-      <li><a href="#section-helper-functions-for-preparing-bayes-factor-captions">Helper functions for preparing Bayes Factor captions</a></li>
       <li><a href="#section-reexported-functions">Reexported functions</a></li>
       <li><a href="#section-helper-functions-messages-">Helper functions (messages)</a></li>
       <li><a href="#section-miscellaneous">Miscellaneous</a></li>
@@ -619,7 +488,7 @@ robust equivalents</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://sites.google.com/site/indrajeetspatilmorality/'>Indrajeet Patil</a>, <a href='https://ibecav.github.io/'>Chuck Powell</a>.</p>
+  <p>Developed by <a href='https://sites.google.com/site/indrajeetspatilmorality/'>Indrajeet Patil</a>.</p>
 </div>
 
 <div class="pkgdown">

@@ -6,8 +6,6 @@ context(desc = "ggcorrmat")
 testthat::test_that(
   desc = "cor.vars works with different methods of inputs",
   code = {
-    testthat::skip_on_cran()
-
     set.seed(123)
 
     # method 1
@@ -199,7 +197,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking ggcorrmat - with NAs - robust r",
   code = {
-    testthat::skip_on_cran()
+
 
     # creating the plot
     set.seed(123)
@@ -298,7 +296,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking ggcorrmat - with NAs - spearman's rho",
   code = {
-    testthat::skip_on_cran()
+
 
     # creating the plot
     set.seed(123)
@@ -367,7 +365,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking ggcorrmat - with NAs - Kendall tau",
   code = {
-    testthat::skip_on_cran()
+
 
     # creating the plot
     set.seed(123)
@@ -456,7 +454,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking sample sizes",
   code = {
-    testthat::skip_on_cran()
+
 
     # dataframe with sample sizes
     set.seed(123)
@@ -486,7 +484,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking p-values",
   code = {
-    testthat::skip_on_cran()
+
 
     # dataframe with sample sizes
     set.seed(123)
@@ -510,7 +508,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking confidence intervals",
   code = {
-    testthat::skip_on_cran()
+
 
     # dataframe with sample sizes
     set.seed(123)
@@ -579,7 +577,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking messages",
   code = {
-    testthat::skip_on_cran()
+
 
     # capturing the message
     set.seed(123)
