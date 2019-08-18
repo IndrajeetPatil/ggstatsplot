@@ -63,7 +63,6 @@ matrix:
         - LaplacesDemon
         - logspline
         - metaBMA
-        - MCMCpack
         - MCMCglmm
       r_packages:
         - rlang
@@ -71,7 +70,6 @@ matrix:
         - purrr
         - tidyr
         - dplyr
-        - readr
         - ggthemes
         - jcolors
         - oompaBase
@@ -131,7 +129,6 @@ matrix:
         - LaplacesDemon
         - logspline
         - metaBMA
-        - MCMCpack
         - MCMCglmm
       r_packages:
         - rlang
@@ -139,7 +136,6 @@ matrix:
         - purrr
         - tidyr
         - dplyr
-        - readr
         - ggthemes
         - jcolors
         - oompaBase
