@@ -2110,16 +2110,19 @@ ggstatsplot::ggcoefstats(
 set.seed(123)
 library(panelr)
 
-# model
+# data
 data("WageData")
 wages <- panel_data(WageData, id = id, wave = t)
-m1 <- wbm(
+
+# model
+mod <- wbm(
   formula = lwage ~ lag(union) + wks | blk + fem | blk * lag(union),
   data = wages
 )
 
 # plot
-ggstatsplot::ggcoefstats(m1,
+ggstatsplot::ggcoefstats(
+  x = mod,
   title = "panel regression models fit \nvia multilevel modeling"
 )
 ```
@@ -2131,17 +2134,20 @@ ggstatsplot::ggcoefstats(m1,
 set.seed(123)
 library(epiR)
 
-# creating a model
+# data
 dat <- matrix(c(13, 2163, 5, 3349), nrow = 2, byrow = TRUE)
 rownames(dat) <- c("DF+", "DF-")
 colnames(dat) <- c("FUS+", "FUS-")
-fit <- epiR::epi.2by2(
-  dat = as.table(dat),
-  method = "cross.sectional",
-  conf.level = 0.95,
-  units = 100,
-  outcome = "as.columns"
-)
+
+# model
+fit <-
+  epiR::epi.2by2(
+    dat = as.table(dat),
+    method = "cross.sectional",
+    conf.level = 0.95,
+    units = 100,
+    outcome = "as.columns"
+  )
 
 # tidy dataframe
 ggstatsplot::ggcoefstats(
@@ -2465,4 +2471,5 @@ GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
 
 For details, see-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>
+
 

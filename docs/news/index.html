@@ -211,7 +211,7 @@
 <li>
 <code>ggstatsplot</code> now uses <code>rcompanion</code> to compute Spearman’s <em>rho</em> and Kendall’s <em>W</em>. Therefore, <code>DescTools</code> is removed from dependencies.</li>
 <li>
-<code>ggcoefstats</code> supports following objects: <code>mclogit</code>, <code>mmclogit</code>.</li>
+<code>ggcoefstats</code> supports following objects: <code>lme</code>, <code>mclogit</code>, <code>mmclogit</code>, <code>wblm</code>.</li>
 <li>
 <code>ggcoefstats</code> now respects <code>conf.int</code>. It internally always defaulted to <code>conf.int = TRUE</code> in <code><a href="http://broom.tidyverse.org/reference/reexports.html">broom::tidy</a></code> irrespective of what was specified by the user.</li>
 <li>It was painfully confusing for a lot of users what exactly the asterisks in each facet of <code>ggpiestats</code> signified. So instead now <code>ggpiestats</code> displays more detailed results from a goodness of fit (gof) test. No such change is made for <code>ggbarstats</code> because there is no space to include more details above the bar.</li>
