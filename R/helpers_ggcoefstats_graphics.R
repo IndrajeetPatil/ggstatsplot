@@ -136,9 +136,12 @@ ggcoefstats_label_maker <- function(x,
       "ivreg",
       "lm",
       "lm.beta",
+      "lm_robust",
+      "lme",
       "lmerMod",
       "lmRob",
       "lmrob",
+      "mixed",
       "mlm",
       "multinom",
       "nlmerMod",
@@ -153,7 +156,8 @@ ggcoefstats_label_maker <- function(x,
       "speedglm",
       "speedlm",
       "svyglm",
-      "svyolr"
+      "svyolr",
+      "wblm"
     )
 
   # models for which statistic is z-value

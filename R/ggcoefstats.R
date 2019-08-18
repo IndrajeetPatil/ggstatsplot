@@ -422,7 +422,9 @@ ggcoefstats <- function(x,
       "rlmerMod",
       "stanfit",
       "stanreg",
-      "TMB"
+      "stanmvreg",
+      "TMB",
+      "wblm"
     )
 
   # =================== types of models =====================================
@@ -433,7 +435,8 @@ ggcoefstats <- function(x,
     "mcmc",
     "MCMCglmm",
     "rjags",
-    "stanreg"
+    "stanreg",
+    "stanmvreg"
   )
 
   # models for which statistic is F-value

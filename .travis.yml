@@ -71,7 +71,6 @@ matrix:
         - purrr
         - tidyr
         - dplyr
-        - readr
         - ggthemes
         - jcolors
         - oompaBase
@@ -139,7 +138,6 @@ matrix:
         - purrr
         - tidyr
         - dplyr
-        - readr
         - ggthemes
         - jcolors
         - oompaBase
