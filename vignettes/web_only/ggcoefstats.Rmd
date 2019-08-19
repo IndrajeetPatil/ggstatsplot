@@ -803,6 +803,37 @@ ggstatsplot::ggcoefstats(
 As can be seen from this plot, both factors (intentionality and consequences)
 were significant, and so was their interaction.
 
+## cumulative link models (`clm2`)
+
+```{r clm2, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6, eval = FALSE}
+# for reproducibility
+set.seed(123)
+library(ordinal)
+library(MASS)
+data(housing, package = "MASS")
+
+# data
+tab26 <- with(soup, table("Product" = PROD, "Response" = SURENESS))
+dimnames(tab26)[[2]] <- c("Sure", "Not Sure", "Guess", "Guess", "Not Sure", "Sure")
+dat26 <- expand.grid(sureness = as.factor(1:6), prod = c("Ref", "Test"))
+dat26$wghts <- c(t(tab26))
+
+# model
+mod <- clm2(
+  location = sureness ~ prod,
+  scale = ~prod,
+  data = dat26,
+  weights = wghts,
+  link = "logistic"
+)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
+  title = "older version of `clm`"
+)
+```
+
 ## cumulative link mixed models (`clmm`)
 
 In the previous analysis, we carried out a single ordinal regression models to
@@ -869,6 +900,68 @@ ggstatsplot::ggcoefstats(
     y = "threshold parameters",
     title = "cumulative link mixed models"
   )
+```
+
+## Bayesian linear linear mixed-effects models (`blmerMod`)
+
+```{r blmerMod, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# for reproducibility
+set.seed(123)
+library(blme)
+
+# data
+data(sleepstudy)
+sleepstudy$mygrp <- sample(1:5, size = 180, replace = TRUE)
+sleepstudy$mysubgrp <- NA
+for (i in 1:5) {
+  filter_group <- sleepstudy$mygrp == i
+  sleepstudy$mysubgrp[filter_group] <-
+    sample(1:30, size = sum(filter_group), replace = TRUE)
+}
+
+# model
+mod <-
+  blmer(
+    formula = scale(Reaction) ~ scale(Days) + (1 + Days | Subject),
+    data = sleepstudy,
+    cov.prior = NULL,
+    REML = FALSE
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
+  title = "Bayesian linear mixed-effects models",
+  exclude.intercept = FALSE
+)
+```
+
+## Bayesian generalized linear mixed-effects models (`bglmerMod`)
+
+```{r bglmerMod, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# for reproducibility
+set.seed(123)
+library(blme)
+
+# model
+mod <-
+  blme::bglmer(
+    formula = Survived ~ Sex + Age + (Sex + Age | Class),
+    # select 20% of the sample to reduce the time of execution
+    data = dplyr::sample_frac(tbl = ggstatsplot::Titanic_full, size = 0.2),
+    family = stats::binomial(link = "logit"),
+    control = lme4::glmerControl(
+      optimizer = "Nelder_Mead",
+      calc.derivs = FALSE,
+      boundary.tol = 1e-7
+    )
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
+  title = "Bayesian generalized linear mixed-effects models"
+)
 ```
 
 ## ordered logistic or probit regression (`polr`)
@@ -1356,17 +1449,20 @@ ggstatsplot::ggcoefstats(
 ## bounded memory linear regression (`biglm`)
 
 ```{r biglm, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
-# model
+# setup
 set.seed(123)
-bfit <- biglm::biglm(
+library(biglm)
+
+# model
+bfit1 <- biglm(
   formula = scale(mpg) ~ scale(wt) + scale(disp),
   data = mtcars
 )
 
 # plot
 ggstatsplot::ggcoefstats(
-  x = bfit,
-  title = "bounded memory linear regression",
+  x = bfit1,
+  title = "bounded memory simple linear regression",
   exclude.intercept = FALSE
 )
 ```
@@ -1416,6 +1512,21 @@ ggstatsplot::ggcoefstats(
   palette = "legacy_tron",
   title = "parametric survival regression model"
 )
+```
+
+## tobit regression (`tobit`)
+
+```{r tobit, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5, eval = FALSE}
+# setup
+set.seed(123)
+library(AER)
+data("Affairs", package = "AER")
+
+# model
+m1 <-
+  AER::tobit(affairs ~ age + yearsmarried + religiousness + occupation + rating,
+    data = Affairs
+  )
 ```
 
 ## Aalen's additive regression model for censored data (`aareg`)

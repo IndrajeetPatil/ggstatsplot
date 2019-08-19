@@ -123,6 +123,8 @@ ggcoefstats_label_maker <- function(x,
   t.mods <-
     c(
       "biglm",
+      "bglmerMod",
+      "blmerMod",
       "cch",
       "coeftest",
       "drc",
@@ -165,6 +167,7 @@ ggcoefstats_label_maker <- function(x,
     c(
       "aareg",
       "clm",
+      "clm2",
       "clmm",
       "coxph",
       "ergm",
