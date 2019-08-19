@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.0.9000</span>
       </span>
     </div>
 
@@ -192,22 +192,22 @@
     </div>
 
     <pre class="usage"><span class='fu'>ggcoefstats</span>(<span class='no'>x</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>, <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>scales</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>conf.method</span> <span class='kw'>=</span> <span class='st'>"Wald"</span>, <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"Wald"</span>, <span class='kw'>component</span> <span class='kw'>=</span> <span class='st'>"survival"</span>,
-  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>d</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='kw'>d.par</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>0.3</span>),
-  <span class='kw'>tau</span> <span class='kw'>=</span> <span class='st'>"halfcauchy"</span>, <span class='kw'>tau.par</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>0.5</span>), <span class='kw'>iter</span> <span class='kw'>=</span> <span class='fl'>5000</span>,
-  <span class='kw'>summarize</span> <span class='kw'>=</span> <span class='st'>"stan"</span>, <span class='kw'>p.kr</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
-  <span class='kw'>coefficient.type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"beta"</span>, <span class='st'>"location"</span>, <span class='st'>"coefficient"</span>),
-  <span class='kw'>by.class</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"eta"</span>, <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>500</span>,
-  <span class='kw'>meta.analytic.effect</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>point.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>point.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>point.shape</span> <span class='kw'>=</span> <span class='fl'>16</span>, <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>se.type</span> <span class='kw'>=</span> <span class='st'>"nid"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>k.caption.summary</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>exclude.intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>exponentiate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>errorbar.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>errorbar.height</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>errorbar.linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>, <span class='kw'>errorbar.size</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>vline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>vline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>vline.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>, <span class='kw'>vline.size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>sort</span> <span class='kw'>=</span> <span class='st'>"none"</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"regression coefficient"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"term"</span>,
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stats.labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption.summary</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>stats.label.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>component</span> <span class='kw'>=</span> <span class='st'>"survival"</span>, <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>d</span> <span class='kw'>=</span> <span class='st'>"norm"</span>,
+  <span class='kw'>d.par</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>0.3</span>), <span class='kw'>tau</span> <span class='kw'>=</span> <span class='st'>"halfcauchy"</span>,
+  <span class='kw'>tau.par</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>0.5</span>), <span class='kw'>iter</span> <span class='kw'>=</span> <span class='fl'>5000</span>, <span class='kw'>summarize</span> <span class='kw'>=</span> <span class='st'>"stan"</span>,
+  <span class='kw'>p.kr</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"none"</span>, <span class='kw'>coefficient.type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"beta"</span>,
+  <span class='st'>"location"</span>, <span class='st'>"coefficient"</span>), <span class='kw'>by.class</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"eta"</span>,
+  <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>500</span>, <span class='kw'>meta.analytic.effect</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>point.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>point.size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>point.shape</span> <span class='kw'>=</span> <span class='fl'>16</span>,
+  <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>se.type</span> <span class='kw'>=</span> <span class='st'>"nid"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>k.caption.summary</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>exclude.intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>exponentiate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>errorbar.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>errorbar.height</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>errorbar.linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>,
+  <span class='kw'>errorbar.size</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>vline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>vline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>vline.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>, <span class='kw'>vline.size</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>sort</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
+  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"regression coefficient"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"term"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stats.labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>caption.summary</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>stats.label.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
   <span class='kw'>stats.label.fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>, <span class='kw'>stats.label.color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>label.r</span> <span class='kw'>=</span> <span class='fl'>0.15</span>, <span class='kw'>label.size</span> <span class='kw'>=</span> <span class='fl'>0.25</span>, <span class='kw'>label.box.padding</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>label.label.padding</span> <span class='kw'>=</span> <span class='fl'>0.25</span>, <span class='kw'>label.point.padding</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
@@ -248,23 +248,6 @@ kind of model it is dealing with.</p></td>
     <tr>
       <th>scales</th>
       <td><p>scales on which to report the variables: for random effects, the choices are &#8216;"sdcor"&#8217; (standard deviations and correlations: the default if <code>scales</code> is <code>NULL</code>) or &#8216;"vcov"&#8217; (variances and covariances). <code>NA</code> means no transformation, appropriate e.g. for fixed effects.</p></td>
-    </tr>
-    <tr>
-      <th>conf.method</th>
-      <td><p>Character describing method for computing confidence
-intervals (for more, see <code><a href='https://rdrr.io/pkg/lme4/man/confint.merMod.html'>?lme4::confint.merMod</a></code> and
-<code><a href='https://rdrr.io/pkg/broom.mixed/man/brms_tidiers.html'>?broom.mixed::tidy.brmsfit</a></code>). This argument has different defaults
-depending on the model object. For the <code>merMod</code> class model objects
-(<code>lmer</code>, <code>glmer</code>, <code>nlmer</code>, etc.), the default is <code>"Wald"</code> (other options
-are: <code>"profile"</code>, <code>"boot"</code>). For <code>MCMC</code> or <code>brms</code> fit model objects (Stan,
-JAGS, etc.), the default is <code>"quantile"</code>, while the only other options is
-<code>"HPDinterval"</code>.</p></td>
-    </tr>
-    <tr>
-      <th>conf.type</th>
-      <td><p>Whether to use <code>"profile"</code> or <code>"Wald"</code> confidendence
-intervals, passed to the <code>type</code> argument of <code><a href='https://rdrr.io/pkg/ordinal/man/confint.clm.html'>ordinal::confint.clm()</a></code>.
-Defaults to <code>"profile"</code>.</p></td>
     </tr>
     <tr>
       <th>component</th>
@@ -750,7 +733,8 @@ labels.</p>
 #&gt; <span class='warning'>http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Examine the pairs() plot to diagnose sampling problems</span></div><div class='img'><img src='ggcoefstats-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># -------------- getting model summary ------------------------------</span>
 
 <span class='co'># model</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>lme4</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: Matrix</span></div><div class='input'><span class='no'>lmm1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>lme4</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lme4/man/lmer.html'>lmer</a></span>(
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>lme4</span>)
+<span class='no'>lmm1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>lme4</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lme4/man/lmer.html'>lmer</a></span>(
   <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>Reaction</span> ~ <span class='no'>Days</span> + (<span class='no'>Days</span> <span class='kw'>|</span> <span class='no'>Subject</span>),
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>sleepstudy</span>
 )

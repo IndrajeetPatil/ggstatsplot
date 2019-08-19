@@ -48,8 +48,8 @@ MINOR CHANGES
     present in the data.
   - `ggstatsplot` now uses `rcompanion` to compute Spearman's *rho* and
     Kendall's *W*. Therefore, `DescTools` is removed from dependencies.
-  - `ggcoefstats` supports following objects: `lme`, `mclogit`, `mmclogit`,
-    `wblm`.
+  - `ggcoefstats` supports following objects: `bglmerMod`, `blmerMod`, `lme`,
+    `mclogit`, `mmclogit`, `tobit`, `wblm`.
   - `ggcoefstats` now respects `conf.int`. It internally always defaulted to
     `conf.int = TRUE` in `broom::tidy` irrespective of what was specified by the
     user.
@@ -58,6 +58,7 @@ MINOR CHANGES
     more detailed results from a goodness of fit (gof) test. No such change is
     made for `ggbarstats` because there is no space to include more details
     above the bar.
+  - Removed `conf.method` and `conf.type` arguments for `ggcoefstats`.
 
 # ggstatsplot 0.0.12
 
