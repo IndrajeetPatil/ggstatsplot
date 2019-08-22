@@ -30,7 +30,7 @@ ggstatsplot:::palette_message(
 Other helper_messages: \code{\link{bartlett_message}},
   \code{\link{ggcorrmat_matrix_message}},
   \code{\link{grouped_message}},
-  \code{\link{normality_message}}, \code{\link{pairwise_p}}
+  \code{\link{normality_message}}
 }
 \author{
 \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}

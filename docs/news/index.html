@@ -186,7 +186,8 @@
 <a href="#ggstatsplot-010" class="anchor"></a>ggstatsplot 0.1.0<small> Unreleased </small>
 </h1>
 <p>ANNOUNCEMENTS</p>
-<p><code>ggstatsplot</code> is undergoing <em>conscious uncoupling</em> whereby all the statistical processing functions are being moved to a new package called <code>statsExpressions</code>. This new package will act as a backend that handles all things statistical processing. This <strong>will not</strong> affect the end users of <code>ggstatsplot</code> unless you have been using the helper functions.</p>
+<p><code>ggstatsplot</code> is undergoing <em>conscious uncoupling</em> whereby all the statistical processing functions that make stats subtitles are being moved to a new package called <code>statsExpressions</code>. This new package will act as a backend that handles all things statistical processing. This <strong>will not</strong> affect the end users of <code>ggstatsplot</code> unless you have been using the helper functions.</p>
+<p>Additionally, multiple pairwise comparison tests are being moved to an independent package called <code>pairwiseComparisons</code>.</p>
 <p>This uncoupling is designed to achieve two things:</p>
 <ul>
 <li><p>Make the code base of more manageable size in <code>ggstatsplot</code>, which will make package development a bit easier.</p></li>
@@ -282,7 +283,7 @@
 <p>MINOR CHANGES</p>
 <ul>
 <li>
-<code><a href="../reference/pairwise_p.html">pairwise_p()</a></code> function no longer outputs <code>conf.low</code> and <code>conf.high</code> columns when parametric <em>post hoc</em> tests are run. This is because these values were accurate only when no <em>p</em>-value adjustment was carried out.</li>
+<code>pairwise_p()</code> function no longer outputs <code>conf.low</code> and <code>conf.high</code> columns when parametric <em>post hoc</em> tests are run. This is because these values were accurate only when no <em>p</em>-value adjustment was carried out.</li>
 <li>Instead of using the internal function <code>cor_test_ci</code>, <code>ggscatterstats</code> instead used <code>SpearmanRho</code> function from <code>DescTools</code> package. This was done to reduce number of custom internal functions used to compute CIs for various effect sizes. <code>ggstatsplot</code> therefore gains <code>DescTools</code> as a dependency.</li>
 <li>The <code>sampling.plan</code> argument default for <code>ggbarstats</code> function has been changed from <code>"indepMulti"</code> to <code>"jointMulti"</code> to be consistent with its sister function <code>ggpiestats</code>.</li>
 </ul>

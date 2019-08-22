@@ -36,6 +36,10 @@ magrittr::`%$%`
 rlang::`%||%`
 
 #' @export
+#' @importFrom rlang "%|%"
+rlang::`%|%`
+
+#' @export
 #' @importFrom tibble tibble
 tibble::tibble
 

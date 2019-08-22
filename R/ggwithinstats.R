@@ -16,10 +16,11 @@
 #' @inheritParams statsExpressions::expr_anova_parametric
 #'
 #' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggbetweenstats}},
-#'  \code{\link{grouped_ggwithinstats}}, \code{\link{pairwise_p}}
+#'  \code{\link{grouped_ggwithinstats}}
 #'
 #' @importFrom rlang exec !! enquo :=
 #' @importFrom statsExpressions bf_ttest bf_oneway_anova
+#' @importFrom pairwiseComparisons pairwise_comparisons pairwise_comparisons_caption
 #'
 #' @details
 #'
@@ -371,7 +372,7 @@ ggwithinstats <- function(data,
   if (isTRUE(pairwise.comparisons) && test == "anova") {
     # creating dataframe with pairwise comparison results
     df_pairwise <-
-      pairwise_p(
+      pairwiseComparisons::pairwise_comparisons(
         data = data,
         x = {{ x }},
         y = {{ y }},
@@ -400,7 +401,7 @@ ggwithinstats <- function(data,
 
     # preparing the caption for pairwise comparisons test
     caption <-
-      pairwise_p_caption(
+      pairwiseComparisons::pairwise_comparisons_caption(
         type = type,
         var.equal = TRUE,
         paired = TRUE,

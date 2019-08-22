@@ -1,4 +1,4 @@
-context(desc = "pairwise_p with ggsignif")
+context(desc = "pairwise comparisons with ggsignif")
 
 # significant display works -------------------------------------------------
 

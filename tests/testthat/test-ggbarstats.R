@@ -311,10 +311,12 @@ testthat::test_that(
     )
 
     # should not work
-    testthat::expect_error(ggstatsplot::ggbarstats(
-      data = df,
-      main = x,
-      condition = y
-    ))
+    testthat::expect_error(
+      suppressWarnings(ggstatsplot::ggbarstats(
+        data = df,
+        main = x,
+        condition = y
+      ))
+    )
   }
 )

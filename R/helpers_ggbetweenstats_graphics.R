@@ -306,8 +306,12 @@ outlier_df <- function(data,
 #'
 #' @param plot A `ggplot` object on which `geom_signif` needed to be added.
 #' @param df_pairwise A dataframe containing results from pairwise comparisons
-#'   (produced by `ggstatsplot::pairwise_p()` function).
+#'   (produced by `pairwiseComparisons::pairwise_comparisons()` function).
 #' @inheritParams ggbetweenstats
+#'
+#' @importFrom purrrlyr by_row
+#' @importFrom dplyr mutate rename filter arrange pull
+#' @importFrom ggsignif geom_signif
 #'
 #' @examples
 #' library(ggplot2)
@@ -316,7 +320,7 @@ outlier_df <- function(data,
 #' p <- ggplot(iris, aes(Species, Sepal.Length)) + geom_boxplot()
 #'
 #' # dataframe with pairwise comparison test results
-#' df_pair <- ggstatsplot::pairwise_p(data = iris, x = Species, y = Sepal.Length)
+#' df_pair <- pairwiseComparisons::pairwise_comparisons(data = iris, x = Species, y = Sepal.Length)
 #'
 #' # adding plot with
 #' ggstatsplot:::ggsignif_adder(
@@ -376,10 +380,11 @@ ggsignif_adder <- function(plot,
     df_pairwise %<>% dplyr::arrange(.data = ., group1)
 
     # computing y coordinates for ggsignif bars
-    ggsignif_y_position <- ggsignif_position_calculator(
-      x = data %>% dplyr::pull({{ x }}),
-      y = data %>% dplyr::pull({{ y }})
-    )
+    ggsignif_y_position <-
+      ggsignif_position_calculator(
+        x = data %>% dplyr::pull({{ x }}),
+        y = data %>% dplyr::pull({{ y }})
+      )
 
     # adding ggsignif comparisons to the plot
     plot <- plot +
