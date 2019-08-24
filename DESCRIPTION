@@ -36,7 +36,6 @@ Imports:
     crayon (>= 1.3.4),
     dplyr (>= 0.8.3),
     ellipsis (>= 0.2.0.1),
-    forcats (>= 0.4.0),
     ggcorrplot (>= 0.1.3),
     ggExtra (>= 0.8),
     ggplot2 (>= 3.2.1),
@@ -44,10 +43,10 @@ Imports:
     ggsignif (>= 0.6.0),
     grid,
     groupedstats (>= 0.0.8.9000),
-    jmv (>= 0.9.6.1),
     magrittr (>= 1.5),
     metaBMA (>= 0.6.1),
     metafor (>= 2.1-0),
+    pairwiseComparisons (>= 0.0.1),
     paletteer (>= 0.2.1),
     psych (>= 1.8.12),
     purrr (>= 0.3.2),
@@ -56,15 +55,15 @@ Imports:
     scales (>= 1.0.0),
     sjstats (>= 0.17.5),
     stats,
-    statsExpressions (>= 0.0.1),
-    stringr (>= 1.4.0),
+    statsExpressions (>= 0.1.0),
     tibble (>= 2.1.3),
     tidyr (>= 0.8.3),
-    utils,
-    WRS2 (>= 1.0-0)
+    WRS2
 Suggests:
     broom,
     broom.mixed,
+    forcats,
+    jmv,
     knitr,
     lme4,
     MASS,
@@ -72,13 +71,14 @@ Suggests:
     ordinal,
     rmarkdown,
     spelling,
+    stringr,
     survival,
     testthat
 VignetteBuilder: 
     knitr
 Remotes:
     IndrajeetPatil/groupedstats,
-    IndrajeetPatil/statsExpressions
+    IndrajeetPatil/pairwiseComparisons
 Encoding: UTF-8
 Language: en-US
 LazyData: true

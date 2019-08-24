@@ -11,7 +11,7 @@ ggsignif_adder(plot, df_pairwise, data, x, y,
 \item{plot}{A \code{ggplot} object on which \code{geom_signif} needed to be added.}
 
 \item{df_pairwise}{A dataframe containing results from pairwise comparisons
-(produced by \code{ggstatsplot::pairwise_p()} function).}
+(produced by \code{pairwiseComparisons::pairwise_comparisons()} function).}
 
 \item{data}{A dataframe (or a tibble) from which variables specified are to
 be taken. A matrix or tables will \strong{not} be accepted.}
@@ -42,7 +42,7 @@ library(ggplot2)
 p <- ggplot(iris, aes(Species, Sepal.Length)) + geom_boxplot()
 
 # dataframe with pairwise comparison test results
-df_pair <- ggstatsplot::pairwise_p(data = iris, x = Species, y = Sepal.Length)
+df_pair <- pairwiseComparisons::pairwise_comparisons(data = iris, x = Species, y = Sepal.Length)
 
 # adding plot with
 ggstatsplot:::ggsignif_adder(

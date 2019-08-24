@@ -133,9 +133,9 @@ df_facet_label <- function(data, x, y, k = 3L) {
         ..f = ~ paste(
           "list(~chi['gof']^2~",
           "(",
-          .$df,
+          .$parameter,
           ")==",
-          specify_decimal_p(x = .$`Chi-squared`, k = k),
+          specify_decimal_p(x = .$statistic, k = k),
           ", ~italic(p)",
           .$p.value.formatted,
           ")",

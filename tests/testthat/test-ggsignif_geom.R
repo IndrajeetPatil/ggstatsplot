@@ -17,7 +17,7 @@ testthat::test_that(
     p <- ggplot(df, aes(x, y)) + geom_boxplot()
 
     # dataframe with pairwise comparison test results
-    df_pair <- ggstatsplot::pairwise_p(df, x, y, messages = FALSE)
+    df_pair <- pairwiseComparisons::pairwise_comparisons(df, x, y, messages = FALSE)
 
     # adding plot with
     p_new <- ggstatsplot:::ggsignif_adder(

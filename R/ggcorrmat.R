@@ -83,8 +83,6 @@
 #'   `insig = "pch"`). Defaults are `pch.col = "#F0E442"` and `pch.cex = 10`.
 #' @param tl.cex,tl.col,tl.srt The size, the color, and the string rotation of
 #'   text label (variable names, i.e.).
-#' @param messages Decides whether messages references, notes, and warnings are
-#'   to be displayed (Default: `TRUE`).
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams paletteer::paletteer_d
 #' @inheritParams ggscatterstats
@@ -102,6 +100,7 @@
 #' @importFrom crayon green blue yellow red
 #' @importFrom WRS2 pball
 #' @importFrom psych corr.p corr.test
+#' @importFrom pairwiseComparisons p_adjust_text
 #'
 #' @seealso \code{\link{grouped_ggcorrmat}} \code{\link{ggscatterstats}}
 #'   \code{\link{grouped_ggscatterstats}}
@@ -426,7 +425,10 @@ ggcorrmat <- function(data,
       if (is.null(caption) && pch == 4 && isTRUE(caption.default)) {
         # p value adjustment method description
         p.adjust.method.text <-
-          paste("Adjustment (p-value): ", p_adjust_text(p.adjust.method), sep = "")
+          paste("Adjustment (p-value): ",
+            pairwiseComparisons::p_adjust_text(p.adjust.method),
+            sep = ""
+          )
 
         # preparing the caption
         caption <-

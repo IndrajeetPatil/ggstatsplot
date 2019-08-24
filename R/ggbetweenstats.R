@@ -128,9 +128,10 @@
 #' @importFrom ggsignif geom_signif
 #' @importFrom purrrlyr by_row
 #' @importFrom statsExpressions bf_ttest bf_oneway_anova
+#' @importFrom pairwiseComparisons pairwise_comparisons pairwise_comparisons_caption
 #'
 #' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggwithinstats}},
-#'  \code{\link{grouped_ggwithinstats}}, \code{\link{pairwise_p}}
+#'  \code{\link{grouped_ggwithinstats}}
 #'
 #' @details
 #' For parametric tests, Welch's ANOVA/*t*-test are used as a default (i.e.,
@@ -539,7 +540,7 @@ ggbetweenstats <- function(data,
   if (isTRUE(pairwise.comparisons) && test == "anova") {
     # creating dataframe with pairwise comparison results
     df_pairwise <-
-      pairwise_p(
+      pairwiseComparisons::pairwise_comparisons(
         data = data,
         x = {{ x }},
         y = {{ y }},
@@ -568,7 +569,7 @@ ggbetweenstats <- function(data,
 
     # preparing the caption for pairwise comparisons test
     caption <-
-      pairwise_p_caption(
+      pairwiseComparisons::pairwise_comparisons_caption(
         type = type,
         var.equal = var.equal,
         paired = FALSE,

@@ -3,10 +3,13 @@
 ANNOUNCEMENTS
 
 `ggstatsplot` is undergoing *conscious uncoupling* whereby all the statistical
-processing functions are being moved to a new package called `statsExpressions`.
-This new package will act as a backend that handles all things statistical
-processing. This **will not** affect the end users of `ggstatsplot` unless you
-have been using the helper functions. 
+processing functions that make stats subtitles are being moved to a new package
+called `statsExpressions`. This new package will act as a backend that handles
+all things statistical processing. This **will not** affect the end users of
+`ggstatsplot` unless you have been using the helper functions.
+
+Additionally, multiple pairwise comparison tests are being moved to an
+independent package called `pairwiseComparisons`.
 
 This uncoupling is designed to achieve two things:
 

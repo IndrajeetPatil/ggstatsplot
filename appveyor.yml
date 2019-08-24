@@ -16,6 +16,9 @@ skip_branch_with_pr: true
 
 # Adapt as necessary starting from here
 
+cache:
+  #- packages
+
 environment:
   global:
     USE_RTOOLS: true

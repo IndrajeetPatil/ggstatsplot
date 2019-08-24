@@ -89,6 +89,30 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "forcats",
+      "name": "forcats",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=forcats"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "jmv",
+      "name": "jmv",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=jmv"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "knitr",
       "name": "knitr",
       "provider": {
@@ -170,6 +194,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=spelling"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "stringr",
+      "name": "stringr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=stringr"
     },
     {
       "@type": "SoftwareApplication",
@@ -270,19 +306,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "forcats",
-      "name": "forcats",
-      "version": ">= 0.4.0",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=forcats"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "ggcorrplot",
       "name": "ggcorrplot",
       "version": ">= 0.1.3",
@@ -366,19 +389,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "jmv",
-      "name": "jmv",
-      "version": ">= 0.9.6.1",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=jmv"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "magrittr",
       "name": "magrittr",
       "version": ">= 1.5",
@@ -415,6 +425,13 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=metafor"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "pairwiseComparisons",
+      "name": "pairwiseComparisons",
+      "version": ">= 0.0.1",
+      "sameAs": "https://github.com/IndrajeetPatil/pairwiseComparisons"
     },
     {
       "@type": "SoftwareApplication",
@@ -516,21 +533,14 @@
       "@type": "SoftwareApplication",
       "identifier": "statsExpressions",
       "name": "statsExpressions",
-      "version": ">= 0.0.1",
-      "sameAs": "https://github.com/IndrajeetPatil/statsExpressions"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "stringr",
-      "name": "stringr",
-      "version": ">= 1.4.0",
+      "version": ">= 0.1.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=stringr"
+      "sameAs": "https://CRAN.R-project.org/package=statsExpressions"
     },
     {
       "@type": "SoftwareApplication",
@@ -560,14 +570,8 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "utils",
-      "name": "utils"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "WRS2",
       "name": "WRS2",
-      "version": ">= 1.0-0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
