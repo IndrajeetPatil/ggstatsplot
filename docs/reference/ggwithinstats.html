@@ -545,7 +545,7 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='grouped_ggbetweenstats.html'>grouped_ggbetweenstats</a></code>, <code><a href='ggbetweenstats.html'>ggbetweenstats</a></code>,
-<code><a href='grouped_ggwithinstats.html'>grouped_ggwithinstats</a></code>, <code><a href='https://indrajeetpatil.github.io/pairwiseComparisons//reference/pairwise_comparisons.html'>pairwiseComparisons::pairwise_comparisons</a></code></p></div>
+<code><a href='grouped_ggwithinstats.html'>grouped_ggwithinstats</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -561,7 +561,8 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>score</span>,
   <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Presentation modality"</span>,
   <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Proportion of utilitarian decisions"</span>
-)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Shapiro-Wilk Normality Test for </span><span style='color: #BBBB00;'>Proportion of utilitarian decisions</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>&lt; 0.001</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Bartlett's test for homogeneity of variances for factor </span><span style='color: #BBBB00;'>Presentation modality</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>&lt; 0.001</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggwithinstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: `cols` is now required.</span>
+#&gt; <span class='warning'>Please use `cols = c(data, label)`</span></div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Shapiro-Wilk Normality Test for </span><span style='color: #BBBB00;'>Proportion of utilitarian decisions</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>&lt; 0.001</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Bartlett's test for homogeneity of variances for factor </span><span style='color: #BBBB00;'>Presentation modality</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>&lt; 0.001</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggwithinstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># more than two groups (anova)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>WRS2</span>)</div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>Attaching package: 'WRS2'</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from 'package:jmv':</span>
@@ -577,7 +578,8 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
   <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='no'>Taster</span>
 )</div><div class='output co'>#&gt; <span class='warning'>Warning: extreme order statistics used as endpoints</span></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>99%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>100</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 5</span><span>
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; <span class='warning'>Warning: `cols` is now required.</span>
+#&gt; <span class='warning'>Please use `cols = c(data, label)`</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 5</span><span>
 #&gt;   group1 group2 statistic p.value significance
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       
 #&gt; </span><span style='color: #555555;'>1</span><span> Wine A Wine B      1.05 0.301   ns          

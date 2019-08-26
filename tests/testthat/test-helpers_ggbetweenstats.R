@@ -71,7 +71,6 @@ testthat::test_that(
   desc = "mean_labeller works",
   code = {
 
-
     # ----------------------- data without NAs ------------------------------
 
     # creating a smaller dataframe
@@ -99,14 +98,13 @@ testthat::test_that(
 
     # check mean label for first factor level
     testthat::expect_identical(
-      object = mean_dat$label[[1]],
-      expected = "3819.580, 95% CI [3140.804, 4498.356]"
-    )
-
-    # check mean label for first factor level
-    testthat::expect_identical(
-      object = mean_dat$label[[4]],
-      expected = "4602.090, 95% CI [4274.733, 4929.447]"
+      mean_dat$label,
+      c(
+        "list(~italic(mu)==3819.580,CI[95*'%'](3140.804,4498.356))",
+        "list(~italic(mu)==4053.440,CI[95*'%'](3613.102,4493.778))",
+        "list(~italic(mu)==3928.250,CI[95*'%'](3607.033,4249.467))",
+        "list(~italic(mu)==4602.090,CI[95*'%'](4274.733,4929.447))"
+      )
     )
 
     # check sample size label for first factor level
@@ -141,7 +139,6 @@ testthat::test_that(
     )
   }
 )
-
 
 # outlier_df ----------------------------------------------------
 

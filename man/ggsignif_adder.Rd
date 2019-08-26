@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers_ggbetweenstats_graphics.R
 \name{ggsignif_adder}
 \alias{ggsignif_adder}
-\title{Adding \code{geom_signif} to the plot.}
+\title{Adding \code{geom_signif} to \code{ggplot}}
 \usage{
 ggsignif_adder(plot, df_pairwise, data, x, y,
   pairwise.annotation = "p.value", pairwise.display = "significant")
@@ -33,18 +33,23 @@ multiple groups being compared and scores of pairwise comparisons being
 displayed.}
 }
 \description{
-Adding \code{geom_signif} to the plot.
+Adding \code{geom_signif} to \code{ggplot}
 }
 \examples{
+set.seed(123)
 library(ggplot2)
 
 # plot
 p <- ggplot(iris, aes(Species, Sepal.Length)) + geom_boxplot()
 
 # dataframe with pairwise comparison test results
-df_pair <- pairwiseComparisons::pairwise_comparisons(data = iris, x = Species, y = Sepal.Length)
+df_pair <- pairwiseComparisons::pairwise_comparisons(
+  data = iris,
+  x = Species,
+  y = Sepal.Length
+)
 
-# adding plot with
+# adding a geom for pairwise comparisons
 ggstatsplot:::ggsignif_adder(
   plot = p,
   data = iris,
@@ -54,6 +59,6 @@ ggstatsplot:::ggsignif_adder(
 )
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }
 \keyword{internal}

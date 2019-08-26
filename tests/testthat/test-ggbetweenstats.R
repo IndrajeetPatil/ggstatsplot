@@ -282,9 +282,9 @@ testthat::test_that(
     testthat::expect_identical(
       pb$data[[6]]$label,
       c(
-        "2.290, 95% CI [1.907, 2.673]",
-        "3.120, 95% CI [2.787, 3.453]",
-        "4.000, 95% CI [3.561, 4.439]"
+        "list(~italic(mu)==2.290,CI[95*'%'](1.907,2.673))",
+        "list(~italic(mu)==3.120,CI[95*'%'](2.787,3.453))",
+        "list(~italic(mu)==4.000,CI[95*'%'](3.561,4.439))"
       )
     )
 
@@ -456,7 +456,7 @@ testthat::test_that(
     testthat::expect_equal(dim(pb1$data[[5]]), c(2L, 15L))
     testthat::expect_equal(pb1$data[[4]]$x, c(1L, 2L))
     testthat::expect_identical(
-      as.character(round(pb1$data[[4]]$y, 2)),
+      c("list(~italic(mu)== 20.66 )", "list(~italic(mu)== 16.96 )"),
       pb1$data[[5]]$label
     )
     testthat::expect_equal(dim(pb1$data[[2]]), c(2L, 25L))

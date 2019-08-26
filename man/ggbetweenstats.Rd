@@ -266,7 +266,7 @@ their confidence intervals are computed, see \code{?rcompanion::wilcoxonR}.
 For repeated measures designs, use \code{ggwithinstats}.
 }
 \examples{
-
+\donttest{
 # to get reproducible results from bootstrapping
 set.seed(123)
 library(ggstatsplot)
@@ -279,7 +279,7 @@ ggstatsplot::ggbetweenstats(
   title = "Fuel efficiency by type of car transmission",
   caption = "Transmission (0 = automatic, 1 = manual)"
 )
-\donttest{
+
 # more detailed function call
 ggstatsplot::ggbetweenstats(
   data = datasets::morley,

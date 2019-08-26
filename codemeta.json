@@ -448,6 +448,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "parameters",
+      "name": "parameters",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=parameters"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "psych",
       "name": "psych",
       "version": ">= 1.8.12",
@@ -510,19 +522,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=scales"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "sjstats",
-      "name": "sjstats",
-      "version": ">= 0.17.5",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=sjstats"
     },
     {
       "@type": "SoftwareApplication",
