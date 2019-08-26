@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers_ggbetweenstats_graphics.R
 \name{aesthetic_addon}
 \alias{aesthetic_addon}
-\title{Making aesthetic modifications to the plot.}
+\title{Making aesthetic modifications to the plot}
 \usage{
 aesthetic_addon(plot, x, xlab = NULL, ylab = NULL, title = NULL,
   subtitle = NULL, caption = NULL, ggtheme = ggplot2::theme_bw(),
@@ -56,9 +56,9 @@ work as expected.}
 \item{...}{Additional arguments.}
 }
 \description{
-Making aesthetic modifications to the plot.
+Making aesthetic modifications to the plot
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }
 \keyword{internal}

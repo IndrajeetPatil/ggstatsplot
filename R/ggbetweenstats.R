@@ -126,7 +126,6 @@
 #' @importFrom crayon blue green red yellow
 #' @importFrom paletteer scale_color_paletteer_d scale_fill_paletteer_d
 #' @importFrom ggsignif geom_signif
-#' @importFrom purrrlyr by_row
 #' @importFrom statsExpressions bf_ttest bf_oneway_anova
 #' @importFrom pairwiseComparisons pairwise_comparisons pairwise_comparisons_caption
 #'
@@ -158,7 +157,7 @@
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}
 #'
 #' @examples
-#'
+#' \donttest{
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
 #' library(ggstatsplot)
@@ -171,7 +170,7 @@
 #'   title = "Fuel efficiency by type of car transmission",
 #'   caption = "Transmission (0 = automatic, 1 = manual)"
 #' )
-#' \donttest{
+#'
 #' # more detailed function call
 #' ggstatsplot::ggbetweenstats(
 #'   data = datasets::morley,

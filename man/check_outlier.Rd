@@ -18,7 +18,7 @@ Quartile) \code{coef} times the Inter-Quartile Range (IQR) (Default: \code{1.5})
 Returns a logical vector
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }
 \concept{helper_stats}
 \keyword{internal}

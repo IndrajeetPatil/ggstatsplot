@@ -2,10 +2,10 @@
 % Please edit documentation in R/helpers_ggbetweenstats_graphics.R
 \name{mean_labeller}
 \alias{mean_labeller}
-\title{@title Create a dataframe with mean per group and a formatted label for
+\title{Create a dataframe with mean per group and a formatted label for
 display in \code{ggbetweenstats} plot.}
 \usage{
-mean_labeller(data, x, y, mean.ci = FALSE, k = 3)
+mean_labeller(data, x, y, mean.ci = FALSE, k = 3, ...)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
@@ -21,9 +21,11 @@ mean is to be displayed (Default: \code{FALSE}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
+
+\item{...}{Currently ignored.}
 }
 \description{
-@title Create a dataframe with mean per group and a formatted label for
+Create a dataframe with mean per group and a formatted label for
 display in \code{ggbetweenstats} plot.
 }
 \examples{
@@ -37,5 +39,8 @@ ggstatsplot:::mean_labeller(
 )
 }
 
+}
+\author{
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }
 \keyword{internal}

@@ -74,6 +74,6 @@ ggstatsplot:::mean_ggrepel(
 )
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }
 \keyword{internal}

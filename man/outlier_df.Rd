@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers_ggbetweenstats_graphics.R
 \name{outlier_df}
 \alias{outlier_df}
-\title{Adding a column to dataframe describing outlier status.}
+\title{Adding a column to dataframe describing outlier status}
 \usage{
 outlier_df(data, x, y, outlier.label, outlier.coef = 1.5, ...)
 }
@@ -26,8 +26,7 @@ Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
 \item{...}{Additional arguments.}
 }
 \description{
-This function is mostly helpful for internal operations of some
-of the functions in this package.
+Adding a column to dataframe describing outlier status
 }
 \examples{
 # adding column for outlier and a label for that outlier
@@ -41,6 +40,6 @@ ggstatsplot:::outlier_df(
   dplyr::arrange(outlier)
 }
 \author{
-Indrajeet Patil
+\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }
 \keyword{internal}

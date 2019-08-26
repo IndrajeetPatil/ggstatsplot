@@ -1,14 +1,17 @@
-#'  @title Create a dataframe with mean per group and a formatted label for
-#'   display in `ggbetweenstats` plot.
 #' @name mean_labeller
+#' @title Create a dataframe with mean per group and a formatted label for
+#'   display in `ggbetweenstats` plot.
+#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @inheritParams ggbetweenstats
+#' @param ... Currently ignored.
 #'
 #' @importFrom groupedstats grouped_summary
-#' @importFrom dplyr select group_by vars contains mutate mutate_at arrange
-#' @importFrom rlang !! enquo
+#' @importFrom dplyr select group_by vars contains mutate mutate_at group_nest
+#' @importFrom rlang !! enquo ensym
 #' @importFrom tibble as_tibble
-#' @importFrom purrrlyr by_row
+#' @importFrom purrr map
+#' @importFrom tidyr drop_na
 #'
 #' @examples
 #' \donttest{
@@ -28,7 +31,8 @@ mean_labeller <- function(data,
                           x,
                           y,
                           mean.ci = FALSE,
-                          k = 3) {
+                          k = 3,
+                          ...) {
 
   # creating the dataframe
   data %<>%
@@ -45,43 +49,47 @@ mean_labeller <- function(data,
       measures = {{ y }}
     ) %>%
     dplyr::mutate(.data = ., {{ y }} := mean) %>%
-    dplyr::select(
-      .data = .,
-      {{ x }},
-      {{ y }},
-      dplyr::matches("^mean"),
-      n
-    ) %>% # format the numeric values
+    dplyr::select(.data = ., {{ x }}, {{ y }}, dplyr::matches("^mean"), n) %>%
     dplyr::mutate_at(
       .tbl = .,
       .vars = dplyr::vars(dplyr::contains("mean")),
       .funs = ~ specify_decimal_p(x = ., k = k)
-    )
+    ) %>%
+    dplyr::group_nest(.tbl = ., {{ x }})
 
   # adding confidence intervals to the label for mean
-  if (isTRUE(mean.ci)) {
-    mean_dat %<>%
-      purrrlyr::by_row(
-        .d = .,
-        ..f = ~ paste(.$mean,
-          ", 95% CI [",
-          .$mean.low.conf,
-          ", ",
-          .$mean.high.conf,
-          "]",
-          sep = "",
-          collapse = ""
-        ),
-        .collate = "rows",
-        .to = "label",
-        .labels = TRUE
-      )
-  } else {
-    mean_dat %<>% dplyr::mutate(.data = ., label = mean)
-  }
+  mean_dat %<>%
+    dplyr::mutate(
+      .data = .,
+      label = data %>% {
+        if (isTRUE(mean.ci)) {
+          purrr::map(
+            .x = .,
+            .f = ~ paste(
+              "list(~italic(mu)==",
+              .$mean,
+              ",",
+              "CI[95*'%']",
+              "(",
+              .$mean.low.conf,
+              ",",
+              .$mean.high.conf,
+              "))",
+              sep = ""
+            )
+          )
+        } else {
+          purrr::map(
+            .x = .,
+            .f = ~ paste("list(~italic(mu)==", .$mean, ")", sep = " ")
+          )
+        }
+      }
+    )
 
   # adding sample size labels and arranging by original factor levels
   mean_dat %<>%
+    tidyr::unnest(.) %>%
     dplyr::mutate(.data = ., n_label = paste0({{ x }}, "\n(n = ", n, ")", sep = "")) %>%
     dplyr::arrange(.data = ., {{ x }})
 
@@ -92,7 +100,7 @@ mean_labeller <- function(data,
 
 #' @title Adding labels for mean values.
 #' @name mean_ggrepel
-#' @author Indrajeet Patil
+#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @param mean.data A dataframe containing means for each level of the factor.
 #'   The columns should be titled `x`, `y`, and `label`.
@@ -188,6 +196,7 @@ mean_ggrepel <- function(plot,
       segment.color = "black",
       force = 2,
       inherit.aes = FALSE,
+      parse = TRUE,
       na.rm = TRUE,
       seed = 123
     )
@@ -200,7 +209,7 @@ mean_ggrepel <- function(plot,
 #' @title Finding the outliers in the dataframe using Tukey's interquartile
 #'   range rule
 #' @name check_outlier
-#' @author Indrajeet Patil
+#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #' @description Returns a logical vector
 #'
 #' @param var A numeric vector.
@@ -216,37 +225,25 @@ mean_ggrepel <- function(plot,
 
 # defining function to detect outliers
 check_outlier <- function(var, coef = 1.5) {
-
   # compute the quantiles
-  quantiles <-
-    stats::quantile(
-      x = var,
-      probs = c(0.25, 0.75),
-      na.rm = TRUE
-    )
+  quantiles <- stats::quantile(x = var, probs = c(0.25, 0.75), na.rm = TRUE)
 
   # compute the interquartile range
   IQR <- quantiles[2] - quantiles[1]
 
   # check for outlier and output a logical
-  res <-
-    ((var < (quantiles[1] - coef * IQR)) | (var > (quantiles[2] + coef * IQR)))
-
-  # return the result
-  return(res)
+  return((var < (quantiles[1] - coef * IQR)) | (var > (quantiles[2] + coef * IQR)))
 }
 
 
-#' @title Adding a column to dataframe describing outlier status.
+#' @title Adding a column to dataframe describing outlier status
 #' @name outlier_df
-#' @author Indrajeet Patil
-#' @description This function is mostly helpful for internal operations of some
-#'   of the functions in this package.
+#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @inheritParams ggbetweenstats
 #' @param ... Additional arguments.
 #'
-#' @importFrom rlang !! enquo
+#' @importFrom rlang !! enquo ensym
 #' @importFrom dplyr group_by mutate ungroup
 #'
 #' @examples
@@ -300,29 +297,34 @@ outlier_df <- function(data,
 }
 
 
-#' @title Adding `geom_signif` to the plot.
+#' @title Adding `geom_signif` to `ggplot`
 #' @name ggsignif_adder
-#' @author Indrajeet Patil
+#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @param plot A `ggplot` object on which `geom_signif` needed to be added.
 #' @param df_pairwise A dataframe containing results from pairwise comparisons
 #'   (produced by `pairwiseComparisons::pairwise_comparisons()` function).
 #' @inheritParams ggbetweenstats
 #'
-#' @importFrom purrrlyr by_row
+#' @importFrom purrr pmap
 #' @importFrom dplyr mutate rename filter arrange pull
 #' @importFrom ggsignif geom_signif
 #'
 #' @examples
+#' set.seed(123)
 #' library(ggplot2)
 #'
 #' # plot
 #' p <- ggplot(iris, aes(Species, Sepal.Length)) + geom_boxplot()
 #'
 #' # dataframe with pairwise comparison test results
-#' df_pair <- pairwiseComparisons::pairwise_comparisons(data = iris, x = Species, y = Sepal.Length)
+#' df_pair <- pairwiseComparisons::pairwise_comparisons(
+#'   data = iris,
+#'   x = Species,
+#'   y = Sepal.Length
+#' )
 #'
-#' # adding plot with
+#' # adding a geom for pairwise comparisons
 #' ggstatsplot:::ggsignif_adder(
 #'   plot = p,
 #'   data = iris,
@@ -341,12 +343,7 @@ ggsignif_adder <- function(plot,
                            pairwise.display = "significant") {
   # creating a column for group combinations
   df_pairwise %<>%
-    purrrlyr::by_row(
-      .d = .,
-      ..f = ~ c(.$group1, .$group2),
-      .collate = "list",
-      .to = "groups"
-    )
+    dplyr::mutate(.data = ., groups = purrr::pmap(.l = list(group1, group2), .f = c))
 
   # decide what needs to be displayed:
   # only significant comparisons shown
@@ -406,19 +403,17 @@ ggsignif_adder <- function(plot,
   return(plot)
 }
 
-#' @title Calculating `y` coordinates for the `ggsignif` comparison bars.
+#' @name ggsignif_position_calculator
+#' @importFrom utils combn
+#'
 #' @inheritParams ggbetweenstats
 #'
 #' @keywords internal
+#' @noRd
 
 ggsignif_position_calculator <- function(x, y) {
   # number of comparisons
-  n_comparions <-
-    length(utils::combn(
-      x = unique(x),
-      m = 2,
-      simplify = FALSE
-    ))
+  n_comparions <- length(utils::combn(x = unique(x), m = 2L, simplify = FALSE))
 
   # start position on y-axis for the ggsignif lines
   y_start <- max(y, na.rm = TRUE) * (1 + 0.025)
@@ -426,7 +421,7 @@ ggsignif_position_calculator <- function(x, y) {
   # steps in which the y values need to increase
   step_length <- (max(y, na.rm = TRUE) - min(y, na.rm = TRUE)) / 20
 
-  # end position on y-axis for the ggsignif lines
+  # end position on `y`-axis for the `ggsignif` lines
   y_end <- y_start + (step_length * n_comparions)
 
   # creating a vector of positions for the ggsignif lines
@@ -477,9 +472,9 @@ sort_xy <- function(data,
 }
 
 
-#' @title Making aesthetic modifications to the plot.
+#' @title Making aesthetic modifications to the plot
 #' @name aesthetic_addon
-#' @author Indrajeet Patil
+#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @param plot Plot to be aesthetically modified.
 #' @param x A numeric vector for `x` axis.

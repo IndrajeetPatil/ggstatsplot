@@ -32,6 +32,9 @@ BREAKING CHANGES
 MAJOR CHANGES
 
   - Major refactoring to reduce the codesize and to rely fully on `rlang`.
+  - There was confusion about what did the red point in `ggbetweenstats` and
+    `ggbetweenstats` plots represents. Now the label also contains $\mu$ to
+    highlight that what is being displayed is a mean value.
   - To be consistent with the rest of the functions, `ggpiestats` and
     `ggbarstats` now uses the following aliases for arguments: `x` for `main`
     and `y` for `condition`. This change is backward-compatible and should not
