@@ -29,7 +29,7 @@
 #'   will be ignored if `meta.analytic.effect` is set to `TRUE`.
 #' @param p.kr Logical, if `TRUE`, the computation of *p*-values for `lmer` is
 #'   based on conditional *F*-tests with Kenward-Roger approximation for the
-#'   `df`. For details, see `?sjstats::p_value`.
+#'   `df`. For details, see `?parameters::p_value`.
 #' @param p.adjust.method Adjustment method for *p*-values for multiple
 #'   comparisons. Possible methods are: `"holm"`, `"hochberg"`, `"hommel"`,
 #'   `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`, `"none"`. Default is no correction
@@ -166,7 +166,7 @@
 #' @importFrom stats as.formula lm confint qnorm p.adjust
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom grid unit
-#' @importFrom sjstats p_value
+#' @importFrom parameters p_value
 #' @importFrom tibble as_tibble rownames_to_column
 #' @importFrom tidyr unite
 #' @importFrom groupedstats lm_effsize_standardizer
@@ -626,7 +626,7 @@ ggcoefstats <- function(x,
             .vars = "term",
             .funs = ~ as.character(x = .)
           ),
-          y = sjstats::p_value(fit = x, p.kr = p.kr) %>%
+          y = parameters::p_value(fit = x, p.kr = p.kr) %>%
             dplyr::select(.data = ., -std.error) %>%
             dplyr::mutate_at(
               .tbl = .,

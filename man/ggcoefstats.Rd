@@ -83,7 +83,7 @@ based on MCMC/Stan samples (\code{summarize = "stan"}).}
 
 \item{p.kr}{Logical, if \code{TRUE}, the computation of \emph{p}-values for \code{lmer} is
 based on conditional \emph{F}-tests with Kenward-Roger approximation for the
-\code{df}. For details, see \code{?sjstats::p_value}.}
+\code{df}. For details, see \code{?parameters::p_value}.}
 
 \item{p.adjust.method}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"}, \code{"hochberg"}, \code{"hommel"},
