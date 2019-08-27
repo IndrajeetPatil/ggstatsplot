@@ -70,11 +70,11 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Indrajeet Patil \email{patilindrajeet.science@gmail.com} (0000-0003-1995-6531) [contributor]
+\strong{Maintainer}: Indrajeet Patil \email{patilindrajeet.science@gmail.com} (\href{https://orcid.org/0000-0003-1995-6531}{ORCID}) [contributor]
 
 Other contributors:
 \itemize{
-  \item Chuck Powell \email{ibecav@gmail.com} (0000-0002-3606-2188) [contributor]
+  \item Chuck Powell \email{ibecav@gmail.com} (\href{https://orcid.org/0000-0002-3606-2188}{ORCID}) [contributor]
 }
 
 }

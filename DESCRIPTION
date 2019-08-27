@@ -37,7 +37,7 @@ Imports:
     dplyr (>= 0.8.3),
     ellipsis (>= 0.2.0.1),
     ggcorrplot (>= 0.1.3),
-    ggExtra (>= 0.8),
+    ggExtra (>= 0.9),
     ggplot2 (>= 3.2.1),
     ggrepel (>= 0.8.1),
     ggsignif (>= 0.6.0),

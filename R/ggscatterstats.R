@@ -63,23 +63,10 @@
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html}
 #'
 #' @note
-#' \itemize{
-#' \item If you try including a `ggscatterstats()` plot inside an R Notebook or
-#' R Markdown code chunk, you will notice that the plot is not returned in the
-#' output. In order to get a `ggscatterstats()` to show up in these contexts,
-#' you need to save the `ggscatterstats` plot as a variable in one code chunk,
-#' and explicitly print it using the `grid` package in another chunk:
-#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html}
-#'
-#' \item `marginal.type = "densigram"` will work only with the development
-#'   version of `ggExtra` that you can download from `GitHub`:
-#'   `remotes::install_github("daattali/ggExtra")`.
-#'
-#' \item The plot uses `ggrepel::geom_label_repel` to attempt to keep labels
+#' The plot uses `ggrepel::geom_label_repel` to attempt to keep labels
 #' from over-lapping to the largest degree possible.  As a consequence plot
 #' times will slow down massively (and the plot file will grow in size) if you
 #' have a lot of labels that overlap.
-#' }
 #'
 #' @examples
 #'

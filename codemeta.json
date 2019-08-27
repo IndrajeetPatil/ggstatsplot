@@ -321,7 +321,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggExtra",
       "name": "ggExtra",
-      "version": ">= 0.8",
+      "version": ">= 0.9",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
