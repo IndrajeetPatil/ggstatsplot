@@ -22,7 +22,7 @@
 #' @inherit ggcorrmat return details
 #'
 #' @examples
-#'
+#' \donttest{
 #' # for reproducibility
 #' set.seed(123)
 #'
@@ -64,6 +64,7 @@
 #'   cor.vars = Sepal.Length:Petal.Width,
 #'   output = "ci"
 #' )
+#' }
 #' @export
 
 # defining the function

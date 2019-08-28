@@ -72,7 +72,7 @@
 #'   `?rcompanion::cramerVFit`.
 #'
 #' @examples
-#'
+#' \donttest{
 #' # for reproducibility
 #' set.seed(123)
 #'
@@ -104,6 +104,7 @@
 #'   x = Eye,
 #'   counts = Freq
 #' )
+#' }
 #' @export
 
 # defining the function

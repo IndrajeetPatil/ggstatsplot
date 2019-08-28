@@ -9,10 +9,12 @@
 <title>Finding the outliers in the dataframe using Tukey's interquartile
 range rule — check_outlier • ggstatsplot</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -41,11 +43,12 @@ range rule — check_outlier • ggstatsplot</title>
 
   <link href="../extra.css" rel="stylesheet">
   
+
 <meta property="og:title" content="Finding the outliers in the dataframe using Tukey's interquartile
 range rule — check_outlier" />
-
 <meta property="og:description" content="Returns a logical vector" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -76,7 +79,7 @@ range rule — check_outlier" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.0</span>
       </span>
     </div>
 
@@ -155,7 +158,6 @@ range rule — check_outlier" />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/IndrajeetPatil/ggstatsplot">
@@ -189,13 +191,11 @@ range rule</h1>
     </div>
 
     <div class="ref-description">
-    
     <p>Returns a logical vector</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>check_outlier</span>(<span class='no'>var</span>, <span class='kw'>coef</span> <span class='kw'>=</span> <span class='fl'>1.5</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -210,14 +210,14 @@ With Tukey's method, outliers are below (1st Quartile) or above (3rd
 Quartile) <code>coef</code> times the Inter-Quartile Range (IQR) (Default: <code>1.5</code>).</p></td>
     </tr>
     </table>
-    
+
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+    </ul>
 
     <h2>Author</h2>
     <p><a href='https://github.com/IndrajeetPatil'>Indrajeet Patil</a></p>

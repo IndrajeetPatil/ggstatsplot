@@ -1,7 +1,7 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.1.0.9000
+Version: 0.1.0
 Authors@R: 
     c(person(given = "Indrajeet",
              family = "Patil",
@@ -42,11 +42,11 @@ Imports:
     ggrepel (>= 0.8.1),
     ggsignif (>= 0.6.0),
     grid,
-    groupedstats (>= 0.0.8.9000),
+    groupedstats (>= 0.0.9),
     magrittr (>= 1.5),
     metaBMA (>= 0.6.1),
     metafor (>= 2.1-0),
-    pairwiseComparisons (>= 0.0.1),
+    pairwiseComparisons (>= 0.1.0),
     paletteer (>= 0.2.1),
     parameters,
     psych (>= 1.8.12),
@@ -76,9 +76,6 @@ Suggests:
     testthat
 VignetteBuilder: 
     knitr
-Remotes:
-    IndrajeetPatil/groupedstats,
-    IndrajeetPatil/pairwiseComparisons
 Encoding: UTF-8
 Language: en-US
 LazyData: true

@@ -9,10 +9,12 @@
 <title>Violin plots for group or condition comparisons in within-subjects
 designs repeated across all levels of a grouping variable. — grouped_ggwithinstats • ggstatsplot</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -41,12 +43,13 @@ designs repeated across all levels of a grouping variable. — grouped_ggwithins
 
   <link href="../extra.css" rel="stylesheet">
   
+
 <meta property="og:title" content="Violin plots for group or condition comparisons in within-subjects
 designs repeated across all levels of a grouping variable. — grouped_ggwithinstats" />
-
 <meta property="og:description" content="A combined plot of comparison plot created for levels of a
 grouping variable." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -77,7 +80,7 @@ grouping variable." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.0</span>
       </span>
     </div>
 
@@ -156,7 +159,6 @@ grouping variable." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/IndrajeetPatil/ggstatsplot">
@@ -190,10 +192,8 @@ designs repeated across all levels of a grouping variable.</h1>
     </div>
 
     <div class="ref-description">
-    
     <p>A combined plot of comparison plot created for levels of a
 grouping variable.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>grouped_ggwithinstats</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>grouping.var</span>, <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -216,7 +216,7 @@ grouping variable.</p>
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(), <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>, <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>return</span> <span class='kw'>=</span> <span class='st'>"plot"</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -600,22 +600,19 @@ combining (plot, caption).</p></dd>
 </dl></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>For more about how the effect size measures (for nonparametric tests) and
 their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/wilcoxonPairedR.html'>?rcompanion::wilcoxonPairedR</a></code>.</p>
 <p>For independent measures designs, use <code>ggbetweenstats</code>.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='ggwithinstats.html'>ggwithinstats</a></code>, <code><a href='ggbetweenstats.html'>ggbetweenstats</a></code>,
 <code><a href='grouped_ggbetweenstats.html'>grouped_ggbetweenstats</a></code></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># to get reproducible results from bootstrapping</span>
+    <pre class="examples"><div class='input'><span class='co'># to get reproducible results from bootstrapping</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggstatsplot</span>)
 
@@ -636,11 +633,8 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#details">Details</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

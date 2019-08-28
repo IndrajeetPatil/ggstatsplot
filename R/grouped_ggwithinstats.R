@@ -23,7 +23,7 @@
 #' @inherit ggwithinstats return details
 #'
 #' @examples
-#'
+#' \donttest{
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
 #' library(ggstatsplot)
@@ -36,6 +36,7 @@
 #'   grouping.var = order,
 #'   messages = TRUE
 #' )
+#' }
 #' @export
 
 # defining the function

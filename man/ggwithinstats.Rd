@@ -245,7 +245,7 @@ their confidence intervals are computed, see \code{?rcompanion::wilcoxonPairedR}
 For independent measures designs, use \code{ggbetweenstats}.
 }
 \examples{
-
+\donttest{
 # setup
 set.seed(123)
 library(ggstatsplot)
@@ -272,6 +272,7 @@ ggstatsplot::ggwithinstats(
   outlier.tagging = TRUE,
   outlier.label = Taster
 )
+}
 }
 \seealso{
 \code{\link{grouped_ggbetweenstats}}, \code{\link{ggbetweenstats}},

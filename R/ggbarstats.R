@@ -41,7 +41,7 @@
 #' @inherit ggpiestats return details
 #'
 #' @examples
-#'
+#' \donttest{
 #' # for reproducibility
 #' set.seed(123)
 #'
@@ -64,6 +64,7 @@
 #'   y = Hair,
 #'   counts = Freq
 #' )
+#' }
 #' @export
 
 # defining the function

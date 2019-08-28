@@ -216,7 +216,7 @@ function across multiple levels of a given factor and combining the
 resulting plots using \code{ggstatsplot::combine_plots}.
 }
 \examples{
-
+\donttest{
 # for reproducibility
 set.seed(123)
 
@@ -238,6 +238,7 @@ ggstatsplot::grouped_ggdotplotstats(
   ),
   messages = FALSE
 )
+}
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html}
