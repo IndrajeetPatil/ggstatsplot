@@ -219,9 +219,7 @@ mean_ggrepel <- function(plot,
 #'
 #' @importFrom stats quantile
 #'
-#' @family helper_stats
-#'
-#' @keywords internal
+#' @noRd
 
 # defining function to detect outliers
 check_outlier <- function(var, coef = 1.5) {
@@ -256,7 +254,8 @@ check_outlier <- function(var, coef = 1.5) {
 #'   outlier.coef = 2
 #' ) %>%
 #'   dplyr::arrange(outlier)
-#' @keywords internal
+#'
+#' @noRd
 
 # function body
 outlier_df <- function(data,
@@ -434,6 +433,16 @@ ggsignif_position_calculator <- function(x, y) {
   )
 }
 
+#' @name sort_xy
+#'
+#' @importFrom forcats fct_reorder
+#' @importFrom dplyr mutate
+#' @importFrom ellipsis check_dots_used
+#'
+#' @inheritParams ggbetweenstats
+#'
+#' @keywords internal
+#' @noRd
 
 # function body
 sort_xy <- function(data,

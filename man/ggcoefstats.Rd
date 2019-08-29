@@ -8,19 +8,18 @@ ggcoefstats(x, output = "plot", statistic = NULL, scales = NULL,
   component = "survival", bf.message = TRUE, d = "norm",
   d.par = c(mean = 0, sd = 0.3), tau = "halfcauchy",
   tau.par = c(scale = 0.5), iter = 5000, summarize = "stan",
-  p.kr = TRUE, p.adjust.method = "none", coefficient.type = c("beta",
-  "location", "coefficient"), by.class = FALSE, effsize = "eta",
-  partial = TRUE, nboot = 500, meta.analytic.effect = FALSE,
-  point.color = "blue", point.size = 3, point.shape = 16,
-  conf.int = TRUE, conf.level = 0.95, se.type = "nid", k = 2,
-  k.caption.summary = 0, exclude.intercept = TRUE,
-  exponentiate = FALSE, errorbar.color = "black",
-  errorbar.height = 0, errorbar.linetype = "solid",
-  errorbar.size = 0.5, vline = TRUE, vline.color = "black",
-  vline.linetype = "dashed", vline.size = 1, sort = "none",
-  xlab = "regression coefficient", ylab = "term", title = NULL,
-  subtitle = NULL, stats.labels = TRUE, caption = NULL,
-  caption.summary = TRUE, stats.label.size = 3,
+  p.adjust.method = "none", coefficient.type = c("beta", "location",
+  "coefficient"), by.class = FALSE, effsize = "eta", partial = TRUE,
+  nboot = 500, meta.analytic.effect = FALSE, point.color = "blue",
+  point.size = 3, point.shape = 16, conf.int = TRUE,
+  conf.level = 0.95, se.type = "nid", k = 2, k.caption.summary = 0,
+  exclude.intercept = TRUE, exponentiate = FALSE,
+  errorbar.color = "black", errorbar.height = 0,
+  errorbar.linetype = "solid", errorbar.size = 0.5, vline = TRUE,
+  vline.color = "black", vline.linetype = "dashed", vline.size = 1,
+  sort = "none", xlab = "regression coefficient", ylab = "term",
+  title = NULL, subtitle = NULL, stats.labels = TRUE,
+  caption = NULL, caption.summary = TRUE, stats.label.size = 3,
   stats.label.fontface = "bold", stats.label.color = NULL,
   label.r = 0.15, label.size = 0.25, label.box.padding = 1,
   label.label.padding = 0.25, label.point.padding = 0.5,
@@ -80,10 +79,6 @@ specifies the type of family).}
 \item{summarize}{how to estimate parameter summaries (mean, median, SD,
 etc.): Either by numerical integration (\code{summarize = "integrate"}) or
 based on MCMC/Stan samples (\code{summarize = "stan"}).}
-
-\item{p.kr}{Logical, if \code{TRUE}, the computation of \emph{p}-values for \code{lmer} is
-based on conditional \emph{F}-tests with Kenward-Roger approximation for the
-\code{df}. For details, see \code{?parameters::p_value}.}
 
 \item{p.adjust.method}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"}, \code{"hochberg"}, \code{"hommel"},
@@ -286,6 +281,7 @@ labels.
 Dot-and-whisker plots for regression analyses
 }
 \examples{
+\donttest{
 # for reproducibility
 set.seed(123)
 
@@ -307,7 +303,7 @@ ggstatsplot::ggcoefstats(x = mod, output = "glance")
 ggstatsplot::ggcoefstats(x = mod, output = "augment")
 
 # -------------- with custom dataframe -----------------------------------
-\donttest{
+
 # creating a dataframe
 df <-
   structure(

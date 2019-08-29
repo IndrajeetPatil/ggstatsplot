@@ -202,7 +202,8 @@ utils::globalVariables(
     "condition",
     "main",
     "pair1",
-    "W"
+    "W",
+    "Parameter"
   ),
   package = "ggstatsplot",
   add = FALSE

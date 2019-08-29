@@ -27,9 +27,6 @@
 #' @param ylab Label for `y` axis variable (Default: `"term"`).
 #' @param subtitle The text for the plot subtitle. The input to this argument
 #'   will be ignored if `meta.analytic.effect` is set to `TRUE`.
-#' @param p.kr Logical, if `TRUE`, the computation of *p*-values for `lmer` is
-#'   based on conditional *F*-tests with Kenward-Roger approximation for the
-#'   `df`. For details, see `?parameters::p_value`.
 #' @param p.adjust.method Adjustment method for *p*-values for multiple
 #'   comparisons. Possible methods are: `"holm"`, `"hochberg"`, `"hommel"`,
 #'   `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`, `"none"`. Default is no correction
@@ -175,6 +172,7 @@
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}
 #'
 #' @examples
+#' \donttest{
 #' # for reproducibility
 #' set.seed(123)
 #'
@@ -196,7 +194,7 @@
 #' ggstatsplot::ggcoefstats(x = mod, output = "augment")
 #'
 #' # -------------- with custom dataframe -----------------------------------
-#' \donttest{
+#'
 #' # creating a dataframe
 #' df <-
 #'   structure(
@@ -315,7 +313,6 @@ ggcoefstats <- function(x,
                         tau.par = c(scale = 0.5),
                         iter = 5000,
                         summarize = "stan",
-                        p.kr = TRUE,
                         p.adjust.method = "none",
                         coefficient.type = c("beta", "location", "coefficient"),
                         by.class = FALSE,
@@ -616,7 +613,7 @@ ggcoefstats <- function(x,
   # =================== p-value computation ==================================
 
   # p-values won't be computed by default for some of the models
-  if (!"p.value" %in% names(tidy_df)) {
+  if (!class(x)[[1]] %in% df.mods && !"p.value" %in% names(tidy_df)) {
     # use `sjstats` S3 methods to add them to the tidy dataframe
     tryCatch(
       expr = tidy_df %<>%
@@ -626,8 +623,8 @@ ggcoefstats <- function(x,
             .vars = "term",
             .funs = ~ as.character(x = .)
           ),
-          y = parameters::p_value(fit = x, p.kr = p.kr) %>%
-            dplyr::select(.data = ., -std.error) %>%
+          y = parameters::p_value(x) %>%
+            dplyr::rename(.data = ., term = Parameter, p.value = p) %>%
             dplyr::mutate_at(
               .tbl = .,
               .vars = "term",
@@ -637,9 +634,7 @@ ggcoefstats <- function(x,
         ) %>%
         dplyr::filter(.data = ., !is.na(estimate)) %>%
         tibble::as_tibble(x = .),
-      error = function(e) {
-        tidy_df
-      }
+      error = function(e) tidy_df
     )
   }
 

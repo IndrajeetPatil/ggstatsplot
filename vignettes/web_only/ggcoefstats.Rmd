@@ -70,15 +70,16 @@ Most of the regression models that are supported in the `broom` and
 `broom.mixed` packages with `tidy` and `glance` methods are also supported by
 `ggcoefstats`. For example-
 
-`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `bigglm`, `biglm`, `brmsfit`,
-`btergm`, `cch`, `clm`, `clmm`, `confusionMatrix`, `coxph`, `drc`, `emmGrid`,
-`epi.2by2`, `ergm`, `felm`, `fitdistr`, `glmerMod`, `glmmTMB`, `gls`, `gam`,
-`Gam`, `gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmmTMB`, `glmRob`,
-`glmrob`, `gmm`, `ivreg`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`, `lmRob`,
-`lmrob`, `mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`, `mediate`, `mjoint`, `mle2`,
-`mlm`, `multinom`, `negbin`, `nlmerMod`, `nlrq`, `nls`, `orcutt`, `plm`, `polr`,
-`ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `speedglm`, `speedlm`, `stanreg`,
-`survreg`, `svyglm`, `svyolr`, `svyglm`, etc.
+`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `bglmerMod`, `bigglm`, `biglm`,
+`blmerMod`, `brmsfit`, `btergm`, `cch`, `clm`, `clmm`, `confusionMatrix`,
+`coxph`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `felm`, `fitdistr`, `glmerMod`,
+`glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`,
+`glmmTMB`, `glmRob`, `glmrob`, `gmm`, `ivreg`, `lm`, `lm.beta`, `lmerMod`,
+`lmodel2`, `lmRob`, `lmrob`, `mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`,
+`mediate`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `nlmerMod`, `nlrq`,
+`nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`,
+`speedglm`, `speedlm`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`,
+`tobit`, `wblm`, etc.
 
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
@@ -292,7 +293,6 @@ ggstatsplot::combine_plots(
       data = movies_10,
       control = lme4::lmerControl(calc.derivs = FALSE)
     ),
-    p.kr = FALSE,
     title = "linear mixed-effects model",
     stats.label.color = "black",
     exclude.intercept = FALSE # show the intercept

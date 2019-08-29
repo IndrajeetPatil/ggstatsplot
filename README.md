@@ -9,7 +9,7 @@
 | [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)                      | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Forks](https://img.shields.io/badge/forks-71-blue.svg)](https://github.com/IndrajeetPatil/ggstatsplot/)                                                     | [![Rdoc](https://www.rdocumentation.org/badges/version/ggstatsplot)](https://www.rdocumentation.org/packages/ggstatsplot)                                       |
 | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/)                                                      | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                                               | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](https://img.shields.io/badge/issues-17-red.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)                                       | [![vignettes](https://img.shields.io/badge/vignettes-0.1.0-orange.svg?colorB=FF5722)](https://CRAN.R-project.org/package=ggstatsplot/vignettes/)                |
 | [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot) | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2074621.svg)](https://doi.org/10.5281/zenodo.2074621)                                                       |
-| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2019--08--27-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
+| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2019--08--28-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
 | [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                                    | [![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2019_08_16-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md)                | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil)                                    | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)                                                     | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
 | [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ggstatsplot/community)                                                         |                                                                                                                                                                                              |                                                                                                                                                   |                                                                                                                                                                |                                                                                                                                                                 |
 
@@ -218,7 +218,7 @@ ggstatsplot::ggplot_converter
 #> function(plot) {
 #>   cowplot::ggdraw() + cowplot::draw_grob(grid::grobTree(plot))
 #> }
-#> <bytecode: 0x0000000021e88870>
+#> <bytecode: 0x0000000021c510c8>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -1303,8 +1303,7 @@ ggstatsplot::ggcoefstats(x = mod)
 <img src="man/figures/README-ggcoefstats1-1.png" width="100%" />
 
 This default plot can be further modified to one’s liking with
-additional arguments (also, let’s use a robust linear model instead of a
-simple linear model now):
+additional arguments (also, let’s use a different model now):
 
 ``` r
 # for reproducibility
@@ -1333,8 +1332,6 @@ ggstatsplot::ggcoefstats(
   # note the order in which the labels are entered
   ggplot2::scale_y_discrete(labels = c("transmission", "cylinders", "interaction")) +
   ggplot2::labs(x = "regression coefficient", y = NULL)
-#> Note: No p-values and/or statistic available for regression coefficients from rlm object; 
-#> skipping labels with stats.
 ```
 
 <img src="man/figures/README-ggcoefstats2-1.png" width="100%" />
@@ -1343,16 +1340,17 @@ Most of the regression models that are supported in the `broom` and
 `broom.mixed` packages with `tidy` and `glance` methods are also
 supported by `ggcoefstats`. For example-
 
-`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `bigglm`, `biglm`,
-`brmsfit`, `btergm`, `cch`, `clm`, `clmm`, `confusionMatrix`, `coxph`,
-`drc`, `emmGrid`, `epi.2by2`, `ergm`, `felm`, `fitdistr`, `glmerMod`,
-`glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`, `garch`, `glm`, `glmmadmb`,
-`glmmPQL`, `glmmTMB`, `glmRob`, `glmrob`, `gmm`, `ivreg`, `lm`,
-`lm.beta`, `lmerMod`, `lmodel2`, `lmRob`, `lmrob`, `mcmc`, `MCMCglmm`,
-`mclogit`, `mmclogit`, `mediate`, `mjoint`, `mle2`, `mlm`, `multinom`,
-`negbin`, `nlmerMod`, `nlrq`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`,
-`rjags`, `rlm`, `rlmerMod`, `rq`, `speedglm`, `speedlm`, `stanreg`,
-`survreg`, `svyglm`, `svyolr`, `svyglm`, etc.
+`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `bglmerMod`, `bigglm`,
+`biglm`, `blmerMod`, `brmsfit`, `btergm`, `cch`, `clm`, `clmm`,
+`confusionMatrix`, `coxph`, `drc`, `emmGrid`, `epi.2by2`, `ergm`,
+`felm`, `fitdistr`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`,
+`gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmmTMB`, `glmRob`,
+`glmrob`, `gmm`, `ivreg`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`,
+`lmRob`, `lmrob`, `mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`, `mediate`,
+`mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `nlmerMod`, `nlrq`,
+`nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`,
+`rq`, `speedglm`, `speedlm`, `stanreg`, `survreg`, `svyglm`, `svyolr`,
+`svyglm`, `tobit`, `wblm`, etc.
 
 Although not shown here, this function can also be used to carry out
 both frequentist and Bayesian random-effects meta-analysis.

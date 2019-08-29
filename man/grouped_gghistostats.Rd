@@ -250,7 +250,11 @@ function across multiple levels of a given factor and combining the
 resulting plots using \code{ggstatsplot::combine_plots}.
 }
 \examples{
+\donttest{
+# for reproducibility
+set.seed(123)
 
+# plot
 ggstatsplot::grouped_gghistostats(
   data = iris,
   x = Sepal.Length,
@@ -264,6 +268,7 @@ ggstatsplot::grouped_gghistostats(
   ),
   messages = FALSE
 )
+}
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
