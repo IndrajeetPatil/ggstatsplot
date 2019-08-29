@@ -254,7 +254,6 @@ check_outlier <- function(var, coef = 1.5) {
 #'   outlier.coef = 2
 #' ) %>%
 #'   dplyr::arrange(outlier)
-#'
 #' @noRd
 
 # function body
