@@ -22,7 +22,11 @@
 #' @inherit gghistostats return details
 #'
 #' @examples
+#' \donttest{
+#' # for reproducibility
+#' set.seed(123)
 #'
+#' # plot
 #' ggstatsplot::grouped_gghistostats(
 #'   data = iris,
 #'   x = Sepal.Length,
@@ -36,6 +40,7 @@
 #'   ),
 #'   messages = FALSE
 #' )
+#' }
 #' @export
 #'
 

@@ -6,7 +6,6 @@ testthat::test_that(
   desc = "subtitle_meta_ggcoefstats works",
   code = {
 
-
     # dataframe
     df <- tibble::tribble(
       ~estimate, ~std.error,
@@ -134,7 +133,6 @@ testthat::test_that(
   desc = "checking meta-analysis results object",
   code = {
 
-
     # dataframe
     df <- tibble::tribble(
       ~estimate, ~std.error,
@@ -151,7 +149,7 @@ testthat::test_that(
       messages = TRUE
     ))
 
-    # test the ouput
+    # test the output
     testthat::expect_identical(
       message[2],
       "Random-Effects Model (k = 5; tau^2 estimator: REML)"

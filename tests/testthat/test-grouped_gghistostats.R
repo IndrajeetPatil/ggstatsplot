@@ -5,7 +5,7 @@ context("grouped_gghistostats")
 testthat::test_that(
   desc = "grouped_gghistostats works",
   code = {
-
+    testthat::skip_on_cran()
 
     # when arguments are entered as bare expressions
     set.seed(123)
@@ -65,7 +65,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle return",
   code = {
-
+    testthat::skip_on_cran()
 
     # should return a list of length 3
     ls_results <- ggstatsplot::grouped_gghistostats(

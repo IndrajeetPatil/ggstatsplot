@@ -329,7 +329,7 @@ their confidence intervals are computed, see \code{?rcompanion::wilcoxonR}.
 For repeated measures designs, use \code{ggwithinstats}.
 }
 \examples{
-
+\donttest{
 # to get reproducible results from bootstrapping
 set.seed(123)
 
@@ -341,7 +341,7 @@ ggstatsplot::grouped_ggbetweenstats(
   grouping.var = drv,
   conf.level = 0.99
 )
-\donttest{
+
 # modifying individual plots using `ggplot.component` argument
 ggstatsplot::grouped_ggbetweenstats(
   data = dplyr::filter(

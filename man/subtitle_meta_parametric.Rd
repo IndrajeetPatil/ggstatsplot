@@ -38,6 +38,7 @@ This analysis is carried out using the \code{metafor} package. For
 more, see \code{?metafor::rma}.
 }
 \examples{
+\donttest{
 # let's create a dataframe
 df_results <-
   structure(
@@ -96,6 +97,7 @@ ggstatsplot::subtitle_meta_parametric(
   messages = FALSE,
   output = "glance"
 )
+}
 }
 \author{
 \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}

@@ -89,18 +89,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "forcats",
-      "name": "forcats",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=forcats"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "jmv",
       "name": "jmv",
       "provider": {
@@ -306,6 +294,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "forcats",
+      "name": "forcats",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=forcats"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "ggcorrplot",
       "name": "ggcorrplot",
       "version": ">= 0.1.3",
@@ -391,7 +391,6 @@
       "@type": "SoftwareApplication",
       "identifier": "magrittr",
       "name": "magrittr",
-      "version": ">= 1.5",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -451,18 +450,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=paletteer"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "parameters",
-      "name": "parameters",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=parameters"
     },
     {
       "@type": "SoftwareApplication",
@@ -531,6 +518,19 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "sjstats",
+      "name": "sjstats",
+      "version": ">= 0.17.5",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=sjstats"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "stats",
       "name": "stats"
     },
@@ -538,7 +538,7 @@
       "@type": "SoftwareApplication",
       "identifier": "statsExpressions",
       "name": "statsExpressions",
-      "version": ">= 0.1.0",
+      "version": ">= 0.1.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",

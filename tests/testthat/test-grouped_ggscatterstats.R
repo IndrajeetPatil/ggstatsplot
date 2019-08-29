@@ -3,7 +3,7 @@ context("grouped_ggscatterstats")
 testthat::test_that(
   desc = "grouped_ggscatterstats works",
   code = {
-
+    testthat::skip_on_cran()
 
     # expect error if no grouping variable is specified
     testthat::expect_error(
@@ -168,6 +168,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle return",
   code = {
+    testthat::skip_on_cran()
+
     # should return a list of length 3
     set.seed(123)
     ls_results <- ggstatsplot::grouped_ggscatterstats(

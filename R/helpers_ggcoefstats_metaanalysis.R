@@ -19,6 +19,7 @@
 #' @importFrom metafor rma
 #'
 #' @examples
+#' \donttest{
 #' # let's create a dataframe
 #' df_results <-
 #'   structure(
@@ -77,6 +78,7 @@
 #'   messages = FALSE,
 #'   output = "glance"
 #' )
+#' }
 #' @export
 
 # function body

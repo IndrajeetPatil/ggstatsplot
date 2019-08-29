@@ -152,7 +152,6 @@ testthat::test_that(
   desc = "ggcoefstats with partial variants of effect size for f-statistic",
   code = {
 
-
     ## partial eta-squared
 
     set.seed(123)
@@ -592,7 +591,6 @@ testthat::test_that(
   desc = "check aareg output",
   code = {
 
-
     # model
     library(survival)
     set.seed(123)
@@ -630,7 +628,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggcoefstats works with glmmPQL object",
   code = {
-
 
     # setup
     set.seed(123)
@@ -736,7 +733,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggcoefstats works with data frames",
   code = {
-
 
     # setup
     library(lme4)
@@ -1115,6 +1111,11 @@ testthat::test_that(
       )
     broom_df2 <- broom.mixed::glance(x = mod2)
     glance_df2 <- ggstatsplot::ggcoefstats(x = mod2, output = "glance")
+    tidy_df2 <- ggstatsplot::ggcoefstats(
+      x = mod2,
+      output = "tidy",
+      exclude.intercept = FALSE
+    )
 
     # checking if they are equal
     testthat::expect_identical(broom_df1, glance_df1)
@@ -1122,6 +1123,14 @@ testthat::test_that(
 
     testthat::expect_true(inherits(glance_df1, what = "tbl_df"))
     testthat::expect_true(inherits(glance_df2, what = "tbl_df"))
+
+    testthat::expect_identical(
+      tidy_df2$label,
+      c(
+        "list(~italic(beta)==251.41, ~italic(t)(174)==36.84, ~italic(p)<= 0.001)",
+        "list(~italic(beta)==10.47, ~italic(t)(174)==6.77, ~italic(p)<= 0.001)"
+      )
+    )
   }
 )
 
@@ -1147,12 +1156,21 @@ testthat::test_that(
 
     # mixed-effects model
     set.seed(123)
-    mod2 <- lme4::lmer(
-      formula = Reaction ~ Days + (Days | Subject),
-      data = sleepstudy
-    )
+    library(MASS)
+    mod2 <-
+      MASS::rlm(
+        formula = stack.loss ~ .,
+        data = stackloss,
+        psi = psi.hampel,
+        init = "lts"
+      )
     df2.broom <- tibble::as_tibble(broom.mixed::augment(mod2))
     df2.ggstats <- ggstatsplot::ggcoefstats(x = mod2, output = "augment")
+    df2.tidy <- ggstatsplot::ggcoefstats(
+      x = mod2,
+      output = "tidy",
+      exclude.intercept = FALSE
+    )
 
     # model with F-statistic
     set.seed(123)
@@ -1170,6 +1188,16 @@ testthat::test_that(
     testthat::expect_true(inherits(df1.ggstats, what = "tbl_df"))
     testthat::expect_true(inherits(df2.ggstats, what = "tbl_df"))
     testthat::expect_true(inherits(df3.ggstats, what = "tbl_df"))
+
+    testthat::expect_identical(
+      df2.tidy$label,
+      c(
+        "list(~italic(beta)==-40.47, ~italic(t)==-3.40, ~italic(p)== 0.001)",
+        "list(~italic(beta)==0.74, ~italic(t)==5.50, ~italic(p)<= 0.001)",
+        "list(~italic(beta)==1.23, ~italic(t)==3.33, ~italic(p)== 0.001)",
+        "list(~italic(beta)==-0.15, ~italic(t)==-0.93, ~italic(p)== 0.352)"
+      )
+    )
   }
 )
 
