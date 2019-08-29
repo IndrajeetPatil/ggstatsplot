@@ -106,6 +106,9 @@ more, see ?metafor::rma." />
       <a href="../articles/additional.html">additional vignettes</a>
     </li>
     <li>
+      <a href="../articles/tests_and_coverage.html">Tests and Coverage</a>
+    </li>
+    <li>
       <a href="../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
@@ -282,10 +285,10 @@ with coefficients or <code>"glance"</code> dataframe with model summaries.</p></
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>df_results</span>,
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"tidy"</span>
-)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 7</span><span>
+)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 7</span><span>
 #&gt;   term           estimate conf.low conf.high std.error z.value       p.value
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> summary effect    0.619    0.407     0.830     0.108    5.74 0.000</span><span style='text-decoration: underline;'>000</span><span>009</span><span style='text-decoration: underline;'>68</span><span></div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> summary effect    0.619    0.407     0.830     0.108    5.74 0.000</span><span style='text-decoration: underline;'>000</span><span>009</span><span style='text-decoration: underline;'>68</span><span></div><div class='input'>
 <span class='co'># making caption</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_meta_parametric.html'>subtitle_meta_parametric</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>df_results</span>,
@@ -300,11 +303,13 @@ with coefficients or <code>"glance"</code> dataframe with model summaries.</p></
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>df_results</span>,
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"glance"</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 12</span><span>
-#&gt;     tau2 se.tau2     k     p     m    QE      QEp    QM     QMp    I2    H2
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 0.056</span><span style='text-decoration: underline;'>1</span><span>  0.041</span><span style='text-decoration: underline;'>1</span><span>     5     1     1  109. 1.48</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-22</span><span>  32.9 9.68</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-9</span><span>  96.8  31.3
-#&gt; </span><span style='color: #949494;'># ... with 1 more variable: int.only </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span></div></span></pre>
+)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 12</span><span>
+#&gt;     tau2 se.tau2     k     p     m    QE      QEp    QM           QMp    I2
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> 0.056</span><span style='text-decoration: underline;'>1</span><span>  0.041</span><span style='text-decoration: underline;'>1</span><span>     5     1     1  109. 1.48</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-22</span><span>  32.9 0.000</span><span style='text-decoration: underline;'>000</span><span>009</span><span style='text-decoration: underline;'>68</span><span>  96.8
+#&gt;      H2 int.only
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>   
+#&gt; </span><span style='color: #555555;'>1</span><span>  31.3 TRUE    </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

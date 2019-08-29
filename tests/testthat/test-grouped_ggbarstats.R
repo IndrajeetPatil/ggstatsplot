@@ -3,7 +3,7 @@ context("grouped_ggbarstats")
 testthat::test_that(
   desc = "grouped_ggbarstats works",
   code = {
-
+    testthat::skip_on_cran()
 
     # --------------------- without counts -----------------------------------
 
@@ -103,7 +103,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle return",
   code = {
-
+    testthat::skip_on_cran()
 
     # should return a list of length 3
     set.seed(123)
@@ -208,6 +208,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking if results coincide with base version",
   code = {
+    testthat::skip_on_cran()
 
     # creating new datasets from the existing one
     mtcars2 <- dplyr::mutate(mtcars, grp = "1")

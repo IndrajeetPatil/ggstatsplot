@@ -6,6 +6,7 @@ context(desc = "grouped_ggwithinstats")
 testthat::test_that(
   desc = "grouping.var works across vector types",
   code = {
+    testthat::skip_on_cran()
     set.seed(123)
 
     # expect error when no grouping.var is specified
@@ -83,11 +84,13 @@ testthat::test_that(
   }
 )
 
-# outlier labeling works --------------------------------------------------
+# grouping.var works across vector types -----------------------------------
 
 testthat::test_that(
   desc = "grouping.var works across vector types",
   code = {
+    testthat::skip_on_cran()
+
     testthat::expect_true(inherits(
       ggstatsplot::grouped_ggwithinstats(
         data = VR_dilemma,
@@ -111,7 +114,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle return",
   code = {
-
+    testthat::skip_on_cran()
 
     # should return a list of length 3
     set.seed(123)
@@ -229,11 +232,13 @@ testthat::test_that(
   }
 )
 
-# subtitle return --------------------------------------------------
+# subtitle return with NA --------------------------------------------------
 
 testthat::test_that(
-  desc = "subtitle return",
+  desc = "subtitle return with NA",
   code = {
+    testthat::skip_on_cran()
+
     # should return a list of length 2
     set.seed(123)
     ls_results <-

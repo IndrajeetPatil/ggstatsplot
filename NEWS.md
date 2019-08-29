@@ -64,7 +64,10 @@ MINOR CHANGES
     more detailed results from a goodness of fit (gof) test. No such change is
     made for `ggbarstats` because there is no space to include more details
     above the bar.
-  - Removed `conf.method` and `conf.type` arguments for `ggcoefstats`. Also, `p.kr` argument removed because `ggcoefstats` now uses `parameters` instead of `sjstats` package to compute p-values for some regression models.
+  - Removed `conf.method` and `conf.type` arguments for `ggcoefstats`. Also,
+    `p.kr` argument removed because `ggcoefstats` will begin to rely on
+    `parameters` instead of `sjstats` package to compute *p*-values for some
+    regression models.
 
 # ggstatsplot 0.0.12
 

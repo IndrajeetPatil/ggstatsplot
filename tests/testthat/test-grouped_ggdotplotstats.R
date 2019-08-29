@@ -5,7 +5,7 @@ context("grouped_ggdotplotstats")
 testthat::test_that(
   desc = "grouped_ggdotplotstats works",
   code = {
-
+    testthat::skip_on_cran()
 
     # for reproducibility
     set.seed(123)
@@ -61,7 +61,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle return",
   code = {
-
+    testthat::skip_on_cran()
 
     # removing factor level with very few no. of observations
     df <- dplyr::filter(.data = ggplot2::mpg, cyl %in% c("4", "6", "8"))
@@ -181,7 +181,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking if results coincide with base version",
   code = {
-
+    testthat::skip_on_cran()
 
     # creating new datasets from the existing one
     msleep2 <- dplyr::mutate(ggplot2::msleep, grp = "1")

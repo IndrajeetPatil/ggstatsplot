@@ -163,7 +163,7 @@
 #' @importFrom stats as.formula lm confint qnorm p.adjust
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom grid unit
-#' @importFrom parameters p_value
+#' @importFrom sjstats p_value
 #' @importFrom tibble as_tibble rownames_to_column
 #' @importFrom tidyr unite
 #' @importFrom groupedstats lm_effsize_standardizer
@@ -623,8 +623,8 @@ ggcoefstats <- function(x,
             .vars = "term",
             .funs = ~ as.character(x = .)
           ),
-          y = parameters::p_value(x) %>%
-            dplyr::rename(.data = ., term = Parameter, p.value = p) %>%
+          y = sjstats::p_value(x) %>%
+            dplyr::select(.data = ., -std.error) %>%
             dplyr::mutate_at(
               .tbl = .,
               .vars = "term",

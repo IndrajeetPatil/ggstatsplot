@@ -295,7 +295,7 @@ ggstatsplot::combine_plots(
     ),
     title = "linear mixed-effects model",
     stats.label.color = "black",
-    exclude.intercept = FALSE # show the intercept
+    exclude.intercept = FALSE
   ) +
     ggplot2::labs(
       x = parse(text = "'standardized regression coefficient' ~italic(beta)"),

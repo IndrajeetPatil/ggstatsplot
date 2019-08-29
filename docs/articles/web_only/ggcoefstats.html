@@ -142,7 +142,7 @@
       <h1>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-08-28</h4>
+            <h4 class="date">2019-08-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -345,20 +345,19 @@
 <a class="sourceLine" id="cb5-26" title="26">      <span class="dt">data =</span> movies_<span class="dv">10</span>,</a>
 <a class="sourceLine" id="cb5-27" title="27">      <span class="dt">control =</span> lme4<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/lme4/man/lmerControl.html">lmerControl</a></span>(<span class="dt">calc.derivs =</span> <span class="ot">FALSE</span>)</a>
 <a class="sourceLine" id="cb5-28" title="28">    ),</a>
-<a class="sourceLine" id="cb5-29" title="29">    <span class="dt">p.kr =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb5-30" title="30">    <span class="dt">title =</span> <span class="st">"linear mixed-effects model"</span>,</a>
-<a class="sourceLine" id="cb5-31" title="31">    <span class="dt">stats.label.color =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb5-32" title="32">    <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span> <span class="co"># show the intercept</span></a>
-<a class="sourceLine" id="cb5-33" title="33">  ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-34" title="34"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(</a>
-<a class="sourceLine" id="cb5-35" title="35">      <span class="dt">x =</span> <span class="kw"><a href="https://rdrr.io/r/base/parse.html">parse</a></span>(<span class="dt">text =</span> <span class="st">"'standardized regression coefficient' ~italic(beta)"</span>),</a>
-<a class="sourceLine" id="cb5-36" title="36">      <span class="dt">y =</span> <span class="st">"fixed effects"</span></a>
-<a class="sourceLine" id="cb5-37" title="37">    ),</a>
-<a class="sourceLine" id="cb5-38" title="38">  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>),</a>
-<a class="sourceLine" id="cb5-39" title="39">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb5-40" title="40">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb5-41" title="41">  <span class="dt">title.text =</span> <span class="st">"Relationship between movie budget and its IMDB rating"</span></a>
-<a class="sourceLine" id="cb5-42" title="42">)</a></code></pre></div>
+<a class="sourceLine" id="cb5-29" title="29">    <span class="dt">title =</span> <span class="st">"linear mixed-effects model"</span>,</a>
+<a class="sourceLine" id="cb5-30" title="30">    <span class="dt">stats.label.color =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb5-31" title="31">    <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb5-32" title="32">  ) <span class="op">+</span></a>
+<a class="sourceLine" id="cb5-33" title="33"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(</a>
+<a class="sourceLine" id="cb5-34" title="34">      <span class="dt">x =</span> <span class="kw"><a href="https://rdrr.io/r/base/parse.html">parse</a></span>(<span class="dt">text =</span> <span class="st">"'standardized regression coefficient' ~italic(beta)"</span>),</a>
+<a class="sourceLine" id="cb5-35" title="35">      <span class="dt">y =</span> <span class="st">"fixed effects"</span></a>
+<a class="sourceLine" id="cb5-36" title="36">    ),</a>
+<a class="sourceLine" id="cb5-37" title="37">  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>),</a>
+<a class="sourceLine" id="cb5-38" title="38">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb5-39" title="39">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb5-40" title="40">  <span class="dt">title.text =</span> <span class="st">"Relationship between movie budget and its IMDB rating"</span></a>
+<a class="sourceLine" id="cb5-41" title="41">)</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/lmer1-1.png" width="672"></p>
 <p>As can be seen from these plots, although there seems to be a really small correlation between budget and rating in a linear model, this effect is not significant once we take into account the hierarchical structure of the data.</p>
 <p>Note that for mixed-effects models, only the <em>fixed</em> effects are shown because there are no confidence intervals for <em>random</em> effects terms. In case, you would like to see these terms, you can enter the same object you entered as <code>x</code> argument to <code>ggcoefstats</code> in <code><a href="http://broom.tidyverse.org/reference/reexports.html">broom::tidy</a></code>:</p>
@@ -408,10 +407,8 @@
 <a class="sourceLine" id="cb7-15" title="15">  <span class="dt">title =</span> <span class="st">"robust estimation of linear mixed-effects model"</span></a>
 <a class="sourceLine" id="cb7-16" title="16">)</a>
 <a class="sourceLine" id="cb7-17" title="17"><span class="co">#&gt; Note: No model diagnostics information available for the object of class rlmerMod .</span></a>
-<a class="sourceLine" id="cb7-18" title="18"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb7-19" title="19"><span class="co">#&gt; Could not extract p-values from model object.</span></a>
-<a class="sourceLine" id="cb7-20" title="20"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from rlmerMod object; </span></a>
-<a class="sourceLine" id="cb7-21" title="21"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
+<a class="sourceLine" id="cb7-18" title="18"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from rlmerMod object; </span></a>
+<a class="sourceLine" id="cb7-19" title="19"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/rlmer-1.png" width="700"></p>
 </div>
 <div id="non-linear-mixed-effects-model-nlmernlmermod" class="section level2">
@@ -1457,10 +1454,8 @@
 <a class="sourceLine" id="cb38-9" title="9">  <span class="dt">x =</span> fit,</a>
 <a class="sourceLine" id="cb38-10" title="10">  <span class="dt">title =</span> <span class="st">"autoregressive integrated moving average"</span></a>
 <a class="sourceLine" id="cb38-11" title="11">)</a>
-<a class="sourceLine" id="cb38-12" title="12"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb38-13" title="13"><span class="co">#&gt; Could not extract p-values from model object.</span></a>
-<a class="sourceLine" id="cb38-14" title="14"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from Arima object; </span></a>
-<a class="sourceLine" id="cb38-15" title="15"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
+<a class="sourceLine" id="cb38-12" title="12"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from Arima object; </span></a>
+<a class="sourceLine" id="cb38-13" title="13"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/arima-1.png" width="480"></p>
 </div>
 <div id="high-performance-linear-model-speedlmspeedglm" class="section level2">
@@ -1678,11 +1673,9 @@
 <a class="sourceLine" id="cb47-14" title="14">  <span class="dt">point.shape =</span> <span class="dv">6</span>,</a>
 <a class="sourceLine" id="cb47-15" title="15">  <span class="dt">point.size =</span> <span class="dv">5</span></a>
 <a class="sourceLine" id="cb47-16" title="16">)</a>
-<a class="sourceLine" id="cb47-17" title="17"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb47-18" title="18"><span class="co">#&gt; Could not extract p-values from model object.</span></a>
-<a class="sourceLine" id="cb47-19" title="19"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from ridgelm object; </span></a>
-<a class="sourceLine" id="cb47-20" title="20"><span class="co">#&gt; skipping labels with stats.</span></a>
-<a class="sourceLine" id="cb47-21" title="21"><span class="co">#&gt; Note: No confidence intervals available for regression coefficients from ridgelm object, so skipping whiskers in the plot.</span></a></code></pre></div>
+<a class="sourceLine" id="cb47-17" title="17"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from ridgelm object; </span></a>
+<a class="sourceLine" id="cb47-18" title="18"><span class="co">#&gt; skipping labels with stats.</span></a>
+<a class="sourceLine" id="cb47-19" title="19"><span class="co">#&gt; Note: No confidence intervals available for regression coefficients from ridgelm object, so skipping whiskers in the plot.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/ridgelm-1.png" width="480"></p>
 </div>
 <div id="generalized-additive-models-with-integrated-smoothness-estimation-gam" class="section level2">
@@ -2155,10 +2148,8 @@
 <a class="sourceLine" id="cb64-38" title="38">  <span class="dt">subtitle =</span> <span class="st">"by bootstrapped pseudolikelihood or MCMC MLE"</span></a>
 <a class="sourceLine" id="cb64-39" title="39">)</a>
 <a class="sourceLine" id="cb64-40" title="40"><span class="co">#&gt; Note: No model diagnostics information available for the object of class btergm .</span></a>
-<a class="sourceLine" id="cb64-41" title="41"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb64-42" title="42"><span class="co">#&gt; Could not extract p-values from model object.</span></a>
-<a class="sourceLine" id="cb64-43" title="43"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from btergm object; </span></a>
-<a class="sourceLine" id="cb64-44" title="44"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
+<a class="sourceLine" id="cb64-41" title="41"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from btergm object; </span></a>
+<a class="sourceLine" id="cb64-42" title="42"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/btergm-1.png" width="576"></p>
 </div>
 <div id="generalized-autoregressive-conditional-heteroscedastic-garch" class="section level2">
@@ -2193,10 +2184,8 @@
 <a class="sourceLine" id="cb66-10" title="10">  <span class="dt">title =</span> <span class="st">"maximum-likelihood fitting of </span><span class="ch">\n</span><span class="st">univariate distributions"</span>,</a>
 <a class="sourceLine" id="cb66-11" title="11">  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_pander.html">theme_pander</a></span>()</a>
 <a class="sourceLine" id="cb66-12" title="12">)</a>
-<a class="sourceLine" id="cb66-13" title="13"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb66-14" title="14"><span class="co">#&gt; Could not extract p-values from model object.</span></a>
-<a class="sourceLine" id="cb66-15" title="15"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from fitdistr object; </span></a>
-<a class="sourceLine" id="cb66-16" title="16"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
+<a class="sourceLine" id="cb66-13" title="13"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from fitdistr object; </span></a>
+<a class="sourceLine" id="cb66-14" title="14"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/fitdistr-1.png" width="576"></p>
 </div>
 <div id="maximum-likelihood-estimation-mle2" class="section level2">
@@ -2266,10 +2255,8 @@
 <a class="sourceLine" id="cb68-33" title="33">  <span class="dt">title =</span> <span class="st">"summary grid from `emmeans` package"</span></a>
 <a class="sourceLine" id="cb68-34" title="34">)</a>
 <a class="sourceLine" id="cb68-35" title="35"><span class="co">#&gt; Note: No model diagnostics information available for the object of class emmGrid .</span></a>
-<a class="sourceLine" id="cb68-36" title="36"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb68-37" title="37"><span class="co">#&gt; Could not extract p-values from model object.</span></a>
-<a class="sourceLine" id="cb68-38" title="38"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from emmGrid object; </span></a>
-<a class="sourceLine" id="cb68-39" title="39"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
+<a class="sourceLine" id="cb68-36" title="36"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from emmGrid object; </span></a>
+<a class="sourceLine" id="cb68-37" title="37"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/emmGrid-1.png" width="480"></p>
 </div>
 <div id="cochrane-orcutt-estimation-orcutt" class="section level2">
@@ -2393,10 +2380,8 @@
 <a class="sourceLine" id="cb73-24" title="24">  <span class="dt">title =</span> <span class="st">"Summary measures for count data </span><span class="ch">\n</span><span class="st">presented in a 2 by 2 table"</span></a>
 <a class="sourceLine" id="cb73-25" title="25">)</a>
 <a class="sourceLine" id="cb73-26" title="26"><span class="co">#&gt; Note: No model diagnostics information available for the object of class epi.2by2 .</span></a>
-<a class="sourceLine" id="cb73-27" title="27"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb73-28" title="28"><span class="co">#&gt; Could not extract p-values from model object.</span></a>
-<a class="sourceLine" id="cb73-29" title="29"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from epi.2by2 object; </span></a>
-<a class="sourceLine" id="cb73-30" title="30"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
+<a class="sourceLine" id="cb73-27" title="27"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from epi.2by2 object; </span></a>
+<a class="sourceLine" id="cb73-28" title="28"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/epi.2by2-1.png" width="384"></p>
 </div>
 <div id="bayesian-generalized-non-linear-multivariate-multilevel-models-brmsfit" class="section level2">
@@ -2439,9 +2424,9 @@
 <a class="sourceLine" id="cb74-35" title="35"><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb74-36" title="36"><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb74-37" title="37"><span class="co">#&gt; Chain 1: </span></a>
-<a class="sourceLine" id="cb74-38" title="38"><span class="co">#&gt; Chain 1:  Elapsed Time: 11.582 seconds (Warm-up)</span></a>
-<a class="sourceLine" id="cb74-39" title="39"><span class="co">#&gt; Chain 1:                6.018 seconds (Sampling)</span></a>
-<a class="sourceLine" id="cb74-40" title="40"><span class="co">#&gt; Chain 1:                17.6 seconds (Total)</span></a>
+<a class="sourceLine" id="cb74-38" title="38"><span class="co">#&gt; Chain 1:  Elapsed Time: 10.323 seconds (Warm-up)</span></a>
+<a class="sourceLine" id="cb74-39" title="39"><span class="co">#&gt; Chain 1:                6.212 seconds (Sampling)</span></a>
+<a class="sourceLine" id="cb74-40" title="40"><span class="co">#&gt; Chain 1:                16.535 seconds (Total)</span></a>
 <a class="sourceLine" id="cb74-41" title="41"><span class="co">#&gt; Chain 1: </span></a>
 <a class="sourceLine" id="cb74-42" title="42"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb74-43" title="43"><span class="co">#&gt; SAMPLING FOR MODEL 'fe0a44bc352f0b7fbbe8bc1fa1f056ad' NOW (CHAIN 2).</span></a>
@@ -2464,9 +2449,9 @@
 <a class="sourceLine" id="cb74-60" title="60"><span class="co">#&gt; Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb74-61" title="61"><span class="co">#&gt; Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb74-62" title="62"><span class="co">#&gt; Chain 2: </span></a>
-<a class="sourceLine" id="cb74-63" title="63"><span class="co">#&gt; Chain 2:  Elapsed Time: 24.276 seconds (Warm-up)</span></a>
-<a class="sourceLine" id="cb74-64" title="64"><span class="co">#&gt; Chain 2:                56.342 seconds (Sampling)</span></a>
-<a class="sourceLine" id="cb74-65" title="65"><span class="co">#&gt; Chain 2:                80.618 seconds (Total)</span></a>
+<a class="sourceLine" id="cb74-63" title="63"><span class="co">#&gt; Chain 2:  Elapsed Time: 22.933 seconds (Warm-up)</span></a>
+<a class="sourceLine" id="cb74-64" title="64"><span class="co">#&gt; Chain 2:                44.463 seconds (Sampling)</span></a>
+<a class="sourceLine" id="cb74-65" title="65"><span class="co">#&gt; Chain 2:                67.396 seconds (Total)</span></a>
 <a class="sourceLine" id="cb74-66" title="66"><span class="co">#&gt; Chain 2: </span></a>
 <a class="sourceLine" id="cb74-67" title="67"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb74-68" title="68"><span class="co">#&gt; SAMPLING FOR MODEL 'fe0a44bc352f0b7fbbe8bc1fa1f056ad' NOW (CHAIN 3).</span></a>
@@ -2489,9 +2474,9 @@
 <a class="sourceLine" id="cb74-85" title="85"><span class="co">#&gt; Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb74-86" title="86"><span class="co">#&gt; Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb74-87" title="87"><span class="co">#&gt; Chain 3: </span></a>
-<a class="sourceLine" id="cb74-88" title="88"><span class="co">#&gt; Chain 3:  Elapsed Time: 8.725 seconds (Warm-up)</span></a>
-<a class="sourceLine" id="cb74-89" title="89"><span class="co">#&gt; Chain 3:                5.821 seconds (Sampling)</span></a>
-<a class="sourceLine" id="cb74-90" title="90"><span class="co">#&gt; Chain 3:                14.546 seconds (Total)</span></a>
+<a class="sourceLine" id="cb74-88" title="88"><span class="co">#&gt; Chain 3:  Elapsed Time: 8.321 seconds (Warm-up)</span></a>
+<a class="sourceLine" id="cb74-89" title="89"><span class="co">#&gt; Chain 3:                5.476 seconds (Sampling)</span></a>
+<a class="sourceLine" id="cb74-90" title="90"><span class="co">#&gt; Chain 3:                13.797 seconds (Total)</span></a>
 <a class="sourceLine" id="cb74-91" title="91"><span class="co">#&gt; Chain 3: </span></a>
 <a class="sourceLine" id="cb74-92" title="92"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb74-93" title="93"><span class="co">#&gt; SAMPLING FOR MODEL 'fe0a44bc352f0b7fbbe8bc1fa1f056ad' NOW (CHAIN 4).</span></a>
@@ -2514,9 +2499,9 @@
 <a class="sourceLine" id="cb74-110" title="110"><span class="co">#&gt; Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb74-111" title="111"><span class="co">#&gt; Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb74-112" title="112"><span class="co">#&gt; Chain 4: </span></a>
-<a class="sourceLine" id="cb74-113" title="113"><span class="co">#&gt; Chain 4:  Elapsed Time: 7.676 seconds (Warm-up)</span></a>
-<a class="sourceLine" id="cb74-114" title="114"><span class="co">#&gt; Chain 4:                6.276 seconds (Sampling)</span></a>
-<a class="sourceLine" id="cb74-115" title="115"><span class="co">#&gt; Chain 4:                13.952 seconds (Total)</span></a>
+<a class="sourceLine" id="cb74-113" title="113"><span class="co">#&gt; Chain 4:  Elapsed Time: 7.176 seconds (Warm-up)</span></a>
+<a class="sourceLine" id="cb74-114" title="114"><span class="co">#&gt; Chain 4:                6.425 seconds (Sampling)</span></a>
+<a class="sourceLine" id="cb74-115" title="115"><span class="co">#&gt; Chain 4:                13.601 seconds (Total)</span></a>
 <a class="sourceLine" id="cb74-116" title="116"><span class="co">#&gt; Chain 4:</span></a>
 <a class="sourceLine" id="cb74-117" title="117"></a>
 <a class="sourceLine" id="cb74-118" title="118"><span class="co"># plot</span></a>
@@ -2543,8 +2528,8 @@
 <a class="sourceLine" id="cb75-7" title="7"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb75-8" title="8"><span class="co">#&gt; SAMPLING FOR MODEL 'continuous' NOW (CHAIN 1).</span></a>
 <a class="sourceLine" id="cb75-9" title="9"><span class="co">#&gt; Chain 1: </span></a>
-<a class="sourceLine" id="cb75-10" title="10"><span class="co">#&gt; Chain 1: Gradient evaluation took 0.002 seconds</span></a>
-<a class="sourceLine" id="cb75-11" title="11"><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 20 seconds.</span></a>
+<a class="sourceLine" id="cb75-10" title="10"><span class="co">#&gt; Chain 1: Gradient evaluation took 0 seconds</span></a>
+<a class="sourceLine" id="cb75-11" title="11"><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span></a>
 <a class="sourceLine" id="cb75-12" title="12"><span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span></a>
 <a class="sourceLine" id="cb75-13" title="13"><span class="co">#&gt; Chain 1: </span></a>
 <a class="sourceLine" id="cb75-14" title="14"><span class="co">#&gt; Chain 1: </span></a>
@@ -2561,9 +2546,9 @@
 <a class="sourceLine" id="cb75-25" title="25"><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb75-26" title="26"><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb75-27" title="27"><span class="co">#&gt; Chain 1: </span></a>
-<a class="sourceLine" id="cb75-28" title="28"><span class="co">#&gt; Chain 1:  Elapsed Time: 0.104 seconds (Warm-up)</span></a>
-<a class="sourceLine" id="cb75-29" title="29"><span class="co">#&gt; Chain 1:                0.116 seconds (Sampling)</span></a>
-<a class="sourceLine" id="cb75-30" title="30"><span class="co">#&gt; Chain 1:                0.22 seconds (Total)</span></a>
+<a class="sourceLine" id="cb75-28" title="28"><span class="co">#&gt; Chain 1:  Elapsed Time: 0.095 seconds (Warm-up)</span></a>
+<a class="sourceLine" id="cb75-29" title="29"><span class="co">#&gt; Chain 1:                0.099 seconds (Sampling)</span></a>
+<a class="sourceLine" id="cb75-30" title="30"><span class="co">#&gt; Chain 1:                0.194 seconds (Total)</span></a>
 <a class="sourceLine" id="cb75-31" title="31"><span class="co">#&gt; Chain 1:</span></a>
 <a class="sourceLine" id="cb75-32" title="32"></a>
 <a class="sourceLine" id="cb75-33" title="33"><span class="co"># plot</span></a>
@@ -2601,10 +2586,8 @@
 <a class="sourceLine" id="cb76-21" title="21">  <span class="dt">robust =</span> <span class="ot">TRUE</span></a>
 <a class="sourceLine" id="cb76-22" title="22">)</a>
 <a class="sourceLine" id="cb76-23" title="23"><span class="co">#&gt; Note: No model diagnostics information available for the object of class MCMCglmm .</span></a>
-<a class="sourceLine" id="cb76-24" title="24"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb76-25" title="25"><span class="co">#&gt; Could not extract p-values from model object.</span></a>
-<a class="sourceLine" id="cb76-26" title="26"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from MCMCglmm object; </span></a>
-<a class="sourceLine" id="cb76-27" title="27"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
+<a class="sourceLine" id="cb76-24" title="24"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from MCMCglmm object; </span></a>
+<a class="sourceLine" id="cb76-25" title="25"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/MCMCglmm-1.png" width="576"></p>
 </div>
 <div id="markov-chain-monte-carlo-objects-mcmc" class="section level2">
@@ -2626,10 +2609,8 @@
 <a class="sourceLine" id="cb77-14" title="14">  <span class="dt">ess =</span> <span class="ot">TRUE</span></a>
 <a class="sourceLine" id="cb77-15" title="15">)</a>
 <a class="sourceLine" id="cb77-16" title="16"><span class="co">#&gt; Note: No model diagnostics information available for the object of class mcmc .</span></a>
-<a class="sourceLine" id="cb77-17" title="17"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb77-18" title="18"><span class="co">#&gt; Could not extract p-values from model object.</span></a>
-<a class="sourceLine" id="cb77-19" title="19"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from mcmc object; </span></a>
-<a class="sourceLine" id="cb77-20" title="20"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
+<a class="sourceLine" id="cb77-17" title="17"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from mcmc object; </span></a>
+<a class="sourceLine" id="cb77-18" title="18"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/mcmc-1.png" width="480"></p>
 </div>
 <div id="mcmc-with-just-another-gibbs-sampler-rjags" class="section level2">
@@ -2679,10 +2660,8 @@
 <a class="sourceLine" id="cb78-42" title="42">  <span class="dt">point.color =</span> <span class="st">"darkgreen"</span></a>
 <a class="sourceLine" id="cb78-43" title="43">)</a>
 <a class="sourceLine" id="cb78-44" title="44"><span class="co">#&gt; Note: No model diagnostics information available for the object of class rjags .</span></a>
-<a class="sourceLine" id="cb78-45" title="45"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb78-46" title="46"><span class="co">#&gt; Could not extract p-values from model object.</span></a>
-<a class="sourceLine" id="cb78-47" title="47"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from rjags object; </span></a>
-<a class="sourceLine" id="cb78-48" title="48"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
+<a class="sourceLine" id="cb78-45" title="45"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from rjags object; </span></a>
+<a class="sourceLine" id="cb78-46" title="46"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/R2jags-1.png" width="576"></p>
 </div>
 <div id="regression-models-with-list-outputs" class="section level2">
