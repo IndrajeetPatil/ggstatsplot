@@ -5,6 +5,7 @@ context("subtitle_meta_ggcoefstats")
 testthat::test_that(
   desc = "subtitle_meta_ggcoefstats works",
   code = {
+    testthat::skip_on_cran()
 
     # dataframe
     df <- tibble::tribble(
@@ -132,6 +133,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking meta-analysis results object",
   code = {
+    testthat::skip_on_cran()
 
     # dataframe
     df <- tibble::tribble(

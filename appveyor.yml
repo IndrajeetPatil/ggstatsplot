@@ -25,7 +25,7 @@ environment:
     NOT_CRAN: true
     _R_CHECK_FORCE_SUGGESTS: true
     _R_CHECK_CRAN_INCOMING_: true
-    #R_CHECK_ARGS: "--run-dontrun"
+
   matrix:
   - R_VERSION: release
     R_ARCH: x64

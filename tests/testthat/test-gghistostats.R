@@ -5,6 +5,7 @@ context(desc = "gghistostats")
 testthat::test_that(
   desc = "checking gghistostats plot and parametric stats - data with NAs",
   code = {
+    testthat::skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -124,6 +125,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking gghistostats and non-parametric stats - data without NAs",
   code = {
+    testthat::skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -250,7 +252,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking robust stats and proportions",
   code = {
-
+    testthat::skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -337,7 +339,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking bayes stats and density",
   code = {
-
+    testthat::skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -405,7 +407,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking with default binwidth",
   code = {
-
+    testthat::skip_on_cran()
 
     # creating a subset of the dataset
     set.seed(123)
@@ -510,7 +512,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking with default binwidth",
   code = {
-
+    testthat::skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -564,7 +566,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle return",
   code = {
-
+    testthat::skip_on_cran()
 
     # should return a list of length 3
     set.seed(123)

@@ -11,7 +11,7 @@
 #' @inheritParams ggcoefstats
 #'
 #' @examples
-#'
+#' \donttest{
 #' # show all columns in output tibble
 #' options(tibble.width = Inf)
 #'
@@ -94,6 +94,7 @@
 #'   effsize = "omega",
 #'   partial = FALSE
 #' )
+#' }
 #' @keywords internal
 
 # function body

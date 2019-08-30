@@ -46,7 +46,7 @@ will be returned. Valid only for objects of class \code{aov}, \code{anova}, or
 Create labels with statistical details for \code{ggcoefstats}.
 }
 \examples{
-
+\donttest{
 # show all columns in output tibble
 options(tibble.width = Inf)
 
@@ -129,6 +129,7 @@ ggstatsplot:::ggcoefstats_label_maker(
   effsize = "omega",
   partial = FALSE
 )
+}
 }
 \author{
 \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}

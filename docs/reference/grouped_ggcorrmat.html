@@ -81,7 +81,7 @@ resulting plots using ggstatsplot::combine_plots." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.1</span>
       </span>
     </div>
 
@@ -511,6 +511,7 @@ while combining (title, plot, caption).</p></dd>
 combining (title, plot).</p></dd>
   <dt>caption.rel.heights</dt><dd><p>Numerical vector of relative columns heights while
 combining (plot, caption).</p></dd>
+
 </dl></td>
     </tr>
     </table>
@@ -528,7 +529,8 @@ of <em>p</em>-values.</p>
 <code><a href='grouped_ggscatterstats.html'>grouped_ggscatterstats</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># for reproducibility</span>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+<span class='co'># for reproducibility</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
 
 <span class='co'># for plot</span>
@@ -559,20 +561,20 @@ of <em>p</em>-values.</p>
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>sleep_total</span>:<span class='no'>bodywt</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"correlations"</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 24 x 8</span><span>
+)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 24 x 8</span><span>
 #&gt;    vore  variable    sleep_total sleep_rem sleep_cycle awake brainwt bodywt
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> carni sleep_total        1         0.92        0.38 -</span><span style='color: #BB0000;'>1</span><span>      -</span><span style='color: #BB0000;'>0.52</span><span>  -</span><span style='color: #BB0000;'>0.44</span><span>
-#&gt; </span><span style='color: #555555;'> 2</span><span> carni sleep_rem          0.92      1           0.12 -</span><span style='color: #BB0000;'>0.92</span><span>   -</span><span style='color: #BB0000;'>0.5</span><span>   -</span><span style='color: #BB0000;'>0.48</span><span>
-#&gt; </span><span style='color: #555555;'> 3</span><span> carni sleep_cycle        0.38      0.12        1    -</span><span style='color: #BB0000;'>0.38</span><span>   -</span><span style='color: #BB0000;'>0.81</span><span>  -</span><span style='color: #BB0000;'>0.27</span><span>
-#&gt; </span><span style='color: #555555;'> 4</span><span> carni awake             -</span><span style='color: #BB0000;'>1</span><span>        -</span><span style='color: #BB0000;'>0.92</span><span>       -</span><span style='color: #BB0000;'>0.38</span><span>  1       0.52   0.44
-#&gt; </span><span style='color: #555555;'> 5</span><span> carni brainwt           -</span><span style='color: #BB0000;'>0.52</span><span>     -</span><span style='color: #BB0000;'>0.5</span><span>        -</span><span style='color: #BB0000;'>0.81</span><span>  0.52    1      0.86
-#&gt; </span><span style='color: #555555;'> 6</span><span> carni bodywt            -</span><span style='color: #BB0000;'>0.44</span><span>     -</span><span style='color: #BB0000;'>0.48</span><span>       -</span><span style='color: #BB0000;'>0.27</span><span>  0.44    0.86   1   
-#&gt; </span><span style='color: #555555;'> 7</span><span> herbi sleep_total        1         0.86       -</span><span style='color: #BB0000;'>0.71</span><span> -</span><span style='color: #BB0000;'>1</span><span>      -</span><span style='color: #BB0000;'>0.39</span><span>  -</span><span style='color: #BB0000;'>0.38</span><span>
-#&gt; </span><span style='color: #555555;'> 8</span><span> herbi sleep_rem          0.86      1          -</span><span style='color: #BB0000;'>0.41</span><span> -</span><span style='color: #BB0000;'>0.86</span><span>   -</span><span style='color: #BB0000;'>0.43</span><span>  -</span><span style='color: #BB0000;'>0.4</span><span> 
-#&gt; </span><span style='color: #555555;'> 9</span><span> herbi sleep_cycle       -</span><span style='color: #BB0000;'>0.71</span><span>     -</span><span style='color: #BB0000;'>0.41</span><span>        1     0.71    0.85   0.71
-#&gt; </span><span style='color: #555555;'>10</span><span> herbi awake             -</span><span style='color: #BB0000;'>1</span><span>        -</span><span style='color: #BB0000;'>0.86</span><span>        0.71  1       0.39   0.38
-#&gt; </span><span style='color: #555555;'># ... with 14 more rows</span><span></div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> carni sleep_total        1         0.92        0.38 -</span><span style='color: #BB0000;'>1</span><span>      -</span><span style='color: #BB0000;'>0.52</span><span>  -</span><span style='color: #BB0000;'>0.44</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> carni sleep_rem          0.92      1           0.12 -</span><span style='color: #BB0000;'>0.92</span><span>   -</span><span style='color: #BB0000;'>0.5</span><span>   -</span><span style='color: #BB0000;'>0.48</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> carni sleep_cycle        0.38      0.12        1    -</span><span style='color: #BB0000;'>0.38</span><span>   -</span><span style='color: #BB0000;'>0.81</span><span>  -</span><span style='color: #BB0000;'>0.27</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> carni awake             -</span><span style='color: #BB0000;'>1</span><span>        -</span><span style='color: #BB0000;'>0.92</span><span>       -</span><span style='color: #BB0000;'>0.38</span><span>  1       0.52   0.44
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> carni brainwt           -</span><span style='color: #BB0000;'>0.52</span><span>     -</span><span style='color: #BB0000;'>0.5</span><span>        -</span><span style='color: #BB0000;'>0.81</span><span>  0.52    1      0.86
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> carni bodywt            -</span><span style='color: #BB0000;'>0.44</span><span>     -</span><span style='color: #BB0000;'>0.48</span><span>       -</span><span style='color: #BB0000;'>0.27</span><span>  0.44    0.86   1   
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> herbi sleep_total        1         0.86       -</span><span style='color: #BB0000;'>0.71</span><span> -</span><span style='color: #BB0000;'>1</span><span>      -</span><span style='color: #BB0000;'>0.39</span><span>  -</span><span style='color: #BB0000;'>0.38</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> herbi sleep_rem          0.86      1          -</span><span style='color: #BB0000;'>0.41</span><span> -</span><span style='color: #BB0000;'>0.86</span><span>   -</span><span style='color: #BB0000;'>0.43</span><span>  -</span><span style='color: #BB0000;'>0.4</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> herbi sleep_cycle       -</span><span style='color: #BB0000;'>0.71</span><span>     -</span><span style='color: #BB0000;'>0.41</span><span>        1     0.71    0.85   0.71
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> herbi awake             -</span><span style='color: #BB0000;'>1</span><span>        -</span><span style='color: #BB0000;'>0.86</span><span>        0.71  1       0.39   0.38
+#&gt; </span><span style='color: #949494;'># ... with 14 more rows</span><span></div><div class='input'>
 <span class='co'># for getting confidence intervals</span>
 <span class='co'># confidence intervals are not available for **robust** correlation</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html'>grouped_ggcorrmat</a></span>(
@@ -585,8 +587,9 @@ of <em>p</em>-values.</p>
 )</div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Confidence intervals not supported for robust correlation.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Confidence intervals not supported for robust correlation.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Confidence intervals not supported for robust correlation.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 0 x 1</span><span>
-#&gt; </span><span style='color: #555555;'># ... with 1 variable: Species </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span></div></span></pre>
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 0 x 1</span><span>
+#&gt; </span><span style='color: #949494;'># ... with 1 variable: Species </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span></div><div class='input'># }
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

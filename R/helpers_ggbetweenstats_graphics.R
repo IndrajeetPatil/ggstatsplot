@@ -11,7 +11,7 @@
 #' @importFrom rlang !! enquo ensym
 #' @importFrom tibble as_tibble
 #' @importFrom purrr map
-#' @importFrom tidyr drop_na
+#' @importFrom tidyr drop_na unnest
 #'
 #' @examples
 #' \donttest{
@@ -88,8 +88,13 @@ mean_labeller <- function(data,
     )
 
   # adding sample size labels and arranging by original factor levels
+  if (utils::packageVersion("tidyr") <= "0.8.9") {
+    mean_dat %<>% tidyr::unnest(.)
+  } else {
+    mean_dat %<>% tidyr::unnest(., cols = c(data, label))
+  }
+
   mean_dat %<>%
-    tidyr::unnest(.) %>%
     dplyr::mutate(.data = ., n_label = paste0({{ x }}, "\n(n = ", n, ")", sep = "")) %>%
     dplyr::arrange(.data = ., {{ x }})
 

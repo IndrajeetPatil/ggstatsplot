@@ -5,6 +5,7 @@ context(desc = "ggdotplotstats")
 testthat::test_that(
   desc = "ggdotplotstats works as expected",
   code = {
+    testthat::skip_on_cran()
 
     # creating a new dataset
     morley_new <- morley %>%
@@ -159,6 +160,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggdotplotstats works with summarized data",
   code = {
+    testthat::skip_on_cran()
 
     # creating a summary data
     set.seed(123)
@@ -220,7 +222,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle return",
   code = {
-
+    testthat::skip_on_cran()
 
     # creating a new label for the dataset
     df_msleep <- ggplot2::msleep
@@ -278,7 +280,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle return",
   code = {
-
+    testthat::skip_on_cran()
 
     # should return a list of length 3
     set.seed(123)

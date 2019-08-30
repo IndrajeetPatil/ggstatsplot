@@ -6,7 +6,7 @@ context(desc = "grouped_ggbetweenstats")
 testthat::test_that(
   desc = "grouping.var works across vector types",
   code = {
-
+    testthat::skip_on_cran()
 
     # creating a smaller dataframe
     set.seed(123)
@@ -114,6 +114,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle return",
   code = {
+    testthat::skip_on_cran()
+
     # should return a list of length 5
     set.seed(123)
     ls_results <- ggstatsplot::grouped_ggbetweenstats(

@@ -1,4 +1,4 @@
-# ggstatsplot 0.1.0
+# ggstatsplot 0.1.1
 
 ANNOUNCEMENTS
 

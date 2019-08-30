@@ -5,6 +5,8 @@ context(desc = "ggbetweenstats")
 testthat::test_that(
   desc = "error when x and outlier.label are same",
   code = {
+    testthat::skip_on_cran()
+
     testthat::expect_error(
       suppressWarnings(ggstatsplot::ggbetweenstats(
         data = iris,
@@ -83,6 +85,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking sorting",
   code = {
+    testthat::skip_on_cran()
+
     set.seed(123)
     p1 <- ggstatsplot::ggbetweenstats(
       data = iris,
@@ -129,6 +133,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking labels and data from plot",
   code = {
+    testthat::skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -249,6 +254,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking mean labels are working",
   code = {
+    testthat::skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -315,6 +321,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking mean labels are working",
   code = {
+    testthat::skip_on_cran()
     library(ggplot2)
 
     # caption for the plot
@@ -351,6 +358,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking if plot.type argument works",
   code = {
+    testthat::skip_on_cran()
     set.seed(123)
 
     # boxplot
@@ -478,6 +486,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggplot component addition works",
   code = {
+    testthat::skip_on_cran()
 
     # plot
     p <- ggstatsplot::ggbetweenstats(
@@ -502,6 +511,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle return works",
   code = {
+    testthat::skip_on_cran()
 
     # plot
     set.seed(123)

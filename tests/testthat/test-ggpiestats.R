@@ -6,7 +6,7 @@ context(desc = "ggpiestats")
 testthat::test_that(
   desc = "checking one sample proportion test",
   code = {
-
+    testthat::skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -107,6 +107,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking labels with contingency tab",
   code = {
+    testthat::skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -341,7 +342,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking labels with counts",
   code = {
-
+    testthat::skip_on_cran()
 
     # plot
     set.seed(123)
@@ -413,7 +414,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking labels with contingency tab (paired)",
   code = {
-
+    testthat::skip_on_cran()
 
     # data
     set.seed(123)
@@ -480,7 +481,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking one sample prop test bf caption",
   code = {
-
+    testthat::skip_on_cran()
 
     # plots
     set.seed(123)
@@ -600,6 +601,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking if functions work without enough data",
   code = {
+    testthat::skip_on_cran()
     set.seed(123)
 
     # creating a dataframe
@@ -622,6 +624,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle return",
   code = {
+    testthat::skip_on_cran()
 
     # subtitle return
     set.seed(123)

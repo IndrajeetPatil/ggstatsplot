@@ -5,6 +5,7 @@ context("ggcoefstats")
 testthat::test_that(
   desc = "ggcoefstats with lm model",
   code = {
+    testthat::skip_on_cran()
     set.seed(123)
 
     # model
@@ -91,6 +92,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggcoefstats with glmer model",
   code = {
+    testthat::skip_on_cran()
     library(lme4)
 
     # model
@@ -151,6 +153,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggcoefstats with partial variants of effect size for f-statistic",
   code = {
+    testthat::skip_on_cran()
 
     ## partial eta-squared
 
@@ -351,7 +354,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggcoefstats with non-partial variants of effect size for f-statistic",
   code = {
-
+    testthat::skip_on_cran()
 
     # model
     set.seed(123)
@@ -411,6 +414,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "check merMod output",
   code = {
+    testthat::skip_on_cran()
 
     # setup
     set.seed(123)
@@ -492,6 +496,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "check glm output",
   code = {
+    testthat::skip_on_cran()
 
     # set up
     set.seed(123)
@@ -564,7 +569,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "check mlm output",
   code = {
-
+    testthat::skip_on_cran()
 
     # model (converting all numeric columns in data to z-scores)
     res <- stats::lm(
@@ -590,6 +595,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "check aareg output",
   code = {
+    testthat::skip_on_cran()
 
     # model
     library(survival)
@@ -628,6 +634,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggcoefstats works with glmmPQL object",
   code = {
+    testthat::skip_on_cran()
 
     # setup
     set.seed(123)
@@ -670,7 +677,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "check clm models (minimal)",
   code = {
-
+    testthat::skip_on_cran()
 
     # clm model
     set.seed(123)
@@ -733,6 +740,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggcoefstats works with data frames",
   code = {
+    testthat::skip_on_cran()
 
     # setup
     library(lme4)
@@ -793,6 +801,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggcoefstats works with data frames",
   code = {
+    testthat::skip_on_cran()
     set.seed(123)
 
     # creating dataframe
@@ -995,6 +1004,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggcoefstats works with data frames (with NAs)",
   code = {
+    testthat::skip_on_cran()
     set.seed(123)
 
     # creating dataframe
@@ -1140,7 +1150,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "check if augment works",
   code = {
-
+    testthat::skip_on_cran()
 
     # set up
     library(lme4)
@@ -1206,6 +1216,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "augment with lm works",
   code = {
+    testthat::skip_on_cran()
     testthat::skip_on_appveyor()
     testthat::skip_on_travis()
 
@@ -1234,6 +1245,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "check if p-value adjustment works",
   code = {
+    testthat::skip_on_cran()
     set.seed(123)
 
     # model
@@ -1271,7 +1283,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "testing aesthetic modifications",
   code = {
-
+    testthat::skip_on_cran()
 
     # model
     set.seed(123)
@@ -1334,6 +1346,7 @@ context("ggcoefstats_label_maker")
 testthat::test_that(
   desc = "glm works",
   code = {
+    testthat::skip_on_cran()
 
     # setup
     set.seed(123)
@@ -1377,6 +1390,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "glmerMod works",
   code = {
+    testthat::skip_on_cran()
     library(lme4)
 
     # data

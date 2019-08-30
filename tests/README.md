@@ -1,6 +1,6 @@
 Tests and Coverage
 ================
-29 August, 2019 10:11:29
+30 August, 2019 15:27:09
 
   - [Coverage](#coverage)
   - [Unit Tests](#unit-tests)
@@ -15,34 +15,34 @@ Coverage summary is created using the
 
 | Object                                                                            | Coverage (%) |
 | :-------------------------------------------------------------------------------- | :----------: |
-| ggstatsplot                                                                       |    89.54     |
+| ggstatsplot                                                                       |    31.54     |
+| [R/ggbarstats.R](../R/ggbarstats.R)                                               |     0.00     |
+| [R/ggbetweenstats.R](../R/ggbetweenstats.R)                                       |     0.00     |
+| [R/ggcorrmat.R](../R/ggcorrmat.R)                                                 |     0.00     |
+| [R/ggdotplotstats.R](../R/ggdotplotstats.R)                                       |     0.00     |
+| [R/gghistostats.R](../R/gghistostats.R)                                           |     0.00     |
+| [R/ggwithinstats.R](../R/ggwithinstats.R)                                         |     0.00     |
 | [R/grouped\_ggbarstats.R](../R/grouped_ggbarstats.R)                              |     0.00     |
+| [R/grouped\_ggbetweenstats.R](../R/grouped_ggbetweenstats.R)                      |     0.00     |
+| [R/grouped\_ggcorrmat.R](../R/grouped_ggcorrmat.R)                                |     0.00     |
 | [R/grouped\_ggdotplotstats.R](../R/grouped_ggdotplotstats.R)                      |     0.00     |
 | [R/grouped\_gghistostats.R](../R/grouped_gghistostats.R)                          |     0.00     |
 | [R/grouped\_ggscatterstats.R](../R/grouped_ggscatterstats.R)                      |     0.00     |
 | [R/grouped\_ggwithinstats.R](../R/grouped_ggwithinstats.R)                        |     0.00     |
-| [R/grouped\_ggbetweenstats.R](../R/grouped_ggbetweenstats.R)                      |    87.50     |
-| [R/helpers\_ggcoefstats\_metaanalysis.R](../R/helpers_ggcoefstats_metaanalysis.R) |    88.68     |
+| [R/helpers\_ggbetweenstats\_graphics.R](../R/helpers_ggbetweenstats_graphics.R)   |     0.00     |
+| [R/helpers\_ggcoefstats\_metaanalysis.R](../R/helpers_ggcoefstats_metaanalysis.R) |     0.00     |
+| [R/switch\_functions.R](../R/switch_functions.R)                                  |     0.00     |
+| [R/combine\_plots.R](../R/combine_plots.R)                                        |    10.94     |
+| [R/helpers\_gghistostats\_graphics.R](../R/helpers_gghistostats_graphics.R)       |    32.86     |
+| [R/helpers\_theme\_ggstatsplot.R](../R/helpers_theme_ggstatsplot.R)               |    69.64     |
+| [R/ggcoefstats.R](../R/ggcoefstats.R)                                             |    74.83     |
+| [R/ggscatterstats.R](../R/ggscatterstats.R)                                       |    76.72     |
+| [R/helpers\_ggcatstats\_graphics.R](../R/helpers_ggcatstats_graphics.R)           |    83.54     |
+| [R/helpers\_ggcoefstats\_graphics.R](../R/helpers_ggcoefstats_graphics.R)         |    86.41     |
 | [R/grouped\_ggpiestats.R](../R/grouped_ggpiestats.R)                              |    98.68     |
-| [R/ggwithinstats.R](../R/ggwithinstats.R)                                         |    99.59     |
-| [R/ggbetweenstats.R](../R/ggbetweenstats.R)                                       |    99.63     |
-| [R/combine\_plots.R](../R/combine_plots.R)                                        |    100.00    |
-| [R/ggbarstats.R](../R/ggbarstats.R)                                               |    100.00    |
-| [R/ggcoefstats.R](../R/ggcoefstats.R)                                             |    100.00    |
-| [R/ggcorrmat.R](../R/ggcorrmat.R)                                                 |    100.00    |
-| [R/ggdotplotstats.R](../R/ggdotplotstats.R)                                       |    100.00    |
-| [R/gghistostats.R](../R/gghistostats.R)                                           |    100.00    |
-| [R/ggpiestats.R](../R/ggpiestats.R)                                               |    100.00    |
-| [R/ggscatterstats.R](../R/ggscatterstats.R)                                       |    100.00    |
-| [R/grouped\_ggcorrmat.R](../R/grouped_ggcorrmat.R)                                |    100.00    |
-| [R/helpers\_ggbetweenstats\_graphics.R](../R/helpers_ggbetweenstats_graphics.R)   |    100.00    |
-| [R/helpers\_ggcatstats\_graphics.R](../R/helpers_ggcatstats_graphics.R)           |    100.00    |
-| [R/helpers\_ggcoefstats\_graphics.R](../R/helpers_ggcoefstats_graphics.R)         |    100.00    |
-| [R/helpers\_gghistostats\_graphics.R](../R/helpers_gghistostats_graphics.R)       |    100.00    |
+| [R/ggpiestats.R](../R/ggpiestats.R)                                               |    99.43     |
 | [R/helpers\_grouped\_functions.R](../R/helpers_grouped_functions.R)               |    100.00    |
 | [R/helpers\_messages.R](../R/helpers_messages.R)                                  |    100.00    |
-| [R/helpers\_theme\_ggstatsplot.R](../R/helpers_theme_ggstatsplot.R)               |    100.00    |
-| [R/switch\_functions.R](../R/switch_functions.R)                                  |    100.00    |
 
 <br>
 
@@ -51,171 +51,171 @@ Coverage summary is created using the
 Unit Test summary is created using the
 [testthat](https://github.com/r-lib/testthat) package.
 
-| file                                                                          |   n |  time | error | failed | skipped | warning | icon |
-| :---------------------------------------------------------------------------- | --: | ----: | ----: | -----: | ------: | ------: | :--- |
-| [test-argument\_count.R](testthat/test-argument_count.R)                      |   2 |  0.11 |     0 |      0 |       0 |       0 |      |
-| [test-bf\_meta\_message.R](testthat/test-bf_meta_message.R)                   |   1 |  0.00 |     0 |      0 |       1 |       0 | \+   |
-| [test-combine\_plots.R](testthat/test-combine_plots.R)                        |   5 |  0.72 |     0 |      0 |       0 |       0 |      |
-| [test-formals.R](testthat/test-formals.R)                                     |   1 |  0.03 |     0 |      0 |       0 |       0 |      |
-| [test-ggbarstats.R](testthat/test-ggbarstats.R)                               |  43 |  3.73 |     0 |      0 |       0 |       0 |      |
-| [test-ggbetweenstats.R](testthat/test-ggbetweenstats.R)                       |  75 | 19.06 |     0 |      0 |       0 |      13 | \-   |
-| [test-ggcoefstats.R](testthat/test-ggcoefstats.R)                             | 171 | 32.64 |     0 |      0 |       0 |       0 |      |
-| [test-ggcorrmat.R](testthat/test-ggcorrmat.R)                                 | 100 |  0.55 |     0 |      0 |       0 |       0 |      |
-| [test-ggdotplotstats.R](testthat/test-ggdotplotstats.R)                       |  38 |  0.66 |     0 |      0 |       0 |       0 |      |
-| [test-gghistostats.R](testthat/test-gghistostats.R)                           | 104 |  1.88 |     0 |      0 |       0 |       0 |      |
-| [test-ggpiestats.R](testthat/test-ggpiestats.R)                               |  90 | 10.81 |     0 |      0 |       0 |       0 |      |
-| [test-ggplot\_converter.R](testthat/test-ggplot_converter.R)                  |   2 |  0.31 |     0 |      0 |       0 |       0 |      |
-| [test-ggscatterstats.R](testthat/test-ggscatterstats.R)                       |  83 |  4.38 |     0 |      0 |       0 |       0 |      |
-| [test-ggwithinstats.R](testthat/test-ggwithinstats.R)                         |  63 | 16.44 |     0 |      0 |       0 |      11 | \-   |
-| [test-grouped\_ggbarstats.R](testthat/test-grouped_ggbarstats.R)              |   3 |  0.00 |     0 |      0 |       3 |       0 | \+   |
-| [test-grouped\_ggbetweenstats.R](testthat/test-grouped_ggbetweenstats.R)      |  24 |  7.07 |     0 |      0 |       0 |      13 | \-   |
-| [test-grouped\_ggcorrmat.R](testthat/test-grouped_ggcorrmat.R)                |  25 |  1.50 |     0 |      0 |       0 |       0 |      |
-| [test-grouped\_ggdotplotstats.R](testthat/test-grouped_ggdotplotstats.R)      |   3 |  0.00 |     0 |      0 |       3 |       0 | \+   |
-| [test-grouped\_gghistostats.R](testthat/test-grouped_gghistostats.R)          |   2 |  0.00 |     0 |      0 |       2 |       0 | \+   |
-| [test-grouped\_ggpiestats.R](testthat/test-grouped_ggpiestats.R)              |   8 | 10.28 |     0 |      0 |       2 |       0 | \+   |
-| [test-grouped\_ggscatterstats.R](testthat/test-grouped_ggscatterstats.R)      |   2 |  0.00 |     0 |      0 |       2 |       0 | \+   |
-| [test-grouped\_ggwithinstats.R](testthat/test-grouped_ggwithinstats.R)        |   4 |  0.00 |     0 |      0 |       4 |       0 | \+   |
-| [test-grouped\_list.R](testthat/test-grouped_list.R)                          |   7 |  0.01 |     0 |      0 |       0 |       0 |      |
-| [test-helper\_messages.R](testthat/test-helper_messages.R)                    |  18 |  0.05 |     0 |      0 |       0 |       0 |      |
-| [test-helpers\_ggbetweenstats.R](testthat/test-helpers_ggbetweenstats.R)      |  25 |  0.40 |     0 |      0 |       0 |       3 | \-   |
-| [test-helpers\_ggcatstats.R](testthat/test-helpers_ggcatstats.R)              |  18 |  0.05 |     0 |      0 |       0 |       0 |      |
-| [test-pairwise\_ggsignif.R](testthat/test-pairwise_ggsignif.R)                |  49 |  9.05 |     0 |      0 |       0 |       5 | \-   |
-| [test-subtitle\_meta\_parametric.R](testthat/test-subtitle_meta_parametric.R) |  14 |  0.08 |     0 |      0 |       0 |       0 |      |
-| [test-theme\_ggstatsplot.R](testthat/test-theme_ggstatsplot.R)                |   9 |  0.03 |     0 |      0 |       0 |       0 |      |
+| file                                                                          |  n |  time | error | failed | skipped | warning | icon |
+| :---------------------------------------------------------------------------- | -: | ----: | ----: | -----: | ------: | ------: | :--- |
+| [test-argument\_count.R](testthat/test-argument_count.R)                      |  2 |  0.02 |     0 |      0 |       0 |       0 |      |
+| [test-bf\_meta\_message.R](testthat/test-bf_meta_message.R)                   |  1 |  0.00 |     0 |      0 |       1 |       0 | \+   |
+| [test-combine\_plots.R](testthat/test-combine_plots.R)                        |  1 |  0.00 |     0 |      0 |       1 |       0 | \+   |
+| [test-formals.R](testthat/test-formals.R)                                     |  1 |  0.03 |     0 |      0 |       0 |       0 |      |
+| [test-ggbarstats.R](testthat/test-ggbarstats.R)                               |  4 |  0.00 |     0 |      0 |       4 |       0 | \+   |
+| [test-ggbetweenstats.R](testthat/test-ggbetweenstats.R)                       | 14 | 14.71 |     0 |      0 |       8 |       3 | \+-  |
+| [test-ggcoefstats.R](testthat/test-ggcoefstats.R)                             | 33 |  0.50 |     0 |      0 |      19 |       0 | \+   |
+| [test-ggcorrmat.R](testthat/test-ggcorrmat.R)                                 |  9 |  0.01 |     0 |      0 |       9 |       0 | \+   |
+| [test-ggdotplotstats.R](testthat/test-ggdotplotstats.R)                       |  4 |  0.02 |     0 |      0 |       4 |       0 | \+   |
+| [test-gghistostats.R](testthat/test-gghistostats.R)                           |  7 |  0.00 |     0 |      0 |       7 |       0 | \+   |
+| [test-ggpiestats.R](testthat/test-ggpiestats.R)                               |  7 |  0.00 |     0 |      0 |       7 |       0 | \+   |
+| [test-ggplot\_converter.R](testthat/test-ggplot_converter.R)                  |  2 |  0.34 |     0 |      0 |       0 |       0 |      |
+| [test-ggscatterstats.R](testthat/test-ggscatterstats.R)                       | 47 |  0.26 |     0 |      0 |      10 |       0 | \+   |
+| [test-ggwithinstats.R](testthat/test-ggwithinstats.R)                         |  7 |  0.00 |     0 |      0 |       7 |       0 | \+   |
+| [test-grouped\_ggbarstats.R](testthat/test-grouped_ggbarstats.R)              |  3 |  0.00 |     0 |      0 |       3 |       0 | \+   |
+| [test-grouped\_ggbetweenstats.R](testthat/test-grouped_ggbetweenstats.R)      |  2 |  0.00 |     0 |      0 |       2 |       0 | \+   |
+| [test-grouped\_ggcorrmat.R](testthat/test-grouped_ggcorrmat.R)                |  2 |  0.00 |     0 |      0 |       2 |       0 | \+   |
+| [test-grouped\_ggdotplotstats.R](testthat/test-grouped_ggdotplotstats.R)      |  3 |  0.02 |     0 |      0 |       3 |       0 | \+   |
+| [test-grouped\_gghistostats.R](testthat/test-grouped_gghistostats.R)          |  2 |  0.00 |     0 |      0 |       2 |       0 | \+   |
+| [test-grouped\_ggpiestats.R](testthat/test-grouped_ggpiestats.R)              |  8 | 12.11 |     0 |      0 |       2 |       0 | \+   |
+| [test-grouped\_ggscatterstats.R](testthat/test-grouped_ggscatterstats.R)      |  2 |  0.00 |     0 |      0 |       2 |       0 | \+   |
+| [test-grouped\_ggwithinstats.R](testthat/test-grouped_ggwithinstats.R)        |  4 |  0.00 |     0 |      0 |       4 |       0 | \+   |
+| [test-grouped\_list.R](testthat/test-grouped_list.R)                          |  7 |  0.02 |     0 |      0 |       0 |       0 |      |
+| [test-helper\_messages.R](testthat/test-helper_messages.R)                    | 18 |  0.05 |     0 |      0 |       0 |       0 |      |
+| [test-helpers\_ggbetweenstats.R](testthat/test-helpers_ggbetweenstats.R)      |  4 |  0.00 |     0 |      0 |       4 |       0 | \+   |
+| [test-helpers\_ggcatstats.R](testthat/test-helpers_ggcatstats.R)              |  2 |  0.00 |     0 |      0 |       2 |       0 | \+   |
+| [test-pairwise\_ggsignif.R](testthat/test-pairwise_ggsignif.R)                |  5 |  0.00 |     0 |      0 |       5 |       0 | \+   |
+| [test-subtitle\_meta\_parametric.R](testthat/test-subtitle_meta_parametric.R) |  2 |  0.00 |     0 |      0 |       2 |       0 | \+   |
+| [test-theme\_ggstatsplot.R](testthat/test-theme_ggstatsplot.R)                |  9 |  0.07 |     0 |      0 |       0 |       0 |      |
 
 <details open>
 
 <summary> Show Detailed Test Results </summary>
 
-| file                                                                                    | context                            | test                                                                 | status  |  n |  time | icon |
-| :-------------------------------------------------------------------------------------- | :--------------------------------- | :------------------------------------------------------------------- | :------ | -: | ----: | :--- |
-| [test-argument\_count.R](testthat/test-argument_count.R#L55)                            | argument\_count                    | argument\_count is correct                                           | PASS    |  2 |  0.11 |      |
-| [test-bf\_meta\_message.R](testthat/test-bf_meta_message.R#L6)                          | bf\_meta\_message                  | bf\_meta\_message works                                              | SKIPPED |  1 |  0.00 | \+   |
-| [test-combine\_plots.R](testthat/test-combine_plots.R#L40_L43)                          | combine\_plots                     | checking if combining plots works                                    | PASS    |  5 |  0.72 |      |
-| [test-formals.R](testthat/test-formals.R#L34)                                           | formals                            | checking if formal defaults are the same across primary and grouped  | PASS    |  1 |  0.03 |      |
-| [test-ggbarstats.R](testthat/test-ggbarstats.R#L10_L15)                                 | ggbarstats                         | checking labels with counts                                          | PASS    | 31 |  1.87 |      |
-| [test-ggbarstats.R](testthat/test-ggbarstats.R#L187)                                    | ggbarstats                         | aesthetic modifications                                              | PASS    |  9 |  0.44 |      |
-| [test-ggbarstats.R](testthat/test-ggbarstats.R#L246_L276)                               | ggbarstats                         | subtitle return                                                      | PASS    |  2 |  1.14 |      |
-| [test-ggbarstats.R](testthat/test-ggbarstats.R#L314_L320)                               | ggbarstats                         | checking if functions work without enough data                       | PASS    |  1 |  0.28 |      |
-| [test-ggbetweenstats.R](testthat/test-ggbetweenstats.R#L8_L15)                          | ggbetweenstats                     | error when x and outlier.label are same                              | PASS    |  1 |  0.00 |      |
-| [test-ggbetweenstats.R](testthat/test-ggbetweenstats.R#L26_L39)                         | ggbetweenstats                     | outlier.labeling works across vector types                           | WARNING |  6 | 14.19 | \-   |
-| [test-ggbetweenstats.R](testthat/test-ggbetweenstats.R#L87_L94)                         | ggbetweenstats                     | checking sorting                                                     | WARNING |  5 |  0.69 | \-   |
-| [test-ggbetweenstats.R](testthat/test-ggbetweenstats.R#L135_L150)                       | ggbetweenstats                     | checking labels and data from plot                                   | WARNING | 20 |  1.71 | \-   |
-| [test-ggbetweenstats.R](testthat/test-ggbetweenstats.R#L255_L271)                       | ggbetweenstats                     | checking mean labels are working                                     | WARNING |  6 |  0.74 | \-   |
-| [test-ggbetweenstats.R](testthat/test-ggbetweenstats.R#L322_L331)                       | ggbetweenstats                     | checking mean labels are working                                     | WARNING |  2 |  0.59 | \-   |
-| [test-ggbetweenstats.R](testthat/test-ggbetweenstats.R#L357_L373)                       | ggbetweenstats                     | checking if plot.type argument works                                 | WARNING | 31 |  0.36 | \-   |
-| [test-ggbetweenstats.R](testthat/test-ggbetweenstats.R#L483_L490)                       | ggbetweenstats                     | ggplot component addition works                                      | WARNING |  2 |  0.22 | \-   |
-| [test-ggbetweenstats.R](testthat/test-ggbetweenstats.R#L508_L514)                       | ggbetweenstats                     | subtitle return works                                                | WARNING |  2 |  0.56 | \-   |
-| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L36)                                   | ggcoefstats                        | ggcoefstats with lm model                                            | PASS    | 17 |  0.09 |      |
-| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L130)                                  | ggcoefstats                        | ggcoefstats with glmer model                                         | PASS    |  8 |  0.63 |      |
-| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L179_L182)                             | ggcoefstats                        | ggcoefstats with partial variants of effect size for f-statistic     | PASS    | 40 |  2.47 |      |
-| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L389_L396)                             | ggcoefstats                        | ggcoefstats with non-partial variants of effect size for f-statistic | PASS    |  2 |  2.32 |      |
-| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L477)                                  | ggcoefstats                        | check merMod output                                                  | PASS    | 10 |  0.39 |      |
-| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L548)                                  | ggcoefstats                        | check glm output                                                     | PASS    | 11 |  0.25 |      |
-| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L583)                                  | ggcoefstats                        | check mlm output                                                     | PASS    |  2 |  0.04 |      |
-| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L614)                                  | ggcoefstats                        | check aareg output                                                   | PASS    |  6 |  0.11 |      |
-| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L652)                                  | ggcoefstats                        | ggcoefstats works with glmmPQL object                                | PASS    |  3 |  0.23 |      |
-| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L724)                                  | ggcoefstats                        | check clm models (minimal)                                           | PASS    |  4 |  6.17 |      |
-| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L777)                                  | ggcoefstats                        | ggcoefstats works with data frames                                   | PASS    |  9 |  0.64 |      |
-| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L828_L831)                             | ggcoefstats                        | ggcoefstats works with data frames                                   | PASS    | 26 | 18.25 |      |
-| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L1021)                                 | ggcoefstats                        | ggcoefstats works with data frames (with NAs)                        | PASS    |  3 |  0.10 |      |
-| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L1082)                                 | ggcoefstats                        | check computing confidence intervals                                 | PASS    |  6 |  0.07 |      |
-| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L1121)                                 | ggcoefstats                        | check if glance works                                                | PASS    |  5 |  0.19 |      |
-| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L1185)                                 | ggcoefstats                        | check if augment works                                               | PASS    |  7 |  0.16 |      |
-| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L1227)                                 | ggcoefstats                        | augment with lm works                                                | PASS    |  2 |  0.01 |      |
-| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L1254_L1265)                           | ggcoefstats                        | check if p-value adjustment works                                    | PASS    |  1 |  0.08 |      |
-| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L1298)                                 | ggcoefstats                        | testing aesthetic modifications                                      | PASS    |  4 |  0.13 |      |
-| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L1323)                                 | ggcoefstats                        | unsupported model objects                                            | PASS    |  3 |  0.20 |      |
-| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L1362_L1371)                           | ggcoefstats\_label\_maker          | glm works                                                            | PASS    |  1 |  0.02 |      |
-| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L1440_L1446)                           | ggcoefstats\_label\_maker          | glmerMod works                                                       | PASS    |  1 |  0.09 |      |
-| [test-ggcorrmat.R](testthat/test-ggcorrmat.R#L44)                                       | ggcorrmat                          | cor.vars works with different methods of inputs                      | PASS    |  4 |  0.11 |      |
-| [test-ggcorrmat.R](testthat/test-ggcorrmat.R#L90)                                       | ggcorrmat                          | checking ggcorrmat - without NAs - pearson’s r                       | PASS    | 30 |  0.11 |      |
-| [test-ggcorrmat.R](testthat/test-ggcorrmat.R#L230)                                      | ggcorrmat                          | checking ggcorrmat - with NAs - robust r                             | PASS    | 17 |  0.10 |      |
-| [test-ggcorrmat.R](testthat/test-ggcorrmat.R#L332)                                      | ggcorrmat                          | checking ggcorrmat - with NAs - spearman’s rho                       | PASS    | 13 |  0.08 |      |
-| [test-ggcorrmat.R](testthat/test-ggcorrmat.R#L396)                                      | ggcorrmat                          | checking ggcorrmat - with NAs - Kendall tau                          | PASS    | 18 |  0.09 |      |
-| [test-ggcorrmat.R](testthat/test-ggcorrmat.R#L470_L473)                                 | ggcorrmat                          | checking sample sizes                                                | PASS    |  6 |  0.01 |      |
-| [test-ggcorrmat.R](testthat/test-ggcorrmat.R#L500)                                      | ggcorrmat                          | checking p-values                                                    | PASS    |  3 |  0.00 |      |
-| [test-ggcorrmat.R](testthat/test-ggcorrmat.R#L524)                                      | ggcorrmat                          | checking confidence intervals                                        | PASS    |  5 |  0.02 |      |
-| [test-ggcorrmat.R](testthat/test-ggcorrmat.R#L606_L609)                                 | ggcorrmat                          | checking messages                                                    | PASS    |  4 |  0.03 |      |
-| [test-ggdotplotstats.R](testthat/test-ggdotplotstats.R#L71_L74)                         | ggdotplotstats                     | ggdotplotstats works as expected                                     | PASS    | 21 |  0.16 |      |
-| [test-ggdotplotstats.R](testthat/test-ggdotplotstats.R#L185_L188)                       | ggdotplotstats                     | ggdotplotstats works with summarized data                            | PASS    |  9 |  0.20 |      |
-| [test-ggdotplotstats.R](testthat/test-ggdotplotstats.R#L258_L261)                       | ggdotplotstats                     | subtitle return                                                      | PASS    |  6 |  0.16 |      |
-| [test-ggdotplotstats.R](testthat/test-ggdotplotstats.R#L297_L308)                       | ggdotplotstats                     | subtitle return                                                      | PASS    |  2 |  0.14 |      |
-| [test-gghistostats.R](testthat/test-gghistostats.R#L42)                                 | gghistostats                       | checking gghistostats plot and parametric stats - data with NAs      | PASS    | 24 |  0.24 |      |
-| [test-gghistostats.R](testthat/test-gghistostats.R#L176)                                | gghistostats                       | checking gghistostats and non-parametric stats - data without NAs    | PASS    | 27 |  0.33 |      |
-| [test-gghistostats.R](testthat/test-gghistostats.R#L286)                                | gghistostats                       | checking robust stats and proportions                                | PASS    | 11 |  0.17 |      |
-| [test-gghistostats.R](testthat/test-gghistostats.R#L372)                                | gghistostats                       | checking bayes stats and density                                     | PASS    | 12 |  0.14 |      |
-| [test-gghistostats.R](testthat/test-gghistostats.R#L477)                                | gghistostats                       | checking with default binwidth                                       | PASS    | 22 |  0.81 |      |
-| [test-gghistostats.R](testthat/test-gghistostats.R#L534)                                | gghistostats                       | checking with default binwidth                                       | PASS    |  7 |  0.09 |      |
-| [test-gghistostats.R](testthat/test-gghistostats.R#L581_L609)                           | gghistostats                       | subtitle return                                                      | PASS    |  1 |  0.10 |      |
-| [test-ggpiestats.R](testthat/test-ggpiestats.R#L45)                                     | ggpiestats                         | checking one sample proportion test                                  | PASS    | 17 |  1.76 |      |
-| [test-ggpiestats.R](testthat/test-ggpiestats.R#L172)                                    | ggpiestats                         | checking labels with contingency tab                                 | PASS    | 45 |  0.52 |      |
-| [test-ggpiestats.R](testthat/test-ggpiestats.R#L389)                                    | ggpiestats                         | checking labels with counts                                          | PASS    | 12 |  0.41 |      |
-| [test-ggpiestats.R](testthat/test-ggpiestats.R#L458)                                    | ggpiestats                         | checking labels with contingency tab (paired)                        | PASS    |  9 |  0.36 |      |
-| [test-ggpiestats.R](testthat/test-ggpiestats.R#L524_L540)                               | ggpiestats                         | checking one sample prop test bf caption                             | PASS    |  4 |  6.84 |      |
-| [test-ggpiestats.R](testthat/test-ggpiestats.R#L612_L616)                               | ggpiestats                         | checking if functions work without enough data                       | PASS    |  1 |  0.05 |      |
-| [test-ggpiestats.R](testthat/test-ggpiestats.R#L649_L679)                               | ggpiestats                         | subtitle return                                                      | PASS    |  2 |  0.87 |      |
-| [test-ggplot\_converter.R](testthat/test-ggplot_converter.R#L16_L19)                    | ggplot\_converter                  | ggplot\_converter work                                               | PASS    |  2 |  0.31 |      |
-| [test-ggscatterstats.R](testthat/test-ggscatterstats.R#L48)                             | ggscatterstats                     | checking ggscatterstats - without NAs - pearson’s r                  | PASS    | 37 |  0.22 |      |
-| [test-ggscatterstats.R](testthat/test-ggscatterstats.R#L180)                            | ggscatterstats                     | checking ggscatterstats - without NAs - spearman’s rho               | PASS    |  3 |  0.27 |      |
-| [test-ggscatterstats.R](testthat/test-ggscatterstats.R#L226)                            | ggscatterstats                     | checking ggscatterstats - without NAs - percentage bend              | PASS    |  9 |  0.33 |      |
-| [test-ggscatterstats.R](testthat/test-ggscatterstats.R#L277_L280)                       | ggscatterstats                     | checking median display                                              | PASS    |  9 |  0.14 |      |
-| [test-ggscatterstats.R](testthat/test-ggscatterstats.R#L347)                            | ggscatterstats                     | bayes factor plus class of object                                    | PASS    |  6 |  0.43 |      |
-| [test-ggscatterstats.R](testthat/test-ggscatterstats.R#L396_L399)                       | ggscatterstats                     | aesthetic modifications work                                         | PASS    |  2 |  0.18 |      |
-| [test-ggscatterstats.R](testthat/test-ggscatterstats.R#L414_L426)                       | ggscatterstats                     | checking ggscatterstats with different kinds of inputs to labeling   | PASS    |  5 |  0.37 |      |
-| [test-ggscatterstats.R](testthat/test-ggscatterstats.R#L526_L529)                       | ggscatterstats                     | with marginals                                                       | PASS    |  3 |  1.02 |      |
-| [test-ggscatterstats.R](testthat/test-ggscatterstats.R#L582)                            | ggscatterstats                     | checking formula specification                                       | PASS    |  7 |  0.39 |      |
-| [test-ggscatterstats.R](testthat/test-ggscatterstats.R#L620_L647)                       | ggscatterstats                     | subtitle return                                                      | PASS    |  1 |  0.48 |      |
-| [test-ggscatterstats.R](testthat/test-ggscatterstats.R#L672_L675)                       | ggscatterstats                     | message checks                                                       | PASS    |  1 |  0.55 |      |
-| [test-ggwithinstats.R](testthat/test-ggwithinstats.R#L12_L19)                           | ggwithinstats                      | error when x and outlier.label are same                              | PASS    |  1 |  0.00 |      |
-| [test-ggwithinstats.R](testthat/test-ggwithinstats.R#L31_L49)                           | ggwithinstats                      | basic plotting works - two groups                                    | WARNING | 18 |  0.71 | \-   |
-| [test-ggwithinstats.R](testthat/test-ggwithinstats.R#L107_L124)                         | ggwithinstats                      | basic plotting works - more than two groups                          | WARNING | 23 |  5.45 | \-   |
-| [test-ggwithinstats.R](testthat/test-ggwithinstats.R#L250_L259)                         | ggwithinstats                      | checking sorting                                                     | WARNING |  5 |  0.73 | \-   |
-| [test-ggwithinstats.R](testthat/test-ggwithinstats.R#L298_L310)                         | ggwithinstats                      | checking subtitle outputs - without NAs                              | WARNING | 13 |  8.60 | \-   |
-| [test-ggwithinstats.R](testthat/test-ggwithinstats.R#L457_L465)                         | ggwithinstats                      | ggplot component addition works                                      | WARNING |  2 |  0.25 | \-   |
-| [test-ggwithinstats.R](testthat/test-ggwithinstats.R#L554_L584)                         | ggwithinstats                      | checking warning message when too few obs                            | PASS    |  1 |  0.70 |      |
-| [test-grouped\_ggbarstats.R](testthat/test-grouped_ggbarstats.R#L6)                     | grouped\_ggbarstats                | grouped\_ggbarstats works                                            | SKIPPED |  1 |  0.00 | \+   |
-| [test-grouped\_ggbarstats.R](testthat/test-grouped_ggbarstats.R#L106)                   | grouped\_ggbarstats                | subtitle return                                                      | SKIPPED |  1 |  0.00 | \+   |
-| [test-grouped\_ggbarstats.R](testthat/test-grouped_ggbarstats.R#L211)                   | grouped\_ggbarstats                | checking if results coincide with base version                       | SKIPPED |  1 |  0.00 | \+   |
-| [test-grouped\_ggbetweenstats.R](testthat/test-grouped_ggbetweenstats.R#L20_L26)        | grouped\_ggbetweenstats            | grouping.var works across vector types                               | WARNING | 13 |  3.52 | \-   |
-| [test-grouped\_ggbetweenstats.R](testthat/test-grouped_ggbetweenstats.R#L119_L126)      | grouped\_ggbetweenstats            | subtitle return                                                      | WARNING | 11 |  3.55 | \-   |
-| [test-grouped\_ggcorrmat.R](testthat/test-grouped_ggcorrmat.R#L12)                      | grouped\_ggcorrmat                 | grouped\_ggcorrmat plots work                                        | PASS    |  5 |  1.41 |      |
-| [test-grouped\_ggcorrmat.R](testthat/test-grouped_ggcorrmat.R#L96)                      | grouped\_ggcorrmat                 | grouped\_ggcorrmat stats work                                        | PASS    | 20 |  0.09 |      |
-| [test-grouped\_ggdotplotstats.R](testthat/test-grouped_ggdotplotstats.R#L8)             | grouped\_ggdotplotstats            | grouped\_ggdotplotstats works                                        | SKIPPED |  1 |  0.00 | \+   |
-| [test-grouped\_ggdotplotstats.R](testthat/test-grouped_ggdotplotstats.R#L64)            | grouped\_ggdotplotstats            | subtitle return                                                      | SKIPPED |  1 |  0.00 | \+   |
-| [test-grouped\_ggdotplotstats.R](testthat/test-grouped_ggdotplotstats.R#L184)           | grouped\_ggdotplotstats            | checking if results coincide with base version                       | SKIPPED |  1 |  0.00 | \+   |
-| [test-grouped\_gghistostats.R](testthat/test-grouped_gghistostats.R#L8)                 | grouped\_gghistostats              | grouped\_gghistostats works                                          | SKIPPED |  1 |  0.00 | \+   |
-| [test-grouped\_gghistostats.R](testthat/test-grouped_gghistostats.R#L68)                | grouped\_gghistostats              | subtitle return                                                      | SKIPPED |  1 |  0.00 | \+   |
-| [test-grouped\_ggpiestats.R](testthat/test-grouped_ggpiestats.R#L11_L19)                | grouped\_ggpiestats                | grouped\_ggpiestats works                                            | PASS    |  6 | 10.28 |      |
-| [test-grouped\_ggpiestats.R](testthat/test-grouped_ggpiestats.R#L119)                   | grouped\_ggpiestats                | subtitle return                                                      | SKIPPED |  1 |  0.00 | \+   |
-| [test-grouped\_ggpiestats.R](testthat/test-grouped_ggpiestats.R#L147)                   | grouped\_ggpiestats                | checking if results coincide with base version                       | SKIPPED |  1 |  0.00 | \+   |
-| [test-grouped\_ggscatterstats.R](testthat/test-grouped_ggscatterstats.R#L6)             | grouped\_ggscatterstats            | grouped\_ggscatterstats works                                        | SKIPPED |  1 |  0.00 | \+   |
-| [test-grouped\_ggscatterstats.R](testthat/test-grouped_ggscatterstats.R#L171)           | grouped\_ggscatterstats            | subtitle return                                                      | SKIPPED |  1 |  0.00 | \+   |
-| [test-grouped\_ggwithinstats.R](testthat/test-grouped_ggwithinstats.R#L9)               | grouped\_ggwithinstats             | grouping.var works across vector types                               | SKIPPED |  1 |  0.00 | \+   |
-| [test-grouped\_ggwithinstats.R](testthat/test-grouped_ggwithinstats.R#L92)              | grouped\_ggwithinstats             | grouping.var works across vector types                               | SKIPPED |  1 |  0.00 | \+   |
-| [test-grouped\_ggwithinstats.R](testthat/test-grouped_ggwithinstats.R#L117)             | grouped\_ggwithinstats             | subtitle return                                                      | SKIPPED |  1 |  0.00 | \+   |
-| [test-grouped\_ggwithinstats.R](testthat/test-grouped_ggwithinstats.R#L240)             | grouped\_ggwithinstats             | subtitle return with NA                                              | SKIPPED |  1 |  0.00 | \+   |
-| [test-grouped\_list.R](testthat/test-grouped_list.R#L35)                                | grouped\_list works                | grouped\_list works                                                  | PASS    |  7 |  0.01 |      |
-| [test-helper\_messages.R](testthat/test-helper_messages.R#L9_L13)                       | helper\_messages                   | grouped\_message is working                                          | PASS    |  1 |  0.00 |      |
-| [test-helper\_messages.R](testthat/test-helper_messages.R#L22_L26)                      | helper\_messages                   | ggcorrmat\_matrix\_message is working                                | PASS    |  1 |  0.00 |      |
-| [test-helper\_messages.R](testthat/test-helper_messages.R#L35_L43)                      | helper\_messages                   | palette\_message is working                                          | PASS    |  1 |  0.00 |      |
-| [test-helper\_messages.R](testthat/test-helper_messages.R#L55_L59)                      | helper\_messages                   | normality\_message is working                                        | PASS    |  3 |  0.02 |      |
-| [test-helper\_messages.R](testthat/test-helper_messages.R#L86_L95)                      | helper\_messages                   | bartlett\_message is working                                         | PASS    | 12 |  0.03 |      |
-| [test-helpers\_ggbetweenstats.R](testthat/test-helpers_ggbetweenstats.R#L17_L22)        | mean\_ggrepel                      | mean\_ggrepel works                                                  | WARNING |  7 |  0.17 | \-   |
-| [test-helpers\_ggbetweenstats.R](testthat/test-helpers_ggbetweenstats.R#L84_L91)        | mean\_labeller                     | mean\_labeller works                                                 | WARNING |  6 |  0.22 | \-   |
-| [test-helpers\_ggbetweenstats.R](testthat/test-helpers_ggbetweenstats.R#L164)           | outlier\_df                        | outlier\_df works as expected                                        | PASS    |  4 |  0.01 |      |
-| [test-helpers\_ggbetweenstats.R](testthat/test-helpers_ggbetweenstats.R#L199_L202)      | sort\_xy                           | sort\_xy works as expected                                           | PASS    |  8 |  0.00 |      |
-| [test-helpers\_ggcatstats.R](testthat/test-helpers_ggcatstats.R#L46)                    | cat\_label\_df                     | cat\_label\_df works                                                 | PASS    |  8 |  0.00 |      |
-| [test-helpers\_ggcatstats.R](testthat/test-helpers_ggcatstats.R#L89)                    | cat\_label\_df                     | cat\_couter works                                                    | PASS    | 10 |  0.05 |      |
-| [test-pairwise\_ggsignif.R](testthat/test-pairwise_ggsignif.R#L11_L21)                  | pairwise comparisons with ggsignif | check comparison significant displays - adjusted                     | WARNING |  3 |  1.20 | \-   |
-| [test-pairwise\_ggsignif.R](testthat/test-pairwise_ggsignif.R#L55_L66)                  | pairwise comparisons with ggsignif | check non-significant comparison displays - no adjustment            | WARNING | 13 |  1.00 | \-   |
-| [test-pairwise\_ggsignif.R](testthat/test-pairwise_ggsignif.R#L152_L168)                | pairwise comparisons with ggsignif | check mixed comparison displays - adjusted                           | WARNING | 11 |  4.35 | \-   |
-| [test-pairwise\_ggsignif.R](testthat/test-pairwise_ggsignif.R#L246_L258)                | pairwise comparisons with ggsignif | check robust test display - adjusted                                 | WARNING | 10 |  1.95 | \-   |
-| [test-pairwise\_ggsignif.R](testthat/test-pairwise_ggsignif.R#L322_L336)                | pairwise comparisons with ggsignif | check student’s t test display - adjusted                            | WARNING | 12 |  0.55 | \-   |
-| [test-subtitle\_meta\_parametric.R](testthat/test-subtitle_meta_parametric.R#L95)       | subtitle\_meta\_ggcoefstats        | subtitle\_meta\_ggcoefstats works                                    | PASS    | 13 |  0.07 |      |
-| [test-subtitle\_meta\_parametric.R](testthat/test-subtitle_meta_parametric.R#L153_L156) | subtitle\_meta\_ggcoefstats        | checking meta-analysis results object                                | PASS    |  1 |  0.01 |      |
-| [test-theme\_ggstatsplot.R](testthat/test-theme_ggstatsplot.R#L24)                      | theme\_ggstatsplot                 | `theme_ggstatsplot()` works                                          | PASS    |  3 |  0.02 |      |
-| [test-theme\_ggstatsplot.R](testthat/test-theme_ggstatsplot.R#L47)                      | theme\_ggstatsplot                 | `theme_pie()` works                                                  | PASS    |  6 |  0.01 |      |
+| file                                                                               | context                            | test                                                                 | status  |  n |  time | icon |
+| :--------------------------------------------------------------------------------- | :--------------------------------- | :------------------------------------------------------------------- | :------ | -: | ----: | :--- |
+| [test-argument\_count.R](testthat/test-argument_count.R#L55)                       | argument\_count                    | argument\_count is correct                                           | PASS    |  2 |  0.02 |      |
+| [test-bf\_meta\_message.R](testthat/test-bf_meta_message.R#L6)                     | bf\_meta\_message                  | bf\_meta\_message works                                              | SKIPPED |  1 |  0.00 | \+   |
+| [test-combine\_plots.R](testthat/test-combine_plots.R#L6)                          | combine\_plots                     | checking if combining plots works                                    | SKIPPED |  1 |  0.00 | \+   |
+| [test-formals.R](testthat/test-formals.R#L34)                                      | formals                            | checking if formal defaults are the same across primary and grouped  | PASS    |  1 |  0.03 |      |
+| [test-ggbarstats.R](testthat/test-ggbarstats.R#L8)                                 | ggbarstats                         | checking labels with counts                                          | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggbarstats.R](testthat/test-ggbarstats.R#L140)                               | ggbarstats                         | aesthetic modifications                                              | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggbarstats.R](testthat/test-ggbarstats.R#L222)                               | ggbarstats                         | subtitle return                                                      | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggbarstats.R](testthat/test-ggbarstats.R#L306)                               | ggbarstats                         | checking if functions work without enough data                       | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggbetweenstats.R](testthat/test-ggbetweenstats.R#L8)                         | ggbetweenstats                     | error when x and outlier.label are same                              | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggbetweenstats.R](testthat/test-ggbetweenstats.R#L28_L41)                    | ggbetweenstats                     | outlier.labeling works across vector types                           | WARNING |  6 | 14.71 | \-   |
+| [test-ggbetweenstats.R](testthat/test-ggbetweenstats.R#L88)                        | ggbetweenstats                     | checking sorting                                                     | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggbetweenstats.R](testthat/test-ggbetweenstats.R#L136)                       | ggbetweenstats                     | checking labels and data from plot                                   | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggbetweenstats.R](testthat/test-ggbetweenstats.R#L257)                       | ggbetweenstats                     | checking mean labels are working                                     | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggbetweenstats.R](testthat/test-ggbetweenstats.R#L324)                       | ggbetweenstats                     | checking mean labels are working                                     | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggbetweenstats.R](testthat/test-ggbetweenstats.R#L361)                       | ggbetweenstats                     | checking if plot.type argument works                                 | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggbetweenstats.R](testthat/test-ggbetweenstats.R#L489)                       | ggbetweenstats                     | ggplot component addition works                                      | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggbetweenstats.R](testthat/test-ggbetweenstats.R#L514)                       | ggbetweenstats                     | subtitle return works                                                | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L8)                               | ggcoefstats                        | ggcoefstats with lm model                                            | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L95)                              | ggcoefstats                        | ggcoefstats with glmer model                                         | SKIPPED |  1 |  0.02 | \+   |
+| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L156)                             | ggcoefstats                        | ggcoefstats with partial variants of effect size for f-statistic     | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L357)                             | ggcoefstats                        | ggcoefstats with non-partial variants of effect size for f-statistic | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L417)                             | ggcoefstats                        | check merMod output                                                  | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L499)                             | ggcoefstats                        | check glm output                                                     | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L572)                             | ggcoefstats                        | check mlm output                                                     | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L598)                             | ggcoefstats                        | check aareg output                                                   | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L637)                             | ggcoefstats                        | ggcoefstats works with glmmPQL object                                | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L680)                             | ggcoefstats                        | check clm models (minimal)                                           | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L743)                             | ggcoefstats                        | ggcoefstats works with data frames                                   | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L804)                             | ggcoefstats                        | ggcoefstats works with data frames                                   | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L1007)                            | ggcoefstats                        | ggcoefstats works with data frames (with NAs)                        | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L1092)                            | ggcoefstats                        | check computing confidence intervals                                 | PASS    |  6 |  0.05 |      |
+| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L1131)                            | ggcoefstats                        | check if glance works                                                | PASS    |  5 |  0.21 |      |
+| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L1153)                            | ggcoefstats                        | check if augment works                                               | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L1219)                            | ggcoefstats                        | augment with lm works                                                | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L1248)                            | ggcoefstats                        | check if p-value adjustment works                                    | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L1286)                            | ggcoefstats                        | testing aesthetic modifications                                      | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L1335)                            | ggcoefstats                        | unsupported model objects                                            | PASS    |  3 |  0.22 |      |
+| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L1349)                            | ggcoefstats\_label\_maker          | glm works                                                            | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggcoefstats.R](testthat/test-ggcoefstats.R#L1393)                            | ggcoefstats\_label\_maker          | glmerMod works                                                       | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggcorrmat.R](testthat/test-ggcorrmat.R#L7)                                   | ggcorrmat                          | cor.vars works with different methods of inputs                      | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggcorrmat.R](testthat/test-ggcorrmat.R#L55)                                  | ggcorrmat                          | checking ggcorrmat - without NAs - pearson’s r                       | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggcorrmat.R](testthat/test-ggcorrmat.R#L200)                                 | ggcorrmat                          | checking ggcorrmat - with NAs - robust r                             | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggcorrmat.R](testthat/test-ggcorrmat.R#L299)                                 | ggcorrmat                          | checking ggcorrmat - with NAs - spearman’s rho                       | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggcorrmat.R](testthat/test-ggcorrmat.R#L368)                                 | ggcorrmat                          | checking ggcorrmat - with NAs - Kendall tau                          | SKIPPED |  1 |  0.01 | \+   |
+| [test-ggcorrmat.R](testthat/test-ggcorrmat.R#L457)                                 | ggcorrmat                          | checking sample sizes                                                | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggcorrmat.R](testthat/test-ggcorrmat.R#L487)                                 | ggcorrmat                          | checking p-values                                                    | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggcorrmat.R](testthat/test-ggcorrmat.R#L511)                                 | ggcorrmat                          | checking confidence intervals                                        | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggcorrmat.R](testthat/test-ggcorrmat.R#L580)                                 | ggcorrmat                          | checking messages                                                    | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggdotplotstats.R](testthat/test-ggdotplotstats.R#L8)                         | ggdotplotstats                     | ggdotplotstats works as expected                                     | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggdotplotstats.R](testthat/test-ggdotplotstats.R#L163)                       | ggdotplotstats                     | ggdotplotstats works with summarized data                            | SKIPPED |  1 |  0.02 | \+   |
+| [test-ggdotplotstats.R](testthat/test-ggdotplotstats.R#L225)                       | ggdotplotstats                     | subtitle return                                                      | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggdotplotstats.R](testthat/test-ggdotplotstats.R#L283)                       | ggdotplotstats                     | subtitle return                                                      | SKIPPED |  1 |  0.00 | \+   |
+| [test-gghistostats.R](testthat/test-gghistostats.R#L8)                             | gghistostats                       | checking gghistostats plot and parametric stats - data with NAs      | SKIPPED |  1 |  0.00 | \+   |
+| [test-gghistostats.R](testthat/test-gghistostats.R#L128)                           | gghistostats                       | checking gghistostats and non-parametric stats - data without NAs    | SKIPPED |  1 |  0.00 | \+   |
+| [test-gghistostats.R](testthat/test-gghistostats.R#L255)                           | gghistostats                       | checking robust stats and proportions                                | SKIPPED |  1 |  0.00 | \+   |
+| [test-gghistostats.R](testthat/test-gghistostats.R#L342)                           | gghistostats                       | checking bayes stats and density                                     | SKIPPED |  1 |  0.00 | \+   |
+| [test-gghistostats.R](testthat/test-gghistostats.R#L410)                           | gghistostats                       | checking with default binwidth                                       | SKIPPED |  1 |  0.00 | \+   |
+| [test-gghistostats.R](testthat/test-gghistostats.R#L515)                           | gghistostats                       | checking with default binwidth                                       | SKIPPED |  1 |  0.00 | \+   |
+| [test-gghistostats.R](testthat/test-gghistostats.R#L569)                           | gghistostats                       | subtitle return                                                      | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggpiestats.R](testthat/test-ggpiestats.R#L9)                                 | ggpiestats                         | checking one sample proportion test                                  | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggpiestats.R](testthat/test-ggpiestats.R#L110)                               | ggpiestats                         | checking labels with contingency tab                                 | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggpiestats.R](testthat/test-ggpiestats.R#L345)                               | ggpiestats                         | checking labels with counts                                          | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggpiestats.R](testthat/test-ggpiestats.R#L417)                               | ggpiestats                         | checking labels with contingency tab (paired)                        | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggpiestats.R](testthat/test-ggpiestats.R#L484)                               | ggpiestats                         | checking one sample prop test bf caption                             | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggpiestats.R](testthat/test-ggpiestats.R#L604)                               | ggpiestats                         | checking if functions work without enough data                       | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggpiestats.R](testthat/test-ggpiestats.R#L627)                               | ggpiestats                         | subtitle return                                                      | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggplot\_converter.R](testthat/test-ggplot_converter.R#L16_L19)               | ggplot\_converter                  | ggplot\_converter work                                               | PASS    |  2 |  0.34 |      |
+| [test-ggscatterstats.R](testthat/test-ggscatterstats.R#L48)                        | ggscatterstats                     | checking ggscatterstats - without NAs - pearson’s r                  | PASS    | 37 |  0.25 |      |
+| [test-ggscatterstats.R](testthat/test-ggscatterstats.R#L149)                       | ggscatterstats                     | checking ggscatterstats - without NAs - spearman’s rho               | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggscatterstats.R](testthat/test-ggscatterstats.R#L192)                       | ggscatterstats                     | checking ggscatterstats - without NAs - percentage bend              | SKIPPED |  1 |  0.01 | \+   |
+| [test-ggscatterstats.R](testthat/test-ggscatterstats.R#L253)                       | ggscatterstats                     | checking median display                                              | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggscatterstats.R](testthat/test-ggscatterstats.R#L320)                       | ggscatterstats                     | bayes factor plus class of object                                    | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggscatterstats.R](testthat/test-ggscatterstats.R#L376)                       | ggscatterstats                     | aesthetic modifications work                                         | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggscatterstats.R](testthat/test-ggscatterstats.R#L411)                       | ggscatterstats                     | checking ggscatterstats with different kinds of inputs to labeling   | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggscatterstats.R](testthat/test-ggscatterstats.R#L495)                       | ggscatterstats                     | with marginals                                                       | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggscatterstats.R](testthat/test-ggscatterstats.R#L546)                       | ggscatterstats                     | checking formula specification                                       | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggscatterstats.R](testthat/test-ggscatterstats.R#L605)                       | ggscatterstats                     | subtitle return                                                      | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggscatterstats.R](testthat/test-ggscatterstats.R#L657)                       | ggscatterstats                     | message checks                                                       | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggwithinstats.R](testthat/test-ggwithinstats.R#L12)                          | ggwithinstats                      | error when x and outlier.label are same                              | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggwithinstats.R](testthat/test-ggwithinstats.R#L30)                          | ggwithinstats                      | basic plotting works - two groups                                    | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggwithinstats.R](testthat/test-ggwithinstats.R#L106)                         | ggwithinstats                      | basic plotting works - more than two groups                          | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggwithinstats.R](testthat/test-ggwithinstats.R#L253)                         | ggwithinstats                      | checking sorting                                                     | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggwithinstats.R](testthat/test-ggwithinstats.R#L302)                         | ggwithinstats                      | checking subtitle outputs - without NAs                              | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggwithinstats.R](testthat/test-ggwithinstats.R#L458)                         | ggwithinstats                      | ggplot component addition works                                      | SKIPPED |  1 |  0.00 | \+   |
+| [test-ggwithinstats.R](testthat/test-ggwithinstats.R#L488)                         | ggwithinstats                      | checking warning message when too few obs                            | SKIPPED |  1 |  0.00 | \+   |
+| [test-grouped\_ggbarstats.R](testthat/test-grouped_ggbarstats.R#L6)                | grouped\_ggbarstats                | grouped\_ggbarstats works                                            | SKIPPED |  1 |  0.00 | \+   |
+| [test-grouped\_ggbarstats.R](testthat/test-grouped_ggbarstats.R#L106)              | grouped\_ggbarstats                | subtitle return                                                      | SKIPPED |  1 |  0.00 | \+   |
+| [test-grouped\_ggbarstats.R](testthat/test-grouped_ggbarstats.R#L211)              | grouped\_ggbarstats                | checking if results coincide with base version                       | SKIPPED |  1 |  0.00 | \+   |
+| [test-grouped\_ggbetweenstats.R](testthat/test-grouped_ggbetweenstats.R#L9)        | grouped\_ggbetweenstats            | grouping.var works across vector types                               | SKIPPED |  1 |  0.00 | \+   |
+| [test-grouped\_ggbetweenstats.R](testthat/test-grouped_ggbetweenstats.R#L117)      | grouped\_ggbetweenstats            | subtitle return                                                      | SKIPPED |  1 |  0.00 | \+   |
+| [test-grouped\_ggcorrmat.R](testthat/test-grouped_ggcorrmat.R#L8)                  | grouped\_ggcorrmat                 | grouped\_ggcorrmat plots work                                        | SKIPPED |  1 |  0.00 | \+   |
+| [test-grouped\_ggcorrmat.R](testthat/test-grouped_ggcorrmat.R#L81)                 | grouped\_ggcorrmat                 | grouped\_ggcorrmat stats work                                        | SKIPPED |  1 |  0.00 | \+   |
+| [test-grouped\_ggdotplotstats.R](testthat/test-grouped_ggdotplotstats.R#L8)        | grouped\_ggdotplotstats            | grouped\_ggdotplotstats works                                        | SKIPPED |  1 |  0.00 | \+   |
+| [test-grouped\_ggdotplotstats.R](testthat/test-grouped_ggdotplotstats.R#L64)       | grouped\_ggdotplotstats            | subtitle return                                                      | SKIPPED |  1 |  0.02 | \+   |
+| [test-grouped\_ggdotplotstats.R](testthat/test-grouped_ggdotplotstats.R#L184)      | grouped\_ggdotplotstats            | checking if results coincide with base version                       | SKIPPED |  1 |  0.00 | \+   |
+| [test-grouped\_gghistostats.R](testthat/test-grouped_gghistostats.R#L8)            | grouped\_gghistostats              | grouped\_gghistostats works                                          | SKIPPED |  1 |  0.00 | \+   |
+| [test-grouped\_gghistostats.R](testthat/test-grouped_gghistostats.R#L68)           | grouped\_gghistostats              | subtitle return                                                      | SKIPPED |  1 |  0.00 | \+   |
+| [test-grouped\_ggpiestats.R](testthat/test-grouped_ggpiestats.R#L11_L19)           | grouped\_ggpiestats                | grouped\_ggpiestats works                                            | PASS    |  6 | 12.11 |      |
+| [test-grouped\_ggpiestats.R](testthat/test-grouped_ggpiestats.R#L119)              | grouped\_ggpiestats                | subtitle return                                                      | SKIPPED |  1 |  0.00 | \+   |
+| [test-grouped\_ggpiestats.R](testthat/test-grouped_ggpiestats.R#L147)              | grouped\_ggpiestats                | checking if results coincide with base version                       | SKIPPED |  1 |  0.00 | \+   |
+| [test-grouped\_ggscatterstats.R](testthat/test-grouped_ggscatterstats.R#L6)        | grouped\_ggscatterstats            | grouped\_ggscatterstats works                                        | SKIPPED |  1 |  0.00 | \+   |
+| [test-grouped\_ggscatterstats.R](testthat/test-grouped_ggscatterstats.R#L171)      | grouped\_ggscatterstats            | subtitle return                                                      | SKIPPED |  1 |  0.00 | \+   |
+| [test-grouped\_ggwithinstats.R](testthat/test-grouped_ggwithinstats.R#L9)          | grouped\_ggwithinstats             | grouping.var works across vector types                               | SKIPPED |  1 |  0.00 | \+   |
+| [test-grouped\_ggwithinstats.R](testthat/test-grouped_ggwithinstats.R#L92)         | grouped\_ggwithinstats             | grouping.var works across vector types                               | SKIPPED |  1 |  0.00 | \+   |
+| [test-grouped\_ggwithinstats.R](testthat/test-grouped_ggwithinstats.R#L117)        | grouped\_ggwithinstats             | subtitle return                                                      | SKIPPED |  1 |  0.00 | \+   |
+| [test-grouped\_ggwithinstats.R](testthat/test-grouped_ggwithinstats.R#L240)        | grouped\_ggwithinstats             | subtitle return with NA                                              | SKIPPED |  1 |  0.00 | \+   |
+| [test-grouped\_list.R](testthat/test-grouped_list.R#L35)                           | grouped\_list works                | grouped\_list works                                                  | PASS    |  7 |  0.02 |      |
+| [test-helper\_messages.R](testthat/test-helper_messages.R#L9_L13)                  | helper\_messages                   | grouped\_message is working                                          | PASS    |  1 |  0.00 |      |
+| [test-helper\_messages.R](testthat/test-helper_messages.R#L22_L26)                 | helper\_messages                   | ggcorrmat\_matrix\_message is working                                | PASS    |  1 |  0.00 |      |
+| [test-helper\_messages.R](testthat/test-helper_messages.R#L35_L43)                 | helper\_messages                   | palette\_message is working                                          | PASS    |  1 |  0.02 |      |
+| [test-helper\_messages.R](testthat/test-helper_messages.R#L55_L59)                 | helper\_messages                   | normality\_message is working                                        | PASS    |  3 |  0.00 |      |
+| [test-helper\_messages.R](testthat/test-helper_messages.R#L86_L95)                 | helper\_messages                   | bartlett\_message is working                                         | PASS    | 12 |  0.03 |      |
+| [test-helpers\_ggbetweenstats.R](testthat/test-helpers_ggbetweenstats.R#L7)        | helpers\_ggbetweenstats            | mean\_ggrepel works                                                  | SKIPPED |  1 |  0.00 | \+   |
+| [test-helpers\_ggbetweenstats.R](testthat/test-helpers_ggbetweenstats.R#L69)       | helpers\_ggbetweenstats            | mean\_labeller works                                                 | SKIPPED |  1 |  0.00 | \+   |
+| [test-helpers\_ggbetweenstats.R](testthat/test-helpers_ggbetweenstats.R#L150)      | outlier\_df                        | outlier\_df works as expected                                        | SKIPPED |  1 |  0.00 | \+   |
+| [test-helpers\_ggbetweenstats.R](testthat/test-helpers_ggbetweenstats.R#L187)      | outlier\_df                        | sort\_xy works as expected                                           | SKIPPED |  1 |  0.00 | \+   |
+| [test-helpers\_ggcatstats.R](testthat/test-helpers_ggcatstats.R#L9)                | cat\_label\_df                     | cat\_label\_df works                                                 | SKIPPED |  1 |  0.00 | \+   |
+| [test-helpers\_ggcatstats.R](testthat/test-helpers_ggcatstats.R#L81)               | cat\_label\_df                     | cat\_couter works                                                    | SKIPPED |  1 |  0.00 | \+   |
+| [test-pairwise\_ggsignif.R](testthat/test-pairwise_ggsignif.R#L8)                  | pairwise comparisons with ggsignif | check comparison significant displays - adjusted                     | SKIPPED |  1 |  0.00 | \+   |
+| [test-pairwise\_ggsignif.R](testthat/test-pairwise_ggsignif.R#L52)                 | pairwise comparisons with ggsignif | check non-significant comparison displays - no adjustment            | SKIPPED |  1 |  0.00 | \+   |
+| [test-pairwise\_ggsignif.R](testthat/test-pairwise_ggsignif.R#L149)                | pairwise comparisons with ggsignif | check mixed comparison displays - adjusted                           | SKIPPED |  1 |  0.00 | \+   |
+| [test-pairwise\_ggsignif.R](testthat/test-pairwise_ggsignif.R#L243)                | pairwise comparisons with ggsignif | check robust test display - adjusted                                 | SKIPPED |  1 |  0.00 | \+   |
+| [test-pairwise\_ggsignif.R](testthat/test-pairwise_ggsignif.R#L319)                | pairwise comparisons with ggsignif | check student’s t test display - adjusted                            | SKIPPED |  1 |  0.00 | \+   |
+| [test-subtitle\_meta\_parametric.R](testthat/test-subtitle_meta_parametric.R#L8)   | subtitle\_meta\_ggcoefstats        | subtitle\_meta\_ggcoefstats works                                    | SKIPPED |  1 |  0.00 | \+   |
+| [test-subtitle\_meta\_parametric.R](testthat/test-subtitle_meta_parametric.R#L136) | subtitle\_meta\_ggcoefstats        | checking meta-analysis results object                                | SKIPPED |  1 |  0.00 | \+   |
+| [test-theme\_ggstatsplot.R](testthat/test-theme_ggstatsplot.R#L24)                 | theme\_ggstatsplot                 | `theme_ggstatsplot()` works                                          | PASS    |  3 |  0.03 |      |
+| [test-theme\_ggstatsplot.R](testthat/test-theme_ggstatsplot.R#L47)                 | theme\_ggstatsplot                 | `theme_pie()` works                                                  | PASS    |  6 |  0.04 |      |
 
 | Failed | Warning | Skipped |
 | :----- | :------ | :------ |

@@ -9,6 +9,8 @@ data_bugs_2 <- ggstatsplot::bugs_long %>%
 testthat::test_that(
   desc = "error when x and outlier.label are same",
   code = {
+    testthat::skip_on_cran()
+
     testthat::expect_error(
       ggstatsplot::ggwithinstats(
         data = ggstatsplot::iris_long,
@@ -25,6 +27,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "basic plotting works - two groups",
   code = {
+    testthat::skip_on_cran()
 
     # plot
     set.seed(123)
@@ -100,6 +103,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "basic plotting works - more than two groups",
   code = {
+    testthat::skip_on_cran()
     set.seed(123)
     library(WRS2)
 
@@ -246,6 +250,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking sorting",
   code = {
+    testthat::skip_on_cran()
     set.seed(123)
     p1 <- ggstatsplot::ggwithinstats(
       data = WineTasting,
@@ -294,7 +299,9 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking subtitle outputs - without NAs",
   code = {
+    testthat::skip_on_cran()
     set.seed(123)
+
     p1 <- ggstatsplot::ggwithinstats(
       data = ggstatsplot::iris_long,
       x = condition,
@@ -448,6 +455,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggplot component addition works",
   code = {
+    testthat::skip_on_cran()
 
     # setup
     set.seed(123)
@@ -477,6 +485,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking warning message when too few obs",
   code = {
+    testthat::skip_on_cran()
     set.seed(123)
 
     # dataframe
