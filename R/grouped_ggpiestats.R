@@ -3,7 +3,6 @@
 #' @description Helper function for `ggstatsplot::ggpiestats` to apply this
 #'   function across multiple levels of a given factor and combining the
 #'   resulting plots using `ggstatsplot::combine_plots`.
-#' @author Indrajeet Patil, Chuck Powell
 #'
 #' @inheritParams ggpiestats
 #' @inheritParams grouped_ggbetweenstats

@@ -411,6 +411,3 @@ ggstatsplot::ggcoefstats(
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}
 }
-\author{
-\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
-}

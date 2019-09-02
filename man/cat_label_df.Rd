@@ -42,7 +42,4 @@ ggstatsplot:::cat_label_df(
   perc.k = 1
 )
 }
-\author{
-Indrajeet Patil
-}
 \keyword{internal}

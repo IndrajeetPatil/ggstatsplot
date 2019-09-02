@@ -366,6 +366,3 @@ ggstatsplot::grouped_ggbetweenstats(
 \code{\link{ggbetweenstats}}, \code{\link{ggwithinstats}},
 \code{\link{grouped_ggwithinstats}}
 }
-\author{
-Indrajeet Patil, Chuck Powell
-}

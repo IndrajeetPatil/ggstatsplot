@@ -294,6 +294,3 @@ ggstatsplot::grouped_ggcorrmat(
 \code{\link{ggcorrmat}}, \code{\link{ggscatterstats}},
 \code{\link{grouped_ggscatterstats}}
 }
-\author{
-Indrajeet Patil, Chuck Powell
-}

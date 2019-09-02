@@ -190,6 +190,3 @@ ggdotplotstats(
 \code{\link{grouped_gghistostats}}, \code{\link{gghistostats}},
 \code{\link{grouped_ggdotplotstats}}
 }
-\author{
-Indrajeet Patil
-}

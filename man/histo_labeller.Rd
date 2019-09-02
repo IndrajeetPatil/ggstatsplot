@@ -92,7 +92,4 @@ ggstatsplot:::histo_labeller(
 }
 
 }
-\author{
-\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
-}
 \keyword{internal}

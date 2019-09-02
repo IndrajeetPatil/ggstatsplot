@@ -1,8 +1,6 @@
 #' @title Scatterplot with marginal distributions for all levels of a grouping
 #'   variable
 #' @name grouped_ggscatterstats
-#' @aliases grouped_ggscatterstats
-#' @author Indrajeet Patil
 #' @description Grouped scatterplots from `ggplot2` combined with marginal
 #'   histograms/boxplots/density plots with statistical details added as a
 #'   subtitle.

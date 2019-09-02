@@ -236,6 +236,3 @@ ggstatsplot::ggbarstats(
 \code{\link{grouped_ggbarstats}}, \code{\link{ggpiestats}},
 \code{\link{grouped_ggpiestats}}
 }
-\author{
-Chuck Powell, \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
-}

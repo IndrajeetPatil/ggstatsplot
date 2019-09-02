@@ -23,6 +23,3 @@ A \code{ggplot2} object with the \code{theme_ggstatsplot} theme.
 \description{
 Default theme used for pie chart
 }
-\author{
-\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
-}

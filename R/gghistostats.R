@@ -1,9 +1,7 @@
 #' @title Histogram for distribution of a numeric variable
 #' @name gghistostats
-#' @aliases gghistostats
 #' @description Histogram with statistical details from one-sample test included
 #'   in the plot as a subtitle.
-#' @author Indrajeet Patil
 #'
 #' @param bar.measure Character describing what value needs to be represented as
 #'   height in the bar chart. This can either be `"count"`, which shows number

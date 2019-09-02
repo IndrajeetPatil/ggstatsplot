@@ -3,7 +3,6 @@
 #' @name grouped_ggwithinstats
 #' @description A combined plot of comparison plot created for levels of a
 #'   grouping variable.
-#' @author Indrajeet Patil, Chuck Powell
 #'
 #' @inheritParams ggwithinstats
 #' @inheritParams grouped_ggbetweenstats

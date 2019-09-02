@@ -12,6 +12,3 @@ A \code{ggplot2} object with the \code{theme_ggstatsplot} overlaid.
 \description{
 Default theme used for correlation matrix
 }
-\author{
-\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
-}

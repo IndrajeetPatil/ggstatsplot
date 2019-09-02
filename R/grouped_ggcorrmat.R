@@ -4,7 +4,6 @@
 #' @description Helper function for `ggstatsplot::ggcorrmat` to apply this
 #'   function across multiple levels of a given factor and combining the
 #'   resulting plots using `ggstatsplot::combine_plots`.
-#' @author Indrajeet Patil, Chuck Powell
 #'
 #' @inheritParams ggcorrmat
 #' @inheritParams grouped_ggbetweenstats

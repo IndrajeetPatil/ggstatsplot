@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers_ggcoefstats_graphics.R
 \name{ggcoefstats_label_maker}
 \alias{ggcoefstats_label_maker}
-\title{Create labels with statistical details for \code{ggcoefstats}.}
+\title{Create labels with statistical details for \code{ggcoefstats}}
 \usage{
 ggcoefstats_label_maker(x, tidy_df = NULL, glance_df = NULL,
   statistic = NULL, k = 2, effsize = "eta", partial = TRUE, ...)
@@ -43,7 +43,7 @@ will be returned. Valid only for objects of class \code{aov}, \code{anova}, or
 \item{...}{Currently ignored.}
 }
 \description{
-Create labels with statistical details for \code{ggcoefstats}.
+Create labels with statistical details for \code{ggcoefstats}
 }
 \examples{
 \donttest{
@@ -130,8 +130,5 @@ ggstatsplot:::ggcoefstats_label_maker(
   partial = FALSE
 )
 }
-}
-\author{
-\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }
 \keyword{internal}

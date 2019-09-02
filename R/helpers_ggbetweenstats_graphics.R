@@ -547,10 +547,6 @@ aesthetic_addon <- function(plot,
 
   # ---------------- adding ggplot component ---------------------------------
 
-  # if any additional modification needs to be made to the plot
-  # this is primarily useful for grouped_ variant of this function
-  plot <- plot + ggplot.component
-
-  # return the changed plot
-  return(plot)
+  # return with any additional modification that needs to be made to the plot
+  return(plot + ggplot.component)
 }

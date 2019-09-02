@@ -3,7 +3,6 @@
 #'   of the list equal to the factor levels of the grouping variable. Each
 #'   element of the list will be a tibble.
 #' @name grouped_list
-#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @inheritParams ggbetweenstats
 #' @param grouping.var A single grouping variable (can be entered either as a

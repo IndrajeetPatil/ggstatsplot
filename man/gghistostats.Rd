@@ -214,6 +214,3 @@ ggstatsplot::gghistostats(
 \code{\link{grouped_gghistostats}}, \code{\link{ggdotplotstats}},
 \code{\link{grouped_ggdotplotstats}}
 }
-\author{
-Indrajeet Patil
-}

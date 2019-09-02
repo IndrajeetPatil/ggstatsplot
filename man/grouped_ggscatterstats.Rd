@@ -334,6 +334,3 @@ ggstatsplot::grouped_ggscatterstats(
 \code{\link{ggscatterstats}}, \code{\link{ggcorrmat}},
 \code{\link{grouped_ggcorrmat}}
 }
-\author{
-Indrajeet Patil
-}

@@ -25,7 +25,4 @@ or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accep
 Switch function to use helper function to create subtitle for the
 \code{ggbetweenstats} plot.
 }
-\author{
-Indrajeet Patil
-}
 \keyword{internal}

@@ -1,7 +1,6 @@
 #' @title Switch function to use helper function to create subtitle for the
 #'   `ggbetweenstats` plot.
 #' @name ggbetweenstats_switch
-#' @author Indrajeet Patil
 #'
 #' @inheritParams ggbetweenstats
 #' @param test Decides which test to run (can be either `"t-test"` or

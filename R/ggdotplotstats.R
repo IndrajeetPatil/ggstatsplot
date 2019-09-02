@@ -2,7 +2,6 @@
 #' @name ggdotplotstats
 #' @description A dot chart with statistical details from one-sample test
 #'   included in the plot as a subtitle.
-#' @author Indrajeet Patil
 #'
 #' @param y Label or grouping variable.
 #' @param point.color Character describing color for the point (Default:
