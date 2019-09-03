@@ -21,7 +21,4 @@ element of the list will be a tibble.
 \examples{
 ggstatsplot:::grouped_list(data = ggplot2::msleep, grouping.var = vore)
 }
-\author{
-\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
-}
 \keyword{internal}

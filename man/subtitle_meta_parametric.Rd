@@ -99,6 +99,3 @@ ggstatsplot::subtitle_meta_parametric(
 )
 }
 }
-\author{
-\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
-}

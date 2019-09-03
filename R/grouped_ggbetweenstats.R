@@ -3,7 +3,6 @@
 #' @name grouped_ggbetweenstats
 #' @description A combined plot of comparison plot created for levels of a
 #'   grouping variable.
-#' @author Indrajeet Patil, Chuck Powell
 #'
 #' @param title.prefix Character string specifying the prefix text for the fixed
 #'   plot title (name of each factor level) (Default: `NULL`). If `NULL`, the

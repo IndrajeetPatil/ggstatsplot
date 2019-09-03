@@ -171,6 +171,3 @@ combine_plots(
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html}
 }
-\author{
-Indrajeet Patil
-}

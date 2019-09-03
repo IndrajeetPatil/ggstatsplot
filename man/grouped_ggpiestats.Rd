@@ -303,6 +303,3 @@ ggstatsplot::grouped_ggpiestats(
 \code{\link{ggbarstats}}, \code{\link{ggpiestats}},
 \code{\link{grouped_ggbarstats}}
 }
-\author{
-Indrajeet Patil, Chuck Powell
-}

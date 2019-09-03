@@ -1,6 +1,5 @@
-#' @title Create labels with statistical details for `ggcoefstats`.
+#' @title Create labels with statistical details for `ggcoefstats`
 #' @name ggcoefstats_label_maker
-#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @param ... Currently ignored.
 #' @param tidy_df Tidy dataframe from `broomExtra::tidy`.

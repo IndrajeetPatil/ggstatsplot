@@ -2,7 +2,6 @@
 #' @name ggbarstats
 #' @description Bar charts for categorical data with statistical details
 #'   included in the plot as a subtitle.
-#' @author Chuck Powell, \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @param labels.legend A character vector with custom labels for levels of
 #'   the `x` variable displayed in the legend.

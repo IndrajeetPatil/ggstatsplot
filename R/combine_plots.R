@@ -1,6 +1,5 @@
 #' @title Combining and arranging multiple plots in a grid
 #' @name combine_plots
-#' @author Indrajeet Patil
 #' @description Wrapper around \code{\link[cowplot]{plot_grid}} that will return
 #'   a plotgrid along with a combination of title, caption, and annotation label
 #' @return Combined plot with title and/or caption and/or annotation label

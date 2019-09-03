@@ -50,7 +50,4 @@ ggstatsplot:::line_labeller(
   label.text = "median"
 )
 }
-\author{
-\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
-}
 \keyword{internal}

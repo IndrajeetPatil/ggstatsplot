@@ -25,7 +25,4 @@ Counts and percentages across grouping variables.
 \examples{
 ggstatsplot:::cat_counter(data = ggplot2::mpg, "drv", cyl, "fl")
 }
-\author{
-Indrajeet Patil
-}
 \keyword{internal}

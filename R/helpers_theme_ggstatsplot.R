@@ -1,5 +1,4 @@
 #' @title Default theme used in all `ggstatsplot` package plots
-#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #' @description Common theme used across all plots generated in `ggstatsplot`
 #'   and *assumed* by the author to be aesthetically pleasing to the
 #'   user/reader.
@@ -76,7 +75,6 @@ theme_mprl <- theme_ggstatsplot
 
 #' @title Default theme used for pie chart
 #' @name theme_pie
-#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @return A `ggplot2` object with the `theme_ggstatsplot` theme.
 #'
@@ -136,7 +134,6 @@ theme_pie <- function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE) {
 
 #' @title Default theme used for correlation matrix
 #' @name theme_corrmat
-#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #' @return A `ggplot2` object with the `theme_ggstatsplot` overlaid.
 #'
 #' @import ggplot2

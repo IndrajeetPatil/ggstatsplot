@@ -1,6 +1,5 @@
 #' @title Visualization of a correlation matrix
 #' @name ggcorrmat
-#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #' @return Correlation matrix plot or correlation coefficient matrix or matrix
 #'   of *p*-values.
 #'

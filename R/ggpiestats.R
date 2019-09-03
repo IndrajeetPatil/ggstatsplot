@@ -2,7 +2,6 @@
 #' @name ggpiestats
 #' @description Pie charts for categorical data with statistical details
 #'   included in the plot as a subtitle.
-#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @param x,main The variable to use as the **rows** in the contingency table.
 #' @param y,condition The variable to use as the **columns** in the contingency

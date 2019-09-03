@@ -32,6 +32,3 @@ user/reader.
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html}
 }
-\author{
-\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
-}

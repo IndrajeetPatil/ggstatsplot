@@ -3,7 +3,6 @@
 #' @description This analysis is carried out using the `metafor` package. For
 #'   more, see `?metafor::rma`.
 #' @name subtitle_meta_parametric
-#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @param data A dataframe. It **must** contain columns named `estimate`
 #'   (corresponding estimates of coefficients or other quantities of interest)

@@ -62,12 +62,6 @@ ggstatsplot::bartlett_message(
 \seealso{
 \code{\link{ggbetweenstats}}
 
-Other helper_messages: \code{\link{ggcorrmat_matrix_message}},
-  \code{\link{grouped_message}},
-  \code{\link{normality_message}},
-  \code{\link{palette_message}}
-}
-\author{
-\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
+Other helper_messages: \code{\link{normality_message}}
 }
 \concept{helper_messages}

@@ -2,7 +2,6 @@
 #' @name cat_label_df
 #' @description Creating a dataframe with an added column corresponding to
 #'   summary for categorical variables.
-#' @author Indrajeet Patil
 #'
 #' @param data A dataframe containing summaries for categorical variables.
 #'   Should contain columns named either `"perc"` or `"counts"` or both.
@@ -76,7 +75,6 @@ cat_label_df <- function(data,
 
 #' @title Counts and percentages across grouping variables.
 #' @name cat_counter
-#' @author Indrajeet Patil
 #'
 #' @param ... Additional grouping variables.
 #' @inheritParams ggpiestats

@@ -278,6 +278,3 @@ ggstatsplot::ggwithinstats(
 \code{\link{grouped_ggbetweenstats}}, \code{\link{ggbetweenstats}},
 \code{\link{grouped_ggwithinstats}}
 }
-\author{
-\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
-}

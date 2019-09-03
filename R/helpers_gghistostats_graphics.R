@@ -1,6 +1,5 @@
 #' @title Adds a label to the horizontal or vertical line.
 #' @name line_labeller
-#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @param plot A `ggplot` object in which the label needs to be displayed.
 #' @param x,y The `x`- and `y`-axes coordinates for the label.
@@ -85,7 +84,6 @@ line_labeler <- line_labeller
 #' @name histo_labeller
 #' @description Helper function for adding centrality parameter value and/or a
 #'   test value for the continuous, numeric `x`-axis variable.
-#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @import ggplot2
 #'

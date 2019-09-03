@@ -1,6 +1,5 @@
 #' @title Dot-and-whisker plots for regression analyses
 #' @name ggcoefstats
-#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #' @return Plot with the regression coefficients' point estimates as dots with
 #'   confidence interval whiskers and other statistical details included as
 #'   labels.
