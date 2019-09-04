@@ -2189,7 +2189,7 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
-## Dose-Response Curves (`drc`)
+## dose-response models/curves (`drc`)
 
 ```{r drc, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 5}
 # setup
@@ -2240,7 +2240,7 @@ ggstatsplot::ggcoefstats(
 
 ## summary measures for count data (`epi.2by2`)
 
-```{r epi.2by2, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+```{r epi.2by2, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 6}
 # setup
 set.seed(123)
 library(epiR)

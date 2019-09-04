@@ -205,7 +205,7 @@ included in the plot as a subtitle.</p>
   <span class='kw'>simulate.p.value</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>2000</span>, <span class='kw'>bias.correct</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Percent"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
   <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>bar.label</span> <span class='kw'>=</span> <span class='st'>"percentage"</span>, <span class='kw'>data.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>bar.proptest</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/ggtheme.html'>theme_bw</a></span>(),
+  <span class='kw'>bar.proptest</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>,
   <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>return</span> <span class='kw'>=</span> <span class='st'>"plot"</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
@@ -411,7 +411,7 @@ to be carried out for each level of <code>y</code> (Default: <code>TRUE</code>).
     <tr>
       <th>ggtheme</th>
       <td><p>A function, <code>ggplot2</code> theme name. Default value is
-<code><a href='https://rdrr.io/pkg/ggplot2/man/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
+<code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
 extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>,
 <code><a href='https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html'>hrbrthemes::theme_ipsum_ps()</a></code>, etc.).</p></td>
     </tr>
@@ -497,7 +497,7 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
 
 <span class='co'># association test (or contingency table analysis)</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/ggbarstats.html'>ggbarstats</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggbarstats.html'>ggbarstats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
   <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>vs</span>,
   <span class='kw'>condition</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
@@ -506,38 +506,31 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
   <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='st'>"Engine"</span>
 )</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>10</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 3 x 11</span><span>
-#&gt;   cyl   counts  perc N        `0`     `1`    statistic  p.value parameter
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 8         14  43.8 (n = 14) 100.00% </span><span style='color: #BB0000;'>NA</span><span>        14     0.000</span><span style='text-decoration: underline;'>183</span><span>         1
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 6          7  21.9 (n = 7)  42.86%  57.14%     0.143 0.705            1
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 4         11  34.4 (n = 11) 9.09%   90.91%     7.36  0.006</span><span style='text-decoration: underline;'>66</span><span>          1
-#&gt;   method                                   significance
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Chi-squared test for given probabilities ***         
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Chi-squared test for given probabilities ns          
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Chi-squared test for given probabilities **          </div><div class='img'><img src='ggbarstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt;   cyl   counts  perc N     `0`   `1`   statistic p.value parameter method
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 8         14  43.8 (n =~ 100.~ </span><span style='color: #BB0000;'>NA</span><span>       14     1.83</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-4</span><span>         1 Chi-s~
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 6          7  21.9 (n =~ 42.8~ 57.1~     0.143 7.05</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-1</span><span>         1 Chi-s~
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 4         11  34.4 (n =~ 9.09% 90.9~     7.36  6.66</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-3</span><span>         1 Chi-s~
+#&gt; </span><span style='color: #949494;'># ... with 1 more variable: significance </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span></div><div class='img'><img src='ggbarstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># using `counts` argument</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>jmv</span>)
-
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggstatsplot/man/ggbarstats.html'>ggbarstats</a></span>(
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>jmv</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘jmv’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:stats’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    anova</span></div><div class='input'>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggbarstats.html'>ggbarstats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='no'>HairEyeColor</span>),
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Eye</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Hair</span>,
   <span class='kw'>counts</span> <span class='kw'>=</span> <span class='no'>Freq</span>
 )</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>100</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 4 x 13</span><span>
-#&gt;   Hair  counts  perc N         Brown  Blue   Hazel  Green  statistic  p.value
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Blond    127  21.5 (n = 127) 5.51%  74.02% 7.87%  12.60%    164.   2.44</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-35</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Red       71  12.0 (n = 71)  36.62% 23.94% 19.72% 19.72%      5.45 1.42</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Brown    286  48.3 (n = 286) 41.61% 29.37% 18.88% 10.14%     63.3  1.17</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-13</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> Black    108  18.2 (n = 108) 62.96% 18.52% 13.89% 4.63%      87.3  8.19</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-19</span><span>
-#&gt;   parameter method                                   significance
-#&gt;       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>         3 Chi-squared test for given probabilities ***         
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>         3 Chi-squared test for given probabilities ns          
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span>         3 Chi-squared test for given probabilities ***         
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span>         3 Chi-squared test for given probabilities ***         </div><div class='img'><img src='ggbarstats-2.png' alt='' width='700' height='433' /></div><div class='input'># }
+#&gt;   Hair  counts  perc N     Brown Blue  Hazel Green statistic  p.value parameter
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Blond    127  21.5 (n =~ 5.51% 74.0~ 7.87% 12.6~    164.   2.44</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-35</span><span>         3
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Red       71  12.0 (n =~ 36.6~ 23.9~ 19.7~ 19.7~      5.45 1.42</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 1</span><span>         3
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Brown    286  48.3 (n =~ 41.6~ 29.3~ 18.8~ 10.1~     63.3  1.17</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-13</span><span>         3
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> Black    108  18.2 (n =~ 62.9~ 18.5~ 13.8~ 4.63%     87.3  8.19</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-19</span><span>         3
+#&gt; </span><span style='color: #949494;'># ... with 2 more variables: method </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, significance </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span></div><div class='img'><img src='ggbarstats-2.png' alt='' width='700' height='433' /></div><div class='input'># }
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -559,7 +552,7 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
 
       </footer>
