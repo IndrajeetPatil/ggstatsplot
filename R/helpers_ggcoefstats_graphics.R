@@ -9,6 +9,8 @@
 #' @param ... Currently ignored.
 #' @inheritParams ggcoefstats
 #'
+#' @importFrom insight is_model find_statistic
+#'
 #' @examples
 #' \donttest{
 #' # show all columns in output tibble
@@ -106,135 +108,26 @@ ggcoefstats_label_maker <- function(x,
                                     partial = TRUE,
                                     ...) {
 
-  # =========================== list of objects ===============================
+  #----------------------- statistic cleanup ----------------------------------
 
-  # dataframe objects
-  df.mods <- c(
-    "data.frame",
-    "data.table",
-    "grouped_df",
-    "tbl",
-    "tbl_df",
-    "spec_tbl_df",
-    "resampled_df"
-  )
+  # if a dataframe
+  if (isFALSE(insight::is_model(x))) {
+    tidy_df <- x
+  } else {
+    # if not a dataframe, figure out what's the relevant statistic
+    statistic <- insight::find_statistic(x)
 
-  # models for which statistic is t-value
-  t.mods <-
-    c(
-      "biglm",
-      "bglmerMod",
-      "blmerMod",
-      "cch",
-      "coeftest",
-      "drc",
-      "felm",
-      "gam",
-      "gamlss",
-      "garch",
-      "glmmPQL",
-      "gls",
-      "gmm",
-      "ivreg",
-      "lm",
-      "lm.beta",
-      "lm_robust",
-      "lme",
-      "lmerMod",
-      "lmRob",
-      "lmrob",
-      "mixed",
-      "mlm",
-      "multinom",
-      "nlmerMod",
-      "nlrq",
-      "nls",
-      "orcutt",
-      "plm",
-      "polr",
-      "rlm",
-      "rlmerMod",
-      "rq",
-      "speedglm",
-      "speedlm",
-      "svyglm",
-      "svyolr",
-      "wblm"
-    )
-
-  # models for which statistic is z-value
-  z.mods <-
-    c(
-      "aareg",
-      "clm",
-      "clm2",
-      "clmm",
-      "coxph",
-      "ergm",
-      "glmmadmb",
-      "glmmTMB",
-      "lavaan",
-      "mjoint",
-      "mle2",
-      "mclogit",
-      "mmclogit",
-      "negbin",
-      "survreg"
-    )
-
-  # models for which statistic is F-value
-  f.mods <- c(
-    "aov",
-    "aovlist",
-    "anova",
-    "Gam",
-    "manova"
-  )
-
-  # models for which there is no clear t-or z-statistic
-  # which statistic to use will be decided based on the family used
-  g.mods <- c(
-    "glm",
-    "glmerMod",
-    "glmRob",
-    "glmrob"
-  )
-
-  # t-statistic
-  g.t.mods <- c(
-    "quasi",
-    "gaussian",
-    "quasibinomial",
-    "quasipoisson",
-    "Gamma",
-    "inverse.gaussian"
-  )
-
-  # for z-statistic, the families are going to be "binomial" and "poisson"
-  # but package-dependent; `robustbase` gives z for "Gamma" family, e.g.
-
-  # ==================== dataframe, t-statistic, z-statistic ================
-
-  if (class(x)[[1]] %in% df.mods) tidy_df <- x
-  if (class(x)[[1]] %in% t.mods) statistic <- "t"
-  if (class(x)[[1]] %in% z.mods) statistic <- "z"
-
-  # ======================= t/z-statistic labels ============================
-
-  if (class(x)[[1]] %in% g.mods) {
-    if (class(x)[[1]] == "glm" && summary(x)$family$family[[1]] %in% g.t.mods) {
-      statistic <- "t"
-    } else if (class(x)[[1]] == "glmerMod" && summary(x)$family[[1]] %in% g.t.mods) {
-      statistic <- "t"
-    } else {
-      statistic <- "z"
-    }
+    # standardize statistic type symbol for regression models
+    statistic <-
+      switch(statistic,
+        "t-statistic" = "t",
+        "z-statistic" = "z",
+        "F-statistic" = "f"
+      )
   }
 
-  # ====================== F-statistic ====================================
-
-  if (class(x)[[1]] %in% f.mods) {
-    statistic <- "f"
+  # No glance method is available for F-statistic
+  if (statistic %in% c("f", "f.value", "f-value", "F-value", "F")) {
     glance_df <- NULL
   }
 
@@ -338,7 +231,6 @@ ggcoefstats_label_maker <- function(x,
   #--------------------------- f-statistic ---------------------------------
 
   if (statistic %in% c("f", "f.value", "f-value", "F-value", "F")) {
-
     # which effect size is needed?
     if (effsize == "eta") {
       if (isTRUE(partial)) {

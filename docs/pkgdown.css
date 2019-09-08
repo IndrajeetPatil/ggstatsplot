@@ -246,3 +246,11 @@ mark {
 .fab {
     font-family: "Font Awesome 5 Brands" !important;
 }
+
+/* don't display links in code chunks when printing */
+/* source: https://stackoverflow.com/a/10781533 */
+@media print {
+  code a:link:after, code a:visited:after {
+    content: "";
+  }
+}
