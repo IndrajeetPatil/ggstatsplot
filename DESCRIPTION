@@ -44,6 +44,7 @@ Imports:
     ggsignif (>= 0.6.0),
     grid,
     groupedstats (>= 0.0.9),
+    insight (>= 0.5.0),
     magrittr,
     metaBMA (>= 0.6.1),
     metafor (>= 2.1-0),

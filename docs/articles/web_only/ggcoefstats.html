@@ -60,9 +60,6 @@
       <a href="../../articles/additional.html">additional vignettes</a>
     </li>
     <li>
-      <a href="../../articles/tests_and_coverage.html">Tests and Coverage</a>
-    </li>
-    <li>
       <a href="../../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
@@ -142,7 +139,7 @@
       <h1>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-09-04</h4>
+            <h4 class="date">2019-09-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -151,7 +148,7 @@
 
     
     
-<p>The function <code><a href="../../reference/ggcoefstats.html">ggstatsplot::ggcoefstats</a></code> generates <strong>dot-and-whisker plots</strong> for regression models saved in tidy data frames (produced with the <code>broom</code> package and its mixed-effects modeling variant <code>broom.mixed</code> package).</p>
+<p>The function <code><a href="../../reference/ggcoefstats.html">ggstatsplot::ggcoefstats</a></code> generates <strong>dot-and-whisker plots</strong> for regression models saved in a tidy data frame (produced with the <code>broom</code> package and its mixed-effects modeling variant <code>broom.mixed</code> package).</p>
 <p>By default, the plot displays <code>95%</code> confidence intervals for the regression coefficients. The function currently supports only those classes of object that are supported by the <code>broom</code> package. For an exhaustive list, see- <a href="https://broom.tidyverse.org/articles/available-methods.html" class="uri">https://broom.tidyverse.org/articles/available-methods.html</a></p>
 <p>In this vignette, we will see examples of how to use this function. We will try to cover as many classes of objects as possible. Unfortunately, there is no single dataset that will be helpful for carrying out all types of regression analyses and, therefore, we will use various datasets to explore data-specific hypotheses using regression models.</p>
 <p><strong>Note before</strong>: The following demo uses the pipe operator (<code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code>), so in case you are not familiar with this operator, here is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="uri">http://r4ds.had.co.nz/pipes.html</a></p>
@@ -1408,7 +1405,7 @@
 <a class="sourceLine" id="cb36-43" title="43"><span class="co">#&gt; Note: No model diagnostics information available for the object of class mmclogit .</span></a>
 <a class="sourceLine" id="cb36-44" title="44"><span class="co">#&gt; Warning:  No. of factor levels is greater than default palette color count.</span></a>
 <a class="sourceLine" id="cb36-45" title="45"><span class="co">#&gt;  Try using another color `palette` (and/or `package`).</span></a></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/mmclogit-1.png" width="384"></p>
+<p><img src="ggcoefstats_files/figure-html/mmclogit-1.png" width="576"></p>
 </div>
 <div id="cox-proportional-hazards-regression-model-coxph" class="section level2">
 <h2 class="hasAnchor">
@@ -1526,7 +1523,7 @@
 <a class="sourceLine" id="cb41-16" title="16">)</a>
 <a class="sourceLine" id="cb41-17" title="17"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from biglm object; </span></a>
 <a class="sourceLine" id="cb41-18" title="18"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/biglm-1.png" width="384"></p>
+<p><img src="ggcoefstats_files/figure-html/biglm-1.png" width="576"></p>
 </div>
 <div id="bounded-memory-general-linear-regression-bigglm" class="section level2">
 <h2 class="hasAnchor">
@@ -1550,7 +1547,7 @@
 <a class="sourceLine" id="cb42-17" title="17">)</a>
 <a class="sourceLine" id="cb42-18" title="18"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from bigglm object; </span></a>
 <a class="sourceLine" id="cb42-19" title="19"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/bigglm-1.png" width="384"></p>
+<p><img src="ggcoefstats_files/figure-html/bigglm-1.png" width="576"></p>
 </div>
 <div id="parametric-survival-regression-model-survreg" class="section level2">
 <h2 class="hasAnchor">
@@ -1766,7 +1763,7 @@
 <a class="sourceLine" id="cb51-16" title="16">  <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span>,</a>
 <a class="sourceLine" id="cb51-17" title="17">  <span class="dt">title =</span> <span class="st">"generalized least squares model"</span></a>
 <a class="sourceLine" id="cb51-18" title="18">)</a></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/gls-1.png" width="480"></p>
+<p><img src="ggcoefstats_files/figure-html/gls-1.png" width="576"></p>
 </div>
 <div id="ordinary-least-squares-with-robust-standard-errors-lm_robust" class="section level2">
 <h2 class="hasAnchor">
@@ -2406,8 +2403,8 @@
 <a class="sourceLine" id="cb74-17" title="17"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb74-18" title="18"><span class="co">#&gt; SAMPLING FOR MODEL '7fc0444ee315785f19884bc3c9b2a5ab' NOW (CHAIN 1).</span></a>
 <a class="sourceLine" id="cb74-19" title="19"><span class="co">#&gt; Chain 1: </span></a>
-<a class="sourceLine" id="cb74-20" title="20"><span class="co">#&gt; Chain 1: Gradient evaluation took 0 seconds</span></a>
-<a class="sourceLine" id="cb74-21" title="21"><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span></a>
+<a class="sourceLine" id="cb74-20" title="20"><span class="co">#&gt; Chain 1: Gradient evaluation took 0.001 seconds</span></a>
+<a class="sourceLine" id="cb74-21" title="21"><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.</span></a>
 <a class="sourceLine" id="cb74-22" title="22"><span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span></a>
 <a class="sourceLine" id="cb74-23" title="23"><span class="co">#&gt; Chain 1: </span></a>
 <a class="sourceLine" id="cb74-24" title="24"><span class="co">#&gt; Chain 1: </span></a>
@@ -2424,15 +2421,15 @@
 <a class="sourceLine" id="cb74-35" title="35"><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb74-36" title="36"><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb74-37" title="37"><span class="co">#&gt; Chain 1: </span></a>
-<a class="sourceLine" id="cb74-38" title="38"><span class="co">#&gt; Chain 1:  Elapsed Time: 8.513 seconds (Warm-up)</span></a>
-<a class="sourceLine" id="cb74-39" title="39"><span class="co">#&gt; Chain 1:                4.774 seconds (Sampling)</span></a>
-<a class="sourceLine" id="cb74-40" title="40"><span class="co">#&gt; Chain 1:                13.287 seconds (Total)</span></a>
+<a class="sourceLine" id="cb74-38" title="38"><span class="co">#&gt; Chain 1:  Elapsed Time: 8.912 seconds (Warm-up)</span></a>
+<a class="sourceLine" id="cb74-39" title="39"><span class="co">#&gt; Chain 1:                4.899 seconds (Sampling)</span></a>
+<a class="sourceLine" id="cb74-40" title="40"><span class="co">#&gt; Chain 1:                13.811 seconds (Total)</span></a>
 <a class="sourceLine" id="cb74-41" title="41"><span class="co">#&gt; Chain 1: </span></a>
 <a class="sourceLine" id="cb74-42" title="42"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb74-43" title="43"><span class="co">#&gt; SAMPLING FOR MODEL '7fc0444ee315785f19884bc3c9b2a5ab' NOW (CHAIN 2).</span></a>
 <a class="sourceLine" id="cb74-44" title="44"><span class="co">#&gt; Chain 2: </span></a>
-<a class="sourceLine" id="cb74-45" title="45"><span class="co">#&gt; Chain 2: Gradient evaluation took 0.001 seconds</span></a>
-<a class="sourceLine" id="cb74-46" title="46"><span class="co">#&gt; Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.</span></a>
+<a class="sourceLine" id="cb74-45" title="45"><span class="co">#&gt; Chain 2: Gradient evaluation took 0 seconds</span></a>
+<a class="sourceLine" id="cb74-46" title="46"><span class="co">#&gt; Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span></a>
 <a class="sourceLine" id="cb74-47" title="47"><span class="co">#&gt; Chain 2: Adjust your expectations accordingly!</span></a>
 <a class="sourceLine" id="cb74-48" title="48"><span class="co">#&gt; Chain 2: </span></a>
 <a class="sourceLine" id="cb74-49" title="49"><span class="co">#&gt; Chain 2: </span></a>
@@ -2449,9 +2446,9 @@
 <a class="sourceLine" id="cb74-60" title="60"><span class="co">#&gt; Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb74-61" title="61"><span class="co">#&gt; Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb74-62" title="62"><span class="co">#&gt; Chain 2: </span></a>
-<a class="sourceLine" id="cb74-63" title="63"><span class="co">#&gt; Chain 2:  Elapsed Time: 19.277 seconds (Warm-up)</span></a>
-<a class="sourceLine" id="cb74-64" title="64"><span class="co">#&gt; Chain 2:                43.194 seconds (Sampling)</span></a>
-<a class="sourceLine" id="cb74-65" title="65"><span class="co">#&gt; Chain 2:                62.471 seconds (Total)</span></a>
+<a class="sourceLine" id="cb74-63" title="63"><span class="co">#&gt; Chain 2:  Elapsed Time: 20.56 seconds (Warm-up)</span></a>
+<a class="sourceLine" id="cb74-64" title="64"><span class="co">#&gt; Chain 2:                43.51 seconds (Sampling)</span></a>
+<a class="sourceLine" id="cb74-65" title="65"><span class="co">#&gt; Chain 2:                64.07 seconds (Total)</span></a>
 <a class="sourceLine" id="cb74-66" title="66"><span class="co">#&gt; Chain 2: </span></a>
 <a class="sourceLine" id="cb74-67" title="67"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb74-68" title="68"><span class="co">#&gt; SAMPLING FOR MODEL '7fc0444ee315785f19884bc3c9b2a5ab' NOW (CHAIN 3).</span></a>
@@ -2474,9 +2471,9 @@
 <a class="sourceLine" id="cb74-85" title="85"><span class="co">#&gt; Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb74-86" title="86"><span class="co">#&gt; Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb74-87" title="87"><span class="co">#&gt; Chain 3: </span></a>
-<a class="sourceLine" id="cb74-88" title="88"><span class="co">#&gt; Chain 3:  Elapsed Time: 6.925 seconds (Warm-up)</span></a>
-<a class="sourceLine" id="cb74-89" title="89"><span class="co">#&gt; Chain 3:                4.833 seconds (Sampling)</span></a>
-<a class="sourceLine" id="cb74-90" title="90"><span class="co">#&gt; Chain 3:                11.758 seconds (Total)</span></a>
+<a class="sourceLine" id="cb74-88" title="88"><span class="co">#&gt; Chain 3:  Elapsed Time: 6.351 seconds (Warm-up)</span></a>
+<a class="sourceLine" id="cb74-89" title="89"><span class="co">#&gt; Chain 3:                4.394 seconds (Sampling)</span></a>
+<a class="sourceLine" id="cb74-90" title="90"><span class="co">#&gt; Chain 3:                10.745 seconds (Total)</span></a>
 <a class="sourceLine" id="cb74-91" title="91"><span class="co">#&gt; Chain 3: </span></a>
 <a class="sourceLine" id="cb74-92" title="92"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb74-93" title="93"><span class="co">#&gt; SAMPLING FOR MODEL '7fc0444ee315785f19884bc3c9b2a5ab' NOW (CHAIN 4).</span></a>
@@ -2499,9 +2496,9 @@
 <a class="sourceLine" id="cb74-110" title="110"><span class="co">#&gt; Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb74-111" title="111"><span class="co">#&gt; Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb74-112" title="112"><span class="co">#&gt; Chain 4: </span></a>
-<a class="sourceLine" id="cb74-113" title="113"><span class="co">#&gt; Chain 4:  Elapsed Time: 5.483 seconds (Warm-up)</span></a>
-<a class="sourceLine" id="cb74-114" title="114"><span class="co">#&gt; Chain 4:                4.656 seconds (Sampling)</span></a>
-<a class="sourceLine" id="cb74-115" title="115"><span class="co">#&gt; Chain 4:                10.139 seconds (Total)</span></a>
+<a class="sourceLine" id="cb74-113" title="113"><span class="co">#&gt; Chain 4:  Elapsed Time: 5.941 seconds (Warm-up)</span></a>
+<a class="sourceLine" id="cb74-114" title="114"><span class="co">#&gt; Chain 4:                5.106 seconds (Sampling)</span></a>
+<a class="sourceLine" id="cb74-115" title="115"><span class="co">#&gt; Chain 4:                11.047 seconds (Total)</span></a>
 <a class="sourceLine" id="cb74-116" title="116"><span class="co">#&gt; Chain 4:</span></a>
 <a class="sourceLine" id="cb74-117" title="117"></a>
 <a class="sourceLine" id="cb74-118" title="118"><span class="co"># plot</span></a>
@@ -2528,8 +2525,8 @@
 <a class="sourceLine" id="cb75-7" title="7"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb75-8" title="8"><span class="co">#&gt; SAMPLING FOR MODEL 'continuous' NOW (CHAIN 1).</span></a>
 <a class="sourceLine" id="cb75-9" title="9"><span class="co">#&gt; Chain 1: </span></a>
-<a class="sourceLine" id="cb75-10" title="10"><span class="co">#&gt; Chain 1: Gradient evaluation took 0 seconds</span></a>
-<a class="sourceLine" id="cb75-11" title="11"><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span></a>
+<a class="sourceLine" id="cb75-10" title="10"><span class="co">#&gt; Chain 1: Gradient evaluation took 0.002 seconds</span></a>
+<a class="sourceLine" id="cb75-11" title="11"><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 20 seconds.</span></a>
 <a class="sourceLine" id="cb75-12" title="12"><span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span></a>
 <a class="sourceLine" id="cb75-13" title="13"><span class="co">#&gt; Chain 1: </span></a>
 <a class="sourceLine" id="cb75-14" title="14"><span class="co">#&gt; Chain 1: </span></a>
@@ -2546,9 +2543,9 @@
 <a class="sourceLine" id="cb75-25" title="25"><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb75-26" title="26"><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb75-27" title="27"><span class="co">#&gt; Chain 1: </span></a>
-<a class="sourceLine" id="cb75-28" title="28"><span class="co">#&gt; Chain 1:  Elapsed Time: 0.078 seconds (Warm-up)</span></a>
-<a class="sourceLine" id="cb75-29" title="29"><span class="co">#&gt; Chain 1:                0.087 seconds (Sampling)</span></a>
-<a class="sourceLine" id="cb75-30" title="30"><span class="co">#&gt; Chain 1:                0.165 seconds (Total)</span></a>
+<a class="sourceLine" id="cb75-28" title="28"><span class="co">#&gt; Chain 1:  Elapsed Time: 0.098 seconds (Warm-up)</span></a>
+<a class="sourceLine" id="cb75-29" title="29"><span class="co">#&gt; Chain 1:                0.111 seconds (Sampling)</span></a>
+<a class="sourceLine" id="cb75-30" title="30"><span class="co">#&gt; Chain 1:                0.209 seconds (Total)</span></a>
 <a class="sourceLine" id="cb75-31" title="31"><span class="co">#&gt; Chain 1:</span></a>
 <a class="sourceLine" id="cb75-32" title="32"></a>
 <a class="sourceLine" id="cb75-33" title="33"><span class="co"># plot</span></a>

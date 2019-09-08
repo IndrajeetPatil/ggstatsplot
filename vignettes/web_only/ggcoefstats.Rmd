@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 ```
 
 The function `ggstatsplot::ggcoefstats` generates **dot-and-whisker plots** for
-regression models saved in tidy data frames (produced with the `broom` package
+regression models saved in a tidy data frame (produced with the `broom` package
 and its mixed-effects modeling variant `broom.mixed` package).
 
 By default, the plot displays `95%` confidence intervals for the regression
@@ -1326,7 +1326,7 @@ ggstatsplot::ggcoefstats(
 
 ## mixed conditional logit models (`mmclogit`)
 
-```{r mmclogit, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+```{r mmclogit, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
 # setup
 set.seed(123)
 library(mclogit)
@@ -1448,7 +1448,7 @@ ggstatsplot::ggcoefstats(
 
 ## bounded memory linear regression (`biglm`)
 
-```{r biglm, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+```{r biglm, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 6}
 # setup
 set.seed(123)
 library(biglm)
@@ -1469,7 +1469,7 @@ ggstatsplot::ggcoefstats(
 
 ## bounded memory general linear regression (`bigglm`)
 
-```{r bigglm, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+```{r bigglm, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 6}
 # setup
 set.seed(123)
 library(biglm)
@@ -1689,7 +1689,7 @@ The `nlme` package provides a function to fit a linear model using generalized
 least squares. The errors are allowed to be correlated and/or have unequal
 variances. 
 
-```{r gls, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+```{r gls, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6}
 # for reproducibility
 set.seed(123)
 library(nlme)
