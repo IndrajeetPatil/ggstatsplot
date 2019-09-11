@@ -73,7 +73,4 @@ ggstatsplot:::mean_ggrepel(
   mean.color = "darkgreen"
 )
 }
-\author{
-\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
-}
 \keyword{internal}

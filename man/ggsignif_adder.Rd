@@ -58,7 +58,4 @@ ggstatsplot:::ggsignif_adder(
   df_pairwise = df_pair
 )
 }
-\author{
-\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
-}
 \keyword{internal}

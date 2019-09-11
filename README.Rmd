@@ -413,7 +413,7 @@ seen from an example below, the only difference between the plot structure is
 that now the group means are connected by paths to highlight the fact that these
 data are paired with each other.
 
-```{r ggwithinstats1, message = FALSE, warning = FALSE, fig.width = 7, fig.height = 5}
+```{r ggwithinstats1, message = FALSE, warning = FALSE, fig.width = 8, fig.height = 6}
 # for reproducibility and data
 set.seed(123)
 library(WRS2)

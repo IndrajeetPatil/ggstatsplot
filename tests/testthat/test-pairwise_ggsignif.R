@@ -86,9 +86,9 @@ testthat::test_that(
     testthat::expect_identical(
       as.character(unique(data_signif$annotation)),
       c(
-        "list(~italic(p)== 0.079 )",
-        "list(~italic(p)== 0.139 )",
-        "list(~italic(p)== 0.825 )"
+        "list(~italic(p)['unadjusted']== 0.079 )",
+        "list(~italic(p)['unadjusted']== 0.139 )",
+        "list(~italic(p)['unadjusted']== 0.825 )"
       )
     )
     testthat::expect_equal(data_dims, c(3L, 9L))
@@ -97,11 +97,11 @@ testthat::test_that(
     testthat::expect_identical(dat$group1, c("PG-13", "PG-13", "R"))
     testthat::expect_identical(dat$group2, c("R", "PG", "PG"))
     testthat::expect_identical(
-      dat$p.value.label,
+      dat$label,
       c(
-        "list(~italic(p)== 0.079 )",
-        "list(~italic(p)== 0.139 )",
-        "list(~italic(p)== 0.825 )"
+        "list(~italic(p)['unadjusted']== 0.079 )",
+        "list(~italic(p)['unadjusted']== 0.139 )",
+        "list(~italic(p)['unadjusted']== 0.825 )"
       )
     )
     testthat::expect_identical(
@@ -137,7 +137,7 @@ testthat::test_that(
       tolerance = 0.01
     )
     testthat::expect_equal(ggsignif_stat$comparisons[[2]], c("PG-13", "PG"))
-    testthat::expect_equal(ggsignif_stat$annotations, dat$p.value.label)
+    testthat::expect_equal(ggsignif_stat$annotations, dat$label)
   }
 )
 
@@ -188,11 +188,11 @@ testthat::test_that(
     testthat::expect_identical(dat$group2, c("Comedy", "RomCom", "RomCom"))
     testthat::expect_identical(dat$significance, c("ns", "***", "***"))
     testthat::expect_identical(
-      dat$p.value.label,
+      dat$label,
       c(
-        "list(~italic(p)== 0.687 )",
-        "list(~italic(p)== 0.001 )",
-        "list(~italic(p)<= 0.001 )"
+        "list(~italic(p)['adjusted']== 0.687 )",
+        "list(~italic(p)['adjusted']== 0.001 )",
+        "list(~italic(p)['adjusted']<= 0.001 )"
       )
     )
     testthat::expect_identical(
@@ -306,7 +306,10 @@ testthat::test_that(
     testthat::expect_equal(ggsignif_stat$comparisons[[2]], c("f", "r"))
     testthat::expect_equal(
       ggsignif_stat$annotations,
-      c("list(~italic(p)<= 0.001 )", "list(~italic(p)<= 0.001 )")
+      c(
+        "list(~italic(p)['adjusted']<= 0.001 )",
+        "list(~italic(p)['adjusted']<= 0.001 )"
+      )
     )
   }
 )
@@ -384,9 +387,9 @@ testthat::test_that(
     testthat::expect_equal(
       ggsignif_stat$annotations,
       c(
-        "list(~italic(p)== 0.032 )",
-        "list(~italic(p)<= 0.001 )",
-        "list(~italic(p)== 0.015 )"
+        "list(~italic(p)['adjusted']== 0.032 )",
+        "list(~italic(p)['adjusted']<= 0.001 )",
+        "list(~italic(p)['adjusted']== 0.015 )"
       )
     )
 

@@ -5,7 +5,7 @@
 \title{Create a dataframe with mean per group and a formatted label for
 display in \code{ggbetweenstats} plot.}
 \usage{
-mean_labeller(data, x, y, mean.ci = FALSE, k = 3, ...)
+mean_labeller(data, x, y, mean.ci = FALSE, k = 3L, ...)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
@@ -39,8 +39,5 @@ ggstatsplot:::mean_labeller(
 )
 }
 
-}
-\author{
-\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 }
 \keyword{internal}

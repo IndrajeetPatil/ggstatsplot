@@ -166,7 +166,7 @@ So the key principle of Cleveland's paradigm for data display is-
 For example, decoding the data point values in `ggbetweenstats` requires
 position judgments along a common scale (Figure \@ref(fig:fig1)):
 
-```{r fig1, message = FALSE, warning = FALSE, fig.height = 8, fig.width = 10, fig.cap = "Note that assessing differences in mean values between groups has been made easier with the help of \\textit{position} of data points along a common scale (the Y-axis) and labels."}
+```{r fig1, message = FALSE, warning = FALSE, fig.height = 9, fig.width = 10, fig.cap = "Note that assessing differences in mean values between groups has been made easier with the help of \\textit{position} of data points along a common scale (the Y-axis) and labels."}
 # for reproducibility
 set.seed(123)
 
@@ -676,7 +676,7 @@ seen from an example below, the only difference between the plot structure is
 that now the group means are connected by paths to highlight the fact that these
 data are paired with each other.
 
-```{r ggwithinstats1, message = FALSE, warning = FALSE, fig.width = 7, fig.height = 5}
+```{r ggwithinstats1, message = FALSE, warning = FALSE, fig.width = 8, fig.height = 6}
 # for reproducibility and data
 set.seed(123)
 library(WRS2)

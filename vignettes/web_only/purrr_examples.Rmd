@@ -89,7 +89,7 @@ Following our methodology above let's start with `ggebtweenstats`. We'll use the
 `gapminder` dataset. We'll make a 3 item named `list` called `data_list` using
 `dplyr::filter` and `split`.
 
-```{r purrr_ggbetweenstats1, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 7}
+```{r purrr_ggbetweenstats1, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 7}
 library(ggstatsplot)
 
 # for reproducibility
@@ -195,7 +195,7 @@ ggstatsplot::combine_plots(
 We will be using simulated data from then Attention Network Test provided in ANT
 dataset in `ez` package.
 
-```{r purrr_ggwithinstats, warning = FALSE, message = FALSE, fig.height = 18, fig.width = 8}
+```{r purrr_ggwithinstats, warning = FALSE, message = FALSE, fig.height = 20, fig.width = 8}
 library(ggstatsplot)
 library(ez)
 data("ANT") # loading data from `ez` package
