@@ -386,18 +386,19 @@ ggwithinstats <- function(data,
       )
 
     # display the results if needed
-    if (isTRUE(messages)) print(dplyr::select(df_pairwise, -p.value.label))
+    if (isTRUE(messages)) print(dplyr::select(df_pairwise, -label))
 
     # adding the layer for pairwise comparisons
-    plot <- ggsignif_adder(
-      plot = plot,
-      df_pairwise = df_pairwise,
-      data = data,
-      x = {{ x }},
-      y = {{ y }},
-      pairwise.annotation = pairwise.annotation,
-      pairwise.display = pairwise.display
-    )
+    plot <-
+      ggsignif_adder(
+        plot = plot,
+        df_pairwise = df_pairwise,
+        data = data,
+        x = {{ x }},
+        y = {{ y }},
+        pairwise.annotation = pairwise.annotation,
+        pairwise.display = pairwise.display
+      )
 
     # preparing the caption for pairwise comparisons test
     caption <-

@@ -1,7 +1,6 @@
 #' @name mean_labeller
 #' @title Create a dataframe with mean per group and a formatted label for
 #'   display in `ggbetweenstats` plot.
-#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @inheritParams ggbetweenstats
 #' @param ... Currently ignored.
@@ -31,7 +30,7 @@ mean_labeller <- function(data,
                           x,
                           y,
                           mean.ci = FALSE,
-                          k = 3,
+                          k = 3L,
                           ...) {
 
   # creating the dataframe
@@ -94,6 +93,7 @@ mean_labeller <- function(data,
     mean_dat %<>% tidyr::unnest(., cols = c(data, label))
   }
 
+  # sample size label column
   mean_dat %<>%
     dplyr::mutate(.data = ., n_label = paste0({{ x }}, "\n(n = ", n, ")", sep = "")) %>%
     dplyr::arrange(.data = ., {{ x }})
@@ -105,7 +105,6 @@ mean_labeller <- function(data,
 
 #' @title Adding labels for mean values.
 #' @name mean_ggrepel
-#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @param mean.data A dataframe containing means for each level of the factor.
 #'   The columns should be titled `x`, `y`, and `label`.
@@ -214,7 +213,6 @@ mean_ggrepel <- function(plot,
 #' @title Finding the outliers in the dataframe using Tukey's interquartile
 #'   range rule
 #' @name check_outlier
-#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #' @description Returns a logical vector
 #'
 #' @param var A numeric vector.
@@ -241,7 +239,6 @@ check_outlier <- function(var, coef = 1.5) {
 
 #' @title Adding a column to dataframe describing outlier status
 #' @name outlier_df
-#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @inheritParams ggbetweenstats
 #' @param ... Additional arguments.
@@ -302,7 +299,6 @@ outlier_df <- function(data,
 
 #' @title Adding `geom_signif` to `ggplot`
 #' @name ggsignif_adder
-#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @param plot A `ggplot` object on which `geom_signif` needed to be added.
 #' @param df_pairwise A dataframe containing results from pairwise comparisons
@@ -364,13 +360,14 @@ ggsignif_adder <- function(plot,
     # deciding what needs to be displayed
     if (pairwise.annotation %in% c("p", "p-value", "p.value")) {
       # if p-values are to be displayed
-      df_pairwise %<>% dplyr::rename(.data = ., label = p.value.label)
       textsize <- 3
       vjust <- 0
       parse <- TRUE
     } else {
       # otherwise just show the asterisks
-      df_pairwise %<>% dplyr::rename(.data = ., label = significance)
+      df_pairwise %<>%
+        dplyr::select(.data = ., -label) %>%
+        dplyr::rename(.data = ., label = significance)
       textsize <- 4
       vjust <- 0.2
       parse <- FALSE
@@ -487,7 +484,6 @@ sort_xy <- function(data,
 
 #' @title Making aesthetic modifications to the plot
 #' @name aesthetic_addon
-#' @author \href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
 #'
 #' @param plot Plot to be aesthetically modified.
 #' @param x A numeric vector for `x` axis.

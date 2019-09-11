@@ -58,7 +58,4 @@ work as expected.}
 \description{
 Making aesthetic modifications to the plot
 }
-\author{
-\href{https://github.com/IndrajeetPatil}{Indrajeet Patil}
-}
 \keyword{internal}
