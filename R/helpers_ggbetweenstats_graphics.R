@@ -87,14 +87,8 @@ mean_labeller <- function(data,
     )
 
   # adding sample size labels and arranging by original factor levels
-  if (utils::packageVersion("tidyr") <= "0.8.9") {
-    mean_dat %<>% tidyr::unnest(.)
-  } else {
-    mean_dat %<>% tidyr::unnest(., cols = c(data, label))
-  }
-
-  # sample size label column
   mean_dat %<>%
+    tidyr::unnest(., cols = c(data, label)) %>%
     dplyr::mutate(.data = ., n_label = paste0({{ x }}, "\n(n = ", n, ")", sep = "")) %>%
     dplyr::arrange(.data = ., {{ x }})
 
