@@ -141,7 +141,8 @@ ggcoefstats_label_maker <- function(x,
       .funs = ~ specify_decimal_p(x = ., k = k)
     ) %>%
     signif_column(data = ., p = p.value) %>%
-    p_value_formatter(df = ., k = k)
+    p_value_formatter(df = ., k = k) %>%
+    dplyr::mutate(.data = ., rowid = dplyr::row_number())
 
   #--------------------------- t-statistic ------------------------------------
 
@@ -163,68 +164,74 @@ ggcoefstats_label_maker <- function(x,
 
       # adding a new column with residual df
       tidy_df %<>%
-        purrrlyr::by_row(
-          .d = .,
-          ..f = ~ paste(
-            "list(~italic(beta)==",
-            specify_decimal_p(x = .$estimate, k = k),
-            ", ~italic(t)",
-            "(",
-            specify_decimal_p(x = .$df.residual, k = 0L),
-            ")==",
-            .$statistic,
-            ", ~italic(p)",
-            .$p.value.formatted,
-            ")",
-            sep = ""
-          ),
-          .collate = "rows",
-          .to = "label",
-          .labels = TRUE
+        dplyr::group_nest(.tbl = ., rowid) %>%
+        dplyr::mutate(
+          .data = .,
+          label = data %>%
+            purrr::map(
+              .x = .,
+              .f = ~ paste(
+                "list(~italic(beta)==",
+                specify_decimal_p(x = .$estimate, k = k),
+                ", ~italic(t)",
+                "(",
+                specify_decimal_p(x = .$df.residual, k = 0L),
+                ")==",
+                .$statistic,
+                ", ~italic(p)",
+                .$p.value.formatted,
+                ")",
+                sep = ""
+              )
+            )
         )
     } else {
       # for objects like `rlm` there will be no parameter
       tidy_df %<>%
-        purrrlyr::by_row(
-          .d = .,
-          ..f = ~ paste(
-            "list(~italic(beta)==",
-            specify_decimal_p(x = .$estimate, k = k),
-            ", ~italic(t)",
-            "==",
-            .$statistic,
-            ", ~italic(p)",
-            .$p.value.formatted,
-            ")",
-            sep = ""
-          ),
-          .collate = "rows",
-          .to = "label",
-          .labels = TRUE
+        dplyr::group_nest(.tbl = ., rowid) %>%
+        dplyr::mutate(
+          .data = .,
+          label = data %>%
+            purrr::map(
+              .x = .,
+              .f = ~ paste(
+                "list(~italic(beta)==",
+                specify_decimal_p(x = .$estimate, k = k),
+                ", ~italic(t)",
+                "==",
+                .$statistic,
+                ", ~italic(p)",
+                .$p.value.formatted,
+                ")",
+                sep = ""
+              )
+            )
         )
     }
   }
 
   #--------------------------- z-statistic ---------------------------------
 
+  # if the statistic is z-value
   if (statistic %in% c("z", "z.value", "z-value", "Z")) {
-    # if the statistic is z-value
     tidy_df %<>%
-      purrrlyr::by_row(
-        .d = .,
-        ..f = ~ paste(
-          "list(~italic(beta)==",
-          specify_decimal_p(x = .$estimate, k = k),
-          ", ~italic(z)==",
-          .$statistic,
-          ", ~italic(p)",
-          .$p.value.formatted,
-          ")",
-          sep = ""
-        ),
-        .collate = "rows",
-        .to = "label",
-        .labels = TRUE
+      dplyr::group_nest(.tbl = ., rowid) %>%
+      dplyr::mutate(
+        .data = .,
+        label = data %>%
+          purrr::map(
+            .x = .,
+            .f = ~ paste(
+              "list(~italic(beta)==",
+              specify_decimal_p(x = .$estimate, k = k),
+              ", ~italic(z)==",
+              .$statistic,
+              ", ~italic(p)",
+              .$p.value.formatted,
+              ")",
+              sep = ""
+            )
+          )
       )
   }
 
@@ -250,30 +257,37 @@ ggcoefstats_label_maker <- function(x,
 
     # which effect size is needed?
     tidy_df %<>%
-      purrrlyr::by_row(
-        .d = .,
-        ..f = ~ paste(
-          "list(~italic(F)",
-          "(",
-          .$df1,
-          "*\",\"*",
-          .$df2,
-          ")==",
-          .$statistic,
-          ", ~italic(p)",
-          .$p.value.formatted,
-          ", ~",
-          .$effsize.text,
-          "==",
-          specify_decimal_p(x = .$estimate, k = k),
-          ")",
-          sep = ""
-        ),
-        .collate = "rows",
-        .to = "label",
-        .labels = TRUE
+      dplyr::group_nest(.tbl = ., rowid) %>%
+      dplyr::mutate(
+        .data = .,
+        label = data %>%
+          purrr::map(
+            .x = .,
+            .f = ~ paste(
+              "list(~italic(F)",
+              "(",
+              .$df1,
+              "*\",\"*",
+              .$df2,
+              ")==",
+              .$statistic,
+              ", ~italic(p)",
+              .$p.value.formatted,
+              ", ~",
+              .$effsize.text,
+              "==",
+              specify_decimal_p(x = .$estimate, k = k),
+              ")",
+              sep = ""
+            )
+          )
       )
   }
+
+  # unnest
+  tidy_df %<>%
+    tidyr::unnest(data = ., cols = c(label, data)) %>%
+    dplyr::select(.data = ., -rowid)
 
   # return the final dataframe
   return(tibble::as_tibble(tidy_df))

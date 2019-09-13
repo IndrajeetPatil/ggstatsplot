@@ -97,7 +97,7 @@ display in the plot. Available parameters are: parameter that measures the
 \code{"beta"} (a vector of regression parameters) parameters will be show. Other
 options are \code{"alpha"} (a vector of threshold parameters) or \code{"both"}. For
 \code{polr} models, by default, only \code{"coefficient"} will be shown. Other option
-is to show \code{"zeta"} parameters. Note that, from \code{broom 0.7.0} onward,
+is to show \code{"zeta"} parameters. Note that, from \verb{broom 0.7.0} onward,
 coefficients will be renamed and \code{"intercept"} type coefficients will
 correspond to \code{"alpha"} parameters, \code{"location"} type coefficients will
 correspond to \code{"beta"} parameters, and \code{"scale"} type coefficients will

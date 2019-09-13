@@ -29,15 +29,20 @@ testthat::test_that(
       ) %>%
       dplyr::mutate(.data = ., value = stringr::str_remove(value, "grouped_")) %>%
       dplyr::arrange(.data = ., value) %>%
-      purrrlyr::by_row(
-        .d = .,
-        ..f = ~ length(formals(eval(
-          rlang::parse_expr(.$functions)
-        ))),
-        .collate = "cols",
-        .to = "n"
+      dplyr::mutate(.data = ., rowid = dplyr::row_number()) %>%
+      dplyr::group_nest(.tbl = ., rowid) %>%
+      dplyr::mutate(
+        .data = .,
+        n = data %>%
+          purrr::map(
+            .x = .,
+            .f = ~ length(formals(eval(
+              rlang::parse_expr(.$functions)
+            )))
+          )
       ) %>%
-      dplyr::select(.data = ., -functions) %>%
+      tidyr::unnest(data = ., c(n, data)) %>%
+      dplyr::select(.data = ., -functions, -rowid) %>%
       tidyr::spread(
         data = .,
         key = version,
@@ -49,7 +54,7 @@ testthat::test_that(
         .data = .,
         difference = grouped - (basic + 2)
       ) %>%
-      stats::na.omit(.)
+      tidyr::drop_na(.)
 
     # testing if formals are as expected
     testthat::expect_equal(sum(ns_df$difference), 0L)

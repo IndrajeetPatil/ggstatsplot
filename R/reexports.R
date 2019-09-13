@@ -20,16 +20,16 @@ groupedstats::set_cwd
 # ----------------------- tidyverse -------------------------------------
 
 #' @export
-#' @importFrom magrittr "%>%"
-magrittr::`%>%`
+#' @importFrom broomExtra "%>%"
+broomExtra::`%>%`
 
 #' @export
-#' @importFrom magrittr "%<>%"
-magrittr::`%<>%`
+#' @importFrom broomExtra "%<>%"
+broomExtra::`%<>%`
 
 #' @export
-#' @importFrom magrittr "%$%"
-magrittr::`%$%`
+#' @importFrom broomExtra "%$%"
+broomExtra::`%$%`
 
 #' @export
 #' @importFrom rlang "%||%"

@@ -65,7 +65,7 @@ should be displayed for each level of the grouping variable \code{y}
 \item{label.separator}{If \code{"both"} counts and proportion information is to be
 displayed in a label, this argument decides whether these two pieces of
 information are going to be on the same line (\code{" "}) or on separate lines
-(\code{"\n"}).}
+(\code{"\\n"}).}
 
 \item{label.text.size}{Numeric that decides text size for slice/bar labels
 (Default: \code{4}).}

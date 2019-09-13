@@ -42,7 +42,6 @@ normality_message <- function(x,
                               k = 2,
                               output = "message",
                               ...) {
-  ellipsis::check_dots_used()
 
   # if label is not provided, use generic "x" variable
   if (is.null(lab)) lab <- "x"
@@ -121,7 +120,6 @@ bartlett_message <- function(data,
   # make sure both quoted and unquoted arguments are supported
   x <- rlang::ensym(x)
   y <- rlang::ensym(y)
-  ellipsis::check_dots_used()
 
   # if `lab` is not provided, use the variable `x` name
   if (is.null(lab)) lab <- rlang::as_name(x)

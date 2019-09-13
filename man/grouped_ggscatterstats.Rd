@@ -106,11 +106,11 @@ function defined by \code{method}.}
 \item{line.size}{Size for the regression line.}
 
 \item{point.width.jitter}{Degree of jitter in \code{x} and \code{y}
-direction, respectively. Defaults to \code{0} (0%) of the resolution of the
+direction, respectively. Defaults to \code{0} (0\%) of the resolution of the
 data.}
 
 \item{point.height.jitter}{Degree of jitter in \code{x} and \code{y}
-direction, respectively. Defaults to \code{0} (0%) of the resolution of the
+direction, respectively. Defaults to \code{0} (0\%) of the resolution of the
 data.}
 
 \item{line.color}{color for the regression line.}

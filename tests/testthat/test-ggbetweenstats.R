@@ -22,7 +22,6 @@ testthat::test_that(
   desc = "outlier.labeling works across vector types",
   code = {
 
-
     # `outlier.label` is numeric
     set.seed(123)
     testthat::expect_true(inherits(

@@ -338,25 +338,25 @@ will be returned. Valid only for objects of class <code>aov</code>, <code>anova<
 
 <span class='co'># creating tidy dataframe with label column</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats_label_maker.html'>ggcoefstats_label_maker</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>tidy_df</span> <span class='kw'>=</span> <span class='kw pkg'>broomExtra</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/broomExtra//reference/tidy.html'>tidy</a></span>(<span class='no'>mod</span>))</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 5 x 8</span><span>
-#&gt;   term         estimate std.error statistic    p.value significance
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> (Intercept)  2.80</span><span style='color: #949494;'>e</span><span>+ 0    0.083</span><span style='text-decoration: underline;'>1</span><span> 33.64      4.41</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-248</span><span> ***         
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> outcome1    -</span><span style='color: #BB0000;'>2.27</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 1</span><span>    0.101  -2.25      2.46</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  2</span><span> *           
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> outcome2    -</span><span style='color: #BB0000;'>2.20</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 2</span><span>    0.059</span><span style='text-decoration: underline;'>2</span><span> -0.37      7.11</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  1</span><span> ns          
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> treatment1  -</span><span style='color: #BB0000;'>1.33</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-16</span><span>    0.100</span><span style='text-decoration: underline;'>0</span><span> 0.00      10.00</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  1</span><span> ns          
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> treatment2  -</span><span style='color: #BB0000;'>1.28</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-16</span><span>    0.057</span><span style='text-decoration: underline;'>7</span><span> 0.00      10.00</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  1</span><span> ns          
+#&gt;   term         estimate std.error statistic   p.value significance
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> (Intercept)  3.04</span><span style='color: #949494;'>e</span><span>+ 0     0.171 17.81      5.43</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-71</span><span> ***         
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> outcome2    -</span><span style='color: #BB0000;'>4.54</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 1</span><span>     0.202 -2.25      2.46</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 2</span><span> *           
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> outcome3    -</span><span style='color: #BB0000;'>2.93</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 1</span><span>     0.193 -1.52      1.28</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 1</span><span> ns          
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> treatment2   1.34</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-15</span><span>     0.200 0.00      10.00</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 1</span><span> ns          
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> treatment3   1.42</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-15</span><span>     0.200 0.00      10.00</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 1</span><span> ns          
 #&gt;   p.value.formatted
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span> &lt;= 0.001         
 #&gt; </span><span style='color: #BCBCBC;'>2</span><span> == 0.025         
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> == 0.711         
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> == 0.128         
 #&gt; </span><span style='color: #BCBCBC;'>4</span><span> == 1.000         
 #&gt; </span><span style='color: #BCBCBC;'>5</span><span> == 1.000         
 #&gt;   label                                                            
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                                            
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> list(~italic(beta)==2.80, ~italic(z)==33.64, ~italic(p)&lt;= 0.001) 
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> list(~italic(beta)==-0.23, ~italic(z)==-2.25, ~italic(p)== 0.025)
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> list(~italic(beta)==-0.02, ~italic(z)==-0.37, ~italic(p)== 0.711)
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> list(~italic(beta)==3.04, ~italic(z)==17.81, ~italic(p)&lt;= 0.001) 
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> list(~italic(beta)==-0.45, ~italic(z)==-2.25, ~italic(p)== 0.025)
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> list(~italic(beta)==-0.29, ~italic(z)==-1.52, ~italic(p)== 0.128)
 #&gt; </span><span style='color: #BCBCBC;'>4</span><span> list(~italic(beta)==0.00, ~italic(z)==0.00, ~italic(p)== 1.000)  
 #&gt; </span><span style='color: #BCBCBC;'>5</span><span> list(~italic(beta)==0.00, ~italic(z)==0.00, ~italic(p)== 1.000)  </div><div class='input'>
 <span class='co'>#------------------------- models with *f*-statistic --------------------</span>
