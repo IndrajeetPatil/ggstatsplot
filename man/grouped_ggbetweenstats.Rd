@@ -164,7 +164,7 @@ the label displaying mean. Defaults: \code{3}, \code{"bold"},\code{"black"}, res
 displayed. If \code{TRUE}, a notched box plot will be used. Notches are used to
 compare groups; if the notches of two boxes do not overlap, this suggests
 that the medians are significantly different. In a notched box plot, the
-notches extend \code{1.58 * IQR / sqrt(n)}. This gives a roughly \code{95\%}
+notches extend \code{1.58 * IQR / sqrt(n)}. This gives a roughly \verb{95\%}
 confidence interval for comparing medians. IQR: Inter-Quartile Range.}
 
 \item{notchwidth}{For a notched box plot, width of the notch relative to the
@@ -199,7 +199,7 @@ Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
 \item{mean.plotting}{Logical that decides whether mean is to be highlighted
 and its value to be displayed (Default: \code{TRUE}).}
 
-\item{mean.ci}{Logical that decides whether \code{95\%} confidence interval for
+\item{mean.ci}{Logical that decides whether \verb{95\%} confidence interval for
 mean is to be displayed (Default: \code{FALSE}).}
 
 \item{mean.size}{Point size for the data point corresponding to mean
@@ -209,7 +209,7 @@ mean is to be displayed (Default: \code{FALSE}).}
 \code{"darkred"}).}
 
 \item{point.jitter.width}{Numeric specifying the degree of jitter in \code{x}
-direction. Defaults to \code{40\%} of the resolution of the data.}
+direction. Defaults to \verb{40\%} of the resolution of the data.}
 
 \item{point.jitter.height}{Numeric specifying the degree of jitter in \code{y}
 direction. Defaults to \code{0.1}.}

@@ -23,7 +23,7 @@ on the label in each pie or bar slice. Possible options are \code{"percentage"}
 \item{label.separator}{If \code{"both"} counts and proportion information is to be
 displayed in a label, this argument decides whether these two pieces of
 information are going to be on the same line (\code{" "}) or on separate lines
-(\code{"\n"}).}
+(\code{"\\n"}).}
 
 \item{perc.k}{Numeric that decides number of decimal places for percentage
 labels (Default: \code{0}).}

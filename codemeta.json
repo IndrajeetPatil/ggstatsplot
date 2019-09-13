@@ -281,21 +281,9 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "ellipsis",
-      "name": "ellipsis",
-      "version": ">= 0.2.0.1",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=ellipsis"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "forcats",
       "name": "forcats",
+      "version": ">= 0.4.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -402,18 +390,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "magrittr",
-      "name": "magrittr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=magrittr"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "metaBMA",
       "name": "metaBMA",
       "version": ">= 0.6.1",
@@ -489,19 +465,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=purrr"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "purrrlyr",
-      "name": "purrrlyr",
-      "version": ">= 0.0.5",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=purrrlyr"
     },
     {
       "@type": "SoftwareApplication",

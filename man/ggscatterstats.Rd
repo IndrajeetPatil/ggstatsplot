@@ -89,7 +89,7 @@ function defined by \code{method}.}
 (defaults: \code{point.color = "black"}, \code{point.size = 3},\code{point.alpha = 0.4}).}
 
 \item{point.width.jitter, point.height.jitter}{Degree of jitter in \code{x} and \code{y}
-direction, respectively. Defaults to \code{0} (0%) of the resolution of the
+direction, respectively. Defaults to \code{0} (0\%) of the resolution of the
 data.}
 
 \item{line.size}{Size for the regression line.}

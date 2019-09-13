@@ -21,9 +21,9 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{groupedstats}{\code{\link[groupedstats]{specify_decimal_p}}, \code{\link[groupedstats]{signif_column}}, \code{\link[groupedstats]{lm_effsize_ci}}, \code{\link[groupedstats]{set_cwd}}}
+  \item{broomExtra}{\code{\link[broomExtra]{\%>\%}}, \code{\link[broomExtra]{\%<>\%}}, \code{\link[broomExtra]{\%$\%}}}
 
-  \item{magrittr}{\code{\link[magrittr]{\%>\%}}, \code{\link[magrittr]{\%<>\%}}, \code{\link[magrittr]{\%$\%}}}
+  \item{groupedstats}{\code{\link[groupedstats]{specify_decimal_p}}, \code{\link[groupedstats]{signif_column}}, \code{\link[groupedstats]{lm_effsize_ci}}, \code{\link[groupedstats]{set_cwd}}}
 
   \item{rlang}{\code{\link[rlang]{\%||\%}}, \code{\link[rlang]{\%|\%}}}
 

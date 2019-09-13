@@ -108,8 +108,7 @@ mean_labeller <- function(data,
 #' @inheritParams ggrepel::geom_label_repel
 #'
 #' @importFrom ggrepel geom_label_repel
-#' @importFrom rlang !! enquo
-#' @importFrom ellipsis check_dots_used
+#' @importFrom rlang !! enquo ensym
 #'
 #' @examples
 #'
@@ -152,10 +151,6 @@ mean_ggrepel <- function(plot,
                          mean.label.color = "black",
                          inherit.aes = TRUE,
                          ...) {
-
-  # check any misspecified arguments
-  ellipsis::check_dots_used()
-
   # highlight the mean of each group
   if (isTRUE(inherit.aes)) {
     plot <- plot +
@@ -263,7 +258,6 @@ outlier_df <- function(data,
   x <- rlang::ensym(x)
   y <- rlang::ensym(y)
   outlier.label <- rlang::ensym(outlier.label)
-  ellipsis::check_dots_used()
 
   # add a logical column indicating whether a point is or is not an outlier
   data %<>%
@@ -432,7 +426,6 @@ ggsignif_position_calculator <- function(x, y) {
 #'
 #' @importFrom forcats fct_reorder
 #' @importFrom dplyr mutate
-#' @importFrom ellipsis check_dots_used
 #'
 #' @inheritParams ggbetweenstats
 #'
@@ -450,7 +443,6 @@ sort_xy <- function(data,
   # make sure both quoted and unquoted arguments are allowed
   x <- rlang::ensym(x)
   y <- rlang::ensym(y)
-  ellipsis::check_dots_used()
 
   # decide the needed order
   if (sort == "ascending") {
@@ -500,7 +492,6 @@ aesthetic_addon <- function(plot,
                             direction = 1,
                             ggplot.component = NULL,
                             ...) {
-  ellipsis::check_dots_used()
 
   # if no. of factor levels is greater than the default palette color count
   palette_message(
