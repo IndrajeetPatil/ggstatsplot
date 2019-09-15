@@ -39,8 +39,6 @@ will be returned. Valid only for objects of class \code{aov}, \code{anova}, or
 \code{aovlist}.}
 
 \item{...}{Currently ignored.}
-
-\item{...}{Currently ignored.}
 }
 \description{
 Create labels with statistical details for \code{ggcoefstats}

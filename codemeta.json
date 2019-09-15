@@ -231,7 +231,7 @@
       "@type": "SoftwareApplication",
       "identifier": "broomExtra",
       "name": "broomExtra",
-      "version": ">= 0.0.4",
+      "version": ">= 0.0.5",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -496,7 +496,7 @@
       "@type": "SoftwareApplication",
       "identifier": "sjstats",
       "name": "sjstats",
-      "version": ">= 0.17.5",
+      "version": ">= 0.17.6",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",

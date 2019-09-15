@@ -208,43 +208,43 @@ a plotgrid along with a combination of title, caption, and annotation label</p>
     <tr>
       <th>...</th>
       <td><p>Arguments passed on to <code><a href='https://rdrr.io/pkg/cowplot/man/plot_grid.html'>cowplot::plot_grid</a></code></p><dl class='dl-horizontal'>
-  <dt>plotlist</dt><dd><p>(optional) List of plots to display. Alternatively, the plots can be provided
+    <dt><code>plotlist</code></dt><dd><p>(optional) List of plots to display. Alternatively, the plots can be provided
 individually as the first n arguments of the function plot_grid (see examples).</p></dd>
-  <dt>align</dt><dd><p>(optional) Specifies whether graphs in the grid should be horizontally ("h") or
+    <dt><code>align</code></dt><dd><p>(optional) Specifies whether graphs in the grid should be horizontally ("h") or
 vertically ("v") aligned. Options are "none" (default), "hv" (align in both directions), "h", and "v".</p></dd>
-  <dt>axis</dt><dd><p>(optional) Specifies whether graphs should be aligned by the left ("l"), right ("r"), top ("t"), or bottom ("b")
+    <dt><code>axis</code></dt><dd><p>(optional) Specifies whether graphs should be aligned by the left ("l"), right ("r"), top ("t"), or bottom ("b")
 margins. Options are "none" (default), or a string of any combination of l, r, t, and b in any order (e.g. "tblr" or "rlbt" for aligning all margins).
 Must be specified if any of the graphs are complex (e.g. faceted) and alignment is specified and desired. See <code>align_plots()</code> for details.</p></dd>
-  <dt>nrow</dt><dd><p>(optional) Number of rows in the plot grid.</p></dd>
-  <dt>ncol</dt><dd><p>(optional) Number of columns in the plot grid.</p></dd>
-  <dt>rel_widths</dt><dd><p>(optional) Numerical vector of relative columns widths. For example, in a two-column
+    <dt><code>nrow</code></dt><dd><p>(optional) Number of rows in the plot grid.</p></dd>
+    <dt><code>ncol</code></dt><dd><p>(optional) Number of columns in the plot grid.</p></dd>
+    <dt><code>rel_widths</code></dt><dd><p>(optional) Numerical vector of relative columns widths. For example, in a two-column
 grid, <code>rel_widths = c(2, 1)</code> would make the first column twice as wide as the
 second column.</p></dd>
-  <dt>rel_heights</dt><dd><p>(optional) Numerical vector of relative rows heights. Works just as
+    <dt><code>rel_heights</code></dt><dd><p>(optional) Numerical vector of relative rows heights. Works just as
 <code>rel_widths</code> does, but for rows rather than columns.</p></dd>
-  <dt>labels</dt><dd><p>(optional) List of labels to be added to the plots. You can also set <code>labels="AUTO"</code> to
+    <dt><code>labels</code></dt><dd><p>(optional) List of labels to be added to the plots. You can also set <code>labels="AUTO"</code> to
 auto-generate upper-case labels or <code>labels="auto"</code> to auto-generate lower-case labels.</p></dd>
-  <dt>label_size</dt><dd><p>(optional) Numerical value indicating the label size. Default is 14.</p></dd>
-  <dt>label_fontfamily</dt><dd><p>(optional) Font family of the plot labels. If not provided, is taken from the current theme.</p></dd>
-  <dt>label_fontface</dt><dd><p>(optional) Font face of the plot labels. Default is "bold".</p></dd>
-  <dt>label_colour</dt><dd><p>(optional) Color of the plot labels. If not provided, is taken from the current theme.</p></dd>
-  <dt>label_x</dt><dd><p>(optional) Single value or vector of x positions for plot labels, relative to each subplot.
+    <dt><code>label_size</code></dt><dd><p>(optional) Numerical value indicating the label size. Default is 14.</p></dd>
+    <dt><code>label_fontfamily</code></dt><dd><p>(optional) Font family of the plot labels. If not provided, is taken from the current theme.</p></dd>
+    <dt><code>label_fontface</code></dt><dd><p>(optional) Font face of the plot labels. Default is "bold".</p></dd>
+    <dt><code>label_colour</code></dt><dd><p>(optional) Color of the plot labels. If not provided, is taken from the current theme.</p></dd>
+    <dt><code>label_x</code></dt><dd><p>(optional) Single value or vector of x positions for plot labels, relative to each subplot.
 Defaults to 0 for all labels. (Each label is placed all the way to the left of each plot.)</p></dd>
-  <dt>label_y</dt><dd><p>(optional) Single value or vector of y positions for plot labels, relative to each subplot.
+    <dt><code>label_y</code></dt><dd><p>(optional) Single value or vector of y positions for plot labels, relative to each subplot.
 Defaults to 1 for all labels. (Each label is placed all the way to the top of each plot.)</p></dd>
-  <dt>hjust</dt><dd><p>Adjusts the horizontal position of each label. More negative values move the label further
+    <dt><code>hjust</code></dt><dd><p>Adjusts the horizontal position of each label. More negative values move the label further
 to the right on the plot canvas. Can be a single value (applied to all labels) or a vector of values
 (one for each label). Default is -0.5.</p></dd>
-  <dt>vjust</dt><dd><p>Adjusts the vertical position of each label. More positive values move the label further
+    <dt><code>vjust</code></dt><dd><p>Adjusts the vertical position of each label. More positive values move the label further
 down on the plot canvas. Can be a single value (applied to all labels) or a vector of values
 (one for each label). Default is 1.5.</p></dd>
-  <dt>scale</dt><dd><p>Individual number or vector of numbers greater than 0. Enables you to scale the size of all or
+    <dt><code>scale</code></dt><dd><p>Individual number or vector of numbers greater than 0. Enables you to scale the size of all or
 select plots. Usually it's preferable to set margins instead of using <code>scale</code>, but <code>scale</code> can
 sometimes be more powerful.</p></dd>
-  <dt>greedy</dt><dd><p>(optional) How should margins be adjusted during alignment. See <code>align_plots()</code> for details.</p></dd>
-  <dt>cols</dt><dd><p>Deprecated. Use <code>ncol</code>.</p></dd>
-  <dt>rows</dt><dd><p>Deprecated. Use <code>nrow</code>.</p></dd>
-
+    <dt><code>greedy</code></dt><dd><p>(optional) How should margins be adjusted during alignment. See <code>align_plots()</code> for details.</p></dd>
+    <dt><code>cols</code></dt><dd><p>Deprecated. Use <code>ncol</code>.</p></dd>
+    <dt><code>rows</code></dt><dd><p>Deprecated. Use <code>nrow</code>.</p></dd>
+  
 </dl></td>
     </tr>
     <tr>
@@ -431,7 +431,7 @@ while combining (title, plot, caption).</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>

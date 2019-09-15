@@ -17,45 +17,46 @@ combine_plots(..., title.text = NULL, title.color = "black",
   1.2, 0.1))
 }
 \arguments{
-\item{...}{Arguments passed on to \code{cowplot::plot_grid}
-\describe{
-  \item{plotlist}{(optional) List of plots to display. Alternatively, the plots can be provided
+\item{...}{
+  Arguments passed on to \code{\link[cowplot:plot_grid]{cowplot::plot_grid}}
+  \describe{
+    \item{\code{plotlist}}{(optional) List of plots to display. Alternatively, the plots can be provided
 individually as the first n arguments of the function plot_grid (see examples).}
-  \item{align}{(optional) Specifies whether graphs in the grid should be horizontally ("h") or
+    \item{\code{align}}{(optional) Specifies whether graphs in the grid should be horizontally ("h") or
 vertically ("v") aligned. Options are "none" (default), "hv" (align in both directions), "h", and "v".}
-  \item{axis}{(optional) Specifies whether graphs should be aligned by the left ("l"), right ("r"), top ("t"), or bottom ("b")
+    \item{\code{axis}}{(optional) Specifies whether graphs should be aligned by the left ("l"), right ("r"), top ("t"), or bottom ("b")
 margins. Options are "none" (default), or a string of any combination of l, r, t, and b in any order (e.g. "tblr" or "rlbt" for aligning all margins).
 Must be specified if any of the graphs are complex (e.g. faceted) and alignment is specified and desired. See \code{\link[=align_plots]{align_plots()}} for details.}
-  \item{nrow}{(optional) Number of rows in the plot grid.}
-  \item{ncol}{(optional) Number of columns in the plot grid.}
-  \item{rel_widths}{(optional) Numerical vector of relative columns widths. For example, in a two-column
+    \item{\code{nrow}}{(optional) Number of rows in the plot grid.}
+    \item{\code{ncol}}{(optional) Number of columns in the plot grid.}
+    \item{\code{rel_widths}}{(optional) Numerical vector of relative columns widths. For example, in a two-column
 grid, \code{rel_widths = c(2, 1)} would make the first column twice as wide as the
 second column.}
-  \item{rel_heights}{(optional) Numerical vector of relative rows heights. Works just as
+    \item{\code{rel_heights}}{(optional) Numerical vector of relative rows heights. Works just as
 \code{rel_widths} does, but for rows rather than columns.}
-  \item{labels}{(optional) List of labels to be added to the plots. You can also set \code{labels="AUTO"} to
+    \item{\code{labels}}{(optional) List of labels to be added to the plots. You can also set \code{labels="AUTO"} to
 auto-generate upper-case labels or \code{labels="auto"} to auto-generate lower-case labels.}
-  \item{label_size}{(optional) Numerical value indicating the label size. Default is 14.}
-  \item{label_fontfamily}{(optional) Font family of the plot labels. If not provided, is taken from the current theme.}
-  \item{label_fontface}{(optional) Font face of the plot labels. Default is "bold".}
-  \item{label_colour}{(optional) Color of the plot labels. If not provided, is taken from the current theme.}
-  \item{label_x}{(optional) Single value or vector of x positions for plot labels, relative to each subplot.
+    \item{\code{label_size}}{(optional) Numerical value indicating the label size. Default is 14.}
+    \item{\code{label_fontfamily}}{(optional) Font family of the plot labels. If not provided, is taken from the current theme.}
+    \item{\code{label_fontface}}{(optional) Font face of the plot labels. Default is "bold".}
+    \item{\code{label_colour}}{(optional) Color of the plot labels. If not provided, is taken from the current theme.}
+    \item{\code{label_x}}{(optional) Single value or vector of x positions for plot labels, relative to each subplot.
 Defaults to 0 for all labels. (Each label is placed all the way to the left of each plot.)}
-  \item{label_y}{(optional) Single value or vector of y positions for plot labels, relative to each subplot.
+    \item{\code{label_y}}{(optional) Single value or vector of y positions for plot labels, relative to each subplot.
 Defaults to 1 for all labels. (Each label is placed all the way to the top of each plot.)}
-  \item{hjust}{Adjusts the horizontal position of each label. More negative values move the label further
+    \item{\code{hjust}}{Adjusts the horizontal position of each label. More negative values move the label further
 to the right on the plot canvas. Can be a single value (applied to all labels) or a vector of values
 (one for each label). Default is -0.5.}
-  \item{vjust}{Adjusts the vertical position of each label. More positive values move the label further
+    \item{\code{vjust}}{Adjusts the vertical position of each label. More positive values move the label further
 down on the plot canvas. Can be a single value (applied to all labels) or a vector of values
 (one for each label). Default is 1.5.}
-  \item{scale}{Individual number or vector of numbers greater than 0. Enables you to scale the size of all or
+    \item{\code{scale}}{Individual number or vector of numbers greater than 0. Enables you to scale the size of all or
 select plots. Usually it's preferable to set margins instead of using \code{scale}, but \code{scale} can
 sometimes be more powerful.}
-  \item{greedy}{(optional) How should margins be adjusted during alignment. See \code{\link[=align_plots]{align_plots()}} for details.}
-  \item{cols}{Deprecated. Use \code{ncol}.}
-  \item{rows}{Deprecated. Use \code{nrow}.}
-}}
+    \item{\code{greedy}}{(optional) How should margins be adjusted during alignment. See \code{\link[=align_plots]{align_plots()}} for details.}
+    \item{\code{cols}}{Deprecated. Use \code{ncol}.}
+    \item{\code{rows}}{Deprecated. Use \code{nrow}.}
+  }}
 
 \item{title.text}{String or plotmath expression to be drawn as title for the
 \emph{combined plot}.}
