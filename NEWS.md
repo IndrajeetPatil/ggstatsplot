@@ -1,5 +1,10 @@
 # ggstatsplot 0.1.1.9000
-# 
+
+MINOR
+
+  - Minor code refactoring that gets rid of the following dependencies:
+    `magrittr`, `ellipsis`, `purrrlyr`.
+    
 # ggstatsplot 0.1.1
 
 ANNOUNCEMENTS

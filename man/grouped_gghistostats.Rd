@@ -278,6 +278,3 @@ ggstatsplot::grouped_gghistostats(
 \code{\link{gghistostats}}, \code{\link{ggdotplotstats}},
 \code{\link{grouped_ggdotplotstats}}
 }
-\author{
-Indrajeet Patil, Chuck Powell
-}
