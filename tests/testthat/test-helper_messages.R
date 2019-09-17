@@ -78,7 +78,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "bartlett_message is working",
   code = {
-
+    testthat::skip_on_cran()
 
     # without NA ------------------------------------------------------
 

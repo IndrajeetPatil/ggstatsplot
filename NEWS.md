@@ -1,4 +1,4 @@
-# ggstatsplot 0.1.1.9000
+# ggstatsplot 0.1.2
 
 MINOR
 
