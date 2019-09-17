@@ -20,7 +20,9 @@ vignette: >
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  message = FALSE,
+  warning = FALSE
 )
 ```
 
@@ -207,7 +209,8 @@ mod <- stats::lm(
 # plotting estimates
 ggstatsplot::ggcoefstats(
   x = car::Anova(mod, type = "III"),
-  title = "analysis of variance (`car` package)"
+  title = "analysis of variance (`car` package)",
+  conf.level = 0.99
 )
 ```
 
@@ -355,7 +358,8 @@ roblmm.mod <- robustlmm::rlmer(
 # plot
 ggstatsplot::ggcoefstats(
   x = roblmm.mod,
-  title = "robust estimation of linear mixed-effects model"
+  title = "robust estimation of linear mixed-effects model",
+  conf.level = 0.90
 )
 ```
 

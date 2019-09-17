@@ -49,7 +49,10 @@
 #'   y = rating,
 #'   grouping.var = mpaa,
 #'   results.subtitle = FALSE,
-#'   ggplot.component = ggplot2::scale_y_continuous(breaks = seq(1, 9, 1)),
+#'   ggplot.component = ggplot2::scale_y_continuous(
+#'     breaks = seq(1, 9, 1),
+#'     limits = (c(1, 9))
+#'   ),
 #'   messages = FALSE
 #' )
 #' }

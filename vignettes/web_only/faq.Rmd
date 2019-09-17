@@ -21,6 +21,8 @@ knitr::opts_chunk$set(
   dpi = 300,
   out.width = "100%",
   collapse = TRUE,
+  message = FALSE,
+  warning = FALSE,
   comment = "#>"
 )
 ```
@@ -122,7 +124,7 @@ remove them using `gginnards`.
 For example, let's say we want to remove the `geom_point()` from
 `ggbetweenstats` default plot.
 
-```{r gginnards, message = FALSE, warning = FALSE, fig.width = 6, fig.height = 6}
+```{r gginnards, message = FALSE, warning = FALSE, fig.width = 5, fig.height = 5}
 # needed libraries
 library(ggstatsplot)
 library(gginnards)
@@ -140,10 +142,38 @@ p <- ggbetweenstats(
 gginnards::delete_layers(x = p, match_type = "GeomPoint")
 ```
 
+This can be helpful to add a new layer with aesthetic specifications of your
+liking.
+
+```{r gginnards2, fig.width = 6, fig.height = 5}
+set.seed(123)
+
+# needed libraries
+library(ggstatsplot)
+library(gginnards)
+library(ggplot2)
+
+# basic plot without mean tagging
+p <-
+  ggwithinstats(
+    data = bugs_long,
+    x = condition,
+    y = desire,
+    mean.plotting = FALSE,
+    messages = FALSE
+  )
+
+# delete the geom_point layer
+p <- gginnards::delete_layers(x = p, match_type = "GeomPoint")
+
+# add a new layers for points with a different `pch`
+p + geom_point(shape = 23, aes(color = condition))
+```
+
 # Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
-GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+`GitHub`: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
 
 # Session Information
 

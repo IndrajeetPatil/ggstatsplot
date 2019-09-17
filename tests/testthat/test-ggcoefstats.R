@@ -954,48 +954,51 @@ testthat::test_that(
     ))
 
     testthat::expect_identical(pb6$plot$labels$subtitle, meta_subtitle)
-    testthat::expect_identical(pb6$plot$labels$caption, ggplot2::expr(atop(
-      displaystyle(atop(
-        displaystyle(NULL),
+    testthat::expect_identical(
+      pb6$plot$labels$caption,
+      ggplot2::expr(atop(
+        displaystyle(atop(
+          displaystyle(NULL),
+          expr = paste(
+            "In favor of null: ",
+            "log"["e"],
+            "(BF"["01"],
+            ") = ",
+            "0.174",
+            ", ",
+            italic("d")["mean"]^"posterior",
+            " = ",
+            "0.110",
+            ", CI"["95%"],
+            " [",
+            "-0.178",
+            ", ",
+            "0.412",
+            "]"
+          )
+        )),
         expr = paste(
-          "In favor of null: ",
-          "log"["e"],
-          "(BF"["01"],
+          "Heterogeneity: ",
+          italic("Q"),
+          "(",
+          "2",
           ") = ",
-          "0.174",
+          "6",
           ", ",
-          italic("d")["mean"]^"posterior",
+          italic("p"),
           " = ",
-          "0.110",
-          ", CI"["95%"],
-          " [",
-          "-0.178",
+          "0.058",
           ", ",
-          "0.412",
-          "]"
+          tau["REML"]^2,
+          " = ",
+          "0.030",
+          ", ",
+          "I"^2,
+          " = ",
+          "81.42%"
         )
-      )),
-      expr = paste(
-        "Heterogeneity: ",
-        italic("Q"),
-        "(",
-        "2",
-        ") = ",
-        "6",
-        ", ",
-        italic("p"),
-        " = ",
-        "0.058",
-        ", ",
-        tau["REML"]^2,
-        " = ",
-        "0.030",
-        ", ",
-        "I"^2,
-        " = ",
-        "81.42%"
-      )
-    )))
+      ))
+    )
   }
 )
 
@@ -1320,6 +1323,8 @@ testthat::test_that(
   desc = "unsupported model objects",
   code = {
 
+    # mod-1
+    testthat::expect_error(ggstatsplot::ggcoefstats(x = list(x = "1", y = 2L)))
 
     # mod-2
     mod2 <- stats::aov(

@@ -665,7 +665,10 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>rating</span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>mpaa</span>,
   <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span>(<span class='kw'>breaks</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>1</span>, <span class='fl'>9</span>, <span class='fl'>1</span>)),
+  <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span>(
+    <span class='kw'>breaks</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>1</span>, <span class='fl'>9</span>, <span class='fl'>1</span>),
+    <span class='kw'>limits</span> <span class='kw'>=</span> (<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>9</span>))
+  ),
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</div><div class='img'><img src='grouped_ggbetweenstats-2.png' alt='' width='700' height='433' /></div><div class='input'># }
 

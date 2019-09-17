@@ -365,11 +365,8 @@ ggsignif_adder <- function(plot,
     df_pairwise %<>% dplyr::arrange(.data = ., group1)
 
     # computing y coordinates for ggsignif bars
-    ggsignif_y_position <-
-      ggsignif_position_calculator(
-        x = data %>% dplyr::pull({{ x }}),
-        y = data %>% dplyr::pull({{ y }})
-      )
+    ggsignif_coords <-
+      ggsignif_xy(data %>% dplyr::pull({{ x }}), data %>% dplyr::pull({{ y }}))
 
     # adding ggsignif comparisons to the plot
     plot <- plot +
@@ -379,7 +376,7 @@ ggsignif_adder <- function(plot,
         textsize = textsize,
         tip_length = 0.01,
         vjust = vjust,
-        y_position = ggsignif_y_position,
+        y_position = ggsignif_coords,
         annotations = df_pairwise$label,
         test = NULL,
         na.rm = TRUE,
@@ -391,7 +388,7 @@ ggsignif_adder <- function(plot,
   return(plot)
 }
 
-#' @name ggsignif_position_calculator
+#' @name ggsignif_xy
 #' @importFrom utils combn
 #'
 #' @inheritParams ggbetweenstats
@@ -399,11 +396,11 @@ ggsignif_adder <- function(plot,
 #' @keywords internal
 #' @noRd
 
-ggsignif_position_calculator <- function(x, y) {
+ggsignif_xy <- function(x, y) {
   # number of comparisons
   n_comparions <- length(utils::combn(x = unique(x), m = 2L, simplify = FALSE))
 
-  # start position on y-axis for the ggsignif lines
+  # start position on `y`-axis for the `ggsignif` lines
   y_start <- max(y, na.rm = TRUE) * (1 + 0.025)
 
   # steps in which the y values need to increase
