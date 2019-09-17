@@ -4,6 +4,12 @@ MINOR
 
   - Minor code refactoring that gets rid of the following dependencies:
     `magrittr`, `ellipsis`, `purrrlyr`.
+
+MAJOR
+
+  - The *p*-value label now specifies whether the *p*-value displayed in
+    `ggbetweenstats` and `ggwithinstats` pairwise comparisons were adjusted or
+    not for multiple comparisons.
     
 # ggstatsplot 0.1.1
 
