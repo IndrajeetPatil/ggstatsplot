@@ -2302,6 +2302,34 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
+Let's see another example where we use `brms` to run the same model on multiple datasets-
+
+```{r brmsfit_multiple, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 7}
+# setup
+set.seed(123)
+library(brms)
+library(mice)
+
+# data
+imp <- mice(nhanes2)
+
+# fit the model using mice and lm
+fit_imp1 <- with(lm(bmi ~ age + hyp + chl), data = imp)
+
+# fit the model using brms
+fit_imp2 <- brms::brm_multiple(
+  formula = bmi ~ age + hyp + chl, data = imp,
+  chains = 1
+)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = fit_imp2,
+  title = "Same `brms` model with multiple datasets",
+  conf.level = 0.99
+)
+```
+
 ## Bayesian regression models via Stan (`stanreg`)
 
 ```{r rstan, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}

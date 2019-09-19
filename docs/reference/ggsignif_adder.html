@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.2</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.2.9000</span>
       </span>
     </div>
 
@@ -188,8 +188,15 @@
     <p>Adding <code>geom_signif</code> to <code>ggplot</code></p>
     </div>
 
-    <pre class="usage"><span class='fu'>ggsignif_adder</span>(<span class='no'>plot</span>, <span class='no'>df_pairwise</span>, <span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>,
-  <span class='kw'>pairwise.annotation</span> <span class='kw'>=</span> <span class='st'>"p.value"</span>, <span class='kw'>pairwise.display</span> <span class='kw'>=</span> <span class='st'>"significant"</span>)</pre>
+    <pre class="usage"><span class='fu'>ggsignif_adder</span>(
+  <span class='no'>plot</span>,
+  <span class='no'>df_pairwise</span>,
+  <span class='no'>data</span>,
+  <span class='no'>x</span>,
+  <span class='no'>y</span>,
+  <span class='kw'>pairwise.annotation</span> <span class='kw'>=</span> <span class='st'>"p.value"</span>,
+  <span class='kw'>pairwise.display</span> <span class='kw'>=</span> <span class='st'>"significant"</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

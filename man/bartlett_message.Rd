@@ -4,8 +4,7 @@
 \alias{bartlett_message}
 \title{Display homogeneity of variance test as a message}
 \usage{
-bartlett_message(data, x, y, lab = NULL, k = 2, output = "message",
-  ...)
+bartlett_message(data, x, y, lab = NULL, k = 2, output = "message", ...)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to

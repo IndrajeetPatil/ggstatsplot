@@ -4,10 +4,22 @@
 \alias{aesthetic_addon}
 \title{Making aesthetic modifications to the plot}
 \usage{
-aesthetic_addon(plot, x, xlab = NULL, ylab = NULL, title = NULL,
-  subtitle = NULL, caption = NULL, ggtheme = ggplot2::theme_bw(),
-  ggstatsplot.layer = TRUE, package = "RColorBrewer",
-  palette = "Dark2", direction = 1, ggplot.component = NULL, ...)
+aesthetic_addon(
+  plot,
+  x,
+  xlab = NULL,
+  ylab = NULL,
+  title = NULL,
+  subtitle = NULL,
+  caption = NULL,
+  ggtheme = ggplot2::theme_bw(),
+  ggstatsplot.layer = TRUE,
+  package = "RColorBrewer",
+  palette = "Dark2",
+  direction = 1,
+  ggplot.component = NULL,
+  ...
+)
 }
 \arguments{
 \item{plot}{Plot to be aesthetically modified.}

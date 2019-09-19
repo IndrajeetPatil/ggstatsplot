@@ -4,10 +4,19 @@
 \alias{mean_ggrepel}
 \title{Adding labels for mean values.}
 \usage{
-mean_ggrepel(plot, x, y, mean.data, mean.size = 5,
-  mean.color = "darkred", mean.label.size = 3,
-  mean.label.fontface = "bold", mean.label.color = "black",
-  inherit.aes = TRUE, ...)
+mean_ggrepel(
+  plot,
+  x,
+  y,
+  mean.data,
+  mean.size = 5,
+  mean.color = "darkred",
+  mean.label.size = 3,
+  mean.label.fontface = "bold",
+  mean.label.color = "black",
+  inherit.aes = TRUE,
+  ...
+)
 }
 \arguments{
 \item{plot}{A \code{ggplot} object for which means are to be displayed.}

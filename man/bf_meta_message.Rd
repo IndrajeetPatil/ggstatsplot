@@ -4,9 +4,19 @@
 \alias{bf_meta_message}
 \title{Bayes factor message for random-effects meta-analysis}
 \usage{
-bf_meta_message(data, k = 2, d = "norm", d.par = c(mean = 0, sd =
-  0.3), tau = "halfcauchy", tau.par = c(scale = 0.5), iter = 10000,
-  summarize = "stan", caption = NULL, messages = TRUE, ...)
+bf_meta_message(
+  data,
+  k = 2,
+  d = "norm",
+  d.par = c(mean = 0, sd = 0.3),
+  tau = "halfcauchy",
+  tau.par = c(scale = 0.5),
+  iter = 10000,
+  summarize = "stan",
+  caption = NULL,
+  messages = TRUE,
+  ...
+)
 }
 \arguments{
 \item{data}{data frame containing the variables for effect size \code{y},

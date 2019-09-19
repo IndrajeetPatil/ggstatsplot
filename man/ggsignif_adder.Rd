@@ -4,8 +4,15 @@
 \alias{ggsignif_adder}
 \title{Adding \code{geom_signif} to \code{ggplot}}
 \usage{
-ggsignif_adder(plot, df_pairwise, data, x, y,
-  pairwise.annotation = "p.value", pairwise.display = "significant")
+ggsignif_adder(
+  plot,
+  df_pairwise,
+  data,
+  x,
+  y,
+  pairwise.annotation = "p.value",
+  pairwise.display = "significant"
+)
 }
 \arguments{
 \item{plot}{A \code{ggplot} object on which \code{geom_signif} needed to be added.}

@@ -4,9 +4,13 @@
 \alias{cat_label_df}
 \title{Summary dataframe for categorical variables.}
 \usage{
-cat_label_df(data, label.col.name = "slice.label",
-  label.content = "percentage", label.separator = c("\\n", " "),
-  perc.k = 1)
+cat_label_df(
+  data,
+  label.col.name = "slice.label",
+  label.content = "percentage",
+  label.separator = c("\\n", " "),
+  perc.k = 1
+)
 }
 \arguments{
 \item{data}{A dataframe containing summaries for categorical variables.

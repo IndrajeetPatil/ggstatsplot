@@ -5,21 +5,43 @@
 \alias{histo_labeler}
 \title{Custom function for adding labeled lines for \code{x}-axis variable.}
 \usage{
-histo_labeller(plot, x, y.label.position, centrality.para = "mean",
-  centrality.color = "blue", centrality.size = 1,
-  centrality.linetype = "dashed", centrality.line.labeller = TRUE,
-  centrality.k = 2, test.value = 0, test.value.line = FALSE,
-  test.value.color = "black", test.value.size = 1,
-  test.value.linetype = "dashed", test.line.labeller = TRUE,
-  test.k = 0)
+histo_labeller(
+  plot,
+  x,
+  y.label.position,
+  centrality.para = "mean",
+  centrality.color = "blue",
+  centrality.size = 1,
+  centrality.linetype = "dashed",
+  centrality.line.labeller = TRUE,
+  centrality.k = 2,
+  test.value = 0,
+  test.value.line = FALSE,
+  test.value.color = "black",
+  test.value.size = 1,
+  test.value.linetype = "dashed",
+  test.line.labeller = TRUE,
+  test.k = 0
+)
 
-histo_labeler(plot, x, y.label.position, centrality.para = "mean",
-  centrality.color = "blue", centrality.size = 1,
-  centrality.linetype = "dashed", centrality.line.labeller = TRUE,
-  centrality.k = 2, test.value = 0, test.value.line = FALSE,
-  test.value.color = "black", test.value.size = 1,
-  test.value.linetype = "dashed", test.line.labeller = TRUE,
-  test.k = 0)
+histo_labeler(
+  plot,
+  x,
+  y.label.position,
+  centrality.para = "mean",
+  centrality.color = "blue",
+  centrality.size = 1,
+  centrality.linetype = "dashed",
+  centrality.line.labeller = TRUE,
+  centrality.k = 2,
+  test.value = 0,
+  test.value.line = FALSE,
+  test.value.color = "black",
+  test.value.size = 1,
+  test.value.linetype = "dashed",
+  test.line.labeller = TRUE,
+  test.k = 0
+)
 }
 \arguments{
 \item{plot}{A \code{ggplot} object for which the labeled lines need to be

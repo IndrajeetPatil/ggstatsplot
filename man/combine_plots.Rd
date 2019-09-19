@@ -4,17 +4,35 @@
 \alias{combine_plots}
 \title{Combining and arranging multiple plots in a grid}
 \usage{
-combine_plots(..., title.text = NULL, title.color = "black",
-  title.size = 16, title.vjust = 0.5, title.hjust = 0.5,
-  title.fontface = "bold", caption.text = NULL,
-  caption.color = "black", caption.size = 10, caption.vjust = 0.5,
-  caption.hjust = 0.5, caption.fontface = "plain", sub.text = NULL,
-  sub.color = "black", sub.size = 12, sub.vjust = 0.5,
-  sub.hjust = 0.5, sub.fontface = "plain", sub.x = 0.5,
-  sub.y = 0.5, sub.vpadding = grid::unit(1, "lines"), sub.angle = 0,
-  sub.lineheight = 0.9, title.rel.heights = c(0.1, 1.2),
-  caption.rel.heights = c(1.2, 0.1), title.caption.rel.heights = c(0.1,
-  1.2, 0.1))
+combine_plots(
+  ...,
+  title.text = NULL,
+  title.color = "black",
+  title.size = 16,
+  title.vjust = 0.5,
+  title.hjust = 0.5,
+  title.fontface = "bold",
+  caption.text = NULL,
+  caption.color = "black",
+  caption.size = 10,
+  caption.vjust = 0.5,
+  caption.hjust = 0.5,
+  caption.fontface = "plain",
+  sub.text = NULL,
+  sub.color = "black",
+  sub.size = 12,
+  sub.vjust = 0.5,
+  sub.hjust = 0.5,
+  sub.fontface = "plain",
+  sub.x = 0.5,
+  sub.y = 0.5,
+  sub.vpadding = grid::unit(1, "lines"),
+  sub.angle = 0,
+  sub.lineheight = 0.9,
+  title.rel.heights = c(0.1, 1.2),
+  caption.rel.heights = c(1.2, 0.1),
+  title.caption.rel.heights = c(0.1, 1.2, 0.1)
+)
 }
 \arguments{
 \item{...}{

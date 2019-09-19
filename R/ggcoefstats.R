@@ -383,6 +383,7 @@ ggcoefstats <- function(x,
       "bglmerMod",
       "blmerMod",
       "brmsfit",
+      "brmsfit_multiple",
       "gamlss",
       "glmmadmb",
       "glmerMod",
@@ -500,6 +501,7 @@ ggcoefstats <- function(x,
 
       # renaming the `xlab` according to the estimate chosen
       xlab <- paste(effsize.prefix, " ", effsize, "-squared", sep = "")
+
       # ==================== tidying everything else ===========================
     } else {
       tidy_df <-
@@ -629,11 +631,8 @@ ggcoefstats <- function(x,
     if (output == "plot") {
       message(cat(
         crayon::green("Note: "),
-        crayon::blue(
-          "No p-values and/or statistic available for regression coefficients from",
-          crayon::yellow(class(x)[[1]]),
-          "object; \nskipping labels with stats.\n"
-        ),
+        crayon::blue("No p-values and/or statistic available for the model object;"),
+        crayon::blue("\nskipping labels with stats.\n"),
         sep = ""
       ))
     }
@@ -703,9 +702,7 @@ ggcoefstats <- function(x,
     tidy_df %<>%
       dplyr::mutate_at(
         .tbl = .,
-        .vars = dplyr::vars(dplyr::matches(
-          match = "estimate|conf", ignore.case = TRUE
-        )),
+        .vars = dplyr::vars(dplyr::matches(match = "estimate|conf", ignore.case = TRUE)),
         .funs = ~ exp(x = .)
       )
   }
@@ -844,24 +841,25 @@ ggcoefstats <- function(x,
   # ========================== sorting ===================================
 
   # whether the term need to be arranged in any specified order
-  tidy_df$term <- as.factor(tidy_df$term)
-  tidy_df %<>% tibble::rownames_to_column(.data = ., var = "rowid")
+  tidy_df %<>%
+    dplyr::mutate(.data = ., term = as.factor(term)) %>%
+    tibble::rownames_to_column(.data = ., var = "rowid")
 
   # sorting factor levels
-  if (sort != "none") {
-    if (sort == "ascending") {
-      new_order <- order(tidy_df$estimate, decreasing = FALSE)
-    } else {
-      new_order <- order(tidy_df$estimate, decreasing = TRUE)
-    }
-  } else {
-    new_order <- order(tidy_df$rowid, decreasing = FALSE)
-  }
+  new_order <-
+    switch(
+      sort,
+      "none" = order(tidy_df$rowid, decreasing = FALSE),
+      "ascending" = order(tidy_df$estimate, decreasing = FALSE),
+      "descending" = order(tidy_df$estimate, decreasing = TRUE),
+      order(tidy_df$rowid, decreasing = FALSE)
+    )
 
   # sorting `term` factor levels according to new sorting order
-  tidy_df$term <- as.character(tidy_df$term)
-  tidy_df$term <- factor(x = tidy_df$term, levels = tidy_df$term[new_order])
-  tidy_df %<>% dplyr::select(.data = ., -rowid)
+  tidy_df %<>%
+    dplyr::mutate(.data = ., term = as.character(term)) %>%
+    dplyr::mutate(.data = ., term = factor(x = term, levels = term[new_order])) %>%
+    dplyr::select(.data = ., -rowid)
 
   # ========================== basic plot ===================================
 

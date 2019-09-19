@@ -5,11 +5,27 @@
 \alias{line_labeler}
 \title{Adds a label to the horizontal or vertical line.}
 \usage{
-line_labeller(plot, x, y, k = 2, color, label.text,
-  line.direction = "vline", jitter = 0.25)
+line_labeller(
+  plot,
+  x,
+  y,
+  k = 2,
+  color,
+  label.text,
+  line.direction = "vline",
+  jitter = 0.25
+)
 
-line_labeler(plot, x, y, k = 2, color, label.text,
-  line.direction = "vline", jitter = 0.25)
+line_labeler(
+  plot,
+  x,
+  y,
+  k = 2,
+  color,
+  label.text,
+  line.direction = "vline",
+  jitter = 0.25
+)
 }
 \arguments{
 \item{plot}{A \code{ggplot} object in which the label needs to be displayed.}

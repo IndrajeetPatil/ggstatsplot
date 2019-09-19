@@ -4,8 +4,16 @@
 \alias{ggcoefstats_label_maker}
 \title{Create labels with statistical details for \code{ggcoefstats}}
 \usage{
-ggcoefstats_label_maker(x, tidy_df = NULL, glance_df = NULL,
-  statistic = NULL, k = 2, effsize = "eta", partial = TRUE, ...)
+ggcoefstats_label_maker(
+  x,
+  tidy_df = NULL,
+  glance_df = NULL,
+  statistic = NULL,
+  k = 2,
+  effsize = "eta",
+  partial = TRUE,
+  ...
+)
 }
 \arguments{
 \item{x}{A model object to be tidied with \code{broom::tidy}, or a tidy data frame

@@ -6,11 +6,23 @@
 \title{Making expression with frequentist random-effects meta-analysis
 results}
 \usage{
-subtitle_meta_parametric(data, k = 2, messages = TRUE,
-  output = "subtitle", caption = NULL, ...)
+subtitle_meta_parametric(
+  data,
+  k = 2,
+  messages = TRUE,
+  output = "subtitle",
+  caption = NULL,
+  ...
+)
 
-subtitle_meta_ggcoefstats(data, k = 2, messages = TRUE,
-  output = "subtitle", caption = NULL, ...)
+subtitle_meta_ggcoefstats(
+  data,
+  k = 2,
+  messages = TRUE,
+  output = "subtitle",
+  caption = NULL,
+  ...
+)
 }
 \arguments{
 \item{data}{A dataframe. It \strong{must} contain columns named \code{estimate}

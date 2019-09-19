@@ -553,6 +553,7 @@
       "@type": "SoftwareApplication",
       "identifier": "WRS2",
       "name": "WRS2",
+      "version": ">= 1.0-0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
