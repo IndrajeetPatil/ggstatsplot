@@ -51,8 +51,13 @@ based on MCMC/Stan samples (\code{summarize = "stan"}).}
 to be displayed (Default: \code{TRUE}).}
 
 \item{...}{further arguments passed to \code{rstan::sampling} (see
-\code{\link[rstan]{stanmodel-method-sampling}}). For instance:
-\code{warmup=500}, \code{chains=4}, \code{control=list(adapt_delta=.95)}).}
+\code{\link[rstan]{stanmodel-method-sampling}}). Relevant MCMC settings
+concern the number of warmup samples that are discarded
+(\code{warmup=500}), the total number of iterations per chain
+(\code{iter=2000}), the number of MCMC chains (\code{chains=4}), whether
+multiple cores should be used (\code{cores=4}), and control arguments that
+make the sampling in Stan more robust, for instance:
+\code{control=list(adapt_delta=.97)}.}
 }
 \description{
 Bayes factor message for random-effects meta-analysis

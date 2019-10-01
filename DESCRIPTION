@@ -44,7 +44,7 @@ Imports:
     grid,
     groupedstats (>= 0.0.9),
     insight (>= 0.5.0),
-    metaBMA (>= 0.6.1),
+    metaBMA (>= 0.6.2),
     metafor (>= 2.1-0),
     pairwiseComparisons (>= 0.1.1),
     paletteer (>= 0.2.1),
@@ -78,4 +78,4 @@ Encoding: UTF-8
 Language: en-US
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.1.99.9000
+RoxygenNote: 6.1.99.9001

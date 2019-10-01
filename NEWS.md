@@ -1,5 +1,10 @@
 # ggstatsplot 0.1.2.9000
 
+BUG FIXES
+
+  - `ggbetweenstats` and `ggwithinstats` no longer produce incorrect label if
+    the dataframe already contains a variable named `n` (#317).
+
 # ggstatsplot 0.1.2
 
 MINOR

@@ -21,12 +21,12 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{broomExtra}{\code{\link[broomExtra]{\%>\%}}, \code{\link[broomExtra]{\%<>\%}}, \code{\link[broomExtra]{\%$\%}}}
+  \item{broomExtra}{\code{\link[broomExtra]{\%$\%}}, \code{\link[broomExtra]{\%<>\%}}, \code{\link[broomExtra]{\%>\%}}}
 
-  \item{groupedstats}{\code{\link[groupedstats]{specify_decimal_p}}, \code{\link[groupedstats]{signif_column}}, \code{\link[groupedstats]{lm_effsize_ci}}, \code{\link[groupedstats]{set_cwd}}}
+  \item{groupedstats}{\code{\link[groupedstats]{lm_effsize_ci}}, \code{\link[groupedstats]{set_cwd}}, \code{\link[groupedstats]{signif_column}}, \code{\link[groupedstats]{specify_decimal_p}}}
 
-  \item{rlang}{\code{\link[rlang]{\%||\%}}, \code{\link[rlang]{\%|\%}}}
+  \item{rlang}{\code{\link[rlang]{\%|\%}}, \code{\link[rlang]{\%||\%}}}
 
-  \item{tibble}{\code{\link[tibble]{tibble}}, \code{\link[tibble]{as_tibble}}}
+  \item{tibble}{\code{\link[tibble]{as_tibble}}, \code{\link[tibble]{tibble}}}
 }}
 

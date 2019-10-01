@@ -47,8 +47,9 @@ mean_labeller <- function(data,
       grouping.vars = {{ x }},
       measures = {{ y }}
     ) %>%
+    dplyr::rename(.data = ., n_per_level = n) %>%
     dplyr::mutate(.data = ., {{ y }} := mean) %>%
-    dplyr::select(.data = ., {{ x }}, {{ y }}, dplyr::matches("^mean"), n) %>%
+    dplyr::select(.data = ., {{ x }}, {{ y }}, dplyr::matches("^mean"), n_per_level) %>%
     dplyr::mutate_at(
       .tbl = .,
       .vars = dplyr::vars(dplyr::contains("mean")),
@@ -89,7 +90,10 @@ mean_labeller <- function(data,
   # adding sample size labels and arranging by original factor levels
   mean_dat %<>%
     tidyr::unnest(., cols = c(data, label)) %>%
-    dplyr::mutate(.data = ., n_label = paste0({{ x }}, "\n(n = ", n, ")", sep = "")) %>%
+    dplyr::mutate(
+      .data = .,
+      n_label = paste0({{ x }}, "\n(n = ", n_per_level, ")", sep = "")
+    ) %>%
     dplyr::arrange(.data = ., {{ x }})
 
   # return the dataframe with mean information

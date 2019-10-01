@@ -258,12 +258,13 @@ testthat::test_that(
     # creating the plot
     set.seed(123)
     p <- ggstatsplot::ggbetweenstats(
-      data = tibble::as_tibble(mtcars, rownames = "name"),
+      data = tibble::as_tibble(mtcars, rownames = "name") %>%
+        dplyr::rename(.data = ., n = wt),
       x = "cyl",
-      y = "wt",
+      y = "n",
       type = "np",
       mean.ci = TRUE,
-      k = 3,
+      k = 2L,
       conf.level = 0.90,
       outlier.tagging = TRUE,
       outlier.label = "name",
@@ -287,9 +288,9 @@ testthat::test_that(
     testthat::expect_identical(
       pb$data[[6]]$label,
       c(
-        "list(~italic(mu)==2.290,CI[95*'%'](1.907,2.673))",
-        "list(~italic(mu)==3.120,CI[95*'%'](2.787,3.453))",
-        "list(~italic(mu)==4.000,CI[95*'%'](3.561,4.439))"
+        "list(~italic(mu)==2.29,CI[95*'%'](1.91,2.67))",
+        "list(~italic(mu)==3.12,CI[95*'%'](2.79,3.45))",
+        "list(~italic(mu)==4.00,CI[95*'%'](3.56,4.44))"
       )
     )
 

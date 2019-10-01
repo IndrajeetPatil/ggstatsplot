@@ -259,8 +259,13 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     <tr>
       <th>...</th>
       <td><p>further arguments passed to <code><a href='https://rdrr.io/pkg/rstan/man/stanmodel-method-sampling.html'>rstan::sampling</a></code> (see
-<code>stanmodel-method-sampling</code>). For instance:
-<code>warmup=500</code>, <code>chains=4</code>, <code>control=list(adapt_delta=.95)</code>).</p></td>
+<code>stanmodel-method-sampling</code>). Relevant MCMC settings
+concern the number of warmup samples that are discarded
+(<code>warmup=500</code>), the total number of iterations per chain
+(<code>iter=2000</code>), the number of MCMC chains (<code>chains=4</code>), whether
+multiple cores should be used (<code>cores=4</code>), and control arguments that
+make the sampling in Stan more robust, for instance:
+<code>control=list(adapt_delta=.97)</code>.</p></td>
     </tr>
     </table>
 
