@@ -199,7 +199,8 @@ to be displayed (Default: \code{TRUE}).}
 \item{y, condition}{The variable to use as the \strong{columns} in the contingency
 table. Default is \code{NULL}. If \code{NULL}, one-sample proportion test (a goodness
 of fit test) will be run for the \code{x} variable. Otherwise an appropriate
-association test will be run.}
+association test will be run. This argument can not be \code{NULL} for
+\code{ggbarstats} function.}
 }
 \value{
 Unlike a number of statistical softwares, \code{ggstatsplot} doesn't

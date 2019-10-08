@@ -65,7 +65,8 @@ be taken. A matrix or tables will \strong{not} be accepted.}
 \item{condition}{The variable to use as the \strong{columns} in the contingency
 table. Default is \code{NULL}. If \code{NULL}, one-sample proportion test (a goodness
 of fit test) will be run for the \code{x} variable. Otherwise an appropriate
-association test will be run.}
+association test will be run. This argument can not be \code{NULL} for
+\code{ggbarstats} function.}
 
 \item{counts}{A string naming a variable in data containing counts, or \code{NULL}
 if each row represents a single observation (Default).}
@@ -231,7 +232,8 @@ to be displayed (Default: \code{TRUE}).}
 \item{y}{The variable to use as the \strong{columns} in the contingency
 table. Default is \code{NULL}. If \code{NULL}, one-sample proportion test (a goodness
 of fit test) will be run for the \code{x} variable. Otherwise an appropriate
-association test will be run.}
+association test will be run. This argument can not be \code{NULL} for
+\code{ggbarstats} function.}
 
 \item{...}{
   Arguments passed on to \code{\link[=combine_plots]{combine_plots}}

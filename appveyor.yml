@@ -17,7 +17,13 @@ skip_branch_with_pr: true
 # Adapt as necessary starting from here
 
 cache:
-  #- packages
+  - C:\RLibrary
+
+# Adapt as necessary starting from here
+before_test:
+  - cinst pandoc
+  - ps: $env:Path += ";C:\Program Files (x86)\Pandoc\"
+  - pandoc -v
 
 environment:
   global:

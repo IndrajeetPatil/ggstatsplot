@@ -7,7 +7,8 @@
 #' @param y,condition The variable to use as the **columns** in the contingency
 #'   table. Default is `NULL`. If `NULL`, one-sample proportion test (a goodness
 #'   of fit test) will be run for the `x` variable. Otherwise an appropriate
-#'   association test will be run.
+#'   association test will be run. This argument can not be `NULL` for
+#'   `ggbarstats` function.
 #' @param factor.levels A character vector with labels for factor levels of
 #'   `main` variable.
 #' @param title The text for the plot title.
