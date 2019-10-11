@@ -10,9 +10,9 @@
 #'   `data` will be used.
 #' @param cor.vars.names Optional list of names to be used for `cor.vars`. The
 #'   names should be entered in the same order.
-#' @param cor.yvars Optional second list of variables for which the correlation matrix is to be
+#' @param cor.vars.y Optional second list of variables for which the correlation matrix is to be
 #'   computed with `cor.vars`.
-#' @param cor.vars.names Optional list of names to be used for `cor.yvars`. The
+#' @param cor.vars.y.names Optional list of names to be used for `cor.vars.y`. The
 #'   names should be entered in the same order.
 #' @param output,return Character that decides expected output from this
 #'   function: `"plot"` (for visualization matrix) or `"correlations"` (or
@@ -171,8 +171,8 @@
 ggcorrmat <- function(data,
                       cor.vars = NULL,
                       cor.vars.names = NULL,
-                      cor.yvars = NULL,
-                      cor.yvars.names = NULL,
+                      cor.vars.y = NULL,
+                      cor.vars.y.names = NULL,
                       output = "plot",
                       matrix.type = "full",
                       method = "square",
@@ -213,7 +213,7 @@ ggcorrmat <- function(data,
                       return = NULL) {
 
   # check if we are using two sets of variables
-  using_y <- !is.null(cor.yvars)
+  using_y <- !is.null(cor.vars.y)
 
   # ======================= dataframe ========================================
 
@@ -226,7 +226,7 @@ ggcorrmat <- function(data,
   }
 
   if(using_y) {
-    df.y <- dplyr::select(.data = data, {{ cor.yvars }})
+    df.y <- dplyr::select(.data = data, {{ cor.vars.y }})
   } else {
     df.y <- NULL
   }
@@ -262,15 +262,15 @@ ggcorrmat <- function(data,
   }
 
   # repeat for df.y
-  if (using_y && !is.null(cor.yvars.names)) {
-    if (length(df.y) != length(cor.yvars.names)) {
+  if (using_y && !is.null(cor.vars.y.names)) {
+    if (length(df.y) != length(cor.vars.y.names)) {
       message(cat(
         crayon::red("Warning: "),
         crayon::blue("No. of variable names of the second set doesn't equal no. of variables for the second set.\n"),
         sep = ""
       ))
     } else {
-      colnames(df.y) <- cor.yvars.names
+      colnames(df.y) <- cor.vars.y.names
     }
   }
   # ============================ checking corr.method =======================
