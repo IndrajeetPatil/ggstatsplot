@@ -10,6 +10,10 @@
 #'   `data` will be used.
 #' @param cor.vars.names Optional list of names to be used for `cor.vars`. The
 #'   names should be entered in the same order.
+#' @param cor.yvars Optional second list of variables for which the correlation matrix is to be
+#'   computed with `cor.vars`.
+#' @param cor.vars.names Optional list of names to be used for `cor.yvars`. The
+#'   names should be entered in the same order.
 #' @param output,return Character that decides expected output from this
 #'   function: `"plot"` (for visualization matrix) or `"correlations"` (or
 #'   `"corr"` or `"r"`; for correlation matrix) or `"p-values"` (or `"p.values"`
@@ -167,6 +171,8 @@
 ggcorrmat <- function(data,
                       cor.vars = NULL,
                       cor.vars.names = NULL,
+                      cor.yvars = NULL,
+                      cor.yvars.names = NULL,
                       output = "plot",
                       matrix.type = "full",
                       method = "square",
@@ -206,26 +212,43 @@ ggcorrmat <- function(data,
                       messages = TRUE,
                       return = NULL) {
 
+  # check if we are using two sets of variables
+  using_y <- !is.null(cor.yvars)
+
   # ======================= dataframe ========================================
 
   # creating a dataframe out of the entered variables
   if (missing(cor.vars)) {
-    df <- purrr::keep(.x = data, .p = purrr::is_bare_numeric)
+    df.x <- purrr::keep(.x = data, .p = purrr::is_bare_numeric)
   } else {
     # creating a dataframe out of the entered variables
-    df <- dplyr::select(.data = data, {{ cor.vars }})
+    df.x <- dplyr::select(.data = data, {{ cor.vars }})
+  }
+
+  if(using_y) {
+    df.y <- dplyr::select(.data = data, {{ cor.yvars }})
+  } else {
+    df.y <- NULL
   }
 
   # counting number of NAs present in the dataframe
-  na_total <- df %>%
+  na_total.x <- df.x %>%
     purrr::map_df(.x = ., .f = ~ sum(is.na(.))) %>%
     purrr::flatten_dbl(.x = .) %>%
     sum(., na.rm = TRUE)
 
+  na_total.y <- switch(using_y,
+                       df.y %>%
+                         purrr::map_df(.x = ., .f = ~ sum(is.na(.))) %>%
+                         purrr::flatten_dbl(.x = .) %>%
+                         sum(., na.rm = TRUE),
+                       NULL)
+  na_total <- ifelse(using_y, na_total.x + na_total.y, na_total.x)
+
   # renaming the columns if so desired
   if (!is.null(cor.vars.names)) {
     # check if number of cor.vars is equal to the number of names entered
-    if (length(df) != length(cor.vars.names)) {
+    if (length(df.x) != length(cor.vars.names)) {
       # display a warning message if not
       message(cat(
         crayon::red("Warning: "),
@@ -234,10 +257,22 @@ ggcorrmat <- function(data,
       ))
     } else {
       # otherwise rename the columns with the new names
-      colnames(df) <- cor.vars.names
+      colnames(df.x) <- cor.vars.names
     }
   }
 
+  # repeat for df.y
+  if (using_y && !is.null(cor.yvars.names)) {
+    if (length(df.y) != length(cor.yvars.names)) {
+      message(cat(
+        crayon::red("Warning: "),
+        crayon::blue("No. of variable names of the second set doesn't equal no. of variables for the second set.\n"),
+        sep = ""
+      ))
+    } else {
+      colnames(df.y) <- cor.yvars.names
+    }
+  }
   # ============================ checking corr.method =======================
 
   # see which method was used to specify type of correlation
@@ -277,8 +312,8 @@ ggcorrmat <- function(data,
     # computing correlations using `psych` package
     corr_df <-
       psych::corr.test(
-        x = as.data.frame(df),
-        y = NULL,
+        x = as.data.frame(df.x),
+        y = switch(using_y, df.y, NULL),
         use = "pairwise",
         method = corr.method,
         adjust = p.adjust.method,
@@ -297,8 +332,8 @@ ggcorrmat <- function(data,
     # get matrix of samples sizes to be used later in `corr.p` function (`n`)
     corr_df <-
       psych::corr.test(
-        x = as.data.frame(df),
-        y = NULL,
+        x = as.data.frame(df.x),
+        y = switch(using_y, df.y, NULL),
         use = "pairwise",
         adjust = "none",
         alpha = 1 - conf.level,
@@ -307,7 +342,7 @@ ggcorrmat <- function(data,
       )
 
     # computing the percentage bend correlation matrix
-    rob_cor <- WRS2::pball(x = df, beta = beta)
+    rob_cor <- WRS2::pball(x = df.x, y=switch(using_y, df.y, NULL), beta = beta)
 
     # extracting the correlations and formatting them
     corr.mat <- round(x = rob_cor$pbcorm, digits = digits)
