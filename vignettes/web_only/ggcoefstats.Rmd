@@ -906,6 +906,57 @@ ggstatsplot::ggcoefstats(
   )
 ```
 
+## bias reduction in generalized linear models (`brglm2`)
+
+```{r brglm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 5}
+# setup
+set.seed(123)
+library(brglm2)
+data("lizards")
+data("stemcell")
+
+# fit the model using maximum likelihood mean bias-reduced fit:
+lizardsBR_mean <-
+  stats::glm(
+    formula = cbind(grahami, opalinus) ~ height + diameter + light + time,
+    family = binomial(logit),
+    data = lizards,
+    method = "brglmFit"
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = lizardsBR_mean,
+  title = "bias reduction in generalized linear models"
+)
+```
+
+## bias reduction for adjacent category logit models (`bracl`)
+
+```{r bracl, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 5}
+# setup
+set.seed(123)
+library(brglm2)
+data("lizards")
+data("stemcell")
+
+# bias reduction for adjacent category logit models
+# for ordinal responses using the Poisson trick
+fit_bracl <-
+  brglm2::bracl(
+    formula = research ~ as.numeric(religion) + gender,
+    weights = frequency,
+    data = stemcell, type = "ML"
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = fit_bracl,
+  conf.int = FALSE,
+  title = "bias reduction for adjacent category logit models"
+)
+```
+
 ## Bayesian linear linear mixed-effects models (`blmerMod`)
 
 ```{r blmerMod, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}

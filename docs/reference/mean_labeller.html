@@ -80,7 +80,7 @@ display in ggbetweenstats plot." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.2</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.2.9000</span>
       </span>
     </div>
 
@@ -238,18 +238,18 @@ mean is to be displayed (Default: <code>FALSE</code>).</p></td>
   <span class='kw'>mean.ci</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>
 )</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 x 8</span><span>
-#&gt;   vore    brainwt mean  mean.low.conf mean.high.conf     n
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> carni     0.079 0.079 0.002         0.156              9
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> herbi     0.62  0.620 -0.115        1.355             20
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> insecti   0.022 0.022 -0.021        0.065              5
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> omni      0.15  0.150 -0.015        0.315             17
+#&gt;   vore    brainwt mean  mean.low.conf mean.high.conf n_per_level
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> carni    0.079</span><span style='text-decoration: underline;'>3</span><span> 0.079 0.000         0.158                    9
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> herbi    0.622  0.622 -0.113        1.357                   20
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> insecti  0.021</span><span style='text-decoration: underline;'>5</span><span> 0.022 -0.022        0.065                    5
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> omni     0.146  0.146 -0.021        0.313                   17
 #&gt;   label                                             n_label           
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                             </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> list(~italic(mu)==0.079,CI[95*'%'](0.002,0.156))  </span><span style='color: #949494;'>"</span><span>carni\n(n = 9)</span><span style='color: #949494;'>"</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> list(~italic(mu)==0.620,CI[95*'%'](-0.115,1.355)) </span><span style='color: #949494;'>"</span><span>herbi\n(n = 20)</span><span style='color: #949494;'>"</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> list(~italic(mu)==0.022,CI[95*'%'](-0.021,0.065)) </span><span style='color: #949494;'>"</span><span>insecti\n(n = 5)</span><span style='color: #949494;'>"</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> list(~italic(mu)==0.150,CI[95*'%'](-0.015,0.315)) </span><span style='color: #949494;'>"</span><span>omni\n(n = 17)</span><span style='color: #949494;'>"</span><span>  </div><div class='input'># }
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> list(~italic(mu)==0.079,CI[95*'%'](0.000,0.158))  </span><span style='color: #949494;'>"</span><span>carni\n(n = 9)</span><span style='color: #949494;'>"</span><span>  
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> list(~italic(mu)==0.622,CI[95*'%'](-0.113,1.357)) </span><span style='color: #949494;'>"</span><span>herbi\n(n = 20)</span><span style='color: #949494;'>"</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> list(~italic(mu)==0.022,CI[95*'%'](-0.022,0.065)) </span><span style='color: #949494;'>"</span><span>insecti\n(n = 5)</span><span style='color: #949494;'>"</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> list(~italic(mu)==0.146,CI[95*'%'](-0.021,0.313)) </span><span style='color: #949494;'>"</span><span>omni\n(n = 17)</span><span style='color: #949494;'>"</span><span>  </div><div class='input'># }
 
 </div></span></pre>
   </div>
