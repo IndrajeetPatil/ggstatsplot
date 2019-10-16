@@ -190,6 +190,12 @@
 <li>
 <code>ggbetweenstats</code> and <code>ggwithinstats</code> no longer produce incorrect label if the dataframe already contains a variable named <code>n</code> (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/317'>#317</a>).</li>
 </ul>
+<p>MINOR</p>
+<ul>
+<li>
+<code>ggcoefstats</code> now uses <code><a href="https://rdrr.io/pkg/parameters/man/p_value.html">parameters::p_value</a></code> instead of <code><a href="https://rdrr.io/pkg/sjstats/man/p_value.html">sjstats::p_value</a></code>, as requested by the maintainer of that package.</li>
+<li>More models supported in <code>ggcoefstats</code>: <code>bracl</code>, <code>brglm2</code>.</li>
+</ul>
 </div>
     <div id="ggstatsplot-012" class="section level1">
 <h1 class="page-header">

@@ -54,7 +54,7 @@ library(tidyverse)
 p_list <- mtcars %>%
   dplyr::group_by(.data = ., am) %>%
   dplyr::group_map(
-    .tbl = .,
+    .data = .,
     .f = ~ ggstatsplot::ggbetweenstats(
     data = .,
     x = cyl,

@@ -516,8 +516,6 @@ ggcoefstats <- function(x,
           parametric = TRUE, # relevant for `gam` objects
           ...
         )
-
-      print(tidy_df)
     }
   }
 

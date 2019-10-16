@@ -51,19 +51,19 @@ Although the statistical models displayed in the plot may differ based on the
 class of models being investigated, there are few aspects of the plot that will
 be invariant across models:
 
-- The dot-whisker plot contains a dot representing the **estimate** and their
-**confidence intervals** (`95%` is the default). The estimate can either be
-  effect sizes (for tests that depend on the `F` statistic) or regression
-  coefficients (for tests with `t` and `z` statistic), etc. The function will, by
-  default, display a helpful `x`-axis label that should clear up what estimates are
-  being displayed. The confidence intervals can sometimes be asymmetric if
-  bootstrapping was used.
+  - The dot-whisker plot contains a dot representing the **estimate** and their
+    **confidence intervals** (`95%` is the default). The estimate can either be
+    effect sizes (for tests that depend on the `F` statistic) or regression
+    coefficients (for tests with `t` and `z` statistic), etc. The function will,
+    by default, display a helpful `x`-axis label that should clear up what
+    estimates are being displayed. The confidence intervals can sometimes be
+    asymmetric if bootstrapping was used.
   
-- The caption will always contain diagnostic information, if available, about
-  models that can be useful for model selection: The smaller the Akaike's
-  Information Criterion (**AIC**) and the Bayesian Information Criterion (**BIC**)
-  values, the "better" the model is. Additionally, the higher the
-**log-likelihood** value the "better" is the model fit.
+  - The caption will always contain diagnostic information, if available, about
+    models that can be useful for model selection: The smaller the Akaike's
+    Information Criterion (**AIC**) and the Bayesian Information Criterion
+    (**BIC**) values, the "better" the model is. Additionally, the higher the
+    **log-likelihood** value the "better" is the model fit.
 
 - The output of this function will be a `ggplot2` object and, thus, it can be
   further modified (e.g., change themes, etc.) with `ggplot2` functions.
@@ -73,15 +73,15 @@ Most of the regression models that are supported in the `broom` and
 `ggcoefstats`. For example-
 
 `aareg`, `anova`, `aov`, `aovlist`, `Arima`, `bglmerMod`, `bigglm`, `biglm`,
-`blmerMod`, `brmsfit`, `btergm`, `cch`, `clm`, `clmm`, `confusionMatrix`,
-`coxph`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `felm`, `fitdistr`, `glmerMod`,
-`glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`,
-`glmmTMB`, `glmRob`, `glmrob`, `gmm`, `ivreg`, `lm`, `lm.beta`, `lmerMod`,
-`lmodel2`, `lmRob`, `lmrob`, `mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`,
-`mediate`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `nlmerMod`, `nlrq`,
-`nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`,
-`speedglm`, `speedlm`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`,
-`tobit`, `wblm`, etc.
+`blmerMod`, `bracl`, `brglm2`, `brmsfit`, `btergm`, `cch`, `clm`, `clmm`,
+`confusionMatrix`, `coxph`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `felm`,
+`fitdistr`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`, `garch`,
+`glm`, `glmmadmb`, `glmmPQL`, `glmmTMB`, `glmRob`, `glmrob`, `gmm`, `ivreg`,
+`lm`, `lm.beta`, `lmerMod`, `lmodel2`, `lmRob`, `lmrob`, `mcmc`, `MCMCglmm`,
+`mclogit`, `mmclogit`, `mediate`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`,
+`nlmerMod`, `nlrq`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`,
+`rlmerMod`, `rq`, `speedglm`, `speedlm`, `stanreg`, `survreg`, `svyglm`,
+`svyolr`, `svyglm`, `tobit`, `wblm`, etc.
 
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
@@ -90,11 +90,11 @@ itself.
 ## omnibus ANOVA (`aov`)
 
 For this analysis, let's use the `movies_long` dataset, which provides
-information about IMDB ratings, budget, length, MPAA ratings (R-rated,
-PG, or PG-13), and genre for a number of movies. Let's say our hypothesis
-is that the IMDB ratings for a movie are predicted by a multiplicative effect of
-the genre and the MPAA rating it got. Let's carry out an omnibus
-ANOVA to see if this is the case.
+information about IMDB ratings, budget, length, MPAA ratings (R-rated, PG, or
+PG-13), and genre for a number of movies. Let's say our hypothesis is that the
+IMDB ratings for a movie are predicted by a multiplicative effect of the genre
+and the MPAA rating it got. Let's carry out an omnibus ANOVA to see if this is
+the case.
 
 ```{r aov1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8}
 # loading needed libraries
@@ -470,7 +470,7 @@ child).
   - Some families will have a `t` statistic associated with them,
   while others a `z` statistic. The function will figure this out for you.
 
-```{r glm2, warning = FALSE, message = FALSE, fig.height = 13, fig.width = 10}
+```{r glm_full, warning = FALSE, message = FALSE, fig.height = 13, fig.width = 10}
 # creating dataframes to use for regression analyses
 library(ggstatsplot)
 
@@ -576,6 +576,31 @@ ggstatsplot::combine_plots(
   ncol = 2,
   title.text = "Exploring models with different `glm` families",
   title.color = "blue"
+)
+```
+
+## modified fitting for generalized linear models (`glm2`)
+
+```{r glm2, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+# setup
+library(glm2)
+data(crabs)
+data(heart)
+y <- c(1, 1, 1, 0)
+
+# model
+fit1 <- glm2::glm2(
+  formula = y ~ 1,
+  family = binomial(link = "logit"),
+  control = glm.control(trace = FALSE)
+)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = fit1,
+  conf.int = FALSE,
+  title = "greater stability for fitting generalized linear models",
+  exclude.intercept = FALSE
 )
 ```
 
