@@ -186,13 +186,13 @@ testthat::test_that(
     # checking comparison groups and labels
     testthat::expect_identical(dat$group1, c("Action", "Action", "Comedy"))
     testthat::expect_identical(dat$group2, c("Comedy", "RomCom", "RomCom"))
-    testthat::expect_identical(dat$significance, c("ns", "***", "***"))
+    testthat::expect_identical(dat$significance, c("ns", "**", "**"))
     testthat::expect_identical(
       dat$label,
       c(
-        "list(~italic(p)['adjusted']== 0.687 )",
-        "list(~italic(p)['adjusted']== 0.001 )",
-        "list(~italic(p)['adjusted']<= 0.001 )"
+        "list(~italic(p)['adjusted']== 0.915 )",
+        "list(~italic(p)['adjusted']== 0.003 )",
+        "list(~italic(p)['adjusted']== 0.001 )"
       )
     )
     testthat::expect_identical(
@@ -213,7 +213,7 @@ testthat::test_that(
         p.value = TRUE,
         k = 4
       ),
-      "0.6870"
+      "0.9145"
     )
 
     # checking values

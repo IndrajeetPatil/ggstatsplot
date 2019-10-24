@@ -122,7 +122,8 @@ a.anchor {
 }
 
 .orcid {
-  height: 16px;
+  font-size: 16px;
+  color: #A6CE39;
   /* margins are required by official ORCID trademark and display guidelines */
   margin-left:4px;
   margin-right:4px;
