@@ -231,7 +231,7 @@
       "@type": "SoftwareApplication",
       "identifier": "broomExtra",
       "name": "broomExtra",
-      "version": ">= 0.0.5",
+      "version": ">= 0.0.6",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",

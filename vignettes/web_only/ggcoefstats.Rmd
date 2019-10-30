@@ -75,13 +75,13 @@ Most of the regression models that are supported in the `broom` and
 `aareg`, `anova`, `aov`, `aovlist`, `Arima`, `bglmerMod`, `bigglm`, `biglm`,
 `blmerMod`, `bracl`, `brglm2`, `brmsfit`, `btergm`, `cch`, `clm`, `clmm`,
 `confusionMatrix`, `coxph`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `felm`,
-`fitdistr`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`, `garch`,
-`glm`, `glmmadmb`, `glmmPQL`, `glmmTMB`, `glmRob`, `glmrob`, `gmm`, `ivreg`,
-`lm`, `lm.beta`, `lmerMod`, `lmodel2`, `lmRob`, `lmrob`, `mcmc`, `MCMCglmm`,
-`mclogit`, `mmclogit`, `mediate`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`,
-`nlmerMod`, `nlrq`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`,
-`rlmerMod`, `rq`, `speedglm`, `speedlm`, `stanreg`, `survreg`, `svyglm`,
-`svyolr`, `svyglm`, `tobit`, `wblm`, etc.
+`fitdistr`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`,
+`garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmmTMB`, `glmRob`, `glmrob`, `gmm`,
+`ivreg`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`, `lmRob`, `lmrob`, `mcmc`,
+`MCMCglmm`, `mclogit`, `mmclogit`, `mediate`, `mjoint`, `mle2`, `mlm`,
+`multinom`, `negbin`, `nlmerMod`, `nlrq`, `nls`, `orcutt`, `plm`, `polr`,
+`ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `slm`, `speedglm`, `speedlm`,
+`stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`, `wblm`, etc.
 
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
@@ -412,6 +412,32 @@ ggstatsplot::ggcoefstats(
 This analysis shows that there is indeed a possible non-linear association
 between rating and budget (non-linear regression term `k` is significant), at
 least with the particular non-linear function we used.
+
+## stationary linear model (`slm`)
+
+```{r slm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+# setup
+set.seed(123)
+library(slm)
+data("shan")
+
+# model
+mod <- slm(
+  myformula = shan$PM_Xuhui ~ .,
+  data = shan,
+  method_cov_st = "fitAR",
+  model_selec = -1
+)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
+  conf.level = 0.90,
+  title = "stationary linear models",
+  package = "rcartocolor",
+  palette = "Vivid"
+)
+```
 
 ## generalized linear model (`glm`)
 
@@ -979,6 +1005,53 @@ ggstatsplot::ggcoefstats(
   x = fit_bracl,
   conf.int = FALSE,
   title = "bias reduction for adjacent category logit models"
+)
+```
+
+## generalized linear models subject to population constraints
+
+```{r glmc, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6}
+
+set.seed(123)
+library(glmc)
+
+n <- rbind(c(5903, 230), c(5157, 350))
+mat <- matrix(0, nrow = sum(n), ncol = 2)
+mat <- rbind(
+  matrix(1, nrow = n[1, 1], ncol = 1) %*% c(0, 0),
+  matrix(1, nrow = n[1, 2], ncol = 1) %*% c(0, 1),
+  matrix(1, nrow = n[2, 1], ncol = 1) %*% c(1, 0),
+  matrix(1, nrow = n[2, 2], ncol = 1) %*% c(1, 1)
+)
+
+# specifying the population constraints
+gfr <- .06179 * matrix(1, nrow = nrow(mat), ncol = 1)
+g <- matrix(1, nrow = nrow(mat), ncol = 1)
+amat <- matrix(mat[, 2] * g - gfr, ncol = 1)
+
+# defining constraints in the data frame.
+hrh <- data.frame(birth = mat[, 2], child = mat[, 1], constraints = amat)
+
+# model
+gfit <- glmc(
+  formula = birth ~ child,
+  data = hrh,
+  family = "binomial",
+  emplik.method = "Owen",
+  control = glmc.control(
+    maxit.glm = 10,
+    maxit.weights = 200,
+    itertrace.weights = TRUE,
+    gradtol.weights = 10^(-6)
+  )
+)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = gfit,
+  title = "generalized linear models \nsubject to population constraints",
+  conf.int = FALSE,
+  exclude.intercept = FALSE
 )
 ```
 
