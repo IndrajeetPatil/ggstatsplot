@@ -12,7 +12,6 @@
 #' @importFrom insight is_model find_statistic
 #'
 #' @examples
-#' \donttest{
 #' # show all columns in output tibble
 #' options(tibble.width = Inf)
 #'
@@ -95,7 +94,6 @@
 #'   effsize = "omega",
 #'   partial = FALSE
 #' )
-#' }
 #' @keywords internal
 
 # function body

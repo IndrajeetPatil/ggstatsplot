@@ -242,7 +242,6 @@ Bar charts for categorical data with statistical details
 included in the plot as a subtitle.
 }
 \examples{
-\donttest{
 # for reproducibility
 set.seed(123)
 
@@ -265,7 +264,6 @@ ggstatsplot::ggbarstats(
   y = Hair,
   counts = Freq
 )
-}
 }
 \seealso{
 \code{\link{grouped_ggbarstats}}, \code{\link{ggpiestats}},

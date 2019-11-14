@@ -246,12 +246,11 @@ function across multiple levels of a given factor and combining the
 resulting plots using \code{ggstatsplot::combine_plots}.
 }
 \examples{
-\donttest{
 # for reproducibility
 set.seed(123)
 
 # removing factor level with very few no. of observations
-df <- dplyr::filter(.data = ggplot2::mpg, cyl %in% c("4", "6", "8"))
+df <- dplyr::filter(.data = ggplot2::mpg, cyl \%in\% c("4", "6", "8"))
 
 # plot
 ggstatsplot::grouped_ggdotplotstats(
@@ -268,7 +267,6 @@ ggstatsplot::grouped_ggdotplotstats(
   ),
   messages = FALSE
 )
-}
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html}

@@ -253,8 +253,8 @@ plot_list <- purrr::pmap(
       "partial_eta"
     ),
     mean.ci = list(FALSE, TRUE, FALSE, FALSE),
-    package = list("ggsci", "palettetown", "vapoRwave", "wesanderson"),
-    palette = list("lanonc_lancet", "venomoth", "hotlineBling", "GrandBudapest1"),
+    package = list("ggsci", "palettetown", "palettetown", "wesanderson"),
+    palette = list("lanonc_lancet", "venomoth", "blastoise", "GrandBudapest1"),
     ggtheme = list(
       ggplot2::theme_linedraw(),
       hrbrthemes::theme_ft_rc(),

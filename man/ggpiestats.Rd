@@ -220,7 +220,6 @@ Pie charts for categorical data with statistical details
 included in the plot as a subtitle.
 }
 \examples{
-\donttest{
 # for reproducibility
 set.seed(123)
 
@@ -252,7 +251,6 @@ ggstatsplot::ggpiestats(
   x = Eye,
   counts = Freq
 )
-}
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}

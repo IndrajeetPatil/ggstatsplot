@@ -156,7 +156,6 @@
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}
 #'
 #' @examples
-#' \donttest{
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
 #' library(ggstatsplot)
@@ -189,7 +188,6 @@
 #'   ggtheme = ggplot2::theme_grey(),
 #'   ggstatsplot.layer = FALSE
 #' )
-#' }
 #' @export
 
 # defining the function

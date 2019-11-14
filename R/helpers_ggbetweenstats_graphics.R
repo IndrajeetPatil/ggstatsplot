@@ -13,7 +13,6 @@
 #' @importFrom tidyr drop_na unnest
 #'
 #' @examples
-#' \donttest{
 #' ggstatsplot:::mean_labeller(
 #'   data = ggplot2::msleep,
 #'   x = vore,
@@ -21,7 +20,6 @@
 #'   mean.ci = TRUE,
 #'   k = 3
 #' )
-#' }
 #'
 #' @keywords internal
 

@@ -211,7 +211,7 @@
 </tr>
 <tr class="odd">
 <td><a href="https://gitter.im/ggstatsplot/community"><img src="https://badges.gitter.im/gitterHQ/gitter.png" alt="Gitter chat"></a></td>
-<td></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/actions?workflow=R"><img src="https://github.com/r-lib/actions/workflows/R/badge.svg" alt="R build status"></a></td>
 <td></td>
 <td></td>
 <td></td>
@@ -664,7 +664,8 @@
 <a class="sourceLine" id="cb7-3" title="3"><span class="co">#&gt; function(plot) {</span></a>
 <a class="sourceLine" id="cb7-4" title="4"><span class="co">#&gt;   cowplot::ggdraw() + cowplot::draw_grob(grid::grobTree(plot))</span></a>
 <a class="sourceLine" id="cb7-5" title="5"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb7-6" title="6"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
+<a class="sourceLine" id="cb7-6" title="6"><span class="co">#&gt; &lt;bytecode: 0x000000002c94c960&gt;</span></a>
+<a class="sourceLine" id="cb7-7" title="7"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
 <li><a href="http://r-pkgs.had.co.nz/namespace.html" class="uri">http://r-pkgs.had.co.nz/namespace.html</a></li>
@@ -1204,14 +1205,14 @@
 <a class="sourceLine" id="cb18-22" title="22">)</a>
 <a class="sourceLine" id="cb18-23" title="23"><span class="co">#&gt; Note: 99% CI for effect size estimate was computed with 100 bootstrap samples.</span></a>
 <a class="sourceLine" id="cb18-24" title="24"><span class="co">#&gt; # A tibble: 2 x 11</span></a>
-<a class="sourceLine" id="cb18-25" title="25"><span class="co">#&gt;   `2nd survey` counts  perc N         Approve Disapprove statistic   p.value parameter method                                  </span></a>
-<a class="sourceLine" id="cb18-26" title="26"><span class="co">#&gt;   &lt;fct&gt;         &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;                                   </span></a>
-<a class="sourceLine" id="cb18-27" title="27"><span class="co">#&gt; 1 Disapprove      720   45  (n = 720) 20.83%  79.17%          245  3.20e- 55         1 Chi-squared test for given probabilities</span></a>
-<a class="sourceLine" id="cb18-28" title="28"><span class="co">#&gt; 2 Approve         880   55. (n = 880) 90.23%  9.77%           570. 6.80e-126         1 Chi-squared test for given probabilities</span></a>
-<a class="sourceLine" id="cb18-29" title="29"><span class="co">#&gt;   significance</span></a>
-<a class="sourceLine" id="cb18-30" title="30"><span class="co">#&gt;   &lt;chr&gt;       </span></a>
-<a class="sourceLine" id="cb18-31" title="31"><span class="co">#&gt; 1 ***         </span></a>
-<a class="sourceLine" id="cb18-32" title="32"><span class="co">#&gt; 2 ***</span></a></code></pre></div>
+<a class="sourceLine" id="cb18-25" title="25"><span class="co">#&gt;   `2nd survey` counts  perc N         Approve Disapprove statistic   p.value</span></a>
+<a class="sourceLine" id="cb18-26" title="26"><span class="co">#&gt;   &lt;fct&gt;         &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb18-27" title="27"><span class="co">#&gt; 1 Disapprove      720   45  (n = 720) 20.83%  79.17%          245  3.20e- 55</span></a>
+<a class="sourceLine" id="cb18-28" title="28"><span class="co">#&gt; 2 Approve         880   55. (n = 880) 90.23%  9.77%           570. 6.80e-126</span></a>
+<a class="sourceLine" id="cb18-29" title="29"><span class="co">#&gt;   parameter method                                   significance</span></a>
+<a class="sourceLine" id="cb18-30" title="30"><span class="co">#&gt;       &lt;dbl&gt; &lt;chr&gt;                                    &lt;chr&gt;       </span></a>
+<a class="sourceLine" id="cb18-31" title="31"><span class="co">#&gt; 1         1 Chi-squared test for given probabilities ***         </span></a>
+<a class="sourceLine" id="cb18-32" title="32"><span class="co">#&gt; 2         1 Chi-squared test for given probabilities ***</span></a></code></pre></div>
 <p><img src="reference/figures/README-ggpiestats3-1.png" width="100%"></p>
 <p>Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="co"># for reproducibility</span></a>
@@ -1652,40 +1653,57 @@
 <a class="sourceLine" id="cb28-49" title="49"><span class="co">#&gt; the upper triangle: p-values adjusted for multiple comparisons</span></a>
 <a class="sourceLine" id="cb28-50" title="50"><span class="co">#&gt; the lower triangle: unadjusted p-values.</span></a>
 <a class="sourceLine" id="cb28-51" title="51"><span class="co">#&gt; # A tibble: 15 x 7</span></a>
-<a class="sourceLine" id="cb28-52" title="52"><span class="co">#&gt;    pair                          r   lower    upper         p lower.adj upper.adj</span></a>
-<a class="sourceLine" id="cb28-53" title="53"><span class="co">#&gt;    &lt;chr&gt;                     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb28-54" title="54"><span class="co">#&gt;  1 sleep_total-sleep_rem    0.7641  0.6344  0.8520  7.806e-13   0.5632    0.8798 </span></a>
-<a class="sourceLine" id="cb28-55" title="55"><span class="co">#&gt;  2 sleep_total-sleep_cycle -0.4888 -0.7155 -0.1689  4.530e- 3  -0.7609   -0.07055</span></a>
-<a class="sourceLine" id="cb28-56" title="56"><span class="co">#&gt;  3 sleep_total-awake       -1      -1      -1       0.         -1        -1      </span></a>
-<a class="sourceLine" id="cb28-57" title="57"><span class="co">#&gt;  4 sleep_total-brainwt     -0.5935 -0.7408 -0.3918  1.426e- 6  -0.7852   -0.2982 </span></a>
-<a class="sourceLine" id="cb28-58" title="58"><span class="co">#&gt;  5 sleep_total-bodywt      -0.5346 -0.6727 -0.3605  1.931e- 7  -0.7121   -0.2928 </span></a>
-<a class="sourceLine" id="cb28-59" title="59"><span class="co">#&gt;  6 sleep_rem-sleep_cycle   -0.3344 -0.6118  0.01617 6.139e- 2  -0.6118    0.01617</span></a>
-<a class="sourceLine" id="cb28-60" title="60"><span class="co">#&gt;  7 sleep_rem-awake         -0.7641 -0.8520 -0.6344  7.806e-13  -0.8807   -0.5605 </span></a>
-<a class="sourceLine" id="cb28-61" title="61"><span class="co">#&gt;  8 sleep_rem-brainwt       -0.4139 -0.6246 -0.1471  3.451e- 3  -0.6495   -0.1058 </span></a>
-<a class="sourceLine" id="cb28-62" title="62"><span class="co">#&gt;  9 sleep_rem-bodywt        -0.4517 -0.6317 -0.2255  2.580e- 4  -0.6647   -0.1708 </span></a>
-<a class="sourceLine" id="cb28-63" title="63"><span class="co">#&gt; 10 sleep_cycle-awake        0.4888  0.1689  0.7155  4.530e- 3   0.05610   0.7669 </span></a>
-<a class="sourceLine" id="cb28-64" title="64"><span class="co">#&gt; 11 sleep_cycle-brainwt      0.8727  0.7474  0.9380  3.250e-10   0.6573    0.9563 </span></a>
-<a class="sourceLine" id="cb28-65" title="65"><span class="co">#&gt; 12 sleep_cycle-bodywt       0.8464  0.7061  0.9228  1.040e- 9   0.6115    0.9442 </span></a>
-<a class="sourceLine" id="cb28-66" title="66"><span class="co">#&gt; 13 awake-brainwt            0.5935  0.3918  0.7408  1.426e- 6   0.2934    0.7872 </span></a>
-<a class="sourceLine" id="cb28-67" title="67"><span class="co">#&gt; 14 awake-bodywt             0.5346  0.3605  0.6727  1.931e- 7   0.2875    0.7150 </span></a>
-<a class="sourceLine" id="cb28-68" title="68"><span class="co">#&gt; 15 brainwt-bodywt           0.9572  0.9277  0.9748  9.694e-31   0.9071    0.9805</span></a>
-<a class="sourceLine" id="cb28-69" title="69"></a>
-<a class="sourceLine" id="cb28-70" title="70"><span class="co"># getting the sample sizes for all pairs</span></a>
-<a class="sourceLine" id="cb28-71" title="71">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
-<a class="sourceLine" id="cb28-72" title="72">  <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</a>
-<a class="sourceLine" id="cb28-73" title="73">  <span class="dt">cor.vars =</span> sleep_total<span class="op">:</span>bodywt,</a>
-<a class="sourceLine" id="cb28-74" title="74">  <span class="dt">corr.method =</span> <span class="st">"robust"</span>,</a>
-<a class="sourceLine" id="cb28-75" title="75">  <span class="dt">output =</span> <span class="st">"n"</span> <span class="co"># note that n is different due to NAs</span></a>
-<a class="sourceLine" id="cb28-76" title="76">)</a>
-<a class="sourceLine" id="cb28-77" title="77"><span class="co">#&gt; # A tibble: 6 x 7</span></a>
-<a class="sourceLine" id="cb28-78" title="78"><span class="co">#&gt;   variable    sleep_total sleep_rem sleep_cycle awake brainwt bodywt</span></a>
-<a class="sourceLine" id="cb28-79" title="79"><span class="co">#&gt;   &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb28-80" title="80"><span class="co">#&gt; 1 sleep_total          83        61          32    83      56     83</span></a>
-<a class="sourceLine" id="cb28-81" title="81"><span class="co">#&gt; 2 sleep_rem            61        61          32    61      48     61</span></a>
-<a class="sourceLine" id="cb28-82" title="82"><span class="co">#&gt; 3 sleep_cycle          32        32          32    32      30     32</span></a>
-<a class="sourceLine" id="cb28-83" title="83"><span class="co">#&gt; 4 awake                83        61          32    83      56     83</span></a>
-<a class="sourceLine" id="cb28-84" title="84"><span class="co">#&gt; 5 brainwt              56        48          30    56      56     56</span></a>
-<a class="sourceLine" id="cb28-85" title="85"><span class="co">#&gt; 6 bodywt               83        61          32    83      56     83</span></a></code></pre></div>
+<a class="sourceLine" id="cb28-52" title="52"><span class="co">#&gt;    pair                          r   lower    upper         p lower.adj</span></a>
+<a class="sourceLine" id="cb28-53" title="53"><span class="co">#&gt;    &lt;chr&gt;                     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb28-54" title="54"><span class="co">#&gt;  1 sleep_total-sleep_rem    0.7641  0.6344  0.8520  7.806e-13   0.5632 </span></a>
+<a class="sourceLine" id="cb28-55" title="55"><span class="co">#&gt;  2 sleep_total-sleep_cycle -0.4888 -0.7155 -0.1689  4.530e- 3  -0.7609 </span></a>
+<a class="sourceLine" id="cb28-56" title="56"><span class="co">#&gt;  3 sleep_total-awake       -1      -1      -1       0.         -1      </span></a>
+<a class="sourceLine" id="cb28-57" title="57"><span class="co">#&gt;  4 sleep_total-brainwt     -0.5935 -0.7408 -0.3918  1.426e- 6  -0.7852 </span></a>
+<a class="sourceLine" id="cb28-58" title="58"><span class="co">#&gt;  5 sleep_total-bodywt      -0.5346 -0.6727 -0.3605  1.931e- 7  -0.7121 </span></a>
+<a class="sourceLine" id="cb28-59" title="59"><span class="co">#&gt;  6 sleep_rem-sleep_cycle   -0.3344 -0.6118  0.01617 6.139e- 2  -0.6118 </span></a>
+<a class="sourceLine" id="cb28-60" title="60"><span class="co">#&gt;  7 sleep_rem-awake         -0.7641 -0.8520 -0.6344  7.806e-13  -0.8807 </span></a>
+<a class="sourceLine" id="cb28-61" title="61"><span class="co">#&gt;  8 sleep_rem-brainwt       -0.4139 -0.6246 -0.1471  3.451e- 3  -0.6495 </span></a>
+<a class="sourceLine" id="cb28-62" title="62"><span class="co">#&gt;  9 sleep_rem-bodywt        -0.4517 -0.6317 -0.2255  2.580e- 4  -0.6647 </span></a>
+<a class="sourceLine" id="cb28-63" title="63"><span class="co">#&gt; 10 sleep_cycle-awake        0.4888  0.1689  0.7155  4.530e- 3   0.05610</span></a>
+<a class="sourceLine" id="cb28-64" title="64"><span class="co">#&gt; 11 sleep_cycle-brainwt      0.8727  0.7474  0.9380  3.250e-10   0.6573 </span></a>
+<a class="sourceLine" id="cb28-65" title="65"><span class="co">#&gt; 12 sleep_cycle-bodywt       0.8464  0.7061  0.9228  1.040e- 9   0.6115 </span></a>
+<a class="sourceLine" id="cb28-66" title="66"><span class="co">#&gt; 13 awake-brainwt            0.5935  0.3918  0.7408  1.426e- 6   0.2934 </span></a>
+<a class="sourceLine" id="cb28-67" title="67"><span class="co">#&gt; 14 awake-bodywt             0.5346  0.3605  0.6727  1.931e- 7   0.2875 </span></a>
+<a class="sourceLine" id="cb28-68" title="68"><span class="co">#&gt; 15 brainwt-bodywt           0.9572  0.9277  0.9748  9.694e-31   0.9071 </span></a>
+<a class="sourceLine" id="cb28-69" title="69"><span class="co">#&gt;    upper.adj</span></a>
+<a class="sourceLine" id="cb28-70" title="70"><span class="co">#&gt;        &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb28-71" title="71"><span class="co">#&gt;  1   0.8798 </span></a>
+<a class="sourceLine" id="cb28-72" title="72"><span class="co">#&gt;  2  -0.07055</span></a>
+<a class="sourceLine" id="cb28-73" title="73"><span class="co">#&gt;  3  -1      </span></a>
+<a class="sourceLine" id="cb28-74" title="74"><span class="co">#&gt;  4  -0.2982 </span></a>
+<a class="sourceLine" id="cb28-75" title="75"><span class="co">#&gt;  5  -0.2928 </span></a>
+<a class="sourceLine" id="cb28-76" title="76"><span class="co">#&gt;  6   0.01617</span></a>
+<a class="sourceLine" id="cb28-77" title="77"><span class="co">#&gt;  7  -0.5605 </span></a>
+<a class="sourceLine" id="cb28-78" title="78"><span class="co">#&gt;  8  -0.1058 </span></a>
+<a class="sourceLine" id="cb28-79" title="79"><span class="co">#&gt;  9  -0.1708 </span></a>
+<a class="sourceLine" id="cb28-80" title="80"><span class="co">#&gt; 10   0.7669 </span></a>
+<a class="sourceLine" id="cb28-81" title="81"><span class="co">#&gt; 11   0.9563 </span></a>
+<a class="sourceLine" id="cb28-82" title="82"><span class="co">#&gt; 12   0.9442 </span></a>
+<a class="sourceLine" id="cb28-83" title="83"><span class="co">#&gt; 13   0.7872 </span></a>
+<a class="sourceLine" id="cb28-84" title="84"><span class="co">#&gt; 14   0.7150 </span></a>
+<a class="sourceLine" id="cb28-85" title="85"><span class="co">#&gt; 15   0.9805</span></a>
+<a class="sourceLine" id="cb28-86" title="86"></a>
+<a class="sourceLine" id="cb28-87" title="87"><span class="co"># getting the sample sizes for all pairs</span></a>
+<a class="sourceLine" id="cb28-88" title="88">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb28-89" title="89">  <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</a>
+<a class="sourceLine" id="cb28-90" title="90">  <span class="dt">cor.vars =</span> sleep_total<span class="op">:</span>bodywt,</a>
+<a class="sourceLine" id="cb28-91" title="91">  <span class="dt">corr.method =</span> <span class="st">"robust"</span>,</a>
+<a class="sourceLine" id="cb28-92" title="92">  <span class="dt">output =</span> <span class="st">"n"</span> <span class="co"># note that n is different due to NAs</span></a>
+<a class="sourceLine" id="cb28-93" title="93">)</a>
+<a class="sourceLine" id="cb28-94" title="94"><span class="co">#&gt; # A tibble: 6 x 7</span></a>
+<a class="sourceLine" id="cb28-95" title="95"><span class="co">#&gt;   variable    sleep_total sleep_rem sleep_cycle awake brainwt bodywt</span></a>
+<a class="sourceLine" id="cb28-96" title="96"><span class="co">#&gt;   &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb28-97" title="97"><span class="co">#&gt; 1 sleep_total          83        61          32    83      56     83</span></a>
+<a class="sourceLine" id="cb28-98" title="98"><span class="co">#&gt; 2 sleep_rem            61        61          32    61      48     61</span></a>
+<a class="sourceLine" id="cb28-99" title="99"><span class="co">#&gt; 3 sleep_cycle          32        32          32    32      30     32</span></a>
+<a class="sourceLine" id="cb28-100" title="100"><span class="co">#&gt; 4 awake                83        61          32    83      56     83</span></a>
+<a class="sourceLine" id="cb28-101" title="101"><span class="co">#&gt; 5 brainwt              56        48          30    56      56     56</span></a>
+<a class="sourceLine" id="cb28-102" title="102"><span class="co">#&gt; 6 bodywt               83        61          32    83      56     83</span></a></code></pre></div>
 <p>Note that if <code>cor.vars</code> are not specified, all numeric variables will be used.</p>
 <p>There is a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="co"># for reproducibility</span></a>

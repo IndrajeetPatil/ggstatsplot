@@ -25,7 +25,7 @@
 #' @inherit ggbetweenstats return details
 #'
 #' @examples
-#' \donttest{
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
 #'
@@ -55,7 +55,6 @@
 #'   ),
 #'   messages = FALSE
 #' )
-#' }
 #'
 #' @export
 

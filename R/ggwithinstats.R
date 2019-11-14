@@ -29,7 +29,6 @@
 #'  For independent measures designs, use `ggbetweenstats`.
 #'
 #' @examples
-#' \donttest{
 #' # setup
 #' set.seed(123)
 #' library(ggstatsplot)
@@ -56,7 +55,6 @@
 #'   outlier.tagging = TRUE,
 #'   outlier.label = Taster
 #' )
-#' }
 #' @export
 
 # defining the function

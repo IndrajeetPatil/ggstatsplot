@@ -77,7 +77,7 @@ Try modifying the theme for other functions (use themes from `ggplot2`,
 # Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
-GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+`GitHub`: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
 
 # Session Information
 

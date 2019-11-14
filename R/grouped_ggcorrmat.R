@@ -21,12 +21,11 @@
 #' @inherit ggcorrmat return details
 #'
 #' @examples
-#' \donttest{
 #' # for reproducibility
 #' set.seed(123)
 #'
 #' # for plot
-#' # (without specifiying needed variables; all numeric variables will be used)
+#' # (without specifying needed variables; all numeric variables will be used)
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = ggplot2::msleep,
 #'   grouping.var = vore
@@ -63,7 +62,6 @@
 #'   cor.vars = Sepal.Length:Petal.Width,
 #'   output = "ci"
 #' )
-#' }
 #' @export
 
 # defining the function
