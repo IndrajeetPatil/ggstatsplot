@@ -1,0 +1,20 @@
+# All available hooks: https://pre-commit.com/hooks.html
+repos:
+-   repo: https://github.com/lorenzwalthert/precommit
+    rev: v0.0.0.9016
+    hooks: 
+    # any R project
+    -   id: style-files
+        args: [--style_pkg=styler, --style_fun=tidyverse_style]
+    #-   id: lintr
+    -   id: parsable-R
+    -   id: no-browser-statement
+    -   id: readme-rmd-rendered
+    #  R package development
+    -   id: roxygenize
+    -   id: use-tidy-description
+    -   id: deps-in-desc
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v1.2.3
+    hooks: 
+    -   id: check-added-large-files

@@ -60,6 +60,9 @@
       <a href="../../articles/additional.html">additional vignettes</a>
     </li>
     <li>
+      <a href="../../articles/tests_and_coverage.html">Tests and Coverage</a>
+    </li>
+    <li>
       <a href="../../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
@@ -139,7 +142,7 @@
       <h1>ggwithinstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-10-24</h4>
+            <h4 class="date">2019-11-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggwithinstats.Rmd"><code>vignettes/web_only/ggwithinstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggwithinstats.Rmd</code></div>
@@ -174,12 +177,12 @@
 <a class="sourceLine" id="cb1-11" title="11">dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="dt">x =</span> data_bugs)</a>
 <a class="sourceLine" id="cb1-12" title="12"><span class="co">#&gt; Observations: 344</span></a>
 <a class="sourceLine" id="cb1-13" title="13"><span class="co">#&gt; Variables: 6</span></a>
-<a class="sourceLine" id="cb1-14" title="14"><span class="co">#&gt; $ Subject   &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 1...</span></a>
-<a class="sourceLine" id="cb1-15" title="15"><span class="co">#&gt; $ Gender    &lt;fct&gt; Female, Female, Female, Female, Female, Female, Fema...</span></a>
-<a class="sourceLine" id="cb1-16" title="16"><span class="co">#&gt; $ Region    &lt;fct&gt; North America, North America, Europe, North America,...</span></a>
-<a class="sourceLine" id="cb1-17" title="17"><span class="co">#&gt; $ Education &lt;fct&gt; some, advance, college, college, some, some, some, h...</span></a>
-<a class="sourceLine" id="cb1-18" title="18"><span class="co">#&gt; $ key       &lt;chr&gt; "LDLF", "LDLF", "LDLF", "LDLF", "LDLF", "LDLF", "LDL...</span></a>
-<a class="sourceLine" id="cb1-19" title="19"><span class="co">#&gt; $ value     &lt;dbl&gt; 6.0, 10.0, 5.0, 6.0, 3.0, 2.0, 10.0, 10.0, 9.5, 0.0,...</span></a></code></pre></div>
+<a class="sourceLine" id="cb1-14" title="14"><span class="co">#&gt; $ Subject   &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18...</span></a>
+<a class="sourceLine" id="cb1-15" title="15"><span class="co">#&gt; $ Gender    &lt;fct&gt; Female, Female, Female, Female, Female, Female, Female, F...</span></a>
+<a class="sourceLine" id="cb1-16" title="16"><span class="co">#&gt; $ Region    &lt;fct&gt; North America, North America, Europe, North America, Nort...</span></a>
+<a class="sourceLine" id="cb1-17" title="17"><span class="co">#&gt; $ Education &lt;fct&gt; some, advance, college, college, some, some, some, high, ...</span></a>
+<a class="sourceLine" id="cb1-18" title="18"><span class="co">#&gt; $ key       &lt;chr&gt; "LDLF", "LDLF", "LDLF", "LDLF", "LDLF", "LDLF", "LDLF", "...</span></a>
+<a class="sourceLine" id="cb1-19" title="19"><span class="co">#&gt; $ value     &lt;dbl&gt; 6.0, 10.0, 5.0, 6.0, 3.0, 2.0, 10.0, 10.0, 9.5, 0.0, 9.5,...</span></a></code></pre></div>
 <p>Suppose the first thing we want to inspect is the distribution of desire to kill across all conditions (disregarding the factorial structure of the experiment). We also want to know if the mean differences in this desire across conditions is statistically significant.</p>
 <p>The simplest form of the function call is-</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># since the confidence intervals for the effect sizes are computed using</span></a>

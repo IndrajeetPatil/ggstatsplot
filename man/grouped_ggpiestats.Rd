@@ -310,8 +310,8 @@ ggstatsplot::grouped_ggpiestats(
 set.seed(123)
 
 # let's create a smaller dataframe
-diamonds_short <- ggplot2::diamonds \%>\%
-  dplyr::filter(.data = ., cut \%in\% c("Fair", "Very Good", "Ideal")) \%>\%
+diamonds_short <- ggplot2::diamonds %>%
+  dplyr::filter(.data = ., cut %in% c("Fair", "Very Good", "Ideal")) %>%
   dplyr::sample_frac(tbl = ., size = 0.10)
 
 # plot

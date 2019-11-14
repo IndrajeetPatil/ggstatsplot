@@ -7,7 +7,9 @@ jobs:
     runs-on: macOS-latest
     strategy:
       matrix:
-        r: ['3.x', 'devel']
+        # for time being don't check on devel
+        #r: ['3.x', 'devel']
+        r: ['3.6']
     steps:
       - uses: actions/checkout@v1
       - uses: r-lib/actions/setup-r@master

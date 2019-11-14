@@ -58,7 +58,6 @@ testthat::test_that(
 
     # testing everything is okay with data
     testthat::expect_equal(data_dims, c(4L, 5L))
-    testthat::expect_equal(dim(pb$data[[1]]), c(4L, 13L))
     testthat::expect_equal(dim(pb$data[[2]]), c(4L, 19L))
     testthat::expect_equal(dim(pb$data[[3]]), c(2L, 14L))
     testthat::expect_equal(dim(pb$data[[4]]), c(2L, 14L))
@@ -98,36 +97,6 @@ testthat::test_that(
       pb$data[[3]]$y + pb$data[[4]]$y,
       c(1, 1),
       tolerance = 0.001
-    )
-
-    # checking panel parameters
-    testthat::expect_equal(pb$layout$panel_params[[1]]$x.range,
-      c(0.4, 2.6),
-      tolerance = 0.01
-    )
-    testthat::expect_identical(
-      pb$layout$panel_params[[1]]$x.labels,
-      c("No", "Yes")
-    )
-    testthat::expect_equal(pb$layout$panel_params[[1]]$x.major,
-      c(0.2727273, 0.7272727),
-      tolerance = 0.001
-    )
-    testthat::expect_equal(pb$layout$panel_params[[1]]$y.range,
-      c(-0.105, 1.105),
-      tolerance = 0.01
-    )
-    testthat::expect_identical(
-      pb$layout$panel_params[[1]]$y.labels,
-      c("0%", "10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%")
-    )
-    testthat::expect_equal(pb$layout$panel_params[[1]]$y.minor_source,
-      c(0.05, 0.15, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85, 0.95),
-      tolerance = 0.01
-    )
-    testthat::expect_equal(pb$layout$panel_params[[1]]$y.major_source,
-      c(0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0),
-      tolerance = 0.01
     )
   }
 )

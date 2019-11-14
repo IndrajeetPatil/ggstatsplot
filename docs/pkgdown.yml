@@ -1,8 +1,9 @@
 pandoc: 2.7.2
 pkgdown: 1.4.1.9000
-pkgdown_sha: 90572181f1ac83b56089ab14c16f4d9e063f216b
+pkgdown_sha: dfae44ecfcc5b0ac51f9489993ddd79ad6c707c3
 articles:
   additional: additional.html
+  tests_and_coverage: tests_and_coverage.html
   combine_plots: web_only/combine_plots.html
   effsize_interpretation: web_only/effsize_interpretation.html
   faq: web_only/faq.html

@@ -76,12 +76,12 @@ Most of the regression models that are supported in the `broom` and
 `blmerMod`, `bracl`, `brglm2`, `brmsfit`, `btergm`, `cch`, `clm`, `clmm`,
 `confusionMatrix`, `coxph`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `felm`,
 `fitdistr`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`,
-`garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmmTMB`, `glmRob`, `glmrob`, `gmm`,
-`ivreg`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`, `lmRob`, `lmrob`, `mcmc`,
-`MCMCglmm`, `mclogit`, `mmclogit`, `mediate`, `mjoint`, `mle2`, `mlm`,
-`multinom`, `negbin`, `nlmerMod`, `nlrq`, `nls`, `orcutt`, `plm`, `polr`,
-`ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `slm`, `speedglm`, `speedlm`,
-`stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`, `wblm`, etc.
+`garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `gmm`, `ivreg`, `lm`,
+`lm.beta`, `lmerMod`, `lmodel2`, `lmRob`, `lmrob`, `mcmc`, `MCMCglmm`,
+`mclogit`, `mmclogit`, `mediate`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`,
+`nlmerMod`, `nlrq`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`,
+`rlmerMod`, `rq`, `slm`, `speedglm`, `speedlm`, `stanreg`, `survreg`, `svyglm`,
+`svyolr`, `svyglm`, `tobit`, `wbgee`, `wblm`, etc.
 
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
@@ -2367,7 +2367,7 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
-## panel regression models fit via multilevel modeling (`wblm`/`panelr`)
+## panel regression models fit via multilevel modeling (`wblm`)
 
 ```{r wblm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 7}
 # setup
@@ -2388,6 +2388,31 @@ mod <- wbm(
 ggstatsplot::ggcoefstats(
   x = mod,
   title = "panel regression models fit \nvia multilevel modeling"
+)
+```
+
+
+## panel regression models fit via generalized estimating equations (`wbgee`)
+
+```{r wbgee, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 6}
+# setup
+set.seed(123)
+library(panelr)
+data("WageData")
+
+# model
+wages <- panel_data(WageData, id = id, wave = t)
+model <- panelr::wbgee(
+  formula = lwage ~ lag(union) + wks | blk + fem | blk * lag(union),
+  data = wages
+)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = model,
+  exclude.intercept = FALSE,
+  conf.level = 0.99,
+  title = "panel regression models fit \nvia generalized estimating equations"
 )
 ```
 

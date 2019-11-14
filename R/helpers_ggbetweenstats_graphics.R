@@ -71,9 +71,9 @@ mean_labeller <- function(data,
               ",",
               "CI[95*'%']",
               "(",
-              .$mean.low.conf,
+              .$mean.conf.low,
               ",",
-              .$mean.high.conf,
+              .$mean.conf.high,
               "))",
               sep = ""
             )

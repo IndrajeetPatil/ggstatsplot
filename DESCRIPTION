@@ -42,7 +42,7 @@ Imports:
     ggrepel (>= 0.8.1),
     ggsignif (>= 0.6.0),
     grid,
-    groupedstats (>= 0.0.9),
+    groupedstats (>= 0.0.9.9001),
     insight (>= 0.6.0),
     metaBMA (>= 0.6.2),
     metafor (>= 2.1-0),
@@ -72,10 +72,12 @@ Suggests:
     stringr,
     survival,
     testthat
+Remotes:
+    IndrajeetPatil/groupedstats
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
 Language: en-US
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.1.99.9001
+RoxygenNote: 7.0.0

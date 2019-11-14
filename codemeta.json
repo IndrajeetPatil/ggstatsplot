@@ -366,14 +366,14 @@
       "@type": "SoftwareApplication",
       "identifier": "groupedstats",
       "name": "groupedstats",
-      "version": ">= 0.0.9",
+      "version": ">= 0.0.9.9001",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=groupedstats"
+      "sameAs": "https://github.com/IndrajeetPatil/groupedstats"
     },
     {
       "@type": "SoftwareApplication",

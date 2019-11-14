@@ -60,6 +60,9 @@
       <a href="../../articles/additional.html">additional vignettes</a>
     </li>
     <li>
+      <a href="../../articles/tests_and_coverage.html">Tests and Coverage</a>
+    </li>
+    <li>
       <a href="../../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
@@ -139,7 +142,7 @@
       <h1>ggdotplotstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-10-24</h4>
+            <h4 class="date">2019-11-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggdotplotstats.Rmd"><code>vignettes/web_only/ggdotplotstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggdotplotstats.Rmd</code></div>
@@ -162,17 +165,17 @@
 <a class="sourceLine" id="cb1-5" title="5">dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="dt">x =</span> ggplot2<span class="op">::</span>mpg)</a>
 <a class="sourceLine" id="cb1-6" title="6"><span class="co">#&gt; Observations: 234</span></a>
 <a class="sourceLine" id="cb1-7" title="7"><span class="co">#&gt; Variables: 11</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="co">#&gt; $ manufacturer &lt;chr&gt; "audi", "audi", "audi", "audi", "audi", "audi", "...</span></a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="co">#&gt; $ model        &lt;chr&gt; "a4", "a4", "a4", "a4", "a4", "a4", "a4", "a4 qua...</span></a>
-<a class="sourceLine" id="cb1-10" title="10"><span class="co">#&gt; $ displ        &lt;dbl&gt; 1.8, 1.8, 2.0, 2.0, 2.8, 2.8, 3.1, 1.8, 1.8, 2.0,...</span></a>
-<a class="sourceLine" id="cb1-11" title="11"><span class="co">#&gt; $ year         &lt;int&gt; 1999, 1999, 2008, 2008, 1999, 1999, 2008, 1999, 1...</span></a>
-<a class="sourceLine" id="cb1-12" title="12"><span class="co">#&gt; $ cyl          &lt;int&gt; 4, 4, 4, 4, 6, 6, 6, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6...</span></a>
-<a class="sourceLine" id="cb1-13" title="13"><span class="co">#&gt; $ trans        &lt;chr&gt; "auto(l5)", "manual(m5)", "manual(m6)", "auto(av)...</span></a>
-<a class="sourceLine" id="cb1-14" title="14"><span class="co">#&gt; $ drv          &lt;chr&gt; "f", "f", "f", "f", "f", "f", "f", "4", "4", "4",...</span></a>
-<a class="sourceLine" id="cb1-15" title="15"><span class="co">#&gt; $ cty          &lt;int&gt; 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 1...</span></a>
-<a class="sourceLine" id="cb1-16" title="16"><span class="co">#&gt; $ hwy          &lt;int&gt; 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 2...</span></a>
-<a class="sourceLine" id="cb1-17" title="17"><span class="co">#&gt; $ fl           &lt;chr&gt; "p", "p", "p", "p", "p", "p", "p", "p", "p", "p",...</span></a>
-<a class="sourceLine" id="cb1-18" title="18"><span class="co">#&gt; $ class        &lt;chr&gt; "compact", "compact", "compact", "compact", "comp...</span></a></code></pre></div>
+<a class="sourceLine" id="cb1-8" title="8"><span class="co">#&gt; $ manufacturer &lt;chr&gt; "audi", "audi", "audi", "audi", "audi", "audi", "audi"...</span></a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="co">#&gt; $ model        &lt;chr&gt; "a4", "a4", "a4", "a4", "a4", "a4", "a4", "a4 quattro"...</span></a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="co">#&gt; $ displ        &lt;dbl&gt; 1.8, 1.8, 2.0, 2.0, 2.8, 2.8, 3.1, 1.8, 1.8, 2.0, 2.0,...</span></a>
+<a class="sourceLine" id="cb1-11" title="11"><span class="co">#&gt; $ year         &lt;int&gt; 1999, 1999, 2008, 2008, 1999, 1999, 2008, 1999, 1999, ...</span></a>
+<a class="sourceLine" id="cb1-12" title="12"><span class="co">#&gt; $ cyl          &lt;int&gt; 4, 4, 4, 4, 6, 6, 6, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6, 8, ...</span></a>
+<a class="sourceLine" id="cb1-13" title="13"><span class="co">#&gt; $ trans        &lt;chr&gt; "auto(l5)", "manual(m5)", "manual(m6)", "auto(av)", "a...</span></a>
+<a class="sourceLine" id="cb1-14" title="14"><span class="co">#&gt; $ drv          &lt;chr&gt; "f", "f", "f", "f", "f", "f", "f", "4", "4", "4", "4",...</span></a>
+<a class="sourceLine" id="cb1-15" title="15"><span class="co">#&gt; $ cty          &lt;int&gt; 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 17...</span></a>
+<a class="sourceLine" id="cb1-16" title="16"><span class="co">#&gt; $ hwy          &lt;int&gt; 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 25, 25...</span></a>
+<a class="sourceLine" id="cb1-17" title="17"><span class="co">#&gt; $ fl           &lt;chr&gt; "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p",...</span></a>
+<a class="sourceLine" id="cb1-18" title="18"><span class="co">#&gt; $ class        &lt;chr&gt; "compact", "compact", "compact", "compact", "compact",...</span></a></code></pre></div>
 <p>Let’s say we want to visualize the distribution of mileage by car manufacturer.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>

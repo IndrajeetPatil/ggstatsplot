@@ -9,7 +9,8 @@ MINOR
 
   - `ggcoefstats` now uses `parameters::p_value` instead of `sjstats::p_value`,
     as requested by the maintainer of that package.
-  - More models supported in `ggcoefstats`: `bracl`, `brglm2`, `glmc`, `slm`.
+  - More models supported in `ggcoefstats`: `bracl`, `brglm2`, `glmc`, `slm`,
+    `wbgee`.
 
 # ggstatsplot 0.1.2
 

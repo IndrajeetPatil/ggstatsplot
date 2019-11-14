@@ -52,12 +52,13 @@ library(tidyverse)
 
 # creating a list of plots
 p_list <- mtcars %>%
-  dplyr::group_by(.data = ., am) %>%
+  dplyr::filter(.data = ., cyl != 4) %>%
+  dplyr::group_by(.data = ., cyl) %>%
   dplyr::group_map(
     .data = .,
     .f = ~ ggstatsplot::ggbetweenstats(
     data = .,
-    x = cyl,
+    x = am,
     y = wt,
     messages = FALSE
   ))
@@ -65,7 +66,7 @@ p_list <- mtcars %>%
 # combining plots
 cowplot::plot_grid(
   plotlist = p_list,
-  labels = rlang::set_names(levels(as.factor(mtcars$am)))
+  labels = rlang::set_names(levels(as.factor(mtcars$cyl)))
 )
 ```
 

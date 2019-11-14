@@ -60,6 +60,9 @@
       <a href="../../articles/additional.html">additional vignettes</a>
     </li>
     <li>
+      <a href="../../articles/tests_and_coverage.html">Tests and Coverage</a>
+    </li>
+    <li>
       <a href="../../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
@@ -139,7 +142,7 @@
       <h1>ggcorrmat</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-10-24</h4>
+            <h4 class="date">2019-11-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcorrmat.Rmd"><code>vignettes/web_only/ggcorrmat.Rmd</code></a></small>
       <div class="hidden name"><code>ggcorrmat.Rmd</code></div>
@@ -168,12 +171,12 @@
 <a class="sourceLine" id="cb1-4" title="4">dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="dt">x =</span> gapminder)</a>
 <a class="sourceLine" id="cb1-5" title="5"><span class="co">#&gt; Observations: 1,704</span></a>
 <a class="sourceLine" id="cb1-6" title="6"><span class="co">#&gt; Variables: 6</span></a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="co">#&gt; $ country   &lt;fct&gt; Afghanistan, Afghanistan, Afghanistan, Afghanistan, ...</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="co">#&gt; $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia...</span></a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="co">#&gt; $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992...</span></a>
-<a class="sourceLine" id="cb1-10" title="10"><span class="co">#&gt; $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.8...</span></a>
-<a class="sourceLine" id="cb1-11" title="11"><span class="co">#&gt; $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 1488...</span></a>
-<a class="sourceLine" id="cb1-12" title="12"><span class="co">#&gt; $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 78...</span></a></code></pre></div>
+<a class="sourceLine" id="cb1-7" title="7"><span class="co">#&gt; $ country   &lt;fct&gt; Afghanistan, Afghanistan, Afghanistan, Afghanistan, Afgha...</span></a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="co">#&gt; $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asi...</span></a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="co">#&gt; $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 199...</span></a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="co">#&gt; $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 4...</span></a>
+<a class="sourceLine" id="cb1-11" title="11"><span class="co">#&gt; $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372,...</span></a>
+<a class="sourceLine" id="cb1-12" title="12"><span class="co">#&gt; $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.113...</span></a></code></pre></div>
 <p>Let’s say we are interested in studying correlation between population of a country, average life expectancy, and GDP per capita across countries only for the year 2007.</p>
 <p>The simplest way to get a correlation matrix is to stick to the defaults-</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggstatsplot)</a>
@@ -216,16 +219,16 @@
 <a class="sourceLine" id="cb4-3" title="3">dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(ggplot2<span class="op">::</span>diamonds)</a>
 <a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt; Observations: 53,940</span></a>
 <a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt; Variables: 10</span></a>
-<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt; $ carat   &lt;dbl&gt; 0.23, 0.21, 0.23, 0.29, 0.31, 0.24, 0.24, 0.26, 0.22, ...</span></a>
-<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt; $ cut     &lt;ord&gt; Ideal, Premium, Good, Premium, Good, Very Good, Very G...</span></a>
-<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt; $ color   &lt;ord&gt; E, E, E, I, J, J, I, H, E, H, J, J, F, J, E, E, I, J, ...</span></a>
-<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt; $ clarity &lt;ord&gt; SI2, SI1, VS1, VS2, SI2, VVS2, VVS1, SI1, VS2, VS1, SI...</span></a>
-<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt; $ depth   &lt;dbl&gt; 61.5, 59.8, 56.9, 62.4, 63.3, 62.8, 62.3, 61.9, 65.1, ...</span></a>
-<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt; $ table   &lt;dbl&gt; 55, 61, 65, 58, 58, 57, 57, 55, 61, 61, 55, 56, 61, 54...</span></a>
-<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt; $ price   &lt;int&gt; 326, 326, 327, 334, 335, 336, 336, 337, 337, 338, 339,...</span></a>
-<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt; $ x       &lt;dbl&gt; 3.95, 3.89, 4.05, 4.20, 4.34, 3.94, 3.95, 4.07, 3.87, ...</span></a>
-<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt; $ y       &lt;dbl&gt; 3.98, 3.84, 4.07, 4.23, 4.35, 3.96, 3.98, 4.11, 3.78, ...</span></a>
-<a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt; $ z       &lt;dbl&gt; 2.43, 2.31, 2.31, 2.63, 2.75, 2.48, 2.47, 2.53, 2.49, ...</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt; $ carat   &lt;dbl&gt; 0.23, 0.21, 0.23, 0.29, 0.31, 0.24, 0.24, 0.26, 0.22, 0.23,...</span></a>
+<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt; $ cut     &lt;ord&gt; Ideal, Premium, Good, Premium, Good, Very Good, Very Good, ...</span></a>
+<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt; $ color   &lt;ord&gt; E, E, E, I, J, J, I, H, E, H, J, J, F, J, E, E, I, J, J, J,...</span></a>
+<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt; $ clarity &lt;ord&gt; SI2, SI1, VS1, VS2, SI2, VVS2, VVS1, SI1, VS2, VS1, SI1, VS...</span></a>
+<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt; $ depth   &lt;dbl&gt; 61.5, 59.8, 56.9, 62.4, 63.3, 62.8, 62.3, 61.9, 65.1, 59.4,...</span></a>
+<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt; $ table   &lt;dbl&gt; 55, 61, 65, 58, 58, 57, 57, 55, 61, 61, 55, 56, 61, 54, 62,...</span></a>
+<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt; $ price   &lt;int&gt; 326, 326, 327, 334, 335, 336, 336, 337, 337, 338, 339, 340,...</span></a>
+<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt; $ x       &lt;dbl&gt; 3.95, 3.89, 4.05, 4.20, 4.34, 3.94, 3.95, 4.07, 3.87, 4.00,...</span></a>
+<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt; $ y       &lt;dbl&gt; 3.98, 3.84, 4.07, 4.23, 4.35, 3.96, 3.98, 4.11, 3.78, 4.05,...</span></a>
+<a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt; $ z       &lt;dbl&gt; 2.43, 2.31, 2.31, 2.63, 2.75, 2.48, 2.47, 2.53, 2.49, 2.39,...</span></a></code></pre></div>
 <p>Let’s see the correlation matrix between different attributes of the diamond and the price.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb5-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
@@ -356,14 +359,14 @@
 <a class="sourceLine" id="cb8-27" title="27">  <span class="dt">p.adjust.method =</span> <span class="st">"holm"</span></a>
 <a class="sourceLine" id="cb8-28" title="28">)</a>
 <a class="sourceLine" id="cb8-29" title="29"><span class="co">#&gt; # A tibble: 6 x 7</span></a>
-<a class="sourceLine" id="cb8-30" title="30"><span class="co">#&gt;   variable  sleep_total sleep_rem sleep_cycle     awake   brainwt    bodywt</span></a>
-<a class="sourceLine" id="cb8-31" title="31"><span class="co">#&gt;   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb8-32" title="32"><span class="co">#&gt; 1 sleep_to~   0.        5.291e-12   9.138e- 3 0.        3.170e- 5 2.568e- 6</span></a>
-<a class="sourceLine" id="cb8-33" title="33"><span class="co">#&gt; 2 sleep_rem   4.070e-13 0.          1.978e- 2 5.291e-12 9.698e- 3 3.762e- 3</span></a>
-<a class="sourceLine" id="cb8-34" title="34"><span class="co">#&gt; 3 sleep_cy~   2.285e- 3 1.978e- 2   0.        9.138e- 3 1.637e- 9 1.696e- 5</span></a>
-<a class="sourceLine" id="cb8-35" title="35"><span class="co">#&gt; 4 awake       0.        4.070e-13   2.285e- 3 0.        3.170e- 5 2.568e- 6</span></a>
-<a class="sourceLine" id="cb8-36" title="36"><span class="co">#&gt; 5 brainwt     4.528e- 6 4.849e- 3   1.488e-10 4.528e- 6 0.        4.509e-17</span></a>
-<a class="sourceLine" id="cb8-37" title="37"><span class="co">#&gt; 6 bodywt      2.568e- 7 7.524e- 4   2.120e- 6 2.568e- 7 3.221e-18 0.</span></a>
+<a class="sourceLine" id="cb8-30" title="30"><span class="co">#&gt;   variable    sleep_total sleep_rem sleep_cycle     awake   brainwt    bodywt</span></a>
+<a class="sourceLine" id="cb8-31" title="31"><span class="co">#&gt;   &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb8-32" title="32"><span class="co">#&gt; 1 sleep_total   0.        5.291e-12   9.138e- 3 0.        3.170e- 5 2.568e- 6</span></a>
+<a class="sourceLine" id="cb8-33" title="33"><span class="co">#&gt; 2 sleep_rem     4.070e-13 0.          1.978e- 2 5.291e-12 9.698e- 3 3.762e- 3</span></a>
+<a class="sourceLine" id="cb8-34" title="34"><span class="co">#&gt; 3 sleep_cycle   2.285e- 3 1.978e- 2   0.        9.138e- 3 1.637e- 9 1.696e- 5</span></a>
+<a class="sourceLine" id="cb8-35" title="35"><span class="co">#&gt; 4 awake         0.        4.070e-13   2.285e- 3 0.        3.170e- 5 2.568e- 6</span></a>
+<a class="sourceLine" id="cb8-36" title="36"><span class="co">#&gt; 5 brainwt       4.528e- 6 4.849e- 3   1.488e-10 4.528e- 6 0.        4.509e-17</span></a>
+<a class="sourceLine" id="cb8-37" title="37"><span class="co">#&gt; 6 bodywt        2.568e- 7 7.524e- 4   2.120e- 6 2.568e- 7 3.221e-18 0.</span></a>
 <a class="sourceLine" id="cb8-38" title="38"></a>
 <a class="sourceLine" id="cb8-39" title="39"><span class="co"># getting the confidence intervals for correlations</span></a>
 <a class="sourceLine" id="cb8-40" title="40">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
@@ -377,23 +380,23 @@
 <a class="sourceLine" id="cb8-48" title="48"><span class="co">#&gt; the upper triangle: p-values adjusted for multiple comparisons</span></a>
 <a class="sourceLine" id="cb8-49" title="49"><span class="co">#&gt; the lower triangle: unadjusted p-values.</span></a>
 <a class="sourceLine" id="cb8-50" title="50"><span class="co">#&gt; # A tibble: 15 x 7</span></a>
-<a class="sourceLine" id="cb8-51" title="51"><span class="co">#&gt;    pair                 r    lower    upper          p lower.adj  upper.adj</span></a>
-<a class="sourceLine" id="cb8-52" title="52"><span class="co">#&gt;    &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb8-53" title="53"><span class="co">#&gt;  1 sleep_total-s~  0.7518  0.6167   0.8438  2.916e- 12  0.5402     8.740e-1</span></a>
-<a class="sourceLine" id="cb8-54" title="54"><span class="co">#&gt;  2 sleep_total-s~ -0.4737 -0.7058  -0.1498  6.169e-  3 -0.7738     7.215e-5</span></a>
-<a class="sourceLine" id="cb8-55" title="55"><span class="co">#&gt;  3 sleep_total-a~ -1.0000 -1.0000  -1.0000  2.419e-226 -1.0000   -10.000e-1</span></a>
-<a class="sourceLine" id="cb8-56" title="56"><span class="co">#&gt;  4 sleep_total-b~ -0.3605 -0.5694  -0.1078  6.348e-  3 -0.6290    -1.505e-2</span></a>
-<a class="sourceLine" id="cb8-57" title="57"><span class="co">#&gt;  5 sleep_total-b~ -0.3120 -0.4944  -0.1033  4.085e-  3 -0.5302    -5.506e-2</span></a>
-<a class="sourceLine" id="cb8-58" title="58"><span class="co">#&gt;  6 sleep_rem-sle~ -0.3381 -0.6144   0.01198 5.839e-  2 -0.6806     1.257e-1</span></a>
-<a class="sourceLine" id="cb8-59" title="59"><span class="co">#&gt;  7 sleep_rem-awa~ -0.7518 -0.8438  -0.6167  2.911e- 12 -0.8748    -5.376e-1</span></a>
-<a class="sourceLine" id="cb8-60" title="60"><span class="co">#&gt;  8 sleep_rem-bra~ -0.2213 -0.4756   0.06701 1.306e-  1 -0.4756     6.701e-2</span></a>
-<a class="sourceLine" id="cb8-61" title="61"><span class="co">#&gt;  9 sleep_rem-bod~ -0.3277 -0.5353  -0.08265 9.947e-  3 -0.5838    -1.223e-2</span></a>
-<a class="sourceLine" id="cb8-62" title="62"><span class="co">#&gt; 10 sleep_cycle-a~  0.4737  0.1498   0.7058  6.169e-  3 -0.006407   7.763e-1</span></a>
-<a class="sourceLine" id="cb8-63" title="63"><span class="co">#&gt; 11 sleep_cycle-b~  0.8516  0.7088   0.9274  2.420e-  9  0.6080     9.487e-1</span></a>
-<a class="sourceLine" id="cb8-64" title="64"><span class="co">#&gt; 12 sleep_cycle-b~  0.4178  0.08089  0.6690  1.734e-  2 -0.06265    7.410e-1</span></a>
-<a class="sourceLine" id="cb8-65" title="65"><span class="co">#&gt; 13 awake-brainwt   0.3605  0.1078   0.5694  6.348e-  3  0.007931   6.333e-1</span></a>
-<a class="sourceLine" id="cb8-66" title="66"><span class="co">#&gt; 14 awake-bodywt    0.3120  0.1032   0.4944  4.089e-  3  0.07202    5.178e-1</span></a>
-<a class="sourceLine" id="cb8-67" title="67"><span class="co">#&gt; 15 brainwt-bodywt  0.9338  0.8892   0.9608  9.155e- 26  0.8583     9.697e-1</span></a>
+<a class="sourceLine" id="cb8-51" title="51"><span class="co">#&gt;    pair                      r    lower    upper          p lower.adj  upper.adj</span></a>
+<a class="sourceLine" id="cb8-52" title="52"><span class="co">#&gt;    &lt;chr&gt;                 &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb8-53" title="53"><span class="co">#&gt;  1 sleep_total-sleep_~  0.7518  0.6167   0.8438  2.916e- 12  0.5402     8.740e-1</span></a>
+<a class="sourceLine" id="cb8-54" title="54"><span class="co">#&gt;  2 sleep_total-sleep_~ -0.4737 -0.7058  -0.1498  6.169e-  3 -0.7738     7.215e-5</span></a>
+<a class="sourceLine" id="cb8-55" title="55"><span class="co">#&gt;  3 sleep_total-awake   -1.0000 -1.0000  -1.0000  2.419e-226 -1.0000   -10.000e-1</span></a>
+<a class="sourceLine" id="cb8-56" title="56"><span class="co">#&gt;  4 sleep_total-brainwt -0.3605 -0.5694  -0.1078  6.348e-  3 -0.6290    -1.505e-2</span></a>
+<a class="sourceLine" id="cb8-57" title="57"><span class="co">#&gt;  5 sleep_total-bodywt  -0.3120 -0.4944  -0.1033  4.085e-  3 -0.5302    -5.506e-2</span></a>
+<a class="sourceLine" id="cb8-58" title="58"><span class="co">#&gt;  6 sleep_rem-sleep_cy~ -0.3381 -0.6144   0.01198 5.839e-  2 -0.6806     1.257e-1</span></a>
+<a class="sourceLine" id="cb8-59" title="59"><span class="co">#&gt;  7 sleep_rem-awake     -0.7518 -0.8438  -0.6167  2.911e- 12 -0.8748    -5.376e-1</span></a>
+<a class="sourceLine" id="cb8-60" title="60"><span class="co">#&gt;  8 sleep_rem-brainwt   -0.2213 -0.4756   0.06701 1.306e-  1 -0.4756     6.701e-2</span></a>
+<a class="sourceLine" id="cb8-61" title="61"><span class="co">#&gt;  9 sleep_rem-bodywt    -0.3277 -0.5353  -0.08265 9.947e-  3 -0.5838    -1.223e-2</span></a>
+<a class="sourceLine" id="cb8-62" title="62"><span class="co">#&gt; 10 sleep_cycle-awake    0.4737  0.1498   0.7058  6.169e-  3 -0.006407   7.763e-1</span></a>
+<a class="sourceLine" id="cb8-63" title="63"><span class="co">#&gt; 11 sleep_cycle-brainwt  0.8516  0.7088   0.9274  2.420e-  9  0.6080     9.487e-1</span></a>
+<a class="sourceLine" id="cb8-64" title="64"><span class="co">#&gt; 12 sleep_cycle-bodywt   0.4178  0.08089  0.6690  1.734e-  2 -0.06265    7.410e-1</span></a>
+<a class="sourceLine" id="cb8-65" title="65"><span class="co">#&gt; 13 awake-brainwt        0.3605  0.1078   0.5694  6.348e-  3  0.007931   6.333e-1</span></a>
+<a class="sourceLine" id="cb8-66" title="66"><span class="co">#&gt; 14 awake-bodywt         0.3120  0.1032   0.4944  4.089e-  3  0.07202    5.178e-1</span></a>
+<a class="sourceLine" id="cb8-67" title="67"><span class="co">#&gt; 15 brainwt-bodywt       0.9338  0.8892   0.9608  9.155e- 26  0.8583     9.697e-1</span></a>
 <a class="sourceLine" id="cb8-68" title="68"></a>
 <a class="sourceLine" id="cb8-69" title="69"><span class="co"># getting the sample sizes for all pairs</span></a>
 <a class="sourceLine" id="cb8-70" title="70">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
@@ -466,18 +469,18 @@
 <a class="sourceLine" id="cb10-8" title="8">  <span class="dt">return =</span> <span class="st">"ci"</span></a>
 <a class="sourceLine" id="cb10-9" title="9">)</a>
 <a class="sourceLine" id="cb10-10" title="10"><span class="co">#&gt; # A tibble: 60 x 8</span></a>
-<a class="sourceLine" id="cb10-11" title="11"><span class="co">#&gt;    vore  pair              r   lower    upper         p lower.adj upper.adj</span></a>
-<a class="sourceLine" id="cb10-12" title="12"><span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;         &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb10-13" title="13"><span class="co">#&gt;  1 carni sleep_tota~  0.9189  0.6864  0.9810  1.714e- 4    0.4403    0.9909</span></a>
-<a class="sourceLine" id="cb10-14" title="14"><span class="co">#&gt;  2 carni sleep_tota~  0.3764 -0.7574  0.9449  5.323e- 1   -0.9328    0.9858</span></a>
-<a class="sourceLine" id="cb10-15" title="15"><span class="co">#&gt;  3 carni sleep_tota~ -1.0000 -1.0000 -1.0000  2.140e-44   -1.0000   -1.0000</span></a>
-<a class="sourceLine" id="cb10-16" title="16"><span class="co">#&gt;  4 carni sleep_tota~ -0.5244 -0.8815  0.2144  1.473e- 1   -0.9448    0.5483</span></a>
-<a class="sourceLine" id="cb10-17" title="17"><span class="co">#&gt;  5 carni sleep_tota~ -0.4427 -0.7468  0.01441 5.768e- 2   -0.8365    0.2526</span></a>
-<a class="sourceLine" id="cb10-18" title="18"><span class="co">#&gt;  6 carni sleep_rem-~  0.1216 -0.8521  0.9066  8.456e- 1   -0.9606    0.9756</span></a>
-<a class="sourceLine" id="cb10-19" title="19"><span class="co">#&gt;  7 carni sleep_rem-~ -0.9189 -0.9810 -0.6865  1.713e- 4   -0.9909   -0.4403</span></a>
-<a class="sourceLine" id="cb10-20" title="20"><span class="co">#&gt;  8 carni sleep_rem-~ -0.5006 -0.9331  0.5237  3.118e- 1   -0.9778    0.8159</span></a>
-<a class="sourceLine" id="cb10-21" title="21"><span class="co">#&gt;  9 carni sleep_rem-~ -0.4786 -0.8516  0.2162  1.617e- 1   -0.9261    0.5286</span></a>
-<a class="sourceLine" id="cb10-22" title="22"><span class="co">#&gt; 10 carni sleep_cycl~ -0.3764 -0.9449  0.7574  5.323e- 1   -0.9858    0.9328</span></a>
+<a class="sourceLine" id="cb10-11" title="11"><span class="co">#&gt;    vore  pair                   r   lower    upper         p lower.adj upper.adj</span></a>
+<a class="sourceLine" id="cb10-12" title="12"><span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb10-13" title="13"><span class="co">#&gt;  1 carni sleep_total-sle~  0.9189  0.6864  0.9810  1.714e- 4    0.4403    0.9909</span></a>
+<a class="sourceLine" id="cb10-14" title="14"><span class="co">#&gt;  2 carni sleep_total-sle~  0.3764 -0.7574  0.9449  5.323e- 1   -0.9328    0.9858</span></a>
+<a class="sourceLine" id="cb10-15" title="15"><span class="co">#&gt;  3 carni sleep_total-awa~ -1.0000 -1.0000 -1.0000  2.140e-44   -1.0000   -1.0000</span></a>
+<a class="sourceLine" id="cb10-16" title="16"><span class="co">#&gt;  4 carni sleep_total-bra~ -0.5244 -0.8815  0.2144  1.473e- 1   -0.9448    0.5483</span></a>
+<a class="sourceLine" id="cb10-17" title="17"><span class="co">#&gt;  5 carni sleep_total-bod~ -0.4427 -0.7468  0.01441 5.768e- 2   -0.8365    0.2526</span></a>
+<a class="sourceLine" id="cb10-18" title="18"><span class="co">#&gt;  6 carni sleep_rem-sleep~  0.1216 -0.8521  0.9066  8.456e- 1   -0.9606    0.9756</span></a>
+<a class="sourceLine" id="cb10-19" title="19"><span class="co">#&gt;  7 carni sleep_rem-awake  -0.9189 -0.9810 -0.6865  1.713e- 4   -0.9909   -0.4403</span></a>
+<a class="sourceLine" id="cb10-20" title="20"><span class="co">#&gt;  8 carni sleep_rem-brain~ -0.5006 -0.9331  0.5237  3.118e- 1   -0.9778    0.8159</span></a>
+<a class="sourceLine" id="cb10-21" title="21"><span class="co">#&gt;  9 carni sleep_rem-bodywt -0.4786 -0.8516  0.2162  1.617e- 1   -0.9261    0.5286</span></a>
+<a class="sourceLine" id="cb10-22" title="22"><span class="co">#&gt; 10 carni sleep_cycle-awa~ -0.3764 -0.9449  0.7574  5.323e- 1   -0.9858    0.9328</span></a>
 <a class="sourceLine" id="cb10-23" title="23"><span class="co">#&gt; # ... with 50 more rows</span></a></code></pre></div>
 <p>As this example illustrates, there is a minimal coding overhead to explore correlations in your dataset with the <code>grouped_ggcorrmat</code> function.</p>
 </div>

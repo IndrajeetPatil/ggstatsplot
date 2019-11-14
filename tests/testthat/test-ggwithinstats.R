@@ -4,24 +4,6 @@ context(desc = "ggwithinstats")
 data_bugs_2 <- ggstatsplot::bugs_long %>%
   dplyr::filter(.data = ., condition %in% c("HDLF", "HDHF"))
 
-# errors ------------------------------------------------------------------
-
-testthat::test_that(
-  desc = "error when x and outlier.label are same",
-  code = {
-    testthat::skip_on_cran()
-
-    testthat::expect_error(
-      ggstatsplot::ggwithinstats(
-        data = ggstatsplot::iris_long,
-        x = condition,
-        y = value,
-        outlier.label = condition
-      )
-    )
-  }
-)
-
 # basic plotting works - two groups ---------------------------------
 
 testthat::test_that(

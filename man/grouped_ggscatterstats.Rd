@@ -353,7 +353,7 @@ ggstatsplot::grouped_ggscatterstats(
   data = dplyr::filter(
     .data = ggstatsplot::movies_long,
     rating == 7,
-    genre \%in\% c("Drama", "Comedy")
+    genre %in% c("Drama", "Comedy")
   ),
   x = budget,
   y = length,

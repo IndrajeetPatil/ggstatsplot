@@ -60,6 +60,9 @@
       <a href="../../articles/additional.html">additional vignettes</a>
     </li>
     <li>
+      <a href="../../articles/tests_and_coverage.html">Tests and Coverage</a>
+    </li>
+    <li>
       <a href="../../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
@@ -139,7 +142,7 @@
       <h1>gghistostats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-10-24</h4>
+            <h4 class="date">2019-11-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/gghistostats.Rmd"><code>vignettes/web_only/gghistostats.Rmd</code></a></small>
       <div class="hidden name"><code>gghistostats.Rmd</code></div>
@@ -168,12 +171,12 @@
 <a class="sourceLine" id="cb1-7" title="7">dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="dt">x =</span> psych<span class="op">::</span>sat.act)</a>
 <a class="sourceLine" id="cb1-8" title="8"><span class="co">#&gt; Observations: 700</span></a>
 <a class="sourceLine" id="cb1-9" title="9"><span class="co">#&gt; Variables: 6</span></a>
-<a class="sourceLine" id="cb1-10" title="10"><span class="co">#&gt; $ gender    &lt;int&gt; 2, 2, 2, 1, 1, 1, 2, 1, 2, 2, 1, 2, 1, 2, 2, 2, 2, 2...</span></a>
-<a class="sourceLine" id="cb1-11" title="11"><span class="co">#&gt; $ education &lt;int&gt; 3, 3, 3, 4, 2, 5, 5, 3, 4, 5, 3, 4, 4, 4, 3, 4, 3, 4...</span></a>
-<a class="sourceLine" id="cb1-12" title="12"><span class="co">#&gt; $ age       &lt;int&gt; 19, 23, 20, 27, 33, 26, 30, 19, 23, 40, 23, 34, 32, ...</span></a>
-<a class="sourceLine" id="cb1-13" title="13"><span class="co">#&gt; $ ACT       &lt;int&gt; 24, 35, 21, 26, 31, 28, 36, 22, 22, 35, 32, 29, 21, ...</span></a>
-<a class="sourceLine" id="cb1-14" title="14"><span class="co">#&gt; $ SATV      &lt;int&gt; 500, 600, 480, 550, 600, 640, 610, 520, 400, 730, 76...</span></a>
-<a class="sourceLine" id="cb1-15" title="15"><span class="co">#&gt; $ SATQ      &lt;int&gt; 500, 500, 470, 520, 550, 640, 500, 560, 600, 800, 71...</span></a></code></pre></div>
+<a class="sourceLine" id="cb1-10" title="10"><span class="co">#&gt; $ gender    &lt;int&gt; 2, 2, 2, 1, 1, 1, 2, 1, 2, 2, 1, 2, 1, 2, 2, 2, 2, 2, 1, ...</span></a>
+<a class="sourceLine" id="cb1-11" title="11"><span class="co">#&gt; $ education &lt;int&gt; 3, 3, 3, 4, 2, 5, 5, 3, 4, 5, 3, 4, 4, 4, 3, 4, 3, 4, 4, ...</span></a>
+<a class="sourceLine" id="cb1-12" title="12"><span class="co">#&gt; $ age       &lt;int&gt; 19, 23, 20, 27, 33, 26, 30, 19, 23, 40, 23, 34, 32, 41, 2...</span></a>
+<a class="sourceLine" id="cb1-13" title="13"><span class="co">#&gt; $ ACT       &lt;int&gt; 24, 35, 21, 26, 31, 28, 36, 22, 22, 35, 32, 29, 21, 35, 2...</span></a>
+<a class="sourceLine" id="cb1-14" title="14"><span class="co">#&gt; $ SATV      &lt;int&gt; 500, 600, 480, 550, 600, 640, 610, 520, 400, 730, 760, 71...</span></a>
+<a class="sourceLine" id="cb1-15" title="15"><span class="co">#&gt; $ SATQ      &lt;int&gt; 500, 500, 470, 520, 550, 640, 500, 560, 600, 800, 710, 60...</span></a></code></pre></div>
 <p>To get a simple histogram with no statistics and no special information. <code>gghistostats</code> will by default choose a binwidth <code>max(x) - min(x) / sqrt(N)</code>. You should always check this value and explore multiple widths to find the best to illustrate the stories in your data since histograms are sensitive to binwidth.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</a>
 <a class="sourceLine" id="cb2-2" title="2">    <span class="dt">data =</span> psych<span class="op">::</span>sat.act,                              <span class="co"># data from which variable is to be taken</span></a>

@@ -322,9 +322,9 @@ ggstatsplot::grouped_ggbarstats(
 set.seed(123)
 
 # let's create a smaller dataframe
-diamonds_short <- ggplot2::diamonds \%>\%
-  dplyr::filter(.data = ., cut \%in\% c("Very Good", "Ideal")) \%>\%
-  dplyr::filter(.data = ., clarity \%in\% c("SI1", "SI2", "VS1", "VS2")) \%>\%
+diamonds_short <- ggplot2::diamonds %>%
+  dplyr::filter(.data = ., cut %in% c("Very Good", "Ideal")) %>%
+  dplyr::filter(.data = ., clarity %in% c("SI1", "SI2", "VS1", "VS2")) %>%
   dplyr::sample_frac(tbl = ., size = 0.05)
 
 # plot

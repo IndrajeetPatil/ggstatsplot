@@ -60,6 +60,9 @@
       <a href="../../articles/additional.html">additional vignettes</a>
     </li>
     <li>
+      <a href="../../articles/tests_and_coverage.html">Tests and Coverage</a>
+    </li>
+    <li>
       <a href="../../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
@@ -139,7 +142,7 @@
       <h1>combine_plots</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-10-24</h4>
+            <h4 class="date">2019-11-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/combine_plots.Rmd"><code>vignettes/web_only/combine_plots.Rmd</code></a></small>
       <div class="hidden name"><code>combine_plots.Rmd</code></div>
@@ -165,21 +168,22 @@
 <a class="sourceLine" id="cb1-4" title="4"></a>
 <a class="sourceLine" id="cb1-5" title="5"><span class="co"># creating a list of plots</span></a>
 <a class="sourceLine" id="cb1-6" title="6">p_list &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="dt">.data =</span> ., am) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_map.html">group_map</a></span>(</a>
-<a class="sourceLine" id="cb1-9" title="9">    <span class="dt">.data =</span> .,</a>
-<a class="sourceLine" id="cb1-10" title="10">    <span class="dt">.f =</span> <span class="op">~</span><span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb1-11" title="11">    <span class="dt">data =</span> .,</a>
-<a class="sourceLine" id="cb1-12" title="12">    <span class="dt">x =</span> cyl,</a>
-<a class="sourceLine" id="cb1-13" title="13">    <span class="dt">y =</span> wt,</a>
-<a class="sourceLine" id="cb1-14" title="14">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb1-15" title="15">  ))</a>
-<a class="sourceLine" id="cb1-16" title="16"></a>
-<a class="sourceLine" id="cb1-17" title="17"><span class="co"># combining plots</span></a>
-<a class="sourceLine" id="cb1-18" title="18">cowplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/cowplot/man/plot_grid.html">plot_grid</a></span>(</a>
-<a class="sourceLine" id="cb1-19" title="19">  <span class="dt">plotlist =</span> p_list,</a>
-<a class="sourceLine" id="cb1-20" title="20">  <span class="dt">labels =</span> rlang<span class="op">::</span><span class="kw"><a href="https://rlang.r-lib.org/reference/set_names.html">set_names</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/levels.html">levels</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(mtcars<span class="op">$</span>am)))</a>
-<a class="sourceLine" id="cb1-21" title="21">)</a></code></pre></div>
+<a class="sourceLine" id="cb1-7" title="7"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., cyl <span class="op">!=</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="dt">.data =</span> ., cyl) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_map.html">group_map</a></span>(</a>
+<a class="sourceLine" id="cb1-10" title="10">    <span class="dt">.data =</span> .,</a>
+<a class="sourceLine" id="cb1-11" title="11">    <span class="dt">.f =</span> <span class="op">~</span><span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb1-12" title="12">    <span class="dt">data =</span> .,</a>
+<a class="sourceLine" id="cb1-13" title="13">    <span class="dt">x =</span> am,</a>
+<a class="sourceLine" id="cb1-14" title="14">    <span class="dt">y =</span> wt,</a>
+<a class="sourceLine" id="cb1-15" title="15">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb1-16" title="16">  ))</a>
+<a class="sourceLine" id="cb1-17" title="17"></a>
+<a class="sourceLine" id="cb1-18" title="18"><span class="co"># combining plots</span></a>
+<a class="sourceLine" id="cb1-19" title="19">cowplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/cowplot/man/plot_grid.html">plot_grid</a></span>(</a>
+<a class="sourceLine" id="cb1-20" title="20">  <span class="dt">plotlist =</span> p_list,</a>
+<a class="sourceLine" id="cb1-21" title="21">  <span class="dt">labels =</span> rlang<span class="op">::</span><span class="kw"><a href="https://rlang.r-lib.org/reference/set_names.html">set_names</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/levels.html">levels</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(mtcars<span class="op">$</span>cyl)))</a>
+<a class="sourceLine" id="cb1-22" title="22">)</a></code></pre></div>
 <p><img src="combine_plots_files/figure-html/ggscatterstats_groupmap-1.png" width="960"></p>
 </div>
 <div id="combining-multiple-plots-example-2-using-purrr" class="section level2">
@@ -264,12 +268,12 @@
 <a class="sourceLine" id="cb3-8" title="8">dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(gapminder<span class="op">::</span>gapminder)</a>
 <a class="sourceLine" id="cb3-9" title="9"><span class="co">#&gt; Observations: 1,704</span></a>
 <a class="sourceLine" id="cb3-10" title="10"><span class="co">#&gt; Variables: 6</span></a>
-<a class="sourceLine" id="cb3-11" title="11"><span class="co">#&gt; $ country   &lt;fct&gt; Afghanistan, Afghanistan, Afghanistan, Afghanistan, ...</span></a>
-<a class="sourceLine" id="cb3-12" title="12"><span class="co">#&gt; $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia...</span></a>
-<a class="sourceLine" id="cb3-13" title="13"><span class="co">#&gt; $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992...</span></a>
-<a class="sourceLine" id="cb3-14" title="14"><span class="co">#&gt; $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.8...</span></a>
-<a class="sourceLine" id="cb3-15" title="15"><span class="co">#&gt; $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 1488...</span></a>
-<a class="sourceLine" id="cb3-16" title="16"><span class="co">#&gt; $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 78...</span></a>
+<a class="sourceLine" id="cb3-11" title="11"><span class="co">#&gt; $ country   &lt;fct&gt; Afghanistan, Afghanistan, Afghanistan, Afghanistan, Afgha...</span></a>
+<a class="sourceLine" id="cb3-12" title="12"><span class="co">#&gt; $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asi...</span></a>
+<a class="sourceLine" id="cb3-13" title="13"><span class="co">#&gt; $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 199...</span></a>
+<a class="sourceLine" id="cb3-14" title="14"><span class="co">#&gt; $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 4...</span></a>
+<a class="sourceLine" id="cb3-15" title="15"><span class="co">#&gt; $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372,...</span></a>
+<a class="sourceLine" id="cb3-16" title="16"><span class="co">#&gt; $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.113...</span></a>
 <a class="sourceLine" id="cb3-17" title="17"></a>
 <a class="sourceLine" id="cb3-18" title="18"><span class="co"># creating a list of plots</span></a>
 <a class="sourceLine" id="cb3-19" title="19">plots &lt;-<span class="st"> </span>plyr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/plyr/man/dlply.html">dlply</a></span>(</a>

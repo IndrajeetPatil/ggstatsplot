@@ -125,7 +125,7 @@ tidy_df <-
     effsize = "omega",
     partial = FALSE,
     nboot = 50
-  ) \%>\%
+  ) %>%
   dplyr::rename(.data = ., estimate = omegasq, statistic = F.value)
 
 # including a new column with a label

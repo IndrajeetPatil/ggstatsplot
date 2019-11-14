@@ -3,22 +3,6 @@ context(desc = "ggbetweenstats")
 # outlier labeling works ----------------------------------------------------
 
 testthat::test_that(
-  desc = "error when x and outlier.label are same",
-  code = {
-    testthat::skip_on_cran()
-
-    testthat::expect_error(
-      suppressWarnings(ggstatsplot::ggbetweenstats(
-        data = iris,
-        x = Species,
-        y = Sepal.Length,
-        outlier.label = Species
-      ))
-    )
-  }
-)
-
-testthat::test_that(
   desc = "outlier.labeling works across vector types",
   code = {
 
@@ -285,15 +269,6 @@ testthat::test_that(
     testthat::expect_equal(dim(pb$data[[1]]), c(29L, 13L))
 
     # checking displayed mean labels
-    testthat::expect_identical(
-      pb$data[[6]]$label,
-      c(
-        "list(~italic(mu)==2.29,CI[95*'%'](1.91,2.67))",
-        "list(~italic(mu)==3.12,CI[95*'%'](2.79,3.45))",
-        "list(~italic(mu)==4.00,CI[95*'%'](3.56,4.44))"
-      )
-    )
-
     testthat::expect_identical(
       pb$data[[4]]$label,
       c(

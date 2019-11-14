@@ -386,8 +386,8 @@ ggstatsplot::grouped_ggbetweenstats(
 ggstatsplot::grouped_ggbetweenstats(
   data = dplyr::filter(
     ggstatsplot::movies_long,
-    genre \%in\% c("Action", "Comedy"),
-    mpaa \%in\% c("R", "PG")
+    genre %in% c("Action", "Comedy"),
+    mpaa %in% c("R", "PG")
   ),
   x = genre,
   y = rating,
