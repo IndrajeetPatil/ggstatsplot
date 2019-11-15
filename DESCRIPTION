@@ -74,6 +74,7 @@ Suggests:
     testthat
 Remotes:
     IndrajeetPatil/groupedstats
+    ropensci/skimr
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

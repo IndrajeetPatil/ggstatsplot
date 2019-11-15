@@ -399,7 +399,6 @@ ggstatsplot::grouped_ggbetweenstats(
   ),
   messages = FALSE
 )
-
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}

@@ -290,6 +290,8 @@ ggstatsplot::grouped_ggwithinstats(
   outlier.tagging = TRUE,
   ggstatsplot.layer = FALSE,
   outlier.label = Education,
+  k = 3,
+  mean.ci = TRUE,
   title.prefix = "Year",
   messages = FALSE,
   # arguments relevant for ggstatsplot::combine_plots

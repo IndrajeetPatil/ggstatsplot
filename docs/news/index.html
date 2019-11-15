@@ -101,6 +101,9 @@
       <a href="../articles/additional.html">additional vignettes</a>
     </li>
     <li>
+      <a href="../articles/tests_and_coverage.html">Tests and Coverage</a>
+    </li>
+    <li>
       <a href="../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
@@ -188,12 +191,14 @@
 <p>BUG FIXES</p>
 <ul>
 <li>
-<code>ggbetweenstats</code> and <code>ggwithinstats</code> no longer produce incorrect label if the dataframe already contains a variable named <code>n</code> (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/317'>#317</a>).</li>
+<code>ggbetweenstats</code> and <code>ggwithinstats</code> no longer produce incorrect label if the dataframe already contains a variable named <code>n</code> (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/317'>#317</a>) or variables with pattern <code>mean</code> (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/322'>#322</a>).</li>
+<li>
+<code>ggbetweenstats</code> and <code>ggwithinstats</code> mean labels respect <code>k</code> argument (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/331'>#331</a>).</li>
 </ul>
 <p>MINOR</p>
 <ul>
 <li>
-<code>ggcoefstats</code> now uses <code><a href="https://rdrr.io/pkg/parameters/man/p_value.html">parameters::p_value</a></code> instead of <code><a href="https://rdrr.io/pkg/sjstats/man/p_value.html">sjstats::p_value</a></code>, as requested by the maintainer of that package.</li>
+<code>ggcoefstats</code> now uses <code><a href="https://rdrr.io/pkg/parameters/man/p_value.html">parameters::p_value</a></code> instead of <code><a href="https://rdrr.io/pkg/sjstats/man/overdisp.html">sjstats::p_value</a></code>, as requested by the maintainer of that package.</li>
 <li>More models supported in <code>ggcoefstats</code>: <code>bracl</code>, <code>brglm2</code>, <code>glmc</code>, <code>slm</code>, <code>wbgee</code>.</li>
 </ul>
 </div>
@@ -558,7 +563,7 @@
 <code>gghistostats</code> has a new argument to remove color fill gradient.</li>
 <li>
 <code>ggbetweenstats</code> takes new argument <code>mean.ci</code> to show confidence intervals for the mean values.</li>
-<li>For <code>lmer</code> models, p-values are now computed using <code><a href="https://rdrr.io/pkg/sjstats/man/p_value.html">sjstats::p_value</a></code>. This removes <code>lmerTest</code> package from dependencies.</li>
+<li>For <code>lmer</code> models, p-values are now computed using <code><a href="https://rdrr.io/pkg/sjstats/man/overdisp.html">sjstats::p_value</a></code>. This removes <code>lmerTest</code> package from dependencies.</li>
 <li>
 <code>sjstats</code> no longer suggests <code>apaTables</code> package to compute confidence intervals for partial eta- and omega-squared. Therefore, <code>apaTables</code> and <code>MBESS</code> are removed from dependencies.</li>
 <li>

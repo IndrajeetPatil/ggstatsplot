@@ -3,7 +3,9 @@
 BUG FIXES
 
   - `ggbetweenstats` and `ggwithinstats` no longer produce incorrect label if
-    the dataframe already contains a variable named `n` (#317).
+    the dataframe already contains a variable named `n` (#317) or variables
+    with pattern `mean` (#322).
+  - `ggbetweenstats` and `ggwithinstats` mean labels respect `k` argument (#331).
 
 MINOR
 

@@ -288,6 +288,30 @@ testthat::test_that(
       pb$layout$panel_params[[1]]$y.labels,
       c("1", "2", "3", "4", "5", "6")
     )
+
+    # edge case
+    a <- data.frame(
+      mean.a = c(1.1, 0.9, 0.94, 1.58, 1.2, 1.4),
+      group = c("a", "a", "a", "b", "b", "b")
+    )
+
+    # plot
+    p <-
+      ggstatsplot::ggbetweenstats(
+        data = a,
+        x = "group",
+        y = "mean.a",
+        results.subtitle = FALSE,
+        messages = FALSE
+      )
+
+    # build
+    pb <- ggplot2::ggplot_build(p)
+
+    testthat::expect_identical(
+      pb$data[[6]]$label,
+      c("list(~italic(mu)== 0.98 )", "list(~italic(mu)== 1.39 )")
+    )
   }
 )
 

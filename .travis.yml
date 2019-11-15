@@ -65,9 +65,12 @@ matrix:
         - metaBMA
         - MCMCpack
         - MCMCglmm
-      r_packages:
         - rlang
         - bindrcpp
+        - car
+        - afex
+        - rio
+      r_packages:
         - purrr
         - tidyr
         - dplyr
@@ -132,9 +135,12 @@ matrix:
         - metaBMA
         - MCMCpack
         - MCMCglmm
-      r_packages:
         - rlang
         - bindrcpp
+        - car
+        - afex
+        - rio
+      r_packages:
         - purrr
         - tidyr
         - dplyr

@@ -282,55 +282,53 @@
 <a class="sourceLine" id="cb4-39" title="39">  <span class="dt">title =</span> <span class="st">"Non-parametric Test (violin plot)"</span>,</a>
 <a class="sourceLine" id="cb4-40" title="40">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
 <a class="sourceLine" id="cb4-41" title="41">  <span class="dt">palette =</span> <span class="st">"uniform_startrek"</span>,</a>
-<a class="sourceLine" id="cb4-42" title="42">  <span class="dt">k =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb4-43" title="43">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb4-44" title="44">)</a>
-<a class="sourceLine" id="cb4-45" title="45"></a>
-<a class="sourceLine" id="cb4-46" title="46"><span class="co"># robust t-test and boxviolin plot</span></a>
-<a class="sourceLine" id="cb4-47" title="47">p3 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb4-48" title="48">  <span class="dt">data =</span> df_year,</a>
-<a class="sourceLine" id="cb4-49" title="49">  <span class="dt">x =</span> year,</a>
-<a class="sourceLine" id="cb4-50" title="50">  <span class="dt">y =</span> lifeExp,</a>
-<a class="sourceLine" id="cb4-51" title="51">  <span class="dt">xlab =</span> <span class="st">"Year"</span>,</a>
-<a class="sourceLine" id="cb4-52" title="52">  <span class="dt">ylab =</span> <span class="st">"Life expectancy"</span>,</a>
-<a class="sourceLine" id="cb4-53" title="53">  <span class="dt">plot.type =</span> <span class="st">"boxviolin"</span>,</a>
-<a class="sourceLine" id="cb4-54" title="54">  <span class="dt">type =</span> <span class="st">"r"</span>,</a>
-<a class="sourceLine" id="cb4-55" title="55">  <span class="dt">conf.level =</span> <span class="fl">0.99</span>,</a>
-<a class="sourceLine" id="cb4-56" title="56">  <span class="dt">title =</span> <span class="st">"Robust Test (box &amp; violin plot)"</span>,</a>
-<a class="sourceLine" id="cb4-57" title="57">  <span class="dt">tr =</span> <span class="fl">0.005</span>,</a>
-<a class="sourceLine" id="cb4-58" title="58">  <span class="dt">package =</span> <span class="st">"wesanderson"</span>,</a>
-<a class="sourceLine" id="cb4-59" title="59">  <span class="dt">palette =</span> <span class="st">"Royal2"</span>,</a>
-<a class="sourceLine" id="cb4-60" title="60">  <span class="dt">nboot =</span> <span class="dv">15</span>,</a>
-<a class="sourceLine" id="cb4-61" title="61">  <span class="dt">k =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb4-62" title="62">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb4-63" title="63">)</a>
-<a class="sourceLine" id="cb4-64" title="64"></a>
-<a class="sourceLine" id="cb4-65" title="65"><span class="co"># Bayes Factor for parametric t-test and boxviolin plot</span></a>
-<a class="sourceLine" id="cb4-66" title="66">p4 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb4-67" title="67">  <span class="dt">data =</span> df_year,</a>
-<a class="sourceLine" id="cb4-68" title="68">  <span class="dt">x =</span> year,</a>
-<a class="sourceLine" id="cb4-69" title="69">  <span class="dt">y =</span> lifeExp,</a>
-<a class="sourceLine" id="cb4-70" title="70">  <span class="dt">xlab =</span> <span class="st">"Year"</span>,</a>
-<a class="sourceLine" id="cb4-71" title="71">  <span class="dt">ylab =</span> <span class="st">"Life expectancy"</span>,</a>
-<a class="sourceLine" id="cb4-72" title="72">  <span class="dt">type =</span> <span class="st">"bf"</span>,</a>
-<a class="sourceLine" id="cb4-73" title="73">  <span class="dt">plot.type =</span> <span class="st">"box"</span>,</a>
-<a class="sourceLine" id="cb4-74" title="74">  <span class="dt">title =</span> <span class="st">"Bayesian Test (box plot)"</span>,</a>
-<a class="sourceLine" id="cb4-75" title="75">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
-<a class="sourceLine" id="cb4-76" title="76">  <span class="dt">palette =</span> <span class="st">"nrc_npg"</span>,</a>
-<a class="sourceLine" id="cb4-77" title="77">  <span class="dt">k =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb4-78" title="78">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb4-79" title="79">)</a>
-<a class="sourceLine" id="cb4-80" title="80"></a>
-<a class="sourceLine" id="cb4-81" title="81"><span class="co"># combining the individual plots into a single plot</span></a>
-<a class="sourceLine" id="cb4-82" title="82">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb4-83" title="83">  p1, p2, p3, p4,</a>
-<a class="sourceLine" id="cb4-84" title="84">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb4-85" title="85">  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>),</a>
-<a class="sourceLine" id="cb4-86" title="86">  <span class="dt">title.text =</span> <span class="st">"Comparison of life expectancy between 1957 and 2007"</span>,</a>
-<a class="sourceLine" id="cb4-87" title="87">  <span class="dt">caption.text =</span> <span class="st">"Source: Gapminder Foundation"</span>,</a>
-<a class="sourceLine" id="cb4-88" title="88">  <span class="dt">title.size =</span> <span class="dv">14</span>,</a>
-<a class="sourceLine" id="cb4-89" title="89">  <span class="dt">caption.size =</span> <span class="dv">12</span></a>
-<a class="sourceLine" id="cb4-90" title="90">)</a></code></pre></div>
+<a class="sourceLine" id="cb4-42" title="42">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb4-43" title="43">)</a>
+<a class="sourceLine" id="cb4-44" title="44"></a>
+<a class="sourceLine" id="cb4-45" title="45"><span class="co"># robust t-test and boxviolin plot</span></a>
+<a class="sourceLine" id="cb4-46" title="46">p3 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb4-47" title="47">  <span class="dt">data =</span> df_year,</a>
+<a class="sourceLine" id="cb4-48" title="48">  <span class="dt">x =</span> year,</a>
+<a class="sourceLine" id="cb4-49" title="49">  <span class="dt">y =</span> lifeExp,</a>
+<a class="sourceLine" id="cb4-50" title="50">  <span class="dt">xlab =</span> <span class="st">"Year"</span>,</a>
+<a class="sourceLine" id="cb4-51" title="51">  <span class="dt">ylab =</span> <span class="st">"Life expectancy"</span>,</a>
+<a class="sourceLine" id="cb4-52" title="52">  <span class="dt">plot.type =</span> <span class="st">"boxviolin"</span>,</a>
+<a class="sourceLine" id="cb4-53" title="53">  <span class="dt">type =</span> <span class="st">"r"</span>,</a>
+<a class="sourceLine" id="cb4-54" title="54">  <span class="dt">conf.level =</span> <span class="fl">0.99</span>,</a>
+<a class="sourceLine" id="cb4-55" title="55">  <span class="dt">title =</span> <span class="st">"Robust Test (box &amp; violin plot)"</span>,</a>
+<a class="sourceLine" id="cb4-56" title="56">  <span class="dt">tr =</span> <span class="fl">0.005</span>,</a>
+<a class="sourceLine" id="cb4-57" title="57">  <span class="dt">package =</span> <span class="st">"wesanderson"</span>,</a>
+<a class="sourceLine" id="cb4-58" title="58">  <span class="dt">palette =</span> <span class="st">"Royal2"</span>,</a>
+<a class="sourceLine" id="cb4-59" title="59">  <span class="dt">nboot =</span> <span class="dv">15</span>,</a>
+<a class="sourceLine" id="cb4-60" title="60">  <span class="dt">k =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb4-61" title="61">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb4-62" title="62">)</a>
+<a class="sourceLine" id="cb4-63" title="63"></a>
+<a class="sourceLine" id="cb4-64" title="64"><span class="co"># Bayes Factor for parametric t-test and boxviolin plot</span></a>
+<a class="sourceLine" id="cb4-65" title="65">p4 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb4-66" title="66">  <span class="dt">data =</span> df_year,</a>
+<a class="sourceLine" id="cb4-67" title="67">  <span class="dt">x =</span> year,</a>
+<a class="sourceLine" id="cb4-68" title="68">  <span class="dt">y =</span> lifeExp,</a>
+<a class="sourceLine" id="cb4-69" title="69">  <span class="dt">xlab =</span> <span class="st">"Year"</span>,</a>
+<a class="sourceLine" id="cb4-70" title="70">  <span class="dt">ylab =</span> <span class="st">"Life expectancy"</span>,</a>
+<a class="sourceLine" id="cb4-71" title="71">  <span class="dt">type =</span> <span class="st">"bf"</span>,</a>
+<a class="sourceLine" id="cb4-72" title="72">  <span class="dt">plot.type =</span> <span class="st">"box"</span>,</a>
+<a class="sourceLine" id="cb4-73" title="73">  <span class="dt">title =</span> <span class="st">"Bayesian Test (box plot)"</span>,</a>
+<a class="sourceLine" id="cb4-74" title="74">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
+<a class="sourceLine" id="cb4-75" title="75">  <span class="dt">palette =</span> <span class="st">"nrc_npg"</span>,</a>
+<a class="sourceLine" id="cb4-76" title="76">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb4-77" title="77">)</a>
+<a class="sourceLine" id="cb4-78" title="78"></a>
+<a class="sourceLine" id="cb4-79" title="79"><span class="co"># combining the individual plots into a single plot</span></a>
+<a class="sourceLine" id="cb4-80" title="80">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb4-81" title="81">  p1, p2, p3, p4,</a>
+<a class="sourceLine" id="cb4-82" title="82">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb4-83" title="83">  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>),</a>
+<a class="sourceLine" id="cb4-84" title="84">  <span class="dt">title.text =</span> <span class="st">"Comparison of life expectancy between 1957 and 2007"</span>,</a>
+<a class="sourceLine" id="cb4-85" title="85">  <span class="dt">caption.text =</span> <span class="st">"Source: Gapminder Foundation"</span>,</a>
+<a class="sourceLine" id="cb4-86" title="86">  <span class="dt">title.size =</span> <span class="dv">14</span>,</a>
+<a class="sourceLine" id="cb4-87" title="87">  <span class="dt">caption.size =</span> <span class="dv">12</span></a>
+<a class="sourceLine" id="cb4-88" title="88">)</a></code></pre></div>
 <p><img src="ggbetweenstats_files/figure-html/ggbetweenstats3-1.png" width="1152"></p>
 </div>
 <div id="grouped-analysis-with-grouped_ggbetweenstats" class="section level2">

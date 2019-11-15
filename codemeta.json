@@ -373,7 +373,7 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/IndrajeetPatil/groupedstats"
+      "sameAs": "https://CRAN.R-project.org/package=groupedstats"
     },
     {
       "@type": "SoftwareApplication",
