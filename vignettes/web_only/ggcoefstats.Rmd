@@ -79,9 +79,9 @@ Most of the regression models that are supported in the `broom` and
 `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `gmm`, `ivreg`, `lm`,
 `lm.beta`, `lmerMod`, `lmodel2`, `lmRob`, `lmrob`, `mcmc`, `MCMCglmm`,
 `mclogit`, `mmclogit`, `mediate`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`,
-`nlmerMod`, `nlrq`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`,
-`rlmerMod`, `rq`, `slm`, `speedglm`, `speedlm`, `stanreg`, `survreg`, `svyglm`,
-`svyolr`, `svyglm`, `tobit`, `wbgee`, `wblm`, etc.
+`nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`,
+`rlm`, `rlmerMod`, `rq`, `slm`, `speedglm`, `speedlm`, `stanreg`, `survreg`,
+`svyglm`, `svyolr`, `svyglm`, `tobit`, `wbgee`, `wblm`, etc.
 
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
@@ -632,7 +632,9 @@ ggstatsplot::ggcoefstats(
 
 ## fitting negative binomial GLM (`negbin`)
 
-```{r negbin, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 6}
+Just to demonstrate that this can be done, let's also flip the axes:
+
+```{r negbin, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8}
 # setup
 library(MASS)
 library(lme4)
@@ -646,8 +648,7 @@ dd <- expand.grid(
   rep = 1:15,
   KEEP.OUT.ATTRS = FALSE
 )
-summary(mu <-
-  5 * (-4 + with(dd, as.integer(f1) + 4 * as.numeric(f2))))
+mu <- 5 * (-4 + with(dd, as.integer(f1) + 4 * as.numeric(f2)))
 dd$y <- rnbinom(nrow(dd), mu = mu, size = 0.5)
 
 # model
@@ -657,8 +658,11 @@ m.glm <- MASS::glm.nb(formula = y ~ f1 * f2, data = dd)
 ggstatsplot::ggcoefstats(
   x = m.glm,
   title = "generalized linear model (GLM)\n for the negative binomial family",
-  exclude.intercept = FALSE
-)
+  exclude.intercept = FALSE,
+  only.significant = TRUE,
+  stats.label.args = list(size = 2.5, direction = "x")
+) +
+  ggplot2::coord_flip()
 ```
 
 ## generalized linear mixed-effects model (`glmer`/`glmerMod`)
@@ -1364,6 +1368,29 @@ ggstatsplot::combine_plots(
   labels = c("(i)", "(ii)"),
   title.text = "Robust variants of `lmRob` and `glmRob` \n(from`robustbase` package)",
   nrow = 2
+)
+```
+
+## fit a nonlinear heteroscedastic model via maximum likelihood (`nlreg`)
+
+```{r nlreg, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+set.seed(123)
+library(nlreg)
+library(boot)
+data(calcium)
+
+# homoscedastic model fit
+calcium.nl <- nlreg::nlreg(
+  formula = cal ~ b0 * (1 - exp(-b1 * time)),
+  start = c(b0 = 4, b1 = 0.1),
+  data = calcium
+)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = calcium.nl,
+  conf.int = FALSE,
+  title = "fit a nonlinear heteroscedastic model \nvia maximum likelihood"
 )
 ```
 

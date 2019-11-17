@@ -34,14 +34,14 @@ library(tidyverse)
 library(ggstatsplot)
 
 # show me all columns
-options(tibble.width = Inf) 
+options(tibble.width = Inf)
 
 knitr::opts_chunk$set(
   collapse = TRUE,
   out.width = "100%",
   dpi = 450,
   comment = "#>",
-  fig.pos = 'H',
+  fig.pos = "H",
   fig.path = "./figures/paper-",
   dev = "png",
   message = FALSE,

@@ -266,13 +266,8 @@ ggcorrmat <- function(data,
   # ===================== statistics ========================================
   #
   if (corr.method %in% c("pearson", "spearman", "kendall")) {
-    # confidence interval computation can take some time and also produce
-    # warnings, so compute them only when requested by the user
-    if (output == "ci") {
-      ci <- TRUE
-    } else {
-      ci <- FALSE
-    }
+    # compute confidence intervals only when requested by the user
+    ci <- ifelse(test = output == "ci", yes = TRUE, no = FALSE)
 
     # computing correlations using `psych` package
     corr_df <-
@@ -460,8 +455,10 @@ ggcorrmat <- function(data,
           ylab = NULL
         )
 
-      # adding ggstatsplot theme for correlation matrix
-      if (isTRUE(ggstatsplot.layer)) plot <- plot + theme_corrmat()
+      # adding `ggstatsplot` theme for correlation matrix
+      if (isTRUE(ggstatsplot.layer)) {
+        plot <- plot + theme_corrmat()
+      }
     }
   }
 

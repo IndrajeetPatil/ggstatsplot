@@ -468,7 +468,7 @@ ggscatterstats <- function(data,
 
   #------------------------- messages  ------------------------------------
 
-  # display warning that this function doesn't produce a ggplot2 object
+  # display warning that this function doesn't produce a `ggplot2` object
   if (isTRUE(marginal) && isTRUE(messages)) {
     message(cat(
       crayon::red("Warning: "),

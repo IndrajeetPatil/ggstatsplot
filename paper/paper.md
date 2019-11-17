@@ -3,7 +3,7 @@ title: "ggstatsplot: ggplot2 Based Plots with Statistical Details"
 author:
 - Indrajeet Patil^[Harvard University, patilindrajeet.science@gmail.com]
 - Mina Cikara^[Harvard University]
-date: "2019-09-11"
+date: "2019-11-17"
 output: 
   bookdown::pdf_document2:
     fig_caption: true
@@ -999,14 +999,14 @@ ggstatsplot::ggpiestats(
 )
 #> Note: 99% CI for effect size estimate was computed with 100 bootstrap samples.
 #> # A tibble: 2 x 11
-#>   `2nd survey` counts  perc N         Approve Disapprove statistic
-#>   <fct>         <int> <dbl> <chr>     <chr>   <chr>          <dbl>
-#> 1 Disapprove      720   45  (n = 720) 20.83%  79.17%          245 
-#> 2 Approve         880   55. (n = 880) 90.23%  9.77%           570.
-#>     p.value parameter method                                   significance
-#>       <dbl>     <dbl> <chr>                                    <chr>       
-#> 1 3.20e- 55         1 Chi-squared test for given probabilities ***         
-#> 2 6.80e-126         1 Chi-squared test for given probabilities ***
+#>   `2nd survey` counts  perc N         Approve Disapprove statistic   p.value
+#>   <fct>         <int> <dbl> <chr>     <chr>   <chr>          <dbl>     <dbl>
+#> 1 Disapprove      720   45  (n = 720) 20.83%  79.17%          245  3.20e- 55
+#> 2 Approve         880   55. (n = 880) 90.23%  9.77%           570. 6.80e-126
+#>   parameter method                                   significance
+#>       <dbl> <chr>                                    <chr>       
+#> 1         1 Chi-squared test for given probabilities ***         
+#> 2         1 Chi-squared test for given probabilities ***
 ```
 
 

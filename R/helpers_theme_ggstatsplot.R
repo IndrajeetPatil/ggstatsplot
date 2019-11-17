@@ -15,7 +15,6 @@
 #' @return A `ggplot2` object with the `theme_ggstatsplot` theme overlaid.
 #'
 #' @import ggplot2
-#' @importFrom grid unit
 #'
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html}
@@ -41,9 +40,9 @@ theme_ggstatsplot <- function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer =
         legend.title = ggplot2::element_text(size = 11, face = "bold"),
         legend.title.align = 0.5,
         legend.text.align = 0.5,
-        legend.key.height = grid::unit(x = 1, units = "line"),
-        legend.key.width = grid::unit(x = 1, units = "line"),
-        plot.margin = grid::unit(x = c(1, 1, 1, 1), units = "lines"),
+        legend.key.height = ggplot2::unit(x = 1, units = "line"),
+        legend.key.width = ggplot2::unit(x = 1, units = "line"),
+        plot.margin = ggplot2::unit(x = c(1, 1, 1, 1), units = "lines"),
         panel.border = ggplot2::element_rect(
           color = "black",
           fill = NA,
@@ -82,8 +81,6 @@ theme_mprl <- theme_ggstatsplot
 #'
 #' @import ggplot2
 #'
-#' @importFrom grid unit
-#'
 #' @export
 
 theme_pie <- function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE) {
@@ -105,7 +102,7 @@ theme_pie <- function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE) {
         legend.direction = "horizontal",
         legend.position = "bottom",
         legend.key = ggplot2::element_rect(size = 5),
-        legend.key.size = grid::unit(x = 1.5, units = "lines"),
+        legend.key.size = ggplot2::unit(x = 1.5, units = "lines"),
         legend.margin = ggplot2::margin(t = 5, r = 5, b = 5, l = 5, unit = "pt"),
         legend.box.margin = ggplot2::margin(t = 5, r = 5, b = 5, l = 5, unit = "pt"),
         panel.border = ggplot2::element_rect(
@@ -138,8 +135,6 @@ theme_pie <- function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE) {
 #'
 #' @import ggplot2
 #'
-#' @importFrom grid unit
-#'
 #' @export
 
 theme_corrmat <- function() {
@@ -156,9 +151,9 @@ theme_corrmat <- function() {
     legend.title = ggplot2::element_text(size = 12, face = "plain"),
     legend.title.align = 0.5,
     legend.text.align = 0.5,
-    legend.key.height = grid::unit(x = 1, units = "line"),
-    legend.key.width = grid::unit(x = 1, units = "line"),
-    plot.margin = grid::unit(x = c(1, 1, 1, 1), units = "lines"),
+    legend.key.height = ggplot2::unit(x = 1, units = "line"),
+    legend.key.width = ggplot2::unit(x = 1, units = "line"),
+    plot.margin = ggplot2::unit(x = c(1, 1, 1, 1), units = "lines"),
     panel.border = ggplot2::element_rect(
       color = "black",
       fill = NA,

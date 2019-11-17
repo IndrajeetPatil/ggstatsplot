@@ -108,6 +108,12 @@
 #' @param stats.labels Logical. Decides whether the statistic and *p*-values for
 #'   each coefficient are to be attached to each dot as a text label using
 #'   `ggrepel` (Default: `TRUE`).
+#' @param stats.label.color Color for the labels. If `stats.label.color` is
+#'   `NULL`, colors will be chosen from the specified `package` (Default:
+#'   `"RColorBrewer"`) and `palette` (Default: `"Dark2"`).
+#' @param stats.label.args Additional arguments that will be passed to `ggrepel
+#'   geom_label_repel` geom. Please see documentation for that function to know
+#'   more about these arguments.
 #' @param only.significant If `TRUE`, only stats labels for significant effects
 #'   is shown (Default: `FALSE`). This can be helpful when a large number of
 #'   regression coefficients are to be displayed in a single plot. Relevant only
@@ -115,37 +121,6 @@
 #' @param caption.summary Logical. Decides whether the model summary should be
 #'   displayed as a cation to the plot (Default: `TRUE`). Color of the line
 #'   segment. Defaults to the same color as the text.
-#' @param stats.label.size,stats.label.fontface,stats.label.color Aesthetics for
-#'   the labels. Defaults: `3`, `"bold"`,`NULL`, resp. If `stats.label.color` is
-#'   `NULL`, colors will be chosen from the specified `package` (Default:
-#'   `"RColorBrewer"`) and `palette` (Default: `"Dark2"`).
-#' @param label.r, Radius of rounded corners, as unit or number. Defaults to
-#'   `0.15`. (Default unit is lines).
-#' @param label.size Size of label border, in mm. Defaults to `0.25`.
-#' @param label.box.padding	 Amount of padding around bounding box, as number.
-#'   Defaults to `1`. (Default unit is lines).
-#' @param label.label.padding	 Amount of padding around label, as number.
-#'   Defaults to `0.25`. (Default unit is lines).
-#' @param label.point.padding	 Amount of padding around labeled point, as
-#'   number. Defaults to `0`. (Default unit is lines).
-#' @param label.segment.color Color of the line segment (Default: `"grey50"`).
-#' @param label.segment.size Width of line segment connecting the data point to
-#'   the text label, in mm. Defaults to `0.5`.
-#' @param label.segment.alpha Transparency of the line segment. Defaults to the
-#'   same transparency as the text.
-#' @param label.min.segment.length Skip drawing segments shorter than this.
-#'   Defaults to `0.5`. (Default unit is lines).
-#' @param label.force Force of repulsion between overlapping text labels.
-#'   Defaults to `1`.
-#' @param label.max.iter Maximum number of iterations to try to resolve
-#'   overlaps. Defaults to `2000`.
-#' @param label.nudge.x,label.nudge.y Horizontal and vertical adjustments to
-#'   nudge the starting position of each text label. Defaults to `0`.
-#' @param label.xlim,label.ylim Limits for the `x` and `y` axes. Text labels
-#'   will be constrained to these limits. By default, text labels are
-#'   constrained to the entire plot area. Defaults to `c(NA, NA)`.
-#' @param label.direction Character (`"both"`, `"x"`, or `"y"`) -- direction in
-#'   which to adjust position of labels (Default: `"y"`).
 #' @param ... Additional arguments to tidying method.
 #' @inheritParams bf_meta_message
 #' @inheritParams broom.mixed::tidy.merMod
@@ -158,13 +133,13 @@
 #' @inheritParams ggbetweenstats
 #'
 #' @import ggplot2
+#' @importFrom rlang exec
 #' @importFrom broomExtra tidy glance augment
 #' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if n
 #' @importFrom dplyr group_by arrange full_join vars matches desc everything
 #' @importFrom dplyr vars all_vars filter_at starts_with row_number
 #' @importFrom stats as.formula lm confint qnorm p.adjust
 #' @importFrom ggrepel geom_label_repel
-#' @importFrom grid unit
 #' @importFrom parameters p_value
 #' @importFrom tibble as_tibble rownames_to_column
 #' @importFrom tidyr unite
@@ -350,25 +325,13 @@ ggcoefstats <- function(x,
                         only.significant = FALSE,
                         caption = NULL,
                         caption.summary = TRUE,
-                        stats.label.size = 3,
-                        stats.label.fontface = "bold",
                         stats.label.color = NULL,
-                        label.r = 0.15,
-                        label.size = 0.25,
-                        label.box.padding = 1,
-                        label.label.padding = 0.25,
-                        label.point.padding = 0.5,
-                        label.segment.color = "grey50",
-                        label.segment.size = 0.5,
-                        label.segment.alpha = NULL,
-                        label.min.segment.length = 0.5,
-                        label.force = 1,
-                        label.max.iter = 2000,
-                        label.nudge.x = 0,
-                        label.nudge.y = 0,
-                        label.xlim = c(NA, NA),
-                        label.ylim = c(NA, NA),
-                        label.direction = "y",
+                        stats.label.args = list(
+                          size = 3,
+                          fontface = "bold",
+                          segment.color = "grey50",
+                          direction = "y"
+                        ),
                         package = "RColorBrewer",
                         palette = "Dark2",
                         direction = 1,
@@ -980,32 +943,16 @@ ggcoefstats <- function(x,
 
       # adding labels
       plot <- plot +
-        ggrepel::geom_label_repel(
+        rlang::exec(
+          ggrepel::geom_label_repel,
           data = tidy_df,
           mapping = ggplot2::aes(x = estimate, y = term, label = label),
-          size = stats.label.size,
-          fontface = stats.label.fontface,
-          color = stats.label.color,
-          box.padding = grid::unit(x = label.box.padding, units = "lines"),
-          label.padding = grid::unit(x = label.label.padding, units = "lines"),
-          point.padding = grid::unit(x = label.point.padding, units = "lines"),
-          label.r = grid::unit(x = label.r, units = "lines"),
-          label.size = label.size,
-          segment.color = label.segment.color,
-          segment.size = label.segment.size,
-          segment.alpha = label.segment.alpha,
-          min.segment.length = label.min.segment.length,
-          force = label.force,
-          max.iter = label.max.iter,
-          nudge_x = label.nudge.x,
-          nudge_y = label.nudge.y,
-          xlim = label.xlim,
-          ylim = label.ylim,
           na.rm = TRUE,
           show.legend = FALSE,
-          direction = label.direction,
           parse = TRUE,
-          seed = 123
+          seed = 123,
+          color = stats.label.color,
+          !!!stats.label.args
         )
     }
 

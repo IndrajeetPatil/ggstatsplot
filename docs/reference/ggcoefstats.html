@@ -238,25 +238,9 @@
   <span class='kw'>only.significant</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>caption.summary</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>stats.label.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>stats.label.fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>,
   <span class='kw'>stats.label.color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>label.r</span> <span class='kw'>=</span> <span class='fl'>0.15</span>,
-  <span class='kw'>label.size</span> <span class='kw'>=</span> <span class='fl'>0.25</span>,
-  <span class='kw'>label.box.padding</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>label.label.padding</span> <span class='kw'>=</span> <span class='fl'>0.25</span>,
-  <span class='kw'>label.point.padding</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>label.segment.color</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>,
-  <span class='kw'>label.segment.size</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>label.segment.alpha</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>label.min.segment.length</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>label.force</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>label.max.iter</span> <span class='kw'>=</span> <span class='fl'>2000</span>,
-  <span class='kw'>label.nudge.x</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>label.nudge.y</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>label.xlim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>),
-  <span class='kw'>label.ylim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>),
-  <span class='kw'>label.direction</span> <span class='kw'>=</span> <span class='st'>"y"</span>,
+  <span class='kw'>stats.label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>, <span class='kw'>segment.color</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>,
+    <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"y"</span>),
   <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>,
   <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>,
   <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>,
@@ -540,80 +524,15 @@ displayed as a cation to the plot (Default: <code>TRUE</code>). Color of the lin
 segment. Defaults to the same color as the text.</p></td>
     </tr>
     <tr>
-      <th>stats.label.size, stats.label.fontface, stats.label.color</th>
-      <td><p>Aesthetics for
-the labels. Defaults: <code>3</code>, <code>"bold"</code>,<code>NULL</code>, resp. If <code>stats.label.color</code> is
+      <th>stats.label.color</th>
+      <td><p>Color for the labels. If <code>stats.label.color</code> is
 <code>NULL</code>, colors will be chosen from the specified <code>package</code> (Default:
 <code>"RColorBrewer"</code>) and <code>palette</code> (Default: <code>"Dark2"</code>).</p></td>
     </tr>
     <tr>
-      <th>label.r, </th>
-      <td><p>Radius of rounded corners, as unit or number. Defaults to
-<code>0.15</code>. (Default unit is lines).</p></td>
-    </tr>
-    <tr>
-      <th>label.size</th>
-      <td><p>Size of label border, in mm. Defaults to <code>0.25</code>.</p></td>
-    </tr>
-    <tr>
-      <th>label.box.padding</th>
-      <td><p>Amount of padding around bounding box, as number.
-Defaults to <code>1</code>. (Default unit is lines).</p></td>
-    </tr>
-    <tr>
-      <th>label.label.padding</th>
-      <td><p>Amount of padding around label, as number.
-Defaults to <code>0.25</code>. (Default unit is lines).</p></td>
-    </tr>
-    <tr>
-      <th>label.point.padding</th>
-      <td><p>Amount of padding around labeled point, as
-number. Defaults to <code>0</code>. (Default unit is lines).</p></td>
-    </tr>
-    <tr>
-      <th>label.segment.color</th>
-      <td><p>Color of the line segment (Default: <code>"grey50"</code>).</p></td>
-    </tr>
-    <tr>
-      <th>label.segment.size</th>
-      <td><p>Width of line segment connecting the data point to
-the text label, in mm. Defaults to <code>0.5</code>.</p></td>
-    </tr>
-    <tr>
-      <th>label.segment.alpha</th>
-      <td><p>Transparency of the line segment. Defaults to the
-same transparency as the text.</p></td>
-    </tr>
-    <tr>
-      <th>label.min.segment.length</th>
-      <td><p>Skip drawing segments shorter than this.
-Defaults to <code>0.5</code>. (Default unit is lines).</p></td>
-    </tr>
-    <tr>
-      <th>label.force</th>
-      <td><p>Force of repulsion between overlapping text labels.
-Defaults to <code>1</code>.</p></td>
-    </tr>
-    <tr>
-      <th>label.max.iter</th>
-      <td><p>Maximum number of iterations to try to resolve
-overlaps. Defaults to <code>2000</code>.</p></td>
-    </tr>
-    <tr>
-      <th>label.nudge.x, label.nudge.y</th>
-      <td><p>Horizontal and vertical adjustments to
-nudge the starting position of each text label. Defaults to <code>0</code>.</p></td>
-    </tr>
-    <tr>
-      <th>label.xlim, label.ylim</th>
-      <td><p>Limits for the <code>x</code> and <code>y</code> axes. Text labels
-will be constrained to these limits. By default, text labels are
-constrained to the entire plot area. Defaults to <code><a href='https://rdrr.io/r/base/c.html'>c(NA, NA)</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>label.direction</th>
-      <td><p>Character (<code>"both"</code>, <code>"x"</code>, or <code>"y"</code>) -- direction in
-which to adjust position of labels (Default: <code>"y"</code>).</p></td>
+      <th>stats.label.args</th>
+      <td><p>Additional arguments that will be passed to <code>ggrepel geom_label_repel</code> geom. Please see documentation for that function to know
+more about these arguments.</p></td>
     </tr>
     <tr>
       <th>package</th>
