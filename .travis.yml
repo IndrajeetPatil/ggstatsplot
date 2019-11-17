@@ -68,7 +68,6 @@ matrix:
         - rlang
         - bindrcpp
         - car
-        - afex
         - rio
       r_packages:
         - purrr
@@ -138,7 +137,6 @@ matrix:
         - rlang
         - bindrcpp
         - car
-        - afex
         - rio
       r_packages:
         - purrr

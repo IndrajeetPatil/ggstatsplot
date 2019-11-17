@@ -514,13 +514,31 @@ testthat::test_that(
 
     # plot
     set.seed(123)
-    subtitle_exp <- ggstatsplot::ggbetweenstats(
-      data = iris,
-      x = Species,
-      y = Sepal.Length,
-      return = "subtitle",
-      messages = FALSE
-    )
+    subtitle_exp <-
+      ggstatsplot::ggbetweenstats(
+        data = iris,
+        x = Species,
+        y = Sepal.Length,
+        return = "subtitle",
+        messages = FALSE
+      )
+
+    # plot
+    set.seed(123)
+    # add as a test
+    DF <- mtcars
+
+    DF$type <- mtcars$am
+
+    subtitle_exp2 <-
+      ggstatsplot::ggbetweenstats(
+        data = DF,
+        x = "type",
+        y = "mpg",
+        messages = FALSE,
+        return = "subtitle"
+      )
+
 
     # test
     testthat::expect_identical(
@@ -553,6 +571,38 @@ testthat::test_that(
         " = ",
         150L
       ))
+    )
+
+    testthat::expect_identical(
+      subtitle_exp,
+      ggplot2::expr(
+        paste(
+          NULL,
+          italic("t"),
+          "(",
+          "18.33",
+          ") = ",
+          "-3.77",
+          ", ",
+          italic("p"),
+          " = ",
+          "0.001",
+          ", ",
+          italic("g"),
+          " = ",
+          "-1.38",
+          ", CI"["95%"],
+          " [",
+          "-2.17",
+          ", ",
+          "-0.51",
+          "]",
+          ", ",
+          italic("n")["obs"],
+          " = ",
+          32L
+        )
+      )
     )
   }
 )

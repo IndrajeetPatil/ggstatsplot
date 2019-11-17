@@ -90,7 +90,7 @@ mean_labeller <- function(data,
 
   # adding sample size labels and arranging by original factor levels
   mean_dat %<>%
-    tidyr::unnest(., cols = c(data, label)) %>%
+    tidyr::unnest(data = ., cols = c(data, label)) %>%
     dplyr::mutate(
       .data = .,
       n_label = paste0({{ x }}, "\n(n = ", `n...summary`, ")", sep = "")
