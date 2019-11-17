@@ -60,6 +60,9 @@
       <a href="../../articles/additional.html">additional vignettes</a>
     </li>
     <li>
+      <a href="../../articles/tests_and_coverage.html">Tests and Coverage</a>
+    </li>
+    <li>
       <a href="../../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
@@ -139,7 +142,7 @@
       <h1>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-10-24</h4>
+            <h4 class="date">2019-11-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -329,8 +332,8 @@
 <a class="sourceLine" id="cb4-56" title="56">      <span class="st">"partial_eta"</span></a>
 <a class="sourceLine" id="cb4-57" title="57">    ),</a>
 <a class="sourceLine" id="cb4-58" title="58">    <span class="dt">mean.ci =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>),</a>
-<a class="sourceLine" id="cb4-59" title="59">    <span class="dt">package =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"ggsci"</span>, <span class="st">"palettetown"</span>, <span class="st">"vapoRwave"</span>, <span class="st">"wesanderson"</span>),</a>
-<a class="sourceLine" id="cb4-60" title="60">    <span class="dt">palette =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"lanonc_lancet"</span>, <span class="st">"venomoth"</span>, <span class="st">"hotlineBling"</span>, <span class="st">"GrandBudapest1"</span>),</a>
+<a class="sourceLine" id="cb4-59" title="59">    <span class="dt">package =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"ggsci"</span>, <span class="st">"palettetown"</span>, <span class="st">"palettetown"</span>, <span class="st">"wesanderson"</span>),</a>
+<a class="sourceLine" id="cb4-60" title="60">    <span class="dt">palette =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"lanonc_lancet"</span>, <span class="st">"venomoth"</span>, <span class="st">"blastoise"</span>, <span class="st">"GrandBudapest1"</span>),</a>
 <a class="sourceLine" id="cb4-61" title="61">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
 <a class="sourceLine" id="cb4-62" title="62">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_linedraw</a></span>(),</a>
 <a class="sourceLine" id="cb4-63" title="63">      hrbrthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_rc.html">theme_ft_rc</a></span>(),</a>
@@ -359,8 +362,7 @@
 <h1 class="hasAnchor">
 <a href="#ggscatterstats" class="anchor"></a><code>ggscatterstats</code>
 </h1>
-<p>For the next example lets use the same methodology on different data and using <code>ggscatterstats</code> to produce scatterplots combined with marginal histograms/boxplots/density plots with statistical details added as a subtitle.</p>
-<p>For data we’ll use <code>movies_wide</code> which is from IMDB and part of the <code>ggstatsplot</code> package. Since it’s a large dataset with some relatively small categories like <strong>NC-17</strong> we’ll sample only one quarter of the data and completely drop NC-17 using <code>dplyr</code>. Once again we’ll feed <code><a href="https://purrr.tidyverse.org/reference/map2.html">purrr::pmap</a></code> a list of lists via <code>.l</code> and for <code>.f</code> we’ll specify <code>.f = ggstatsplot::ggscatterstats</code>.</p>
+<p>For the next example lets use the same methodology on different data and using <code>ggscatterstats</code> to produce scatterplots combined with marginal histograms/boxplots/density plots with statistical details added as a subtitle. For data we’ll use <code>movies_wide</code> which is from IMDB and part of the <code>ggstatsplot</code> package. Since it’s a large dataset with some relatively small categories like <strong>NC-17</strong> we’ll sample only one quarter of the data and completely drop NC-17 using <code>dplyr</code>. Once again we’ll feed <code><a href="https://purrr.tidyverse.org/reference/map2.html">purrr::pmap</a></code> a list of lists via <code>.l</code> and for <code>.f</code> we’ll specify <code>.f = ggstatsplot::ggscatterstats</code>.</p>
 <p>This time we’ll put all the code in one block-</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb5-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>

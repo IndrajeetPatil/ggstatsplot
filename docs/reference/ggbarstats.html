@@ -527,8 +527,7 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
 <code><a href='grouped_ggpiestats.html'>grouped_ggpiestats</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='co'># for reproducibility</span>
+    <pre class="examples"><div class='input'><span class='co'># for reproducibility</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
 
 <span class='co'># association test (or contingency table analysis)</span>
@@ -541,11 +540,11 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
   <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='st'>"Engine"</span>
 )</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>10</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 3 x 11</span><span>
-#&gt;   cyl   counts  perc N        `0`     `1`    statistic   p.value parameter
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 8         14 43.75 (n = 14) 100.00% </span><span style='color: #BB0000;'>NA</span><span>       14      0.000</span><span style='text-decoration: underline;'>182</span><span>8         1
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 6          7 21.88 (n = 7)  42.86%  57.14%    0.142</span><span style='text-decoration: underline;'>9</span><span> 0.705</span><span style='text-decoration: underline;'>5</span><span>            1
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 4         11 34.38 (n = 11) 9.09%   90.91%    7.364  0.006</span><span style='text-decoration: underline;'>656</span><span>          1
+#&gt;   cyl   counts  perc N        `0`     `1`    statistic  p.value parameter
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 8         14  43.8 (n = 14) 100.00% </span><span style='color: #BB0000;'>NA</span><span>        14     0.000</span><span style='text-decoration: underline;'>183</span><span>         1
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 6          7  21.9 (n = 7)  42.86%  57.14%     0.143 0.705            1
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 4         11  34.4 (n = 11) 9.09%   90.91%     7.36  0.006</span><span style='text-decoration: underline;'>66</span><span>          1
 #&gt;   method                                   significance
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span> Chi-squared test for given probabilities ***         
@@ -561,19 +560,18 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
   <span class='kw'>counts</span> <span class='kw'>=</span> <span class='no'>Freq</span>
 )</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>100</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 4 x 13</span><span>
-#&gt;   Hair  counts  perc N         Brown  Blue   Hazel  Green  statistic   p.value
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Blond    127 21.45 (n = 127) 5.51%  74.02% 7.87%  12.60%   164.1   2.443</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-35</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Red       71 11.99 (n = 71)  36.62% 23.94% 19.72% 19.72%     5.451 1.416</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Brown    286 48.31 (n = 286) 41.61% 29.37% 18.88% 10.14%    63.29  1.166</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-13</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> Black    108 18.24 (n = 108) 62.96% 18.52% 13.89% 4.63%     87.33  8.189</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-19</span><span>
+#&gt;   Hair  counts  perc N         Brown  Blue   Hazel  Green  statistic  p.value
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Blond    127  21.5 (n = 127) 5.51%  74.02% 7.87%  12.60%    164.   2.44</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-35</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Red       71  12.0 (n = 71)  36.62% 23.94% 19.72% 19.72%      5.45 1.42</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Brown    286  48.3 (n = 286) 41.61% 29.37% 18.88% 10.14%     63.3  1.17</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-13</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> Black    108  18.2 (n = 108) 62.96% 18.52% 13.89% 4.63%      87.3  8.19</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-19</span><span>
 #&gt;   parameter method                                   significance
 #&gt;       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span>         3 Chi-squared test for given probabilities ***         
 #&gt; </span><span style='color: #BCBCBC;'>2</span><span>         3 Chi-squared test for given probabilities ns          
 #&gt; </span><span style='color: #BCBCBC;'>3</span><span>         3 Chi-squared test for given probabilities ***         
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span>         3 Chi-squared test for given probabilities ***         </div><div class='img'><img src='ggbarstats-2.png' alt='' width='700' height='433' /></div><div class='input'># }
-</div></span></pre>
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span>         3 Chi-squared test for given probabilities ***         </div><div class='img'><img src='ggbarstats-2.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

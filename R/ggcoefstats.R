@@ -105,9 +105,13 @@
 #' @param sort If `"none"` (default) do not sort, `"ascending"` sort by
 #'   increasing coefficient value, or `"descending"` sort by decreasing
 #'   coefficient value.
-#' @param stats.labels Logical. Decides whether the statistic and p-values for
+#' @param stats.labels Logical. Decides whether the statistic and *p*-values for
 #'   each coefficient are to be attached to each dot as a text label using
 #'   `ggrepel` (Default: `TRUE`).
+#' @param only.significant If `TRUE`, only stats labels for significant effects
+#'   is shown (Default: `FALSE`). This can be helpful when a large number of
+#'   regression coefficients are to be displayed in a single plot. Relevant only
+#'   when the `output` is a plot.
 #' @param caption.summary Logical. Decides whether the model summary should be
 #'   displayed as a cation to the plot (Default: `TRUE`). Color of the line
 #'   segment. Defaults to the same color as the text.
@@ -343,6 +347,7 @@ ggcoefstats <- function(x,
                         title = NULL,
                         subtitle = NULL,
                         stats.labels = TRUE,
+                        only.significant = FALSE,
                         caption = NULL,
                         caption.summary = TRUE,
                         stats.label.size = 3,
@@ -958,6 +963,18 @@ ggcoefstats <- function(x,
             n = count_term,
             direction = direction,
             type = "discrete"
+          )
+      }
+
+      # only significant p-value labels are shown
+      if (isTRUE(only.significant) && "significance" %in% names(tidy_df)) {
+        tidy_df %<>%
+          dplyr::mutate(
+            .data = .,
+            label = dplyr::case_when(
+              significance == "ns" ~ NA_character_,
+              TRUE ~ label
+            )
           )
       }
 

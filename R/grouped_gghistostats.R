@@ -21,7 +21,6 @@
 #' @inherit gghistostats return details
 #'
 #' @examples
-#' \donttest{
 #' # for reproducibility
 #' set.seed(123)
 #'
@@ -39,7 +38,6 @@
 #'   ),
 #'   messages = FALSE
 #' )
-#' }
 #' @export
 #'
 

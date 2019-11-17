@@ -1,4 +1,5 @@
 Aalen's
+aareg
 accidently
 al
 anova
@@ -7,6 +8,7 @@ anthropods
 APA
 AppVeyor
 ascender
+bartlett
 bayes
 bayesian
 bbolker
@@ -18,6 +20,7 @@ cbu
 cex
 changedate
 checkmark
+clm
 Cochrane
 codecov
 Codecov
@@ -25,6 +28,9 @@ codesize
 colorbar
 Conover
 correlalogram
+couter
+covr
+covrpage
 Covrpage
 Cramer
 Cramer's
@@ -38,6 +44,7 @@ d'être
 d’être
 Delacre
 densigram
+df
 disgustingness
 DOI
 ds
@@ -55,14 +62,18 @@ Fligner
 freighteningness
 fueleconomy
 Gapminder
+ggbarstats
 ggbetweenstats
+ggcatstats
 ggcoefstats
 ggcorrmat
 ggdotplotstats
 gghistostats
 ggpiestats
 ggplot
+ggrepel
 ggscatterstats
+ggsignif
 ggtheme
 ggwithinstats
 gh
@@ -70,7 +81,11 @@ github
 Github
 Gitter
 gla
+glm
+glmer
+glmerMod
 GLMM
+glmmPQL
 GLMMs
 glyphs
 gof
@@ -96,6 +111,7 @@ jitter
 js
 Kass
 labelled
+labeller
 Lakens
 Larntz
 LDHF
@@ -107,10 +123,15 @@ lifecycle
 Likert
 linetype
 linux
+lm
 McNemar
 McNemar's
 McNemar’s
+merMod
+metaanalysis
 metafor
+mingw
+mlm
 modelling
 Mora
 mpaa
@@ -132,6 +153,7 @@ pandoc
 pb
 pch
 pearson's
+pearson’s
 piechart
 pkgs
 plotgrid
@@ -161,6 +183,7 @@ sdcor
 setosa
 softwares
 spearman
+spearman’s
 sphericity
 statsExpressions
 statswiki
@@ -168,6 +191,7 @@ steve
 svg
 tblr
 TERGM
+testthat
 tibble
 tibbles
 tidiers
@@ -190,6 +214,7 @@ Wilk
 Winsorized
 WRS
 www
+xy
 yellowgreen
 Yuen's
 Yuen’s

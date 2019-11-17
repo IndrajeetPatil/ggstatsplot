@@ -1,6 +1,6 @@
 #' @name mean_labeller
-#' @title Create a dataframe with mean per group and a formatted label for
-#'   display in `ggbetweenstats` plot.
+#' @title Dataframe with mean per group and a formatted label for display in
+#'   `ggbetweenstats` plot.
 #'
 #' @inheritParams ggbetweenstats
 #' @param ... Currently ignored.
@@ -13,7 +13,6 @@
 #' @importFrom tidyr drop_na unnest
 #'
 #' @examples
-#' \donttest{
 #' ggstatsplot:::mean_labeller(
 #'   data = ggplot2::msleep,
 #'   x = vore,
@@ -21,8 +20,6 @@
 #'   mean.ci = TRUE,
 #'   k = 3
 #' )
-#' }
-#'
 #' @keywords internal
 
 # function body
@@ -46,13 +43,17 @@ mean_labeller <- function(data,
       data = data,
       grouping.vars = {{ x }},
       measures = {{ y }}
+    ) %>% # introduce non-syntactic names to allow for `mean` pattern names
+    dplyr::rename_at(
+      .tbl = .,
+      .vars = dplyr::vars(dplyr::matches("mean|^n$")),
+      .funs = ~ paste(., "...summary", sep = "")
     ) %>%
-    dplyr::rename(.data = ., n_per_level = n) %>%
-    dplyr::mutate(.data = ., {{ y }} := mean) %>%
-    dplyr::select(.data = ., {{ x }}, {{ y }}, dplyr::matches("^mean"), n_per_level) %>%
+    dplyr::mutate(.data = ., {{ y }} := `mean...summary`) %>%
+    dplyr::select(.data = ., {{ x }}, {{ y }}, dplyr::contains("...")) %>%
     dplyr::mutate_at(
       .tbl = .,
-      .vars = dplyr::vars(dplyr::contains("mean")),
+      .vars = dplyr::vars(dplyr::matches("mean...|mean.conf")),
       .funs = ~ specify_decimal_p(x = ., k = k)
     ) %>%
     dplyr::group_nest(.tbl = ., {{ x }})
@@ -67,13 +68,13 @@ mean_labeller <- function(data,
             .x = .,
             .f = ~ paste(
               "list(~italic(mu)==",
-              .$mean,
+              .$`mean...summary`,
               ",",
               "CI[95*'%']",
               "(",
-              .$mean.conf.low,
+              .$`mean.conf.low...summary`,
               ",",
-              .$mean.conf.high,
+              .$`mean.conf.high...summary`,
               "))",
               sep = ""
             )
@@ -81,7 +82,7 @@ mean_labeller <- function(data,
         } else {
           purrr::map(
             .x = .,
-            .f = ~ paste("list(~italic(mu)==", .$mean, ")", sep = " ")
+            .f = ~ paste("list(~italic(mu)==", .$`mean...summary`, ")", sep = " ")
           )
         }
       }
@@ -89,15 +90,15 @@ mean_labeller <- function(data,
 
   # adding sample size labels and arranging by original factor levels
   mean_dat %<>%
-    tidyr::unnest(., cols = c(data, label)) %>%
+    tidyr::unnest(data = ., cols = c(data, label)) %>%
     dplyr::mutate(
       .data = .,
-      n_label = paste0({{ x }}, "\n(n = ", n_per_level, ")", sep = "")
+      n_label = paste0({{ x }}, "\n(n = ", `n...summary`, ")", sep = "")
     ) %>%
     dplyr::arrange(.data = ., {{ x }})
 
   # return the dataframe with mean information
-  return(mean_dat)
+  return(dplyr::select(mean_dat, -dplyr::contains("...")))
 }
 
 

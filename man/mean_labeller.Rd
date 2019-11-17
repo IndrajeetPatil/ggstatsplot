@@ -2,8 +2,8 @@
 % Please edit documentation in R/helpers_ggbetweenstats_graphics.R
 \name{mean_labeller}
 \alias{mean_labeller}
-\title{Create a dataframe with mean per group and a formatted label for
-display in \code{ggbetweenstats} plot.}
+\title{Dataframe with mean per group and a formatted label for display in
+\code{ggbetweenstats} plot.}
 \usage{
 mean_labeller(data, x, y, mean.ci = FALSE, k = 3L, ...)
 }
@@ -25,11 +25,10 @@ mean is to be displayed (Default: \code{FALSE}).}
 \item{...}{Currently ignored.}
 }
 \description{
-Create a dataframe with mean per group and a formatted label for
-display in \code{ggbetweenstats} plot.
+Dataframe with mean per group and a formatted label for display in
+\code{ggbetweenstats} plot.
 }
 \examples{
-\donttest{
 ggstatsplot:::mean_labeller(
   data = ggplot2::msleep,
   x = vore,
@@ -37,7 +36,5 @@ ggstatsplot:::mean_labeller(
   mean.ci = TRUE,
   k = 3
 )
-}
-
 }
 \keyword{internal}

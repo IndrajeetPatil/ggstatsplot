@@ -205,7 +205,11 @@ utils::globalVariables(
     "W",
     "Parameter",
     "p.value.formatted",
-    "n_per_level"
+    "n_per_level",
+    "mean...summary",
+    "mean.conf.low...summary",
+    "mean.conf.high...summary",
+    "n...summary"
   ),
   package = "ggstatsplot",
   add = FALSE

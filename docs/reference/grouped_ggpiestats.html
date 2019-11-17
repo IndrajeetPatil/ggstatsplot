@@ -572,7 +572,53 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
 <code><a href='grouped_ggbarstats.html'>grouped_ggbarstats</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"></pre>
+    <pre class="examples"><div class='input'>
+<span class='co'># grouped one-sample proportion tests</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggpiestats.html'>grouped_ggpiestats</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
+  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>am</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>cyl</span>
+)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>100</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>100</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Individual plots in the combined `grouped_` plot
+#&gt; can't be further modified with `ggplot2` functions.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggpiestats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># without condition and with count data</span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>jmv</span>)
+
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggpiestats.html'>grouped_ggpiestats</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='no'>HairEyeColor</span>),
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Hair</span>,
+  <span class='kw'>counts</span> <span class='kw'>=</span> <span class='no'>Freq</span>,
+  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>Sex</span>
+)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>100</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>100</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Individual plots in the combined `grouped_` plot
+#&gt; can't be further modified with `ggplot2` functions.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggpiestats-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># the following will take slightly more amount of time</span>
+<span class='co'># for reproducibility</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
+
+<span class='co'># let's create a smaller dataframe</span>
+<span class='no'>diamonds_short</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/diamonds.html'>diamonds</a></span> <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='no'>cut</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Fair"</span>, <span class='st'>"Very Good"</span>, <span class='st'>"Ideal"</span>)) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/sample.html'>sample_frac</a></span>(<span class='kw'>tbl</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>0.10</span>)
+
+<span class='co'># plot</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggpiestats.html'>grouped_ggpiestats</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>diamonds_short</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>color</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>clarity</span>,
+  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>cut</span>,
+  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>20</span>,
+  <span class='kw'>sampling.plan</span> <span class='kw'>=</span> <span class='st'>"poisson"</span>,
+  <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Quality"</span>,
+  <span class='kw'>slice.label</span> <span class='kw'>=</span> <span class='st'>"both"</span>,
+  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>3</span>
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='img'><img src='grouped_ggpiestats-3.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

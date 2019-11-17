@@ -48,6 +48,7 @@ ggcoefstats(
   title = NULL,
   subtitle = NULL,
   stats.labels = TRUE,
+  only.significant = FALSE,
   caption = NULL,
   caption.summary = TRUE,
   stats.label.size = 3,
@@ -242,9 +243,14 @@ coefficient value.}
 \item{subtitle}{The text for the plot subtitle. The input to this argument
 will be ignored if \code{meta.analytic.effect} is set to \code{TRUE}.}
 
-\item{stats.labels}{Logical. Decides whether the statistic and p-values for
+\item{stats.labels}{Logical. Decides whether the statistic and \emph{p}-values for
 each coefficient are to be attached to each dot as a text label using
 \code{ggrepel} (Default: \code{TRUE}).}
+
+\item{only.significant}{If \code{TRUE}, only stats labels for significant effects
+is shown (Default: \code{FALSE}). This can be helpful when a large number of
+regression coefficients are to be displayed in a single plot. Relevant only
+when the \code{output} is a plot.}
 
 \item{caption}{The text for the plot caption.}
 

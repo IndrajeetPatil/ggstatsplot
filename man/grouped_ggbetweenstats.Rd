@@ -369,7 +369,7 @@ their confidence intervals are computed, see \code{?rcompanion::wilcoxonR}.
 For repeated measures designs, use \code{ggwithinstats}.
 }
 \examples{
-\donttest{
+
 # to get reproducible results from bootstrapping
 set.seed(123)
 
@@ -386,8 +386,8 @@ ggstatsplot::grouped_ggbetweenstats(
 ggstatsplot::grouped_ggbetweenstats(
   data = dplyr::filter(
     ggstatsplot::movies_long,
-    genre %in% c("Action", "Comedy"),
-    mpaa %in% c("R", "PG")
+    genre \%in\% c("Action", "Comedy"),
+    mpaa \%in\% c("R", "PG")
   ),
   x = genre,
   y = rating,
@@ -399,8 +399,6 @@ ggstatsplot::grouped_ggbetweenstats(
   ),
   messages = FALSE
 )
-}
-
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}

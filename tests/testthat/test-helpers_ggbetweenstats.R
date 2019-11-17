@@ -83,7 +83,7 @@ testthat::test_that(
         x = cut,
         y = price,
         mean.ci = TRUE,
-        k = 3
+        k = 4
       )
 
     # check that dropped factor level is not retained
@@ -93,15 +93,15 @@ testthat::test_that(
     )
 
     # check mean label for first factor level
-    # testthat::expect_identical(
-    #   mean_dat$label,
-    #   c(
-    #     "list(~italic(mu)==3819.580,CI[95*'%'](3140.804,4498.356))",
-    #     "list(~italic(mu)==4053.440,CI[95*'%'](3613.102,4493.778))",
-    #     "list(~italic(mu)==3928.250,CI[95*'%'](3607.033,4249.467))",
-    #     "list(~italic(mu)==4602.090,CI[95*'%'](4274.733,4929.447))"
-    #   )
-    # )
+    testthat::expect_identical(
+      mean_dat$label,
+      c(
+        "list(~italic(mu)==3819.5769,CI[95*'%'](3140.8008,4498.3531))",
+        "list(~italic(mu)==4053.4397,CI[95*'%'](3613.1020,4493.7773))",
+        "list(~italic(mu)==3928.2492,CI[95*'%'](3607.0316,4249.4667))",
+        "list(~italic(mu)==4602.0879,CI[95*'%'](4274.7306,4929.4452))"
+      )
+    )
 
     # check sample size label for first factor level
     testthat::expect_identical(
@@ -118,13 +118,14 @@ testthat::test_that(
 
     # ggstatsplot output
     set.seed(123)
-    mean_dat2 <- ggstatsplot:::mean_labeller(
-      data = ggplot2::msleep,
-      x = vore,
-      y = brainwt,
-      mean.ci = TRUE,
-      k = 3
-    )
+    mean_dat2 <-
+      ggstatsplot:::mean_labeller(
+        data = ggplot2::msleep,
+        x = vore,
+        y = brainwt,
+        mean.ci = TRUE,
+        k = 3
+      )
 
     # when factor level contains NAs
     testthat::expect_equal(

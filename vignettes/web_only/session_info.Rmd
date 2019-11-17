@@ -27,11 +27,11 @@ knitr::opts_chunk$set(
 # Session information
 
 This vignette provides exhaustive details about the session (attached packages,
-their versions, date, source, etc.) in which the vignettes were created and the
-website was generated. This is helpful information for reproducibility. If you
-see any divergences between function behavior as described on the website and
-what you see on your system, this information can come in handy for diagnosing
-the source of those divergences.
+their versions, date, source, etc.) in which the vignettes were created (and the
+website was built) and the website was generated. This is helpful information
+for reproducibility. If you see any divergences between function behavior as
+described on the website and what you see on your system, this information can
+come in handy for diagnosing the source of those divergences.
 
 This session information was generated on `r Sys.Date()`:
 

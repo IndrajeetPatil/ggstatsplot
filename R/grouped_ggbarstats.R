@@ -24,7 +24,6 @@
 #'
 #' @examples
 #'
-#' \donttest{
 #' # with condition and with count data
 #' library(jmv)
 #'
@@ -59,7 +58,6 @@
 #'   perc.k = 1,
 #'   nrow = 2
 #' )
-#' }
 #' @export
 
 # defining the function

@@ -959,6 +959,10 @@ ggstatsplot::ggcoefstats(
 
 ## bias reduction in generalized linear models (`brglm2`)
 
+Note that we can also choose to display labels only for the significant effects.
+This can be helpful when a large number of regression coefficients are to be
+displayed in a single plot.
+
 ```{r brglm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 5}
 # setup
 set.seed(123)
@@ -978,13 +982,14 @@ lizardsBR_mean <-
 # plot
 ggstatsplot::ggcoefstats(
   x = lizardsBR_mean,
+  only.significant = TRUE,
   title = "bias reduction in generalized linear models"
 )
 ```
 
 ## bias reduction for adjacent category logit models (`bracl`)
 
-```{r bracl, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 5}
+```{r bracl, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 7}
 # setup
 set.seed(123)
 library(brglm2)
@@ -1033,18 +1038,19 @@ amat <- matrix(mat[, 2] * g - gfr, ncol = 1)
 hrh <- data.frame(birth = mat[, 2], child = mat[, 1], constraints = amat)
 
 # model
-gfit <- glmc(
-  formula = birth ~ child,
-  data = hrh,
-  family = "binomial",
-  emplik.method = "Owen",
-  control = glmc.control(
-    maxit.glm = 10,
-    maxit.weights = 200,
-    itertrace.weights = TRUE,
-    gradtol.weights = 10^(-6)
+gfit <-
+  glmc::glmc(
+    formula = birth ~ child,
+    data = hrh,
+    family = "binomial",
+    emplik.method = "Owen",
+    control = glmc.control(
+      maxit.glm = 10,
+      maxit.weights = 200,
+      itertrace.weights = TRUE,
+      gradtol.weights = 10^(-6)
+    )
   )
-)
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -1091,7 +1097,7 @@ ggstatsplot::ggcoefstats(
 
 ## Bayesian generalized linear mixed-effects models (`bglmerMod`)
 
-```{r bglmerMod, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+```{r bglmerMod, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6}
 # for reproducibility
 set.seed(123)
 library(blme)
@@ -1466,7 +1472,8 @@ data(Transport)
 # model
 mod <- mclogit::mclogit(
   formula = cbind(resp, suburb) ~ distance + cost,
-  data = Transport
+  data = Transport,
+  control = mclogit.control(trace = FALSE)
 )
 
 # plot
@@ -1479,7 +1486,7 @@ ggstatsplot::ggcoefstats(
 
 ## mixed conditional logit models (`mmclogit`)
 
-```{r mmclogit, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+```{r mmclogit, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 7}
 # setup
 set.seed(123)
 library(mclogit)
@@ -1489,6 +1496,7 @@ data(electors)
 mod <- mclogit::mclogit(
   formula = cbind(Freq, interaction(time, class)) ~ econ.left / class + welfare / class + auth / class,
   random = ~ 1 | party.time,
+  control = mclogit.control(trace = FALSE),
   data = within(electors, party.time <- interaction(party, time))
 )
 
@@ -1496,7 +1504,9 @@ mod <- mclogit::mclogit(
 ggstatsplot::ggcoefstats(
   x = mod,
   conf.int = FALSE,
-  title = "Mixed Conditional Logit Models"
+  title = "Mixed Conditional Logit Models",
+  package = "quickpalette",
+  palette = "earthTones"
 )
 ```
 
@@ -2674,32 +2684,25 @@ library(ggstatsplot)
 library(gapminder)
 
 # data for running regression models
-df <-
-  dplyr::filter(.data = gapminder::gapminder, continent != "Oceania")
+df <- dplyr::filter(.data = gapminder::gapminder, continent != "Oceania")
 
 # saving results from regression
-df_results <- purrr::pmap(
-  .l = list(
-    data = list(df),
-    formula = list(scale(lifeExp) ~ scale(gdpPercap) + (gdpPercap |
-      country)),
-    grouping.vars = alist(continent),
-    output = list("tidy", "glance")
-  ),
-  .f = groupedstats::grouped_lmer
-) %>%
+df_results <-
+  purrr::pmap(
+    .l = list(
+      data = list(df),
+      formula = list(scale(lifeExp) ~ scale(gdpPercap) + (gdpPercap |
+        country)),
+      grouping.vars = alist(continent),
+      output = list("tidy", "glance")
+    ),
+    .f = groupedstats::grouped_lmer
+  ) %>%
   dplyr::full_join(x = .[[1]], y = .[[2]], by = "continent")
 
 # modifying the results so to be compatible with the `ggcoefstats` requirement
 (df_results %<>%
-  dplyr::filter(.data = ., term != "(Intercept)") %>%
-  dplyr::select(
-    .data = .,
-    -effect,
-    -term,
-    term = continent,
-    statistic = t.value
-  ))
+  dplyr::filter(.data = ., term != "(Intercept)", is.na(group)))
 
 # plot
 ggstatsplot::ggcoefstats(

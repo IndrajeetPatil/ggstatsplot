@@ -275,12 +275,11 @@ function across multiple levels of a given factor and combining the
 resulting plots using \code{ggstatsplot::combine_plots}.
 }
 \examples{
-\donttest{
 # for reproducibility
 set.seed(123)
 
 # for plot
-# (without specifiying needed variables; all numeric variables will be used)
+# (without specifying needed variables; all numeric variables will be used)
 ggstatsplot::grouped_ggcorrmat(
   data = ggplot2::msleep,
   grouping.var = vore
@@ -317,7 +316,6 @@ ggstatsplot::grouped_ggcorrmat(
   cor.vars = Sepal.Length:Petal.Width,
   output = "ci"
 )
-}
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html}

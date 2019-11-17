@@ -21,7 +21,6 @@
 #'
 #' @examples
 #'
-#' \donttest{
 #' # grouped one-sample proportion tests
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = mtcars,
@@ -62,7 +61,6 @@
 #'   perc.k = 1,
 #'   nrow = 3
 #' )
-#' }
 #' @export
 
 # defining the function

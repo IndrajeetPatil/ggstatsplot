@@ -287,7 +287,6 @@ resulting plots using \code{ggstatsplot::combine_plots}.
 }
 \examples{
 
-\donttest{
 # grouped one-sample proportion tests
 ggstatsplot::grouped_ggpiestats(
   data = mtcars,
@@ -310,8 +309,8 @@ ggstatsplot::grouped_ggpiestats(
 set.seed(123)
 
 # let's create a smaller dataframe
-diamonds_short <- ggplot2::diamonds %>%
-  dplyr::filter(.data = ., cut %in% c("Fair", "Very Good", "Ideal")) %>%
+diamonds_short <- ggplot2::diamonds \%>\%
+  dplyr::filter(.data = ., cut \%in\% c("Fair", "Very Good", "Ideal")) \%>\%
   dplyr::sample_frac(tbl = ., size = 0.10)
 
 # plot
@@ -328,7 +327,6 @@ ggstatsplot::grouped_ggpiestats(
   perc.k = 1,
   nrow = 3
 )
-}
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}

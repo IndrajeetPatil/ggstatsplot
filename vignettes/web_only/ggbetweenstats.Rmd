@@ -186,7 +186,6 @@ p1 <- ggstatsplot::ggbetweenstats(
   title = "Parametric test",
   package = "ggsci",
   palette = "nrc_npg",
-  k = 2,
   messages = FALSE
 )
 
@@ -203,7 +202,6 @@ p2 <- ggstatsplot::ggbetweenstats(
   title = "Non-parametric Test (violin plot)",
   package = "ggsci",
   palette = "uniform_startrek",
-  k = 2,
   messages = FALSE
 )
 
@@ -222,7 +220,7 @@ p3 <- ggstatsplot::ggbetweenstats(
   package = "wesanderson",
   palette = "Royal2",
   nboot = 15,
-  k = 2,
+  k = 3,
   messages = FALSE
 )
 
@@ -238,7 +236,6 @@ p4 <- ggstatsplot::ggbetweenstats(
   title = "Bayesian Test (box plot)",
   package = "ggsci",
   palette = "nrc_npg",
-  k = 2,
   messages = FALSE
 )
 

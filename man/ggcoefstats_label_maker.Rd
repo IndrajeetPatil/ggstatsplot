@@ -52,7 +52,6 @@ will be returned. Valid only for objects of class \code{aov}, \code{anova}, or
 Create labels with statistical details for \code{ggcoefstats}
 }
 \examples{
-\donttest{
 # show all columns in output tibble
 options(tibble.width = Inf)
 
@@ -125,7 +124,7 @@ tidy_df <-
     effsize = "omega",
     partial = FALSE,
     nboot = 50
-  ) %>%
+  ) \%>\%
   dplyr::rename(.data = ., estimate = omegasq, statistic = F.value)
 
 # including a new column with a label
@@ -135,6 +134,5 @@ ggstatsplot:::ggcoefstats_label_maker(
   effsize = "omega",
   partial = FALSE
 )
-}
 }
 \keyword{internal}
