@@ -17,6 +17,7 @@ testthat::test_that(
         x = mod,
         conf.level = 0.99,
         exclude.intercept = FALSE,
+        only.significant = TRUE,
         k = 3
       )
 
@@ -76,7 +77,7 @@ testthat::test_that(
         "list(~italic(beta)==6.438, ~italic(t)(28)==13.765, ~italic(p)<= 0.001)",
         "list(~italic(beta)==-0.156, ~italic(t)(28)==-5.840, ~italic(p)<= 0.001)",
         "list(~italic(beta)==-1.809, ~italic(t)(28)==-2.615, ~italic(p)== 0.014)",
-        "list(~italic(beta)==0.065, ~italic(t)(28)==1.932, ~italic(p)== 0.064)"
+        NA_character_
       )
     )
     testthat::expect_identical(

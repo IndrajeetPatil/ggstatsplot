@@ -574,7 +574,7 @@ testthat::test_that(
     )
 
     testthat::expect_identical(
-      subtitle_exp,
+      subtitle_exp2,
       ggplot2::expr(
         paste(
           NULL,

@@ -235,6 +235,7 @@
   <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>stats.labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>only.significant</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>caption.summary</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>stats.label.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
@@ -517,9 +518,16 @@ will be ignored if <code>meta.analytic.effect</code> is set to <code>TRUE</code>
     </tr>
     <tr>
       <th>stats.labels</th>
-      <td><p>Logical. Decides whether the statistic and p-values for
+      <td><p>Logical. Decides whether the statistic and <em>p</em>-values for
 each coefficient are to be attached to each dot as a text label using
 <code>ggrepel</code> (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>only.significant</th>
+      <td><p>If <code>TRUE</code>, only stats labels for significant effects
+is shown (Default: <code>FALSE</code>). This can be helpful when a large number of
+regression coefficients are to be displayed in a single plot. Relevant only
+when the <code>output</code> is a plot.</p></td>
     </tr>
     <tr>
       <th>caption</th>
@@ -668,99 +676,34 @@ labels.</p>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html'>ggcoefstats</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>)</div><div class='img'><img src='ggcoefstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># to get a tidy dataframe</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html'>ggcoefstats</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"tidy"</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 3 x 11</span><span>
-#&gt;   term   estimate conf.low conf.high std.error statistic  p.value significance
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> cyl       -</span><span style='color: #BB0000;'>1.98</span><span>    -</span><span style='color: #BB0000;'>2.89</span><span>    -</span><span style='color: #BB0000;'>1.06</span><span>      0.449 -4.40     0.000</span><span style='text-decoration: underline;'>141</span><span> ***         
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> am        10.2      1.36    19.0       4.30  2.36      0.025</span><span style='text-decoration: underline;'>3</span><span>   *           
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> cyl:am    -</span><span style='color: #BB0000;'>1.31</span><span>    -</span><span style='color: #BB0000;'>2.75</span><span>     0.143     0.707 -1.85     0.075</span><span style='text-decoration: underline;'>5</span><span>   ns          
-#&gt;   p.value.formatted df.residual
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                   </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> &lt;= 0.001                   28
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> == 0.025                   28
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> == 0.076                   28
-#&gt;   label                                                                
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                                                
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> list(~italic(beta)==-1.98, ~italic(t)(28)==-4.40, ~italic(p)&lt;= 0.001)
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> list(~italic(beta)==10.18, ~italic(t)(28)==2.36, ~italic(p)== 0.025) 
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> list(~italic(beta)==-1.31, ~italic(t)(28)==-1.85, ~italic(p)== 0.076)</div><div class='input'>
+#&gt;   term  estimate conf.low conf.high std.error statistic p.value significance
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> cyl      -</span><span style='color: #BB0000;'>1.98</span><span>    -</span><span style='color: #BB0000;'>2.89</span><span>    -</span><span style='color: #BB0000;'>1.06</span><span>      0.449 -4.40     1.41</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-4</span><span> ***         
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> am       10.2      1.36    19.0       4.30  2.36      2.53</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-2</span><span> *           
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> cyl:~    -</span><span style='color: #BB0000;'>1.31</span><span>    -</span><span style='color: #BB0000;'>2.75</span><span>     0.143     0.707 -1.85     7.55</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-2</span><span> ns          
+#&gt; </span><span style='color: #949494;'># ... with 3 more variables: p.value.formatted </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, df.residual </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span style='color: #949494;'>,
+#&gt; #   label </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span></div><div class='input'>
 <span class='co'># to get a glance summary</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html'>ggcoefstats</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"glance"</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 12</span><span>
-#&gt;   r.squared adj.r.squared sigma statistic       p.value    df logLik   AIC   BIC
-#&gt;       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>     0.785         0.762  2.94      34.1 0.000</span><span style='text-decoration: underline;'>000</span><span>001</span><span style='text-decoration: underline;'>73</span><span>     3  -</span><span style='color: #BB0000;'>77.8</span><span>  166.  173.
-#&gt;   deviance df.residual  nobs
-#&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>     242.          28    32</div><div class='input'>
+#&gt;   r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
+#&gt;       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>     0.785         0.762  2.94      34.1 1.73</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-9</span><span>     3  -</span><span style='color: #BB0000;'>77.8</span><span>  166.  173.
+#&gt; </span><span style='color: #949494;'># ... with 3 more variables: deviance </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, df.residual </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span style='color: #949494;'>, nobs </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span></div><div class='input'>
 <span class='co'># to get augmented dataframe</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html'>ggcoefstats</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"augment"</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 32 x 10</span><span>
-#&gt;    .rownames             mpg   cyl    am .fitted .resid .std.resid   .hat .sigma
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Mazda RX4            21       6     1    21.4  0.364    -</span><span style='color: #BB0000;'>0.131</span><span>  0.106    2.99
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Mazda RX4 Wag        21       6     1    21.4  0.364    -</span><span style='color: #BB0000;'>0.131</span><span>  0.106    2.99
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Datsun 710           22.8     4     1    27.9  5.13     -</span><span style='color: #BB0000;'>1.86</span><span>   0.117    2.80
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Hornet 4 Drive       21.4     6     0    19.0 -</span><span style='color: #BB0000;'>2.38</span><span>      0.842  0.073</span><span style='text-decoration: underline;'>5</span><span>   2.96
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Hornet Sportabout    18.7     8     0    15.1 -</span><span style='color: #BB0000;'>3.63</span><span>      1.29   0.078</span><span style='text-decoration: underline;'>4</span><span>   2.90
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Valiant              18.1     6     0    19.0  0.919    -</span><span style='color: #BB0000;'>0.325</span><span>  0.073</span><span style='text-decoration: underline;'>5</span><span>   2.99
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Duster 360           14.3     8     0    15.1  0.768    -</span><span style='color: #BB0000;'>0.272</span><span>  0.078</span><span style='text-decoration: underline;'>4</span><span>   2.99
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Merc 240D            24.4     4     0    23.0 -</span><span style='color: #BB0000;'>1.43</span><span>      0.563  0.255    2.98
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Merc 230             22.8     4     0    23.0  0.171    -</span><span style='color: #BB0000;'>0.067</span><span style='color: #BB0000;text-decoration: underline;'>2</span><span> 0.255    2.99
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Merc 280             19.2     6     0    19.0 -</span><span style='color: #BB0000;'>0.181</span><span>     0.063</span><span style='text-decoration: underline;'>9</span><span> 0.073</span><span style='text-decoration: underline;'>5</span><span>   2.99
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> Merc 280C            17.8     6     0    19.0  1.22     -</span><span style='color: #BB0000;'>0.431</span><span>  0.073</span><span style='text-decoration: underline;'>5</span><span>   2.98
-#&gt; </span><span style='color: #BCBCBC;'>12</span><span> Merc 450SE           16.4     8     0    15.1 -</span><span style='color: #BB0000;'>1.33</span><span>      0.472  0.078</span><span style='text-decoration: underline;'>4</span><span>   2.98
-#&gt; </span><span style='color: #BCBCBC;'>13</span><span> Merc 450SL           17.3     8     0    15.1 -</span><span style='color: #BB0000;'>2.23</span><span>      0.791  0.078</span><span style='text-decoration: underline;'>4</span><span>   2.96
-#&gt; </span><span style='color: #BCBCBC;'>14</span><span> Merc 450SLC          15.2     8     0    15.1 -</span><span style='color: #BB0000;'>0.132</span><span>     0.046</span><span style='text-decoration: underline;'>9</span><span> 0.078</span><span style='text-decoration: underline;'>4</span><span>   2.99
-#&gt; </span><span style='color: #BCBCBC;'>15</span><span> Cadillac Fleetwood   10.4     8     0    15.1  4.67     -</span><span style='color: #BB0000;'>1.65</span><span>   0.078</span><span style='text-decoration: underline;'>4</span><span>   2.84
-#&gt; </span><span style='color: #BCBCBC;'>16</span><span> Lincoln Continental  10.4     8     0    15.1  4.67     -</span><span style='color: #BB0000;'>1.65</span><span>   0.078</span><span style='text-decoration: underline;'>4</span><span>   2.84
-#&gt; </span><span style='color: #BCBCBC;'>17</span><span> Chrysler Imperial    14.7     8     0    15.1  0.368    -</span><span style='color: #BB0000;'>0.130</span><span>  0.078</span><span style='text-decoration: underline;'>4</span><span>   2.99
-#&gt; </span><span style='color: #BCBCBC;'>18</span><span> Fiat 128             32.4     4     1    27.9 -</span><span style='color: #BB0000;'>4.47</span><span>      1.62   0.117    2.85
-#&gt; </span><span style='color: #BCBCBC;'>19</span><span> Honda Civic          30.4     4     1    27.9 -</span><span style='color: #BB0000;'>2.47</span><span>      0.896  0.117    2.95
-#&gt; </span><span style='color: #BCBCBC;'>20</span><span> Toyota Corolla       33.9     4     1    27.9 -</span><span style='color: #BB0000;'>5.97</span><span>      2.16   0.117    2.73
-#&gt; </span><span style='color: #BCBCBC;'>21</span><span> Toyota Corona        21.5     4     0    23.0  1.47     -</span><span style='color: #BB0000;'>0.580</span><span>  0.255    2.98
-#&gt; </span><span style='color: #BCBCBC;'>22</span><span> Dodge Challenger     15.5     8     0    15.1 -</span><span style='color: #BB0000;'>0.432</span><span>     0.153  0.078</span><span style='text-decoration: underline;'>4</span><span>   2.99
-#&gt; </span><span style='color: #BCBCBC;'>23</span><span> AMC Javelin          15.2     8     0    15.1 -</span><span style='color: #BB0000;'>0.132</span><span>     0.046</span><span style='text-decoration: underline;'>9</span><span> 0.078</span><span style='text-decoration: underline;'>4</span><span>   2.99
-#&gt; </span><span style='color: #BCBCBC;'>24</span><span> Camaro Z28           13.3     8     0    15.1  1.77     -</span><span style='color: #BB0000;'>0.626</span><span>  0.078</span><span style='text-decoration: underline;'>4</span><span>   2.97
-#&gt; </span><span style='color: #BCBCBC;'>25</span><span> Pontiac Firebird     19.2     8     0    15.1 -</span><span style='color: #BB0000;'>4.13</span><span>      1.46   0.078</span><span style='text-decoration: underline;'>4</span><span>   2.88
-#&gt; </span><span style='color: #BCBCBC;'>26</span><span> Fiat X1-9            27.3     4     1    27.9  0.626    -</span><span style='color: #BB0000;'>0.226</span><span>  0.117    2.99
-#&gt; </span><span style='color: #BCBCBC;'>27</span><span> Porsche 914-2        26       4     1    27.9  1.93     -</span><span style='color: #BB0000;'>0.697</span><span>  0.117    2.97
-#&gt; </span><span style='color: #BCBCBC;'>28</span><span> Lotus Europa         30.4     4     1    27.9 -</span><span style='color: #BB0000;'>2.47</span><span>      0.896  0.117    2.95
-#&gt; </span><span style='color: #BCBCBC;'>29</span><span> Ford Pantera L       15.8     8     1    14.8 -</span><span style='color: #BB0000;'>0.998</span><span>     0.429  0.372    2.98
-#&gt; </span><span style='color: #BCBCBC;'>30</span><span> Ferrari Dino         19.7     6     1    21.4  1.66     -</span><span style='color: #BB0000;'>0.599</span><span>  0.106    2.97
-#&gt; </span><span style='color: #BCBCBC;'>31</span><span> Maserati Bora        15       8     1    14.8 -</span><span style='color: #BB0000;'>0.198</span><span>     0.085</span><span style='text-decoration: underline;'>0</span><span> 0.372    2.99
-#&gt; </span><span style='color: #BCBCBC;'>32</span><span> Volvo 142E           21.4     4     1    27.9  6.53     -</span><span style='color: #BB0000;'>2.36</span><span>   0.117    2.68
-#&gt;      .cooksd
-#&gt;        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 0.000</span><span style='text-decoration: underline;'>510</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 0.000</span><span style='text-decoration: underline;'>510</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 0.114    
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 0.014</span><span style='text-decoration: underline;'>1</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 0.035</span><span style='text-decoration: underline;'>3</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 0.002</span><span style='text-decoration: underline;'>09</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 0.001</span><span style='text-decoration: underline;'>57</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 0.027</span><span style='text-decoration: underline;'>1</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 0.000</span><span style='text-decoration: underline;'>387</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 0.000</span><span style='text-decoration: underline;'>081</span><span>1
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> 0.003</span><span style='text-decoration: underline;'>68</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>12</span><span> 0.004</span><span style='text-decoration: underline;'>74</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>13</span><span> 0.013</span><span style='text-decoration: underline;'>3</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>14</span><span> 0.000</span><span style='text-decoration: underline;'>046</span><span>8
-#&gt; </span><span style='color: #BCBCBC;'>15</span><span> 0.058</span><span style='text-decoration: underline;'>2</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>16</span><span> 0.058</span><span style='text-decoration: underline;'>2</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>17</span><span> 0.000</span><span style='text-decoration: underline;'>361</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'>18</span><span> 0.086</span><span style='text-decoration: underline;'>9</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>19</span><span> 0.026</span><span style='text-decoration: underline;'>6</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>20</span><span> 0.155    
-#&gt; </span><span style='color: #BCBCBC;'>21</span><span> 0.028</span><span style='text-decoration: underline;'>7</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>22</span><span> 0.000</span><span style='text-decoration: underline;'>499</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'>23</span><span> 0.000</span><span style='text-decoration: underline;'>046</span><span>8
-#&gt; </span><span style='color: #BCBCBC;'>24</span><span> 0.008</span><span style='text-decoration: underline;'>35</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>25</span><span> 0.045</span><span style='text-decoration: underline;'>6</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>26</span><span> 0.001</span><span style='text-decoration: underline;'>70</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>27</span><span> 0.016</span><span style='text-decoration: underline;'>1</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>28</span><span> 0.026</span><span style='text-decoration: underline;'>6</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>29</span><span> 0.027</span><span style='text-decoration: underline;'>2</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>30</span><span> 0.010</span><span style='text-decoration: underline;'>7</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>31</span><span> 0.001</span><span style='text-decoration: underline;'>07</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>32</span><span> 0.185    </div><div class='input'>
+#&gt;    .rownames     mpg   cyl    am .fitted .resid .std.resid   .hat .sigma .cooksd
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Mazda RX4    21       6     1    21.4  0.364    -</span><span style='color: #BB0000;'>0.131</span><span>  0.106    2.99 5.10</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-4</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Mazda RX4 ~  21       6     1    21.4  0.364    -</span><span style='color: #BB0000;'>0.131</span><span>  0.106    2.99 5.10</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-4</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Datsun 710   22.8     4     1    27.9  5.13     -</span><span style='color: #BB0000;'>1.86</span><span>   0.117    2.80 1.14</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Hornet 4 D~  21.4     6     0    19.0 -</span><span style='color: #BB0000;'>2.38</span><span>      0.842  0.073</span><span style='text-decoration: underline;'>5</span><span>   2.96 1.41</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-2</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Hornet Spo~  18.7     8     0    15.1 -</span><span style='color: #BB0000;'>3.63</span><span>      1.29   0.078</span><span style='text-decoration: underline;'>4</span><span>   2.90 3.53</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-2</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Valiant      18.1     6     0    19.0  0.919    -</span><span style='color: #BB0000;'>0.325</span><span>  0.073</span><span style='text-decoration: underline;'>5</span><span>   2.99 2.09</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-3</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Duster 360   14.3     8     0    15.1  0.768    -</span><span style='color: #BB0000;'>0.272</span><span>  0.078</span><span style='text-decoration: underline;'>4</span><span>   2.99 1.57</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-3</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Merc 240D    24.4     4     0    23.0 -</span><span style='color: #BB0000;'>1.43</span><span>      0.563  0.255    2.98 2.71</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-2</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Merc 230     22.8     4     0    23.0  0.171    -</span><span style='color: #BB0000;'>0.067</span><span style='color: #BB0000;text-decoration: underline;'>2</span><span> 0.255    2.99 3.87</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-4</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Merc 280     19.2     6     0    19.0 -</span><span style='color: #BB0000;'>0.181</span><span>     0.063</span><span style='text-decoration: underline;'>9</span><span> 0.073</span><span style='text-decoration: underline;'>5</span><span>   2.99 8.11</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-5</span><span>
+#&gt; </span><span style='color: #949494;'># ... with 22 more rows</span><span></div><div class='input'>
 <span class='co'># -------------- with custom dataframe -----------------------------------</span>
 
 <span class='co'># creating a dataframe</span>
@@ -840,8 +783,7 @@ labels.</p>
 <span class='co'># -------------- getting model summary ------------------------------</span>
 
 <span class='co'># model</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>lme4</span>)
-<span class='no'>lmm1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>lme4</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lme4/man/lmer.html'>lmer</a></span>(
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>lme4</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: Matrix</span></div><div class='input'><span class='no'>lmm1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>lme4</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lme4/man/lmer.html'>lmer</a></span>(
   <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>Reaction</span> ~ <span class='no'>Days</span> + (<span class='no'>Days</span> <span class='kw'>|</span> <span class='no'>Subject</span>),
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>sleepstudy</span>
 )
@@ -868,466 +810,20 @@ labels.</p>
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"augment"</span>,
   <span class='kw'>type.predict</span> <span class='kw'>=</span> <span class='st'>"risk"</span>
 )</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 228 x 13</span><span>
-#&gt;      inst  time status   age   sex ph.ecog ph.karno pat.karno meal.cal wt.loss
-#&gt;     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>  1</span><span>     3   306      2    74     1       1       90       100     </span><span style='text-decoration: underline;'>1</span><span>175      </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>  2</span><span>     3   455      2    68     1       0       90        90     </span><span style='text-decoration: underline;'>1</span><span>225      15
-#&gt; </span><span style='color: #BCBCBC;'>  3</span><span>     3  </span><span style='text-decoration: underline;'>1</span><span>010      1    56     1       0       90        90       </span><span style='color: #BB0000;'>NA</span><span>      15
-#&gt; </span><span style='color: #BCBCBC;'>  4</span><span>     5   210      2    57     1       1       90        60     </span><span style='text-decoration: underline;'>1</span><span>150      11
-#&gt; </span><span style='color: #BCBCBC;'>  5</span><span>     1   883      2    60     1       0      100        90       </span><span style='color: #BB0000;'>NA</span><span>       0
-#&gt; </span><span style='color: #BCBCBC;'>  6</span><span>    12  </span><span style='text-decoration: underline;'>1</span><span>022      1    74     1       1       50        80      513       0
-#&gt; </span><span style='color: #BCBCBC;'>  7</span><span>     7   310      2    68     2       2       70        60      384      10
-#&gt; </span><span style='color: #BCBCBC;'>  8</span><span>    11   361      2    71     2       2       60        80      538       1
-#&gt; </span><span style='color: #BCBCBC;'>  9</span><span>     1   218      2    53     1       1       70        80      825      16
-#&gt; </span><span style='color: #BCBCBC;'> 10</span><span>     7   166      2    61     1       2       70        70      271      34
-#&gt; </span><span style='color: #BCBCBC;'> 11</span><span>     6   170      2    57     1       1       80        80     </span><span style='text-decoration: underline;'>1</span><span>025      27
-#&gt; </span><span style='color: #BCBCBC;'> 12</span><span>    16   654      2    68     2       2       70        70       </span><span style='color: #BB0000;'>NA</span><span>      23
-#&gt; </span><span style='color: #BCBCBC;'> 13</span><span>    11   728      2    68     2       1       90        90       </span><span style='color: #BB0000;'>NA</span><span>       5
-#&gt; </span><span style='color: #BCBCBC;'> 14</span><span>    21    71      2    60     1      </span><span style='color: #BB0000;'>NA</span><span>       60        70     </span><span style='text-decoration: underline;'>1</span><span>225      32
-#&gt; </span><span style='color: #BCBCBC;'> 15</span><span>    12   567      2    57     1       1       80        70     </span><span style='text-decoration: underline;'>2</span><span>600      60
-#&gt; </span><span style='color: #BCBCBC;'> 16</span><span>     1   144      2    67     1       1       80        90       </span><span style='color: #BB0000;'>NA</span><span>      15
-#&gt; </span><span style='color: #BCBCBC;'> 17</span><span>    22   613      2    70     1       1       90       100     </span><span style='text-decoration: underline;'>1</span><span>150      -</span><span style='color: #BB0000;'>5</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 18</span><span>    16   707      2    63     1       2       50        70     </span><span style='text-decoration: underline;'>1</span><span>025      22
-#&gt; </span><span style='color: #BCBCBC;'> 19</span><span>     1    61      2    56     2       2       60        60      238      10
-#&gt; </span><span style='color: #BCBCBC;'> 20</span><span>    21    88      2    57     1       1       90        80     </span><span style='text-decoration: underline;'>1</span><span>175      </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 21</span><span>    11   301      2    67     1       1       80        80     </span><span style='text-decoration: underline;'>1</span><span>025      17
-#&gt; </span><span style='color: #BCBCBC;'> 22</span><span>     6    81      2    49     2       0      100        70     </span><span style='text-decoration: underline;'>1</span><span>175      -</span><span style='color: #BB0000;'>8</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 23</span><span>    11   624      2    50     1       1       70        80       </span><span style='color: #BB0000;'>NA</span><span>      16
-#&gt; </span><span style='color: #BCBCBC;'> 24</span><span>    15   371      2    58     1       0       90       100      975      13
-#&gt; </span><span style='color: #BCBCBC;'> 25</span><span>    12   394      2    72     1       0       90        80       </span><span style='color: #BB0000;'>NA</span><span>       0
-#&gt; </span><span style='color: #BCBCBC;'> 26</span><span>    12   520      2    70     2       1       90        80      825       6
-#&gt; </span><span style='color: #BCBCBC;'> 27</span><span>     4   574      2    60     1       0      100       100     </span><span style='text-decoration: underline;'>1</span><span>025     -</span><span style='color: #BB0000;'>13</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 28</span><span>    13   118      2    70     1       3       60        70     </span><span style='text-decoration: underline;'>1</span><span>075      20
-#&gt; </span><span style='color: #BCBCBC;'> 29</span><span>    13   390      2    53     1       1       80        70      875      -</span><span style='color: #BB0000;'>7</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 30</span><span>     1    12      2    74     1       2       70        50      305      20
-#&gt; </span><span style='color: #BCBCBC;'> 31</span><span>    12   473      2    69     2       1       90        90     </span><span style='text-decoration: underline;'>1</span><span>025      -</span><span style='color: #BB0000;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 32</span><span>     1    26      2    73     1       2       60        70      388      20
-#&gt; </span><span style='color: #BCBCBC;'> 33</span><span>     7   533      2    48     1       2       60        80       </span><span style='color: #BB0000;'>NA</span><span>     -</span><span style='color: #BB0000;'>11</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 34</span><span>    16   107      2    60     2       2       50        60      925     -</span><span style='color: #BB0000;'>15</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 35</span><span>    12    53      2    61     1       2       70       100     </span><span style='text-decoration: underline;'>1</span><span>075      10
-#&gt; </span><span style='color: #BCBCBC;'> 36</span><span>     1   122      2    62     2       2       50        50     </span><span style='text-decoration: underline;'>1</span><span>025      </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 37</span><span>    22   814      2    65     1       2       70        60      513      28
-#&gt; </span><span style='color: #BCBCBC;'> 38</span><span>    15   965      1    66     2       1       70        90      875       4
-#&gt; </span><span style='color: #BCBCBC;'> 39</span><span>     1    93      2    74     1       2       50        40     </span><span style='text-decoration: underline;'>1</span><span>225      24
-#&gt; </span><span style='color: #BCBCBC;'> 40</span><span>     1   731      2    64     2       1       80       100     </span><span style='text-decoration: underline;'>1</span><span>175      15
-#&gt; </span><span style='color: #BCBCBC;'> 41</span><span>     5   460      2    70     1       1       80        60      975      10
-#&gt; </span><span style='color: #BCBCBC;'> 42</span><span>    11   153      2    73     2       2       60        70     </span><span style='text-decoration: underline;'>1</span><span>075      11
-#&gt; </span><span style='color: #BCBCBC;'> 43</span><span>    10   433      2    59     2       0       90        90      363      27
-#&gt; </span><span style='color: #BCBCBC;'> 44</span><span>    12   145      2    60     2       2       70        60       </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 45</span><span>     7   583      2    68     1       1       60        70     </span><span style='text-decoration: underline;'>1</span><span>025       7
-#&gt; </span><span style='color: #BCBCBC;'> 46</span><span>     7    95      2    76     2       2       60        60      625     -</span><span style='color: #BB0000;'>24</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 47</span><span>     1   303      2    74     1       0       90        70      463      30
-#&gt; </span><span style='color: #BCBCBC;'> 48</span><span>     3   519      2    63     1       1       80        70     </span><span style='text-decoration: underline;'>1</span><span>025      10
-#&gt; </span><span style='color: #BCBCBC;'> 49</span><span>    13   643      2    74     1       0       90        90     </span><span style='text-decoration: underline;'>1</span><span>425       2
-#&gt; </span><span style='color: #BCBCBC;'> 50</span><span>    22   765      2    50     2       1       90       100     </span><span style='text-decoration: underline;'>1</span><span>175       4
-#&gt; </span><span style='color: #BCBCBC;'> 51</span><span>     3   735      2    72     2       1       90        90       </span><span style='color: #BB0000;'>NA</span><span>       9
-#&gt; </span><span style='color: #BCBCBC;'> 52</span><span>    12   189      2    63     1       0       80        70       </span><span style='color: #BB0000;'>NA</span><span>       0
-#&gt; </span><span style='color: #BCBCBC;'> 53</span><span>    21    53      2    68     1       0       90       100     </span><span style='text-decoration: underline;'>1</span><span>025       0
-#&gt; </span><span style='color: #BCBCBC;'> 54</span><span>     1   246      2    58     1       0      100        90     </span><span style='text-decoration: underline;'>1</span><span>175       7
-#&gt; </span><span style='color: #BCBCBC;'> 55</span><span>     6   689      2    59     1       1       90        80     </span><span style='text-decoration: underline;'>1</span><span>300      15
-#&gt; </span><span style='color: #BCBCBC;'> 56</span><span>     1    65      2    62     1       0       90        80      725      </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 57</span><span>     5     5      2    65     2       0      100        80      338       5
-#&gt; </span><span style='color: #BCBCBC;'> 58</span><span>    22   132      2    57     1       2       70        60       </span><span style='color: #BB0000;'>NA</span><span>      18
-#&gt; </span><span style='color: #BCBCBC;'> 59</span><span>     3   687      2    58     2       1       80        80     </span><span style='text-decoration: underline;'>1</span><span>225      10
-#&gt; </span><span style='color: #BCBCBC;'> 60</span><span>     1   345      2    64     2       1       90        80     </span><span style='text-decoration: underline;'>1</span><span>075      -</span><span style='color: #BB0000;'>3</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 61</span><span>    22   444      2    75     2       2       70        70      438       8
-#&gt; </span><span style='color: #BCBCBC;'> 62</span><span>    12   223      2    48     1       1       90        80     </span><span style='text-decoration: underline;'>1</span><span>300      68
-#&gt; </span><span style='color: #BCBCBC;'> 63</span><span>    21   175      2    73     1       1       80       100     </span><span style='text-decoration: underline;'>1</span><span>025      </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 64</span><span>    11    60      2    65     2       1       90        80     </span><span style='text-decoration: underline;'>1</span><span>025       0
-#&gt; </span><span style='color: #BCBCBC;'> 65</span><span>     3   163      2    69     1       1       80        60     </span><span style='text-decoration: underline;'>1</span><span>125       0
-#&gt; </span><span style='color: #BCBCBC;'> 66</span><span>     3    65      2    68     1       2       70        50      825       8
-#&gt; </span><span style='color: #BCBCBC;'> 67</span><span>    16   208      2    67     2       2       70        </span><span style='color: #BB0000;'>NA</span><span>      538       2
-#&gt; </span><span style='color: #BCBCBC;'> 68</span><span>     5   821      1    64     2       0       90        70     </span><span style='text-decoration: underline;'>1</span><span>025       3
-#&gt; </span><span style='color: #BCBCBC;'> 69</span><span>    22   428      2    68     1       0      100        80     </span><span style='text-decoration: underline;'>1</span><span>039       0
-#&gt; </span><span style='color: #BCBCBC;'> 70</span><span>     6   230      2    67     1       1       80       100      488      23
-#&gt; </span><span style='color: #BCBCBC;'> 71</span><span>    13   840      1    63     1       0       90        90     </span><span style='text-decoration: underline;'>1</span><span>175      -</span><span style='color: #BB0000;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 72</span><span>     3   305      2    48     2       1       80        90      538      29
-#&gt; </span><span style='color: #BCBCBC;'> 73</span><span>     5    11      2    74     1       2       70       100     </span><span style='text-decoration: underline;'>1</span><span>175       0
-#&gt; </span><span style='color: #BCBCBC;'> 74</span><span>     2   132      2    40     1       1       80        80       </span><span style='color: #BB0000;'>NA</span><span>       3
-#&gt; </span><span style='color: #BCBCBC;'> 75</span><span>    21   226      2    53     2       1       90        80      825       3
-#&gt; </span><span style='color: #BCBCBC;'> 76</span><span>    12   426      2    71     2       1       90        90     </span><span style='text-decoration: underline;'>1</span><span>075      19
-#&gt; </span><span style='color: #BCBCBC;'> 77</span><span>     1   705      2    51     2       0      100        80     </span><span style='text-decoration: underline;'>1</span><span>300       0
-#&gt; </span><span style='color: #BCBCBC;'> 78</span><span>     6   363      2    56     2       1       80        70     </span><span style='text-decoration: underline;'>1</span><span>225      -</span><span style='color: #BB0000;'>2</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 79</span><span>     3    11      2    81     1       0       90        </span><span style='color: #BB0000;'>NA</span><span>      731      15
-#&gt; </span><span style='color: #BCBCBC;'> 80</span><span>     1   176      2    73     1       0       90        70      169      30
-#&gt; </span><span style='color: #BCBCBC;'> 81</span><span>     4   791      2    59     1       0      100        80      768       5
-#&gt; </span><span style='color: #BCBCBC;'> 82</span><span>    13    95      2    55     1       1       70        90     </span><span style='text-decoration: underline;'>1</span><span>500      15
-#&gt; </span><span style='color: #BCBCBC;'> 83</span><span>    11   196      1    42     1       1       80        80     </span><span style='text-decoration: underline;'>1</span><span>425       8
-#&gt; </span><span style='color: #BCBCBC;'> 84</span><span>    21   167      2    44     2       1       80        90      588      -</span><span style='color: #BB0000;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 85</span><span>    16   806      1    44     1       1       80        80     </span><span style='text-decoration: underline;'>1</span><span>025       1
-#&gt; </span><span style='color: #BCBCBC;'> 86</span><span>     6   284      2    71     1       1       80        90     </span><span style='text-decoration: underline;'>1</span><span>100      14
-#&gt; </span><span style='color: #BCBCBC;'> 87</span><span>    22   641      2    62     2       1       80        80     </span><span style='text-decoration: underline;'>1</span><span>150       1
-#&gt; </span><span style='color: #BCBCBC;'> 88</span><span>    21   147      2    61     1       0      100        90     </span><span style='text-decoration: underline;'>1</span><span>175       4
-#&gt; </span><span style='color: #BCBCBC;'> 89</span><span>    13   740      1    44     2       1       90        80      588      39
-#&gt; </span><span style='color: #BCBCBC;'> 90</span><span>     1   163      2    72     1       2       70        70      910       2
-#&gt; </span><span style='color: #BCBCBC;'> 91</span><span>    11   655      2    63     1       0      100        90      975      -</span><span style='color: #BB0000;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 92</span><span>    22   239      2    70     1       1       80       100       </span><span style='color: #BB0000;'>NA</span><span>      23
-#&gt; </span><span style='color: #BCBCBC;'> 93</span><span>     5    88      2    66     1       1       90        80      875       8
-#&gt; </span><span style='color: #BCBCBC;'> 94</span><span>    10   245      2    57     2       1       80        60      280      14
-#&gt; </span><span style='color: #BCBCBC;'> 95</span><span>     1   588      1    69     2       0      100        90       </span><span style='color: #BB0000;'>NA</span><span>      13
-#&gt; </span><span style='color: #BCBCBC;'> 96</span><span>    12    30      2    72     1       2       80        60      288       7
-#&gt; </span><span style='color: #BCBCBC;'> 97</span><span>     3   179      2    69     1       1       80        80       </span><span style='color: #BB0000;'>NA</span><span>      25
-#&gt; </span><span style='color: #BCBCBC;'> 98</span><span>    12   310      2    71     1       1       90       100       </span><span style='color: #BB0000;'>NA</span><span>       0
-#&gt; </span><span style='color: #BCBCBC;'> 99</span><span>    11   477      2    64     1       1       90       100      910       0
-#&gt; </span><span style='color: #BCBCBC;'>100</span><span>     3   166      2    70     2       0       90        70       </span><span style='color: #BB0000;'>NA</span><span>      10
-#&gt; </span><span style='color: #BCBCBC;'>101</span><span>     1   559      1    58     2       0      100       100      710      15
-#&gt; </span><span style='color: #BCBCBC;'>102</span><span>     6   450      2    69     2       1       80        90     </span><span style='text-decoration: underline;'>1</span><span>175       3
-#&gt; </span><span style='color: #BCBCBC;'>103</span><span>    13   364      2    56     1       1       70        80       </span><span style='color: #BB0000;'>NA</span><span>       4
-#&gt; </span><span style='color: #BCBCBC;'>104</span><span>     6   107      2    63     1       1       90        70       </span><span style='color: #BB0000;'>NA</span><span>       0
-#&gt; </span><span style='color: #BCBCBC;'>105</span><span>    13   177      2    59     1       2       50        </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>      32
-#&gt; </span><span style='color: #BCBCBC;'>106</span><span>    12   156      2    66     1       1       80        90      875      14
-#&gt; </span><span style='color: #BCBCBC;'>107</span><span>    26   529      1    54     2       1       80       100      975      -</span><span style='color: #BB0000;'>3</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>108</span><span>     1    11      2    67     1       1       90        90      925      </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>109</span><span>    21   429      2    55     1       1      100        80      975       5
-#&gt; </span><span style='color: #BCBCBC;'>110</span><span>     3   351      2    75     2       2       60        50      925      11
-#&gt; </span><span style='color: #BCBCBC;'>111</span><span>    13    15      2    69     1       0       90        70      575      10
-#&gt; </span><span style='color: #BCBCBC;'>112</span><span>     1   181      2    44     1       1       80        90     </span><span style='text-decoration: underline;'>1</span><span>175       5
-#&gt; </span><span style='color: #BCBCBC;'>113</span><span>    10   283      2    80     1       1       80       100     </span><span style='text-decoration: underline;'>1</span><span>030       6
-#&gt; </span><span style='color: #BCBCBC;'>114</span><span>     3   201      2    75     2       0       90       100       </span><span style='color: #BB0000;'>NA</span><span>       1
-#&gt; </span><span style='color: #BCBCBC;'>115</span><span>     6   524      2    54     2       1       80       100       </span><span style='color: #BB0000;'>NA</span><span>      15
-#&gt; </span><span style='color: #BCBCBC;'>116</span><span>     1    13      2    76     1       2       70        70      413      20
-#&gt; </span><span style='color: #BCBCBC;'>117</span><span>     3   212      2    49     1       2       70        60      675      20
-#&gt; </span><span style='color: #BCBCBC;'>118</span><span>     1   524      2    68     1       2       60        70     </span><span style='text-decoration: underline;'>1</span><span>300      30
-#&gt; </span><span style='color: #BCBCBC;'>119</span><span>    16   288      2    66     1       2       70        60      613      24
-#&gt; </span><span style='color: #BCBCBC;'>120</span><span>    15   363      2    80     1       1       80        90      346      11
-#&gt; </span><span style='color: #BCBCBC;'>121</span><span>    22   442      2    75     1       0       90        90       </span><span style='color: #BB0000;'>NA</span><span>       0
-#&gt; </span><span style='color: #BCBCBC;'>122</span><span>    26   199      2    60     2       2       70        80      675      10
-#&gt; </span><span style='color: #BCBCBC;'>123</span><span>     3   550      2    69     2       1       70        80      910       0
-#&gt; </span><span style='color: #BCBCBC;'>124</span><span>    11    54      2    72     1       2       60        60      768      -</span><span style='color: #BB0000;'>3</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>125</span><span>     1   558      2    70     1       0       90        90     </span><span style='text-decoration: underline;'>1</span><span>025      17
-#&gt; </span><span style='color: #BCBCBC;'>126</span><span>    22   207      2    66     1       1       80        80      925      20
-#&gt; </span><span style='color: #BCBCBC;'>127</span><span>     7    92      2    50     1       1       80        60     </span><span style='text-decoration: underline;'>1</span><span>075      13
-#&gt; </span><span style='color: #BCBCBC;'>128</span><span>    12    60      2    64     1       1       80        90      993       0
-#&gt; </span><span style='color: #BCBCBC;'>129</span><span>    16   551      1    77     2       2       80        60      750      28
-#&gt; </span><span style='color: #BCBCBC;'>130</span><span>    12   543      1    48     2       0       90        60       </span><span style='color: #BB0000;'>NA</span><span>       4
-#&gt; </span><span style='color: #BCBCBC;'>131</span><span>     4   293      2    59     2       1       80        80      925      52
-#&gt; </span><span style='color: #BCBCBC;'>132</span><span>    16   202      2    53     1       1       80        80       </span><span style='color: #BB0000;'>NA</span><span>      20
-#&gt; </span><span style='color: #BCBCBC;'>133</span><span>     6   353      2    47     1       0      100        90     </span><span style='text-decoration: underline;'>1</span><span>225       5
-#&gt; </span><span style='color: #BCBCBC;'>134</span><span>    13   511      1    55     2       1       80        70       </span><span style='color: #BB0000;'>NA</span><span>      49
-#&gt; </span><span style='color: #BCBCBC;'>135</span><span>     1   267      2    67     1       0       90        70      313       6
-#&gt; </span><span style='color: #BCBCBC;'>136</span><span>    22   511      1    74     2       2       60        40       96      37
-#&gt; </span><span style='color: #BCBCBC;'>137</span><span>    12   371      2    58     2       1       80        70       </span><span style='color: #BB0000;'>NA</span><span>       0
-#&gt; </span><span style='color: #BCBCBC;'>138</span><span>    13   387      2    56     1       2       80        60     </span><span style='text-decoration: underline;'>1</span><span>075      </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>139</span><span>     1   457      2    54     1       1       90        90      975      -</span><span style='color: #BB0000;'>5</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>140</span><span>     5   337      2    56     1       0      100       100     </span><span style='text-decoration: underline;'>1</span><span>500      15
-#&gt; </span><span style='color: #BCBCBC;'>141</span><span>    21   201      2    73     2       2       70        60     </span><span style='text-decoration: underline;'>1</span><span>225     -</span><span style='color: #BB0000;'>16</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>142</span><span>     3   404      1    74     1       1       80        70      413      38
-#&gt; </span><span style='color: #BCBCBC;'>143</span><span>    26   222      2    76     1       2       70        70     </span><span style='text-decoration: underline;'>1</span><span>500       8
-#&gt; </span><span style='color: #BCBCBC;'>144</span><span>     1    62      2    65     2       1       80        90     </span><span style='text-decoration: underline;'>1</span><span>075       0
-#&gt; </span><span style='color: #BCBCBC;'>145</span><span>    11   458      1    57     1       1       80       100      513      30
-#&gt; </span><span style='color: #BCBCBC;'>146</span><span>    26   356      1    53     2       1       90        90       </span><span style='color: #BB0000;'>NA</span><span>       2
-#&gt; </span><span style='color: #BCBCBC;'>147</span><span>    16   353      2    71     1       0      100        80      775       2
-#&gt; </span><span style='color: #BCBCBC;'>148</span><span>    16   163      2    54     1       1       90        80     </span><span style='text-decoration: underline;'>1</span><span>225      13
-#&gt; </span><span style='color: #BCBCBC;'>149</span><span>    12    31      2    82     1       0      100        90      413      27
-#&gt; </span><span style='color: #BCBCBC;'>150</span><span>    13   340      2    59     2       0      100        90       </span><span style='color: #BB0000;'>NA</span><span>       0
-#&gt; </span><span style='color: #BCBCBC;'>151</span><span>    13   229      2    70     1       1       70        60     </span><span style='text-decoration: underline;'>1</span><span>175      -</span><span style='color: #BB0000;'>2</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>152</span><span>    22   444      1    60     1       0       90       100       </span><span style='color: #BB0000;'>NA</span><span>       7
-#&gt; </span><span style='color: #BCBCBC;'>153</span><span>     5   315      1    62     2       0       90        90       </span><span style='color: #BB0000;'>NA</span><span>       0
-#&gt; </span><span style='color: #BCBCBC;'>154</span><span>    16   182      2    53     2       1       80        60       </span><span style='color: #BB0000;'>NA</span><span>       4
-#&gt; </span><span style='color: #BCBCBC;'>155</span><span>    32   156      2    55     1       2       70        30     </span><span style='text-decoration: underline;'>1</span><span>025      10
-#&gt; </span><span style='color: #BCBCBC;'>156</span><span>    </span><span style='color: #BB0000;'>NA</span><span>   329      2    69     1       2       70        80      713      20
-#&gt; </span><span style='color: #BCBCBC;'>157</span><span>    26   364      1    68     2       1       90        90       </span><span style='color: #BB0000;'>NA</span><span>       7
-#&gt; </span><span style='color: #BCBCBC;'>158</span><span>     4   291      2    62     1       2       70        60      475      27
-#&gt; </span><span style='color: #BCBCBC;'>159</span><span>    12   179      2    63     1       1       80        70      538      -</span><span style='color: #BB0000;'>2</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>160</span><span>     1   376      1    56     2       1       80        90      825      17
-#&gt; </span><span style='color: #BCBCBC;'>161</span><span>    32   384      1    62     2       0       90        90      588       8
-#&gt; </span><span style='color: #BCBCBC;'>162</span><span>    10   268      2    44     2       1       90       100     </span><span style='text-decoration: underline;'>2</span><span>450       2
-#&gt; </span><span style='color: #BCBCBC;'>163</span><span>    11   292      1    69     1       2       60        70     </span><span style='text-decoration: underline;'>2</span><span>450      36
-#&gt; </span><span style='color: #BCBCBC;'>164</span><span>     6   142      2    63     1       1       90        80      875       2
-#&gt; </span><span style='color: #BCBCBC;'>165</span><span>     7   413      1    64     1       1       80        70      413      16
-#&gt; </span><span style='color: #BCBCBC;'>166</span><span>    16   266      1    57     2       0       90        90     </span><span style='text-decoration: underline;'>1</span><span>075       3
-#&gt; </span><span style='color: #BCBCBC;'>167</span><span>    11   194      2    60     2       1       80        60       </span><span style='color: #BB0000;'>NA</span><span>      33
-#&gt; </span><span style='color: #BCBCBC;'>168</span><span>    21   320      2    46     1       0      100       100      860       4
-#&gt; </span><span style='color: #BCBCBC;'>169</span><span>     6   181      2    61     1       1       90        90      730       0
-#&gt; </span><span style='color: #BCBCBC;'>170</span><span>    12   285      2    65     1       0      100        90     </span><span style='text-decoration: underline;'>1</span><span>025       0
-#&gt; </span><span style='color: #BCBCBC;'>171</span><span>    13   301      1    61     1       1       90       100      825       2
-#&gt; </span><span style='color: #BCBCBC;'>172</span><span>     2   348      2    58     2       0       90        80     </span><span style='text-decoration: underline;'>1</span><span>225      10
-#&gt; </span><span style='color: #BCBCBC;'>173</span><span>     2   197      2    56     1       1       90        60      768      37
-#&gt; </span><span style='color: #BCBCBC;'>174</span><span>    16   382      1    43     2       0      100        90      338       6
-#&gt; </span><span style='color: #BCBCBC;'>175</span><span>     1   303      1    53     1       1       90        80     </span><span style='text-decoration: underline;'>1</span><span>225      12
-#&gt; </span><span style='color: #BCBCBC;'>176</span><span>    13   296      1    59     2       1       80       100     </span><span style='text-decoration: underline;'>1</span><span>025       0
-#&gt; </span><span style='color: #BCBCBC;'>177</span><span>     1   180      2    56     1       2       60        80     </span><span style='text-decoration: underline;'>1</span><span>225      -</span><span style='color: #BB0000;'>2</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>178</span><span>    13   186      2    55     2       1       80        70       </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>179</span><span>     1   145      2    53     2       1       80        90      588      13
-#&gt; </span><span style='color: #BCBCBC;'>180</span><span>     7   269      1    74     2       0      100       100      588       0
-#&gt; </span><span style='color: #BCBCBC;'>181</span><span>    13   300      1    60     1       0      100       100      975       5
-#&gt; </span><span style='color: #BCBCBC;'>182</span><span>     1   284      1    39     1       0      100        90     </span><span style='text-decoration: underline;'>1</span><span>225      -</span><span style='color: #BB0000;'>5</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>183</span><span>    16   350      2    66     2       0       90       100     </span><span style='text-decoration: underline;'>1</span><span>025      </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>184</span><span>    32   272      1    65     2       1       80        90       </span><span style='color: #BB0000;'>NA</span><span>      -</span><span style='color: #BB0000;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>185</span><span>    12   292      1    51     2       0       90        80     </span><span style='text-decoration: underline;'>1</span><span>225       0
-#&gt; </span><span style='color: #BCBCBC;'>186</span><span>    12   332      1    45     2       0       90       100      975       5
-#&gt; </span><span style='color: #BCBCBC;'>187</span><span>     2   285      2    72     2       2       70        90      463      20
-#&gt; </span><span style='color: #BCBCBC;'>188</span><span>     3   259      1    58     1       0       90        80     </span><span style='text-decoration: underline;'>1</span><span>300       8
-#&gt; </span><span style='color: #BCBCBC;'>189</span><span>    15   110      2    64     1       1       80        60     </span><span style='text-decoration: underline;'>1</span><span>025      12
-#&gt; </span><span style='color: #BCBCBC;'>190</span><span>    22   286      2    53     1       0       90        90     </span><span style='text-decoration: underline;'>1</span><span>225       8
-#&gt; </span><span style='color: #BCBCBC;'>191</span><span>    16   270      2    72     1       1       80        90      488      14
-#&gt; </span><span style='color: #BCBCBC;'>192</span><span>    16    81      2    52     1       2       60        70     </span><span style='text-decoration: underline;'>1</span><span>075      </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>193</span><span>    12   131      2    50     1       1       90        80      513      </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>194</span><span>     1   225      1    64     1       1       90        80      825      33
-#&gt; </span><span style='color: #BCBCBC;'>195</span><span>    22   269      2    71     1       1       90        90     </span><span style='text-decoration: underline;'>1</span><span>300      -</span><span style='color: #BB0000;'>2</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>196</span><span>    12   225      1    70     1       0      100       100     </span><span style='text-decoration: underline;'>1</span><span>175       6
-#&gt; </span><span style='color: #BCBCBC;'>197</span><span>    32   243      1    63     2       1       80        90      825       0
-#&gt; </span><span style='color: #BCBCBC;'>198</span><span>    21   279      1    64     1       1       90        90       </span><span style='color: #BB0000;'>NA</span><span>       4
-#&gt; </span><span style='color: #BCBCBC;'>199</span><span>     1   276      1    52     2       0      100        80      975       0
-#&gt; </span><span style='color: #BCBCBC;'>200</span><span>    32   135      2    60     1       1       90        70     </span><span style='text-decoration: underline;'>1</span><span>275       0
-#&gt; </span><span style='color: #BCBCBC;'>201</span><span>    15    79      2    64     2       1       90        90      488      37
-#&gt; </span><span style='color: #BCBCBC;'>202</span><span>    22    59      2    73     1       1       60        60     </span><span style='text-decoration: underline;'>2</span><span>200       5
-#&gt; </span><span style='color: #BCBCBC;'>203</span><span>    32   240      1    63     2       0       90       100     </span><span style='text-decoration: underline;'>1</span><span>025       0
-#&gt; </span><span style='color: #BCBCBC;'>204</span><span>     3   202      1    50     2       0      100       100      635       1
-#&gt; </span><span style='color: #BCBCBC;'>205</span><span>    26   235      1    63     2       0      100        90      413       0
-#&gt; </span><span style='color: #BCBCBC;'>206</span><span>    33   105      2    62     1       2       </span><span style='color: #BB0000;'>NA</span><span>        70       </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>207</span><span>     5   224      1    55     2       0       80        90       </span><span style='color: #BB0000;'>NA</span><span>      23
-#&gt; </span><span style='color: #BCBCBC;'>208</span><span>    13   239      2    50     2       2       60        60     </span><span style='text-decoration: underline;'>1</span><span>025      -</span><span style='color: #BB0000;'>3</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>209</span><span>    21   237      1    69     1       1       80        70       </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>210</span><span>    33   173      1    59     2       1       90        80       </span><span style='color: #BB0000;'>NA</span><span>      10
-#&gt; </span><span style='color: #BCBCBC;'>211</span><span>     1   252      1    60     2       0      100        90      488      -</span><span style='color: #BB0000;'>2</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>212</span><span>     6   221      1    67     1       1       80        70      413      23
-#&gt; </span><span style='color: #BCBCBC;'>213</span><span>    15   185      1    69     1       1       90        70     </span><span style='text-decoration: underline;'>1</span><span>075       0
-#&gt; </span><span style='color: #BCBCBC;'>214</span><span>    11    92      1    64     2       2       70       100       </span><span style='color: #BB0000;'>NA</span><span>      31
-#&gt; </span><span style='color: #BCBCBC;'>215</span><span>    11    13      2    65     1       1       80        90       </span><span style='color: #BB0000;'>NA</span><span>      10
-#&gt; </span><span style='color: #BCBCBC;'>216</span><span>    11   222      1    65     1       1       90        70     </span><span style='text-decoration: underline;'>1</span><span>025      18
-#&gt; </span><span style='color: #BCBCBC;'>217</span><span>    13   192      1    41     2       1       90        80       </span><span style='color: #BB0000;'>NA</span><span>     -</span><span style='color: #BB0000;'>10</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>218</span><span>    21   183      2    76     1       2       80        60      825       7
-#&gt; </span><span style='color: #BCBCBC;'>219</span><span>    11   211      1    70     2       2       70        30      131       3
-#&gt; </span><span style='color: #BCBCBC;'>220</span><span>     2   175      1    57     2       0       80        80      725      11
-#&gt; </span><span style='color: #BCBCBC;'>221</span><span>    22   197      1    67     1       1       80        90     </span><span style='text-decoration: underline;'>1</span><span>500       2
-#&gt; </span><span style='color: #BCBCBC;'>222</span><span>    11   203      1    71     2       1       80        90     </span><span style='text-decoration: underline;'>1</span><span>025       0
-#&gt; </span><span style='color: #BCBCBC;'>223</span><span>     1   116      2    76     1       1       80        80       </span><span style='color: #BB0000;'>NA</span><span>       0
-#&gt; </span><span style='color: #BCBCBC;'>224</span><span>     1   188      1    77     1       1       80        60       </span><span style='color: #BB0000;'>NA</span><span>       3
-#&gt; </span><span style='color: #BCBCBC;'>225</span><span>    13   191      1    39     1       0       90        90     </span><span style='text-decoration: underline;'>2</span><span>350      -</span><span style='color: #BB0000;'>5</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>226</span><span>    32   105      1    75     2       2       60        70     </span><span style='text-decoration: underline;'>1</span><span>025       5
-#&gt; </span><span style='color: #BCBCBC;'>227</span><span>     6   174      1    66     1       1       90       100     </span><span style='text-decoration: underline;'>1</span><span>075       1
-#&gt; </span><span style='color: #BCBCBC;'>228</span><span>    22   177      1    58     2       1       80        90     </span><span style='text-decoration: underline;'>1</span><span>060       0
-#&gt;     .fitted .se.fit   .resid
-#&gt;       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>  1</span><span>   1.49   0.149   0.004</span><span style='text-decoration: underline;'>39</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>  2</span><span>   1.35   0.094</span><span style='text-decoration: underline;'>4</span><span> -</span><span style='color: #BB0000;'>0.506</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>  3</span><span>   1.10   0.095</span><span style='text-decoration: underline;'>6</span><span> -</span><span style='color: #BB0000;'>3.13</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>  4</span><span>   1.12   0.090</span><span style='text-decoration: underline;'>0</span><span>  0.533  
-#&gt; </span><span style='color: #BCBCBC;'>  5</span><span>   1.17   0.077</span><span style='text-decoration: underline;'>0</span><span> -</span><span style='color: #BB0000;'>2.35</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>  6</span><span>   1.49   0.149  -</span><span style='color: #BB0000;'>4.25</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>  7</span><span>   0.806  0.104   0.448  
-#&gt; </span><span style='color: #BCBCBC;'>  8</span><span>   0.848  0.121   0.290  
-#&gt; </span><span style='color: #BCBCBC;'>  9</span><span>   1.04   0.115   0.548  
-#&gt; </span><span style='color: #BCBCBC;'> 10</span><span>   1.19   0.074</span><span style='text-decoration: underline;'>5</span><span>  0.681  
-#&gt; </span><span style='color: #BCBCBC;'> 11</span><span>   1.12   0.090</span><span style='text-decoration: underline;'>0</span><span>  0.686  
-#&gt; </span><span style='color: #BCBCBC;'> 12</span><span>   0.806  0.104  -</span><span style='color: #BB0000;'>0.419</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 13</span><span>   0.806  0.104  -</span><span style='color: #BB0000;'>0.727</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 14</span><span>   1.17   0.077</span><span style='text-decoration: underline;'>0</span><span>  0.885  
-#&gt; </span><span style='color: #BCBCBC;'> 15</span><span>   1.12   0.090</span><span style='text-decoration: underline;'>0</span><span> -</span><span style='color: #BB0000;'>0.619</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 16</span><span>   1.32   0.087</span><span style='text-decoration: underline;'>8</span><span>  0.723  
-#&gt; </span><span style='color: #BCBCBC;'> 17</span><span>   1.39   0.110  -</span><span style='color: #BB0000;'>1.18</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 18</span><span>   1.24   0.073</span><span style='text-decoration: underline;'>4</span><span> -</span><span style='color: #BB0000;'>1.56</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 19</span><span>   0.657  0.092</span><span style='text-decoration: underline;'>9</span><span>  0.948  
-#&gt; </span><span style='color: #BCBCBC;'> 20</span><span>   1.12   0.090</span><span style='text-decoration: underline;'>0</span><span>  0.867  
-#&gt; </span><span style='color: #BCBCBC;'> 21</span><span>   1.32   0.087</span><span style='text-decoration: underline;'>8</span><span>  0.162  
-#&gt; </span><span style='color: #BCBCBC;'> 22</span><span>   0.583  0.119   0.936  
-#&gt; </span><span style='color: #BCBCBC;'> 23</span><span>   0.990  0.135  -</span><span style='color: #BB0000;'>0.598</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 24</span><span>   1.14   0.084</span><span style='text-decoration: underline;'>9</span><span> -</span><span style='color: #BB0000;'>0.026</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 25</span><span>   1.44   0.129  -</span><span style='color: #BB0000;'>0.386</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 26</span><span>   0.834  0.115  -</span><span style='color: #BB0000;'>0.054</span><span style='color: #BB0000;text-decoration: underline;'>8</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 27</span><span>   1.17   0.077</span><span style='text-decoration: underline;'>0</span><span> -</span><span style='color: #BB0000;'>0.748</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 28</span><span>   1.39   0.110   0.760  
-#&gt; </span><span style='color: #BCBCBC;'> 29</span><span>   1.04   0.115   0.015</span><span style='text-decoration: underline;'>0</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 30</span><span>   1.49   0.149   0.968  
-#&gt; </span><span style='color: #BCBCBC;'> 31</span><span>   0.820  0.109   0.026</span><span style='text-decoration: underline;'>6</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 32</span><span>   1.47   0.139   0.943  
-#&gt; </span><span style='color: #BCBCBC;'> 33</span><span>   0.957  0.149  -</span><span style='color: #BB0000;'>0.293</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 34</span><span>   0.703  0.086</span><span style='text-decoration: underline;'>0</span><span>  0.892  
-#&gt; </span><span style='color: #BCBCBC;'> 35</span><span>   1.19   0.074</span><span style='text-decoration: underline;'>5</span><span>  0.935  
-#&gt; </span><span style='color: #BCBCBC;'> 36</span><span>   0.727  0.086</span><span style='text-decoration: underline;'>3</span><span>  0.871  
-#&gt; </span><span style='color: #BCBCBC;'> 37</span><span>   1.28   0.078</span><span style='text-decoration: underline;'>0</span><span> -</span><span style='color: #BB0000;'>2.37</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 38</span><span>   0.779  0.095</span><span style='text-decoration: underline;'>5</span><span> -</span><span style='color: #BB0000;'>2.22</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 39</span><span>   1.49   0.149   0.804  
-#&gt; </span><span style='color: #BCBCBC;'> 40</span><span>   0.753  0.089</span><span style='text-decoration: underline;'>5</span><span> -</span><span style='color: #BB0000;'>0.673</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 41</span><span>   1.39   0.110  -</span><span style='color: #BB0000;'>0.621</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 42</span><span>   0.877  0.135   0.797  
-#&gt; </span><span style='color: #BCBCBC;'> 43</span><span>   0.691  0.086</span><span style='text-decoration: underline;'>9</span><span>  0.284  
-#&gt; </span><span style='color: #BCBCBC;'> 44</span><span>   0.703  0.086</span><span style='text-decoration: underline;'>0</span><span>  0.847  
-#&gt; </span><span style='color: #BCBCBC;'> 45</span><span>   1.35   0.094</span><span style='text-decoration: underline;'>4</span><span> -</span><span style='color: #BB0000;'>1.05</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 46</span><span>   0.923  0.159   0.871  
-#&gt; </span><span style='color: #BCBCBC;'> 47</span><span>   1.49   0.149   0.039</span><span style='text-decoration: underline;'>2</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 48</span><span>   1.24   0.073</span><span style='text-decoration: underline;'>4</span><span> -</span><span style='color: #BB0000;'>0.531</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 49</span><span>   1.49   0.149  -</span><span style='color: #BB0000;'>1.55</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 50</span><span>   0.593  0.115  -</span><span style='color: #BB0000;'>0.425</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 51</span><span>   0.863  0.128  -</span><span style='color: #BB0000;'>0.990</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 52</span><span>   1.24   0.073</span><span style='text-decoration: underline;'>4</span><span>  0.560  
-#&gt; </span><span style='color: #BCBCBC;'> 53</span><span>   1.35   0.094</span><span style='text-decoration: underline;'>4</span><span>  0.927  
-#&gt; </span><span style='color: #BCBCBC;'> 54</span><span>   1.14   0.084</span><span style='text-decoration: underline;'>9</span><span>  0.426  
-#&gt; </span><span style='color: #BCBCBC;'> 55</span><span>   1.15   0.080</span><span style='text-decoration: underline;'>5</span><span> -</span><span style='color: #BB0000;'>1.23</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 56</span><span>   1.22   0.073</span><span style='text-decoration: underline;'>3</span><span>  0.889  
-#&gt; </span><span style='color: #BCBCBC;'> 57</span><span>   0.766  0.092</span><span style='text-decoration: underline;'>1</span><span>  0.997  
-#&gt; </span><span style='color: #BCBCBC;'> 58</span><span>   1.12   0.090</span><span style='text-decoration: underline;'>0</span><span>  0.787  
-#&gt; </span><span style='color: #BCBCBC;'> 59</span><span>   0.679  0.088</span><span style='text-decoration: underline;'>4</span><span> -</span><span style='color: #BB0000;'>0.273</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 60</span><span>   0.753  0.089</span><span style='text-decoration: underline;'>5</span><span>  0.431  
-#&gt; </span><span style='color: #BCBCBC;'> 61</span><span>   0.908  0.151   0.023</span><span style='text-decoration: underline;'>0</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 62</span><span>   0.957  0.149   0.571  
-#&gt; </span><span style='color: #BCBCBC;'> 63</span><span>   1.47   0.139   0.578  
-#&gt; </span><span style='color: #BCBCBC;'> 64</span><span>   0.766  0.092</span><span style='text-decoration: underline;'>1</span><span>  0.945  
-#&gt; </span><span style='color: #BCBCBC;'> 65</span><span>   1.37   0.102   0.653  
-#&gt; </span><span style='color: #BCBCBC;'> 66</span><span>   1.35   0.094</span><span style='text-decoration: underline;'>4</span><span>  0.878  
-#&gt; </span><span style='color: #BCBCBC;'> 67</span><span>   0.792  0.099</span><span style='text-decoration: underline;'>5</span><span>  0.674  
-#&gt; </span><span style='color: #BCBCBC;'> 68</span><span>   0.753  0.089</span><span style='text-decoration: underline;'>5</span><span> -</span><span style='color: #BB0000;'>1.98</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 69</span><span>   1.35   0.094</span><span style='text-decoration: underline;'>4</span><span> -</span><span style='color: #BB0000;'>0.344</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 70</span><span>   1.32   0.087</span><span style='text-decoration: underline;'>8</span><span>  0.375  
-#&gt; </span><span style='color: #BCBCBC;'> 71</span><span>   1.24   0.073</span><span style='text-decoration: underline;'>4</span><span> -</span><span style='color: #BB0000;'>3.25</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 72</span><span>   0.573  0.123   0.624  
-#&gt; </span><span style='color: #BCBCBC;'> 73</span><span>   1.49   0.149   0.981  
-#&gt; </span><span style='color: #BCBCBC;'> 74</span><span>   0.835  0.202   0.841  
-#&gt; </span><span style='color: #BCBCBC;'> 75</span><span>   0.624  0.103   0.715  
-#&gt; </span><span style='color: #BCBCBC;'> 76</span><span>   0.848  0.121   0.169  
-#&gt; </span><span style='color: #BCBCBC;'> 77</span><span>   0.603  0.110  -</span><span style='color: #BB0000;'>0.207</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 78</span><span>   0.657  0.092</span><span style='text-decoration: underline;'>9</span><span>  0.436  
-#&gt; </span><span style='color: #BCBCBC;'> 79</span><span>   1.68   0.233   0.979  
-#&gt; </span><span style='color: #BCBCBC;'> 80</span><span>   1.47   0.139   0.570  
-#&gt; </span><span style='color: #BCBCBC;'> 81</span><span>   1.15   0.080</span><span style='text-decoration: underline;'>5</span><span> -</span><span style='color: #BB0000;'>1.89</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 82</span><span>   1.08   0.102   0.850  
-#&gt; </span><span style='color: #BCBCBC;'> 83</span><span>   0.864  0.189  -</span><span style='color: #BB0000;'>0.314</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 84</span><span>   0.535  0.141   0.852  
-#&gt; </span><span style='color: #BCBCBC;'> 85</span><span>   0.894  0.176  -</span><span style='color: #BB0000;'>2.24</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 86</span><span>   1.42   0.119   0.205  
-#&gt; </span><span style='color: #BCBCBC;'> 87</span><span>   0.727  0.086</span><span style='text-decoration: underline;'>3</span><span> -</span><span style='color: #BB0000;'>0.208</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 88</span><span>   1.19   0.074</span><span style='text-decoration: underline;'>5</span><span>  0.731  
-#&gt; </span><span style='color: #BCBCBC;'> 89</span><span>   0.535  0.141  -</span><span style='color: #BB0000;'>1.23</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 90</span><span>   1.44   0.129   0.635  
-#&gt; </span><span style='color: #BCBCBC;'> 91</span><span>   1.24   0.073</span><span style='text-decoration: underline;'>4</span><span> -</span><span style='color: #BB0000;'>1.24</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 92</span><span>   1.39   0.110   0.325  
-#&gt; </span><span style='color: #BCBCBC;'> 93</span><span>   1.30   0.082</span><span style='text-decoration: underline;'>3</span><span>  0.844  
-#&gt; </span><span style='color: #BCBCBC;'> 94</span><span>   0.668  0.090</span><span style='text-decoration: underline;'>4</span><span>  0.668  
-#&gt; </span><span style='color: #BCBCBC;'> 95</span><span>   0.820  0.109  -</span><span style='color: #BB0000;'>1.25</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 96</span><span>   1.44   0.129   0.938  
-#&gt; </span><span style='color: #BCBCBC;'> 97</span><span>   1.37   0.102   0.577  
-#&gt; </span><span style='color: #BCBCBC;'> 98</span><span>   1.42   0.119   0.028</span><span style='text-decoration: underline;'>6</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 99</span><span>   1.26   0.075</span><span style='text-decoration: underline;'>0</span><span> -</span><span style='color: #BB0000;'>0.524</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>100</span><span>   0.834  0.115   0.777  
-#&gt; </span><span style='color: #BCBCBC;'>101</span><span>   0.679  0.088</span><span style='text-decoration: underline;'>4</span><span> -</span><span style='color: #BB0000;'>0.962</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>102</span><span>   0.820  0.109   0.101  
-#&gt; </span><span style='color: #BCBCBC;'>103</span><span>   1.10   0.095</span><span style='text-decoration: underline;'>6</span><span>  0.033</span><span style='text-decoration: underline;'>2</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'>104</span><span>   1.24   0.073</span><span style='text-decoration: underline;'>4</span><span>  0.809  
-#&gt; </span><span style='color: #BCBCBC;'>105</span><span>   1.15   0.080</span><span style='text-decoration: underline;'>5</span><span>  0.654  
-#&gt; </span><span style='color: #BCBCBC;'>106</span><span>   1.30   0.082</span><span style='text-decoration: underline;'>3</span><span>  0.689  
-#&gt; </span><span style='color: #BCBCBC;'>107</span><span>   0.635  0.099</span><span style='text-decoration: underline;'>1</span><span> -</span><span style='color: #BB0000;'>0.839</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>108</span><span>   1.32   0.087</span><span style='text-decoration: underline;'>8</span><span>  0.983  
-#&gt; </span><span style='color: #BCBCBC;'>109</span><span>   1.08   0.102  -</span><span style='color: #BB0000;'>0.097</span><span style='color: #BB0000;text-decoration: underline;'>2</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'>110</span><span>   0.908  0.151   0.278  
-#&gt; </span><span style='color: #BCBCBC;'>111</span><span>   1.37   0.102   0.953  
-#&gt; </span><span style='color: #BCBCBC;'>112</span><span>   0.894  0.176   0.707  
-#&gt; </span><span style='color: #BCBCBC;'>113</span><span>   1.65   0.220   0.089</span><span style='text-decoration: underline;'>5</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'>114</span><span>   0.908  0.151   0.649  
-#&gt; </span><span style='color: #BCBCBC;'>115</span><span>   0.635  0.099</span><span style='text-decoration: underline;'>1</span><span>  0.170  
-#&gt; </span><span style='color: #BCBCBC;'>116</span><span>   1.54   0.172   0.957  
-#&gt; </span><span style='color: #BCBCBC;'>117</span><span>   0.974  0.142   0.585  
-#&gt; </span><span style='color: #BCBCBC;'>118</span><span>   1.35   0.094</span><span style='text-decoration: underline;'>4</span><span> -</span><span style='color: #BB0000;'>0.759</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>119</span><span>   1.30   0.082</span><span style='text-decoration: underline;'>3</span><span>  0.218  
-#&gt; </span><span style='color: #BCBCBC;'>120</span><span>   1.65   0.220  -</span><span style='color: #BB0000;'>0.419</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>121</span><span>   1.52   0.160  -</span><span style='color: #BB0000;'>0.602</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>122</span><span>   0.703  0.086</span><span style='text-decoration: underline;'>0</span><span>  0.735  
-#&gt; </span><span style='color: #BCBCBC;'>123</span><span>   0.820  0.109  -</span><span style='color: #BB0000;'>0.133</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>124</span><span>   1.44   0.129   0.912  
-#&gt; </span><span style='color: #BCBCBC;'>125</span><span>   1.39   0.110  -</span><span style='color: #BB0000;'>0.971</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>126</span><span>   1.30   0.082</span><span style='text-decoration: underline;'>3</span><span>  0.474  
-#&gt; </span><span style='color: #BCBCBC;'>127</span><span>   0.990  0.135   0.874  
-#&gt; </span><span style='color: #BCBCBC;'>128</span><span>   1.26   0.075</span><span style='text-decoration: underline;'>0</span><span>  0.909  
-#&gt; </span><span style='color: #BCBCBC;'>129</span><span>   0.939  0.167  -</span><span style='color: #BB0000;'>1.30</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>130</span><span>   0.573  0.123  -</span><span style='color: #BB0000;'>0.774</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>131</span><span>   0.691  0.086</span><span style='text-decoration: underline;'>9</span><span>  0.570  
-#&gt; </span><span style='color: #BCBCBC;'>132</span><span>   1.04   0.115   0.586  
-#&gt; </span><span style='color: #BCBCBC;'>133</span><span>   0.941  0.156   0.232  
-#&gt; </span><span style='color: #BCBCBC;'>134</span><span>   0.646  0.095</span><span style='text-decoration: underline;'>8</span><span> -</span><span style='color: #BB0000;'>0.782</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>135</span><span>   1.32   0.087</span><span style='text-decoration: underline;'>8</span><span>  0.319  
-#&gt; </span><span style='color: #BCBCBC;'>136</span><span>   0.893  0.143  -</span><span style='color: #BB0000;'>1.08</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>137</span><span>   0.679  0.088</span><span style='text-decoration: underline;'>4</span><span>  0.386  
-#&gt; </span><span style='color: #BCBCBC;'>138</span><span>   1.10   0.095</span><span style='text-decoration: underline;'>6</span><span> -</span><span style='color: #BB0000;'>0.018</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'>139</span><span>   1.06   0.108  -</span><span style='color: #BB0000;'>0.209</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>140</span><span>   1.10   0.095</span><span style='text-decoration: underline;'>6</span><span>  0.200  
-#&gt; </span><span style='color: #BCBCBC;'>141</span><span>   0.877  0.135   0.661  
-#&gt; </span><span style='color: #BCBCBC;'>142</span><span>   1.49   0.149  -</span><span style='color: #BB0000;'>1.43</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>143</span><span>   1.54   0.172   0.320  
-#&gt; </span><span style='color: #BCBCBC;'>144</span><span>   0.766  0.092</span><span style='text-decoration: underline;'>1</span><span>  0.936  
-#&gt; </span><span style='color: #BCBCBC;'>145</span><span>   1.12   0.090</span><span style='text-decoration: underline;'>0</span><span> -</span><span style='color: #BB0000;'>1.27</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>146</span><span>   0.624  0.103  -</span><span style='color: #BB0000;'>0.514</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>147</span><span>   1.42   0.119  -</span><span style='color: #BB0000;'>0.156</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>148</span><span>   1.06   0.108   0.732  
-#&gt; </span><span style='color: #BCBCBC;'>149</span><span>   1.71   0.247   0.919  
-#&gt; </span><span style='color: #BCBCBC;'>150</span><span>   0.691  0.086</span><span style='text-decoration: underline;'>9</span><span>  0.487  
-#&gt; </span><span style='color: #BCBCBC;'>151</span><span>   1.39   0.110   0.353  
-#&gt; </span><span style='color: #BCBCBC;'>152</span><span>   1.17   0.077</span><span style='text-decoration: underline;'>0</span><span> -</span><span style='color: #BB0000;'>1.26</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>153</span><span>   0.727  0.086</span><span style='text-decoration: underline;'>3</span><span> -</span><span style='color: #BB0000;'>0.503</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>154</span><span>   0.624  0.103   0.790  
-#&gt; </span><span style='color: #BCBCBC;'>155</span><span>   1.08   0.102   0.742  
-#&gt; </span><span style='color: #BCBCBC;'>156</span><span>   1.37   0.102   0.018</span><span style='text-decoration: underline;'>9</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'>157</span><span>   0.806  0.104  -</span><span style='color: #BB0000;'>0.710</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>158</span><span>   1.22   0.073</span><span style='text-decoration: underline;'>3</span><span>  0.257  
-#&gt; </span><span style='color: #BCBCBC;'>159</span><span>   1.24   0.073</span><span style='text-decoration: underline;'>4</span><span>  0.618  
-#&gt; </span><span style='color: #BCBCBC;'>160</span><span>   0.657  0.092</span><span style='text-decoration: underline;'>9</span><span> -</span><span style='color: #BB0000;'>0.599</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>161</span><span>   0.727  0.086</span><span style='text-decoration: underline;'>3</span><span> -</span><span style='color: #BB0000;'>0.663</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>162</span><span>   0.535  0.141   0.720  
-#&gt; </span><span style='color: #BCBCBC;'>163</span><span>   1.37   0.102  -</span><span style='color: #BB0000;'>0.837</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>164</span><span>   1.24   0.073</span><span style='text-decoration: underline;'>4</span><span>  0.748  
-#&gt; </span><span style='color: #BCBCBC;'>165</span><span>   1.26   0.075</span><span style='text-decoration: underline;'>0</span><span> -</span><span style='color: #BB0000;'>1.21</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>166</span><span>   0.668  0.090</span><span style='text-decoration: underline;'>4</span><span> -</span><span style='color: #BB0000;'>0.338</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>167</span><span>   0.703  0.086</span><span style='text-decoration: underline;'>0</span><span>  0.745  
-#&gt; </span><span style='color: #BCBCBC;'>168</span><span>   0.925  0.162   0.349  
-#&gt; </span><span style='color: #BCBCBC;'>169</span><span>   1.19   0.074</span><span style='text-decoration: underline;'>5</span><span>  0.609  
-#&gt; </span><span style='color: #BCBCBC;'>170</span><span>   1.28   0.078</span><span style='text-decoration: underline;'>0</span><span>  0.264  
-#&gt; </span><span style='color: #BCBCBC;'>171</span><span>   1.19   0.074</span><span style='text-decoration: underline;'>5</span><span> -</span><span style='color: #BB0000;'>0.756</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>172</span><span>   0.679  0.088</span><span style='text-decoration: underline;'>4</span><span>  0.478  
-#&gt; </span><span style='color: #BCBCBC;'>173</span><span>   1.10   0.095</span><span style='text-decoration: underline;'>6</span><span>  0.594  
-#&gt; </span><span style='color: #BCBCBC;'>174</span><span>   0.526  0.146  -</span><span style='color: #BB0000;'>0.480</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>175</span><span>   1.04   0.115  -</span><span style='color: #BB0000;'>0.672</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>176</span><span>   0.691  0.086</span><span style='text-decoration: underline;'>9</span><span> -</span><span style='color: #BB0000;'>0.430</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>177</span><span>   1.10   0.095</span><span style='text-decoration: underline;'>6</span><span>  0.651  
-#&gt; </span><span style='color: #BCBCBC;'>178</span><span>   0.646  0.095</span><span style='text-decoration: underline;'>8</span><span>  0.774  
-#&gt; </span><span style='color: #BCBCBC;'>179</span><span>   0.624  0.103   0.864  
-#&gt; </span><span style='color: #BCBCBC;'>180</span><span>   0.893  0.143  -</span><span style='color: #BB0000;'>0.475</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>181</span><span>   1.17   0.077</span><span style='text-decoration: underline;'>0</span><span> -</span><span style='color: #BB0000;'>0.731</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>182</span><span>   0.821  0.208  -</span><span style='color: #BB0000;'>0.461</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>183</span><span>   0.779  0.095</span><span style='text-decoration: underline;'>5</span><span>  0.391  
-#&gt; </span><span style='color: #BCBCBC;'>184</span><span>   0.766  0.092</span><span style='text-decoration: underline;'>1</span><span> -</span><span style='color: #BB0000;'>0.415</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>185</span><span>   0.603  0.110  -</span><span style='color: #BB0000;'>0.369</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>186</span><span>   0.544  0.137  -</span><span style='color: #BB0000;'>0.390</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>187</span><span>   0.863  0.128   0.503  
-#&gt; </span><span style='color: #BCBCBC;'>188</span><span>   1.14   0.084</span><span style='text-decoration: underline;'>9</span><span> -</span><span style='color: #BB0000;'>0.574</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>189</span><span>   1.26   0.075</span><span style='text-decoration: underline;'>0</span><span>  0.797  
-#&gt; </span><span style='color: #BCBCBC;'>190</span><span>   1.04   0.115   0.384  
-#&gt; </span><span style='color: #BCBCBC;'>191</span><span>   1.44   0.129   0.219  
-#&gt; </span><span style='color: #BCBCBC;'>192</span><span>   1.02   0.121   0.887  
-#&gt; </span><span style='color: #BCBCBC;'>193</span><span>   0.990  0.135   0.819  
-#&gt; </span><span style='color: #BCBCBC;'>194</span><span>   1.26   0.075</span><span style='text-decoration: underline;'>0</span><span> -</span><span style='color: #BB0000;'>0.564</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>195</span><span>   1.42   0.119   0.245  
-#&gt; </span><span style='color: #BCBCBC;'>196</span><span>   1.39   0.110  -</span><span style='color: #BB0000;'>0.625</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>197</span><span>   0.740  0.087</span><span style='text-decoration: underline;'>5</span><span> -</span><span style='color: #BB0000;'>0.362</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>198</span><span>   1.26   0.075</span><span style='text-decoration: underline;'>0</span><span> -</span><span style='color: #BB0000;'>0.681</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>199</span><span>   0.613  0.106  -</span><span style='color: #BB0000;'>0.332</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>200</span><span>   1.17   0.077</span><span style='text-decoration: underline;'>0</span><span>  0.767  
-#&gt; </span><span style='color: #BCBCBC;'>201</span><span>   0.753  0.089</span><span style='text-decoration: underline;'>5</span><span>  0.923  
-#&gt; </span><span style='color: #BCBCBC;'>202</span><span>   1.47   0.139   0.904  
-#&gt; </span><span style='color: #BCBCBC;'>203</span><span>   0.740  0.087</span><span style='text-decoration: underline;'>5</span><span> -</span><span style='color: #BB0000;'>0.362</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>204</span><span>   0.593  0.115  -</span><span style='color: #BB0000;'>0.236</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>205</span><span>   0.740  0.087</span><span style='text-decoration: underline;'>5</span><span> -</span><span style='color: #BB0000;'>0.349</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>206</span><span>   1.22   0.073</span><span style='text-decoration: underline;'>3</span><span>  0.822  
-#&gt; </span><span style='color: #BCBCBC;'>207</span><span>   0.646  0.095</span><span style='text-decoration: underline;'>8</span><span> -</span><span style='color: #BB0000;'>0.290</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>208</span><span>   0.593  0.115   0.713  
-#&gt; </span><span style='color: #BCBCBC;'>209</span><span>   1.37   0.102  -</span><span style='color: #BB0000;'>0.647</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>210</span><span>   0.691  0.086</span><span style='text-decoration: underline;'>9</span><span> -</span><span style='color: #BB0000;'>0.195</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>211</span><span>   0.703  0.086</span><span style='text-decoration: underline;'>0</span><span> -</span><span style='color: #BB0000;'>0.356</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>212</span><span>   1.32   0.087</span><span style='text-decoration: underline;'>8</span><span> -</span><span style='color: #BB0000;'>0.573</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>213</span><span>   1.37   0.102  -</span><span style='color: #BB0000;'>0.470</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>214</span><span>   0.753  0.089</span><span style='text-decoration: underline;'>5</span><span> -</span><span style='color: #BB0000;'>0.095</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'>215</span><span>   1.28   0.078</span><span style='text-decoration: underline;'>0</span><span>  0.965  
-#&gt; </span><span style='color: #BCBCBC;'>216</span><span>   1.28   0.078</span><span style='text-decoration: underline;'>0</span><span> -</span><span style='color: #BB0000;'>0.564</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>217</span><span>   0.509  0.155  -</span><span style='color: #BB0000;'>0.181</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>218</span><span>   1.54   0.172   0.470  
-#&gt; </span><span style='color: #BCBCBC;'>219</span><span>   0.834  0.115  -</span><span style='color: #BB0000;'>0.349</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>220</span><span>   0.668  0.090</span><span style='text-decoration: underline;'>4</span><span> -</span><span style='color: #BB0000;'>0.192</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>221</span><span>   1.32   0.087</span><span style='text-decoration: underline;'>8</span><span> -</span><span style='color: #BB0000;'>0.489</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>222</span><span>   0.848  0.121  -</span><span style='color: #BB0000;'>0.337</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>223</span><span>   1.54   0.172   0.742  
-#&gt; </span><span style='color: #BCBCBC;'>224</span><span>   1.57   0.183  -</span><span style='color: #BB0000;'>0.549</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>225</span><span>   0.821  0.208  -</span><span style='color: #BB0000;'>0.293</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>226</span><span>   0.908  0.151  -</span><span style='color: #BB0000;'>0.133</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>227</span><span>   1.30   0.082</span><span style='text-decoration: underline;'>3</span><span> -</span><span style='color: #BB0000;'>0.367</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>228</span><span>   0.679  0.088</span><span style='text-decoration: underline;'>4</span><span> -</span><span style='color: #BB0000;'>0.204</span><span>  </div></span></pre>
+#&gt;     inst  time status   age   sex ph.ecog ph.karno pat.karno meal.cal wt.loss
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>     3   306      2    74     1       1       90       100     </span><span style='text-decoration: underline;'>1</span><span>175      </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>     3   455      2    68     1       0       90        90     </span><span style='text-decoration: underline;'>1</span><span>225      15
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>     3  </span><span style='text-decoration: underline;'>1</span><span>010      1    56     1       0       90        90       </span><span style='color: #BB0000;'>NA</span><span>      15
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>     5   210      2    57     1       1       90        60     </span><span style='text-decoration: underline;'>1</span><span>150      11
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>     1   883      2    60     1       0      100        90       </span><span style='color: #BB0000;'>NA</span><span>       0
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>    12  </span><span style='text-decoration: underline;'>1</span><span>022      1    74     1       1       50        80      513       0
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>     7   310      2    68     2       2       70        60      384      10
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>    11   361      2    71     2       2       60        80      538       1
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>     1   218      2    53     1       1       70        80      825      16
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span>     7   166      2    61     1       2       70        70      271      34
+#&gt; </span><span style='color: #949494;'># ... with 218 more rows, and 3 more variables: .fitted </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, .se.fit </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
+#&gt; #   .resid </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

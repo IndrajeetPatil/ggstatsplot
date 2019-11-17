@@ -959,6 +959,10 @@ ggstatsplot::ggcoefstats(
 
 ## bias reduction in generalized linear models (`brglm2`)
 
+Note that we can also choose to display labels only for the significant effects.
+This can be helpful when a large number of regression coefficients are to be
+displayed in a single plot.
+
 ```{r brglm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 5}
 # setup
 set.seed(123)
@@ -978,6 +982,7 @@ lizardsBR_mean <-
 # plot
 ggstatsplot::ggcoefstats(
   x = lizardsBR_mean,
+  only.significant = TRUE,
   title = "bias reduction in generalized linear models"
 )
 ```
