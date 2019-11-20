@@ -73,15 +73,16 @@ Most of the regression models that are supported in the `broom` and
 `ggcoefstats`. For example-
 
 `aareg`, `anova`, `aov`, `aovlist`, `Arima`, `bglmerMod`, `bigglm`, `biglm`,
-`blmerMod`, `bracl`, `brglm2`, `brmsfit`, `btergm`, `cch`, `clm`, `clmm`,
-`confusionMatrix`, `coxph`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `felm`,
-`fitdistr`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`,
-`garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `gmm`, `ivreg`, `lm`,
-`lm.beta`, `lmerMod`, `lmodel2`, `lmRob`, `lmrob`, `mcmc`, `MCMCglmm`,
-`mclogit`, `mmclogit`, `mediate`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`,
-`nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`,
-`rlm`, `rlmerMod`, `rq`, `slm`, `speedglm`, `speedlm`, `stanreg`, `survreg`,
-`svyglm`, `svyolr`, `svyglm`, `tobit`, `wbgee`, `wblm`, etc.
+`blavaan`, `blmerMod`, `bracl`, `brglm2`, `brmsfit`, `btergm`, `cch`, `clm`,
+`clmm`, `confusionMatrix`, `coxph`, `drc`, `emmGrid`, `epi.2by2`, `ergm`,
+`felm`, `fitdistr`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`,
+`gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `gmm`,
+`ivreg`, `lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`, `lmRob`, `lmrob`,
+`mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`, `mediate`, `mjoint`, `mle2`, `mlm`,
+`multinom`, `negbin`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `plm`,
+`polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `slm`, `speedglm`,
+`speedlm`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`, `wbgee`,
+`wblm`, etc.
 
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
@@ -343,7 +344,7 @@ broom.mixed::tidy(
 Robust version of `lmer` (as implemented in `robustlmm` package) is also
 supported-
 
-```{r rlmer, warning = FALSE, message = FALSE}
+```{r rlmer, warning = FALSE, message = FALSE, width = 5, height = 5}
 set.seed(123)
 library(robustlmm)
 
@@ -733,6 +734,41 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
+## generalized linear mixed model trees (`glmertree`)
+
+```{r glmertree, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 10}
+
+# setup
+set.seed(123)
+library(glmertree)
+data("DepressionDemo", package = "glmertree")
+
+# fit normal linear regression LMM tree for continuous outcome
+lt <- lmertree(
+  formula = depression ~ treatment | cluster | age + anxiety + duration,
+  data = DepressionDemo
+)
+
+# fit logistic regression GLMM tree for binary outcome
+gt <- glmertree(
+  formula = depression_bin ~ treatment | cluster | age + anxiety + duration,
+  data = DepressionDemo
+)
+
+# plot
+ggstatsplot::combine_plots(
+  ggstatsplot::ggcoefstats(
+    x = lt$lmer,
+    title = "normal linear regression \nLMM tree for continuous outcome"
+  ),
+  ggstatsplot::ggcoefstats(
+    x = lt$lmer,
+    title = "logistic regression \nGLMM tree for binary outcome"
+  ),
+  labels = c("(a)", "(b)")
+)
+```
+
 ## generalized linear mixed models using Penalized Quasi-Likelihood (`glmmPQL`)
 
 ```{r glmmPQL, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6}
@@ -878,13 +914,14 @@ dat26 <- expand.grid(sureness = as.factor(1:6), prod = c("Ref", "Test"))
 dat26$wghts <- c(t(tab26))
 
 # model
-mod <- clm2(
-  location = sureness ~ prod,
-  scale = ~prod,
-  data = dat26,
-  weights = wghts,
-  link = "logistic"
-)
+mod <-
+  clm2(
+    location = sureness ~ prod,
+    scale = ~prod,
+    data = dat26,
+    weights = wghts,
+    link = "logistic"
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -1026,12 +1063,13 @@ library(glmc)
 
 n <- rbind(c(5903, 230), c(5157, 350))
 mat <- matrix(0, nrow = sum(n), ncol = 2)
-mat <- rbind(
-  matrix(1, nrow = n[1, 1], ncol = 1) %*% c(0, 0),
-  matrix(1, nrow = n[1, 2], ncol = 1) %*% c(0, 1),
-  matrix(1, nrow = n[2, 1], ncol = 1) %*% c(1, 0),
-  matrix(1, nrow = n[2, 2], ncol = 1) %*% c(1, 1)
-)
+mat <-
+  rbind(
+    matrix(1, nrow = n[1, 1], ncol = 1) %*% c(0, 0),
+    matrix(1, nrow = n[1, 2], ncol = 1) %*% c(0, 1),
+    matrix(1, nrow = n[2, 1], ncol = 1) %*% c(1, 0),
+    matrix(1, nrow = n[2, 2], ncol = 1) %*% c(1, 1)
+  )
 
 # specifying the population constraints
 gfr <- .06179 * matrix(1, nrow = nrow(mat), ncol = 1)
@@ -1133,11 +1171,12 @@ ggstatsplot::ggcoefstats(
 # polr model
 set.seed(123)
 library(MASS)
-polr.mod <- MASS::polr(
-  formula = Sat ~ Infl + Type + Cont,
-  weights = Freq,
-  data = housing
-)
+polr.mod <-
+  MASS::polr(
+    formula = Sat ~ Infl + Type + Cont,
+    weights = Freq,
+    data = housing
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -1152,10 +1191,11 @@ ggstatsplot::ggcoefstats(
 
 ```{r mlm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
 # model (converting all numeric columns in data to z-scores)
-mod <- stats::lm(
-  formula = cbind(mpg, disp) ~ wt,
-  data = purrr::modify_if(.x = mtcars, .p = is.numeric, .f = scale)
-)
+mod <-
+  stats::lm(
+    formula = cbind(mpg, disp) ~ wt,
+    data = purrr::modify_if(.x = mtcars, .p = is.numeric, .f = scale)
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -1198,14 +1238,16 @@ dclus1 <- survey::svydesign(
   data = apiclus1,
   fpc = ~fpc
 )
-dclus1 <-
-  update(dclus1, mealcat = cut(meals, c(0, 25, 50, 75, 100)))
+
+# update
+dclus1 <- update(dclus1, mealcat = cut(meals, c(0, 25, 50, 75, 100)))
 
 # model
-m <- survey::svyolr(
-  formula = mealcat ~ avg.ed + mobility + stype,
-  design = dclus1
-)
+m <-
+  survey::svyolr(
+    formula = mealcat ~ avg.ed + mobility + stype,
+    design = dclus1
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -1232,11 +1274,12 @@ dstrat <-
   )
 
 # model
-mod <- survey::svyglm(
-  formula = sch.wide ~ ell + meals + mobility,
-  design = dstrat,
-  family = quasibinomial()
-)
+mod <-
+  survey::svyglm(
+    formula = sch.wide ~ ell + meals + mobility,
+    design = dstrat,
+    family = quasibinomial()
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -1361,7 +1404,7 @@ ggstatsplot::combine_plots(
   ),
   # plot 2: lmrob
   ggstatsplot::ggcoefstats(
-    x = m1 <- robustbase::lmrob(formula = Y ~ ., data = coleman),
+    x = robustbase::lmrob(formula = Y ~ ., data = coleman),
     title = "robust linear model"
   ),
   # arguments relevant for `combine_plots` function
@@ -1380,11 +1423,12 @@ library(boot)
 data(calcium)
 
 # homoscedastic model fit
-calcium.nl <- nlreg::nlreg(
-  formula = cal ~ b0 * (1 - exp(-b1 * time)),
-  start = c(b0 = 4, b1 = 0.1),
-  data = calcium
-)
+calcium.nl <-
+  nlreg::nlreg(
+    formula = cal ~ b0 * (1 - exp(-b1 * time)),
+    start = c(b0 = 4, b1 = 0.1),
+    data = calcium
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -1440,11 +1484,12 @@ library(plm)
 data("Produc", package = "plm")
 
 # model
-plm.mod <- plm::plm(
-  formula = log(gsp) ~ log(pcap) + log(pc) + log(emp) + unemp,
-  data = Produc,
-  index = c("state", "year")
-)
+plm.mod <-
+  plm::plm(
+    formula = log(gsp) ~ log(pcap) + log(pc) + log(emp) + unemp,
+    data = Produc,
+    index = c("state", "year")
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -1471,12 +1516,14 @@ for (i in 1:5) {
 }
 
 # linear model
-m1 <- afex::mixed(Reaction ~ Days + (1 + Days | Subject),
+m1 <- afex::mixed(
+  formula = Reaction ~ Days + (1 + Days | Subject),
   data = sleepstudy
 )
 
 # linear mixed-effects model
-m2 <- afex::mixed(Reaction ~ Days + (1 | mygrp / mysubgrp) + (1 | Subject),
+m2 <- afex::mixed(
+  formula = Reaction ~ Days + (1 | mygrp / mysubgrp) + (1 | Subject),
   data = sleepstudy
 )
 
@@ -1497,11 +1544,12 @@ library(mclogit)
 data(Transport)
 
 # model
-mod <- mclogit::mclogit(
-  formula = cbind(resp, suburb) ~ distance + cost,
-  data = Transport,
-  control = mclogit.control(trace = FALSE)
-)
+mod <-
+  mclogit::mclogit(
+    formula = cbind(resp, suburb) ~ distance + cost,
+    data = Transport,
+    control = mclogit.control(trace = FALSE)
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -1520,12 +1568,13 @@ library(mclogit)
 data(electors)
 
 # model
-mod <- mclogit::mclogit(
-  formula = cbind(Freq, interaction(time, class)) ~ econ.left / class + welfare / class + auth / class,
-  random = ~ 1 | party.time,
-  control = mclogit.control(trace = FALSE),
-  data = within(electors, party.time <- interaction(party, time))
-)
+mod <-
+  mclogit::mclogit(
+    formula = cbind(Freq, interaction(time, class)) ~ econ.left / class + welfare / class + auth / class,
+    random = ~ 1 | party.time,
+    control = mclogit.control(trace = FALSE),
+    data = within(electors, party.time <- interaction(party, time))
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -2221,23 +2270,30 @@ library(network)
 library(btergm)
 set.seed(123)
 
+# create 10 random networks with 10 actors
 networks <- list()
-for (i in 1:10) { # create 10 random networks with 10 actors
+for (i in 1:10) {
   mat <- matrix(rbinom(100, 1, .25), nrow = 10, ncol = 10)
   diag(mat) <- 0 # loops are excluded
   nw <- network(mat) # create network object
   networks[[i]] <- nw # add network to the list
 }
 
+# create 10 matrices as covariate
 covariates <- list()
-for (i in 1:10) { # create 10 matrices as covariate
+for (i in 1:10) {
   mat <- matrix(rnorm(100), nrow = 10, ncol = 10)
   covariates[[i]] <- mat # add matrix to the list
 }
 
 # model
-fit <- btergm::btergm(networks ~ edges + istar(2) +
-  edgecov(covariates), R = 100)
+fit <-
+  btergm::btergm(
+    formula = networks ~ edges + istar(2) + edgecov(covariates),
+    parallel = "multicore",
+    ncpus = 4,
+    R = 100
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -2387,14 +2443,15 @@ set.seed(123)
 library(drc)
 
 # model
-mod <- drc::drm(
-  formula = dead / total ~ conc,
-  curveid = type,
-  weights = total,
-  data = selenium,
-  fct = LL.2(),
-  type = "binomial"
-)
+mod <-
+  drc::drm(
+    formula = dead / total ~ conc,
+    curveid = type,
+    weights = total,
+    data = selenium,
+    fct = LL.2(),
+    type = "binomial"
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -2413,7 +2470,7 @@ library(panelr)
 
 # data
 data("WageData")
-wages <- panel_data(WageData, id = id, wave = t)
+wages <- panelr::panel_data(data = WageData, id = id, wave = t)
 
 # model
 mod <- wbm(
@@ -2437,8 +2494,10 @@ set.seed(123)
 library(panelr)
 data("WageData")
 
+# data
+wages <- panelr::panel_data(data = WageData, id = id, wave = t)
+
 # model
-wages <- panel_data(WageData, id = id, wave = t)
 model <- panelr::wbgee(
   formula = lwage ~ lag(union) + wks | blk + fem | blk * lag(union),
   data = wages
@@ -2491,8 +2550,7 @@ set.seed(123)
 library(brms)
 
 # prior
-bprior1 <- prior(student_t(5, 0, 10), class = b) +
-  prior(cauchy(0, 2), class = sd)
+bprior1 <- prior(student_t(5, 0, 10), class = b) + prior(cauchy(0, 2), class = sd)
 
 # model
 fit1 <- brms::brm(
@@ -2549,7 +2607,12 @@ set.seed(123)
 library(rstanarm)
 
 # model
-fit <- rstanarm::stan_glm(formula = mpg ~ wt + am, data = mtcars, chains = 1)
+fit <-
+  rstanarm::stan_glm(
+    formula = mpg ~ wt + am,
+    data = mtcars,
+    chains = 1
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -2566,14 +2629,15 @@ set.seed(123)
 library(MCMCglmm)
 
 # model
-mm0 <- MCMCglmm::MCMCglmm(
-  fixed = scale(Reaction) ~ scale(Days),
-  random = ~Subject,
-  data = sleepstudy,
-  nitt = 4000,
-  pr = TRUE,
-  verbose = FALSE
-)
+mm0 <-
+  MCMCglmm::MCMCglmm(
+    fixed = scale(Reaction) ~ scale(Days),
+    random = ~Subject,
+    data = sleepstudy,
+    nitt = 4000,
+    pr = TRUE,
+    verbose = FALSE
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -2644,6 +2708,66 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
+## latent variable model (`lavaan`)
+
+```{r lavaan, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 6}
+# setup
+set.seed(123)
+library(lavaan)
+
+# The Holzinger and Swineford (1939) example
+HS.model <- " visual =~ x1 + x2 + x3
+textual =~ x4 + x5 + x6
+speed =~ x7 + x8 + x9 "
+
+# model
+fit <-
+  lavaan::lavaan(
+    HS.model,
+    data = HolzingerSwineford1939,
+    auto.var = TRUE,
+    auto.fix.first = TRUE,
+    auto.cov.lv.x = TRUE
+  )
+
+# tidy
+ggstatsplot::ggcoefstats(
+  x = fit,
+  title = "latent variable model",
+  conf.level = 0.99
+)
+```
+
+## Bayesian latent variable model (`blavaan`)
+
+```{r blavaan, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 6}
+# setup
+set.seed(123)
+library(blavaan)
+future::plan("multiprocess")
+
+# The Holzinger and Swineford (1939) example
+HS.model <- " visual =~ x1 + x2 + x3
+textual =~ x4 + x5 + x6
+speed =~ x7 + x8 + x9 "
+
+# model
+fit <-
+  blavaan::blavaan(
+    HS.model,
+    data = HolzingerSwineford1939,
+    auto.var = TRUE,
+    auto.fix.first = TRUE,
+    auto.cov.lv.x = TRUE
+  )
+
+# tidy
+ggstatsplot::ggcoefstats(
+  x = fit,
+  title = "Bayesian latent variable model"
+)
+```
+
 ## regression models with `list` outputs
 
 Note that a number of regression models will return an object of class `list`,
@@ -2663,11 +2787,12 @@ dat$fac <- fac <- as.factor(sample(1:20, 400, replace = TRUE))
 dat$y <- dat$y + model.matrix(~ fac - 1) %*% rnorm(20) * .5
 
 # model object
-br <- gamm4::gamm4(
-  formula = y ~ s(x0) + x1 + s(x2),
-  data = dat,
-  random = ~ (1 | fac)
-)
+br <-
+  gamm4::gamm4(
+    formula = y ~ s(x0) + x1 + s(x2),
+    data = dat,
+    random = ~ (1 | fac)
+  )
 
 # looking at the classes of the objects contained in the list
 purrr::map(br, class)
@@ -2728,8 +2853,7 @@ df_results <-
   dplyr::full_join(x = .[[1]], y = .[[2]], by = "continent")
 
 # modifying the results so to be compatible with the `ggcoefstats` requirement
-(df_results %<>%
-  dplyr::filter(.data = ., term != "(Intercept)", is.na(group)))
+(df_results %<>% dplyr::filter(.data = ., term != "(Intercept)", is.na(group)))
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -2754,15 +2878,16 @@ columns- `term`, `estimate`, `std.error`.
 
 ```{r meta1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
 # let's make up a dataframe (with minimum amount of details)
-df_min <- tibble::tribble(
-  ~term, ~estimate, ~std.error,
-  "study1", 0.0665, 0.778,
-  "study2", 0.542, 0.280,
-  "study3", 0.045, 0.030,
-  "study4", 0.500, 0.708,
-  "study5", 0.032, 0.280,
-  "study6", 0.085, 0.030
-)
+df_min <-
+  tibble::tribble(
+    ~term, ~estimate, ~std.error,
+    "study1", 0.0665, 0.778,
+    "study2", 0.542, 0.280,
+    "study3", 0.045, 0.030,
+    "study4", 0.500, 0.708,
+    "study5", 0.032, 0.280,
+    "study6", 0.085, 0.030
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -2813,7 +2938,7 @@ not supported.
 # Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
-GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+`GitHub`: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
 
 # Session Information
 

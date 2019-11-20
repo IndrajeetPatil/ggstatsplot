@@ -261,74 +261,31 @@ bare name <code>x</code> or as a string <code>"x"</code>).</p></td>
 #&gt; 
 #&gt; $herbi
 #&gt; </span><span style='color: #949494;'># A tibble: 32 x 11</span><span>
-#&gt;    name                           genus        vore  order          conservation
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                          </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Mountain beaver                Aplodontia   herbi Rodentia       nt          
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Cow                            Bos          herbi Artiodactyla   domesticated
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Three-toed sloth               Bradypus     herbi Pilosa         </span><span style='color: #BB0000;'>NA</span><span>          
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Roe deer                       Capreolus    herbi Artiodactyla   lc          
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Goat                           Capri        herbi Artiodactyla   lc          
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Guinea pig                     Cavis        herbi Rodentia       domesticated
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Chinchilla                     Chinchilla   herbi Rodentia       domesticated
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Tree hyrax                     Dendrohyrax  herbi Hyracoidea     lc          
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Asian elephant                 Elephas      herbi Proboscidea    en          
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Horse                          Equus        herbi Perissodactyla domesticated
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> Donkey                         Equus        herbi Perissodactyla domesticated
-#&gt; </span><span style='color: #BCBCBC;'>12</span><span> Western american chipmunk      Eutamias     herbi Rodentia       </span><span style='color: #BB0000;'>NA</span><span>          
-#&gt; </span><span style='color: #BCBCBC;'>13</span><span> Giraffe                        Giraffa      herbi Artiodactyla   cd          
-#&gt; </span><span style='color: #BCBCBC;'>14</span><span> Gray hyrax                     Heterohyrax  herbi Hyracoidea     lc          
-#&gt; </span><span style='color: #BCBCBC;'>15</span><span> Mongoose lemur                 Lemur        herbi Primates       vu          
-#&gt; </span><span style='color: #BCBCBC;'>16</span><span> African elephant               Loxodonta    herbi Proboscidea    vu          
-#&gt; </span><span style='color: #BCBCBC;'>17</span><span> Mongolian gerbil               Meriones     herbi Rodentia       lc          
-#&gt; </span><span style='color: #BCBCBC;'>18</span><span> Golden hamster                 Mesocricetus herbi Rodentia       en          
-#&gt; </span><span style='color: #BCBCBC;'>19</span><span> </span><span style='color: #949494;'>"</span><span>Vole </span><span style='color: #949494;'>"</span><span>                        Microtus     herbi Rodentia       </span><span style='color: #BB0000;'>NA</span><span>          
-#&gt; </span><span style='color: #BCBCBC;'>20</span><span> House mouse                    Mus          herbi Rodentia       nt          
-#&gt; </span><span style='color: #BCBCBC;'>21</span><span> Round-tailed muskrat           Neofiber     herbi Rodentia       nt          
-#&gt; </span><span style='color: #BCBCBC;'>22</span><span> Degu                           Octodon      herbi Rodentia       lc          
-#&gt; </span><span style='color: #BCBCBC;'>23</span><span> Rabbit                         Oryctolagus  herbi Lagomorpha     domesticated
-#&gt; </span><span style='color: #BCBCBC;'>24</span><span> Sheep                          Ovis         herbi Artiodactyla   domesticated
-#&gt; </span><span style='color: #BCBCBC;'>25</span><span> Potoroo                        Potorous     herbi Diprotodontia  </span><span style='color: #BB0000;'>NA</span><span>          
-#&gt; </span><span style='color: #BCBCBC;'>26</span><span> Laboratory rat                 Rattus       herbi Rodentia       lc          
-#&gt; </span><span style='color: #BCBCBC;'>27</span><span> Cotton rat                     Sigmodon     herbi Rodentia       </span><span style='color: #BB0000;'>NA</span><span>          
-#&gt; </span><span style='color: #BCBCBC;'>28</span><span> Arctic ground squirrel         Spermophilus herbi Rodentia       lc          
-#&gt; </span><span style='color: #BCBCBC;'>29</span><span> Thirteen-lined ground squirrel Spermophilus herbi Rodentia       lc          
-#&gt; </span><span style='color: #BCBCBC;'>30</span><span> Golden-mantled ground squirrel Spermophilus herbi Rodentia       lc          
-#&gt; </span><span style='color: #BCBCBC;'>31</span><span> Eastern american chipmunk      Tamias       herbi Rodentia       </span><span style='color: #BB0000;'>NA</span><span>          
-#&gt; </span><span style='color: #BCBCBC;'>32</span><span> Brazilian tapir                Tapirus      herbi Perissodactyla vu          
-#&gt;    sleep_total sleep_rem sleep_cycle awake  brainwt   bodywt
-#&gt;          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>        14.4       2.4      </span><span style='color: #BB0000;'>NA</span><span>       9.6 </span><span style='color: #BB0000;'>NA</span><span>          1.35 
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>         4         0.7       0.667  20    0.423    600    
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>        14.4       2.2       0.767   9.6 </span><span style='color: #BB0000;'>NA</span><span>          3.85 
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>         3        </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      21    0.098</span><span style='text-decoration: underline;'>2</span><span>    14.8  
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>         5.3       0.6      </span><span style='color: #BB0000;'>NA</span><span>      18.7  0.115     33.5  
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>         9.4       0.8       0.217  14.6  0.005</span><span style='text-decoration: underline;'>5</span><span>     0.728
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>        12.5       1.5       0.117  11.5  0.006</span><span style='text-decoration: underline;'>4</span><span>     0.42 
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>         5.3       0.5      </span><span style='color: #BB0000;'>NA</span><span>      18.7  0.012</span><span style='text-decoration: underline;'>3</span><span>     2.95 
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>         3.9      </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      20.1  4.60    </span><span style='text-decoration: underline;'>2</span><span>547    
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span>         2.9       0.6       1      21.1  0.655    521    
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span>         3.1       0.4      </span><span style='color: #BB0000;'>NA</span><span>      20.9  0.419    187    
-#&gt; </span><span style='color: #BCBCBC;'>12</span><span>        14.9      </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>       9.1 </span><span style='color: #BB0000;'>NA</span><span>          0.071
-#&gt; </span><span style='color: #BCBCBC;'>13</span><span>         1.9       0.4      </span><span style='color: #BB0000;'>NA</span><span>      22.1 </span><span style='color: #BB0000;'>NA</span><span>        900.   
-#&gt; </span><span style='color: #BCBCBC;'>14</span><span>         6.3       0.6      </span><span style='color: #BB0000;'>NA</span><span>      17.7  0.012</span><span style='text-decoration: underline;'>3</span><span>     2.62 
-#&gt; </span><span style='color: #BCBCBC;'>15</span><span>         9.5       0.9      </span><span style='color: #BB0000;'>NA</span><span>      14.5 </span><span style='color: #BB0000;'>NA</span><span>          1.67 
-#&gt; </span><span style='color: #BCBCBC;'>16</span><span>         3.3      </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      20.7  5.71    </span><span style='text-decoration: underline;'>6</span><span>654    
-#&gt; </span><span style='color: #BCBCBC;'>17</span><span>        14.2       1.9      </span><span style='color: #BB0000;'>NA</span><span>       9.8 </span><span style='color: #BB0000;'>NA</span><span>          0.053
-#&gt; </span><span style='color: #BCBCBC;'>18</span><span>        14.3       3.1       0.2     9.7  0.001      0.12 
-#&gt; </span><span style='color: #BCBCBC;'>19</span><span>        12.8      </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      11.2 </span><span style='color: #BB0000;'>NA</span><span>          0.035
-#&gt; </span><span style='color: #BCBCBC;'>20</span><span>        12.5       1.4       0.183  11.5  0.000</span><span style='text-decoration: underline;'>4</span><span>     0.022
-#&gt; </span><span style='color: #BCBCBC;'>21</span><span>        14.6      </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>       9.4 </span><span style='color: #BB0000;'>NA</span><span>          0.266
-#&gt; </span><span style='color: #BCBCBC;'>22</span><span>         7.7       0.9      </span><span style='color: #BB0000;'>NA</span><span>      16.3 </span><span style='color: #BB0000;'>NA</span><span>          0.21 
-#&gt; </span><span style='color: #BCBCBC;'>23</span><span>         8.4       0.9       0.417  15.6  0.012</span><span style='text-decoration: underline;'>1</span><span>     2.5  
-#&gt; </span><span style='color: #BCBCBC;'>24</span><span>         3.8       0.6      </span><span style='color: #BB0000;'>NA</span><span>      20.2  0.175     55.5  
-#&gt; </span><span style='color: #BCBCBC;'>25</span><span>        11.1       1.5      </span><span style='color: #BB0000;'>NA</span><span>      12.9 </span><span style='color: #BB0000;'>NA</span><span>          1.1  
-#&gt; </span><span style='color: #BCBCBC;'>26</span><span>        13         2.4       0.183  11    0.001</span><span style='text-decoration: underline;'>9</span><span>     0.32 
-#&gt; </span><span style='color: #BCBCBC;'>27</span><span>        11.3       1.1       0.15   12.7  0.001</span><span style='text-decoration: underline;'>18</span><span>    0.148
-#&gt; </span><span style='color: #BCBCBC;'>28</span><span>        16.6      </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>       7.4  0.005</span><span style='text-decoration: underline;'>7</span><span>     0.92 
-#&gt; </span><span style='color: #BCBCBC;'>29</span><span>        13.8       3.4       0.217  10.2  0.004      0.101
-#&gt; </span><span style='color: #BCBCBC;'>30</span><span>        15.9       3        </span><span style='color: #BB0000;'>NA</span><span>       8.1 </span><span style='color: #BB0000;'>NA</span><span>          0.205
-#&gt; </span><span style='color: #BCBCBC;'>31</span><span>        15.8      </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>       8.2 </span><span style='color: #BB0000;'>NA</span><span>          0.112
-#&gt; </span><span style='color: #BCBCBC;'>32</span><span>         4.4       1         0.9    19.6  0.169    208.   
+#&gt;    name             genus       vore  order          conservation sleep_total
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>              </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Mountain beaver  Aplodontia  herbi Rodentia       nt                  14.4
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Cow              Bos         herbi Artiodactyla   domesticated         4  
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Three-toed sloth Bradypus    herbi Pilosa         </span><span style='color: #BB0000;'>NA</span><span>                  14.4
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Roe deer         Capreolus   herbi Artiodactyla   lc                   3  
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Goat             Capri       herbi Artiodactyla   lc                   5.3
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Guinea pig       Cavis       herbi Rodentia       domesticated         9.4
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Chinchilla       Chinchilla  herbi Rodentia       domesticated        12.5
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Tree hyrax       Dendrohyrax herbi Hyracoidea     lc                   5.3
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Asian elephant   Elephas     herbi Proboscidea    en                   3.9
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Horse            Equus       herbi Perissodactyla domesticated         2.9
+#&gt;    sleep_rem sleep_cycle awake brainwt   bodywt
+#&gt;        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>       2.4      </span><span style='color: #BB0000;'>NA</span><span>       9.6 </span><span style='color: #BB0000;'>NA</span><span>         1.35 
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>       0.7       0.667  20    0.423   600    
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>       2.2       0.767   9.6 </span><span style='color: #BB0000;'>NA</span><span>         3.85 
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>      </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      21    0.098</span><span style='text-decoration: underline;'>2</span><span>   14.8  
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>       0.6      </span><span style='color: #BB0000;'>NA</span><span>      18.7  0.115    33.5  
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>       0.8       0.217  14.6  0.005</span><span style='text-decoration: underline;'>5</span><span>    0.728
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>       1.5       0.117  11.5  0.006</span><span style='text-decoration: underline;'>4</span><span>    0.42 
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>       0.5      </span><span style='color: #BB0000;'>NA</span><span>      18.7  0.012</span><span style='text-decoration: underline;'>3</span><span>    2.95 
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>      </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>      20.1  4.60   </span><span style='text-decoration: underline;'>2</span><span>547    
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span>       0.6       1      21.1  0.655   521    
+#&gt; </span><span style='color: #949494;'># ... with 22 more rows</span><span>
 #&gt; 
 #&gt; $insecti
 #&gt; </span><span style='color: #949494;'># A tibble: 5 x 11</span><span>

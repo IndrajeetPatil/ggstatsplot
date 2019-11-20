@@ -487,6 +487,12 @@ ggcoefstats <- function(x,
     }
   }
 
+  # oddball cases that might falter with additional tidier arguments
+  # e.g., `lavaan` can't handle `parametric = FALSE`, etc.
+  if (rlang::is_null(tidy_df)) {
+    tidy_df <- broomExtra::tidy(x, ...)
+  }
+
   # =================== tidy dataframe cleanup ================================
 
   # check for the one necessary column

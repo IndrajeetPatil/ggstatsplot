@@ -18,8 +18,8 @@ MINOR
   - `ggcoefstats` now uses `parameters::p_value` instead of `sjstats::p_value`,
     as requested by the maintainer of that package. This might lead to
     differences in *p*-values for `lmer` models.
-  - More models supported in `ggcoefstats`: `bracl`, `brglm2`, `glmc`, `nlreg`,
-    `slm`, `wbgee`.
+  - More models supported in `ggcoefstats`: `blavaan`, `bracl`, `brglm2`,
+    `glmc`, `lavaan`, `nlreg`, `slm`, `wbgee`.
   - `ggcoefstats` gains `only.significant` argument to only display display
     stats labels for significant effects. This can be helpful when a large
     number of regression coefficients are to be displayed in a single plot.
