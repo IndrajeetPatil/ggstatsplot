@@ -188,6 +188,7 @@ A dot chart with statistical details from one-sample test
 included in the plot as a subtitle.
 }
 \examples{
+\donttest{
 # for reproducibility
 set.seed(123)
 
@@ -209,6 +210,7 @@ ggdotplotstats(
     paste(italic("Source"), ": EPA dataset on http://fueleconomy.gov")
   )
 )
+}
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html}

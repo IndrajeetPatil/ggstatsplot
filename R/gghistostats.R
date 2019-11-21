@@ -50,7 +50,7 @@
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
 #'
 #' @examples
-#'
+#' \donttest{
 #' # most basic function call with the defaults
 #' # this is the **only** function where data argument can be `NULL`
 #' ggstatsplot::gghistostats(
@@ -73,6 +73,7 @@
 #'   binwidth = 0.10,
 #'   bar.fill = "grey50"
 #' )
+#' }
 #' @export
 
 # function body

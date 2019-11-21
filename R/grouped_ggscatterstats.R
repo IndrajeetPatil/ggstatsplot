@@ -23,6 +23,7 @@
 #' @inherit ggscatterstats return details
 #'
 #' @examples
+#' \donttest{
 #' # to ensure reproducibility
 #' set.seed(123)
 #'
@@ -75,6 +76,7 @@
 #'   title.prefix = "Genre",
 #'   caption.text = "All movies have IMDB rating equal to 7."
 #' )
+#' }
 #' @export
 
 # defining the function

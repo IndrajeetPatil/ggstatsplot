@@ -213,7 +213,7 @@ Histogram with statistical details from one-sample test included
 in the plot as a subtitle.
 }
 \examples{
-
+\donttest{
 # most basic function call with the defaults
 # this is the **only** function where data argument can be `NULL`
 ggstatsplot::gghistostats(
@@ -236,6 +236,7 @@ ggstatsplot::gghistostats(
   binwidth = 0.10,
   bar.fill = "grey50"
 )
+}
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}

@@ -21,7 +21,7 @@
 #' @importFrom rlang !! :=
 #'
 #' @examples
-#'
+#' \donttest{
 #' # dataframe with label column
 #' ggstatsplot:::cat_label_df(
 #'   data = ggstatsplot:::cat_counter(mtcars, am, cyl),
@@ -29,6 +29,7 @@
 #'   label.content = "both",
 #'   perc.k = 1
 #' )
+#' }
 #' @keywords internal
 
 # function body

@@ -20,6 +20,7 @@
 #'  \code{\link{grouped_ggdotplotstats}}
 #'
 #' @examples
+#' \donttest{
 #' # for reproducibility
 #' set.seed(123)
 #'
@@ -41,6 +42,7 @@
 #'     paste(italic("Source"), ": EPA dataset on http://fueleconomy.gov")
 #'   )
 #' )
+#' }
 #' @export
 
 # function body

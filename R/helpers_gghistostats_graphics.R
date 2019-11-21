@@ -116,6 +116,7 @@ line_labeler <- line_labeller
 #'   for centrality parameter label. (Default: `2`).
 #'
 #' @examples
+#' \donttest{
 #' library(ggplot2)
 #'
 #' # creating a ploton which lines and labels are to be superposed
@@ -133,6 +134,7 @@ line_labeler <- line_labeller
 #'   y.label.position = y_label_pos,
 #'   test.value.line = TRUE
 #' )
+#' }
 #' @keywords internal
 
 # function body

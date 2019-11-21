@@ -187,7 +187,7 @@ of \emph{p}-values.
 Visualization of a correlation matrix
 }
 \examples{
-
+\donttest{
 # for reproducibility
 set.seed(123)
 
@@ -240,6 +240,7 @@ ggstatsplot::ggcorrmat(
   outline.col = "white",
   title = "Dataset: Iris"
 )
+}
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html}

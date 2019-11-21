@@ -286,7 +286,7 @@ function across multiple levels of a given factor and combining the
 resulting plots using \code{ggstatsplot::combine_plots}.
 }
 \examples{
-
+\donttest{
 # grouped one-sample proportion tests
 ggstatsplot::grouped_ggpiestats(
   data = mtcars,
@@ -327,6 +327,7 @@ ggstatsplot::grouped_ggpiestats(
   perc.k = 1,
   nrow = 3
 )
+}
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}

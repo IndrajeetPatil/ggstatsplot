@@ -376,7 +376,7 @@ ggstatsplot::ggcoefstats(
   meta.analytic.effect = TRUE,
   k = 3
 )
-}
+
 # -------------- getting model summary ------------------------------
 
 # model
@@ -406,6 +406,7 @@ ggstatsplot::ggcoefstats(
   output = "augment",
   type.predict = "risk"
 )
+}
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}

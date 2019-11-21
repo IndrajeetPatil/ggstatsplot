@@ -108,7 +108,7 @@
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html}
 #'
 #' @examples
-#'
+#' \donttest{
 #' # for reproducibility
 #' set.seed(123)
 #'
@@ -161,6 +161,7 @@
 #'   outline.col = "white",
 #'   title = "Dataset: Iris"
 #' )
+#' }
 #' @export
 
 # defining the function

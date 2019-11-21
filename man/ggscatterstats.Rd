@@ -237,7 +237,7 @@ times will slow down massively (and the plot file will grow in size) if you
 have a lot of labels that overlap.
 }
 \examples{
-
+\donttest{
 # to get reproducible results from bootstrapping
 set.seed(123)
 
@@ -258,6 +258,7 @@ ggstatsplot::ggscatterstats(
   centrality.para = "median",
   xfill = NULL
 )
+}
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html}

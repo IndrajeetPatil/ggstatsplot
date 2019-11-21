@@ -304,6 +304,7 @@ their confidence intervals are computed, see \code{?rcompanion::wilcoxonR}.
 For repeated measures designs, use \code{ggwithinstats}.
 }
 \examples{
+\donttest{
 # to get reproducible results from bootstrapping
 set.seed(123)
 library(ggstatsplot)
@@ -336,6 +337,7 @@ ggstatsplot::ggbetweenstats(
   ggtheme = ggplot2::theme_grey(),
   ggstatsplot.layer = FALSE
 )
+}
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}

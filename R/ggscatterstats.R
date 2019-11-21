@@ -69,7 +69,7 @@
 #' have a lot of labels that overlap.
 #'
 #' @examples
-#'
+#' \donttest{
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
 #'
@@ -90,6 +90,7 @@
 #'   centrality.para = "median",
 #'   xfill = NULL
 #' )
+#' }
 #' @export
 
 # defining the function

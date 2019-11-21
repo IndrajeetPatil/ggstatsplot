@@ -37,7 +37,7 @@ Creating a dataframe with an added column corresponding to
 summary for categorical variables.
 }
 \examples{
-
+\donttest{
 # dataframe with label column
 ggstatsplot:::cat_label_df(
   data = ggstatsplot:::cat_counter(mtcars, am, cyl),
@@ -45,5 +45,6 @@ ggstatsplot:::cat_label_df(
   label.content = "both",
   perc.k = 1
 )
+}
 }
 \keyword{internal}

@@ -246,7 +246,7 @@
 #'   meta.analytic.effect = TRUE,
 #'   k = 3
 #' )
-#' }
+#'
 #' # -------------- getting model summary ------------------------------
 #'
 #' # model
@@ -276,6 +276,7 @@
 #'   output = "augment",
 #'   type.predict = "risk"
 #' )
+#' }
 #' @export
 
 # function body

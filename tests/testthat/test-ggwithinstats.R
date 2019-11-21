@@ -234,6 +234,8 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
     set.seed(123)
+
+    # plot
     p1 <- ggstatsplot::ggwithinstats(
       data = WineTasting,
       x = Wine,

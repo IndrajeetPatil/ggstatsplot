@@ -345,6 +345,7 @@ their confidence intervals are computed, see \code{?rcompanion::wilcoxonPairedR}
 For independent measures designs, use \code{ggbetweenstats}.
 }
 \examples{
+\donttest{
 # to get reproducible results from bootstrapping
 set.seed(123)
 library(ggstatsplot)
@@ -361,6 +362,7 @@ ggstatsplot::grouped_ggwithinstats(
   ),
   messages = TRUE
 )
+}
 }
 \seealso{
 \code{\link{ggwithinstats}}, \code{\link{ggbetweenstats}},

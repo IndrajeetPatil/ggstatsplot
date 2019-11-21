@@ -304,7 +304,7 @@ function across multiple levels of a given factor and combining the
 resulting plots using \code{ggstatsplot::combine_plots}.
 }
 \examples{
-
+\donttest{
 # with condition and with count data
 library(jmv)
 
@@ -339,6 +339,7 @@ ggstatsplot::grouped_ggbarstats(
   perc.k = 1,
   nrow = 2
 )
+}
 }
 \seealso{
 \code{\link{ggbarstats}}, \code{\link{ggpiestats}},
