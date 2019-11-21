@@ -69,7 +69,6 @@ matrix:
         - bindrcpp
         - car
         - rio
-        - jmv
       r_packages:
         - purrr
         - tidyr
@@ -139,7 +138,6 @@ matrix:
         - bindrcpp
         - car
         - rio
-        - jmv
       r_packages:
         - purrr
         - tidyr
