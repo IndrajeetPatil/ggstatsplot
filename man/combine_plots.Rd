@@ -44,7 +44,7 @@ individually as the first n arguments of the function plot_grid (see examples).}
 vertically ("v") aligned. Options are "none" (default), "hv" (align in both directions), "h", and "v".}
     \item{\code{axis}}{(optional) Specifies whether graphs should be aligned by the left ("l"), right ("r"), top ("t"), or bottom ("b")
 margins. Options are "none" (default), or a string of any combination of l, r, t, and b in any order (e.g. "tblr" or "rlbt" for aligning all margins).
-Must be specified if any of the graphs are complex (e.g. faceted) and alignment is specified and desired. See \code{\link[=align_plots]{align_plots()}} for details.}
+Must be specified if any of the graphs are complex (e.g. faceted) and alignment is specified and desired. See \code{\link[cowplot:align_plots]{align_plots()}} for details.}
     \item{\code{nrow}}{(optional) Number of rows in the plot grid.}
     \item{\code{ncol}}{(optional) Number of columns in the plot grid.}
     \item{\code{rel_widths}}{(optional) Numerical vector of relative columns widths. For example, in a two-column
@@ -71,7 +71,7 @@ down on the plot canvas. Can be a single value (applied to all labels) or a vect
     \item{\code{scale}}{Individual number or vector of numbers greater than 0. Enables you to scale the size of all or
 select plots. Usually it's preferable to set margins instead of using \code{scale}, but \code{scale} can
 sometimes be more powerful.}
-    \item{\code{greedy}}{(optional) How should margins be adjusted during alignment. See \code{\link[=align_plots]{align_plots()}} for details.}
+    \item{\code{greedy}}{(optional) How should margins be adjusted during alignment. See \code{\link[cowplot:align_plots]{align_plots()}} for details.}
     \item{\code{cols}}{Deprecated. Use \code{ncol}.}
     \item{\code{rows}}{Deprecated. Use \code{nrow}.}
   }}

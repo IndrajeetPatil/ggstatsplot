@@ -68,7 +68,7 @@ testthat::test_that(
     testthat::expect_equal(dim(pb$data[[1]]), c(1L, 7L))
     testthat::expect_equal(dim(pb$data[[2]]), c(4L, 13L))
     testthat::expect_equal(dim(pb$data[[3]]), c(4L, 10L))
-    #testthat::expect_equal(dim(pb$data[[4]]), c(4L, 15L))
+    # testthat::expect_equal(dim(pb$data[[4]]), c(4L, 15L))
 
     # checking ggrepel label layer
     testthat::expect_identical(
@@ -1051,7 +1051,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "check computing confidence intervals",
   code = {
-
+    testthat::skip_on_cran()
 
     # creating broom dataframes
     set.seed(123)
@@ -1107,6 +1107,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "check if glance works",
   code = {
+    testthat::skip_on_cran()
     library(lme4)
 
     # creating broom and ggstatsplot output

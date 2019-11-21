@@ -3,6 +3,7 @@ context("argument_count")
 testthat::test_that(
   desc = "argument_count is correct",
   code = {
+    testthat::skip_on_cran()
 
     # compared to basic variant the grouped variant has-
     # additional: grouping.var, title.prefix, ...

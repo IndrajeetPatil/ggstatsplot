@@ -38,36 +38,39 @@ testthat::test_that(
 
     # getting bayes factor in favor of null hypothesis
     set.seed(123)
-    subtitle1 <- ggstatsplot::bf_meta_message(
-      data = df1,
-      k = 3,
-      messages = TRUE,
-      iter = 2000,
-      summarize = "integrate"
-    )
+    subtitle1 <-
+      ggstatsplot::bf_meta_message(
+        data = df1,
+        k = 3,
+        messages = TRUE,
+        iter = 2000,
+        summarize = "integrate"
+      )
     set.seed(123)
-    subtitle2 <- ggstatsplot::bf_meta_message(
-      data = df2,
-      k = 3,
-      messages = FALSE,
-      d = "norm",
-      d.par = c(0, .3),
-      tau = "halfcauchy",
-      tau.par = .5,
-      iter = 2000,
-      summarize = "integrate"
-    )
+    subtitle2 <-
+      ggstatsplot::bf_meta_message(
+        data = df2,
+        k = 3,
+        messages = FALSE,
+        d = "norm",
+        d.par = c(0, .3),
+        tau = "halfcauchy",
+        tau.par = .5,
+        iter = 2000,
+        summarize = "integrate"
+      )
     # test prior defaults and use of metaBMA::prior()
     set.seed(123)
-    subtitle3 <- ggstatsplot::bf_meta_message(
-      data = df2,
-      k = 3,
-      messages = FALSE,
-      d = metaBMA::prior("norm", c(0, .3)),
-      tau = metaBMA::prior("halfcauchy", c(.5)),
-      iter = 2000,
-      summarize = "integrate"
-    )
+    subtitle3 <-
+      ggstatsplot::bf_meta_message(
+        data = df2,
+        k = 3,
+        messages = FALSE,
+        d = metaBMA::prior("norm", c(0, .3)),
+        tau = metaBMA::prior("halfcauchy", c(.5)),
+        iter = 2000,
+        summarize = "integrate"
+      )
 
     testthat::expect_identical(subtitle1, subtitle2)
     testthat::expect_identical(subtitle1, subtitle3)

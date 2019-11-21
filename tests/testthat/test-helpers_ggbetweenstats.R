@@ -44,7 +44,7 @@ testthat::test_that(
     # check data
     testthat::expect_equal(dim(pb_mean$data[[1]]), c(5L, 25L))
     testthat::expect_equal(dim(pb_mean$data[[2]]), c(5L, 12L))
-    #testthat::expect_equal(dim(pb_mean$data[[3]]), c(4L, 15L))
+    # testthat::expect_equal(dim(pb_mean$data[[3]]), c(4L, 15L))
     testthat::expect_equal(
       pb_mean$data[[2]]$y,
       c(0.07925556, 0.62159750, 0.02155000, 0.14573118, 0.00762600),

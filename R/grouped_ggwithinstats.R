@@ -32,6 +32,10 @@
 #'   x = modality,
 #'   y = score,
 #'   grouping.var = order,
+#'   ggplot.component = ggplot2::scale_y_continuous(
+#'     breaks = seq(0, 1, 0.1),
+#'     limits = c(0, 1)
+#'   ),
 #'   messages = TRUE
 #' )
 #' @export
