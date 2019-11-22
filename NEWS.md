@@ -1,5 +1,10 @@
 # ggstatsplot 0.1.3.9000
 
+BUG FIXES
+
+  - `ggbetweenstats` and `ggwithinstats` no longer produce error with variables
+    with pattern `mean` (#336).
+
 # ggstatsplot 0.1.3
 
 MAJOR CHANGES

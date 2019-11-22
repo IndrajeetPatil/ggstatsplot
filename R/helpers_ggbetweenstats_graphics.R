@@ -53,7 +53,7 @@ mean_labeller <- function(data,
     dplyr::select(.data = ., {{ x }}, {{ y }}, dplyr::contains("...")) %>%
     dplyr::mutate_at(
       .tbl = .,
-      .vars = dplyr::vars(dplyr::matches("mean...|mean.conf")),
+      .vars = c("mean...summary", "mean.conf.low...summary", "mean.conf.high...summary"),
       .funs = ~ specify_decimal_p(x = ., k = k)
     ) %>%
     dplyr::group_nest(.tbl = ., {{ x }})
