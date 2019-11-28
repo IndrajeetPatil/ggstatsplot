@@ -5,6 +5,12 @@ BUG FIXES
   - `ggbetweenstats` and `ggwithinstats` no longer produce error with variables
     with pattern `mean` (#336).
 
+MAJOR CHANGES
+
+  - `pairwise_p` has been reintroduced as a number of users found it useful to
+    call the function from `ggstatsplot` itself rather than using
+    `pairwiseComparisons` package.
+
 # ggstatsplot 0.1.3
 
 MAJOR CHANGES

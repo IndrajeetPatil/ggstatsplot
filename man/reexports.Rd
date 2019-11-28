@@ -7,6 +7,7 @@
 \alias{signif_column}
 \alias{lm_effsize_ci}
 \alias{set_cwd}
+\alias{pairwise_p}
 \alias{\%>\%}
 \alias{\%<>\%}
 \alias{\%$\%}
@@ -24,6 +25,8 @@ below to see their documentation.
   \item{broomExtra}{\code{\link[broomExtra]{\%$\%}}, \code{\link[broomExtra]{\%<>\%}}, \code{\link[broomExtra]{\%>\%}}}
 
   \item{groupedstats}{\code{\link[groupedstats]{lm_effsize_ci}}, \code{\link[groupedstats]{set_cwd}}, \code{\link[groupedstats]{signif_column}}, \code{\link[groupedstats]{specify_decimal_p}}}
+
+  \item{pairwiseComparisons}{\code{\link[pairwiseComparisons]{pairwise_p}}}
 
   \item{rlang}{\code{\link[rlang]{\%|\%}}, \code{\link[rlang]{\%||\%}}}
 

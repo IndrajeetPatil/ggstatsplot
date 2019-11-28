@@ -17,6 +17,12 @@ groupedstats::lm_effsize_ci
 #' @importFrom groupedstats set_cwd
 groupedstats::set_cwd
 
+# ----------------------- pairwiseComparisons --------------------------------
+
+#' @export
+#' @importFrom pairwiseComparisons pairwise_p
+pairwiseComparisons::pairwise_p
+
 # ----------------------- tidyverse -------------------------------------
 
 #' @export

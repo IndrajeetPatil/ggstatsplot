@@ -193,6 +193,11 @@
 <li>
 <code>ggbetweenstats</code> and <code>ggwithinstats</code> no longer produce error with variables with pattern <code>mean</code> (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/336'>#336</a>).</li>
 </ul>
+<p>MAJOR CHANGES</p>
+<ul>
+<li>
+<code>pairwise_p</code> has been reintroduced as a number of users found it useful to call the function from <code>ggstatsplot</code> itself rather than using <code>pairwiseComparisons</code> package.</li>
+</ul>
 </div>
     <div id="ggstatsplot-013" class="section level1">
 <h1 class="page-header">
@@ -334,7 +339,7 @@
 <p>MINOR CHANGES</p>
 <ul>
 <li>
-<code>pairwise_p()</code> function no longer outputs <code>conf.low</code> and <code>conf.high</code> columns when parametric <em>post hoc</em> tests are run. This is because these values were accurate only when no <em>p</em>-value adjustment was carried out.</li>
+<code><a href="https://indrajeetpatil.github.io/pairwiseComparisons//reference/pairwise_comparisons.html">pairwise_p()</a></code> function no longer outputs <code>conf.low</code> and <code>conf.high</code> columns when parametric <em>post hoc</em> tests are run. This is because these values were accurate only when no <em>p</em>-value adjustment was carried out.</li>
 <li>Instead of using the internal function <code>cor_test_ci</code>, <code>ggscatterstats</code> instead used <code>SpearmanRho</code> function from <code>DescTools</code> package. This was done to reduce number of custom internal functions used to compute CIs for various effect sizes. <code>ggstatsplot</code> therefore gains <code>DescTools</code> as a dependency.</li>
 <li>The <code>sampling.plan</code> argument default for <code>ggbarstats</code> function has been changed from <code>"indepMulti"</code> to <code>"jointMulti"</code> to be consistent with its sister function <code>ggpiestats</code>.</li>
 </ul>

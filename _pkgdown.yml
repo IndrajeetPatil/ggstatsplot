@@ -33,6 +33,7 @@ reference:
       - specify_decimal_p
       - signif_column
       - lm_effsize_ci
+      - pairwise_p
       - set_cwd
       - "%>%"
       - "%<>%"
