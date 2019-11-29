@@ -353,12 +353,10 @@ ggcoefstats <- function(x,
       "blmerMod",
       "brmsfit",
       "brmsfit_multiple",
-      "gamlss",
       "glmmadmb",
       "glmerMod",
       "glmmPQL",
       "glmmTMB",
-      "gls",
       "lme",
       "lmerMod",
       "mcmc",
@@ -367,11 +365,9 @@ ggcoefstats <- function(x,
       "nlmerMod",
       "rjags",
       "rlmerMod",
-      "stanfit",
       "stanreg",
       "stanmvreg",
-      "TMB",
-      "wblm"
+      "TMB"
     )
 
   # =================== types of models =====================================
@@ -478,6 +474,7 @@ ggcoefstats <- function(x,
           x = x,
           conf.int = conf.int,
           conf.level = conf.level,
+          effects = "fixed",
           se.type = se.type,
           by_class = by.class,
           component = component,
@@ -847,11 +844,7 @@ ggcoefstats <- function(x,
     # if needed, adding the vertical line
     if (isTRUE(vline)) {
       # either at 1 - if coefficients are to be exponentiated - or at 0
-      if (isTRUE(exponentiate)) {
-        xintercept <- 1
-      } else {
-        xintercept <- 0
-      }
+      xintercept <- ifelse(exponentiate, 1, 0)
 
       # adding the line geom
       plot <- plot +

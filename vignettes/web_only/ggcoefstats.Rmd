@@ -349,12 +349,13 @@ set.seed(123)
 library(robustlmm)
 
 # model
-roblmm.mod <- robustlmm::rlmer(
-  formula = scale(Reaction) ~ scale(Days) + (Days | Subject),
-  data = sleepstudy,
-  rho.sigma.e = psi2propII(smoothPsi, k = 2.28),
-  rho.sigma.b = chgDefaults(smoothPsi, k = 5.11, s = 10)
-)
+roblmm.mod <-
+  robustlmm::rlmer(
+    formula = scale(Reaction) ~ scale(Days) + (Days | Subject),
+    data = sleepstudy,
+    rho.sigma.e = psi2propII(smoothPsi, k = 2.28),
+    rho.sigma.b = chgDefaults(smoothPsi, k = 5.11, s = 10)
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -371,10 +372,12 @@ ggstatsplot::ggcoefstats(
 library(lme4)
 set.seed(123)
 startvec <- c(Asym = 200, xmid = 725, scal = 350)
-nm1 <- lme4::nlmer(circumference ~ SSlogis(age, Asym, xmid, scal) ~ Asym | Tree,
-  Orange,
-  start = startvec
-)
+nm1 <-
+  lme4::nlmer(
+    formula = circumference ~ SSlogis(age, Asym, xmid, scal) ~ Asym | Tree,
+    data = Orange,
+    start = startvec
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -778,12 +781,14 @@ library(MASS)
 library(nlme)
 
 # model
-mod <- MASS::glmmPQL(
-  fixed = y ~ trt + I(week > 2),
-  random = ~ 1 | ID,
-  family = binomial,
-  data = bacteria
-)
+mod <-
+  MASS::glmmPQL(
+    fixed = y ~ trt + I(week > 2),
+    random = ~ 1 | ID,
+    family = binomial,
+    data = bacteria,
+    verbose = FALSE
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -1122,7 +1127,7 @@ for (i in 1:5) {
 
 # model
 mod <-
-  blmer(
+  blme::blmer(
     formula = scale(Reaction) ~ scale(Days) + (1 + Days | Subject),
     data = sleepstudy,
     cov.prior = NULL,
@@ -1763,9 +1768,16 @@ data("Affairs", package = "AER")
 
 # model
 m1 <-
-  AER::tobit(affairs ~ age + yearsmarried + religiousness + occupation + rating,
+  AER::tobit(
+    formula = affairs ~ age + yearsmarried + religiousness + occupation + rating,
     data = Affairs
   )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = m1,
+  title = "tobit regression"
+)
 ```
 
 ## Aalen's additive regression model for censored data (`aareg`)
@@ -1909,11 +1921,12 @@ library(nlme)
 data("sleepstudy")
 
 # model
-mod <- lme(
-  Reaction ~ Days,
-  random = ~ 1 + Days | Subject,
-  data = sleepstudy
-)
+mod <-
+  nlme::lme(
+    fixed = Reaction ~ Days,
+    random = ~ 1 + Days | Subject,
+    data = sleepstudy
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -1933,13 +1946,17 @@ variances.
 set.seed(123)
 library(nlme)
 
-# plot
-ggstatsplot::ggcoefstats(
-  x = nlme::gls(
+# model
+mod <-
+  nlme::gls(
     model = follicles ~ sin(2 * pi * Time) + cos(2 * pi * Time),
     data = Ovary,
     correlation = corAR1(form = ~ 1 | Mare)
-  ),
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
   point.color = "red",
   stats.label.color = "black",
   ggtheme = hrbrthemes::theme_ipsum_ps(),
@@ -2135,13 +2152,14 @@ set.seed(123)
 library(gamlss)
 
 # model
-g <- gamlss::gamlss(
-  formula = y ~ pb(x),
-  sigma.fo = ~ pb(x),
-  family = BCT,
-  data = abdom,
-  method = mixed(1, 20)
-)
+g <-
+  gamlss::gamlss(
+    formula = y ~ pb(x),
+    sigma.fo = ~ pb(x),
+    family = BCT,
+    data = abdom,
+    method = mixed(1, 20)
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -2553,13 +2571,14 @@ library(brms)
 bprior1 <- prior(student_t(5, 0, 10), class = b) + prior(cauchy(0, 2), class = sd)
 
 # model
-fit1 <- brms::brm(
-  formula = count ~ Age + Base * Trt + (1 | patient),
-  data = epilepsy,
-  family = poisson(),
-  prior = bprior1,
-  silent = TRUE
-)
+fit1 <-
+  brms::brm(
+    formula = count ~ Age + Base * Trt + (1 | patient),
+    data = epilepsy,
+    family = poisson(),
+    prior = bprior1,
+    silent = TRUE
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -2580,20 +2599,19 @@ library(brms)
 library(mice)
 
 # data
-imp <- mice(nhanes2)
-
-# fit the model using mice and lm
-fit_imp1 <- with(lm(bmi ~ age + hyp + chl), data = imp)
+imp <- mice::mice(data = nhanes2, print = FALSE)
 
 # fit the model using brms
-fit_imp2 <- brms::brm_multiple(
-  formula = bmi ~ age + hyp + chl, data = imp,
-  chains = 1
-)
+fit <-
+  brms::brm_multiple(
+    formula = bmi ~ age + hyp + chl,
+    data = imp,
+    chains = 1
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
-  x = fit_imp2,
+  x = fit,
   title = "Same `brms` model with multiple datasets",
   conf.level = 0.99
 )
@@ -2601,7 +2619,7 @@ ggstatsplot::ggcoefstats(
 
 ## Bayesian regression models via Stan (`stanreg`)
 
-```{r rstan, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+```{r stanreg, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
 # set up
 set.seed(123)
 library(rstanarm)
@@ -2618,6 +2636,60 @@ fit <-
 ggstatsplot::ggcoefstats(
   x = fit,
   title = "Bayesian generalized linear models via Stan"
+)
+```
+
+## Bayesian multivariate generalized linear models via Stan (`stanmvreg`)
+
+```{r stanmvreg, warning = FALSE, message = FALSE, eval=FALSE, fig.height = 5, fig.width = 5}
+# setup
+set.seed(123)
+library(rstanarm)
+pbcLong$ybern <- as.integer(pbcLong$logBili >= mean(pbcLong$logBili))
+
+# model
+mod <-
+  rstanarm::stan_mvmer(
+    formula = list(
+      ybern ~ year + (1 | id),
+      albumin ~ sex + year + (year | id)
+    ),
+    data = pbcLong,
+    family = list(binomial, gaussian),
+    chains = 1, cores = 1, seed = 12345, iter = 1000
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
+  title = "Bayesian multivariate generalized generalized linear models via Stan"
+)
+```
+
+## Bayesian nonlinear models via Stan (`nlstanreg`)
+
+```{r nlstanreg, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# setup
+set.seed(123)
+library(rstanarm)
+data("Orange", package = "datasets")
+Orange$circumference <- Orange$circumference / 100
+Orange$age <- Orange$age / 100
+
+# model
+fit <-
+  rstanarm::stan_nlmer(
+    formula = circumference ~ SSlogis(age, Asym, xmid, scal) ~ Asym | Tree,
+    data = Orange,
+    # for speed only
+    chains = 1,
+    iter = 1000
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = fit,
+  title = "Bayesian nonlinear models via Stan"
 )
 ```
 
@@ -2692,13 +2764,14 @@ jags.inits <- function() {
 }
 
 # model fitting
-jagsfit <- R2jags::jags(
-  data = list("y", "sd", "J"),
-  inits = jags.inits,
-  jags.params,
-  n.iter = 10,
-  model.file = model.file
-)
+jagsfit <-
+  R2jags::jags(
+    data = list("y", "sd", "J"),
+    inits = jags.inits,
+    jags.params,
+    n.iter = 10,
+    model.file = model.file
+  )
 
 # plot
 ggstatsplot::ggcoefstats(

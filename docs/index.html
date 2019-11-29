@@ -185,7 +185,7 @@
 <td><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg" alt="minimal R version"></a></td>
 <td><a href="https://www.tidyverse.org/lifecycle/"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue" alt="Monthly downloads badge"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-21-red.svg" alt="Github Issues"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-22-red.svg" alt="Github Issues"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot/vignettes/"><img src="https://img.shields.io/badge/vignettes-0.1.3-orange.svg?colorB=FF5722" alt="vignettes"></a></td>
 </tr>
 <tr class="even">
@@ -199,12 +199,12 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
 <td><a href="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot"><img src="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2019--11--21-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2019--11--29-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg" alt="GitHub last commit"></a></td>
 </tr>
 <tr class="even">
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://tinyverse.netlify.com/badge/ggstatsplot" alt="status"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md"><img src="https://img.shields.io/badge/covrpage-Last_Build_2019_11_21-yellowgreen.svg" alt="Covrpage Summary"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot"><img src="https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg" alt="R build status"></a></td>
 <td><a href="https://gitter.im/ggstatsplot/community"><img src="https://badges.gitter.im/gitterHQ/gitter.png" alt="Gitter chat"></a></td>
 <td><a href="http://www.repostatus.org/#active"><img src="http://www.repostatus.org/badges/latest/active.svg" alt="Project Status"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat" alt="contributions welcome"></a></td>
@@ -657,7 +657,7 @@
 <a class="sourceLine" id="cb7-3" title="3"><span class="co">#&gt; function(plot) {</span></a>
 <a class="sourceLine" id="cb7-4" title="4"><span class="co">#&gt;   cowplot::ggdraw() + cowplot::draw_grob(grid::grobTree(plot))</span></a>
 <a class="sourceLine" id="cb7-5" title="5"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb7-6" title="6"><span class="co">#&gt; &lt;bytecode: 0x000002530d0d0b38&gt;</span></a>
+<a class="sourceLine" id="cb7-6" title="6"><span class="co">#&gt; &lt;bytecode: 0x000000002c504770&gt;</span></a>
 <a class="sourceLine" id="cb7-7" title="7"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -732,7 +732,8 @@
 <a class="sourceLine" id="cb9-34" title="34">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb9-35" title="35">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats2-1.png" width="100%"></p>
-<p>As can be seen from the plot, the function by default returns Bayes Factor for the test (here, Student’s <em>t</em>-test). If the null hypothesis can’t be rejected with the null hypothesis significance testing (NHST) approach, the Bayesian approach can help index evidence in favor of the null hypothesis (i.e., <embed src="https://latex.codecogs.com/png.latex?BF_%7B01%7D%20%22BF_%7B01%7D%22"></embed>).</p>
+<p>As can be seen from the plot, the function by default returns Bayes Factor for the test (here, Student’s <em>t</em>-test). If the null hypothesis can’t be rejected with the null hypothesis significance testing (NHST) approach, the Bayesian approach can help index evidence in favor of the null hypothesis (i.e.,<br><embed src="https://latex.codecogs.com/png.latex?BF_%7B01%7D%20%22BF_%7B01%7D%22"></embed><br>
+).</p>
 <p>By default, natural logarithms are shown because Bayes Factor values can sometimes be pretty large. Having values on logarithmic scale also makes it easy to compare evidence in favor alternative (<embed src="https://latex.codecogs.com/png.latex?BF_%7B10%7D%20%22BF_%7B10%7D%22"></embed>) versus null (<embed src="https://latex.codecogs.com/png.latex?BF_%7B01%7D%20%22BF_%7B01%7D%22"></embed>) hypotheses (since <embed src="https://latex.codecogs.com/png.latex?log_%7Be%7D%28BF_%7B01%7D%29%20%3D%20-%20log_%7Be%7D%28BF_%7B01%7D%29%20%22log_%7Be%7D(BF_%7B01%7D)%20=%20-%20log_%7Be%7D(BF_%7B01%7D)%22"></embed>).</p>
 <p>Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co"># for reproducibility</span></a>
@@ -1369,21 +1370,28 @@
 <h2 class="hasAnchor">
 <a href="#gghistostats" class="anchor"></a><code>gghistostats</code>
 </h2>
-<p>To visualize the distribution of a single variable and check if its mean is significantly different from a specified value with a one-sample test, <code>gghistostats</code> can be used.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</a>
-<a class="sourceLine" id="cb22-2" title="2">  <span class="dt">data =</span> ToothGrowth, <span class="co"># dataframe from which variable is to be taken</span></a>
-<a class="sourceLine" id="cb22-3" title="3">  <span class="dt">x =</span> len, <span class="co"># numeric variable whose distribution is of interest</span></a>
-<a class="sourceLine" id="cb22-4" title="4">  <span class="dt">xlab =</span> <span class="st">"Tooth length"</span>, <span class="co"># `x`-axis label</span></a>
-<a class="sourceLine" id="cb22-5" title="5">  <span class="dt">title =</span> <span class="st">"Distribution of Tooth Length"</span>, <span class="co"># title for the plot</span></a>
-<a class="sourceLine" id="cb22-6" title="6">  <span class="dt">fill.gradient =</span> <span class="ot">TRUE</span>, <span class="co"># use color gradient</span></a>
-<a class="sourceLine" id="cb22-7" title="7">  <span class="dt">test.value =</span> <span class="dv">10</span>, <span class="co"># the comparison value for one-sample test</span></a>
-<a class="sourceLine" id="cb22-8" title="8">  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>, <span class="co"># display a vertical line at test value</span></a>
-<a class="sourceLine" id="cb22-9" title="9">  <span class="dt">type =</span> <span class="st">"bayes"</span>, <span class="co"># bayes factor for one sample t-test</span></a>
-<a class="sourceLine" id="cb22-10" title="10">  <span class="dt">bf.prior =</span> <span class="fl">0.8</span>, <span class="co"># prior width for calculating the bayes factor</span></a>
-<a class="sourceLine" id="cb22-11" title="11">  <span class="dt">messages =</span> <span class="ot">FALSE</span> <span class="co"># turn off the messages</span></a>
-<a class="sourceLine" id="cb22-12" title="12">)</a></code></pre></div>
+<p>To visualize the distribution of a single variable and check if its mean is significantly different from a specified value with a one-sample test, <code>gghistostats</code> can be used. We will again demonstrate here that the outputs are <code>ggplot</code> objects and can be further modified using any of the <code>ggplot</code> extension packages:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="co"># for reproducibility</span></a>
+<a class="sourceLine" id="cb22-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb22-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(firatheme)</a>
+<a class="sourceLine" id="cb22-4" title="4"></a>
+<a class="sourceLine" id="cb22-5" title="5"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb22-6" title="6">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</a>
+<a class="sourceLine" id="cb22-7" title="7">  <span class="dt">data =</span> ToothGrowth, <span class="co"># dataframe from which variable is to be taken</span></a>
+<a class="sourceLine" id="cb22-8" title="8">  <span class="dt">x =</span> len, <span class="co"># numeric variable whose distribution is of interest</span></a>
+<a class="sourceLine" id="cb22-9" title="9">  <span class="dt">xlab =</span> <span class="st">"Tooth length"</span>, <span class="co"># `x`-axis label</span></a>
+<a class="sourceLine" id="cb22-10" title="10">  <span class="dt">title =</span> <span class="st">"Distribution of Tooth Length"</span>, <span class="co"># title for the plot</span></a>
+<a class="sourceLine" id="cb22-11" title="11">  <span class="dt">fill.gradient =</span> <span class="ot">TRUE</span>, <span class="co"># use color gradient</span></a>
+<a class="sourceLine" id="cb22-12" title="12">  <span class="dt">test.value =</span> <span class="dv">10</span>, <span class="co"># the comparison value for one-sample test</span></a>
+<a class="sourceLine" id="cb22-13" title="13">  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>, <span class="co"># display a vertical line at test value</span></a>
+<a class="sourceLine" id="cb22-14" title="14">  <span class="dt">type =</span> <span class="st">"bayes"</span>, <span class="co"># bayes factor for one sample t-test</span></a>
+<a class="sourceLine" id="cb22-15" title="15">  <span class="dt">bf.prior =</span> <span class="fl">0.8</span>, <span class="co"># prior width for calculating the bayes factor</span></a>
+<a class="sourceLine" id="cb22-16" title="16">  <span class="dt">messages =</span> <span class="ot">FALSE</span> <span class="co"># turn off the messages</span></a>
+<a class="sourceLine" id="cb22-17" title="17">) <span class="op">+</span><span class="st"> </span><span class="co"># modification outside of `ggstatsplot` using extension packages</span></a>
+<a class="sourceLine" id="cb22-18" title="18"><span class="st">  </span><span class="kw">theme_fira</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb22-19" title="19"><span class="st">  </span><span class="kw">scale_colour_fira</span>()</a></code></pre></div>
 <p><img src="reference/figures/README-gghistostats1-1.png" width="100%"></p>
-<p>The aesthetic defaults can be easily modified-</p>
+<p>The aesthetic defaults can be easily modified internally as well-</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb23-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb23-3" title="3"></a>

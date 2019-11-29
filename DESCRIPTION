@@ -43,7 +43,7 @@ Imports:
     ggsignif (>= 0.6.0),
     grid,
     groupedstats (>= 0.1.0),
-    insight (>= 0.7.0),
+    insight (>= 0.7.1),
     metaBMA (>= 0.6.2),
     metafor (>= 2.1-0),
     pairwiseComparisons (>= 0.1.2),
