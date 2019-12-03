@@ -2310,7 +2310,8 @@ fit <-
     formula = networks ~ edges + istar(2) + edgecov(covariates),
     parallel = "multicore",
     ncpus = 4,
-    R = 100
+    R = 100,
+    verbose = FALSE
   )
 
 # plot
@@ -2340,7 +2341,7 @@ ggstatsplot::ggcoefstats(
 
 ## maximum-likelihood fitting of univariate distributions (`fitdistr`)
 
-```{r fitdistr, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+```{r fitdistr, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
 # model
 set.seed(123)
 library(MASS)
@@ -2400,8 +2401,8 @@ oranges_lm1 <- stats::lm(
 oranges_rg1 <- emmeans::ref_grid(oranges_lm1)
 marginal <- emmeans::emmeans(oranges_rg1, "day")
 
-# looking at the tidy output
-broom::tidy(marginal)
+# looking at the tidy output (you can do this yourself)
+# broom::tidy(marginal)
 
 # plotting it using `ggcoefstats`
 # note that since there was column called `term`, the function created one
@@ -2415,7 +2416,7 @@ ggstatsplot::ggcoefstats(
 
 ## Cochrane-Orcutt estimation (`orcutt`)
 
-```{r orcutt, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+```{r orcutt, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
 # model
 library(orcutt)
 set.seed(123)

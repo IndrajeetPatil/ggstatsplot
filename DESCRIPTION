@@ -78,4 +78,4 @@ Encoding: UTF-8
 Language: en-US
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.0.1.9000
+RoxygenNote: 7.0.2
