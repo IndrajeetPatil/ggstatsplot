@@ -198,6 +198,11 @@
 <li>
 <code>pairwise_p</code> has been reintroduced as a number of users found it useful to call the function from <code>ggstatsplot</code> itself rather than using <code>pairwiseComparisons</code> package.</li>
 </ul>
+<p>MAJOR CHANGES</p>
+<ul>
+<li>
+<code>ggbetweenstats</code> and <code>ggwithinstats</code> use <code><a href="https://rdrr.io/r/base/Extract.html">[</a></code> instead of <code>(</code> to display confidence intervals.</li>
+</ul>
 </div>
     <div id="ggstatsplot-013" class="section level1">
 <h1 class="page-header">
@@ -691,7 +696,7 @@
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">

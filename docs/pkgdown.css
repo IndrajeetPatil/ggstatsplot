@@ -102,22 +102,23 @@ a.anchor {
 
 /* Sidebar --------------------------*/
 
-#sidebar {
+#pkgdown-sidebar {
   margin-top: 30px;
   position: -webkit-sticky;
   position: sticky;
   top: 70px;
 }
-#sidebar h2 {
+
+#pkgdown-sidebar h2 {
   font-size: 1.5em;
   margin-top: 1em;
 }
 
-#sidebar h2:first-child {
+#pkgdown-sidebar h2:first-child {
   margin-top: 0;
 }
 
-#sidebar .list-unstyled li {
+#pkgdown-sidebar .list-unstyled li {
   margin-bottom: 0.5em;
 }
 

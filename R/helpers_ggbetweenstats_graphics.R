@@ -71,11 +71,11 @@ mean_labeller <- function(data,
               .$`mean...summary`,
               ",",
               "CI[95*'%']",
-              "(",
+              "*'['*",
               .$`mean.conf.low...summary`,
               ",",
               .$`mean.conf.high...summary`,
-              "))",
+              "*']')",
               sep = ""
             )
           )

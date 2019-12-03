@@ -11,6 +11,11 @@ MAJOR CHANGES
     call the function from `ggstatsplot` itself rather than using
     `pairwiseComparisons` package.
 
+MAJOR CHANGES
+
+  - `ggbetweenstats` and `ggwithinstats` use `[` instead of `(` to display
+    confidence intervals.
+
 # ggstatsplot 0.1.3
 
 MAJOR CHANGES

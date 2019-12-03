@@ -1,6 +1,6 @@
 pandoc: 2.7.2
 pkgdown: 1.4.1.9000
-pkgdown_sha: d0b233e7966dc86c2b315f880deead3c7f9a5a02
+pkgdown_sha: 891cd8be82e2fdebe9ef3b2623687f7ac26297f8
 articles:
   additional: additional.html
   tests_and_coverage: tests_and_coverage.html

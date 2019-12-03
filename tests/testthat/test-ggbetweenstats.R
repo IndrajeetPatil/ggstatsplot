@@ -406,34 +406,37 @@ testthat::test_that(
     # tests for labels
     testthat::expect_null(pb1$plot$labels$subtitle, NULL)
     testthat::expect_null(pb1$plot$labels$caption, NULL)
-    testthat::expect_identical(pb2$plot$labels$subtitle, ggplot2::expr(
-      paste(
-        NULL,
-        italic("t"),
-        "(",
-        "55.31",
-        ") = ",
-        "1.92",
-        ", ",
-        italic("p"),
-        " = ",
-        "0.061",
-        ", ",
-        italic("g"),
-        " = ",
-        "0.49",
-        ", CI"["95%"],
-        " [",
-        "-0.04",
-        ", ",
-        "1.01",
-        "]",
-        ", ",
-        italic("n")["obs"],
-        " = ",
-        60L
+    testthat::expect_identical(
+      pb2$plot$labels$subtitle,
+      ggplot2::expr(
+        paste(
+          NULL,
+          italic("t"),
+          "(",
+          "55.31",
+          ") = ",
+          "1.92",
+          ", ",
+          italic("p"),
+          " = ",
+          "0.061",
+          ", ",
+          italic("g"),
+          " = ",
+          "0.49",
+          ", CI"["95%"],
+          " [",
+          "-0.04",
+          ", ",
+          "1.01",
+          "]",
+          ", ",
+          italic("n")["obs"],
+          " = ",
+          60L
+        )
       )
-    ))
+    )
     testthat::expect_null(pb2$plot$labels$caption, NULL)
     testthat::expect_identical(length(pb1$data), 5L)
     testthat::expect_identical(length(pb1$data), 5L)
