@@ -56,7 +56,7 @@ matrix:
         - lme4
         - psych
         - git2r
-        - data.table
+        #- data.table
         - rjags
         - StanHeaders
         - rstan
@@ -125,7 +125,7 @@ matrix:
         - lme4
         - psych
         - git2r
-        - data.table
+        #- data.table
         - rjags
         - StanHeaders
         - rstan

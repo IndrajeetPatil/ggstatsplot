@@ -8,7 +8,7 @@ output:
 
 ```{r, echo = FALSE}
 # show me all columns
-options(tibble.width = Inf) 
+options(tibble.width = Inf)
 
 knitr::opts_chunk$set(
   collapse = TRUE,
