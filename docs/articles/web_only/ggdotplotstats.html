@@ -142,7 +142,7 @@
       <h1>ggdotplotstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-12-03</h4>
+            <h4 class="date">2019-12-04</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggdotplotstats.Rmd"><code>vignettes/web_only/ggdotplotstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggdotplotstats.Rmd</code></div>
@@ -158,55 +158,55 @@
 <a href="#distribution-of-a-sample-with-ggdotplotstats" class="anchor"></a>Distribution of a sample with <code>ggdotplotstats</code>
 </h2>
 <p>Let’s begin with a very simple example from the <code>ggplot2</code> package (<code><a href="https://ggplot2.tidyverse.org/reference/mpg.html">ggplot2::mpg</a></code>), a subset of the fuel economy data that the EPA makes available on <a href="http://fueleconomy.gov" class="uri">http://fueleconomy.gov</a>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># loading needed libraries</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
-<a class="sourceLine" id="cb1-3" title="3"></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="co"># looking at the structure of the data using glimpse</span></a>
-<a class="sourceLine" id="cb1-5" title="5">dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="dt">x =</span> ggplot2<span class="op">::</span>mpg)</a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="co">#&gt; Observations: 234</span></a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="co">#&gt; Variables: 11</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="co">#&gt; $ manufacturer &lt;chr&gt; "audi", "audi", "audi", "audi", "audi", "audi", "audi"...</span></a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="co">#&gt; $ model        &lt;chr&gt; "a4", "a4", "a4", "a4", "a4", "a4", "a4", "a4 quattro"...</span></a>
-<a class="sourceLine" id="cb1-10" title="10"><span class="co">#&gt; $ displ        &lt;dbl&gt; 1.8, 1.8, 2.0, 2.0, 2.8, 2.8, 3.1, 1.8, 1.8, 2.0, 2.0,...</span></a>
-<a class="sourceLine" id="cb1-11" title="11"><span class="co">#&gt; $ year         &lt;int&gt; 1999, 1999, 2008, 2008, 1999, 1999, 2008, 1999, 1999, ...</span></a>
-<a class="sourceLine" id="cb1-12" title="12"><span class="co">#&gt; $ cyl          &lt;int&gt; 4, 4, 4, 4, 6, 6, 6, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6, 8, ...</span></a>
-<a class="sourceLine" id="cb1-13" title="13"><span class="co">#&gt; $ trans        &lt;chr&gt; "auto(l5)", "manual(m5)", "manual(m6)", "auto(av)", "a...</span></a>
-<a class="sourceLine" id="cb1-14" title="14"><span class="co">#&gt; $ drv          &lt;chr&gt; "f", "f", "f", "f", "f", "f", "f", "4", "4", "4", "4",...</span></a>
-<a class="sourceLine" id="cb1-15" title="15"><span class="co">#&gt; $ cty          &lt;int&gt; 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 17...</span></a>
-<a class="sourceLine" id="cb1-16" title="16"><span class="co">#&gt; $ hwy          &lt;int&gt; 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 25, 25...</span></a>
-<a class="sourceLine" id="cb1-17" title="17"><span class="co">#&gt; $ fl           &lt;chr&gt; "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p",...</span></a>
-<a class="sourceLine" id="cb1-18" title="18"><span class="co">#&gt; $ class        &lt;chr&gt; "compact", "compact", "compact", "compact", "compact",...</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># loading needed libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># looking at the structure of the data using glimpse</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="dt">x =</span> ggplot2<span class="op">::</span>mpg)</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co">#&gt; Observations: 234</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co">#&gt; Variables: 11</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co">#&gt; $ manufacturer &lt;chr&gt; "audi", "audi", "audi", "audi", "audi", "audi", "audi"...</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="co">#&gt; $ model        &lt;chr&gt; "a4", "a4", "a4", "a4", "a4", "a4", "a4", "a4 quattro"...</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="co">#&gt; $ displ        &lt;dbl&gt; 1.8, 1.8, 2.0, 2.0, 2.8, 2.8, 3.1, 1.8, 1.8, 2.0, 2.0,...</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co">#&gt; $ year         &lt;int&gt; 1999, 1999, 2008, 2008, 1999, 1999, 2008, 1999, 1999, ...</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="co">#&gt; $ cyl          &lt;int&gt; 4, 4, 4, 4, 6, 6, 6, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6, 8, ...</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="co">#&gt; $ trans        &lt;chr&gt; "auto(l5)", "manual(m5)", "manual(m6)", "auto(av)", "a...</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="co">#&gt; $ drv          &lt;chr&gt; "f", "f", "f", "f", "f", "f", "f", "4", "4", "4", "4",...</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="co">#&gt; $ cty          &lt;int&gt; 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 17...</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="co">#&gt; $ hwy          &lt;int&gt; 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 25, 25...</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="co">#&gt; $ fl           &lt;chr&gt; "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p",...</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a><span class="co">#&gt; $ class        &lt;chr&gt; "compact", "compact", "compact", "compact", "compact",...</span></span></code></pre></div>
 <p>Let’s say we want to visualize the distribution of mileage by car manufacturer.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># for reproducibility</span></a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb2-3" title="3"></a>
-<a class="sourceLine" id="cb2-4" title="4"><span class="co"># removing factor level with very few no. of observations</span></a>
-<a class="sourceLine" id="cb2-5" title="5">df &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ggplot2<span class="op">::</span>mpg, cyl <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"4"</span>, <span class="st">"6"</span>))</a>
-<a class="sourceLine" id="cb2-6" title="6"></a>
-<a class="sourceLine" id="cb2-7" title="7"><span class="co"># creating a vector of colors using `paletteer` package</span></a>
-<a class="sourceLine" id="cb2-8" title="8">paletter_vector &lt;-<span class="st"> </span>paletteer<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/paletteer/man/paletteer_d.html">paletteer_d</a></span>(</a>
-<a class="sourceLine" id="cb2-9" title="9">  <span class="dt">package =</span> <span class="st">"palettetown"</span>,</a>
-<a class="sourceLine" id="cb2-10" title="10">  <span class="dt">palette =</span> <span class="st">"venusaur"</span>,</a>
-<a class="sourceLine" id="cb2-11" title="11">  <span class="dt">n =</span> <span class="kw"><a href="https://rdrr.io/r/base/nlevels.html">nlevels</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(df<span class="op">$</span>manufacturer)),</a>
-<a class="sourceLine" id="cb2-12" title="12">  <span class="dt">type =</span> <span class="st">"discrete"</span></a>
-<a class="sourceLine" id="cb2-13" title="13">)</a>
-<a class="sourceLine" id="cb2-14" title="14"></a>
-<a class="sourceLine" id="cb2-15" title="15"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb2-16" title="16">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggdotplotstats.html">ggdotplotstats</a></span>(</a>
-<a class="sourceLine" id="cb2-17" title="17">  <span class="dt">data =</span> df,</a>
-<a class="sourceLine" id="cb2-18" title="18">  <span class="dt">x =</span> cty,</a>
-<a class="sourceLine" id="cb2-19" title="19">  <span class="dt">y =</span> manufacturer,</a>
-<a class="sourceLine" id="cb2-20" title="20">  <span class="dt">xlab =</span> <span class="st">"city miles per gallon"</span>,</a>
-<a class="sourceLine" id="cb2-21" title="21">  <span class="dt">ylab =</span> <span class="st">"car manufacturer"</span>,</a>
-<a class="sourceLine" id="cb2-22" title="22">  <span class="dt">test.value =</span> <span class="fl">15.5</span>,</a>
-<a class="sourceLine" id="cb2-23" title="23">  <span class="dt">point.color =</span> paletter_vector,</a>
-<a class="sourceLine" id="cb2-24" title="24">  <span class="dt">point.size =</span> <span class="dv">5</span>,</a>
-<a class="sourceLine" id="cb2-25" title="25">  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb2-26" title="26">  <span class="dt">title =</span> <span class="st">"Distribution of mileage of cars"</span>,</a>
-<a class="sourceLine" id="cb2-27" title="27">  <span class="dt">ggtheme =</span> hrbrthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html">theme_ipsum_ps</a></span>(),</a>
-<a class="sourceLine" id="cb2-28" title="28">  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb2-29" title="29">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb2-30" title="30">)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># for reproducibility</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># removing factor level with very few no. of observations</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>df &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ggplot2<span class="op">::</span>mpg, cyl <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"4"</span>, <span class="st">"6"</span>))</span>
+<span id="cb2-6"><a href="#cb2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co"># creating a vector of colors using `paletteer` package</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>paletter_vector &lt;-<span class="st"> </span>paletteer<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/paletteer/man/paletteer_d.html">paletteer_d</a></span>(</span>
+<span id="cb2-9"><a href="#cb2-9"></a>  <span class="dt">package =</span> <span class="st">"palettetown"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10"></a>  <span class="dt">palette =</span> <span class="st">"venusaur"</span>,</span>
+<span id="cb2-11"><a href="#cb2-11"></a>  <span class="dt">n =</span> <span class="kw"><a href="https://rdrr.io/r/base/nlevels.html">nlevels</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(df<span class="op">$</span>manufacturer)),</span>
+<span id="cb2-12"><a href="#cb2-12"></a>  <span class="dt">type =</span> <span class="st">"discrete"</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>)</span>
+<span id="cb2-14"><a href="#cb2-14"></a></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="co"># plot</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggdotplotstats.html">ggdotplotstats</a></span>(</span>
+<span id="cb2-17"><a href="#cb2-17"></a>  <span class="dt">data =</span> df,</span>
+<span id="cb2-18"><a href="#cb2-18"></a>  <span class="dt">x =</span> cty,</span>
+<span id="cb2-19"><a href="#cb2-19"></a>  <span class="dt">y =</span> manufacturer,</span>
+<span id="cb2-20"><a href="#cb2-20"></a>  <span class="dt">xlab =</span> <span class="st">"city miles per gallon"</span>,</span>
+<span id="cb2-21"><a href="#cb2-21"></a>  <span class="dt">ylab =</span> <span class="st">"car manufacturer"</span>,</span>
+<span id="cb2-22"><a href="#cb2-22"></a>  <span class="dt">test.value =</span> <span class="fl">15.5</span>,</span>
+<span id="cb2-23"><a href="#cb2-23"></a>  <span class="dt">point.color =</span> paletter_vector,</span>
+<span id="cb2-24"><a href="#cb2-24"></a>  <span class="dt">point.size =</span> <span class="dv">5</span>,</span>
+<span id="cb2-25"><a href="#cb2-25"></a>  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb2-26"><a href="#cb2-26"></a>  <span class="dt">title =</span> <span class="st">"Distribution of mileage of cars"</span>,</span>
+<span id="cb2-27"><a href="#cb2-27"></a>  <span class="dt">ggtheme =</span> hrbrthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html">theme_ipsum_ps</a></span>(),</span>
+<span id="cb2-28"><a href="#cb2-28"></a>  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb2-29"><a href="#cb2-29"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
+<span id="cb2-30"><a href="#cb2-30"></a>)</span></code></pre></div>
 <p><img src="ggdotplotstats_files/figure-html/mpg2-1.png" width="864"></p>
 </div>
 <div id="grouped-analysis-with-grouped_ggdotplotstats" class="section level2">
@@ -216,36 +216,36 @@
 <p>What if we want to do the same analysis separately for different engines with different numbers of cylinders?</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggdotplotstats</code>. This is merely a wrapper function around <code><a href="../../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggdotplotstats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines the individual plots into a single plot.</p>
 <p>Let’s see how we can use this function to apply <code>ggdotplotstats</code> to accomplish our task.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># for reproducibility</span></a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb3-3" title="3"></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="co"># removing factor level with very few no. of observations</span></a>
-<a class="sourceLine" id="cb3-5" title="5">df &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ggplot2<span class="op">::</span>mpg, cyl <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"4"</span>, <span class="st">"6"</span>))</a>
-<a class="sourceLine" id="cb3-6" title="6"></a>
-<a class="sourceLine" id="cb3-7" title="7"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb3-8" title="8">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggdotplotstats.html">grouped_ggdotplotstats</a></span>(</a>
-<a class="sourceLine" id="cb3-9" title="9">  <span class="co"># arguments relevant for ggstatsplot::ggdotplotstats</span></a>
-<a class="sourceLine" id="cb3-10" title="10">  <span class="dt">data =</span> df,</a>
-<a class="sourceLine" id="cb3-11" title="11">  <span class="dt">x =</span> cty,</a>
-<a class="sourceLine" id="cb3-12" title="12">  <span class="dt">y =</span> manufacturer,</a>
-<a class="sourceLine" id="cb3-13" title="13">  <span class="dt">xlab =</span> <span class="st">"city miles per gallon"</span>,</a>
-<a class="sourceLine" id="cb3-14" title="14">  <span class="dt">ylab =</span> <span class="st">"car manufacturer"</span>,</a>
-<a class="sourceLine" id="cb3-15" title="15">  <span class="dt">grouping.var =</span> cyl, <span class="co"># grouping variable</span></a>
-<a class="sourceLine" id="cb3-16" title="16">  <span class="dt">type =</span> <span class="st">"bayes"</span>, <span class="co"># bayes factor test</span></a>
-<a class="sourceLine" id="cb3-17" title="17">  <span class="dt">bf.prior =</span> <span class="fl">0.9</span>,</a>
-<a class="sourceLine" id="cb3-18" title="18">  <span class="dt">test.value =</span> <span class="fl">15.5</span>,</a>
-<a class="sourceLine" id="cb3-19" title="19">  <span class="dt">title.prefix =</span> <span class="st">"cylinder count"</span>,</a>
-<a class="sourceLine" id="cb3-20" title="20">  <span class="dt">point.color =</span> <span class="st">"red"</span>,</a>
-<a class="sourceLine" id="cb3-21" title="21">  <span class="dt">point.size =</span> <span class="dv">5</span>,</a>
-<a class="sourceLine" id="cb3-22" title="22">  <span class="dt">point.shape =</span> <span class="dv">13</span>,</a>
-<a class="sourceLine" id="cb3-23" title="23">  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb3-24" title="24">  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>(),</a>
-<a class="sourceLine" id="cb3-25" title="25">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb3-26" title="26">  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></a>
-<a class="sourceLine" id="cb3-27" title="27">  <span class="dt">title.text =</span> <span class="st">"Fuel economy data"</span>,</a>
-<a class="sourceLine" id="cb3-28" title="28">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb3-29" title="29">  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(i)"</span>, <span class="st">"(ii)"</span>)</a>
-<a class="sourceLine" id="cb3-30" title="30">)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># for reproducibility</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co"># removing factor level with very few no. of observations</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>df &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ggplot2<span class="op">::</span>mpg, cyl <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"4"</span>, <span class="st">"6"</span>))</span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co"># plot</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggdotplotstats.html">grouped_ggdotplotstats</a></span>(</span>
+<span id="cb3-9"><a href="#cb3-9"></a>  <span class="co"># arguments relevant for ggstatsplot::ggdotplotstats</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>  <span class="dt">data =</span> df,</span>
+<span id="cb3-11"><a href="#cb3-11"></a>  <span class="dt">x =</span> cty,</span>
+<span id="cb3-12"><a href="#cb3-12"></a>  <span class="dt">y =</span> manufacturer,</span>
+<span id="cb3-13"><a href="#cb3-13"></a>  <span class="dt">xlab =</span> <span class="st">"city miles per gallon"</span>,</span>
+<span id="cb3-14"><a href="#cb3-14"></a>  <span class="dt">ylab =</span> <span class="st">"car manufacturer"</span>,</span>
+<span id="cb3-15"><a href="#cb3-15"></a>  <span class="dt">grouping.var =</span> cyl, <span class="co"># grouping variable</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a>  <span class="dt">type =</span> <span class="st">"bayes"</span>, <span class="co"># bayes factor test</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a>  <span class="dt">bf.prior =</span> <span class="fl">0.9</span>,</span>
+<span id="cb3-18"><a href="#cb3-18"></a>  <span class="dt">test.value =</span> <span class="fl">15.5</span>,</span>
+<span id="cb3-19"><a href="#cb3-19"></a>  <span class="dt">title.prefix =</span> <span class="st">"cylinder count"</span>,</span>
+<span id="cb3-20"><a href="#cb3-20"></a>  <span class="dt">point.color =</span> <span class="st">"red"</span>,</span>
+<span id="cb3-21"><a href="#cb3-21"></a>  <span class="dt">point.size =</span> <span class="dv">5</span>,</span>
+<span id="cb3-22"><a href="#cb3-22"></a>  <span class="dt">point.shape =</span> <span class="dv">13</span>,</span>
+<span id="cb3-23"><a href="#cb3-23"></a>  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb3-24"><a href="#cb3-24"></a>  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>(),</span>
+<span id="cb3-25"><a href="#cb3-25"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb3-26"><a href="#cb3-26"></a>  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></span>
+<span id="cb3-27"><a href="#cb3-27"></a>  <span class="dt">title.text =</span> <span class="st">"Fuel economy data"</span>,</span>
+<span id="cb3-28"><a href="#cb3-28"></a>  <span class="dt">nrow =</span> <span class="dv">2</span>,</span>
+<span id="cb3-29"><a href="#cb3-29"></a>  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(i)"</span>, <span class="st">"(ii)"</span>)</span>
+<span id="cb3-30"><a href="#cb3-30"></a>)</span></code></pre></div>
 <p><img src="ggdotplotstats_files/figure-html/grouped1-1.png" width="672"></p>
 </div>
 <div id="grouped-analysis-with-purrr" class="section level2">

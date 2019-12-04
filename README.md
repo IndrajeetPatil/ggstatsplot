@@ -217,7 +217,7 @@ ggstatsplot::ggplot_converter
 #> function(plot) {
 #>   cowplot::ggdraw() + cowplot::draw_grob(grid::grobTree(plot))
 #> }
-#> <bytecode: 0x0000000027eb82c0>
+#> <bytecode: 0x000000002c8862d0>
 #> <environment: namespace:ggstatsplot>
 ```
 
