@@ -217,7 +217,7 @@ ggstatsplot::ggplot_converter
 #> function(plot) {
 #>   cowplot::ggdraw() + cowplot::draw_grob(grid::grobTree(plot))
 #> }
-#> <bytecode: 0x000000002c8862d0>
+#> <bytecode: 0x000000002f7bcda0>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -1342,17 +1342,17 @@ Most of the regression models that are supported in the `broom` and
 supported by `ggcoefstats`. For example-
 
 `aareg`, `anova`, `aov`, `aovlist`, `Arima`, `bglmerMod`, `bigglm`,
-`biglm`, `blavaan`, `blmerMod`, `bracl`, `brglm2`, `brmsfit`, `btergm`,
-`cch`, `clm`, `clmm`, `confusionMatrix`, `coxph`, `drc`, `emmGrid`,
-`epi.2by2`, `ergm`, `felm`, `fitdistr`, `glmc`, `glmerMod`, `glmmTMB`,
-`gls`, `gam`, `Gam`, `gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`,
-`glmRob`, `glmrob`, `gmm`, `ivreg`, `lavaan`, `lm`, `lm.beta`,
-`lmerMod`, `lmodel2`, `lmRob`, `lmrob`, `mcmc`, `MCMCglmm`, `mclogit`,
-`mmclogit`, `mediate`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`,
-`nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`,
-`rjags`, `rlm`, `rlmerMod`, `rq`, `slm`, `speedglm`, `speedlm`,
-`stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`, `wbgee`,
-`wblm`, etc.
+`biglm`, `blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm2`, `brmsfit`,
+`btergm`, `cch`, `clm`, `clmm`, `confusionMatrix`, `coxph`, `drc`,
+`emmGrid`, `epi.2by2`, `ergm`, `felm`, `fitdistr`, `glmc`, `glmerMod`,
+`glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`, `garch`, `glm`, `glmmadmb`,
+`glmmPQL`, `glmRob`, `glmrob`, `gmm`, `ivreg`, `lavaan`, `lm`,
+`lm.beta`, `lmerMod`, `lmodel2`, `lmRob`, `lmrob`, `mcmc`, `MCMCglmm`,
+`mclogit`, `mmclogit`, `mediate`, `mjoint`, `mle2`, `mlm`, `multinom`,
+`negbin`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `plm`, `polr`,
+`ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `slm`, `speedglm`,
+`speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`,
+`svyglm`, `tobit`, `wbgee`, `wblm`, etc.
 
 Although not shown here, this function can also be used to carry out
 both frequentist and Bayesian random-effects meta-analysis.
