@@ -265,10 +265,10 @@ ggcorrmat <- function(data,
     )
 
   # ===================== statistics ========================================
-  #
+
   if (corr.method %in% c("pearson", "spearman", "kendall")) {
     # compute confidence intervals only when requested by the user
-    ci <- ifelse(test = output == "ci", yes = TRUE, no = FALSE)
+    ci <- ifelse(output == "ci", yes = TRUE, no = FALSE)
 
     # computing correlations using `psych` package
     corr_df <-
@@ -278,7 +278,7 @@ ggcorrmat <- function(data,
         use = "pairwise",
         method = corr.method,
         adjust = p.adjust.method,
-        alpha = .05,
+        alpha = 0.05,
         ci = ci,
         minlength = 20
       )
@@ -471,7 +471,8 @@ ggcorrmat <- function(data,
       tibble_helper <- purrr::compose(tibble::as_tibble, tibble::rownames_to_column)
 
       # merging data frame with CIs and adjusted CIs
-      ci.mat <- list(corr_df$ci, corr_df$ci.adj) %>%
+      ci.mat <-
+        list(corr_df$ci, corr_df$ci.adj) %>%
         purrr::map(.x = ., .f = tibble_helper, var = "pair") %>%
         dplyr::bind_cols(.) %>%
         dplyr::select(.data = ., pair, r, dplyr::everything(), -pair1)

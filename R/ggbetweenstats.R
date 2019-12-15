@@ -295,11 +295,7 @@ ggbetweenstats <- function(data,
 
   # figure out which test to run based on the number of levels of the
   # independent variables
-  if (nlevels(data %>% dplyr::pull({{ x }}))[[1]] < 3) {
-    test <- "t-test"
-  } else {
-    test <- "anova"
-  }
+  test <- ifelse(nlevels(data %>% dplyr::pull({{ x }}))[[1]] < 3, "t-test", "anova")
 
   # --------------------------------- sorting --------------------------------
 

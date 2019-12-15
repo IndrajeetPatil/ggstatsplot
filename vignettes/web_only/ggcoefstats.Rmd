@@ -74,15 +74,15 @@ Most of the regression models that are supported in the `broom` and
 
 `aareg`, `anova`, `aov`, `aovlist`, `Arima`, `bglmerMod`, `bigglm`, `biglm`,
 `blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm2`, `brmsfit`, `btergm`, `cch`,
-`clm`, `clmm`, `confusionMatrix`, `coxph`, `drc`, `emmGrid`, `epi.2by2`, `ergm`,
-`felm`, `fitdistr`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`,
-`gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `gmm`,
-`ivreg`, `lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`, `lmRob`, `lmrob`,
-`mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`, `mediate`, `mjoint`, `mle2`, `mlm`,
-`multinom`, `negbin`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `plm`,
-`polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `slm`, `speedglm`,
-`speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`,
-`tobit`, `wbgee`, `wblm`, etc.
+`clm`, `clmm`, `coeftest`, `confusionMatrix`, `coxph`, `drc`, `emmGrid`,
+`epi.2by2`, `ergm`, `felm`, `fitdistr`, `glmc`, `glmerMod`, `glmmTMB`, `gls`,
+`gam`, `Gam`, `gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`,
+`glmrob`, `gmm`, `ivreg`, `lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`,
+`lmRob`, `lmrob`, `mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`, `mediate`,
+`mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `nlmerMod`, `nlrq`, `nlreg`,
+`nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`,
+`slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`,
+`svyolr`, `svyglm`, `tobit`, `wbgee`, `wblm`, etc.
 
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
@@ -628,7 +628,6 @@ fit1 <- glm2::glm2(
 # plot
 ggstatsplot::ggcoefstats(
   x = fit1,
-  conf.int = FALSE,
   title = "greater stability for fitting generalized linear models",
   exclude.intercept = FALSE
 )
@@ -1266,7 +1265,8 @@ library(survey)
 data(api)
 
 # preparing data
-dclus1 <- survey::svydesign(
+dclus1 <- 
+  survey::svydesign(
   id = ~dnum,
   weights = ~pw,
   data = apiclus1,
@@ -1569,9 +1569,31 @@ ggstatsplot::combine_plots(
 )
 ```
 
+## multinomial logit model (`mlogit`)
+
+```{r mlogit, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 7, eval=FALSE}
+
+# setup
+set.seed(123)
+library(mlogit)
+
+# data
+data("Fishing", package = "mlogit")
+Fish <- mlogit.data(Fishing, varying = c(2:9), shape = "wide", choice = "mode")
+
+# a "mixed" model
+m <- mlogit(mode ~ price+ catch | income, data = Fish)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = m,
+  title = "multinomial logit model"
+)
+```
+
 ## conditional logit models (`mclogit`)
 
-```{r mclogit, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+```{r mclogit, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4, eval=FALSE}
 # setup
 set.seed(123)
 library(mclogit)
@@ -1595,7 +1617,7 @@ ggstatsplot::ggcoefstats(
 
 ## mixed conditional logit models (`mmclogit`)
 
-```{r mmclogit, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 7}
+```{r mmclogit, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 7, eval=FALSE}
 # setup
 set.seed(123)
 library(mclogit)
@@ -2012,6 +2034,28 @@ mod <- lm_robust(
 ggstatsplot::ggcoefstats(
   x = mod,
   title = "ordinary least squares \nwith robust standard errors"
+)
+```
+
+## inference for estimated coefficients (`coeftest`)
+
+```{r coeftest, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+# setup
+set.seed(123)
+library(lmtest)
+
+# load data and fit model
+data("Mandible", package = "lmtest")
+fm <- stats::lm(formula = length ~ age, data = Mandible, subset = (age <= 28))
+
+# the following commands lead to the same tests:
+ct <- lmtest::coeftest(fm)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = ct,
+  plot = "inference for estimated coefficients",
+  conf.level = 0.99
 )
 ```
 

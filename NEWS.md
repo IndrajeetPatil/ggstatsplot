@@ -15,7 +15,7 @@ MINOR CHANGES
 
   - `ggbetweenstats` and `ggwithinstats` use `[` instead of `(` to display
     confidence intervals.
-  - More models supported in `ggcoefstats`: `bmlm`
+  - More models supported in `ggcoefstats`: `bmlm`, `coeftest`
 
 # ggstatsplot 0.1.3
 
