@@ -119,8 +119,8 @@ testthat::test_that(
     testthat::expect_equal(dat$signif[4], 1L)
     testthat::expect_equal(dat$signif[5], 0L)
     testthat::expect_identical(
-      p$plot_env$colors,
-      c("#1B9E77", "#D95F02", "#7570B3")
+      unclass(p$plot_env$colors),
+      c("#1B9E77FF", "#D95F02FF", "#7570B3FF")
     )
 
     # checking layers
@@ -341,8 +341,8 @@ testthat::test_that(
     testthat::expect_equal(dat$signif[10], 0L)
     testthat::expect_equal(dat$signif[11], 1L)
     testthat::expect_identical(
-      p$plot_env$colors,
-      c("#E1BD6D", "#EABE94", "#0B775E")
+      unclass(p$plot_env$colors),
+      c("#E1BD6DFF", "#EABE94FF", "#0B775EFF")
     )
     testthat::expect_identical(p_legend_title, ggplot2::expr(atop(atop(
       atop(scriptstyle(bold("sample size:")), italic(n)[min] ~

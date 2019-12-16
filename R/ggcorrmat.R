@@ -82,8 +82,11 @@
 #'   `insig = "pch"`). Defaults are `pch.col = "#F0E442"` and `pch.cex = 10`.
 #' @param tl.cex,tl.col,tl.srt The size, the color, and the string rotation of
 #'   text label (variable names, i.e.).
+#' @param package Name of package from which the palette is desired as string
+#' or symbol.
+#' @param palette Name of palette as string or symbol.
+#' @param direction Either `1` or `-1`. If `-1` the palette will be reversed.
 #' @inheritParams theme_ggstatsplot
-#' @inheritParams paletteer::paletteer_d
 #' @inheritParams ggscatterstats
 #'
 #' @import ggplot2
@@ -327,8 +330,7 @@ ggcorrmat <- function(data,
   # if user has not specified colors, then use a color palette
   if (is.null(colors)) {
     colors <- paletteer::paletteer_d(
-      package = !!package,
-      palette = !!palette,
+      palette = paste0(package, "::", palette),
       n = 3,
       direction = direction,
       type = "discrete"

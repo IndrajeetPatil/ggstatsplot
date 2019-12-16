@@ -97,7 +97,7 @@ testthat::test_that(
     testthat::expect_equal(dim(pb$data[[2]]), c(4L, 19L))
     testthat::expect_identical(
       pb$data[[1]]$fill,
-      c("#E7298A", "#7570B3", "#D95F02", "#1B9E77")
+      c("#E7298AFF", "#7570B3FF", "#D95F02FF", "#1B9E77FF")
     )
   }
 )
@@ -316,17 +316,17 @@ testthat::test_that(
     testthat::expect_identical(
       pb$data[[1]]$fill,
       c(
-        "#F5CDB4",
-        "#9A8822",
-        "#F5CDB4",
-        "#9A8822",
-        "#F5CDB4",
-        "#9A8822"
+        "#F5CDB4FF",
+        "#9A8822FF",
+        "#F5CDB4FF",
+        "#9A8822FF",
+        "#F5CDB4FF",
+        "#9A8822FF"
       )
     )
     testthat::expect_identical(
       pb1$data[[1]]$fill,
-      c("#7570B3", "#D95F02", "#1B9E77")
+      c("#7570B3FF", "#D95F02FF", "#1B9E77FF")
     )
 
     # test layout

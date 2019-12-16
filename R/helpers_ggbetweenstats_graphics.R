@@ -518,13 +518,11 @@ aesthetic_addon <- function(plot,
     ) +
     ggplot2::theme(legend.position = "none") +
     paletteer::scale_color_paletteer_d(
-      package = !!package,
-      palette = !!palette,
+      palette = paste0(package, "::", palette),
       direction = direction
     ) +
     paletteer::scale_fill_paletteer_d(
-      package = !!package,
-      palette = !!palette,
+      palette = paste0(package, "::", palette),
       direction = direction
     )
 

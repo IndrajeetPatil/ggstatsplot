@@ -52,9 +52,7 @@ override some aspects of the selected \code{ggtheme}.}
 \item{package}{Name of package from which the palette is desired as string
 or symbol.}
 
-\item{palette}{If a character string (e.g., \code{"Set1"}), will use that named
-palette. If a number, will index into the list of palettes of appropriate
-type. Default palette is \code{"Dark2"}.}
+\item{palette}{Name of palette as string or symbol.}
 
 \item{direction}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
 

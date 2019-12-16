@@ -443,11 +443,11 @@ testthat::test_that(
     testthat::expect_identical(length(pb2$data), 4L)
     testthat::expect_identical(
       unique(pb1$data[[1]]$colour),
-      c("#1B9E77", "#D95F02")
+      c("#1B9E77FF", "#D95F02FF")
     )
     testthat::expect_identical(
       unique(pb2$data[[1]]$colour),
-      c("#899DA4", "#C93312")
+      c("#899DA4FF", "#C93312FF")
     )
     testthat::expect_identical(
       pb2$layout$panel_params[[1]]$x.labels,

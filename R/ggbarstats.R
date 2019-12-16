@@ -240,8 +240,7 @@ ggbarstats <- function(data,
       ) +
       ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title)) +
       paletteer::scale_fill_paletteer_d(
-        package = !!package,
-        palette = !!palette,
+        palette = paste0(package, "::", palette),
         direction = direction,
         name = "",
         labels = unique(legend.labels)

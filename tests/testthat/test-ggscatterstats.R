@@ -65,8 +65,8 @@ testthat::test_that(
     # checking intercepts
     testthat::expect_equal(pb$data[[3]]$xintercept, 10.43373, tolerance = 0.001)
     testthat::expect_equal(pb$data[[4]]$yintercept, 166.1363, tolerance = 0.001)
-    testthat::expect_equal(pb$data[[3]]$colour, "#A42820")
-    testthat::expect_equal(pb$data[[4]]$colour, "#5F5647")
+    testthat::expect_equal(unclass(pb$data[[3]]$colour), "#A42820FF")
+    testthat::expect_equal(unclass(pb$data[[4]]$colour), "#5F5647FF")
 
     # check labels
     testthat::expect_equal(p$plot_env$x_label_pos, 10.88401, tolerance = 0.002)
