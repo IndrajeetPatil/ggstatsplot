@@ -101,6 +101,10 @@
 #'   be sorted based on increasing values of `y`-axis variable. If
 #'   `"descending"`, the opposite. If `"none"`, no sorting will happen.
 #' @param sort.fun The function used to sort (default: `mean`).
+#' @param package Name of package from which the palette is desired as string
+#' or symbol.
+#' @param palette Name of palette as string or symbol.
+#' @param direction Either `1` or `-1`. If `-1` the palette will be reversed.
 #' @param return Character that describes what is to be returned: can be
 #'   `"plot"` (default) or `"subtitle"` or `"caption"`. Setting this to
 #'   `"subtitle"` will return the expression containing statistical results. If
@@ -108,7 +112,6 @@
 #'   Setting this to `"caption"` will return the expression containing details
 #'   about Bayes Factor analysis, but valid only when `type = "parametric"` and
 #'   `bf.message = TRUE`, otherwise this will return a `NULL`.
-#' @inheritParams paletteer::scale_color_paletteer_d
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams statsExpressions::expr_anova_parametric
 #' @inheritParams statsExpressions::expr_t_parametric

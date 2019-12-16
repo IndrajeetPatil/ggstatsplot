@@ -33,12 +33,15 @@
 #'   labels (Default: `white`).
 #' @param label.fill.alpha Numeric that specifies fill color transparency or
 #'   `"alpha"` for slice/bar labels (Default: `1` range `0` to `1`).
+#' @param package Name of package from which the palette is desired as string
+#' or symbol.
+#' @param palette Name of palette as string or symbol.
+#' @param direction Either `1` or `-1`. If `-1` the palette will be reversed.
 #' @param bf.message Logical that decides whether to display a caption with
 #'   results from Bayes Factor test in favor of the null hypothesis (default:
 #'   `FALSE`).
 #' @inheritParams statsExpressions::bf_contingency_tab
 #' @inheritParams statsExpressions::expr_contingency_tab
-#' @inheritParams paletteer::scale_fill_paletteer_d
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams gghistostats
 #' @inheritParams cat_label_df
@@ -296,8 +299,7 @@ ggpiestats <- function(data,
   p <- p +
     ggplot2::scale_y_continuous(breaks = NULL) +
     paletteer::scale_fill_paletteer_d(
-      package = !!package,
-      palette = !!palette,
+      palette = paste0(package, "::", palette),
       direction = direction,
       name = "",
       labels = unique(legend.labels)

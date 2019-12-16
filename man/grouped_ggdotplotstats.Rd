@@ -98,7 +98,7 @@ parametric test} (Default: \code{TRUE}).}
 \code{?WRS2::onesampb}.}
 
 \item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
-\verb{95\%} lower and upper confidence intervals (\code{0.95}).}
+\code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
 \item{effsize.type}{Type of effect size needed for \emph{parametric} tests. The
 argument can be \code{"biased"} (\code{"d"} for Cohen's \emph{d}) or \code{"unbiased"}

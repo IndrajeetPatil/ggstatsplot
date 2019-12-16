@@ -81,8 +81,8 @@ testthat::test_that(
       )
     )
     testthat::expect_identical(
-      pb$data[[4]]$colour,
-      c("#1B9E77", "#D95F02", "#7570B3", "#E7298A")
+      unclass(pb$data[[4]]$colour),
+      c("#1B9E77FF", "#D95F02FF", "#7570B3FF", "#E7298AFF")
     )
   }
 )
@@ -344,8 +344,8 @@ testthat::test_that(
       c("brainwt", "vore:brainwt", "vore")
     )
     testthat::expect_identical(
-      pb$data[[4]]$colour,
-      c("#FAD510", "#CB2314", "#273046")
+      unclass(pb$data[[4]]$colour),
+      c("#FAD510FF", "#CB2314FF", "#273046FF")
     )
   }
 )

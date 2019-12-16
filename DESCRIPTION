@@ -47,7 +47,7 @@ Imports:
     metaBMA (>= 0.6.2),
     metafor (>= 2.1-0),
     pairwiseComparisons (>= 0.1.2),
-    paletteer (>= 0.2.1),
+    paletteer (>= 0.2.1.9000),
     parameters (>= 0.3.0),
     psych (>= 1.8.12),
     purrr (>= 0.3.3),
@@ -72,6 +72,8 @@ Suggests:
     stringr,
     survival,
     testthat
+Remotes:
+    EmilHvitfeldt/paletteer
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

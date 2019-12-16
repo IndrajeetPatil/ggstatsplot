@@ -57,8 +57,7 @@ df <- dplyr::filter(.data = ggplot2::mpg, cyl %in% c("4", "6"))
 
 # creating a vector of colors using `paletteer` package
 paletter_vector <- paletteer::paletteer_d(
-  package = "palettetown",
-  palette = "venusaur",
+  palette = "palettetown::venusaur",
   n = nlevels(as.factor(df$manufacturer)),
   type = "discrete"
 )

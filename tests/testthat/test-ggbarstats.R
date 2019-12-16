@@ -173,7 +173,7 @@ testthat::test_that(
     # checking layered data
     testthat::expect_identical(
       pb$data[[1]]$fill,
-      c("#F5CDB4", "#9A8822", "#F5CDB4", "#9A8822", "#F5CDB4")
+      c("#F5CDB4FF", "#9A8822FF", "#F5CDB4FF", "#9A8822FF", "#F5CDB4FF")
     )
     testthat::expect_identical(pb$plot$guides$fill$title, "Engine")
     testthat::expect_equal(pb$plot$theme$axis.text.x$angle, 45L)

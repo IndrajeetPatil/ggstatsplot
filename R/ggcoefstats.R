@@ -114,6 +114,10 @@
 #' @param stats.label.args Additional arguments that will be passed to `ggrepel
 #'   geom_label_repel` geom. Please see documentation for that function to know
 #'   more about these arguments.
+#' @param package Name of package from which the palette is desired as string
+#' or symbol.
+#' @param palette Name of palette as string or symbol.
+#' @param direction Either `1` or `-1`. If `-1` the palette will be reversed.
 #' @param only.significant If `TRUE`, only stats labels for significant effects
 #'   is shown (Default: `FALSE`). This can be helpful when a large number of
 #'   regression coefficients are to be displayed in a single plot. Relevant only
@@ -128,7 +132,6 @@
 #' @inheritParams broom::tidy.polr
 #' @inheritParams broom::tidy.mjoint
 #' @inheritParams theme_ggstatsplot
-#' @inheritParams paletteer::paletteer_d
 #' @inheritParams subtitle_meta_ggcoefstats
 #' @inheritParams ggbetweenstats
 #'
@@ -921,8 +924,7 @@ ggcoefstats <- function(x,
       if (is.null(stats.label.color)) {
         stats.label.color <-
           paletteer::paletteer_d(
-            package = !!package,
-            palette = !!palette,
+            palette = paste0(package, "::", palette),
             n = count_term,
             direction = direction,
             type = "discrete"

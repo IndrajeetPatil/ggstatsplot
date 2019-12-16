@@ -23,6 +23,10 @@
 #'   5x wider and 5x taller than the marginal plots.
 #' @param margins Character describing along which margins to show the plots.
 #'   Any of the following arguments are accepted: `"both"`, `"x"`, `"y"`.
+#' @param package Name of package from which the palette is desired as string
+#' or symbol.
+#' @param direction Either `1` or `-1`. If `-1` the palette will be reversed.
+#' @param palette Name of palette as string or symbol.
 #' @param xfill,yfill Character describing color fill for `x` and `y` axes
 #'   marginal distributions (default: `"#009E73"` (for `x`) and `"#D55E00"` (for
 #'   `y`)). If set to `NULL`, manual specification of colors will be turned off
@@ -42,7 +46,6 @@
 #' @inheritParams statsExpressions::expr_corr_test
 #' @inheritParams ggplot2::geom_smooth
 #' @inheritParams theme_ggstatsplot
-#' @inheritParams paletteer::paletteer_d
 #' @inheritParams ggbetweenstats
 #'
 #' @import ggplot2
@@ -274,8 +277,7 @@ ggscatterstats <- function(data,
   if (is.null(xfill) || is.null(yfill)) {
     colors <-
       paletteer::paletteer_d(
-        package = !!package,
-        palette = !!palette,
+        palette = paste0(package, "::", palette),
         n = 2,
         direction = direction,
         type = "discrete"

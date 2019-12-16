@@ -168,8 +168,9 @@ grouped_message <- function() {
 #' @description A note to the user about not using the default color palette
 #'   when the number of factor levels is greater than 8, the maximum number of
 #'   colors allowed by `"Dark2"` palette from the `RColorBrewer` package.
-#'
-#' @inheritParams paletteer::scale_fill_paletteer_d
+#' @param package Name of package from which the palette is desired as string
+#' or symbol.
+#' @param palette Name of palette as string or symbol.
 #' @param min_length Minimum number of colors needed.
 #'
 #' @importFrom tibble as_tibble
