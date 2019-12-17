@@ -310,7 +310,7 @@ testthat::test_that(
 
     testthat::expect_identical(
       pb$data[[6]]$label,
-      c("list(~italic(mu)== 0.98 )", "list(~italic(mu)== 1.39 )")
+      c("list(~italic(widehat(mu))== 0.98 )", "list(~italic(widehat(mu))== 1.39 )")
     )
   }
 )
@@ -466,7 +466,7 @@ testthat::test_that(
     # testthat::expect_equal(dim(pb1$data[[5]]), c(2L, 15L))
     testthat::expect_equal(pb1$data[[4]]$x, c(1L, 2L))
     testthat::expect_identical(
-      c("list(~italic(mu)== 20.66 )", "list(~italic(mu)== 16.96 )"),
+      c("list(~italic(widehat(mu))== 20.66 )", "list(~italic(widehat(mu))== 16.96 )"),
       pb1$data[[5]]$label
     )
     testthat::expect_equal(dim(pb1$data[[2]]), c(2L, 25L))

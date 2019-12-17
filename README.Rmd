@@ -706,8 +706,6 @@ ggstatsplot::grouped_ggpiestats(
   label.text.size = 3, # text size for slice labels
   slice.label = "both", # show both counts and percentage data
   perc.k = 1, # no. of decimal places for percentages
-  palette = "brightPastel",
-  package = "quickpalette",
   messages = FALSE,
   nrow = 2,
   title.text = "Composition of MPAA ratings for different genres"

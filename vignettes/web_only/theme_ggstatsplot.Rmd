@@ -72,7 +72,7 @@ ggstatsplot::ggcorrmat(
 ```
 
 Try modifying the theme for other functions (use themes from `ggplot2`,
-`ggthemes`, `hrbrthemes`, etc.)!
+`ggthemes`, `hrbrthemes`, etc.).
 
 # Suggestions
 

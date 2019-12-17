@@ -1,44 +1,44 @@
-\contentsline {section}{\numberline {1}Introduction: Raison d'\IeC {\^e}tre}{2}{section.1}% 
-\contentsline {subsection}{\numberline {1.1}Need for informative visualizations}{2}{subsection.1.1}% 
-\contentsline {subsection}{\numberline {1.2}Need for better statistical reporting}{2}{subsection.1.2}% 
-\contentsline {section}{\numberline {2}\texttt {ggstatsplot} at a glance}{2}{section.2}% 
-\contentsline {subsection}{\numberline {2.1}Summary of types of plots included}{2}{subsection.2.1}% 
-\contentsline {subsection}{\numberline {2.2}Summary of types of statistical analyses}{2}{subsection.2.2}% 
-\contentsline {section}{\numberline {3}Graphic design principles}{3}{section.3}% 
-\contentsline {subsection}{\numberline {3.1}Graphical perception}{3}{subsection.3.1}% 
-\contentsline {subsection}{\numberline {3.2}Graphical excellence}{9}{subsection.3.2}% 
-\contentsline {subsection}{\numberline {3.3}Statistical variation}{9}{subsection.3.3}% 
-\contentsline {section}{\numberline {4}Statistical analysis}{11}{section.4}% 
-\contentsline {subsection}{\numberline {4.1}Data requirements}{11}{subsection.4.1}% 
-\contentsline {subsection}{\numberline {4.2}Statistical reporting}{13}{subsection.4.2}% 
-\contentsline {subsection}{\numberline {4.3}Statistical tests:}{14}{subsection.4.3}% 
-\contentsline {subsection}{\numberline {4.4}Dealing with \textbf {null results}:}{15}{subsection.4.4}% 
-\contentsline {subsection}{\numberline {4.5}Avoiding the \textbf {``p-value error''}:}{15}{subsection.4.5}% 
-\contentsline {section}{\numberline {5}Short tutorial on primary functions}{16}{section.5}% 
-\contentsline {subsection}{\numberline {5.1}\texttt {ggbetweenstats}}{16}{subsection.5.1}% 
-\contentsline {subsubsection}{\numberline {5.1.1}Summary of tests}{20}{subsubsection.5.1.1}% 
-\contentsline {subsection}{\numberline {5.2}\texttt {ggwithinstats}}{20}{subsection.5.2}% 
-\contentsline {subsubsection}{\numberline {5.2.1}Summary of tests}{22}{subsubsection.5.2.1}% 
-\contentsline {subsection}{\numberline {5.3}\texttt {ggscatterstats}}{23}{subsection.5.3}% 
-\contentsline {subsubsection}{\numberline {5.3.1}Summary of tests}{26}{subsubsection.5.3.1}% 
-\contentsline {subsection}{\numberline {5.4}\texttt {ggpiestats}}{27}{subsection.5.4}% 
-\contentsline {subsubsection}{\numberline {5.4.1}Summary of tests}{31}{subsubsection.5.4.1}% 
-\contentsline {subsection}{\numberline {5.5}\texttt {ggbarstats}}{32}{subsection.5.5}% 
-\contentsline {subsubsection}{\numberline {5.5.1}Summary of tests}{35}{subsubsection.5.5.1}% 
-\contentsline {subsection}{\numberline {5.6}\texttt {gghistostats}}{35}{subsection.5.6}% 
-\contentsline {subsubsection}{\numberline {5.6.1}Summary of tests}{37}{subsubsection.5.6.1}% 
-\contentsline {subsection}{\numberline {5.7}\texttt {ggdotplotstats}}{38}{subsection.5.7}% 
-\contentsline {subsubsection}{\numberline {5.7.1}Summary of tests}{40}{subsubsection.5.7.1}% 
-\contentsline {subsection}{\numberline {5.8}ggcorrmat}{41}{subsection.5.8}% 
-\contentsline {subsubsection}{\numberline {5.8.1}Summary of tests}{43}{subsubsection.5.8.1}% 
-\contentsline {subsection}{\numberline {5.9}\texttt {ggcoefstats}}{44}{subsection.5.9}% 
-\contentsline {subsection}{\numberline {5.10}Working with custom plots}{46}{subsection.5.10}% 
-\contentsline {subsection}{\numberline {5.11}Overall consistency in API}{48}{subsection.5.11}% 
-\contentsline {subsection}{\numberline {5.12}Helpful messages and aesthetic modifications}{48}{subsection.5.12}% 
-\contentsline {section}{\numberline {6}Acknowledgments}{50}{section.6}% 
-\contentsline {section}{\numberline {7}Appendix}{51}{section.7}% 
-\contentsline {subsection}{\numberline {7.1}Appendix A: Documentation}{51}{subsection.7.1}% 
-\contentsline {subsection}{\numberline {7.2}Appendix B: Suggestions}{51}{subsection.7.2}% 
-\contentsline {subsection}{\numberline {7.3}Appendix C: Contributing}{51}{subsection.7.3}% 
-\contentsline {subsection}{\numberline {7.4}Appendix D: Session information}{51}{subsection.7.4}% 
-\contentsline {section}{References}{52}{section*.2}% 
+\contentsline {section}{\numberline {1}Introduction: Raison d'être}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Need for informative visualizations}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Need for better statistical reporting}{2}{subsection.1.2}%
+\contentsline {section}{\numberline {2}\texttt {ggstatsplot} at a glance}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Summary of types of plots included}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Summary of types of statistical analyses}{3}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Graphic design principles}{4}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Graphical perception}{4}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Graphical excellence}{9}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Statistical variation}{10}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Statistical analysis}{12}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Data requirements}{12}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Statistical reporting}{14}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Statistical tests:}{15}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Dealing with \textbf {null results}:}{16}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Avoiding the \textbf {``p-value error''}:}{16}{subsection.4.5}%
+\contentsline {section}{\numberline {5}Short tutorial on primary functions}{17}{section.5}%
+\contentsline {subsection}{\numberline {5.1}\texttt {ggbetweenstats}}{17}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Summary of tests}{21}{subsubsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.2}\texttt {ggwithinstats}}{21}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}Summary of tests}{23}{subsubsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.3}\texttt {ggscatterstats}}{24}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}Summary of tests}{27}{subsubsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.4}\texttt {ggpiestats}}{28}{subsection.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.1}Summary of tests}{32}{subsubsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.5}\texttt {ggbarstats}}{33}{subsection.5.5}%
+\contentsline {subsubsection}{\numberline {5.5.1}Summary of tests}{36}{subsubsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.6}\texttt {gghistostats}}{36}{subsection.5.6}%
+\contentsline {subsubsection}{\numberline {5.6.1}Summary of tests}{38}{subsubsection.5.6.1}%
+\contentsline {subsection}{\numberline {5.7}\texttt {ggdotplotstats}}{39}{subsection.5.7}%
+\contentsline {subsubsection}{\numberline {5.7.1}Summary of tests}{41}{subsubsection.5.7.1}%
+\contentsline {subsection}{\numberline {5.8}ggcorrmat}{42}{subsection.5.8}%
+\contentsline {subsubsection}{\numberline {5.8.1}Summary of tests}{44}{subsubsection.5.8.1}%
+\contentsline {subsection}{\numberline {5.9}\texttt {ggcoefstats}}{45}{subsection.5.9}%
+\contentsline {subsection}{\numberline {5.10}Working with custom plots}{47}{subsection.5.10}%
+\contentsline {subsection}{\numberline {5.11}Overall consistency in API}{49}{subsection.5.11}%
+\contentsline {subsection}{\numberline {5.12}Helpful messages and aesthetic modifications}{49}{subsection.5.12}%
+\contentsline {section}{\numberline {6}Acknowledgments}{51}{section.6}%
+\contentsline {section}{\numberline {7}Appendix}{52}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Appendix A: Documentation}{52}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Appendix B: Suggestions}{52}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Appendix C: Contributing}{52}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Appendix D: Session information}{52}{subsection.7.4}%
+\contentsline {section}{References}{53}{section*.2}%

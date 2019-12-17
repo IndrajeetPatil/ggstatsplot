@@ -14,7 +14,9 @@ MAJOR CHANGES
 MINOR CHANGES
 
   - `ggbetweenstats` and `ggwithinstats` use `[` instead of `(` to display
-    confidence intervals.
+    confidence intervals. Additionally, $$\mu$$ denoted sample mean, but was
+    confused with population mean by some users. So these functions instead
+    display $$\hat{\mu}$$.
   - More models supported in `ggcoefstats`: `bmlm`, `coeftest`
 
 # ggstatsplot 0.1.3

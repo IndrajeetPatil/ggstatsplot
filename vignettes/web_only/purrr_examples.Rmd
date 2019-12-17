@@ -161,7 +161,7 @@ plot_list <- purrr::pmap(
     plot.type = list("box", "boxviolin", "violin"),
     mean.ci = list(TRUE, FALSE, FALSE),
     package = list("nord", "ochRe", "awtools"),
-    palette = list("aurora", "parliament", "ppalette"),
+    palette = list("aurora", "parliament", "bpalette"),
     ggtheme = list(
       ggthemes::theme_stata(),
       ggplot2::theme_classic(),
@@ -728,7 +728,7 @@ length(plotlist)
 # Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
-GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+`GitHub`: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
 
 # Session Information
 

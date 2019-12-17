@@ -136,13 +136,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="ggdotplotstats_files/jquery-1.11.3/jquery.min.js"></script><script src="ggdotplotstats_files/elevate-section-attrs-2.0/elevate-section-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>ggdotplotstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-12-04</h4>
+            <h4 class="date">2019-12-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggdotplotstats.Rmd"><code>vignettes/web_only/ggdotplotstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggdotplotstats.Rmd</code></div>
@@ -185,28 +185,27 @@
 <span id="cb2-6"><a href="#cb2-6"></a></span>
 <span id="cb2-7"><a href="#cb2-7"></a><span class="co"># creating a vector of colors using `paletteer` package</span></span>
 <span id="cb2-8"><a href="#cb2-8"></a>paletter_vector &lt;-<span class="st"> </span>paletteer<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/paletteer/man/paletteer_d.html">paletteer_d</a></span>(</span>
-<span id="cb2-9"><a href="#cb2-9"></a>  <span class="dt">package =</span> <span class="st">"palettetown"</span>,</span>
-<span id="cb2-10"><a href="#cb2-10"></a>  <span class="dt">palette =</span> <span class="st">"venusaur"</span>,</span>
-<span id="cb2-11"><a href="#cb2-11"></a>  <span class="dt">n =</span> <span class="kw"><a href="https://rdrr.io/r/base/nlevels.html">nlevels</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(df<span class="op">$</span>manufacturer)),</span>
-<span id="cb2-12"><a href="#cb2-12"></a>  <span class="dt">type =</span> <span class="st">"discrete"</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a>)</span>
-<span id="cb2-14"><a href="#cb2-14"></a></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="co"># plot</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggdotplotstats.html">ggdotplotstats</a></span>(</span>
-<span id="cb2-17"><a href="#cb2-17"></a>  <span class="dt">data =</span> df,</span>
-<span id="cb2-18"><a href="#cb2-18"></a>  <span class="dt">x =</span> cty,</span>
-<span id="cb2-19"><a href="#cb2-19"></a>  <span class="dt">y =</span> manufacturer,</span>
-<span id="cb2-20"><a href="#cb2-20"></a>  <span class="dt">xlab =</span> <span class="st">"city miles per gallon"</span>,</span>
-<span id="cb2-21"><a href="#cb2-21"></a>  <span class="dt">ylab =</span> <span class="st">"car manufacturer"</span>,</span>
-<span id="cb2-22"><a href="#cb2-22"></a>  <span class="dt">test.value =</span> <span class="fl">15.5</span>,</span>
-<span id="cb2-23"><a href="#cb2-23"></a>  <span class="dt">point.color =</span> paletter_vector,</span>
-<span id="cb2-24"><a href="#cb2-24"></a>  <span class="dt">point.size =</span> <span class="dv">5</span>,</span>
-<span id="cb2-25"><a href="#cb2-25"></a>  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb2-26"><a href="#cb2-26"></a>  <span class="dt">title =</span> <span class="st">"Distribution of mileage of cars"</span>,</span>
-<span id="cb2-27"><a href="#cb2-27"></a>  <span class="dt">ggtheme =</span> hrbrthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html">theme_ipsum_ps</a></span>(),</span>
-<span id="cb2-28"><a href="#cb2-28"></a>  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb2-29"><a href="#cb2-29"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
-<span id="cb2-30"><a href="#cb2-30"></a>)</span></code></pre></div>
+<span id="cb2-9"><a href="#cb2-9"></a>  <span class="dt">palette =</span> <span class="st">"palettetown::venusaur"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10"></a>  <span class="dt">n =</span> <span class="kw"><a href="https://rdrr.io/r/base/nlevels.html">nlevels</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(df<span class="op">$</span>manufacturer)),</span>
+<span id="cb2-11"><a href="#cb2-11"></a>  <span class="dt">type =</span> <span class="st">"discrete"</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>)</span>
+<span id="cb2-13"><a href="#cb2-13"></a></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="co"># plot</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggdotplotstats.html">ggdotplotstats</a></span>(</span>
+<span id="cb2-16"><a href="#cb2-16"></a>  <span class="dt">data =</span> df,</span>
+<span id="cb2-17"><a href="#cb2-17"></a>  <span class="dt">x =</span> cty,</span>
+<span id="cb2-18"><a href="#cb2-18"></a>  <span class="dt">y =</span> manufacturer,</span>
+<span id="cb2-19"><a href="#cb2-19"></a>  <span class="dt">xlab =</span> <span class="st">"city miles per gallon"</span>,</span>
+<span id="cb2-20"><a href="#cb2-20"></a>  <span class="dt">ylab =</span> <span class="st">"car manufacturer"</span>,</span>
+<span id="cb2-21"><a href="#cb2-21"></a>  <span class="dt">test.value =</span> <span class="fl">15.5</span>,</span>
+<span id="cb2-22"><a href="#cb2-22"></a>  <span class="dt">point.color =</span> paletter_vector,</span>
+<span id="cb2-23"><a href="#cb2-23"></a>  <span class="dt">point.size =</span> <span class="dv">5</span>,</span>
+<span id="cb2-24"><a href="#cb2-24"></a>  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb2-25"><a href="#cb2-25"></a>  <span class="dt">title =</span> <span class="st">"Distribution of mileage of cars"</span>,</span>
+<span id="cb2-26"><a href="#cb2-26"></a>  <span class="dt">ggtheme =</span> hrbrthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html">theme_ipsum_ps</a></span>(),</span>
+<span id="cb2-27"><a href="#cb2-27"></a>  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb2-28"><a href="#cb2-28"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
+<span id="cb2-29"><a href="#cb2-29"></a>)</span></code></pre></div>
 <p><img src="ggdotplotstats_files/figure-html/mpg2-1.png" width="864"></p>
 </div>
 <div id="grouped-analysis-with-grouped_ggdotplotstats" class="section level2">

@@ -67,7 +67,7 @@ mean_labeller <- function(data,
           purrr::map(
             .x = .,
             .f = ~ paste(
-              "list(~italic(mu)==",
+              "list(~italic(widehat(mu))==",
               .$`mean...summary`,
               ",",
               "CI[95*'%']",
@@ -82,7 +82,7 @@ mean_labeller <- function(data,
         } else {
           purrr::map(
             .x = .,
-            .f = ~ paste("list(~italic(mu)==", .$`mean...summary`, ")", sep = " ")
+            .f = ~ paste("list(~italic(widehat(mu))==", .$`mean...summary`, ")", sep = " ")
           )
         }
       }
@@ -446,13 +446,6 @@ sort_xy <- function(data,
   x <- rlang::ensym(x)
   y <- rlang::ensym(y)
 
-  # decide the needed order
-  if (sort == "ascending") {
-    .desc <- FALSE
-  } else {
-    .desc <- TRUE
-  }
-
   # reordering `x` based on its mean values
   return(
     data %<>%
@@ -463,7 +456,7 @@ sort_xy <- function(data,
           .x = {{ y }},
           .fun = sort.fun,
           na.rm = TRUE,
-          .desc = .desc
+          .desc = ifelse(sort == "ascending", FALSE, TRUE)
         )
       )
   )

@@ -3,7 +3,7 @@ title: "ggstatsplot: ggplot2 Based Plots with Statistical Details"
 author:
 - Indrajeet Patil^[Harvard University, patilindrajeet.science@gmail.com]
 - Mina Cikara^[Harvard University]
-date: "2019-11-17"
+date: "2019-12-17"
 output: 
   bookdown::pdf_document2:
     fig_caption: true
@@ -1042,8 +1042,6 @@ ggstatsplot::grouped_ggpiestats(
   label.text.size = 3, # text size for slice labels
   slice.label = "both", # show both counts and percentage data
   perc.k = 1, # no. of decimal places for percentages
-  palette = "brightPastel",
-  package = "quickpalette",
   messages = FALSE,
   nrow = 2,
   title.text = "Composition of MPAA ratings for different genres"

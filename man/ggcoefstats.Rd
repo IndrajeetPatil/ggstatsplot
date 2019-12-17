@@ -82,7 +82,7 @@ dataframe of results from \code{broom::tidy}) or \code{"glance"} (object from
 \code{ggcoefstats} is a dataframe in which case the function wouldn't know what
 kind of model it is dealing with.}
 
-\item{scales}{scales on which to report the variables: for random effects, the choices are \sQuote{"sdcor"} (standard deviations and correlations: the default if \code{scales} is \code{NULL}) or \sQuote{"vcov"} (variances and covariances). \code{NA} means no transformation, appropriate e.g. for fixed effects; inverse-link transformations (exponentiation or logistic) are not yet implemented, but may be in the future.}
+\item{scales}{scales on which to report the variables: for random effects, the choices are \sQuote{"sdcor"} (standard deviations and correlations: the default if \code{scales} is \code{NULL}) or \sQuote{"vcov"} (variances and covariances). \code{NA} means no transformation, appropriate e.g. for fixed effects.}
 
 \item{component}{Character specifying whether to tidy the survival or
 the longitudinal component of the model. Must be either \code{"survival"} or
