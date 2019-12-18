@@ -15,7 +15,8 @@ testthat::test_that(
 
     # creating a smaller dataframe
     set.seed(123)
-    movies_filtered <- ggstatsplot::movies_long %>%
+    movies_filtered <-
+      ggstatsplot::movies_long %>%
       dplyr::filter(.data = ., mpaa != "NC-17") %>%
       dplyr::sample_frac(tbl = ., size = 0.25)
 
@@ -146,31 +147,34 @@ testthat::test_that(
     # with cor.vars specified -----------------------------------------------
 
     set.seed(123)
-    df2 <- ggstatsplot::grouped_ggcorrmat(
-      data = ggplot2::msleep,
-      cor.vars = awake:bodywt,
-      grouping.var = vore,
-      output = "r",
-      messages = FALSE
-    )
+    df2 <-
+      ggstatsplot::grouped_ggcorrmat(
+        data = ggplot2::msleep,
+        cor.vars = awake:bodywt,
+        grouping.var = vore,
+        output = "r",
+        messages = FALSE
+      )
 
     # edge case
-    df3 <- ggstatsplot::grouped_ggcorrmat(
-      data = ggplot2::msleep,
-      grouping.var = vore,
-      cor.vars = brainwt,
-      output = "p"
-    )
+    df3 <-
+      ggstatsplot::grouped_ggcorrmat(
+        data = ggplot2::msleep,
+        grouping.var = vore,
+        cor.vars = brainwt,
+        output = "p"
+      )
 
     # ci
     set.seed(123)
-    df4 <- ggstatsplot::grouped_ggcorrmat(
-      data = ggplot2::msleep,
-      cor.vars = awake:bodywt,
-      grouping.var = vore,
-      output = "ci",
-      messages = FALSE
-    )
+    df4 <-
+      ggstatsplot::grouped_ggcorrmat(
+        data = ggplot2::msleep,
+        cor.vars = awake:bodywt,
+        grouping.var = vore,
+        output = "ci",
+        messages = FALSE
+      )
 
     # testing dataframe
     testthat::expect_equal(dim(df2), c(12L, 5L))

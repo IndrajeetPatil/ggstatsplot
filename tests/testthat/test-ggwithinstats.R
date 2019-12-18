@@ -301,93 +301,100 @@ testthat::test_that(
     )
 
     set.seed(123)
-    p1_subtitle <- statsExpressions::expr_anova_nonparametric(
-      data = ggstatsplot::iris_long,
-      x = condition,
-      y = value,
-      type = "np",
-      paired = TRUE,
-      conf.level = 0.90,
-      messages = FALSE
-    )
+    p1_subtitle <-
+      statsExpressions::expr_anova_nonparametric(
+        data = ggstatsplot::iris_long,
+        x = condition,
+        y = value,
+        type = "np",
+        paired = TRUE,
+        conf.level = 0.90,
+        messages = FALSE
+      )
 
     set.seed(123)
-    p2 <- ggstatsplot::ggwithinstats(
-      data = ggstatsplot::iris_long,
-      x = condition,
-      y = value,
-      type = "r",
-      pairwise.display = "ns",
-      outlier.tagging = FALSE,
-      pairwise.comparisons = TRUE,
-      pairwise.annotation = "p-value",
-      conf.level = 0.90,
-      messages = FALSE
-    )
+    p2 <-
+      ggstatsplot::ggwithinstats(
+        data = ggstatsplot::iris_long,
+        x = condition,
+        y = value,
+        type = "r",
+        pairwise.display = "ns",
+        outlier.tagging = FALSE,
+        pairwise.comparisons = TRUE,
+        pairwise.annotation = "p-value",
+        conf.level = 0.90,
+        messages = FALSE
+      )
 
     set.seed(123)
-    p2_subtitle <- statsExpressions::expr_anova_robust(
-      data = ggstatsplot::iris_long,
-      x = condition,
-      y = value,
-      paired = TRUE,
-      conf.level = 0.90,
-      messages = FALSE
-    )
+    p2_subtitle <-
+      statsExpressions::expr_anova_robust(
+        data = ggstatsplot::iris_long,
+        x = condition,
+        y = value,
+        paired = TRUE,
+        conf.level = 0.90,
+        messages = FALSE
+      )
 
     set.seed(123)
-    p3 <- suppressWarnings(ggstatsplot::ggwithinstats(
-      data = ggstatsplot::VR_dilemma,
-      x = modality,
-      y = score,
-      type = "r",
-      k = 3,
-      nboot = 25,
-      pairwise.comparisons = TRUE,
-      pairwise.display = "all",
-      pairwise.annotation = "p",
-      messages = FALSE,
-      bf.message = TRUE
-    ))
+    p3 <-
+      suppressWarnings(ggstatsplot::ggwithinstats(
+        data = ggstatsplot::VR_dilemma,
+        x = modality,
+        y = score,
+        type = "r",
+        k = 3,
+        nboot = 25,
+        pairwise.comparisons = TRUE,
+        pairwise.display = "all",
+        pairwise.annotation = "p",
+        messages = FALSE,
+        bf.message = TRUE
+      ))
 
     set.seed(123)
-    p3_subtitle <- suppressWarnings(statsExpressions::expr_t_robust(
-      data = ggstatsplot::VR_dilemma,
-      x = modality,
-      y = score,
-      paired = TRUE,
-      k = 3,
-      nboot = 25,
-      messages = FALSE
-    ))
+    p3_subtitle <-
+      suppressWarnings(statsExpressions::expr_t_robust(
+        data = ggstatsplot::VR_dilemma,
+        x = modality,
+        y = score,
+        paired = TRUE,
+        k = 3,
+        nboot = 25,
+        messages = FALSE
+      ))
 
     set.seed(123)
-    p4 <- ggstatsplot::ggwithinstats(
-      data = ggstatsplot::VR_dilemma,
-      x = modality,
-      y = score,
-      type = "np",
-      k = 4,
-      nboot = 15,
-      conf.level = 0.50,
-      pairwise.comparisons = TRUE,
-      pairwise.display = "all",
-      pairwise.annotation = "p",
-      messages = FALSE,
-      bf.message = TRUE
-    )
+    p4 <-
+      ggstatsplot::ggwithinstats(
+        data = ggstatsplot::VR_dilemma,
+        x = modality,
+        y = score,
+        type = "np",
+        k = 4,
+        nboot = 15,
+        conf.level = 0.50,
+        pairwise.comparisons = TRUE,
+        pairwise.display = "all",
+        pairwise.annotation = "p",
+        messages = FALSE,
+        bf.message = TRUE
+      )
 
     set.seed(123)
-    p4_subtitle <- statsExpressions::expr_t_nonparametric(
-      data = ggstatsplot::VR_dilemma,
-      x = modality,
-      y = score,
-      conf.level = 0.50,
-      paired = TRUE,
-      k = 4,
-      nboot = 15,
-      messages = FALSE
-    )
+    p4_subtitle <-
+      statsExpressions::expr_t_nonparametric(
+        data = ggstatsplot::VR_dilemma,
+        x = modality,
+        y = score,
+        conf.level = 0.50,
+        paired = TRUE,
+        k = 4,
+        nboot = 15,
+        messages = FALSE
+      )
 
     # built plots
     pb1 <- ggplot2::ggplot_build(p1)
@@ -422,13 +429,14 @@ testthat::test_that(
     testthat::expect_null(p4$labels$caption, NULL)
 
 
-    p5 <- ggstatsplot::ggwithinstats(
-      data = ggstatsplot::iris_long,
-      x = condition,
-      y = value,
-      type = "bf",
-      pairwise.comparisons = TRUE
-    )
+    p5 <-
+      ggstatsplot::ggwithinstats(
+        data = ggstatsplot::iris_long,
+        x = condition,
+        y = value,
+        type = "bf",
+        pairwise.comparisons = TRUE
+      )
 
     testthat::expect_is(p5, "ggplot")
   }
@@ -560,7 +568,7 @@ testthat::test_that(
         " = ",
         "< 0.001",
         ", ",
-        omega^2,
+        widehat(omega^2),
         " = ",
         "0.60",
         ", CI"["95%"],

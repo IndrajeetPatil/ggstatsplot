@@ -5,6 +5,7 @@ context(desc = "ggscatterstats")
 testthat::test_that(
   desc = "checking ggscatterstats - without NAs - pearson's r",
   code = {
+    testthat::skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -104,7 +105,8 @@ testthat::test_that(
 
     # subtitle
     set.seed(123)
-    p_subtitle <- statsExpressions::expr_corr_test(
+    p_subtitle <-
+      statsExpressions::expr_corr_test(
       data = ggplot2::msleep,
       x = sleep_total,
       y = bodywt,
@@ -211,7 +213,8 @@ testthat::test_that(
 
     # subtitle
     set.seed(123)
-    p_subtitle <- statsExpressions::expr_corr_test(
+    p_subtitle <-
+      statsExpressions::expr_corr_test(
       data = ggplot2::msleep,
       x = sleep_total,
       y = bodywt,
@@ -606,45 +609,49 @@ testthat::test_that(
 
     # creating the messages
     set.seed(123)
-    p_sub <- ggstatsplot::ggscatterstats(
-      data = dplyr::starwars,
-      x = mass,
-      y = height,
-      conf.level = 0.90,
-      type = "r",
-      return = "subtitle",
-      messages = FALSE
-    )
+    p_sub <-
+      ggstatsplot::ggscatterstats(
+        data = dplyr::starwars,
+        x = mass,
+        y = height,
+        conf.level = 0.90,
+        type = "r",
+        return = "subtitle",
+        messages = FALSE
+      )
 
     # checking captured messages
-    testthat::expect_identical(p_sub, ggplot2::expr(
-      paste(
-        NULL,
-        italic("t"),
-        "(",
-        "57",
-        ") = ",
-        "8.48",
-        ", ",
-        italic("p"),
-        " = ",
-        "< 0.001",
-        ", ",
-        italic(rho)["pb"],
-        " = ",
-        "0.75",
-        ", CI"["90%"],
-        " [",
-        "0.64",
-        ", ",
-        "0.87",
-        "]",
-        ", ",
-        italic("n")["pairs"],
-        " = ",
-        59L
+    testthat::expect_identical(
+      p_sub,
+      ggplot2::expr(
+        paste(
+          NULL,
+          italic("t"),
+          "(",
+          "57",
+          ") = ",
+          "8.48",
+          ", ",
+          italic("p"),
+          " = ",
+          "< 0.001",
+          ", ",
+          widehat(italic(rho)["pb"]),
+          " = ",
+          "0.75",
+          ", CI"["90%"],
+          " [",
+          "0.64",
+          ", ",
+          "0.87",
+          "]",
+          ", ",
+          italic("n")["pairs"],
+          " = ",
+          59L
+        )
       )
-    ))
+    )
   }
 )
 

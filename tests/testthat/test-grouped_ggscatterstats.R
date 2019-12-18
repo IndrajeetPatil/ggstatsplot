@@ -172,19 +172,20 @@ testthat::test_that(
 
     # should return a list of length 3
     set.seed(123)
-    ls_results <- ggstatsplot::grouped_ggscatterstats(
-      data = dplyr::filter(
-        .data = ggstatsplot::movies_long,
-        genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
-      ),
-      x = rating,
-      y = length,
-      k = 3,
-      conf.level = 0.99,
-      grouping.var = genre,
-      return = "subtitle",
-      messages = FALSE
-    )
+    ls_results <-
+      ggstatsplot::grouped_ggscatterstats(
+        data = dplyr::filter(
+          .data = ggstatsplot::movies_long,
+          genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
+        ),
+        x = rating,
+        y = length,
+        k = 3,
+        conf.level = 0.99,
+        grouping.var = genre,
+        return = "subtitle",
+        messages = FALSE
+      )
 
     # tests
     testthat::expect_equal(length(ls_results), 4L)
@@ -203,7 +204,7 @@ testthat::test_that(
           " = ",
           "< 0.001",
           ", ",
-          italic("r")["Pearson"],
+          widehat(italic("r")["Pearson"]),
           " = ",
           "0.599",
           ", CI"["99%"],
@@ -234,7 +235,7 @@ testthat::test_that(
           " = ",
           "< 0.001",
           ", ",
-          italic("r")["Pearson"],
+          widehat(italic("r")["Pearson"]),
           " = ",
           "0.364",
           ", CI"["99%"],
@@ -265,7 +266,7 @@ testthat::test_that(
           " = ",
           "< 0.001",
           ", ",
-          italic("r")["Pearson"],
+          widehat(italic("r")["Pearson"]),
           " = ",
           "0.548",
           ", CI"["99%"],
@@ -296,7 +297,7 @@ testthat::test_that(
           " = ",
           "< 0.001",
           ", ",
-          italic("r")["Pearson"],
+          widehat(italic("r")["Pearson"]),
           " = ",
           "0.308",
           ", CI"["99%"],

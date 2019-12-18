@@ -1,4 +1,4 @@
-# ggstatsplot 0.1.3.9000
+# ggstatsplot 0.1.4
 
 BUG FIXES
 
@@ -18,6 +18,7 @@ MINOR CHANGES
     confused with population mean by some users. So these functions instead
     display $$\hat{\mu}$$.
   - More models supported in `ggcoefstats`: `bmlm`, `coeftest`
+  - Adapts to the new syntax provided in `paletteer` package.
 
 # ggstatsplot 0.1.3
 

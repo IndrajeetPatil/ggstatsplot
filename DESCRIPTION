@@ -1,7 +1,7 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.1.3.9000
+Version: 0.1.4
 Authors@R: 
     c(person(given = "Indrajeet",
              family = "Patil",
@@ -47,14 +47,14 @@ Imports:
     metaBMA (>= 0.6.2),
     metafor (>= 2.1-0),
     pairwiseComparisons (>= 0.1.2),
-    paletteer (>= 0.2.1.9000),
+    paletteer (>= 1.0.0),
     parameters (>= 0.3.0),
     psych (>= 1.8.12),
     purrr (>= 0.3.3),
     rlang (>= 0.4.2),
     scales (>= 1.1.0),
     stats,
-    statsExpressions (>= 0.1.2),
+    statsExpressions (>= 0.1.3),
     tibble (>= 2.1.3),
     tidyr (>= 1.0.0),
     WRS2 (>= 1.0-0)
@@ -73,7 +73,7 @@ Suggests:
     survival,
     testthat
 Remotes:
-    EmilHvitfeldt/paletteer
+    IndrajeetPatil/statsExpressions
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

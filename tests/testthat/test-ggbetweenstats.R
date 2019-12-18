@@ -1,10 +1,10 @@
-context(desc = "ggbetweenstats")
 
 # outlier labeling works ----------------------------------------------------
 
 testthat::test_that(
   desc = "outlier.labeling works across vector types",
   code = {
+    testthat::skip_on_cran()
 
     # `outlier.label` is numeric
     set.seed(123)
@@ -421,7 +421,7 @@ testthat::test_that(
           " = ",
           "0.061",
           ", ",
-          italic("g"),
+          widehat(italic("g")),
           " = ",
           "0.49",
           ", CI"["95%"],
@@ -560,7 +560,7 @@ testthat::test_that(
         " = ",
         "< 0.001",
         ", ",
-        omega["p"]^2,
+        widehat(omega["p"]^2),
         " = ",
         "0.61",
         ", CI"["95%"],
@@ -591,7 +591,7 @@ testthat::test_that(
           " = ",
           "0.001",
           ", ",
-          italic("g"),
+          widehat(italic("g")),
           " = ",
           "-1.38",
           ", CI"["95%"],
