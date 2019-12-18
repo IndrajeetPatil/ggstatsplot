@@ -72,8 +72,6 @@ Suggests:
     stringr,
     survival,
     testthat
-Remotes:
-    IndrajeetPatil/statsExpressions
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
