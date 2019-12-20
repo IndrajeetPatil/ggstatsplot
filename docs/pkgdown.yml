@@ -3,7 +3,6 @@ pkgdown: 1.4.1.9000
 pkgdown_sha: 24ef1bbdec0de44fe11eb1d58b40dba961525d43
 articles:
   additional: additional.html
-  tests_and_coverage: tests_and_coverage.html
   combine_plots: web_only/combine_plots.html
   effsize_interpretation: web_only/effsize_interpretation.html
   faq: web_only/faq.html

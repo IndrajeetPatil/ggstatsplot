@@ -36,24 +36,6 @@ testthat::test_that(
     what = "gg"
     ))
 
-    ## with counts
-
-    library(jmv)
-
-    # when arguments are entered as bare expressions
-    set.seed(123)
-    testthat::expect_true(inherits(suppressWarnings(
-      ggstatsplot::grouped_ggpiestats(
-        data = as.data.frame(HairEyeColor),
-        main = "Hair",
-        counts = Freq,
-        grouping.var = "Sex",
-        messages = FALSE
-      )
-    ),
-    what = "gg"
-    ))
-
     #------------------ both main and condition variables ------------------
 
     ## without counts

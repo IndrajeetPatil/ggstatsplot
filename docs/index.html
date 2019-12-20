@@ -43,7 +43,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.3.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.4.9000</span>
       </span>
     </div>
 
@@ -67,9 +67,6 @@
   <ul class="dropdown-menu" role="menu">
 <li>
       <a href="articles/additional.html">additional vignettes</a>
-    </li>
-    <li>
-      <a href="articles/tests_and_coverage.html">Tests and Coverage</a>
     </li>
     <li>
       <a href="articles/web_only/combine_plots.html">combine_plots</a>
@@ -185,7 +182,7 @@
 <td><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg" alt="minimal R version"></a></td>
 <td><a href="https://www.tidyverse.org/lifecycle/"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue" alt="Monthly downloads badge"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-24-red.svg" alt="Github Issues"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-23-red.svg" alt="Github Issues"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot/vignettes/"><img src="https://img.shields.io/badge/vignettes-0.1.3-orange.svg?colorB=FF5722" alt="vignettes"></a></td>
 </tr>
 <tr class="even">
@@ -199,7 +196,7 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
 <td><a href="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot"><img src="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2019--12--18-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2019--12--20-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg" alt="GitHub last commit"></a></td>
 </tr>
 <tr class="even">
@@ -657,7 +654,7 @@
 <span id="cb7-3"><a href="#cb7-3"></a><span class="co">#&gt; function(plot) {</span></span>
 <span id="cb7-4"><a href="#cb7-4"></a><span class="co">#&gt;   cowplot::ggdraw() + cowplot::draw_grob(grid::grobTree(plot))</span></span>
 <span id="cb7-5"><a href="#cb7-5"></a><span class="co">#&gt; }</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt; &lt;bytecode: 0x000000002d4a7830&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt; &lt;bytecode: 0x000000002d953a70&gt;</span></span>
 <span id="cb7-7"><a href="#cb7-7"></a><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></span></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -888,15 +885,13 @@
 <span id="cb11-9"><a href="#cb11-9"></a>  <span class="dt">y =</span> Taste,</span>
 <span id="cb11-10"><a href="#cb11-10"></a>  <span class="dt">sort =</span> <span class="st">"descending"</span>, <span class="co"># ordering groups along the x-axis based on</span></span>
 <span id="cb11-11"><a href="#cb11-11"></a>  <span class="dt">sort.fun =</span> median, <span class="co"># values of `y` variable</span></span>
-<span id="cb11-12"><a href="#cb11-12"></a>  <span class="dt">pairwise.comparisons =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb11-13"><a href="#cb11-13"></a>  <span class="dt">pairwise.display =</span> <span class="st">"s"</span>,</span>
-<span id="cb11-14"><a href="#cb11-14"></a>  <span class="dt">pairwise.annotation =</span> <span class="st">"p"</span>,</span>
-<span id="cb11-15"><a href="#cb11-15"></a>  <span class="dt">title =</span> <span class="st">"Wine tasting"</span>,</span>
-<span id="cb11-16"><a href="#cb11-16"></a>  <span class="dt">caption =</span> <span class="st">"Data from: `WRS2` R package"</span>,</span>
-<span id="cb11-17"><a href="#cb11-17"></a>  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>(),</span>
-<span id="cb11-18"><a href="#cb11-18"></a>  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb11-19"><a href="#cb11-19"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
-<span id="cb11-20"><a href="#cb11-20"></a>)</span></code></pre></div>
+<span id="cb11-12"><a href="#cb11-12"></a>  <span class="dt">pairwise.comparisons =</span> <span class="ot">TRUE</span>, <span class="co"># show pairwise comparison test results</span></span>
+<span id="cb11-13"><a href="#cb11-13"></a>  <span class="dt">title =</span> <span class="st">"Wine tasting"</span>,</span>
+<span id="cb11-14"><a href="#cb11-14"></a>  <span class="dt">caption =</span> <span class="st">"Data from: `WRS2` R package"</span>,</span>
+<span id="cb11-15"><a href="#cb11-15"></a>  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>(),</span>
+<span id="cb11-16"><a href="#cb11-16"></a>  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb11-17"><a href="#cb11-17"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
+<span id="cb11-18"><a href="#cb11-18"></a>)</span></code></pre></div>
 <p><img src="reference/figures/README-ggwithinstats1-1.png" width="100%"></p>
 <p>As with the <code>ggbetweenstats</code>, this function also has a <code>grouped_</code> variant that makes repeating the same analysis across a single grouping variable quicker. We will see an example with only repeated measurements-</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># common setup</span></span>

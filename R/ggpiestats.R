@@ -98,14 +98,6 @@
 #'   legend.title = "Engine"
 #' )
 #'
-#' # using `counts` argument
-#' library(jmv, warn.conflicts = FALSE)
-#'
-#' ggstatsplot::ggpiestats(
-#'   data = as.data.frame(HairEyeColor),
-#'   x = Eye,
-#'   counts = Freq
-#' )
 #' @export
 
 # defining the function

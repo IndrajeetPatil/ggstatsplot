@@ -19,7 +19,7 @@
 #'
 #' @importFrom rlang exec !! enquo :=
 #' @importFrom statsExpressions bf_ttest bf_oneway_anova
-#' @importFrom pairwiseComparisons pairwise_comparisons pairwise_comparisons_caption
+#' @importFrom pairwiseComparisons pairwise_comparisons
 #'
 #' @details
 #'
@@ -397,14 +397,7 @@ ggwithinstats <- function(data,
       )
 
     # preparing the caption for pairwise comparisons test
-    caption <-
-      pairwiseComparisons::pairwise_comparisons_caption(
-        type = type,
-        var.equal = TRUE,
-        paired = TRUE,
-        p.adjust.method = p.adjust.method,
-        caption = caption
-      )
+    caption <- pairwise_caption(caption, unique(df_pairwise$test.details), p.adjust.method)
   }
 
   # ------------------------ annotations and themes -------------------------

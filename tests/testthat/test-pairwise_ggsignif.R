@@ -91,7 +91,6 @@ testthat::test_that(
         "list(~italic(p)['unadjusted']== 0.825 )"
       )
     )
-    testthat::expect_equal(data_dims, c(3L, 9L))
 
     # checking comparison groups and labels
     testthat::expect_identical(dat$group1, c("PG-13", "PG-13", "R"))
@@ -274,7 +273,6 @@ testthat::test_that(
     data_signif <- tibble::as_tibble(pb$data[[7]])
 
     # checking comparison groups and labels
-    testthat::expect_equal(data_dims, c(3L, 8L))
     testthat::expect_identical(dat$group1, c("4", "4", "f"))
     testthat::expect_identical(dat$group2, c("f", "r", "r"))
     testthat::expect_identical(dat$significance, c("***", "ns", "***"))
@@ -354,8 +352,7 @@ testthat::test_that(
     # data for geom_signif layer
     data_signif <- tibble::as_tibble(pb$data[[7]])
 
-    # checking comparison groups and labels
-    testthat::expect_equal(data_dims, c(3L, 6L))
+    # checking comparison groups and labels)
     testthat::expect_identical(dat$group1, c("4", "4", "6"))
     testthat::expect_identical(dat$group2, c("6", "8", "8"))
     testthat::expect_identical(dat$significance, c("*", "***", "*"))
