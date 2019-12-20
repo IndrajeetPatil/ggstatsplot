@@ -424,9 +424,7 @@ ggstatsplot::ggwithinstats(
   y = Taste,
   sort = "descending", # ordering groups along the x-axis based on
   sort.fun = median, # values of `y` variable
-  pairwise.comparisons = TRUE,
-  pairwise.display = "s",
-  pairwise.annotation = "p",
+  pairwise.comparisons = TRUE, # show pairwise comparison test results
   title = "Wine tasting",
   caption = "Data from: `WRS2` R package",
   ggtheme = ggthemes::theme_fivethirtyeight(),

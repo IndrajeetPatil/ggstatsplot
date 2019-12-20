@@ -307,7 +307,8 @@ outlier_df <- function(data,
 #' library(ggplot2)
 #'
 #' # plot
-#' p <- ggplot(iris, aes(Species, Sepal.Length)) + geom_boxplot()
+#' p <- ggplot(iris, aes(Species, Sepal.Length)) +
+#'   geom_boxplot()
 #'
 #' # dataframe with pairwise comparison test results
 #' df_pair <- pairwiseComparisons::pairwise_comparisons(
@@ -392,6 +393,29 @@ ggsignif_adder <- function(plot,
   # return the plot
   return(plot)
 }
+
+#' @name pairwise_caption
+#' @noRd
+
+pairwise_caption <- function(caption, test.description, p.adjust.method) {
+  substitute(
+    atop(
+      displaystyle(top.text),
+      expr = paste(
+        "Pairwise comparisons: ",
+        bold(test.description),
+        "; Adjustment (p-value): ",
+        bold(p.adjust.method.text)
+      )
+    ),
+    env = list(
+      top.text = caption,
+      test.description = test.description,
+      p.adjust.method.text = p_adjust_text(p.adjust.method)
+    )
+  )
+}
+
 
 #' @name ggsignif_xy
 #' @importFrom utils combn
