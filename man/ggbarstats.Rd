@@ -246,22 +246,13 @@ set.seed(123)
 # association test (or contingency table analysis)
 ggstatsplot::ggbarstats(
   data = mtcars,
-  main = vs,
-  condition = cyl,
+  x = vs,
+  y = cyl,
   nboot = 10,
   labels.legend = c("0 = V-shaped", "1 = straight"),
   legend.title = "Engine"
 )
 
-# using `counts` argument
-library(jmv)
-
-ggstatsplot::ggbarstats(
-  data = as.data.frame(HairEyeColor),
-  x = Eye,
-  y = Hair,
-  counts = Freq
-)
 }
 \seealso{
 \code{\link{grouped_ggbarstats}}, \code{\link{ggpiestats}},

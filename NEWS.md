@@ -1,3 +1,9 @@
+# ggstatsplot 0.1.4.9000
+
+MINOR CHANGES
+
+  - New dataset included: `bugs_wide`
+ 
 # ggstatsplot 0.1.4
 
 BUG FIXES

@@ -303,18 +303,6 @@ resulting plots using \code{ggstatsplot::combine_plots}.
 }
 \examples{
 \donttest{
-# with condition and with count data
-library(jmv)
-
-ggstatsplot::grouped_ggbarstats(
-  data = as.data.frame(HairEyeColor),
-  x = Hair,
-  y = Eye,
-  counts = Freq,
-  grouping.var = Sex
-)
-
-# the following will take slightly more amount of time
 # for reproducibility
 set.seed(123)
 
@@ -330,11 +318,8 @@ ggstatsplot::grouped_ggbarstats(
   x = color,
   y = clarity,
   grouping.var = cut,
-  sampling.plan = "poisson",
   title.prefix = "Quality",
   bar.label = "both",
-  messages = FALSE,
-  perc.k = 1,
   nrow = 2
 )
 }

@@ -28,16 +28,6 @@
 #'   x = cyl
 #' )
 #'
-#' # without condition and with count data
-#' library(jmv)
-#'
-#' ggstatsplot::grouped_ggpiestats(
-#'   data = as.data.frame(HairEyeColor),
-#'   x = Hair,
-#'   counts = Freq,
-#'   grouping.var = Sex
-#' )
-#'
 #' # the following will take slightly more amount of time
 #' # for reproducibility
 #' set.seed(123)

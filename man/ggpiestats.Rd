@@ -241,14 +241,6 @@ ggstatsplot::ggpiestats(
   legend.title = "Engine"
 )
 
-# using `counts` argument
-library(jmv, warn.conflicts = FALSE)
-
-ggstatsplot::ggpiestats(
-  data = as.data.frame(HairEyeColor),
-  x = Eye,
-  counts = Freq
-)
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}

@@ -79,7 +79,7 @@ resulting plots using ggstatsplot::combine_plots." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.3.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.4.9000</span>
       </span>
     </div>
 
@@ -103,9 +103,6 @@ resulting plots using ggstatsplot::combine_plots." />
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/additional.html">additional vignettes</a>
-    </li>
-    <li>
-      <a href="../articles/tests_and_coverage.html">Tests and Coverage</a>
     </li>
     <li>
       <a href="../articles/web_only/combine_plots.html">combine_plots</a>
@@ -581,19 +578,6 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Individual plots in the combined `grouped_` plot
 #&gt; can't be further modified with `ggplot2` functions.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggpiestats-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># without condition and with count data</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>jmv</span>)
-
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggpiestats.html'>grouped_ggpiestats</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='no'>HairEyeColor</span>),
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Hair</span>,
-  <span class='kw'>counts</span> <span class='kw'>=</span> <span class='no'>Freq</span>,
-  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>Sex</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>100</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>100</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Individual plots in the combined `grouped_` plot
-#&gt; can't be further modified with `ggplot2` functions.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggpiestats-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># the following will take slightly more amount of time</span>
 <span class='co'># for reproducibility</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
@@ -616,7 +600,7 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>3</span>
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='img'><img src='grouped_ggpiestats-3.png' alt='' width='700' height='433' /></div><div class='input'># }
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='img'><img src='grouped_ggpiestats-2.png' alt='' width='700' height='433' /></div><div class='input'># }
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
