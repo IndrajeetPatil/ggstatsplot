@@ -187,7 +187,8 @@ theme_corrmat <- function() {
 #' library(ggplot2)
 #'
 #' # creating a plot that is not of class `ggplot`
-#' p <- ggExtra::ggMarginal(ggplot(mtcars, aes(wt, mpg)) + geom_point())
+#' p <- ggExtra::ggMarginal(ggplot(mtcars, aes(wt, mpg)) +
+#'   geom_point())
 #'
 #' # checking class of object
 #' class(p)

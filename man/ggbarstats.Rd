@@ -252,7 +252,6 @@ ggstatsplot::ggbarstats(
   labels.legend = c("0 = V-shaped", "1 = straight"),
   legend.title = "Engine"
 )
-
 }
 \seealso{
 \code{\link{grouped_ggbarstats}}, \code{\link{ggpiestats}},

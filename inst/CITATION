@@ -1,5 +1,5 @@
 bibentry(bibtype = "manual",
-         title = "ggstatsplot: 'ggplot2' Based Plots with Statistical Details",
+         title = 'ggstatsplot: "ggplot2" Based Plots with Statistical Details',
          author = c(person("Indrajeet", "Patil")),
          year = 2018,
          url = "https://CRAN.R-project.org/package=ggstatsplot",

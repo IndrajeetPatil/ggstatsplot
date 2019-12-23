@@ -54,7 +54,7 @@ Imports:
     rlang (>= 0.4.2),
     scales (>= 1.1.0),
     stats,
-    statsExpressions (>= 0.1.3),
+    statsExpressions (>= 0.2.0.9000),
     tibble (>= 2.1.3),
     tidyr (>= 1.0.0),
     WRS2 (>= 1.0-0)
@@ -71,6 +71,8 @@ Suggests:
     stringr,
     survival,
     testthat
+Remotes:
+    IndrajeetPatil/statsExpressions
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

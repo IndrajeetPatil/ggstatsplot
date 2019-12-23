@@ -47,7 +47,8 @@ set.seed(123)
 library(ggplot2)
 
 # plot
-p <- ggplot(iris, aes(Species, Sepal.Length)) + geom_boxplot()
+p <- ggplot(iris, aes(Species, Sepal.Length)) +
+  geom_boxplot()
 
 # dataframe with pairwise comparison test results
 df_pair <- pairwiseComparisons::pairwise_comparisons(

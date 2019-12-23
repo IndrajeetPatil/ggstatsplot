@@ -228,7 +228,7 @@ testthat::test_that(
           " = ",
           "< 0.001",
           ", ",
-          widehat(italic("V")["Cramer"]),
+          widehat(italic("V"))["Cramer"],
           " = ",
           "0.1594",
           ", CI"["95%"],

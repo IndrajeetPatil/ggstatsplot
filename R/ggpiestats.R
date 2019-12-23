@@ -97,7 +97,6 @@
 #'   factor.levels = c("0 = V-shaped", "1 = straight"),
 #'   legend.title = "Engine"
 #' )
-#'
 #' @export
 
 # defining the function

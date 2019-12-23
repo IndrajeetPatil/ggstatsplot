@@ -19,7 +19,8 @@
 #' # creating a basic plot
 #' set.seed(123)
 #' library(ggplot2)
-#' p <- ggplot(mtcars, aes(wt, mpg)) + geom_point()
+#' p <- ggplot(mtcars, aes(wt, mpg)) +
+#'   geom_point()
 #'
 #' # adding a label
 #' ggstatsplot:::line_labeller(
@@ -120,7 +121,8 @@ line_labeler <- line_labeller
 #' library(ggplot2)
 #'
 #' # creating a ploton which lines and labels are to be superposed
-#' p <- ggplot(mtcars, aes(wt, mpg)) + geom_point()
+#' p <- ggplot(mtcars, aes(wt, mpg)) +
+#'   geom_point()
 #'
 #' # computing `y`-axis positions for line labels
 #' y_label_pos <- median(

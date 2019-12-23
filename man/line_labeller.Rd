@@ -54,7 +54,8 @@ Adds a label to the horizontal or vertical line.
 # creating a basic plot
 set.seed(123)
 library(ggplot2)
-p <- ggplot(mtcars, aes(wt, mpg)) + geom_point()
+p <- ggplot(mtcars, aes(wt, mpg)) +
+  geom_point()
 
 # adding a label
 ggstatsplot:::line_labeller(

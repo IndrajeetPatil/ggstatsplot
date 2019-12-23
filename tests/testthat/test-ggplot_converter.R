@@ -10,7 +10,8 @@ testthat::test_that(
     library(ggplot2)
 
     # creating objects that are not of ggplot type
-    p1 <- ggExtra::ggMarginal(ggplot(mtcars, aes(mpg, wt)) + geom_point() +
+    p1 <- ggExtra::ggMarginal(ggplot(mtcars, aes(mpg, wt)) +
+      geom_point() +
       geom_smooth(method = "lm"))
     p2 <- NULL
 

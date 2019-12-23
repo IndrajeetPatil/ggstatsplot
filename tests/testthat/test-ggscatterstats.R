@@ -107,12 +107,12 @@ testthat::test_that(
     set.seed(123)
     p_subtitle <-
       statsExpressions::expr_corr_test(
-      data = ggplot2::msleep,
-      x = sleep_total,
-      y = bodywt,
-      type = "p",
-      messages = FALSE
-    )
+        data = ggplot2::msleep,
+        x = sleep_total,
+        y = bodywt,
+        type = "p",
+        messages = FALSE
+      )
 
     # checking plot labels
     testthat::expect_identical(
@@ -215,13 +215,13 @@ testthat::test_that(
     set.seed(123)
     p_subtitle <-
       statsExpressions::expr_corr_test(
-      data = ggplot2::msleep,
-      x = sleep_total,
-      y = bodywt,
-      type = "r",
-      conf.level = 0.90,
-      messages = FALSE
-    )
+        data = ggplot2::msleep,
+        x = sleep_total,
+        y = bodywt,
+        type = "r",
+        conf.level = 0.90,
+        messages = FALSE
+      )
 
     # built plot
     pb <- ggplot2::ggplot_build(p)
@@ -636,7 +636,7 @@ testthat::test_that(
           " = ",
           "< 0.001",
           ", ",
-          widehat(italic(rho)["pb"]),
+          widehat(italic(rho))["pb"],
           " = ",
           "0.75",
           ", CI"["90%"],
@@ -664,16 +664,17 @@ testthat::test_that(
     testthat::skip_on_cran()
 
     # creating the messages
-    p_message1 <- capture.output(
-      ggstatsplot::ggscatterstats(
-        data = dplyr::starwars,
-        x = mass,
-        y = height,
-        conf.level = 0.90,
-        nboot = 15,
-        type = "r"
+    p_message1 <-
+      capture.output(
+        ggstatsplot::ggscatterstats(
+          data = dplyr::starwars,
+          x = mass,
+          y = height,
+          conf.level = 0.90,
+          nboot = 15,
+          type = "r"
+        )
       )
-    )
 
     # checking captured messages
     testthat::expect_match(p_message1[1],

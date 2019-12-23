@@ -10,8 +10,10 @@ testthat::test_that(
     library(ggplot2)
 
     # creating basic plots
-    p1 <- ggplot(aes(x = as.factor(am), y = wt), data = mtcars) + geom_point()
-    p2 <- ggplot(aes(x = Species, y = Sepal.Length), data = iris) + geom_point()
+    p1 <- ggplot(aes(x = as.factor(am), y = wt), data = mtcars) +
+      geom_point()
+    p2 <- ggplot(aes(x = Species, y = Sepal.Length), data = iris) +
+      geom_point()
 
     # combined plot with everything
     p <- ggstatsplot::combine_plots(p1, p2,

@@ -240,7 +240,6 @@ ggstatsplot::ggpiestats(
   factor.levels = c("0 = V-shaped", "1 = straight"),
   legend.title = "Engine"
 )
-
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}

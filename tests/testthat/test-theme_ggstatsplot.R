@@ -11,7 +11,8 @@ testthat::test_that(
 
     # plot
     p <-
-      ggplot(msleep, aes(vore, brainwt)) + geom_point(na.rm = TRUE)
+      ggplot(msleep, aes(vore, brainwt)) +
+      geom_point(na.rm = TRUE)
 
     # changing the basic plot
     p1 <- p +

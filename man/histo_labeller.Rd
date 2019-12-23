@@ -97,7 +97,8 @@ test value for the continuous, numeric \code{x}-axis variable.
 library(ggplot2)
 
 # creating a ploton which lines and labels are to be superposed
-p <- ggplot(mtcars, aes(wt, mpg)) + geom_point()
+p <- ggplot(mtcars, aes(wt, mpg)) +
+  geom_point()
 
 # computing `y`-axis positions for line labels
 y_label_pos <- median(
