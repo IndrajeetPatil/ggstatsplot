@@ -44,7 +44,6 @@ testthat::test_that(
         k = 3,
         messages = TRUE,
         iter = 2000,
-        cores = 4,
         summarize = "integrate"
       )
     set.seed(123)
@@ -58,7 +57,6 @@ testthat::test_that(
         tau = "halfcauchy",
         tau.par = .5,
         iter = 2000,
-        cores = 4,
         summarize = "integrate"
       )
     # test prior defaults and use of metaBMA::prior()
@@ -71,7 +69,6 @@ testthat::test_that(
         d = metaBMA::prior("norm", c(0, .3)),
         tau = metaBMA::prior("halfcauchy", c(.5)),
         iter = 2000,
-        cores = 4,
         summarize = "integrate"
       )
 
