@@ -74,14 +74,14 @@ Most of the regression models that are supported in the `broom` and
 
 `aareg`, `anova`, `aov`, `aovlist`, `Arima`, `bglmerMod`, `bigglm`, `biglm`,
 `blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm2`, `brmsfit`, `btergm`, `cch`,
-`clm`, `clmm`, `coeftest`, `confusionMatrix`, `coxph`, `cpglm`, `cpglmm`, `drc`,
-`emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`, `flexsurvreg`,
-`glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`, `garch`, `glm`,
-`glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `gmm`, `ivreg`, `iv_robust`,
-`lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`, `lmRob`, `lmrob`, `mcmc`,
-`MCMCglmm`, `mclogit`, `mmclogit`, `mediate`, `mjoint`, `mle2`, `mlm`,
+`clm`, `clmm`, `coeftest`, `confusionMatrix`, `coxph`, `cpglm`, `cpglmm`,
+`complmrob`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`,
+`flexsurvreg`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`,
+`garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `gmm`, `ivreg`,
+`iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`, `lmRob`, `lmrob`,
+`mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`, `mediate`, `mjoint`, `mle2`, `mlm`,
 `multinom`, `negbin`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `plm`,
-`polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `slm`, `speedglm`,
+`polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `rqss`, `slm`, `speedglm`,
 `speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`,
 `tobit`, `truncreg`, `wbgee`, `wblm`, etc.
 
@@ -345,7 +345,7 @@ ggstatsplot::ggcoefstats(
 
 ## non-linear mixed-effects model (`nlmer`/`nlmerMod`)
 
-```{r nlmer, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6}
+```{r nlmer, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6, eval=FALSE}
 # model
 library(lme4)
 set.seed(123)
@@ -441,14 +441,18 @@ library(ggstatsplot)
 df <- as.data.frame(x = Titanic)
 str(df)
 
-# plot
-ggstatsplot::ggcoefstats(
-  x = stats::glm(
+# model
+mod <-
+  stats::glm(
     formula = Survived ~ Sex + Age,
     data = df,
-    weights = df$Freq, # vector containing weights (no. of observations per row)
-    family = stats::binomial(link = "logit") # choosing the family
-  ),
+    weights = df$Freq,
+    family = stats::binomial(link = "logit")
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
   exponentiate = TRUE,
   ggtheme = ggthemes::theme_economist_white(),
   title = "generalized linear model (glm)",
@@ -624,7 +628,7 @@ dat <- fabricate(
   N = 40,
   Y = rpois(N, lambda = 4),
   Z = rbinom(N, 1, prob = 0.4),
-  D  = Z * rbinom(N, 1, prob = 0.8),
+  D = Z * rbinom(N, 1, prob = 0.8),
   X = rnorm(N),
   G = sample(letters[1:4], N, replace = TRUE)
 )
@@ -1543,6 +1547,29 @@ ggstatsplot::combine_plots(
 )
 ```
 
+## MM-type estimators for linear regression on compositional data (`complmrob`)
+
+```{r complmrob, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 5}
+# setup
+set.seed(123)
+library(complmrob)
+
+# data
+crimes <- data.frame(
+  lifeExp = state.x77[, "Life Exp"],
+  USArrests[, c("Murder", "Assault", "Rape")]
+)
+
+# model
+mUSArr <- complmrob(formula = lifeExp ~ ., data = crimes)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mUSArr,
+  title = "MM-type estimators for linear regression on compositional data"
+)
+```
+
 ## fit a nonlinear heteroscedastic model via maximum likelihood (`nlreg`)
 
 ```{r nlreg, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
@@ -1778,7 +1805,10 @@ library(survival)
 data("tobin", package = "survival")
 
 # model
-cragg_trunc <- truncreg(durable ~ age + quant, data = tobin, subset = durable > 0)
+cragg_trunc <- truncreg(durable ~ age + quant,
+  data = tobin,
+  subset = durable > 0
+)
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -1933,7 +1963,7 @@ data("mwp", package = "feisr")
 # model
 feis.mod <-
   feis(
-    formula = lnw ~ marry + enrol + as.factor(yeargr) | exp + I(exp ^ 2),
+    formula = lnw ~ marry + enrol + as.factor(yeargr) | exp + I(exp^2),
     data = mwp,
     id = "id",
     robust = TRUE
@@ -1992,7 +2022,6 @@ ggstatsplot::ggcoefstats(
 ## relative risk regression model for case-cohort studies (`cch`)
 
 ```{r cch, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
-
 # setup
 set.seed(123)
 library(survival)
@@ -2105,6 +2134,7 @@ ggstatsplot::ggcoefstats(
 ```{r lme, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
 # for reproducibility
 set.seed(123)
+library(lme4)
 library(nlme)
 data("sleepstudy")
 
@@ -2222,7 +2252,7 @@ ggstatsplot::ggcoefstats(
 
 ## quantile regression (`rq`)
 
-```{r rq, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+```{r rq, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6}
 # for reproducibility
 set.seed(123)
 library(quantreg)
@@ -2266,6 +2296,25 @@ Dat.nlrq <-
 ggstatsplot::ggcoefstats(
   x = Dat.nlrq,
   title = "non-linear quantile regression"
+)
+```
+
+## additive quantile regression (`rqss`)
+
+```{r rqss, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+# setup
+set.seed(123)
+library(quantreg)
+data(CobarOre)
+
+# model
+fCO <- rqss(formula = z ~ qss(cbind(x, y), lambda = .08), data = CobarOre)
+
+# model info
+ggstatsplot::ggcoefstats(
+  x = fCO,
+  title = "Additive Quantile Regression",
+  exclude.intercept = FALSE
 )
 ```
 
@@ -2872,7 +2921,7 @@ ggstatsplot::ggcoefstats(
 
 ## Bayesian multivariate generalized linear models via Stan (`stanmvreg`)
 
-```{r stanmvreg, warning = FALSE, message = FALSE, eval=FALSE, fig.height = 5, fig.width = 5}
+```{r stanmvreg, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
 # setup
 set.seed(123)
 library(rstanarm)
@@ -2886,9 +2935,7 @@ mod <-
       albumin ~ sex + year + (year | id)
     ),
     data = pbcLong,
-    family = list(binomial, gaussian),
-    chains = 1,
-    cores = 1,
+    cores = 4,
     seed = 12345,
     iter = 1000
   )
@@ -2896,7 +2943,7 @@ mod <-
 # plot
 ggstatsplot::ggcoefstats(
   x = mod,
-  title = "Bayesian multivariate generalized generalized linear models via Stan"
+  title = "Bayesian multivariate generalized linear models via Stan"
 )
 ```
 

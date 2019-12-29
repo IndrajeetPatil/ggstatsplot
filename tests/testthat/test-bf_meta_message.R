@@ -44,6 +44,7 @@ testthat::test_that(
         k = 3,
         messages = TRUE,
         iter = 2000,
+        cores = 4,
         summarize = "integrate"
       )
     set.seed(123)
@@ -57,6 +58,7 @@ testthat::test_that(
         tau = "halfcauchy",
         tau.par = .5,
         iter = 2000,
+        cores = 4,
         summarize = "integrate"
       )
     # test prior defaults and use of metaBMA::prior()
@@ -69,31 +71,35 @@ testthat::test_that(
         d = metaBMA::prior("norm", c(0, .3)),
         tau = metaBMA::prior("halfcauchy", c(.5)),
         iter = 2000,
+        cores = 4,
         summarize = "integrate"
       )
 
     testthat::expect_identical(subtitle1, subtitle2)
     testthat::expect_identical(subtitle1, subtitle3)
-    testthat::expect_identical(subtitle1, ggplot2::expr(atop(
-      displaystyle(NULL),
-      expr = paste(
-        "In favor of null: ",
-        "log"["e"],
-        "(BF"["01"],
-        ") = ",
-        "-2.680",
-        ", ",
-        italic("d")["mean"]^"posterior",
-        " = ",
-        "0.491",
-        ", CI"["95%"],
-        " [",
-        "0.144",
-        ", ",
-        "0.772",
-        "]"
-      )
-    )))
+    testthat::expect_identical(
+      subtitle1,
+      ggplot2::expr(atop(
+        displaystyle(NULL),
+        expr = paste(
+          "In favor of null: ",
+          "log"["e"],
+          "(BF"["01"],
+          ") = ",
+          "-2.680",
+          ", ",
+          italic("d")["mean"]^"posterior",
+          " = ",
+          "0.491",
+          ", CI"["95%"],
+          " [",
+          "0.144",
+          ", ",
+          "0.772",
+          "]"
+        )
+      ))
+    )
 
     # expecting error
     testthat::expect_error(ggstatsplot::bf_meta_message(df3))

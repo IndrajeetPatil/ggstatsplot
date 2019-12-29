@@ -101,20 +101,21 @@ testthat::test_that(
 
     # tidy dataframe
     set.seed(123)
-    tidy_df <- ggstatsplot::subtitle_meta_ggcoefstats(
-      data = df,
-      messages = FALSE,
-      output = "tidy"
-    )
+    tidy_df <-
+      ggstatsplot::subtitle_meta_ggcoefstats(
+        data = df,
+        messages = FALSE,
+        output = "tidy"
+      )
 
-    glance_df <- ggstatsplot::subtitle_meta_ggcoefstats(
-      data = df,
-      messages = FALSE,
-      output = "glance"
-    )
+    glance_df <-
+      ggstatsplot::subtitle_meta_ggcoefstats(
+        data = df,
+        messages = FALSE,
+        output = "glance"
+      )
 
     # checking if the tidy output is expected
-    testthat::expect_equal(dim(tidy_df), c(1L, 7L))
     testthat::expect_equal(tidy_df$estimate, 0.4376927, tolerance = 0.0001)
     testthat::expect_equal(tidy_df$conf.low, 0.04231262, tolerance = 0.0001)
     testthat::expect_equal(tidy_df$conf.high, 0.8330728, tolerance = 0.0001)

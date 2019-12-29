@@ -16,6 +16,7 @@
 #' @param ... Additional arguments (ignored).
 #'
 #' @importFrom metafor rma
+#' @importFrom dplyr rename_all recode mutate
 #'
 #' @examples
 #' \donttest{
@@ -128,26 +129,19 @@ subtitle_meta_parametric <- function(data,
   #----------------------- tidy output and subtitle ---------------------------
 
   # create a dataframe with coefficients
-  df_tidy <- # parameters_tidy(meta_res, ci = 0.95)
+  df_tidy <-
     coef(summary(meta_res)) %>%
     tibble::as_tibble(x = .) %>%
-    dplyr::rename(
-      .data = .,
-      std.error = se,
-      statistic = zval,
-      p.value = pval,
-      conf.low = ci.lb,
-      conf.high = ci.ub
+    dplyr::rename_all(
+      .tbl = .,
+      .funs = dplyr::recode,
+      se = "std.error",
+      zval = "statistic",
+      pval = "p.value",
+      ci.lb = "conf.low",
+      ci.ub = "conf.high"
     ) %>%
-    dplyr::mutate(.data = ., term = "summary effect") %>%
-    dplyr::select(
-      .data = .,
-      term,
-      estimate,
-      conf.low,
-      conf.high,
-      dplyr::everything()
-    )
+    dplyr::mutate(.data = ., term = "summary effect")
 
   # preparing the subtitle
   subtitle <-
@@ -257,7 +251,7 @@ subtitle_meta_parametric <- function(data,
 
 #' @title Bayes factor message for random-effects meta-analysis
 #' @name bf_meta_message
-#' @importFrom metaBMA meta_random
+#' @importFrom metaBMA meta_random prior
 #'
 #' @inherit metaBMA::meta_random return Description
 #'
@@ -396,9 +390,7 @@ bf_meta_message <- function(data,
 
   # creating a dataframe with posterior estimates
   df_estimates <-
-    as.data.frame(bf_meta$estimates) %>%
-    tibble::rownames_to_column(.data = ., var = "term") %>%
-    tibble::as_tibble(x = .) %>%
+    tibble::as_tibble(bf_meta$estimates, rownames = "term") %>%
     dplyr::filter(.data = ., term == "d")
 
   # prepare the bayes factor message

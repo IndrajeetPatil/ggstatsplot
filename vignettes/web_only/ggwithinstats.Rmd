@@ -161,6 +161,7 @@ one plot with some common labeling. It is possible, but not necessarily
 recommended, to make each plot have different colors or themes.
 
 For example,
+
 ```{r ggwithinstats3, message = FALSE, warning = FALSE, fig.height = 10, fig.width = 10}
 # for reproducibility
 set.seed(123)

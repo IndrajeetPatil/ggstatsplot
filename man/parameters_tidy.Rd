@@ -14,8 +14,6 @@ Tidier for \code{parameters} package objects
 }
 \examples{
 \donttest{
-## example-1
-
 # setup
 library(lme4)
 library(parameters)

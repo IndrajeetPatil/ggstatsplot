@@ -60,16 +60,16 @@ binwidth.
 
 ```{r psychact2, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 7}
 ggstatsplot::gghistostats(
-    data = psych::sat.act,                              # data from which variable is to be taken
-    x = ACT,                                            # numeric variable
-    results.subtitle = FALSE,                           # don't run statistical tests
-    messages = FALSE,                                   # turn off messages
-    xlab = "ACT Score",                                 # x-axis label
-    title = "Distribution of ACT Scores",               # title for the plot
-    subtitle = "N = 700",                               # subtitle for the plot
-    caption = "Data courtesy of: SAPA project (https://sapa-project.org)", # caption for the plot
-    centrality.k = 1                                    # show 1 decimal places for centrality label
-  )
+  data = psych::sat.act, # data from which variable is to be taken
+  x = ACT, # numeric variable
+  results.subtitle = FALSE, # don't run statistical tests
+  messages = FALSE, # turn off messages
+  xlab = "ACT Score", # x-axis label
+  title = "Distribution of ACT Scores", # title for the plot
+  subtitle = "N = 700", # subtitle for the plot
+  caption = "Data courtesy of: SAPA project (https://sapa-project.org)", # caption for the plot
+  centrality.k = 1 # show 1 decimal places for centrality label
+)
 ```
 
 ## Statistical analysis with `gghistostats`
@@ -91,24 +91,24 @@ we'll also:
 
 ```{r psychact3, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 7}
 ggstatsplot::gghistostats(
-    data = psych::sat.act,                              # data from which variable is to be taken
-    x = ACT,                                            # numeric variable
-    results.subtitle = TRUE,                            # run statistical tests
-    messages = TRUE,                                    # turn on messages
-    bar.measure = "proportion",                         # proportions
-    xlab = "ACT Score",                                 # x-axis label
-    title = "Distribution of ACT Scores",               # title for the plot
-    type = "p",                                         # one sample t-test
-    bf.message = TRUE,                                  # display Bayes method results
-    ggtheme = ggthemes::theme_tufte(),                  # changing default theme
-    bar.fill = "#D55E00",                               # change fill color
-    normal.curve = TRUE,                                # disply a normal distribution curve
-    normal.curve.color = "black",
-    test.value = 20,                                    # test value 
-    test.value.line = TRUE,                             # show a vertical line at `test.value`
-    caption = "Data courtesy of: SAPA project (https://sapa-project.org)", # caption for the plot
-    centrality.k = 1                                    # show 1 decimal places for centrality label
-  )
+  data = psych::sat.act, # data from which variable is to be taken
+  x = ACT, # numeric variable
+  results.subtitle = TRUE, # run statistical tests
+  messages = TRUE, # turn on messages
+  bar.measure = "proportion", # proportions
+  xlab = "ACT Score", # x-axis label
+  title = "Distribution of ACT Scores", # title for the plot
+  type = "p", # one sample t-test
+  bf.message = TRUE, # display Bayes method results
+  ggtheme = ggthemes::theme_tufte(), # changing default theme
+  bar.fill = "#D55E00", # change fill color
+  normal.curve = TRUE, # disply a normal distribution curve
+  normal.curve.color = "black",
+  test.value = 20, # test value
+  test.value.line = TRUE, # show a vertical line at `test.value`
+  caption = "Data courtesy of: SAPA project (https://sapa-project.org)", # caption for the plot
+  centrality.k = 1 # show 1 decimal places for centrality label
+)
 ```
 
 `gghistostats` computed Bayes Factors to quantify the likelihood of the **research** (BF10) and
@@ -134,29 +134,29 @@ task.
 ```{r grouped1, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 7}
 ggstatsplot::grouped_gghistostats(
   # arguments relevant for ggstatsplot::gghistostats
-  data = psych::sat.act,                        # same dataset
-  x = ACT,                                      # same outcome variable
+  data = psych::sat.act, # same dataset
+  x = ACT, # same outcome variable
   xlab = "ACT Score",
-  grouping.var = gender,                        # grouping variable males = 1, females = 2
-  title.prefix = "Gender",                      # prefix for the fixed title
-  k = 1,                                        # number of decimal places in results
-  type = "r",                                   # robust test: one-sample percentile bootstrap
-  robust.estimator = "mom",                     # changing the robust estimator used
-  test.value = 20,                              # test value against which sample mean is to be compared
-  test.value.line = TRUE,                       # show a vertical line at `test.value`
-  bar.measure = "density",                      # density
-  centrality.para = "median",                   # plotting centrality parameter
-  centrality.color = "#D55E00",                 # color for centrality line and label
-  test.value.color = "#009E73",                 # color for test line and label
-  messages = FALSE,                             # turn off messages
-  ggtheme = ggthemes::theme_stata(),            # changing default theme
-  ggstatsplot.layer = FALSE,                    # turn off ggstatsplot theme layer
+  grouping.var = gender, # grouping variable males = 1, females = 2
+  title.prefix = "Gender", # prefix for the fixed title
+  k = 1, # number of decimal places in results
+  type = "r", # robust test: one-sample percentile bootstrap
+  robust.estimator = "mom", # changing the robust estimator used
+  test.value = 20, # test value against which sample mean is to be compared
+  test.value.line = TRUE, # show a vertical line at `test.value`
+  bar.measure = "density", # density
+  centrality.para = "median", # plotting centrality parameter
+  centrality.color = "#D55E00", # color for centrality line and label
+  test.value.color = "#009E73", # color for test line and label
+  messages = FALSE, # turn off messages
+  ggtheme = ggthemes::theme_stata(), # changing default theme
+  ggstatsplot.layer = FALSE, # turn off ggstatsplot theme layer
   # arguments relevant for ggstatsplot::combine_plots
   title.text = "Distribution of ACT scores across genders",
   caption.text = "Data courtesy of: SAPA project (https://sapa-project.org)",
   nrow = 2,
   ncol = 1,
-  labels = c("Male","Female")
+  labels = c("Male", "Female")
 )
 ```
 
@@ -213,4 +213,3 @@ If you find any bugs or have any suggestions/remarks, please file an issue on Gi
 
 For details, see-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>
-

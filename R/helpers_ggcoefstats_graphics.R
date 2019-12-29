@@ -319,8 +319,6 @@ ggcoefstats_label_maker <- function(x,
 #'
 #' @examples
 #' \donttest{
-#' ## example-1
-#'
 #' # setup
 #' library(lme4)
 #' library(parameters)
@@ -368,5 +366,6 @@ parameters_tidy <- function(x, ...) {
       z = "statistic",
       df_error = "df.residual",
       p = "p.value"
-    )
+    ) %>%
+    dplyr::filter(.data = ., !is.na(estimate))
 }
