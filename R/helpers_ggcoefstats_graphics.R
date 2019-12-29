@@ -10,6 +10,8 @@
 #' @inheritParams ggcoefstats
 #'
 #' @importFrom insight is_model find_statistic
+#' @importFrom purrr pmap_dfc
+#' @importFrom dplyr select_if
 #'
 #' @examples
 #' \donttest{
@@ -118,16 +120,31 @@ ggcoefstats_label_maker <- function(x,
     statistic <- insight::find_statistic(x)
 
     # standardize statistic type symbol for regression models
+    # checking entered strings to extract the statistic
+    grep_stat <- function(x, pattern) {
+      if (isTRUE(grepl(pattern, x, ignore.case = TRUE))) {
+        return(tolower(substring(x, 1, 1)))
+      } else {
+        return(NA_character_)
+      }
+    }
+
+    # extracting statistic value
     statistic <-
-      switch(statistic,
-        "t-statistic" = "t",
-        "z-statistic" = "z",
-        "F-statistic" = "f"
-      )
+      purrr::pmap_dfc(
+        .l =
+          list(
+            pattern = list("^t", "^f", "^z", "^chi"),
+            x = list(statistic)
+          ),
+        .f = grep_stat
+      ) %>%
+      dplyr::select_if(.tbl = ., .predicate = ~ sum(!is.na(.)) > 0) %>%
+      unlist(x = ., use.names = FALSE)
   }
 
   # No glance method is available for F-statistic
-  if (statistic %in% c("f", "f.value", "f-value", "F-value", "F")) glance_df <- NULL
+  if (statistic == "f") glance_df <- NULL
 
   #----------------------- p-value cleanup ------------------------------------
 
@@ -145,7 +162,7 @@ ggcoefstats_label_maker <- function(x,
   #--------------------------- t-statistic ------------------------------------
 
   # if the statistic is t-value
-  if (statistic %in% c("t", "t.value", "t-value", "T")) {
+  if (statistic == "t") {
     # if `df` column is in the tidy dataframe, rename it to `df.residual`
     if ("df" %in% names(tidy_df)) {
       tidy_df %<>% dplyr::mutate(.data = ., df.residual = df)
@@ -211,7 +228,7 @@ ggcoefstats_label_maker <- function(x,
   #--------------------------- z-statistic ---------------------------------
 
   # if the statistic is z-value
-  if (statistic %in% c("z", "z.value", "z-value", "Z")) {
+  if (statistic == "z") {
     tidy_df %<>%
       dplyr::group_nest(.tbl = ., rowid) %>%
       dplyr::mutate(
@@ -235,7 +252,7 @@ ggcoefstats_label_maker <- function(x,
 
   #--------------------------- f-statistic ---------------------------------
 
-  if (statistic %in% c("f", "f.value", "f-value", "F-value", "F")) {
+  if (statistic == "f") {
     # which effect size is needed?
     if (effsize == "eta") {
       if (isTRUE(partial)) {
