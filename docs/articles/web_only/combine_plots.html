@@ -139,7 +139,7 @@
       <h1>combine_plots</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-12-23</h4>
+            <h4 class="date">2019-12-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/combine_plots.Rmd"><code>vignettes/web_only/combine_plots.Rmd</code></a></small>
       <div class="hidden name"><code>combine_plots.Rmd</code></div>
@@ -168,19 +168,18 @@
 <span id="cb1-7"><a href="#cb1-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., cyl <span class="op">!=</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span></span>
 <span id="cb1-8"><a href="#cb1-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="dt">.data =</span> ., cyl) <span class="op">%&gt;%</span></span>
 <span id="cb1-9"><a href="#cb1-9"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_map.html">group_map</a></span>(</span>
-<span id="cb1-10"><a href="#cb1-10"></a>    <span class="dt">.data =</span> .,</span>
-<span id="cb1-11"><a href="#cb1-11"></a>    <span class="dt">.f =</span> <span class="op">~</span><span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</span>
-<span id="cb1-12"><a href="#cb1-12"></a>    <span class="dt">data =</span> .,</span>
-<span id="cb1-13"><a href="#cb1-13"></a>    <span class="dt">x =</span> am,</span>
-<span id="cb1-14"><a href="#cb1-14"></a>    <span class="dt">y =</span> wt,</span>
-<span id="cb1-15"><a href="#cb1-15"></a>    <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
-<span id="cb1-16"><a href="#cb1-16"></a>  ))</span>
-<span id="cb1-17"><a href="#cb1-17"></a></span>
-<span id="cb1-18"><a href="#cb1-18"></a><span class="co"># combining plots</span></span>
-<span id="cb1-19"><a href="#cb1-19"></a>cowplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/cowplot/man/plot_grid.html">plot_grid</a></span>(</span>
-<span id="cb1-20"><a href="#cb1-20"></a>  <span class="dt">plotlist =</span> p_list,</span>
-<span id="cb1-21"><a href="#cb1-21"></a>  <span class="dt">labels =</span> rlang<span class="op">::</span><span class="kw"><a href="https://rlang.r-lib.org/reference/set_names.html">set_names</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/levels.html">levels</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(mtcars<span class="op">$</span>cyl)))</span>
-<span id="cb1-22"><a href="#cb1-22"></a>)</span></code></pre></div>
+<span id="cb1-10"><a href="#cb1-10"></a>    <span class="dt">.f =</span> <span class="op">~</span><span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</span>
+<span id="cb1-11"><a href="#cb1-11"></a>    <span class="dt">data =</span> .,</span>
+<span id="cb1-12"><a href="#cb1-12"></a>    <span class="dt">x =</span> am,</span>
+<span id="cb1-13"><a href="#cb1-13"></a>    <span class="dt">y =</span> wt,</span>
+<span id="cb1-14"><a href="#cb1-14"></a>    <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a>  ))</span>
+<span id="cb1-16"><a href="#cb1-16"></a></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="co"># combining plots</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a>cowplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/cowplot/man/plot_grid.html">plot_grid</a></span>(</span>
+<span id="cb1-19"><a href="#cb1-19"></a>  <span class="dt">plotlist =</span> p_list,</span>
+<span id="cb1-20"><a href="#cb1-20"></a>  <span class="dt">labels =</span> rlang<span class="op">::</span><span class="kw"><a href="https://rlang.r-lib.org/reference/set_names.html">set_names</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/levels.html">levels</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(mtcars<span class="op">$</span>cyl)))</span>
+<span id="cb1-21"><a href="#cb1-21"></a>)</span></code></pre></div>
 <p><img src="combine_plots_files/figure-html/ggscatterstats_groupmap-1.png" width="960"></p>
 </div>
 <div id="combining-multiple-plots-example-2-using-purrr" class="section level2">

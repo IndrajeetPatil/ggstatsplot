@@ -106,20 +106,21 @@ subtitle_meta_parametric <- function(data,
   #----------------------- meta-analysis ------------------------------------
 
   # object from meta-analysis
-  meta_res <- metafor::rma(
-    yi = estimate,
-    sei = std.error,
-    measure = "GEN",
-    intercept = TRUE,
-    data = data,
-    vtype = "LS",
-    method = "REML",
-    weighted = TRUE,
-    test = "z",
-    level = 95,
-    digits = 4,
-    ...
-  )
+  meta_res <-
+    metafor::rma(
+      yi = estimate,
+      sei = std.error,
+      measure = "GEN",
+      intercept = TRUE,
+      data = data,
+      vtype = "LS",
+      method = "REML",
+      weighted = TRUE,
+      test = "z",
+      level = 95,
+      digits = 4,
+      ...
+    )
 
   # print the results
   if (isTRUE(messages)) print(summary(meta_res))
@@ -127,13 +128,13 @@ subtitle_meta_parametric <- function(data,
   #----------------------- tidy output and subtitle ---------------------------
 
   # create a dataframe with coefficients
-  df_tidy <-
+  df_tidy <- # parameters_tidy(meta_res, ci = 0.95)
     coef(summary(meta_res)) %>%
     tibble::as_tibble(x = .) %>%
     dplyr::rename(
       .data = .,
       std.error = se,
-      z.value = zval,
+      statistic = zval,
       p.value = pval,
       conf.low = ci.lb,
       conf.high = ci.ub
@@ -178,7 +179,7 @@ subtitle_meta_parametric <- function(data,
         estimate = specify_decimal_p(x = df_tidy$estimate, k = k),
         LL = specify_decimal_p(x = df_tidy$conf.low, k = k),
         UL = specify_decimal_p(x = df_tidy$conf.high, k = k),
-        zvalue = specify_decimal_p(x = df_tidy$z.value, k = k),
+        zvalue = specify_decimal_p(x = df_tidy$statistic, k = k),
         se = specify_decimal_p(x = df_tidy$std.error, k = k),
         pvalue = specify_decimal_p(x = df_tidy$p.value, k = k, p.value = TRUE)
       )
@@ -186,23 +187,24 @@ subtitle_meta_parametric <- function(data,
 
   #----------------------- model sumamry ------------------------------------
 
-  df_glance <- with(
-    data = meta_res,
-    expr = tibble::tibble(
-      tau2 = tau2,
-      se.tau2 = se.tau2,
-      k = k,
-      p = p,
-      m = m,
-      QE = QE,
-      QEp = QEp,
-      QM = QM,
-      QMp = QMp,
-      I2 = I2,
-      H2 = H2,
-      int.only = int.only
+  df_glance <-
+    with(
+      data = meta_res,
+      expr = tibble::tibble(
+        tau2 = tau2,
+        se.tau2 = se.tau2,
+        k = k,
+        p = p,
+        m = m,
+        QE = QE,
+        QEp = QEp,
+        QM = QM,
+        QMp = QMp,
+        I2 = I2,
+        H2 = H2,
+        int.only = int.only
+      )
     )
-  )
 
   # preparing the subtitle
   caption <-

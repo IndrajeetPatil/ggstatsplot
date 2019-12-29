@@ -127,9 +127,7 @@ ggcoefstats_label_maker <- function(x,
   }
 
   # No glance method is available for F-statistic
-  if (statistic %in% c("f", "f.value", "f-value", "F-value", "F")) {
-    glance_df <- NULL
-  }
+  if (statistic %in% c("f", "f.value", "f-value", "F-value", "F")) glance_df <- NULL
 
   #----------------------- p-value cleanup ------------------------------------
 
@@ -171,7 +169,7 @@ ggcoefstats_label_maker <- function(x,
             purrr::map(
               .x = .,
               .f = ~ paste(
-                "list(~italic(beta)==",
+                "list(~widehat(italic(beta))==",
                 specify_decimal_p(x = .$estimate, k = k),
                 ", ~italic(t)",
                 "(",
@@ -195,7 +193,7 @@ ggcoefstats_label_maker <- function(x,
             purrr::map(
               .x = .,
               .f = ~ paste(
-                "list(~italic(beta)==",
+                "list(~widehat(italic(beta))==",
                 specify_decimal_p(x = .$estimate, k = k),
                 ", ~italic(t)",
                 "==",
@@ -222,7 +220,7 @@ ggcoefstats_label_maker <- function(x,
           purrr::map(
             .x = .,
             .f = ~ paste(
-              "list(~italic(beta)==",
+              "list(~widehat(italic(beta))==",
               specify_decimal_p(x = .$estimate, k = k),
               ", ~italic(z)==",
               .$statistic,
@@ -241,17 +239,17 @@ ggcoefstats_label_maker <- function(x,
     # which effect size is needed?
     if (effsize == "eta") {
       if (isTRUE(partial)) {
-        tidy_df$effsize.text <- list(quote(italic(eta)[p]^2))
+        tidy_df$effsize.text <- list(quote(widehat(italic(eta)[p]^2)))
       } else {
-        tidy_df$effsize.text <- list(quote(italic(eta)^2))
+        tidy_df$effsize.text <- list(quote(widehat(italic(eta)^2)))
       }
     }
 
     if (effsize == "omega") {
       if (isTRUE(partial)) {
-        tidy_df$effsize.text <- list(quote(italic(omega)[p]^2))
+        tidy_df$effsize.text <- list(quote(widehat(italic(omega)[p]^2)))
       } else {
-        tidy_df$effsize.text <- list(quote(italic(omega)^2))
+        tidy_df$effsize.text <- list(quote(widehat(italic(omega)^2)))
       }
     }
 
@@ -291,4 +289,67 @@ ggcoefstats_label_maker <- function(x,
 
   # return the final dataframe
   return(tibble::as_tibble(tidy_df))
+}
+
+
+#' @title Tidier for `parameters` package objects
+#' @name parameters_tidy
+#'
+#' @inheritParams parameters::model_parameters
+#'
+#' @importFrom parameters model_parameters
+#' @importFrom dplyr rename_all recode
+#'
+#' @examples
+#' \donttest{
+#' ## example-1
+#'
+#' # setup
+#' library(lme4)
+#' library(parameters)
+#' set.seed(123)
+#'
+#' # model
+#' mm0 <-
+#'   lme4::lmer(
+#'     formula = scale(Reaction) ~ scale(Days) + (1 | Subject),
+#'     data = sleepstudy
+#'   )
+#'
+#' # model parameters
+#' ggstatsplot:::parameters_tidy(mm0)
+#' }
+#'
+#' @keywords internal
+
+parameters_tidy <- function(x, ...) {
+  parameters::model_parameters(x, ...) %>%
+    tibble::as_tibble(.) %>%
+    dplyr::rename_all(
+      .tbl = .,
+      .funs = tolower
+    ) %>%
+    dplyr::rename_all(
+      .tbl = .,
+      .funs = ~ gsub(
+        x = .,
+        pattern = "_",
+        replacement = "."
+      )
+    ) %>%
+    dplyr::rename_all(
+      .tbl = .,
+      .funs = dplyr::recode,
+      parameter = "term",
+      coefficient = "estimate",
+      median = "estimate",
+      se = "std.error",
+      ci.low = "conf.low",
+      ci.high = "conf.high",
+      f = "statistic",
+      t = "statistic",
+      z = "statistic",
+      df_error = "df.residual",
+      p = "p.value"
+    )
 }

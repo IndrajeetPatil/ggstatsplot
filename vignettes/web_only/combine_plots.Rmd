@@ -55,7 +55,6 @@ p_list <- mtcars %>%
   dplyr::filter(.data = ., cyl != 4) %>%
   dplyr::group_by(.data = ., cyl) %>%
   dplyr::group_map(
-    .data = .,
     .f = ~ ggstatsplot::ggbetweenstats(
     data = .,
     x = am,

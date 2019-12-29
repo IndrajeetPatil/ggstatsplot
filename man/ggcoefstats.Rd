@@ -173,7 +173,7 @@ data frame with estimates and their standard errors is entered as input to
 error bars (Default: \code{TRUE}).}
 
 \item{conf.level}{Numeric deciding level of confidence intervals (Default:
-\code{0.95}). For MCMC model objects (Stan, JAGS, etc.), this will be
+\code{0.95}). For \code{MCMC} model objects (\code{Stan}, \code{JAGS}, etc.), this will be
 probability level for CI.}
 
 \item{se.type}{Character specifying the method used to compute standard

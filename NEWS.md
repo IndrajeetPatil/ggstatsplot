@@ -3,6 +3,8 @@
 MINOR CHANGES
 
   - New dataset included: `bugs_wide`
+  - More models supported in `ggcoefstats`: `cpglm`, `cpglmm`, `feis`,
+    `flexsurvreg`, `iv_robust`, `truncreg`
  
 # ggstatsplot 0.1.4
 

@@ -41,7 +41,7 @@
 #' @param conf.int Logical. Decides whether to display confidence intervals as
 #'   error bars (Default: `TRUE`).
 #' @param conf.level Numeric deciding level of confidence intervals (Default:
-#'   `0.95`). For MCMC model objects (Stan, JAGS, etc.), this will be
+#'   `0.95`). For `MCMC` model objects (`Stan`, `JAGS`, etc.), this will be
 #'   probability level for CI.
 #' @param coefficient.type Relevant only for ordinal regression models (`clm` ,
 #'   `clmm`, `"svyolr"`, and `polr`), this argument decides which parameters are
@@ -376,14 +376,7 @@ ggcoefstats <- function(x,
   # =================== types of models =====================================
 
   # models for which statistic is F-value
-  f.mods <-
-    c(
-      "aov",
-      "aovlist",
-      "anova",
-      "Gam",
-      "manova"
-    )
+  f.mods <- c("aov", "aovlist", "anova", "Gam", "manova")
 
   # ============================= model summary ============================
 
@@ -488,10 +481,16 @@ ggcoefstats <- function(x,
     }
   }
 
+
   # oddball cases that might falter with additional tidier arguments
   # e.g., `lavaan` can't handle `parametric = FALSE`, etc.
   if (rlang::is_null(tidy_df)) {
     tidy_df <- broomExtra::tidy(x, ...)
+  }
+
+  # check if there is a tidier in the `easystats` universe
+  if (rlang::is_null(tidy_df)) {
+    tidy_df <- parameters_tidy(x, ci = conf.level, exponentiate = FALSE)
   }
 
   # =================== tidy dataframe cleanup ================================
@@ -678,7 +677,7 @@ ggcoefstats <- function(x,
       dplyr::mutate_at(
         .tbl = .,
         .vars = dplyr::vars(dplyr::matches(match = "estimate|conf", ignore.case = TRUE)),
-        .funs = ~ exp(x = .)
+        .funs = exp
       )
   }
 
@@ -704,9 +703,7 @@ ggcoefstats <- function(x,
   # adding a column with labels to be used with `ggrepel`
   if (isTRUE(stats.labels)) {
     # in case a dataframe was entered, `x` and `tidy_df` are going to be same
-    if (isFALSE(insight::is_model(x))) {
-      x <- tidy_df
-    }
+    if (isFALSE(insight::is_model(x))) x <- tidy_df
 
     # adding a column with labels using custom function
     tidy_df %<>%
@@ -901,15 +898,8 @@ ggcoefstats <- function(x,
 
       # ========================== palette check =================================
 
-      # counting the number of terms in the tidy dataframe
-      count_term <- length(tidy_df$term)
-
       # if no. of factor levels is greater than the default palette color count
-      palette_message(
-        package = package,
-        palette = palette,
-        min_length = count_term
-      )
+      palette_message(package, palette, length(tidy_df$term))
 
       # computing the number of colors in a given palette
       palette_df <-
@@ -918,14 +908,14 @@ ggcoefstats <- function(x,
         dplyr::select(.data = ., length)
 
       # if insufficient number of colors are available in a given palette
-      if (palette_df$length[[1]] < count_term) stats.label.color <- "black"
+      if (palette_df$length[[1]] < length(tidy_df$term)) stats.label.color <- "black"
 
       # if user has not specified colors, then use a color palette
       if (is.null(stats.label.color)) {
         stats.label.color <-
           paletteer::paletteer_d(
             palette = paste0(package, "::", palette),
-            n = count_term,
+            n = length(tidy_df$term),
             direction = direction,
             type = "discrete"
           )
@@ -946,7 +936,7 @@ ggcoefstats <- function(x,
       # adding labels
       plot <- plot +
         rlang::exec(
-          ggrepel::geom_label_repel,
+          .fn = ggrepel::geom_label_repel,
           data = tidy_df,
           mapping = ggplot2::aes(x = estimate, y = term, label = label),
           na.rm = TRUE,
