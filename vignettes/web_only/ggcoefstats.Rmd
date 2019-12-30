@@ -77,13 +77,13 @@ Most of the regression models that are supported in the `broom` and
 `clm`, `clmm`, `coeftest`, `confusionMatrix`, `coxph`, `cpglm`, `cpglmm`,
 `complmrob`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`,
 `flexsurvreg`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`,
-`garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `gmm`, `ivreg`,
-`iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`, `lmRob`, `lmrob`,
-`mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`, `mediate`, `mjoint`, `mle2`, `mlm`,
-`multinom`, `negbin`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `plm`,
-`polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `rqss`, `slm`, `speedglm`,
-`speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`,
-`tobit`, `truncreg`, `wbgee`, `wblm`, etc.
+`garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `gmm`, `hurdle`,
+`ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`, `lmRob`,
+`lmrob`, `mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`, `mediate`, `mjoint`, `mle2`,
+`mlm`, `multinom`, `negbin`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`,
+`plm`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `rqss`, `slm`,
+`speedglm`, `speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`,
+`svyglm`, `tobit`, `truncreg`, `wbgee`, `wblm`, etc.
 
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
@@ -345,11 +345,13 @@ ggstatsplot::ggcoefstats(
 
 ## non-linear mixed-effects model (`nlmer`/`nlmerMod`)
 
-```{r nlmer, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6, eval=FALSE}
-# model
+```{r nlmer, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6}
+# data
 library(lme4)
 set.seed(123)
 startvec <- c(Asym = 200, xmid = 725, scal = 350)
+
+# model
 nm1 <-
   lme4::nlmer(
     formula = circumference ~ SSlogis(age, Asym, xmid, scal) ~ Asym | Tree,
@@ -379,13 +381,17 @@ library(ggstatsplot)
 # to speed up the calculation, let's use only 10% of the data
 movies_10 <- dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.1)
 
-# plot
-ggstatsplot::ggcoefstats(
-  x = stats::nls(
+# model
+mod <-
+  stats::nls(
     formula = rating ~ k / budget + c, # try toying around with the form of non-linear function
     data = movies_10,
     start = list(k = 1, c = 0)
-  ),
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
   title = "non-linear least squares regression",
   subtitle = "Non-linear relationship between budget and rating"
 )
@@ -404,12 +410,13 @@ library(slm)
 data("shan")
 
 # model
-mod <- slm(
-  myformula = shan$PM_Xuhui ~ .,
-  data = shan,
-  method_cov_st = "fitAR",
-  model_selec = -1
-)
+mod <-
+  slm(
+    myformula = shan$PM_Xuhui ~ .,
+    data = shan,
+    method_cov_st = "fitAR",
+    model_selec = -1
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -596,8 +603,6 @@ ggstatsplot::combine_plots(
 ```{r glm2, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
 # setup
 library(glm2)
-data(crabs)
-data(heart)
 y <- c(1, 1, 1, 0)
 
 # model
@@ -610,7 +615,7 @@ fit1 <- glm2::glm2(
 # plot
 ggstatsplot::ggcoefstats(
   x = fit1,
-  title = "greater stability for fitting generalized linear models",
+  title = "greater stability for fitting \ngeneralized linear models",
   exclude.intercept = FALSE
 )
 ```
@@ -691,19 +696,26 @@ data, we can run generalized linear mixed effects model with a random slope for
 class.
 
 ```{r glmer, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# setup
+set.seed(123)
+library(lme4)
+
+# model
+mod <- lme4::glmer(
+  formula = Survived ~ Sex + Age + (Sex + Age | Class),
+  # select 20% of the sample to reduce the time of execution
+  data = dplyr::sample_frac(tbl = ggstatsplot::Titanic_full, size = 0.2),
+  family = stats::binomial(link = "logit"),
+  control = lme4::glmerControl(
+    optimizer = "Nelder_Mead",
+    calc.derivs = FALSE,
+    boundary.tol = 1e-7
+  )
+)
+
 # plot
 ggstatsplot::ggcoefstats(
-  x = lme4::glmer(
-    formula = Survived ~ Sex + Age + (Sex + Age | Class),
-    # select 20% of the sample to reduce the time of execution
-    data = dplyr::sample_frac(tbl = ggstatsplot::Titanic_full, size = 0.2),
-    family = stats::binomial(link = "logit"),
-    control = lme4::glmerControl(
-      optimizer = "Nelder_Mead",
-      calc.derivs = FALSE,
-      boundary.tol = 1e-7
-    )
-  ),
+  x = mod,
   title = "generalized linear mixed-effects model",
   exponentiate = TRUE,
   stats.label.color = "black"
@@ -795,14 +807,15 @@ set.seed(123)
 library(cplm)
 
 # model
-mod <- bcplm(
-  formula = RLD ~ factor(Zone) * factor(Stock),
-  data = FineRoot,
-  tune.iter = 2000,
-  n.iter = 6000,
-  n.burnin = 1000,
-  n.thin = 5
-)
+mod <-
+  bcplm(
+    formula = RLD ~ factor(Zone) * factor(Stock),
+    data = FineRoot,
+    tune.iter = 2000,
+    n.iter = 6000,
+    n.burnin = 1000,
+    n.thin = 5
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -833,10 +846,35 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
+## Hurdle Models for Count Data Regression (`hurdle`)
+
+```{r hurdle, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 8}
+# setup
+set.seed(123)
+library(pscl)
+data("bioChemists", package = "pscl")
+
+# geometric-poisson
+fm_hp2 <-
+  pscl::hurdle(
+    formula = art ~ .,
+    data = bioChemists,
+    zero = "geometric"
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = fm_hp2,
+  only.significant = TRUE,
+  exclude.intercept = FALSE,
+  conf.level = 0.99,
+  title = "Hurdle Models for Count Data Regression"
+)
+```
+
 ## generalized linear mixed model trees (`glmertree`)
 
 ```{r glmertree, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 10}
-
 # setup
 set.seed(123)
 library(glmertree)
@@ -973,26 +1011,26 @@ information about intentionality, consequences, or their interaction?
 # for reproducibility
 set.seed(123)
 
-# to speed up calculations, we will use just 10% of the dataset
+# model (to speed up calculations, we will use just 10% of the dataset)
+mod <- ordinal::clm(
+  formula = as.factor(rating) ~ belief * outcome,
+  link = "logit",
+  data = dplyr::sample_frac(tbl = ggstatsplot::intent_morality, size = 0.10),
+  control = ordinal::clm.control(
+    maxIter = 50,
+    convergence = "silent"
+  )
+)
+
+# plot
 ggstatsplot::ggcoefstats(
-  x = ordinal::clm(
-    formula = as.factor(rating) ~ belief * outcome,
-    link = "logit",
-    data = dplyr::sample_frac(tbl = ggstatsplot::intent_morality, size = 0.10),
-    control = ordinal::clm.control(
-      maxIter = 50,
-      convergence = "silent"
-    )
-  ),
+  x = mod,
   stats.label.color = "black",
   title = "cumulative link model (clm)",
   subtitle = "(using `ordinal` package)",
   caption.summary = FALSE # suppress model diagnostics
 ) +
-  ggplot2::labs(
-    x = "logit regression coefficient",
-    y = NULL
-  )
+  ggplot2::labs(x = "logit regression coefficient", y = NULL)
 ```
 
 As can be seen from this plot, both factors (intentionality and consequences)
@@ -1077,11 +1115,10 @@ but you can also plot either just `alpha` or `both` using `ggcoefstats`.
 # for reproducibility
 set.seed(123)
 
-# to speed up calculations, we will use just 10% of the dataset
-ggstatsplot::ggcoefstats(
-  x = ordinal::clmm(
-    formula = as.factor(rating) ~ belief * outcome + (belief + outcome |
-      harm),
+# model
+mod <-
+  ordinal::clmm(
+    formula = as.factor(rating) ~ belief * outcome + (belief + outcome | harm),
     link = "logit",
     data = dplyr::sample_frac(tbl = ggstatsplot::intent_morality, size = 0.10),
     control = ordinal::clmm.control(
@@ -1090,7 +1127,9 @@ ggstatsplot::ggcoefstats(
       innerCtrl = "noWarn"
     )
   )
-) +
+
+# plot
+ggstatsplot::ggcoefstats(mod) +
   ggplot2::labs(
     x = "logit regression coefficients",
     y = "threshold parameters",
@@ -1102,14 +1141,14 @@ ggstatsplot::ggcoefstats(
 
 Note that we can also choose to display labels only for the significant effects.
 This can be helpful when a large number of regression coefficients are to be
-displayed in a single plot.
+displayed in a single plot and we would like to focus only on the significant
+ones.
 
 ```{r brglm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 5}
 # setup
 set.seed(123)
 library(brglm2)
 data("lizards")
-data("stemcell")
 
 # fit the model using maximum likelihood mean bias-reduced fit:
 lizardsBR_mean <-
@@ -1134,7 +1173,6 @@ ggstatsplot::ggcoefstats(
 # setup
 set.seed(123)
 library(brglm2)
-data("lizards")
 data("stemcell")
 
 # bias reduction for adjacent category logit models
@@ -1143,7 +1181,8 @@ fit_bracl <-
   brglm2::bracl(
     formula = research ~ as.numeric(religion) + gender,
     weights = frequency,
-    data = stemcell, type = "ML"
+    data = stemcell,
+    type = "ML"
   )
 
 # plot
@@ -2979,7 +3018,9 @@ ggstatsplot::ggcoefstats(
 ```{r MCMCglmm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
 # setup
 set.seed(123)
+library(lme4)
 library(MCMCglmm)
+data(sleepstudy)
 
 # model
 mm0 <-

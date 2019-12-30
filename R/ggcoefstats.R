@@ -352,25 +352,9 @@ ggcoefstats <- function(x,
   # only fixed effects will be selected
   mixed.mods <-
     c(
-      "bglmerMod",
-      "blmerMod",
-      "brmsfit",
-      "brmsfit_multiple",
-      "glmmadmb",
-      "glmerMod",
-      "glmmPQL",
-      "glmmTMB",
-      "lme",
-      "lmerMod",
-      "mcmc",
-      "MCMCglmm",
-      "merMod",
-      "nlmerMod",
-      "rjags",
-      "rlmerMod",
-      "stanreg",
-      "stanmvreg",
-      "TMB"
+      "glmmadmb", "glmerMod", "glmmPQL", "glmmTMB",
+      "bglmerMod", "blmerMod", "lme", "lmerMod", "merMod", "nlmerMod", "rlmerMod", "TMB",
+      "brmsfit", "brmsfit_multiple", "mcmc", "MCMCglmm", "rjags", "stanreg", "stanmvreg"
     )
 
   # =================== types of models =====================================
@@ -481,17 +465,9 @@ ggcoefstats <- function(x,
     }
   }
 
-
-  # oddball cases that might falter with additional tidier arguments
-  # e.g., `lavaan` can't handle `parametric = FALSE`, etc.
-  if (rlang::is_null(tidy_df)) {
-    tidy_df <- broomExtra::tidy(x, ...)
-  }
-
-  # check if there is a tidier in the `easystats` universe
-  if (rlang::is_null(tidy_df)) {
-    tidy_df <- parameters_tidy(x, ci = conf.level, exponentiate = FALSE)
-  }
+  # try again with `broomExtra` and `easystats`
+  if (rlang::is_null(tidy_df)) tidy_df <- broomExtra::tidy(x, ...)
+  if (rlang::is_null(tidy_df)) tidy_df <- parameters_tidy(x, ci = conf.level, ...)
 
   # =================== tidy dataframe cleanup ================================
 
@@ -502,7 +478,7 @@ ggcoefstats <- function(x,
       crayon::blue("The object of class "),
       crayon::yellow(class(x)[[1]]),
       crayon::blue(" *must* contain column called 'estimate' in tidy output.\n"),
-      crayon::blue("Check the tidy output using `broomExtra::tidy(x)`."),
+      crayon::blue("Check the tidy output using argument `return = 'tidy'`."),
       sep = ""
     )),
     call. = FALSE
@@ -896,6 +872,18 @@ ggcoefstats <- function(x,
           .vars_predicate = dplyr::all_vars(!is.na(.))
         )
 
+      # only significant p-value labels are shown
+      if (isTRUE(only.significant) && "significance" %in% names(tidy_df)) {
+        tidy_df %<>%
+          dplyr::mutate(
+            .data = .,
+            label = dplyr::case_when(
+              significance == "ns" ~ NA_character_,
+              TRUE ~ label
+            )
+          )
+      }
+
       # ========================== palette check =================================
 
       # if no. of factor levels is greater than the default palette color count
@@ -918,18 +906,6 @@ ggcoefstats <- function(x,
             n = length(tidy_df$term),
             direction = direction,
             type = "discrete"
-          )
-      }
-
-      # only significant p-value labels are shown
-      if (isTRUE(only.significant) && "significance" %in% names(tidy_df)) {
-        tidy_df %<>%
-          dplyr::mutate(
-            .data = .,
-            label = dplyr::case_when(
-              significance == "ns" ~ NA_character_,
-              TRUE ~ label
-            )
           )
       }
 

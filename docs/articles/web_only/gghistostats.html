@@ -139,7 +139,7 @@
       <h1>gghistostats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-12-28</h4>
+            <h4 class="date">2019-12-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/gghistostats.Rmd"><code>vignettes/web_only/gghistostats.Rmd</code></a></small>
       <div class="hidden name"><code>gghistostats.Rmd</code></div>
@@ -176,16 +176,16 @@
 <span id="cb1-15"><a href="#cb1-15"></a><span class="co">#&gt; $ SATQ      &lt;int&gt; 500, 500, 470, 520, 550, 640, 500, 560, 600, 800, 710, 60...</span></span></code></pre></div>
 <p>To get a simple histogram with no statistics and no special information. <code>gghistostats</code> will by default choose a binwidth <code>max(x) - min(x) / sqrt(N)</code>. You should always check this value and explore multiple widths to find the best to illustrate the stories in your data since histograms are sensitive to binwidth.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</span>
-<span id="cb2-2"><a href="#cb2-2"></a>    <span class="dt">data =</span> psych<span class="op">::</span>sat.act,                              <span class="co"># data from which variable is to be taken</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>    <span class="dt">x =</span> ACT,                                            <span class="co"># numeric variable</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>    <span class="dt">results.subtitle =</span> <span class="ot">FALSE</span>,                           <span class="co"># don't run statistical tests</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>    <span class="dt">messages =</span> <span class="ot">FALSE</span>,                                   <span class="co"># turn off messages</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a>    <span class="dt">xlab =</span> <span class="st">"ACT Score"</span>,                                 <span class="co"># x-axis label</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>    <span class="dt">title =</span> <span class="st">"Distribution of ACT Scores"</span>,               <span class="co"># title for the plot</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a>    <span class="dt">subtitle =</span> <span class="st">"N = 700"</span>,                               <span class="co"># subtitle for the plot</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>    <span class="dt">caption =</span> <span class="st">"Data courtesy of: SAPA project (https://sapa-project.org)"</span>, <span class="co"># caption for the plot</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>    <span class="dt">centrality.k =</span> <span class="dv">1</span>                                    <span class="co"># show 1 decimal places for centrality label</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>  )</span></code></pre></div>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="dt">data =</span> psych<span class="op">::</span>sat.act, <span class="co"># data from which variable is to be taken</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="dt">x =</span> ACT, <span class="co"># numeric variable</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="dt">results.subtitle =</span> <span class="ot">FALSE</span>, <span class="co"># don't run statistical tests</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>, <span class="co"># turn off messages</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="dt">xlab =</span> <span class="st">"ACT Score"</span>, <span class="co"># x-axis label</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="dt">title =</span> <span class="st">"Distribution of ACT Scores"</span>, <span class="co"># title for the plot</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>  <span class="dt">subtitle =</span> <span class="st">"N = 700"</span>, <span class="co"># subtitle for the plot</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>  <span class="dt">caption =</span> <span class="st">"Data courtesy of: SAPA project (https://sapa-project.org)"</span>, <span class="co"># caption for the plot</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>  <span class="dt">centrality.k =</span> <span class="dv">1</span> <span class="co"># show 1 decimal places for centrality label</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>)</span></code></pre></div>
 <p><img src="gghistostats_files/figure-html/psychact2-1.png" width="672"></p>
 </div>
 <div id="statistical-analysis-with-gghistostats" class="section level2">
@@ -205,24 +205,24 @@
 <li>Compute information about the Bayes Factor (<code>bf.message = TRUE</code>, see below)</li>
 </ol>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</span>
-<span id="cb3-2"><a href="#cb3-2"></a>    <span class="dt">data =</span> psych<span class="op">::</span>sat.act,                              <span class="co"># data from which variable is to be taken</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>    <span class="dt">x =</span> ACT,                                            <span class="co"># numeric variable</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>    <span class="dt">results.subtitle =</span> <span class="ot">TRUE</span>,                            <span class="co"># run statistical tests</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a>    <span class="dt">messages =</span> <span class="ot">TRUE</span>,                                    <span class="co"># turn on messages</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a>    <span class="dt">bar.measure =</span> <span class="st">"proportion"</span>,                         <span class="co"># proportions</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a>    <span class="dt">xlab =</span> <span class="st">"ACT Score"</span>,                                 <span class="co"># x-axis label</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a>    <span class="dt">title =</span> <span class="st">"Distribution of ACT Scores"</span>,               <span class="co"># title for the plot</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a>    <span class="dt">type =</span> <span class="st">"p"</span>,                                         <span class="co"># one sample t-test</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a>    <span class="dt">bf.message =</span> <span class="ot">TRUE</span>,                                  <span class="co"># display Bayes method results</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a>    <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),                  <span class="co"># changing default theme</span></span>
-<span id="cb3-12"><a href="#cb3-12"></a>    <span class="dt">bar.fill =</span> <span class="st">"#D55E00"</span>,                               <span class="co"># change fill color</span></span>
-<span id="cb3-13"><a href="#cb3-13"></a>    <span class="dt">normal.curve =</span> <span class="ot">TRUE</span>,                                <span class="co"># disply a normal distribution curve</span></span>
-<span id="cb3-14"><a href="#cb3-14"></a>    <span class="dt">normal.curve.color =</span> <span class="st">"black"</span>,</span>
-<span id="cb3-15"><a href="#cb3-15"></a>    <span class="dt">test.value =</span> <span class="dv">20</span>,                                    <span class="co"># test value </span></span>
-<span id="cb3-16"><a href="#cb3-16"></a>    <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,                             <span class="co"># show a vertical line at `test.value`</span></span>
-<span id="cb3-17"><a href="#cb3-17"></a>    <span class="dt">caption =</span> <span class="st">"Data courtesy of: SAPA project (https://sapa-project.org)"</span>, <span class="co"># caption for the plot</span></span>
-<span id="cb3-18"><a href="#cb3-18"></a>    <span class="dt">centrality.k =</span> <span class="dv">1</span>                                    <span class="co"># show 1 decimal places for centrality label</span></span>
-<span id="cb3-19"><a href="#cb3-19"></a>  )</span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="dt">data =</span> psych<span class="op">::</span>sat.act, <span class="co"># data from which variable is to be taken</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="dt">x =</span> ACT, <span class="co"># numeric variable</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="dt">results.subtitle =</span> <span class="ot">TRUE</span>, <span class="co"># run statistical tests</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="dt">messages =</span> <span class="ot">TRUE</span>, <span class="co"># turn on messages</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="dt">bar.measure =</span> <span class="st">"proportion"</span>, <span class="co"># proportions</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>  <span class="dt">xlab =</span> <span class="st">"ACT Score"</span>, <span class="co"># x-axis label</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>  <span class="dt">title =</span> <span class="st">"Distribution of ACT Scores"</span>, <span class="co"># title for the plot</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>  <span class="dt">type =</span> <span class="st">"p"</span>, <span class="co"># one sample t-test</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>  <span class="dt">bf.message =</span> <span class="ot">TRUE</span>, <span class="co"># display Bayes method results</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a>  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(), <span class="co"># changing default theme</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a>  <span class="dt">bar.fill =</span> <span class="st">"#D55E00"</span>, <span class="co"># change fill color</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a>  <span class="dt">normal.curve =</span> <span class="ot">TRUE</span>, <span class="co"># disply a normal distribution curve</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a>  <span class="dt">normal.curve.color =</span> <span class="st">"black"</span>,</span>
+<span id="cb3-15"><a href="#cb3-15"></a>  <span class="dt">test.value =</span> <span class="dv">20</span>, <span class="co"># test value</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a>  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>, <span class="co"># show a vertical line at `test.value`</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a>  <span class="dt">caption =</span> <span class="st">"Data courtesy of: SAPA project (https://sapa-project.org)"</span>, <span class="co"># caption for the plot</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a>  <span class="dt">centrality.k =</span> <span class="dv">1</span> <span class="co"># show 1 decimal places for centrality label</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a>)</span>
 <span id="cb3-20"><a href="#cb3-20"></a><span class="co">#&gt; Note: Shapiro-Wilk Normality Test for ACT Score: p-value = &lt; 0.001</span></span></code></pre></div>
 <p><img src="gghistostats_files/figure-html/psychact3-1.png" width="672"></p>
 <p><code>gghistostats</code> computed Bayes Factors to quantify the likelihood of the <strong>research</strong> (BF10) and the <strong>null</strong> hypothesis (BF01). In our current example, the Bayes Factor value provides <strong>very strong evidence</strong> <a href="https://www.stat.washington.edu/raftery/Research/PDF/kass1995.pdf">(Kass and Rafferty, 1995)</a> in favor of the research hypothesis: these ACT scores are much higher than the national average. The log(Bayes factor) of 492.5 means the odds are 7.54e+213:1 that this sample is different.</p>
@@ -235,29 +235,29 @@
 <p>Let’s see how we can use this function to apply <code>gghistostats</code> to accomplish our task.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_gghistostats.html">grouped_gghistostats</a></span>(</span>
 <span id="cb4-2"><a href="#cb4-2"></a>  <span class="co"># arguments relevant for ggstatsplot::gghistostats</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a>  <span class="dt">data =</span> psych<span class="op">::</span>sat.act,                        <span class="co"># same dataset</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a>  <span class="dt">x =</span> ACT,                                      <span class="co"># same outcome variable</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="dt">data =</span> psych<span class="op">::</span>sat.act, <span class="co"># same dataset</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="dt">x =</span> ACT, <span class="co"># same outcome variable</span></span>
 <span id="cb4-5"><a href="#cb4-5"></a>  <span class="dt">xlab =</span> <span class="st">"ACT Score"</span>,</span>
-<span id="cb4-6"><a href="#cb4-6"></a>  <span class="dt">grouping.var =</span> gender,                        <span class="co"># grouping variable males = 1, females = 2</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a>  <span class="dt">title.prefix =</span> <span class="st">"Gender"</span>,                      <span class="co"># prefix for the fixed title</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a>  <span class="dt">k =</span> <span class="dv">1</span>,                                        <span class="co"># number of decimal places in results</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a>  <span class="dt">type =</span> <span class="st">"r"</span>,                                   <span class="co"># robust test: one-sample percentile bootstrap</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a>  <span class="dt">robust.estimator =</span> <span class="st">"mom"</span>,                     <span class="co"># changing the robust estimator used</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a>  <span class="dt">test.value =</span> <span class="dv">20</span>,                              <span class="co"># test value against which sample mean is to be compared</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a>  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,                       <span class="co"># show a vertical line at `test.value`</span></span>
-<span id="cb4-13"><a href="#cb4-13"></a>  <span class="dt">bar.measure =</span> <span class="st">"density"</span>,                      <span class="co"># density</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a>  <span class="dt">centrality.para =</span> <span class="st">"median"</span>,                   <span class="co"># plotting centrality parameter</span></span>
-<span id="cb4-15"><a href="#cb4-15"></a>  <span class="dt">centrality.color =</span> <span class="st">"#D55E00"</span>,                 <span class="co"># color for centrality line and label</span></span>
-<span id="cb4-16"><a href="#cb4-16"></a>  <span class="dt">test.value.color =</span> <span class="st">"#009E73"</span>,                 <span class="co"># color for test line and label</span></span>
-<span id="cb4-17"><a href="#cb4-17"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>,                             <span class="co"># turn off messages</span></span>
-<span id="cb4-18"><a href="#cb4-18"></a>  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_stata.html">theme_stata</a></span>(),            <span class="co"># changing default theme</span></span>
-<span id="cb4-19"><a href="#cb4-19"></a>  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,                    <span class="co"># turn off ggstatsplot theme layer</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>  <span class="dt">grouping.var =</span> gender, <span class="co"># grouping variable males = 1, females = 2</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>  <span class="dt">title.prefix =</span> <span class="st">"Gender"</span>, <span class="co"># prefix for the fixed title</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>  <span class="dt">k =</span> <span class="dv">1</span>, <span class="co"># number of decimal places in results</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>  <span class="dt">type =</span> <span class="st">"r"</span>, <span class="co"># robust test: one-sample percentile bootstrap</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a>  <span class="dt">robust.estimator =</span> <span class="st">"mom"</span>, <span class="co"># changing the robust estimator used</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a>  <span class="dt">test.value =</span> <span class="dv">20</span>, <span class="co"># test value against which sample mean is to be compared</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a>  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>, <span class="co"># show a vertical line at `test.value`</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a>  <span class="dt">bar.measure =</span> <span class="st">"density"</span>, <span class="co"># density</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a>  <span class="dt">centrality.para =</span> <span class="st">"median"</span>, <span class="co"># plotting centrality parameter</span></span>
+<span id="cb4-15"><a href="#cb4-15"></a>  <span class="dt">centrality.color =</span> <span class="st">"#D55E00"</span>, <span class="co"># color for centrality line and label</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a>  <span class="dt">test.value.color =</span> <span class="st">"#009E73"</span>, <span class="co"># color for test line and label</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>, <span class="co"># turn off messages</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a>  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_stata.html">theme_stata</a></span>(), <span class="co"># changing default theme</span></span>
+<span id="cb4-19"><a href="#cb4-19"></a>  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>, <span class="co"># turn off ggstatsplot theme layer</span></span>
 <span id="cb4-20"><a href="#cb4-20"></a>  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></span>
 <span id="cb4-21"><a href="#cb4-21"></a>  <span class="dt">title.text =</span> <span class="st">"Distribution of ACT scores across genders"</span>,</span>
 <span id="cb4-22"><a href="#cb4-22"></a>  <span class="dt">caption.text =</span> <span class="st">"Data courtesy of: SAPA project (https://sapa-project.org)"</span>,</span>
 <span id="cb4-23"><a href="#cb4-23"></a>  <span class="dt">nrow =</span> <span class="dv">2</span>,</span>
 <span id="cb4-24"><a href="#cb4-24"></a>  <span class="dt">ncol =</span> <span class="dv">1</span>,</span>
-<span id="cb4-25"><a href="#cb4-25"></a>  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Male"</span>,<span class="st">"Female"</span>)</span>
+<span id="cb4-25"><a href="#cb4-25"></a>  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>)</span>
 <span id="cb4-26"><a href="#cb4-26"></a>)</span></code></pre></div>
 <p><img src="gghistostats_files/figure-html/grouped1-1.png" width="672"></p>
 <p>As can be seen from these plots, the mean value is much higher than the national norm. Additionally, we see the benefits of plotting this data separately for each gender. We can <em>see</em> the differences in distributions.</p>
