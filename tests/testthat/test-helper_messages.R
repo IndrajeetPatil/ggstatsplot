@@ -1,6 +1,3 @@
-# context ----------------------------------------------------------------
-context(desc = "helper_messages")
-
 # grouped_message is working ---------------------------------------------
 
 testthat::test_that(

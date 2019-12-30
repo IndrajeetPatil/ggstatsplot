@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Why `purrr`?
+# Why use `purrr`?
 
 Most of the `ggstatsplot` functions have `grouped_` variants, which are designed
 to quickly run the same `ggstatsplot` function across multiple levels of a

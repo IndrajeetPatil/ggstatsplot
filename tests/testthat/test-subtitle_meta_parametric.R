@@ -8,33 +8,36 @@ testthat::test_that(
     testthat::skip_on_cran()
 
     # dataframe
-    df <- tibble::tribble(
-      ~estimate, ~std.error,
-      0.111, 0.05,
-      0.245, 0.111,
-      0.8, 0.001,
-      1.1, 0.2,
-      0.03, 0.01
-    )
+    df <-
+      tibble::tribble(
+        ~estimate, ~std.error,
+        0.111, 0.05,
+        0.245, 0.111,
+        0.8, 0.001,
+        1.1, 0.2,
+        0.03, 0.01
+      )
 
     # subtitle output
     set.seed(123)
-    using_function1 <- ggstatsplot::subtitle_meta_ggcoefstats(
-      data = df,
-      k = 4,
-      messages = FALSE,
-      output = "subtitle"
-    )
+    using_function1 <-
+      ggstatsplot::subtitle_meta_ggcoefstats(
+        data = df,
+        k = 4,
+        messages = FALSE,
+        output = "subtitle"
+      )
 
     # caption output
     set.seed(123)
-    using_function2 <- ggstatsplot::subtitle_meta_ggcoefstats(
-      data = df,
-      k = 2,
-      caption = "this is caption",
-      messages = FALSE,
-      output = "caption"
-    )
+    using_function2 <-
+      ggstatsplot::subtitle_meta_ggcoefstats(
+        data = df,
+        k = 2,
+        caption = "this is caption",
+        messages = FALSE,
+        output = "caption"
+      )
 
     # expected subtitle output
     set.seed(123)
@@ -98,20 +101,21 @@ testthat::test_that(
 
     # tidy dataframe
     set.seed(123)
-    tidy_df <- ggstatsplot::subtitle_meta_ggcoefstats(
-      data = df,
-      messages = FALSE,
-      output = "tidy"
-    )
+    tidy_df <-
+      ggstatsplot::subtitle_meta_ggcoefstats(
+        data = df,
+        messages = FALSE,
+        output = "tidy"
+      )
 
-    glance_df <- ggstatsplot::subtitle_meta_ggcoefstats(
-      data = df,
-      messages = FALSE,
-      output = "glance"
-    )
+    glance_df <-
+      ggstatsplot::subtitle_meta_ggcoefstats(
+        data = df,
+        messages = FALSE,
+        output = "glance"
+      )
 
     # checking if the tidy output is expected
-    testthat::expect_equal(dim(tidy_df), c(1L, 7L))
     testthat::expect_equal(tidy_df$estimate, 0.4376927, tolerance = 0.0001)
     testthat::expect_equal(tidy_df$conf.low, 0.04231262, tolerance = 0.0001)
     testthat::expect_equal(tidy_df$conf.high, 0.8330728, tolerance = 0.0001)

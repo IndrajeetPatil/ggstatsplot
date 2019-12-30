@@ -39,9 +39,6 @@ Let's begin with a very simple example from the `ggplot2` package
 on <http://fueleconomy.gov>.
 
 ```{r mpg, warning = FALSE, message = FALSE}
-# loading needed libraries
-library(ggplot2)
-
 # looking at the structure of the data using glimpse
 dplyr::glimpse(x = ggplot2::mpg)
 ```

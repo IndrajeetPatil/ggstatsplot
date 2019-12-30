@@ -74,9 +74,9 @@ testthat::test_that(
     testthat::expect_identical(
       pb$data[[4]]$label,
       c(
-        "list(~italic(beta)==6.438, ~italic(t)(28)==13.765, ~italic(p)<= 0.001)",
-        "list(~italic(beta)==-0.156, ~italic(t)(28)==-5.840, ~italic(p)<= 0.001)",
-        "list(~italic(beta)==-1.809, ~italic(t)(28)==-2.615, ~italic(p)== 0.014)",
+        "list(~widehat(italic(beta))==6.438, ~italic(t)(28)==13.765, ~italic(p)<= 0.001)",
+        "list(~widehat(italic(beta))==-0.156, ~italic(t)(28)==-5.840, ~italic(p)<= 0.001)",
+        "list(~widehat(italic(beta))==-1.809, ~italic(t)(28)==-2.615, ~italic(p)== 0.014)",
         NA_character_
       )
     )
@@ -226,9 +226,9 @@ testthat::test_that(
     testthat::expect_identical(
       tidy_df$label,
       c(
-        "list(~italic(F)(1*\",\"*28)==118.89, ~italic(p)<= 0.001, ~italic(eta)[p]^2==0.81)",
-        "list(~italic(F)(1*\",\"*28)==7.30, ~italic(p)== 0.012, ~italic(eta)[p]^2==0.21)",
-        "list(~italic(F)(1*\",\"*28)==3.73, ~italic(p)== 0.064, ~italic(eta)[p]^2==0.12)"
+        "list(~italic(F)(1*\",\"*28)==118.89, ~italic(p)<= 0.001, ~widehat(italic(eta)[p]^2)==0.81)",
+        "list(~italic(F)(1*\",\"*28)==7.30, ~italic(p)== 0.012, ~widehat(italic(eta)[p]^2)==0.21)",
+        "list(~italic(F)(1*\",\"*28)==3.73, ~italic(p)== 0.064, ~widehat(italic(eta)[p]^2)==0.12)"
       )
     )
 
@@ -315,9 +315,9 @@ testthat::test_that(
     testthat::expect_identical(
       tidy_df$label,
       c(
-        "list(~italic(F)(3*\",\"*35)==7.388, ~italic(p)== 0.001, ~italic(omega)[p]^2==0.308)",
-        "list(~italic(F)(1*\",\"*35)==2.034, ~italic(p)== 0.163, ~italic(omega)[p]^2==0.023)",
-        "list(~italic(F)(3*\",\"*35)==4.012, ~italic(p)== 0.015, ~italic(omega)[p]^2==0.174)"
+        "list(~italic(F)(3*\",\"*35)==7.388, ~italic(p)== 0.001, ~widehat(italic(omega)[p]^2)==0.308)",
+        "list(~italic(F)(1*\",\"*35)==2.034, ~italic(p)== 0.163, ~widehat(italic(omega)[p]^2)==0.023)",
+        "list(~italic(F)(3*\",\"*35)==4.012, ~italic(p)== 0.015, ~widehat(italic(omega)[p]^2)==0.174)"
       )
     )
     testthat::expect_identical(tidy_df$significance, c("***", "ns", "*"))
@@ -393,18 +393,18 @@ testthat::test_that(
     testthat::expect_identical(
       pb1$data[[4]]$label,
       c(
-        "list(~italic(F)(1*\",\"*35)==3.72, ~italic(p)== 0.062, ~italic(eta)^2==0.05)",
-        "list(~italic(F)(3*\",\"*35)==6.83, ~italic(p)== 0.001, ~italic(eta)^2==0.29)",
-        "list(~italic(F)(3*\",\"*35)==4.01, ~italic(p)== 0.015, ~italic(eta)^2==0.17)"
+        "list(~italic(F)(1*\",\"*35)==3.72, ~italic(p)== 0.062, ~widehat(italic(eta)^2)==0.05)",
+        "list(~italic(F)(3*\",\"*35)==6.83, ~italic(p)== 0.001, ~widehat(italic(eta)^2)==0.29)",
+        "list(~italic(F)(3*\",\"*35)==4.01, ~italic(p)== 0.015, ~widehat(italic(eta)^2)==0.17)"
       )
     )
 
     testthat::expect_identical(
       pb2$data[[4]]$label,
       c(
-        "list(~italic(F)(1*\",\"*35)==3.72, ~italic(p)== 0.062, ~italic(omega)^2==0.04)",
-        "list(~italic(F)(3*\",\"*35)==6.83, ~italic(p)== 0.001, ~italic(omega)^2==0.24)",
-        "list(~italic(F)(3*\",\"*35)==4.01, ~italic(p)== 0.015, ~italic(omega)^2==0.13)"
+        "list(~italic(F)(1*\",\"*35)==3.72, ~italic(p)== 0.062, ~widehat(italic(omega)^2)==0.04)",
+        "list(~italic(F)(3*\",\"*35)==6.83, ~italic(p)== 0.001, ~widehat(italic(omega)^2)==0.24)",
+        "list(~italic(F)(3*\",\"*35)==4.01, ~italic(p)== 0.015, ~widehat(italic(omega)^2)==0.13)"
       )
     )
   }
@@ -587,7 +587,6 @@ testthat::test_that(
 
     # tests
     testthat::expect_equal(dim(df), c(4L, 10L))
-    testthat::expect_identical(as.character(df$term[[1]]), "mpg_(Intercept)")
   }
 )
 
@@ -664,10 +663,10 @@ testthat::test_that(
     testthat::expect_identical(
       pb$data[[4]]$label,
       c(
-        "list(~italic(beta)==3.41, ~italic(t)(169)==6.58, ~italic(p)<= 0.001)",
-        "list(~italic(beta)==-1.25, ~italic(t)(47)==-1.94, ~italic(p)== 0.059)",
-        "list(~italic(beta)==-0.75, ~italic(t)(47)==-1.17, ~italic(p)== 0.248)",
-        "list(~italic(beta)==-1.61, ~italic(t)(169)==-4.49, ~italic(p)<= 0.001)"
+        "list(~widehat(italic(beta))==3.41, ~italic(t)(169)==6.58, ~italic(p)<= 0.001)",
+        "list(~widehat(italic(beta))==-1.25, ~italic(t)(47)==-1.94, ~italic(p)== 0.059)",
+        "list(~widehat(italic(beta))==-0.75, ~italic(t)(47)==-1.17, ~italic(p)== 0.248)",
+        "list(~widehat(italic(beta))==-1.61, ~italic(t)(169)==-4.49, ~italic(p)<= 0.001)"
       )
     )
   }
@@ -889,17 +888,17 @@ testthat::test_that(
     testthat::expect_identical(
       pb1$data[[4]]$label,
       c(
-        "list(~italic(beta)==0.07, ~italic(t)(5)==0.16, ~italic(p)== 0.875)",
-        "list(~italic(beta)==0.54, ~italic(t)(10)==1.33, ~italic(p)== 0.191)",
-        "list(~italic(beta)==0.04, ~italic(t)(12)==1.24, ~italic(p)== 0.001)"
+        "list(~widehat(italic(beta))==0.07, ~italic(t)(5)==0.16, ~italic(p)== 0.875)",
+        "list(~widehat(italic(beta))==0.54, ~italic(t)(10)==1.33, ~italic(p)== 0.191)",
+        "list(~widehat(italic(beta))==0.04, ~italic(t)(12)==1.24, ~italic(p)== 0.001)"
       )
     )
     testthat::expect_identical(
       pb5$data[[4]]$label,
       c(
-        "list(~italic(beta)==0.07, ~italic(t)==0.16, ~italic(p)== 0.875)",
-        "list(~italic(beta)==0.54, ~italic(t)==1.33, ~italic(p)== 0.191)",
-        "list(~italic(beta)==0.04, ~italic(t)==1.24, ~italic(p)== 0.001)"
+        "list(~widehat(italic(beta))==0.07, ~italic(t)==0.16, ~italic(p)== 0.875)",
+        "list(~widehat(italic(beta))==0.54, ~italic(t)==1.33, ~italic(p)== 0.191)",
+        "list(~widehat(italic(beta))==0.04, ~italic(t)==1.24, ~italic(p)== 0.001)"
       )
     )
 
@@ -907,9 +906,9 @@ testthat::test_that(
     testthat::expect_identical(
       pb2$data[[4]]$label,
       c(
-        "list(~italic(beta)==0.07, ~italic(z)==0.16, ~italic(p)== 0.875)",
-        "list(~italic(beta)==0.54, ~italic(z)==1.33, ~italic(p)== 0.191)",
-        "list(~italic(beta)==0.04, ~italic(z)==1.24, ~italic(p)== 0.001)"
+        "list(~widehat(italic(beta))==0.07, ~italic(z)==0.16, ~italic(p)== 0.875)",
+        "list(~widehat(italic(beta))==0.54, ~italic(z)==1.33, ~italic(p)== 0.191)",
+        "list(~widehat(italic(beta))==0.04, ~italic(z)==1.24, ~italic(p)== 0.001)"
       )
     )
 
@@ -1039,8 +1038,8 @@ testthat::test_that(
     testthat::expect_identical(
       pb$data[[4]]$label,
       c(
-        "list(~italic(beta)==0.07, ~italic(t)==0.16, ~italic(p)== 0.875)",
-        "list(~italic(beta)==0.04, ~italic(t)==1.24, ~italic(p)== 0.001)"
+        "list(~widehat(italic(beta))==0.07, ~italic(t)==0.16, ~italic(p)== 0.875)",
+        "list(~widehat(italic(beta))==0.04, ~italic(t)==1.24, ~italic(p)== 0.001)"
       )
     )
   }
@@ -1142,8 +1141,8 @@ testthat::test_that(
     testthat::expect_identical(
       tidy_df2$label,
       c(
-        "list(~italic(beta)==251.41, ~italic(t)(174)==36.84, ~italic(p)<= 0.001)",
-        "list(~italic(beta)==10.47, ~italic(t)(174)==6.77, ~italic(p)<= 0.001)"
+        "list(~widehat(italic(beta))==251.41, ~italic(t)(174)==36.84, ~italic(p)<= 0.001)",
+        "list(~widehat(italic(beta))==10.47, ~italic(t)(174)==6.77, ~italic(p)<= 0.001)"
       )
     )
   }
@@ -1208,10 +1207,10 @@ testthat::test_that(
     # testthat::expect_identical(
     #   df2.tidy$label,
     #   c(
-    #     "list(~italic(beta)==-40.47, ~italic(t)==-3.40, ~italic(p)== 0.001)",
-    #     "list(~italic(beta)==0.74, ~italic(t)==5.50, ~italic(p)<= 0.001)",
-    #     "list(~italic(beta)==1.23, ~italic(t)==3.33, ~italic(p)== 0.001)",
-    #     "list(~italic(beta)==-0.15, ~italic(t)==-0.93, ~italic(p)== 0.352)"
+    #     "list(~widehat(italic(beta))==-40.47, ~italic(t)==-3.40, ~italic(p)== 0.001)",
+    #     "list(~widehat(italic(beta))==0.74, ~italic(t)==5.50, ~italic(p)<= 0.001)",
+    #     "list(~widehat(italic(beta))==1.23, ~italic(t)==3.33, ~italic(p)== 0.001)",
+    #     "list(~widehat(italic(beta))==-0.15, ~italic(t)==-0.93, ~italic(p)== 0.352)"
     #   )
     # )
   }
@@ -1383,11 +1382,11 @@ testthat::test_that(
     testthat::expect_equal(
       df$label,
       c(
-        "list(~italic(beta)==3.04, ~italic(z)==17.81, ~italic(p)<= 0.001)",
-        "list(~italic(beta)==-0.45, ~italic(z)==-2.25, ~italic(p)== 0.025)",
-        "list(~italic(beta)==-0.29, ~italic(z)==-1.52, ~italic(p)== 0.128)",
-        "list(~italic(beta)==0.00, ~italic(z)==0.00, ~italic(p)== 1.000)",
-        "list(~italic(beta)==0.00, ~italic(z)==0.00, ~italic(p)== 1.000)"
+        "list(~widehat(italic(beta))==3.04, ~italic(z)==17.81, ~italic(p)<= 0.001)",
+        "list(~widehat(italic(beta))==-0.45, ~italic(z)==-2.25, ~italic(p)== 0.025)",
+        "list(~widehat(italic(beta))==-0.29, ~italic(z)==-1.52, ~italic(p)== 0.128)",
+        "list(~widehat(italic(beta))==0.00, ~italic(z)==0.00, ~italic(p)== 1.000)",
+        "list(~widehat(italic(beta))==0.00, ~italic(z)==0.00, ~italic(p)== 1.000)"
       )
     )
   }
@@ -1462,8 +1461,8 @@ testthat::test_that(
     testthat::expect_equal(
       df$label,
       c(
-        "list(~italic(beta)==0.02, ~italic(t)(68)==41.12, ~italic(p)<= 0.001)",
-        "list(~italic(beta)==0.00, ~italic(t)(68)==-7.27, ~italic(p)<= 0.001)"
+        "list(~widehat(italic(beta))==0.02, ~italic(t)(68)==41.12, ~italic(p)<= 0.001)",
+        "list(~widehat(italic(beta))==0.00, ~italic(t)(68)==-7.27, ~italic(p)<= 0.001)"
       )
     )
   }

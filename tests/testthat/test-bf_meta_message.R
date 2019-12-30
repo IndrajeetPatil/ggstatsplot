@@ -74,26 +74,29 @@ testthat::test_that(
 
     testthat::expect_identical(subtitle1, subtitle2)
     testthat::expect_identical(subtitle1, subtitle3)
-    testthat::expect_identical(subtitle1, ggplot2::expr(atop(
-      displaystyle(NULL),
-      expr = paste(
-        "In favor of null: ",
-        "log"["e"],
-        "(BF"["01"],
-        ") = ",
-        "-2.680",
-        ", ",
-        italic("d")["mean"]^"posterior",
-        " = ",
-        "0.491",
-        ", CI"["95%"],
-        " [",
-        "0.144",
-        ", ",
-        "0.772",
-        "]"
-      )
-    )))
+    testthat::expect_identical(
+      subtitle1,
+      ggplot2::expr(atop(
+        displaystyle(NULL),
+        expr = paste(
+          "In favor of null: ",
+          "log"["e"],
+          "(BF"["01"],
+          ") = ",
+          "-2.680",
+          ", ",
+          italic("d")["mean"]^"posterior",
+          " = ",
+          "0.491",
+          ", CI"["95%"],
+          " [",
+          "0.144",
+          ", ",
+          "0.772",
+          "]"
+        )
+      ))
+    )
 
     # expecting error
     testthat::expect_error(ggstatsplot::bf_meta_message(df3))

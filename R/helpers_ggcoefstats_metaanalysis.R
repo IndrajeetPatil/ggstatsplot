@@ -16,6 +16,7 @@
 #' @param ... Additional arguments (ignored).
 #'
 #' @importFrom metafor rma
+#' @importFrom dplyr rename_all recode mutate
 #'
 #' @examples
 #' \donttest{
@@ -106,20 +107,21 @@ subtitle_meta_parametric <- function(data,
   #----------------------- meta-analysis ------------------------------------
 
   # object from meta-analysis
-  meta_res <- metafor::rma(
-    yi = estimate,
-    sei = std.error,
-    measure = "GEN",
-    intercept = TRUE,
-    data = data,
-    vtype = "LS",
-    method = "REML",
-    weighted = TRUE,
-    test = "z",
-    level = 95,
-    digits = 4,
-    ...
-  )
+  meta_res <-
+    metafor::rma(
+      yi = estimate,
+      sei = std.error,
+      measure = "GEN",
+      intercept = TRUE,
+      data = data,
+      vtype = "LS",
+      method = "REML",
+      weighted = TRUE,
+      test = "z",
+      level = 95,
+      digits = 4,
+      ...
+    )
 
   # print the results
   if (isTRUE(messages)) print(summary(meta_res))
@@ -130,23 +132,16 @@ subtitle_meta_parametric <- function(data,
   df_tidy <-
     coef(summary(meta_res)) %>%
     tibble::as_tibble(x = .) %>%
-    dplyr::rename(
-      .data = .,
-      std.error = se,
-      z.value = zval,
-      p.value = pval,
-      conf.low = ci.lb,
-      conf.high = ci.ub
+    dplyr::rename_all(
+      .tbl = .,
+      .funs = dplyr::recode,
+      se = "std.error",
+      zval = "statistic",
+      pval = "p.value",
+      ci.lb = "conf.low",
+      ci.ub = "conf.high"
     ) %>%
-    dplyr::mutate(.data = ., term = "summary effect") %>%
-    dplyr::select(
-      .data = .,
-      term,
-      estimate,
-      conf.low,
-      conf.high,
-      dplyr::everything()
-    )
+    dplyr::mutate(.data = ., term = "summary effect")
 
   # preparing the subtitle
   subtitle <-
@@ -178,7 +173,7 @@ subtitle_meta_parametric <- function(data,
         estimate = specify_decimal_p(x = df_tidy$estimate, k = k),
         LL = specify_decimal_p(x = df_tidy$conf.low, k = k),
         UL = specify_decimal_p(x = df_tidy$conf.high, k = k),
-        zvalue = specify_decimal_p(x = df_tidy$z.value, k = k),
+        zvalue = specify_decimal_p(x = df_tidy$statistic, k = k),
         se = specify_decimal_p(x = df_tidy$std.error, k = k),
         pvalue = specify_decimal_p(x = df_tidy$p.value, k = k, p.value = TRUE)
       )
@@ -186,23 +181,24 @@ subtitle_meta_parametric <- function(data,
 
   #----------------------- model sumamry ------------------------------------
 
-  df_glance <- with(
-    data = meta_res,
-    expr = tibble::tibble(
-      tau2 = tau2,
-      se.tau2 = se.tau2,
-      k = k,
-      p = p,
-      m = m,
-      QE = QE,
-      QEp = QEp,
-      QM = QM,
-      QMp = QMp,
-      I2 = I2,
-      H2 = H2,
-      int.only = int.only
+  df_glance <-
+    with(
+      data = meta_res,
+      expr = tibble::tibble(
+        tau2 = tau2,
+        se.tau2 = se.tau2,
+        k = k,
+        p = p,
+        m = m,
+        QE = QE,
+        QEp = QEp,
+        QM = QM,
+        QMp = QMp,
+        I2 = I2,
+        H2 = H2,
+        int.only = int.only
+      )
     )
-  )
 
   # preparing the subtitle
   caption <-
@@ -255,7 +251,7 @@ subtitle_meta_parametric <- function(data,
 
 #' @title Bayes factor message for random-effects meta-analysis
 #' @name bf_meta_message
-#' @importFrom metaBMA meta_random
+#' @importFrom metaBMA meta_random prior
 #'
 #' @inherit metaBMA::meta_random return Description
 #'
@@ -394,9 +390,7 @@ bf_meta_message <- function(data,
 
   # creating a dataframe with posterior estimates
   df_estimates <-
-    as.data.frame(bf_meta$estimates) %>%
-    tibble::rownames_to_column(.data = ., var = "term") %>%
-    tibble::as_tibble(x = .) %>%
+    tibble::as_tibble(bf_meta$estimates, rownames = "term") %>%
     dplyr::filter(.data = ., term == "d")
 
   # prepare the bayes factor message

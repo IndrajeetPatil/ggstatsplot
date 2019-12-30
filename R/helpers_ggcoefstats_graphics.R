@@ -10,6 +10,8 @@
 #' @inheritParams ggcoefstats
 #'
 #' @importFrom insight is_model find_statistic
+#' @importFrom purrr pmap_dfc
+#' @importFrom dplyr select_if
 #'
 #' @examples
 #' \donttest{
@@ -118,18 +120,31 @@ ggcoefstats_label_maker <- function(x,
     statistic <- insight::find_statistic(x)
 
     # standardize statistic type symbol for regression models
+    # checking entered strings to extract the statistic
+    grep_stat <- function(x, pattern) {
+      if (isTRUE(grepl(pattern, x, ignore.case = TRUE))) {
+        return(tolower(substring(x, 1, 1)))
+      } else {
+        return(NA_character_)
+      }
+    }
+
+    # extracting statistic value
     statistic <-
-      switch(statistic,
-        "t-statistic" = "t",
-        "z-statistic" = "z",
-        "F-statistic" = "f"
-      )
+      purrr::pmap_dfc(
+        .l =
+          list(
+            pattern = list("^t", "^f", "^z", "^chi"),
+            x = list(statistic)
+          ),
+        .f = grep_stat
+      ) %>%
+      dplyr::select_if(.tbl = ., .predicate = ~ sum(!is.na(.)) > 0) %>%
+      unlist(x = ., use.names = FALSE)
   }
 
   # No glance method is available for F-statistic
-  if (statistic %in% c("f", "f.value", "f-value", "F-value", "F")) {
-    glance_df <- NULL
-  }
+  if (statistic == "f") glance_df <- NULL
 
   #----------------------- p-value cleanup ------------------------------------
 
@@ -147,7 +162,7 @@ ggcoefstats_label_maker <- function(x,
   #--------------------------- t-statistic ------------------------------------
 
   # if the statistic is t-value
-  if (statistic %in% c("t", "t.value", "t-value", "T")) {
+  if (statistic == "t") {
     # if `df` column is in the tidy dataframe, rename it to `df.residual`
     if ("df" %in% names(tidy_df)) {
       tidy_df %<>% dplyr::mutate(.data = ., df.residual = df)
@@ -171,7 +186,7 @@ ggcoefstats_label_maker <- function(x,
             purrr::map(
               .x = .,
               .f = ~ paste(
-                "list(~italic(beta)==",
+                "list(~widehat(italic(beta))==",
                 specify_decimal_p(x = .$estimate, k = k),
                 ", ~italic(t)",
                 "(",
@@ -195,7 +210,7 @@ ggcoefstats_label_maker <- function(x,
             purrr::map(
               .x = .,
               .f = ~ paste(
-                "list(~italic(beta)==",
+                "list(~widehat(italic(beta))==",
                 specify_decimal_p(x = .$estimate, k = k),
                 ", ~italic(t)",
                 "==",
@@ -213,7 +228,7 @@ ggcoefstats_label_maker <- function(x,
   #--------------------------- z-statistic ---------------------------------
 
   # if the statistic is z-value
-  if (statistic %in% c("z", "z.value", "z-value", "Z")) {
+  if (statistic == "z") {
     tidy_df %<>%
       dplyr::group_nest(.tbl = ., rowid) %>%
       dplyr::mutate(
@@ -222,7 +237,7 @@ ggcoefstats_label_maker <- function(x,
           purrr::map(
             .x = .,
             .f = ~ paste(
-              "list(~italic(beta)==",
+              "list(~widehat(italic(beta))==",
               specify_decimal_p(x = .$estimate, k = k),
               ", ~italic(z)==",
               .$statistic,
@@ -237,21 +252,21 @@ ggcoefstats_label_maker <- function(x,
 
   #--------------------------- f-statistic ---------------------------------
 
-  if (statistic %in% c("f", "f.value", "f-value", "F-value", "F")) {
+  if (statistic == "f") {
     # which effect size is needed?
     if (effsize == "eta") {
       if (isTRUE(partial)) {
-        tidy_df$effsize.text <- list(quote(italic(eta)[p]^2))
+        tidy_df$effsize.text <- list(quote(widehat(italic(eta)[p]^2)))
       } else {
-        tidy_df$effsize.text <- list(quote(italic(eta)^2))
+        tidy_df$effsize.text <- list(quote(widehat(italic(eta)^2)))
       }
     }
 
     if (effsize == "omega") {
       if (isTRUE(partial)) {
-        tidy_df$effsize.text <- list(quote(italic(omega)[p]^2))
+        tidy_df$effsize.text <- list(quote(widehat(italic(omega)[p]^2)))
       } else {
-        tidy_df$effsize.text <- list(quote(italic(omega)^2))
+        tidy_df$effsize.text <- list(quote(widehat(italic(omega)^2)))
       }
     }
 
@@ -291,4 +306,66 @@ ggcoefstats_label_maker <- function(x,
 
   # return the final dataframe
   return(tibble::as_tibble(tidy_df))
+}
+
+
+#' @title Tidier for `parameters` package objects
+#' @name parameters_tidy
+#'
+#' @inheritParams parameters::model_parameters
+#'
+#' @importFrom parameters model_parameters
+#' @importFrom dplyr rename_all recode
+#'
+#' @examples
+#' \donttest{
+#' # setup
+#' library(lme4)
+#' library(parameters)
+#' set.seed(123)
+#'
+#' # model
+#' mm0 <-
+#'   lme4::lmer(
+#'     formula = scale(Reaction) ~ scale(Days) + (1 | Subject),
+#'     data = sleepstudy
+#'   )
+#'
+#' # model parameters
+#' ggstatsplot:::parameters_tidy(mm0)
+#' }
+#'
+#' @keywords internal
+
+parameters_tidy <- function(x, ...) {
+  parameters::model_parameters(x, ...) %>%
+    tibble::as_tibble(.) %>%
+    dplyr::rename_all(
+      .tbl = .,
+      .funs = tolower
+    ) %>%
+    dplyr::rename_all(
+      .tbl = .,
+      .funs = ~ gsub(
+        x = .,
+        pattern = "_",
+        replacement = "."
+      )
+    ) %>%
+    dplyr::rename_all(
+      .tbl = .,
+      .funs = dplyr::recode,
+      parameter = "term",
+      coefficient = "estimate",
+      median = "estimate",
+      se = "std.error",
+      ci.low = "conf.low",
+      ci.high = "conf.high",
+      f = "statistic",
+      t = "statistic",
+      z = "statistic",
+      df_error = "df.residual",
+      p = "p.value"
+    ) %>%
+    dplyr::filter(.data = ., !is.na(estimate))
 }
