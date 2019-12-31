@@ -88,20 +88,13 @@
 #'   excluded from the plot (Default: `TRUE`).
 #' @param exponentiate If `TRUE`, the `x`-axis will be logarithmic (Default:
 #'   `FALSE`).
-#' @param errorbar.color Character deciding color of the error bars (Default:
-#'   `"black"`).
-#' @param errorbar.height Numeric specifying the height of the error bars
-#'   (Default: `0`).
-#' @param errorbar.linetype Line type of the error bars (Default: `"solid"`).
-#' @param errorbar.size Numeric specifying the size of the error bars (Default:
-#'   `0.5`).
+#' @param errorbar.args Additional arguments that will be passed to
+#'   `ggplot2::geom_errorbarh` geom. Please see documentation for that function
+#'   to know more about these arguments.
 #' @param vline Decides whether to display a vertical line (Default: `"TRUE"`).
-#' @param vline.color Character specifying color of the vertical line (Default:
-#'   `"black"`).
-#' @param vline.linetype Character specifying line type of the vertical line
-#'   (Default: `"dashed"`).
-#' @param vline.size Numeric specifying the size of the vertical line (Default:
-#'   `1`).
+#' @param vline.args Additional arguments that will be passed to
+#'   `ggplot2::geom_vline` geom. Please see documentation for that function to
+#'   know more about these arguments.
 #' @param sort If `"none"` (default) do not sort, `"ascending"` sort by
 #'   increasing coefficient value, or `"descending"` sort by decreasing
 #'   coefficient value.
@@ -111,9 +104,9 @@
 #' @param stats.label.color Color for the labels. If `stats.label.color` is
 #'   `NULL`, colors will be chosen from the specified `package` (Default:
 #'   `"RColorBrewer"`) and `palette` (Default: `"Dark2"`).
-#' @param stats.label.args Additional arguments that will be passed to `ggrepel
-#'   geom_label_repel` geom. Please see documentation for that function to know
-#'   more about these arguments.
+#' @param stats.label.args Additional arguments that will be passed to
+#'   `ggrepel::geom_label_repel` geom. Please see documentation for that
+#'   function to know more about these arguments.
 #' @param package Name of package from which the palette is desired as string
 #' or symbol.
 #' @param palette Name of palette as string or symbol.
@@ -302,9 +295,6 @@ ggcoefstats <- function(x,
                         partial = TRUE,
                         nboot = 500,
                         meta.analytic.effect = FALSE,
-                        point.color = "blue",
-                        point.size = 3,
-                        point.shape = 16,
                         conf.int = TRUE,
                         conf.level = 0.95,
                         se.type = "nid",
@@ -312,27 +302,25 @@ ggcoefstats <- function(x,
                         k.caption.summary = 0,
                         exclude.intercept = TRUE,
                         exponentiate = FALSE,
-                        errorbar.color = "black",
-                        errorbar.height = 0,
-                        errorbar.linetype = "solid",
-                        errorbar.size = 0.5,
-                        vline = TRUE,
-                        vline.color = "black",
-                        vline.linetype = "dashed",
-                        vline.size = 1,
                         sort = "none",
                         xlab = "regression coefficient",
                         ylab = "term",
                         title = NULL,
                         subtitle = NULL,
-                        stats.labels = TRUE,
                         only.significant = FALSE,
                         caption = NULL,
                         caption.summary = TRUE,
+                        point.color = "blue",
+                        point.size = 3,
+                        point.shape = 16,
+                        errorbar.args = list(height = 0),
+                        vline = TRUE,
+                        vline.args = list(size = 1, linetype = "dashed"),
+                        stats.labels = TRUE,
                         stats.label.color = NULL,
                         stats.label.args = list(
                           size = 3,
-                          fontface = "bold",
+                          min.segment.length = 0,
                           segment.color = "grey50",
                           direction = "y"
                         ),
@@ -549,19 +537,10 @@ ggcoefstats <- function(x,
     tryCatch(
       expr = tidy_df %<>%
         dplyr::full_join(
-          x = dplyr::mutate_at(
-            .tbl = .,
-            .vars = "term",
-            .funs = ~ as.character(x = .)
-          ),
+          x = .,
           y = parameters::p_value(model = x, method = "wald", component = "all") %>%
-            dplyr::rename(.data = ., term = Parameter, p.value = p) %>%
-            dplyr::mutate_at(
-              .tbl = .,
-              .vars = "term",
-              .funs = ~ as.character(x = .)
-            ),
-          by = "term"
+            dplyr::rename(.data = ., p.value = p),
+          by = c("term" = "Parameter")
         ) %>%
         dplyr::filter(.data = ., !is.na(estimate)) %>%
         tibble::as_tibble(x = .),
@@ -582,7 +561,7 @@ ggcoefstats <- function(x,
       message(cat(
         crayon::green("Note: "),
         crayon::blue("No p-values and/or statistic available for the model object;"),
-        crayon::blue("\nskipping labels with stats.\n"),
+        crayon::blue("\nskipping labels with statistical details.\n"),
         sep = ""
       ))
     }
@@ -641,8 +620,7 @@ ggcoefstats <- function(x,
   if (isTRUE(exclude.intercept)) {
     tidy_df %<>%
       dplyr::filter(
-        .data = .,
-        !grepl(pattern = "(Intercept)", x = term, ignore.case = TRUE)
+        .data = ., !grepl(pattern = "(Intercept)", x = term, ignore.case = TRUE)
       )
   }
 
@@ -657,21 +635,10 @@ ggcoefstats <- function(x,
       )
   }
 
-  # ========================== p-value adjustment ===========================
-
-  # clean up the p-value column
+  # # adjust the p-values based on the adjustment used
   if ("p.value" %in% names(tidy_df)) {
-    # if p-value column is not numeric
-    if (!purrr::is_bare_numeric(tidy_df$p.value)) {
-      tidy_df %<>%
-        dplyr::mutate(.data = ., p.value = as.numeric(as.character(p.value)))
-    }
-
     # adjust the p-values based on the adjustment used
-    tidy_df %<>%
-      dplyr::mutate(
-        .data = ., p.value = stats::p.adjust(p = p.value, method = p.adjust.method)
-      )
+    tidy_df %<>% dplyr::mutate(p.value = stats::p.adjust(p.value, p.adjust.method))
   }
 
   # ========================== preparing label ================================
@@ -824,30 +791,26 @@ ggcoefstats <- function(x,
 
       # adding the line geom
       plot <- plot +
-        ggplot2::geom_vline(
+        rlang::exec(
+          .fn = ggplot2::geom_vline,
           xintercept = xintercept,
-          color = vline.color,
-          linetype = vline.linetype,
-          size = vline.size,
-          na.rm = TRUE
+          na.rm = TRUE,
+          !!!vline.args
         )
 
       # logarithmic scale for exponent of coefficients
-      if (isTRUE(exponentiate)) {
-        plot <- plot + ggplot2::scale_x_log10()
-      }
+      if (isTRUE(exponentiate)) plot <- plot + ggplot2::scale_x_log10()
     }
 
     # if the confidence intervals are to be displayed on the plot
     if (isTRUE(conf.int)) {
       plot <- plot +
-        ggplot2::geom_errorbarh(
-          ggplot2::aes_string(xmin = "conf.low", xmax = "conf.high"),
-          color = errorbar.color,
-          height = errorbar.height,
-          linetype = errorbar.linetype,
-          size = errorbar.size,
-          na.rm = TRUE
+        rlang::exec(
+          .fn = ggplot2::geom_errorbarh,
+          data = tidy_df,
+          mapping = ggplot2::aes_string(xmin = "conf.low", xmax = "conf.high"),
+          na.rm = TRUE,
+          !!!errorbar.args
         )
     }
 

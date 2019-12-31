@@ -77,13 +77,13 @@ Most of the regression models that are supported in the `broom` and
 `clm`, `clmm`, `coeftest`, `confusionMatrix`, `coxph`, `cpglm`, `cpglmm`,
 `complmrob`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`,
 `flexsurvreg`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`,
-`garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `gmm`, `hurdle`,
-`ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`, `lmRob`,
-`lmrob`, `mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`, `mediate`, `mjoint`, `mle2`,
-`mlm`, `multinom`, `negbin`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`,
-`plm`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `rqss`, `slm`,
-`speedglm`, `speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`,
-`svyglm`, `tobit`, `truncreg`, `wbgee`, `wblm`, etc.
+`garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`,
+`hurdle`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`,
+`lmRob`, `lmrob`, `mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`, `mediate`,
+`mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `nlmerMod`, `nlrq`, `nlreg`,
+`nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`,
+`rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`,
+`svyolr`, `svyglm`, `tobit`, `truncreg`, `wbgee`, `wblm`, etc.
 
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
@@ -466,11 +466,7 @@ ggstatsplot::ggcoefstats(
   vline.color = "red",
   vline.linetype = "solid",
   label.segment.color = "red",
-  stats.label.size = 3.5,
-  stats.label.color = c(
-    "orangered",
-    "dodgerblue"
-  )
+  stats.label.color = c("orangered", "dodgerblue")
 )
 ```
 
@@ -869,6 +865,32 @@ ggstatsplot::ggcoefstats(
   exclude.intercept = FALSE,
   conf.level = 0.99,
   title = "Hurdle Models for Count Data Regression"
+)
+```
+
+## Generalized Linear Models with Extra Parameters (`glmx`)
+
+```{r glmx, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 10}
+# setup
+library(glmx)
+library(MASS)
+set.seed(1)
+d <- data.frame(x = runif(200, -1, 1))
+d$y <- rnbinom(200, mu = exp(0 + 3 * d$x), size = 1)
+
+# model
+m_nb1 <- 
+  glmx(
+    formula = y ~ x,
+    data = d,
+    family = negative.binomial,
+    xlink = "log",
+    xstart = 0
+  )
+
+ggstatsplot::ggcoefstats(
+  x = m_nb1,
+  title = "Generalized Linear Models with Extra Parameters"
 )
 ```
 
@@ -2271,17 +2293,15 @@ ggstatsplot::ggcoefstats(
 # for reproducibility
 set.seed(123)
 
+# model
+mod <- MASS::rlm(formula = mpg ~ am * cyl, data = mtcars)
+
 # plot
 ggstatsplot::ggcoefstats(
-  x = MASS::rlm(
-    formula = mpg ~ am * cyl,
-    data = mtcars
-  ),
+  x = mod,
   point.color = "red",
   point.shape = 15,
-  vline.color = "#CC79A7",
-  vline.linetype = "dotdash",
-  stats.label.size = 3.5,
+  vline.args = list(size = 1, color = "#CC79A7", linetype = "dotdash"),
   stats.label.color = c("#0072B2", "#D55E00", "darkgreen"),
   title = "robust regression using an M estimator",
   ggtheme = ggthemes::theme_stata(),

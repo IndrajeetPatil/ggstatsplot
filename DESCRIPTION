@@ -68,7 +68,6 @@ Suggests:
     ordinal,
     rmarkdown,
     spelling,
-    stringr,
     survival,
     testthat
 Remotes:

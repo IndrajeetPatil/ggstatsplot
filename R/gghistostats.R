@@ -125,13 +125,11 @@ gghistostats <- function(data,
 
   # ================================= dataframe ==============================
 
-  # if xlab is not provided, use the variable x name
-  if (is.null(xlab)) {
-    xlab <- rlang::as_name(rlang::ensym(x))
-  }
-
   # to ensure that x will be read irrespective of whether it is quoted or unquoted
   x <- rlang::ensym(x)
+
+  # if `xlab` is not provided, use the `x` name
+  if (is.null(xlab)) xlab <- rlang::as_name(x)
 
   # if dataframe is provided
   df <-
@@ -142,10 +140,8 @@ gghistostats <- function(data,
   # column as a vector
   x_vec <- df %>% dplyr::pull({{ x }})
 
-  # Adding some binwidth sanity checking
-  if (is.null(binwidth)) {
-    binwidth <- (max(x_vec) - min(x_vec)) / sqrt(length(x_vec))
-  }
+  # adding some `binwidth` sanity checking
+  if (is.null(binwidth)) binwidth <- (max(x_vec) - min(x_vec)) / sqrt(length(x_vec))
 
   # ================ stats labels ==========================================
 
@@ -156,7 +152,6 @@ gghistostats <- function(data,
         statsExpressions::bf_ttest(
           data = df,
           x = {{ x }},
-          y = NULL,
           test.value = test.value,
           bf.prior = bf.prior,
           caption = caption,
@@ -303,61 +298,36 @@ gghistostats <- function(data,
   if (isTRUE(normal.curve)) {
     # adding normal curve density
     if (bar.measure == "density") {
-      plot <- plot +
-        ggplot2::stat_function(
-          fun = dnorm,
-          linetype = normal.curve.linetype,
-          color = normal.curve.color,
-          size = normal.curve.size,
-          na.rm = TRUE,
-          args = list(mean = mean(x_vec), sd = sd(x_vec))
-        )
+      .f_stat <- stats::dnorm
+      args <- list(mean = mean(x_vec), sd = sd(x_vec))
     }
 
     # adding normal curve count & mix
     if (bar.measure %in% c("both", "mix", "all", "everything", "counts", "n", "count", "N")) {
-      plot <- plot +
-        ggplot2::stat_function(
-          fun = function(x, mean, sd, n, bw) {
-            stats::dnorm(x = x, mean = mean, sd = sd) * n * bw
-          },
-          linetype = normal.curve.linetype,
-          color = normal.curve.color,
-          size = normal.curve.size,
-          na.rm = TRUE,
-          args = c(
-            mean = mean(x_vec),
-            sd = sd(x_vec),
-            n = length(x_vec),
-            bw = binwidth
-          )
-        )
+      .f_stat <- function(x, mean, sd, n, bw) stats::dnorm(x, mean, sd) * n * bw
+      args <- list(mean = mean(x_vec), sd = sd(x_vec), n = length(x_vec), bw = binwidth)
     }
 
     # adding normal curve proportion
     if (bar.measure %in% c("percentage", "perc", "proportion", "prop", "%")) {
-      plot <- plot +
-        ggplot2::stat_function(
-          fun = function(x, mean, sd, n, bw) {
-            stats::dnorm(x = x, mean = mean, sd = sd) * bw
-          },
-          linetype = normal.curve.linetype,
-          color = normal.curve.color,
-          size = normal.curve.size,
-          na.rm = TRUE,
-          args = c(
-            mean = mean(x_vec),
-            sd = sd(x_vec),
-            n = length(x_vec),
-            bw = binwidth
-          )
-        )
+      .f_stat <- function(x, mean, sd, n, bw) stats::dnorm(x, mean, sd) * bw
+      args <- list(mean = mean(x_vec), sd = sd(x_vec), n = length(x_vec), bw = binwidth)
     }
+
+    # adding curve to the plot
+    plot <- plot +
+      ggplot2::stat_function(
+        fun = .f_stat,
+        linetype = normal.curve.linetype,
+        color = normal.curve.color,
+        size = normal.curve.size,
+        na.rm = TRUE,
+        args = args
+      )
   }
 
   # if bayes factor message needs to be displayed
-  if (isTRUE(results.subtitle) &&
-    type %in% c("parametric", "p") && isTRUE(bf.message)) {
+  if (isTRUE(results.subtitle) && type %in% c("parametric", "p") && isTRUE(bf.message)) {
     caption <- bf.caption.text
   }
 
@@ -403,9 +373,7 @@ gghistostats <- function(data,
   )
 
   # if no color fill gradient is used, then remove the legend
-  if (isFALSE(fill.gradient)) {
-    plot <- plot + ggplot2::theme(legend.position = "none")
-  }
+  if (isFALSE(fill.gradient)) plot <- plot + ggplot2::theme(legend.position = "none")
 
   # ---------------- adding ggplot component ---------------------------------
 

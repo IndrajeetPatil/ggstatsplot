@@ -1,10 +1,17 @@
 # ggstatsplot 0.1.4.9000
 
+BREAKING CHANGES
+
+  - To have a more manageable length of function arguments, additional aesthetic
+    specifications for any given geom can be provided via a dedicated `*.args`
+    argument. For example, all aesthetic arguments for `geom_vline` can be
+    provided via `vline.args`, for `geom_errorbarh` via `errorbar.args`, etc.
+
 MINOR CHANGES
 
   - New dataset included: `bugs_wide`
   - More models supported in `ggcoefstats`: `cpglm`, `cpglmm`, `complmrob`,
-    `feis`, `flexsurvreg`, `hurdle`, `iv_robust`, `rqss`, `truncreg`
+    `feis`, `flexsurvreg`, `glmx`, `hurdle`, `iv_robust`, `rqss`, `truncreg`
  
 # ggstatsplot 0.1.4
 

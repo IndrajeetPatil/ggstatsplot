@@ -250,7 +250,7 @@ ggcorrmat <- function(data,
   output <- return %||% output
 
   # if any of the abbreviations have been entered, change them
-  if (corr.method %in% c("pearson", "p", "parametric")) {
+  if (corr.method %in% c("p", "parametric")) {
     corr.method <- "pearson"
   } else if (corr.method %in% c("np", "nonparametric", "non-parametric")) {
     corr.method <- "spearman"
@@ -329,12 +329,13 @@ ggcorrmat <- function(data,
 
   # if user has not specified colors, then use a color palette
   if (is.null(colors)) {
-    colors <- paletteer::paletteer_d(
-      palette = paste0(package, "::", palette),
-      n = 3,
-      direction = direction,
-      type = "discrete"
-    )
+    colors <-
+      paletteer::paletteer_d(
+        palette = paste0(package, "::", palette),
+        n = 3,
+        direction = direction,
+        type = "discrete"
+      )
   }
 
   # creating the basic plot
@@ -459,9 +460,7 @@ ggcorrmat <- function(data,
         )
 
       # adding `ggstatsplot` theme for correlation matrix
-      if (isTRUE(ggstatsplot.layer)) {
-        plot <- plot + theme_corrmat()
-      }
+      if (isTRUE(ggstatsplot.layer)) plot <- plot + theme_corrmat()
     }
   }
 

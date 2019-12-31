@@ -1138,10 +1138,7 @@ across models:
 set.seed(123)
 
 # model
-mod <- stats::lm(
-  formula = mpg ~ am * cyl,
-  data = mtcars
-)
+mod <- stats::lm(formula = mpg ~ am * cyl, data = mtcars)
 
 # plot
 ggstatsplot::ggcoefstats(x = mod)
@@ -1165,9 +1162,7 @@ ggstatsplot::ggcoefstats(
   x = mod,
   point.color = "red",
   point.shape = 15,
-  vline.color = "#CC79A7",
-  vline.linetype = "dotdash",
-  stats.label.size = 3.5,
+  vline.args = list(size = 1, color = "#CC79A7", linetype = "dotdash"),
   stats.label.color = c("#0072B2", "#D55E00", "darkgreen"),
   title = "Car performance predicted by transmission & cylinder count",
   subtitle = "Source: 1974 Motor Trend US magazine",

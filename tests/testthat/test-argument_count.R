@@ -28,7 +28,7 @@ testthat::test_that(
           TRUE ~ "basic"
         )
       ) %>%
-      dplyr::mutate(.data = ., value = stringr::str_remove(value, "grouped_")) %>%
+      dplyr::mutate(.data = ., value = gsub("grouped_", "", value)) %>%
       dplyr::arrange(.data = ., value) %>%
       dplyr::mutate(.data = ., rowid = dplyr::row_number()) %>%
       dplyr::group_nest(.tbl = ., rowid) %>%

@@ -185,11 +185,15 @@
 <h1 class="page-header">
 <a href="#ggstatsplot-0149000" class="anchor"></a>ggstatsplot 0.1.4.9000<small> Unreleased </small>
 </h1>
+<p>BREAKING CHANGES</p>
+<ul>
+<li>To have a more manageable length of function arguments, additional aesthetic specifications for any given geom can be provided via a dedicated <code>*.args</code> argument. For example, all aesthetic arguments for <code>geom_vline</code> can be provided via <code>vline.args</code>, for <code>geom_errorbarh</code> via <code>errorbar.args</code>, etc.</li>
+</ul>
 <p>MINOR CHANGES</p>
 <ul>
 <li>New dataset included: <code>bugs_wide</code>
 </li>
-<li>More models supported in <code>ggcoefstats</code>: <code>cpglm</code>, <code>cpglmm</code>, <code>complmrob</code>, <code>feis</code>, <code>flexsurvreg</code>, <code>hurdle</code>, <code>iv_robust</code>, <code>rqss</code>, <code>truncreg</code>
+<li>More models supported in <code>ggcoefstats</code>: <code>cpglm</code>, <code>cpglmm</code>, <code>complmrob</code>, <code>feis</code>, <code>flexsurvreg</code>, <code>glmx</code>, <code>hurdle</code>, <code>iv_robust</code>, <code>rqss</code>, <code>truncreg</code>
 </li>
 </ul>
 </div>
