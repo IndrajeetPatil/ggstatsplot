@@ -3,7 +3,7 @@ title: "ggstatsplot: ggplot2 Based Plots with Statistical Details"
 author:
 - Indrajeet Patil^[Harvard University, patilindrajeet.science@gmail.com]
 - Mina Cikara^[Harvard University]
-date: "2019-12-29"
+date: "2020-01-01"
 output: 
   bookdown::pdf_document2:
     fig_caption: true
@@ -1454,9 +1454,6 @@ ggstatsplot::ggcoefstats(
   x = mod,
   point.color = "red",
   point.shape = 15,
-  vline.color = "#CC79A7",
-  vline.linetype = "dotdash",
-  stats.label.size = 3.5,
   stats.label.color = c("#0072B2", "#D55E00", "darkgreen"),
   title = "Car performance predicted by transmission & cylinder count",
   subtitle = "Source: 1974 Motor Trend US magazine",
@@ -1474,15 +1471,18 @@ Most of the regression models that are supported in the `broom` and
 `broom.mixed` packages with `tidy` and `glance` methods are also supported by
 `ggcoefstats`. For example-
 
-`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `bigglm`, `biglm`, `brmsfit`,
-`btergm`, `cch`, `clm`, `clmm`, `confusionMatrix`, `coxph`, `drc`, `emmGrid`,
-`epi.2by2`, `ergm`, `felm`, `fitdistr`, `glmerMod`, `glmmTMB`, `gls`, `gam`,
-`Gam`, `gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmmTMB`, `glmRob`,
-`glmrob`, `gmm`, `ivreg`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`, `lmRob`,
-`lmrob`, `mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`, `mediate`, `mjoint`, `mle2`,
-`mlm`, `multinom`, `negbin`, `nlmerMod`, `nlrq`, `nls`, `orcutt`, `plm`, `polr`,
-`ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `speedglm`, `speedlm`, `stanreg`,
-`survreg`, `svyglm`, `svyolr`, `svyglm`, etc.
+`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `bglmerMod`, `bigglm`, `biglm`,
+`blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm2`, `brmsfit`, `btergm`, `cch`,
+`cgam`, `cgamm`, `clm`, `clmm`, `coeftest`, `confusionMatrix`, `coxph`, `cpglm`,
+`cpglmm`, `complmrob`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`,
+`fitdistr`, `flexsurvreg`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`,
+`gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`,
+`gmm`, `hurdle`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`,
+`lmodel2`, `lmRob`, `lmrob`, `mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`,
+`mediate`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `nlmerMod`, `nlrq`,
+`nlreg`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`,
+`rq`, `rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`, `survreg`,
+`svyglm`, `svyolr`, `svyglm`, `tobit`, `truncreg`, `wbgee`, `wblm`, etc.
 
 Although not shown here, this function can also be used to carry out both
 frequentist and Bayesian random-effects meta-analysis.

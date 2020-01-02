@@ -132,7 +132,7 @@
 
 \title{ggstatsplot: ggplot2 Based Plots with Statistical Details}
 \author{Indrajeet Patil\footnote{Harvard University, \href{mailto:patilindrajeet.science@gmail.com}{\nolinkurl{patilindrajeet.science@gmail.com}}} \and Mina Cikara\footnote{Harvard University}}
-\date{2019-12-29}
+\date{2020-01-01}
 
 \begin{document}
 \maketitle
@@ -2237,9 +2237,6 @@ This default plot can be further modified to one's liking with additional argume
   \DataTypeTok{x =}\NormalTok{ mod,}
   \DataTypeTok{point.color =} \StringTok{"red"}\NormalTok{,}
   \DataTypeTok{point.shape =} \DecValTok{15}\NormalTok{,}
-  \DataTypeTok{vline.color =} \StringTok{"\#CC79A7"}\NormalTok{,}
-  \DataTypeTok{vline.linetype =} \StringTok{"dotdash"}\NormalTok{,}
-  \DataTypeTok{stats.label.size =} \FloatTok{3.5}\NormalTok{,}
   \DataTypeTok{stats.label.color =} \KeywordTok{c}\NormalTok{(}\StringTok{"\#0072B2"}\NormalTok{, }\StringTok{"\#D55E00"}\NormalTok{, }\StringTok{"darkgreen"}\NormalTok{),}
   \DataTypeTok{title =} \StringTok{"Car performance predicted by transmission \& cylinder count"}\NormalTok{,}
   \DataTypeTok{subtitle =} \StringTok{"Source: 1974 Motor Trend US magazine"}\NormalTok{,}
@@ -2257,15 +2254,18 @@ Most of the regression models that are supported in the \texttt{broom} and
 \texttt{broom.mixed} packages with \texttt{tidy} and \texttt{glance} methods are also supported by
 \texttt{ggcoefstats}. For example-
 
-\texttt{aareg}, \texttt{anova}, \texttt{aov}, \texttt{aovlist}, \texttt{Arima}, \texttt{bigglm}, \texttt{biglm}, \texttt{brmsfit},
-\texttt{btergm}, \texttt{cch}, \texttt{clm}, \texttt{clmm}, \texttt{confusionMatrix}, \texttt{coxph}, \texttt{drc}, \texttt{emmGrid},
-\texttt{epi.2by2}, \texttt{ergm}, \texttt{felm}, \texttt{fitdistr}, \texttt{glmerMod}, \texttt{glmmTMB}, \texttt{gls}, \texttt{gam},
-\texttt{Gam}, \texttt{gamlss}, \texttt{garch}, \texttt{glm}, \texttt{glmmadmb}, \texttt{glmmPQL}, \texttt{glmmTMB}, \texttt{glmRob},
-\texttt{glmrob}, \texttt{gmm}, \texttt{ivreg}, \texttt{lm}, \texttt{lm.beta}, \texttt{lmerMod}, \texttt{lmodel2}, \texttt{lmRob},
-\texttt{lmrob}, \texttt{mcmc}, \texttt{MCMCglmm}, \texttt{mclogit}, \texttt{mmclogit}, \texttt{mediate}, \texttt{mjoint}, \texttt{mle2},
-\texttt{mlm}, \texttt{multinom}, \texttt{negbin}, \texttt{nlmerMod}, \texttt{nlrq}, \texttt{nls}, \texttt{orcutt}, \texttt{plm}, \texttt{polr},
-\texttt{ridgelm}, \texttt{rjags}, \texttt{rlm}, \texttt{rlmerMod}, \texttt{rq}, \texttt{speedglm}, \texttt{speedlm}, \texttt{stanreg},
-\texttt{survreg}, \texttt{svyglm}, \texttt{svyolr}, \texttt{svyglm}, etc.
+\texttt{aareg}, \texttt{anova}, \texttt{aov}, \texttt{aovlist}, \texttt{Arima}, \texttt{bglmerMod}, \texttt{bigglm}, \texttt{biglm},
+\texttt{blavaan}, \texttt{bmlm}, \texttt{blmerMod}, \texttt{bracl}, \texttt{brglm2}, \texttt{brmsfit}, \texttt{btergm}, \texttt{cch},
+\texttt{cgam}, \texttt{cgamm}, \texttt{clm}, \texttt{clmm}, \texttt{coeftest}, \texttt{confusionMatrix}, \texttt{coxph}, \texttt{cpglm},
+\texttt{cpglmm}, \texttt{complmrob}, \texttt{drc}, \texttt{emmGrid}, \texttt{epi.2by2}, \texttt{ergm}, \texttt{feis}, \texttt{felm},
+\texttt{fitdistr}, \texttt{flexsurvreg}, \texttt{glmc}, \texttt{glmerMod}, \texttt{glmmTMB}, \texttt{gls}, \texttt{gam}, \texttt{Gam},
+\texttt{gamlss}, \texttt{garch}, \texttt{glm}, \texttt{glmmadmb}, \texttt{glmmPQL}, \texttt{glmRob}, \texttt{glmrob}, \texttt{glmx},
+\texttt{gmm}, \texttt{hurdle}, \texttt{ivreg}, \texttt{iv\_robust}, \texttt{lavaan}, \texttt{lm}, \texttt{lm.beta}, \texttt{lmerMod},
+\texttt{lmodel2}, \texttt{lmRob}, \texttt{lmrob}, \texttt{mcmc}, \texttt{MCMCglmm}, \texttt{mclogit}, \texttt{mmclogit},
+\texttt{mediate}, \texttt{mjoint}, \texttt{mle2}, \texttt{mlm}, \texttt{multinom}, \texttt{negbin}, \texttt{nlmerMod}, \texttt{nlrq},
+\texttt{nlreg}, \texttt{nls}, \texttt{orcutt}, \texttt{plm}, \texttt{polr}, \texttt{ridgelm}, \texttt{rjags}, \texttt{rlm}, \texttt{rlmerMod},
+\texttt{rq}, \texttt{rqss}, \texttt{slm}, \texttt{speedglm}, \texttt{speedlm}, \texttt{stanfit}, \texttt{stanreg}, \texttt{survreg},
+\texttt{svyglm}, \texttt{svyolr}, \texttt{svyglm}, \texttt{tobit}, \texttt{truncreg}, \texttt{wbgee}, \texttt{wblm}, etc.
 
 Although not shown here, this function can also be used to carry out both
 frequentist and Bayesian random-effects meta-analysis.

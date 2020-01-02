@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.12.17)  29 DEC 2019 11:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.12.17)  1 JAN 2020 23:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1109,14 +1109,15 @@ File: ./figures/paper-ggcoefstats1-1.png Graphic file (type png)
 Package pdftex.def Info: ./figures/paper-ggcoefstats1-1.png  used on input line
  2222.
 (pdftex.def)             Requested size: 433.61894pt x 361.34912pt.
-[45] [46 <./figures/paper-ggcoefstats1-1.png (PNG copy)>]
-<./figures/paper-ggcoefstats2-1.png, id=568, 578.16pt x 433.62pt>
+[45]
+<./figures/paper-ggcoefstats2-1.png, id=564, 578.16pt x 433.62pt>
 File: ./figures/paper-ggcoefstats2-1.png Graphic file (type png)
 <use ./figures/paper-ggcoefstats2-1.png>
 Package pdftex.def Info: ./figures/paper-ggcoefstats2-1.png  used on input line
- 2254.
+ 2251.
 (pdftex.def)             Requested size: 469.75385pt x 352.31538pt.
-[47 <./figures/paper-ggcoefstats2-1.png (PNG copy)>]
+[46 <./figures/paper-ggcoefstats1-1.png (PNG copy)>] [47 <./figures/paper-ggcoe
+fstats2-1.png (PNG copy)>]
 <./figures/paper-pirateplot-1.png, id=576, 578.16pt x 433.62pt>
 File: ./figures/paper-pirateplot-1.png Graphic file (type png)
 <use ./figures/paper-pirateplot-1.png>
@@ -1183,7 +1184,7 @@ mtk10.pfb><c:/Users/inp099/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/publi
 c/lm/lmtt10.pfb><c:/Users/inp099/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1
 /public/lm/lmtti10.pfb><c:/Users/inp099/AppData/Roaming/TinyTeX/texmf-dist/font
 s/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on paper.pdf (53 pages, 6245492 bytes).
+Output written on paper.pdf (53 pages, 6245624 bytes).
 PDF statistics:
  733 PDF objects out of 1000 (max. 8388607)
  609 compressed objects within 7 object streams

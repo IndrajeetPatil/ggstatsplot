@@ -42,8 +42,8 @@ analyses and, therefore, we will use various datasets to explore data-specific
 hypotheses using regression models.
 
 **Note before**: The following demo uses the pipe operator (`%>%`), so in case
-  you are not familiar with this operator, here is a good explanation:
-  <http://r4ds.had.co.nz/pipes.html>
+you are not familiar with this operator, here is a good explanation:
+<http://r4ds.had.co.nz/pipes.html>
 
 ## General structure of the plots
 
@@ -58,7 +58,7 @@ be invariant across models:
     by default, display a helpful `x`-axis label that should clear up what
     estimates are being displayed. The confidence intervals can sometimes be
     asymmetric if bootstrapping was used.
-  
+
   - The caption will always contain diagnostic information, if available, about
     models that can be useful for model selection: The smaller the Akaike's
     Information Criterion (**AIC**) and the Bayesian Information Criterion
@@ -74,16 +74,16 @@ Most of the regression models that are supported in the `broom` and
 
 `aareg`, `anova`, `aov`, `aovlist`, `Arima`, `bglmerMod`, `bigglm`, `biglm`,
 `blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm2`, `brmsfit`, `btergm`, `cch`,
-`clm`, `clmm`, `coeftest`, `confusionMatrix`, `coxph`, `cpglm`, `cpglmm`,
-`complmrob`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`,
-`flexsurvreg`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`,
-`garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`,
-`hurdle`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`,
-`lmRob`, `lmrob`, `mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`, `mediate`,
-`mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `nlmerMod`, `nlrq`, `nlreg`,
-`nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`,
-`rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`,
-`svyolr`, `svyglm`, `tobit`, `truncreg`, `wbgee`, `wblm`, etc.
+`cgam`, `cgamm`, `clm`, `clmm`, `coeftest`, `confusionMatrix`, `coxph`, `cpglm`,
+`cpglmm`, `complmrob`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`,
+`fitdistr`, `flexsurvreg`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`,
+`gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`,
+`gmm`, `hurdle`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`,
+`lmodel2`, `lmRob`, `lmrob`, `mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`,
+`mediate`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `nlmerMod`, `nlrq`,
+`nlreg`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`,
+`rq`, `rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`, `survreg`,
+`svyglm`, `svyolr`, `svyglm`, `tobit`, `truncreg`, `wbgee`, `wblm`, etc.
 
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
@@ -232,7 +232,11 @@ ggstatsplot::ggcoefstats(
   ggplot2::theme(axis.title.y = ggplot2::element_text(size = 14, face = "bold"))
 ```
 
-As can be seen from the regression coefficients, compared to action movies, comedies and action comedies are not rated significantly better. All three of the "drama" types (pure, action or comedy dramas) have statistical significantly higher regression coefficients.  This finding occurs even with our more conservative  `0.99` confidence interval.
+As can be seen from the regression coefficients, compared to action movies,
+comedies and action comedies are not rated significantly better. All three of
+the "drama" types (pure, action or comedy dramas) have statistical significantly
+higher regression coefficients. This finding occurs even with our more
+conservative `0.99` confidence interval.
 
 ## linear mixed-effects model (`lmer`/`lmerMod`)
 
@@ -478,12 +482,11 @@ child).
 
 **Note**: Few things to keep in mind for `glm` models,
 
-  - The exact statistic will depend on the family used. Below we will see
-  a host of different function calls to `glm` with a variety of different
-  families.
-  
-  - Some families will have a `t` statistic associated with them,
-  while others a `z` statistic. The function will figure this out for you.
+  - The exact statistic will depend on the family used. Below we will see a host
+    of different function calls to `glm` with a variety of different families.
+
+  - Some families will have a `t` statistic associated with them, while others a
+    `z` statistic. The function will figure this out for you.
 
 ```{r glm_full, warning = FALSE, message = FALSE, fig.height = 13, fig.width = 10}
 # creating dataframes to use for regression analyses
@@ -839,6 +842,73 @@ mod <- zcpglm(
 ggstatsplot::ggcoefstats(
   x = mod,
   title = "Zero-inflated Compound Poisson \nGeneralized Linear Models"
+)
+```
+
+## Constrained Generalized Additive Model Fitting (`cgam`)
+
+```{r cgam, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 6}
+# setup
+set.seed(123)
+library(cgam)
+data(cubic)
+
+# model
+m <- cgam(formula = y ~ incr.conv(x), data = cubic)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = m,
+  title = "Constrained Generalized Additive Model Fitting",
+  exclude.intercept = FALSE
+)
+```
+
+## Constrained Generalized Additive Mixed-Effects Model Fitting (`cgamm`)
+
+```{r cgamm, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 7}
+# setup
+set.seed(123)
+library(cgam)
+
+# simulate a balanced data set with 30 clusters 
+# each cluster has 30 data points   
+n <- 30
+m <- 30
+
+# the standard deviation of between cluster error terms is 1 
+# the standard deviation of within cluster error terms is 2
+sige <- 1
+siga <- 2
+
+# generate a continuous predictor
+x <- 1:(m*n)
+for(i in 1:m) {
+  x[(n*(i-1)+1):(n*i)] <- round(runif(n), 3)
+}
+# generate a group factor
+group <- trunc(0:((m*n)-1)/n)+1
+
+# generate the fixed-effect term
+mu <- 10*exp(10*x-5)/(1+exp(10*x-5))
+
+# generate the random-intercept term asscosiated with each group
+avals <- rnorm(m, 0, siga)
+
+# generate the response 
+y <- 1:(m*n)
+for(i in 1:m){
+  y[group == i] <- mu[group == i] + avals[i] + rnorm(n, 0, sige)
+}
+
+# use REML method to fit the model
+ans <- cgamm(formula = y ~ s.incr(x) + (1|group), reml=TRUE) 
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = ans,
+  title = "Constrained Generalized Additive Mixed-Effects Model Fitting",
+  exclude.intercept = FALSE
 )
 ```
 
@@ -1531,7 +1601,7 @@ in measurement is accounted for by the interaction between these two factors.
 ## robust regression with `robust` package (`lmRob`, `glmRob`)
 
 The robust regression models, as implemented in the `robust` package are also
-supported. 
+supported.
 
 ```{r robust, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 6}
 ggstatsplot::combine_plots(
@@ -1610,7 +1680,7 @@ ggstatsplot::combine_plots(
 
 ## MM-type estimators for linear regression on compositional data (`complmrob`)
 
-```{r complmrob, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 5}
+```{r complmrob, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 6}
 # setup
 set.seed(123)
 library(complmrob)
@@ -1856,7 +1926,6 @@ ggstatsplot::ggcoefstats(
 ## Truncated Gaussian Regression Models (`truncreg`)
 
 ```{r truncreg, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 5}
-
 # setup
 set.seed(123)
 library(truncreg)
@@ -1866,7 +1935,9 @@ library(survival)
 data("tobin", package = "survival")
 
 # model
-cragg_trunc <- truncreg(durable ~ age + quant,
+cragg_trunc <- 
+  truncreg(
+  formula = durable ~ age + quant,
   data = tobin,
   subset = durable > 0
 )
@@ -2218,7 +2289,7 @@ ggstatsplot::ggcoefstats(
 
 The `nlme` package provides a function to fit a linear model using generalized
 least squares. The errors are allowed to be correlated and/or have unequal
-variances. 
+variances.
 
 ```{r gls, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6}
 # for reproducibility
@@ -2597,7 +2668,6 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
-
 ## TERGM by bootstrapped pseudolikelihood or MCMC MLE (`btergm`)
 
 ```{r btergm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6}
@@ -2929,7 +2999,8 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
-Let's see another example where we use `brms` to run the same model on multiple datasets-
+Let's see another example where we use `brms` to run the same model on multiple
+datasets-
 
 ```{r brmsfit_multiple, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 7}
 # setup
@@ -3002,7 +3073,7 @@ mod <-
 # plot
 ggstatsplot::ggcoefstats(
   x = mod,
-  title = "Bayesian multivariate generalized linear models via Stan"
+  title = "Bayesian multivariate generalized linear models \nvia Stan"
 )
 ```
 
@@ -3359,3 +3430,4 @@ If you find any bugs or have any suggestions/remarks, please file an issue on
 
 For details, see-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>
+
