@@ -188,12 +188,17 @@
 <p>BREAKING CHANGES</p>
 <ul>
 <li>To have a more manageable length of function arguments, additional aesthetic specifications for any given geom can be provided via a dedicated <code>*.args</code> argument. For example, all aesthetic arguments for <code>geom_vline</code> can be provided via <code>vline.args</code>, for <code>geom_errorbarh</code> via <code>errorbar.args</code>, etc.</li>
+<li>The unnecessary <code>simulate.p.value</code> and <code>B</code> arguments for <code>ggpiestats</code> and <code>ggbarstats</code> have been removed.</li>
+</ul>
+<p>MAJOR CHANGES</p>
+<ul>
+<li>The summary caption no longer displays log-likelihood value because it tends to be not available for a number of regression model objects and so the caption was unncessarily being skipped.</li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
 <li>New dataset included: <code>bugs_wide</code>
 </li>
-<li>More models supported in <code>ggcoefstats</code>: <code>cpglm</code>, <code>cpglmm</code>, <code>complmrob</code>, <code>feis</code>, <code>flexsurvreg</code>, <code>glmx</code>, <code>hurdle</code>, <code>iv_robust</code>, <code>rqss</code>, <code>truncreg</code>
+<li>More models supported in <code>ggcoefstats</code>: <code>cgam</code>, <code>cgamm</code>, <code>cpglm</code>, <code>cpglmm</code>, <code>complmrob</code>, <code>feis</code>, <code>flexsurvreg</code>, <code>glmx</code>, <code>hurdle</code>, <code>iv_robust</code>, <code>mixor</code>, <code>rqss</code>, <code>truncreg</code>, <code>vgam</code>
 </li>
 </ul>
 </div>

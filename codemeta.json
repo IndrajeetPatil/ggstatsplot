@@ -137,6 +137,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "mixor",
+      "name": "mixor",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=mixor"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "ordinal",
       "name": "ordinal",
       "provider": {
@@ -428,6 +440,19 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=parameters"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "performance",
+      "name": "performance",
+      "version": ">= 0.4.2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=performance"
     },
     {
       "@type": "SoftwareApplication",

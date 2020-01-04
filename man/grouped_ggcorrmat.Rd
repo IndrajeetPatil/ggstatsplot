@@ -306,17 +306,6 @@ ggstatsplot::grouped_ggcorrmat(
   cor.vars = sleep_total:bodywt,
   output = "correlations"
 )
-
-# for getting confidence intervals
-# confidence intervals are not available for **robust** correlation
-ggstatsplot::grouped_ggcorrmat(
-  data = datasets::iris,
-  grouping.var = Species,
-  corr.method = "r",
-  p.adjust.method = "holm",
-  cor.vars = Sepal.Length:Petal.Width,
-  output = "ci"
-)
 }
 }
 \references{

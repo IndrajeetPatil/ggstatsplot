@@ -209,9 +209,7 @@ testthat::test_that(
           "AIC = ",
           "43",
           ", BIC = ",
-          "50",
-          ", log-likelihood = ",
-          "-17"
+          "50"
         )
       ))
     )
@@ -1463,6 +1461,65 @@ testthat::test_that(
       c(
         "list(~widehat(italic(beta))==0.02, ~italic(t)(68)==41.12, ~italic(p)<= 0.001)",
         "list(~widehat(italic(beta))==0.00, ~italic(t)(68)==-7.27, ~italic(p)<= 0.001)"
+      )
+    )
+  }
+)
+
+# `easystats` works -------------------------------------------------------
+
+testthat::test_that(
+  desc = "easystats works",
+  code = {
+    testthat::skip_on_cran()
+
+
+    set.seed(123)
+    library(mixor)
+    data("SmokingPrevention")
+
+    # data frame must be sorted by id variable
+    SmokingPrevention <- SmokingPrevention[order(SmokingPrevention$class), ]
+
+    # school model
+    suppressWarnings(mod <-
+      mixor::mixor(
+        thksord ~ thkspre + cc + tv + cctv,
+        data = SmokingPrevention,
+        id = school,
+        link = "logit"
+      ))
+
+    # plot
+    p <- ggstatsplot::ggcoefstats(
+      x = mod,
+      title = "Mixed-Effects Ordinal Regression Analysis",
+      exclude.intercept = FALSE
+    )
+
+    # build the plot
+    pb <- ggplot2::ggplot_build(p)
+
+    # testing captions and labels
+    testthat::expect_identical(
+      pb$plot$labels$caption,
+      ggplot2::expr(atop(displaystyle(NULL), expr = paste(
+        "AIC = ", "-2128",
+        ", BIC = ", "-2133"
+      )))
+    )
+
+    testthat::expect_equal(
+      pb$data[[4]]$label,
+      c(
+        "list(~widehat(italic(beta))==0.09, ~italic(z)==0.28, ~italic(p)== 0.778)",
+        "list(~widehat(italic(beta))==1.24, ~italic(z)==14.06, ~italic(p)<= 0.001)",
+        "list(~widehat(italic(beta))==2.42, ~italic(z)==28.95, ~italic(p)<= 0.001)",
+        "list(~widehat(italic(beta))==0.40, ~italic(z)==9.39, ~italic(p)<= 0.001)",
+        "list(~widehat(italic(beta))==0.92, ~italic(z)==2.49, ~italic(p)== 0.013)",
+        "list(~widehat(italic(beta))==0.28, ~italic(z)==0.87, ~italic(p)== 0.383)",
+        "list(~widehat(italic(beta))==-0.47, ~italic(z)==-1.15, ~italic(p)== 0.251)",
+        "list(~widehat(italic(beta))==0.07, ~italic(z)==1.49, ~italic(p)== 0.137)"
       )
     )
   }

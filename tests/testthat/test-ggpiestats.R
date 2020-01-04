@@ -111,26 +111,25 @@ testthat::test_that(
 
     # creating the plot
     set.seed(123)
-    p <- suppressWarnings(
-      ggstatsplot::ggpiestats(
-        data = mtcars,
-        main = "am",
-        condition = "cyl",
-        bf.message = TRUE,
-        perc.k = 2,
-        nboot = 25,
-        package = "wesanderson",
-        palette = "Royal2",
-        ggtheme = ggplot2::theme_bw(),
-        slice.label = "counts",
-        legend.title = "transmission",
-        factor.levels = c("0 = automatic", "1 = manual"),
-        facet.wrap.name = "cylinders",
-        simulate.p.value = TRUE,
-        B = 3000,
-        messages = FALSE
+    p <-
+      suppressWarnings(
+        ggstatsplot::ggpiestats(
+          data = mtcars,
+          main = "am",
+          condition = "cyl",
+          bias.correct = FALSE,
+          perc.k = 2,
+          nboot = 25,
+          package = "wesanderson",
+          palette = "Royal2",
+          ggtheme = ggplot2::theme_bw(),
+          slice.label = "counts",
+          legend.title = "transmission",
+          factor.levels = c("0 = automatic", "1 = manual"),
+          facet.wrap.name = "cylinders",
+          messages = FALSE
+        )
       )
-    )
 
     # dropped level dataset
     mtcars_small <- dplyr::filter(.data = mtcars, am == "0")
@@ -153,15 +152,14 @@ testthat::test_that(
     # subtitle used
     set.seed(123)
     p_subtitle <-
-      statsExpressions::expr_contingency_tab(
+      suppressWarnings(statsExpressions::expr_contingency_tab(
         data = mtcars,
+        bias.correct = FALSE,
         x = "am",
         y = "cyl",
-        simulate.p.value = TRUE,
         nboot = 25,
-        B = 3000,
         messages = FALSE
-      )
+      ))
 
     # checking data used to create a plot
     dat <- p$data
@@ -628,25 +626,28 @@ testthat::test_that(
 
     # subtitle return
     set.seed(123)
-    p_sub <- ggstatsplot::ggpiestats(
-      data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
-      main = race,
-      condition = marital,
-      return = "subtitle",
-      k = 4,
-      messages = FALSE
-    )
+    p_sub <-
+      ggstatsplot::ggpiestats(
+        data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
+        main = race,
+        bias.correct = FALSE,
+        condition = marital,
+        return = "subtitle",
+        k = 4,
+        messages = FALSE
+      )
 
     # caption return
     set.seed(123)
-    p_cap <- ggstatsplot::ggpiestats(
-      data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
-      main = race,
-      condition = marital,
-      return = "caption",
-      k = 4,
-      messages = FALSE
-    )
+    p_cap <-
+      ggstatsplot::ggpiestats(
+        data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
+        main = race,
+        condition = marital,
+        return = "caption",
+        k = 4,
+        messages = FALSE
+      )
 
     # tests
     testthat::expect_identical(

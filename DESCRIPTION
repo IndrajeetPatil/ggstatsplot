@@ -49,6 +49,7 @@ Imports:
     pairwiseComparisons (>= 0.1.3),
     paletteer (>= 1.0.0),
     parameters (>= 0.3.0),
+    performance (>= 0.4.2),
     psych (>= 1.8.12),
     purrr (>= 0.3.3),
     rlang (>= 0.4.2),
@@ -65,15 +66,16 @@ Suggests:
     lme4,
     MASS,
     MCMCglmm,
+    mixor,
     ordinal,
     rmarkdown,
     spelling,
     survival,
     testthat
-Remotes:
-    IndrajeetPatil/statsExpressions
 VignetteBuilder: 
     knitr
+Remotes:
+    IndrajeetPatil/statsExpressions
 Encoding: UTF-8
 Language: en-US
 LazyData: true

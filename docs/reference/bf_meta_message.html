@@ -190,13 +190,13 @@
 
     <pre class="usage"><span class='fu'>bf_meta_message</span>(
   <span class='no'>data</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
   <span class='kw'>d</span> <span class='kw'>=</span> <span class='st'>"norm"</span>,
   <span class='kw'>d.par</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>0.3</span>),
   <span class='kw'>tau</span> <span class='kw'>=</span> <span class='st'>"halfcauchy"</span>,
   <span class='kw'>tau.par</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>0.5</span>),
   <span class='kw'>iter</span> <span class='kw'>=</span> <span class='fl'>10000</span>,
   <span class='kw'>summarize</span> <span class='kw'>=</span> <span class='st'>"stan"</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
   <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='no'>...</span>
@@ -209,11 +209,6 @@
       <th>data</th>
       <td><p>data frame containing the variables for effect size <code>y</code>,
 standard error <code>SE</code>, <code>labels</code>, and moderators per study.</p></td>
-    </tr>
-    <tr>
-      <th>k</th>
-      <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 2</code>).</p></td>
     </tr>
     <tr>
       <th>d</th>
@@ -246,6 +241,11 @@ specifies the type of family).</p></td>
       <td><p>how to estimate parameter summaries (mean, median, SD,
 etc.): Either by numerical integration (<code>summarize = "integrate"</code>) or
 based on MCMC/Stan samples (<code>summarize = "stan"</code>).</p></td>
+    </tr>
+    <tr>
+      <th>k</th>
+      <td><p>Number of digits after decimal point (should be an integer)
+(Default: <code>k = 2</code>).</p></td>
     </tr>
     <tr>
       <th>caption</th>

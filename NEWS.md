@@ -6,12 +6,21 @@ BREAKING CHANGES
     specifications for any given geom can be provided via a dedicated `*.args`
     argument. For example, all aesthetic arguments for `geom_vline` can be
     provided via `vline.args`, for `geom_errorbarh` via `errorbar.args`, etc.
+  - The unnecessary `simulate.p.value` and `B` arguments for `ggpiestats` and
+    `ggbarstats` have been removed.
+
+MAJOR CHANGES
+
+  - The summary caption no longer displays log-likelihood value because it tends
+    to be not available for a number of regression model objects and so the
+    caption was unncessarily being skipped.
 
 MINOR CHANGES
 
   - New dataset included: `bugs_wide`
-  - More models supported in `ggcoefstats`: `cpglm`, `cpglmm`, `complmrob`,
-    `feis`, `flexsurvreg`, `glmx`, `hurdle`, `iv_robust`, `rqss`, `truncreg`
+  - More models supported in `ggcoefstats`: `cgam`, `cgamm`, `cpglm`, `cpglmm`,
+    `complmrob`, `feis`, `flexsurvreg`, `glmx`, `hurdle`, `iv_robust`, `mixor`,
+    `rqss`, `truncreg`, `vgam`
  
 # ggstatsplot 0.1.4
 

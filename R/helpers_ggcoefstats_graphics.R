@@ -338,34 +338,37 @@ ggcoefstats_label_maker <- function(x,
 #' @keywords internal
 
 parameters_tidy <- function(x, ...) {
-  parameters::model_parameters(x, ...) %>%
-    tibble::as_tibble(.) %>%
-    dplyr::rename_all(
-      .tbl = .,
-      .funs = tolower
-    ) %>%
-    dplyr::rename_all(
-      .tbl = .,
-      .funs = ~ gsub(
-        x = .,
-        pattern = "_",
-        replacement = "."
-      )
-    ) %>%
-    dplyr::rename_all(
-      .tbl = .,
-      .funs = dplyr::recode,
-      parameter = "term",
-      coefficient = "estimate",
-      median = "estimate",
-      se = "std.error",
-      ci.low = "conf.low",
-      ci.high = "conf.high",
-      f = "statistic",
-      t = "statistic",
-      z = "statistic",
-      df_error = "df.residual",
-      p = "p.value"
-    ) %>%
-    dplyr::filter(.data = ., !is.na(estimate))
+  tryCatch(
+    expr = parameters::model_parameters(x, ...) %>%
+      tibble::as_tibble(.) %>%
+      dplyr::rename_all(
+        .tbl = .,
+        .funs = tolower
+      ) %>%
+      dplyr::rename_all(
+        .tbl = .,
+        .funs = ~ gsub(
+          x = .,
+          pattern = "_",
+          replacement = "."
+        )
+      ) %>%
+      dplyr::rename_all(
+        .tbl = .,
+        .funs = dplyr::recode,
+        parameter = "term",
+        coefficient = "estimate",
+        median = "estimate",
+        se = "std.error",
+        ci.low = "conf.low",
+        ci.high = "conf.high",
+        f = "statistic",
+        t = "statistic",
+        z = "statistic",
+        df_error = "df.residual",
+        p = "p.value"
+      ) %>%
+      dplyr::filter(.data = ., !is.na(estimate)),
+    error = function(e) NULL
+  )
 }

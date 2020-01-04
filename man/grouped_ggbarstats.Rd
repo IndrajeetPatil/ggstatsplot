@@ -32,9 +32,7 @@ grouped_ggbarstats(
   x.axis.orientation = NULL,
   conf.level = 0.95,
   nboot = 100,
-  simulate.p.value = FALSE,
-  B = 2000,
-  bias.correct = FALSE,
+  bias.correct = TRUE,
   legend.title = NULL,
   xlab = NULL,
   ylab = "Percent",
@@ -157,14 +155,8 @@ orientation (Default: \code{NULL} which is horizontal).}
 \item{nboot}{Number of bootstrap samples for computing confidence interval
 for the effect size (Default: \code{100}).}
 
-\item{simulate.p.value}{a logical indicating whether to compute
-    p-values by Monte Carlo simulation.}
-
-\item{B}{an integer specifying the number of replicates used in the
-    Monte Carlo test.}
-
-\item{bias.correct}{If \code{TRUE}, a bias correction will be applied to Cramer's
-\emph{V}.}
+\item{bias.correct}{If \code{TRUE} (default), a bias correction will be applied to
+Cramer's \emph{V}.}
 
 \item{legend.title}{Title text for the legend.}
 

@@ -132,7 +132,7 @@
 
 \title{ggstatsplot: ggplot2 Based Plots with Statistical Details}
 \author{Indrajeet Patil\footnote{Harvard University, \href{mailto:patilindrajeet.science@gmail.com}{\nolinkurl{patilindrajeet.science@gmail.com}}} \and Mina Cikara\footnote{Harvard University}}
-\date{2020-01-01}
+\date{2020-01-04}
 
 \begin{document}
 \maketitle
@@ -416,6 +416,19 @@ Regression model coefficients\strut
 \textcolor{ForestGreen}{Yes}\strut
 \end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
 \textcolor{red}{No}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\texttt{ggcoefstats}\strut
+\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\raggedright
+Random-effects meta-analysis\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\textcolor{red}{No}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\textcolor{red}{No}\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\textcolor{ForestGreen}{Yes}\strut
 \end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
@@ -2262,10 +2275,11 @@ Most of the regression models that are supported in the \texttt{broom} and
 \texttt{gamlss}, \texttt{garch}, \texttt{glm}, \texttt{glmmadmb}, \texttt{glmmPQL}, \texttt{glmRob}, \texttt{glmrob}, \texttt{glmx},
 \texttt{gmm}, \texttt{hurdle}, \texttt{ivreg}, \texttt{iv\_robust}, \texttt{lavaan}, \texttt{lm}, \texttt{lm.beta}, \texttt{lmerMod},
 \texttt{lmodel2}, \texttt{lmRob}, \texttt{lmrob}, \texttt{mcmc}, \texttt{MCMCglmm}, \texttt{mclogit}, \texttt{mmclogit},
-\texttt{mediate}, \texttt{mjoint}, \texttt{mle2}, \texttt{mlm}, \texttt{multinom}, \texttt{negbin}, \texttt{nlmerMod}, \texttt{nlrq},
-\texttt{nlreg}, \texttt{nls}, \texttt{orcutt}, \texttt{plm}, \texttt{polr}, \texttt{ridgelm}, \texttt{rjags}, \texttt{rlm}, \texttt{rlmerMod},
-\texttt{rq}, \texttt{rqss}, \texttt{slm}, \texttt{speedglm}, \texttt{speedlm}, \texttt{stanfit}, \texttt{stanreg}, \texttt{survreg},
-\texttt{svyglm}, \texttt{svyolr}, \texttt{svyglm}, \texttt{tobit}, \texttt{truncreg}, \texttt{wbgee}, \texttt{wblm}, etc.
+\texttt{mediate}, \texttt{mixor}, \texttt{mjoint}, \texttt{mle2}, \texttt{mlm}, \texttt{multinom}, \texttt{negbin}, \texttt{nlmerMod},
+\texttt{nlrq}, \texttt{nlreg}, \texttt{nls}, \texttt{orcutt}, \texttt{plm}, \texttt{polr}, \texttt{ridgelm}, \texttt{rjags}, \texttt{rlm},
+\texttt{rlmerMod}, \texttt{rq}, \texttt{rqss}, \texttt{slm}, \texttt{speedglm}, \texttt{speedlm}, \texttt{stanfit}, \texttt{stanreg},
+\texttt{survreg}, \texttt{svyglm}, \texttt{svyolr}, \texttt{svyglm}, \texttt{tobit}, \texttt{truncreg}, \texttt{vgam}, \texttt{wbgee},
+\texttt{wblm}, etc.
 
 Although not shown here, this function can also be used to carry out both
 frequentist and Bayesian random-effects meta-analysis.

@@ -132,6 +132,7 @@ Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
 `ggpiestats`, `ggbarstats` | Association between categorical variables | \textcolor{ForestGreen}{Yes} | `NA` | `NA` | \textcolor{ForestGreen}{Yes}
 `ggpiestats`, `ggbarstats` | Equal proportions for categorical variable levels | \textcolor{ForestGreen}{Yes} | `NA` | `NA` | \textcolor{ForestGreen}{Yes}
 `ggcoefstats` | Regression model coefficients | \textcolor{ForestGreen}{Yes} | \textcolor{red}{No} | \textcolor{ForestGreen}{Yes} | \textcolor{red}{No}
+`ggcoefstats` | Random-effects meta-analysis | \textcolor{ForestGreen}{Yes} | \textcolor{red}{No} | \textcolor{red}{No} | \textcolor{ForestGreen}{Yes}
 
 In the following sections, we will discuss at depth justification for why the
 plots have been designed in certain ways and what principles were followed to
@@ -1373,10 +1374,11 @@ Most of the regression models that are supported in the `broom` and
 `gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`,
 `gmm`, `hurdle`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`,
 `lmodel2`, `lmRob`, `lmrob`, `mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`,
-`mediate`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `nlmerMod`, `nlrq`,
-`nlreg`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`,
-`rq`, `rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`, `survreg`,
-`svyglm`, `svyolr`, `svyglm`, `tobit`, `truncreg`, `wbgee`, `wblm`, etc.
+`mediate`, `mixor`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `nlmerMod`,
+`nlrq`, `nlreg`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`,
+`rlmerMod`, `rq`, `rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`,
+`survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`, `wbgee`,
+`wblm`, etc.
 
 Although not shown here, this function can also be used to carry out both
 frequentist and Bayesian random-effects meta-analysis.

@@ -12,8 +12,6 @@ testthat::test_that(
       ggstatsplot::grouped_ggpiestats(
         data = mtcars,
         main = cyl,
-        simulate.p.value = TRUE,
-        B = 3000,
         messages = FALSE
       )
     )
@@ -27,8 +25,6 @@ testthat::test_that(
         data = mtcars,
         grouping.var = am,
         main = "cyl",
-        simulate.p.value = TRUE,
-        B = 3000,
         messages = FALSE
       )
     ),

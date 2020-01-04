@@ -215,9 +215,7 @@ included in the plot as a subtitle.</p>
   <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
   <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>simulate.p.value</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>2000</span>,
-  <span class='kw'>bias.correct</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>bias.correct</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>facet.wrap.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
@@ -364,19 +362,9 @@ prior width to use in calculating Bayes Factors.</p></td>
 for the effect size (Default: <code>100</code>).</p></td>
     </tr>
     <tr>
-      <th>simulate.p.value</th>
-      <td><p>a logical indicating whether to compute
-    p-values by Monte Carlo simulation.</p></td>
-    </tr>
-    <tr>
-      <th>B</th>
-      <td><p>an integer specifying the number of replicates used in the
-    Monte Carlo test.</p></td>
-    </tr>
-    <tr>
       <th>bias.correct</th>
-      <td><p>If <code>TRUE</code>, a bias correction will be applied to Cramer's
-<em>V</em>.</p></td>
+      <td><p>If <code>TRUE</code> (default), a bias correction will be applied to
+Cramer's <em>V</em>.</p></td>
     </tr>
     <tr>
       <th>legend.title</th>

@@ -141,6 +141,7 @@
 #' @importFrom tidyr unite
 #' @importFrom groupedstats lm_effsize_standardizer
 #' @importFrom insight is_model
+#' @importFrom performance model_performance
 #'
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}
@@ -355,10 +356,19 @@ ggcoefstats <- function(x,
   # creating glance dataframe
   glance_df <- broomExtra::glance(x)
 
+  # if `NULL`, try with `performance`
+  if (is.null(glance_df)) {
+    glance_df <-
+      tryCatch(
+        expr = tibble::as_tibble(performance::model_performance(x)),
+        error = function(e) NULL
+      )
+  }
+
   # if the object is not a dataframe, check if summary caption is to be displayed
   if (isTRUE(insight::is_model(x))) {
     # if glance is not available, inform the user
-    if (is.null(glance_df) || !all(c("logLik", "AIC", "BIC") %in% names(glance_df))) {
+    if (is.null(glance_df) || !all(c("AIC", "BIC") %in% names(glance_df))) {
       # inform the user
       message(cat(
         crayon::green("Note: "),
@@ -733,21 +743,12 @@ ggcoefstats <- function(x,
       caption <-
         substitute(
           atop(displaystyle(top.text),
-            expr =
-              paste(
-                "AIC = ",
-                AIC,
-                ", BIC = ",
-                BIC,
-                ", log-likelihood = ",
-                LL
-              )
+            expr = paste("AIC = ", AIC, ", BIC = ", BIC)
           ),
           env = list(
             top.text = caption,
             AIC = specify_decimal_p(x = glance_df$AIC[[1]], k = k.caption.summary),
-            BIC = specify_decimal_p(x = glance_df$BIC[[1]], k = k.caption.summary),
-            LL = specify_decimal_p(x = glance_df$logLik[[1]], k = k.caption.summary)
+            BIC = specify_decimal_p(x = glance_df$BIC[[1]], k = k.caption.summary)
           )
         )
     }

@@ -29,9 +29,7 @@ ggpiestats(
   conf.level = 0.95,
   bf.prior = 0.707,
   nboot = 100,
-  simulate.p.value = FALSE,
-  B = 2000,
-  bias.correct = FALSE,
+  bias.correct = TRUE,
   legend.title = NULL,
   facet.wrap.name = NULL,
   k = 2,
@@ -131,14 +129,8 @@ prior width to use in calculating Bayes Factors.}
 \item{nboot}{Number of bootstrap samples for computing confidence interval
 for the effect size (Default: \code{100}).}
 
-\item{simulate.p.value}{a logical indicating whether to compute
-    p-values by Monte Carlo simulation.}
-
-\item{B}{an integer specifying the number of replicates used in the
-    Monte Carlo test.}
-
-\item{bias.correct}{If \code{TRUE}, a bias correction will be applied to Cramer's
-\emph{V}.}
+\item{bias.correct}{If \code{TRUE} (default), a bias correction will be applied to
+Cramer's \emph{V}.}
 
 \item{legend.title}{Title text for the legend.}
 

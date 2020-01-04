@@ -6,13 +6,13 @@
 \usage{
 bf_meta_message(
   data,
-  k = 2,
   d = "norm",
   d.par = c(mean = 0, sd = 0.3),
   tau = "halfcauchy",
   tau.par = c(scale = 0.5),
   iter = 10000,
   summarize = "stan",
+  k = 2,
   caption = NULL,
   messages = TRUE,
   ...
@@ -21,9 +21,6 @@ bf_meta_message(
 \arguments{
 \item{data}{data frame containing the variables for effect size \code{y},
 standard error \code{SE}, \code{labels}, and moderators per study.}
-
-\item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2}).}
 
 \item{d}{the prior distribution of the average effect size \eqn{d} specified
 either as the type of family (e.g., \code{"norm"}) or via
@@ -44,6 +41,9 @@ specifies the type of family).}
 \item{summarize}{how to estimate parameter summaries (mean, median, SD,
 etc.): Either by numerical integration (\code{summarize = "integrate"}) or
 based on MCMC/Stan samples (\code{summarize = "stan"}).}
+
+\item{k}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 2}).}
 
 \item{caption}{The text for the plot caption.}
 

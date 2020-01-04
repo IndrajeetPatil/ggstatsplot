@@ -107,16 +107,17 @@ testthat::test_that(
 
     # should return a list of length 3
     set.seed(123)
-    ls_results <- suppressWarnings(ggstatsplot::grouped_ggbarstats(
-      data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
-      main = relig,
-      condition = marital,
-      grouping.var = race,
-      return = "subtitle",
-      results.subtitle = FALSE,
-      bar.proptest = FALSE,
-      messages = FALSE
-    ))
+    ls_results <-
+      suppressWarnings(ggstatsplot::grouped_ggbarstats(
+        data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
+        main = relig,
+        condition = marital,
+        grouping.var = race,
+        return = "subtitle",
+        results.subtitle = FALSE,
+        bar.proptest = FALSE,
+        messages = FALSE
+      ))
 
     # tests
     testthat::expect_equal(length(ls_results), 3L)
@@ -126,15 +127,17 @@ testthat::test_that(
 
     # checking results
     set.seed(123)
-    results_ls <- suppressWarnings(ggstatsplot::grouped_ggbarstats(
-      data = as.data.frame(HairEyeColor),
-      main = Hair,
-      condition = Eye,
-      counts = "Freq",
-      grouping.var = Sex,
-      return = "subtitle",
-      messages = FALSE
-    ))
+    results_ls <-
+      suppressWarnings(ggstatsplot::grouped_ggbarstats(
+        data = as.data.frame(HairEyeColor),
+        main = Hair,
+        condition = Eye,
+        counts = "Freq",
+        bias.correct = FALSE,
+        grouping.var = Sex,
+        return = "subtitle",
+        messages = FALSE
+      ))
 
     # checking subtitle
     testthat::expect_identical(

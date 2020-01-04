@@ -313,13 +313,13 @@ subtitle_meta_parametric <- function(data,
 
 # function body
 bf_meta_message <- function(data,
-                            k = 2,
                             d = "norm",
                             d.par = c(mean = 0, sd = 0.3),
                             tau = "halfcauchy",
                             tau.par = c(scale = 0.5),
                             iter = 10000,
                             summarize = "stan",
+                            k = 2,
                             caption = NULL,
                             messages = TRUE,
                             ...) {
@@ -331,7 +331,7 @@ bf_meta_message <- function(data,
     # inform the user that skipping labels for the same reason
     stop(message(cat(
       crayon::red("Error"),
-      crayon::blue(": The dataframe **must** contain the following two columns:\n"),
+      crayon::blue(": The dataframe must contain the following two columns:\n"),
       crayon::blue("`estimate` and `std.error`.\n"),
       sep = ""
     )),

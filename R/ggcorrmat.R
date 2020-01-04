@@ -478,7 +478,7 @@ ggcorrmat <- function(data,
         dplyr::bind_cols(.) %>%
         dplyr::select(.data = ., pair, r, dplyr::everything(), -pair1)
     } else {
-      return(message(cat(
+      stop(message(cat(
         crayon::red("Warning: "),
         crayon::blue("Confidence intervals not supported for robust correlation.\n"),
         sep = ""
@@ -489,7 +489,7 @@ ggcorrmat <- function(data,
   # =============================== output ==================================
 
   # if p-values were adjusted, notify how they are going to be displayed
-  if (p.adjust.method != "none" && isTRUE(messages) && corr.method != "robust") {
+  if (p.adjust.method != "none" && messages && corr.method != "robust" && output != "ci") {
     ggcorrmat_matrix_message()
   }
 

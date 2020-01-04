@@ -581,7 +581,7 @@ testthat::test_that(
 
     # capturing the message
     set.seed(123)
-    p_message1 <- capture.output(ggstatsplot::ggcorrmat(
+    testthat::expect_error(ggstatsplot::ggcorrmat(
       data = ggplot2::msleep,
       cor.vars = sleep_total:awake,
       type = "r",
@@ -593,24 +593,17 @@ testthat::test_that(
       messages = TRUE
     ))
 
-    p_message2 <- capture.output(ggstatsplot::ggcorrmat(
-      data = ggplot2::msleep,
-      cor.vars = sleep_total:awake,
-      output = "p",
-      p.adjust.method = "hommel",
-      caption.default = FALSE,
-      messages = TRUE
-    ))
+    p_message2 <-
+      capture.output(ggstatsplot::ggcorrmat(
+        data = ggplot2::msleep,
+        cor.vars = sleep_total:awake,
+        output = "p",
+        p.adjust.method = "hommel",
+        caption.default = FALSE,
+        messages = TRUE
+      ))
 
     # checking messages
-    testthat::expect_match(
-      p_message1[1],
-      "No. of variable names doesn't equal"
-    )
-    testthat::expect_match(
-      p_message1[2],
-      "Confidence intervals not supported"
-    )
     testthat::expect_match(
       p_message2[2],
       "the upper triangle: p-values adjusted for multiple comparisons"

@@ -139,7 +139,7 @@
       <h1>ggcorrmat</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-12-30</h4>
+            <h4 class="date">2020-01-04</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcorrmat.Rmd"><code>vignettes/web_only/ggcorrmat.Rmd</code></a></small>
       <div class="hidden name"><code>ggcorrmat.Rmd</code></div>
@@ -373,44 +373,41 @@
 <span id="cb8-44"><a href="#cb8-44"></a>  <span class="dt">return =</span> <span class="st">"ci"</span>, <span class="co"># confidence intervals</span></span>
 <span id="cb8-45"><a href="#cb8-45"></a>  <span class="dt">p.adjust.method =</span> <span class="st">"holm"</span></span>
 <span id="cb8-46"><a href="#cb8-46"></a>)</span>
-<span id="cb8-47"><a href="#cb8-47"></a><span class="co">#&gt; Note: In the correlation matrix,</span></span>
-<span id="cb8-48"><a href="#cb8-48"></a><span class="co">#&gt; the upper triangle: p-values adjusted for multiple comparisons</span></span>
-<span id="cb8-49"><a href="#cb8-49"></a><span class="co">#&gt; the lower triangle: unadjusted p-values.</span></span>
-<span id="cb8-50"><a href="#cb8-50"></a><span class="co">#&gt; # A tibble: 15 x 7</span></span>
-<span id="cb8-51"><a href="#cb8-51"></a><span class="co">#&gt;    pair                      r    lower    upper          p lower.adj  upper.adj</span></span>
-<span id="cb8-52"><a href="#cb8-52"></a><span class="co">#&gt;    &lt;chr&gt;                 &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;</span></span>
-<span id="cb8-53"><a href="#cb8-53"></a><span class="co">#&gt;  1 sleep_total-sleep_~  0.7518  0.6167   0.8438  2.916e- 12  0.5402     8.740e-1</span></span>
-<span id="cb8-54"><a href="#cb8-54"></a><span class="co">#&gt;  2 sleep_total-sleep_~ -0.4737 -0.7058  -0.1498  6.169e-  3 -0.7738     7.215e-5</span></span>
-<span id="cb8-55"><a href="#cb8-55"></a><span class="co">#&gt;  3 sleep_total-awake   -1.000  -1.000   -1.000   2.419e-226 -1.000     -1.000e+0</span></span>
-<span id="cb8-56"><a href="#cb8-56"></a><span class="co">#&gt;  4 sleep_total-brainwt -0.3605 -0.5694  -0.1078  6.348e-  3 -0.6290    -1.505e-2</span></span>
-<span id="cb8-57"><a href="#cb8-57"></a><span class="co">#&gt;  5 sleep_total-bodywt  -0.3120 -0.4944  -0.1033  4.085e-  3 -0.5302    -5.506e-2</span></span>
-<span id="cb8-58"><a href="#cb8-58"></a><span class="co">#&gt;  6 sleep_rem-sleep_cy~ -0.3381 -0.6144   0.01198 5.839e-  2 -0.6806     1.257e-1</span></span>
-<span id="cb8-59"><a href="#cb8-59"></a><span class="co">#&gt;  7 sleep_rem-awake     -0.7518 -0.8438  -0.6167  2.911e- 12 -0.8748    -5.376e-1</span></span>
-<span id="cb8-60"><a href="#cb8-60"></a><span class="co">#&gt;  8 sleep_rem-brainwt   -0.2213 -0.4756   0.06701 1.306e-  1 -0.4756     6.701e-2</span></span>
-<span id="cb8-61"><a href="#cb8-61"></a><span class="co">#&gt;  9 sleep_rem-bodywt    -0.3277 -0.5353  -0.08265 9.947e-  3 -0.5838    -1.223e-2</span></span>
-<span id="cb8-62"><a href="#cb8-62"></a><span class="co">#&gt; 10 sleep_cycle-awake    0.4737  0.1498   0.7058  6.169e-  3 -0.006407   7.763e-1</span></span>
-<span id="cb8-63"><a href="#cb8-63"></a><span class="co">#&gt; 11 sleep_cycle-brainwt  0.8516  0.7088   0.9274  2.420e-  9  0.6080     9.487e-1</span></span>
-<span id="cb8-64"><a href="#cb8-64"></a><span class="co">#&gt; 12 sleep_cycle-bodywt   0.4178  0.08089  0.6690  1.734e-  2 -0.06265    7.410e-1</span></span>
-<span id="cb8-65"><a href="#cb8-65"></a><span class="co">#&gt; 13 awake-brainwt        0.3605  0.1078   0.5694  6.348e-  3  0.007931   6.333e-1</span></span>
-<span id="cb8-66"><a href="#cb8-66"></a><span class="co">#&gt; 14 awake-bodywt         0.3120  0.1032   0.4944  4.089e-  3  0.07202    5.178e-1</span></span>
-<span id="cb8-67"><a href="#cb8-67"></a><span class="co">#&gt; 15 brainwt-bodywt       0.9338  0.8892   0.9608  9.155e- 26  0.8583     9.697e-1</span></span>
-<span id="cb8-68"><a href="#cb8-68"></a></span>
-<span id="cb8-69"><a href="#cb8-69"></a><span class="co"># getting the sample sizes for all pairs</span></span>
-<span id="cb8-70"><a href="#cb8-70"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</span>
-<span id="cb8-71"><a href="#cb8-71"></a>  <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</span>
-<span id="cb8-72"><a href="#cb8-72"></a>  <span class="dt">cor.vars =</span> sleep_total<span class="op">:</span>bodywt,</span>
-<span id="cb8-73"><a href="#cb8-73"></a>  <span class="dt">corr.method =</span> <span class="st">"robust"</span>,</span>
-<span id="cb8-74"><a href="#cb8-74"></a>  <span class="dt">return =</span> <span class="st">"n"</span> <span class="co"># note that n is different due to NAs</span></span>
-<span id="cb8-75"><a href="#cb8-75"></a>)</span>
-<span id="cb8-76"><a href="#cb8-76"></a><span class="co">#&gt; # A tibble: 6 x 7</span></span>
-<span id="cb8-77"><a href="#cb8-77"></a><span class="co">#&gt;   variable    sleep_total sleep_rem sleep_cycle awake brainwt bodywt</span></span>
-<span id="cb8-78"><a href="#cb8-78"></a><span class="co">#&gt;   &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span id="cb8-79"><a href="#cb8-79"></a><span class="co">#&gt; 1 sleep_total          83        61          32    83      56     83</span></span>
-<span id="cb8-80"><a href="#cb8-80"></a><span class="co">#&gt; 2 sleep_rem            61        61          32    61      48     61</span></span>
-<span id="cb8-81"><a href="#cb8-81"></a><span class="co">#&gt; 3 sleep_cycle          32        32          32    32      30     32</span></span>
-<span id="cb8-82"><a href="#cb8-82"></a><span class="co">#&gt; 4 awake                83        61          32    83      56     83</span></span>
-<span id="cb8-83"><a href="#cb8-83"></a><span class="co">#&gt; 5 brainwt              56        48          30    56      56     56</span></span>
-<span id="cb8-84"><a href="#cb8-84"></a><span class="co">#&gt; 6 bodywt               83        61          32    83      56     83</span></span></code></pre></div>
+<span id="cb8-47"><a href="#cb8-47"></a><span class="co">#&gt; # A tibble: 15 x 7</span></span>
+<span id="cb8-48"><a href="#cb8-48"></a><span class="co">#&gt;    pair                      r    lower    upper          p lower.adj  upper.adj</span></span>
+<span id="cb8-49"><a href="#cb8-49"></a><span class="co">#&gt;    &lt;chr&gt;                 &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;</span></span>
+<span id="cb8-50"><a href="#cb8-50"></a><span class="co">#&gt;  1 sleep_total-sleep_~  0.7518  0.6167   0.8438  2.916e- 12  0.5402     8.740e-1</span></span>
+<span id="cb8-51"><a href="#cb8-51"></a><span class="co">#&gt;  2 sleep_total-sleep_~ -0.4737 -0.7058  -0.1498  6.169e-  3 -0.7738     7.215e-5</span></span>
+<span id="cb8-52"><a href="#cb8-52"></a><span class="co">#&gt;  3 sleep_total-awake   -1.000  -1.000   -1.000   2.419e-226 -1.000     -1.000e+0</span></span>
+<span id="cb8-53"><a href="#cb8-53"></a><span class="co">#&gt;  4 sleep_total-brainwt -0.3605 -0.5694  -0.1078  6.348e-  3 -0.6290    -1.505e-2</span></span>
+<span id="cb8-54"><a href="#cb8-54"></a><span class="co">#&gt;  5 sleep_total-bodywt  -0.3120 -0.4944  -0.1033  4.085e-  3 -0.5302    -5.506e-2</span></span>
+<span id="cb8-55"><a href="#cb8-55"></a><span class="co">#&gt;  6 sleep_rem-sleep_cy~ -0.3381 -0.6144   0.01198 5.839e-  2 -0.6806     1.257e-1</span></span>
+<span id="cb8-56"><a href="#cb8-56"></a><span class="co">#&gt;  7 sleep_rem-awake     -0.7518 -0.8438  -0.6167  2.911e- 12 -0.8748    -5.376e-1</span></span>
+<span id="cb8-57"><a href="#cb8-57"></a><span class="co">#&gt;  8 sleep_rem-brainwt   -0.2213 -0.4756   0.06701 1.306e-  1 -0.4756     6.701e-2</span></span>
+<span id="cb8-58"><a href="#cb8-58"></a><span class="co">#&gt;  9 sleep_rem-bodywt    -0.3277 -0.5353  -0.08265 9.947e-  3 -0.5838    -1.223e-2</span></span>
+<span id="cb8-59"><a href="#cb8-59"></a><span class="co">#&gt; 10 sleep_cycle-awake    0.4737  0.1498   0.7058  6.169e-  3 -0.006407   7.763e-1</span></span>
+<span id="cb8-60"><a href="#cb8-60"></a><span class="co">#&gt; 11 sleep_cycle-brainwt  0.8516  0.7088   0.9274  2.420e-  9  0.6080     9.487e-1</span></span>
+<span id="cb8-61"><a href="#cb8-61"></a><span class="co">#&gt; 12 sleep_cycle-bodywt   0.4178  0.08089  0.6690  1.734e-  2 -0.06265    7.410e-1</span></span>
+<span id="cb8-62"><a href="#cb8-62"></a><span class="co">#&gt; 13 awake-brainwt        0.3605  0.1078   0.5694  6.348e-  3  0.007931   6.333e-1</span></span>
+<span id="cb8-63"><a href="#cb8-63"></a><span class="co">#&gt; 14 awake-bodywt         0.3120  0.1032   0.4944  4.089e-  3  0.07202    5.178e-1</span></span>
+<span id="cb8-64"><a href="#cb8-64"></a><span class="co">#&gt; 15 brainwt-bodywt       0.9338  0.8892   0.9608  9.155e- 26  0.8583     9.697e-1</span></span>
+<span id="cb8-65"><a href="#cb8-65"></a></span>
+<span id="cb8-66"><a href="#cb8-66"></a><span class="co"># getting the sample sizes for all pairs</span></span>
+<span id="cb8-67"><a href="#cb8-67"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</span>
+<span id="cb8-68"><a href="#cb8-68"></a>  <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</span>
+<span id="cb8-69"><a href="#cb8-69"></a>  <span class="dt">cor.vars =</span> sleep_total<span class="op">:</span>bodywt,</span>
+<span id="cb8-70"><a href="#cb8-70"></a>  <span class="dt">corr.method =</span> <span class="st">"robust"</span>,</span>
+<span id="cb8-71"><a href="#cb8-71"></a>  <span class="dt">return =</span> <span class="st">"n"</span> <span class="co"># note that n is different due to NAs</span></span>
+<span id="cb8-72"><a href="#cb8-72"></a>)</span>
+<span id="cb8-73"><a href="#cb8-73"></a><span class="co">#&gt; # A tibble: 6 x 7</span></span>
+<span id="cb8-74"><a href="#cb8-74"></a><span class="co">#&gt;   variable    sleep_total sleep_rem sleep_cycle awake brainwt bodywt</span></span>
+<span id="cb8-75"><a href="#cb8-75"></a><span class="co">#&gt;   &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb8-76"><a href="#cb8-76"></a><span class="co">#&gt; 1 sleep_total          83        61          32    83      56     83</span></span>
+<span id="cb8-77"><a href="#cb8-77"></a><span class="co">#&gt; 2 sleep_rem            61        61          32    61      48     61</span></span>
+<span id="cb8-78"><a href="#cb8-78"></a><span class="co">#&gt; 3 sleep_cycle          32        32          32    32      30     32</span></span>
+<span id="cb8-79"><a href="#cb8-79"></a><span class="co">#&gt; 4 awake                83        61          32    83      56     83</span></span>
+<span id="cb8-80"><a href="#cb8-80"></a><span class="co">#&gt; 5 brainwt              56        48          30    56      56     56</span></span>
+<span id="cb8-81"><a href="#cb8-81"></a><span class="co">#&gt; 6 bodywt               83        61          32    83      56     83</span></span></code></pre></div>
 </div>
 <div id="grouped-analysis-with-grouped_ggcorrmat" class="section level2">
 <h2 class="hasAnchor">

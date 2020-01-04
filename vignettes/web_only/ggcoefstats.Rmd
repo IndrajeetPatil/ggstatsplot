@@ -80,10 +80,11 @@ Most of the regression models that are supported in the `broom` and
 `gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`,
 `gmm`, `hurdle`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`,
 `lmodel2`, `lmRob`, `lmrob`, `mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`,
-`mediate`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `nlmerMod`, `nlrq`,
-`nlreg`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`,
-`rq`, `rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`, `survreg`,
-`svyglm`, `svyolr`, `svyglm`, `tobit`, `truncreg`, `wbgee`, `wblm`, etc.
+`mediate`, `mixor`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `nlmerMod`,
+`nlrq`, `nlreg`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`,
+`rlmerMod`, `rq`, `rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`,
+`survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`, `wbgee`,
+`wblm`, etc.
 
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
@@ -845,6 +846,30 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
+## Vector Generalized Linear Models (`vgam`)
+
+```{r vgam, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 6}
+# setup
+set.seed(123)
+library(VGAM)
+pneumo <- transform(pneumo, let = log(exposure.time))
+
+# model
+mod <-
+  vglm(
+    formula = cbind(normal, mild, severe) ~ let,
+    family = multinomial,
+    data = pneumo
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
+  title = "Vector Generalized Linear Models",
+  exclude.intercept = FALSE
+)
+```
+
 ## Constrained Generalized Additive Model Fitting (`cgam`)
 
 ```{r cgam, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 6}
@@ -871,38 +896,38 @@ ggstatsplot::ggcoefstats(
 set.seed(123)
 library(cgam)
 
-# simulate a balanced data set with 30 clusters 
-# each cluster has 30 data points   
+# simulate a balanced data set with 30 clusters
+# each cluster has 30 data points
 n <- 30
 m <- 30
 
-# the standard deviation of between cluster error terms is 1 
+# the standard deviation of between cluster error terms is 1
 # the standard deviation of within cluster error terms is 2
 sige <- 1
 siga <- 2
 
 # generate a continuous predictor
-x <- 1:(m*n)
-for(i in 1:m) {
-  x[(n*(i-1)+1):(n*i)] <- round(runif(n), 3)
+x <- 1:(m * n)
+for (i in 1:m) {
+  x[(n * (i - 1) + 1):(n * i)] <- round(runif(n), 3)
 }
 # generate a group factor
-group <- trunc(0:((m*n)-1)/n)+1
+group <- trunc(0:((m * n) - 1) / n) + 1
 
 # generate the fixed-effect term
-mu <- 10*exp(10*x-5)/(1+exp(10*x-5))
+mu <- 10 * exp(10 * x - 5) / (1 + exp(10 * x - 5))
 
 # generate the random-intercept term asscosiated with each group
 avals <- rnorm(m, 0, siga)
 
-# generate the response 
-y <- 1:(m*n)
-for(i in 1:m){
+# generate the response
+y <- 1:(m * n)
+for (i in 1:m) {
   y[group == i] <- mu[group == i] + avals[i] + rnorm(n, 0, sige)
 }
 
 # use REML method to fit the model
-ans <- cgamm(formula = y ~ s.incr(x) + (1|group), reml=TRUE) 
+ans <- cgamm(formula = y ~ s.incr(x) + (1 | group), reml = TRUE)
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -949,7 +974,7 @@ d <- data.frame(x = runif(200, -1, 1))
 d$y <- rnbinom(200, mu = exp(0 + 3 * d$x), size = 1)
 
 # model
-m_nb1 <- 
+m_nb1 <-
   glmx(
     formula = y ~ x,
     data = d,
@@ -1227,6 +1252,34 @@ ggstatsplot::ggcoefstats(mod) +
     y = "threshold parameters",
     title = "cumulative link mixed models"
   )
+```
+
+## Mixed-Effects Ordinal Regression Analysis (`mixor`)
+
+```{r mixor, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 6}
+# setup
+set.seed(123)
+library(mixor)
+data("SmokingPrevention")
+
+# data frame must be sorted by id variable
+SmokingPrevention <- SmokingPrevention[order(SmokingPrevention$class), ]
+
+# school model
+mod <-
+  mixor(
+    formula = thksord ~ thkspre + cc + tv + cctv,
+    data = SmokingPrevention,
+    id = school,
+    link = "logit"
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
+  title = "Mixed-Effects Ordinal Regression Analysis",
+  exclude.intercept = FALSE
+)
 ```
 
 ## bias reduction in generalized linear models (`brglm2`)
@@ -1935,12 +1988,12 @@ library(survival)
 data("tobin", package = "survival")
 
 # model
-cragg_trunc <- 
+cragg_trunc <-
   truncreg(
-  formula = durable ~ age + quant,
-  data = tobin,
-  subset = durable > 0
-)
+    formula = durable ~ age + quant,
+    data = tobin,
+    subset = durable > 0
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -3430,4 +3483,3 @@ If you find any bugs or have any suggestions/remarks, please file an issue on
 
 For details, see-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>
-

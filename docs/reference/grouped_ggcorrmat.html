@@ -602,21 +602,7 @@ of <em>p</em>-values.</p>
 #&gt; </span><span style='color: #555555;'> 8</span><span> herbi sleep_rem          0.86      1          -</span><span style='color: #BB0000;'>0.41</span><span> -</span><span style='color: #BB0000;'>0.86</span><span>   -</span><span style='color: #BB0000;'>0.43</span><span>  -</span><span style='color: #BB0000;'>0.4</span><span> 
 #&gt; </span><span style='color: #555555;'> 9</span><span> herbi sleep_cycle       -</span><span style='color: #BB0000;'>0.71</span><span>     -</span><span style='color: #BB0000;'>0.41</span><span>        1     0.71    0.85   0.71
 #&gt; </span><span style='color: #555555;'>10</span><span> herbi awake             -</span><span style='color: #BB0000;'>1</span><span>        -</span><span style='color: #BB0000;'>0.86</span><span>        0.71  1       0.39   0.38
-#&gt; </span><span style='color: #555555;'># ... with 14 more rows</span><span></div><div class='input'>
-<span class='co'># for getting confidence intervals</span>
-<span class='co'># confidence intervals are not available for **robust** correlation</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html'>grouped_ggcorrmat</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/r/datasets/iris.html'>iris</a></span>,
-  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>Species</span>,
-  <span class='kw'>corr.method</span> <span class='kw'>=</span> <span class='st'>"r"</span>,
-  <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"holm"</span>,
-  <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>:<span class='no'>Petal.Width</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"ci"</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Confidence intervals not supported for robust correlation.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Confidence intervals not supported for robust correlation.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Confidence intervals not supported for robust correlation.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 0 x 1</span><span>
-#&gt; </span><span style='color: #555555;'># ... with 1 variable: Species </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span></div><div class='input'># }
+#&gt; </span><span style='color: #555555;'># ... with 14 more rows</span><span></div><div class='input'># }
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -192,25 +192,29 @@ testthat::test_that(
 
     # subtitle return
     set.seed(123)
-    p_sub <- ggstatsplot::ggbarstats(
-      data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
-      main = race,
-      condition = marital,
-      return = "subtitle",
-      k = 4,
-      messages = FALSE
-    )
+    p_sub <-
+      ggstatsplot::ggbarstats(
+        data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
+        main = race,
+        bias.correct = FALSE,
+        condition = marital,
+        return = "subtitle",
+        k = 4,
+        messages = FALSE
+      )
 
     # caption return
     set.seed(123)
-    p_cap <- ggstatsplot::ggbarstats(
-      data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
-      main = race,
-      condition = marital,
-      return = "caption",
-      k = 4,
-      messages = FALSE
-    )
+    p_cap <-
+      ggstatsplot::ggbarstats(
+        data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
+        main = race,
+        condition = marital,
+        return = "caption",
+        k = 4,
+        bias.correct = FALSE,
+        messages = FALSE
+      )
 
     # tests
     testthat::expect_identical(
