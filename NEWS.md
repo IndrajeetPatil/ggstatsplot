@@ -13,7 +13,7 @@ MAJOR CHANGES
 
   - The summary caption no longer displays log-likelihood value because it tends
     to be not available for a number of regression model objects and so the
-    caption was unncessarily being skipped.
+    caption was unnecessarily being skipped.
 
 MINOR CHANGES
 

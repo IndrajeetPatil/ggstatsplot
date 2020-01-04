@@ -75,7 +75,10 @@ Suggests:
 VignetteBuilder: 
     knitr
 Remotes:
-    IndrajeetPatil/statsExpressions
+    IndrajeetPatil/statsExpressions,
+    easystats/insight,
+    easystats/parameters,
+    easystats/performance
 Encoding: UTF-8
 Language: en-US
 LazyData: true
