@@ -3,7 +3,7 @@
 #' @name ggbetweenstats_switch
 #'
 #' @inheritParams ggbetweenstats
-#' @param test Decides which test to run (can be either `"t-test"` or
+#' @param test Decides which test to run (can be either `"t"` or
 #'   `"anova"`).
 #' @param ... Arguments passed to respective subtitle helper functions.
 #'
@@ -11,60 +11,30 @@
 #' @importFrom statsExpressions expr_t_robust expr_t_bayes
 #' @importFrom statsExpressions expr_anova_parametric expr_anova_nonparametric
 #' @importFrom statsExpressions expr_anova_robust expr_anova_bayes
+#' @importFrom rlang eval_bare parse_expr
 #'
 #' @keywords internal
 
 ggbetweenstats_switch <- function(type, test, ...) {
   # figuring out type of test needed to run
-  test.type <- switch(
-    EXPR = type,
-    parametric = "p",
-    p = "p",
-    robust = "r",
-    r = "r",
-    nonparametric = "np",
-    np = "np",
-    bayes = "bf",
-    bf = "bf"
-  )
-
-  # either t-test or anova will be run
-  if (test == "t-test") {
-    subtitle <- switch(
-      EXPR = test.type,
-      p = {
-        statsExpressions::expr_t_parametric(...)
-      },
-      np = {
-        statsExpressions::expr_t_nonparametric(...)
-      },
-      r = {
-        statsExpressions::expr_t_robust(...)
-      },
-      bf = {
-        statsExpressions::expr_t_bayes(...)
-      }
+  type <-
+    switch(
+      EXPR = type,
+      parametric = "parametric",
+      p = "parametric",
+      robust = "robust",
+      r = "robust",
+      nonparametric = "nonparametric",
+      np = "nonparametric",
+      bayes = "bayes",
+      bf = "bayes"
     )
-  } else {
-    subtitle <- switch(
-      EXPR = test.type,
-      p = {
-        statsExpressions::expr_anova_parametric(...)
-      },
-      np = {
-        statsExpressions::expr_anova_nonparametric(...)
-      },
-      r = {
-        statsExpressions::expr_anova_robust(...)
-      },
-      bf = {
-        statsExpressions::expr_anova_bayes(...)
-      }
-    )
-  }
 
-  # return the text for the subtitle
-  return(subtitle)
+  # make a function character string
+  .f_string <- paste("statsExpressions::expr_", test, "_", type, "(...)", sep = "")
+
+  # evaluate it
+  return(rlang::eval_bare(rlang::parse_expr(.f_string)))
 }
 
 #' @rdname ggbetweenstats_switch

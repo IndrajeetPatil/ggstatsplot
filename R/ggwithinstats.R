@@ -175,7 +175,7 @@ ggwithinstats <- function(data,
 
   # figure out which test to run based on the number of levels of the
   # independent variables
-  test <- ifelse(nlevels(data %>% dplyr::pull({{ x }}))[[1]] < 3, "t-test", "anova")
+  test <- ifelse(nlevels(data %>% dplyr::pull({{ x }}))[[1]] < 3, "t", "anova")
 
   # --------------------------------- sorting --------------------------------
 
@@ -239,7 +239,7 @@ ggwithinstats <- function(data,
     # preparing the bayes factor message
     if (type %in% c("parametric", "p") && isTRUE(bf.message)) {
       # choosing the appropriate test
-      if (test == "t-test") {
+      if (test == "t") {
         .f <- statsExpressions::bf_ttest
       } else {
         .f <- statsExpressions::bf_oneway_anova

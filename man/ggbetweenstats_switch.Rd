@@ -16,7 +16,7 @@ or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accep
 \code{"p"} (for parametric), \code{"np"} (nonparametric), \code{"r"} (robust), or
 \code{"bf"}resp.}
 
-\item{test}{Decides which test to run (can be either \code{"t-test"} or
+\item{test}{Decides which test to run (can be either \code{"t"} or
 \code{"anova"}).}
 
 \item{...}{Arguments passed to respective subtitle helper functions.}
