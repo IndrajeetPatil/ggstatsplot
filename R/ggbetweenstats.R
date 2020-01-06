@@ -254,10 +254,11 @@ ggbetweenstats <- function(data,
                            return = "plot",
                            messages = TRUE) {
 
+  # convert entered stats type to a standard notation
+  type <- stats_type_switch(type)
+
   # no pairwise comparisons are available for Bayesian t-tests
-  if (type %in% c("bf", "bayes") && isTRUE(pairwise.comparisons)) {
-    pairwise.comparisons <- FALSE
-  }
+  if (type == "bayes" && isTRUE(pairwise.comparisons)) pairwise.comparisons <- FALSE
 
   # ------------------------------ variable names ----------------------------
 
@@ -421,18 +422,10 @@ ggbetweenstats <- function(data,
   if (isTRUE(results.subtitle)) {
 
     # preparing the Bayes factor message
-    if (type %in% c("parametric", "p") && isTRUE(bf.message)) {
-      # choosing the appropriate test
-      if (test == "t") {
-        .f <- statsExpressions::bf_ttest
-      } else {
-        .f <- statsExpressions::bf_oneway_anova
-      }
-
-      # preparing the BF message for null
+    if (type == "parametric" && isTRUE(bf.message)) {
       caption <-
-        rlang::exec(
-          .fn = .f,
+        ggbetweenstats_caption_switch(
+          test = test,
           data = data,
           x = rlang::as_string(x),
           y = rlang::as_string(y),
@@ -446,7 +439,7 @@ ggbetweenstats <- function(data,
 
     # extracting the subtitle using the switch function
     subtitle <-
-      ggbetweenstats_switch(
+      ggbetweenstats_subtitle_switch(
         # switch based on
         type = type,
         test = test,

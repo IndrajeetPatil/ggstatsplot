@@ -220,12 +220,6 @@ ggcorrmat <- function(data,
     df <- dplyr::select(.data = data, {{ cor.vars }})
   }
 
-  # counting number of NAs present in the dataframe
-  na_total <- df %>%
-    purrr::map_df(.x = ., .f = ~ sum(is.na(.))) %>%
-    purrr::flatten_dbl(.x = .) %>%
-    sum(., na.rm = TRUE)
-
   # renaming the columns if so desired
   if (!is.null(cor.vars.names)) {
     # check if number of cor.vars is equal to the number of names entered
@@ -343,7 +337,7 @@ ggcorrmat <- function(data,
     if (corr.method %in% c("pearson", "spearman", "kendall", "robust")) {
 
       # legend title with information about correlation type and sample
-      if (na_total == 0) {
+      if (isFALSE(any(is.na(df)))) {
         legend.title.text <-
           bquote(atop(
             atop(
@@ -357,7 +351,8 @@ ggcorrmat <- function(data,
           ))
       } else {
         # in case of NAs, compute minimum and maximum sample sizes of pairs
-        n_summary <- tibble::as_tibble(corr_df$n) %>%
+        n_summary <-
+          tibble::as_tibble(corr_df$n) %>%
           dplyr::select_if(.tbl = ., .predicate = purrr::is_bare_numeric) %>%
           purrr::flatten_dbl(.x = .) %>%
           {
@@ -466,11 +461,12 @@ ggcorrmat <- function(data,
 
   # ========================= confidence intervals ===========================
 
+  # composing a function to convert dataframe to tibble
+  tibble_helper <- purrr::compose(tibble::as_tibble, tibble::rownames_to_column)
+
+  # CI computation
   if (output == "ci") {
     if (corr.method %in% c("pearson", "spearman", "kendall")) {
-      # composing a function to convert dataframe to tibble
-      tibble_helper <- purrr::compose(tibble::as_tibble, tibble::rownames_to_column)
-
       # merging data frame with CIs and adjusted CIs
       ci.mat <-
         list(corr_df$ci, corr_df$ci.adj) %>%

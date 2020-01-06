@@ -13,6 +13,7 @@ testthat::test_that(
         data = dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25),
         x = genre,
         y = rating,
+        type = "xx",
         messages = TRUE,
         palette = "Set3",
         outlier.tagging = TRUE,
