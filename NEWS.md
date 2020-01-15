@@ -1,4 +1,4 @@
-# ggstatsplot 0.1.4.9000
+# ggstatsplot 0.2.0.9000
 
 BREAKING CHANGES
 

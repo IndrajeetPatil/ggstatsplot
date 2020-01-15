@@ -283,12 +283,8 @@ ggcoefstats <- function(x,
                         scales = NULL,
                         component = "survival",
                         bf.message = TRUE,
-                        d = "norm",
-                        d.par = c(mean = 0, sd = 0.3),
-                        tau = "halfcauchy",
-                        tau.par = c(scale = 0.5),
-                        iter = 5000,
-                        summarize = "stan",
+                        d = prior("norm", c(mean = 0, sd = 0.3)),
+                        tau = prior("invgamma", c(shape = 1, scale = 0.15)),
                         p.adjust.method = "none",
                         coefficient.type = c("beta", "location", "coefficient"),
                         by.class = FALSE,
@@ -709,11 +705,7 @@ ggcoefstats <- function(x,
           k = k,
           messages = messages,
           d = d,
-          d.par = d.par,
-          tau = tau,
-          tau.par = tau.par,
-          iter = iter,
-          summarize = summarize
+          tau = tau
         )
     }
 

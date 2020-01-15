@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.4.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.2.0.9000</span>
       </span>
     </div>
 
@@ -190,12 +190,8 @@
 
     <pre class="usage"><span class='fu'>bf_meta_message</span>(
   <span class='no'>data</span>,
-  <span class='kw'>d</span> <span class='kw'>=</span> <span class='st'>"norm"</span>,
-  <span class='kw'>d.par</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>0.3</span>),
-  <span class='kw'>tau</span> <span class='kw'>=</span> <span class='st'>"halfcauchy"</span>,
-  <span class='kw'>tau.par</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>0.5</span>),
-  <span class='kw'>iter</span> <span class='kw'>=</span> <span class='fl'>10000</span>,
-  <span class='kw'>summarize</span> <span class='kw'>=</span> <span class='st'>"stan"</span>,
+  <span class='kw'>d</span> <span class='kw'>=</span> <span class='fu'>prior</span>(<span class='st'>"norm"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>0.3</span>)),
+  <span class='kw'>tau</span> <span class='kw'>=</span> <span class='fu'>prior</span>(<span class='st'>"invgamma"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>shape</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>0.15</span>)),
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
   <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
@@ -212,35 +208,15 @@ standard error <code>SE</code>, <code>labels</code>, and moderators per study.</
     </tr>
     <tr>
       <th>d</th>
-      <td><p>the prior distribution of the average effect size \(d\) specified
-either as the type of family (e.g., <code>"norm"</code>) or via
-<code><a href='https://rdrr.io/pkg/metaBMA/man/prior.html'>prior</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>d.par</th>
-      <td><p>prior parameters for \(d\) (only used if <code>d</code> specifies
-the type of family).</p></td>
+      <td><p><code>prior</code> distribution on the average effect size <code>d</code>. The
+prior probability density function is defined via <code><a href='https://rdrr.io/pkg/metaBMA/man/prior.html'>prior</a></code>.</p></td>
     </tr>
     <tr>
       <th>tau</th>
-      <td><p>the prior distribution of the between-study heterogeneity
-\(\tau\) specified either as a character value (e.g.,
-<code>"halfcauchy"</code>) or via <code><a href='https://rdrr.io/pkg/metaBMA/man/prior.html'>prior</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>tau.par</th>
-      <td><p>prior parameters for \(\tau\)  (only used if <code>tau</code>
-specifies the type of family).</p></td>
-    </tr>
-    <tr>
-      <th>iter</th>
-      <td><p>number of MCMC iterations using Stan.</p></td>
-    </tr>
-    <tr>
-      <th>summarize</th>
-      <td><p>how to estimate parameter summaries (mean, median, SD,
-etc.): Either by numerical integration (<code>summarize = "integrate"</code>) or
-based on MCMC/Stan samples (<code>summarize = "stan"</code>).</p></td>
+      <td><p><code>prior</code> distribution on the between-study heterogeneity
+<code>tau</code> (i.e., the standard deviation of the study effect sizes
+<code>dstudy</code> in a random-effects meta-analysis. A (nonnegative) prior
+probability density function is defined via <code><a href='https://rdrr.io/pkg/metaBMA/man/prior.html'>prior</a></code>.</p></td>
     </tr>
     <tr>
       <th>k</th>
@@ -258,14 +234,42 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>further arguments passed to <code><a href='https://rdrr.io/pkg/rstan/man/stanmodel-method-sampling.html'>rstan::sampling</a></code> (see
-<code>stanmodel-method-sampling</code>). Relevant MCMC settings
-concern the number of warmup samples that are discarded
-(<code>warmup=500</code>), the total number of iterations per chain
-(<code>iter=2000</code>), the number of MCMC chains (<code>chains=4</code>), whether
-multiple cores should be used (<code>cores=4</code>), and control arguments that
-make the sampling in Stan more robust, for instance:
-<code>control=list(adapt_delta=.97)</code>.</p></td>
+      <td><p>Arguments passed on to <code><a href='https://rdrr.io/pkg/metaBMA/man/meta_random.html'>metaBMA::meta_random</a></code></p><dl class='dl-horizontal'>
+    <dt><code>y</code></dt><dd><p>effect size per study. Can be provided as (1) a numeric vector, (2)
+the quoted or unquoted name of the variable in <code>data</code>, or (3) a
+<code><a href='https://rdrr.io/r/stats/formula.html'>formula</a></code> to include discrete or continuous moderator
+variables.</p></dd>
+    <dt><code>SE</code></dt><dd><p>standard error of effect size for each study. Can be a numeric
+vector or the quoted or unquoted name of the variable in <code>data</code></p></dd>
+    <dt><code>labels</code></dt><dd><p>optional: character values with study labels. Can be a
+character vector or the quoted or unquoted name of the variable in
+<code>data</code></p></dd>
+    <dt><code>rscale_contin</code></dt><dd><p>scale parameter of the JZS prior for the continuous
+covariates.</p></dd>
+    <dt><code>rscale_discrete</code></dt><dd><p>scale parameter of the JZS prior for discrete
+moderators.</p></dd>
+    <dt><code>centering</code></dt><dd><p>whether continuous moderators are centered.</p></dd>
+    <dt><code>logml</code></dt><dd><p>how to estimate the log-marginal likelihood: either by numerical
+integration (<code>"integrate"</code>) or by bridge sampling using MCMC/Stan
+samples (<code>"stan"</code>). To obtain high precision with <code>logml="stan"</code>,
+many MCMC samples are required (e.g., <code>logml_iter=10000, warmup=1000</code>).</p></dd>
+    <dt><code>summarize</code></dt><dd><p>how to estimate parameter summaries (mean, median, SD,
+etc.): Either by numerical integration (<code>summarize = "integrate"</code>) or
+based on MCMC/Stan samples (<code>summarize = "stan"</code>).</p></dd>
+    <dt><code>ci</code></dt><dd><p>probability for the credibility/highest-density intervals.</p></dd>
+    <dt><code>rel.tol</code></dt><dd><p>relative tolerance used for numerical integration using
+<code><a href='https://rdrr.io/r/stats/integrate.html'>integrate</a></code>. Use <code>rel.tol=.Machine$double.eps</code> for
+maximal precision (however, this might be slow).</p></dd>
+    <dt><code>logml_iter</code></dt><dd><p>number of iterations (per chain) from the posterior
+distribution of <code>d</code> and <code>tau</code>. The samples are used for computing
+the marginal likelihood of the random-effects model with bridge sampling
+(if <code>logml="stan"</code>) and for obtaining parameter estimates (if
+<code>summarize="stan"</code>). Note that the argument <code>iter=2000</code> controls
+the number of iterations for estimation of the random-effect parameters per
+study in random-effects meta-analysis.</p></dd>
+    <dt><code>silent_stan</code></dt><dd><p>whether to suppress the Stan progress bar.</p></dd>
+  
+</dl></td>
     </tr>
     </table>
 
@@ -315,20 +319,20 @@ make the sampling in Stan more robust, for instance:
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</div><div class='output co'>#&gt; ### Bayesian Random-Effects Meta-Analysis ### 
 #&gt;    Prior on d:      'norm' (mean=0, sd=0.3) with support on the interval [-Inf,Inf]. 
-#&gt;    Prior on tau:    't' (location=0, scale=0.5, nu=1) truncated to the interval [0,Inf]. 
+#&gt;    Prior on tau:    'invgamma' (shape=1, scale=0.15) with support on the interval [0,Inf]. 
 #&gt; 
 #&gt; # Bayes factors:
 #&gt;            (denominator)
 #&gt; (numerator) random_H0 random_H1
-#&gt;   random_H0       1.0    0.0686
-#&gt;   random_H1      14.6    1.0000
+#&gt;   random_H0       1.0    0.0354
+#&gt;   random_H1      28.2    1.0000
 #&gt; 
 #&gt; # Posterior summary statistics of random-effects model:
 #&gt;      mean    sd  2.5%   50% 97.5% hpd95_lower hpd95_upper n_eff  Rhat
-#&gt; d   0.492 0.157 0.104 0.522 0.733       0.154       0.761 557.1 1.002
-#&gt; tau 0.335 0.171 0.144 0.288 0.802       0.111       0.672 603.7 1.002</div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("In favor of null: ", "log"["e"], 
-#&gt;     "(BF"["01"], ") = ", "-2.680", ", ", italic("d")["mean"]^"posterior", 
-#&gt;     " = ", "0.492", ", CI"["95%"], " [", "0.154", ", ", "0.761", 
+#&gt; d   0.516 0.142 0.174 0.537 0.737       0.216       0.760 773.8 1.003
+#&gt; tau 0.292 0.137 0.137 0.256 0.687       0.111       0.557 672.5 1.003</div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("In favor of null: ", "log"["e"], 
+#&gt;     "(BF"["01"], ") = ", "-3.341", ", ", italic("d")["mean"]^"posterior", 
+#&gt;     " = ", "0.516", ", CI"["95%"], " [", "0.216", ", ", "0.760", 
 #&gt;     "]"))</div><div class='input'># }
 
 </div></span></pre>

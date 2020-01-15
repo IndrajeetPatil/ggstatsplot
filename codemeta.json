@@ -14,7 +14,7 @@
   ],
   "issueTracker": "https://github.com/IndrajeetPatil/ggstatsplot/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.1.4.9000",
+  "version": "0.2.0.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -219,7 +219,7 @@
       "@type": "SoftwareApplication",
       "identifier": "broomExtra",
       "name": "broomExtra",
-      "version": ">= 1.0.0",
+      "version": ">= 1.0.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -354,7 +354,7 @@
       "@type": "SoftwareApplication",
       "identifier": "groupedstats",
       "name": "groupedstats",
-      "version": ">= 0.1.0",
+      "version": ">= 0.1.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -367,14 +367,14 @@
       "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
-      "version": ">= 0.7.1",
+      "version": ">= 0.8.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/easystats/insight"
+      "sameAs": "https://CRAN.R-project.org/package=insight"
     },
     {
       "@type": "SoftwareApplication",
@@ -406,14 +406,14 @@
       "@type": "SoftwareApplication",
       "identifier": "pairwiseComparisons",
       "name": "pairwiseComparisons",
-      "version": ">= 0.1.3",
+      "version": ">= 0.1.4",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=pairwiseComparisons"
+      "sameAs": "https://github.com/IndrajeetPatil/pairwiseComparisons"
     },
     {
       "@type": "SoftwareApplication",
@@ -432,14 +432,14 @@
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
-      "version": ">= 0.3.0",
+      "version": ">= 0.4.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/easystats/parameters"
+      "sameAs": "https://CRAN.R-project.org/package=parameters"
     },
     {
       "@type": "SoftwareApplication",
@@ -515,14 +515,14 @@
       "@type": "SoftwareApplication",
       "identifier": "statsExpressions",
       "name": "statsExpressions",
-      "version": ">= 0.2.0.9000",
+      "version": ">= 0.2.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/IndrajeetPatil/statsExpressions"
+      "sameAs": "https://CRAN.R-project.org/package=statsExpressions"
     },
     {
       "@type": "SoftwareApplication",

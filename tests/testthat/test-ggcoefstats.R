@@ -853,6 +853,7 @@ testthat::test_that(
       ggplot2::scale_y_discrete(labels = c("x1", "x2", "x3")) +
       ggplot2::labs(x = "location", y = NULL)
     p5 <- ggstatsplot::ggcoefstats(x = df4, statistic = "t")
+    set.seed(123)
     p6 <-
       suppressWarnings(ggstatsplot::ggcoefstats(
         x = df5,
@@ -860,8 +861,6 @@ testthat::test_that(
         k = 3,
         meta.analytic.effect = TRUE,
         bf.message = TRUE,
-        iter = 2500,
-        summarize = "int",
         messages = FALSE
       ))
 
@@ -962,16 +961,16 @@ testthat::test_that(
             "log"["e"],
             "(BF"["01"],
             ") = ",
-            "0.174",
+            "0.267",
             ", ",
             italic("d")["mean"]^"posterior",
             " = ",
-            "0.110",
+            "0.113",
             ", CI"["95%"],
             " [",
-            "-0.178",
+            "-0.107",
             ", ",
-            "0.412",
+            "0.357",
             "]"
           )
         )),

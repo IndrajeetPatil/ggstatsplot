@@ -11,12 +11,8 @@ ggcoefstats(
   scales = NULL,
   component = "survival",
   bf.message = TRUE,
-  d = "norm",
-  d.par = c(mean = 0, sd = 0.3),
-  tau = "halfcauchy",
-  tau.par = c(scale = 0.5),
-  iter = 5000,
-  summarize = "stan",
+  d = prior("norm", c(mean = 0, sd = 0.3)),
+  tau = prior("invgamma", c(shape = 1, scale = 0.15)),
   p.adjust.method = "none",
   coefficient.type = c("beta", "location", "coefficient"),
   by.class = FALSE,
@@ -88,25 +84,13 @@ Bayesian meta-analysis assuming that the effect size \emph{d} varies across
 studies with standard deviation \emph{t} (i.e., a random-effects analysis)
 should be displayed in caption. Defaults to \code{TRUE}.}
 
-\item{d}{the prior distribution of the average effect size \eqn{d} specified
-either as the type of family (e.g., \code{"norm"}) or via
-\code{\link[metaBMA]{prior}}.}
+\item{d}{\code{prior} distribution on the average effect size \code{d}. The
+prior probability density function is defined via \code{\link[metaBMA]{prior}}.}
 
-\item{d.par}{prior parameters for \eqn{d} (only used if \code{d} specifies
-the type of family).}
-
-\item{tau}{the prior distribution of the between-study heterogeneity
-\eqn{\tau} specified either as a character value (e.g.,
-\code{"halfcauchy"}) or via \code{\link[metaBMA]{prior}}.}
-
-\item{tau.par}{prior parameters for \eqn{\tau}  (only used if \code{tau}
-specifies the type of family).}
-
-\item{iter}{number of MCMC iterations using Stan.}
-
-\item{summarize}{how to estimate parameter summaries (mean, median, SD,
-etc.): Either by numerical integration (\code{summarize = "integrate"}) or
-based on MCMC/Stan samples (\code{summarize = "stan"}).}
+\item{tau}{\code{prior} distribution on the between-study heterogeneity
+\code{tau} (i.e., the standard deviation of the study effect sizes
+\code{dstudy} in a random-effects meta-analysis. A (nonnegative) prior
+probability density function is defined via \code{\link[metaBMA]{prior}}.}
 
 \item{p.adjust.method}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"}, \code{"hochberg"}, \code{"hommel"},

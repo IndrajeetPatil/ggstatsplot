@@ -6,12 +6,8 @@
 \usage{
 bf_meta_message(
   data,
-  d = "norm",
-  d.par = c(mean = 0, sd = 0.3),
-  tau = "halfcauchy",
-  tau.par = c(scale = 0.5),
-  iter = 10000,
-  summarize = "stan",
+  d = prior("norm", c(mean = 0, sd = 0.3)),
+  tau = prior("invgamma", c(shape = 1, scale = 0.15)),
   k = 2,
   caption = NULL,
   messages = TRUE,
@@ -22,25 +18,13 @@ bf_meta_message(
 \item{data}{data frame containing the variables for effect size \code{y},
 standard error \code{SE}, \code{labels}, and moderators per study.}
 
-\item{d}{the prior distribution of the average effect size \eqn{d} specified
-either as the type of family (e.g., \code{"norm"}) or via
-\code{\link[metaBMA]{prior}}.}
+\item{d}{\code{prior} distribution on the average effect size \code{d}. The
+prior probability density function is defined via \code{\link[metaBMA]{prior}}.}
 
-\item{d.par}{prior parameters for \eqn{d} (only used if \code{d} specifies
-the type of family).}
-
-\item{tau}{the prior distribution of the between-study heterogeneity
-\eqn{\tau} specified either as a character value (e.g.,
-\code{"halfcauchy"}) or via \code{\link[metaBMA]{prior}}.}
-
-\item{tau.par}{prior parameters for \eqn{\tau}  (only used if \code{tau}
-specifies the type of family).}
-
-\item{iter}{number of MCMC iterations using Stan.}
-
-\item{summarize}{how to estimate parameter summaries (mean, median, SD,
-etc.): Either by numerical integration (\code{summarize = "integrate"}) or
-based on MCMC/Stan samples (\code{summarize = "stan"}).}
+\item{tau}{\code{prior} distribution on the between-study heterogeneity
+\code{tau} (i.e., the standard deviation of the study effect sizes
+\code{dstudy} in a random-effects meta-analysis. A (nonnegative) prior
+probability density function is defined via \code{\link[metaBMA]{prior}}.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
@@ -50,14 +34,43 @@ based on MCMC/Stan samples (\code{summarize = "stan"}).}
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
 
-\item{...}{further arguments passed to \code{rstan::sampling} (see
-\code{\link[rstan]{stanmodel-method-sampling}}). Relevant MCMC settings
-concern the number of warmup samples that are discarded
-(\code{warmup=500}), the total number of iterations per chain
-(\code{iter=2000}), the number of MCMC chains (\code{chains=4}), whether
-multiple cores should be used (\code{cores=4}), and control arguments that
-make the sampling in Stan more robust, for instance:
-\code{control=list(adapt_delta=.97)}.}
+\item{...}{
+  Arguments passed on to \code{\link[metaBMA:meta_random]{metaBMA::meta_random}}
+  \describe{
+    \item{\code{y}}{effect size per study. Can be provided as (1) a numeric vector, (2)
+the quoted or unquoted name of the variable in \code{data}, or (3) a
+\code{\link[stats]{formula}} to include discrete or continuous moderator
+variables.}
+    \item{\code{SE}}{standard error of effect size for each study. Can be a numeric
+vector or the quoted or unquoted name of the variable in \code{data}}
+    \item{\code{labels}}{optional: character values with study labels. Can be a
+character vector or the quoted or unquoted name of the variable in
+\code{data}}
+    \item{\code{rscale_contin}}{scale parameter of the JZS prior for the continuous
+covariates.}
+    \item{\code{rscale_discrete}}{scale parameter of the JZS prior for discrete
+moderators.}
+    \item{\code{centering}}{whether continuous moderators are centered.}
+    \item{\code{logml}}{how to estimate the log-marginal likelihood: either by numerical
+integration (\code{"integrate"}) or by bridge sampling using MCMC/Stan
+samples (\code{"stan"}). To obtain high precision with \code{logml="stan"},
+many MCMC samples are required (e.g., \code{logml_iter=10000, warmup=1000}).}
+    \item{\code{summarize}}{how to estimate parameter summaries (mean, median, SD,
+etc.): Either by numerical integration (\code{summarize = "integrate"}) or
+based on MCMC/Stan samples (\code{summarize = "stan"}).}
+    \item{\code{ci}}{probability for the credibility/highest-density intervals.}
+    \item{\code{rel.tol}}{relative tolerance used for numerical integration using
+\code{\link[stats]{integrate}}. Use \code{rel.tol=.Machine$double.eps} for
+maximal precision (however, this might be slow).}
+    \item{\code{logml_iter}}{number of iterations (per chain) from the posterior
+distribution of \code{d} and \code{tau}. The samples are used for computing
+the marginal likelihood of the random-effects model with bridge sampling
+(if \code{logml="stan"}) and for obtaining parameter estimates (if
+\code{summarize="stan"}). Note that the argument \code{iter=2000} controls
+the number of iterations for estimation of the random-effect parameters per
+study in random-effects meta-analysis.}
+    \item{\code{silent_stan}}{whether to suppress the Stan progress bar.}
+  }}
 }
 \description{
 Bayes factor message for random-effects meta-analysis

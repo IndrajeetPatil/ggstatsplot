@@ -286,7 +286,7 @@ testthat::test_that(
     )
 
     # should not work
-    testthat::expect_error(
+    testthat::expect_output(
       suppressWarnings(ggstatsplot::ggbarstats(
         data = df,
         main = x,

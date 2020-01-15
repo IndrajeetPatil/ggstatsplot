@@ -86,9 +86,9 @@ testthat::test_that(
     testthat::expect_identical(
       as.character(unique(data_signif$annotation)),
       c(
-        "list(~italic(p)['unadjusted']== 0.079 )",
-        "list(~italic(p)['unadjusted']== 0.139 )",
-        "list(~italic(p)['unadjusted']== 0.825 )"
+        "list(~italic(p)[ unadjusted ]== 0.079 )",
+        "list(~italic(p)[ unadjusted ]== 0.139 )",
+        "list(~italic(p)[ unadjusted ]== 0.825 )"
       )
     )
 
@@ -98,9 +98,9 @@ testthat::test_that(
     testthat::expect_identical(
       dat$label,
       c(
-        "list(~italic(p)['unadjusted']== 0.079 )",
-        "list(~italic(p)['unadjusted']== 0.139 )",
-        "list(~italic(p)['unadjusted']== 0.825 )"
+        "list(~italic(p)[ unadjusted ]== 0.079 )",
+        "list(~italic(p)[ unadjusted ]== 0.139 )",
+        "list(~italic(p)[ unadjusted ]== 0.825 )"
       )
     )
     testthat::expect_identical(
@@ -189,9 +189,9 @@ testthat::test_that(
     testthat::expect_identical(
       dat$label,
       c(
-        "list(~italic(p)['adjusted']== 0.915 )",
-        "list(~italic(p)['adjusted']== 0.003 )",
-        "list(~italic(p)['adjusted']== 0.001 )"
+        "list(~italic(p)[ adjusted ]== 0.915 )",
+        "list(~italic(p)[ adjusted ]== 0.003 )",
+        "list(~italic(p)[ adjusted ]== 0.001 )"
       )
     )
     testthat::expect_identical(
@@ -305,8 +305,8 @@ testthat::test_that(
     testthat::expect_equal(
       ggsignif_stat$annotations,
       c(
-        "list(~italic(p)['adjusted']<= 0.001 )",
-        "list(~italic(p)['adjusted']<= 0.001 )"
+        "list(~italic(p)[ adjusted ]<= 0.001 )",
+        "list(~italic(p)[ adjusted ]<= 0.001 )"
       )
     )
   }
@@ -384,9 +384,9 @@ testthat::test_that(
     testthat::expect_equal(
       ggsignif_stat$annotations,
       c(
-        "list(~italic(p)['adjusted']== 0.032 )",
-        "list(~italic(p)['adjusted']<= 0.001 )",
-        "list(~italic(p)['adjusted']== 0.015 )"
+        "list(~italic(p)[ adjusted ]== 0.032 )",
+        "list(~italic(p)[ adjusted ]<= 0.001 )",
+        "list(~italic(p)[ adjusted ]== 0.015 )"
       )
     )
 

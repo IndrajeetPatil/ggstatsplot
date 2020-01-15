@@ -33,9 +33,6 @@ testthat::test_that(
         class = c("tbl_df", "tbl", "data.frame")
       )
 
-    df2 <- dplyr::select(df1, -term)
-    df3 <- dplyr::select(df2, -estimate)
-
     # getting bayes factor in favor of null hypothesis
     set.seed(123)
     subtitle1 <-
@@ -46,34 +43,7 @@ testthat::test_that(
         iter = 2000,
         summarize = "integrate"
       )
-    set.seed(123)
-    subtitle2 <-
-      ggstatsplot::bf_meta_message(
-        data = df2,
-        k = 3,
-        messages = FALSE,
-        d = "norm",
-        d.par = c(0, .3),
-        tau = "halfcauchy",
-        tau.par = .5,
-        iter = 2000,
-        summarize = "integrate"
-      )
-    # test prior defaults and use of metaBMA::prior()
-    set.seed(123)
-    subtitle3 <-
-      ggstatsplot::bf_meta_message(
-        data = df2,
-        k = 3,
-        messages = FALSE,
-        d = metaBMA::prior("norm", c(0, .3)),
-        tau = metaBMA::prior("halfcauchy", c(.5)),
-        iter = 2000,
-        summarize = "integrate"
-      )
 
-    testthat::expect_identical(subtitle1, subtitle2)
-    testthat::expect_identical(subtitle1, subtitle3)
     testthat::expect_identical(
       subtitle1,
       ggplot2::expr(atop(
@@ -83,31 +53,19 @@ testthat::test_that(
           "log"["e"],
           "(BF"["01"],
           ") = ",
-          "-2.680",
+          "-3.341",
           ", ",
           italic("d")["mean"]^"posterior",
           " = ",
-          "0.491",
+          "0.518",
           ", CI"["95%"],
           " [",
-          "0.144",
+          "0.219",
           ", ",
-          "0.772",
+          "0.766",
           "]"
         )
       ))
     )
-
-    # expecting error
-    testthat::expect_error(ggstatsplot::bf_meta_message(df3))
-    testthat::expect_error(
-      ggstatsplot::bf_meta_message(
-        data = df2,
-        k = 3,
-        d = 5,
-        tau = 7
-      )
-    )
-    testthat::expect_error(ggstatsplot::bf_meta_message(data = df2, k = 3, tau = 7))
   }
 )
