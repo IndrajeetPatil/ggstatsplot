@@ -74,17 +74,17 @@ Most of the regression models that are supported in the `broom` and
 
 `aareg`, `anova`, `aov`, `aovlist`, `Arima`, `bglmerMod`, `bigglm`, `biglm`,
 `blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm2`, `brmsfit`, `btergm`, `cch`,
-`cgam`, `cgamm`, `clm`, `clmm`, `coeftest`, `confusionMatrix`, `coxph`, `cpglm`,
-`cpglmm`, `complmrob`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`,
-`fitdistr`, `flexsurvreg`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`,
-`gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`,
-`gmm`, `hurdle`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`,
-`lmodel2`, `lmRob`, `lmrob`, `mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`,
-`mediate`, `mixor`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `nlmerMod`,
-`nlrq`, `nlreg`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`,
-`rlmerMod`, `rq`, `rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`,
-`survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`, `wbgee`,
-`wblm`, etc.
+`cgam`, `cgamm`, `clm`, `clmm`, `coeftest`, `confusionMatrix`, `coxme`, `coxph`,
+`cpglm`, `cpglmm`, `complmrob`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`,
+`felm`, `fitdistr`, `flexsurvreg`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`,
+`Gam`, `gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`,
+`glmx`, `gmm`, `hurdle`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`,
+`lmerMod`, `lmodel2`, `lmRob`, `lmrob`, `mcmc`, `MCMCglmm`, `mclogit`,
+`mmclogit`, `mediate`, `mixor`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`,
+`nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`,
+`rlm`, `rlmerMod`, `rq`, `rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`,
+`stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`,
+`wbgee`, `wblm`, etc.
 
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
@@ -1976,7 +1976,26 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
-## Truncated Gaussian Regression Models (`truncreg`)
+## mixed effects Cox model (`coxme`)
+
+```{r coxme, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+# setup
+set.seed(123)
+library(survival)
+library(coxme)
+
+# model
+fit <- coxme(Surv(y, uncens) ~ trt + (1 | center), eortc)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = fit,
+  exclude.intercept = FALSE,
+  title = "mixed effects Cox model"
+)
+```
+
+## truncated Gaussian Regression Models (`truncreg`)
 
 ```{r truncreg, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 5}
 # setup
@@ -3382,8 +3401,7 @@ df_results <-
   purrr::pmap(
     .l = list(
       data = list(df),
-      formula = list(scale(lifeExp) ~ scale(gdpPercap) + (gdpPercap |
-        country)),
+      formula = list(scale(lifeExp) ~ scale(gdpPercap) + (gdpPercap | country)),
       grouping.vars = alist(continent),
       output = list("tidy", "glance")
     ),
@@ -3392,7 +3410,7 @@ df_results <-
   dplyr::full_join(x = .[[1]], y = .[[2]], by = "continent")
 
 # modifying the results so to be compatible with the `ggcoefstats` requirement
-(df_results %<>% dplyr::filter(.data = ., term != "(Intercept)", is.na(group)))
+(df_results %<>% dplyr::filter(.data = ., term != "(Intercept)"))
 
 # plot
 ggstatsplot::ggcoefstats(

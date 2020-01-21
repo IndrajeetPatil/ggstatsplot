@@ -325,20 +325,13 @@ bf_meta_message <- function(data,
     )
   }
 
-  #----------------------- create labels column -------------------------------
-
-  if (!"term" %in% names(data)) {
-    data %<>%
-      dplyr::mutate(.data = ., term = dplyr::row_number()) %>%
-      dplyr::mutate(.data = ., term = as.character(term))
-  }
+  #----------------------- meta-analysis -------------------------------
 
   # extracting results from random-effects meta-analysis
   bf_meta <-
     metaBMA::meta_random(
       y = data$estimate,
       SE = data$std.error,
-      labels = data$term,
       d = d,
       tau = tau,
       ...
@@ -354,7 +347,7 @@ bf_meta_message <- function(data,
     tibble::as_tibble(bf_meta$estimates, rownames = "term") %>%
     dplyr::filter(.data = ., term == "d")
 
-  # prepare the bayes factor message
+  # prepare the Bayes factor message
   bf_text <-
     substitute(
       atop(displaystyle(top.text),

@@ -75,7 +75,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.4.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.2.0.9000</span>
       </span>
     </div>
 
@@ -181,9 +181,9 @@
       <small>Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="ggstatsplot-0149000" class="section level1">
+    <div id="ggstatsplot-0209000" class="section level1">
 <h1 class="page-header">
-<a href="#ggstatsplot-0149000" class="anchor"></a>ggstatsplot 0.1.4.9000<small> Unreleased </small>
+<a href="#ggstatsplot-0209000" class="anchor"></a>ggstatsplot 0.2.0.9000<small> Unreleased </small>
 </h1>
 <p>BREAKING CHANGES</p>
 <ul>
@@ -192,13 +192,13 @@
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>
-<li>The summary caption no longer displays log-likelihood value because it tends to be not available for a number of regression model objects and so the caption was unncessarily being skipped.</li>
+<li>The summary caption no longer displays log-likelihood value because it tends to be not available for a number of regression model objects and so the caption was unnecessarily being skipped.</li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
 <li>New dataset included: <code>bugs_wide</code>
 </li>
-<li>More models supported in <code>ggcoefstats</code>: <code>cgam</code>, <code>cgamm</code>, <code>cpglm</code>, <code>cpglmm</code>, <code>complmrob</code>, <code>feis</code>, <code>flexsurvreg</code>, <code>glmx</code>, <code>hurdle</code>, <code>iv_robust</code>, <code>mixor</code>, <code>rqss</code>, <code>truncreg</code>, <code>vgam</code>
+<li>More models supported in <code>ggcoefstats</code>: <code>cgam</code>, <code>cgamm</code>, <code>coxme</code>, <code>cpglm</code>, <code>cpglmm</code>, <code>complmrob</code>, <code>feis</code>, <code>flexsurvreg</code>, <code>glmx</code>, <code>hurdle</code>, <code>iv_robust</code>, <code>mixor</code>, <code>rqss</code>, <code>truncreg</code>, <code>vgam</code>
 </li>
 </ul>
 </div>
@@ -243,7 +243,7 @@
 <p>MINOR</p>
 <ul>
 <li>
-<code>ggcoefstats</code> now uses <code><a href="https://rdrr.io/pkg/parameters/man/p_value.html">parameters::p_value</a></code> instead of <code><a href="https://rdrr.io/pkg/sjstats/man/overdisp.html">sjstats::p_value</a></code>, as requested by the maintainer of that package. This might lead to differences in <em>p</em>-values for <code>lmer</code> models.</li>
+<code>ggcoefstats</code> now uses <code><a href="https://rdrr.io/pkg/parameters/man/p_value.html">parameters::p_value</a></code> instead of <code><a href="https://rdrr.io/pkg/sjstats/man/r2.html">sjstats::p_value</a></code>, as requested by the maintainer of that package. This might lead to differences in <em>p</em>-values for <code>lmer</code> models.</li>
 <li>More models supported in <code>ggcoefstats</code>: <code>blavaan</code>, <code>bracl</code>, <code>brglm2</code>, <code>glmc</code>, <code>lavaan</code>, <code>nlreg</code>, <code>slm</code>, <code>wbgee</code>.</li>
 <li>
 <code>ggcoefstats</code> gains <code>only.significant</code> argument to only display display stats labels for significant effects. This can be helpful when a large number of regression coefficients are to be displayed in a single plot.</li>
@@ -610,7 +610,7 @@
 <code>gghistostats</code> has a new argument to remove color fill gradient.</li>
 <li>
 <code>ggbetweenstats</code> takes new argument <code>mean.ci</code> to show confidence intervals for the mean values.</li>
-<li>For <code>lmer</code> models, p-values are now computed using <code><a href="https://rdrr.io/pkg/sjstats/man/overdisp.html">sjstats::p_value</a></code>. This removes <code>lmerTest</code> package from dependencies.</li>
+<li>For <code>lmer</code> models, p-values are now computed using <code><a href="https://rdrr.io/pkg/sjstats/man/r2.html">sjstats::p_value</a></code>. This removes <code>lmerTest</code> package from dependencies.</li>
 <li>
 <code>sjstats</code> no longer suggests <code>apaTables</code> package to compute confidence intervals for partial eta- and omega-squared. Therefore, <code>apaTables</code> and <code>MBESS</code> are removed from dependencies.</li>
 <li>
@@ -721,7 +721,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#ggstatsplot-0149000">0.1.4.9000</a></li>
+        <li><a href="#ggstatsplot-0209000">0.2.0.9000</a></li>
         <li><a href="#ggstatsplot-014">0.1.4</a></li>
         <li><a href="#ggstatsplot-013">0.1.3</a></li>
         <li><a href="#ggstatsplot-012">0.1.2</a></li>

@@ -195,8 +195,7 @@ mean_ggrepel <- function(plot,
       force = 2,
       inherit.aes = FALSE,
       parse = TRUE,
-      na.rm = TRUE,
-      seed = 123
+      na.rm = TRUE
     )
 
   # return the plot with labels

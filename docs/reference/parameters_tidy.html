@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.4.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.2.0.9000</span>
       </span>
     </div>
 
@@ -203,7 +203,8 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='co'># setup</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>lme4</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: Matrix</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>parameters</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>lme4</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>parameters</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
 
 <span class='co'># model</span>
@@ -214,11 +215,11 @@
   )
 
 <span class='co'># model parameters</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/parameters_tidy.html'>parameters_tidy</a></span>(<span class='no'>mm0</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 2 x 8</span><span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/parameters_tidy.html'>parameters_tidy</a></span>(<span class='no'>mm0</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 2 x 8</span><span>
 #&gt;   term        estimate std.error conf.low conf.high statistic df.error  p.value
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> (Intercept) 3.31</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-16</span><span>    0.161    -</span><span style='color: #BB0000;'>0.315</span><span>     0.315  2.06</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-15</span><span>      176 1.00</span><span style='color: #555555;'>e</span><span>+ 0
-#&gt; </span><span style='color: #555555;'>2</span><span> scale(Days) 5.35</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 1</span><span>    0.041</span><span style='text-decoration: underline;'>1</span><span>    0.455     0.616  1.30</span><span style='color: #555555;'>e</span><span>+ 1      176 1.00</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-38</span><span></div><div class='input'># }
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> (Intercept) 3.31</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-16</span><span>    0.161    -</span><span style='color: #BB0000;'>0.315</span><span>     0.315  2.06</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-15</span><span>      176 1.00</span><span style='color: #949494;'>e</span><span>+ 0
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> scale(Days) 5.35</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 1</span><span>    0.041</span><span style='text-decoration: underline;'>1</span><span>    0.455     0.616  1.30</span><span style='color: #949494;'>e</span><span>+ 1      176 1.00</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-38</span><span></div><div class='input'># }
 
 </div></span></pre>
   </div>

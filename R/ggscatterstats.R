@@ -267,8 +267,7 @@ ggscatterstats <- function(data,
   # creating jittered positions
   pos <- ggplot2::position_jitter(
     width = point.width.jitter,
-    height = point.height.jitter,
-    seed = 123
+    height = point.height.jitter
   )
 
   # if user has not specified colors, then use a color palette

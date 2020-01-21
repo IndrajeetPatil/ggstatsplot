@@ -874,7 +874,6 @@ ggcoefstats <- function(x,
           na.rm = TRUE,
           show.legend = FALSE,
           parse = TRUE,
-          seed = 123,
           color = stats.label.color,
           !!!stats.label.args
         )

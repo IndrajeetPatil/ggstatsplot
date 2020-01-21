@@ -3,7 +3,7 @@ title: "ggstatsplot: ggplot2 Based Plots with Statistical Details"
 author:
 - Indrajeet Patil^[Harvard University, patilindrajeet.science@gmail.com]
 - Mina Cikara^[Harvard University]
-date: "2020-01-04"
+date: "2020-01-21"
 output: 
   bookdown::pdf_document2:
     fig_caption: true
