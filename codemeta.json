@@ -432,7 +432,7 @@
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
-      "version": ">= 0.4.0",
+      "version": ">= 0.4.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -452,13 +452,13 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/easystats/performance"
+      "sameAs": "https://CRAN.R-project.org/package=performance"
     },
     {
       "@type": "SoftwareApplication",
       "identifier": "psych",
       "name": "psych",
-      "version": ">= 1.8.12",
+      "version": ">= 1.9.12.31",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",

@@ -48,9 +48,9 @@ Imports:
     metafor (>= 2.1-0),
     pairwiseComparisons (>= 0.1.4),
     paletteer (>= 1.0.0),
-    parameters (>= 0.4.0),
+    parameters (>= 0.4.1),
     performance (>= 0.4.2),
-    psych (>= 1.8.12),
+    psych (>= 1.9.12.31),
     purrr (>= 0.3.3),
     rlang (>= 0.4.2),
     scales (>= 1.1.0),
@@ -75,8 +75,7 @@ Suggests:
 VignetteBuilder: 
     knitr
 Remotes:
-    IndrajeetPatil/pairwiseComparisons,
-    easystats/performance
+    IndrajeetPatil/pairwiseComparisons
 Encoding: UTF-8
 Language: en-US
 LazyData: true

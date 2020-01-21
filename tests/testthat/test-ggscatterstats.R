@@ -244,7 +244,6 @@ testthat::test_that(
 
     testthat::expect_equal(pb$plot$plot_env$pos$height, 0.4, tolerance = 0.01)
     testthat::expect_equal(pb$plot$plot_env$pos$width, 0.2, tolerance = 0.01)
-    testthat::expect_equal(pb$plot$plot_env$pos$seed, 123L)
   }
 )
 
