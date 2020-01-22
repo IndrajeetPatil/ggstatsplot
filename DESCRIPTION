@@ -73,7 +73,7 @@ Suggests:
 VignetteBuilder: 
     knitr
 Remotes:
-    IndrajeetPatil/pairwiseComparisons
+    IndrajeetPatil/pairwiseComparisons,
     IndrajeetPatil/statsExpressions
 Encoding: UTF-8
 Language: en-US
