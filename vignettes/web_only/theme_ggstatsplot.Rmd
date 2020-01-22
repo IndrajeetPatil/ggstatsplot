@@ -28,9 +28,9 @@ knitr::opts_chunk$set(
 
 ## Default theme for the package: `theme_ggstatsplot`
 
-`ggstatsplot` uses a default theme `theme_ggstatsplot()`, which is a selected `ggplot2`
-theme with few aesthetic modifications overlaid on top, that can be used with any
-`ggplot2` object. Alternative name for this function is `theme_mprl`.
+`ggstatsplot` uses a default theme `theme_ggstatsplot()`, which is a selected
+`ggplot2` theme with few aesthetic modifications overlaid on top, that can be
+used with any `ggplot2` object.
 
 Here is a simple example:
 

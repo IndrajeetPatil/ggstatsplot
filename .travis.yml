@@ -1,170 +1,126 @@
-# documentation at https://docs.travis-ci.com/user/languages/r
-
 language: r
-sudo: true
-dist: trusty
-cache: packages
 latex: true
-warnings_are_errors: true
-
-repos:
-  CRAN: https://cloud.r-project.org
-  ropensci: http://packages.ropensci.org
+warnings_are_errors: TRUE
 
 env:
   global:
-    - R_MAX_NUM_DLLS=999
+    #- R_MAX_NUM_DLLS=999
     - _R_CHECK_FORCE_SUGGESTS_=true
     - _R_CHECK_CRAN_INCOMING_=true
-    - MAKEFLAGS="-j 2"
 
-#r_check_args: "--run-dontrun"
+cache:
+  - packages
+  - ccache
+
+jobs:
+  include:
+  - r: devel
+    r_binary_packages:
+      - magrittr
+      - curl
+      - jsonlite
+      - rstan
+      - Rcpp
+      - RcppEigen
+      - openssl
+      - utf8
+      - gss
+      - haven
+      - minqa
+      - mvtnorm
+      - nloptr
+      - SparseM
+      - httpuv
+      - markdown
+      - sem
+      - readxl
+      - openxlsx
+      - pander
+      - lme4
+      - psych
+      - git2r
+      - rlang
+      - bindrcpp
+      - tidyr
+      - dplyr
+      - rstantools
+      - bridgesampling
+      - BH
+      - stringi
+      - metaBMA
+    r_packages:
+      - coin
+      - sjstats
+      - WRS2
+      - coda
+      - remotes
+      - knitr
+      - rmarkdown
+    r_github_packages:
+      - jimhester/lintr
+      - r-lib/covr
+  - r: release
+    r_binary_packages:
+      - magrittr
+      - curl
+      - jsonlite
+      - rstan
+      - Rcpp
+      - RcppEigen
+      - openssl
+      - utf8
+      - gss
+      - haven
+      - minqa
+      - mvtnorm
+      - nloptr
+      - SparseM
+      - httpuv
+      - markdown
+      - sem
+      - readxl
+      - openxlsx
+      - pander
+      - lme4
+      - psych
+      - git2r
+      - rlang
+      - bindrcpp
+      - tidyr
+      - dplyr
+      - rstantools
+      - bridgesampling
+      - BH
+      - stringi
+      - metaBMA
+    r_packages:
+      - coin
+      - sjstats
+      - WRS2
+      - coda
+      - remotes
+      - knitr
+      - rmarkdown
+    r_github_packages:
+      - jimhester/lintr
+      - r-lib/covr
+
+addons:
+  apt:
+    packages:
+      - libudunits2-dev
+      - libgdal-dev
+      - libproj-dev
+
+before_install:
+  - mkdir -p ~/.R
+  - echo "CXX14FLAGS=-O3 -mtune=native -march=native -Wno-unused-variable -Wno-unused-function  -Wno-macro-redefined" >> ~/.R/Makevars
+  - echo "CXX14=g++ -std=c++1y -fPIC" >> ~/.R/Makevars
 
 notifications:
   email:
   on_success: change
   on_failure: change
-
-matrix:
-  include:
-    - os: linux
-      dist: trusty
-      r: release
-      r_binary_packages:
-        - stringi
-        - magrittr
-        - curl
-        - jsonlite
-        - Rcpp
-        - RcppEigen
-        - openssl
-        - utf8
-        - gss
-        - haven
-        - minqa
-        - mvtnorm
-        - nloptr
-        - SparseM
-        - httpuv
-        - markdown
-        - sem
-        - readxl
-        - openxlsx
-        - pander
-        - lme4
-        - psych
-        - git2r
-        #- data.table
-        - StanHeaders
-        - rstan
-        - LaplacesDemon
-        - logspline
-        - metaBMA
-        - MCMCglmm
-        - rlang
-        - bindrcpp
-        - car
-        - rio
-      r_packages:
-        - purrr
-        - tidyr
-        - dplyr
-        - ggthemes
-        - jcolors
-        - oompaBase
-        - palr
-        - coin
-        - jmv
-        - sjstats
-        - WRS2
-        - scico
-        - viridisLite
-        - bridgesampling
-        - rstantools
-        - BH
-        - remotes
-      r_github_packages:
-        - jimhester/lintr
-        - r-lib/covr
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - g++-7
-      env:
-        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
-    - os: linux
-      dist: trusty
-      r: devel
-      r_binary_packages:
-        - stringi
-        - magrittr
-        - curl
-        - jsonlite
-        - Rcpp
-        - RcppEigen
-        - openssl
-        - utf8
-        - gss
-        - haven
-        - minqa
-        - mvtnorm
-        - nloptr
-        - SparseM
-        - httpuv
-        - markdown
-        - sem
-        - readxl
-        - openxlsx
-        - pander
-        - lme4
-        - psych
-        - git2r
-        #- data.table
-        - StanHeaders
-        - rstan
-        - LaplacesDemon
-        - logspline
-        - metaBMA
-        - MCMCglmm
-        - rlang
-        - bindrcpp
-        - car
-        - rio
-      r_packages:
-        - purrr
-        - tidyr
-        - dplyr
-        - ggthemes
-        - jcolors
-        - oompaBase
-        - palr
-        - coin
-        - sjstats
-        - WRS2
-        - scico
-        - viridisLite
-        - bridgesampling
-        - rstantools
-        - BH
-        - remotes
-      r_github_packages:
-        - jimhester/lintr
-        - r-lib/covr
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - g++-7
-      env:
-        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
-
-before_install:
-  - mkdir -p ~/.R/
-  - echo "CXX14 = g++-7 -fPIC -flto=2" >> ~/.R/Makevars
-  - echo "CXX14FLAGS = -mtune=native -march=native -Wno-unused-variable -Wno-unused-function -Wno-unused-local-typedefs -Wno-ignored-attributes -Wno-deprecated-declarations -Wno-attributes -O3" >> ~/.R/Makevars
 
 after_success:
   - Rscript -e 'covr::codecov()'

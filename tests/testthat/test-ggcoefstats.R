@@ -866,7 +866,7 @@ testthat::test_that(
 
     # meta subtitle
     meta_subtitle <-
-      ggstatsplot::subtitle_meta_ggcoefstats(
+      statsExpressions::expr_meta_parametric(
         data = df5,
         k = 3,
         messages = FALSE,

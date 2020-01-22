@@ -60,6 +60,9 @@
       <a href="../../articles/additional.html">additional vignettes</a>
     </li>
     <li>
+      <a href="../../articles/tests_and_coverage.html">Tests and Coverage</a>
+    </li>
+    <li>
       <a href="../../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
@@ -139,7 +142,7 @@
       <h1>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-01-21</h4>
+            <h4 class="date">2020-01-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -559,18 +562,18 @@
 <span id="cb11-50"><a href="#cb11-50"></a>(df<span class="fl">.3</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">x =</span> x1, <span class="dt">y =</span> y1) <span class="op">%&gt;%</span></span>
 <span id="cb11-51"><a href="#cb11-51"></a><span class="st">  </span>tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(<span class="dt">x =</span> .))</span>
 <span id="cb11-52"><a href="#cb11-52"></a><span class="co">#&gt; # A tibble: 50 x 2</span></span>
-<span id="cb11-53"><a href="#cb11-53"></a><span class="co">#&gt;          x     y</span></span>
-<span id="cb11-54"><a href="#cb11-54"></a><span class="co">#&gt;      &lt;dbl&gt; &lt;int&gt;</span></span>
-<span id="cb11-55"><a href="#cb11-55"></a><span class="co">#&gt;  1  1.56      12</span></span>
-<span id="cb11-56"><a href="#cb11-56"></a><span class="co">#&gt;  2  0.0705     5</span></span>
-<span id="cb11-57"><a href="#cb11-57"></a><span class="co">#&gt;  3  0.129      3</span></span>
-<span id="cb11-58"><a href="#cb11-58"></a><span class="co">#&gt;  4  1.72      14</span></span>
-<span id="cb11-59"><a href="#cb11-59"></a><span class="co">#&gt;  5  0.461      8</span></span>
-<span id="cb11-60"><a href="#cb11-60"></a><span class="co">#&gt;  6 -1.27       0</span></span>
-<span id="cb11-61"><a href="#cb11-61"></a><span class="co">#&gt;  7 -0.687      0</span></span>
-<span id="cb11-62"><a href="#cb11-62"></a><span class="co">#&gt;  8 -0.446      4</span></span>
-<span id="cb11-63"><a href="#cb11-63"></a><span class="co">#&gt;  9  1.22      11</span></span>
-<span id="cb11-64"><a href="#cb11-64"></a><span class="co">#&gt; 10  0.360      2</span></span>
+<span id="cb11-53"><a href="#cb11-53"></a><span class="co">#&gt;         x     y</span></span>
+<span id="cb11-54"><a href="#cb11-54"></a><span class="co">#&gt;     &lt;dbl&gt; &lt;int&gt;</span></span>
+<span id="cb11-55"><a href="#cb11-55"></a><span class="co">#&gt;  1 -1.03      2</span></span>
+<span id="cb11-56"><a href="#cb11-56"></a><span class="co">#&gt;  2 -0.729     0</span></span>
+<span id="cb11-57"><a href="#cb11-57"></a><span class="co">#&gt;  3 -0.625     1</span></span>
+<span id="cb11-58"><a href="#cb11-58"></a><span class="co">#&gt;  4 -1.69      0</span></span>
+<span id="cb11-59"><a href="#cb11-59"></a><span class="co">#&gt;  5  0.838     4</span></span>
+<span id="cb11-60"><a href="#cb11-60"></a><span class="co">#&gt;  6  0.153     4</span></span>
+<span id="cb11-61"><a href="#cb11-61"></a><span class="co">#&gt;  7 -1.14      2</span></span>
+<span id="cb11-62"><a href="#cb11-62"></a><span class="co">#&gt;  8  1.25      9</span></span>
+<span id="cb11-63"><a href="#cb11-63"></a><span class="co">#&gt;  9  0.426     3</span></span>
+<span id="cb11-64"><a href="#cb11-64"></a><span class="co">#&gt; 10 -0.295     1</span></span>
 <span id="cb11-65"><a href="#cb11-65"></a><span class="co">#&gt; # ... with 40 more rows</span></span>
 <span id="cb11-66"><a href="#cb11-66"></a></span>
 <span id="cb11-67"><a href="#cb11-67"></a><span class="co"># dataframe #4</span></span>
@@ -586,16 +589,16 @@
 <span id="cb11-77"><a href="#cb11-77"></a><span class="co">#&gt; # A tibble: 50 x 2</span></span>
 <span id="cb11-78"><a href="#cb11-78"></a><span class="co">#&gt;          x     y</span></span>
 <span id="cb11-79"><a href="#cb11-79"></a><span class="co">#&gt;      &lt;dbl&gt; &lt;int&gt;</span></span>
-<span id="cb11-80"><a href="#cb11-80"></a><span class="co">#&gt;  1 -0.779      1</span></span>
-<span id="cb11-81"><a href="#cb11-81"></a><span class="co">#&gt;  2 -0.375      1</span></span>
-<span id="cb11-82"><a href="#cb11-82"></a><span class="co">#&gt;  3 -0.319      1</span></span>
-<span id="cb11-83"><a href="#cb11-83"></a><span class="co">#&gt;  4  0.0845     0</span></span>
-<span id="cb11-84"><a href="#cb11-84"></a><span class="co">#&gt;  5 -0.768      1</span></span>
-<span id="cb11-85"><a href="#cb11-85"></a><span class="co">#&gt;  6 -0.626      0</span></span>
-<span id="cb11-86"><a href="#cb11-86"></a><span class="co">#&gt;  7 -0.901      0</span></span>
-<span id="cb11-87"><a href="#cb11-87"></a><span class="co">#&gt;  8  0.664      1</span></span>
-<span id="cb11-88"><a href="#cb11-88"></a><span class="co">#&gt;  9  0.300      1</span></span>
-<span id="cb11-89"><a href="#cb11-89"></a><span class="co">#&gt; 10  0.0749     1</span></span>
+<span id="cb11-80"><a href="#cb11-80"></a><span class="co">#&gt;  1 -1.03       0</span></span>
+<span id="cb11-81"><a href="#cb11-81"></a><span class="co">#&gt;  2 -0.710      1</span></span>
+<span id="cb11-82"><a href="#cb11-82"></a><span class="co">#&gt;  3  0.257      0</span></span>
+<span id="cb11-83"><a href="#cb11-83"></a><span class="co">#&gt;  4 -0.247      0</span></span>
+<span id="cb11-84"><a href="#cb11-84"></a><span class="co">#&gt;  5 -0.348      1</span></span>
+<span id="cb11-85"><a href="#cb11-85"></a><span class="co">#&gt;  6 -0.952      1</span></span>
+<span id="cb11-86"><a href="#cb11-86"></a><span class="co">#&gt;  7 -0.0450     1</span></span>
+<span id="cb11-87"><a href="#cb11-87"></a><span class="co">#&gt;  8 -0.785      0</span></span>
+<span id="cb11-88"><a href="#cb11-88"></a><span class="co">#&gt;  9 -1.67       0</span></span>
+<span id="cb11-89"><a href="#cb11-89"></a><span class="co">#&gt; 10 -0.380      0</span></span>
 <span id="cb11-90"><a href="#cb11-90"></a><span class="co">#&gt; # ... with 40 more rows</span></span>
 <span id="cb11-91"><a href="#cb11-91"></a></span>
 <span id="cb11-92"><a href="#cb11-92"></a><span class="co"># combining all plots in a single plot</span></span>
@@ -1559,8 +1562,8 @@
 <span id="cb43-7"><a href="#cb43-7"></a><span class="co">#&gt; </span></span>
 <span id="cb43-8"><a href="#cb43-8"></a><span class="co">#&gt; SAMPLING FOR MODEL 'bmlm' NOW (CHAIN 1).</span></span>
 <span id="cb43-9"><a href="#cb43-9"></a><span class="co">#&gt; Chain 1: </span></span>
-<span id="cb43-10"><a href="#cb43-10"></a><span class="co">#&gt; Chain 1: Gradient evaluation took 0.001 seconds</span></span>
-<span id="cb43-11"><a href="#cb43-11"></a><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.</span></span>
+<span id="cb43-10"><a href="#cb43-10"></a><span class="co">#&gt; Chain 1: Gradient evaluation took 0.002 seconds</span></span>
+<span id="cb43-11"><a href="#cb43-11"></a><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 20 seconds.</span></span>
 <span id="cb43-12"><a href="#cb43-12"></a><span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span></span>
 <span id="cb43-13"><a href="#cb43-13"></a><span class="co">#&gt; Chain 1: </span></span>
 <span id="cb43-14"><a href="#cb43-14"></a><span class="co">#&gt; Chain 1: </span></span>
@@ -1577,15 +1580,15 @@
 <span id="cb43-25"><a href="#cb43-25"></a><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb43-26"><a href="#cb43-26"></a><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb43-27"><a href="#cb43-27"></a><span class="co">#&gt; Chain 1: </span></span>
-<span id="cb43-28"><a href="#cb43-28"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 25.618 seconds (Warm-up)</span></span>
-<span id="cb43-29"><a href="#cb43-29"></a><span class="co">#&gt; Chain 1:                15.769 seconds (Sampling)</span></span>
-<span id="cb43-30"><a href="#cb43-30"></a><span class="co">#&gt; Chain 1:                41.387 seconds (Total)</span></span>
+<span id="cb43-28"><a href="#cb43-28"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 33.497 seconds (Warm-up)</span></span>
+<span id="cb43-29"><a href="#cb43-29"></a><span class="co">#&gt; Chain 1:                20.725 seconds (Sampling)</span></span>
+<span id="cb43-30"><a href="#cb43-30"></a><span class="co">#&gt; Chain 1:                54.222 seconds (Total)</span></span>
 <span id="cb43-31"><a href="#cb43-31"></a><span class="co">#&gt; Chain 1: </span></span>
 <span id="cb43-32"><a href="#cb43-32"></a><span class="co">#&gt; </span></span>
 <span id="cb43-33"><a href="#cb43-33"></a><span class="co">#&gt; SAMPLING FOR MODEL 'bmlm' NOW (CHAIN 2).</span></span>
 <span id="cb43-34"><a href="#cb43-34"></a><span class="co">#&gt; Chain 2: </span></span>
-<span id="cb43-35"><a href="#cb43-35"></a><span class="co">#&gt; Chain 2: Gradient evaluation took 0 seconds</span></span>
-<span id="cb43-36"><a href="#cb43-36"></a><span class="co">#&gt; Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span></span>
+<span id="cb43-35"><a href="#cb43-35"></a><span class="co">#&gt; Chain 2: Gradient evaluation took 0.001 seconds</span></span>
+<span id="cb43-36"><a href="#cb43-36"></a><span class="co">#&gt; Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.</span></span>
 <span id="cb43-37"><a href="#cb43-37"></a><span class="co">#&gt; Chain 2: Adjust your expectations accordingly!</span></span>
 <span id="cb43-38"><a href="#cb43-38"></a><span class="co">#&gt; Chain 2: </span></span>
 <span id="cb43-39"><a href="#cb43-39"></a><span class="co">#&gt; Chain 2: </span></span>
@@ -1602,9 +1605,9 @@
 <span id="cb43-50"><a href="#cb43-50"></a><span class="co">#&gt; Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb43-51"><a href="#cb43-51"></a><span class="co">#&gt; Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb43-52"><a href="#cb43-52"></a><span class="co">#&gt; Chain 2: </span></span>
-<span id="cb43-53"><a href="#cb43-53"></a><span class="co">#&gt; Chain 2:  Elapsed Time: 27.317 seconds (Warm-up)</span></span>
-<span id="cb43-54"><a href="#cb43-54"></a><span class="co">#&gt; Chain 2:                15.771 seconds (Sampling)</span></span>
-<span id="cb43-55"><a href="#cb43-55"></a><span class="co">#&gt; Chain 2:                43.088 seconds (Total)</span></span>
+<span id="cb43-53"><a href="#cb43-53"></a><span class="co">#&gt; Chain 2:  Elapsed Time: 33.124 seconds (Warm-up)</span></span>
+<span id="cb43-54"><a href="#cb43-54"></a><span class="co">#&gt; Chain 2:                20.575 seconds (Sampling)</span></span>
+<span id="cb43-55"><a href="#cb43-55"></a><span class="co">#&gt; Chain 2:                53.699 seconds (Total)</span></span>
 <span id="cb43-56"><a href="#cb43-56"></a><span class="co">#&gt; Chain 2: </span></span>
 <span id="cb43-57"><a href="#cb43-57"></a><span class="co">#&gt; </span></span>
 <span id="cb43-58"><a href="#cb43-58"></a><span class="co">#&gt; SAMPLING FOR MODEL 'bmlm' NOW (CHAIN 3).</span></span>
@@ -1627,9 +1630,9 @@
 <span id="cb43-75"><a href="#cb43-75"></a><span class="co">#&gt; Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb43-76"><a href="#cb43-76"></a><span class="co">#&gt; Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb43-77"><a href="#cb43-77"></a><span class="co">#&gt; Chain 3: </span></span>
-<span id="cb43-78"><a href="#cb43-78"></a><span class="co">#&gt; Chain 3:  Elapsed Time: 26.419 seconds (Warm-up)</span></span>
-<span id="cb43-79"><a href="#cb43-79"></a><span class="co">#&gt; Chain 3:                16.282 seconds (Sampling)</span></span>
-<span id="cb43-80"><a href="#cb43-80"></a><span class="co">#&gt; Chain 3:                42.701 seconds (Total)</span></span>
+<span id="cb43-78"><a href="#cb43-78"></a><span class="co">#&gt; Chain 3:  Elapsed Time: 33.792 seconds (Warm-up)</span></span>
+<span id="cb43-79"><a href="#cb43-79"></a><span class="co">#&gt; Chain 3:                20.216 seconds (Sampling)</span></span>
+<span id="cb43-80"><a href="#cb43-80"></a><span class="co">#&gt; Chain 3:                54.008 seconds (Total)</span></span>
 <span id="cb43-81"><a href="#cb43-81"></a><span class="co">#&gt; Chain 3: </span></span>
 <span id="cb43-82"><a href="#cb43-82"></a><span class="co">#&gt; </span></span>
 <span id="cb43-83"><a href="#cb43-83"></a><span class="co">#&gt; SAMPLING FOR MODEL 'bmlm' NOW (CHAIN 4).</span></span>
@@ -1652,9 +1655,9 @@
 <span id="cb43-100"><a href="#cb43-100"></a><span class="co">#&gt; Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb43-101"><a href="#cb43-101"></a><span class="co">#&gt; Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb43-102"><a href="#cb43-102"></a><span class="co">#&gt; Chain 4: </span></span>
-<span id="cb43-103"><a href="#cb43-103"></a><span class="co">#&gt; Chain 4:  Elapsed Time: 27.045 seconds (Warm-up)</span></span>
-<span id="cb43-104"><a href="#cb43-104"></a><span class="co">#&gt; Chain 4:                17.779 seconds (Sampling)</span></span>
-<span id="cb43-105"><a href="#cb43-105"></a><span class="co">#&gt; Chain 4:                44.824 seconds (Total)</span></span>
+<span id="cb43-103"><a href="#cb43-103"></a><span class="co">#&gt; Chain 4:  Elapsed Time: 32.186 seconds (Warm-up)</span></span>
+<span id="cb43-104"><a href="#cb43-104"></a><span class="co">#&gt; Chain 4:                20.489 seconds (Sampling)</span></span>
+<span id="cb43-105"><a href="#cb43-105"></a><span class="co">#&gt; Chain 4:                52.675 seconds (Total)</span></span>
 <span id="cb43-106"><a href="#cb43-106"></a><span class="co">#&gt; Chain 4:</span></span>
 <span id="cb43-107"><a href="#cb43-107"></a></span>
 <span id="cb43-108"><a href="#cb43-108"></a><span class="co"># exctrating summary</span></span>
@@ -3307,9 +3310,9 @@
 <span id="cb101-35"><a href="#cb101-35"></a><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb101-36"><a href="#cb101-36"></a><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb101-37"><a href="#cb101-37"></a><span class="co">#&gt; Chain 1: </span></span>
-<span id="cb101-38"><a href="#cb101-38"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 13.356 seconds (Warm-up)</span></span>
-<span id="cb101-39"><a href="#cb101-39"></a><span class="co">#&gt; Chain 1:                6.069 seconds (Sampling)</span></span>
-<span id="cb101-40"><a href="#cb101-40"></a><span class="co">#&gt; Chain 1:                19.425 seconds (Total)</span></span>
+<span id="cb101-38"><a href="#cb101-38"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 15.627 seconds (Warm-up)</span></span>
+<span id="cb101-39"><a href="#cb101-39"></a><span class="co">#&gt; Chain 1:                7.03 seconds (Sampling)</span></span>
+<span id="cb101-40"><a href="#cb101-40"></a><span class="co">#&gt; Chain 1:                22.657 seconds (Total)</span></span>
 <span id="cb101-41"><a href="#cb101-41"></a><span class="co">#&gt; Chain 1: </span></span>
 <span id="cb101-42"><a href="#cb101-42"></a><span class="co">#&gt; </span></span>
 <span id="cb101-43"><a href="#cb101-43"></a><span class="co">#&gt; SAMPLING FOR MODEL '48d3c6d0c01bc5c25f2639c8331fe9e8' NOW (CHAIN 2).</span></span>
@@ -3332,9 +3335,9 @@
 <span id="cb101-60"><a href="#cb101-60"></a><span class="co">#&gt; Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb101-61"><a href="#cb101-61"></a><span class="co">#&gt; Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb101-62"><a href="#cb101-62"></a><span class="co">#&gt; Chain 2: </span></span>
-<span id="cb101-63"><a href="#cb101-63"></a><span class="co">#&gt; Chain 2:  Elapsed Time: 35.175 seconds (Warm-up)</span></span>
-<span id="cb101-64"><a href="#cb101-64"></a><span class="co">#&gt; Chain 2:                79.742 seconds (Sampling)</span></span>
-<span id="cb101-65"><a href="#cb101-65"></a><span class="co">#&gt; Chain 2:                114.917 seconds (Total)</span></span>
+<span id="cb101-63"><a href="#cb101-63"></a><span class="co">#&gt; Chain 2:  Elapsed Time: 35.921 seconds (Warm-up)</span></span>
+<span id="cb101-64"><a href="#cb101-64"></a><span class="co">#&gt; Chain 2:                81.878 seconds (Sampling)</span></span>
+<span id="cb101-65"><a href="#cb101-65"></a><span class="co">#&gt; Chain 2:                117.799 seconds (Total)</span></span>
 <span id="cb101-66"><a href="#cb101-66"></a><span class="co">#&gt; Chain 2: </span></span>
 <span id="cb101-67"><a href="#cb101-67"></a><span class="co">#&gt; </span></span>
 <span id="cb101-68"><a href="#cb101-68"></a><span class="co">#&gt; SAMPLING FOR MODEL '48d3c6d0c01bc5c25f2639c8331fe9e8' NOW (CHAIN 3).</span></span>
@@ -3357,9 +3360,9 @@
 <span id="cb101-85"><a href="#cb101-85"></a><span class="co">#&gt; Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb101-86"><a href="#cb101-86"></a><span class="co">#&gt; Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb101-87"><a href="#cb101-87"></a><span class="co">#&gt; Chain 3: </span></span>
-<span id="cb101-88"><a href="#cb101-88"></a><span class="co">#&gt; Chain 3:  Elapsed Time: 12.743 seconds (Warm-up)</span></span>
-<span id="cb101-89"><a href="#cb101-89"></a><span class="co">#&gt; Chain 3:                8.602 seconds (Sampling)</span></span>
-<span id="cb101-90"><a href="#cb101-90"></a><span class="co">#&gt; Chain 3:                21.345 seconds (Total)</span></span>
+<span id="cb101-88"><a href="#cb101-88"></a><span class="co">#&gt; Chain 3:  Elapsed Time: 12.875 seconds (Warm-up)</span></span>
+<span id="cb101-89"><a href="#cb101-89"></a><span class="co">#&gt; Chain 3:                9.189 seconds (Sampling)</span></span>
+<span id="cb101-90"><a href="#cb101-90"></a><span class="co">#&gt; Chain 3:                22.064 seconds (Total)</span></span>
 <span id="cb101-91"><a href="#cb101-91"></a><span class="co">#&gt; Chain 3: </span></span>
 <span id="cb101-92"><a href="#cb101-92"></a><span class="co">#&gt; </span></span>
 <span id="cb101-93"><a href="#cb101-93"></a><span class="co">#&gt; SAMPLING FOR MODEL '48d3c6d0c01bc5c25f2639c8331fe9e8' NOW (CHAIN 4).</span></span>
@@ -3382,9 +3385,9 @@
 <span id="cb101-110"><a href="#cb101-110"></a><span class="co">#&gt; Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb101-111"><a href="#cb101-111"></a><span class="co">#&gt; Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb101-112"><a href="#cb101-112"></a><span class="co">#&gt; Chain 4: </span></span>
-<span id="cb101-113"><a href="#cb101-113"></a><span class="co">#&gt; Chain 4:  Elapsed Time: 9.271 seconds (Warm-up)</span></span>
-<span id="cb101-114"><a href="#cb101-114"></a><span class="co">#&gt; Chain 4:                9.485 seconds (Sampling)</span></span>
-<span id="cb101-115"><a href="#cb101-115"></a><span class="co">#&gt; Chain 4:                18.756 seconds (Total)</span></span>
+<span id="cb101-113"><a href="#cb101-113"></a><span class="co">#&gt; Chain 4:  Elapsed Time: 10.582 seconds (Warm-up)</span></span>
+<span id="cb101-114"><a href="#cb101-114"></a><span class="co">#&gt; Chain 4:                7.86 seconds (Sampling)</span></span>
+<span id="cb101-115"><a href="#cb101-115"></a><span class="co">#&gt; Chain 4:                18.442 seconds (Total)</span></span>
 <span id="cb101-116"><a href="#cb101-116"></a><span class="co">#&gt; Chain 4:</span></span>
 <span id="cb101-117"><a href="#cb101-117"></a></span>
 <span id="cb101-118"><a href="#cb101-118"></a><span class="co"># plot</span></span>
@@ -3436,9 +3439,9 @@
 <span id="cb102-34"><a href="#cb102-34"></a><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb102-35"><a href="#cb102-35"></a><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb102-36"><a href="#cb102-36"></a><span class="co">#&gt; Chain 1: </span></span>
-<span id="cb102-37"><a href="#cb102-37"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 0.165 seconds (Warm-up)</span></span>
-<span id="cb102-38"><a href="#cb102-38"></a><span class="co">#&gt; Chain 1:                0.045 seconds (Sampling)</span></span>
-<span id="cb102-39"><a href="#cb102-39"></a><span class="co">#&gt; Chain 1:                0.21 seconds (Total)</span></span>
+<span id="cb102-37"><a href="#cb102-37"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 0.185 seconds (Warm-up)</span></span>
+<span id="cb102-38"><a href="#cb102-38"></a><span class="co">#&gt; Chain 1:                0.05 seconds (Sampling)</span></span>
+<span id="cb102-39"><a href="#cb102-39"></a><span class="co">#&gt; Chain 1:                0.235 seconds (Total)</span></span>
 <span id="cb102-40"><a href="#cb102-40"></a><span class="co">#&gt; Chain 1: </span></span>
 <span id="cb102-41"><a href="#cb102-41"></a><span class="co">#&gt; </span></span>
 <span id="cb102-42"><a href="#cb102-42"></a><span class="co">#&gt; SAMPLING FOR MODEL '7314ca32b757518f6b6cf5c642a54cb2' NOW (CHAIN 1).</span></span>
@@ -3461,9 +3464,9 @@
 <span id="cb102-59"><a href="#cb102-59"></a><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb102-60"><a href="#cb102-60"></a><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb102-61"><a href="#cb102-61"></a><span class="co">#&gt; Chain 1: </span></span>
-<span id="cb102-62"><a href="#cb102-62"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 0.189 seconds (Warm-up)</span></span>
-<span id="cb102-63"><a href="#cb102-63"></a><span class="co">#&gt; Chain 1:                0.051 seconds (Sampling)</span></span>
-<span id="cb102-64"><a href="#cb102-64"></a><span class="co">#&gt; Chain 1:                0.24 seconds (Total)</span></span>
+<span id="cb102-62"><a href="#cb102-62"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 0.177 seconds (Warm-up)</span></span>
+<span id="cb102-63"><a href="#cb102-63"></a><span class="co">#&gt; Chain 1:                0.092 seconds (Sampling)</span></span>
+<span id="cb102-64"><a href="#cb102-64"></a><span class="co">#&gt; Chain 1:                0.269 seconds (Total)</span></span>
 <span id="cb102-65"><a href="#cb102-65"></a><span class="co">#&gt; Chain 1: </span></span>
 <span id="cb102-66"><a href="#cb102-66"></a><span class="co">#&gt; </span></span>
 <span id="cb102-67"><a href="#cb102-67"></a><span class="co">#&gt; SAMPLING FOR MODEL '7314ca32b757518f6b6cf5c642a54cb2' NOW (CHAIN 1).</span></span>
@@ -3486,9 +3489,9 @@
 <span id="cb102-84"><a href="#cb102-84"></a><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb102-85"><a href="#cb102-85"></a><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb102-86"><a href="#cb102-86"></a><span class="co">#&gt; Chain 1: </span></span>
-<span id="cb102-87"><a href="#cb102-87"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 0.163 seconds (Warm-up)</span></span>
-<span id="cb102-88"><a href="#cb102-88"></a><span class="co">#&gt; Chain 1:                0.042 seconds (Sampling)</span></span>
-<span id="cb102-89"><a href="#cb102-89"></a><span class="co">#&gt; Chain 1:                0.205 seconds (Total)</span></span>
+<span id="cb102-87"><a href="#cb102-87"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 0.194 seconds (Warm-up)</span></span>
+<span id="cb102-88"><a href="#cb102-88"></a><span class="co">#&gt; Chain 1:                0.046 seconds (Sampling)</span></span>
+<span id="cb102-89"><a href="#cb102-89"></a><span class="co">#&gt; Chain 1:                0.24 seconds (Total)</span></span>
 <span id="cb102-90"><a href="#cb102-90"></a><span class="co">#&gt; Chain 1: </span></span>
 <span id="cb102-91"><a href="#cb102-91"></a><span class="co">#&gt; </span></span>
 <span id="cb102-92"><a href="#cb102-92"></a><span class="co">#&gt; SAMPLING FOR MODEL '7314ca32b757518f6b6cf5c642a54cb2' NOW (CHAIN 1).</span></span>
@@ -3511,8 +3514,8 @@
 <span id="cb102-109"><a href="#cb102-109"></a><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb102-110"><a href="#cb102-110"></a><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb102-111"><a href="#cb102-111"></a><span class="co">#&gt; Chain 1: </span></span>
-<span id="cb102-112"><a href="#cb102-112"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 0.2 seconds (Warm-up)</span></span>
-<span id="cb102-113"><a href="#cb102-113"></a><span class="co">#&gt; Chain 1:                0.042 seconds (Sampling)</span></span>
+<span id="cb102-112"><a href="#cb102-112"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 0.18 seconds (Warm-up)</span></span>
+<span id="cb102-113"><a href="#cb102-113"></a><span class="co">#&gt; Chain 1:                0.062 seconds (Sampling)</span></span>
 <span id="cb102-114"><a href="#cb102-114"></a><span class="co">#&gt; Chain 1:                0.242 seconds (Total)</span></span>
 <span id="cb102-115"><a href="#cb102-115"></a><span class="co">#&gt; Chain 1: </span></span>
 <span id="cb102-116"><a href="#cb102-116"></a><span class="co">#&gt; </span></span>
@@ -3536,9 +3539,9 @@
 <span id="cb102-134"><a href="#cb102-134"></a><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb102-135"><a href="#cb102-135"></a><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb102-136"><a href="#cb102-136"></a><span class="co">#&gt; Chain 1: </span></span>
-<span id="cb102-137"><a href="#cb102-137"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 0.254 seconds (Warm-up)</span></span>
-<span id="cb102-138"><a href="#cb102-138"></a><span class="co">#&gt; Chain 1:                0.047 seconds (Sampling)</span></span>
-<span id="cb102-139"><a href="#cb102-139"></a><span class="co">#&gt; Chain 1:                0.301 seconds (Total)</span></span>
+<span id="cb102-137"><a href="#cb102-137"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 0.28 seconds (Warm-up)</span></span>
+<span id="cb102-138"><a href="#cb102-138"></a><span class="co">#&gt; Chain 1:                0.054 seconds (Sampling)</span></span>
+<span id="cb102-139"><a href="#cb102-139"></a><span class="co">#&gt; Chain 1:                0.334 seconds (Total)</span></span>
 <span id="cb102-140"><a href="#cb102-140"></a><span class="co">#&gt; Chain 1:</span></span>
 <span id="cb102-141"><a href="#cb102-141"></a></span>
 <span id="cb102-142"><a href="#cb102-142"></a><span class="co"># plot</span></span>
@@ -3569,8 +3572,8 @@
 <span id="cb103-12"><a href="#cb103-12"></a><span class="co">#&gt; </span></span>
 <span id="cb103-13"><a href="#cb103-13"></a><span class="co">#&gt; SAMPLING FOR MODEL 'continuous' NOW (CHAIN 1).</span></span>
 <span id="cb103-14"><a href="#cb103-14"></a><span class="co">#&gt; Chain 1: </span></span>
-<span id="cb103-15"><a href="#cb103-15"></a><span class="co">#&gt; Chain 1: Gradient evaluation took 0 seconds</span></span>
-<span id="cb103-16"><a href="#cb103-16"></a><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span></span>
+<span id="cb103-15"><a href="#cb103-15"></a><span class="co">#&gt; Chain 1: Gradient evaluation took 0.001 seconds</span></span>
+<span id="cb103-16"><a href="#cb103-16"></a><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.</span></span>
 <span id="cb103-17"><a href="#cb103-17"></a><span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span></span>
 <span id="cb103-18"><a href="#cb103-18"></a><span class="co">#&gt; Chain 1: </span></span>
 <span id="cb103-19"><a href="#cb103-19"></a><span class="co">#&gt; Chain 1: </span></span>
@@ -3587,9 +3590,9 @@
 <span id="cb103-30"><a href="#cb103-30"></a><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb103-31"><a href="#cb103-31"></a><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb103-32"><a href="#cb103-32"></a><span class="co">#&gt; Chain 1: </span></span>
-<span id="cb103-33"><a href="#cb103-33"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 0.078 seconds (Warm-up)</span></span>
-<span id="cb103-34"><a href="#cb103-34"></a><span class="co">#&gt; Chain 1:                0.077 seconds (Sampling)</span></span>
-<span id="cb103-35"><a href="#cb103-35"></a><span class="co">#&gt; Chain 1:                0.155 seconds (Total)</span></span>
+<span id="cb103-33"><a href="#cb103-33"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 0.093 seconds (Warm-up)</span></span>
+<span id="cb103-34"><a href="#cb103-34"></a><span class="co">#&gt; Chain 1:                0.095 seconds (Sampling)</span></span>
+<span id="cb103-35"><a href="#cb103-35"></a><span class="co">#&gt; Chain 1:                0.188 seconds (Total)</span></span>
 <span id="cb103-36"><a href="#cb103-36"></a><span class="co">#&gt; Chain 1:</span></span>
 <span id="cb103-37"><a href="#cb103-37"></a></span>
 <span id="cb103-38"><a href="#cb103-38"></a><span class="co"># plot</span></span>
@@ -3657,8 +3660,8 @@
 <span id="cb105-17"><a href="#cb105-17"></a><span class="co">#&gt; </span></span>
 <span id="cb105-18"><a href="#cb105-18"></a><span class="co">#&gt; SAMPLING FOR MODEL 'continuous' NOW (CHAIN 1).</span></span>
 <span id="cb105-19"><a href="#cb105-19"></a><span class="co">#&gt; Chain 1: </span></span>
-<span id="cb105-20"><a href="#cb105-20"></a><span class="co">#&gt; Chain 1: Gradient evaluation took 0 seconds</span></span>
-<span id="cb105-21"><a href="#cb105-21"></a><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span></span>
+<span id="cb105-20"><a href="#cb105-20"></a><span class="co">#&gt; Chain 1: Gradient evaluation took 0.001 seconds</span></span>
+<span id="cb105-21"><a href="#cb105-21"></a><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.</span></span>
 <span id="cb105-22"><a href="#cb105-22"></a><span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span></span>
 <span id="cb105-23"><a href="#cb105-23"></a><span class="co">#&gt; Chain 1: </span></span>
 <span id="cb105-24"><a href="#cb105-24"></a><span class="co">#&gt; Chain 1: </span></span>
@@ -3675,9 +3678,9 @@
 <span id="cb105-35"><a href="#cb105-35"></a><span class="co">#&gt; Chain 1: Iteration: 900 / 1000 [ 90%]  (Sampling)</span></span>
 <span id="cb105-36"><a href="#cb105-36"></a><span class="co">#&gt; Chain 1: Iteration: 1000 / 1000 [100%]  (Sampling)</span></span>
 <span id="cb105-37"><a href="#cb105-37"></a><span class="co">#&gt; Chain 1: </span></span>
-<span id="cb105-38"><a href="#cb105-38"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 1.129 seconds (Warm-up)</span></span>
-<span id="cb105-39"><a href="#cb105-39"></a><span class="co">#&gt; Chain 1:                0.676 seconds (Sampling)</span></span>
-<span id="cb105-40"><a href="#cb105-40"></a><span class="co">#&gt; Chain 1:                1.805 seconds (Total)</span></span>
+<span id="cb105-38"><a href="#cb105-38"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 1.23 seconds (Warm-up)</span></span>
+<span id="cb105-39"><a href="#cb105-39"></a><span class="co">#&gt; Chain 1:                0.675 seconds (Sampling)</span></span>
+<span id="cb105-40"><a href="#cb105-40"></a><span class="co">#&gt; Chain 1:                1.905 seconds (Total)</span></span>
 <span id="cb105-41"><a href="#cb105-41"></a><span class="co">#&gt; Chain 1:</span></span>
 <span id="cb105-42"><a href="#cb105-42"></a></span>
 <span id="cb105-43"><a href="#cb105-43"></a><span class="co"># plot</span></span>
@@ -3859,8 +3862,8 @@
 <span id="cb110-20"><a href="#cb110-20"></a><span class="co">#&gt; </span></span>
 <span id="cb110-21"><a href="#cb110-21"></a><span class="co">#&gt; SAMPLING FOR MODEL 'stanmarg' NOW (CHAIN 1).</span></span>
 <span id="cb110-22"><a href="#cb110-22"></a><span class="co">#&gt; Chain 1: </span></span>
-<span id="cb110-23"><a href="#cb110-23"></a><span class="co">#&gt; Chain 1: Gradient evaluation took 0.002 seconds</span></span>
-<span id="cb110-24"><a href="#cb110-24"></a><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 20 seconds.</span></span>
+<span id="cb110-23"><a href="#cb110-23"></a><span class="co">#&gt; Chain 1: Gradient evaluation took 0.003 seconds</span></span>
+<span id="cb110-24"><a href="#cb110-24"></a><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 30 seconds.</span></span>
 <span id="cb110-25"><a href="#cb110-25"></a><span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span></span>
 <span id="cb110-26"><a href="#cb110-26"></a><span class="co">#&gt; Chain 1: </span></span>
 <span id="cb110-27"><a href="#cb110-27"></a><span class="co">#&gt; Chain 1: </span></span>
@@ -3877,15 +3880,15 @@
 <span id="cb110-38"><a href="#cb110-38"></a><span class="co">#&gt; Chain 1: Iteration: 1400 / 1500 [ 93%]  (Sampling)</span></span>
 <span id="cb110-39"><a href="#cb110-39"></a><span class="co">#&gt; Chain 1: Iteration: 1500 / 1500 [100%]  (Sampling)</span></span>
 <span id="cb110-40"><a href="#cb110-40"></a><span class="co">#&gt; Chain 1: </span></span>
-<span id="cb110-41"><a href="#cb110-41"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 20.581 seconds (Warm-up)</span></span>
-<span id="cb110-42"><a href="#cb110-42"></a><span class="co">#&gt; Chain 1:                32.984 seconds (Sampling)</span></span>
-<span id="cb110-43"><a href="#cb110-43"></a><span class="co">#&gt; Chain 1:                53.565 seconds (Total)</span></span>
+<span id="cb110-41"><a href="#cb110-41"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 20.719 seconds (Warm-up)</span></span>
+<span id="cb110-42"><a href="#cb110-42"></a><span class="co">#&gt; Chain 1:                31.881 seconds (Sampling)</span></span>
+<span id="cb110-43"><a href="#cb110-43"></a><span class="co">#&gt; Chain 1:                52.6 seconds (Total)</span></span>
 <span id="cb110-44"><a href="#cb110-44"></a><span class="co">#&gt; Chain 1: </span></span>
 <span id="cb110-45"><a href="#cb110-45"></a><span class="co">#&gt; </span></span>
 <span id="cb110-46"><a href="#cb110-46"></a><span class="co">#&gt; SAMPLING FOR MODEL 'stanmarg' NOW (CHAIN 2).</span></span>
 <span id="cb110-47"><a href="#cb110-47"></a><span class="co">#&gt; Chain 2: </span></span>
-<span id="cb110-48"><a href="#cb110-48"></a><span class="co">#&gt; Chain 2: Gradient evaluation took 0.001 seconds</span></span>
-<span id="cb110-49"><a href="#cb110-49"></a><span class="co">#&gt; Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.</span></span>
+<span id="cb110-48"><a href="#cb110-48"></a><span class="co">#&gt; Chain 2: Gradient evaluation took 0.002 seconds</span></span>
+<span id="cb110-49"><a href="#cb110-49"></a><span class="co">#&gt; Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 20 seconds.</span></span>
 <span id="cb110-50"><a href="#cb110-50"></a><span class="co">#&gt; Chain 2: Adjust your expectations accordingly!</span></span>
 <span id="cb110-51"><a href="#cb110-51"></a><span class="co">#&gt; Chain 2: </span></span>
 <span id="cb110-52"><a href="#cb110-52"></a><span class="co">#&gt; Chain 2: </span></span>
@@ -3902,9 +3905,9 @@
 <span id="cb110-63"><a href="#cb110-63"></a><span class="co">#&gt; Chain 2: Iteration: 1400 / 1500 [ 93%]  (Sampling)</span></span>
 <span id="cb110-64"><a href="#cb110-64"></a><span class="co">#&gt; Chain 2: Iteration: 1500 / 1500 [100%]  (Sampling)</span></span>
 <span id="cb110-65"><a href="#cb110-65"></a><span class="co">#&gt; Chain 2: </span></span>
-<span id="cb110-66"><a href="#cb110-66"></a><span class="co">#&gt; Chain 2:  Elapsed Time: 18.315 seconds (Warm-up)</span></span>
-<span id="cb110-67"><a href="#cb110-67"></a><span class="co">#&gt; Chain 2:                30.935 seconds (Sampling)</span></span>
-<span id="cb110-68"><a href="#cb110-68"></a><span class="co">#&gt; Chain 2:                49.25 seconds (Total)</span></span>
+<span id="cb110-66"><a href="#cb110-66"></a><span class="co">#&gt; Chain 2:  Elapsed Time: 20.045 seconds (Warm-up)</span></span>
+<span id="cb110-67"><a href="#cb110-67"></a><span class="co">#&gt; Chain 2:                34.396 seconds (Sampling)</span></span>
+<span id="cb110-68"><a href="#cb110-68"></a><span class="co">#&gt; Chain 2:                54.441 seconds (Total)</span></span>
 <span id="cb110-69"><a href="#cb110-69"></a><span class="co">#&gt; Chain 2: </span></span>
 <span id="cb110-70"><a href="#cb110-70"></a><span class="co">#&gt; </span></span>
 <span id="cb110-71"><a href="#cb110-71"></a><span class="co">#&gt; SAMPLING FOR MODEL 'stanmarg' NOW (CHAIN 3).</span></span>
@@ -3927,9 +3930,9 @@
 <span id="cb110-88"><a href="#cb110-88"></a><span class="co">#&gt; Chain 3: Iteration: 1400 / 1500 [ 93%]  (Sampling)</span></span>
 <span id="cb110-89"><a href="#cb110-89"></a><span class="co">#&gt; Chain 3: Iteration: 1500 / 1500 [100%]  (Sampling)</span></span>
 <span id="cb110-90"><a href="#cb110-90"></a><span class="co">#&gt; Chain 3: </span></span>
-<span id="cb110-91"><a href="#cb110-91"></a><span class="co">#&gt; Chain 3:  Elapsed Time: 21.82 seconds (Warm-up)</span></span>
-<span id="cb110-92"><a href="#cb110-92"></a><span class="co">#&gt; Chain 3:                31.759 seconds (Sampling)</span></span>
-<span id="cb110-93"><a href="#cb110-93"></a><span class="co">#&gt; Chain 3:                53.579 seconds (Total)</span></span>
+<span id="cb110-91"><a href="#cb110-91"></a><span class="co">#&gt; Chain 3:  Elapsed Time: 21.386 seconds (Warm-up)</span></span>
+<span id="cb110-92"><a href="#cb110-92"></a><span class="co">#&gt; Chain 3:                32.367 seconds (Sampling)</span></span>
+<span id="cb110-93"><a href="#cb110-93"></a><span class="co">#&gt; Chain 3:                53.753 seconds (Total)</span></span>
 <span id="cb110-94"><a href="#cb110-94"></a><span class="co">#&gt; Chain 3: </span></span>
 <span id="cb110-95"><a href="#cb110-95"></a><span class="co">#&gt; Computing posterior predictives...</span></span>
 <span id="cb110-96"><a href="#cb110-96"></a></span>

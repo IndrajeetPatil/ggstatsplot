@@ -103,6 +103,9 @@
       <a href="../articles/additional.html">additional vignettes</a>
     </li>
     <li>
+      <a href="../articles/tests_and_coverage.html">Tests and Coverage</a>
+    </li>
+    <li>
       <a href="../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
@@ -195,8 +198,6 @@
   <span class='kw'>scales</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>component</span> <span class='kw'>=</span> <span class='st'>"survival"</span>,
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>d</span> <span class='kw'>=</span> <span class='fu'>prior</span>(<span class='st'>"norm"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>0.3</span>)),
-  <span class='kw'>tau</span> <span class='kw'>=</span> <span class='fu'>prior</span>(<span class='st'>"invgamma"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>shape</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>0.15</span>)),
   <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
   <span class='kw'>coefficient.type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"beta"</span>, <span class='st'>"location"</span>, <span class='st'>"coefficient"</span>),
   <span class='kw'>by.class</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
@@ -281,18 +282,6 @@ the longitudinal component of the model. Must be either <code>"survival"</code> 
 Bayesian meta-analysis assuming that the effect size <em>d</em> varies across
 studies with standard deviation <em>t</em> (i.e., a random-effects analysis)
 should be displayed in caption. Defaults to <code>TRUE</code>.</p></td>
-    </tr>
-    <tr>
-      <th>d</th>
-      <td><p><code>prior</code> distribution on the average effect size <code>d</code>. The
-prior probability density function is defined via <code><a href='https://rdrr.io/pkg/metaBMA/man/prior.html'>prior</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>tau</th>
-      <td><p><code>prior</code> distribution on the between-study heterogeneity
-<code>tau</code> (i.e., the standard deviation of the study effect sizes
-<code>dstudy</code> in a random-effects meta-analysis. A (nonnegative) prior
-probability density function is defined via <code><a href='https://rdrr.io/pkg/metaBMA/man/prior.html'>prior</a></code>.</p></td>
     </tr>
     <tr>
       <th>p.adjust.method</th>
@@ -425,7 +414,8 @@ when the <code>output</code> is a plot.</p></td>
     </tr>
     <tr>
       <th>caption</th>
-      <td><p>The text for the plot caption.</p></td>
+      <td><p>Text to display as caption. This argument is relevant only
+when <code>output = "caption"</code>.</p></td>
     </tr>
     <tr>
       <th>caption.summary</th>

@@ -11,8 +11,6 @@ ggcoefstats(
   scales = NULL,
   component = "survival",
   bf.message = TRUE,
-  d = prior("norm", c(mean = 0, sd = 0.3)),
-  tau = prior("invgamma", c(shape = 1, scale = 0.15)),
   p.adjust.method = "none",
   coefficient.type = c("beta", "location", "coefficient"),
   by.class = FALSE,
@@ -83,14 +81,6 @@ the longitudinal component of the model. Must be either \code{"survival"} or
 Bayesian meta-analysis assuming that the effect size \emph{d} varies across
 studies with standard deviation \emph{t} (i.e., a random-effects analysis)
 should be displayed in caption. Defaults to \code{TRUE}.}
-
-\item{d}{\code{prior} distribution on the average effect size \code{d}. The
-prior probability density function is defined via \code{\link[metaBMA]{prior}}.}
-
-\item{tau}{\code{prior} distribution on the between-study heterogeneity
-\code{tau} (i.e., the standard deviation of the study effect sizes
-\code{dstudy} in a random-effects meta-analysis. A (nonnegative) prior
-probability density function is defined via \code{\link[metaBMA]{prior}}.}
 
 \item{p.adjust.method}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"}, \code{"hochberg"}, \code{"hommel"},
@@ -181,7 +171,8 @@ is shown (Default: \code{FALSE}). This can be helpful when a large number of
 regression coefficients are to be displayed in a single plot. Relevant only
 when the \code{output} is a plot.}
 
-\item{caption}{The text for the plot caption.}
+\item{caption}{Text to display as caption. This argument is relevant only
+when \code{output = "caption"}.}
 
 \item{caption.summary}{Logical. Decides whether the model summary should be
 displayed as a cation to the plot (Default: \code{TRUE}). Color of the line

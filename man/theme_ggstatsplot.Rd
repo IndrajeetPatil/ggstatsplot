@@ -2,12 +2,15 @@
 % Please edit documentation in R/helpers_theme_ggstatsplot.R
 \name{theme_ggstatsplot}
 \alias{theme_ggstatsplot}
-\alias{theme_mprl}
+\alias{theme_pie}
+\alias{theme_corrmat}
 \title{Default theme used in all \code{ggstatsplot} package plots}
 \usage{
 theme_ggstatsplot(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE)
 
-theme_mprl(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE)
+theme_pie(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE)
+
+theme_corrmat()
 }
 \arguments{
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is

@@ -46,11 +46,6 @@ reference:
     contents:
       - ends_with("_message")
 
-  - title: Miscellaneous
-    desc: Sundry of helpful statistical functions.
-    contents:
-      - subtitle_meta_parametric
-
   - title: Themes used
     desc: The `ggplot2` themes used as default in `ggstatsplot`.
     contents:

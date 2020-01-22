@@ -306,7 +306,7 @@ ggscatterstats <- function(data,
       na.rm = TRUE,
       level = conf.level
     ) +
-    ggstatsplot::theme_mprl(
+    ggstatsplot::theme_ggstatsplot(
       ggtheme = ggtheme,
       ggstatsplot.layer = ggstatsplot.layer
     ) +
@@ -446,24 +446,25 @@ ggscatterstats <- function(data,
   # creating the `ggMarginal` plot of a given `marginal.type`
   if (isTRUE(marginal)) {
     # adding marginals to plot
-    plot <- ggExtra::ggMarginal(
-      p = plot,
-      type = marginal.type,
-      margins = margins,
-      size = marginal.size,
-      xparams = list(
-        fill = xfill,
-        alpha = xalpha,
-        size = xsize,
-        col = "black"
-      ),
-      yparams = list(
-        fill = yfill,
-        alpha = yalpha,
-        size = ysize,
-        col = "black"
+    plot <-
+      ggExtra::ggMarginal(
+        p = plot,
+        type = marginal.type,
+        margins = margins,
+        size = marginal.size,
+        xparams = list(
+          fill = xfill,
+          alpha = xalpha,
+          size = xsize,
+          col = "black"
+        ),
+        yparams = list(
+          fill = yfill,
+          alpha = yalpha,
+          size = ysize,
+          col = "black"
+        )
       )
-    )
   }
 
   #------------------------- messages  ------------------------------------

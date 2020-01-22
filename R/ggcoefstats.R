@@ -119,13 +119,13 @@
 #'   displayed as a cation to the plot (Default: `TRUE`). Color of the line
 #'   segment. Defaults to the same color as the text.
 #' @param ... Additional arguments to tidying method.
-#' @inheritParams bf_meta_message
+#' @inheritParams statsExpressions::bf_meta
 #' @inheritParams broom.mixed::tidy.merMod
 #' @inheritParams broom::tidy.clm
 #' @inheritParams broom::tidy.polr
 #' @inheritParams broom::tidy.mjoint
 #' @inheritParams theme_ggstatsplot
-#' @inheritParams subtitle_meta_ggcoefstats
+#' @inheritParams statsExpressions::expr_meta_parametric
 #' @inheritParams ggbetweenstats
 #'
 #' @import ggplot2
@@ -142,6 +142,7 @@
 #' @importFrom groupedstats lm_effsize_standardizer
 #' @importFrom insight is_model
 #' @importFrom performance model_performance
+#' @importFrom statsExpressions expr_meta_parametric bf_meta
 #'
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}
@@ -283,8 +284,6 @@ ggcoefstats <- function(x,
                         scales = NULL,
                         component = "survival",
                         bf.message = TRUE,
-                        d = prior("norm", c(mean = 0, sd = 0.3)),
-                        tau = prior("invgamma", c(shape = 1, scale = 0.15)),
                         p.adjust.method = "none",
                         coefficient.type = c("beta", "location", "coefficient"),
                         by.class = FALSE,
@@ -689,7 +688,7 @@ ggcoefstats <- function(x,
   if (isTRUE(meta.analytic.effect)) {
     # results from frequentist random-effects meta-analysis
     subtitle <-
-      subtitle_meta_ggcoefstats(
+      statsExpressions::expr_meta_parametric(
         data = tidy_df,
         k = k,
         messages = messages,
@@ -699,19 +698,17 @@ ggcoefstats <- function(x,
     # results from Bayesian random-effects meta-analysis
     if (isTRUE(bf.message)) {
       caption <-
-        bf_meta_message(
+        statsExpressions::bf_meta(
           caption = caption,
           data = tidy_df,
           k = k,
-          messages = messages,
-          d = d,
-          tau = tau
+          messages = messages
         )
     }
 
     # model summary
     caption.meta <-
-      subtitle_meta_ggcoefstats(
+      statsExpressions::expr_meta_parametric(
         data = tidy_df,
         k = k,
         caption = caption,
@@ -890,7 +887,7 @@ ggcoefstats <- function(x,
         subtitle = subtitle,
         title = title
       ) +
-      ggstatsplot::theme_mprl(
+      ggstatsplot::theme_ggstatsplot(
         ggtheme = ggtheme,
         ggstatsplot.layer = ggstatsplot.layer
       ) +
