@@ -731,7 +731,8 @@ ggcoefstats <- function(x,
       # preparing caption with model diagnostics
       caption <-
         substitute(
-          atop(displaystyle(top.text),
+          atop(
+            displaystyle(top.text),
             expr = paste("AIC = ", AIC, ", BIC = ", BIC)
           ),
           env = list(

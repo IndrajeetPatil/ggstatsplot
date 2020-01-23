@@ -32,8 +32,8 @@ reference:
     contents:
       - specify_decimal_p
       - signif_column
-      - lm_effsize_ci
       - pairwise_p
+      - pairwise_comparisons
       - set_cwd
       - "%>%"
       - "%<>%"
