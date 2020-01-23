@@ -864,15 +864,6 @@ testthat::test_that(
         messages = FALSE
       ))
 
-    # meta subtitle
-    meta_subtitle <-
-      ggstatsplot::subtitle_meta_ggcoefstats(
-        data = df5,
-        k = 3,
-        messages = FALSE,
-        output = "subtitle"
-      )
-
     # build plots
     pb1 <- ggplot2::ggplot_build(p1)
     pb2 <- ggplot2::ggplot_build(p2)
@@ -950,7 +941,36 @@ testthat::test_that(
       meta.analytic.effect = TRUE
     ))
 
-    testthat::expect_identical(pb6$plot$labels$subtitle, meta_subtitle)
+    # subtitle
+    testthat::expect_identical(
+      pb6$plot$labels$subtitle,
+      ggplot2::expr(paste(
+        "Summary effect: ",
+        italic("z"),
+        " = ",
+        "1.294",
+        ", ",
+        italic("p"),
+        " = ",
+        "0.196",
+        ", ",
+        widehat(beta),
+        " = ",
+        "0.152",
+        ", CI"["95%"],
+        " [",
+        "-0.078",
+        ", ",
+        "0.381",
+        "]",
+        ", ",
+        italic("n")["effects"],
+        " = ",
+        3L
+      ))
+    )
+
+    # caption
     testthat::expect_identical(
       pb6$plot$labels$caption,
       ggplot2::expr(atop(

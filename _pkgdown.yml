@@ -32,8 +32,8 @@ reference:
     contents:
       - specify_decimal_p
       - signif_column
-      - lm_effsize_ci
       - pairwise_p
+      - pairwise_comparisons
       - set_cwd
       - "%>%"
       - "%<>%"
@@ -45,11 +45,6 @@ reference:
     desc:  Simple function to display messages from tests carried out to check statistical assumptions of tests.
     contents:
       - ends_with("_message")
-
-  - title: Miscellaneous
-    desc: Sundry of helpful statistical functions.
-    contents:
-      - subtitle_meta_parametric
 
   - title: Themes used
     desc: The `ggplot2` themes used as default in `ggstatsplot`.

@@ -101,6 +101,9 @@
       <a href="../articles/additional.html">additional vignettes</a>
     </li>
     <li>
+      <a href="../articles/tests_and_coverage.html">Tests and Coverage</a>
+    </li>
+    <li>
       <a href="../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
@@ -189,6 +192,8 @@
 <ul>
 <li>To have a more manageable length of function arguments, additional aesthetic specifications for any given geom can be provided via a dedicated <code>*.args</code> argument. For example, all aesthetic arguments for <code>geom_vline</code> can be provided via <code>vline.args</code>, for <code>geom_errorbarh</code> via <code>errorbar.args</code>, etc.</li>
 <li>The unnecessary <code>simulate.p.value</code> and <code>B</code> arguments for <code>ggpiestats</code> and <code>ggbarstats</code> have been removed.</li>
+<li>
+<code>ggstatsplot</code> continues with its conscious uncoupling that started in <code>0.1.0</code> release: The following functions have now been moved to <code>statsExpressions</code> package: <code>subtitle_meta_parametric</code> and <code>bf_meta_message</code>.</li>
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>
@@ -219,7 +224,7 @@
 <p>MINOR CHANGES</p>
 <ul>
 <li>
-<code>ggbetweenstats</code> and <code>ggwithinstats</code> use <code><a href="https://rdrr.io/r/base/Extract.html">[</a></code> instead of <code>(</code> to display confidence intervals. Additionally, $$\mu$$ denoted sample mean, but was confused with population mean by some users. So these functions instead display $$\hat{\mu}$$.</li>
+<code>ggbetweenstats</code> and <code>ggwithinstats</code> use <code><a href="https://rdrr.io/r/base/Extract.html">[</a></code> instead of <code>(</code> to display confidence intervals. Additionally, <br><span class="math display"><em>μ</em></span><br> denoted sample mean, but was confused with population mean by some users. So these functions instead display <br><span class="math display"><em>μ̂</em></span><br>.</li>
 <li>More models supported in <code>ggcoefstats</code>: <code>bmlm</code>, <code>coeftest</code>
 </li>
 <li>Adapts to the new syntax provided in <code>paletteer</code> package.</li>
@@ -282,9 +287,9 @@
 <p>MAJOR CHANGES</p>
 <ul>
 <li>Major refactoring to reduce the codesize and to rely fully on <code>rlang</code>.</li>
-<li>There was confusion about what did the red point in <code>ggbetweenstats</code> and <code>ggbetweenstats</code> plots represents. Now the label also contains $\mu$ to highlight that what is being displayed is a mean value.</li>
+<li>There was confusion about what did the red point in <code>ggbetweenstats</code> and <code>ggbetweenstats</code> plots represents. Now the label also contains <span class="math inline"><em>μ</em></span> to highlight that what is being displayed is a mean value.</li>
 <li>To be consistent with the rest of the functions, <code>ggpiestats</code> and <code>ggbarstats</code> now uses the following aliases for arguments: <code>x</code> for <code>main</code> and <code>y</code> for <code>condition</code>. This change is backward-compatible and should not pose any problems for scripts that used <code>main</code> and <code>condition</code> arguments in these functions.</li>
-<li>Most subtitle expressions now report details about the design. In case of between-subjects design, this will be $n_{obs}$, while in case of repeated measures design, this will be $n_{pairs}$.</li>
+<li>Most subtitle expressions now report details about the design. In case of between-subjects design, this will be <span class="math inline"><em>n</em>_<em>o</em><em>b</em><em>s</em></span>, while in case of repeated measures design, this will be <span class="math inline"><em>n</em>_<em>p</em><em>a</em><em>i</em><em>r</em><em>s</em></span>.</li>
 <li>
 <code>pairwise.annotation</code> now defaults to <code>"p.value"</code> rather than <code>"asterisk"</code> for <code>ggbetweenstats</code> and <code>ggwithinstats</code> (and their <code>grouped_</code> variants) functions. This was done because the asterisk conventions are not consistent across various scientific disciplines.</li>
 </ul>
@@ -390,7 +395,7 @@
 <li>
 <code>ggstatsplot</code> previously relied on an internal function <code>chisq_v_ci</code> to compute confidence intervals for Cramer’s <em>V</em> using bootstrapping but it was pretty slow. It now instead relies on <code>rcompanion</code> package to compute confidence intervals for <em>V</em>. <code>ggstatsplot</code>, therefore, gains a new dependency.</li>
 <li>
-<code>subtitle_mann_nonparametric</code> and <code>subtitle_t_onesample</code> now computes effect size <em>r</em> and its confidence intervals as $Z/\sqrt{N}$ (with the help of <code>rcompanion</code> package), instead of using Spearman correlation.</li>
+<code>subtitle_mann_nonparametric</code> and <code>subtitle_t_onesample</code> now computes effect size <em>r</em> and its confidence intervals as <span class="math inline">$Z/\sqrt{N}$</span> (with the help of <code>rcompanion</code> package), instead of using Spearman correlation.</li>
 </ul>
 </div>
     <div id="ggstatsplot-009" class="section level1">

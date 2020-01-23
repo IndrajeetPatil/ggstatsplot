@@ -8,6 +8,10 @@ BREAKING CHANGES
     provided via `vline.args`, for `geom_errorbarh` via `errorbar.args`, etc.
   - The unnecessary `simulate.p.value` and `B` arguments for `ggpiestats` and
     `ggbarstats` have been removed.
+  - `ggstatsplot` continues with its conscious uncoupling that started in
+    `0.1.0` release: The following functions have now been moved to
+    `statsExpressions` package: `subtitle_meta_parametric` and
+    `bf_meta_message`.
 
 MAJOR CHANGES
 

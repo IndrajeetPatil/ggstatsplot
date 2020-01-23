@@ -15,6 +15,7 @@
 #' @importFrom dplyr case_when
 #'
 #' @keywords internal
+#' @noRd
 
 ggbetweenstats_subtitle_switch <- function(type, test, ...) {
   # figuring out type of test needed to run
@@ -30,6 +31,7 @@ ggbetweenstats_subtitle_switch <- function(type, test, ...) {
 #' @rdname ggbetweenstats_subtitle_switch
 #' @aliases ggbetweenstats_subtitle_switch
 #' @keywords internal
+#' @noRd
 
 ggwithinstats_subtitle_switch <- ggbetweenstats_subtitle_switch
 
@@ -58,6 +60,7 @@ stats_type_switch <- function(type) {
 #' @importFrom rlang exec
 #'
 #' @keywords internal
+#' @noRd
 
 ggbetweenstats_caption_switch <- function(test, ...) {
   # choosing the appropriate test
@@ -74,5 +77,6 @@ ggbetweenstats_caption_switch <- function(test, ...) {
 #' @rdname ggbetweenstats_caption_switch
 #' @aliases ggbetweenstats_caption_switch
 #' @keywords internal
+#' @noRd
 
 ggwithinstats_caption_switch <- ggbetweenstats_caption_switch

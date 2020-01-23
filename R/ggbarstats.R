@@ -218,7 +218,7 @@ ggbarstats <- function(data,
         alpha = label.fill.alpha,
         na.rm = TRUE
       ) +
-      ggstatsplot::theme_mprl(
+      ggstatsplot::theme_ggstatsplot(
         ggtheme = ggtheme,
         ggstatsplot.layer = ggstatsplot.layer
       ) +

@@ -416,13 +416,6 @@ ggcorrmat <- function(data,
       # if `caption` is not specified, use the generic version only if
       # `caption.default` is `TRUE`
       if (is.null(caption) && pch == 4 && isTRUE(caption.default)) {
-        # p value adjustment method description
-        p.adjust.method.text <-
-          paste("Adjustment (p-value): ",
-            pairwiseComparisons::p_adjust_text(p.adjust.method),
-            sep = ""
-          )
-
         # preparing the caption
         caption <-
           substitute(
@@ -439,7 +432,10 @@ ggcorrmat <- function(data,
             ),
             env = list(
               sig.level = sig.level,
-              bottom.text = p.adjust.method.text
+              bottom.text = paste("Adjustment (p-value): ",
+                pairwiseComparisons::p_adjust_text(p.adjust.method),
+                sep = ""
+              )
             )
           )
       }

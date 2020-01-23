@@ -70,19 +70,6 @@ theme_ggstatsplot <- function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer =
 #' @aliases theme_ggstatsplot
 #' @export
 
-theme_mprl <- theme_ggstatsplot
-
-#' @title Default theme used for pie chart
-#' @name theme_pie
-#'
-#' @return A `ggplot2` object with the `theme_ggstatsplot` theme.
-#'
-#' @inheritParams theme_ggstatsplot
-#'
-#' @import ggplot2
-#'
-#' @export
-
 theme_pie <- function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE) {
   if (isTRUE(ggstatsplot.layer)) {
     ggtheme +
@@ -129,12 +116,8 @@ theme_pie <- function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE) {
 }
 
 
-#' @title Default theme used for correlation matrix
-#' @name theme_corrmat
-#' @return A `ggplot2` object with the `theme_ggstatsplot` overlaid.
-#'
-#' @import ggplot2
-#'
+#' @rdname theme_ggstatsplot
+#' @aliases theme_ggstatsplot
 #' @export
 
 theme_corrmat <- function() {
@@ -182,6 +165,7 @@ theme_corrmat <- function() {
 #'
 #' @importFrom cowplot ggdraw draw_grob
 #' @importFrom grid grobTree
+#' @import ggplot2
 #'
 #' @examples
 #' library(ggplot2)

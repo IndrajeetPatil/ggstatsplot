@@ -10,10 +10,6 @@ groupedstats::specify_decimal_p
 groupedstats::signif_column
 
 #' @export
-#' @importFrom groupedstats lm_effsize_ci
-groupedstats::lm_effsize_ci
-
-#' @export
 #' @importFrom groupedstats set_cwd
 groupedstats::set_cwd
 
@@ -22,6 +18,10 @@ groupedstats::set_cwd
 #' @export
 #' @importFrom pairwiseComparisons pairwise_p
 pairwiseComparisons::pairwise_p
+
+#' @export
+#' @importFrom pairwiseComparisons pairwise_comparisons
+pairwiseComparisons::pairwise_comparisons
 
 # ----------------------- tidyverse -------------------------------------
 
