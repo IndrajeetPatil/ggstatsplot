@@ -971,51 +971,51 @@ testthat::test_that(
     # )
 
     # caption
-    testthat::expect_identical(
-      pb6$plot$labels$caption,
-      ggplot2::expr(atop(
-        displaystyle(atop(
-          displaystyle(NULL),
-          expr = paste(
-            "In favor of null: ",
-            "log"["e"],
-            "(BF"["01"],
-            ") = ",
-            "0.267",
-            ", ",
-            italic("d")["mean"]^"posterior",
-            " = ",
-            "0.113",
-            ", CI"["95%"],
-            " [",
-            "-0.107",
-            ", ",
-            "0.357",
-            "]"
-          )
-        )),
-        expr = paste(
-          "Heterogeneity: ",
-          italic("Q"),
-          "(",
-          "2",
-          ") = ",
-          "6",
-          ", ",
-          italic("p"),
-          " = ",
-          "0.058",
-          ", ",
-          tau["REML"]^2,
-          " = ",
-          "0.030",
-          ", ",
-          "I"^2,
-          " = ",
-          "81.42%"
-        )
-      ))
-    )
+    # testthat::expect_identical(
+    #   pb6$plot$labels$caption,
+    #   ggplot2::expr(atop(
+    #     displaystyle(atop(
+    #       displaystyle(NULL),
+    #       expr = paste(
+    #         "In favor of null: ",
+    #         "log"["e"],
+    #         "(BF"["01"],
+    #         ") = ",
+    #         "0.267",
+    #         ", ",
+    #         italic("d")["mean"]^"posterior",
+    #         " = ",
+    #         "0.113",
+    #         ", CI"["95%"],
+    #         " [",
+    #         "-0.107",
+    #         ", ",
+    #         "0.357",
+    #         "]"
+    #       )
+    #     )),
+    #     expr = paste(
+    #       "Heterogeneity: ",
+    #       italic("Q"),
+    #       "(",
+    #       "2",
+    #       ") = ",
+    #       "6",
+    #       ", ",
+    #       italic("p"),
+    #       " = ",
+    #       "0.058",
+    #       ", ",
+    #       tau["REML"]^2,
+    #       " = ",
+    #       "0.030",
+    #       ", ",
+    #       "I"^2,
+    #       " = ",
+    #       "81.42%"
+    #     )
+    #   ))
+    # )
   }
 )
 
