@@ -29,11 +29,6 @@
 #'   used is percentage bend correlation (see `?WRS2::pball`). Abbreviations
 #'   will also work: `"p"` (for parametric/Pearson's *r*), `"np"`
 #'   (nonparametric/Spearman's *rho*), `"r"` (robust).
-#' @param exact A logical indicating whether an exact *p*-value should be
-#'   computed. Used for Spearman's *rho*. For more details, see
-#'   `?stats::cor.test`.
-#' @param continuity A logical. If `TRUE`, a continuity correction is used for
-#'   Spearman's *rho* when not computed exactly (Default: `TRUE`).
 #' @param beta A numeric bending constant for percentage bend robust correlation
 #'   coefficient (Default: `0.1`).
 #' @param digits,k Decides the number of decimal digits to be displayed
@@ -94,9 +89,8 @@
 #' @importFrom ggcorrplot ggcorrplot
 #' @importFrom dplyr select group_by summarize n arrange bind_cols
 #' @importFrom dplyr mutate mutate_at mutate_if
-#' @importFrom purrr is_bare_double is_bare_numeric %||%
-#' @importFrom purrr flatten_dbl keep flatten_dfr compose
-#' @importFrom stats cor na.omit median
+#' @importFrom purrr is_bare_double is_bare_numeric keep compose
+#' @importFrom stats median
 #' @importFrom tibble as_tibble rownames_to_column
 #' @importFrom rlang !! enquo quo_name is_null
 #' @importFrom crayon green blue yellow red
@@ -176,8 +170,6 @@ ggcorrmat <- function(data,
                       method = "square",
                       corr.method = "pearson",
                       type = NULL,
-                      exact = FALSE,
-                      continuity = TRUE,
                       beta = 0.1,
                       digits = 2,
                       k = NULL,
@@ -261,12 +253,12 @@ ggcorrmat <- function(data,
       "kendall" = "Kendall"
     )
 
+  # compute confidence intervals only when requested by the user
+  ci <- ifelse(output == "ci", yes = TRUE, no = FALSE)
+
   # ===================== statistics ========================================
 
   if (corr.method %in% c("pearson", "spearman", "kendall")) {
-    # compute confidence intervals only when requested by the user
-    ci <- ifelse(output == "ci", yes = TRUE, no = FALSE)
-
     # computing correlations using `psych` package
     corr_df <-
       psych::corr.test(
@@ -285,8 +277,10 @@ ggcorrmat <- function(data,
 
     # compute a correlation matrix of p-values
     p.mat <- corr_df$p
-  } else if (corr.method == "robust") {
+  }
 
+  # robust correlation
+  if (corr.method == "robust") {
     # get matrix of samples sizes to be used later in `corr.p` function (`n`)
     corr_df <-
       psych::corr.test(
@@ -294,7 +288,7 @@ ggcorrmat <- function(data,
         y = NULL,
         use = "pairwise",
         adjust = "none",
-        alpha = 1 - conf.level,
+        alpha = 0.05,
         ci = FALSE,
         minlength = 20
       )
@@ -305,7 +299,7 @@ ggcorrmat <- function(data,
     # extracting the correlations and formatting them
     corr.mat <- round(x = rob_cor$pbcorm, digits = digits)
 
-    # converting NAs to 1's
+    # converting `NA`s to 0's
     rob_cor$p.values[is.na(rob_cor$p.values)] <- 0
 
     # adjusting for multiple comparisons (if needed)
@@ -321,138 +315,129 @@ ggcorrmat <- function(data,
 
   # ========================== plot =========================================
 
-  # if user has not specified colors, then use a color palette
-  if (is.null(colors)) {
-    colors <-
-      paletteer::paletteer_d(
-        palette = paste0(package, "::", palette),
-        n = 3,
-        direction = direction,
-        type = "discrete"
-      )
-  }
-
   # creating the basic plot
   if (output == "plot") {
-    if (corr.method %in% c("pearson", "spearman", "kendall", "robust")) {
+    # if user has not specified colors, then use a color palette
+    if (is.null(colors)) {
+      colors <-
+        paletteer::paletteer_d(
+          palette = paste0(package, "::", palette),
+          n = 3,
+          direction = direction,
+          type = "discrete"
+        )
+    }
 
-      # legend title with information about correlation type and sample
-      if (isFALSE(any(is.na(df)))) {
-        legend.title.text <-
-          bquote(atop(
+    # in case of NAs, compute minimum and maximum sample sizes of pairs
+    n_summary <-
+      tibble::tibble(
+        n_min = range(corr_df$n, na.rm = TRUE)[[1]],
+        n_median = stats::median(corr_df$n, na.rm = TRUE),
+        n_max = range(corr_df$n, na.rm = TRUE)[[2]]
+      )
+
+    # legend title with information about correlation type and sample
+    if (isFALSE(any(is.na(df)))) {
+      legend.title.text <-
+        bquote(atop(
+          atop(
+            scriptstyle(bold("sample size:")),
+            italic(n) ~ "=" ~ .(nrow(df))
+          ),
+          atop(
+            scriptstyle(bold("correlation:")),
+            .(corr.method.text)
+          )
+        ))
+    } else {
+      # creating legend with sample size info
+      legend.title.text <-
+        bquote(atop(
+          atop(
             atop(
               scriptstyle(bold("sample size:")),
-              italic(n) ~ "=" ~ .(nrow(data))
+              italic(n)[min] ~ "=" ~ .(n_summary$n_min[[1]])
             ),
             atop(
-              scriptstyle(bold("correlation:")),
-              .(corr.method.text)
+              italic(n)[median] ~ "=" ~ .(n_summary$n_median[[1]]),
+              italic(n)[max] ~ "=" ~ .(n_summary$n_max[[1]])
             )
-          ))
-      } else {
-        # in case of NAs, compute minimum and maximum sample sizes of pairs
-        n_summary <-
-          tibble::as_tibble(corr_df$n) %>%
-          dplyr::select_if(.tbl = ., .predicate = purrr::is_bare_numeric) %>%
-          purrr::flatten_dbl(.x = .) %>%
-          {
-            list(
-              n_min = min(., na.rm = TRUE),
-              n_median = stats::median(x = ., na.rm = TRUE),
-              n_max = max(., na.rm = TRUE)
-            )
-          } %>%
-          purrr::flatten_dfr(.x = .)
+          ),
+          atop(
+            scriptstyle(bold("correlation:")),
+            .(corr.method.text)
+          )
+        ))
+    }
 
-        # creating legend with sample size info
-        legend.title.text <-
-          bquote(atop(
-            atop(
-              atop(
-                scriptstyle(bold("sample size:")),
-                italic(n)[min] ~ "=" ~ .(n_summary$n_min[[1]])
-              ),
-              atop(
-                italic(n)[median] ~ "=" ~ .(n_summary$n_median[[1]]),
-                italic(n)[max] ~ "=" ~ .(n_summary$n_max[[1]])
-              )
+    # plotting the correlalogram
+    plot <-
+      ggcorrplot::ggcorrplot(
+        corr = corr.mat,
+        method = method,
+        p.mat = p.mat,
+        sig.level = sig.level,
+        type = matrix.type,
+        hc.method = hc.method,
+        hc.order = hc.order,
+        lab = lab,
+        outline.color = outline.color,
+        ggtheme = ggtheme,
+        colors = colors,
+        legend.title = legend.title.text,
+        lab_col = lab.col,
+        lab_size = lab.size,
+        insig = insig,
+        pch = pch,
+        pch.col = pch.col,
+        pch.cex = pch.cex,
+        tl.cex = tl.cex,
+        tl.col = tl.col,
+        tl.srt = tl.srt,
+        digits = digits
+      )
+
+    # =========================== labels ==================================
+
+    # if `caption` is not specified, use the generic version only if
+    # `caption.default` is `TRUE`
+    if (is.null(caption) && pch == 4 && isTRUE(caption.default)) {
+      # preparing the caption
+      caption <-
+        substitute(
+          atop(
+            expr = paste(
+              bold("X"),
+              " = correlation non-significant at ",
+              italic("p"),
+              " < ",
+              sig.level,
+              sep = ""
             ),
-            atop(
-              scriptstyle(bold("correlation:")),
-              .(corr.method.text)
-            )
-          ))
-      }
-
-      # plotting the correlalogram
-      plot <-
-        ggcorrplot::ggcorrplot(
-          corr = corr.mat,
-          method = method,
-          p.mat = p.mat,
-          sig.level = sig.level,
-          type = matrix.type,
-          hc.method = hc.method,
-          hc.order = hc.order,
-          lab = lab,
-          outline.color = outline.color,
-          ggtheme = ggtheme,
-          colors = colors,
-          legend.title = legend.title.text,
-          lab_col = lab.col,
-          lab_size = lab.size,
-          insig = insig,
-          pch = pch,
-          pch.col = pch.col,
-          pch.cex = pch.cex,
-          tl.cex = tl.cex,
-          tl.col = tl.col,
-          tl.srt = tl.srt,
-          digits = digits
-        )
-
-      # =========================== labels ==================================
-
-      # if `caption` is not specified, use the generic version only if
-      # `caption.default` is `TRUE`
-      if (is.null(caption) && pch == 4 && isTRUE(caption.default)) {
-        # preparing the caption
-        caption <-
-          substitute(
-            atop(
-              expr = paste(
-                bold("X"),
-                " = correlation non-significant at ",
-                italic("p"),
-                " < ",
-                sig.level,
-                sep = ""
-              ),
-              bottom.text
-            ),
-            env = list(
-              sig.level = sig.level,
-              bottom.text = paste("Adjustment (p-value): ",
-                pairwiseComparisons::p_adjust_text(p.adjust.method),
-                sep = ""
-              )
+            bottom.text
+          ),
+          env = list(
+            sig.level = sig.level,
+            bottom.text = paste("Adjustment (p-value): ",
+              pairwiseComparisons::p_adjust_text(p.adjust.method),
+              sep = ""
             )
           )
-      }
-
-      # adding text details to the plot
-      plot <- plot +
-        ggplot2::labs(
-          title = title,
-          subtitle = subtitle,
-          caption = caption,
-          xlab = NULL,
-          ylab = NULL
         )
-
-      # adding `ggstatsplot` theme for correlation matrix
-      if (isTRUE(ggstatsplot.layer)) plot <- plot + theme_corrmat()
     }
+
+    # adding text details to the plot
+    plot <- plot +
+      ggplot2::labs(
+        title = title,
+        subtitle = subtitle,
+        caption = caption,
+        xlab = NULL,
+        ylab = NULL
+      )
+
+    # adding `ggstatsplot` theme for correlation matrix
+    if (isTRUE(ggstatsplot.layer)) plot <- plot + theme_corrmat()
   }
 
   # ========================= confidence intervals ===========================

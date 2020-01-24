@@ -24,7 +24,9 @@ MINOR CHANGES
   - New dataset included: `bugs_wide`
   - More models supported in `ggcoefstats`: `cgam`, `cgamm`, `coxme`, `cpglm`,
     `cpglmm`, `complmrob`, `feis`, `flexsurvreg`, `glmx`, `hurdle`, `iv_robust`,
-    `mixor`, `rqss`, `truncreg`, `vgam`
+    `mixor`, `rqss`, `truncreg`, `vgam`.
+  - Removed vestigial arguments from `ggcorrmat` (e.g., `exact`, `continuity`,
+    etc.).
  
 # ggstatsplot 0.1.4
 
