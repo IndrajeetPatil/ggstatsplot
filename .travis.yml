@@ -50,6 +50,10 @@ jobs:
       - metaBMA
     r_packages:
       - coin
+      - bayestestR
+      - effectsize
+      - parameters
+      - performance
       - sjstats
       - WRS2
       - coda
@@ -95,6 +99,10 @@ jobs:
       - metaBMA
     r_packages:
       - coin
+      - bayestestR
+      - effectsize
+      - parameters
+      - performance
       - sjstats
       - WRS2
       - coda

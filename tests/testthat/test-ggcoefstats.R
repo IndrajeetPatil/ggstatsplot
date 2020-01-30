@@ -942,80 +942,23 @@ testthat::test_that(
     ))
 
     # subtitle
-    # testthat::expect_identical(
-    #   pb6$plot$labels$subtitle,
-    #   ggplot2::expr(paste(
-    #     "Summary effect: ",
-    #     italic("z"),
-    #     " = ",
-    #     "1.294",
-    #     ", ",
-    #     italic("p"),
-    #     " = ",
-    #     "0.196",
-    #     ", ",
-    #     widehat(beta),
-    #     " = ",
-    #     "0.152",
-    #     ", CI"["95%"],
-    #     " [",
-    #     "-0.078",
-    #     ", ",
-    #     "0.381",
-    #     "]",
-    #     ", ",
-    #     italic("n")["effects"],
-    #     " = ",
-    #     3L
-    #   ))
-    # )
+    set.seed(123)
+    meta_info <- suppressWarnings(capture.output(ggstatsplot::ggcoefstats(
+      x = df5,
+      statistic = "t",
+      k = 3,
+      meta.analytic.effect = TRUE,
+      bf.message = TRUE,
+      messages = TRUE
+    )))
 
-    # caption
-    # testthat::expect_identical(
-    #   pb6$plot$labels$caption,
-    #   ggplot2::expr(atop(
-    #     displaystyle(atop(
-    #       displaystyle(NULL),
-    #       expr = paste(
-    #         "In favor of null: ",
-    #         "log"["e"],
-    #         "(BF"["01"],
-    #         ") = ",
-    #         "0.267",
-    #         ", ",
-    #         italic("d")["mean"]^"posterior",
-    #         " = ",
-    #         "0.113",
-    #         ", CI"["95%"],
-    #         " [",
-    #         "-0.107",
-    #         ", ",
-    #         "0.357",
-    #         "]"
-    #       )
-    #     )),
-    #     expr = paste(
-    #       "Heterogeneity: ",
-    #       italic("Q"),
-    #       "(",
-    #       "2",
-    #       ") = ",
-    #       "6",
-    #       ", ",
-    #       italic("p"),
-    #       " = ",
-    #       "0.058",
-    #       ", ",
-    #       tau["REML"]^2,
-    #       " = ",
-    #       "0.030",
-    #       ", ",
-    #       "I"^2,
-    #       " = ",
-    #       "81.42%"
-    #     )
-    #   ))
-    # )
+    # tests
+    testthat::expect_identical(meta_info[13], "Q(df = 2) = 5.6910, p-val = 0.0581")
+    testthat::expect_identical(meta_info[30], "  random_H0     1.000      1.31")
+    testthat::expect_identical(
+      meta_info[18],
+      "  0.1515  0.1171  1.2938  0.1957  -0.0780  0.3811    "
+    )
   }
 )
 
@@ -1472,13 +1415,13 @@ testthat::test_that(
     SmokingPrevention <- SmokingPrevention[order(SmokingPrevention$class), ]
 
     # school model
-    suppressWarnings(mod <-
+    suppressMessages(suppressWarnings(mod <-
       mixor::mixor(
         thksord ~ thkspre + cc + tv + cctv,
         data = SmokingPrevention,
         id = school,
         link = "logit"
-      ))
+      )))
 
     # plot
     p <- ggstatsplot::ggcoefstats(

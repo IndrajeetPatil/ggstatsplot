@@ -106,10 +106,20 @@ being broken into smaller pieces.
 
 ## `statsExpressions`
 
-The statistical backend that processes data and creates expressions containing
-results from statistical tests is `statsExpressions`. For more exhaustive
-documentation for this package, see:
+The `statsExpressions` package forms the statistical backend that processes data
+and creates expressions containing results from statistical tests. 
+
+For more exhaustive documentation for this package, see:
 <https://indrajeetpatil.github.io/statsExpressions/>
+
+## `pairwiseComparisons`
+
+The `pairwiseComparisons` package forms the pairwise comparison backend for
+creating results that are used to display *post hoc* multiple comparisons
+displayed in `ggbetweenstats` and `ggwithinstats` functions. 
+
+For more exhaustive documentation for this package, see:
+<https://indrajeetpatil.github.io/pairwiseComparisons/>
 
 # Suggestions
 

@@ -239,7 +239,7 @@ ggwithinstats <- function(data,
     # preparing the bayes factor message
     if (type == "parametric" && isTRUE(bf.message)) {
       caption <-
-        ggwithinstats_caption_switch(
+        caption_function_switch(
           test = test,
           data = data,
           x = rlang::as_string(x),
@@ -254,7 +254,7 @@ ggwithinstats <- function(data,
 
     # extracting the subtitle using the switch function
     subtitle <-
-      ggwithinstats_subtitle_switch(
+      subtitle_function_switch(
         # switch based on
         type = type,
         test = test,

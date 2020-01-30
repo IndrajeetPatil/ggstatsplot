@@ -6,12 +6,12 @@ BREAKING CHANGES
     specifications for any given geom can be provided via a dedicated `*.args`
     argument. For example, all aesthetic arguments for `geom_vline` can be
     provided via `vline.args`, for `geom_errorbarh` via `errorbar.args`, etc.
-  - The unnecessary `simulate.p.value` and `B` arguments for `ggpiestats` and
-    `ggbarstats` have been removed.
   - `ggstatsplot` continues with its conscious uncoupling that started in
     `0.1.0` release: The following functions have now been moved to
     `statsExpressions` package: `subtitle_meta_parametric` and
-    `bf_meta_message`.
+    `bf_meta_message` and follow a more logical nomenclature.
+    For the same reason, `lm_effsize_ci` function is also no longer exported and
+    lives in the `groupedstats` package.
 
 MAJOR CHANGES
 
@@ -26,7 +26,7 @@ MINOR CHANGES
     `cpglmm`, `complmrob`, `feis`, `flexsurvreg`, `glmx`, `hurdle`, `iv_robust`,
     `mixor`, `rqss`, `truncreg`, `vgam`.
   - Removed vestigial arguments from `ggcorrmat` (e.g., `exact`, `continuity`,
-    etc.).
+    etc.) and `ggpiestats` (`bf.prior`, `simulate.p.value`, `B`, etc.).
  
 # ggstatsplot 0.1.4
 
@@ -284,7 +284,7 @@ MINOR CHANGES
     confidence intervals for *V*. `ggstatsplot`, therefore, gains a new
     dependency.
   - `subtitle_mann_nonparametric` and `subtitle_t_onesample` now computes effect
-    size *r* and its confidence intervals as $Z/\sqrt{N}$ (with the help of
+    size *r* and its confidence intervals as $$Z/\sqrt{N}$$ (with the help of
     `rcompanion` package), instead of using Spearman correlation.
 
 # ggstatsplot 0.0.9

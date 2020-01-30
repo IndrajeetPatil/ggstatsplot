@@ -420,11 +420,10 @@ ggbetweenstats <- function(data,
   # --------------------- subtitle/caption preparation ------------------------
 
   if (isTRUE(results.subtitle)) {
-
     # preparing the Bayes factor message
     if (type == "parametric" && isTRUE(bf.message)) {
       caption <-
-        ggbetweenstats_caption_switch(
+        caption_function_switch(
           test = test,
           data = data,
           x = rlang::as_string(x),
@@ -439,7 +438,7 @@ ggbetweenstats <- function(data,
 
     # extracting the subtitle using the switch function
     subtitle <-
-      ggbetweenstats_subtitle_switch(
+      subtitle_function_switch(
         # switch based on
         type = type,
         test = test,
