@@ -1,4 +1,4 @@
-# ggstatsplot 0.2.0.9000
+# ggstatsplot 0.2.0
 
 BREAKING CHANGES
 
@@ -18,6 +18,7 @@ MAJOR CHANGES
   - The summary caption no longer displays log-likelihood value because it tends
     to be not available for a number of regression model objects and so the
     caption was unnecessarily being skipped.
+  - Supports robust and Bayes Factors for random-effects meta-analysis.
 
 MINOR CHANGES
 

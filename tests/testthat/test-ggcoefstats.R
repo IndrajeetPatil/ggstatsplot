@@ -863,6 +863,17 @@ testthat::test_that(
         bf.message = TRUE,
         messages = FALSE
       ))
+    p7 <-
+      suppressWarnings(ggstatsplot::ggcoefstats(
+        x = df5,
+        statistic = "t",
+        k = 3,
+        meta.analytic.effect = TRUE,
+        meta.type = "bf",
+        caption = "mnp",
+        bf.message = TRUE,
+        messages = FALSE
+      ))
 
     # build plots
     pb1 <- ggplot2::ggplot_build(p1)
@@ -871,6 +882,7 @@ testthat::test_that(
     pb4 <- ggplot2::ggplot_build(p4)
     pb5 <- ggplot2::ggplot_build(p5)
     pb6 <- ggplot2::ggplot_build(p6)
+    pb7 <- ggplot2::ggplot_build(p7)
 
     # stats labels
     testthat::expect_identical(
@@ -959,6 +971,7 @@ testthat::test_that(
       meta_info[18],
       "  0.1515  0.1171  1.2938  0.1957  -0.0780  0.3811    "
     )
+    testthat::expect_identical(pb7$plot$labels$caption, "mnp")
   }
 )
 
