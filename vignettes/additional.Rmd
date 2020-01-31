@@ -121,6 +121,12 @@ displayed in `ggbetweenstats` and `ggwithinstats` functions.
 For more exhaustive documentation for this package, see:
 <https://indrajeetpatil.github.io/pairwiseComparisons/>
 
+# Other resources
+
+Few other people have also written about `ggstatsplot` and its usage in their
+workflows:
+(<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/other_resources.html>)
+
 # Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on

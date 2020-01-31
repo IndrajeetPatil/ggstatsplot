@@ -108,6 +108,9 @@
       <a href="articles/web_only/ggwithinstats.html">ggwithinstats</a>
     </li>
     <li>
+      <a href="articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
+    </li>
+    <li>
       <a href="articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
     </li>
     <li>
@@ -384,7 +387,7 @@
 <td>Random-effects meta-analysis</td>
 <td><font color="green">Yes</font></td>
 <td><font color="red">No</font></td>
-<td><font color="red">No</font></td>
+<td><font color="green">Yes</font></td>
 <td><font color="green">Yes</font></td>
 </tr>
 </tbody>
@@ -665,7 +668,7 @@
 <span id="cb7-3"><a href="#cb7-3"></a><span class="co">#&gt; function(plot) {</span></span>
 <span id="cb7-4"><a href="#cb7-4"></a><span class="co">#&gt;   cowplot::ggdraw() + cowplot::draw_grob(grid::grobTree(plot))</span></span>
 <span id="cb7-5"><a href="#cb7-5"></a><span class="co">#&gt; }</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt; &lt;bytecode: 0x0000000025275910&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt; &lt;bytecode: 0x000000002fb2ea98&gt;</span></span>
 <span id="cb7-7"><a href="#cb7-7"></a><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></span></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -740,12 +743,8 @@
 <span id="cb9-34"><a href="#cb9-34"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
 <span id="cb9-35"><a href="#cb9-35"></a>)</span></code></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats2-1.png" width="100%"></p>
-<p>As can be seen from the plot, the function by default returns Bayes Factor for the test (here, Student’s <em>t</em>-test). If the null hypothesis can’t be rejected with the null hypothesis significance testing (NHST) approach, the Bayesian approach can help index evidence in favor of the null hypothesis (i.e.,<br><embed src="https://latex.codecogs.com/png.latex?BF_%7B01%7D%20%22BF_%7B01%7D%22"></embed><br>
-).</p>
-<p>By default, natural logarithms are shown because Bayes Factor values can sometimes be pretty large. Having values on logarithmic scale also makes it easy to compare evidence in favor alternative (<br><embed src="https://latex.codecogs.com/png.latex?BF_%7B10%7D%20%22BF_%7B10%7D%22"></embed><br>
-) versus null (<br><embed src="https://latex.codecogs.com/png.latex?BF_%7B01%7D%20%22BF_%7B01%7D%22"></embed><br>
-) hypotheses (since<br><embed src="https://latex.codecogs.com/png.latex?log_%7Be%7D%28BF_%7B01%7D%29%20%3D%20-%20log_%7Be%7D%28BF_%7B01%7D%29%20%22log_%7Be%7D(BF_%7B01%7D)%20=%20-%20log_%7Be%7D(BF_%7B01%7D)%22"></embed><br>
-).</p>
+<p>As can be seen from the plot, the function by default returns Bayes Factor for the test (here, Student’s <em>t</em>-test). If the null hypothesis can’t be rejected with the null hypothesis significance testing (NHST) approach, the Bayesian approach can help index evidence in favor of the null hypothesis (i.e., <embed src="https://latex.codecogs.com/png.latex?BF_%7B01%7D%20%22BF_%7B01%7D%22"></embed>).</p>
+<p>By default, natural logarithms are shown because Bayes Factor values can sometimes be pretty large. Having values on logarithmic scale also makes it easy to compare evidence in favor alternative (<embed src="https://latex.codecogs.com/png.latex?BF_%7B10%7D%20%22BF_%7B10%7D%22"></embed>) versus null (<embed src="https://latex.codecogs.com/png.latex?BF_%7B01%7D%20%22BF_%7B01%7D%22"></embed>) hypotheses (since <embed src="https://latex.codecogs.com/png.latex?log_%7Be%7D%28BF_%7B01%7D%29%20%3D%20-%20log_%7Be%7D%28BF_%7B01%7D%29%20%22log_%7Be%7D(BF_%7B01%7D)%20=%20-%20log_%7Be%7D(BF_%7B01%7D)%22"></embed>).</p>
 <p>Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># for reproducibility</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
@@ -1146,10 +1145,7 @@
 <h2 class="hasAnchor">
 <a href="#ggpiestats" class="anchor"></a><code>ggpiestats</code>
 </h2>
-<p>This function creates a pie chart for categorical or nominal variables with results from contingency table analysis (Pearson’s<br><embed src="https://latex.codecogs.com/png.latex?%5Cchi%5E2" title="\chi^2"></embed><br>
-test for between-subjects design and McNemar’s<br><embed src="https://latex.codecogs.com/png.latex?%5Cchi%5E2" title="\chi^2"></embed><br>
-test for within-subjects design) included in the subtitle of the plot. If only one categorical variable is entered, results from one-sample proportion test (i.e., a<br><embed src="https://latex.codecogs.com/png.latex?%5Cchi%5E2" title="\chi^2"></embed><br>
-goodness of fit test) will be displayed as a subtitle.</p>
+<p>This function creates a pie chart for categorical or nominal variables with results from contingency table analysis (Pearson’s <embed src="https://latex.codecogs.com/png.latex?%5Cchi%5E2" title="\chi^2"></embed> test for between-subjects design and McNemar’s <embed src="https://latex.codecogs.com/png.latex?%5Cchi%5E2" title="\chi^2"></embed> test for within-subjects design) included in the subtitle of the plot. If only one categorical variable is entered, results from one-sample proportion test (i.e., a <embed src="https://latex.codecogs.com/png.latex?%5Cchi%5E2" title="\chi^2"></embed> goodness of fit test) will be displayed as a subtitle.</p>
 <p>Here is an example of a case where the theoretical question is about proportions for different levels of a single nominal variable:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># for reproducibility</span></span>
 <span id="cb16-2"><a href="#cb16-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
@@ -1186,8 +1182,7 @@ goodness of fit test) will be displayed as a subtitle.</p>
 <span id="cb17-21"><a href="#cb17-21"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span> <span class="co"># turn off messages and notes</span></span>
 <span id="cb17-22"><a href="#cb17-22"></a>)</span></code></pre></div>
 <p><img src="reference/figures/README-ggpiestats2-1.png" width="100%"></p>
-<p>In case of repeated measures designs, setting <code>paired = TRUE</code> will produce results from McNemar’s<br><embed src="https://latex.codecogs.com/png.latex?%5Cchi%5E2" title="\chi^2"></embed><br>
-test-</p>
+<p>In case of repeated measures designs, setting <code>paired = TRUE</code> will produce results from McNemar’s <embed src="https://latex.codecogs.com/png.latex?%5Cchi%5E2" title="\chi^2"></embed> test-</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># for reproducibility</span></span>
 <span id="cb18-2"><a href="#cb18-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
 <span id="cb18-3"><a href="#cb18-3"></a></span>
@@ -1255,22 +1250,24 @@ test-</p>
 <tbody>
 <tr class="odd">
 <td>Unpaired</td>
-<td><embed src="https://latex.codecogs.com/png.latex?n%20%5Ctimes%20p" title="n \times p"></embed></td>
-<td></td>
+<td>
+<embed src="https://latex.codecogs.com/png.latex?n%20%5Ctimes%20p" title="n \times p"></embed> contingency table</td>
+<td>Pearson’s <embed src="https://latex.codecogs.com/png.latex?%5Cchi%5E%7B2%7D" title="\chi^{2}"></embed> test</td>
 </tr>
 <tr class="even">
-<td>contingency table</td>
-<td>Pearson’s</td>
-<td></td>
+<td>Paired</td>
+<td>
+<embed src="https://latex.codecogs.com/png.latex?n%20%5Ctimes%20p" title="n \times p"></embed> contingency table</td>
+<td>McNemar’s <embed src="https://latex.codecogs.com/png.latex?%5Cchi%5E%7B2%7D" title="\chi^{2}"></embed> test</td>
+</tr>
+<tr class="odd">
+<td>Frequency</td>
+<td>
+<embed src="https://latex.codecogs.com/png.latex?n%20%5Ctimes%201" title="n \times 1"></embed> contingency table</td>
+<td>Goodness of fit (<embed src="https://latex.codecogs.com/png.latex?%5Cchi%5E%7B2%7D" title="\chi^{2}"></embed>)</td>
 </tr>
 </tbody>
 </table>
-<p><embed src="https://latex.codecogs.com/png.latex?%5Cchi%5E%7B2%7D" title="\chi^{2}"></embed><br>
-test | | Paired | <embed src="https://latex.codecogs.com/png.latex?n%20%5Ctimes%20p" title="n \times p"></embed><br>
-contingency table | McNemar’s<br><embed src="https://latex.codecogs.com/png.latex?%5Cchi%5E%7B2%7D" title="\chi^{2}"></embed><br>
-test | | Frequency | <embed src="https://latex.codecogs.com/png.latex?n%20%5Ctimes%201" title="n \times 1"></embed><br>
-contingency table | Goodness of fit (<br><embed src="https://latex.codecogs.com/png.latex?%5Cchi%5E%7B2%7D" title="\chi^{2}"></embed><br>
-) |</p>
 <p>Following effect sizes (and confidence intervals/CI) are available for each type of test-</p>
 <table class="table">
 <thead><tr class="header">
@@ -1329,49 +1326,45 @@ contingency table | Goodness of fit (<br><embed src="https://latex.codecogs.com/
 <p><img src="reference/figures/README-ggbarstats1-1.png" width="100%"></p>
 <p>Note that <em>p</em>-values for results from one-sample proportion tests are displayed for each bar in the form of asterisks with the following convention: <br></p>
 <ul>
-<li><div class="sourceCode" id="cb21"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="op">!</span>[\<span class="op">*</span>\<span class="op">*</span>\<span class="op">*</span>](https<span class="op">:</span><span class="er">//</span>latex.codecogs.com<span class="op">/</span>png.latex?<span class="op">%2A%</span>2A%2A <span class="st">"***"</span>)  </span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="op">:</span><span class="st">   </span></span>
-<span id="cb21-3"><a href="#cb21-3"></a><span class="op">!</span>[p \<span class="op">&lt;</span><span class="st"> </span><span class="fl">0.001</span>](https<span class="op">:</span><span class="er">//</span>latex.codecogs.com<span class="op">/</span>png.latex?p<span class="op">%20%</span>3C%<span class="fl">200.001</span></span>
-<span id="cb21-4"><a href="#cb21-4"></a><span class="st">"p \&lt; 0.001"</span>)  </span></code></pre></div></li>
-<li><div class="sourceCode" id="cb22"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="op">!</span>[\<span class="op">*</span>\<span class="op">*</span>](https<span class="op">:</span><span class="er">//</span>latex.codecogs.com<span class="op">/</span>png.latex?<span class="op">%2A%</span>2A <span class="st">"**"</span>)  </span>
-<span id="cb22-2"><a href="#cb22-2"></a><span class="op">:</span><span class="st">   </span></span>
-<span id="cb22-3"><a href="#cb22-3"></a><span class="op">!</span>[p \<span class="op">&lt;</span><span class="st"> </span><span class="fl">0.01</span>](https<span class="op">:</span><span class="er">//</span>latex.codecogs.com<span class="op">/</span>png.latex?p<span class="op">%20%</span>3C%<span class="fl">200.01</span></span>
-<span id="cb22-4"><a href="#cb22-4"></a><span class="st">"p \&lt; 0.01"</span>)  </span></code></pre></div></li>
-<li><div class="sourceCode" id="cb23"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="op">!</span>[\<span class="op">*</span>](https<span class="op">:</span><span class="er">//</span>latex.codecogs.com<span class="op">/</span>png.latex?%2A <span class="st">"*"</span>)  </span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="op">:</span><span class="st">   </span></span>
-<span id="cb23-3"><a href="#cb23-3"></a><span class="op">!</span>[p \<span class="op">&lt;</span><span class="st"> </span><span class="fl">0.05</span>](https<span class="op">:</span><span class="er">//</span>latex.codecogs.com<span class="op">/</span>png.latex?p<span class="op">%20%</span>3C%<span class="fl">200.05</span></span>
-<span id="cb23-4"><a href="#cb23-4"></a><span class="st">"p \&lt; 0.05"</span>)  </span></code></pre></div></li>
-<li><div class="sourceCode" id="cb24"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="op">!</span>[ns](https<span class="op">:</span><span class="er">//</span>latex.codecogs.com<span class="op">/</span>png.latex?ns <span class="st">"ns"</span>)  </span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="op">:</span><span class="st">   </span></span>
-<span id="cb24-3"><a href="#cb24-3"></a><span class="op">!</span>[p \<span class="op">&gt;</span><span class="st"> </span><span class="fl">0.05</span>](https<span class="op">:</span><span class="er">//</span>latex.codecogs.com<span class="op">/</span>png.latex?p<span class="op">%20%</span>3E%<span class="fl">200.05</span></span>
-<span id="cb24-4"><a href="#cb24-4"></a><span class="st">"p \&gt; 0.05"</span>)  </span></code></pre></div></li>
+<li>
+<embed src="https://latex.codecogs.com/png.latex?%2A%2A%2A" title="***"></embed>: <embed src="https://latex.codecogs.com/png.latex?p%20%3C%200.001%20%22p%20%3C%200.001%22"></embed>
+</li>
+<li>
+<embed src="https://latex.codecogs.com/png.latex?%2A%2A" title="**"></embed>: <embed src="https://latex.codecogs.com/png.latex?p%20%3C%200.01%20%22p%20%3C%200.01%22"></embed>
+</li>
+<li>
+<embed src="https://latex.codecogs.com/png.latex?%2A" title="*"></embed>: <embed src="https://latex.codecogs.com/png.latex?p%20%3C%200.05%20%22p%20%3C%200.05%22"></embed>
+</li>
+<li>
+<embed src="https://latex.codecogs.com/png.latex?ns" title="ns"></embed>: <embed src="https://latex.codecogs.com/png.latex?p%20%3E%200.05%20%22p%20%3E%200.05%22"></embed>
+</li>
 </ul>
 <p>And, needless to say, there is also a <code>grouped_</code> variant of this function-</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># setup</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
-<span id="cb25-3"><a href="#cb25-3"></a></span>
-<span id="cb25-4"><a href="#cb25-4"></a><span class="co"># smaller dataset</span></span>
-<span id="cb25-5"><a href="#cb25-5"></a>df &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(</span>
-<span id="cb25-6"><a href="#cb25-6"></a>  <span class="dt">.data =</span> forcats<span class="op">::</span>gss_cat,</span>
-<span id="cb25-7"><a href="#cb25-7"></a>  race <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Black"</span>, <span class="st">"White"</span>),</span>
-<span id="cb25-8"><a href="#cb25-8"></a>  relig <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Protestant"</span>, <span class="st">"Catholic"</span>, <span class="st">"None"</span>),</span>
-<span id="cb25-9"><a href="#cb25-9"></a>  <span class="op">!</span>partyid <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"No answer"</span>, <span class="st">"Don't know"</span>, <span class="st">"Other party"</span>)</span>
-<span id="cb25-10"><a href="#cb25-10"></a>)</span>
-<span id="cb25-11"><a href="#cb25-11"></a></span>
-<span id="cb25-12"><a href="#cb25-12"></a><span class="co"># plot</span></span>
-<span id="cb25-13"><a href="#cb25-13"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggbarstats.html">grouped_ggbarstats</a></span>(</span>
-<span id="cb25-14"><a href="#cb25-14"></a>  <span class="dt">data =</span> df,</span>
-<span id="cb25-15"><a href="#cb25-15"></a>  <span class="dt">x =</span> relig,</span>
-<span id="cb25-16"><a href="#cb25-16"></a>  <span class="dt">y =</span> partyid,</span>
-<span id="cb25-17"><a href="#cb25-17"></a>  <span class="dt">grouping.var =</span> race,</span>
-<span id="cb25-18"><a href="#cb25-18"></a>  <span class="dt">title.prefix =</span> <span class="st">"Race"</span>,</span>
-<span id="cb25-19"><a href="#cb25-19"></a>  <span class="dt">xlab =</span> <span class="st">"Party affiliation"</span>,</span>
-<span id="cb25-20"><a href="#cb25-20"></a>  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(<span class="dt">base_size =</span> <span class="dv">12</span>),</span>
-<span id="cb25-21"><a href="#cb25-21"></a>  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb25-22"><a href="#cb25-22"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb25-23"><a href="#cb25-23"></a>  <span class="dt">title.text =</span> <span class="st">"Race, religion, and political affiliation"</span>,</span>
-<span id="cb25-24"><a href="#cb25-24"></a>  <span class="dt">nrow =</span> <span class="dv">2</span></span>
-<span id="cb25-25"><a href="#cb25-25"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># setup</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
+<span id="cb21-3"><a href="#cb21-3"></a></span>
+<span id="cb21-4"><a href="#cb21-4"></a><span class="co"># smaller dataset</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a>df &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(</span>
+<span id="cb21-6"><a href="#cb21-6"></a>  <span class="dt">.data =</span> forcats<span class="op">::</span>gss_cat,</span>
+<span id="cb21-7"><a href="#cb21-7"></a>  race <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Black"</span>, <span class="st">"White"</span>),</span>
+<span id="cb21-8"><a href="#cb21-8"></a>  relig <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Protestant"</span>, <span class="st">"Catholic"</span>, <span class="st">"None"</span>),</span>
+<span id="cb21-9"><a href="#cb21-9"></a>  <span class="op">!</span>partyid <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"No answer"</span>, <span class="st">"Don't know"</span>, <span class="st">"Other party"</span>)</span>
+<span id="cb21-10"><a href="#cb21-10"></a>)</span>
+<span id="cb21-11"><a href="#cb21-11"></a></span>
+<span id="cb21-12"><a href="#cb21-12"></a><span class="co"># plot</span></span>
+<span id="cb21-13"><a href="#cb21-13"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggbarstats.html">grouped_ggbarstats</a></span>(</span>
+<span id="cb21-14"><a href="#cb21-14"></a>  <span class="dt">data =</span> df,</span>
+<span id="cb21-15"><a href="#cb21-15"></a>  <span class="dt">x =</span> relig,</span>
+<span id="cb21-16"><a href="#cb21-16"></a>  <span class="dt">y =</span> partyid,</span>
+<span id="cb21-17"><a href="#cb21-17"></a>  <span class="dt">grouping.var =</span> race,</span>
+<span id="cb21-18"><a href="#cb21-18"></a>  <span class="dt">title.prefix =</span> <span class="st">"Race"</span>,</span>
+<span id="cb21-19"><a href="#cb21-19"></a>  <span class="dt">xlab =</span> <span class="st">"Party affiliation"</span>,</span>
+<span id="cb21-20"><a href="#cb21-20"></a>  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(<span class="dt">base_size =</span> <span class="dv">12</span>),</span>
+<span id="cb21-21"><a href="#cb21-21"></a>  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb21-22"><a href="#cb21-22"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb21-23"><a href="#cb21-23"></a>  <span class="dt">title.text =</span> <span class="st">"Race, religion, and political affiliation"</span>,</span>
+<span id="cb21-24"><a href="#cb21-24"></a>  <span class="dt">nrow =</span> <span class="dv">2</span></span>
+<span id="cb21-25"><a href="#cb21-25"></a>)</span></code></pre></div>
 <p><img src="reference/figures/README-ggbarstats2-1.png" width="100%"></p>
 <div id="summary-of-tests-4" class="section level3">
 <h3 class="hasAnchor">
@@ -1384,77 +1377,77 @@ contingency table | Goodness of fit (<br><embed src="https://latex.codecogs.com/
 <a href="#gghistostats" class="anchor"></a><code>gghistostats</code>
 </h2>
 <p>To visualize the distribution of a single variable and check if its mean is significantly different from a specified value with a one-sample test, <code>gghistostats</code> can be used. We will again demonstrate here that the outputs are <code>ggplot</code> objects and can be further modified using any of the <code>ggplot</code> extension packages:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># for reproducibility</span></span>
-<span id="cb26-2"><a href="#cb26-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
-<span id="cb26-3"><a href="#cb26-3"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(firatheme)</span>
-<span id="cb26-4"><a href="#cb26-4"></a></span>
-<span id="cb26-5"><a href="#cb26-5"></a><span class="co"># plot</span></span>
-<span id="cb26-6"><a href="#cb26-6"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</span>
-<span id="cb26-7"><a href="#cb26-7"></a>  <span class="dt">data =</span> ToothGrowth, <span class="co"># dataframe from which variable is to be taken</span></span>
-<span id="cb26-8"><a href="#cb26-8"></a>  <span class="dt">x =</span> len, <span class="co"># numeric variable whose distribution is of interest</span></span>
-<span id="cb26-9"><a href="#cb26-9"></a>  <span class="dt">xlab =</span> <span class="st">"Tooth length"</span>, <span class="co"># `x`-axis label</span></span>
-<span id="cb26-10"><a href="#cb26-10"></a>  <span class="dt">title =</span> <span class="st">"Distribution of Tooth Length"</span>, <span class="co"># title for the plot</span></span>
-<span id="cb26-11"><a href="#cb26-11"></a>  <span class="dt">fill.gradient =</span> <span class="ot">TRUE</span>, <span class="co"># use color gradient</span></span>
-<span id="cb26-12"><a href="#cb26-12"></a>  <span class="dt">test.value =</span> <span class="dv">10</span>, <span class="co"># the comparison value for one-sample test</span></span>
-<span id="cb26-13"><a href="#cb26-13"></a>  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>, <span class="co"># display a vertical line at test value</span></span>
-<span id="cb26-14"><a href="#cb26-14"></a>  <span class="dt">type =</span> <span class="st">"bayes"</span>, <span class="co"># bayes factor for one sample t-test</span></span>
-<span id="cb26-15"><a href="#cb26-15"></a>  <span class="dt">bf.prior =</span> <span class="fl">0.8</span>, <span class="co"># prior width for calculating the bayes factor</span></span>
-<span id="cb26-16"><a href="#cb26-16"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span> <span class="co"># turn off the messages</span></span>
-<span id="cb26-17"><a href="#cb26-17"></a>) <span class="op">+</span><span class="st"> </span><span class="co"># modification outside of `ggstatsplot` using extension packages</span></span>
-<span id="cb26-18"><a href="#cb26-18"></a><span class="st">  </span><span class="kw">theme_fira</span>() <span class="op">+</span></span>
-<span id="cb26-19"><a href="#cb26-19"></a><span class="st">  </span><span class="kw">scale_colour_fira</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># for reproducibility</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(firatheme)</span>
+<span id="cb22-4"><a href="#cb22-4"></a></span>
+<span id="cb22-5"><a href="#cb22-5"></a><span class="co"># plot</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</span>
+<span id="cb22-7"><a href="#cb22-7"></a>  <span class="dt">data =</span> ToothGrowth, <span class="co"># dataframe from which variable is to be taken</span></span>
+<span id="cb22-8"><a href="#cb22-8"></a>  <span class="dt">x =</span> len, <span class="co"># numeric variable whose distribution is of interest</span></span>
+<span id="cb22-9"><a href="#cb22-9"></a>  <span class="dt">xlab =</span> <span class="st">"Tooth length"</span>, <span class="co"># `x`-axis label</span></span>
+<span id="cb22-10"><a href="#cb22-10"></a>  <span class="dt">title =</span> <span class="st">"Distribution of Tooth Length"</span>, <span class="co"># title for the plot</span></span>
+<span id="cb22-11"><a href="#cb22-11"></a>  <span class="dt">fill.gradient =</span> <span class="ot">TRUE</span>, <span class="co"># use color gradient</span></span>
+<span id="cb22-12"><a href="#cb22-12"></a>  <span class="dt">test.value =</span> <span class="dv">10</span>, <span class="co"># the comparison value for one-sample test</span></span>
+<span id="cb22-13"><a href="#cb22-13"></a>  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>, <span class="co"># display a vertical line at test value</span></span>
+<span id="cb22-14"><a href="#cb22-14"></a>  <span class="dt">type =</span> <span class="st">"bayes"</span>, <span class="co"># bayes factor for one sample t-test</span></span>
+<span id="cb22-15"><a href="#cb22-15"></a>  <span class="dt">bf.prior =</span> <span class="fl">0.8</span>, <span class="co"># prior width for calculating the bayes factor</span></span>
+<span id="cb22-16"><a href="#cb22-16"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span> <span class="co"># turn off the messages</span></span>
+<span id="cb22-17"><a href="#cb22-17"></a>) <span class="op">+</span><span class="st"> </span><span class="co"># modification outside of `ggstatsplot` using extension packages</span></span>
+<span id="cb22-18"><a href="#cb22-18"></a><span class="st">  </span><span class="kw">theme_fira</span>() <span class="op">+</span></span>
+<span id="cb22-19"><a href="#cb22-19"></a><span class="st">  </span><span class="kw">scale_colour_fira</span>()</span></code></pre></div>
 <p><img src="reference/figures/README-gghistostats1-1.png" width="100%"></p>
 <p>The aesthetic defaults can be easily modified internally as well-</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># for reproducibility</span></span>
-<span id="cb27-2"><a href="#cb27-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
-<span id="cb27-3"><a href="#cb27-3"></a></span>
-<span id="cb27-4"><a href="#cb27-4"></a><span class="co"># plot</span></span>
-<span id="cb27-5"><a href="#cb27-5"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</span>
-<span id="cb27-6"><a href="#cb27-6"></a>  <span class="dt">data =</span> iris, <span class="co"># dataframe from which variable is to be taken</span></span>
-<span id="cb27-7"><a href="#cb27-7"></a>  <span class="dt">x =</span> Sepal.Length, <span class="co"># numeric variable whose distribution is of interest</span></span>
-<span id="cb27-8"><a href="#cb27-8"></a>  <span class="dt">title =</span> <span class="st">"Distribution of Iris sepal length"</span>, <span class="co"># title for the plot</span></span>
-<span id="cb27-9"><a href="#cb27-9"></a>  <span class="dt">caption =</span> <span class="kw"><a href="https://rdrr.io/r/base/substitute.html">substitute</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="kw"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span>(<span class="st">"Source:"</span>), <span class="st">"Ronald Fisher's Iris data set"</span>)),</span>
-<span id="cb27-10"><a href="#cb27-10"></a>  <span class="dt">type =</span> <span class="st">"parametric"</span>, <span class="co"># one sample t-test</span></span>
-<span id="cb27-11"><a href="#cb27-11"></a>  <span class="dt">conf.level =</span> <span class="fl">0.99</span>, <span class="co"># changing confidence level for effect size</span></span>
-<span id="cb27-12"><a href="#cb27-12"></a>  <span class="dt">bar.measure =</span> <span class="st">"mix"</span>, <span class="co"># what does the bar length denote</span></span>
-<span id="cb27-13"><a href="#cb27-13"></a>  <span class="dt">test.value =</span> <span class="dv">5</span>, <span class="co"># default value is 0</span></span>
-<span id="cb27-14"><a href="#cb27-14"></a>  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>, <span class="co"># display a vertical line at test value</span></span>
-<span id="cb27-15"><a href="#cb27-15"></a>  <span class="dt">test.value.color =</span> <span class="st">"#0072B2"</span>, <span class="co"># color for the line for test value</span></span>
-<span id="cb27-16"><a href="#cb27-16"></a>  <span class="dt">centrality.para =</span> <span class="st">"mean"</span>, <span class="co"># which measure of central tendency is to be plotted</span></span>
-<span id="cb27-17"><a href="#cb27-17"></a>  <span class="dt">centrality.color =</span> <span class="st">"darkred"</span>, <span class="co"># decides color for central tendency line</span></span>
-<span id="cb27-18"><a href="#cb27-18"></a>  <span class="dt">binwidth =</span> <span class="fl">0.10</span>, <span class="co"># binwidth value (experiment)</span></span>
-<span id="cb27-19"><a href="#cb27-19"></a>  <span class="dt">bf.prior =</span> <span class="fl">0.8</span>, <span class="co"># prior width for computing bayes factor</span></span>
-<span id="cb27-20"><a href="#cb27-20"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>, <span class="co"># turn off the messages</span></span>
-<span id="cb27-21"><a href="#cb27-21"></a>  <span class="dt">ggtheme =</span> hrbrthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_tw.html">theme_ipsum_tw</a></span>(), <span class="co"># choosing a different theme</span></span>
-<span id="cb27-22"><a href="#cb27-22"></a>  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span> <span class="co"># turn off ggstatsplot theme layer</span></span>
-<span id="cb27-23"><a href="#cb27-23"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># for reproducibility</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
+<span id="cb23-3"><a href="#cb23-3"></a></span>
+<span id="cb23-4"><a href="#cb23-4"></a><span class="co"># plot</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</span>
+<span id="cb23-6"><a href="#cb23-6"></a>  <span class="dt">data =</span> iris, <span class="co"># dataframe from which variable is to be taken</span></span>
+<span id="cb23-7"><a href="#cb23-7"></a>  <span class="dt">x =</span> Sepal.Length, <span class="co"># numeric variable whose distribution is of interest</span></span>
+<span id="cb23-8"><a href="#cb23-8"></a>  <span class="dt">title =</span> <span class="st">"Distribution of Iris sepal length"</span>, <span class="co"># title for the plot</span></span>
+<span id="cb23-9"><a href="#cb23-9"></a>  <span class="dt">caption =</span> <span class="kw"><a href="https://rdrr.io/r/base/substitute.html">substitute</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="kw"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span>(<span class="st">"Source:"</span>), <span class="st">"Ronald Fisher's Iris data set"</span>)),</span>
+<span id="cb23-10"><a href="#cb23-10"></a>  <span class="dt">type =</span> <span class="st">"parametric"</span>, <span class="co"># one sample t-test</span></span>
+<span id="cb23-11"><a href="#cb23-11"></a>  <span class="dt">conf.level =</span> <span class="fl">0.99</span>, <span class="co"># changing confidence level for effect size</span></span>
+<span id="cb23-12"><a href="#cb23-12"></a>  <span class="dt">bar.measure =</span> <span class="st">"mix"</span>, <span class="co"># what does the bar length denote</span></span>
+<span id="cb23-13"><a href="#cb23-13"></a>  <span class="dt">test.value =</span> <span class="dv">5</span>, <span class="co"># default value is 0</span></span>
+<span id="cb23-14"><a href="#cb23-14"></a>  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>, <span class="co"># display a vertical line at test value</span></span>
+<span id="cb23-15"><a href="#cb23-15"></a>  <span class="dt">test.value.color =</span> <span class="st">"#0072B2"</span>, <span class="co"># color for the line for test value</span></span>
+<span id="cb23-16"><a href="#cb23-16"></a>  <span class="dt">centrality.para =</span> <span class="st">"mean"</span>, <span class="co"># which measure of central tendency is to be plotted</span></span>
+<span id="cb23-17"><a href="#cb23-17"></a>  <span class="dt">centrality.color =</span> <span class="st">"darkred"</span>, <span class="co"># decides color for central tendency line</span></span>
+<span id="cb23-18"><a href="#cb23-18"></a>  <span class="dt">binwidth =</span> <span class="fl">0.10</span>, <span class="co"># binwidth value (experiment)</span></span>
+<span id="cb23-19"><a href="#cb23-19"></a>  <span class="dt">bf.prior =</span> <span class="fl">0.8</span>, <span class="co"># prior width for computing bayes factor</span></span>
+<span id="cb23-20"><a href="#cb23-20"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>, <span class="co"># turn off the messages</span></span>
+<span id="cb23-21"><a href="#cb23-21"></a>  <span class="dt">ggtheme =</span> hrbrthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_tw.html">theme_ipsum_tw</a></span>(), <span class="co"># choosing a different theme</span></span>
+<span id="cb23-22"><a href="#cb23-22"></a>  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span> <span class="co"># turn off ggstatsplot theme layer</span></span>
+<span id="cb23-23"><a href="#cb23-23"></a>)</span></code></pre></div>
 <p><img src="reference/figures/README-gghistostats2-1.png" width="100%"></p>
 <p>As can be seen from the plot, bayes factor can be attached (<code>bf.message = TRUE</code>) to assess evidence in favor of the null hypothesis.</p>
 <p>Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># for reproducibility</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
-<span id="cb28-3"><a href="#cb28-3"></a></span>
-<span id="cb28-4"><a href="#cb28-4"></a><span class="co"># plot</span></span>
-<span id="cb28-5"><a href="#cb28-5"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_gghistostats.html">grouped_gghistostats</a></span>(</span>
-<span id="cb28-6"><a href="#cb28-6"></a>  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(</span>
-<span id="cb28-7"><a href="#cb28-7"></a>    <span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long,</span>
-<span id="cb28-8"><a href="#cb28-8"></a>    genre <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span>)</span>
-<span id="cb28-9"><a href="#cb28-9"></a>  ),</span>
-<span id="cb28-10"><a href="#cb28-10"></a>  <span class="dt">x =</span> budget,</span>
-<span id="cb28-11"><a href="#cb28-11"></a>  <span class="dt">xlab =</span> <span class="st">"Movies budget (in million US$)"</span>,</span>
-<span id="cb28-12"><a href="#cb28-12"></a>  <span class="dt">type =</span> <span class="st">"robust"</span>, <span class="co"># use robust location measure</span></span>
-<span id="cb28-13"><a href="#cb28-13"></a>  <span class="dt">grouping.var =</span> genre, <span class="co"># grouping variable</span></span>
-<span id="cb28-14"><a href="#cb28-14"></a>  <span class="dt">normal.curve =</span> <span class="ot">TRUE</span>, <span class="co"># superimpose a normal distribution curve</span></span>
-<span id="cb28-15"><a href="#cb28-15"></a>  <span class="dt">normal.curve.color =</span> <span class="st">"red"</span>,</span>
-<span id="cb28-16"><a href="#cb28-16"></a>  <span class="dt">title.prefix =</span> <span class="st">"Movie genre"</span>,</span>
-<span id="cb28-17"><a href="#cb28-17"></a>  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),</span>
-<span id="cb28-18"><a href="#cb28-18"></a>  <span class="dt">ggplot.component =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>( <span class="co"># modify the defaults from `ggstatsplot` for each plot</span></span>
-<span id="cb28-19"><a href="#cb28-19"></a>    ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span>(<span class="dt">breaks =</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dv">0</span>, <span class="dv">200</span>, <span class="dv">50</span>), <span class="dt">limits =</span> (<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">0</span>, <span class="dv">200</span>)))</span>
-<span id="cb28-20"><a href="#cb28-20"></a>  ),</span>
-<span id="cb28-21"><a href="#cb28-21"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb28-22"><a href="#cb28-22"></a>  <span class="dt">nrow =</span> <span class="dv">2</span>,</span>
-<span id="cb28-23"><a href="#cb28-23"></a>  <span class="dt">title.text =</span> <span class="st">"Movies budgets for different genres"</span></span>
-<span id="cb28-24"><a href="#cb28-24"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># for reproducibility</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
+<span id="cb24-3"><a href="#cb24-3"></a></span>
+<span id="cb24-4"><a href="#cb24-4"></a><span class="co"># plot</span></span>
+<span id="cb24-5"><a href="#cb24-5"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_gghistostats.html">grouped_gghistostats</a></span>(</span>
+<span id="cb24-6"><a href="#cb24-6"></a>  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(</span>
+<span id="cb24-7"><a href="#cb24-7"></a>    <span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long,</span>
+<span id="cb24-8"><a href="#cb24-8"></a>    genre <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span>)</span>
+<span id="cb24-9"><a href="#cb24-9"></a>  ),</span>
+<span id="cb24-10"><a href="#cb24-10"></a>  <span class="dt">x =</span> budget,</span>
+<span id="cb24-11"><a href="#cb24-11"></a>  <span class="dt">xlab =</span> <span class="st">"Movies budget (in million US$)"</span>,</span>
+<span id="cb24-12"><a href="#cb24-12"></a>  <span class="dt">type =</span> <span class="st">"robust"</span>, <span class="co"># use robust location measure</span></span>
+<span id="cb24-13"><a href="#cb24-13"></a>  <span class="dt">grouping.var =</span> genre, <span class="co"># grouping variable</span></span>
+<span id="cb24-14"><a href="#cb24-14"></a>  <span class="dt">normal.curve =</span> <span class="ot">TRUE</span>, <span class="co"># superimpose a normal distribution curve</span></span>
+<span id="cb24-15"><a href="#cb24-15"></a>  <span class="dt">normal.curve.color =</span> <span class="st">"red"</span>,</span>
+<span id="cb24-16"><a href="#cb24-16"></a>  <span class="dt">title.prefix =</span> <span class="st">"Movie genre"</span>,</span>
+<span id="cb24-17"><a href="#cb24-17"></a>  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),</span>
+<span id="cb24-18"><a href="#cb24-18"></a>  <span class="dt">ggplot.component =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>( <span class="co"># modify the defaults from `ggstatsplot` for each plot</span></span>
+<span id="cb24-19"><a href="#cb24-19"></a>    ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span>(<span class="dt">breaks =</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dv">0</span>, <span class="dv">200</span>, <span class="dv">50</span>), <span class="dt">limits =</span> (<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">0</span>, <span class="dv">200</span>)))</span>
+<span id="cb24-20"><a href="#cb24-20"></a>  ),</span>
+<span id="cb24-21"><a href="#cb24-21"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb24-22"><a href="#cb24-22"></a>  <span class="dt">nrow =</span> <span class="dv">2</span>,</span>
+<span id="cb24-23"><a href="#cb24-23"></a>  <span class="dt">title.text =</span> <span class="st">"Movies budgets for different genres"</span></span>
+<span id="cb24-24"><a href="#cb24-24"></a>)</span></code></pre></div>
 <p><img src="reference/figures/README-gghistostats4-1.png" width="100%"></p>
 <div id="summary-of-tests-5" class="section level3">
 <h3 class="hasAnchor">
@@ -1488,8 +1481,8 @@ contingency table | Goodness of fit (<br><embed src="https://latex.codecogs.com/
 <table class="table">
 <colgroup>
 <col width="8%">
-<col width="75%">
-<col width="16%">
+<col width="74%">
+<col width="17%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -1505,14 +1498,22 @@ contingency table | Goodness of fit (<br><embed src="https://latex.codecogs.com/
 <tr class="even">
 <td>Non-parametric</td>
 <td>
-<em>r</em> (computed as</td>
-<td></td>
+<em>r</em> (computed as <embed src="https://latex.codecogs.com/png.latex?Z%2F%5Csqrt%7BN_%7Bobs%7D%7D" title="Z/\sqrt{N_{obs}}"></embed>)</td>
+<td><font color="green">Yes<font></font></font></td>
+</tr>
+<tr class="odd">
+<td>Robust</td>
+<td>
+<embed src="https://latex.codecogs.com/png.latex?M_%7Brobust%7D" title="M_{robust}"></embed> (Robust location measure)</td>
+<td><font color="green">Yes<font></font></font></td>
+</tr>
+<tr class="even">
+<td>Bayes Factor</td>
+<td><font color="red">No<font></font></font></td>
+<td><font color="red">No<font></font></font></td>
 </tr>
 </tbody>
 </table>
-<p><embed src="https://latex.codecogs.com/png.latex?Z%2F%5Csqrt%7BN_%7Bobs%7D%7D" title="Z/\sqrt{N_{obs}}"></embed><br>
-) | <font color="green">Yes<font> | | Robust | <embed src="https://latex.codecogs.com/png.latex?M_%7Brobust%7D" title="M_{robust}"></embed><br>
-(Robust location measure) | <font color="green">Yes<font> | | Bayes Factor | <font color="red">No<font> | <font color="red">No<font> |</font></font></font></font></font></font></font></font></p>
 <p>For more, including information about the variant of this function <code>grouped_gghistostats</code>, see the <code>gghistostats</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html</a></p>
 </div>
 </div>
@@ -1521,57 +1522,57 @@ contingency table | Goodness of fit (<br><embed src="https://latex.codecogs.com/
 <a href="#ggdotplotstats" class="anchor"></a><code>ggdotplotstats</code>
 </h2>
 <p>This function is similar to <code>gghistostats</code>, but is intended to be used when the numeric variable also has a label.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># for reproducibility</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
-<span id="cb29-3"><a href="#cb29-3"></a></span>
-<span id="cb29-4"><a href="#cb29-4"></a><span class="co"># plot</span></span>
-<span id="cb29-5"><a href="#cb29-5"></a><span class="kw"><a href="reference/ggdotplotstats.html">ggdotplotstats</a></span>(</span>
-<span id="cb29-6"><a href="#cb29-6"></a>  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder<span class="op">::</span>gapminder, continent <span class="op">==</span><span class="st"> "Asia"</span>),</span>
-<span id="cb29-7"><a href="#cb29-7"></a>  <span class="dt">y =</span> country,</span>
-<span id="cb29-8"><a href="#cb29-8"></a>  <span class="dt">x =</span> lifeExp,</span>
-<span id="cb29-9"><a href="#cb29-9"></a>  <span class="dt">test.value =</span> <span class="dv">55</span>,</span>
-<span id="cb29-10"><a href="#cb29-10"></a>  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb29-11"><a href="#cb29-11"></a>  <span class="dt">test.line.labeller =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb29-12"><a href="#cb29-12"></a>  <span class="dt">test.value.color =</span> <span class="st">"red"</span>,</span>
-<span id="cb29-13"><a href="#cb29-13"></a>  <span class="dt">centrality.para =</span> <span class="st">"median"</span>,</span>
-<span id="cb29-14"><a href="#cb29-14"></a>  <span class="dt">centrality.k =</span> <span class="dv">0</span>,</span>
-<span id="cb29-15"><a href="#cb29-15"></a>  <span class="dt">title =</span> <span class="st">"Distribution of life expectancy in Asian continent"</span>,</span>
-<span id="cb29-16"><a href="#cb29-16"></a>  <span class="dt">xlab =</span> <span class="st">"Life expectancy"</span>,</span>
-<span id="cb29-17"><a href="#cb29-17"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb29-18"><a href="#cb29-18"></a>  <span class="dt">caption =</span> <span class="kw"><a href="https://rdrr.io/r/base/substitute.html">substitute</a></span>(</span>
-<span id="cb29-19"><a href="#cb29-19"></a>    <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(</span>
-<span id="cb29-20"><a href="#cb29-20"></a>      <span class="kw"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span>(<span class="st">"Source"</span>),</span>
-<span id="cb29-21"><a href="#cb29-21"></a>      <span class="st">": Gapminder dataset from https://www.gapminder.org/"</span></span>
-<span id="cb29-22"><a href="#cb29-22"></a>    )</span>
-<span id="cb29-23"><a href="#cb29-23"></a>  )</span>
-<span id="cb29-24"><a href="#cb29-24"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># for reproducibility</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
+<span id="cb25-3"><a href="#cb25-3"></a></span>
+<span id="cb25-4"><a href="#cb25-4"></a><span class="co"># plot</span></span>
+<span id="cb25-5"><a href="#cb25-5"></a><span class="kw"><a href="reference/ggdotplotstats.html">ggdotplotstats</a></span>(</span>
+<span id="cb25-6"><a href="#cb25-6"></a>  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder<span class="op">::</span>gapminder, continent <span class="op">==</span><span class="st"> "Asia"</span>),</span>
+<span id="cb25-7"><a href="#cb25-7"></a>  <span class="dt">y =</span> country,</span>
+<span id="cb25-8"><a href="#cb25-8"></a>  <span class="dt">x =</span> lifeExp,</span>
+<span id="cb25-9"><a href="#cb25-9"></a>  <span class="dt">test.value =</span> <span class="dv">55</span>,</span>
+<span id="cb25-10"><a href="#cb25-10"></a>  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb25-11"><a href="#cb25-11"></a>  <span class="dt">test.line.labeller =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb25-12"><a href="#cb25-12"></a>  <span class="dt">test.value.color =</span> <span class="st">"red"</span>,</span>
+<span id="cb25-13"><a href="#cb25-13"></a>  <span class="dt">centrality.para =</span> <span class="st">"median"</span>,</span>
+<span id="cb25-14"><a href="#cb25-14"></a>  <span class="dt">centrality.k =</span> <span class="dv">0</span>,</span>
+<span id="cb25-15"><a href="#cb25-15"></a>  <span class="dt">title =</span> <span class="st">"Distribution of life expectancy in Asian continent"</span>,</span>
+<span id="cb25-16"><a href="#cb25-16"></a>  <span class="dt">xlab =</span> <span class="st">"Life expectancy"</span>,</span>
+<span id="cb25-17"><a href="#cb25-17"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb25-18"><a href="#cb25-18"></a>  <span class="dt">caption =</span> <span class="kw"><a href="https://rdrr.io/r/base/substitute.html">substitute</a></span>(</span>
+<span id="cb25-19"><a href="#cb25-19"></a>    <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(</span>
+<span id="cb25-20"><a href="#cb25-20"></a>      <span class="kw"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span>(<span class="st">"Source"</span>),</span>
+<span id="cb25-21"><a href="#cb25-21"></a>      <span class="st">": Gapminder dataset from https://www.gapminder.org/"</span></span>
+<span id="cb25-22"><a href="#cb25-22"></a>    )</span>
+<span id="cb25-23"><a href="#cb25-23"></a>  )</span>
+<span id="cb25-24"><a href="#cb25-24"></a>)</span></code></pre></div>
 <p><img src="reference/figures/README-ggdotplotstats1-1.png" width="100%"></p>
 <p>As with the rest of the functions in this package, there is also a <code>grouped_</code> variant of this function to facilitate looping the same operation for all levels of a single grouping variable.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># for reproducibility</span></span>
-<span id="cb30-2"><a href="#cb30-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
-<span id="cb30-3"><a href="#cb30-3"></a></span>
-<span id="cb30-4"><a href="#cb30-4"></a><span class="co"># removing factor level with very few no. of observations</span></span>
-<span id="cb30-5"><a href="#cb30-5"></a>df &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ggplot2<span class="op">::</span>mpg, cyl <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"4"</span>, <span class="st">"6"</span>))</span>
-<span id="cb30-6"><a href="#cb30-6"></a></span>
-<span id="cb30-7"><a href="#cb30-7"></a><span class="co"># plot</span></span>
-<span id="cb30-8"><a href="#cb30-8"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggdotplotstats.html">grouped_ggdotplotstats</a></span>(</span>
-<span id="cb30-9"><a href="#cb30-9"></a>  <span class="dt">data =</span> df,</span>
-<span id="cb30-10"><a href="#cb30-10"></a>  <span class="dt">x =</span> cty,</span>
-<span id="cb30-11"><a href="#cb30-11"></a>  <span class="dt">y =</span> manufacturer,</span>
-<span id="cb30-12"><a href="#cb30-12"></a>  <span class="dt">xlab =</span> <span class="st">"city miles per gallon"</span>,</span>
-<span id="cb30-13"><a href="#cb30-13"></a>  <span class="dt">ylab =</span> <span class="st">"car manufacturer"</span>,</span>
-<span id="cb30-14"><a href="#cb30-14"></a>  <span class="dt">type =</span> <span class="st">"nonparametric"</span>, <span class="co"># non-parametric test</span></span>
-<span id="cb30-15"><a href="#cb30-15"></a>  <span class="dt">grouping.var =</span> cyl, <span class="co"># grouping variable</span></span>
-<span id="cb30-16"><a href="#cb30-16"></a>  <span class="dt">test.value =</span> <span class="fl">15.5</span>,</span>
-<span id="cb30-17"><a href="#cb30-17"></a>  <span class="dt">title.prefix =</span> <span class="st">"cylinder count"</span>,</span>
-<span id="cb30-18"><a href="#cb30-18"></a>  <span class="dt">point.color =</span> <span class="st">"red"</span>,</span>
-<span id="cb30-19"><a href="#cb30-19"></a>  <span class="dt">point.size =</span> <span class="dv">5</span>,</span>
-<span id="cb30-20"><a href="#cb30-20"></a>  <span class="dt">point.shape =</span> <span class="dv">13</span>,</span>
-<span id="cb30-21"><a href="#cb30-21"></a>  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb30-22"><a href="#cb30-22"></a>  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_par.html">theme_par</a></span>(),</span>
-<span id="cb30-23"><a href="#cb30-23"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb30-24"><a href="#cb30-24"></a>  <span class="dt">title.text =</span> <span class="st">"Fuel economy data"</span></span>
-<span id="cb30-25"><a href="#cb30-25"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># for reproducibility</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
+<span id="cb26-3"><a href="#cb26-3"></a></span>
+<span id="cb26-4"><a href="#cb26-4"></a><span class="co"># removing factor level with very few no. of observations</span></span>
+<span id="cb26-5"><a href="#cb26-5"></a>df &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ggplot2<span class="op">::</span>mpg, cyl <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"4"</span>, <span class="st">"6"</span>))</span>
+<span id="cb26-6"><a href="#cb26-6"></a></span>
+<span id="cb26-7"><a href="#cb26-7"></a><span class="co"># plot</span></span>
+<span id="cb26-8"><a href="#cb26-8"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggdotplotstats.html">grouped_ggdotplotstats</a></span>(</span>
+<span id="cb26-9"><a href="#cb26-9"></a>  <span class="dt">data =</span> df,</span>
+<span id="cb26-10"><a href="#cb26-10"></a>  <span class="dt">x =</span> cty,</span>
+<span id="cb26-11"><a href="#cb26-11"></a>  <span class="dt">y =</span> manufacturer,</span>
+<span id="cb26-12"><a href="#cb26-12"></a>  <span class="dt">xlab =</span> <span class="st">"city miles per gallon"</span>,</span>
+<span id="cb26-13"><a href="#cb26-13"></a>  <span class="dt">ylab =</span> <span class="st">"car manufacturer"</span>,</span>
+<span id="cb26-14"><a href="#cb26-14"></a>  <span class="dt">type =</span> <span class="st">"nonparametric"</span>, <span class="co"># non-parametric test</span></span>
+<span id="cb26-15"><a href="#cb26-15"></a>  <span class="dt">grouping.var =</span> cyl, <span class="co"># grouping variable</span></span>
+<span id="cb26-16"><a href="#cb26-16"></a>  <span class="dt">test.value =</span> <span class="fl">15.5</span>,</span>
+<span id="cb26-17"><a href="#cb26-17"></a>  <span class="dt">title.prefix =</span> <span class="st">"cylinder count"</span>,</span>
+<span id="cb26-18"><a href="#cb26-18"></a>  <span class="dt">point.color =</span> <span class="st">"red"</span>,</span>
+<span id="cb26-19"><a href="#cb26-19"></a>  <span class="dt">point.size =</span> <span class="dv">5</span>,</span>
+<span id="cb26-20"><a href="#cb26-20"></a>  <span class="dt">point.shape =</span> <span class="dv">13</span>,</span>
+<span id="cb26-21"><a href="#cb26-21"></a>  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb26-22"><a href="#cb26-22"></a>  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_par.html">theme_par</a></span>(),</span>
+<span id="cb26-23"><a href="#cb26-23"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb26-24"><a href="#cb26-24"></a>  <span class="dt">title.text =</span> <span class="st">"Fuel economy data"</span></span>
+<span id="cb26-25"><a href="#cb26-25"></a>)</span></code></pre></div>
 <p><img src="reference/figures/README-ggdotplotstats2-1.png" width="100%"></p>
 <div id="summary-of-tests-6" class="section level3">
 <h3 class="hasAnchor">
@@ -1584,150 +1585,150 @@ contingency table | Goodness of fit (<br><embed src="https://latex.codecogs.com/
 <a href="#ggcorrmat" class="anchor"></a><code>ggcorrmat</code>
 </h2>
 <p><code>ggcorrmat</code> makes a correlalogram (a matrix of correlation coefficients) with minimal amount of code. Just sticking to the defaults itself produces publication-ready correlation matrices. But, for the sake of exploring the available options, let’s change some of the defaults. For example, multiple aesthetics-related arguments can be modified to change the appearance of the correlation matrix.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co"># for reproducibility</span></span>
-<span id="cb31-2"><a href="#cb31-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
-<span id="cb31-3"><a href="#cb31-3"></a></span>
-<span id="cb31-4"><a href="#cb31-4"></a><span class="co"># as a default this function outputs a correlalogram plot</span></span>
-<span id="cb31-5"><a href="#cb31-5"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</span>
-<span id="cb31-6"><a href="#cb31-6"></a>  <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</span>
-<span id="cb31-7"><a href="#cb31-7"></a>  <span class="dt">corr.method =</span> <span class="st">"robust"</span>, <span class="co"># correlation method</span></span>
-<span id="cb31-8"><a href="#cb31-8"></a>  <span class="dt">sig.level =</span> <span class="fl">0.001</span>, <span class="co"># threshold of significance</span></span>
-<span id="cb31-9"><a href="#cb31-9"></a>  <span class="dt">p.adjust.method =</span> <span class="st">"holm"</span>, <span class="co"># p-value adjustment method for multiple comparisons</span></span>
-<span id="cb31-10"><a href="#cb31-10"></a>  <span class="dt">cor.vars =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(sleep_rem, awake<span class="op">:</span>bodywt), <span class="co"># a range of variables can be selected</span></span>
-<span id="cb31-11"><a href="#cb31-11"></a>  <span class="dt">cor.vars.names =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(</span>
-<span id="cb31-12"><a href="#cb31-12"></a>    <span class="st">"REM sleep"</span>, <span class="co"># variable names</span></span>
-<span id="cb31-13"><a href="#cb31-13"></a>    <span class="st">"time awake"</span>,</span>
-<span id="cb31-14"><a href="#cb31-14"></a>    <span class="st">"brain weight"</span>,</span>
-<span id="cb31-15"><a href="#cb31-15"></a>    <span class="st">"body weight"</span></span>
-<span id="cb31-16"><a href="#cb31-16"></a>  ),</span>
-<span id="cb31-17"><a href="#cb31-17"></a>  <span class="dt">matrix.type =</span> <span class="st">"upper"</span>, <span class="co"># type of visualization matrix</span></span>
-<span id="cb31-18"><a href="#cb31-18"></a>  <span class="dt">colors =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#B2182B"</span>, <span class="st">"white"</span>, <span class="st">"#4D4D4D"</span>),</span>
-<span id="cb31-19"><a href="#cb31-19"></a>  <span class="dt">title =</span> <span class="st">"Correlalogram for mammals sleep dataset"</span>,</span>
-<span id="cb31-20"><a href="#cb31-20"></a>  <span class="dt">subtitle =</span> <span class="st">"sleep units: hours; weight units: kilograms"</span></span>
-<span id="cb31-21"><a href="#cb31-21"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># for reproducibility</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
+<span id="cb27-3"><a href="#cb27-3"></a></span>
+<span id="cb27-4"><a href="#cb27-4"></a><span class="co"># as a default this function outputs a correlalogram plot</span></span>
+<span id="cb27-5"><a href="#cb27-5"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</span>
+<span id="cb27-6"><a href="#cb27-6"></a>  <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</span>
+<span id="cb27-7"><a href="#cb27-7"></a>  <span class="dt">corr.method =</span> <span class="st">"robust"</span>, <span class="co"># correlation method</span></span>
+<span id="cb27-8"><a href="#cb27-8"></a>  <span class="dt">sig.level =</span> <span class="fl">0.001</span>, <span class="co"># threshold of significance</span></span>
+<span id="cb27-9"><a href="#cb27-9"></a>  <span class="dt">p.adjust.method =</span> <span class="st">"holm"</span>, <span class="co"># p-value adjustment method for multiple comparisons</span></span>
+<span id="cb27-10"><a href="#cb27-10"></a>  <span class="dt">cor.vars =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(sleep_rem, awake<span class="op">:</span>bodywt), <span class="co"># a range of variables can be selected</span></span>
+<span id="cb27-11"><a href="#cb27-11"></a>  <span class="dt">cor.vars.names =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(</span>
+<span id="cb27-12"><a href="#cb27-12"></a>    <span class="st">"REM sleep"</span>, <span class="co"># variable names</span></span>
+<span id="cb27-13"><a href="#cb27-13"></a>    <span class="st">"time awake"</span>,</span>
+<span id="cb27-14"><a href="#cb27-14"></a>    <span class="st">"brain weight"</span>,</span>
+<span id="cb27-15"><a href="#cb27-15"></a>    <span class="st">"body weight"</span></span>
+<span id="cb27-16"><a href="#cb27-16"></a>  ),</span>
+<span id="cb27-17"><a href="#cb27-17"></a>  <span class="dt">matrix.type =</span> <span class="st">"upper"</span>, <span class="co"># type of visualization matrix</span></span>
+<span id="cb27-18"><a href="#cb27-18"></a>  <span class="dt">colors =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#B2182B"</span>, <span class="st">"white"</span>, <span class="st">"#4D4D4D"</span>),</span>
+<span id="cb27-19"><a href="#cb27-19"></a>  <span class="dt">title =</span> <span class="st">"Correlalogram for mammals sleep dataset"</span>,</span>
+<span id="cb27-20"><a href="#cb27-20"></a>  <span class="dt">subtitle =</span> <span class="st">"sleep units: hours; weight units: kilograms"</span></span>
+<span id="cb27-21"><a href="#cb27-21"></a>)</span></code></pre></div>
 <p><img src="reference/figures/README-ggcorrmat1-1.png" width="100%"></p>
 <p>Note that if there are <code>NA</code>s present in the selected variables, the legend will display minimum, median, and maximum number of pairs used for correlation tests.</p>
 <p>Alternatively, you can use it just to get the correlation matrices and their corresponding <em>p</em>-values (in a <code>tibble</code> format).</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="co"># for reproducibility</span></span>
-<span id="cb32-2"><a href="#cb32-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
-<span id="cb32-3"><a href="#cb32-3"></a></span>
-<span id="cb32-4"><a href="#cb32-4"></a><span class="co"># show four digits in a tibble</span></span>
-<span id="cb32-5"><a href="#cb32-5"></a><span class="kw"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="dt">pillar.sigfig =</span> <span class="dv">4</span>)</span>
-<span id="cb32-6"><a href="#cb32-6"></a></span>
-<span id="cb32-7"><a href="#cb32-7"></a><span class="co"># getting the correlation coefficient matrix</span></span>
-<span id="cb32-8"><a href="#cb32-8"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</span>
-<span id="cb32-9"><a href="#cb32-9"></a>  <span class="dt">data =</span> iris, <span class="co"># all numeric variables from data will be used</span></span>
-<span id="cb32-10"><a href="#cb32-10"></a>  <span class="dt">corr.method =</span> <span class="st">"robust"</span>,</span>
-<span id="cb32-11"><a href="#cb32-11"></a>  <span class="dt">output =</span> <span class="st">"correlations"</span>, <span class="co"># specifying the needed output ("r" or "corr" will also work)</span></span>
-<span id="cb32-12"><a href="#cb32-12"></a>  <span class="dt">digits =</span> <span class="dv">3</span> <span class="co"># number of digits to be dispayed for correlation coefficient</span></span>
-<span id="cb32-13"><a href="#cb32-13"></a>)</span>
-<span id="cb32-14"><a href="#cb32-14"></a><span class="co">#&gt; # A tibble: 4 x 5</span></span>
-<span id="cb32-15"><a href="#cb32-15"></a><span class="co">#&gt;   variable     Sepal.Length Sepal.Width Petal.Length Petal.Width</span></span>
-<span id="cb32-16"><a href="#cb32-16"></a><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;</span></span>
-<span id="cb32-17"><a href="#cb32-17"></a><span class="co">#&gt; 1 Sepal.Length        1          -0.143        0.878       0.837</span></span>
-<span id="cb32-18"><a href="#cb32-18"></a><span class="co">#&gt; 2 Sepal.Width        -0.143       1           -0.426      -0.373</span></span>
-<span id="cb32-19"><a href="#cb32-19"></a><span class="co">#&gt; 3 Petal.Length        0.878      -0.426        1           0.966</span></span>
-<span id="cb32-20"><a href="#cb32-20"></a><span class="co">#&gt; 4 Petal.Width         0.837      -0.373        0.966       1</span></span>
-<span id="cb32-21"><a href="#cb32-21"></a></span>
-<span id="cb32-22"><a href="#cb32-22"></a><span class="co"># getting the p-value matrix</span></span>
-<span id="cb32-23"><a href="#cb32-23"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</span>
-<span id="cb32-24"><a href="#cb32-24"></a>  <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</span>
-<span id="cb32-25"><a href="#cb32-25"></a>  <span class="dt">cor.vars =</span> sleep_total<span class="op">:</span>bodywt,</span>
-<span id="cb32-26"><a href="#cb32-26"></a>  <span class="dt">corr.method =</span> <span class="st">"robust"</span>,</span>
-<span id="cb32-27"><a href="#cb32-27"></a>  <span class="dt">output =</span> <span class="st">"p.values"</span>, <span class="co"># only "p" or "p-values" will also work</span></span>
-<span id="cb32-28"><a href="#cb32-28"></a>  <span class="dt">p.adjust.method =</span> <span class="st">"holm"</span></span>
-<span id="cb32-29"><a href="#cb32-29"></a>)</span>
-<span id="cb32-30"><a href="#cb32-30"></a><span class="co">#&gt; # A tibble: 6 x 7</span></span>
-<span id="cb32-31"><a href="#cb32-31"></a><span class="co">#&gt;   variable    sleep_total sleep_rem sleep_cycle     awake   brainwt    bodywt</span></span>
-<span id="cb32-32"><a href="#cb32-32"></a><span class="co">#&gt;   &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></span>
-<span id="cb32-33"><a href="#cb32-33"></a><span class="co">#&gt; 1 sleep_total   0.        5.291e-12   9.138e- 3 0.        3.170e- 5 2.568e- 6</span></span>
-<span id="cb32-34"><a href="#cb32-34"></a><span class="co">#&gt; 2 sleep_rem     4.070e-13 0.          1.978e- 2 5.291e-12 9.698e- 3 3.762e- 3</span></span>
-<span id="cb32-35"><a href="#cb32-35"></a><span class="co">#&gt; 3 sleep_cycle   2.285e- 3 1.978e- 2   0.        9.138e- 3 1.637e- 9 1.696e- 5</span></span>
-<span id="cb32-36"><a href="#cb32-36"></a><span class="co">#&gt; 4 awake         0.        4.070e-13   2.285e- 3 0.        3.170e- 5 2.568e- 6</span></span>
-<span id="cb32-37"><a href="#cb32-37"></a><span class="co">#&gt; 5 brainwt       4.528e- 6 4.849e- 3   1.488e-10 4.528e- 6 0.        4.509e-17</span></span>
-<span id="cb32-38"><a href="#cb32-38"></a><span class="co">#&gt; 6 bodywt        2.568e- 7 7.524e- 4   2.120e- 6 2.568e- 7 3.221e-18 0.</span></span>
-<span id="cb32-39"><a href="#cb32-39"></a></span>
-<span id="cb32-40"><a href="#cb32-40"></a><span class="co"># getting the confidence intervals for correlations</span></span>
-<span id="cb32-41"><a href="#cb32-41"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</span>
-<span id="cb32-42"><a href="#cb32-42"></a>  <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</span>
-<span id="cb32-43"><a href="#cb32-43"></a>  <span class="dt">cor.vars =</span> sleep_total<span class="op">:</span>bodywt,</span>
-<span id="cb32-44"><a href="#cb32-44"></a>  <span class="dt">corr.method =</span> <span class="st">"spearman"</span>,</span>
-<span id="cb32-45"><a href="#cb32-45"></a>  <span class="dt">output =</span> <span class="st">"ci"</span>,</span>
-<span id="cb32-46"><a href="#cb32-46"></a>  <span class="dt">p.adjust.method =</span> <span class="st">"holm"</span></span>
-<span id="cb32-47"><a href="#cb32-47"></a>)</span>
-<span id="cb32-48"><a href="#cb32-48"></a><span class="co">#&gt; # A tibble: 15 x 7</span></span>
-<span id="cb32-49"><a href="#cb32-49"></a><span class="co">#&gt;    pair                          r   lower    upper         p lower.adj</span></span>
-<span id="cb32-50"><a href="#cb32-50"></a><span class="co">#&gt;    &lt;chr&gt;                     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></span>
-<span id="cb32-51"><a href="#cb32-51"></a><span class="co">#&gt;  1 sleep_total-sleep_rem    0.7641  0.6344  0.8520  7.806e-13   0.5632 </span></span>
-<span id="cb32-52"><a href="#cb32-52"></a><span class="co">#&gt;  2 sleep_total-sleep_cycle -0.4888 -0.7155 -0.1689  4.530e- 3  -0.7609 </span></span>
-<span id="cb32-53"><a href="#cb32-53"></a><span class="co">#&gt;  3 sleep_total-awake       -1      -1      -1       0.         -1      </span></span>
-<span id="cb32-54"><a href="#cb32-54"></a><span class="co">#&gt;  4 sleep_total-brainwt     -0.5935 -0.7408 -0.3918  1.426e- 6  -0.7852 </span></span>
-<span id="cb32-55"><a href="#cb32-55"></a><span class="co">#&gt;  5 sleep_total-bodywt      -0.5346 -0.6727 -0.3605  1.931e- 7  -0.7121 </span></span>
-<span id="cb32-56"><a href="#cb32-56"></a><span class="co">#&gt;  6 sleep_rem-sleep_cycle   -0.3344 -0.6118  0.01617 6.139e- 2  -0.6118 </span></span>
-<span id="cb32-57"><a href="#cb32-57"></a><span class="co">#&gt;  7 sleep_rem-awake         -0.7641 -0.8520 -0.6344  7.806e-13  -0.8807 </span></span>
-<span id="cb32-58"><a href="#cb32-58"></a><span class="co">#&gt;  8 sleep_rem-brainwt       -0.4139 -0.6246 -0.1471  3.451e- 3  -0.6495 </span></span>
-<span id="cb32-59"><a href="#cb32-59"></a><span class="co">#&gt;  9 sleep_rem-bodywt        -0.4517 -0.6317 -0.2255  2.580e- 4  -0.6647 </span></span>
-<span id="cb32-60"><a href="#cb32-60"></a><span class="co">#&gt; 10 sleep_cycle-awake        0.4888  0.1689  0.7155  4.530e- 3   0.05610</span></span>
-<span id="cb32-61"><a href="#cb32-61"></a><span class="co">#&gt; 11 sleep_cycle-brainwt      0.8727  0.7474  0.9380  3.250e-10   0.6573 </span></span>
-<span id="cb32-62"><a href="#cb32-62"></a><span class="co">#&gt; 12 sleep_cycle-bodywt       0.8464  0.7061  0.9228  1.040e- 9   0.6115 </span></span>
-<span id="cb32-63"><a href="#cb32-63"></a><span class="co">#&gt; 13 awake-brainwt            0.5935  0.3918  0.7408  1.426e- 6   0.2934 </span></span>
-<span id="cb32-64"><a href="#cb32-64"></a><span class="co">#&gt; 14 awake-bodywt             0.5346  0.3605  0.6727  1.931e- 7   0.2875 </span></span>
-<span id="cb32-65"><a href="#cb32-65"></a><span class="co">#&gt; 15 brainwt-bodywt           0.9572  0.9277  0.9748  9.694e-31   0.9071 </span></span>
-<span id="cb32-66"><a href="#cb32-66"></a><span class="co">#&gt;    upper.adj</span></span>
-<span id="cb32-67"><a href="#cb32-67"></a><span class="co">#&gt;        &lt;dbl&gt;</span></span>
-<span id="cb32-68"><a href="#cb32-68"></a><span class="co">#&gt;  1   0.8798 </span></span>
-<span id="cb32-69"><a href="#cb32-69"></a><span class="co">#&gt;  2  -0.07055</span></span>
-<span id="cb32-70"><a href="#cb32-70"></a><span class="co">#&gt;  3  -1      </span></span>
-<span id="cb32-71"><a href="#cb32-71"></a><span class="co">#&gt;  4  -0.2982 </span></span>
-<span id="cb32-72"><a href="#cb32-72"></a><span class="co">#&gt;  5  -0.2928 </span></span>
-<span id="cb32-73"><a href="#cb32-73"></a><span class="co">#&gt;  6   0.01617</span></span>
-<span id="cb32-74"><a href="#cb32-74"></a><span class="co">#&gt;  7  -0.5605 </span></span>
-<span id="cb32-75"><a href="#cb32-75"></a><span class="co">#&gt;  8  -0.1058 </span></span>
-<span id="cb32-76"><a href="#cb32-76"></a><span class="co">#&gt;  9  -0.1708 </span></span>
-<span id="cb32-77"><a href="#cb32-77"></a><span class="co">#&gt; 10   0.7669 </span></span>
-<span id="cb32-78"><a href="#cb32-78"></a><span class="co">#&gt; 11   0.9563 </span></span>
-<span id="cb32-79"><a href="#cb32-79"></a><span class="co">#&gt; 12   0.9442 </span></span>
-<span id="cb32-80"><a href="#cb32-80"></a><span class="co">#&gt; 13   0.7872 </span></span>
-<span id="cb32-81"><a href="#cb32-81"></a><span class="co">#&gt; 14   0.7150 </span></span>
-<span id="cb32-82"><a href="#cb32-82"></a><span class="co">#&gt; 15   0.9805</span></span>
-<span id="cb32-83"><a href="#cb32-83"></a></span>
-<span id="cb32-84"><a href="#cb32-84"></a><span class="co"># getting the sample sizes for all pairs</span></span>
-<span id="cb32-85"><a href="#cb32-85"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</span>
-<span id="cb32-86"><a href="#cb32-86"></a>  <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</span>
-<span id="cb32-87"><a href="#cb32-87"></a>  <span class="dt">cor.vars =</span> sleep_total<span class="op">:</span>bodywt,</span>
-<span id="cb32-88"><a href="#cb32-88"></a>  <span class="dt">corr.method =</span> <span class="st">"robust"</span>,</span>
-<span id="cb32-89"><a href="#cb32-89"></a>  <span class="dt">output =</span> <span class="st">"n"</span> <span class="co"># note that n is different due to NAs</span></span>
-<span id="cb32-90"><a href="#cb32-90"></a>)</span>
-<span id="cb32-91"><a href="#cb32-91"></a><span class="co">#&gt; # A tibble: 6 x 7</span></span>
-<span id="cb32-92"><a href="#cb32-92"></a><span class="co">#&gt;   variable    sleep_total sleep_rem sleep_cycle awake brainwt bodywt</span></span>
-<span id="cb32-93"><a href="#cb32-93"></a><span class="co">#&gt;   &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span id="cb32-94"><a href="#cb32-94"></a><span class="co">#&gt; 1 sleep_total          83        61          32    83      56     83</span></span>
-<span id="cb32-95"><a href="#cb32-95"></a><span class="co">#&gt; 2 sleep_rem            61        61          32    61      48     61</span></span>
-<span id="cb32-96"><a href="#cb32-96"></a><span class="co">#&gt; 3 sleep_cycle          32        32          32    32      30     32</span></span>
-<span id="cb32-97"><a href="#cb32-97"></a><span class="co">#&gt; 4 awake                83        61          32    83      56     83</span></span>
-<span id="cb32-98"><a href="#cb32-98"></a><span class="co">#&gt; 5 brainwt              56        48          30    56      56     56</span></span>
-<span id="cb32-99"><a href="#cb32-99"></a><span class="co">#&gt; 6 bodywt               83        61          32    83      56     83</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># for reproducibility</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
+<span id="cb28-3"><a href="#cb28-3"></a></span>
+<span id="cb28-4"><a href="#cb28-4"></a><span class="co"># show four digits in a tibble</span></span>
+<span id="cb28-5"><a href="#cb28-5"></a><span class="kw"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="dt">pillar.sigfig =</span> <span class="dv">4</span>)</span>
+<span id="cb28-6"><a href="#cb28-6"></a></span>
+<span id="cb28-7"><a href="#cb28-7"></a><span class="co"># getting the correlation coefficient matrix</span></span>
+<span id="cb28-8"><a href="#cb28-8"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</span>
+<span id="cb28-9"><a href="#cb28-9"></a>  <span class="dt">data =</span> iris, <span class="co"># all numeric variables from data will be used</span></span>
+<span id="cb28-10"><a href="#cb28-10"></a>  <span class="dt">corr.method =</span> <span class="st">"robust"</span>,</span>
+<span id="cb28-11"><a href="#cb28-11"></a>  <span class="dt">output =</span> <span class="st">"correlations"</span>, <span class="co"># specifying the needed output ("r" or "corr" will also work)</span></span>
+<span id="cb28-12"><a href="#cb28-12"></a>  <span class="dt">digits =</span> <span class="dv">3</span> <span class="co"># number of digits to be dispayed for correlation coefficient</span></span>
+<span id="cb28-13"><a href="#cb28-13"></a>)</span>
+<span id="cb28-14"><a href="#cb28-14"></a><span class="co">#&gt; # A tibble: 4 x 5</span></span>
+<span id="cb28-15"><a href="#cb28-15"></a><span class="co">#&gt;   variable     Sepal.Length Sepal.Width Petal.Length Petal.Width</span></span>
+<span id="cb28-16"><a href="#cb28-16"></a><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;</span></span>
+<span id="cb28-17"><a href="#cb28-17"></a><span class="co">#&gt; 1 Sepal.Length        1          -0.143        0.878       0.837</span></span>
+<span id="cb28-18"><a href="#cb28-18"></a><span class="co">#&gt; 2 Sepal.Width        -0.143       1           -0.426      -0.373</span></span>
+<span id="cb28-19"><a href="#cb28-19"></a><span class="co">#&gt; 3 Petal.Length        0.878      -0.426        1           0.966</span></span>
+<span id="cb28-20"><a href="#cb28-20"></a><span class="co">#&gt; 4 Petal.Width         0.837      -0.373        0.966       1</span></span>
+<span id="cb28-21"><a href="#cb28-21"></a></span>
+<span id="cb28-22"><a href="#cb28-22"></a><span class="co"># getting the p-value matrix</span></span>
+<span id="cb28-23"><a href="#cb28-23"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</span>
+<span id="cb28-24"><a href="#cb28-24"></a>  <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</span>
+<span id="cb28-25"><a href="#cb28-25"></a>  <span class="dt">cor.vars =</span> sleep_total<span class="op">:</span>bodywt,</span>
+<span id="cb28-26"><a href="#cb28-26"></a>  <span class="dt">corr.method =</span> <span class="st">"robust"</span>,</span>
+<span id="cb28-27"><a href="#cb28-27"></a>  <span class="dt">output =</span> <span class="st">"p.values"</span>, <span class="co"># only "p" or "p-values" will also work</span></span>
+<span id="cb28-28"><a href="#cb28-28"></a>  <span class="dt">p.adjust.method =</span> <span class="st">"holm"</span></span>
+<span id="cb28-29"><a href="#cb28-29"></a>)</span>
+<span id="cb28-30"><a href="#cb28-30"></a><span class="co">#&gt; # A tibble: 6 x 7</span></span>
+<span id="cb28-31"><a href="#cb28-31"></a><span class="co">#&gt;   variable    sleep_total sleep_rem sleep_cycle     awake   brainwt    bodywt</span></span>
+<span id="cb28-32"><a href="#cb28-32"></a><span class="co">#&gt;   &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb28-33"><a href="#cb28-33"></a><span class="co">#&gt; 1 sleep_total   0.        5.291e-12   9.138e- 3 0.        3.170e- 5 2.568e- 6</span></span>
+<span id="cb28-34"><a href="#cb28-34"></a><span class="co">#&gt; 2 sleep_rem     4.070e-13 0.          1.978e- 2 5.291e-12 9.698e- 3 3.762e- 3</span></span>
+<span id="cb28-35"><a href="#cb28-35"></a><span class="co">#&gt; 3 sleep_cycle   2.285e- 3 1.978e- 2   0.        9.138e- 3 1.637e- 9 1.696e- 5</span></span>
+<span id="cb28-36"><a href="#cb28-36"></a><span class="co">#&gt; 4 awake         0.        4.070e-13   2.285e- 3 0.        3.170e- 5 2.568e- 6</span></span>
+<span id="cb28-37"><a href="#cb28-37"></a><span class="co">#&gt; 5 brainwt       4.528e- 6 4.849e- 3   1.488e-10 4.528e- 6 0.        4.509e-17</span></span>
+<span id="cb28-38"><a href="#cb28-38"></a><span class="co">#&gt; 6 bodywt        2.568e- 7 7.524e- 4   2.120e- 6 2.568e- 7 3.221e-18 0.</span></span>
+<span id="cb28-39"><a href="#cb28-39"></a></span>
+<span id="cb28-40"><a href="#cb28-40"></a><span class="co"># getting the confidence intervals for correlations</span></span>
+<span id="cb28-41"><a href="#cb28-41"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</span>
+<span id="cb28-42"><a href="#cb28-42"></a>  <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</span>
+<span id="cb28-43"><a href="#cb28-43"></a>  <span class="dt">cor.vars =</span> sleep_total<span class="op">:</span>bodywt,</span>
+<span id="cb28-44"><a href="#cb28-44"></a>  <span class="dt">corr.method =</span> <span class="st">"spearman"</span>,</span>
+<span id="cb28-45"><a href="#cb28-45"></a>  <span class="dt">output =</span> <span class="st">"ci"</span>,</span>
+<span id="cb28-46"><a href="#cb28-46"></a>  <span class="dt">p.adjust.method =</span> <span class="st">"holm"</span></span>
+<span id="cb28-47"><a href="#cb28-47"></a>)</span>
+<span id="cb28-48"><a href="#cb28-48"></a><span class="co">#&gt; # A tibble: 15 x 7</span></span>
+<span id="cb28-49"><a href="#cb28-49"></a><span class="co">#&gt;    pair                          r   lower    upper         p lower.adj</span></span>
+<span id="cb28-50"><a href="#cb28-50"></a><span class="co">#&gt;    &lt;chr&gt;                     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb28-51"><a href="#cb28-51"></a><span class="co">#&gt;  1 sleep_total-sleep_rem    0.7641  0.6344  0.8520  7.806e-13   0.5632 </span></span>
+<span id="cb28-52"><a href="#cb28-52"></a><span class="co">#&gt;  2 sleep_total-sleep_cycle -0.4888 -0.7155 -0.1689  4.530e- 3  -0.7609 </span></span>
+<span id="cb28-53"><a href="#cb28-53"></a><span class="co">#&gt;  3 sleep_total-awake       -1      -1      -1       0.         -1      </span></span>
+<span id="cb28-54"><a href="#cb28-54"></a><span class="co">#&gt;  4 sleep_total-brainwt     -0.5935 -0.7408 -0.3918  1.426e- 6  -0.7852 </span></span>
+<span id="cb28-55"><a href="#cb28-55"></a><span class="co">#&gt;  5 sleep_total-bodywt      -0.5346 -0.6727 -0.3605  1.931e- 7  -0.7121 </span></span>
+<span id="cb28-56"><a href="#cb28-56"></a><span class="co">#&gt;  6 sleep_rem-sleep_cycle   -0.3344 -0.6118  0.01617 6.139e- 2  -0.6118 </span></span>
+<span id="cb28-57"><a href="#cb28-57"></a><span class="co">#&gt;  7 sleep_rem-awake         -0.7641 -0.8520 -0.6344  7.806e-13  -0.8807 </span></span>
+<span id="cb28-58"><a href="#cb28-58"></a><span class="co">#&gt;  8 sleep_rem-brainwt       -0.4139 -0.6246 -0.1471  3.451e- 3  -0.6495 </span></span>
+<span id="cb28-59"><a href="#cb28-59"></a><span class="co">#&gt;  9 sleep_rem-bodywt        -0.4517 -0.6317 -0.2255  2.580e- 4  -0.6647 </span></span>
+<span id="cb28-60"><a href="#cb28-60"></a><span class="co">#&gt; 10 sleep_cycle-awake        0.4888  0.1689  0.7155  4.530e- 3   0.05610</span></span>
+<span id="cb28-61"><a href="#cb28-61"></a><span class="co">#&gt; 11 sleep_cycle-brainwt      0.8727  0.7474  0.9380  3.250e-10   0.6573 </span></span>
+<span id="cb28-62"><a href="#cb28-62"></a><span class="co">#&gt; 12 sleep_cycle-bodywt       0.8464  0.7061  0.9228  1.040e- 9   0.6115 </span></span>
+<span id="cb28-63"><a href="#cb28-63"></a><span class="co">#&gt; 13 awake-brainwt            0.5935  0.3918  0.7408  1.426e- 6   0.2934 </span></span>
+<span id="cb28-64"><a href="#cb28-64"></a><span class="co">#&gt; 14 awake-bodywt             0.5346  0.3605  0.6727  1.931e- 7   0.2875 </span></span>
+<span id="cb28-65"><a href="#cb28-65"></a><span class="co">#&gt; 15 brainwt-bodywt           0.9572  0.9277  0.9748  9.694e-31   0.9071 </span></span>
+<span id="cb28-66"><a href="#cb28-66"></a><span class="co">#&gt;    upper.adj</span></span>
+<span id="cb28-67"><a href="#cb28-67"></a><span class="co">#&gt;        &lt;dbl&gt;</span></span>
+<span id="cb28-68"><a href="#cb28-68"></a><span class="co">#&gt;  1   0.8798 </span></span>
+<span id="cb28-69"><a href="#cb28-69"></a><span class="co">#&gt;  2  -0.07055</span></span>
+<span id="cb28-70"><a href="#cb28-70"></a><span class="co">#&gt;  3  -1      </span></span>
+<span id="cb28-71"><a href="#cb28-71"></a><span class="co">#&gt;  4  -0.2982 </span></span>
+<span id="cb28-72"><a href="#cb28-72"></a><span class="co">#&gt;  5  -0.2928 </span></span>
+<span id="cb28-73"><a href="#cb28-73"></a><span class="co">#&gt;  6   0.01617</span></span>
+<span id="cb28-74"><a href="#cb28-74"></a><span class="co">#&gt;  7  -0.5605 </span></span>
+<span id="cb28-75"><a href="#cb28-75"></a><span class="co">#&gt;  8  -0.1058 </span></span>
+<span id="cb28-76"><a href="#cb28-76"></a><span class="co">#&gt;  9  -0.1708 </span></span>
+<span id="cb28-77"><a href="#cb28-77"></a><span class="co">#&gt; 10   0.7669 </span></span>
+<span id="cb28-78"><a href="#cb28-78"></a><span class="co">#&gt; 11   0.9563 </span></span>
+<span id="cb28-79"><a href="#cb28-79"></a><span class="co">#&gt; 12   0.9442 </span></span>
+<span id="cb28-80"><a href="#cb28-80"></a><span class="co">#&gt; 13   0.7872 </span></span>
+<span id="cb28-81"><a href="#cb28-81"></a><span class="co">#&gt; 14   0.7150 </span></span>
+<span id="cb28-82"><a href="#cb28-82"></a><span class="co">#&gt; 15   0.9805</span></span>
+<span id="cb28-83"><a href="#cb28-83"></a></span>
+<span id="cb28-84"><a href="#cb28-84"></a><span class="co"># getting the sample sizes for all pairs</span></span>
+<span id="cb28-85"><a href="#cb28-85"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</span>
+<span id="cb28-86"><a href="#cb28-86"></a>  <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</span>
+<span id="cb28-87"><a href="#cb28-87"></a>  <span class="dt">cor.vars =</span> sleep_total<span class="op">:</span>bodywt,</span>
+<span id="cb28-88"><a href="#cb28-88"></a>  <span class="dt">corr.method =</span> <span class="st">"robust"</span>,</span>
+<span id="cb28-89"><a href="#cb28-89"></a>  <span class="dt">output =</span> <span class="st">"n"</span> <span class="co"># note that n is different due to NAs</span></span>
+<span id="cb28-90"><a href="#cb28-90"></a>)</span>
+<span id="cb28-91"><a href="#cb28-91"></a><span class="co">#&gt; # A tibble: 6 x 7</span></span>
+<span id="cb28-92"><a href="#cb28-92"></a><span class="co">#&gt;   variable    sleep_total sleep_rem sleep_cycle awake brainwt bodywt</span></span>
+<span id="cb28-93"><a href="#cb28-93"></a><span class="co">#&gt;   &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb28-94"><a href="#cb28-94"></a><span class="co">#&gt; 1 sleep_total          83        61          32    83      56     83</span></span>
+<span id="cb28-95"><a href="#cb28-95"></a><span class="co">#&gt; 2 sleep_rem            61        61          32    61      48     61</span></span>
+<span id="cb28-96"><a href="#cb28-96"></a><span class="co">#&gt; 3 sleep_cycle          32        32          32    32      30     32</span></span>
+<span id="cb28-97"><a href="#cb28-97"></a><span class="co">#&gt; 4 awake                83        61          32    83      56     83</span></span>
+<span id="cb28-98"><a href="#cb28-98"></a><span class="co">#&gt; 5 brainwt              56        48          30    56      56     56</span></span>
+<span id="cb28-99"><a href="#cb28-99"></a><span class="co">#&gt; 6 bodywt               83        61          32    83      56     83</span></span></code></pre></div>
 <p>Note that if <code>cor.vars</code> are not specified, all numeric variables will be used.</p>
 <p>There is a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="co"># for reproducibility</span></span>
-<span id="cb33-2"><a href="#cb33-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
-<span id="cb33-3"><a href="#cb33-3"></a></span>
-<span id="cb33-4"><a href="#cb33-4"></a><span class="co"># plot</span></span>
-<span id="cb33-5"><a href="#cb33-5"></a><span class="co"># let's use only 50% of the data to speed up the process</span></span>
-<span id="cb33-6"><a href="#cb33-6"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span>(</span>
-<span id="cb33-7"><a href="#cb33-7"></a>  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(</span>
-<span id="cb33-8"><a href="#cb33-8"></a>    <span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long,</span>
-<span id="cb33-9"><a href="#cb33-9"></a>    genre <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span>)</span>
-<span id="cb33-10"><a href="#cb33-10"></a>  ),</span>
-<span id="cb33-11"><a href="#cb33-11"></a>  <span class="dt">cor.vars =</span> length<span class="op">:</span>votes,</span>
-<span id="cb33-12"><a href="#cb33-12"></a>  <span class="dt">corr.method =</span> <span class="st">"np"</span>,</span>
-<span id="cb33-13"><a href="#cb33-13"></a>  <span class="dt">colors =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#cbac43"</span>, <span class="st">"white"</span>, <span class="st">"#550000"</span>),</span>
-<span id="cb33-14"><a href="#cb33-14"></a>  <span class="dt">grouping.var =</span> genre, <span class="co"># grouping variable</span></span>
-<span id="cb33-15"><a href="#cb33-15"></a>  <span class="dt">digits =</span> <span class="dv">3</span>, <span class="co"># number of digits after decimal point</span></span>
-<span id="cb33-16"><a href="#cb33-16"></a>  <span class="dt">title.prefix =</span> <span class="st">"Movie genre"</span>,</span>
-<span id="cb33-17"><a href="#cb33-17"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb33-18"><a href="#cb33-18"></a>  <span class="dt">nrow =</span> <span class="dv">2</span></span>
-<span id="cb33-19"><a href="#cb33-19"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># for reproducibility</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
+<span id="cb29-3"><a href="#cb29-3"></a></span>
+<span id="cb29-4"><a href="#cb29-4"></a><span class="co"># plot</span></span>
+<span id="cb29-5"><a href="#cb29-5"></a><span class="co"># let's use only 50% of the data to speed up the process</span></span>
+<span id="cb29-6"><a href="#cb29-6"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span>(</span>
+<span id="cb29-7"><a href="#cb29-7"></a>  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(</span>
+<span id="cb29-8"><a href="#cb29-8"></a>    <span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long,</span>
+<span id="cb29-9"><a href="#cb29-9"></a>    genre <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span>)</span>
+<span id="cb29-10"><a href="#cb29-10"></a>  ),</span>
+<span id="cb29-11"><a href="#cb29-11"></a>  <span class="dt">cor.vars =</span> length<span class="op">:</span>votes,</span>
+<span id="cb29-12"><a href="#cb29-12"></a>  <span class="dt">corr.method =</span> <span class="st">"np"</span>,</span>
+<span id="cb29-13"><a href="#cb29-13"></a>  <span class="dt">colors =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#cbac43"</span>, <span class="st">"white"</span>, <span class="st">"#550000"</span>),</span>
+<span id="cb29-14"><a href="#cb29-14"></a>  <span class="dt">grouping.var =</span> genre, <span class="co"># grouping variable</span></span>
+<span id="cb29-15"><a href="#cb29-15"></a>  <span class="dt">digits =</span> <span class="dv">3</span>, <span class="co"># number of digits after decimal point</span></span>
+<span id="cb29-16"><a href="#cb29-16"></a>  <span class="dt">title.prefix =</span> <span class="st">"Movie genre"</span>,</span>
+<span id="cb29-17"><a href="#cb29-17"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb29-18"><a href="#cb29-18"></a>  <span class="dt">nrow =</span> <span class="dv">2</span></span>
+<span id="cb29-19"><a href="#cb29-19"></a>)</span></code></pre></div>
 <p><img src="reference/figures/README-ggcorrmat3-1.png" width="100%"></p>
 <div id="summary-of-tests-7" class="section level3">
 <h3 class="hasAnchor">
@@ -1775,40 +1776,40 @@ contingency table | Goodness of fit (<br><embed src="https://latex.codecogs.com/
 <li><p>The caption will always contain diagnostic information, if available, about models that can be useful for model selection: The smaller the Akaike’s Information Criterion (<strong>AIC</strong>) and the Bayesian Information Criterion (<strong>BIC</strong>) values, the “better” the model is. Additionally, the higher the <strong>log-likelihood</strong> value the “better” is the model fit.</p></li>
 <li><p>The output of this function will be a <code>ggplot2</code> object and, thus, it can be further modified (e.g., change themes, etc.) with <code>ggplot2</code> functions.</p></li>
 </ul>
-<!-- end list --><div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># for reproducibility</span></span>
-<span id="cb34-2"><a href="#cb34-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
-<span id="cb34-3"><a href="#cb34-3"></a></span>
-<span id="cb34-4"><a href="#cb34-4"></a><span class="co"># model</span></span>
-<span id="cb34-5"><a href="#cb34-5"></a>mod &lt;-<span class="st"> </span>stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="dt">formula =</span> mpg <span class="op">~</span><span class="st"> </span>am <span class="op">*</span><span class="st"> </span>cyl, <span class="dt">data =</span> mtcars)</span>
-<span id="cb34-6"><a href="#cb34-6"></a></span>
-<span id="cb34-7"><a href="#cb34-7"></a><span class="co"># plot</span></span>
-<span id="cb34-8"><a href="#cb34-8"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> mod)</span></code></pre></div>
+<!-- end list --><div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># for reproducibility</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
+<span id="cb30-3"><a href="#cb30-3"></a></span>
+<span id="cb30-4"><a href="#cb30-4"></a><span class="co"># model</span></span>
+<span id="cb30-5"><a href="#cb30-5"></a>mod &lt;-<span class="st"> </span>stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="dt">formula =</span> mpg <span class="op">~</span><span class="st"> </span>am <span class="op">*</span><span class="st"> </span>cyl, <span class="dt">data =</span> mtcars)</span>
+<span id="cb30-6"><a href="#cb30-6"></a></span>
+<span id="cb30-7"><a href="#cb30-7"></a><span class="co"># plot</span></span>
+<span id="cb30-8"><a href="#cb30-8"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> mod)</span></code></pre></div>
 <p><img src="reference/figures/README-ggcoefstats1-1.png" width="100%"></p>
 <p>This default plot can be further modified to one’s liking with additional arguments (also, let’s use a different model now):</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="co"># for reproducibility</span></span>
-<span id="cb35-2"><a href="#cb35-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
-<span id="cb35-3"><a href="#cb35-3"></a></span>
-<span id="cb35-4"><a href="#cb35-4"></a><span class="co"># model</span></span>
-<span id="cb35-5"><a href="#cb35-5"></a>mod &lt;-<span class="st"> </span>MASS<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/MASS/man/rlm.html">rlm</a></span>(</span>
-<span id="cb35-6"><a href="#cb35-6"></a>  <span class="dt">formula =</span> mpg <span class="op">~</span><span class="st"> </span>am <span class="op">*</span><span class="st"> </span>cyl,</span>
-<span id="cb35-7"><a href="#cb35-7"></a>  <span class="dt">data =</span> mtcars</span>
-<span id="cb35-8"><a href="#cb35-8"></a>)</span>
-<span id="cb35-9"><a href="#cb35-9"></a></span>
-<span id="cb35-10"><a href="#cb35-10"></a><span class="co"># plot</span></span>
-<span id="cb35-11"><a href="#cb35-11"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</span>
-<span id="cb35-12"><a href="#cb35-12"></a>  <span class="dt">x =</span> mod,</span>
-<span id="cb35-13"><a href="#cb35-13"></a>  <span class="dt">point.color =</span> <span class="st">"red"</span>,</span>
-<span id="cb35-14"><a href="#cb35-14"></a>  <span class="dt">point.shape =</span> <span class="dv">15</span>,</span>
-<span id="cb35-15"><a href="#cb35-15"></a>  <span class="dt">vline.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">color =</span> <span class="st">"#CC79A7"</span>, <span class="dt">linetype =</span> <span class="st">"dotdash"</span>),</span>
-<span id="cb35-16"><a href="#cb35-16"></a>  <span class="dt">stats.label.color =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>, <span class="st">"darkgreen"</span>),</span>
-<span id="cb35-17"><a href="#cb35-17"></a>  <span class="dt">title =</span> <span class="st">"Car performance predicted by transmission &amp; cylinder count"</span>,</span>
-<span id="cb35-18"><a href="#cb35-18"></a>  <span class="dt">subtitle =</span> <span class="st">"Source: 1974 Motor Trend US magazine"</span>,</span>
-<span id="cb35-19"><a href="#cb35-19"></a>  <span class="dt">ggtheme =</span> hrbrthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html">theme_ipsum_ps</a></span>(),</span>
-<span id="cb35-20"><a href="#cb35-20"></a>  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span></span>
-<span id="cb35-21"><a href="#cb35-21"></a>) <span class="op">+</span><span class="st"> </span><span class="co"># further modification with the ggplot2 commands</span></span>
-<span id="cb35-22"><a href="#cb35-22"></a><span class="st">  </span><span class="co"># note the order in which the labels are entered</span></span>
-<span id="cb35-23"><a href="#cb35-23"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"transmission"</span>, <span class="st">"cylinders"</span>, <span class="st">"interaction"</span>)) <span class="op">+</span></span>
-<span id="cb35-24"><a href="#cb35-24"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">x =</span> <span class="st">"regression coefficient"</span>, <span class="dt">y =</span> <span class="ot">NULL</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co"># for reproducibility</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
+<span id="cb31-3"><a href="#cb31-3"></a></span>
+<span id="cb31-4"><a href="#cb31-4"></a><span class="co"># model</span></span>
+<span id="cb31-5"><a href="#cb31-5"></a>mod &lt;-<span class="st"> </span>MASS<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/MASS/man/rlm.html">rlm</a></span>(</span>
+<span id="cb31-6"><a href="#cb31-6"></a>  <span class="dt">formula =</span> mpg <span class="op">~</span><span class="st"> </span>am <span class="op">*</span><span class="st"> </span>cyl,</span>
+<span id="cb31-7"><a href="#cb31-7"></a>  <span class="dt">data =</span> mtcars</span>
+<span id="cb31-8"><a href="#cb31-8"></a>)</span>
+<span id="cb31-9"><a href="#cb31-9"></a></span>
+<span id="cb31-10"><a href="#cb31-10"></a><span class="co"># plot</span></span>
+<span id="cb31-11"><a href="#cb31-11"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</span>
+<span id="cb31-12"><a href="#cb31-12"></a>  <span class="dt">x =</span> mod,</span>
+<span id="cb31-13"><a href="#cb31-13"></a>  <span class="dt">point.color =</span> <span class="st">"red"</span>,</span>
+<span id="cb31-14"><a href="#cb31-14"></a>  <span class="dt">point.shape =</span> <span class="dv">15</span>,</span>
+<span id="cb31-15"><a href="#cb31-15"></a>  <span class="dt">vline.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">color =</span> <span class="st">"#CC79A7"</span>, <span class="dt">linetype =</span> <span class="st">"dotdash"</span>),</span>
+<span id="cb31-16"><a href="#cb31-16"></a>  <span class="dt">stats.label.color =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>, <span class="st">"darkgreen"</span>),</span>
+<span id="cb31-17"><a href="#cb31-17"></a>  <span class="dt">title =</span> <span class="st">"Car performance predicted by transmission &amp; cylinder count"</span>,</span>
+<span id="cb31-18"><a href="#cb31-18"></a>  <span class="dt">subtitle =</span> <span class="st">"Source: 1974 Motor Trend US magazine"</span>,</span>
+<span id="cb31-19"><a href="#cb31-19"></a>  <span class="dt">ggtheme =</span> hrbrthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html">theme_ipsum_ps</a></span>(),</span>
+<span id="cb31-20"><a href="#cb31-20"></a>  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span></span>
+<span id="cb31-21"><a href="#cb31-21"></a>) <span class="op">+</span><span class="st"> </span><span class="co"># further modification with the ggplot2 commands</span></span>
+<span id="cb31-22"><a href="#cb31-22"></a><span class="st">  </span><span class="co"># note the order in which the labels are entered</span></span>
+<span id="cb31-23"><a href="#cb31-23"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"transmission"</span>, <span class="st">"cylinders"</span>, <span class="st">"interaction"</span>)) <span class="op">+</span></span>
+<span id="cb31-24"><a href="#cb31-24"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">x =</span> <span class="st">"regression coefficient"</span>, <span class="dt">y =</span> <span class="ot">NULL</span>)</span></code></pre></div>
 <p><img src="reference/figures/README-ggcoefstats2-1.png" width="100%"></p>
 <p>Most of the regression models that are supported in the <code>broom</code> and <code>broom.mixed</code> packages with <code>tidy</code> and <code>glance</code> methods are also supported by <code>ggcoefstats</code>. For example-</p>
 <p><code>aareg</code>, <code>anova</code>, <code>aov</code>, <code>aovlist</code>, <code>Arima</code>, <code>bglmerMod</code>, <code>bigglm</code>, <code>biglm</code>, <code>blavaan</code>, <code>bmlm</code>, <code>blmerMod</code>, <code>bracl</code>, <code>brglm2</code>, <code>brmsfit</code>, <code>btergm</code>, <code>cch</code>, <code>cgam</code>, <code>cgamm</code>, <code>clm</code>, <code>clmm</code>, <code>coeftest</code>, <code>confusionMatrix</code>, <code>coxme</code>, <code>coxph</code>, <code>cpglm</code>, <code>cpglmm</code>, <code>complmrob</code>, <code>drc</code>, <code>emmGrid</code>, <code>epi.2by2</code>, <code>ergm</code>, <code>feis</code>, <code>felm</code>, <code>fitdistr</code>, <code>flexsurvreg</code>, <code>glmc</code>, <code>glmerMod</code>, <code>glmmTMB</code>, <code>gls</code>, <code>gam</code>, <code>Gam</code>, <code>gamlss</code>, <code>garch</code>, <code>glm</code>, <code>glmmadmb</code>, <code>glmmPQL</code>, <code>glmRob</code>, <code>glmrob</code>, <code>glmx</code>, <code>gmm</code>, <code>hurdle</code>, <code>ivreg</code>, <code>iv_robust</code>, <code>lavaan</code>, <code>lm</code>, <code>lm.beta</code>, <code>lmerMod</code>, <code>lmodel2</code>, <code>lmRob</code>, <code>lmrob</code>, <code>mcmc</code>, <code>MCMCglmm</code>, <code>mclogit</code>, <code>mmclogit</code>, <code>mediate</code>, <code>mixor</code>, <code>mjoint</code>, <code>mle2</code>, <code>mlm</code>, <code>multinom</code>, <code>negbin</code>, <code>nlmerMod</code>, <code>nlrq</code>, <code>nlreg</code>, <code>nls</code>, <code>orcutt</code>, <code>plm</code>, <code>polr</code>, <code>ridgelm</code>, <code>rjags</code>, <code>rlm</code>, <code>rlmerMod</code>, <code>rq</code>, <code>rqss</code>, <code>slm</code>, <code>speedglm</code>, <code>speedlm</code>, <code>stanfit</code>, <code>stanreg</code>, <code>survreg</code>, <code>svyglm</code>, <code>svyolr</code>, <code>svyglm</code>, <code>tobit</code>, <code>truncreg</code>, <code>vgam</code>, <code>wbgee</code>, <code>wblm</code>, etc.</p>
@@ -1829,37 +1830,37 @@ contingency table | Goodness of fit (<br><embed src="https://latex.codecogs.com/
 </h2>
 <p>All plots from <code>ggstatsplot</code> have a default theme: <code>theme_ggstatsplot</code>. You can change this theme by using the <code>ggtheme</code> argument. It is important to note that irrespective of which <code>ggplot</code> theme you choose, <code>ggstatsplot</code> in the backdrop adds a new layer with its idiosyncratic theme settings, chosen to make the graphs more readable or aesthetically pleasing.</p>
 <p>Let’s see an example with <code>gghistostats</code> and see how a certain theme from <code>hrbrthemes</code> package looks like with and without the <code>ggstatsplot</code> layer.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="co"># to use hrbrthemes themes, first make sure you have all the necessary fonts</span></span>
-<span id="cb36-2"><a href="#cb36-2"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(hrbrthemes)</span>
-<span id="cb36-3"><a href="#cb36-3"></a><span class="co"># extrafont::ttf_import()</span></span>
-<span id="cb36-4"><a href="#cb36-4"></a><span class="co"># extrafont::font_import()</span></span>
-<span id="cb36-5"><a href="#cb36-5"></a></span>
-<span id="cb36-6"><a href="#cb36-6"></a><span class="co"># try this yourself</span></span>
-<span id="cb36-7"><a href="#cb36-7"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</span>
-<span id="cb36-8"><a href="#cb36-8"></a>  <span class="co"># with the ggstatsplot layer</span></span>
-<span id="cb36-9"><a href="#cb36-9"></a>  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</span>
-<span id="cb36-10"><a href="#cb36-10"></a>    <span class="dt">data =</span> iris,</span>
-<span id="cb36-11"><a href="#cb36-11"></a>    <span class="dt">x =</span> Sepal.Width,</span>
-<span id="cb36-12"><a href="#cb36-12"></a>    <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb36-13"><a href="#cb36-13"></a>    <span class="dt">title =</span> <span class="st">"Distribution of Sepal Width"</span>,</span>
-<span id="cb36-14"><a href="#cb36-14"></a>    <span class="dt">test.value =</span> <span class="dv">5</span>,</span>
-<span id="cb36-15"><a href="#cb36-15"></a>    <span class="dt">ggtheme =</span> hrbrthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum.html">theme_ipsum</a></span>(),</span>
-<span id="cb36-16"><a href="#cb36-16"></a>    <span class="dt">ggstatsplot.layer =</span> <span class="ot">TRUE</span></span>
-<span id="cb36-17"><a href="#cb36-17"></a>  ),</span>
-<span id="cb36-18"><a href="#cb36-18"></a>  <span class="co"># without the ggstatsplot layer</span></span>
-<span id="cb36-19"><a href="#cb36-19"></a>  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</span>
-<span id="cb36-20"><a href="#cb36-20"></a>    <span class="dt">data =</span> iris,</span>
-<span id="cb36-21"><a href="#cb36-21"></a>    <span class="dt">x =</span> Sepal.Width,</span>
-<span id="cb36-22"><a href="#cb36-22"></a>    <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb36-23"><a href="#cb36-23"></a>    <span class="dt">title =</span> <span class="st">"Distribution of Sepal Width"</span>,</span>
-<span id="cb36-24"><a href="#cb36-24"></a>    <span class="dt">test.value =</span> <span class="dv">5</span>,</span>
-<span id="cb36-25"><a href="#cb36-25"></a>    <span class="dt">ggtheme =</span> hrbrthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html">theme_ipsum_ps</a></span>(),</span>
-<span id="cb36-26"><a href="#cb36-26"></a>    <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span></span>
-<span id="cb36-27"><a href="#cb36-27"></a>  ),</span>
-<span id="cb36-28"><a href="#cb36-28"></a>  <span class="dt">nrow =</span> <span class="dv">1</span>,</span>
-<span id="cb36-29"><a href="#cb36-29"></a>  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>),</span>
-<span id="cb36-30"><a href="#cb36-30"></a>  <span class="dt">title.text =</span> <span class="st">"Behavior of ggstatsplot theme layer with and without chosen ggtheme"</span></span>
-<span id="cb36-31"><a href="#cb36-31"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="co"># to use hrbrthemes themes, first make sure you have all the necessary fonts</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(hrbrthemes)</span>
+<span id="cb32-3"><a href="#cb32-3"></a><span class="co"># extrafont::ttf_import()</span></span>
+<span id="cb32-4"><a href="#cb32-4"></a><span class="co"># extrafont::font_import()</span></span>
+<span id="cb32-5"><a href="#cb32-5"></a></span>
+<span id="cb32-6"><a href="#cb32-6"></a><span class="co"># try this yourself</span></span>
+<span id="cb32-7"><a href="#cb32-7"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</span>
+<span id="cb32-8"><a href="#cb32-8"></a>  <span class="co"># with the ggstatsplot layer</span></span>
+<span id="cb32-9"><a href="#cb32-9"></a>  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</span>
+<span id="cb32-10"><a href="#cb32-10"></a>    <span class="dt">data =</span> iris,</span>
+<span id="cb32-11"><a href="#cb32-11"></a>    <span class="dt">x =</span> Sepal.Width,</span>
+<span id="cb32-12"><a href="#cb32-12"></a>    <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb32-13"><a href="#cb32-13"></a>    <span class="dt">title =</span> <span class="st">"Distribution of Sepal Width"</span>,</span>
+<span id="cb32-14"><a href="#cb32-14"></a>    <span class="dt">test.value =</span> <span class="dv">5</span>,</span>
+<span id="cb32-15"><a href="#cb32-15"></a>    <span class="dt">ggtheme =</span> hrbrthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum.html">theme_ipsum</a></span>(),</span>
+<span id="cb32-16"><a href="#cb32-16"></a>    <span class="dt">ggstatsplot.layer =</span> <span class="ot">TRUE</span></span>
+<span id="cb32-17"><a href="#cb32-17"></a>  ),</span>
+<span id="cb32-18"><a href="#cb32-18"></a>  <span class="co"># without the ggstatsplot layer</span></span>
+<span id="cb32-19"><a href="#cb32-19"></a>  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</span>
+<span id="cb32-20"><a href="#cb32-20"></a>    <span class="dt">data =</span> iris,</span>
+<span id="cb32-21"><a href="#cb32-21"></a>    <span class="dt">x =</span> Sepal.Width,</span>
+<span id="cb32-22"><a href="#cb32-22"></a>    <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb32-23"><a href="#cb32-23"></a>    <span class="dt">title =</span> <span class="st">"Distribution of Sepal Width"</span>,</span>
+<span id="cb32-24"><a href="#cb32-24"></a>    <span class="dt">test.value =</span> <span class="dv">5</span>,</span>
+<span id="cb32-25"><a href="#cb32-25"></a>    <span class="dt">ggtheme =</span> hrbrthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html">theme_ipsum_ps</a></span>(),</span>
+<span id="cb32-26"><a href="#cb32-26"></a>    <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span></span>
+<span id="cb32-27"><a href="#cb32-27"></a>  ),</span>
+<span id="cb32-28"><a href="#cb32-28"></a>  <span class="dt">nrow =</span> <span class="dv">1</span>,</span>
+<span id="cb32-29"><a href="#cb32-29"></a>  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>),</span>
+<span id="cb32-30"><a href="#cb32-30"></a>  <span class="dt">title.text =</span> <span class="st">"Behavior of ggstatsplot theme layer with and without chosen ggtheme"</span></span>
+<span id="cb32-31"><a href="#cb32-31"></a>)</span></code></pre></div>
 <p><img src="reference/figures/README-theme_ggstatsplot-1.png" width="100%"></p>
 <p>For more on how to modify it, see the associated vignette- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html</a></p>
 </div>
@@ -1868,43 +1869,43 @@ contingency table | Goodness of fit (<br><embed src="https://latex.codecogs.com/
 <a href="#using-ggstatsplot-statistical-details-with-custom-plots" class="anchor"></a>Using <code>ggstatsplot</code> statistical details with custom plots</h2>
 <p>Sometimes you may not like the default plots produced by <code>ggstatsplot</code>. In such cases, you can use other <strong>custom</strong> plots (from <code>ggplot2</code> or other plotting packages) and still use <code>ggstatsplot</code> functions to display results from relevant statistical test.</p>
 <p>For example, in the following chunk, we will create plot (<em>ridgeplot</em>) using <code>ggridges</code> package and use <code>ggstatsplot</code> function for extracting results.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
-<span id="cb37-2"><a href="#cb37-2"></a></span>
-<span id="cb37-3"><a href="#cb37-3"></a><span class="co"># loading the needed libraries</span></span>
-<span id="cb37-4"><a href="#cb37-4"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggridges)</span>
-<span id="cb37-5"><a href="#cb37-5"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</span>
-<span id="cb37-6"><a href="#cb37-6"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggstatsplot)</span>
-<span id="cb37-7"><a href="#cb37-7"></a></span>
-<span id="cb37-8"><a href="#cb37-8"></a><span class="co"># using `ggstatsplot` to get call with statistical results</span></span>
-<span id="cb37-9"><a href="#cb37-9"></a>stats_results &lt;-</span>
-<span id="cb37-10"><a href="#cb37-10"></a><span class="st">  </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</span>
-<span id="cb37-11"><a href="#cb37-11"></a>    <span class="dt">data =</span> morley,</span>
-<span id="cb37-12"><a href="#cb37-12"></a>    <span class="dt">x =</span> Expt,</span>
-<span id="cb37-13"><a href="#cb37-13"></a>    <span class="dt">y =</span> Speed,</span>
-<span id="cb37-14"><a href="#cb37-14"></a>    <span class="dt">return =</span> <span class="st">"subtitle"</span>,</span>
-<span id="cb37-15"><a href="#cb37-15"></a>    <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
-<span id="cb37-16"><a href="#cb37-16"></a>  )</span>
-<span id="cb37-17"><a href="#cb37-17"></a></span>
-<span id="cb37-18"><a href="#cb37-18"></a><span class="co"># using `ggridges` to create plot</span></span>
-<span id="cb37-19"><a href="#cb37-19"></a><span class="kw">ggplot</span>(morley, <span class="kw">aes</span>(<span class="dt">x =</span> Speed, <span class="dt">y =</span> <span class="kw"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(Expt), <span class="dt">fill =</span> <span class="kw"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(Expt))) <span class="op">+</span></span>
-<span id="cb37-20"><a href="#cb37-20"></a><span class="st">  </span><span class="kw">geom_density_ridges</span>(</span>
-<span id="cb37-21"><a href="#cb37-21"></a>    <span class="dt">jittered_points =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb37-22"><a href="#cb37-22"></a>    <span class="dt">quantile_lines =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb37-23"><a href="#cb37-23"></a>    <span class="dt">scale =</span> <span class="fl">0.9</span>,</span>
-<span id="cb37-24"><a href="#cb37-24"></a>    <span class="dt">alpha =</span> <span class="fl">0.7</span>,</span>
-<span id="cb37-25"><a href="#cb37-25"></a>    <span class="dt">vline_size =</span> <span class="dv">1</span>,</span>
-<span id="cb37-26"><a href="#cb37-26"></a>    <span class="dt">vline_color =</span> <span class="st">"red"</span>,</span>
-<span id="cb37-27"><a href="#cb37-27"></a>    <span class="dt">point_size =</span> <span class="fl">0.4</span>,</span>
-<span id="cb37-28"><a href="#cb37-28"></a>    <span class="dt">point_alpha =</span> <span class="dv">1</span>,</span>
-<span id="cb37-29"><a href="#cb37-29"></a>    <span class="dt">position =</span> <span class="kw">position_raincloud</span>(<span class="dt">adjust_vlines =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb37-30"><a href="#cb37-30"></a>  ) <span class="op">+</span><span class="st"> </span><span class="co"># adding annotations</span></span>
-<span id="cb37-31"><a href="#cb37-31"></a><span class="st">  </span><span class="kw">labs</span>(</span>
-<span id="cb37-32"><a href="#cb37-32"></a>    <span class="dt">title =</span> <span class="st">"Michelson-Morley experiments"</span>,</span>
-<span id="cb37-33"><a href="#cb37-33"></a>    <span class="dt">subtitle =</span> stats_results,</span>
-<span id="cb37-34"><a href="#cb37-34"></a>    <span class="dt">x =</span> <span class="st">"Speed of light"</span>,</span>
-<span id="cb37-35"><a href="#cb37-35"></a>    <span class="dt">y =</span> <span class="st">"Experiment number"</span></span>
-<span id="cb37-36"><a href="#cb37-36"></a>  ) <span class="op">+</span><span class="st"> </span><span class="co"># remove the legend</span></span>
-<span id="cb37-37"><a href="#cb37-37"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
+<span id="cb33-2"><a href="#cb33-2"></a></span>
+<span id="cb33-3"><a href="#cb33-3"></a><span class="co"># loading the needed libraries</span></span>
+<span id="cb33-4"><a href="#cb33-4"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggridges)</span>
+<span id="cb33-5"><a href="#cb33-5"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</span>
+<span id="cb33-6"><a href="#cb33-6"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggstatsplot)</span>
+<span id="cb33-7"><a href="#cb33-7"></a></span>
+<span id="cb33-8"><a href="#cb33-8"></a><span class="co"># using `ggstatsplot` to get call with statistical results</span></span>
+<span id="cb33-9"><a href="#cb33-9"></a>stats_results &lt;-</span>
+<span id="cb33-10"><a href="#cb33-10"></a><span class="st">  </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</span>
+<span id="cb33-11"><a href="#cb33-11"></a>    <span class="dt">data =</span> morley,</span>
+<span id="cb33-12"><a href="#cb33-12"></a>    <span class="dt">x =</span> Expt,</span>
+<span id="cb33-13"><a href="#cb33-13"></a>    <span class="dt">y =</span> Speed,</span>
+<span id="cb33-14"><a href="#cb33-14"></a>    <span class="dt">return =</span> <span class="st">"subtitle"</span>,</span>
+<span id="cb33-15"><a href="#cb33-15"></a>    <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
+<span id="cb33-16"><a href="#cb33-16"></a>  )</span>
+<span id="cb33-17"><a href="#cb33-17"></a></span>
+<span id="cb33-18"><a href="#cb33-18"></a><span class="co"># using `ggridges` to create plot</span></span>
+<span id="cb33-19"><a href="#cb33-19"></a><span class="kw">ggplot</span>(morley, <span class="kw">aes</span>(<span class="dt">x =</span> Speed, <span class="dt">y =</span> <span class="kw"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(Expt), <span class="dt">fill =</span> <span class="kw"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(Expt))) <span class="op">+</span></span>
+<span id="cb33-20"><a href="#cb33-20"></a><span class="st">  </span><span class="kw">geom_density_ridges</span>(</span>
+<span id="cb33-21"><a href="#cb33-21"></a>    <span class="dt">jittered_points =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb33-22"><a href="#cb33-22"></a>    <span class="dt">quantile_lines =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb33-23"><a href="#cb33-23"></a>    <span class="dt">scale =</span> <span class="fl">0.9</span>,</span>
+<span id="cb33-24"><a href="#cb33-24"></a>    <span class="dt">alpha =</span> <span class="fl">0.7</span>,</span>
+<span id="cb33-25"><a href="#cb33-25"></a>    <span class="dt">vline_size =</span> <span class="dv">1</span>,</span>
+<span id="cb33-26"><a href="#cb33-26"></a>    <span class="dt">vline_color =</span> <span class="st">"red"</span>,</span>
+<span id="cb33-27"><a href="#cb33-27"></a>    <span class="dt">point_size =</span> <span class="fl">0.4</span>,</span>
+<span id="cb33-28"><a href="#cb33-28"></a>    <span class="dt">point_alpha =</span> <span class="dv">1</span>,</span>
+<span id="cb33-29"><a href="#cb33-29"></a>    <span class="dt">position =</span> <span class="kw">position_raincloud</span>(<span class="dt">adjust_vlines =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb33-30"><a href="#cb33-30"></a>  ) <span class="op">+</span><span class="st"> </span><span class="co"># adding annotations</span></span>
+<span id="cb33-31"><a href="#cb33-31"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb33-32"><a href="#cb33-32"></a>    <span class="dt">title =</span> <span class="st">"Michelson-Morley experiments"</span>,</span>
+<span id="cb33-33"><a href="#cb33-33"></a>    <span class="dt">subtitle =</span> stats_results,</span>
+<span id="cb33-34"><a href="#cb33-34"></a>    <span class="dt">x =</span> <span class="st">"Speed of light"</span>,</span>
+<span id="cb33-35"><a href="#cb33-35"></a>    <span class="dt">y =</span> <span class="st">"Experiment number"</span></span>
+<span id="cb33-36"><a href="#cb33-36"></a>  ) <span class="op">+</span><span class="st"> </span><span class="co"># remove the legend</span></span>
+<span id="cb33-37"><a href="#cb33-37"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div>
 <p><img src="reference/figures/README-ridgeplot-1.png" width="100%"></p>
 </div>
 </div>

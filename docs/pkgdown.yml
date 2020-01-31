@@ -16,6 +16,7 @@ articles:
   ggpiestats: web_only/ggpiestats.html
   ggscatterstats: web_only/ggscatterstats.html
   ggwithinstats: web_only/ggwithinstats.html
+  other_resources: web_only/other_resources.html
   purrr_examples: web_only/purrr_examples.html
   session_info: web_only/session_info.html
   theme_ggstatsplot: web_only/theme_ggstatsplot.html

@@ -60,6 +60,7 @@ jobs:
       - remotes
       - knitr
       - rmarkdown
+      - statsExpressions
     r_github_packages:
       - jimhester/lintr
       - r-lib/covr
@@ -109,6 +110,7 @@ jobs:
       - remotes
       - knitr
       - rmarkdown
+      - statsExpressions
     r_github_packages:
       - jimhester/lintr
       - r-lib/covr
