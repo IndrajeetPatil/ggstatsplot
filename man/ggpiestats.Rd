@@ -27,7 +27,6 @@ ggpiestats(
   subtitle = NULL,
   caption = NULL,
   conf.level = 0.95,
-  bf.prior = 0.707,
   nboot = 100,
   bias.correct = TRUE,
   legend.title = NULL,
@@ -122,9 +121,6 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 
 \item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
 \verb{95\%} lower and upper confidence intervals (\code{0.95}).}
-
-\item{bf.prior}{A numeric value between \code{0.5} and \code{2} (default \code{0.707}), the
-prior width to use in calculating Bayes Factors.}
 
 \item{nboot}{Number of bootstrap samples for computing confidence interval
 for the effect size (Default: \code{100}).}

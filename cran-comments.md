@@ -7,4 +7,4 @@
 
 0 errors | 0 warnings | 1 notes
 
-  - Makes `ggstatsplot` compatible with the new release of `paletteer`.
+  - Makes `ggstatsplot` compatible with the new release of `pairwiseComparisons`.

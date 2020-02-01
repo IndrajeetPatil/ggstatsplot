@@ -120,7 +120,7 @@ npk.aov <- stats::aov(formula = yield ~ block + N * P * K, data = npk)
 
 # extracting a tidy dataframe with effect size estimate and their CIs
 tidy_df <-
-  ggstatsplot::lm_effsize_ci(
+  groupedstats::lm_effsize_ci(
     object = npk.aov,
     effsize = "omega",
     partial = FALSE,

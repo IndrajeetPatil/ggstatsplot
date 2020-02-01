@@ -99,6 +99,9 @@
       <a href="../../articles/web_only/ggwithinstats.html">ggwithinstats</a>
     </li>
     <li>
+      <a href="../../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
+    </li>
+    <li>
       <a href="../../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
     </li>
     <li>
@@ -142,7 +145,7 @@
       <h1>combine_plots</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-01-22</h4>
+            <h4 class="date">2020-01-31</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/combine_plots.Rmd"><code>vignettes/web_only/combine_plots.Rmd</code></a></small>
       <div class="hidden name"><code>combine_plots.Rmd</code></div>
@@ -227,11 +230,11 @@
 <span id="cb2-34"><a href="#cb2-34"></a>plots</span>
 <span id="cb2-35"><a href="#cb2-35"></a><span class="co">#&gt; # A tibble: 3 x 3</span></span>
 <span id="cb2-36"><a href="#cb2-36"></a><span class="co">#&gt; # Groups:   Species [3]</span></span>
-<span id="cb2-37"><a href="#cb2-37"></a><span class="co">#&gt;   Species              data plot      </span></span>
-<span id="cb2-38"><a href="#cb2-38"></a><span class="co">#&gt;   &lt;fct&gt;      &lt;list&lt;df[,5]&gt;&gt; &lt;list&gt;    </span></span>
-<span id="cb2-39"><a href="#cb2-39"></a><span class="co">#&gt; 1 setosa           [50 x 5] &lt;ggExtrPl&gt;</span></span>
-<span id="cb2-40"><a href="#cb2-40"></a><span class="co">#&gt; 2 versicolor       [50 x 5] &lt;ggExtrPl&gt;</span></span>
-<span id="cb2-41"><a href="#cb2-41"></a><span class="co">#&gt; 3 virginica        [50 x 5] &lt;ggExtrPl&gt;</span></span>
+<span id="cb2-37"><a href="#cb2-37"></a><span class="co">#&gt;   Species    data              plot      </span></span>
+<span id="cb2-38"><a href="#cb2-38"></a><span class="co">#&gt;   &lt;fct&gt;      &lt;list&gt;            &lt;list&gt;    </span></span>
+<span id="cb2-39"><a href="#cb2-39"></a><span class="co">#&gt; 1 setosa     &lt;tibble [50 x 5]&gt; &lt;ggExtrPl&gt;</span></span>
+<span id="cb2-40"><a href="#cb2-40"></a><span class="co">#&gt; 2 versicolor &lt;tibble [50 x 5]&gt; &lt;ggExtrPl&gt;</span></span>
+<span id="cb2-41"><a href="#cb2-41"></a><span class="co">#&gt; 3 virginica  &lt;tibble [50 x 5]&gt; &lt;ggExtrPl&gt;</span></span>
 <span id="cb2-42"><a href="#cb2-42"></a></span>
 <span id="cb2-43"><a href="#cb2-43"></a><span class="co"># creating a grid with cowplot</span></span>
 <span id="cb2-44"><a href="#cb2-44"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</span>

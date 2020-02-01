@@ -75,11 +75,14 @@
 #'   will be returned. Valid only for objects of class `aov`, `anova`, or
 #'   `aovlist`.
 #' @param meta.analytic.effect Logical that decides whether subtitle for
-#'   meta-analysis via linear (mixed-effects) models - as implemented in the
-#'   `metafor` package - is to be displayed (default: `FALSE`). If `TRUE`, input
-#'   to argument `subtitle` will be ignored. This will be mostly relevant if a
-#'   data frame with estimates and their standard errors is entered as input to
-#'   `x` argument.
+#'   meta-analysis via linear (mixed-effects) models (default: `FALSE`). If
+#'   `TRUE`, input to argument `subtitle` will be ignored. This will be mostly
+#'   relevant if a data frame with estimates and their standard errors is
+#'   entered as input to `x` argument.
+#' @param meta.type Type of statistics used to carry out random-effects
+#'   meta-analysis. If `"parametric"` (default), `metafor::rma` function will be
+#'   used. If `"robust"`, `metaplus::metaplus` function will be used. If
+#'   `"bayes"`, `metaBMA::meta_random` function will be used.
 #' @param k Number of decimal places expected for results displayed in labels
 #'   (Default : `k = 2`).
 #' @param k.caption.summary Number of decimal places expected for results
@@ -291,6 +294,7 @@ ggcoefstats <- function(x,
                         partial = TRUE,
                         nboot = 500,
                         meta.analytic.effect = FALSE,
+                        meta.type = "parametric",
                         conf.int = TRUE,
                         conf.level = 0.95,
                         se.type = "nid",
@@ -686,17 +690,21 @@ ggcoefstats <- function(x,
 
   # running meta-analysis
   if (isTRUE(meta.analytic.effect)) {
+    # standardizing type of statistics name
+    meta.type <- stats_type_switch(meta.type)
+
     # results from frequentist random-effects meta-analysis
     subtitle <-
-      statsExpressions::expr_meta_parametric(
+      subtitle_function_switch(
+        test = "meta",
+        type = meta.type,
         data = tidy_df,
         k = k,
-        messages = messages,
-        output = "subtitle"
+        messages = messages
       )
 
     # results from Bayesian random-effects meta-analysis
-    if (isTRUE(bf.message)) {
+    if (isTRUE(bf.message) && meta.type == "parametric") {
       caption <-
         statsExpressions::bf_meta(
           caption = caption,
@@ -706,15 +714,19 @@ ggcoefstats <- function(x,
         )
     }
 
-    # model summary
-    caption.meta <-
-      statsExpressions::expr_meta_parametric(
-        data = tidy_df,
-        k = k,
-        caption = caption,
-        messages = FALSE,
-        output = "caption"
-      )
+    # model summary (detailed only for parametric statistics)
+    if (meta.type == "parametric") {
+      caption.meta <-
+        statsExpressions::expr_meta_parametric(
+          data = tidy_df,
+          k = k,
+          caption = caption,
+          messages = FALSE,
+          output = "caption"
+        )
+    } else {
+      caption.meta <- caption
+    }
   }
 
   # ========================== summary caption ================================

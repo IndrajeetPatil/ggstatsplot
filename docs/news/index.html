@@ -75,7 +75,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.2.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.2.0</span>
       </span>
     </div>
 
@@ -140,6 +140,9 @@
       <a href="../articles/web_only/ggwithinstats.html">ggwithinstats</a>
     </li>
     <li>
+      <a href="../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
+    </li>
+    <li>
       <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
     </li>
     <li>
@@ -184,27 +187,27 @@
       <small>Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="ggstatsplot-0209000" class="section level1">
+    <div id="ggstatsplot-020" class="section level1">
 <h1 class="page-header">
-<a href="#ggstatsplot-0209000" class="anchor"></a>ggstatsplot 0.2.0.9000<small> Unreleased </small>
+<a href="#ggstatsplot-020" class="anchor"></a>ggstatsplot 0.2.0<small> Unreleased </small>
 </h1>
 <p>BREAKING CHANGES</p>
 <ul>
 <li>To have a more manageable length of function arguments, additional aesthetic specifications for any given geom can be provided via a dedicated <code>*.args</code> argument. For example, all aesthetic arguments for <code>geom_vline</code> can be provided via <code>vline.args</code>, for <code>geom_errorbarh</code> via <code>errorbar.args</code>, etc.</li>
-<li>The unnecessary <code>simulate.p.value</code> and <code>B</code> arguments for <code>ggpiestats</code> and <code>ggbarstats</code> have been removed.</li>
 <li>
-<code>ggstatsplot</code> continues with its conscious uncoupling that started in <code>0.1.0</code> release: The following functions have now been moved to <code>statsExpressions</code> package: <code>subtitle_meta_parametric</code> and <code>bf_meta_message</code>.</li>
+<code>ggstatsplot</code> continues with its conscious uncoupling that started in <code>0.1.0</code> release: The following functions have now been moved to <code>statsExpressions</code> package: <code>subtitle_meta_parametric</code> and <code>bf_meta_message</code> and follow a more logical nomenclature. For the same reason, <code>lm_effsize_ci</code> function is also no longer exported and lives in the <code>groupedstats</code> package.</li>
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>
 <li>The summary caption no longer displays log-likelihood value because it tends to be not available for a number of regression model objects and so the caption was unnecessarily being skipped.</li>
+<li>Supports robust and Bayes Factors for random-effects meta-analysis.</li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
 <li>New dataset included: <code>bugs_wide</code>
 </li>
-<li>More models supported in <code>ggcoefstats</code>: <code>cgam</code>, <code>cgamm</code>, <code>coxme</code>, <code>cpglm</code>, <code>cpglmm</code>, <code>complmrob</code>, <code>feis</code>, <code>flexsurvreg</code>, <code>glmx</code>, <code>hurdle</code>, <code>iv_robust</code>, <code>mixor</code>, <code>rqss</code>, <code>truncreg</code>, <code>vgam</code>
-</li>
+<li>More models supported in <code>ggcoefstats</code>: <code>cgam</code>, <code>cgamm</code>, <code>coxme</code>, <code>cpglm</code>, <code>cpglmm</code>, <code>complmrob</code>, <code>feis</code>, <code>flexsurvreg</code>, <code>glmx</code>, <code>hurdle</code>, <code>iv_robust</code>, <code>mixor</code>, <code>rqss</code>, <code>truncreg</code>, <code>vgam</code>.</li>
+<li>Removed vestigial arguments from <code>ggcorrmat</code> (e.g., <code>exact</code>, <code>continuity</code>, etc.) and <code>ggpiestats</code> (<code>bf.prior</code>, <code>simulate.p.value</code>, <code>B</code>, etc.).</li>
 </ul>
 </div>
     <div id="ggstatsplot-014" class="section level1">
@@ -395,7 +398,7 @@
 <li>
 <code>ggstatsplot</code> previously relied on an internal function <code>chisq_v_ci</code> to compute confidence intervals for Cramer’s <em>V</em> using bootstrapping but it was pretty slow. It now instead relies on <code>rcompanion</code> package to compute confidence intervals for <em>V</em>. <code>ggstatsplot</code>, therefore, gains a new dependency.</li>
 <li>
-<code>subtitle_mann_nonparametric</code> and <code>subtitle_t_onesample</code> now computes effect size <em>r</em> and its confidence intervals as <span class="math inline">$Z/\sqrt{N}$</span> (with the help of <code>rcompanion</code> package), instead of using Spearman correlation.</li>
+<code>subtitle_mann_nonparametric</code> and <code>subtitle_t_onesample</code> now computes effect size <em>r</em> and its confidence intervals as <br><span class="math display">$$Z/\sqrt{N}$$</span><br> (with the help of <code>rcompanion</code> package), instead of using Spearman correlation.</li>
 </ul>
 </div>
     <div id="ggstatsplot-009" class="section level1">
@@ -501,7 +504,7 @@
 <li>All helper functions for the <code>ggbetweenstats</code> subtitles have been renamed to remove <code>_ggbetween_</code> from their names as this was becoming confusing for the user. Some of these functions work both with the between- and within-subjects designs, so having <code>_ggbetween_</code> in their names made users suspect if they could use these functions for within-subjects designs.</li>
 <li>
 <code>ggstatsplot</code> now depends on <code>R 3.5.0</code>. This is because some of its dependencies require 3.5.0 to work (e.g., <code>broom.mixed</code>).</li>
-<li>All <code>theme_</code> functions are now exported (<code><a href="../reference/theme_pie.html">theme_pie()</a></code>, <code><a href="../reference/theme_corrmat.html">theme_corrmat()</a></code>).<br>
+<li>All <code>theme_</code> functions are now exported (<code><a href="../reference/theme_ggstatsplot.html">theme_pie()</a></code>, <code><a href="../reference/theme_ggstatsplot.html">theme_corrmat()</a></code>).<br>
 </li>
 <li>
 <code>ggbetweenstats</code> now supports multiple pairwise comparison tests (parametric, nonparametric, and robust variants). It gains a new dependency <code>ggsignif</code>.</li>
@@ -675,7 +678,7 @@
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
-<li>Added a new argument to <code>ggstatsplot.theme</code> function to control if <code><a href="../reference/theme_ggstatsplot.html">ggstatsplot::theme_mprl</a></code> is to be overlaid on top of the selected ggtheme (ggplot2 theme, i.e.).</li>
+<li>Added a new argument to <code>ggstatsplot.theme</code> function to control if <code>ggstatsplot::theme_mprl</code> is to be overlaid on top of the selected ggtheme (ggplot2 theme, i.e.).</li>
 <li>Two new arguments added to <code>gghistostats</code> to allow user to change colorbar gradient. Defaults are colorblind friendly.</li>
 <li>Both <code>gghistostats</code> and <code>ggcorrmat</code> have a new argument <code>legend.title.margin</code> to control margin adjustment between the title and the colorbar.</li>
 <li>The vertical lines denoting test values and centrality parameters can be tagged with text labels with a new argument <code>line.labeller</code> in <code>gghistostats</code> function.</li>
@@ -726,7 +729,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#ggstatsplot-0209000">0.2.0.9000</a></li>
+        <li><a href="#ggstatsplot-020">0.2.0</a></li>
         <li><a href="#ggstatsplot-014">0.1.4</a></li>
         <li><a href="#ggstatsplot-013">0.1.3</a></li>
         <li><a href="#ggstatsplot-012">0.1.2</a></li>

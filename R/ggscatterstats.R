@@ -374,30 +374,31 @@ ggscatterstats <- function(data,
         na.rm = TRUE
       )
 
-    # adding labels
-    # for vertical line
-    plot <- line_labeller(
-      plot = plot,
-      x = x.vline,
-      y = y.vline,
-      k = 2,
-      color = xfill,
-      label.text = label.text,
-      line.direction = "vline",
-      jitter = 0.25
-    )
+    # adding labels for *vertical* line
+    plot <-
+      line_labeller(
+        plot = plot,
+        x = x.vline,
+        y = y.vline,
+        k = 2,
+        color = xfill,
+        label.text = label.text,
+        line.direction = "vline",
+        jitter = 0.25
+      )
 
-    # for horizontal line
-    plot <- line_labeller(
-      plot = plot,
-      x = x.hline,
-      y = y.hline,
-      k = 2,
-      line.direction = "hline",
-      color = yfill,
-      label.text = label.text,
-      jitter = 0.25
-    )
+    # adding labels for *horizontal* line
+    plot <-
+      line_labeller(
+        plot = plot,
+        x = x.hline,
+        y = y.hline,
+        k = 2,
+        line.direction = "hline",
+        color = yfill,
+        label.text = label.text,
+        jitter = 0.25
+      )
   }
 
   #---------------------- range restriction -------------------------------

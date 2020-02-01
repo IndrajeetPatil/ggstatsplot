@@ -1,6 +1,7 @@
-#' @title Switch function to use helper function to create subtitle for the
-#'   `ggbetweenstats` plot.
-#' @name ggbetweenstats_subtitle_switch
+#' @title Switch subtitle making function
+#' @description Switch function to use the appropriate helper function from
+#'   `statsExpressions` to create subtitle.
+#' @name subtitle_function_switch
 #'
 #' @inheritParams ggbetweenstats
 #' @param test Decides which test to run (can be either `"t"` or
@@ -11,13 +12,15 @@
 #' @importFrom statsExpressions expr_t_robust expr_t_bayes
 #' @importFrom statsExpressions expr_anova_parametric expr_anova_nonparametric
 #' @importFrom statsExpressions expr_anova_robust expr_anova_bayes
+#' @importFrom statsExpressions expr_meta_parametric
+#' @importFrom statsExpressions expr_meta_robust expr_meta_bayes
 #' @importFrom rlang eval_bare parse_expr
 #' @importFrom dplyr case_when
 #'
 #' @keywords internal
 #' @noRd
 
-ggbetweenstats_subtitle_switch <- function(type, test, ...) {
+subtitle_function_switch <- function(test, type, ...) {
   # figuring out type of test needed to run
   type <- stats_type_switch(type)
 
@@ -27,13 +30,6 @@ ggbetweenstats_subtitle_switch <- function(type, test, ...) {
   # evaluate it
   return(rlang::eval_bare(rlang::parse_expr(.f_string)))
 }
-
-#' @rdname ggbetweenstats_subtitle_switch
-#' @aliases ggbetweenstats_subtitle_switch
-#' @keywords internal
-#' @noRd
-
-ggwithinstats_subtitle_switch <- ggbetweenstats_subtitle_switch
 
 
 #' @noRd
@@ -48,9 +44,8 @@ stats_type_switch <- function(type) {
   )
 }
 
-#' @title Switch function to use helper function to create caption for the
-#'   `ggbetweenstats` plot.
-#' @name ggbetweenstats_caption_switch
+#' @title Switch caption making function
+#' @name caption_function_switch
 #'
 #' @param test Decides which test to run (can be either `"t"` or
 #'   `"anova"`).
@@ -62,7 +57,7 @@ stats_type_switch <- function(type) {
 #' @keywords internal
 #' @noRd
 
-ggbetweenstats_caption_switch <- function(test, ...) {
+caption_function_switch <- function(test, ...) {
   # choosing the appropriate test
   if (test == "t") {
     .f <- statsExpressions::bf_ttest
@@ -73,10 +68,3 @@ ggbetweenstats_caption_switch <- function(test, ...) {
   # preparing the BF message for null
   rlang::exec(.fn = .f, ...)
 }
-
-#' @rdname ggbetweenstats_caption_switch
-#' @aliases ggbetweenstats_caption_switch
-#' @keywords internal
-#' @noRd
-
-ggwithinstats_caption_switch <- ggbetweenstats_caption_switch

@@ -124,13 +124,7 @@
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/reexports.html</loc>
   </url>
   <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/theme_corrmat.html</loc>
-  </url>
-  <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/theme_ggstatsplot.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/theme_pie.html</loc>
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/Titanic_full.html</loc>
@@ -179,6 +173,9 @@
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/web_only/ggwithinstats.html</loc>
+  </url>
+  <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/web_only/other_resources.html</loc>
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/web_only/purrr_examples.html</loc>

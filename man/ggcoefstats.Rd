@@ -18,6 +18,7 @@ ggcoefstats(
   partial = TRUE,
   nboot = 500,
   meta.analytic.effect = FALSE,
+  meta.type = "parametric",
   conf.int = TRUE,
   conf.level = 0.95,
   se.type = "nid",
@@ -124,11 +125,15 @@ eta-squared and omega-squared (Default: \code{500}). This argument is relevant
 only for models objects of class \code{aov}, \code{anova}, and \code{aovlist}.}
 
 \item{meta.analytic.effect}{Logical that decides whether subtitle for
-meta-analysis via linear (mixed-effects) models - as implemented in the
-\code{metafor} package - is to be displayed (default: \code{FALSE}). If \code{TRUE}, input
-to argument \code{subtitle} will be ignored. This will be mostly relevant if a
-data frame with estimates and their standard errors is entered as input to
-\code{x} argument.}
+meta-analysis via linear (mixed-effects) models (default: \code{FALSE}). If
+\code{TRUE}, input to argument \code{subtitle} will be ignored. This will be mostly
+relevant if a data frame with estimates and their standard errors is
+entered as input to \code{x} argument.}
+
+\item{meta.type}{Type of statistics used to carry out random-effects
+meta-analysis. If \code{"parametric"} (default), \code{metafor::rma} function will be
+used. If \code{"robust"}, \code{metaplus::metaplus} function will be used. If
+\code{"bayes"}, \code{metaBMA::meta_random} function will be used.}
 
 \item{conf.int}{Logical. Decides whether to display confidence intervals as
 error bars (Default: \code{TRUE}).}

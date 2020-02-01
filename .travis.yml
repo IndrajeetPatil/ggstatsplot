@@ -50,12 +50,17 @@ jobs:
       - metaBMA
     r_packages:
       - coin
+      - bayestestR
+      - effectsize
+      - parameters
+      - performance
       - sjstats
       - WRS2
       - coda
       - remotes
       - knitr
       - rmarkdown
+      - statsExpressions
     r_github_packages:
       - jimhester/lintr
       - r-lib/covr
@@ -95,12 +100,17 @@ jobs:
       - metaBMA
     r_packages:
       - coin
+      - bayestestR
+      - effectsize
+      - parameters
+      - performance
       - sjstats
       - WRS2
       - coda
       - remotes
       - knitr
       - rmarkdown
+      - statsExpressions
     r_github_packages:
       - jimhester/lintr
       - r-lib/covr

@@ -488,7 +488,6 @@ testthat::test_that(
         data = mtcars,
         main = am,
         ratio = c(0.5, 0.5),
-        bf.prior = 0.8,
         messages = FALSE
       )
 

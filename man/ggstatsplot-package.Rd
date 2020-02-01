@@ -14,12 +14,12 @@ provide a one-line code to produce information-rich plots. In a typical
 exploratory data analysis workflow, data visualization and statistical
 modeling are two different phases: visualization informs modeling, and
 modeling in its turn can suggest a different visualization method, and so
-on and so forth. The central idea of ggstatsplot is simple: combine these
+on and so forth. The central idea of \code{ggstatsplot} is simple: combine these
 two phases into one in the form of graphics with statistical details, which
 makes data exploration simpler and faster. Currently, it supports only the
-most common types of statistical tests (parametric, nonparametric,
-bayesian, and robust versions of t-test/anova, correlation, regression, and
-contingency tables analyses).
+most common types of statistical tests (parametric, non-parametric,
+Bayes Factor, and robust versions of \emph{t}-test/anova, correlation, regression,
+contingency tables analyses, and meta-analysis).
 }
 \details{
 \code{ggstatsplot}
