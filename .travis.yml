@@ -59,6 +59,7 @@ jobs:
       - coda
       - remotes
       - knitr
+      - pairwiseComparisons
       - rmarkdown
       - statsExpressions
     r_github_packages:
@@ -109,6 +110,7 @@ jobs:
       - coda
       - remotes
       - knitr
+      - pairwiseComparisons
       - rmarkdown
       - statsExpressions
     r_github_packages:

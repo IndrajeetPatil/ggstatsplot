@@ -380,14 +380,14 @@
       "@type": "SoftwareApplication",
       "identifier": "pairwiseComparisons",
       "name": "pairwiseComparisons",
-      "version": ">= 0.1.4",
+      "version": ">= 0.2.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/IndrajeetPatil/pairwiseComparisons"
+      "sameAs": "https://CRAN.R-project.org/package=pairwiseComparisons"
     },
     {
       "@type": "SoftwareApplication",

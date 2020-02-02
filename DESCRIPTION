@@ -44,7 +44,7 @@ Imports:
     grid,
     groupedstats (>= 0.1.1),
     insight (>= 0.8.0),
-    pairwiseComparisons (>= 0.1.4),
+    pairwiseComparisons (>= 0.2.0),
     paletteer (>= 1.0.0),
     parameters (>= 0.4.1),
     performance (>= 0.4.3),
@@ -72,8 +72,6 @@ Suggests:
     testthat
 VignetteBuilder: 
     knitr
-Remotes:
-    IndrajeetPatil/pairwiseComparisons
 Encoding: UTF-8
 Language: en-US
 LazyData: true
