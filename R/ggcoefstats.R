@@ -350,6 +350,10 @@ ggcoefstats <- function(x,
   # models for which statistic is F-value
   f.mods <- c("aov", "aovlist", "anova", "Gam", "manova")
 
+  # model for which the output names are going to be slightly weird
+  weird_name_mods <-
+    c("gmm", "lmodel2", "gamlss", "drc", "mlm", "DirichletRegModel")
+
   # ============================= model summary ============================
 
   # creating glance dataframe
@@ -517,7 +521,7 @@ ggcoefstats <- function(x,
 
   # for some class of objects, there are going to be duplicate terms
   # create a new column by collapsing original `variable` and `term` columns
-  if (class(x)[[1]] %in% c("gmm", "lmodel2", "gamlss", "drc", "mlm")) {
+  if (class(x)[[1]] %in% weird_name_mods) {
     tidy_df %<>%
       tidyr::unite(
         data = .,

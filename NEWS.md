@@ -1,3 +1,9 @@
+# ggstatsplot 0.2.0.9000
+
+MINOR CHANGES
+
+  - More models supported in `ggcoefstats`: `cglm`, `DirichReg`.
+
 # ggstatsplot 0.2.0
 
 BREAKING CHANGES

@@ -74,17 +74,17 @@ Most of the regression models that are supported in the `broom` and
 
 `aareg`, `anova`, `aov`, `aovlist`, `Arima`, `bglmerMod`, `bigglm`, `biglm`,
 `blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm2`, `brmsfit`, `btergm`, `cch`,
-`cgam`, `cgamm`, `clm`, `clmm`, `coeftest`, `confusionMatrix`, `coxme`, `coxph`,
-`cpglm`, `cpglmm`, `complmrob`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`,
-`felm`, `fitdistr`, `flexsurvreg`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`,
-`Gam`, `gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`,
-`glmx`, `gmm`, `hurdle`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`,
-`lmerMod`, `lmodel2`, `lmRob`, `lmrob`, `mcmc`, `MCMCglmm`, `mclogit`,
-`mmclogit`, `mediate`, `mixor`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`,
-`nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`,
-`rlm`, `rlmerMod`, `rq`, `rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`,
-`stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`,
-`wbgee`, `wblm`, etc.
+`cgam`, `cgamm`, `cglm`, `clm`, `clmm`, `coeftest`, `confusionMatrix`, `coxme`,
+`coxph`, `cpglm`, `cpglmm`, `complmrob`, `DirichReg`, `drc`, `emmGrid`,
+`epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`, `flexsurvreg`, `glmc`,
+`glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`, `garch`, `glm`,
+`glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`, `hurdle`, `ivreg`,
+`iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`, `lmRob`, `lmrob`,
+`mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`, `mediate`, `mixor`, `mjoint`, `mle2`,
+`mlm`, `multinom`, `negbin`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`,
+`plm`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `rqss`, `slm`,
+`speedglm`, `speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`,
+`svyglm`, `tobit`, `truncreg`, `vgam`, `wbgee`, `wblm`, etc.
 
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
@@ -960,6 +960,27 @@ ggstatsplot::ggcoefstats(
   exclude.intercept = FALSE,
   conf.level = 0.99,
   title = "Hurdle Models for Count Data Regression"
+)
+```
+
+## Dirichlet regression model (`DirichReg`)
+
+```{r DirichReg, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 6}
+# setup
+set.seed(123)
+library(DirichletReg)
+
+# data
+ALake <- ArcticLake
+ALake$Y <- DR_data(ALake[, 1:3])
+
+# fit a quadratic Dirichlet regression models ("common")
+mod <- DirichReg(Y ~ depth + I(depth^2), ALake)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
+  title = "Dirichlet Regression"
 )
 ```
 
@@ -1941,6 +1962,31 @@ mod <-
 ggstatsplot::ggcoefstats(
   x = mod,
   title = "Mixed Conditional Logit Models"
+)
+```
+
+## conditional generalized linear models for clustered data (`cglm`)
+
+```{r cglm, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 6}
+# setup
+set.seed(123)
+library(cglm)
+data(teenpov)
+
+# model
+fit.ide <-
+  cglm::cglm(
+    method = "ts",
+    formula = hours ~ nonpov + inschool + spouse + age + mother,
+    data = teenpov,
+    id = "ID",
+    link = "identity"
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = fit.ide,
+  title = "conditional generalized linear models\n for clustered data"
 )
 ```
 
