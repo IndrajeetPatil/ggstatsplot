@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        r: ['3.5', '3.6']
+        r: ['3.6']
     container: rstudio/r-base:${{ matrix.r }}-xenial
     env:
       CRAN: 'https://demo.rstudiopm.com/all/__linux__/xenial/latest'
