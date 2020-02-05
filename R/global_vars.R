@@ -209,7 +209,9 @@ utils::globalVariables(
     "mean...summary",
     "mean.conf.low...summary",
     "mean.conf.high...summary",
-    "n...summary"
+    "n...summary",
+    "angle",
+    "vjust"
   ),
   package = "ggstatsplot",
   add = FALSE

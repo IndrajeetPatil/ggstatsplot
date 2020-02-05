@@ -7,7 +7,7 @@
 parameters_tidy(x, ...)
 }
 \arguments{
-\item{...}{Arguments passed to or from other methods.}
+\item{...}{Arguments passed to or from other methods. Non-documented arguments are \code{digits}, \code{p_digits} and \code{ci_digits} to set the number of digits for the output. See 'Examples' in \code{\link[parameters]{model_parameters.default}}.}
 }
 \description{
 Tidier for \code{parameters} package objects

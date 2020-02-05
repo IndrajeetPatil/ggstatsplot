@@ -194,9 +194,11 @@ ggbarstats <- function(data,
     )
 
     # plot
-    p <- ggplot2::ggplot(
-      data = df, mapping = ggplot2::aes(x = {{ y }}, y = perc, fill = {{ x }})
-    ) +
+    p <-
+      ggplot2::ggplot(
+        data = df,
+        mapping = ggplot2::aes(x = {{ y }}, y = perc, fill = {{ x }})
+      ) +
       ggplot2::geom_bar(
         stat = "identity",
         position = "fill",
@@ -321,11 +323,9 @@ ggbarstats <- function(data,
     # if we need to modify `x`-axis orientation
     if (!is.null(x.axis.orientation)) {
       if (x.axis.orientation == "slant") {
-        angle <- 45
-        vjust <- 1
+        c(angle, vjust) %<-% c(45, 1)
       } else {
-        angle <- 90
-        vjust <- 0.5
+        c(angle, vjust) %<-% c(90, 0.5)
       }
 
       # adjusting plot label

@@ -1145,7 +1145,7 @@ four different vignettes, each featuring a different type of harm. The question
 we are interested in is what explains variation in participants' rating:
 information about intentionality, consequences, or their interaction?
 
-```{r clm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+```{r clm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8}
 # for reproducibility
 set.seed(123)
 
@@ -1165,8 +1165,7 @@ ggstatsplot::ggcoefstats(
   x = mod,
   stats.label.color = "black",
   title = "cumulative link model (clm)",
-  subtitle = "(using `ordinal` package)",
-  caption.summary = FALSE # suppress model diagnostics
+  subtitle = "(using `ordinal` package)"
 ) +
   ggplot2::labs(x = "logit regression coefficient", y = NULL)
 ```

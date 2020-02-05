@@ -11,6 +11,7 @@
 \alias{\%>\%}
 \alias{\%<>\%}
 \alias{\%$\%}
+\alias{\%<-\%}
 \alias{\%||\%}
 \alias{\%|\%}
 \alias{tibble}
@@ -29,6 +30,8 @@ below to see their documentation.
   \item{pairwiseComparisons}{\code{\link[pairwiseComparisons]{pairwise_comparisons}}, \code{\link[pairwiseComparisons]{pairwise_p}}}
 
   \item{rlang}{\code{\link[rlang]{\%|\%}}, \code{\link[rlang]{\%||\%}}}
+
+  \item{statsExpressions}{\code{\link[statsExpressions]{\%<-\%}}}
 
   \item{tibble}{\code{\link[tibble]{as_tibble}}, \code{\link[tibble]{tibble}}}
 }}

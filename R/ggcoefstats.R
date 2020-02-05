@@ -371,7 +371,8 @@ ggcoefstats <- function(x,
   # if the object is not a dataframe, check if summary caption is to be displayed
   if (isTRUE(insight::is_model(x))) {
     # if glance is not available, inform the user
-    if (is.null(glance_df) || !all(c("AIC", "BIC") %in% names(glance_df))) {
+    if (is.null(glance_df) ||
+      !all(c("aic", "bic") %in% tolower(names(glance_df)))) {
       # inform the user
       message(cat(
         crayon::green("Note: "),
@@ -743,7 +744,10 @@ ggcoefstats <- function(x,
     }
 
     # for non-dataframe objects
-    if (isTRUE(insight::is_model(x)) && !is.na(glance_df$AIC[[1]])) {
+    if (isTRUE(insight::is_model(x))) {
+      # lowercase names to account for tidiers from `jtools`
+      g_df <- dplyr::rename_all(glance_df, tolower)
+
       # preparing caption with model diagnostics
       caption <-
         substitute(
@@ -753,8 +757,8 @@ ggcoefstats <- function(x,
           ),
           env = list(
             top.text = caption,
-            AIC = specify_decimal_p(x = glance_df$AIC[[1]], k = k.caption.summary),
-            BIC = specify_decimal_p(x = glance_df$BIC[[1]], k = k.caption.summary)
+            AIC = specify_decimal_p(x = g_df$aic[[1]], k = k.caption.summary),
+            BIC = specify_decimal_p(x = g_df$bic[[1]], k = k.caption.summary)
           )
         )
     }

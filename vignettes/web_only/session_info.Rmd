@@ -36,7 +36,7 @@ source of those divergences.
 This session information was generated on `r Sys.Date()`:
 
 ```{r session_info}
-# setup
+# setup for the session
 options(width = 200)
 library(ggstatsplot)
 

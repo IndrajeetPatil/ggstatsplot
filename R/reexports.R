@@ -38,6 +38,11 @@ broomExtra::`%<>%`
 broomExtra::`%$%`
 
 #' @export
+#' @importFrom statsExpressions "%<-%"
+statsExpressions::`%<-%`
+
+
+#' @export
 #' @importFrom rlang "%||%"
 rlang::`%||%`
 
