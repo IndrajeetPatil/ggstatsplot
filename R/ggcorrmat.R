@@ -264,7 +264,6 @@ ggcorrmat <- function(data,
     corr_df <-
       psych::corr.test(
         x = as.data.frame(df),
-        y = NULL,
         use = "pairwise",
         method = corr.method,
         adjust = p.adjust.method,
@@ -298,7 +297,6 @@ ggcorrmat <- function(data,
     corr_df <-
       psych::corr.test(
         x = as.data.frame(df),
-        y = NULL,
         use = "pairwise",
         adjust = "none",
         alpha = 0.05,

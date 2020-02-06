@@ -20,7 +20,7 @@ reference:
     desc:  Main functions to use from `ggstatsplot`.
     contents:
       - starts_with("gg")
-      - combine_plots
+      - starts_with("combine")
 
   - title: Grouped variants of primary functions
     desc:  Convenience functions to run the main functions repeatedly across all levels of a single grouping variable.

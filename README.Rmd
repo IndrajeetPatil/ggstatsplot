@@ -32,12 +32,6 @@ Package | Status | Usage | GitHub | References
 
 # Raison d'être <img src="man/figures/logo.png" align="right" width="360" />
 
-
-> "What is to be sought in designs for the display of information is the clear
-portrayal of complexity. Not the complication of the simple; rather ... the
-revelation of the complex."
-- Edward R. Tufte
-
 [`ggstatsplot`](https://indrajeetpatil.github.io/ggstatsplot/) is an extension
 of [`ggplot2`](https://github.com/tidyverse/ggplot2) package for creating
 graphics with details from statistical tests included in the plots themselves
