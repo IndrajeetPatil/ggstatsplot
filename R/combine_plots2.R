@@ -117,7 +117,7 @@ combine_plots2 <- function(plotlist,
           rel_heights = title.rel.heights
         )
     }
-  } else {
+  } else if (!is.null(caption.text)) {
     # if only caption is needed
     plot <-
       cowplot::plot_grid(

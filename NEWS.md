@@ -1,5 +1,14 @@
-# ggstatsplot 0.2.0.9000
+# ggstatsplot 0.3.0.9000
 
+BREAKING CHANGES
+
+  - All `grouped_` functions have been refactored to reduce the number of
+    arguments. These functions now internally use the new `combine_plots2`
+    instead of `combine_plots`. The additional arguments to primary functions
+    can be provided through `...`. These changes will not necessarily break the
+    existing code but will lead to some minor graphical changes (e.g., if you
+    were providing `labels` argument explicitly, it will be ignored).
+    
 MAJOR CHANGES
 
   - `ggcorrmat` was never supposed to work with Kendall's correlation coefficient

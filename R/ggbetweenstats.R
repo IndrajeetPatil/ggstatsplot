@@ -112,6 +112,7 @@
 #'   Setting this to `"caption"` will return the expression containing details
 #'   about Bayes Factor analysis, but valid only when `type = "parametric"` and
 #'   `bf.message = TRUE`, otherwise this will return a `NULL`.
+#' @param ... Currently ignored.
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams statsExpressions::expr_anova_parametric
 #' @inheritParams statsExpressions::expr_t_parametric
@@ -252,7 +253,8 @@ ggbetweenstats <- function(data,
                            direction = 1,
                            ggplot.component = NULL,
                            return = "plot",
-                           messages = TRUE) {
+                           messages = TRUE,
+                           ...) {
 
   # convert entered stats type to a standard notation
   type <- stats_type_switch(type)

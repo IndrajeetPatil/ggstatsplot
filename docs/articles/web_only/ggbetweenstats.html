@@ -350,41 +350,33 @@
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># for reproducibility</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
 <span id="cb5-3"><a href="#cb5-3"></a></span>
-<span id="cb5-4"><a href="#cb5-4"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggbetweenstats.html">grouped_ggbetweenstats</a></span>(</span>
-<span id="cb5-5"><a href="#cb5-5"></a>  <span class="co"># arguments relevant for ggstatsplot::ggbetweenstats</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a>  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(</span>
-<span id="cb5-7"><a href="#cb5-7"></a>    <span class="dt">.data =</span> gapminder<span class="op">::</span>gapminder,</span>
-<span id="cb5-8"><a href="#cb5-8"></a>    year <span class="op">==</span><span class="st"> </span><span class="dv">1967</span> <span class="op">|</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="st">      </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1987</span> <span class="op">|</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="st">      </span>year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>,</span>
-<span id="cb5-11"><a href="#cb5-11"></a>    continent <span class="op">!=</span><span class="st"> "Oceania"</span></span>
-<span id="cb5-12"><a href="#cb5-12"></a>  ),</span>
-<span id="cb5-13"><a href="#cb5-13"></a>  <span class="dt">x =</span> continent,</span>
-<span id="cb5-14"><a href="#cb5-14"></a>  <span class="dt">y =</span> lifeExp,</span>
-<span id="cb5-15"><a href="#cb5-15"></a>  <span class="dt">grouping.var =</span> year,</span>
-<span id="cb5-16"><a href="#cb5-16"></a>  <span class="dt">xlab =</span> <span class="st">"Continent"</span>,</span>
-<span id="cb5-17"><a href="#cb5-17"></a>  <span class="dt">ylab =</span> <span class="st">"Life expectancy"</span>,</span>
-<span id="cb5-18"><a href="#cb5-18"></a>  <span class="dt">k =</span> <span class="dv">2</span>,</span>
-<span id="cb5-19"><a href="#cb5-19"></a>  <span class="dt">nboot =</span> <span class="dv">10</span>,</span>
-<span id="cb5-20"><a href="#cb5-20"></a>  <span class="dt">effsize.type =</span> <span class="st">"unbiased"</span>, <span class="co"># type of effect size (unbiased = omega)</span></span>
-<span id="cb5-21"><a href="#cb5-21"></a>  <span class="dt">partial =</span> <span class="ot">FALSE</span>, <span class="co"># partial omega or omega?</span></span>
-<span id="cb5-22"><a href="#cb5-22"></a>  <span class="dt">pairwise.comparisons =</span> <span class="ot">TRUE</span>, <span class="co"># display results from pairwise comparisons</span></span>
-<span id="cb5-23"><a href="#cb5-23"></a>  <span class="dt">pairwise.display =</span> <span class="st">"significant"</span>, <span class="co"># display only significant pairwise comparisons</span></span>
-<span id="cb5-24"><a href="#cb5-24"></a>  <span class="dt">pairwise.annotation =</span> <span class="st">"p.value"</span>, <span class="co"># annotate the pairwise comparisons using p-values</span></span>
-<span id="cb5-25"><a href="#cb5-25"></a>  <span class="dt">p.adjust.method =</span> <span class="st">"fdr"</span>, <span class="co"># adjust p-values for multiple tests using this method</span></span>
-<span id="cb5-26"><a href="#cb5-26"></a>  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),</span>
-<span id="cb5-27"><a href="#cb5-27"></a>  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</span>
-<span id="cb5-28"><a href="#cb5-28"></a>  <span class="dt">palette =</span> <span class="st">"default_jco"</span>,</span>
-<span id="cb5-29"><a href="#cb5-29"></a>  <span class="dt">outlier.tagging =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb5-30"><a href="#cb5-30"></a>  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb5-31"><a href="#cb5-31"></a>  <span class="dt">outlier.label =</span> country,</span>
-<span id="cb5-32"><a href="#cb5-32"></a>  <span class="dt">title.prefix =</span> <span class="st">"Year"</span>,</span>
-<span id="cb5-33"><a href="#cb5-33"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb5-34"><a href="#cb5-34"></a>  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></span>
-<span id="cb5-35"><a href="#cb5-35"></a>  <span class="dt">title.text =</span> <span class="st">"Changes in life expectancy across continents (1967-2007)"</span>,</span>
-<span id="cb5-36"><a href="#cb5-36"></a>  <span class="dt">nrow =</span> <span class="dv">3</span>,</span>
-<span id="cb5-37"><a href="#cb5-37"></a>  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>)</span>
-<span id="cb5-38"><a href="#cb5-38"></a>)</span></code></pre></div>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co"># select part of the dataset and use it for plotting</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., year <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1967</span>, <span class="dv">1987</span>, <span class="dv">2007</span>), continent <span class="op">!=</span><span class="st"> "Oceania"</span>) <span class="op">%&gt;%</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="st">  </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggbetweenstats.html">grouped_ggbetweenstats</a></span>(</span>
+<span id="cb5-8"><a href="#cb5-8"></a>    <span class="co"># arguments relevant for ggstatsplot::ggbetweenstats</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>    <span class="dt">data =</span> .,</span>
+<span id="cb5-10"><a href="#cb5-10"></a>    <span class="dt">x =</span> continent,</span>
+<span id="cb5-11"><a href="#cb5-11"></a>    <span class="dt">y =</span> lifeExp,</span>
+<span id="cb5-12"><a href="#cb5-12"></a>    <span class="dt">grouping.var =</span> year,</span>
+<span id="cb5-13"><a href="#cb5-13"></a>    <span class="dt">xlab =</span> <span class="st">"Continent"</span>,</span>
+<span id="cb5-14"><a href="#cb5-14"></a>    <span class="dt">ylab =</span> <span class="st">"Life expectancy"</span>,</span>
+<span id="cb5-15"><a href="#cb5-15"></a>    <span class="dt">pairwise.comparisons =</span> <span class="ot">TRUE</span>, <span class="co"># display results from pairwise comparisons</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a>    <span class="dt">pairwise.display =</span> <span class="st">"significant"</span>, <span class="co"># display only significant pairwise comparisons</span></span>
+<span id="cb5-17"><a href="#cb5-17"></a>    <span class="dt">pairwise.annotation =</span> <span class="st">"p.value"</span>, <span class="co"># annotate the pairwise comparisons using p-values</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a>    <span class="dt">p.adjust.method =</span> <span class="st">"fdr"</span>, <span class="co"># adjust p-values for multiple tests using this method</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a>    <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),</span>
+<span id="cb5-20"><a href="#cb5-20"></a>    <span class="dt">package =</span> <span class="st">"ggsci"</span>,</span>
+<span id="cb5-21"><a href="#cb5-21"></a>    <span class="dt">palette =</span> <span class="st">"default_jco"</span>,</span>
+<span id="cb5-22"><a href="#cb5-22"></a>    <span class="dt">outlier.tagging =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb5-23"><a href="#cb5-23"></a>    <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb5-24"><a href="#cb5-24"></a>    <span class="dt">outlier.label =</span> country,</span>
+<span id="cb5-25"><a href="#cb5-25"></a>    <span class="dt">title.prefix =</span> <span class="st">"Year"</span>,</span>
+<span id="cb5-26"><a href="#cb5-26"></a>    <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb5-27"><a href="#cb5-27"></a>    <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></span>
+<span id="cb5-28"><a href="#cb5-28"></a>    <span class="dt">title.text =</span> <span class="st">"Changes in life expectancy across continents (1967-2007)"</span>,</span>
+<span id="cb5-29"><a href="#cb5-29"></a>    <span class="dt">plotgrid.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>))</span>
+<span id="cb5-30"><a href="#cb5-30"></a>  )</span></code></pre></div>
 <p><img src="ggbetweenstats_files/figure-html/grouped1-1.png" width="768"></p>
 <p>As seen from the plot, although the life expectancy has been improving steadily across all continents as we go from 1967 to 2007, this improvement has not been happening at the same rate for all continents. Additionally, irrespective of which year we look at, we still find significant differences in life expectancy across continents which have been surprisingly consistent across five decades (based on the observed effect sizes).</p>
 </div>

@@ -271,41 +271,33 @@ every pair of continents.
 # for reproducibility
 set.seed(123)
 
-ggstatsplot::grouped_ggbetweenstats(
-  # arguments relevant for ggstatsplot::ggbetweenstats
-  data = dplyr::filter(
-    .data = gapminder::gapminder,
-    year == 1967 |
-      year == 1987 |
-      year == 2007,
-    continent != "Oceania"
-  ),
-  x = continent,
-  y = lifeExp,
-  grouping.var = year,
-  xlab = "Continent",
-  ylab = "Life expectancy",
-  k = 2,
-  nboot = 10,
-  effsize.type = "unbiased", # type of effect size (unbiased = omega)
-  partial = FALSE, # partial omega or omega?
-  pairwise.comparisons = TRUE, # display results from pairwise comparisons
-  pairwise.display = "significant", # display only significant pairwise comparisons
-  pairwise.annotation = "p.value", # annotate the pairwise comparisons using p-values
-  p.adjust.method = "fdr", # adjust p-values for multiple tests using this method
-  ggtheme = ggthemes::theme_tufte(),
-  package = "ggsci",
-  palette = "default_jco",
-  outlier.tagging = TRUE,
-  ggstatsplot.layer = FALSE,
-  outlier.label = country,
-  title.prefix = "Year",
-  messages = FALSE,
-  # arguments relevant for ggstatsplot::combine_plots
-  title.text = "Changes in life expectancy across continents (1967-2007)",
-  nrow = 3,
-  labels = c("(a)", "(b)", "(c)")
-)
+# select part of the dataset and use it for plotting
+gapminder::gapminder %>%
+  dplyr::filter(.data = ., year %in% c(1967, 1987, 2007), continent != "Oceania") %>%
+  ggstatsplot::grouped_ggbetweenstats(
+    # arguments relevant for ggstatsplot::ggbetweenstats
+    data = .,
+    x = continent,
+    y = lifeExp,
+    grouping.var = year,
+    xlab = "Continent",
+    ylab = "Life expectancy",
+    pairwise.comparisons = TRUE, # display results from pairwise comparisons
+    pairwise.display = "significant", # display only significant pairwise comparisons
+    pairwise.annotation = "p.value", # annotate the pairwise comparisons using p-values
+    p.adjust.method = "fdr", # adjust p-values for multiple tests using this method
+    ggtheme = ggthemes::theme_tufte(),
+    package = "ggsci",
+    palette = "default_jco",
+    outlier.tagging = TRUE,
+    ggstatsplot.layer = FALSE,
+    outlier.label = country,
+    title.prefix = "Year",
+    messages = FALSE,
+    # arguments relevant for ggstatsplot::combine_plots
+    title.text = "Changes in life expectancy across continents (1967-2007)",
+    plotgrid.args = list(nrow = 3, labels = c("(a)", "(b)", "(c)"))
+  )
 ```
 
 As seen from the plot, although the life expectancy has been improving steadily
@@ -388,4 +380,3 @@ If you find any bugs or have any suggestions/remarks, please file an issue on
 
 For details, see-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>
-

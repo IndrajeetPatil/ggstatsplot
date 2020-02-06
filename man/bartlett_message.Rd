@@ -24,7 +24,7 @@ name will be used.}
 \item{output}{What output is desired: \code{"message"} (default) or \code{"stats"} (or
 \code{"tidy"}) objects.}
 
-\item{...}{Additional arguments (ignored).}
+\item{...}{Currently ignored.}
 }
 \value{
 A list of class \code{"htest"} containing the following components:
