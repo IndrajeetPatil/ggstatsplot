@@ -113,7 +113,8 @@ ggwithinstats <- function(data,
                           direction = 1,
                           ggplot.component = NULL,
                           return = "plot",
-                          messages = TRUE) {
+                          messages = TRUE,
+                          ...) {
 
   # convert entered stats type to a standard notation
   type <- stats_type_switch(type)

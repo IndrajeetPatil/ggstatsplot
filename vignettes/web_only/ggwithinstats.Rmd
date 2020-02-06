@@ -297,8 +297,7 @@ ggstatsplot::grouped_ggwithinstats(
   messages = FALSE,
   # arguments relevant for ggstatsplot::combine_plots
   title.text = "Desire to kill bugs across genders",
-  ncol = 1,
-  labels = c("(a)", "(b)")
+  plotgrid.args = list(ncol = 1, labels = c("(a)", "(b)"))
 )
 ```
 

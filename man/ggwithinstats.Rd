@@ -59,7 +59,8 @@ ggwithinstats(
   direction = 1,
   ggplot.component = NULL,
   return = "plot",
-  messages = TRUE
+  messages = TRUE,
+  ...
 )
 }
 \arguments{
@@ -267,6 +268,8 @@ about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
+
+\item{...}{Currently ignored.}
 }
 \description{
 A combination of box and violin plots along with raw

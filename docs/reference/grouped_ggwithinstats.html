@@ -88,7 +88,7 @@ grouping variable." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.2.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.3.0.9000</span>
       </span>
     </div>
 
@@ -212,58 +212,17 @@ grouping variable.</p>
   <span class='no'>x</span>,
   <span class='no'>y</span>,
   <span class='no'>grouping.var</span>,
-  <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>,
-  <span class='kw'>pairwise.comparisons</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>pairwise.annotation</span> <span class='kw'>=</span> <span class='st'>"p.value"</span>,
-  <span class='kw'>pairwise.display</span> <span class='kw'>=</span> <span class='st'>"significant"</span>,
-  <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"holm"</span>,
-  <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"unbiased"</span>,
-  <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>effsize.noncentral</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
-  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>sphericity.correction</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>sample.size.label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
-  <span class='kw'>path.point</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>path.mean</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>sort</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
-  <span class='kw'>sort.fun</span> <span class='kw'>=</span> <span class='no'>mean</span>,
-  <span class='kw'>axes.range.restrict</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>mean.label.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>mean.label.fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>,
-  <span class='kw'>mean.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>notch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>notchwidth</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>,
-  <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>outlier.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>outlier.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>outlier.shape</span> <span class='kw'>=</span> <span class='fl'>19</span>,
-  <span class='kw'>outlier.coef</span> <span class='kw'>=</span> <span class='fl'>1.5</span>,
-  <span class='kw'>mean.plotting</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>mean.ci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>mean.size</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>mean.color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>,
-  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
-  <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>,
-  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>,
-  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>return</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
-  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>
+  <span class='no'>...</span>,
+  <span class='kw'>plotgrid.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  <span class='kw'>title.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>title.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>16</span>, <span class='kw'>fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>),
+  <span class='kw'>caption.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>caption.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>10</span>),
+  <span class='kw'>sub.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>sub.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>12</span>)
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -289,297 +248,15 @@ dataframe <code>data</code>.</p></td>
 bare name <code>x</code> or as a string <code>"x"</code>).</p></td>
     </tr>
     <tr>
-      <th>title.prefix</th>
-      <td><p>Character string specifying the prefix text for the fixed
-plot title (name of each factor level) (Default: <code>NULL</code>). If <code>NULL</code>, the
-variable name entered for <code>grouping.var</code> will be used.</p></td>
-    </tr>
-    <tr>
-      <th>type</th>
-      <td><p>Type of statistic expected (<code>"parametric"</code> or <code>"nonparametric"</code>
-or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations are also accepted:
-<code>"p"</code> (for parametric), <code>"np"</code> (nonparametric), <code>"r"</code> (robust), or
-<code>"bf"</code>resp.</p></td>
-    </tr>
-    <tr>
-      <th>pairwise.comparisons</th>
-      <td><p>Logical that decides whether pairwise comparisons
-are to be displayed (default: <code>FALSE</code>). Please note that <strong>only significant
-comparisons</strong> will be shown by default. To change this behavior, select
-appropriate option with <code>pairwise.display</code> argument.</p></td>
-    </tr>
-    <tr>
-      <th>pairwise.annotation</th>
-      <td><p>Character that decides the annotations to use for
-pairwise comparisons. Either <code>"p.value"</code> (default) or <code>"asterisk"</code>.</p></td>
-    </tr>
-    <tr>
-      <th>pairwise.display</th>
-      <td><p>Decides which pairwise comparisons to display.
-Available options are <code>"significant"</code> (abbreviation accepted: <code>"s"</code>) or
-<code>"non-significant"</code> (abbreviation accepted: <code>"ns"</code>) or
-<code>"everything"</code>/<code>"all"</code>. The default is <code>"significant"</code>. You can use this
-argument to make sure that your plot is not uber-cluttered when you have
-multiple groups being compared and scores of pairwise comparisons being
-displayed.</p></td>
-    </tr>
-    <tr>
-      <th>p.adjust.method</th>
-      <td><p>Adjustment method for <em>p</em>-values for multiple
-comparisons. Possible methods are: <code>"holm"</code> (default), <code>"hochberg"</code>,
-<code>"hommel"</code>, <code>"bonferroni"</code>, <code>"BH"</code>, <code>"BY"</code>, <code>"fdr"</code>, <code>"none"</code>.</p></td>
-    </tr>
-    <tr>
-      <th>effsize.type</th>
-      <td><p>Type of effect size needed for <em>parametric</em> tests. The
-argument can be <code>"biased"</code> (equivalent to <code>"d"</code> for Cohen's <em>d</em> for
-<strong>t-test</strong>; <code>"partial_eta"</code> for partial eta-squared for <strong>anova</strong>) or
-<code>"unbiased"</code> (equivalent to <code>"g"</code> Hedge's <em>g</em> for <strong>t-test</strong>;
-<code>"partial_omega"</code> for partial omega-squared for <strong>anova</strong>)).</p></td>
-    </tr>
-    <tr>
-      <th>partial</th>
-      <td><p>Logical that decides if partial eta-squared or omega-squared
-are returned (Default: <code>TRUE</code>). If <code>FALSE</code>, eta-squared or omega-squared
-will be returned. Valid only for objects of class <code>lm</code>, <code>aov</code>, <code>anova</code>, or
-<code>aovlist</code>.</p></td>
-    </tr>
-    <tr>
-      <th>effsize.noncentral</th>
-      <td><p>Logical indicating whether to use non-central
-<em>t</em>-distributions for computing the confidence interval for Cohen's <em>d</em>
-or Hedge's <em>g</em> (Default: <code>TRUE</code>).</p></td>
-    </tr>
-    <tr>
-      <th>bf.prior</th>
-      <td><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
-width to use in calculating Bayes factors.</p></td>
-    </tr>
-    <tr>
-      <th>bf.message</th>
-      <td><p>Logical that decides whether to display Bayes Factor in
-favor of the <em>null</em> hypothesis. This argument is relevant only <strong>for
-parametric test</strong> (Default: <code>TRUE</code>).</p></td>
-    </tr>
-    <tr>
-      <th>sphericity.correction</th>
-      <td><p>Logical that decides whether to apply correction
-to account for violation of sphericity in a repeated measures design ANOVA
-(Default: <code>TRUE</code>).</p></td>
-    </tr>
-    <tr>
-      <th>results.subtitle</th>
-      <td><p>Decides whether the results of statistical tests are
-to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
-the plot will be returned.</p></td>
-    </tr>
-    <tr>
-      <th>xlab</th>
-      <td><p>Labels for <code>x</code> and <code>y</code> axis variables. If <code>NULL</code> (default),
-variable names for <code>x</code> and <code>y</code> will be used.</p></td>
-    </tr>
-    <tr>
-      <th>ylab</th>
-      <td><p>Labels for <code>x</code> and <code>y</code> axis variables. If <code>NULL</code> (default),
-variable names for <code>x</code> and <code>y</code> will be used.</p></td>
-    </tr>
-    <tr>
-      <th>subtitle</th>
-      <td><p>The text for the plot subtitle. Will work only if
-<code>results.subtitle = FALSE</code>.</p></td>
-    </tr>
-    <tr>
-      <th>caption</th>
-      <td><p>The text for the plot caption.</p></td>
-    </tr>
-    <tr>
-      <th>sample.size.label</th>
-      <td><p>Logical that decides whether sample size information
-should be displayed for each level of the grouping variable <code>x</code> (Default:
-<code>TRUE</code>).</p></td>
-    </tr>
-    <tr>
-      <th>k</th>
-      <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 2</code>).</p></td>
-    </tr>
-    <tr>
-      <th>conf.level</th>
-      <td><p>Scalar between 0 and 1. If unspecified, the defaults return
-<code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
-    </tr>
-    <tr>
-      <th>nboot</th>
-      <td><p>Number of bootstrap samples for computing confidence interval
-for the effect size (Default: <code>100</code>).</p></td>
-    </tr>
-    <tr>
-      <th>tr</th>
-      <td><p>Trim level for the mean when carrying out <code>robust</code> tests. If you
-get error stating "Standard error cannot be computed because of Winsorized
-variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
-try to play around with the value of <code>tr</code>, which is by default set to
-<code>0.1</code>. Lowering the value might help.</p></td>
-    </tr>
-    <tr>
-      <th>path.point</th>
-      <td><p>Logical that decides whether individual data
-points and means, respectively, should be connected using <code>geom_path</code>. Both
-default to <code>TRUE</code>. Note that <code>path.point</code> argument is relevant only when
-there are two groups (i.e., in case of a <em>t</em>-test). In case of large number
-of data points, it is advisable to set <code>path.point = FALSE</code> as these lines
-can overwhelm the plot.</p></td>
-    </tr>
-    <tr>
-      <th>path.mean</th>
-      <td><p>Logical that decides whether individual data
-points and means, respectively, should be connected using <code>geom_path</code>. Both
-default to <code>TRUE</code>. Note that <code>path.point</code> argument is relevant only when
-there are two groups (i.e., in case of a <em>t</em>-test). In case of large number
-of data points, it is advisable to set <code>path.point = FALSE</code> as these lines
-can overwhelm the plot.</p></td>
-    </tr>
-    <tr>
-      <th>sort</th>
-      <td><p>If <code>"ascending"</code> (default), <code>x</code>-axis variable factor levels will
-be sorted based on increasing values of <code>y</code>-axis variable. If
-<code>"descending"</code>, the opposite. If <code>"none"</code>, no sorting will happen.</p></td>
-    </tr>
-    <tr>
-      <th>sort.fun</th>
-      <td><p>The function used to sort (default: <code>mean</code>).</p></td>
-    </tr>
-    <tr>
-      <th>axes.range.restrict</th>
-      <td><p>Logical that decides whether to restrict the axes
-values ranges to <code>min</code> and <code>max</code> values of the axes variables (Default:
-<code>FALSE</code>), only relevant for functions where axes variables are of numeric
-type.</p></td>
-    </tr>
-    <tr>
-      <th>mean.label.size</th>
-      <td><p>Aesthetics for
-the label displaying mean. Defaults: <code>3</code>, <code>"bold"</code>,<code>"black"</code>, respectively.</p></td>
-    </tr>
-    <tr>
-      <th>mean.label.fontface</th>
-      <td><p>Aesthetics for
-the label displaying mean. Defaults: <code>3</code>, <code>"bold"</code>,<code>"black"</code>, respectively.</p></td>
-    </tr>
-    <tr>
-      <th>mean.label.color</th>
-      <td><p>Aesthetics for
-the label displaying mean. Defaults: <code>3</code>, <code>"bold"</code>,<code>"black"</code>, respectively.</p></td>
-    </tr>
-    <tr>
-      <th>notch</th>
-      <td><p>A logical. If <code>FALSE</code> (default), a standard box plot will be
-displayed. If <code>TRUE</code>, a notched box plot will be used. Notches are used to
-compare groups; if the notches of two boxes do not overlap, this suggests
-that the medians are significantly different. In a notched box plot, the
-notches extend <code>1.58 * IQR / sqrt(n)</code>. This gives a roughly <code>95%</code>
-confidence interval for comparing medians. IQR: Inter-Quartile Range.</p></td>
-    </tr>
-    <tr>
-      <th>notchwidth</th>
-      <td><p>For a notched box plot, width of the notch relative to the
-body (default <code>0.5</code>).</p></td>
-    </tr>
-    <tr>
-      <th>linetype</th>
-      <td><p>Character strings (<code>"blank"</code>, <code>"solid"</code>, <code>"dashed"</code>,
-<code>"dotted"</code>, <code>"dotdash"</code>, <code>"longdash"</code>, and <code>"twodash"</code>) specifying the type
-of line to draw box plots (Default: <code>"solid"</code>). Alternatively, the numbers
-<code>0</code> to <code>6</code> can be used (<code>0</code> for "blank", <code>1</code> for "solid", etc.).</p></td>
-    </tr>
-    <tr>
-      <th>outlier.tagging</th>
-      <td><p>Decides whether outliers should be tagged (Default:
-<code>FALSE</code>).</p></td>
-    </tr>
-    <tr>
       <th>outlier.label</th>
       <td><p>Label to put on the outliers that have been tagged. This
 <strong>can't</strong> be the same as <code>x</code> argument.</p></td>
     </tr>
     <tr>
-      <th>outlier.label.color</th>
-      <td><p>Color for the label to to put on the outliers that
-have been tagged (Default: <code>"black"</code>).</p></td>
-    </tr>
-    <tr>
-      <th>outlier.color</th>
-      <td><p>Default aesthetics for outliers (Default: <code>"black"</code>).</p></td>
-    </tr>
-    <tr>
-      <th>outlier.shape</th>
-      <td><p>Hiding the outliers can be achieved by setting
-<code>outlier.shape = NA</code>. Importantly, this does not remove the outliers,
-it only hides them, so the range calculated for the <code>y</code>-axis will be
-the same with outliers shown and outliers hidden.</p></td>
-    </tr>
-    <tr>
-      <th>outlier.coef</th>
-      <td><p>Coefficient for outlier detection using Tukey's method.
-With Tukey's method, outliers are below (1st Quartile) or above (3rd
-Quartile) <code>outlier.coef</code> times the Inter-Quartile Range (IQR) (Default:
-<code>1.5</code>).</p></td>
-    </tr>
-    <tr>
-      <th>mean.plotting</th>
-      <td><p>Logical that decides whether mean is to be highlighted
-and its value to be displayed (Default: <code>TRUE</code>).</p></td>
-    </tr>
-    <tr>
-      <th>mean.ci</th>
-      <td><p>Logical that decides whether <code>95%</code> confidence interval for
-mean is to be displayed (Default: <code>FALSE</code>).</p></td>
-    </tr>
-    <tr>
-      <th>mean.size</th>
-      <td><p>Point size for the data point corresponding to mean
-(Default: <code>5</code>).</p></td>
-    </tr>
-    <tr>
-      <th>mean.color</th>
-      <td><p>Color for the data point corresponding to mean (Default:
-<code>"darkred"</code>).</p></td>
-    </tr>
-    <tr>
-      <th>ggtheme</th>
-      <td><p>A function, <code>ggplot2</code> theme name. Default value is
-<code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
-extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>,
-<code><a href='https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html'>hrbrthemes::theme_ipsum_ps()</a></code>, etc.).</p></td>
-    </tr>
-    <tr>
-      <th>ggstatsplot.layer</th>
-      <td><p>Logical that decides whether <code>theme_ggstatsplot</code>
-theme elements are to be displayed along with the selected <code>ggtheme</code>
-(Default: <code>TRUE</code>). <code>theme_ggstatsplot</code> is an opinionated theme layer that
-override some aspects of the selected <code>ggtheme</code>.</p></td>
-    </tr>
-    <tr>
-      <th>package</th>
-      <td><p>Name of package from which the palette is desired as string
-or symbol.</p></td>
-    </tr>
-    <tr>
-      <th>palette</th>
-      <td><p>Name of palette as string or symbol.</p></td>
-    </tr>
-    <tr>
-      <th>direction</th>
-      <td><p>Either <code>1</code> or <code>-1</code>. If <code>-1</code> the palette will be reversed.</p></td>
-    </tr>
-    <tr>
-      <th>ggplot.component</th>
-      <td><p>A <code>ggplot</code> component to be added to the plot prepared
-by <code>ggstatsplot</code>. This argument is primarily helpful for <code>grouped_</code> variant
-of the current function. Default is <code>NULL</code>. The argument should be entered
-as a function. If the given function has an argument <code>axes.range.restrict</code>
-and if it has been set to <code>TRUE</code>, the added <code>ggplot</code> component <em>might</em> not
-work as expected.</p></td>
+      <th>title.prefix</th>
+      <td><p>Character string specifying the prefix text for the fixed
+plot title (name of each factor level) (Default: <code>NULL</code>). If <code>NULL</code>, the
+variable name entered for <code>grouping.var</code> will be used.</p></td>
     </tr>
     <tr>
       <th>return</th>
@@ -592,60 +269,187 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
 <code>bf.message = TRUE</code>, otherwise this will return a <code>NULL</code>.</p></td>
     </tr>
     <tr>
-      <th>messages</th>
-      <td><p>Decides whether messages references, notes, and warnings are
-to be displayed (Default: <code>TRUE</code>).</p></td>
-    </tr>
-    <tr>
       <th>...</th>
-      <td><p>Arguments passed on to <code><a href='combine_plots.html'>combine_plots</a></code></p><dl class='dl-horizontal'>
-    <dt><code>title.text</code></dt><dd><p>String or plotmath expression to be drawn as title for the
-<em>combined plot</em>.</p></dd>
-    <dt><code>title.color</code></dt><dd><p>Text color for title.</p></dd>
-    <dt><code>title.size</code></dt><dd><p>Point size of title text.</p></dd>
-    <dt><code>title.vjust</code></dt><dd><p>Vertical justification for title. Default = <code>0.5</code>
-(centered on <code>y</code>). <code>0</code> = baseline at <code>y</code>, <code>1</code> = ascender at <code>y</code>.</p></dd>
-    <dt><code>title.hjust</code></dt><dd><p>Horizontal justification for title. Default = <code>0.5</code>
-(centered on <code>x</code>). <code>0</code> = flush-left at x, <code>1</code> = flush-right.</p></dd>
-    <dt><code>title.fontface</code></dt><dd><p>The font face (<code>"plain"</code>, <code>"bold"</code> (default),
-<code>"italic"</code>, <code>"bold.italic"</code>) for title.</p></dd>
-    <dt><code>caption.text</code></dt><dd><p>String or plotmath expression to be drawn as the caption
-for the <em>combined plot</em>.</p></dd>
-    <dt><code>caption.color</code></dt><dd><p>Text color for caption.</p></dd>
-    <dt><code>caption.size</code></dt><dd><p>Point size of title text.</p></dd>
-    <dt><code>caption.vjust</code></dt><dd><p>Vertical justification for caption. Default = <code>0.5</code>
-(centered on y). <code>0</code> = baseline at y, <code>1</code> = ascender at y.</p></dd>
-    <dt><code>caption.hjust</code></dt><dd><p>Horizontal justification for caption. Default = <code>0.5</code>
-(centered on x). <code>0</code> = flush-left at x, <code>1</code> = flush-right.</p></dd>
-    <dt><code>caption.fontface</code></dt><dd><p>The font face (<code>"plain"</code> (default), <code>"bold"</code>,
-<code>"italic"</code>, <code>"bold.italic"</code>) for caption.</p></dd>
-    <dt><code>sub.text</code></dt><dd><p>The label with which the <em>combined plot</em> should be annotated.
-Can be a plotmath expression.</p></dd>
-    <dt><code>sub.color</code></dt><dd><p>Text color for annotation label (Default: <code>"black"</code>).</p></dd>
-    <dt><code>sub.size</code></dt><dd><p>Point size of annotation text (Default: <code>12</code>).</p></dd>
-    <dt><code>sub.x</code></dt><dd><p>The x position of annotation label (Default: <code>0.5</code>).</p></dd>
-    <dt><code>sub.y</code></dt><dd><p>The y position of annotation label (Default: <code>0.5</code>).</p></dd>
-    <dt><code>sub.hjust</code></dt><dd><p>Horizontal justification for annotation label (Default:
-<code>0.5</code>).</p></dd>
-    <dt><code>sub.vjust</code></dt><dd><p>Vertical justification for annotation label (Default:
-<code>0.5</code>).</p></dd>
-    <dt><code>sub.vpadding</code></dt><dd><p>Vertical padding. The total vertical space added to the
-label, given in grid units. By default, this is added equally above and
-below the label. However, by changing the y and vjust parameters, this can
-be changed (Default: <code><a href='https://ggplot2.tidyverse.org/reference/reexports.html'>ggplot2::unit(1, "lines")</a></code>).</p></dd>
-    <dt><code>sub.fontface</code></dt><dd><p>The font face (<code>"plain"</code> (default), <code>"bold"</code>, <code>"italic"</code>,
-<code>"bold.italic"</code>) for the annotation label.</p></dd>
-    <dt><code>sub.angle</code></dt><dd><p>Angle at which annotation label is to be drawn (Default:
-<code>0</code>).</p></dd>
-    <dt><code>sub.lineheight</code></dt><dd><p>Line height of annotation label.</p></dd>
-    <dt><code>title.caption.rel.heights</code></dt><dd><p>Numerical vector of relative columns heights
-while combining (title, plot, caption).</p></dd>
-    <dt><code>title.rel.heights</code></dt><dd><p>Numerical vector of relative columns heights while
-combining (title, plot).</p></dd>
-    <dt><code>caption.rel.heights</code></dt><dd><p>Numerical vector of relative columns heights while
-combining (plot, caption).</p></dd>
+      <td><p>Arguments passed on to <code><a href='ggwithinstats.html'>ggwithinstats</a></code></p><dl class='dl-horizontal'>
+    <dt><code>path.point</code></dt><dd><p>Logical that decides whether individual data
+points and means, respectively, should be connected using <code>geom_path</code>. Both
+default to <code>TRUE</code>. Note that <code>path.point</code> argument is relevant only when
+there are two groups (i.e., in case of a <em>t</em>-test). In case of large number
+of data points, it is advisable to set <code>path.point = FALSE</code> as these lines
+can overwhelm the plot.</p></dd>
+    <dt><code>path.mean</code></dt><dd><p>Logical that decides whether individual data
+points and means, respectively, should be connected using <code>geom_path</code>. Both
+default to <code>TRUE</code>. Note that <code>path.point</code> argument is relevant only when
+there are two groups (i.e., in case of a <em>t</em>-test). In case of large number
+of data points, it is advisable to set <code>path.point = FALSE</code> as these lines
+can overwhelm the plot.</p></dd>
+    <dt><code>type</code></dt><dd><p>Type of statistic expected (<code>"parametric"</code> or <code>"nonparametric"</code>
+or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations are also accepted:
+<code>"p"</code> (for parametric), <code>"np"</code> (nonparametric), <code>"r"</code> (robust), or
+<code>"bf"</code>resp.</p></dd>
+    <dt><code>pairwise.comparisons</code></dt><dd><p>Logical that decides whether pairwise comparisons
+are to be displayed (default: <code>FALSE</code>). Please note that <strong>only significant
+comparisons</strong> will be shown by default. To change this behavior, select
+appropriate option with <code>pairwise.display</code> argument.</p></dd>
+    <dt><code>pairwise.annotation</code></dt><dd><p>Character that decides the annotations to use for
+pairwise comparisons. Either <code>"p.value"</code> (default) or <code>"asterisk"</code>.</p></dd>
+    <dt><code>pairwise.display</code></dt><dd><p>Decides which pairwise comparisons to display.
+Available options are <code>"significant"</code> (abbreviation accepted: <code>"s"</code>) or
+<code>"non-significant"</code> (abbreviation accepted: <code>"ns"</code>) or
+<code>"everything"</code>/<code>"all"</code>. The default is <code>"significant"</code>. You can use this
+argument to make sure that your plot is not uber-cluttered when you have
+multiple groups being compared and scores of pairwise comparisons being
+displayed.</p></dd>
+    <dt><code>p.adjust.method</code></dt><dd><p>Adjustment method for <em>p</em>-values for multiple
+comparisons. Possible methods are: <code>"holm"</code> (default), <code>"hochberg"</code>,
+<code>"hommel"</code>, <code>"bonferroni"</code>, <code>"BH"</code>, <code>"BY"</code>, <code>"fdr"</code>, <code>"none"</code>.</p></dd>
+    <dt><code>effsize.type</code></dt><dd><p>Type of effect size needed for <em>parametric</em> tests. The
+argument can be <code>"biased"</code> (equivalent to <code>"d"</code> for Cohen's <em>d</em> for
+<strong>t-test</strong>; <code>"partial_eta"</code> for partial eta-squared for <strong>anova</strong>) or
+<code>"unbiased"</code> (equivalent to <code>"g"</code> Hedge's <em>g</em> for <strong>t-test</strong>;
+<code>"partial_omega"</code> for partial omega-squared for <strong>anova</strong>)).</p></dd>
+    <dt><code>partial</code></dt><dd><p>Logical that decides if partial eta-squared or omega-squared
+are returned (Default: <code>TRUE</code>). If <code>FALSE</code>, eta-squared or omega-squared
+will be returned. Valid only for objects of class <code>lm</code>, <code>aov</code>, <code>anova</code>, or
+<code>aovlist</code>.</p></dd>
+    <dt><code>effsize.noncentral</code></dt><dd><p>Logical indicating whether to use non-central
+<em>t</em>-distributions for computing the confidence interval for Cohen's <em>d</em>
+or Hedge's <em>g</em> (Default: <code>TRUE</code>).</p></dd>
+    <dt><code>bf.prior</code></dt><dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
+width to use in calculating Bayes factors.</p></dd>
+    <dt><code>bf.message</code></dt><dd><p>Logical that decides whether to display Bayes Factor in
+favor of the <em>null</em> hypothesis. This argument is relevant only <strong>for
+parametric test</strong> (Default: <code>TRUE</code>).</p></dd>
+    <dt><code>results.subtitle</code></dt><dd><p>Decides whether the results of statistical tests are
+to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
+the plot will be returned.</p></dd>
+    <dt><code>xlab</code></dt><dd><p>Labels for <code>x</code> and <code>y</code> axis variables. If <code>NULL</code> (default),
+variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
+    <dt><code>ylab</code></dt><dd><p>Labels for <code>x</code> and <code>y</code> axis variables. If <code>NULL</code> (default),
+variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
+    <dt><code>caption</code></dt><dd><p>The text for the plot caption.</p></dd>
+    <dt><code>subtitle</code></dt><dd><p>The text for the plot subtitle. Will work only if
+<code>results.subtitle = FALSE</code>.</p></dd>
+    <dt><code>sample.size.label</code></dt><dd><p>Logical that decides whether sample size information
+should be displayed for each level of the grouping variable <code>x</code> (Default:
+<code>TRUE</code>).</p></dd>
+    <dt><code>k</code></dt><dd><p>Number of digits after decimal point (should be an integer)
+(Default: <code>k = 2</code>).</p></dd>
+    <dt><code>conf.level</code></dt><dd><p>Scalar between 0 and 1. If unspecified, the defaults return
+<code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></dd>
+    <dt><code>nboot</code></dt><dd><p>Number of bootstrap samples for computing confidence interval
+for the effect size (Default: <code>100</code>).</p></dd>
+    <dt><code>tr</code></dt><dd><p>Trim level for the mean when carrying out <code>robust</code> tests. If you
+get error stating "Standard error cannot be computed because of Winsorized
+variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
+try to play around with the value of <code>tr</code>, which is by default set to
+<code>0.1</code>. Lowering the value might help.</p></dd>
+    <dt><code>sort</code></dt><dd><p>If <code>"ascending"</code> (default), <code>x</code>-axis variable factor levels will
+be sorted based on increasing values of <code>y</code>-axis variable. If
+<code>"descending"</code>, the opposite. If <code>"none"</code>, no sorting will happen.</p></dd>
+    <dt><code>sort.fun</code></dt><dd><p>The function used to sort (default: <code>mean</code>).</p></dd>
+    <dt><code>axes.range.restrict</code></dt><dd><p>Logical that decides whether to restrict the axes
+values ranges to <code>min</code> and <code>max</code> values of the axes variables (Default:
+<code>FALSE</code>), only relevant for functions where axes variables are of numeric
+type.</p></dd>
+    <dt><code>mean.label.size</code></dt><dd><p>Aesthetics for
+the label displaying mean. Defaults: <code>3</code>, <code>"bold"</code>,<code>"black"</code>, respectively.</p></dd>
+    <dt><code>mean.label.fontface</code></dt><dd><p>Aesthetics for
+the label displaying mean. Defaults: <code>3</code>, <code>"bold"</code>,<code>"black"</code>, respectively.</p></dd>
+    <dt><code>mean.label.color</code></dt><dd><p>Aesthetics for
+the label displaying mean. Defaults: <code>3</code>, <code>"bold"</code>,<code>"black"</code>, respectively.</p></dd>
+    <dt><code>notch</code></dt><dd><p>A logical. If <code>FALSE</code> (default), a standard box plot will be
+displayed. If <code>TRUE</code>, a notched box plot will be used. Notches are used to
+compare groups; if the notches of two boxes do not overlap, this suggests
+that the medians are significantly different. In a notched box plot, the
+notches extend <code>1.58 * IQR / sqrt(n)</code>. This gives a roughly <code>95%</code>
+confidence interval for comparing medians. IQR: Inter-Quartile Range.</p></dd>
+    <dt><code>notchwidth</code></dt><dd><p>For a notched box plot, width of the notch relative to the
+body (default <code>0.5</code>).</p></dd>
+    <dt><code>linetype</code></dt><dd><p>Character strings (<code>"blank"</code>, <code>"solid"</code>, <code>"dashed"</code>,
+<code>"dotted"</code>, <code>"dotdash"</code>, <code>"longdash"</code>, and <code>"twodash"</code>) specifying the type
+of line to draw box plots (Default: <code>"solid"</code>). Alternatively, the numbers
+<code>0</code> to <code>6</code> can be used (<code>0</code> for "blank", <code>1</code> for "solid", etc.).</p></dd>
+    <dt><code>outlier.tagging</code></dt><dd><p>Decides whether outliers should be tagged (Default:
+<code>FALSE</code>).</p></dd>
+    <dt><code>outlier.shape</code></dt><dd><p>Hiding the outliers can be achieved by setting
+<code>outlier.shape = NA</code>. Importantly, this does not remove the outliers,
+it only hides them, so the range calculated for the <code>y</code>-axis will be
+the same with outliers shown and outliers hidden.</p></dd>
+    <dt><code>outlier.label.color</code></dt><dd><p>Color for the label to to put on the outliers that
+have been tagged (Default: <code>"black"</code>).</p></dd>
+    <dt><code>outlier.color</code></dt><dd><p>Default aesthetics for outliers (Default: <code>"black"</code>).</p></dd>
+    <dt><code>outlier.coef</code></dt><dd><p>Coefficient for outlier detection using Tukey's method.
+With Tukey's method, outliers are below (1st Quartile) or above (3rd
+Quartile) <code>outlier.coef</code> times the Inter-Quartile Range (IQR) (Default:
+<code>1.5</code>).</p></dd>
+    <dt><code>mean.plotting</code></dt><dd><p>Logical that decides whether mean is to be highlighted
+and its value to be displayed (Default: <code>TRUE</code>).</p></dd>
+    <dt><code>mean.ci</code></dt><dd><p>Logical that decides whether <code>95%</code> confidence interval for
+mean is to be displayed (Default: <code>FALSE</code>).</p></dd>
+    <dt><code>mean.size</code></dt><dd><p>Point size for the data point corresponding to mean
+(Default: <code>5</code>).</p></dd>
+    <dt><code>mean.color</code></dt><dd><p>Color for the data point corresponding to mean (Default:
+<code>"darkred"</code>).</p></dd>
+    <dt><code>ggtheme</code></dt><dd><p>A function, <code>ggplot2</code> theme name. Default value is
+<code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
+extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>,
+<code><a href='https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html'>hrbrthemes::theme_ipsum_ps()</a></code>, etc.).</p></dd>
+    <dt><code>ggstatsplot.layer</code></dt><dd><p>Logical that decides whether <code>theme_ggstatsplot</code>
+theme elements are to be displayed along with the selected <code>ggtheme</code>
+(Default: <code>TRUE</code>). <code>theme_ggstatsplot</code> is an opinionated theme layer that
+override some aspects of the selected <code>ggtheme</code>.</p></dd>
+    <dt><code>package</code></dt><dd><p>Name of package from which the palette is desired as string
+or symbol.</p></dd>
+    <dt><code>palette</code></dt><dd><p>Name of palette as string or symbol.</p></dd>
+    <dt><code>direction</code></dt><dd><p>Either <code>1</code> or <code>-1</code>. If <code>-1</code> the palette will be reversed.</p></dd>
+    <dt><code>ggplot.component</code></dt><dd><p>A <code>ggplot</code> component to be added to the plot prepared
+by <code>ggstatsplot</code>. This argument is primarily helpful for <code>grouped_</code> variant
+of the current function. Default is <code>NULL</code>. The argument should be entered
+as a function. If the given function has an argument <code>axes.range.restrict</code>
+and if it has been set to <code>TRUE</code>, the added <code>ggplot</code> component <em>might</em> not
+work as expected.</p></dd>
+    <dt><code>messages</code></dt><dd><p>Decides whether messages references, notes, and warnings are
+to be displayed (Default: <code>TRUE</code>).</p></dd>
+    <dt><code>sphericity.correction</code></dt><dd><p>Logical that decides whether to apply correction
+to account for violation of sphericity in a repeated measures design ANOVA
+(Default: <code>TRUE</code>).</p></dd>
   
 </dl></td>
+    </tr>
+    <tr>
+      <th>plotgrid.args</th>
+      <td><p>A list of additional arguments to <code><a href='https://rdrr.io/pkg/cowplot/man/plot_grid.html'>cowplot::plot_grid</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>title.text</th>
+      <td><p>String or plotmath expression to be drawn as title for the
+<em>combined plot</em>.</p></td>
+    </tr>
+    <tr>
+      <th>title.args</th>
+      <td><p>A list of additional arguments
+provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.</p></td>
+    </tr>
+    <tr>
+      <th>caption.text</th>
+      <td><p>String or plotmath expression to be drawn as the caption
+for the <em>combined plot</em>.</p></td>
+    </tr>
+    <tr>
+      <th>caption.args</th>
+      <td><p>A list of additional arguments
+provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.</p></td>
+    </tr>
+    <tr>
+      <th>sub.text</th>
+      <td><p>The label with which the <em>combined plot</em> should be annotated.
+Can be a plotmath expression.</p></td>
+    </tr>
+    <tr>
+      <th>sub.args</th>
+      <td><p>A list of additional arguments
+provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.</p></td>
     </tr>
     </table>
 
@@ -676,9 +480,7 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
     <span class='kw'>limits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>)
   ),
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Shapiro-Wilk Normality Test for </span><span style='color: #BBBB00;'>score</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>&lt; 0.001</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Bartlett's test for homogeneity of variances for factor </span><span style='color: #BBBB00;'>modality</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>0.001</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Shapiro-Wilk Normality Test for </span><span style='color: #BBBB00;'>score</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>&lt; 0.001</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Bartlett's test for homogeneity of variances for factor </span><span style='color: #BBBB00;'>modality</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>0.008</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Individual plots in the combined `grouped_` plot
-#&gt; can't be further modified with `ggplot2` functions.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggwithinstats-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Shapiro-Wilk Normality Test for </span><span style='color: #BBBB00;'>score</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>&lt; 0.001</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Bartlett's test for homogeneity of variances for factor </span><span style='color: #BBBB00;'>modality</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>0.001</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Shapiro-Wilk Normality Test for </span><span style='color: #BBBB00;'>score</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>&lt; 0.001</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Bartlett's test for homogeneity of variances for factor </span><span style='color: #BBBB00;'>modality</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>0.008</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggwithinstats-1.png' alt='' width='700' height='433' /></div><div class='input'># }
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
