@@ -6,6 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ggplot2 Based Plots with Statistical Details • ggstatsplot</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous">
@@ -24,6 +30,7 @@
     statistical tests: parametric, nonparametric, robust, and bayesian
     versions of t-test/anova, correlation analyses, contingency table
     analysis, and regression analyses.">
+<meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/logo.png">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -181,14 +188,14 @@
 <td><a href="https://cran.r-project.org/web/checks/check_results_ggstatsplot.html"><img src="https://cranchecks.info/badges/summary/ggstatsplot" alt="CRAN Checks"></a></td>
 <td><a href="https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot"><img src="https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue" alt="Weekly downloads badge"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/"><img src="https://img.shields.io/badge/forks-87-blue.svg" alt="Forks"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/"><img src="https://img.shields.io/badge/forks-88-blue.svg" alt="Forks"></a></td>
 <td><a href="https://www.rdocumentation.org/packages/ggstatsplot"><img src="https://www.rdocumentation.org/badges/version/ggstatsplot" alt="Rdoc"></a></td>
 </tr>
 <tr class="odd">
 <td><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg" alt="minimal R version"></a></td>
 <td><a href="https://www.tidyverse.org/lifecycle/"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue" alt="Monthly downloads badge"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-23-red.svg" alt="Github Issues"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-26-red.svg" alt="Github Issues"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot/vignettes/"><img src="https://img.shields.io/badge/vignettes-0.2.0-orange.svg?colorB=FF5722" alt="vignettes"></a></td>
 </tr>
 <tr class="even">
@@ -201,8 +208,8 @@
 <tr class="odd">
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
-<td><a href="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot"><img src="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2020--02--03-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="http://hits.dwyl.com/IndrajeetPatil/ggstatsplot"><img src="http://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2020--02--06-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg" alt="GitHub last commit"></a></td>
 </tr>
 <tr class="even">
@@ -215,12 +222,12 @@
 </tbody>
 </table>
 </div>
-<div id="raison-dêtre" class="section level1">
+<div id="raison-dêtre-" class="section level1">
 <h1 class="hasAnchor">
-<a href="#raison-d%C3%AAtre" class="anchor"></a>Raison d’être</h1>
+<a href="#raison-d%C3%AAtre-" class="anchor"></a>Raison d’être <img src="reference/figures/logo.png" align="right" width="360">
+</h1>
 <blockquote>
-<p>“What is to be sought in designs for the display of information is the clear portrayal of complexity. Not the complication of the simple; rather … the revelation of the complex.”<br>
-- Edward R. Tufte</p>
+<p>“What is to be sought in designs for the display of information is the clear portrayal of complexity. Not the complication of the simple; rather … the revelation of the complex.” - Edward R. Tufte</p>
 </blockquote>
 <p><a href="https://indrajeetpatil.github.io/ggstatsplot/"><code>ggstatsplot</code></a> is an extension of <a href="https://github.com/tidyverse/ggplot2"><code>ggplot2</code></a> package for creating graphics with details from statistical tests included in the plots themselves and targeted primarily at behavioral sciences community to provide a one-line code to produce information-rich plots. In a typical exploratory data analysis workflow, data visualization and statistical modeling are two different phases: visualization informs modeling, and modeling in its turn can suggest a different visualization method, and so on and so forth. The central idea of <code>ggstatsplot</code> is simple: combine these two phases into one in the form of graphics with statistical details, which makes data exploration simpler and faster.</p>
 </div>
@@ -668,7 +675,7 @@
 <span id="cb7-3"><a href="#cb7-3"></a><span class="co">#&gt; function(plot) {</span></span>
 <span id="cb7-4"><a href="#cb7-4"></a><span class="co">#&gt;   cowplot::ggdraw() + cowplot::draw_grob(grid::grobTree(plot))</span></span>
 <span id="cb7-5"><a href="#cb7-5"></a><span class="co">#&gt; }</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt; &lt;bytecode: 0x000000002f0da638&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt; &lt;bytecode: 0x000000002fa967b0&gt;</span></span>
 <span id="cb7-7"><a href="#cb7-7"></a><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></span></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -1657,40 +1664,40 @@
 <span id="cb28-46"><a href="#cb28-46"></a>  <span class="dt">p.adjust.method =</span> <span class="st">"holm"</span></span>
 <span id="cb28-47"><a href="#cb28-47"></a>)</span>
 <span id="cb28-48"><a href="#cb28-48"></a><span class="co">#&gt; # A tibble: 15 x 7</span></span>
-<span id="cb28-49"><a href="#cb28-49"></a><span class="co">#&gt;    pair                          r   lower    upper         p lower.adj</span></span>
-<span id="cb28-50"><a href="#cb28-50"></a><span class="co">#&gt;    &lt;chr&gt;                     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></span>
-<span id="cb28-51"><a href="#cb28-51"></a><span class="co">#&gt;  1 sleep_total-sleep_rem    0.7641  0.6344  0.8520  7.806e-13   0.5632 </span></span>
-<span id="cb28-52"><a href="#cb28-52"></a><span class="co">#&gt;  2 sleep_total-sleep_cycle -0.4888 -0.7155 -0.1689  4.530e- 3  -0.7609 </span></span>
-<span id="cb28-53"><a href="#cb28-53"></a><span class="co">#&gt;  3 sleep_total-awake       -1      -1      -1       0.         -1      </span></span>
-<span id="cb28-54"><a href="#cb28-54"></a><span class="co">#&gt;  4 sleep_total-brainwt     -0.5935 -0.7408 -0.3918  1.426e- 6  -0.7852 </span></span>
-<span id="cb28-55"><a href="#cb28-55"></a><span class="co">#&gt;  5 sleep_total-bodywt      -0.5346 -0.6727 -0.3605  1.931e- 7  -0.7121 </span></span>
-<span id="cb28-56"><a href="#cb28-56"></a><span class="co">#&gt;  6 sleep_rem-sleep_cycle   -0.3344 -0.6118  0.01617 6.139e- 2  -0.6118 </span></span>
-<span id="cb28-57"><a href="#cb28-57"></a><span class="co">#&gt;  7 sleep_rem-awake         -0.7641 -0.8520 -0.6344  7.806e-13  -0.8807 </span></span>
-<span id="cb28-58"><a href="#cb28-58"></a><span class="co">#&gt;  8 sleep_rem-brainwt       -0.4139 -0.6246 -0.1471  3.451e- 3  -0.6495 </span></span>
-<span id="cb28-59"><a href="#cb28-59"></a><span class="co">#&gt;  9 sleep_rem-bodywt        -0.4517 -0.6317 -0.2255  2.580e- 4  -0.6647 </span></span>
-<span id="cb28-60"><a href="#cb28-60"></a><span class="co">#&gt; 10 sleep_cycle-awake        0.4888  0.1689  0.7155  4.530e- 3   0.05610</span></span>
-<span id="cb28-61"><a href="#cb28-61"></a><span class="co">#&gt; 11 sleep_cycle-brainwt      0.8727  0.7474  0.9380  3.250e-10   0.6573 </span></span>
-<span id="cb28-62"><a href="#cb28-62"></a><span class="co">#&gt; 12 sleep_cycle-bodywt       0.8464  0.7061  0.9228  1.040e- 9   0.6115 </span></span>
-<span id="cb28-63"><a href="#cb28-63"></a><span class="co">#&gt; 13 awake-brainwt            0.5935  0.3918  0.7408  1.426e- 6   0.2934 </span></span>
-<span id="cb28-64"><a href="#cb28-64"></a><span class="co">#&gt; 14 awake-bodywt             0.5346  0.3605  0.6727  1.931e- 7   0.2875 </span></span>
-<span id="cb28-65"><a href="#cb28-65"></a><span class="co">#&gt; 15 brainwt-bodywt           0.9572  0.9277  0.9748  9.694e-31   0.9071 </span></span>
-<span id="cb28-66"><a href="#cb28-66"></a><span class="co">#&gt;    upper.adj</span></span>
-<span id="cb28-67"><a href="#cb28-67"></a><span class="co">#&gt;        &lt;dbl&gt;</span></span>
-<span id="cb28-68"><a href="#cb28-68"></a><span class="co">#&gt;  1   0.8798 </span></span>
-<span id="cb28-69"><a href="#cb28-69"></a><span class="co">#&gt;  2  -0.07055</span></span>
-<span id="cb28-70"><a href="#cb28-70"></a><span class="co">#&gt;  3  -1      </span></span>
-<span id="cb28-71"><a href="#cb28-71"></a><span class="co">#&gt;  4  -0.2982 </span></span>
-<span id="cb28-72"><a href="#cb28-72"></a><span class="co">#&gt;  5  -0.2928 </span></span>
-<span id="cb28-73"><a href="#cb28-73"></a><span class="co">#&gt;  6   0.01617</span></span>
-<span id="cb28-74"><a href="#cb28-74"></a><span class="co">#&gt;  7  -0.5605 </span></span>
-<span id="cb28-75"><a href="#cb28-75"></a><span class="co">#&gt;  8  -0.1058 </span></span>
-<span id="cb28-76"><a href="#cb28-76"></a><span class="co">#&gt;  9  -0.1708 </span></span>
-<span id="cb28-77"><a href="#cb28-77"></a><span class="co">#&gt; 10   0.7669 </span></span>
-<span id="cb28-78"><a href="#cb28-78"></a><span class="co">#&gt; 11   0.9563 </span></span>
-<span id="cb28-79"><a href="#cb28-79"></a><span class="co">#&gt; 12   0.9442 </span></span>
-<span id="cb28-80"><a href="#cb28-80"></a><span class="co">#&gt; 13   0.7872 </span></span>
-<span id="cb28-81"><a href="#cb28-81"></a><span class="co">#&gt; 14   0.7150 </span></span>
-<span id="cb28-82"><a href="#cb28-82"></a><span class="co">#&gt; 15   0.9805</span></span>
+<span id="cb28-49"><a href="#cb28-49"></a><span class="co">#&gt;    pair                          r    lower    upper          p lower.adj</span></span>
+<span id="cb28-50"><a href="#cb28-50"></a><span class="co">#&gt;    &lt;chr&gt;                     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb28-51"><a href="#cb28-51"></a><span class="co">#&gt;  1 sleep_total-sleep_rem    0.7518  0.6167   0.8438  2.916e- 12  0.5402  </span></span>
+<span id="cb28-52"><a href="#cb28-52"></a><span class="co">#&gt;  2 sleep_total-sleep_cycle -0.4737 -0.7058  -0.1498  6.169e-  3 -0.7738  </span></span>
+<span id="cb28-53"><a href="#cb28-53"></a><span class="co">#&gt;  3 sleep_total-awake       -1.000  -1.000   -1.000   2.419e-226 -1.000   </span></span>
+<span id="cb28-54"><a href="#cb28-54"></a><span class="co">#&gt;  4 sleep_total-brainwt     -0.3605 -0.5694  -0.1078  6.348e-  3 -0.6290  </span></span>
+<span id="cb28-55"><a href="#cb28-55"></a><span class="co">#&gt;  5 sleep_total-bodywt      -0.3120 -0.4944  -0.1033  4.085e-  3 -0.5302  </span></span>
+<span id="cb28-56"><a href="#cb28-56"></a><span class="co">#&gt;  6 sleep_rem-sleep_cycle   -0.3381 -0.6144   0.01198 5.839e-  2 -0.6806  </span></span>
+<span id="cb28-57"><a href="#cb28-57"></a><span class="co">#&gt;  7 sleep_rem-awake         -0.7518 -0.8438  -0.6167  2.911e- 12 -0.8748  </span></span>
+<span id="cb28-58"><a href="#cb28-58"></a><span class="co">#&gt;  8 sleep_rem-brainwt       -0.2213 -0.4756   0.06701 1.306e-  1 -0.4756  </span></span>
+<span id="cb28-59"><a href="#cb28-59"></a><span class="co">#&gt;  9 sleep_rem-bodywt        -0.3277 -0.5353  -0.08265 9.947e-  3 -0.5838  </span></span>
+<span id="cb28-60"><a href="#cb28-60"></a><span class="co">#&gt; 10 sleep_cycle-awake        0.4737  0.1498   0.7058  6.169e-  3 -0.006407</span></span>
+<span id="cb28-61"><a href="#cb28-61"></a><span class="co">#&gt; 11 sleep_cycle-brainwt      0.8516  0.7088   0.9274  2.420e-  9  0.6080  </span></span>
+<span id="cb28-62"><a href="#cb28-62"></a><span class="co">#&gt; 12 sleep_cycle-bodywt       0.4178  0.08089  0.6690  1.734e-  2 -0.06265 </span></span>
+<span id="cb28-63"><a href="#cb28-63"></a><span class="co">#&gt; 13 awake-brainwt            0.3605  0.1078   0.5694  6.348e-  3  0.007931</span></span>
+<span id="cb28-64"><a href="#cb28-64"></a><span class="co">#&gt; 14 awake-bodywt             0.3120  0.1032   0.4944  4.089e-  3  0.07202 </span></span>
+<span id="cb28-65"><a href="#cb28-65"></a><span class="co">#&gt; 15 brainwt-bodywt           0.9338  0.8892   0.9608  9.155e- 26  0.8583  </span></span>
+<span id="cb28-66"><a href="#cb28-66"></a><span class="co">#&gt;      upper.adj</span></span>
+<span id="cb28-67"><a href="#cb28-67"></a><span class="co">#&gt;          &lt;dbl&gt;</span></span>
+<span id="cb28-68"><a href="#cb28-68"></a><span class="co">#&gt;  1  0.8740    </span></span>
+<span id="cb28-69"><a href="#cb28-69"></a><span class="co">#&gt;  2  0.00007215</span></span>
+<span id="cb28-70"><a href="#cb28-70"></a><span class="co">#&gt;  3 -1.000     </span></span>
+<span id="cb28-71"><a href="#cb28-71"></a><span class="co">#&gt;  4 -0.01505   </span></span>
+<span id="cb28-72"><a href="#cb28-72"></a><span class="co">#&gt;  5 -0.05506   </span></span>
+<span id="cb28-73"><a href="#cb28-73"></a><span class="co">#&gt;  6  0.1257    </span></span>
+<span id="cb28-74"><a href="#cb28-74"></a><span class="co">#&gt;  7 -0.5376    </span></span>
+<span id="cb28-75"><a href="#cb28-75"></a><span class="co">#&gt;  8  0.06701   </span></span>
+<span id="cb28-76"><a href="#cb28-76"></a><span class="co">#&gt;  9 -0.01223   </span></span>
+<span id="cb28-77"><a href="#cb28-77"></a><span class="co">#&gt; 10  0.7763    </span></span>
+<span id="cb28-78"><a href="#cb28-78"></a><span class="co">#&gt; 11  0.9487    </span></span>
+<span id="cb28-79"><a href="#cb28-79"></a><span class="co">#&gt; 12  0.7410    </span></span>
+<span id="cb28-80"><a href="#cb28-80"></a><span class="co">#&gt; 13  0.6333    </span></span>
+<span id="cb28-81"><a href="#cb28-81"></a><span class="co">#&gt; 14  0.5178    </span></span>
+<span id="cb28-82"><a href="#cb28-82"></a><span class="co">#&gt; 15  0.9697</span></span>
 <span id="cb28-83"><a href="#cb28-83"></a></span>
 <span id="cb28-84"><a href="#cb28-84"></a><span class="co"># getting the sample sizes for all pairs</span></span>
 <span id="cb28-85"><a href="#cb28-85"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</span>
@@ -1934,6 +1941,11 @@
 </ul>
 <p>All relevant functions in <code>ggstatsplot</code> have a <code>return</code> argument which can be used to not only return plots (which is the default), but also to return a <code>subtitle</code> or <code>caption</code>, which are objects of type <code>call</code> and can be used to display statistical details in conjunction with a custom plot and at a custom location in the plot.</p>
 <p>Additionally, all functions share the <code>ggtheme</code> and <code>palette</code> arguments that can be used to specify your favorite <code>ggplot</code> theme and color palette.</p>
+</div>
+<div id="acknowledgments" class="section level1">
+<h1 class="hasAnchor">
+<a href="#acknowledgments" class="anchor"></a>Acknowledgments</h1>
+<p>The hexsticker was generously designed by Sarah Otterstetter (Max Planck Institute for Human Development, Berlin).</p>
 </div>
 <div id="code-coverage" class="section level1">
 <h1 class="hasAnchor">

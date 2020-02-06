@@ -32,24 +32,10 @@ subtitle_function_switch <- function(test, type, ...) {
 }
 
 
-#' @noRd
-
-stats_type_switch <- function(type) {
-  dplyr::case_when(
-    grepl("^p", type, TRUE) ~ "parametric",
-    grepl("^n", type, TRUE) ~ "nonparametric",
-    grepl("^r", type, TRUE) ~ "robust",
-    grepl("^b", type, TRUE) ~ "bayes",
-    TRUE ~ "parametric"
-  )
-}
-
 #' @title Switch caption making function
 #' @name caption_function_switch
 #'
-#' @param test Decides which test to run (can be either `"t"` or
-#'   `"anova"`).
-#' @param ... Arguments passed to respective caption helper functions.
+#' @inheritParams subtitle_function_switch
 #'
 #' @importFrom statsExpressions bf_ttest bf_oneway_anova
 #' @importFrom rlang exec
@@ -67,4 +53,30 @@ caption_function_switch <- function(test, ...) {
 
   # preparing the BF message for null
   rlang::exec(.fn = .f, ...)
+}
+
+
+#' @noRd
+
+stats_type_switch <- function(type) {
+  dplyr::case_when(
+    grepl("^p", type, TRUE) ~ "parametric",
+    grepl("^n", type, TRUE) ~ "nonparametric",
+    grepl("^r", type, TRUE) ~ "robust",
+    grepl("^b", type, TRUE) ~ "bayes",
+    TRUE ~ "parametric"
+  )
+}
+
+#' @noRd
+
+ggcorrmat_output_switch <- function(output) {
+  dplyr::case_when(
+    grepl("^corr|^r", output, TRUE) ~ "r",
+    grepl("^n|^sample", output, TRUE) ~ "n",
+    grepl("^ci|^conf", output, TRUE) ~ "ci",
+    grepl("^plot$", output, TRUE) ~ "plot",
+    grepl("^p", output, TRUE) ~ "p",
+    TRUE ~ "plot"
+  )
 }

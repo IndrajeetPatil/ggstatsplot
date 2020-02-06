@@ -208,7 +208,6 @@ ggcorrmat <- function(data,
   if (missing(cor.vars)) {
     df <- purrr::keep(.x = data, .p = purrr::is_bare_numeric)
   } else {
-    # creating a dataframe out of the entered variables
     df <- dplyr::select(.data = data, {{ cor.vars }})
   }
 
@@ -234,23 +233,25 @@ ggcorrmat <- function(data,
   corr.method <- type %||% corr.method
   digits <- k %||% digits
   output <- return %||% output
+  output <- ggcorrmat_output_switch(output)
+  stats_type <- stats_type_switch(corr.method)
 
   # if any of the abbreviations have been entered, change them
-  if (corr.method %in% c("p", "parametric")) {
-    corr.method <- "pearson"
-  } else if (corr.method %in% c("np", "nonparametric", "non-parametric")) {
-    corr.method <- "spearman"
-  } else if (corr.method %in% c("r")) {
-    corr.method <- "robust"
-  }
+  corr.method <-
+    switch(
+      EXPR = stats_type,
+      "parametric" = "pearson",
+      "nonparametric" = "spearman",
+      "robust" = "robust"
+    )
 
   # create unique name for each method
   corr.method.text <-
-    switch(corr.method,
+    switch(
+      EXPR = corr.method,
       "pearson" = "Pearson",
       "spearman" = "Spearman",
-      "robust" = "robust (% bend)",
-      "kendall" = "Kendall"
+      "robust" = "robust (% bend)"
     )
 
   # compute confidence intervals only when requested by the user
@@ -258,7 +259,7 @@ ggcorrmat <- function(data,
 
   # ===================== statistics ========================================
 
-  if (corr.method %in% c("pearson", "spearman", "kendall")) {
+  if (corr.method %in% c("pearson", "spearman")) {
     # computing correlations using `psych` package
     corr_df <-
       psych::corr.test(
@@ -277,6 +278,18 @@ ggcorrmat <- function(data,
 
     # compute a correlation matrix of p-values
     p.mat <- corr_df$p
+
+    # confidence intervals
+    if (output == "ci") {
+      # composing a function to convert dataframe to tibble
+      tibble_helper <- purrr::compose(tibble::as_tibble, tibble::rownames_to_column)
+
+      ci.mat <-
+        list(corr_df$ci, corr_df$ci.adj) %>%
+        purrr::map(.x = ., .f = tibble_helper, var = "pair") %>%
+        dplyr::bind_cols(.) %>%
+        dplyr::select(.data = ., pair, r, dplyr::everything(), -pair1)
+    }
   }
 
   # robust correlation
@@ -442,25 +455,13 @@ ggcorrmat <- function(data,
 
   # ========================= confidence intervals ===========================
 
-  # composing a function to convert dataframe to tibble
-  tibble_helper <- purrr::compose(tibble::as_tibble, tibble::rownames_to_column)
-
   # CI computation
-  if (output == "ci") {
-    if (corr.method %in% c("pearson", "spearman", "kendall")) {
-      # merging data frame with CIs and adjusted CIs
-      ci.mat <-
-        list(corr_df$ci, corr_df$ci.adj) %>%
-        purrr::map(.x = ., .f = tibble_helper, var = "pair") %>%
-        dplyr::bind_cols(.) %>%
-        dplyr::select(.data = ., pair, r, dplyr::everything(), -pair1)
-    } else {
-      stop(message(cat(
-        crayon::red("Warning: "),
-        crayon::blue("Confidence intervals not supported for robust correlation.\n"),
-        sep = ""
-      )))
-    }
+  if (output == "ci" && corr.method == "robust") {
+    stop(message(cat(
+      crayon::red("Warning: "),
+      crayon::blue("Confidence intervals not supported for robust correlation.\n"),
+      sep = ""
+    )))
   }
 
   # =============================== output ==================================
@@ -473,14 +474,9 @@ ggcorrmat <- function(data,
   # return the desired result
   return(
     switch(output,
-      "correlations" = tibble::as_tibble(x = corr.mat, rownames = "variable"),
-      "corr" = tibble::as_tibble(x = corr.mat, rownames = "variable"),
       "r" = tibble::as_tibble(x = corr.mat, rownames = "variable"),
       "n" = tibble::as_tibble(x = corr_df$n, rownames = "variable"),
-      "sample.size" = tibble::as_tibble(x = corr_df$n, rownames = "variable"),
       "ci" = tibble::as_tibble(ci.mat),
-      "p-values" = tibble::as_tibble(x = p.mat, rownames = "variable"),
-      "p.values" = tibble::as_tibble(x = p.mat, rownames = "variable"),
       "p" = tibble::as_tibble(x = p.mat, rownames = "variable"),
       "plot" = plot,
       plot

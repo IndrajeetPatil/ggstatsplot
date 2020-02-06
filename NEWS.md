@@ -1,5 +1,11 @@
 # ggstatsplot 0.2.0.9000
 
+MAJOR CHANGES
+
+  - `ggcorrmat` was never supposed to work with Kendall's correlation coefficient
+    but it accidentally did. This is no longer the case.
+  - `ggstatsplot` now has a logo, thanks to Sarah! :)
+
 MINOR CHANGES
 
   - More models supported in `ggcoefstats`: `cglm`, `DirichReg`.

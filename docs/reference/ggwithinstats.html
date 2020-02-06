@@ -9,6 +9,13 @@
 <title>Box/Violin plots for group or condition comparisons in
 within-subjects (or repeated measures) designs. — ggwithinstats • ggstatsplot</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -49,6 +56,7 @@ within-subjects (or repeated measures) designs. — ggwithinstats" />
 <meta property="og:description" content="A combination of box and violin plots along with raw
 (unjittered) data points for within-subjects designs with statistical
 details included in the plot as a subtitle." />
+<meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -611,17 +619,17 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
   <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='no'>Taster</span>
 )</div><div class='output co'>#&gt; <span class='warning'>Warning: extreme order statistics used as endpoints</span></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>99%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>100</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 7</span><span>
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 3 x 7</span><span>
 #&gt;   group1 group2 statistic p.value significance test.details       
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>              
-#&gt; </span><span style='color: #555555;'>1</span><span> Wine A Wine B      1.05 0.301   ns           Durbin-Conover test
-#&gt; </span><span style='color: #555555;'>2</span><span> Wine A Wine C      3.66 0.002</span><span style='text-decoration: underline;'>07</span><span> **           Durbin-Conover test
-#&gt; </span><span style='color: #555555;'>3</span><span> Wine B Wine C      2.62 0.024</span><span style='text-decoration: underline;'>6</span><span>  *            Durbin-Conover test
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>              
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Wine A Wine B      1.05 0.301   ns           Durbin-Conover test
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Wine A Wine C      3.66 0.002</span><span style='text-decoration: underline;'>07</span><span> **           Durbin-Conover test
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Wine B Wine C      2.62 0.024</span><span style='text-decoration: underline;'>6</span><span>  *            Durbin-Conover test
 #&gt;   p.value.adjustment
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             
-#&gt; </span><span style='color: #555555;'>1</span><span> Holm              
-#&gt; </span><span style='color: #555555;'>2</span><span> Holm              
-#&gt; </span><span style='color: #555555;'>3</span><span> Holm              
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Holm              
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Holm              
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Holm              
 #&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Shapiro-Wilk Normality Test for </span><span style='color: #BBBB00;'>Taste</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>0.002</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Bartlett's test for homogeneity of variances for factor </span><span style='color: #BBBB00;'>Wine</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>0.970</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggwithinstats-2.png' alt='' width='700' height='433' /></div><div class='input'># }
 </div></span></pre>
   </div>
