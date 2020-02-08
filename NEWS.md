@@ -20,7 +20,8 @@ MAJOR CHANGES
 
 MINOR CHANGES
 
-  - More models supported in `ggcoefstats`: `cglm`, `DirichReg`.
+  - More models supported in `ggcoefstats`: `BBreg`, `cglm`, `DirichReg`,
+    `zeroinfl`.
 
 # ggstatsplot 0.2.0
 

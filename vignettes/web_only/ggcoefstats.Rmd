@@ -72,10 +72,10 @@ Most of the regression models that are supported in the `broom` and
 `broom.mixed` packages with `tidy` and `glance` methods are also supported by
 `ggcoefstats`. For example-
 
-`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `bglmerMod`, `bigglm`, `biglm`,
-`blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm2`, `brmsfit`, `btergm`, `cch`,
-`cgam`, `cgamm`, `cglm`, `clm`, `clmm`, `coeftest`, `confusionMatrix`, `coxme`,
-`coxph`, `cpglm`, `cpglmm`, `complmrob`, `DirichReg`, `drc`, `emmGrid`,
+`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `BBreg`, `bglmerMod`, `bigglm`,
+`biglm`, `blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm2`, `brmsfit`, `btergm`,
+`cch`, `cgam`, `cgamm`, `cglm`, `clm`, `clmm`, `coeftest`, `confusionMatrix`,
+`coxme`, `coxph`, `cpglm`, `cpglmm`, `complmrob`, `DirichReg`, `drc`, `emmGrid`,
 `epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`, `flexsurvreg`, `glmc`,
 `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`, `garch`, `glm`,
 `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`, `hurdle`, `ivreg`,
@@ -84,7 +84,7 @@ Most of the regression models that are supported in the `broom` and
 `mlm`, `multinom`, `negbin`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`,
 `plm`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `rqss`, `slm`,
 `speedglm`, `speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`,
-`svyglm`, `tobit`, `truncreg`, `vgam`, `wbgee`, `wblm`, etc.
+`svyglm`, `tobit`, `truncreg`, `vgam`, `wbgee`, `wblm`, `zeroinfl`, etc.
 
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
@@ -848,7 +848,7 @@ ggstatsplot::ggcoefstats(
 
 ## Zero-Inflated Count Data Regression (`zeroinfl`)
 
-```{r zeroinfl, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6, eval=FALSE}
+```{r zeroinfl, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
 # setup
 set.seed(123)
 library(pscl)
@@ -986,6 +986,35 @@ ggstatsplot::ggcoefstats(
   exclude.intercept = FALSE,
   conf.level = 0.99,
   title = "Hurdle Models for Count Data Regression"
+)
+```
+
+## beta-binomial logistic regression model (`BBreg`)
+
+```{r BBreg, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# setup
+set.seed(18)
+library(PROreg)
+
+# We simulate a covariate, fix the paramters of the beta-binomial 
+# distribution and simulate a response variable.
+# Then we apply the model, and try to get the same values.
+k <- 1000
+m <- 10
+x <- rnorm(k,5,3)
+beta <- c(-10,2)
+p <- 1/(1+exp(-(beta[1]+beta[2]*x)))
+phi <- 1.2
+y <- rBB(k,m,p,phi)
+
+# model
+model <- BBreg(y~x,m)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = model,
+  exclude.intercept = FALSE,
+  title = "beta-binomial logistic regression model"
 )
 ```
 

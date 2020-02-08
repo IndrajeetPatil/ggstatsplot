@@ -213,7 +213,7 @@ ggstatsplot::ggplot_converter
 #> function(plot) {
 #>   cowplot::ggdraw() + cowplot::draw_grob(grid::grobTree(plot))
 #> }
-#> <bytecode: 0x0000000030c32c20>
+#> <bytecode: 0x000000002f21a6a8>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -602,7 +602,7 @@ ggstatsplot::grouped_ggscatterstats(
     ggplot2::scale_x_continuous(breaks = seq(2, 9, 1), limits = (c(2, 9)))
   ),
   messages = FALSE,
-  nrow = 2,
+  plotgrid.args = list(nrow = 2),
   title.text = "Relationship between movie length by IMDB ratings for different genres"
 )
 ```
@@ -851,7 +851,7 @@ ggstatsplot::grouped_ggbarstats(
   ggstatsplot.layer = FALSE,
   messages = FALSE,
   title.text = "Race, religion, and political affiliation",
-  nrow = 2
+  plotgrid.args = list(nrow = 2)
 )
 ```
 
@@ -1323,20 +1323,21 @@ Most of the regression models that are supported in the `broom` and
 `broom.mixed` packages with `tidy` and `glance` methods are also
 supported by `ggcoefstats`. For example-
 
-`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `bglmerMod`, `bigglm`,
-`biglm`, `blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm2`, `brmsfit`,
-`btergm`, `cch`, `cgam`, `cgamm`, `cglm`, `clm`, `clmm`, `coeftest`,
-`confusionMatrix`, `coxme`, `coxph`, `cpglm`, `cpglmm`, `complmrob`,
-`DirichReg`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`,
-`fitdistr`, `flexsurvreg`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`,
-`Gam`, `gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`,
+`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `BBreg`, `bglmerMod`,
+`bigglm`, `biglm`, `blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm2`,
+`brmsfit`, `btergm`, `cch`, `cgam`, `cgamm`, `cglm`, `clm`, `clmm`,
+`coeftest`, `confusionMatrix`, `coxme`, `coxph`, `cpglm`, `cpglmm`,
+`complmrob`, `DirichReg`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`,
+`felm`, `fitdistr`, `flexsurvreg`, `glmc`, `glmerMod`, `glmmTMB`, `gls`,
+`gam`, `Gam`, `gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`,
 `glmrob`, `glmx`, `gmm`, `hurdle`, `ivreg`, `iv_robust`, `lavaan`, `lm`,
 `lm.beta`, `lmerMod`, `lmodel2`, `lmRob`, `lmrob`, `mcmc`, `MCMCglmm`,
 `mclogit`, `mmclogit`, `mediate`, `mixor`, `mjoint`, `mle2`, `mlm`,
 `multinom`, `negbin`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`,
 `plm`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `rqss`,
 `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`,
-`svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`, `wbgee`, `wblm`, etc.
+`svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`, `wbgee`, `wblm`,
+`zeroinfl`, etc.
 
 Although not shown here, this function can also be used to carry out
 both frequentist and Bayesian random-effects meta-analysis.

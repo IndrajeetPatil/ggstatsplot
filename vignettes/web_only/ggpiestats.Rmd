@@ -157,11 +157,13 @@ ggstatsplot::ggpiestats(
   nboot = 10, # no. of bootstrap sample for effect size CI
   messages = FALSE
 ) + # further modification with `ggplot2` commands
-  ggplot2::theme(plot.title = ggplot2::element_text(
-    color = "black",
-    size = 14,
-    hjust = 0
-  ))
+  ggplot2::theme(
+    plot.title = ggplot2::element_text(
+      color = "black",
+      size = 14,
+      hjust = 0
+    )
+  )
 ```
 
 The plot clearly shows that survival rates were very different between males and
@@ -204,7 +206,7 @@ ggstatsplot::grouped_ggpiestats(
   # arguments relevant for ggstatsplot::combine_plots
   title.text = "Passenger survival on the Titanic by gender and age",
   caption.text = "Asterisks denote results from proportion tests; \n***: p < 0.001, ns: non-significant",
-  nrow = 2
+  plotgrid.args = list(nrow = 2)
 )
 ```
 
@@ -376,4 +378,3 @@ GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
 
 For details, see-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>
-

@@ -99,7 +99,8 @@ ggbarstats <- function(data,
                        output = "plot",
                        messages = TRUE,
                        x = NULL,
-                       y = NULL) {
+                       y = NULL,
+                       ...) {
 
   # ensure the variables work quoted or unquoted
   main <- rlang::ensym(main)

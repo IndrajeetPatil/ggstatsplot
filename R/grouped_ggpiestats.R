@@ -6,11 +6,11 @@
 #'
 #' @inheritParams ggpiestats
 #' @inheritParams grouped_ggbetweenstats
-#' @inheritDotParams combine_plots
+#' @inheritDotParams ggpiestats -title
 #'
-#' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
-#' @importFrom dplyr group_by n arrange
+#' @importFrom dplyr select
 #' @importFrom rlang !! enquo quo_name ensym
+#' @importFrom purrr map
 #'
 #' @seealso \code{\link{ggbarstats}}, \code{\link{ggpiestats}},
 #'  \code{\link{grouped_ggbarstats}}
@@ -49,7 +49,7 @@
 #'   slice.label = "both",
 #'   messages = FALSE,
 #'   perc.k = 1,
-#'   nrow = 3
+#'   plotgrid.args = list(nrow = 3)
 #' )
 #' }
 #' @export
@@ -61,42 +61,17 @@ grouped_ggpiestats <- function(data,
                                counts = NULL,
                                grouping.var,
                                title.prefix = NULL,
-                               ratio = NULL,
-                               paired = FALSE,
-                               results.subtitle = TRUE,
-                               factor.levels = NULL,
-                               stat.title = NULL,
-                               sample.size.label = TRUE,
-                               label.separator = "\n",
-                               label.text.size = 4,
-                               label.fill.color = "white",
-                               label.fill.alpha = 1,
-                               bf.message = TRUE,
-                               sampling.plan = "indepMulti",
-                               fixed.margin = "rows",
-                               prior.concentration = 1,
-                               subtitle = NULL,
-                               caption = NULL,
-                               conf.level = 0.95,
-                               nboot = 100,
-                               bias.correct = TRUE,
-                               legend.title = NULL,
-                               facet.wrap.name = NULL,
-                               k = 2,
-                               perc.k = 0,
-                               slice.label = "percentage",
-                               facet.proptest = TRUE,
-                               ggtheme = ggplot2::theme_bw(),
-                               ggstatsplot.layer = TRUE,
-                               package = "RColorBrewer",
-                               palette = "Dark2",
-                               direction = 1,
-                               ggplot.component = NULL,
                                output = "plot",
-                               messages = TRUE,
                                x = NULL,
                                y = NULL,
-                               ...) {
+                               ...,
+                               plotgrid.args = list(),
+                               title.text = NULL,
+                               title.args = list(size = 16, fontface = "bold"),
+                               caption.text = NULL,
+                               caption.args = list(size = 10),
+                               sub.text = NULL,
+                               sub.args = list(size = 12)) {
 
   # ======================== check user input =============================
 
@@ -156,46 +131,23 @@ grouped_ggpiestats <- function(data,
       x = {{ x }},
       y = {{ y }},
       counts = {{ counts }},
-      ratio = ratio,
-      paired = paired,
-      results.subtitle = results.subtitle,
-      factor.levels = factor.levels,
-      stat.title = stat.title,
-      sample.size.label = sample.size.label,
-      label.separator = label.separator,
-      label.text.size = label.text.size,
-      label.fill.color = label.fill.color,
-      label.fill.alpha = label.fill.alpha,
-      bf.message = bf.message,
-      sampling.plan = sampling.plan,
-      fixed.margin = fixed.margin,
-      prior.concentration = prior.concentration,
-      subtitle = subtitle,
-      caption = caption,
-      conf.level = conf.level,
-      nboot = nboot,
-      bias.correct = bias.correct,
-      legend.title = legend.title,
-      facet.wrap.name = facet.wrap.name,
-      k = k,
-      perc.k = perc.k,
-      slice.label = slice.label,
-      facet.proptest = facet.proptest,
-      ggtheme = ggtheme,
-      ggstatsplot.layer = ggstatsplot.layer,
-      package = package,
-      palette = palette,
-      direction = direction,
-      ggplot.component = ggplot.component,
       output = output,
-      messages = messages
+      ...
     )
 
   # combining the list of plots into a single plot
-  # inform user this can't be modified further with ggplot commands
   if (output == "plot") {
-    return(ggstatsplot::combine_plots(plotlist = plotlist_purrr, ...))
+    return(ggstatsplot::combine_plots2(
+      plotlist = plotlist_purrr,
+      plotgrid.args = plotgrid.args,
+      title.text = title.text,
+      title.args = title.args,
+      caption.text = caption.text,
+      caption.args = caption.args,
+      sub.text = sub.text,
+      sub.args = sub.args
+    ))
   } else {
-    return(plotlist_purrr)
+    return(plotlist_purrr) # subtitle list
   }
 }

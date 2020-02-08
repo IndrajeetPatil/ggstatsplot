@@ -49,7 +49,8 @@ ggbarstats(
   output = "plot",
   messages = TRUE,
   x = NULL,
-  y = NULL
+  y = NULL,
+  ...
 )
 }
 \arguments{
@@ -211,6 +212,8 @@ table. Default is \code{NULL}. If \code{NULL}, one-sample proportion test (a goo
 of fit test) will be run for the \code{x} variable. Otherwise an appropriate
 association test will be run. This argument can not be \code{NULL} for
 \code{ggbarstats} function.}
+
+\item{...}{further arguments to be passed to or from methods.}
 }
 \value{
 Unlike a number of statistical softwares, \code{ggstatsplot} doesn't

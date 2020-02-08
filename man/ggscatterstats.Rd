@@ -53,7 +53,8 @@ ggscatterstats(
   ggstatsplot.layer = TRUE,
   ggplot.component = NULL,
   output = "plot",
-  messages = TRUE
+  messages = TRUE,
+  ...
 )
 }
 \arguments{
@@ -224,6 +225,8 @@ about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
+
+\item{...}{Currently ignored.}
 }
 \description{
 Scatterplots from \code{ggplot2} combined with marginal
