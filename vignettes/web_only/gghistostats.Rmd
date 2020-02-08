@@ -154,9 +154,11 @@ ggstatsplot::grouped_gghistostats(
   # arguments relevant for ggstatsplot::combine_plots
   title.text = "Distribution of ACT scores across genders",
   caption.text = "Data courtesy of: SAPA project (https://sapa-project.org)",
-  nrow = 2,
-  ncol = 1,
-  labels = c("Male", "Female")
+  plotgrid.args = list(
+    nrow = 2,
+    ncol = 1,
+    labels = c("Male", "Female")
+  )
 )
 ```
 

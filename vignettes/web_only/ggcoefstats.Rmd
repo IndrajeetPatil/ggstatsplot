@@ -846,6 +846,32 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
+## Zero-Inflated Count Data Regression (`zeroinfl`)
+
+```{r zeroinfl, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6, eval=FALSE}
+# setup
+set.seed(123)
+library(pscl)
+
+# data
+data("bioChemists", package = "pscl")
+
+# model
+mod <-
+  pscl::zeroinfl(
+    formula = art ~ . | 1,
+    data = bioChemists,
+    dist = "negbin"
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
+  exclude.intercept = FALSE,
+  title = "Zero-Inflated Count Data Regression"
+)
+```
+
 ## Vector Generalized Linear Models (`vgam`)
 
 ```{r vgam, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 6}

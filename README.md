@@ -213,7 +213,7 @@ ggstatsplot::ggplot_converter
 #> function(plot) {
 #>   cowplot::ggdraw() + cowplot::draw_grob(grid::grobTree(plot))
 #> }
-#> <bytecode: 0x000000002f1c5d18>
+#> <bytecode: 0x0000000030c32c20>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -952,7 +952,7 @@ ggstatsplot::grouped_gghistostats(
     ggplot2::scale_x_continuous(breaks = seq(0, 200, 50), limits = (c(0, 200)))
   ),
   messages = FALSE,
-  nrow = 2,
+  plotgrid.args = list(nrow = 2),
   title.text = "Movies budgets for different genres"
 )
 ```

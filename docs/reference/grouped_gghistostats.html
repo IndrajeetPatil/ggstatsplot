@@ -210,50 +210,17 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
   <span class='no'>data</span>,
   <span class='no'>x</span>,
   <span class='no'>grouping.var</span>,
-  <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>bar.measure</span> <span class='kw'>=</span> <span class='st'>"count"</span>,
-  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>,
-  <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
-  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>robust.estimator</span> <span class='kw'>=</span> <span class='st'>"onestep"</span>,
-  <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"g"</span>,
-  <span class='kw'>effsize.noncentral</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
-  <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>fill.gradient</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>low.color</span> <span class='kw'>=</span> <span class='st'>"#0072B2"</span>,
-  <span class='kw'>high.color</span> <span class='kw'>=</span> <span class='st'>"#D55E00"</span>,
-  <span class='kw'>bar.fill</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>,
-  <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='st'>"mean"</span>,
-  <span class='kw'>centrality.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
-  <span class='kw'>centrality.size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>centrality.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>,
-  <span class='kw'>centrality.line.labeller</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>centrality.k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>test.value.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>test.value.size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>test.value.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>,
-  <span class='kw'>test.line.labeller</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>test.k</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>normal.curve</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>normal.curve.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>normal.curve.linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>,
-  <span class='kw'>normal.curve.size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
-  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>
+  <span class='no'>...</span>,
+  <span class='kw'>plotgrid.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  <span class='kw'>title.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>title.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>16</span>, <span class='kw'>fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>),
+  <span class='kw'>caption.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>caption.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>10</span>),
+  <span class='kw'>sub.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>sub.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>12</span>)
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -274,12 +241,6 @@ be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
 bare name <code>x</code> or as a string <code>"x"</code>).</p></td>
     </tr>
     <tr>
-      <th>title.prefix</th>
-      <td><p>Character string specifying the prefix text for the fixed
-plot title (name of each factor level) (Default: <code>NULL</code>). If <code>NULL</code>, the
-variable name entered for <code>grouping.var</code> will be used.</p></td>
-    </tr>
-    <tr>
       <th>binwidth</th>
       <td><p>The width of the histogram bins. Can be specified as a
 numeric value, or a function that calculates width from <code>x</code>. The default is
@@ -288,224 +249,10 @@ and explore multiple widths to find the best to illustrate the stories in
 your data.</p></td>
     </tr>
     <tr>
-      <th>bar.measure</th>
-      <td><p>Character describing what value needs to be represented as
-height in the bar chart. This can either be <code>"count"</code>, which shows number
-of points in bin, or <code>"density"</code>, which density of points in bin, scaled to
-integrate to 1, or "<code>proportion</code>", which shows relative frequencies of
-observations in each bin, or "<code>mix</code>", which shows <em>both</em> count and
-proportion in the same plot.</p></td>
-    </tr>
-    <tr>
-      <th>xlab</th>
-      <td><p>Labels for <code>x</code> and <code>y</code> axis variables. If <code>NULL</code> (default),
-variable names for <code>x</code> and <code>y</code> will be used.</p></td>
-    </tr>
-    <tr>
-      <th>stat.title</th>
-      <td><p>A character describing the test being run, which will be
-added as a prefix in the subtitle. The default is <code>NULL</code>. An example of a
-<code>stat.title</code> argument will be something like <code>"Student's t-test: "</code>.</p></td>
-    </tr>
-    <tr>
-      <th>subtitle</th>
-      <td><p>The text for the plot subtitle. Will work only if
-<code>results.subtitle = FALSE</code>.</p></td>
-    </tr>
-    <tr>
-      <th>caption</th>
-      <td><p>The text for the plot caption.</p></td>
-    </tr>
-    <tr>
-      <th>type</th>
-      <td><p>Type of statistic expected (<code>"parametric"</code> or <code>"nonparametric"</code>
-or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations are also accepted:
-<code>"p"</code> (for parametric), <code>"np"</code> (nonparametric), <code>"r"</code> (robust), or
-<code>"bf"</code>resp.</p></td>
-    </tr>
-    <tr>
-      <th>test.value</th>
-      <td><p>A number specifying the value of the null hypothesis
-(Default: <code>0</code>).</p></td>
-    </tr>
-    <tr>
-      <th>bf.prior</th>
-      <td><p>A numeric value between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the
-prior width to use in calculating Bayes Factors.</p></td>
-    </tr>
-    <tr>
-      <th>bf.message</th>
-      <td><p>Logical that decides whether to display Bayes Factor in
-favor of the <em>null</em> hypothesis. This argument is relevant only <strong>for
-parametric test</strong> (Default: <code>TRUE</code>).</p></td>
-    </tr>
-    <tr>
-      <th>robust.estimator</th>
-      <td><p>If <code>type = "robust"</code>, a robust estimator to be used
-(<code>"onestep"</code> (Default), <code>"mom"</code>, or <code>"median"</code>). For more, see
-<code><a href='https://rdrr.io/pkg/WRS2/man/onesampb.html'>?WRS2::onesampb</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>effsize.type</th>
-      <td><p>Type of effect size needed for <em>parametric</em> tests. The
-argument can be <code>"biased"</code> (<code>"d"</code> for Cohen's <em>d</em>) or <code>"unbiased"</code>
-(<code>"g"</code> Hedge's <em>g</em> for <strong>t-test</strong>). The default is <code>"g"</code>.</p></td>
-    </tr>
-    <tr>
-      <th>effsize.noncentral</th>
-      <td><p>Logical indicating whether to use non-central
-<em>t</em>-distributions for computing the confidence interval for Cohen's <em>d</em>
-or Hedge's <em>g</em> (Default: <code>TRUE</code>).</p></td>
-    </tr>
-    <tr>
-      <th>conf.level</th>
-      <td><p>Scalar between 0 and 1. If unspecified, the defaults return
-<code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
-    </tr>
-    <tr>
-      <th>nboot</th>
-      <td><p>Number of bootstrap samples for computing confidence interval
-for the effect size (Default: <code>100</code>).</p></td>
-    </tr>
-    <tr>
-      <th>k</th>
-      <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 2</code>).</p></td>
-    </tr>
-    <tr>
-      <th>ggtheme</th>
-      <td><p>A function, <code>ggplot2</code> theme name. Default value is
-<code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
-extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>,
-<code><a href='https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html'>hrbrthemes::theme_ipsum_ps()</a></code>, etc.).</p></td>
-    </tr>
-    <tr>
-      <th>ggstatsplot.layer</th>
-      <td><p>Logical that decides whether <code>theme_ggstatsplot</code>
-theme elements are to be displayed along with the selected <code>ggtheme</code>
-(Default: <code>TRUE</code>). <code>theme_ggstatsplot</code> is an opinionated theme layer that
-override some aspects of the selected <code>ggtheme</code>.</p></td>
-    </tr>
-    <tr>
-      <th>fill.gradient</th>
-      <td><p>Logical decides whether color fill gradient is to be
-displayed (Default: <code>FALSE</code>). If <code>FALSE</code>, the legend and the color gradient
-will also be removed. The default is set to <code>FALSE</code> because the gradient
-provides redundant information in light of y-axis labels.</p></td>
-    </tr>
-    <tr>
-      <th>low.color</th>
-      <td><p>Colors for low and high ends of the gradient.
-Defaults are colorblind-friendly.</p></td>
-    </tr>
-    <tr>
-      <th>high.color</th>
-      <td><p>Colors for low and high ends of the gradient.
-Defaults are colorblind-friendly.</p></td>
-    </tr>
-    <tr>
-      <th>bar.fill</th>
-      <td><p>If <code>fill.gradient = FALSE</code>, then <code>bar.fill</code> decides which
-color will uniformly fill all the bars in the histogram (Default:
-<code>"grey50"</code>).</p></td>
-    </tr>
-    <tr>
-      <th>results.subtitle</th>
-      <td><p>Decides whether the results of statistical tests are
-to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
-the plot will be returned.</p></td>
-    </tr>
-    <tr>
-      <th>centrality.para</th>
-      <td><p>Decides <em>which</em> measure of central tendency (<code>"mean"</code>
-or <code>"median"</code>) is to be displayed as a vertical line.</p></td>
-    </tr>
-    <tr>
-      <th>centrality.color</th>
-      <td><p>Decides color for the vertical line for centrality
-parameter (Default: <code>"blue"</code>).</p></td>
-    </tr>
-    <tr>
-      <th>centrality.size</th>
-      <td><p>Decides size for the vertical line for centrality
-parameter (Default: <code>1.2</code>).</p></td>
-    </tr>
-    <tr>
-      <th>centrality.linetype</th>
-      <td><p>Decides linetype for the vertical line for
-centrality parameter (Default: <code>"dashed"</code>).</p></td>
-    </tr>
-    <tr>
-      <th>centrality.line.labeller</th>
-      <td><p>A logical that decides whether line labels
-should be displayed for the <strong>centrality.para</strong> line (Default: <code>TRUE</code>).</p></td>
-    </tr>
-    <tr>
-      <th>centrality.k</th>
-      <td><p>Integer denoting the number of decimal places expected
-for centrality parameter label. (Default: <code>2</code>).</p></td>
-    </tr>
-    <tr>
-      <th>test.value.line</th>
-      <td><p>Decides whether test value is to be displayed as a
-vertical line (Default: <code>FALSE</code>).</p></td>
-    </tr>
-    <tr>
-      <th>test.value.color</th>
-      <td><p>Decides color for the vertical line denoting test
-value (Default: <code>"black"</code>).</p></td>
-    </tr>
-    <tr>
-      <th>test.value.size</th>
-      <td><p>Decides size for the vertical line for test value
-(Default: <code>1.2</code>).</p></td>
-    </tr>
-    <tr>
-      <th>test.value.linetype</th>
-      <td><p>Decides linetype for the vertical line for test
-value (Default: <code>"dashed"</code>).</p></td>
-    </tr>
-    <tr>
-      <th>test.line.labeller</th>
-      <td><p>A logical that decides whether line labels should
-be displayed for <strong>test.value</strong> line (Default: <code>TRUE</code>).</p></td>
-    </tr>
-    <tr>
-      <th>test.k</th>
-      <td><p>Integer denoting the number of decimal places expected for
-<code>test.value</code> label. (Default: <code>0</code> ).</p></td>
-    </tr>
-    <tr>
-      <th>normal.curve</th>
-      <td><p>Logical decides whether to super-impose a normal curve
-using <code><a href='https://rdrr.io/r/stats/Normal.html'>stats::dnorm(mean(x), sd(x))</a></code>. Default is <code>FALSE</code>.</p></td>
-    </tr>
-    <tr>
-      <th>normal.curve.color</th>
-      <td><p>If
-<code>normal.curve = TRUE</code>, then these arguments can be used to modify color
-(Default: <code>"black"</code>), size (default: <code>1.0</code>), linetype (default: <code>"solid"</code>).</p></td>
-    </tr>
-    <tr>
-      <th>normal.curve.linetype</th>
-      <td><p>If
-<code>normal.curve = TRUE</code>, then these arguments can be used to modify color
-(Default: <code>"black"</code>), size (default: <code>1.0</code>), linetype (default: <code>"solid"</code>).</p></td>
-    </tr>
-    <tr>
-      <th>normal.curve.size</th>
-      <td><p>If
-<code>normal.curve = TRUE</code>, then these arguments can be used to modify color
-(Default: <code>"black"</code>), size (default: <code>1.0</code>), linetype (default: <code>"solid"</code>).</p></td>
-    </tr>
-    <tr>
-      <th>ggplot.component</th>
-      <td><p>A <code>ggplot</code> component to be added to the plot prepared
-by <code>ggstatsplot</code>. This argument is primarily helpful for <code>grouped_</code> variant
-of the current function. Default is <code>NULL</code>. The argument should be entered
-as a function. If the given function has an argument <code>axes.range.restrict</code>
-and if it has been set to <code>TRUE</code>, the added <code>ggplot</code> component <em>might</em> not
-work as expected.</p></td>
+      <th>title.prefix</th>
+      <td><p>Character string specifying the prefix text for the fixed
+plot title (name of each factor level) (Default: <code>NULL</code>). If <code>NULL</code>, the
+variable name entered for <code>grouping.var</code> will be used.</p></td>
     </tr>
     <tr>
       <th>output</th>
@@ -518,60 +265,149 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
 <code>bf.message = TRUE</code>, otherwise this will return a <code>NULL</code>.</p></td>
     </tr>
     <tr>
-      <th>messages</th>
-      <td><p>Decides whether messages references, notes, and warnings are
-to be displayed (Default: <code>TRUE</code>).</p></td>
-    </tr>
-    <tr>
       <th>...</th>
-      <td><p>Arguments passed on to <code><a href='combine_plots.html'>combine_plots</a></code></p><dl class='dl-horizontal'>
-    <dt><code>title.text</code></dt><dd><p>String or plotmath expression to be drawn as title for the
-<em>combined plot</em>.</p></dd>
-    <dt><code>title.color</code></dt><dd><p>Text color for title.</p></dd>
-    <dt><code>title.size</code></dt><dd><p>Point size of title text.</p></dd>
-    <dt><code>title.vjust</code></dt><dd><p>Vertical justification for title. Default = <code>0.5</code>
-(centered on <code>y</code>). <code>0</code> = baseline at <code>y</code>, <code>1</code> = ascender at <code>y</code>.</p></dd>
-    <dt><code>title.hjust</code></dt><dd><p>Horizontal justification for title. Default = <code>0.5</code>
-(centered on <code>x</code>). <code>0</code> = flush-left at x, <code>1</code> = flush-right.</p></dd>
-    <dt><code>title.fontface</code></dt><dd><p>The font face (<code>"plain"</code>, <code>"bold"</code> (default),
-<code>"italic"</code>, <code>"bold.italic"</code>) for title.</p></dd>
-    <dt><code>caption.text</code></dt><dd><p>String or plotmath expression to be drawn as the caption
-for the <em>combined plot</em>.</p></dd>
-    <dt><code>caption.color</code></dt><dd><p>Text color for caption.</p></dd>
-    <dt><code>caption.size</code></dt><dd><p>Point size of title text.</p></dd>
-    <dt><code>caption.vjust</code></dt><dd><p>Vertical justification for caption. Default = <code>0.5</code>
-(centered on y). <code>0</code> = baseline at y, <code>1</code> = ascender at y.</p></dd>
-    <dt><code>caption.hjust</code></dt><dd><p>Horizontal justification for caption. Default = <code>0.5</code>
-(centered on x). <code>0</code> = flush-left at x, <code>1</code> = flush-right.</p></dd>
-    <dt><code>caption.fontface</code></dt><dd><p>The font face (<code>"plain"</code> (default), <code>"bold"</code>,
-<code>"italic"</code>, <code>"bold.italic"</code>) for caption.</p></dd>
-    <dt><code>sub.text</code></dt><dd><p>The label with which the <em>combined plot</em> should be annotated.
-Can be a plotmath expression.</p></dd>
-    <dt><code>sub.color</code></dt><dd><p>Text color for annotation label (Default: <code>"black"</code>).</p></dd>
-    <dt><code>sub.size</code></dt><dd><p>Point size of annotation text (Default: <code>12</code>).</p></dd>
-    <dt><code>sub.x</code></dt><dd><p>The x position of annotation label (Default: <code>0.5</code>).</p></dd>
-    <dt><code>sub.y</code></dt><dd><p>The y position of annotation label (Default: <code>0.5</code>).</p></dd>
-    <dt><code>sub.hjust</code></dt><dd><p>Horizontal justification for annotation label (Default:
-<code>0.5</code>).</p></dd>
-    <dt><code>sub.vjust</code></dt><dd><p>Vertical justification for annotation label (Default:
-<code>0.5</code>).</p></dd>
-    <dt><code>sub.vpadding</code></dt><dd><p>Vertical padding. The total vertical space added to the
-label, given in grid units. By default, this is added equally above and
-below the label. However, by changing the y and vjust parameters, this can
-be changed (Default: <code><a href='https://ggplot2.tidyverse.org/reference/reexports.html'>ggplot2::unit(1, "lines")</a></code>).</p></dd>
-    <dt><code>sub.fontface</code></dt><dd><p>The font face (<code>"plain"</code> (default), <code>"bold"</code>, <code>"italic"</code>,
-<code>"bold.italic"</code>) for the annotation label.</p></dd>
-    <dt><code>sub.angle</code></dt><dd><p>Angle at which annotation label is to be drawn (Default:
-<code>0</code>).</p></dd>
-    <dt><code>sub.lineheight</code></dt><dd><p>Line height of annotation label.</p></dd>
-    <dt><code>title.caption.rel.heights</code></dt><dd><p>Numerical vector of relative columns heights
-while combining (title, plot, caption).</p></dd>
-    <dt><code>title.rel.heights</code></dt><dd><p>Numerical vector of relative columns heights while
-combining (title, plot).</p></dd>
-    <dt><code>caption.rel.heights</code></dt><dd><p>Numerical vector of relative columns heights while
-combining (plot, caption).</p></dd>
+      <td><p>Arguments passed on to <code><a href='gghistostats.html'>gghistostats</a></code></p><dl class='dl-horizontal'>
+    <dt><code>bar.measure</code></dt><dd><p>Character describing what value needs to be represented as
+height in the bar chart. This can either be <code>"count"</code>, which shows number
+of points in bin, or <code>"density"</code>, which density of points in bin, scaled to
+integrate to 1, or "<code>proportion</code>", which shows relative frequencies of
+observations in each bin, or "<code>mix</code>", which shows <em>both</em> count and
+proportion in the same plot.</p></dd>
+    <dt><code>fill.gradient</code></dt><dd><p>Logical decides whether color fill gradient is to be
+displayed (Default: <code>FALSE</code>). If <code>FALSE</code>, the legend and the color gradient
+will also be removed. The default is set to <code>FALSE</code> because the gradient
+provides redundant information in light of y-axis labels.</p></dd>
+    <dt><code>low.color</code></dt><dd><p>Colors for low and high ends of the gradient.
+Defaults are colorblind-friendly.</p></dd>
+    <dt><code>high.color</code></dt><dd><p>Colors for low and high ends of the gradient.
+Defaults are colorblind-friendly.</p></dd>
+    <dt><code>normal.curve</code></dt><dd><p>Logical decides whether to super-impose a normal curve
+using <code><a href='https://rdrr.io/r/stats/Normal.html'>stats::dnorm(mean(x), sd(x))</a></code>. Default is <code>FALSE</code>.</p></dd>
+    <dt><code>normal.curve.color</code></dt><dd><p>If
+<code>normal.curve = TRUE</code>, then these arguments can be used to modify color
+(Default: <code>"black"</code>), size (default: <code>1.0</code>), linetype (default: <code>"solid"</code>).</p></dd>
+    <dt><code>normal.curve.linetype</code></dt><dd><p>If
+<code>normal.curve = TRUE</code>, then these arguments can be used to modify color
+(Default: <code>"black"</code>), size (default: <code>1.0</code>), linetype (default: <code>"solid"</code>).</p></dd>
+    <dt><code>normal.curve.size</code></dt><dd><p>If
+<code>normal.curve = TRUE</code>, then these arguments can be used to modify color
+(Default: <code>"black"</code>), size (default: <code>1.0</code>), linetype (default: <code>"solid"</code>).</p></dd>
+    <dt><code>bar.fill</code></dt><dd><p>If <code>fill.gradient = FALSE</code>, then <code>bar.fill</code> decides which
+color will uniformly fill all the bars in the histogram (Default:
+<code>"grey50"</code>).</p></dd>
+    <dt><code>ggtheme</code></dt><dd><p>A function, <code>ggplot2</code> theme name. Default value is
+<code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
+extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>,
+<code><a href='https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html'>hrbrthemes::theme_ipsum_ps()</a></code>, etc.).</p></dd>
+    <dt><code>ggstatsplot.layer</code></dt><dd><p>Logical that decides whether <code>theme_ggstatsplot</code>
+theme elements are to be displayed along with the selected <code>ggtheme</code>
+(Default: <code>TRUE</code>). <code>theme_ggstatsplot</code> is an opinionated theme layer that
+override some aspects of the selected <code>ggtheme</code>.</p></dd>
+    <dt><code>stat.title</code></dt><dd><p>A character describing the test being run, which will be
+added as a prefix in the subtitle. The default is <code>NULL</code>. An example of a
+<code>stat.title</code> argument will be something like <code>"Student's t-test: "</code>.</p></dd>
+    <dt><code>type</code></dt><dd><p>Type of statistic expected (<code>"parametric"</code> or <code>"nonparametric"</code>
+or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations are also accepted:
+<code>"p"</code> (for parametric), <code>"np"</code> (nonparametric), <code>"r"</code> (robust), or
+<code>"bf"</code>resp.</p></dd>
+    <dt><code>test.value</code></dt><dd><p>A number specifying the value of the null hypothesis
+(Default: <code>0</code>).</p></dd>
+    <dt><code>bf.prior</code></dt><dd><p>A numeric value between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the
+prior width to use in calculating Bayes Factors.</p></dd>
+    <dt><code>robust.estimator</code></dt><dd><p>If <code>type = "robust"</code>, a robust estimator to be used
+(<code>"onestep"</code> (Default), <code>"mom"</code>, or <code>"median"</code>). For more, see
+<code><a href='https://rdrr.io/pkg/WRS2/man/onesampb.html'>?WRS2::onesampb</a></code>.</p></dd>
+    <dt><code>effsize.type</code></dt><dd><p>Type of effect size needed for <em>parametric</em> tests. The
+argument can be <code>"biased"</code> (<code>"d"</code> for Cohen's <em>d</em>) or <code>"unbiased"</code>
+(<code>"g"</code> Hedge's <em>g</em> for <strong>t-test</strong>). The default is <code>"g"</code>.</p></dd>
+    <dt><code>effsize.noncentral</code></dt><dd><p>Logical indicating whether to use non-central
+<em>t</em>-distributions for computing the confidence interval for Cohen's <em>d</em>
+or Hedge's <em>g</em> (Default: <code>TRUE</code>).</p></dd>
+    <dt><code>conf.level</code></dt><dd><p>Scalar between 0 and 1. If unspecified, the defaults return
+<code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></dd>
+    <dt><code>nboot</code></dt><dd><p>Number of bootstrap samples for computing confidence interval
+for the effect size (Default: <code>100</code>).</p></dd>
+    <dt><code>k</code></dt><dd><p>Number of digits after decimal point (should be an integer)
+(Default: <code>k = 2</code>).</p></dd>
+    <dt><code>messages</code></dt><dd><p>Decides whether messages references, notes, and warnings are
+to be displayed (Default: <code>TRUE</code>).</p></dd>
+    <dt><code>centrality.para</code></dt><dd><p>Decides <em>which</em> measure of central tendency (<code>"mean"</code>
+or <code>"median"</code>) is to be displayed as a vertical line.</p></dd>
+    <dt><code>centrality.color</code></dt><dd><p>Decides color for the vertical line for centrality
+parameter (Default: <code>"blue"</code>).</p></dd>
+    <dt><code>centrality.size</code></dt><dd><p>Decides size for the vertical line for centrality
+parameter (Default: <code>1.2</code>).</p></dd>
+    <dt><code>centrality.linetype</code></dt><dd><p>Decides linetype for the vertical line for
+centrality parameter (Default: <code>"dashed"</code>).</p></dd>
+    <dt><code>centrality.line.labeller</code></dt><dd><p>A logical that decides whether line labels
+should be displayed for the <strong>centrality.para</strong> line (Default: <code>TRUE</code>).</p></dd>
+    <dt><code>centrality.k</code></dt><dd><p>Integer denoting the number of decimal places expected
+for centrality parameter label. (Default: <code>2</code>).</p></dd>
+    <dt><code>test.value.line</code></dt><dd><p>Decides whether test value is to be displayed as a
+vertical line (Default: <code>FALSE</code>).</p></dd>
+    <dt><code>test.value.color</code></dt><dd><p>Decides color for the vertical line denoting test
+value (Default: <code>"black"</code>).</p></dd>
+    <dt><code>test.value.size</code></dt><dd><p>Decides size for the vertical line for test value
+(Default: <code>1.2</code>).</p></dd>
+    <dt><code>test.value.linetype</code></dt><dd><p>Decides linetype for the vertical line for test
+value (Default: <code>"dashed"</code>).</p></dd>
+    <dt><code>test.line.labeller</code></dt><dd><p>A logical that decides whether line labels should
+be displayed for <strong>test.value</strong> line (Default: <code>TRUE</code>).</p></dd>
+    <dt><code>test.k</code></dt><dd><p>Integer denoting the number of decimal places expected for
+<code>test.value</code> label. (Default: <code>0</code> ).</p></dd>
+    <dt><code>xlab</code></dt><dd><p>Labels for <code>x</code> and <code>y</code> axis variables. If <code>NULL</code> (default),
+variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
+    <dt><code>subtitle</code></dt><dd><p>The text for the plot subtitle. Will work only if
+<code>results.subtitle = FALSE</code>.</p></dd>
+    <dt><code>caption</code></dt><dd><p>The text for the plot caption.</p></dd>
+    <dt><code>bf.message</code></dt><dd><p>Logical that decides whether to display Bayes Factor in
+favor of the <em>null</em> hypothesis. This argument is relevant only <strong>for
+parametric test</strong> (Default: <code>TRUE</code>).</p></dd>
+    <dt><code>results.subtitle</code></dt><dd><p>Decides whether the results of statistical tests are
+to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
+the plot will be returned.</p></dd>
+    <dt><code>ggplot.component</code></dt><dd><p>A <code>ggplot</code> component to be added to the plot prepared
+by <code>ggstatsplot</code>. This argument is primarily helpful for <code>grouped_</code> variant
+of the current function. Default is <code>NULL</code>. The argument should be entered
+as a function. If the given function has an argument <code>axes.range.restrict</code>
+and if it has been set to <code>TRUE</code>, the added <code>ggplot</code> component <em>might</em> not
+work as expected.</p></dd>
   
 </dl></td>
+    </tr>
+    <tr>
+      <th>plotgrid.args</th>
+      <td><p>A list of additional arguments to <code><a href='https://rdrr.io/pkg/cowplot/man/plot_grid.html'>cowplot::plot_grid</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>title.text</th>
+      <td><p>String or plotmath expression to be drawn as title for the
+<em>combined plot</em>.</p></td>
+    </tr>
+    <tr>
+      <th>title.args</th>
+      <td><p>A list of additional arguments
+provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.</p></td>
+    </tr>
+    <tr>
+      <th>caption.text</th>
+      <td><p>String or plotmath expression to be drawn as the caption
+for the <em>combined plot</em>.</p></td>
+    </tr>
+    <tr>
+      <th>caption.args</th>
+      <td><p>A list of additional arguments
+provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.</p></td>
+    </tr>
+    <tr>
+      <th>sub.text</th>
+      <td><p>The label with which the <em>combined plot</em> should be annotated.
+Can be a plotmath expression.</p></td>
+    </tr>
+    <tr>
+      <th>sub.args</th>
+      <td><p>A list of additional arguments
+provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.</p></td>
     </tr>
     </table>
 
@@ -595,12 +431,12 @@ combining (plot, caption).</p></dd>
   <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>5</span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>Species</span>,
   <span class='kw'>bar.fill</span> <span class='kw'>=</span> <span class='st'>"orange"</span>,
-  <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
     <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_continuous</a></span>(<span class='kw'>breaks</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>3</span>, <span class='fl'>9</span>, <span class='fl'>1</span>), <span class='kw'>limits</span> <span class='kw'>=</span> (<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>, <span class='fl'>9</span>))),
     <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span>(<span class='kw'>breaks</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0</span>, <span class='fl'>25</span>, <span class='fl'>5</span>), <span class='kw'>limits</span> <span class='kw'>=</span> (<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>25</span>)))
   ),
-  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>plotgrid.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"(i)"</span>, <span class='st'>"(ii)"</span>, <span class='st'>"(iii)"</span>)),
 )</div><div class='output co'>#&gt; <span class='warning'>Warning: full precision may not have been achieved in 'pnt{final}'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: full precision may not have been achieved in 'pnt{final}'</span></div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: full precision may not have been achieved in 'pnt{final}'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: full precision may not have been achieved in 'pnt{final}'</span></div><div class='img'><img src='grouped_gghistostats-1.png' alt='' width='700' height='433' /></div><div class='input'># }
 </div></pre>
   </div>

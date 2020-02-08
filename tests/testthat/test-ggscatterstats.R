@@ -61,7 +61,6 @@ testthat::test_that(
     testthat::expect_equal(dim(pb$data[[4]]), c(1L, 7L))
     testthat::expect_equal(dim(pb$data[[5]]), c(83L, 15L))
     testthat::expect_equal(dim(pb$data[[6]]), c(83L, 15L))
-    # testthat::expect_equal(dim(pb$data[[7]]), c(2L, 15L))
 
     # checking intercepts
     testthat::expect_equal(pb$data[[3]]$xintercept, 10.43373, tolerance = 0.001)

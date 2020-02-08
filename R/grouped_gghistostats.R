@@ -6,10 +6,9 @@
 #'
 #' @inheritParams gghistostats
 #' @inheritParams grouped_ggbetweenstats
-#' @inheritDotParams combine_plots
+#' @inheritDotParams gghistostats -title
 #'
-#' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
-#' @importFrom dplyr group_by n arrange
+#' @importFrom dplyr select bind_rows
 #' @importFrom rlang !! enquo quo_name ensym
 #' @importFrom purrr pmap
 #' @importFrom tidyr drop_na
@@ -32,12 +31,12 @@
 #'   test.value = 5,
 #'   grouping.var = Species,
 #'   bar.fill = "orange",
-#'   nrow = 1,
 #'   ggplot.component = list(
 #'     ggplot2::scale_x_continuous(breaks = seq(3, 9, 1), limits = (c(3, 9))),
 #'     ggplot2::scale_y_continuous(breaks = seq(0, 25, 5), limits = (c(0, 25)))
 #'   ),
-#'   messages = FALSE
+#'   messages = FALSE,
+#'   plotgrid.args = list(nrow = 1, labels = c("(i)", "(ii)", "(iii)")),
 #' )
 #' }
 #' @export
@@ -47,50 +46,17 @@
 grouped_gghistostats <- function(data,
                                  x,
                                  grouping.var,
-                                 title.prefix = NULL,
                                  binwidth = NULL,
-                                 bar.measure = "count",
-                                 xlab = NULL,
-                                 stat.title = NULL,
-                                 subtitle = NULL,
-                                 caption = NULL,
-                                 type = "parametric",
-                                 test.value = 0,
-                                 bf.prior = 0.707,
-                                 bf.message = TRUE,
-                                 robust.estimator = "onestep",
-                                 effsize.type = "g",
-                                 effsize.noncentral = TRUE,
-                                 conf.level = 0.95,
-                                 nboot = 100,
-                                 k = 2,
-                                 ggtheme = ggplot2::theme_bw(),
-                                 ggstatsplot.layer = TRUE,
-                                 fill.gradient = FALSE,
-                                 low.color = "#0072B2",
-                                 high.color = "#D55E00",
-                                 bar.fill = "grey50",
-                                 results.subtitle = TRUE,
-                                 centrality.para = "mean",
-                                 centrality.color = "blue",
-                                 centrality.size = 1.0,
-                                 centrality.linetype = "dashed",
-                                 centrality.line.labeller = TRUE,
-                                 centrality.k = 2,
-                                 test.value.line = FALSE,
-                                 test.value.color = "black",
-                                 test.value.size = 1.0,
-                                 test.value.linetype = "dashed",
-                                 test.line.labeller = TRUE,
-                                 test.k = 0,
-                                 normal.curve = FALSE,
-                                 normal.curve.color = "black",
-                                 normal.curve.linetype = "solid",
-                                 normal.curve.size = 1.0,
-                                 ggplot.component = NULL,
+                                 title.prefix = NULL,
                                  output = "plot",
-                                 messages = TRUE,
-                                 ...) {
+                                 ...,
+                                 plotgrid.args = list(),
+                                 title.text = NULL,
+                                 title.args = list(size = 16, fontface = "bold"),
+                                 caption.text = NULL,
+                                 caption.args = list(size = 10),
+                                 sub.text = NULL,
+                                 sub.args = list(size = 12)) {
 
   # ======================== computing binwidth ============================
 
@@ -134,55 +100,24 @@ grouped_gghistostats <- function(data,
       .f = ggstatsplot::gghistostats,
       # put common parameters here
       x = {{ x }},
-      bar.measure = bar.measure,
-      xlab = xlab,
-      stat.title = stat.title,
-      subtitle = subtitle,
-      caption = caption,
-      type = type,
-      test.value = test.value,
-      bf.prior = bf.prior,
-      bf.message = bf.message,
-      robust.estimator = robust.estimator,
-      effsize.type = effsize.type,
-      effsize.noncentral = effsize.noncentral,
-      conf.level = conf.level,
-      nboot = nboot,
-      low.color = low.color,
-      high.color = high.color,
-      bar.fill = bar.fill,
-      k = k,
-      results.subtitle = results.subtitle,
-      centrality.para = centrality.para,
-      centrality.color = centrality.color,
-      centrality.size = centrality.size,
-      centrality.linetype = centrality.linetype,
-      centrality.line.labeller = centrality.line.labeller,
-      centrality.k = centrality.k,
-      test.value.line = test.value.line,
-      test.value.color = test.value.color,
-      test.value.size = test.value.size,
-      test.value.linetype = test.value.linetype,
-      test.line.labeller = test.line.labeller,
-      test.k = test.k,
-      normal.curve = normal.curve,
-      normal.curve.color = normal.curve.color,
-      normal.curve.linetype = normal.curve.linetype,
-      normal.curve.size = normal.curve.size,
       binwidth = binwidth,
-      ggtheme = ggtheme,
-      ggstatsplot.layer = ggstatsplot.layer,
-      fill.gradient = fill.gradient,
-      ggplot.component = ggplot.component,
       output = output,
-      messages = messages
+      ...
     )
 
   # combining the list of plots into a single plot
-  # inform user this can't be modified further with ggplot commands
   if (output == "plot") {
-    return(ggstatsplot::combine_plots(plotlist = plotlist_purrr, ...))
+    return(ggstatsplot::combine_plots2(
+      plotlist = plotlist_purrr,
+      plotgrid.args = plotgrid.args,
+      title.text = title.text,
+      title.args = title.args,
+      caption.text = caption.text,
+      caption.args = caption.args,
+      sub.text = sub.text,
+      sub.args = sub.args
+    ))
   } else {
-    return(plotlist_purrr)
+    return(plotlist_purrr) # subtitle list
   }
 }

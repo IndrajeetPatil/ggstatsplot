@@ -3,6 +3,7 @@
 #' @description Histogram with statistical details from one-sample test included
 #'   in the plot as a subtitle.
 #'
+#' @param ... Currently ignored.
 #' @param bar.measure Character describing what value needs to be represented as
 #'   height in the bar chart. This can either be `"count"`, which shows number
 #'   of points in bin, or `"density"`, which density of points in bin, scaled to
@@ -121,7 +122,8 @@ gghistostats <- function(data,
                          normal.curve.size = 1.0,
                          ggplot.component = NULL,
                          output = "plot",
-                         messages = TRUE) {
+                         messages = TRUE,
+                         ...) {
 
   # ================================= dataframe ==============================
 
