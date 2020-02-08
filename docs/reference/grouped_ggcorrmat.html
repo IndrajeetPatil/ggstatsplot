@@ -271,16 +271,6 @@ for each correlation pair).</p></td>
       <td><p>Arguments passed on to <code><a href='ggcorrmat.html'>ggcorrmat</a></code></p><dl class='dl-horizontal'>
     <dt><code>matrix.type</code></dt><dd><p>Character, <code>"full"</code> (default), <code>"upper"</code> or <code>"lower"</code>,
 display full matrix, lower triangular or upper triangular matrix.</p></dd>
-    <dt><code>method</code></dt><dd><p>Character argument that decides the visualization method of
-correlation matrix to be used. Allowed values are <code>"square"</code> (default),
-<code>"circle"</code></p></dd>
-    <dt><code>corr.method</code></dt><dd><p>A character string indicating which correlation
-coefficient is to be computed (<code>"pearson"</code> (default) or <code>"kendall"</code> or
-<code>"spearman"</code>). <code>"robust"</code> can also be entered but only if <code>output</code> argument
-is set to either <code>"correlations"</code> or <code>"p-values"</code>. The robust correlation
-used is percentage bend correlation (see <code><a href='https://rdrr.io/pkg/WRS2/man/pbcor.html'>?WRS2::pball</a></code>). Abbreviations
-will also work: <code>"p"</code> (for parametric/Pearson's <em>r</em>), <code>"np"</code>
-(nonparametric/Spearman's <em>rho</em>), <code>"r"</code> (robust).</p></dd>
     <dt><code>type</code></dt><dd><p>A character string indicating which correlation
 coefficient is to be computed (<code>"pearson"</code> (default) or <code>"kendall"</code> or
 <code>"spearman"</code>). <code>"robust"</code> can also be entered but only if <code>output</code> argument
@@ -290,8 +280,6 @@ will also work: <code>"p"</code> (for parametric/Pearson's <em>r</em>), <code>"n
 (nonparametric/Spearman's <em>rho</em>), <code>"r"</code> (robust).</p></dd>
     <dt><code>beta</code></dt><dd><p>A numeric bending constant for percentage bend robust correlation
 coefficient (Default: <code>0.1</code>).</p></dd>
-    <dt><code>digits</code></dt><dd><p>Decides the number of decimal digits to be displayed
-(Default: <code>2</code>).</p></dd>
     <dt><code>k</code></dt><dd><p>Decides the number of decimal digits to be displayed
 (Default: <code>2</code>).</p></dd>
     <dt><code>sig.level</code></dt><dd><p>Significance level (Default: <code>0.05</code>). If the <em>p</em>-value in
@@ -306,47 +294,22 @@ the plot. This argument is relevant only when <code>output = "plot"</code>.</p><
 <strong>adjusted</strong> <em>p</em>-values will be used for the <strong>upper</strong> triangle, while
 <strong>unadjusted</strong> <em>p</em>-values will be used for the <strong>lower</strong> triangle of the
 matrix.</p></dd>
-    <dt><code>hc.order</code></dt><dd><p>Logical value. If <code>TRUE</code>, correlation matrix will be
-hc.ordered using <code>hclust</code> function (Default is <code>FALSE</code>).</p></dd>
-    <dt><code>hc.method</code></dt><dd><p>The agglomeration method to be used in <code>hclust</code> (see
-<code><a href='https://rdrr.io/r/stats/hclust.html'>?hclust</a></code>).</p></dd>
-    <dt><code>lab</code></dt><dd><p>Logical value. If <code>TRUE</code>, correlation coefficient values will be
-displayed in the plot.</p></dd>
     <dt><code>colors</code></dt><dd><p>A vector of 3 colors for low, mid, and high correlation values.
 If set to <code>NULL</code>, manual specification of colors will be turned off and 3
 colors from the specified <code>palette</code> from <code>package</code> will be selected.</p></dd>
-    <dt><code>outline.color</code></dt><dd><p>The outline color of square or circle. Default value is
-<code>"gray"</code>.</p></dd>
     <dt><code>subtitle</code></dt><dd><p>The text for the plot subtitle.</p></dd>
     <dt><code>caption</code></dt><dd><p>The text for the plot caption. If <code>NULL</code>, a default caption
 will be shown.</p></dd>
     <dt><code>caption.default</code></dt><dd><p>Logical that decides whether the default caption
 should be shown (default: <code>TRUE</code>).</p></dd>
-    <dt><code>lab.col</code></dt><dd><p>Color to be used for the correlation coefficient labels
-(applicable only when <code>lab = TRUE</code>).</p></dd>
-    <dt><code>lab.size</code></dt><dd><p>Size to be used for the correlation coefficient labels
-(applicable only when <code>lab = TRUE</code>).</p></dd>
-    <dt><code>insig</code></dt><dd><p>Character used to show specialized insignificant correlation
-coefficients (<code>"pch"</code> (default) or <code>"blank"</code>). If <code>"blank"</code>, the
-corresponding glyphs will be removed; if "pch" is used, characters (see
-<code><a href='https://rdrr.io/r/graphics/points.html'>?pch</a></code> for details) will be added on the corresponding glyphs.</p></dd>
     <dt><code>pch</code></dt><dd><p>Decides the glyphs (read point shapes) to be used for
 insignificant correlation coefficients (only valid when <code>insig = "pch"</code>).
 Default value is <code>pch = 4</code>.</p></dd>
-    <dt><code>pch.col</code></dt><dd><p>The color and the cex (size) of <code>pch</code> (only valid when
-<code>insig = "pch"</code>). Defaults are <code>pch.col = "#F0E442"</code> and <code>pch.cex = 10</code>.</p></dd>
-    <dt><code>pch.cex</code></dt><dd><p>The color and the cex (size) of <code>pch</code> (only valid when
-<code>insig = "pch"</code>). Defaults are <code>pch.col = "#F0E442"</code> and <code>pch.cex = 10</code>.</p></dd>
-    <dt><code>tl.cex</code></dt><dd><p>The size, the color, and the string rotation of
-text label (variable names, i.e.).</p></dd>
-    <dt><code>tl.col</code></dt><dd><p>The size, the color, and the string rotation of
-text label (variable names, i.e.).</p></dd>
-    <dt><code>tl.srt</code></dt><dd><p>The size, the color, and the string rotation of
-text label (variable names, i.e.).</p></dd>
-    <dt><code>package</code></dt><dd><p>Name of package from which the palette is desired as string
-or symbol.</p></dd>
-    <dt><code>palette</code></dt><dd><p>Name of palette as string or symbol.</p></dd>
-    <dt><code>direction</code></dt><dd><p>Either <code>1</code> or <code>-1</code>. If <code>-1</code> the palette will be reversed.</p></dd>
+    <dt><code>ggcorrplot.args</code></dt><dd><p>A list of additional (mostly aesthetic) arguments that
+will be passed to <code><a href='https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html'>ggcorrplot::ggcorrplot</a></code> function. The list should avoid
+any of the following arguments since they are already being used: <code>corr</code>,
+<code>method</code>, <code>p.mat</code>, <code>sig.level</code>, <code>ggtheme</code>, <code>colors</code>, <code>matrix.type</code>, <code>lab</code>,
+<code>pch</code>, <code>legend.title</code>, <code>digits</code>.</p></dd>
     <dt><code>ggtheme</code></dt><dd><p>A function, <code>ggplot2</code> theme name. Default value is
 <code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
 extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>,
@@ -355,8 +318,22 @@ extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggtheme
 theme elements are to be displayed along with the selected <code>ggtheme</code>
 (Default: <code>TRUE</code>). <code>theme_ggstatsplot</code> is an opinionated theme layer that
 override some aspects of the selected <code>ggtheme</code>.</p></dd>
+    <dt><code>method</code></dt><dd><p>Smoothing method (function) to use, accepts either a character vector,
+e.g. <code>"auto"</code>, <code>"lm"</code>, <code>"glm"</code>, <code>"gam"</code>, <code>"loess"</code> or a function, e.g.
+<code><a href='https://rdrr.io/pkg/MASS/man/rlm.html'>MASS::rlm</a></code> or <code><a href='https://rdrr.io/pkg/mgcv/man/gam.html'>mgcv::gam</a></code>, <code><a href='https://rdrr.io/r/stats/lm.html'>stats::lm</a></code>, or <code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess</a></code>.For <code>method = "auto"</code> the smoothing method is chosen based on the
+size of the largest group (across all panels). <code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess()</a></code> is
+used for less than 1,000 observations; otherwise <code><a href='https://rdrr.io/pkg/mgcv/man/gam.html'>mgcv::gam()</a></code> is
+used with <code>formula = y ~ s(x, bs = "cs")</code>. Somewhat anecdotally,
+<code>loess</code> gives a better appearance, but is \(O(N^{2})\) in memory,
+so does not work for larger datasets.If you have fewer than 1,000 observations but want to use the same <code>gam()</code>
+model that <code>method = "auto"</code> would use, then set
+<code>method = "gam", formula = y ~ s(x, bs = "cs")</code>.</p></dd>
     <dt><code>conf.level</code></dt><dd><p>Scalar between 0 and 1. If unspecified, the defaults return
 <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></dd>
+    <dt><code>package</code></dt><dd><p>Name of package from which the palette is desired as string
+or symbol.</p></dd>
+    <dt><code>palette</code></dt><dd><p>Name of palette as string or symbol.</p></dd>
+    <dt><code>direction</code></dt><dd><p>Either <code>1</code> or <code>-1</code>. If <code>-1</code> the palette will be reversed.</p></dd>
     <dt><code>messages</code></dt><dd><p>Decides whether messages references, notes, and warnings are
 to be displayed (Default: <code>TRUE</code>).</p></dd>
   
@@ -432,14 +409,26 @@ of <em>p</em>-values.</p>
   <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"wesanderson"</span>,
   <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"BottleRocket2"</span>,
   <span class='kw'>plotgrid.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>2</span>)
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: Number of subjects must be greater than 3 to find confidence intervals.</span></div><div class='img'><img src='grouped_ggcorrmat-2.png' alt='' width='700' height='433' /></div><div class='input'>
+)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>In the correlation matrix,
+#&gt; the upper triangle: p-values adjusted for multiple comparisons
+#&gt; the lower triangle: unadjusted p-values.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>In the correlation matrix,
+#&gt; the upper triangle: p-values adjusted for multiple comparisons
+#&gt; the lower triangle: unadjusted p-values.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>In the correlation matrix,
+#&gt; the upper triangle: p-values adjusted for multiple comparisons
+#&gt; the lower triangle: unadjusted p-values.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>In the correlation matrix,
+#&gt; the upper triangle: p-values adjusted for multiple comparisons
+#&gt; the lower triangle: unadjusted p-values.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggcorrmat-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># for getting correlations</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html'>grouped_ggcorrmat</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>sleep_total</span>:<span class='no'>bodywt</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"correlations"</span>
-)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 24 x 8</span><span>
+)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 24 x 8</span><span>
 #&gt;    vore  variable    sleep_total sleep_rem sleep_cycle awake brainwt bodywt
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> carni sleep_total        1         0.92        0.38 -</span><span style='color: #BB0000;'>1</span><span>      -</span><span style='color: #BB0000;'>0.52</span><span>  -</span><span style='color: #BB0000;'>0.44</span><span>

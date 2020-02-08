@@ -11,37 +11,24 @@ ggcorrmat(
   output = "plot",
   matrix.type = "full",
   method = "square",
-  corr.method = "pearson",
-  type = NULL,
+  type = "parametric",
   beta = 0.1,
-  digits = 2,
-  k = NULL,
+  k = 2,
   sig.level = 0.05,
   conf.level = 0.95,
   p.adjust.method = "none",
-  hc.order = FALSE,
-  hc.method = "complete",
-  lab = TRUE,
+  pch = 4,
+  ggcorrplot.args = list(outline.color = "black"),
   package = "RColorBrewer",
   palette = "Dark2",
   direction = 1,
   colors = c("#E69F00", "white", "#009E73"),
-  outline.color = "black",
   ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE,
   title = NULL,
   subtitle = NULL,
   caption = NULL,
   caption.default = TRUE,
-  lab.col = "black",
-  lab.size = 5,
-  insig = "pch",
-  pch = 4,
-  pch.col = "black",
-  pch.cex = 11,
-  tl.cex = 12,
-  tl.col = "black",
-  tl.srt = 45,
   messages = TRUE,
   ...
 )
@@ -68,11 +55,22 @@ for each correlation pair).}
 \item{matrix.type}{Character, \code{"full"} (default), \code{"upper"} or \code{"lower"},
 display full matrix, lower triangular or upper triangular matrix.}
 
-\item{method}{Character argument that decides the visualization method of
-correlation matrix to be used. Allowed values are \code{"square"} (default),
-\code{"circle"}}
+\item{method}{Smoothing method (function) to use, accepts either a character vector,
+e.g. \code{"auto"}, \code{"lm"}, \code{"glm"}, \code{"gam"}, \code{"loess"} or a function, e.g.
+\code{MASS::rlm} or \code{mgcv::gam}, \code{stats::lm}, or \code{stats::loess}.
 
-\item{corr.method, type}{A character string indicating which correlation
+For \code{method = "auto"} the smoothing method is chosen based on the
+size of the largest group (across all panels). \code{\link[stats:loess]{stats::loess()}} is
+used for less than 1,000 observations; otherwise \code{\link[mgcv:gam]{mgcv::gam()}} is
+used with \code{formula = y ~ s(x, bs = "cs")}. Somewhat anecdotally,
+\code{loess} gives a better appearance, but is \eqn{O(N^{2})}{O(N^2)} in memory,
+so does not work for larger datasets.
+
+If you have fewer than 1,000 observations but want to use the same \code{gam()}
+model that \code{method = "auto"} would use, then set
+\code{method = "gam", formula = y ~ s(x, bs = "cs")}.}
+
+\item{type}{A character string indicating which correlation
 coefficient is to be computed (\code{"pearson"} (default) or \code{"kendall"} or
 \code{"spearman"}). \code{"robust"} can also be entered but only if \code{output} argument
 is set to either \code{"correlations"} or \code{"p-values"}. The robust correlation
@@ -83,7 +81,7 @@ will also work: \code{"p"} (for parametric/Pearson's \emph{r}), \code{"np"}
 \item{beta}{A numeric bending constant for percentage bend robust correlation
 coefficient (Default: \code{0.1}).}
 
-\item{digits, k}{Decides the number of decimal digits to be displayed
+\item{k}{Decides the number of decimal digits to be displayed
 (Default: \code{2}).}
 
 \item{sig.level}{Significance level (Default: \code{0.05}). If the \emph{p}-value in
@@ -103,14 +101,15 @@ the plot. This argument is relevant only when \code{output = "plot"}.}
 \strong{unadjusted} \emph{p}-values will be used for the \strong{lower} triangle of the
 matrix.}
 
-\item{hc.order}{Logical value. If \code{TRUE}, correlation matrix will be
-hc.ordered using \code{hclust} function (Default is \code{FALSE}).}
+\item{pch}{Decides the glyphs (read point shapes) to be used for
+insignificant correlation coefficients (only valid when \code{insig = "pch"}).
+Default value is \code{pch = 4}.}
 
-\item{hc.method}{The agglomeration method to be used in \code{hclust} (see
-\code{?hclust}).}
-
-\item{lab}{Logical value. If \code{TRUE}, correlation coefficient values will be
-displayed in the plot.}
+\item{ggcorrplot.args}{A list of additional (mostly aesthetic) arguments that
+will be passed to \code{ggcorrplot::ggcorrplot} function. The list should avoid
+any of the following arguments since they are already being used: \code{corr},
+\code{method}, \code{p.mat}, \code{sig.level}, \code{ggtheme}, \code{colors}, \code{matrix.type}, \code{lab},
+\code{pch}, \code{legend.title}, \code{digits}.}
 
 \item{package}{Name of package from which the palette is desired as string
 or symbol.}
@@ -122,9 +121,6 @@ or symbol.}
 \item{colors}{A vector of 3 colors for low, mid, and high correlation values.
 If set to \code{NULL}, manual specification of colors will be turned off and 3
 colors from the specified \code{palette} from \code{package} will be selected.}
-
-\item{outline.color}{The outline color of square or circle. Default value is
-\code{"gray"}.}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
@@ -146,31 +142,13 @@ will be shown.}
 \item{caption.default}{Logical that decides whether the default caption
 should be shown (default: \code{TRUE}).}
 
-\item{lab.col}{Color to be used for the correlation coefficient labels
-(applicable only when \code{lab = TRUE}).}
-
-\item{lab.size}{Size to be used for the correlation coefficient labels
-(applicable only when \code{lab = TRUE}).}
-
-\item{insig}{Character used to show specialized insignificant correlation
-coefficients (\code{"pch"} (default) or \code{"blank"}). If \code{"blank"}, the
-corresponding glyphs will be removed; if "pch" is used, characters (see
-\code{?pch} for details) will be added on the corresponding glyphs.}
-
-\item{pch}{Decides the glyphs (read point shapes) to be used for
-insignificant correlation coefficients (only valid when \code{insig = "pch"}).
-Default value is \code{pch = 4}.}
-
-\item{pch.col, pch.cex}{The color and the cex (size) of \code{pch} (only valid when
-\code{insig = "pch"}). Defaults are \code{pch.col = "#F0E442"} and \code{pch.cex = 10}.}
-
-\item{tl.cex, tl.col, tl.srt}{The size, the color, and the string rotation of
-text label (variable names, i.e.).}
-
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
 
 \item{...}{Currently ignored.}
+
+\item{outline.color}{The outline color of square or circle. Default value is
+\code{"gray"}.}
 }
 \value{
 Correlation matrix plot or correlation coefficient matrix or matrix

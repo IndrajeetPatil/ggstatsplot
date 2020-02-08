@@ -69,6 +69,9 @@ association test will be run. This argument can not be \code{NULL} for
     \item{\code{sample.size.label}}{Logical that decides whether sample size information
 should be displayed for each level of the grouping variable \code{y}
 (Default: \code{TRUE}).}
+    \item{\code{palette}}{If a character string (e.g., \code{"Set1"}), will use that named
+palette. If a number, will index into the list of palettes of appropriate
+type. Default palette is \code{"Dark2"}.}
     \item{\code{facet.wrap.name}}{The text for the facet_wrap variable label.}
     \item{\code{facet.proptest}}{Decides whether proportion test for \code{main} variable is
 to be carried out for each level of \code{condition} (Default: \code{TRUE}).}
@@ -83,10 +86,6 @@ on the label in each pie slice. Possible options are \code{"percentage"}
 labels (Default: \code{white}).}
     \item{\code{label.fill.alpha}}{Numeric that specifies fill color transparency or
 \code{"alpha"} for slice/bar labels (Default: \code{1} range \code{0} to \code{1}).}
-    \item{\code{package}}{Name of package from which the palette is desired as string
-or symbol.}
-    \item{\code{palette}}{Name of palette as string or symbol.}
-    \item{\code{direction}}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
     \item{\code{bf.message}}{Logical that decides whether to display a caption with
 results from Bayes Factor test in favor of the null hypothesis (default:
 \code{FALSE}).}
@@ -147,6 +146,9 @@ work as expected.}
 displayed in a label, this argument decides whether these two pieces of
 information are going to be on the same line (\code{" "}) or on separate lines
 (\code{"\\n"}).}
+    \item{\code{package}}{Name of package from which the palette is desired as string
+or symbol.}
+    \item{\code{direction}}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
   }}
 
 \item{plotgrid.args}{A list of additional arguments to \code{cowplot::plot_grid}.}

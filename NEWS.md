@@ -11,6 +11,11 @@ BREAKING CHANGES
   - All functions lose the `return` argument, which was supposed to be
     alternative to enter `output`. But this was just leading to more confusion
     on the user's part.
+  - `ggcorrmat` no longer has `corr.method` argument. To be consistent with rest
+    of the functions in this package, the type of statistics should be specified
+    using `type` argument. Additional, it gains a new argument
+    `ggcorrplot.args`, which can be used to pass additional arguments to the
+    underlying plotting function (`ggcorrplot::ggcorrplot`).
   
 MAJOR CHANGES
 

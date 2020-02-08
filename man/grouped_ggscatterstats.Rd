@@ -79,10 +79,6 @@ plots compared to the main plot. A size of \code{5} means that the main plot is
 5x wider and 5x taller than the marginal plots.}
     \item{\code{margins}}{Character describing along which margins to show the plots.
 Any of the following arguments are accepted: \code{"both"}, \code{"x"}, \code{"y"}.}
-    \item{\code{package}}{Name of package from which the palette is desired as string
-or symbol.}
-    \item{\code{direction}}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
-    \item{\code{palette}}{Name of palette as string or symbol.}
     \item{\code{xfill}}{Character describing color fill for \code{x} and \code{y} axes
 marginal distributions (default: \code{"#009E73"} (for \code{x}) and \code{"#D55E00"} (for
 \code{y})). If set to \code{NULL}, manual specification of colors will be turned off
@@ -165,6 +161,10 @@ parametric test} (Default: \code{TRUE}).}
 variable names for \code{x} and \code{y} will be used.}
     \item{\code{ylab}}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
 variable names for \code{x} and \code{y} will be used.}
+    \item{\code{package}}{Name of package from which the palette is desired as string
+or symbol.}
+    \item{\code{palette}}{Name of palette as string or symbol.}
+    \item{\code{direction}}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
     \item{\code{results.subtitle}}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}

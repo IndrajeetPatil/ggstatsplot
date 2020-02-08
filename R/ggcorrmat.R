@@ -20,10 +20,7 @@
 #'   for each correlation pair).
 #' @param matrix.type Character, `"full"` (default), `"upper"` or `"lower"`,
 #'   display full matrix, lower triangular or upper triangular matrix.
-#' @param method Character argument that decides the visualization method of
-#'   correlation matrix to be used. Allowed values are `"square"` (default),
-#'   `"circle"`
-#' @param corr.method,type A character string indicating which correlation
+#' @param type A character string indicating which correlation
 #'   coefficient is to be computed (`"pearson"` (default) or `"kendall"` or
 #'   `"spearman"`). `"robust"` can also be entered but only if `output` argument
 #'   is set to either `"correlations"` or `"p-values"`. The robust correlation
@@ -32,7 +29,7 @@
 #'   (nonparametric/Spearman's *rho*), `"r"` (robust).
 #' @param beta A numeric bending constant for percentage bend robust correlation
 #'   coefficient (Default: `0.1`).
-#' @param digits,k Decides the number of decimal digits to be displayed
+#' @param k Decides the number of decimal digits to be displayed
 #'   (Default: `2`).
 #' @param sig.level Significance level (Default: `0.05`). If the *p*-value in
 #'   *p*-value matrix is bigger than `sig.level`, then the corresponding
@@ -46,12 +43,6 @@
 #'   **adjusted** *p*-values will be used for the **upper** triangle, while
 #'   **unadjusted** *p*-values will be used for the **lower** triangle of the
 #'   matrix.
-#' @param hc.order Logical value. If `TRUE`, correlation matrix will be
-#'   hc.ordered using `hclust` function (Default is `FALSE`).
-#' @param hc.method The agglomeration method to be used in `hclust` (see
-#'   `?hclust`).
-#' @param lab Logical value. If `TRUE`, correlation coefficient values will be
-#'   displayed in the plot.
 #' @param colors A vector of 3 colors for low, mid, and high correlation values.
 #'   If set to `NULL`, manual specification of colors will be turned off and 3
 #'   colors from the specified `palette` from `package` will be selected.
@@ -63,25 +54,14 @@
 #'   will be shown.
 #' @param caption.default Logical that decides whether the default caption
 #'   should be shown (default: `TRUE`).
-#' @param lab.col Color to be used for the correlation coefficient labels
-#'   (applicable only when `lab = TRUE`).
-#' @param lab.size Size to be used for the correlation coefficient labels
-#'   (applicable only when `lab = TRUE`).
-#' @param insig Character used to show specialized insignificant correlation
-#'   coefficients (`"pch"` (default) or `"blank"`). If `"blank"`, the
-#'   corresponding glyphs will be removed; if "pch" is used, characters (see
-#'   `?pch` for details) will be added on the corresponding glyphs.
 #' @param pch Decides the glyphs (read point shapes) to be used for
 #'   insignificant correlation coefficients (only valid when `insig = "pch"`).
 #'   Default value is `pch = 4`.
-#' @param pch.col,pch.cex The color and the cex (size) of `pch` (only valid when
-#'   `insig = "pch"`). Defaults are `pch.col = "#F0E442"` and `pch.cex = 10`.
-#' @param tl.cex,tl.col,tl.srt The size, the color, and the string rotation of
-#'   text label (variable names, i.e.).
-#' @param package Name of package from which the palette is desired as string
-#' or symbol.
-#' @param palette Name of palette as string or symbol.
-#' @param direction Either `1` or `-1`. If `-1` the palette will be reversed.
+#' @param ggcorrplot.args A list of additional (mostly aesthetic) arguments that
+#'   will be passed to `ggcorrplot::ggcorrplot` function. The list should avoid
+#'   any of the following arguments since they are already being used: `corr`,
+#'   `method`, `p.mat`, `sig.level`, `ggtheme`, `colors`, `matrix.type`, `lab`,
+#'   `pch`, `legend.title`, `digits`.
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams ggscatterstats
 #'
@@ -90,7 +70,7 @@
 #' @importFrom ggcorrplot ggcorrplot
 #' @importFrom dplyr select group_by summarize n arrange bind_cols
 #' @importFrom dplyr mutate mutate_at mutate_if
-#' @importFrom purrr is_bare_double is_bare_numeric keep compose
+#' @importFrom purrr is_bare_numeric keep
 #' @importFrom stats median
 #' @importFrom tibble as_tibble rownames_to_column
 #' @importFrom rlang !! enquo quo_name is_null
@@ -169,37 +149,24 @@ ggcorrmat <- function(data,
                       output = "plot",
                       matrix.type = "full",
                       method = "square",
-                      corr.method = "pearson",
-                      type = NULL,
+                      type = "parametric",
                       beta = 0.1,
-                      digits = 2,
-                      k = NULL,
+                      k = 2,
                       sig.level = 0.05,
                       conf.level = 0.95,
                       p.adjust.method = "none",
-                      hc.order = FALSE,
-                      hc.method = "complete",
-                      lab = TRUE,
+                      pch = 4,
+                      ggcorrplot.args = list(outline.color = "black"),
                       package = "RColorBrewer",
                       palette = "Dark2",
                       direction = 1,
                       colors = c("#E69F00", "white", "#009E73"),
-                      outline.color = "black",
                       ggtheme = ggplot2::theme_bw(),
                       ggstatsplot.layer = TRUE,
                       title = NULL,
                       subtitle = NULL,
                       caption = NULL,
                       caption.default = TRUE,
-                      lab.col = "black",
-                      lab.size = 5,
-                      insig = "pch",
-                      pch = 4,
-                      pch.col = "black",
-                      pch.cex = 11,
-                      tl.cex = 12,
-                      tl.col = "black",
-                      tl.srt = 45,
                       messages = TRUE,
                       ...) {
 
@@ -231,10 +198,8 @@ ggcorrmat <- function(data,
   # ============================ checking corr.method =======================
 
   # see which method was used to specify type of correlation
-  corr.method <- type %||% corr.method
-  digits <- k %||% digits
   output <- ggcorrmat_output_switch(output)
-  stats_type <- stats_type_switch(corr.method)
+  stats_type <- stats_type_switch(type)
 
   # if any of the abbreviations have been entered, change them
   corr.method <-
@@ -273,22 +238,10 @@ ggcorrmat <- function(data,
       )
 
     # computing correlations on all included variables
-    corr.mat <- round(x = corr_df$r, digits = digits)
+    corr.mat <- round(x = corr_df$r, digits = k)
 
     # compute a correlation matrix of p-values
     p.mat <- corr_df$p
-
-    # confidence intervals
-    if (output == "ci") {
-      # composing a function to convert dataframe to tibble
-      tibble_helper <- purrr::compose(tibble::as_tibble, tibble::rownames_to_column)
-
-      ci.mat <-
-        list(corr_df$ci, corr_df$ci.adj) %>%
-        purrr::map(.x = ., .f = tibble_helper, var = "pair") %>%
-        dplyr::bind_cols(.) %>%
-        dplyr::select(.data = ., pair, r, dplyr::everything(), -pair1)
-    }
   }
 
   # robust correlation
@@ -308,7 +261,7 @@ ggcorrmat <- function(data,
     rob_cor <- WRS2::pball(x = df, beta = beta)
 
     # extracting the correlations and formatting them
-    corr.mat <- round(x = rob_cor$pbcorm, digits = digits)
+    corr.mat <- round(x = rob_cor$pbcorm, digits = k)
 
     # converting `NA`s to 0's
     rob_cor$p.values[is.na(rob_cor$p.values)] <- 0
@@ -383,29 +336,20 @@ ggcorrmat <- function(data,
 
     # plotting the correlalogram
     plot <-
-      ggcorrplot::ggcorrplot(
+      rlang::exec(
+        .f = ggcorrplot::ggcorrplot,
         corr = corr.mat,
         method = method,
         p.mat = p.mat,
         sig.level = sig.level,
-        type = matrix.type,
-        hc.method = hc.method,
-        hc.order = hc.order,
-        lab = lab,
-        outline.color = outline.color,
         ggtheme = ggtheme,
         colors = colors,
-        legend.title = legend.title.text,
-        lab_col = lab.col,
-        lab_size = lab.size,
-        insig = insig,
+        type = matrix.type,
+        lab = TRUE,
         pch = pch,
-        pch.col = pch.col,
-        pch.cex = pch.cex,
-        tl.cex = tl.cex,
-        tl.col = tl.col,
-        tl.srt = tl.srt,
-        digits = digits
+        legend.title = legend.title.text,
+        digits = k,
+        !!!ggcorrplot.args
       )
 
     # =========================== labels ==================================
@@ -472,10 +416,10 @@ ggcorrmat <- function(data,
   # return the desired result
   return(
     switch(output,
-      "r" = tibble::as_tibble(x = corr.mat, rownames = "variable"),
-      "n" = tibble::as_tibble(x = corr_df$n, rownames = "variable"),
-      "ci" = tibble::as_tibble(ci.mat),
-      "p" = tibble::as_tibble(x = p.mat, rownames = "variable"),
+      "r" = tibble::as_tibble(corr.mat, rownames = "variable"),
+      "n" = tibble::as_tibble(corr_df$n, rownames = "variable"),
+      "ci" = tibble::as_tibble(corr_df$ci, rownames = "pair"),
+      "p" = tibble::as_tibble(p.mat, rownames = "variable"),
       "plot" = plot,
       plot
     )

@@ -5,7 +5,7 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "ggstatsplot",
-  "description": "Extension of 'ggplot2', 'ggstatsplot' creates\n    graphics with details from statistical tests included in the plots\n    themselves. It is targeted primarily at behavioral sciences community\n    to provide a one-line code to generate information-rich plots for\n    statistical analysis of continuous (violin plots, scatterplots,\n    histograms, dot plots, dot-and-whisker plots) or categorical (pie and\n    bar charts) data. Currently, it supports only the most common types of\n    statistical tests: parametric, nonparametric, robust, and bayesian\n    versions of t-test/anova, correlation analyses, contingency table\n    analysis, and regression analyses.",
+  "description": "Extension of 'ggplot2', 'ggstatsplot' creates\n    graphics with details from statistical tests included in the plots\n    themselves. It is targeted primarily at behavioral sciences community\n    to provide a one-line code to generate information-rich plots for\n    statistical analysis of continuous (violin plots, scatterplots,\n    histograms, dot plots, dot-and-whisker plots) or categorical (pie and\n    bar charts) data. Currently, it supports only the most common types of\n    statistical tests: parametric, nonparametric, robust, and bayesian\n    versions of t-test/anova, correlation analyses, contingency table\n    analysis, meta-analysis, and regression analyses.",
   "name": "ggstatsplot: 'ggplot2' Based Plots with Statistical Details",
   "codeRepository": "https://github.com/IndrajeetPatil/ggstatsplot",
   "relatedLink": [

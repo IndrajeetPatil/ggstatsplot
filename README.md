@@ -7,24 +7,28 @@
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [![CRAN\_Release\_Badge](http://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                  | [![Travis Build Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](https://travis-ci.org/IndrajeetPatil/ggstatsplot)                                               | [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)     | [![GitHub version](https://img.shields.io/badge/GitHub-0.3.0.9000-orange.svg?style=flat-square)](https://github.com/IndrajeetPatil/ggstatsplot/)               | [![Website](https://img.shields.io/badge/website-ggstatsplot-orange.svg?colorB=E91E63)](https://indrajeetpatil.github.io/ggstatsplot/)                          |
 | [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)                      | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Forks](https://img.shields.io/badge/forks-88-blue.svg)](https://github.com/IndrajeetPatil/ggstatsplot/)                                                     | [![Rdoc](https://www.rdocumentation.org/badges/version/ggstatsplot)](https://www.rdocumentation.org/packages/ggstatsplot)                                       |
-| [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/)                                                      | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                                               | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](https://img.shields.io/badge/issues-27-red.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)                                       | [![vignettes](https://img.shields.io/badge/vignettes-0.3.0-orange.svg?colorB=FF5722)](https://CRAN.R-project.org/package=ggstatsplot/vignettes/)                |
+| [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/)                                                      | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                                               | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](https://img.shields.io/badge/issues-26-red.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)                                       | [![vignettes](https://img.shields.io/badge/vignettes-0.3.0-orange.svg?colorB=FF5722)](https://CRAN.R-project.org/package=ggstatsplot/vignettes/)                |
 | [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot) | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2074621.svg)](https://doi.org/10.5281/zenodo.2074621)                                                       |
 | [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.com/IndrajeetPatil/ggstatsplot)                               | [![Last-changedate](https://img.shields.io/badge/last%20change-2020--02--08-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
 | [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                                    | [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                                            | [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ggstatsplot/community)                                           | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)                                                     | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
 
 # Raison d’être <img src="man/figures/logo.png" align="right" width="360" />
 
+> “What is to be sought in designs for the display of information is the
+> clear portrayal of complexity. Not the complication of the simple;
+> rather … the revelation of the complex.”  
+> \- Edward R. Tufte
+
 [`ggstatsplot`](https://indrajeetpatil.github.io/ggstatsplot/) is an
 extension of [`ggplot2`](https://github.com/tidyverse/ggplot2) package
 for creating graphics with details from statistical tests included in
-the plots themselves and targeted primarily at behavioral sciences
-community to provide a one-line code to produce information-rich plots.
-In a typical exploratory data analysis workflow, data visualization and
-statistical modeling are two different phases: visualization informs
-modeling, and modeling in its turn can suggest a different visualization
-method, and so on and so forth. The central idea of `ggstatsplot` is
-simple: combine these two phases into one in the form of graphics with
-statistical details, which makes data exploration simpler and faster.
+the information-rich plots themselves. In a typical exploratory data
+analysis workflow, data visualization and statistical modeling are two
+different phases: visualization informs modeling, and modeling in its
+turn can suggest a different visualization method, and so on and so
+forth. The central idea of `ggstatsplot` is simple: combine these two
+phases into one in the form of graphics with statistical details, which
+makes data exploration simpler and faster.
 
 # Summary of available plots
 
@@ -52,7 +56,7 @@ same analysis for any grouping variable.
 Currently, it supports only the most common types of statistical tests:
 **parametric**, **nonparametric**, **robust**, and **bayesian** versions
 of **t-test**/**anova**, **correlation** analyses, **contingency table**
-analysis, and **regression** analyses.
+analysis, **meta-analysis**, and **regression** analyses.
 
 The table below summarizes all the different types of analyses currently
 supported in this package-
@@ -66,7 +70,7 @@ supported in this package-
 | `ggscatterstats`                 | Correlation between two variables                 | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | `ggpiestats`, `ggbarstats`       | Association between categorical variables         | <font color="green">Yes</font> | `NA`                           | `NA`                           | <font color="green">Yes</font> |
 | `ggpiestats`, `ggbarstats`       | Equal proportions for categorical variable levels | <font color="green">Yes</font> | `NA`                           | `NA`                           | <font color="green">Yes</font> |
-| `ggcoefstats`                    | Regression model coefficients                     | <font color="green">Yes</font> | <font color="red">No</font>    | <font color="green">Yes</font> | <font color="red">No</font>    |
+| `ggcoefstats`                    | Regression model coefficients                     | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | `ggcoefstats`                    | Random-effects meta-analysis                      | <font color="green">Yes</font> | <font color="red">No</font>    | <font color="green">Yes</font> | <font color="green">Yes</font> |
 
 # Statistical reporting
@@ -213,7 +217,7 @@ ggstatsplot::ggplot_converter
 #> function(plot) {
 #>   cowplot::ggdraw() + cowplot::draw_grob(grid::grobTree(plot))
 #> }
-#> <bytecode: 0x000000002f21a6a8>
+#> <bytecode: 0x000000002fab87c0>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -1072,7 +1076,7 @@ set.seed(123)
 # as a default this function outputs a correlalogram plot
 ggstatsplot::ggcorrmat(
   data = ggplot2::msleep,
-  corr.method = "robust", # correlation method
+  type = "robust", # correlation method
   sig.level = 0.001, # threshold of significance
   p.adjust.method = "holm", # p-value adjustment method for multiple comparisons
   cor.vars = c(sleep_rem, awake:bodywt), # a range of variables can be selected
@@ -1108,9 +1112,9 @@ options(pillar.sigfig = 4)
 # getting the correlation coefficient matrix
 ggstatsplot::ggcorrmat(
   data = iris, # all numeric variables from data will be used
-  corr.method = "robust",
+  type = "robust",
   output = "correlations", # specifying the needed output ("r" or "corr" will also work)
-  digits = 3 # number of digits to be dispayed for correlation coefficient
+  k = 3 # number of digits to be dispayed for correlation coefficient
 )
 #> # A tibble: 4 x 5
 #>   variable     Sepal.Length Sepal.Width Petal.Length Petal.Width
@@ -1124,7 +1128,7 @@ ggstatsplot::ggcorrmat(
 ggstatsplot::ggcorrmat(
   data = ggplot2::msleep,
   cor.vars = sleep_total:bodywt,
-  corr.method = "robust",
+  type = "robust",
   output = "p.values", # only "p" or "p-values" will also work
   p.adjust.method = "holm"
 )
@@ -1142,51 +1146,34 @@ ggstatsplot::ggcorrmat(
 ggstatsplot::ggcorrmat(
   data = ggplot2::msleep,
   cor.vars = sleep_total:bodywt,
-  corr.method = "spearman",
+  type = "spearman",
   output = "ci",
   p.adjust.method = "holm"
 )
-#> # A tibble: 15 x 7
-#>    pair                          r    lower    upper          p lower.adj
-#>    <chr>                     <dbl>    <dbl>    <dbl>      <dbl>     <dbl>
-#>  1 sleep_total-sleep_rem    0.7518  0.6167   0.8438  2.916e- 12  0.5402  
-#>  2 sleep_total-sleep_cycle -0.4737 -0.7058  -0.1498  6.169e-  3 -0.7738  
-#>  3 sleep_total-awake       -1.000  -1.000   -1.000   2.419e-226 -1.000   
-#>  4 sleep_total-brainwt     -0.3605 -0.5694  -0.1078  6.348e-  3 -0.6290  
-#>  5 sleep_total-bodywt      -0.3120 -0.4944  -0.1033  4.085e-  3 -0.5302  
-#>  6 sleep_rem-sleep_cycle   -0.3381 -0.6144   0.01198 5.839e-  2 -0.6806  
-#>  7 sleep_rem-awake         -0.7518 -0.8438  -0.6167  2.911e- 12 -0.8748  
-#>  8 sleep_rem-brainwt       -0.2213 -0.4756   0.06701 1.306e-  1 -0.4756  
-#>  9 sleep_rem-bodywt        -0.3277 -0.5353  -0.08265 9.947e-  3 -0.5838  
-#> 10 sleep_cycle-awake        0.4737  0.1498   0.7058  6.169e-  3 -0.006407
-#> 11 sleep_cycle-brainwt      0.8516  0.7088   0.9274  2.420e-  9  0.6080  
-#> 12 sleep_cycle-bodywt       0.4178  0.08089  0.6690  1.734e-  2 -0.06265 
-#> 13 awake-brainwt            0.3605  0.1078   0.5694  6.348e-  3  0.007931
-#> 14 awake-bodywt             0.3120  0.1032   0.4944  4.089e-  3  0.07202 
-#> 15 brainwt-bodywt           0.9338  0.8892   0.9608  9.155e- 26  0.8583  
-#>      upper.adj
-#>          <dbl>
-#>  1  0.8740    
-#>  2  0.00007215
-#>  3 -1.000     
-#>  4 -0.01505   
-#>  5 -0.05506   
-#>  6  0.1257    
-#>  7 -0.5376    
-#>  8  0.06701   
-#>  9 -0.01223   
-#> 10  0.7763    
-#> 11  0.9487    
-#> 12  0.7410    
-#> 13  0.6333    
-#> 14  0.5178    
-#> 15  0.9697
+#> # A tibble: 15 x 5
+#>    pair                       lower       r    upper          p
+#>    <chr>                      <dbl>   <dbl>    <dbl>      <dbl>
+#>  1 sleep_total-sleep_rem    0.6167   0.7518  0.8438  2.916e- 12
+#>  2 sleep_total-sleep_cycle -0.7058  -0.4737 -0.1498  6.169e-  3
+#>  3 sleep_total-awake       -1.000   -1.000  -1.000   2.419e-226
+#>  4 sleep_total-brainwt     -0.5694  -0.3605 -0.1078  6.348e-  3
+#>  5 sleep_total-bodywt      -0.4944  -0.3120 -0.1033  4.085e-  3
+#>  6 sleep_rem-sleep_cycle   -0.6144  -0.3381  0.01198 5.839e-  2
+#>  7 sleep_rem-awake         -0.8438  -0.7518 -0.6167  2.911e- 12
+#>  8 sleep_rem-brainwt       -0.4756  -0.2213  0.06701 1.306e-  1
+#>  9 sleep_rem-bodywt        -0.5353  -0.3277 -0.08265 9.947e-  3
+#> 10 sleep_cycle-awake        0.1498   0.4737  0.7058  6.169e-  3
+#> 11 sleep_cycle-brainwt      0.7088   0.8516  0.9274  2.420e-  9
+#> 12 sleep_cycle-bodywt       0.08089  0.4178  0.6690  1.734e-  2
+#> 13 awake-brainwt            0.1078   0.3605  0.5694  6.348e-  3
+#> 14 awake-bodywt             0.1032   0.3120  0.4944  4.089e-  3
+#> 15 brainwt-bodywt           0.8892   0.9338  0.9608  9.155e- 26
 
 # getting the sample sizes for all pairs
 ggstatsplot::ggcorrmat(
   data = ggplot2::msleep,
   cor.vars = sleep_total:bodywt,
-  corr.method = "robust",
+  type = "robust",
   output = "n" # note that n is different due to NAs
 )
 #> # A tibble: 6 x 7
@@ -1217,10 +1204,10 @@ ggstatsplot::grouped_ggcorrmat(
     genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
   ),
   cor.vars = length:votes,
-  corr.method = "np",
+  type = "nonparametric",
   colors = c("#cbac43", "white", "#550000"),
   grouping.var = genre, # grouping variable
-  digits = 3, # number of digits after decimal point
+  k = 3, # number of digits after decimal point
   title.prefix = "Movie genre",
   messages = FALSE,
   plotgrid.args = list(nrow = 2)
