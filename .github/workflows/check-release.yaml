@@ -1,9 +1,10 @@
 on: [push, pull_request]
 
-name: R-CMD-check
+name: R
 
 jobs:
-  R-CMD-check:
+  check:
+    name: Check
     runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v1
