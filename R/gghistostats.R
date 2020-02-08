@@ -29,7 +29,6 @@
 #'   to use the `max(x) - min(x) / sqrt(N)`. You should always check this value
 #'   and explore multiple widths to find the best to illustrate the stories in
 #'   your data.
-#' @inheritParams theme_ggstatsplot
 #' @inheritParams statsExpressions::expr_t_onesample
 #' @inheritParams histo_labeller
 #' @inheritParams ggbetweenstats

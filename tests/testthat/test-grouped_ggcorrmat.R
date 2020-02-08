@@ -27,7 +27,7 @@ testthat::test_that(
         data = movies_filtered,
         grouping.var = mpaa,
         cor.vars = length:votes,
-        corr.method = "p",
+        type = "p",
         messages = FALSE
       )),
       what = "gg"
@@ -40,7 +40,7 @@ testthat::test_that(
         data = movies_filtered,
         grouping.var = "mpaa",
         cor.vars = c("length":"votes"),
-        corr.method = "np",
+        type = "np",
         messages = FALSE
       )),
       what = "gg"
@@ -54,7 +54,7 @@ testthat::test_that(
       suppressWarnings(ggstatsplot::grouped_ggcorrmat(
         data = movies_filtered,
         grouping.var = mpaa,
-        corr.method = "p",
+        type = "p",
         messages = FALSE
       )),
       what = "gg"
@@ -66,7 +66,7 @@ testthat::test_that(
       suppressWarnings(ggstatsplot::grouped_ggcorrmat(
         data = movies_filtered,
         grouping.var = "mpaa",
-        corr.method = "r",
+        type = "r",
         messages = TRUE
       )),
       what = "gg"
@@ -109,7 +109,7 @@ testthat::test_that(
       )
 
     # testing dataframe
-    testthat::expect_equal(dim(df11), c(4L, 8L))
+    testthat::expect_equal(dim(df11), c(4L, 6L))
     testthat::expect_identical(df11$vore, c("carni", "herbi", "insecti", "omni"))
     testthat::expect_identical(
       df11$pair,
@@ -133,14 +133,6 @@ testthat::test_that(
       tolerance = 0.01
     )
     testthat::expect_equal(df11$upper,
-      c(0.8815091, 0.7074071, 0.8548003, 0.7034165),
-      tolerance = 0.01
-    )
-    testthat::expect_equal(df11$lower.adj,
-      c(-0.21442721, -0.06863955, -0.90480369, -0.17188998),
-      tolerance = 0.01
-    )
-    testthat::expect_equal(df11$upper.adj,
       c(0.8815091, 0.7074071, 0.8548003, 0.7034165),
       tolerance = 0.01
     )
@@ -208,7 +200,7 @@ testthat::test_that(
     )
 
     # testing CIs
-    testthat::expect_equal(dim(df4), c(12L, 8L))
+    testthat::expect_equal(dim(df4), c(12L, 6L))
     testthat::expect_identical(unique(df4$vore), c("carni", "herbi", "insecti", "omni"))
     testthat::expect_equal(
       df4$r,

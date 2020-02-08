@@ -23,7 +23,7 @@ Description: Extension of 'ggplot2', 'ggstatsplot' creates
     bar charts) data. Currently, it supports only the most common types of
     statistical tests: parametric, nonparametric, robust, and bayesian
     versions of t-test/anova, correlation analyses, contingency table
-    analysis, and regression analyses.
+    analysis, meta-analysis, and regression analyses.
 License: GPL-3 | file LICENSE
 URL: https://indrajeetpatil.github.io/ggstatsplot/,
     https://github.com/IndrajeetPatil/ggstatsplot

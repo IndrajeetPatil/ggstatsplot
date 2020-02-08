@@ -291,6 +291,9 @@ association test will be run. This argument can not be <code>NULL</code> for
     <dt><code>sample.size.label</code></dt><dd><p>Logical that decides whether sample size information
 should be displayed for each level of the grouping variable <code>y</code>
 (Default: <code>TRUE</code>).</p></dd>
+    <dt><code>palette</code></dt><dd><p>If a character string (e.g., <code>"Set1"</code>), will use that named
+palette. If a number, will index into the list of palettes of appropriate
+type. Default palette is <code>"Dark2"</code>.</p></dd>
     <dt><code>facet.wrap.name</code></dt><dd><p>The text for the facet_wrap variable label.</p></dd>
     <dt><code>facet.proptest</code></dt><dd><p>Decides whether proportion test for <code>main</code> variable is
 to be carried out for each level of <code>condition</code> (Default: <code>TRUE</code>).</p></dd>
@@ -305,10 +308,6 @@ on the label in each pie slice. Possible options are <code>"percentage"</code>
 labels (Default: <code>white</code>).</p></dd>
     <dt><code>label.fill.alpha</code></dt><dd><p>Numeric that specifies fill color transparency or
 <code>"alpha"</code> for slice/bar labels (Default: <code>1</code> range <code>0</code> to <code>1</code>).</p></dd>
-    <dt><code>package</code></dt><dd><p>Name of package from which the palette is desired as string
-or symbol.</p></dd>
-    <dt><code>palette</code></dt><dd><p>Name of palette as string or symbol.</p></dd>
-    <dt><code>direction</code></dt><dd><p>Either <code>1</code> or <code>-1</code>. If <code>-1</code> the palette will be reversed.</p></dd>
     <dt><code>bf.message</code></dt><dd><p>Logical that decides whether to display a caption with
 results from Bayes Factor test in favor of the null hypothesis (default:
 <code>FALSE</code>).</p></dd>
@@ -369,6 +368,9 @@ work as expected.</p></dd>
 displayed in a label, this argument decides whether these two pieces of
 information are going to be on the same line (<code>" "</code>) or on separate lines
 (<code>"\n"</code>).</p></dd>
+    <dt><code>package</code></dt><dd><p>Name of package from which the palette is desired as string
+or symbol.</p></dd>
+    <dt><code>direction</code></dt><dd><p>Either <code>1</code> or <code>-1</code>. If <code>-1</code> the palette will be reversed.</p></dd>
   
 </dl></td>
     </tr>

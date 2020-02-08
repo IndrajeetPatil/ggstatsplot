@@ -33,10 +33,6 @@
 #'   labels (Default: `white`).
 #' @param label.fill.alpha Numeric that specifies fill color transparency or
 #'   `"alpha"` for slice/bar labels (Default: `1` range `0` to `1`).
-#' @param package Name of package from which the palette is desired as string
-#' or symbol.
-#' @param palette Name of palette as string or symbol.
-#' @param direction Either `1` or `-1`. If `-1` the palette will be reversed.
 #' @param bf.message Logical that decides whether to display a caption with
 #'   results from Bayes Factor test in favor of the null hypothesis (default:
 #'   `FALSE`).
@@ -45,6 +41,7 @@
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams gghistostats
 #' @inheritParams cat_label_df
+#' @inheritParams ggbetweenstats
 #'
 #' @seealso \code{\link{grouped_ggpiestats}}, \code{\link{ggbarstats}},
 #'  \code{\link{grouped_ggbarstats}}

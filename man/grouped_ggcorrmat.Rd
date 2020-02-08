@@ -53,16 +53,6 @@ for each correlation pair).}
   \describe{
     \item{\code{matrix.type}}{Character, \code{"full"} (default), \code{"upper"} or \code{"lower"},
 display full matrix, lower triangular or upper triangular matrix.}
-    \item{\code{method}}{Character argument that decides the visualization method of
-correlation matrix to be used. Allowed values are \code{"square"} (default),
-\code{"circle"}}
-    \item{\code{corr.method}}{A character string indicating which correlation
-coefficient is to be computed (\code{"pearson"} (default) or \code{"kendall"} or
-\code{"spearman"}). \code{"robust"} can also be entered but only if \code{output} argument
-is set to either \code{"correlations"} or \code{"p-values"}. The robust correlation
-used is percentage bend correlation (see \code{?WRS2::pball}). Abbreviations
-will also work: \code{"p"} (for parametric/Pearson's \emph{r}), \code{"np"}
-(nonparametric/Spearman's \emph{rho}), \code{"r"} (robust).}
     \item{\code{type}}{A character string indicating which correlation
 coefficient is to be computed (\code{"pearson"} (default) or \code{"kendall"} or
 \code{"spearman"}). \code{"robust"} can also be entered but only if \code{output} argument
@@ -72,8 +62,6 @@ will also work: \code{"p"} (for parametric/Pearson's \emph{r}), \code{"np"}
 (nonparametric/Spearman's \emph{rho}), \code{"r"} (robust).}
     \item{\code{beta}}{A numeric bending constant for percentage bend robust correlation
 coefficient (Default: \code{0.1}).}
-    \item{\code{digits}}{Decides the number of decimal digits to be displayed
-(Default: \code{2}).}
     \item{\code{k}}{Decides the number of decimal digits to be displayed
 (Default: \code{2}).}
     \item{\code{sig.level}}{Significance level (Default: \code{0.05}). If the \emph{p}-value in
@@ -88,47 +76,22 @@ the plot. This argument is relevant only when \code{output = "plot"}.}
 \strong{adjusted} \emph{p}-values will be used for the \strong{upper} triangle, while
 \strong{unadjusted} \emph{p}-values will be used for the \strong{lower} triangle of the
 matrix.}
-    \item{\code{hc.order}}{Logical value. If \code{TRUE}, correlation matrix will be
-hc.ordered using \code{hclust} function (Default is \code{FALSE}).}
-    \item{\code{hc.method}}{The agglomeration method to be used in \code{hclust} (see
-\code{?hclust}).}
-    \item{\code{lab}}{Logical value. If \code{TRUE}, correlation coefficient values will be
-displayed in the plot.}
     \item{\code{colors}}{A vector of 3 colors for low, mid, and high correlation values.
 If set to \code{NULL}, manual specification of colors will be turned off and 3
 colors from the specified \code{palette} from \code{package} will be selected.}
-    \item{\code{outline.color}}{The outline color of square or circle. Default value is
-\code{"gray"}.}
     \item{\code{subtitle}}{The text for the plot subtitle.}
     \item{\code{caption}}{The text for the plot caption. If \code{NULL}, a default caption
 will be shown.}
     \item{\code{caption.default}}{Logical that decides whether the default caption
 should be shown (default: \code{TRUE}).}
-    \item{\code{lab.col}}{Color to be used for the correlation coefficient labels
-(applicable only when \code{lab = TRUE}).}
-    \item{\code{lab.size}}{Size to be used for the correlation coefficient labels
-(applicable only when \code{lab = TRUE}).}
-    \item{\code{insig}}{Character used to show specialized insignificant correlation
-coefficients (\code{"pch"} (default) or \code{"blank"}). If \code{"blank"}, the
-corresponding glyphs will be removed; if "pch" is used, characters (see
-\code{?pch} for details) will be added on the corresponding glyphs.}
     \item{\code{pch}}{Decides the glyphs (read point shapes) to be used for
 insignificant correlation coefficients (only valid when \code{insig = "pch"}).
 Default value is \code{pch = 4}.}
-    \item{\code{pch.col}}{The color and the cex (size) of \code{pch} (only valid when
-\code{insig = "pch"}). Defaults are \code{pch.col = "#F0E442"} and \code{pch.cex = 10}.}
-    \item{\code{pch.cex}}{The color and the cex (size) of \code{pch} (only valid when
-\code{insig = "pch"}). Defaults are \code{pch.col = "#F0E442"} and \code{pch.cex = 10}.}
-    \item{\code{tl.cex}}{The size, the color, and the string rotation of
-text label (variable names, i.e.).}
-    \item{\code{tl.col}}{The size, the color, and the string rotation of
-text label (variable names, i.e.).}
-    \item{\code{tl.srt}}{The size, the color, and the string rotation of
-text label (variable names, i.e.).}
-    \item{\code{package}}{Name of package from which the palette is desired as string
-or symbol.}
-    \item{\code{palette}}{Name of palette as string or symbol.}
-    \item{\code{direction}}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
+    \item{\code{ggcorrplot.args}}{A list of additional (mostly aesthetic) arguments that
+will be passed to \code{ggcorrplot::ggcorrplot} function. The list should avoid
+any of the following arguments since they are already being used: \code{corr},
+\code{method}, \code{p.mat}, \code{sig.level}, \code{ggtheme}, \code{colors}, \code{matrix.type}, \code{lab},
+\code{pch}, \code{legend.title}, \code{digits}.}
     \item{\code{ggtheme}}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
 extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
@@ -137,8 +100,26 @@ extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
 theme elements are to be displayed along with the selected \code{ggtheme}
 (Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
 override some aspects of the selected \code{ggtheme}.}
+    \item{\code{method}}{Smoothing method (function) to use, accepts either a character vector,
+e.g. \code{"auto"}, \code{"lm"}, \code{"glm"}, \code{"gam"}, \code{"loess"} or a function, e.g.
+\code{MASS::rlm} or \code{mgcv::gam}, \code{stats::lm}, or \code{stats::loess}.
+
+For \code{method = "auto"} the smoothing method is chosen based on the
+size of the largest group (across all panels). \code{\link[stats:loess]{stats::loess()}} is
+used for less than 1,000 observations; otherwise \code{\link[mgcv:gam]{mgcv::gam()}} is
+used with \code{formula = y ~ s(x, bs = "cs")}. Somewhat anecdotally,
+\code{loess} gives a better appearance, but is \eqn{O(N^{2})}{O(N^2)} in memory,
+so does not work for larger datasets.
+
+If you have fewer than 1,000 observations but want to use the same \code{gam()}
+model that \code{method = "auto"} would use, then set
+\code{method = "gam", formula = y ~ s(x, bs = "cs")}.}
     \item{\code{conf.level}}{Scalar between 0 and 1. If unspecified, the defaults return
 \verb{95\%} lower and upper confidence intervals (\code{0.95}).}
+    \item{\code{package}}{Name of package from which the palette is desired as string
+or symbol.}
+    \item{\code{palette}}{Name of palette as string or symbol.}
+    \item{\code{direction}}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
     \item{\code{messages}}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
   }}

@@ -90,7 +90,7 @@ ggstatsplot::ggcorrmat(
     "population",
     "GDP (per capita)"
   ),
-  corr.method = "spearman", # which correlation coefficient is to be computed
+  type = "spearman", # which correlation coefficient is to be computed
   lab.col = "red", # label color
   ggtheme = ggplot2::theme_light(), # selected ggplot2 theme
   ggstatsplot.layer = FALSE, # turn off default ggestatsplot theme overlay
@@ -171,21 +171,25 @@ ggstatsplot::ggcorrmat(
     "width (in mm)",
     "depth (in mm)"
   ),
-  corr.method = "spearman",
+  type = "spearman",
   sig.level = 0.008,
   matrix.type = "lower",
   title = "Relationship between diamond attributes and price",
   subtitle = "Dataset: Diamonds from ggplot2 package",
   colors = c("#0072B2", "#D55E00", "#CC79A7"),
-  lab.col = "yellow",
-  lab.size = 6,
-  tl.srt = 90, # vertical labels for the x-axis (useful in case of long variable names)
   pch = 7,
-  pch.col = "white",
-  pch.cex = 14,
-  caption = substitute(
-    paste(italic("Note"), ": Point shape denotes correlation non-significant at p < 0.008; adjusted for 6 comparisons")
-  )
+  # additional aesthetic arguments passed to `ggcorrmat`
+  ggcorrplot.args = list(
+    lab_col = "yellow",
+    lab_size = 6,
+    tl.srt = 90, # vertical labels for the x-axis (useful in case of long variable names)
+    pch.col = "white",
+    pch.cex = 14
+  ),
+  caption =
+    substitute(
+      paste(italic("Note"), ": Point shape denotes correlation non-significant at p < 0.008; adjusted for 6 comparisons")
+    )
 ) + # modification outside ggstatsplot using ggplot functions
   ggplot2::theme(
     axis.text.x = ggplot2::element_text(
@@ -214,7 +218,7 @@ ggstatsplot::ggcorrmat(
   data = dplyr::sample_frac(tbl = ggplot2::txhousing, size = 0.15),
   cor.vars = sales:inventory,
   return = "correlations",
-  corr.method = "robust",
+  type = "robust",
   digits = 3
 )
 
@@ -223,7 +227,7 @@ ggstatsplot::ggcorrmat(
   data = dplyr::sample_frac(tbl = ggplot2::txhousing, size = 0.15),
   cor.vars = c(volume, listings:inventory),
   return = "p-values",
-  corr.method = "nonparametric",
+  type = "nonparametric",
   digits = 3
 )
 ```
@@ -242,7 +246,7 @@ options(pillar.sigfig = 4)
 # getting the correlation coefficient matrix
 ggstatsplot::ggcorrmat(
   data = iris, # all numeric variables from data will be used
-  corr.method = "np", # non-parametric
+  type = "np", # non-parametric
   return = "corr" # correlations
 )
 
@@ -250,7 +254,7 @@ ggstatsplot::ggcorrmat(
 ggstatsplot::ggcorrmat(
   data = ggplot2::msleep,
   cor.vars = sleep_total:bodywt,
-  corr.method = "r", # robust
+  type = "r", # robust
   return = "p", # p-values
   p.adjust.method = "holm"
 )
@@ -259,7 +263,7 @@ ggstatsplot::ggcorrmat(
 ggstatsplot::ggcorrmat(
   data = ggplot2::msleep,
   cor.vars = sleep_total:bodywt,
-  corr.method = "p", # parametric
+  type = "p", # parametric
   return = "ci", # confidence intervals
   p.adjust.method = "holm"
 )
@@ -268,7 +272,7 @@ ggstatsplot::ggcorrmat(
 ggstatsplot::ggcorrmat(
   data = ggplot2::msleep,
   cor.vars = sleep_total:bodywt,
-  corr.method = "robust",
+  type = "robust",
   return = "n" # note that n is different due to NAs
 )
 ```
@@ -293,7 +297,7 @@ set.seed(123)
 ggstatsplot::grouped_ggcorrmat(
   # arguments relevant for ggstatsplot::ggcorrmat
   data = dplyr::sample_frac(tbl = ggplot2::diamonds, size = 0.05),
-  corr.method = "robust", # percentage bend correlation coefficient
+  type = "robust", # percentage bend correlation coefficient
   beta = 0.2, # bending constant
   p.adjust.method = "holm", # method to adjust p-values for multiple comparisons
   grouping.var = cut,

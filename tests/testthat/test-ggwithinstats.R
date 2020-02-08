@@ -57,7 +57,6 @@ testthat::test_that(
     testthat::expect_equal(dim(pb1$data[[4]]), c(180L, 8L))
     testthat::expect_equal(dim(pb1$data[[5]]), c(0L, 0L))
     testthat::expect_equal(dim(pb1$data[[6]]), c(2L, 12L))
-    # testthat::expect_equal(dim(pb1$data[[7]]), c(2L, 15L))
     testthat::expect_equal(dim(pb1$data[[8]]), c(2L, 8L))
 
     # data from difference layers

@@ -40,10 +40,8 @@ testthat::test_that(
     )
 
     # check dimensions
-    testthat::expect_equal(dim(df1), c(15L, 7L))
-    testthat::expect_equal(dim(df2), c(15L, 7L))
-    testthat::expect_equal(dim(df3), c(15L, 7L))
-    testthat::expect_equal(dim(df4), c(15L, 7L))
+    testthat::expect_equal(dim(df1), dim(df2))
+    testthat::expect_equal(dim(df3), dim(df4))
   }
 )
 
@@ -64,10 +62,12 @@ testthat::test_that(
       sig.level = 0.001,
       p.adjust.method = "fdr",
       colors = NULL,
-      digits = 4,
-      lab.col = "white",
-      pch.col = "white",
-      pch.cex = 14,
+      k = 4,
+      ggcorrplot.args = list(
+        lab_col = "white",
+        pch.col = "white",
+        pch.cex = 14
+      ),
       messages = TRUE
     )
 

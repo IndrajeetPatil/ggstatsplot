@@ -295,14 +295,6 @@ using <code><a href='https://rdrr.io/r/stats/Normal.html'>stats::dnorm(mean(x), 
     <dt><code>bar.fill</code></dt><dd><p>If <code>fill.gradient = FALSE</code>, then <code>bar.fill</code> decides which
 color will uniformly fill all the bars in the histogram (Default:
 <code>"grey50"</code>).</p></dd>
-    <dt><code>ggtheme</code></dt><dd><p>A function, <code>ggplot2</code> theme name. Default value is
-<code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
-extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>,
-<code><a href='https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html'>hrbrthemes::theme_ipsum_ps()</a></code>, etc.).</p></dd>
-    <dt><code>ggstatsplot.layer</code></dt><dd><p>Logical that decides whether <code>theme_ggstatsplot</code>
-theme elements are to be displayed along with the selected <code>ggtheme</code>
-(Default: <code>TRUE</code>). <code>theme_ggstatsplot</code> is an opinionated theme layer that
-override some aspects of the selected <code>ggtheme</code>.</p></dd>
     <dt><code>stat.title</code></dt><dd><p>A character describing the test being run, which will be
 added as a prefix in the subtitle. The default is <code>NULL</code>. An example of a
 <code>stat.title</code> argument will be something like <code>"Student's t-test: "</code>.</p></dd>
@@ -363,6 +355,14 @@ variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
     <dt><code>bf.message</code></dt><dd><p>Logical that decides whether to display Bayes Factor in
 favor of the <em>null</em> hypothesis. This argument is relevant only <strong>for
 parametric test</strong> (Default: <code>TRUE</code>).</p></dd>
+    <dt><code>ggtheme</code></dt><dd><p>A function, <code>ggplot2</code> theme name. Default value is
+<code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
+extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>,
+<code><a href='https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html'>hrbrthemes::theme_ipsum_ps()</a></code>, etc.).</p></dd>
+    <dt><code>ggstatsplot.layer</code></dt><dd><p>Logical that decides whether <code>theme_ggstatsplot</code>
+theme elements are to be displayed along with the selected <code>ggtheme</code>
+(Default: <code>TRUE</code>). <code>theme_ggstatsplot</code> is an opinionated theme layer that
+override some aspects of the selected <code>ggtheme</code>.</p></dd>
     <dt><code>results.subtitle</code></dt><dd><p>Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
 the plot will be returned.</p></dd>
