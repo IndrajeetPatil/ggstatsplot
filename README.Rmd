@@ -363,7 +363,7 @@ ggstatsplot::grouped_ggbetweenstats(
   palette = "default_jama",
   package = "ggsci",
   messages = FALSE,
-  nrow = 2,
+  plotgrid.args = list(nrow = 2),
   title.text = "Differences in movie length by mpaa ratings for different genres"
 )
 ```
@@ -1072,7 +1072,6 @@ easy to repeat the same operation across a **single** grouping variable:
 set.seed(123)
 
 # plot
-# let's use only 50% of the data to speed up the process
 ggstatsplot::grouped_ggcorrmat(
   data = dplyr::filter(
     .data = ggstatsplot::movies_long,
@@ -1085,7 +1084,7 @@ ggstatsplot::grouped_ggcorrmat(
   digits = 3, # number of digits after decimal point
   title.prefix = "Movie genre",
   messages = FALSE,
-  nrow = 2
+  plotgrid.args = list(nrow = 2)
 )
 ```
 
@@ -1283,7 +1282,7 @@ stats_results <-
     data = morley,
     x = Expt,
     y = Speed,
-    return = "subtitle",
+    output = "subtitle",
     messages = FALSE
   )
 
@@ -1343,7 +1342,7 @@ type of statistical analysis:
   - `"r"` (for **robust**)
   - `"bf"` (for **Bayes Factor**)
   
-All relevant functions in `ggstatsplot` have a `return` argument which can be
+All relevant functions in `ggstatsplot` have a `output` argument which can be
 used to not only return plots (which is the default), but also to return a
 `subtitle` or `caption`, which are objects of type `call` and can be used to
 display statistical details in conjunction with a custom plot and at a custom

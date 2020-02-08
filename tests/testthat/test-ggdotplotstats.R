@@ -220,7 +220,7 @@ testthat::test_that(
 # messing with factors --------------------------------------------------
 
 testthat::test_that(
-  desc = "subtitle return",
+  desc = "subtitle output",
   code = {
     testthat::skip_on_cran()
 
@@ -275,21 +275,21 @@ testthat::test_that(
   }
 )
 
-# subtitle return -------------------------------------------------------
+# subtitle output -------------------------------------------------------
 
 testthat::test_that(
-  desc = "subtitle return",
+  desc = "subtitle output",
   code = {
     testthat::skip_on_cran()
 
-    # should return a list of length 3
+    # should output a list of length 3
     set.seed(123)
     p_sub <- suppressWarnings(ggstatsplot::ggdotplotstats(
       data = morley,
       x = Speed,
       y = Expt,
       test.value = 800,
-      return = "subtitle",
+      output = "subtitle",
       type = "np",
       messages = FALSE
     ))
@@ -303,7 +303,7 @@ testthat::test_that(
           dplyr::summarise(mean = mean(Speed)),
         x = mean,
         test.value = 800,
-        return = "subtitle",
+        output = "subtitle",
         type = "np",
         messages = FALSE
       ))

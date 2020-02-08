@@ -334,7 +334,7 @@ testthat::test_that(
         messages = FALSE,
         bf.prior = 0.85,
         k = 3,
-        return = "caption"
+        output = "caption"
       )
 
     # function output
@@ -509,10 +509,10 @@ testthat::test_that(
   }
 )
 
-# subtitle return works ------------------------------------------------
+# subtitle output works ------------------------------------------------
 
 testthat::test_that(
-  desc = "subtitle return works",
+  desc = "subtitle output works",
   code = {
     testthat::skip_on_cran()
 
@@ -523,7 +523,7 @@ testthat::test_that(
         data = iris,
         x = Species,
         y = Sepal.Length,
-        return = "subtitle",
+        output = "subtitle",
         messages = FALSE
       )
 
@@ -540,7 +540,7 @@ testthat::test_that(
         x = "type",
         y = "mpg",
         messages = FALSE,
-        return = "subtitle"
+        output = "subtitle"
       )
 
 

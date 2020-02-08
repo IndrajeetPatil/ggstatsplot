@@ -3,6 +3,7 @@
 #' @return Correlation matrix plot or correlation coefficient matrix or matrix
 #'   of *p*-values.
 #'
+#' @param ... Currently ignored.
 #' @param data Dataframe from which variables specified are preferentially to be
 #'   taken.
 #' @param cor.vars List of variables for which the correlation matrix is to be
@@ -10,7 +11,7 @@
 #'   `data` will be used.
 #' @param cor.vars.names Optional list of names to be used for `cor.vars`. The
 #'   names should be entered in the same order.
-#' @param output,return Character that decides expected output from this
+#' @param output Character that decides expected output from this
 #'   function: `"plot"` (for visualization matrix) or `"correlations"` (or
 #'   `"corr"` or `"r"`; for correlation matrix) or `"p-values"` (or `"p.values"`
 #'   or `"p"`; for a matrix of *p*-values) or `"ci"` (for a tibble with
@@ -200,7 +201,7 @@ ggcorrmat <- function(data,
                       tl.col = "black",
                       tl.srt = 45,
                       messages = TRUE,
-                      return = NULL) {
+                      ...) {
 
   # ======================= dataframe ========================================
 
@@ -232,7 +233,6 @@ ggcorrmat <- function(data,
   # see which method was used to specify type of correlation
   corr.method <- type %||% corr.method
   digits <- k %||% digits
-  output <- return %||% output
   output <- ggcorrmat_output_switch(output)
   stats_type <- stats_type_switch(corr.method)
 

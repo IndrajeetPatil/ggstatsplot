@@ -87,7 +87,7 @@ resulting plots using ggstatsplot::combine_plots." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.2.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.3.0.9000</span>
       </span>
     </div>
 
@@ -246,7 +246,7 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
   <span class='kw'>test.line.labeller</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>test.k</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>return</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='no'>...</span>
 )</pre>
@@ -462,7 +462,7 @@ and if it has been set to <code>TRUE</code>, the added <code>ggplot</code> compo
 work as expected.</p></td>
     </tr>
     <tr>
-      <th>return</th>
+      <th>output</th>
       <td><p>Character that describes what is to be returned: can be
 <code>"plot"</code> (default) or <code>"subtitle"</code> or <code>"caption"</code>. Setting this to
 <code>"subtitle"</code> will return the expression containing statistical results. If

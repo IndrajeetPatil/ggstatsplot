@@ -87,7 +87,7 @@ resulting plots using ggstatsplot::combine_plots." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.2.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.3.0.9000</span>
       </span>
     </div>
 
@@ -249,7 +249,7 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
   <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>,
   <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>return</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -495,14 +495,12 @@ and if it has been set to <code>TRUE</code>, the added <code>ggplot</code> compo
 work as expected.</p></td>
     </tr>
     <tr>
-      <th>return</th>
-      <td><p>Character that describes what is to be returned: can be
-<code>"plot"</code> (default) or <code>"subtitle"</code> or <code>"caption"</code>. Setting this to
-<code>"subtitle"</code> will return the expression containing statistical results. If
-you have set <code>results.subtitle = FALSE</code>, then this will return a <code>NULL</code>.
-Setting this to <code>"caption"</code> will return the expression containing details
-about Bayes Factor analysis, but valid only when <code>type = "parametric"</code> and
-<code>bf.message = TRUE</code>, otherwise this will return a <code>NULL</code>.</p></td>
+      <th>output</th>
+      <td><p>Can either be <code>"null"</code> (or <code>"caption"</code> or <code>"H0"</code> or <code>"h0"</code>),
+which will return expression with evidence in favor of the null hypothesis,
+or <code>"alternative"</code> (or <code>"title"</code> or <code>"H1"</code> or <code>"h1"</code>), which will return
+expression with evidence in favor of the alternative hypothesis, or
+<code>"results"</code>, which will return a dataframe with results all the details).</p></td>
     </tr>
     <tr>
       <th>messages</th>
@@ -612,48 +610,25 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
   <span class='kw'>bar.label</span> <span class='kw'>=</span> <span class='st'>"both"</span>,
   <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>2</span>
 )</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>100</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 4 x 16</span><span>
-#&gt;   clarity counts  perc N         D      E      F      G      H      I     
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;ord&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> VS1         80  16.8 (n = 80)  10.00% 18.75% 15.00% 20.00% 8.75%  17.50%
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> VS2        133  27.9 (n = 133) 13.53% 16.54% 18.80% 21.05% 15.04% 9.77% 
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> SI1        146  30.6 (n = 146) 13.01% 16.44% 21.23% 17.81% 10.96% 15.07%
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> SI2        118  24.7 (n = 118) 20.34% 12.71% 16.95% 16.95% 17.80% 11.86%
-#&gt;   J      statistic p.value parameter method                                  
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                   
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 10.00%      7.33  0.292          6 Chi-squared test for given probabilities
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 5.26%      16.2   0.012</span><span style='text-decoration: underline;'>7</span><span>         6 Chi-squared test for given probabilities
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 5.48%      16.0   0.014</span><span style='text-decoration: underline;'>0</span><span>         6 Chi-squared test for given probabilities
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> 3.39%      15.7   0.015</span><span style='text-decoration: underline;'>4</span><span>         6 Chi-squared test for given probabilities
-#&gt;   significance
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> ns          
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> *           
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> *           
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> *           
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 4 x 16</span><span>
+#&gt;   clarity counts  perc N     D     E     F     G     H     I     J     statistic
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;ord&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> VS1         80  16.8 (n =~ 10.0~ 18.7~ 15.0~ 20.0~ 8.75% 17.5~ 10.0~      7.33
+#&gt; </span><span style='color: #555555;'>2</span><span> VS2        133  27.9 (n =~ 13.5~ 16.5~ 18.8~ 21.0~ 15.0~ 9.77% 5.26%     16.2 
+#&gt; </span><span style='color: #555555;'>3</span><span> SI1        146  30.6 (n =~ 13.0~ 16.4~ 21.2~ 17.8~ 10.9~ 15.0~ 5.48%     16.0 
+#&gt; </span><span style='color: #555555;'>4</span><span> SI2        118  24.7 (n =~ 20.3~ 12.7~ 16.9~ 16.9~ 17.8~ 11.8~ 3.39%     15.7 
+#&gt; </span><span style='color: #555555;'># ... with 4 more variables: p.value </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, parameter </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, method </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   significance </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
 #&gt; </span><span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>100</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 4 x 16</span><span>
-#&gt;   clarity counts  perc N         D      E      F      G      H      I      J    
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;ord&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> VS1        185  23.6 (n = 185) 11.35% 15.14% 16.76% 25.41% 13.51% 9.19%  8.65%
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> VS2        261  33.2 (n = 261) 19.16% 19.54% 16.09% 17.24% 12.26% 10.34% 5.36%
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> SI1        216  27.5 (n = 216) 16.67% 16.67% 13.89% 19.91% 17.13% 9.72%  6.02%
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> SI2        123  15.7 (n = 123) 16.26% 13.82% 17.07% 18.70% 16.26% 13.82% 4.07%
-#&gt;   statistic   p.value parameter method                                  
-#&gt;       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                   
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>      25.6 0.000</span><span style='text-decoration: underline;'>268</span><span>          6 Chi-squared test for given probabilities
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>      29.7 0.000</span><span style='text-decoration: underline;'>044</span><span>8         6 Chi-squared test for given probabilities
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span>      21.2 0.001</span><span style='text-decoration: underline;'>67</span><span>           6 Chi-squared test for given probabilities
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span>      12.0 0.060</span><span style='text-decoration: underline;'>9</span><span>            6 Chi-squared test for given probabilities
-#&gt;   significance
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> ***         
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> ***         
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> **          
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> ns          
-#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Individual plots in the combined `grouped_` plot
-#&gt; can't be further modified with `ggplot2` functions.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggbarstats-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 4 x 16</span><span>
+#&gt;   clarity counts  perc N     D     E     F     G     H     I     J     statistic
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;ord&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> VS1        185  23.6 (n =~ 11.3~ 15.1~ 16.7~ 25.4~ 13.5~ 9.19% 8.65%      25.6
+#&gt; </span><span style='color: #555555;'>2</span><span> VS2        261  33.2 (n =~ 19.1~ 19.5~ 16.0~ 17.2~ 12.2~ 10.3~ 5.36%      29.7
+#&gt; </span><span style='color: #555555;'>3</span><span> SI1        216  27.5 (n =~ 16.6~ 16.6~ 13.8~ 19.9~ 17.1~ 9.72% 6.02%      21.2
+#&gt; </span><span style='color: #555555;'>4</span><span> SI2        123  15.7 (n =~ 16.2~ 13.8~ 17.0~ 18.7~ 16.2~ 13.8~ 4.07%      12.0
+#&gt; </span><span style='color: #555555;'># ... with 4 more variables: p.value </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, parameter </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, method </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   significance </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span></div><div class='img'><img src='grouped_ggbarstats-1.png' alt='' width='700' height='433' /></div><div class='input'># }
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -8,7 +8,10 @@ BREAKING CHANGES
     can be provided through `...`. These changes will not necessarily break the
     existing code but will lead to some minor graphical changes (e.g., if you
     were providing `labels` argument explicitly, it will be ignored).
-    
+  - All functions lose the `return` argument, which was supposed to be
+    alternative to enter `output`. But this was just leading to more confusion
+    on the user's part.
+  
 MAJOR CHANGES
 
   - `ggcorrmat` was never supposed to work with Kendall's correlation coefficient

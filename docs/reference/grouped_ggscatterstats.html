@@ -89,7 +89,7 @@ subtitle." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.2.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.3.0.9000</span>
       </span>
     </div>
 
@@ -258,7 +258,7 @@ subtitle.</p>
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>return</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='no'>...</span>
 )</pre>
@@ -545,7 +545,7 @@ and if it has been set to <code>TRUE</code>, the added <code>ggplot</code> compo
 work as expected.</p></td>
     </tr>
     <tr>
-      <th>return</th>
+      <th>output</th>
       <td><p>Character that describes what is to be returned: can be
 <code>"plot"</code> (default) or <code>"subtitle"</code> or <code>"caption"</code>. Setting this to
 <code>"subtitle"</code> will return the expression containing statistical results. If
@@ -643,9 +643,7 @@ combining (plot, caption).</p></dd>
 #&gt; In case you want a `ggplot` object, set `marginal = FALSE`.</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>The statistical analysis is available only for linear model
 #&gt; (formula = y ~ x, method = 'lm'). Returning only the plot.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>This plot can't be further modified with `ggplot2` functions.
-#&gt; In case you want a `ggplot` object, set `marginal = FALSE`.</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Individual plots in the combined `grouped_` plot
-#&gt; can't be further modified with `ggplot2` functions.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggscatterstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; In case you want a `ggplot` object, set `marginal = FALSE`.</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggscatterstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># using labeling</span>
 <span class='co'># (also show how to modify basic plot from within function call)</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggscatterstats.html'>grouped_ggscatterstats</a></span>(
@@ -679,9 +677,7 @@ combining (plot, caption).</p></dd>
   <span class='kw'>marginal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Genre"</span>,
   <span class='kw'>caption.text</span> <span class='kw'>=</span> <span class='st'>"All movies have IMDB rating equal to 7."</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Individual plots in the combined `grouped_` plot
-#&gt; can't be further modified with `ggplot2` functions.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggscatterstats-3.png' alt='' width='700' height='433' /></div><div class='input'># }
+)</div><div class='img'><img src='grouped_ggscatterstats-3.png' alt='' width='700' height='433' /></div><div class='input'># }
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

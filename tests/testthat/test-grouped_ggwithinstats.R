@@ -51,6 +51,7 @@ testthat::test_that(
         y = score,
         grouping.var = order,
         type = "p",
+        output = "plot",
         bf.message = TRUE,
         outlier.tagging = TRUE,
         pairwise.comparisons = TRUE,
@@ -109,21 +110,21 @@ testthat::test_that(
   }
 )
 
-# subtitle return --------------------------------------------------
+# subtitle output --------------------------------------------------
 
 testthat::test_that(
-  desc = "subtitle return",
+  desc = "subtitle output",
   code = {
     testthat::skip_on_cran()
 
-    # should return a list of length 3
+    # should output a list of length 3
     set.seed(123)
     ls_results <- ggstatsplot::grouped_ggwithinstats(
       data = iris_long,
       x = condition,
       y = value,
       grouping.var = Species,
-      return = "subtitle",
+      output = "subtitle",
       messages = FALSE
     )
 
@@ -231,14 +232,14 @@ testthat::test_that(
   }
 )
 
-# subtitle return with NA --------------------------------------------------
+# subtitle output with NA --------------------------------------------------
 
 testthat::test_that(
-  desc = "subtitle return with NA",
+  desc = "subtitle output with NA",
   code = {
     testthat::skip_on_cran()
 
-    # should return a list of length 2
+    # should output a list of length 2
     set.seed(123)
     ls_results <-
       ggstatsplot::bugs_long %>%
@@ -248,7 +249,7 @@ testthat::test_that(
         x = condition,
         y = desire,
         grouping.var = region,
-        return = "subtitle",
+        output = "subtitle",
         messages = FALSE
       )
 

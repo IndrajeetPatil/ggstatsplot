@@ -10,7 +10,7 @@
 #'   estimates of coefficients or other quantities of interest). Other optional
 #'   columns are `conf.low` and `conf.high` (for confidence intervals);
 #'   `p.value`. It is important that all `term` names should be unique.
-#' @param output,return Character describing the expected output from this function:
+#' @param output Character describing the expected output from this function:
 #'   `"plot"` (visualization of regression coefficients) or `"tidy"` (tidy
 #'   dataframe of results from `broom::tidy`) or `"glance"` (object from
 #'   `broom::glance`) or `"augment"` (object from `broom::augment`).
@@ -330,9 +330,7 @@ ggcoefstats <- function(x,
                         ggtheme = ggplot2::theme_bw(),
                         ggstatsplot.layer = TRUE,
                         messages = FALSE,
-                        return = NULL,
                         ...) {
-  output <- return %||% output
 
   # =================== list of objects (for tidy and glance) ================
 
@@ -480,7 +478,7 @@ ggcoefstats <- function(x,
       crayon::blue("The object of class "),
       crayon::yellow(class(x)[[1]]),
       crayon::blue(" *must* contain column called 'estimate' in tidy output.\n"),
-      crayon::blue("Check the tidy output using argument `return = 'tidy'`."),
+      crayon::blue("Check the tidy output using argument `output = 'tidy'`."),
       sep = ""
     )),
     call. = FALSE

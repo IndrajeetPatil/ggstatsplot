@@ -88,7 +88,7 @@ grouped_gghistostats <- function(data,
                                  normal.curve.linetype = "solid",
                                  normal.curve.size = 1.0,
                                  ggplot.component = NULL,
-                                 return = "plot",
+                                 output = "plot",
                                  messages = TRUE,
                                  ...) {
 
@@ -174,14 +174,13 @@ grouped_gghistostats <- function(data,
       ggstatsplot.layer = ggstatsplot.layer,
       fill.gradient = fill.gradient,
       ggplot.component = ggplot.component,
-      return = return,
+      output = output,
       messages = messages
     )
 
   # combining the list of plots into a single plot
   # inform user this can't be modified further with ggplot commands
-  if (return == "plot") {
-    if (isTRUE(messages)) grouped_message()
+  if (output == "plot") {
     return(ggstatsplot::combine_plots(plotlist = plotlist_purrr, ...))
   } else {
     return(plotlist_purrr)

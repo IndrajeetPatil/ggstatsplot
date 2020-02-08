@@ -599,10 +599,10 @@ testthat::test_that(
   }
 )
 
-# subtitle return ----------------------------------------------------------
+# subtitle output ----------------------------------------------------------
 
 testthat::test_that(
-  desc = "subtitle return",
+  desc = "subtitle output",
   code = {
     testthat::skip_on_cran()
 
@@ -615,7 +615,7 @@ testthat::test_that(
         y = height,
         conf.level = 0.90,
         type = "r",
-        return = "subtitle",
+        output = "subtitle",
         messages = FALSE
       )
 

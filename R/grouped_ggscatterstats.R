@@ -128,7 +128,7 @@ grouped_ggscatterstats <- function(data,
                                    ggtheme = ggplot2::theme_bw(),
                                    ggstatsplot.layer = TRUE,
                                    ggplot.component = NULL,
-                                   return = "plot",
+                                   output = "plot",
                                    messages = TRUE,
                                    ...) {
 
@@ -204,14 +204,13 @@ grouped_ggscatterstats <- function(data,
       ggtheme = ggtheme,
       ggstatsplot.layer = ggstatsplot.layer,
       ggplot.component = ggplot.component,
-      return = return,
+      output = output,
       messages = messages
     )
 
   # combining the list of plots into a single plot
   # inform user this can't be modified further with ggplot commands
-  if (return == "plot") {
-    if (isTRUE(messages)) grouped_message()
+  if (output == "plot") {
     return(ggstatsplot::combine_plots(plotlist = plotlist_purrr, ...))
   } else {
     return(plotlist_purrr)

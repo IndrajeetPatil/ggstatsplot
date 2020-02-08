@@ -7,10 +7,9 @@
 #'
 #' @inheritParams ggcorrmat
 #' @inheritParams grouped_ggbetweenstats
-#' @inheritDotParams combine_plots
+#' @inheritDotParams ggcorrmat -title
 #'
-#' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
-#' @importFrom dplyr group_by n arrange
+#' @importFrom dplyr select bind_rows
 #' @importFrom rlang !! enquo quo_name ensym %||%
 #' @importFrom purrr map
 #'
@@ -42,7 +41,7 @@
 #'   colors = NULL,
 #'   package = "wesanderson",
 #'   palette = "BottleRocket2",
-#'   nrow = 2
+#'   plotgrid.args = list(nrow = 2)
 #' )
 #'
 #' # for getting correlations
@@ -62,41 +61,14 @@ grouped_ggcorrmat <- function(data,
                               grouping.var,
                               title.prefix = NULL,
                               output = "plot",
-                              matrix.type = "full",
-                              method = "square",
-                              corr.method = "pearson",
-                              type = NULL,
-                              beta = 0.1,
-                              digits = 2,
-                              k = NULL,
-                              sig.level = 0.05,
-                              conf.level = 0.95,
-                              p.adjust.method = "none",
-                              hc.order = FALSE,
-                              hc.method = "complete",
-                              lab = TRUE,
-                              package = "RColorBrewer",
-                              palette = "Dark2",
-                              direction = 1,
-                              colors = c("#E69F00", "white", "#009E73"),
-                              outline.color = "black",
-                              ggtheme = ggplot2::theme_bw(),
-                              ggstatsplot.layer = TRUE,
-                              subtitle = NULL,
-                              caption = NULL,
-                              caption.default = TRUE,
-                              lab.col = "black",
-                              lab.size = 5,
-                              insig = "pch",
-                              pch = 4,
-                              pch.col = "black",
-                              pch.cex = 11,
-                              tl.cex = 12,
-                              tl.col = "black",
-                              tl.srt = 45,
-                              messages = TRUE,
-                              return = NULL,
-                              ...) {
+                              ...,
+                              plotgrid.args = list(),
+                              title.text = NULL,
+                              title.args = list(size = 16, fontface = "bold"),
+                              caption.text = NULL,
+                              caption.args = list(size = 10),
+                              sub.text = NULL,
+                              sub.args = list(size = 12)) {
 
   # create a list of function call to check for label.expression
   param_list <- as.list(match.call())
@@ -124,11 +96,6 @@ grouped_ggcorrmat <- function(data,
 
   # ===================== grouped analysis ===================================
 
-  # see which method was used to specify type of correlation
-  corr.method <- type %||% corr.method
-  digits <- k %||% digits
-  output <- return %||% output
-
   # creating a list of results
   plotlist_purrr <-
     purrr::pmap(
@@ -136,38 +103,7 @@ grouped_ggcorrmat <- function(data,
       .f = ggstatsplot::ggcorrmat,
       cor.vars.names = cor.vars.names,
       output = output,
-      matrix.type = matrix.type,
-      method = method,
-      corr.method = corr.method,
-      beta = beta,
-      digits = digits,
-      sig.level = sig.level,
-      conf.level = conf.level,
-      p.adjust.method = p.adjust.method,
-      hc.order = hc.order,
-      hc.method = hc.method,
-      lab = lab,
-      package = package,
-      palette = palette,
-      direction = direction,
-      colors = colors,
-      outline.color = outline.color,
-      ggtheme = ggtheme,
-      ggstatsplot.layer = ggstatsplot.layer,
-      subtitle = subtitle,
-      caption = caption,
-      caption.default = caption.default,
-      lab.col = lab.col,
-      lab.size = lab.size,
-      insig = insig,
-      pch = pch,
-      pch.col = pch.col,
-      pch.cex = pch.cex,
-      tl.cex = tl.cex,
-      tl.col = tl.col,
-      tl.srt = tl.srt,
-      messages = messages,
-      return = return
+      ...
     )
 
   # ===================== combining results ===================================
@@ -175,8 +111,16 @@ grouped_ggcorrmat <- function(data,
   # combining the list of plots into a single plot
   # inform user this can't be modified further with ggplot commands
   if (output == "plot") {
-    if (isTRUE(messages)) grouped_message()
-    return(ggstatsplot::combine_plots(plotlist = plotlist_purrr, ...))
+    return(ggstatsplot::combine_plots2(
+      plotlist = plotlist_purrr,
+      plotgrid.args = plotgrid.args,
+      title.text = title.text,
+      title.args = title.args,
+      caption.text = caption.text,
+      caption.args = caption.args,
+      sub.text = sub.text,
+      sub.args = sub.args
+    ))
   } else {
     return(dplyr::bind_rows(plotlist_purrr, .id = title.prefix))
   }

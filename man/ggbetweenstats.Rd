@@ -61,7 +61,7 @@ ggbetweenstats(
   palette = "Dark2",
   direction = 1,
   ggplot.component = NULL,
-  return = "plot",
+  output = "plot",
   messages = TRUE,
   ...
 )
@@ -265,7 +265,7 @@ as a function. If the given function has an argument \code{axes.range.restrict}
 and if it has been set to \code{TRUE}, the added \code{ggplot} component \emph{might} not
 work as expected.}
 
-\item{return}{Character that describes what is to be returned: can be
+\item{output}{Character that describes what is to be returned: can be
 \code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to
 \code{"subtitle"} will return the expression containing statistical results. If
 you have set \code{results.subtitle = FALSE}, then this will return a \code{NULL}.

@@ -48,7 +48,7 @@ grouped_ggwithinstats <- function(data,
                                   grouping.var,
                                   outlier.label = NULL,
                                   title.prefix = NULL,
-                                  return = "plot",
+                                  output = "plot",
                                   ...,
                                   plotgrid.args = list(),
                                   title.text = NULL,
@@ -93,7 +93,7 @@ grouped_ggwithinstats <- function(data,
   # if `title.prefix` is not provided, use the variable `grouping.var` name
   if (is.null(title.prefix)) title.prefix <- rlang::as_name(grouping.var)
 
-  # ======================== preparing dataframe ==========================
+  # ======================== preparing dataframe =============================
 
   # creating a dataframe
   df <-
@@ -108,7 +108,7 @@ grouped_ggwithinstats <- function(data,
     tidyr::drop_na(data = .) %>% # creating a list for grouped analysis
     grouped_list(data = ., grouping.var = {{ grouping.var }})
 
-  # ============== creating a list of plots using `pmap`=======================
+  # ============== creating a list of plots using `pmap`======================
 
   plotlist_purrr <-
     purrr::pmap(
@@ -118,12 +118,12 @@ grouped_ggwithinstats <- function(data,
       x = {{ x }},
       y = {{ y }},
       outlier.label = {{ outlier.label }},
-      return = return,
+      output = output,
       ...
     )
 
   # combining the list of plots into a single plot
-  if (return == "plot") {
+  if (output == "plot") {
     return(ggstatsplot::combine_plots2(
       plotlist = plotlist_purrr,
       plotgrid.args = plotgrid.args,

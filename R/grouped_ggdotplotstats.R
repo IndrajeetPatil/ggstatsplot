@@ -86,7 +86,7 @@ grouped_ggdotplotstats <- function(data,
                                    test.line.labeller = TRUE,
                                    test.k = 0,
                                    ggplot.component = NULL,
-                                   return = "plot",
+                                   output = "plot",
                                    messages = TRUE,
                                    ...) {
 
@@ -147,14 +147,13 @@ grouped_ggdotplotstats <- function(data,
       point.size = point.size,
       point.shape = point.shape,
       ggplot.component = ggplot.component,
-      return = return,
+      output = output,
       messages = messages
     )
 
   # combining the list of plots into a single plot
   # inform user this can't be modified further with ggplot commands
-  if (return == "plot") {
-    if (isTRUE(messages)) grouped_message()
+  if (output == "plot") {
     return(ggstatsplot::combine_plots(plotlist = plotlist_purrr, ...))
   } else {
     return(plotlist_purrr)

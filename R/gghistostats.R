@@ -120,7 +120,7 @@ gghistostats <- function(data,
                          normal.curve.linetype = "solid",
                          normal.curve.size = 1.0,
                          ggplot.component = NULL,
-                         return = "plot",
+                         output = "plot",
                          messages = TRUE) {
 
   # ================================= dataframe ==============================
@@ -181,7 +181,7 @@ gghistostats <- function(data,
   }
 
   # quit early if only subtitle is needed
-  if (return == "subtitle") {
+  if (output == "subtitle") {
     return(subtitle)
   }
 
@@ -395,7 +395,7 @@ gghistostats <- function(data,
 
   # return the final plot
   return(switch(
-    EXPR = return,
+    EXPR = output,
     "plot" = plot,
     "subtitle" = subtitle,
     "caption" = caption,

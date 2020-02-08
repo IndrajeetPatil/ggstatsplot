@@ -96,7 +96,7 @@ ggbarstats <- function(data,
                        palette = "Dark2",
                        direction = 1,
                        ggplot.component = NULL,
-                       return = "plot",
+                       output = "plot",
                        messages = TRUE,
                        x = NULL,
                        y = NULL) {
@@ -185,7 +185,7 @@ ggbarstats <- function(data,
 
   # =================================== plot =================================
 
-  if (return == "plot") {
+  if (output == "plot") {
     # if no. of factor levels is greater than the default palette color count
     palette_message(
       package = package,
@@ -281,7 +281,7 @@ ggbarstats <- function(data,
 
   # ================ sample size and proportion test labels ===================
 
-  if (return == "plot") {
+  if (output == "plot") {
     # adding significance labels to bars for proportion tests
     if (isTRUE(bar.proptest)) {
       # display grouped proportion test results
@@ -354,7 +354,7 @@ ggbarstats <- function(data,
 
   # return the final plot
   return(switch(
-    EXPR = return,
+    EXPR = output,
     "plot" = p,
     "subtitle" = subtitle,
     "caption" = caption,

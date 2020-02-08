@@ -203,6 +203,7 @@
 <p>BREAKING CHANGES</p>
 <ul>
 <li>All <code>grouped_</code> functions have been refactored to reduce the number of arguments. These functions now internally use the new <code>combine_plots2</code> instead of <code>combine_plots</code>. The additional arguments to primary functions can be provided through <code>...</code>. These changes will not necessarily break the existing code but will lead to some minor graphical changes (e.g., if you were providing <code>labels</code> argument explicitly, it will be ignored).</li>
+<li>All functions lose the <code>return</code> argument, which was supposed to be alternative to enter <code>output</code>. But this was just leading to more confusion on the user’s part.</li>
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>

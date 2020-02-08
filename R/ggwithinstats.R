@@ -112,7 +112,7 @@ ggwithinstats <- function(data,
                           palette = "Dark2",
                           direction = 1,
                           ggplot.component = NULL,
-                          return = "plot",
+                          output = "plot",
                           messages = TRUE,
                           ...) {
 
@@ -396,7 +396,7 @@ ggwithinstats <- function(data,
   # ------------------------ annotations and themes -------------------------
 
   # specifying annotations and other aesthetic aspects for the plot
-  if (return == "plot") {
+  if (output == "plot") {
     plot <-
       aesthetic_addon(
         plot = plot,
@@ -449,7 +449,7 @@ ggwithinstats <- function(data,
 
   # return the final plot
   return(switch(
-    EXPR = return,
+    EXPR = output,
     "plot" = plot,
     "subtitle" = subtitle,
     "caption" = caption,

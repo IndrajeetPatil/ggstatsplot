@@ -207,7 +207,7 @@ testthat::test_that(
         messages = FALSE,
         bf.prior = 0.85,
         k = 3,
-        return = "caption"
+        output = "caption"
       )
 
     # function output

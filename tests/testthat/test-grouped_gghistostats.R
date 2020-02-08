@@ -60,19 +60,19 @@ testthat::test_that(
   }
 )
 
-# subtitle return --------------------------------------------------
+# subtitle output --------------------------------------------------
 
 testthat::test_that(
-  desc = "subtitle return",
+  desc = "subtitle output",
   code = {
     testthat::skip_on_cran()
 
-    # should return a list of length 3
+    # should output a list of length 3
     ls_results <- ggstatsplot::grouped_gghistostats(
       data = ggplot2::msleep,
       x = brainwt,
       grouping.var = vore,
-      return = "subtitle",
+      output = "subtitle",
       results.subtitle = NULL,
       messages = FALSE
     )

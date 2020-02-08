@@ -66,7 +66,7 @@ grouped_ggbetweenstats <- function(data,
                                    grouping.var,
                                    outlier.label = NULL,
                                    title.prefix = NULL,
-                                   return = "plot",
+                                   output = "plot",
                                    ...,
                                    plotgrid.args = list(),
                                    title.text = NULL,
@@ -136,12 +136,12 @@ grouped_ggbetweenstats <- function(data,
       x = {{ x }},
       y = {{ y }},
       outlier.label = {{ outlier.label }},
-      return = return,
+      output = output,
       ...
     )
 
   # combining the list of plots into a single plot
-  if (return == "plot") {
+  if (output == "plot") {
     return(ggstatsplot::combine_plots2(
       plotlist = plotlist_purrr,
       plotgrid.args = plotgrid.args,
@@ -153,7 +153,6 @@ grouped_ggbetweenstats <- function(data,
       sub.args = sub.args
     ))
   } else {
-    # subtitle list
-    return(plotlist_purrr)
+    return(plotlist_purrr) # subtitle list
   }
 }

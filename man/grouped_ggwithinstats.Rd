@@ -12,7 +12,7 @@ grouped_ggwithinstats(
   grouping.var,
   outlier.label = NULL,
   title.prefix = NULL,
-  return = "plot",
+  output = "plot",
   ...,
   plotgrid.args = list(),
   title.text = NULL,
@@ -42,7 +42,7 @@ bare name \code{x} or as a string \code{"x"}).}
 plot title (name of each factor level) (Default: \code{NULL}). If \code{NULL}, the
 variable name entered for \code{grouping.var} will be used.}
 
-\item{return}{Character that describes what is to be returned: can be
+\item{output}{Character that describes what is to be returned: can be
 \code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to
 \code{"subtitle"} will return the expression containing statistical results. If
 you have set \code{results.subtitle = FALSE}, then this will return a \code{NULL}.

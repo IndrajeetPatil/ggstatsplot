@@ -41,7 +41,7 @@ ggpiestats(
   palette = "Dark2",
   direction = 1,
   ggplot.component = NULL,
-  return = "plot",
+  output = "plot",
   messages = TRUE,
   x = NULL,
   y = NULL
@@ -169,13 +169,11 @@ as a function. If the given function has an argument \code{axes.range.restrict}
 and if it has been set to \code{TRUE}, the added \code{ggplot} component \emph{might} not
 work as expected.}
 
-\item{return}{Character that describes what is to be returned: can be
-\code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to
-\code{"subtitle"} will return the expression containing statistical results. If
-you have set \code{results.subtitle = FALSE}, then this will return a \code{NULL}.
-Setting this to \code{"caption"} will return the expression containing details
-about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
-\code{bf.message = TRUE}, otherwise this will return a \code{NULL}.}
+\item{output}{Can either be \code{"null"} (or \code{"caption"} or \code{"H0"} or \code{"h0"}),
+which will return expression with evidence in favor of the null hypothesis,
+or \code{"alternative"} (or \code{"title"} or \code{"H1"} or \code{"h1"}), which will return
+expression with evidence in favor of the alternative hypothesis, or
+\code{"results"}, which will return a dataframe with results all the details).}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

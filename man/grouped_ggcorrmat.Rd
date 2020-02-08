@@ -12,41 +12,14 @@ grouped_ggcorrmat(
   grouping.var,
   title.prefix = NULL,
   output = "plot",
-  matrix.type = "full",
-  method = "square",
-  corr.method = "pearson",
-  type = NULL,
-  beta = 0.1,
-  digits = 2,
-  k = NULL,
-  sig.level = 0.05,
-  conf.level = 0.95,
-  p.adjust.method = "none",
-  hc.order = FALSE,
-  hc.method = "complete",
-  lab = TRUE,
-  package = "RColorBrewer",
-  palette = "Dark2",
-  direction = 1,
-  colors = c("#E69F00", "white", "#009E73"),
-  outline.color = "black",
-  ggtheme = ggplot2::theme_bw(),
-  ggstatsplot.layer = TRUE,
-  subtitle = NULL,
-  caption = NULL,
-  caption.default = TRUE,
-  lab.col = "black",
-  lab.size = 5,
-  insig = "pch",
-  pch = 4,
-  pch.col = "black",
-  pch.cex = 11,
-  tl.cex = 12,
-  tl.col = "black",
-  tl.srt = 45,
-  messages = TRUE,
-  return = NULL,
-  ...
+  ...,
+  plotgrid.args = list(),
+  title.text = NULL,
+  title.args = list(size = 16, fontface = "bold"),
+  caption.text = NULL,
+  caption.args = list(size = 10),
+  sub.text = NULL,
+  sub.args = list(size = 12)
 )
 }
 \arguments{
@@ -75,47 +48,39 @@ confidence intervals for unique correlation pairs; not available for robust
 correlation) or \code{"n"} (or \code{"sample.size"} for a tibble with sample sizes
 for each correlation pair).}
 
-\item{matrix.type}{Character, \code{"full"} (default), \code{"upper"} or \code{"lower"},
+\item{...}{
+  Arguments passed on to \code{\link[=ggcorrmat]{ggcorrmat}}
+  \describe{
+    \item{\code{matrix.type}}{Character, \code{"full"} (default), \code{"upper"} or \code{"lower"},
 display full matrix, lower triangular or upper triangular matrix.}
-
-\item{method}{Character argument that decides the visualization method of
+    \item{\code{method}}{Character argument that decides the visualization method of
 correlation matrix to be used. Allowed values are \code{"square"} (default),
 \code{"circle"}}
-
-\item{corr.method}{A character string indicating which correlation
+    \item{\code{corr.method}}{A character string indicating which correlation
 coefficient is to be computed (\code{"pearson"} (default) or \code{"kendall"} or
 \code{"spearman"}). \code{"robust"} can also be entered but only if \code{output} argument
 is set to either \code{"correlations"} or \code{"p-values"}. The robust correlation
 used is percentage bend correlation (see \code{?WRS2::pball}). Abbreviations
 will also work: \code{"p"} (for parametric/Pearson's \emph{r}), \code{"np"}
 (nonparametric/Spearman's \emph{rho}), \code{"r"} (robust).}
-
-\item{type}{A character string indicating which correlation
+    \item{\code{type}}{A character string indicating which correlation
 coefficient is to be computed (\code{"pearson"} (default) or \code{"kendall"} or
 \code{"spearman"}). \code{"robust"} can also be entered but only if \code{output} argument
 is set to either \code{"correlations"} or \code{"p-values"}. The robust correlation
 used is percentage bend correlation (see \code{?WRS2::pball}). Abbreviations
 will also work: \code{"p"} (for parametric/Pearson's \emph{r}), \code{"np"}
 (nonparametric/Spearman's \emph{rho}), \code{"r"} (robust).}
-
-\item{beta}{A numeric bending constant for percentage bend robust correlation
+    \item{\code{beta}}{A numeric bending constant for percentage bend robust correlation
 coefficient (Default: \code{0.1}).}
-
-\item{digits}{Decides the number of decimal digits to be displayed
+    \item{\code{digits}}{Decides the number of decimal digits to be displayed
 (Default: \code{2}).}
-
-\item{k}{Decides the number of decimal digits to be displayed
+    \item{\code{k}}{Decides the number of decimal digits to be displayed
 (Default: \code{2}).}
-
-\item{sig.level}{Significance level (Default: \code{0.05}). If the \emph{p}-value in
+    \item{\code{sig.level}}{Significance level (Default: \code{0.05}). If the \emph{p}-value in
 \emph{p}-value matrix is bigger than \code{sig.level}, then the corresponding
 correlation coefficient is regarded as insignificant and flagged as such in
 the plot. This argument is relevant only when \code{output = "plot"}.}
-
-\item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
-\verb{95\%} lower and upper confidence intervals (\code{0.95}).}
-
-\item{p.adjust.method}{What adjustment for multiple tests should be used?
+    \item{\code{p.adjust.method}}{What adjustment for multiple tests should be used?
 (\code{"holm"}, \code{"hochberg"}, \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"},
 \code{"fdr"}, \code{"none"}). See \code{stats::p.adjust} for details about why to use
 \code{"holm"} rather than \code{"bonferroni"}). Default is \code{"none"}. If adjusted
@@ -123,138 +88,80 @@ the plot. This argument is relevant only when \code{output = "plot"}.}
 \strong{adjusted} \emph{p}-values will be used for the \strong{upper} triangle, while
 \strong{unadjusted} \emph{p}-values will be used for the \strong{lower} triangle of the
 matrix.}
-
-\item{hc.order}{Logical value. If \code{TRUE}, correlation matrix will be
+    \item{\code{hc.order}}{Logical value. If \code{TRUE}, correlation matrix will be
 hc.ordered using \code{hclust} function (Default is \code{FALSE}).}
-
-\item{hc.method}{The agglomeration method to be used in \code{hclust} (see
+    \item{\code{hc.method}}{The agglomeration method to be used in \code{hclust} (see
 \code{?hclust}).}
-
-\item{lab}{Logical value. If \code{TRUE}, correlation coefficient values will be
+    \item{\code{lab}}{Logical value. If \code{TRUE}, correlation coefficient values will be
 displayed in the plot.}
-
-\item{package}{Name of package from which the palette is desired as string
-or symbol.}
-
-\item{palette}{Name of palette as string or symbol.}
-
-\item{direction}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
-
-\item{colors}{A vector of 3 colors for low, mid, and high correlation values.
+    \item{\code{colors}}{A vector of 3 colors for low, mid, and high correlation values.
 If set to \code{NULL}, manual specification of colors will be turned off and 3
 colors from the specified \code{palette} from \code{package} will be selected.}
-
-\item{outline.color}{The outline color of square or circle. Default value is
+    \item{\code{outline.color}}{The outline color of square or circle. Default value is
 \code{"gray"}.}
-
-\item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
-\code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
-extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
-\code{hrbrthemes::theme_ipsum_ps()}, etc.).}
-
-\item{ggstatsplot.layer}{Logical that decides whether \code{theme_ggstatsplot}
-theme elements are to be displayed along with the selected \code{ggtheme}
-(Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
-override some aspects of the selected \code{ggtheme}.}
-
-\item{subtitle}{The text for the plot subtitle.}
-
-\item{caption}{The text for the plot caption. If \code{NULL}, a default caption
+    \item{\code{subtitle}}{The text for the plot subtitle.}
+    \item{\code{caption}}{The text for the plot caption. If \code{NULL}, a default caption
 will be shown.}
-
-\item{caption.default}{Logical that decides whether the default caption
+    \item{\code{caption.default}}{Logical that decides whether the default caption
 should be shown (default: \code{TRUE}).}
-
-\item{lab.col}{Color to be used for the correlation coefficient labels
+    \item{\code{lab.col}}{Color to be used for the correlation coefficient labels
 (applicable only when \code{lab = TRUE}).}
-
-\item{lab.size}{Size to be used for the correlation coefficient labels
+    \item{\code{lab.size}}{Size to be used for the correlation coefficient labels
 (applicable only when \code{lab = TRUE}).}
-
-\item{insig}{Character used to show specialized insignificant correlation
+    \item{\code{insig}}{Character used to show specialized insignificant correlation
 coefficients (\code{"pch"} (default) or \code{"blank"}). If \code{"blank"}, the
 corresponding glyphs will be removed; if "pch" is used, characters (see
 \code{?pch} for details) will be added on the corresponding glyphs.}
-
-\item{pch}{Decides the glyphs (read point shapes) to be used for
+    \item{\code{pch}}{Decides the glyphs (read point shapes) to be used for
 insignificant correlation coefficients (only valid when \code{insig = "pch"}).
 Default value is \code{pch = 4}.}
-
-\item{pch.col}{The color and the cex (size) of \code{pch} (only valid when
+    \item{\code{pch.col}}{The color and the cex (size) of \code{pch} (only valid when
 \code{insig = "pch"}). Defaults are \code{pch.col = "#F0E442"} and \code{pch.cex = 10}.}
-
-\item{pch.cex}{The color and the cex (size) of \code{pch} (only valid when
+    \item{\code{pch.cex}}{The color and the cex (size) of \code{pch} (only valid when
 \code{insig = "pch"}). Defaults are \code{pch.col = "#F0E442"} and \code{pch.cex = 10}.}
-
-\item{tl.cex}{The size, the color, and the string rotation of
+    \item{\code{tl.cex}}{The size, the color, and the string rotation of
 text label (variable names, i.e.).}
-
-\item{tl.col}{The size, the color, and the string rotation of
+    \item{\code{tl.col}}{The size, the color, and the string rotation of
 text label (variable names, i.e.).}
-
-\item{tl.srt}{The size, the color, and the string rotation of
+    \item{\code{tl.srt}}{The size, the color, and the string rotation of
 text label (variable names, i.e.).}
-
-\item{messages}{Decides whether messages references, notes, and warnings are
+    \item{\code{package}}{Name of package from which the palette is desired as string
+or symbol.}
+    \item{\code{palette}}{Name of palette as string or symbol.}
+    \item{\code{direction}}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
+    \item{\code{ggtheme}}{A function, \code{ggplot2} theme name. Default value is
+\code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
+extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
+\code{hrbrthemes::theme_ipsum_ps()}, etc.).}
+    \item{\code{ggstatsplot.layer}}{Logical that decides whether \code{theme_ggstatsplot}
+theme elements are to be displayed along with the selected \code{ggtheme}
+(Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
+override some aspects of the selected \code{ggtheme}.}
+    \item{\code{conf.level}}{Scalar between 0 and 1. If unspecified, the defaults return
+\verb{95\%} lower and upper confidence intervals (\code{0.95}).}
+    \item{\code{messages}}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
-
-\item{return}{Character that decides expected output from this
-function: \code{"plot"} (for visualization matrix) or \code{"correlations"} (or
-\code{"corr"} or \code{"r"}; for correlation matrix) or \code{"p-values"} (or \code{"p.values"}
-or \code{"p"}; for a matrix of \emph{p}-values) or \code{"ci"} (for a tibble with
-confidence intervals for unique correlation pairs; not available for robust
-correlation) or \code{"n"} (or \code{"sample.size"} for a tibble with sample sizes
-for each correlation pair).}
-
-\item{...}{
-  Arguments passed on to \code{\link[=combine_plots]{combine_plots}}
-  \describe{
-    \item{\code{title.text}}{String or plotmath expression to be drawn as title for the
-\emph{combined plot}.}
-    \item{\code{title.color}}{Text color for title.}
-    \item{\code{title.size}}{Point size of title text.}
-    \item{\code{title.vjust}}{Vertical justification for title. Default = \code{0.5}
-(centered on \code{y}). \code{0} = baseline at \code{y}, \code{1} = ascender at \code{y}.}
-    \item{\code{title.hjust}}{Horizontal justification for title. Default = \code{0.5}
-(centered on \code{x}). \code{0} = flush-left at x, \code{1} = flush-right.}
-    \item{\code{title.fontface}}{The font face (\code{"plain"}, \code{"bold"} (default),
-\code{"italic"}, \code{"bold.italic"}) for title.}
-    \item{\code{caption.text}}{String or plotmath expression to be drawn as the caption
-for the \emph{combined plot}.}
-    \item{\code{caption.color}}{Text color for caption.}
-    \item{\code{caption.size}}{Point size of title text.}
-    \item{\code{caption.vjust}}{Vertical justification for caption. Default = \code{0.5}
-(centered on y). \code{0} = baseline at y, \code{1} = ascender at y.}
-    \item{\code{caption.hjust}}{Horizontal justification for caption. Default = \code{0.5}
-(centered on x). \code{0} = flush-left at x, \code{1} = flush-right.}
-    \item{\code{caption.fontface}}{The font face (\code{"plain"} (default), \code{"bold"},
-\code{"italic"}, \code{"bold.italic"}) for caption.}
-    \item{\code{sub.text}}{The label with which the \emph{combined plot} should be annotated.
-Can be a plotmath expression.}
-    \item{\code{sub.color}}{Text color for annotation label (Default: \code{"black"}).}
-    \item{\code{sub.size}}{Point size of annotation text (Default: \code{12}).}
-    \item{\code{sub.x}}{The x position of annotation label (Default: \code{0.5}).}
-    \item{\code{sub.y}}{The y position of annotation label (Default: \code{0.5}).}
-    \item{\code{sub.hjust}}{Horizontal justification for annotation label (Default:
-\code{0.5}).}
-    \item{\code{sub.vjust}}{Vertical justification for annotation label (Default:
-\code{0.5}).}
-    \item{\code{sub.vpadding}}{Vertical padding. The total vertical space added to the
-label, given in grid units. By default, this is added equally above and
-below the label. However, by changing the y and vjust parameters, this can
-be changed (Default: \code{ggplot2::unit(1, "lines")}).}
-    \item{\code{sub.fontface}}{The font face (\code{"plain"} (default), \code{"bold"}, \code{"italic"},
-\code{"bold.italic"}) for the annotation label.}
-    \item{\code{sub.angle}}{Angle at which annotation label is to be drawn (Default:
-\code{0}).}
-    \item{\code{sub.lineheight}}{Line height of annotation label.}
-    \item{\code{title.caption.rel.heights}}{Numerical vector of relative columns heights
-while combining (title, plot, caption).}
-    \item{\code{title.rel.heights}}{Numerical vector of relative columns heights while
-combining (title, plot).}
-    \item{\code{caption.rel.heights}}{Numerical vector of relative columns heights while
-combining (plot, caption).}
   }}
+
+\item{plotgrid.args}{A list of additional arguments to \code{cowplot::plot_grid}.}
+
+\item{title.text}{String or plotmath expression to be drawn as title for the
+\emph{combined plot}.}
+
+\item{title.args}{A list of additional arguments
+provided to \code{title}, \code{caption} and \code{sub}, resp.}
+
+\item{caption.text}{String or plotmath expression to be drawn as the caption
+for the \emph{combined plot}.}
+
+\item{caption.args}{A list of additional arguments
+provided to \code{title}, \code{caption} and \code{sub}, resp.}
+
+\item{sub.text}{The label with which the \emph{combined plot} should be annotated.
+Can be a plotmath expression.}
+
+\item{sub.args}{A list of additional arguments
+provided to \code{title}, \code{caption} and \code{sub}, resp.}
 }
 \value{
 Correlation matrix plot or correlation coefficient matrix or matrix
@@ -287,7 +194,7 @@ ggstatsplot::grouped_ggcorrmat(
   colors = NULL,
   package = "wesanderson",
   palette = "BottleRocket2",
-  nrow = 2
+  plotgrid.args = list(nrow = 2)
 )
 
 # for getting correlations

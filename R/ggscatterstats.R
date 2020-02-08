@@ -142,7 +142,7 @@ ggscatterstats <- function(data,
                            ggtheme = ggplot2::theme_bw(),
                            ggstatsplot.layer = TRUE,
                            ggplot.component = NULL,
-                           return = "plot",
+                           output = "plot",
                            messages = TRUE) {
 
   #---------------------- variable names --------------------------------
@@ -482,7 +482,7 @@ ggscatterstats <- function(data,
 
   # return the final plot
   return(switch(
-    EXPR = return,
+    EXPR = output,
     "plot" = plot,
     "subtitle" = subtitle,
     "caption" = caption,
