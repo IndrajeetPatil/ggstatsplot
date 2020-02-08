@@ -149,20 +149,6 @@ bartlett_message <- function(data,
   }
 }
 
-#' @title grouped_message
-#' @description A note to the user about the class of the output object.
-#' @noRd
-
-# function body
-grouped_message <- function() {
-  message(cat(
-    crayon::red("Warning: "),
-    crayon::blue("Individual plots in the combined `grouped_` plot\n"),
-    crayon::blue("can't be further modified with `ggplot2` functions.\n"),
-    sep = ""
-  ))
-}
-
 #' @title Message if palette doesn't have enough number of colors.
 #' @name palette_message
 #' @description A note to the user about not using the default color palette

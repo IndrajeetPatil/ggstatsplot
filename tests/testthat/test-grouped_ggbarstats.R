@@ -98,14 +98,14 @@ testthat::test_that(
   }
 )
 
-# subtitle return --------------------------------------------------
+# subtitle output --------------------------------------------------
 
 testthat::test_that(
-  desc = "subtitle return",
+  desc = "subtitle output",
   code = {
     testthat::skip_on_cran()
 
-    # should return a list of length 3
+    # should output a list of length 3
     set.seed(123)
     ls_results <-
       suppressWarnings(ggstatsplot::grouped_ggbarstats(
@@ -113,7 +113,7 @@ testthat::test_that(
         main = relig,
         condition = marital,
         grouping.var = race,
-        return = "subtitle",
+        output = "subtitle",
         results.subtitle = FALSE,
         bar.proptest = FALSE,
         messages = FALSE
@@ -135,7 +135,7 @@ testthat::test_that(
         counts = "Freq",
         bias.correct = FALSE,
         grouping.var = Sex,
-        return = "subtitle",
+        output = "subtitle",
         messages = FALSE
       ))
 
@@ -225,7 +225,7 @@ testthat::test_that(
           main = "am",
           condition = cyl,
           messages = FALSE,
-          return = "subtitle"
+          output = "subtitle"
         )
       )
 
@@ -236,7 +236,7 @@ testthat::test_that(
         x = "am",
         y = cyl,
         messages = FALSE,
-        return = "subtitle"
+        output = "subtitle"
       ))
 
     set.seed(123)
@@ -247,7 +247,7 @@ testthat::test_that(
         y = "cyl",
         grouping.var = grp,
         messages = FALSE,
-        return = "subtitle"
+        output = "subtitle"
       ))
 
     set.seed(123)
@@ -258,7 +258,7 @@ testthat::test_that(
         condition = cyl,
         grouping.var = "grp",
         messages = FALSE,
-        return = "subtitle"
+        output = "subtitle"
       ))
 
     # testing if grouped and base versions results are same

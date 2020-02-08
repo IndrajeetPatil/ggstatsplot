@@ -157,9 +157,7 @@ testthat::test_that(
     testthat::expect_equal(dim(pb$data[[1]]), c(44L, 13L))
     testthat::expect_equal(dim(pb$data[[2]]), c(4L, 25L))
     testthat::expect_equal(dim(pb$data[[3]]), c(2048L, 20L))
-    # testthat::expect_equal(dim(pb$data[[4]]), c(7L, 15L))
     testthat::expect_equal(dim(pb$data[[5]]), c(4L, 12L))
-    # testthat::expect_equal(dim(pb$data[[6]]), c(4L, 15L))
 
     # data from difference layers
     testthat::expect_equal(length(pb$data), 6L)
@@ -334,7 +332,7 @@ testthat::test_that(
         messages = FALSE,
         bf.prior = 0.85,
         k = 3,
-        return = "caption"
+        output = "caption"
       )
 
     # function output
@@ -462,18 +460,14 @@ testthat::test_that(
     # tests for data
     testthat::expect_equal(dim(pb1$data[[1]]), c(58L, 13L))
     testthat::expect_equal(dim(pb1$data[[2]]), c(2L, 25L))
-    # testthat::expect_equal(dim(pb1$data[[3]]), c(2L, 15L))
     testthat::expect_equal(dim(pb1$data[[4]]), c(2L, 12L))
-    # testthat::expect_equal(dim(pb1$data[[5]]), c(2L, 15L))
     testthat::expect_equal(pb1$data[[4]]$x, c(1L, 2L))
     testthat::expect_identical(
       c("list(~italic(widehat(mu))== 20.66 )", "list(~italic(widehat(mu))== 16.96 )"),
       pb1$data[[5]]$label
     )
     testthat::expect_equal(dim(pb1$data[[2]]), c(2L, 25L))
-    # testthat::expect_equal(dim(pb1$data[[3]]), c(2L, 15L))
     testthat::expect_equal(dim(pb1$data[[4]]), c(2L, 12L))
-    # testthat::expect_equal(dim(pb1$data[[5]]), c(2L, 15L))
     testthat::expect_equal(pb1$data[[4]]$x, c(1L, 2L))
     testthat::expect_identical(pb1$data[[3]]$colour[1], "black")
     testthat::expect_identical(pb1$data[[4]]$colour[1], "darkgreen")
@@ -509,10 +503,10 @@ testthat::test_that(
   }
 )
 
-# subtitle return works ------------------------------------------------
+# subtitle output works ------------------------------------------------
 
 testthat::test_that(
-  desc = "subtitle return works",
+  desc = "subtitle output works",
   code = {
     testthat::skip_on_cran()
 
@@ -523,7 +517,7 @@ testthat::test_that(
         data = iris,
         x = Species,
         y = Sepal.Length,
-        return = "subtitle",
+        output = "subtitle",
         messages = FALSE
       )
 
@@ -540,7 +534,7 @@ testthat::test_that(
         x = "type",
         y = "mpg",
         messages = FALSE,
-        return = "subtitle"
+        output = "subtitle"
       )
 
 

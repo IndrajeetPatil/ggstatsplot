@@ -105,13 +105,14 @@
 #' or symbol.
 #' @param palette Name of palette as string or symbol.
 #' @param direction Either `1` or `-1`. If `-1` the palette will be reversed.
-#' @param return Character that describes what is to be returned: can be
+#' @param output Character that describes what is to be returned: can be
 #'   `"plot"` (default) or `"subtitle"` or `"caption"`. Setting this to
 #'   `"subtitle"` will return the expression containing statistical results. If
 #'   you have set `results.subtitle = FALSE`, then this will return a `NULL`.
 #'   Setting this to `"caption"` will return the expression containing details
 #'   about Bayes Factor analysis, but valid only when `type = "parametric"` and
 #'   `bf.message = TRUE`, otherwise this will return a `NULL`.
+#' @param ... Currently ignored.
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams statsExpressions::expr_anova_parametric
 #' @inheritParams statsExpressions::expr_t_parametric
@@ -251,8 +252,9 @@ ggbetweenstats <- function(data,
                            palette = "Dark2",
                            direction = 1,
                            ggplot.component = NULL,
-                           return = "plot",
-                           messages = TRUE) {
+                           output = "plot",
+                           messages = TRUE,
+                           ...) {
 
   # convert entered stats type to a standard notation
   type <- stats_type_switch(type)
@@ -564,7 +566,7 @@ ggbetweenstats <- function(data,
   # ------------------------ annotations and themes -------------------------
 
   # specifying annotations and other aesthetic aspects for the plot
-  if (return == "plot") {
+  if (output == "plot") {
     plot <-
       aesthetic_addon(
         plot = plot,
@@ -618,7 +620,7 @@ ggbetweenstats <- function(data,
 
   # return the final plot
   return(switch(
-    EXPR = return,
+    EXPR = output,
     "plot" = plot,
     "subtitle" = subtitle,
     "caption" = caption,

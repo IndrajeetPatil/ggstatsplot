@@ -3,6 +3,7 @@
 #' @description A dot chart with statistical details from one-sample test
 #'   included in the plot as a subtitle.
 #'
+#' @param ... Currently ignored.
 #' @param y Label or grouping variable.
 #' @param point.color Character describing color for the point (Default:
 #'   `"black"`).
@@ -84,8 +85,9 @@ ggdotplotstats <- function(data,
                            test.line.labeller = TRUE,
                            test.k = 0,
                            ggplot.component = NULL,
-                           return = "plot",
-                           messages = TRUE) {
+                           output = "plot",
+                           messages = TRUE,
+                           ...) {
 
   # ------------------------------ variable names ----------------------------
 
@@ -250,7 +252,7 @@ ggdotplotstats <- function(data,
 
   # return the plot
   return(switch(
-    EXPR = return,
+    EXPR = output,
     "plot" = plot,
     "subtitle" = subtitle,
     "caption" = caption,

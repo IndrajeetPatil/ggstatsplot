@@ -4,6 +4,7 @@
 #'   histograms/boxplots/density plots with statistical details added as a
 #'   subtitle.
 #'
+#' @param ... Currently ignored.
 #' @param label.var Variable to use for points labels. Can be entered either as
 #'   a character string (e.g., `"var1"`) or as a bare expression (e.g, `var1`).
 #' @param label.expression An expression evaluating to a logical vector that
@@ -142,8 +143,9 @@ ggscatterstats <- function(data,
                            ggtheme = ggplot2::theme_bw(),
                            ggstatsplot.layer = TRUE,
                            ggplot.component = NULL,
-                           return = "plot",
-                           messages = TRUE) {
+                           output = "plot",
+                           messages = TRUE,
+                           ...) {
 
   #---------------------- variable names --------------------------------
 
@@ -482,7 +484,7 @@ ggscatterstats <- function(data,
 
   # return the final plot
   return(switch(
-    EXPR = return,
+    EXPR = output,
     "plot" = plot,
     "subtitle" = subtitle,
     "caption" = caption,

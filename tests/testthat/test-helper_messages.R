@@ -1,15 +1,3 @@
-# grouped_message is working ---------------------------------------------
-
-testthat::test_that(
-  desc = "grouped_message is working",
-  code = {
-    testthat::expect_output(
-      ggstatsplot:::grouped_message(),
-      "Warning: Individual plots in the combined",
-      fixed = TRUE
-    )
-  }
-)
 
 # ggcorrmat_matrix_message is working ------------------------------------
 

@@ -90,49 +90,49 @@ testthat::test_that(
     library(WRS2)
 
     # plot
-    p1 <- ggstatsplot::ggwithinstats(
-      data = WineTasting,
-      x = Wine,
-      y = "Taste",
-      type = "p",
-      sort = "ascending",
-      sort.fun = median,
-      bf.message = TRUE,
-      k = 4,
-      conf.level = 0.99,
-      outlier.tagging = TRUE,
-      outlier.coef = 2.5,
-      pairwise.comparisons = TRUE,
-      pairwise.annotation = "asterisk",
-      title = "wine tasting data",
-      caption = "From `WRS2` package",
-      messages = TRUE
-    )
+    p1 <-
+      ggstatsplot::ggwithinstats(
+        data = WineTasting,
+        x = Wine,
+        y = "Taste",
+        type = "p",
+        sort = "ascending",
+        sort.fun = median,
+        bf.message = TRUE,
+        k = 4,
+        conf.level = 0.99,
+        outlier.tagging = TRUE,
+        outlier.coef = 2.5,
+        pairwise.comparisons = TRUE,
+        pairwise.annotation = "asterisk",
+        title = "wine tasting data",
+        caption = "From `WRS2` package",
+        messages = TRUE
+      )
 
     # build the plot
     pb1 <- ggplot2::ggplot_build(p1)
 
     # subtitle
     set.seed(123)
-    p1_subtitle <- statsExpressions::expr_anova_parametric(
-      data = WineTasting,
-      x = "Wine",
-      y = Taste,
-      type = "p",
-      k = 4,
-      paired = TRUE,
-      conf.level = 0.99,
-      messages = FALSE
-    )
+    p1_subtitle <-
+      statsExpressions::expr_anova_parametric(
+        data = WineTasting,
+        x = "Wine",
+        y = Taste,
+        type = "p",
+        k = 4,
+        paired = TRUE,
+        conf.level = 0.99,
+        messages = FALSE
+      )
 
     # dataframe used for visualization
     testthat::expect_equal(length(pb1$data), 8L)
     testthat::expect_equal(dim(pb1$data[[1]]), c(66L, 10L))
     testthat::expect_equal(dim(pb1$data[[2]]), c(3L, 25L))
     testthat::expect_equal(dim(pb1$data[[3]]), c(1536L, 20L))
-    # testthat::expect_equal(dim(pb1$data[[4]]), c(4L, 15L))
     testthat::expect_equal(dim(pb1$data[[5]]), c(3L, 12L))
-    # testthat::expect_equal(dim(pb1$data[[6]]), c(3L, 15L))
     testthat::expect_equal(dim(pb1$data[[7]]), c(3L, 8L))
     testthat::expect_equal(dim(pb1$data[[8]]), c(6L, 19L))
 
@@ -207,7 +207,7 @@ testthat::test_that(
         messages = FALSE,
         bf.prior = 0.85,
         k = 3,
-        return = "caption"
+        output = "caption"
       )
 
     # function output
@@ -233,39 +233,42 @@ testthat::test_that(
   desc = "checking sorting",
   code = {
     testthat::skip_on_cran()
-    set.seed(123)
 
     # plot
-    p1 <- ggstatsplot::ggwithinstats(
-      data = WineTasting,
-      x = Wine,
-      y = Taste,
-      sort = "none",
-      package = "wesanderson",
-      palette = "Royal1",
-      results.subtitle = FALSE,
-      messages = FALSE
-    )
+    set.seed(123)
+    p1 <-
+      ggstatsplot::ggwithinstats(
+        data = WineTasting,
+        x = Wine,
+        y = Taste,
+        sort = "none",
+        package = "wesanderson",
+        palette = "Royal1",
+        results.subtitle = FALSE,
+        messages = FALSE
+      )
 
     set.seed(123)
-    p2 <- ggstatsplot::ggwithinstats(
-      data = WineTasting,
-      x = Wine,
-      y = Taste,
-      sort = "ascending",
-      results.subtitle = FALSE,
-      messages = FALSE
-    )
+    p2 <-
+      ggstatsplot::ggwithinstats(
+        data = WineTasting,
+        x = Wine,
+        y = Taste,
+        sort = "ascending",
+        results.subtitle = FALSE,
+        messages = FALSE
+      )
 
     set.seed(123)
-    p3 <- ggstatsplot::ggwithinstats(
-      data = WineTasting,
-      x = Wine,
-      y = Taste,
-      sort = "xxx",
-      results.subtitle = FALSE,
-      messages = FALSE
-    )
+    p3 <-
+      ggstatsplot::ggwithinstats(
+        data = WineTasting,
+        x = Wine,
+        y = Taste,
+        sort = "xxx",
+        results.subtitle = FALSE,
+        messages = FALSE
+      )
 
     # built plots
     pb1 <- ggplot2::ggplot_build(p1)
@@ -286,19 +289,20 @@ testthat::test_that(
     testthat::skip_on_cran()
     set.seed(123)
 
-    p1 <- ggstatsplot::ggwithinstats(
-      data = ggstatsplot::iris_long,
-      x = condition,
-      y = value,
-      type = "np",
-      pairwise.display = "s",
-      pairwise.annotation = "p",
-      outlier.tagging = FALSE,
-      pairwise.comparisons = TRUE,
-      axes.range.restrict = TRUE,
-      conf.level = 0.90,
-      messages = FALSE
-    )
+    p1 <-
+      ggstatsplot::ggwithinstats(
+        data = ggstatsplot::iris_long,
+        x = condition,
+        y = value,
+        type = "np",
+        pairwise.display = "s",
+        pairwise.annotation = "p",
+        outlier.tagging = FALSE,
+        pairwise.comparisons = TRUE,
+        axes.range.restrict = TRUE,
+        conf.level = 0.90,
+        messages = FALSE
+      )
 
     set.seed(123)
     p1_subtitle <-

@@ -50,7 +50,6 @@ ggcoefstats(
   ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE,
   messages = FALSE,
-  return = NULL,
   ...
 )
 }
@@ -62,7 +61,7 @@ estimates of coefficients or other quantities of interest). Other optional
 columns are \code{conf.low} and \code{conf.high} (for confidence intervals);
 \code{p.value}. It is important that all \code{term} names should be unique.}
 
-\item{output, return}{Character describing the expected output from this function:
+\item{output}{Character describing the expected output from this function:
 \code{"plot"} (visualization of regression coefficients) or \code{"tidy"} (tidy
 dataframe of results from \code{broom::tidy}) or \code{"glance"} (object from
 \code{broom::glance}) or \code{"augment"} (object from \code{broom::augment}).}

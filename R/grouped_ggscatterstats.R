@@ -7,12 +7,11 @@
 #'
 #' @inheritParams ggscatterstats
 #' @inheritParams grouped_ggbetweenstats
-#' @inheritDotParams combine_plots
+#' @inheritDotParams ggscatterstats -title
 #'
 #' @import ggplot2
 #'
-#' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
-#' @importFrom dplyr group_by n arrange
+#' @importFrom dplyr select
 #' @importFrom rlang !! enquo enexpr ensym
 #' @importFrom purrr pmap
 #'
@@ -84,53 +83,18 @@ grouped_ggscatterstats <- function(data,
                                    x,
                                    y,
                                    grouping.var,
-                                   type = "pearson",
-                                   conf.level = 0.95,
-                                   bf.prior = 0.707,
-                                   bf.message = TRUE,
                                    label.var = NULL,
                                    label.expression = NULL,
                                    title.prefix = NULL,
-                                   xlab = NULL,
-                                   ylab = NULL,
-                                   method = "lm",
-                                   method.args = list(),
-                                   formula = y ~ x,
-                                   point.color = "black",
-                                   point.size = 3,
-                                   point.alpha = 0.4,
-                                   line.size = 1.5,
-                                   point.width.jitter = 0,
-                                   point.height.jitter = 0,
-                                   line.color = "blue",
-                                   marginal = TRUE,
-                                   marginal.type = "histogram",
-                                   marginal.size = 5,
-                                   margins = c("both", "x", "y"),
-                                   package = "wesanderson",
-                                   palette = "Royal1",
-                                   direction = 1,
-                                   xfill = "#009E73",
-                                   yfill = "#D55E00",
-                                   xalpha = 1,
-                                   yalpha = 1,
-                                   xsize = 0.7,
-                                   ysize = 0.7,
-                                   centrality.para = NULL,
-                                   results.subtitle = TRUE,
-                                   stat.title = NULL,
-                                   caption = NULL,
-                                   subtitle = NULL,
-                                   nboot = 100,
-                                   beta = 0.1,
-                                   k = 2,
-                                   axes.range.restrict = FALSE,
-                                   ggtheme = ggplot2::theme_bw(),
-                                   ggstatsplot.layer = TRUE,
-                                   ggplot.component = NULL,
-                                   return = "plot",
-                                   messages = TRUE,
-                                   ...) {
+                                   output = "plot",
+                                   ...,
+                                   plotgrid.args = list(),
+                                   title.text = NULL,
+                                   title.args = list(size = 16, fontface = "bold"),
+                                   caption.text = NULL,
+                                   caption.args = list(size = 10),
+                                   sub.text = NULL,
+                                   sub.args = list(size = 12)) {
 
   # check that there is a grouping.var
   if (!"grouping.var" %in% names(as.list(match.call()))) {
@@ -163,57 +127,23 @@ grouped_ggscatterstats <- function(data,
       y = {{ y }},
       label.var = {{ label.var }},
       label.expression = !!rlang::enexpr(label.expression),
-      type = type,
-      conf.level = conf.level,
-      bf.prior = bf.prior,
-      bf.message = bf.message,
-      method = method,
-      xlab = xlab,
-      ylab = ylab,
-      method.args = method.args,
-      formula = formula,
-      point.color = point.color,
-      point.size = point.size,
-      point.alpha = point.alpha,
-      line.size = line.size,
-      point.width.jitter = point.width.jitter,
-      point.height.jitter = point.height.jitter,
-      line.color = line.color,
-      marginal = marginal,
-      marginal.type = marginal.type,
-      marginal.size = marginal.size,
-      margins = margins,
-      package = package,
-      palette = palette,
-      direction = direction,
-      xfill = xfill,
-      yfill = yfill,
-      xalpha = xalpha,
-      yalpha = yalpha,
-      xsize = xsize,
-      ysize = ysize,
-      centrality.para = centrality.para,
-      results.subtitle = results.subtitle,
-      stat.title = stat.title,
-      caption = caption,
-      subtitle = subtitle,
-      nboot = nboot,
-      beta = beta,
-      k = k,
-      axes.range.restrict = axes.range.restrict,
-      ggtheme = ggtheme,
-      ggstatsplot.layer = ggstatsplot.layer,
-      ggplot.component = ggplot.component,
-      return = return,
-      messages = messages
+      output = output,
+      ...
     )
 
   # combining the list of plots into a single plot
-  # inform user this can't be modified further with ggplot commands
-  if (return == "plot") {
-    if (isTRUE(messages)) grouped_message()
-    return(ggstatsplot::combine_plots(plotlist = plotlist_purrr, ...))
+  if (output == "plot") {
+    return(ggstatsplot::combine_plots2(
+      plotlist = plotlist_purrr,
+      plotgrid.args = plotgrid.args,
+      title.text = title.text,
+      title.args = title.args,
+      caption.text = caption.text,
+      caption.args = caption.args,
+      sub.text = sub.text,
+      sub.args = sub.args
+    ))
   } else {
-    return(plotlist_purrr)
+    return(plotlist_purrr) # subtitle list
   }
 }

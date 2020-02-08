@@ -88,7 +88,7 @@ testthat::test_that(
     df1 <- ggstatsplot::grouped_ggcorrmat(
       data = ggplot2::msleep,
       grouping.var = vore,
-      return = "r",
+      output = "r",
       k = 3,
       messages = FALSE
     )
@@ -99,13 +99,14 @@ testthat::test_that(
 
     # tidy dataframe
     set.seed(123)
-    df11 <- ggstatsplot::grouped_ggcorrmat(
-      data = dplyr::select(ggplot2::msleep, vore, awake:brainwt),
-      grouping.var = vore,
-      output = "ci",
-      k = 3,
-      messages = FALSE
-    )
+    df11 <-
+      ggstatsplot::grouped_ggcorrmat(
+        data = dplyr::select(ggplot2::msleep, vore, awake:brainwt),
+        grouping.var = vore,
+        output = "ci",
+        k = 3,
+        messages = FALSE
+      )
 
     # testing dataframe
     testthat::expect_equal(dim(df11), c(4L, 8L))

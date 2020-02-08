@@ -87,7 +87,7 @@ subtitle." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.2.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.3.0.9000</span>
       </span>
     </div>
 
@@ -254,8 +254,9 @@ subtitle.</p>
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>return</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
-  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
+  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='no'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -499,7 +500,7 @@ and if it has been set to <code>TRUE</code>, the added <code>ggplot</code> compo
 work as expected.</p></td>
     </tr>
     <tr>
-      <th>return</th>
+      <th>output</th>
       <td><p>Character that describes what is to be returned: can be
 <code>"plot"</code> (default) or <code>"subtitle"</code> or <code>"caption"</code>. Setting this to
 <code>"subtitle"</code> will return the expression containing statistical results. If
@@ -512,6 +513,10 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
       <th>messages</th>
       <td><p>Decides whether messages references, notes, and warnings are
 to be displayed (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Currently ignored.</p></td>
     </tr>
     </table>
 

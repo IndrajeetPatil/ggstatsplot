@@ -373,7 +373,7 @@ testthat::test_that(
       data = ggplot2::msleep,
       cor.vars = sleep_total:awake,
       type = "r",
-      return = "n",
+      output = "n",
       p.adjust.method = "fdr",
       messages = FALSE
     )

@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.2.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.3.0.9000</span>
       </span>
     </div>
 
@@ -181,7 +181,7 @@
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="http://www.r-pkg.org/badges/version-ago/ggstatsplot" alt="CRAN_Release_Badge"></a></td>
 <td><a href="https://travis-ci.org/IndrajeetPatil/ggstatsplot"><img src="https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master" alt="Travis Build Status"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue" alt="Daily downloads badge"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/"><img src="https://img.shields.io/badge/GitHub-0.2.0.9000-orange.svg?style=flat-square" alt="GitHub version"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/"><img src="https://img.shields.io/badge/GitHub-0.3.0.9000-orange.svg?style=flat-square" alt="GitHub version"></a></td>
 <td><a href="https://indrajeetpatil.github.io/ggstatsplot/"><img src="https://img.shields.io/badge/website-ggstatsplot-orange.svg?colorB=E91E63" alt="Website"></a></td>
 </tr>
 <tr class="even">
@@ -195,8 +195,8 @@
 <td><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg" alt="minimal R version"></a></td>
 <td><a href="https://www.tidyverse.org/lifecycle/"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue" alt="Monthly downloads badge"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-26-red.svg" alt="Github Issues"></a></td>
-<td><a href="https://CRAN.R-project.org/package=ggstatsplot/vignettes/"><img src="https://img.shields.io/badge/vignettes-0.2.0-orange.svg?colorB=FF5722" alt="vignettes"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-27-red.svg" alt="Github Issues"></a></td>
+<td><a href="https://CRAN.R-project.org/package=ggstatsplot/vignettes/"><img src="https://img.shields.io/badge/vignettes-0.3.0-orange.svg?colorB=FF5722" alt="vignettes"></a></td>
 </tr>
 <tr class="even">
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot"><img src="https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg" alt="GitHub code size in bytes"></a></td>
@@ -209,7 +209,7 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
 <td><a href="http://hits.dwyl.com/IndrajeetPatil/ggstatsplot"><img src="http://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2020--02--06-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2020--02--08-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg" alt="GitHub last commit"></a></td>
 </tr>
 <tr class="even">
@@ -226,9 +226,6 @@
 <h1 class="hasAnchor">
 <a href="#raison-d%C3%AAtre-" class="anchor"></a>Raison d’être <img src="reference/figures/logo.png" align="right" width="360">
 </h1>
-<blockquote>
-<p>“What is to be sought in designs for the display of information is the clear portrayal of complexity. Not the complication of the simple; rather … the revelation of the complex.” - Edward R. Tufte</p>
-</blockquote>
 <p><a href="https://indrajeetpatil.github.io/ggstatsplot/"><code>ggstatsplot</code></a> is an extension of <a href="https://github.com/tidyverse/ggplot2"><code>ggplot2</code></a> package for creating graphics with details from statistical tests included in the plots themselves and targeted primarily at behavioral sciences community to provide a one-line code to produce information-rich plots. In a typical exploratory data analysis workflow, data visualization and statistical modeling are two different phases: visualization informs modeling, and modeling in its turn can suggest a different visualization method, and so on and so forth. The central idea of <code>ggstatsplot</code> is simple: combine these two phases into one in the form of graphics with statistical details, which makes data exploration simpler and faster.</p>
 </div>
 <div id="summary-of-available-plots" class="section level1">
@@ -617,10 +614,10 @@
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h1>
-<p>To get the latest, stable <code>CRAN</code> release (<code>0.2.0</code>):</p>
+<p>To get the latest, stable <code>CRAN</code> release (<code>0.3.0</code>):</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>utils<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="dt">pkgs =</span> <span class="st">"ggstatsplot"</span>)</span></code></pre></div>
 <p><em>Note</em>: If you are on a linux machine, you will need to have OpenGL libraries installed (specifically, <code>libx11</code>, <code>mesa</code> and Mesa OpenGL Utility library - <code>glu</code>) for the dependency package <code>rgl</code> to work.</p>
-<p>You can get the <strong>development</strong> version of the package from GitHub (<code>0.2.0.9000</code>). To see what new changes (and bug fixes) have been made to the package since the last release on <code>CRAN</code>, you can check the detailed log of changes here: <a href="https://indrajeetpatil.github.io/ggstatsplot/news/index.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/news/index.html</a></p>
+<p>You can get the <strong>development</strong> version of the package from GitHub (<code>0.3.0.9000</code>). To see what new changes (and bug fixes) have been made to the package since the last release on <code>CRAN</code>, you can check the detailed log of changes here: <a href="https://indrajeetpatil.github.io/ggstatsplot/news/index.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/news/index.html</a></p>
 <p>If you are in hurry and want to reduce the time of installation, prefer-</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># needed package to download from GitHub repo</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>utils<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="dt">pkgs =</span> <span class="st">"remotes"</span>)</span>
@@ -675,7 +672,7 @@
 <span id="cb7-3"><a href="#cb7-3"></a><span class="co">#&gt; function(plot) {</span></span>
 <span id="cb7-4"><a href="#cb7-4"></a><span class="co">#&gt;   cowplot::ggdraw() + cowplot::draw_grob(grid::grobTree(plot))</span></span>
 <span id="cb7-5"><a href="#cb7-5"></a><span class="co">#&gt; }</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt; &lt;bytecode: 0x000000002fa967b0&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt; &lt;bytecode: 0x000000002f21a6a8&gt;</span></span>
 <span id="cb7-7"><a href="#cb7-7"></a><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></span></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -781,7 +778,7 @@
 <span id="cb10-26"><a href="#cb10-26"></a>  <span class="dt">palette =</span> <span class="st">"default_jama"</span>,</span>
 <span id="cb10-27"><a href="#cb10-27"></a>  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</span>
 <span id="cb10-28"><a href="#cb10-28"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb10-29"><a href="#cb10-29"></a>  <span class="dt">nrow =</span> <span class="dv">2</span>,</span>
+<span id="cb10-29"><a href="#cb10-29"></a>  <span class="dt">plotgrid.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">nrow =</span> <span class="dv">2</span>),</span>
 <span id="cb10-30"><a href="#cb10-30"></a>  <span class="dt">title.text =</span> <span class="st">"Differences in movie length by mpaa ratings for different genres"</span></span>
 <span id="cb10-31"><a href="#cb10-31"></a>)</span></code></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats3-1.png" width="100%"></p>
@@ -1108,7 +1105,7 @@
 <span id="cb15-23"><a href="#cb15-23"></a>    ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span>(<span class="dt">breaks =</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dv">2</span>, <span class="dv">9</span>, <span class="dv">1</span>), <span class="dt">limits =</span> (<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>, <span class="dv">9</span>)))</span>
 <span id="cb15-24"><a href="#cb15-24"></a>  ),</span>
 <span id="cb15-25"><a href="#cb15-25"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb15-26"><a href="#cb15-26"></a>  <span class="dt">nrow =</span> <span class="dv">2</span>,</span>
+<span id="cb15-26"><a href="#cb15-26"></a>  <span class="dt">plotgrid.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">nrow =</span> <span class="dv">2</span>),</span>
 <span id="cb15-27"><a href="#cb15-27"></a>  <span class="dt">title.text =</span> <span class="st">"Relationship between movie length by IMDB ratings for different genres"</span></span>
 <span id="cb15-28"><a href="#cb15-28"></a>)</span></code></pre></div>
 <p><img src="reference/figures/README-ggscatterstats3-1.png" width="100%"></p>
@@ -1370,7 +1367,7 @@
 <span id="cb21-21"><a href="#cb21-21"></a>  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</span>
 <span id="cb21-22"><a href="#cb21-22"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
 <span id="cb21-23"><a href="#cb21-23"></a>  <span class="dt">title.text =</span> <span class="st">"Race, religion, and political affiliation"</span>,</span>
-<span id="cb21-24"><a href="#cb21-24"></a>  <span class="dt">nrow =</span> <span class="dv">2</span></span>
+<span id="cb21-24"><a href="#cb21-24"></a>  <span class="dt">plotgrid.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">nrow =</span> <span class="dv">2</span>)</span>
 <span id="cb21-25"><a href="#cb21-25"></a>)</span></code></pre></div>
 <p><img src="reference/figures/README-ggbarstats2-1.png" width="100%"></p>
 <div id="summary-of-tests-4" class="section level3">
@@ -1452,7 +1449,7 @@
 <span id="cb24-19"><a href="#cb24-19"></a>    ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span>(<span class="dt">breaks =</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dv">0</span>, <span class="dv">200</span>, <span class="dv">50</span>), <span class="dt">limits =</span> (<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">0</span>, <span class="dv">200</span>)))</span>
 <span id="cb24-20"><a href="#cb24-20"></a>  ),</span>
 <span id="cb24-21"><a href="#cb24-21"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb24-22"><a href="#cb24-22"></a>  <span class="dt">nrow =</span> <span class="dv">2</span>,</span>
+<span id="cb24-22"><a href="#cb24-22"></a>  <span class="dt">plotgrid.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">nrow =</span> <span class="dv">2</span>),</span>
 <span id="cb24-23"><a href="#cb24-23"></a>  <span class="dt">title.text =</span> <span class="st">"Movies budgets for different genres"</span></span>
 <span id="cb24-24"><a href="#cb24-24"></a>)</span></code></pre></div>
 <p><img src="reference/figures/README-gghistostats4-1.png" width="100%"></p>
@@ -1721,21 +1718,20 @@
 <span id="cb29-2"><a href="#cb29-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
 <span id="cb29-3"><a href="#cb29-3"></a></span>
 <span id="cb29-4"><a href="#cb29-4"></a><span class="co"># plot</span></span>
-<span id="cb29-5"><a href="#cb29-5"></a><span class="co"># let's use only 50% of the data to speed up the process</span></span>
-<span id="cb29-6"><a href="#cb29-6"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span>(</span>
-<span id="cb29-7"><a href="#cb29-7"></a>  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(</span>
-<span id="cb29-8"><a href="#cb29-8"></a>    <span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long,</span>
-<span id="cb29-9"><a href="#cb29-9"></a>    genre <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span>)</span>
-<span id="cb29-10"><a href="#cb29-10"></a>  ),</span>
-<span id="cb29-11"><a href="#cb29-11"></a>  <span class="dt">cor.vars =</span> length<span class="op">:</span>votes,</span>
-<span id="cb29-12"><a href="#cb29-12"></a>  <span class="dt">corr.method =</span> <span class="st">"np"</span>,</span>
-<span id="cb29-13"><a href="#cb29-13"></a>  <span class="dt">colors =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#cbac43"</span>, <span class="st">"white"</span>, <span class="st">"#550000"</span>),</span>
-<span id="cb29-14"><a href="#cb29-14"></a>  <span class="dt">grouping.var =</span> genre, <span class="co"># grouping variable</span></span>
-<span id="cb29-15"><a href="#cb29-15"></a>  <span class="dt">digits =</span> <span class="dv">3</span>, <span class="co"># number of digits after decimal point</span></span>
-<span id="cb29-16"><a href="#cb29-16"></a>  <span class="dt">title.prefix =</span> <span class="st">"Movie genre"</span>,</span>
-<span id="cb29-17"><a href="#cb29-17"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb29-18"><a href="#cb29-18"></a>  <span class="dt">nrow =</span> <span class="dv">2</span></span>
-<span id="cb29-19"><a href="#cb29-19"></a>)</span></code></pre></div>
+<span id="cb29-5"><a href="#cb29-5"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span>(</span>
+<span id="cb29-6"><a href="#cb29-6"></a>  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(</span>
+<span id="cb29-7"><a href="#cb29-7"></a>    <span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long,</span>
+<span id="cb29-8"><a href="#cb29-8"></a>    genre <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span>)</span>
+<span id="cb29-9"><a href="#cb29-9"></a>  ),</span>
+<span id="cb29-10"><a href="#cb29-10"></a>  <span class="dt">cor.vars =</span> length<span class="op">:</span>votes,</span>
+<span id="cb29-11"><a href="#cb29-11"></a>  <span class="dt">corr.method =</span> <span class="st">"np"</span>,</span>
+<span id="cb29-12"><a href="#cb29-12"></a>  <span class="dt">colors =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#cbac43"</span>, <span class="st">"white"</span>, <span class="st">"#550000"</span>),</span>
+<span id="cb29-13"><a href="#cb29-13"></a>  <span class="dt">grouping.var =</span> genre, <span class="co"># grouping variable</span></span>
+<span id="cb29-14"><a href="#cb29-14"></a>  <span class="dt">digits =</span> <span class="dv">3</span>, <span class="co"># number of digits after decimal point</span></span>
+<span id="cb29-15"><a href="#cb29-15"></a>  <span class="dt">title.prefix =</span> <span class="st">"Movie genre"</span>,</span>
+<span id="cb29-16"><a href="#cb29-16"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb29-17"><a href="#cb29-17"></a>  <span class="dt">plotgrid.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb29-18"><a href="#cb29-18"></a>)</span></code></pre></div>
 <p><img src="reference/figures/README-ggcorrmat3-1.png" width="100%"></p>
 <div id="summary-of-tests-7" class="section level3">
 <h3 class="hasAnchor">
@@ -1819,7 +1815,7 @@
 <span id="cb31-24"><a href="#cb31-24"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">x =</span> <span class="st">"regression coefficient"</span>, <span class="dt">y =</span> <span class="ot">NULL</span>)</span></code></pre></div>
 <p><img src="reference/figures/README-ggcoefstats2-1.png" width="100%"></p>
 <p>Most of the regression models that are supported in the <code>broom</code> and <code>broom.mixed</code> packages with <code>tidy</code> and <code>glance</code> methods are also supported by <code>ggcoefstats</code>. For example-</p>
-<p><code>aareg</code>, <code>anova</code>, <code>aov</code>, <code>aovlist</code>, <code>Arima</code>, <code>bglmerMod</code>, <code>bigglm</code>, <code>biglm</code>, <code>blavaan</code>, <code>bmlm</code>, <code>blmerMod</code>, <code>bracl</code>, <code>brglm2</code>, <code>brmsfit</code>, <code>btergm</code>, <code>cch</code>, <code>cgam</code>, <code>cgamm</code>, <code>cglm</code>, <code>clm</code>, <code>clmm</code>, <code>coeftest</code>, <code>confusionMatrix</code>, <code>coxme</code>, <code>coxph</code>, <code>cpglm</code>, <code>cpglmm</code>, <code>complmrob</code>, <code>DirichReg</code>, <code>drc</code>, <code>emmGrid</code>, <code>epi.2by2</code>, <code>ergm</code>, <code>feis</code>, <code>felm</code>, <code>fitdistr</code>, <code>flexsurvreg</code>, <code>glmc</code>, <code>glmerMod</code>, <code>glmmTMB</code>, <code>gls</code>, <code>gam</code>, <code>Gam</code>, <code>gamlss</code>, <code>garch</code>, <code>glm</code>, <code>glmmadmb</code>, <code>glmmPQL</code>, <code>glmRob</code>, <code>glmrob</code>, <code>glmx</code>, <code>gmm</code>, <code>hurdle</code>, <code>ivreg</code>, <code>iv_robust</code>, <code>lavaan</code>, <code>lm</code>, <code>lm.beta</code>, <code>lmerMod</code>, <code>lmodel2</code>, <code>lmRob</code>, <code>lmrob</code>, <code>mcmc</code>, <code>MCMCglmm</code>, <code>mclogit</code>, <code>mmclogit</code>, <code>mediate</code>, <code>mixor</code>, <code>mjoint</code>, <code>mle2</code>, <code>mlm</code>, <code>multinom</code>, <code>negbin</code>, <code>nlmerMod</code>, <code>nlrq</code>, <code>nlreg</code>, <code>nls</code>, <code>orcutt</code>, <code>plm</code>, <code>polr</code>, <code>ridgelm</code>, <code>rjags</code>, <code>rlm</code>, <code>rlmerMod</code>, <code>rq</code>, <code>rqss</code>, <code>slm</code>, <code>speedglm</code>, <code>speedlm</code>, <code>stanfit</code>, <code>stanreg</code>, <code>survreg</code>, <code>svyglm</code>, <code>svyolr</code>, <code>svyglm</code>, <code>tobit</code>, <code>truncreg</code>, <code>vgam</code>, <code>wbgee</code>, <code>wblm</code>, etc.</p>
+<p><code>aareg</code>, <code>anova</code>, <code>aov</code>, <code>aovlist</code>, <code>Arima</code>, <code>BBreg</code>, <code>bglmerMod</code>, <code>bigglm</code>, <code>biglm</code>, <code>blavaan</code>, <code>bmlm</code>, <code>blmerMod</code>, <code>bracl</code>, <code>brglm2</code>, <code>brmsfit</code>, <code>btergm</code>, <code>cch</code>, <code>cgam</code>, <code>cgamm</code>, <code>cglm</code>, <code>clm</code>, <code>clmm</code>, <code>coeftest</code>, <code>confusionMatrix</code>, <code>coxme</code>, <code>coxph</code>, <code>cpglm</code>, <code>cpglmm</code>, <code>complmrob</code>, <code>DirichReg</code>, <code>drc</code>, <code>emmGrid</code>, <code>epi.2by2</code>, <code>ergm</code>, <code>feis</code>, <code>felm</code>, <code>fitdistr</code>, <code>flexsurvreg</code>, <code>glmc</code>, <code>glmerMod</code>, <code>glmmTMB</code>, <code>gls</code>, <code>gam</code>, <code>Gam</code>, <code>gamlss</code>, <code>garch</code>, <code>glm</code>, <code>glmmadmb</code>, <code>glmmPQL</code>, <code>glmRob</code>, <code>glmrob</code>, <code>glmx</code>, <code>gmm</code>, <code>hurdle</code>, <code>ivreg</code>, <code>iv_robust</code>, <code>lavaan</code>, <code>lm</code>, <code>lm.beta</code>, <code>lmerMod</code>, <code>lmodel2</code>, <code>lmRob</code>, <code>lmrob</code>, <code>mcmc</code>, <code>MCMCglmm</code>, <code>mclogit</code>, <code>mmclogit</code>, <code>mediate</code>, <code>mixor</code>, <code>mjoint</code>, <code>mle2</code>, <code>mlm</code>, <code>multinom</code>, <code>negbin</code>, <code>nlmerMod</code>, <code>nlrq</code>, <code>nlreg</code>, <code>nls</code>, <code>orcutt</code>, <code>plm</code>, <code>polr</code>, <code>ridgelm</code>, <code>rjags</code>, <code>rlm</code>, <code>rlmerMod</code>, <code>rq</code>, <code>rqss</code>, <code>slm</code>, <code>speedglm</code>, <code>speedlm</code>, <code>stanfit</code>, <code>stanreg</code>, <code>survreg</code>, <code>svyglm</code>, <code>svyolr</code>, <code>svyglm</code>, <code>tobit</code>, <code>truncreg</code>, <code>vgam</code>, <code>wbgee</code>, <code>wblm</code>, <code>zeroinfl</code>, etc.</p>
 <p>Although not shown here, this function can also be used to carry out both frequentist and Bayesian random-effects meta-analysis.</p>
 <p>For a more exhaustive account of this function, see the associated vignette- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html</a></p>
 </div>
@@ -1889,7 +1885,7 @@
 <span id="cb33-11"><a href="#cb33-11"></a>    <span class="dt">data =</span> morley,</span>
 <span id="cb33-12"><a href="#cb33-12"></a>    <span class="dt">x =</span> Expt,</span>
 <span id="cb33-13"><a href="#cb33-13"></a>    <span class="dt">y =</span> Speed,</span>
-<span id="cb33-14"><a href="#cb33-14"></a>    <span class="dt">return =</span> <span class="st">"subtitle"</span>,</span>
+<span id="cb33-14"><a href="#cb33-14"></a>    <span class="dt">output =</span> <span class="st">"subtitle"</span>,</span>
 <span id="cb33-15"><a href="#cb33-15"></a>    <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
 <span id="cb33-16"><a href="#cb33-16"></a>  )</span>
 <span id="cb33-17"><a href="#cb33-17"></a></span>
@@ -1939,7 +1935,7 @@
 <li>
 <code>"bf"</code> (for <strong>Bayes Factor</strong>)</li>
 </ul>
-<p>All relevant functions in <code>ggstatsplot</code> have a <code>return</code> argument which can be used to not only return plots (which is the default), but also to return a <code>subtitle</code> or <code>caption</code>, which are objects of type <code>call</code> and can be used to display statistical details in conjunction with a custom plot and at a custom location in the plot.</p>
+<p>All relevant functions in <code>ggstatsplot</code> have a <code>output</code> argument which can be used to not only return plots (which is the default), but also to return a <code>subtitle</code> or <code>caption</code>, which are objects of type <code>call</code> and can be used to display statistical details in conjunction with a custom plot and at a custom location in the plot.</p>
 <p>Additionally, all functions share the <code>ggtheme</code> and <code>palette</code> arguments that can be used to specify your favorite <code>ggplot</code> theme and color palette.</p>
 </div>
 <div id="acknowledgments" class="section level1">

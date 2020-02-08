@@ -10,43 +10,15 @@ grouped_ggdotplotstats(
   y,
   grouping.var,
   title.prefix = NULL,
-  xlab = NULL,
-  ylab = NULL,
-  stat.title = NULL,
-  subtitle = NULL,
-  caption = NULL,
-  type = "parametric",
-  test.value = 0,
-  bf.prior = 0.707,
-  bf.message = TRUE,
-  robust.estimator = "onestep",
-  conf.level = 0.95,
-  effsize.type = "g",
-  effsize.noncentral = TRUE,
-  nboot = 100,
-  k = 2,
-  ggtheme = ggplot2::theme_bw(),
-  ggstatsplot.layer = TRUE,
-  point.color = "black",
-  point.size = 3,
-  point.shape = 16,
-  results.subtitle = TRUE,
-  centrality.para = "mean",
-  centrality.color = "blue",
-  centrality.size = 1,
-  centrality.linetype = "dashed",
-  centrality.line.labeller = TRUE,
-  centrality.k = 2,
-  test.value.line = FALSE,
-  test.value.color = "black",
-  test.value.size = 1,
-  test.value.linetype = "dashed",
-  test.line.labeller = TRUE,
-  test.k = 0,
-  ggplot.component = NULL,
-  return = "plot",
-  messages = TRUE,
-  ...
+  output = "plot",
+  ...,
+  plotgrid.args = list(),
+  title.text = NULL,
+  title.args = list(size = 16, fontface = "bold"),
+  caption.text = NULL,
+  caption.args = list(size = 10),
+  sub.text = NULL,
+  sub.args = list(size = 12)
 )
 }
 \arguments{
@@ -64,122 +36,7 @@ bare name \code{x} or as a string \code{"x"}).}
 plot title (name of each factor level) (Default: \code{NULL}). If \code{NULL}, the
 variable name entered for \code{grouping.var} will be used.}
 
-\item{xlab}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
-variable names for \code{x} and \code{y} will be used.}
-
-\item{ylab}{Label for \code{y} axis variable (Default: \code{"term"}).}
-
-\item{stat.title}{A character describing the test being run, which will be
-added as a prefix in the subtitle. The default is \code{NULL}. An example of a
-\code{stat.title} argument will be something like \code{"Student's t-test: "}.}
-
-\item{subtitle}{The text for the plot subtitle. Will work only if
-\code{results.subtitle = FALSE}.}
-
-\item{caption}{The text for the plot caption.}
-
-\item{type}{Type of statistic expected (\code{"parametric"} or \code{"nonparametric"}
-or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accepted:
-\code{"p"} (for parametric), \code{"np"} (nonparametric), \code{"r"} (robust), or
-\code{"bf"}resp.}
-
-\item{test.value}{A number specifying the value of the null hypothesis
-(Default: \code{0}).}
-
-\item{bf.prior}{A numeric value between \code{0.5} and \code{2} (default \code{0.707}), the
-prior width to use in calculating Bayes Factors.}
-
-\item{bf.message}{Logical that decides whether to display Bayes Factor in
-favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
-parametric test} (Default: \code{TRUE}).}
-
-\item{robust.estimator}{If \code{type = "robust"}, a robust estimator to be used
-(\code{"onestep"} (Default), \code{"mom"}, or \code{"median"}). For more, see
-\code{?WRS2::onesampb}.}
-
-\item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
-\verb{95\%} lower and upper confidence intervals (\code{0.95}).}
-
-\item{effsize.type}{Type of effect size needed for \emph{parametric} tests. The
-argument can be \code{"biased"} (\code{"d"} for Cohen's \emph{d}) or \code{"unbiased"}
-(\code{"g"} Hedge's \emph{g} for \strong{t-test}). The default is \code{"g"}.}
-
-\item{effsize.noncentral}{Logical indicating whether to use non-central
-\emph{t}-distributions for computing the confidence interval for Cohen's \emph{d}
-or Hedge's \emph{g} (Default: \code{TRUE}).}
-
-\item{nboot}{Number of bootstrap samples for computing confidence interval
-for the effect size (Default: \code{100}).}
-
-\item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2}).}
-
-\item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
-\code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
-extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
-\code{hrbrthemes::theme_ipsum_ps()}, etc.).}
-
-\item{ggstatsplot.layer}{Logical that decides whether \code{theme_ggstatsplot}
-theme elements are to be displayed along with the selected \code{ggtheme}
-(Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
-override some aspects of the selected \code{ggtheme}.}
-
-\item{point.color}{Character describing color for the point (Default:
-\code{"black"}).}
-
-\item{point.size}{Numeric specifying size for the point (Default: \code{3}).}
-
-\item{point.shape}{Numeric specifying shape to draw the points (Default: \code{16}
-(\strong{a dot})).}
-
-\item{results.subtitle}{Decides whether the results of statistical tests are
-to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
-the plot will be returned.}
-
-\item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"}
-or \code{"median"}) is to be displayed as a vertical line.}
-
-\item{centrality.color}{Decides color for the vertical line for centrality
-parameter (Default: \code{"blue"}).}
-
-\item{centrality.size}{Decides size for the vertical line for centrality
-parameter (Default: \code{1.2}).}
-
-\item{centrality.linetype}{Decides linetype for the vertical line for
-centrality parameter (Default: \code{"dashed"}).}
-
-\item{centrality.line.labeller}{A logical that decides whether line labels
-should be displayed for the \strong{centrality.para} line (Default: \code{TRUE}).}
-
-\item{centrality.k}{Integer denoting the number of decimal places expected
-for centrality parameter label. (Default: \code{2}).}
-
-\item{test.value.line}{Decides whether test value is to be displayed as a
-vertical line (Default: \code{FALSE}).}
-
-\item{test.value.color}{Decides color for the vertical line denoting test
-value (Default: \code{"black"}).}
-
-\item{test.value.size}{Decides size for the vertical line for test value
-(Default: \code{1.2}).}
-
-\item{test.value.linetype}{Decides linetype for the vertical line for test
-value (Default: \code{"dashed"}).}
-
-\item{test.line.labeller}{A logical that decides whether line labels should
-be displayed for \strong{test.value} line (Default: \code{TRUE}).}
-
-\item{test.k}{Integer denoting the number of decimal places expected for
-\code{test.value} label. (Default: \code{0} ).}
-
-\item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
-by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
-of the current function. Default is \code{NULL}. The argument should be entered
-as a function. If the given function has an argument \code{axes.range.restrict}
-and if it has been set to \code{TRUE}, the added \code{ggplot} component \emph{might} not
-work as expected.}
-
-\item{return}{Character that describes what is to be returned: can be
+\item{output}{Character that describes what is to be returned: can be
 \code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to
 \code{"subtitle"} will return the expression containing statistical results. If
 you have set \code{results.subtitle = FALSE}, then this will return a \code{NULL}.
@@ -187,58 +44,113 @@ Setting this to \code{"caption"} will return the expression containing details
 about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
 \code{bf.message = TRUE}, otherwise this will return a \code{NULL}.}
 
-\item{messages}{Decides whether messages references, notes, and warnings are
-to be displayed (Default: \code{TRUE}).}
-
 \item{...}{
-  Arguments passed on to \code{\link[=combine_plots]{combine_plots}}
+  Arguments passed on to \code{\link[=ggdotplotstats]{ggdotplotstats}}
   \describe{
-    \item{\code{title.text}}{String or plotmath expression to be drawn as title for the
-\emph{combined plot}.}
-    \item{\code{title.color}}{Text color for title.}
-    \item{\code{title.size}}{Point size of title text.}
-    \item{\code{title.vjust}}{Vertical justification for title. Default = \code{0.5}
-(centered on \code{y}). \code{0} = baseline at \code{y}, \code{1} = ascender at \code{y}.}
-    \item{\code{title.hjust}}{Horizontal justification for title. Default = \code{0.5}
-(centered on \code{x}). \code{0} = flush-left at x, \code{1} = flush-right.}
-    \item{\code{title.fontface}}{The font face (\code{"plain"}, \code{"bold"} (default),
-\code{"italic"}, \code{"bold.italic"}) for title.}
-    \item{\code{caption.text}}{String or plotmath expression to be drawn as the caption
-for the \emph{combined plot}.}
-    \item{\code{caption.color}}{Text color for caption.}
-    \item{\code{caption.size}}{Point size of title text.}
-    \item{\code{caption.vjust}}{Vertical justification for caption. Default = \code{0.5}
-(centered on y). \code{0} = baseline at y, \code{1} = ascender at y.}
-    \item{\code{caption.hjust}}{Horizontal justification for caption. Default = \code{0.5}
-(centered on x). \code{0} = flush-left at x, \code{1} = flush-right.}
-    \item{\code{caption.fontface}}{The font face (\code{"plain"} (default), \code{"bold"},
-\code{"italic"}, \code{"bold.italic"}) for caption.}
-    \item{\code{sub.text}}{The label with which the \emph{combined plot} should be annotated.
-Can be a plotmath expression.}
-    \item{\code{sub.color}}{Text color for annotation label (Default: \code{"black"}).}
-    \item{\code{sub.size}}{Point size of annotation text (Default: \code{12}).}
-    \item{\code{sub.x}}{The x position of annotation label (Default: \code{0.5}).}
-    \item{\code{sub.y}}{The y position of annotation label (Default: \code{0.5}).}
-    \item{\code{sub.hjust}}{Horizontal justification for annotation label (Default:
-\code{0.5}).}
-    \item{\code{sub.vjust}}{Vertical justification for annotation label (Default:
-\code{0.5}).}
-    \item{\code{sub.vpadding}}{Vertical padding. The total vertical space added to the
-label, given in grid units. By default, this is added equally above and
-below the label. However, by changing the y and vjust parameters, this can
-be changed (Default: \code{ggplot2::unit(1, "lines")}).}
-    \item{\code{sub.fontface}}{The font face (\code{"plain"} (default), \code{"bold"}, \code{"italic"},
-\code{"bold.italic"}) for the annotation label.}
-    \item{\code{sub.angle}}{Angle at which annotation label is to be drawn (Default:
-\code{0}).}
-    \item{\code{sub.lineheight}}{Line height of annotation label.}
-    \item{\code{title.caption.rel.heights}}{Numerical vector of relative columns heights
-while combining (title, plot, caption).}
-    \item{\code{title.rel.heights}}{Numerical vector of relative columns heights while
-combining (title, plot).}
-    \item{\code{caption.rel.heights}}{Numerical vector of relative columns heights while
-combining (plot, caption).}
+    \item{\code{point.color}}{Character describing color for the point (Default:
+\code{"black"}).}
+    \item{\code{test.value}}{A number specifying the value of the null hypothesis
+(Default: \code{0}).}
+    \item{\code{centrality.para}}{Decides \emph{which} measure of central tendency (\code{"mean"}
+or \code{"median"}) is to be displayed as a vertical line.}
+    \item{\code{centrality.color}}{Decides color for the vertical line for centrality
+parameter (Default: \code{"blue"}).}
+    \item{\code{centrality.size}}{Decides size for the vertical line for centrality
+parameter (Default: \code{1.2}).}
+    \item{\code{centrality.linetype}}{Decides linetype for the vertical line for
+centrality parameter (Default: \code{"dashed"}).}
+    \item{\code{centrality.line.labeller}}{A logical that decides whether line labels
+should be displayed for the \strong{centrality.para} line (Default: \code{TRUE}).}
+    \item{\code{centrality.k}}{Integer denoting the number of decimal places expected
+for centrality parameter label. (Default: \code{2}).}
+    \item{\code{test.value.line}}{Decides whether test value is to be displayed as a
+vertical line (Default: \code{FALSE}).}
+    \item{\code{test.value.color}}{Decides color for the vertical line denoting test
+value (Default: \code{"black"}).}
+    \item{\code{test.value.size}}{Decides size for the vertical line for test value
+(Default: \code{1.2}).}
+    \item{\code{test.value.linetype}}{Decides linetype for the vertical line for test
+value (Default: \code{"dashed"}).}
+    \item{\code{test.line.labeller}}{A logical that decides whether line labels should
+be displayed for \strong{test.value} line (Default: \code{TRUE}).}
+    \item{\code{test.k}}{Integer denoting the number of decimal places expected for
+\code{test.value} label. (Default: \code{0} ).}
+    \item{\code{xlab}}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
+variable names for \code{x} and \code{y} will be used.}
+    \item{\code{stat.title}}{A character describing the test being run, which will be
+added as a prefix in the subtitle. The default is \code{NULL}. An example of a
+\code{stat.title} argument will be something like \code{"Student's t-test: "}.}
+    \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
+\code{results.subtitle = FALSE}.}
+    \item{\code{caption}}{The text for the plot caption.}
+    \item{\code{type}}{Type of statistic expected (\code{"parametric"} or \code{"nonparametric"}
+or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accepted:
+\code{"p"} (for parametric), \code{"np"} (nonparametric), \code{"r"} (robust), or
+\code{"bf"}resp.}
+    \item{\code{bf.prior}}{A numeric value between \code{0.5} and \code{2} (default \code{0.707}), the
+prior width to use in calculating Bayes Factors.}
+    \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
+favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
+parametric test} (Default: \code{TRUE}).}
+    \item{\code{robust.estimator}}{If \code{type = "robust"}, a robust estimator to be used
+(\code{"onestep"} (Default), \code{"mom"}, or \code{"median"}). For more, see
+\code{?WRS2::onesampb}.}
+    \item{\code{effsize.type}}{Type of effect size needed for \emph{parametric} tests. The
+argument can be \code{"biased"} (\code{"d"} for Cohen's \emph{d}) or \code{"unbiased"}
+(\code{"g"} Hedge's \emph{g} for \strong{t-test}). The default is \code{"g"}.}
+    \item{\code{effsize.noncentral}}{Logical indicating whether to use non-central
+\emph{t}-distributions for computing the confidence interval for Cohen's \emph{d}
+or Hedge's \emph{g} (Default: \code{TRUE}).}
+    \item{\code{conf.level}}{Scalar between 0 and 1. If unspecified, the defaults return
+\verb{95\%} lower and upper confidence intervals (\code{0.95}).}
+    \item{\code{nboot}}{Number of bootstrap samples for computing confidence interval
+for the effect size (Default: \code{100}).}
+    \item{\code{k}}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 2}).}
+    \item{\code{results.subtitle}}{Decides whether the results of statistical tests are
+to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
+the plot will be returned.}
+    \item{\code{ggtheme}}{A function, \code{ggplot2} theme name. Default value is
+\code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
+extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
+\code{hrbrthemes::theme_ipsum_ps()}, etc.).}
+    \item{\code{ggstatsplot.layer}}{Logical that decides whether \code{theme_ggstatsplot}
+theme elements are to be displayed along with the selected \code{ggtheme}
+(Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
+override some aspects of the selected \code{ggtheme}.}
+    \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
+by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
+of the current function. Default is \code{NULL}. The argument should be entered
+as a function. If the given function has an argument \code{axes.range.restrict}
+and if it has been set to \code{TRUE}, the added \code{ggplot} component \emph{might} not
+work as expected.}
+    \item{\code{messages}}{Decides whether messages references, notes, and warnings are
+to be displayed (Default: \code{TRUE}).}
+    \item{\code{ylab}}{Label for \code{y} axis variable (Default: \code{"term"}).}
+    \item{\code{point.size}}{Numeric specifying size for the point (Default: \code{3}).}
+    \item{\code{point.shape}}{Numeric specifying shape to draw the points (Default: \code{16}
+(\strong{a dot})).}
   }}
+
+\item{plotgrid.args}{A list of additional arguments to \code{cowplot::plot_grid}.}
+
+\item{title.text}{String or plotmath expression to be drawn as title for the
+\emph{combined plot}.}
+
+\item{title.args}{A list of additional arguments
+provided to \code{title}, \code{caption} and \code{sub}, resp.}
+
+\item{caption.text}{String or plotmath expression to be drawn as the caption
+for the \emph{combined plot}.}
+
+\item{caption.args}{A list of additional arguments
+provided to \code{title}, \code{caption} and \code{sub}, resp.}
+
+\item{sub.text}{The label with which the \emph{combined plot} should be annotated.
+Can be a plotmath expression.}
+
+\item{sub.args}{A list of additional arguments
+provided to \code{title}, \code{caption} and \code{sub}, resp.}
 }
 \description{
 Helper function for \code{ggstatsplot::ggdotplotstats} to apply this

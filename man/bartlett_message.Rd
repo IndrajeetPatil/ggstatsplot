@@ -21,10 +21,15 @@ name will be used.}
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
 
-\item{output}{What output is desired: \code{"message"} (default) or \code{"stats"} (or
-\code{"tidy"}) objects.}
+\item{output}{Character that describes what is to be returned: can be
+\code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to
+\code{"subtitle"} will return the expression containing statistical results. If
+you have set \code{results.subtitle = FALSE}, then this will return a \code{NULL}.
+Setting this to \code{"caption"} will return the expression containing details
+about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
+\code{bf.message = TRUE}, otherwise this will return a \code{NULL}.}
 
-\item{...}{Additional arguments (ignored).}
+\item{...}{Currently ignored.}
 }
 \value{
 A list of class \code{"htest"} containing the following components:

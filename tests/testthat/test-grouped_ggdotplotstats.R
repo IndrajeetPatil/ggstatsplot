@@ -56,17 +56,17 @@ testthat::test_that(
   }
 )
 
-# subtitle return --------------------------------------------------
+# subtitle output --------------------------------------------------
 
 testthat::test_that(
-  desc = "subtitle return",
+  desc = "subtitle output",
   code = {
     testthat::skip_on_cran()
 
     # removing factor level with very few no. of observations
     df <- dplyr::filter(.data = ggplot2::mpg, cyl %in% c("4", "6", "8"))
 
-    # should return a list of length 3
+    # should output a list of length 3
     set.seed(123)
     ls_results <- ggstatsplot::grouped_ggdotplotstats(
       data = df,
@@ -74,7 +74,7 @@ testthat::test_that(
       y = manufacturer,
       grouping.var = "cyl",
       test.value = 15.5,
-      return = "subtitle",
+      output = "subtitle",
       messages = FALSE
     )
 
@@ -192,7 +192,7 @@ testthat::test_that(
         brainwt,
         "vore",
         messages = FALSE,
-        return = "subtitle"
+        output = "subtitle"
       )
 
     set.seed(123)
@@ -203,7 +203,7 @@ testthat::test_that(
         vore,
         grouping.var = grp,
         messages = FALSE,
-        return = "subtitle"
+        output = "subtitle"
       )
 
     # testing if grouped and base versions results are same

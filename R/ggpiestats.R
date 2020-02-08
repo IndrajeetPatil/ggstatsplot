@@ -136,10 +136,11 @@ ggpiestats <- function(data,
                        palette = "Dark2",
                        direction = 1,
                        ggplot.component = NULL,
-                       return = "plot",
+                       output = "plot",
                        messages = TRUE,
                        x = NULL,
-                       y = NULL) {
+                       y = NULL,
+                       ...) {
 
   # ensure the variables work quoted or unquoted
   main <- rlang::ensym(main)
@@ -390,7 +391,7 @@ ggpiestats <- function(data,
 
   # return the final plot
   return(switch(
-    EXPR = return,
+    EXPR = output,
     "plot" = p,
     "subtitle" = subtitle,
     "caption" = caption,

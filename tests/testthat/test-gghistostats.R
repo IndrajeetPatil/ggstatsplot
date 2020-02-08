@@ -561,19 +561,19 @@ testthat::test_that(
   }
 )
 
-# subtitle return --------------------------------------------------
+# subtitle output --------------------------------------------------
 
 testthat::test_that(
-  desc = "subtitle return",
+  desc = "subtitle output",
   code = {
     testthat::skip_on_cran()
 
-    # should return a list of length 3
+    # should output a list of length 3
     set.seed(123)
     p_sub <- ggstatsplot::gghistostats(
       data = ggplot2::msleep,
       x = brainwt,
-      return = "subtitle",
+      output = "subtitle",
       type = "np",
       test.value = 0.25,
       messages = FALSE

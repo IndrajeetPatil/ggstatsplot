@@ -9,7 +9,8 @@
 #'   variable name entered for `grouping.var` will be used.
 #' @inheritParams ggbetweenstats
 #' @inheritParams grouped_list
-#' @inheritDotParams combine_plots
+#' @inheritParams combine_plots2
+#' @inheritDotParams ggbetweenstats -title
 #'
 #' @import ggplot2
 #'
@@ -63,61 +64,17 @@ grouped_ggbetweenstats <- function(data,
                                    x,
                                    y,
                                    grouping.var,
-                                   title.prefix = NULL,
-                                   plot.type = "boxviolin",
-                                   type = "parametric",
-                                   pairwise.comparisons = FALSE,
-                                   pairwise.annotation = "p.value",
-                                   pairwise.display = "significant",
-                                   p.adjust.method = "holm",
-                                   effsize.type = "unbiased",
-                                   partial = TRUE,
-                                   effsize.noncentral = TRUE,
-                                   bf.prior = 0.707,
-                                   bf.message = TRUE,
-                                   results.subtitle = TRUE,
-                                   xlab = NULL,
-                                   ylab = NULL,
-                                   subtitle = NULL,
-                                   stat.title = NULL,
-                                   caption = NULL,
-                                   sample.size.label = TRUE,
-                                   k = 2,
-                                   var.equal = FALSE,
-                                   conf.level = 0.95,
-                                   nboot = 100,
-                                   tr = 0.1,
-                                   sort = "none",
-                                   sort.fun = mean,
-                                   axes.range.restrict = FALSE,
-                                   mean.label.size = 3,
-                                   mean.label.fontface = "bold",
-                                   mean.label.color = "black",
-                                   notch = FALSE,
-                                   notchwidth = 0.5,
-                                   linetype = "solid",
-                                   outlier.tagging = FALSE,
                                    outlier.label = NULL,
-                                   outlier.label.color = "black",
-                                   outlier.color = "black",
-                                   outlier.shape = 19,
-                                   outlier.coef = 1.5,
-                                   mean.plotting = TRUE,
-                                   mean.ci = FALSE,
-                                   mean.size = 5,
-                                   mean.color = "darkred",
-                                   point.jitter.width = NULL,
-                                   point.jitter.height = 0,
-                                   point.dodge.width = 0.60,
-                                   ggtheme = ggplot2::theme_bw(),
-                                   ggstatsplot.layer = TRUE,
-                                   package = "RColorBrewer",
-                                   palette = "Dark2",
-                                   direction = 1,
-                                   ggplot.component = NULL,
-                                   return = "plot",
-                                   messages = TRUE,
-                                   ...) {
+                                   title.prefix = NULL,
+                                   output = "plot",
+                                   ...,
+                                   plotgrid.args = list(),
+                                   title.text = NULL,
+                                   title.args = list(size = 16, fontface = "bold"),
+                                   caption.text = NULL,
+                                   caption.args = list(size = 10),
+                                   sub.text = NULL,
+                                   sub.args = list(size = 12)) {
 
   # =================== check user input and prep =========================
 
@@ -179,66 +136,23 @@ grouped_ggbetweenstats <- function(data,
       x = {{ x }},
       y = {{ y }},
       outlier.label = {{ outlier.label }},
-      plot.type = plot.type,
-      type = type,
-      pairwise.comparisons = pairwise.comparisons,
-      pairwise.annotation = pairwise.annotation,
-      pairwise.display = pairwise.display,
-      p.adjust.method = p.adjust.method,
-      effsize.type = effsize.type,
-      partial = partial,
-      effsize.noncentral = effsize.noncentral,
-      bf.prior = bf.prior,
-      bf.message = bf.message,
-      results.subtitle = results.subtitle,
-      xlab = xlab,
-      ylab = ylab,
-      subtitle = subtitle,
-      stat.title = stat.title,
-      caption = caption,
-      sample.size.label = sample.size.label,
-      k = k,
-      var.equal = var.equal,
-      conf.level = conf.level,
-      nboot = nboot,
-      tr = tr,
-      sort = sort,
-      sort.fun = sort.fun,
-      axes.range.restrict = axes.range.restrict,
-      mean.label.size = mean.label.size,
-      mean.label.fontface = mean.label.fontface,
-      mean.label.color = mean.label.color,
-      notch = notch,
-      notchwidth = notchwidth,
-      linetype = linetype,
-      outlier.label.color = outlier.label.color,
-      outlier.tagging = outlier.tagging,
-      outlier.color = outlier.color,
-      outlier.shape = outlier.shape,
-      outlier.coef = outlier.coef,
-      mean.plotting = mean.plotting,
-      mean.ci = mean.ci,
-      mean.size = mean.size,
-      mean.color = mean.color,
-      point.jitter.width = point.jitter.width,
-      point.dodge.width = point.dodge.width,
-      point.jitter.height = point.jitter.height,
-      ggtheme = ggtheme,
-      ggstatsplot.layer = ggstatsplot.layer,
-      package = package,
-      palette = palette,
-      direction = direction,
-      ggplot.component = ggplot.component,
-      return = return,
-      messages = messages
+      output = output,
+      ...
     )
 
   # combining the list of plots into a single plot
-  # inform user this can't be modified further with ggplot commands
-  if (return == "plot") {
-    if (isTRUE(messages)) grouped_message()
-    return(ggstatsplot::combine_plots(plotlist = plotlist_purrr, ...))
+  if (output == "plot") {
+    return(ggstatsplot::combine_plots2(
+      plotlist = plotlist_purrr,
+      plotgrid.args = plotgrid.args,
+      title.text = title.text,
+      title.args = title.args,
+      caption.text = caption.text,
+      caption.args = caption.args,
+      sub.text = sub.text,
+      sub.args = sub.args
+    ))
   } else {
-    return(plotlist_purrr)
+    return(plotlist_purrr) # subtitle list
   }
 }

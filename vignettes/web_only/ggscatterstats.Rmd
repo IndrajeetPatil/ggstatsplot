@@ -160,10 +160,11 @@ ggstatsplot::grouped_ggscatterstats(
   # arguments relevant for ggstatsplot::combine_plots
   title.text = "Relationship between movie budget and IMDB rating",
   caption.text = "Source: www.imdb.com",
+  plotgrid.args = list(
   nrow = 3,
   ncol = 1,
   labels = c("(a)","(b)","(c)","(d)")
-)
+))
 ```
 
 As seen from the plot, this analysis has revealed something interesting: The

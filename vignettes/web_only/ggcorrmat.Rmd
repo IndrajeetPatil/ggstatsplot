@@ -183,15 +183,15 @@ ggstatsplot::ggcorrmat(
   pch = 7,
   pch.col = "white",
   pch.cex = 14,
-  caption = substitute( 
+  caption = substitute(
     paste(italic("Note"), ": Point shape denotes correlation non-significant at p < 0.008; adjusted for 6 comparisons")
   )
-) + # modification outside ggstatsplot using ggplot functions 
+) + # modification outside ggstatsplot using ggplot functions
   ggplot2::theme(
-  axis.text.x = ggplot2::element_text(
-    margin = ggplot2::margin(t = 0.15, r = 0.15, b = 0.15, l = 0.15, unit = "cm")
+    axis.text.x = ggplot2::element_text(
+      margin = ggplot2::margin(t = 0.15, r = 0.15, b = 0.15, l = 0.15, unit = "cm")
+    )
   )
-)
 ```
 
 As seen here, and unsurprisingly, the strongest predictor of the diamond price
@@ -293,7 +293,7 @@ set.seed(123)
 ggstatsplot::grouped_ggcorrmat(
   # arguments relevant for ggstatsplot::ggcorrmat
   data = dplyr::sample_frac(tbl = ggplot2::diamonds, size = 0.05),
-  corr.method = "r", # percentage bend correlation coefficient
+  corr.method = "robust", # percentage bend correlation coefficient
   beta = 0.2, # bending constant
   p.adjust.method = "holm", # method to adjust p-values for multiple comparisons
   grouping.var = cut,
@@ -311,14 +311,14 @@ ggstatsplot::grouped_ggcorrmat(
   lab.size = 3.5,
   # arguments relevant for ggstatsplot::combine_plots
   title.text = "Relationship between diamond attributes and price across cut",
-  title.size = 16,
-  title.color = "red",
+  title.args = list(size = 16, color = "red"),
   caption.text = "Dataset: Diamonds from ggplot2 package",
-  caption.size = 14,
-  caption.color = "blue",
-  labels = c("(a)", "(b)", "(c)", "(d)", "(e)"),
-  nrow = 3,
-  ncol = 2
+  caption.args = list(size = 14, color = "blue"),
+  plotgrid.args = list(
+    labels = c("(a)", "(b)", "(c)", "(d)", "(e)"),
+    nrow = 3,
+    ncol = 2
+  )
 )
 ```
 
@@ -374,4 +374,3 @@ If you find any bugs or have any suggestions/remarks, please file an issue on
 
 For details, see-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>
-

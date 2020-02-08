@@ -43,7 +43,7 @@ ggcorrmat(
   tl.col = "black",
   tl.srt = 45,
   messages = TRUE,
-  return = NULL
+  ...
 )
 }
 \arguments{
@@ -57,7 +57,7 @@ computed and visualized. If \code{NULL} (default), all numeric variables from
 \item{cor.vars.names}{Optional list of names to be used for \code{cor.vars}. The
 names should be entered in the same order.}
 
-\item{output, return}{Character that decides expected output from this
+\item{output}{Character that decides expected output from this
 function: \code{"plot"} (for visualization matrix) or \code{"correlations"} (or
 \code{"corr"} or \code{"r"}; for correlation matrix) or \code{"p-values"} (or \code{"p.values"}
 or \code{"p"}; for a matrix of \emph{p}-values) or \code{"ci"} (for a tibble with
@@ -169,6 +169,8 @@ text label (variable names, i.e.).}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
+
+\item{...}{Currently ignored.}
 }
 \value{
 Correlation matrix plot or correlation coefficient matrix or matrix

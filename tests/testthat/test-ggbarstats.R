@@ -183,14 +183,14 @@ testthat::test_that(
   }
 )
 
-# subtitle return --------------------------------------------------
+# subtitle output --------------------------------------------------
 
 testthat::test_that(
-  desc = "subtitle return",
+  desc = "subtitle output",
   code = {
     testthat::skip_on_cran()
 
-    # subtitle return
+    # subtitle output
     set.seed(123)
     p_sub <-
       ggstatsplot::ggbarstats(
@@ -198,19 +198,19 @@ testthat::test_that(
         main = race,
         bias.correct = FALSE,
         condition = marital,
-        return = "subtitle",
+        output = "subtitle",
         k = 4,
         messages = FALSE
       )
 
-    # caption return
+    # caption output
     set.seed(123)
     p_cap <-
       ggstatsplot::ggbarstats(
         data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
         main = race,
         condition = marital,
-        return = "caption",
+        output = "caption",
         k = 4,
         bias.correct = FALSE,
         messages = FALSE

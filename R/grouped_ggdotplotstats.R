@@ -7,7 +7,7 @@
 #'
 #' @inheritParams ggdotplotstats
 #' @inheritParams grouped_ggbetweenstats
-#' @inheritDotParams combine_plots
+#' @inheritDotParams ggdotplotstats -title
 #'
 #' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
 #' @importFrom dplyr group_by n arrange
@@ -52,43 +52,15 @@ grouped_ggdotplotstats <- function(data,
                                    y,
                                    grouping.var,
                                    title.prefix = NULL,
-                                   xlab = NULL,
-                                   ylab = NULL,
-                                   stat.title = NULL,
-                                   subtitle = NULL,
-                                   caption = NULL,
-                                   type = "parametric",
-                                   test.value = 0,
-                                   bf.prior = 0.707,
-                                   bf.message = TRUE,
-                                   robust.estimator = "onestep",
-                                   conf.level = 0.95,
-                                   effsize.type = "g",
-                                   effsize.noncentral = TRUE,
-                                   nboot = 100,
-                                   k = 2,
-                                   ggtheme = ggplot2::theme_bw(),
-                                   ggstatsplot.layer = TRUE,
-                                   point.color = "black",
-                                   point.size = 3,
-                                   point.shape = 16,
-                                   results.subtitle = TRUE,
-                                   centrality.para = "mean",
-                                   centrality.color = "blue",
-                                   centrality.size = 1.0,
-                                   centrality.linetype = "dashed",
-                                   centrality.line.labeller = TRUE,
-                                   centrality.k = 2,
-                                   test.value.line = FALSE,
-                                   test.value.color = "black",
-                                   test.value.size = 1.0,
-                                   test.value.linetype = "dashed",
-                                   test.line.labeller = TRUE,
-                                   test.k = 0,
-                                   ggplot.component = NULL,
-                                   return = "plot",
-                                   messages = TRUE,
-                                   ...) {
+                                   output = "plot",
+                                   ...,
+                                   plotgrid.args = list(),
+                                   title.text = NULL,
+                                   title.args = list(size = 16, fontface = "bold"),
+                                   caption.text = NULL,
+                                   caption.args = list(size = 10),
+                                   sub.text = NULL,
+                                   sub.args = list(size = 12)) {
 
   # ======================== preparing dataframe ============================
 
@@ -113,50 +85,23 @@ grouped_ggdotplotstats <- function(data,
       .f = ggstatsplot::ggdotplotstats,
       x = {{ x }},
       y = {{ y }},
-      xlab = xlab,
-      ylab = ylab,
-      stat.title = stat.title,
-      subtitle = subtitle,
-      caption = caption,
-      type = type,
-      test.value = test.value,
-      bf.prior = bf.prior,
-      bf.message = bf.message,
-      robust.estimator = robust.estimator,
-      conf.level = conf.level,
-      effsize.type = effsize.type,
-      effsize.noncentral = effsize.noncentral,
-      nboot = nboot,
-      k = k,
-      results.subtitle = results.subtitle,
-      centrality.para = centrality.para,
-      centrality.color = centrality.color,
-      centrality.size = centrality.size,
-      centrality.linetype = centrality.linetype,
-      centrality.line.labeller = centrality.line.labeller,
-      centrality.k = centrality.k,
-      test.value.line = test.value.line,
-      test.value.color = test.value.color,
-      test.value.size = test.value.size,
-      test.value.linetype = test.value.linetype,
-      test.line.labeller = test.line.labeller,
-      test.k = test.k,
-      ggtheme = ggtheme,
-      ggstatsplot.layer = ggstatsplot.layer,
-      point.color = point.color,
-      point.size = point.size,
-      point.shape = point.shape,
-      ggplot.component = ggplot.component,
-      return = return,
-      messages = messages
+      output = output,
+      ...
     )
 
   # combining the list of plots into a single plot
-  # inform user this can't be modified further with ggplot commands
-  if (return == "plot") {
-    if (isTRUE(messages)) grouped_message()
-    return(ggstatsplot::combine_plots(plotlist = plotlist_purrr, ...))
+  if (output == "plot") {
+    return(ggstatsplot::combine_plots2(
+      plotlist = plotlist_purrr,
+      plotgrid.args = plotgrid.args,
+      title.text = title.text,
+      title.args = title.args,
+      caption.text = caption.text,
+      caption.args = caption.args,
+      sub.text = sub.text,
+      sub.args = sub.args
+    ))
   } else {
-    return(plotlist_purrr)
+    return(plotlist_purrr) # subtitle list
   }
 }
