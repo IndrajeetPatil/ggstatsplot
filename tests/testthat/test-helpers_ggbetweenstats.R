@@ -268,9 +268,9 @@ testthat::test_that(
 
     # without NAs
     set.seed(123)
-    df1 <- ggstatsplot:::sort_xy(iris_long, condition, value, sort = "none")
+    df1 <- ggstatsplot:::sort_xy(iris_long, "condition", value, sort = "none")
     df2 <- ggstatsplot:::sort_xy(iris_long, condition, value, sort = "descending")
-    df3 <- ggstatsplot:::sort_xy(iris_long, condition, value, sort = "ascending")
+    df3 <- ggstatsplot:::sort_xy(iris_long, condition, "value", sort = "ascending")
 
     testthat::expect_equal(
       levels(df1$condition),
@@ -283,8 +283,8 @@ testthat::test_that(
     # with NAs
     set.seed(123)
     df4 <- ggstatsplot:::sort_xy(msleep, vore, brainwt, sort = "none")
-    df5 <- ggstatsplot:::sort_xy(msleep, vore, brainwt, sort = "descending")
-    df6 <- ggstatsplot:::sort_xy(msleep, vore, brainwt, sort = "ascending")
+    df5 <- ggstatsplot:::sort_xy(msleep, "vore", brainwt, sort = "descending")
+    df6 <- ggstatsplot:::sort_xy(msleep, vore, "brainwt", sort = "ascending")
 
     testthat::expect_equal(
       levels(df4$vore),
