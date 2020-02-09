@@ -136,7 +136,7 @@
 #' @importFrom stats as.formula lm confint qnorm p.adjust
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom parameters p_value
-#' @importFrom tibble as_tibble rownames_to_column
+#' @importFrom tibble as_tibble
 #' @importFrom tidyr unite
 #' @importFrom groupedstats lm_effsize_standardizer
 #' @importFrom insight is_model
@@ -763,7 +763,7 @@ ggcoefstats <- function(x,
   # whether the term need to be arranged in any specified order
   tidy_df %<>%
     dplyr::mutate(.data = ., term = as.factor(term)) %>%
-    tibble::rownames_to_column(.data = ., var = "rowid")
+    dplyr::mutate(.data = ., rowid = dplyr::row_number())
 
   # sorting factor levels
   new_order <-

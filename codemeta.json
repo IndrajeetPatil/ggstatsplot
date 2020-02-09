@@ -393,7 +393,6 @@
       "@type": "SoftwareApplication",
       "identifier": "paletteer",
       "name": "paletteer",
-      "version": ">= 1.0.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",

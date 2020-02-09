@@ -72,7 +72,7 @@
 #' @importFrom dplyr mutate mutate_at mutate_if
 #' @importFrom purrr is_bare_numeric keep
 #' @importFrom stats median
-#' @importFrom tibble as_tibble rownames_to_column
+#' @importFrom tibble as_tibble
 #' @importFrom rlang !! enquo quo_name is_null
 #' @importFrom crayon green blue yellow red
 #' @importFrom WRS2 pball
