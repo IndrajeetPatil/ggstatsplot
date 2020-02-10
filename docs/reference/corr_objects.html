@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convert <code>easystats</code> package outputs to <code>tidymodels</code> conventions. — easystats_to_tidy_names • ggstatsplot</title>
+<title>Create all needed objects for correlation matrix. — corr_objects • ggstatsplot</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -50,12 +50,11 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Convert <code>easystats</code> package outputs to <code>tidymodels</code> conventions. — easystats_to_tidy_names" />
-<meta property="og:description" content="Both broom package from tidymodels universe and parameters
-package from easystats universe can provide model summaries for a large
-number of model objects. This is a convenience function that converts
-naming conventions adopted in easystats to the ones adopted in the
-broom package." />
+<meta property="og:title" content="Create all needed objects for correlation matrix. — corr_objects" />
+<meta property="og:description" content="This function is mostly useful in the context of
+ggstatsplot::ggcorrmat. It returns the correlation matrix, p-value
+matrix, and a correlation object from psych/WRS2 package that contains
+all the details about the test." />
 <meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -197,39 +196,94 @@ broom package." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Convert <code>easystats</code> package outputs to <code>tidymodels</code> conventions.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggcoefstats_graphics.R'><code>R/helpers_ggcoefstats_graphics.R</code></a></small>
-    <div class="hidden name"><code>easystats_to_tidy_names.Rd</code></div>
+    <h1>Create all needed objects for correlation matrix.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/ggcorrmat.R'><code>R/ggcorrmat.R</code></a></small>
+    <div class="hidden name"><code>corr_objects.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Both <code>broom</code> package from <code>tidymodels</code> universe and <code>parameters</code>
-package from <code>easystats</code> universe can provide model summaries for a large
-number of model objects. This is a convenience function that converts
-naming conventions adopted in <code>easystats</code> to the ones adopted in the
-<code>broom</code> package.</p>
+    <p>This function is mostly useful in the context of
+<code><a href='ggcorrmat.html'>ggstatsplot::ggcorrmat</a></code>. It returns the correlation matrix, p-value
+matrix, and a correlation object from <code>psych</code>/<code>WRS2</code> package that contains
+all the details about the test.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>easystats_to_tidy_names</span>(<span class='no'>x</span>)</pre>
+    <pre class="usage"><span class='fu'>corr_objects</span>(
+  <span class='no'>data</span>,
+  <span class='kw'>ci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>corr.method</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>,
+  <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
+  <span class='kw'>beta</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='no'>...</span>
+)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>data</th>
+      <td><p>Dataframe from which variables specified are preferentially to be
+taken. Only numeric variables should be present.</p></td>
+    </tr>
+    <tr>
+      <th>ci</th>
+      <td><p>By default, confidence intervals are found.  However, this leads to a noticable slowdown of speed, particularly for large problems.  So, for just the rs, ts and ps, set ci=FALSE</p></td>
+    </tr>
+    <tr>
+      <th>corr.method</th>
+      <td><p>A character string indicating which correlation
+coefficient is to be computed (<code>"pearson"</code> (default) or <code>"kendall"</code> or
+<code>"spearman"</code>). <code>"robust"</code> can also be entered but only if <code>output</code> argument
+is set to either <code>"correlations"</code> or <code>"p-values"</code>. The robust correlation
+used is percentage bend correlation (see <code><a href='https://rdrr.io/pkg/WRS2/man/pbcor.html'>?WRS2::pball</a></code>). Abbreviations
+will also work: <code>"p"</code> (for parametric/Pearson's <em>r</em>), <code>"np"</code>
+(nonparametric/Spearman's <em>rho</em>), <code>"r"</code> (robust).</p></td>
+    </tr>
+    <tr>
+      <th>p.adjust.method</th>
+      <td><p>What adjustment for multiple tests should be used?
+(<code>"holm"</code>, <code>"hochberg"</code>, <code>"hommel"</code>, <code>"bonferroni"</code>, <code>"BH"</code>, <code>"BY"</code>,
+<code>"fdr"</code>, <code>"none"</code>). See <code><a href='https://rdrr.io/r/stats/p.adjust.html'>stats::p.adjust</a></code> for details about why to use
+<code>"holm"</code> rather than <code>"bonferroni"</code>). Default is <code>"none"</code>. If adjusted
+<em>p</em>-values are displayed in the visualization of correlation matrix, the
+<strong>adjusted</strong> <em>p</em>-values will be used for the <strong>upper</strong> triangle, while
+<strong>unadjusted</strong> <em>p</em>-values will be used for the <strong>lower</strong> triangle of the
+matrix.</p></td>
+    </tr>
+    <tr>
+      <th>beta</th>
+      <td><p>A numeric bending constant for percentage bend robust correlation
+coefficient (Default: <code>0.1</code>).</p></td>
+    </tr>
+    <tr>
+      <th>k</th>
+      <td><p>Decides the number of decimal digits to be displayed
+(Default: <code>2</code>).</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Currently ignored.</p></td>
+    </tr>
+    </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A list with all needed objects for displaying correlation tests in a
+correlation matrix visualization.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># example model object</span>
-<span class='no'>mod</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span>(<span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>wt</span> ~ <span class='no'>am</span> * <span class='no'>cyl</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>)
+    <pre class="examples"><div class='input'><span class='co'># only numeric variables</span>
+<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/keep.html'>keep</a></span>(<span class='kw pkg'>WRS2</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/WRS2/man/diet.html'>diet</a></span>, <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='no'><a href='https://purrr.tidyverse.org/reference/reexports.html'>is_bare_numeric</a></span>)
 
-<span class='co'># `tidy`-fied output</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/easystats_to_tidy_names.html'>easystats_to_tidy_names</a></span>(<span class='kw pkg'>parameters</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/parameters/man/model_parameters.html'>model_parameters</a></span>(<span class='no'>mod</span>))</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 4 x 8</span><span>
-#&gt;   term        estimate std.error conf.low conf.high statistic df.error  p.value
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> (Intercept)   1.66      0.587     0.455     2.86      2.82        28 0.008</span><span style='text-decoration: underline;'>64</span><span> 
-#&gt; </span><span style='color: #555555;'>2</span><span> am           -</span><span style='color: #BB0000;'>0.956</span><span>     0.793    -</span><span style='color: #BB0000;'>2.58</span><span>      0.668    -</span><span style='color: #BB0000;'>1.21</span><span>        28 0.238   
-#&gt; </span><span style='color: #555555;'>3</span><span> cyl           0.304     0.082</span><span style='text-decoration: underline;'>6</span><span>    0.135     0.473     3.68        28 0.000</span><span style='text-decoration: underline;'>989</span><span>
-#&gt; </span><span style='color: #555555;'>4</span><span> am:cyl        0.032</span><span style='text-decoration: underline;'>8</span><span>    0.130    -</span><span style='color: #BB0000;'>0.234</span><span>     0.300     0.252       28 0.803   </div></span></pre>
+<span class='co'># using function</span>
+<span class='fu'>corr_objects</span>(<span class='no'>df</span>)</div><div class='output co'>#&gt; <span class='error'>Error in corr_objects(df): could not find function "corr_objects"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

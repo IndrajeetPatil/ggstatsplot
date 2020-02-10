@@ -386,41 +386,42 @@ names(cut_list)
 # running function on every element of this list note that if you want the same
 # value for a given argument across all elements of the list, you need to
 # specify it just once
-plot_list <- purrr::pmap(
-  .l = list(
-    data = cut_list,
-    cor.vars = list(c("carat", "depth", "table", "price")),
-    cor.vars.names = list(c(
-      "carat",
-      "total depth",
-      "table",
-      "price"
-    )),
-    corr.method = list("pearson", "np", "robust", "kendall"),
-    title = list("Cut: Good", "Cut: Very Good", "Cut: Premium", "Cut: Ideal"),
-    # note that we are changing both p-value adjustment method *and*
-    # significance level to display the significant correlations in the
-    # visualization matrix
-    p.adjust.method = list("hommel", "fdr", "BY", "hochberg"),
-    sig.level = list(0.001, 0.01, 0.05, 0.003),
-    lab.size = 3.5,
-    colors = list(
-      c("#56B4E9", "white", "#999999"),
-      c("#CC79A7", "white", "#F0E442"),
-      c("#56B4E9", "white", "#D55E00"),
-      c("#999999", "white", "#0072B2")
+plot_list <-
+  purrr::pmap(
+    .l = list(
+      data = cut_list,
+      cor.vars = list(c("carat", "depth", "table", "price")),
+      cor.vars.names = list(c(
+        "carat",
+        "total depth",
+        "table",
+        "price"
+      )),
+      corr.method = list("pearson", "np", "robust", "kendall"),
+      title = list("Cut: Good", "Cut: Very Good", "Cut: Premium", "Cut: Ideal"),
+      # note that we are changing both p-value adjustment method *and*
+      # significance level to display the significant correlations in the
+      # visualization matrix
+      p.adjust.method = list("hommel", "fdr", "BY", "hochberg"),
+      sig.level = list(0.001, 0.01, 0.05, 0.003),
+      lab.size = 3.5,
+      colors = list(
+        c("#56B4E9", "white", "#999999"),
+        c("#CC79A7", "white", "#F0E442"),
+        c("#56B4E9", "white", "#D55E00"),
+        c("#999999", "white", "#0072B2")
+      ),
+      ggstatsplot.layer = FALSE,
+      ggtheme = list(
+        ggplot2::theme_grey(),
+        ggplot2::theme_classic(),
+        ggthemes::theme_fivethirtyeight(),
+        ggthemes::theme_tufte()
+      ),
+      messages = FALSE
     ),
-    ggstatsplot.layer = FALSE,
-    ggtheme = list(
-      ggplot2::theme_grey(),
-      ggplot2::theme_classic(),
-      ggthemes::theme_fivethirtyeight(),
-      ggthemes::theme_tufte()
-    ),
-    messages = FALSE
-  ),
-  .f = ggstatsplot::ggcorrmat
-)
+    .f = ggstatsplot::ggcorrmat
+  )
 
 # combining all individual plots from the list into a single plot using
 # `combine_plots` function
@@ -447,7 +448,8 @@ library(ggthemes)
 
 # let's split the dataframe and create a list by continent
 # let's leave out Oceania because it has just two data points
-continent_list <- gapminder::gapminder %>%
+continent_list <-
+  gapminder::gapminder %>%
   dplyr::filter(.data = ., year == 2007, continent != "Oceania") %>%
   split(x = ., f = .$continent, drop = TRUE)
 
@@ -462,42 +464,43 @@ names(continent_list)
 # running function on every element of this list note that if you want the same
 # value for a given argument across all elements of the list, you need to
 # specify it just once
-plot_list <- purrr::pmap(
-  .l = list(
-    data = continent_list,
-    x = "lifeExp",
-    xlab = "Life expectancy",
-    test.value = list(35.6, 58.4, 41.6, 64.7),
-    type = list("p", "np", "r", "bf"),
-    bf.message = list(TRUE, FALSE, FALSE, FALSE),
-    title = list(
-      "Continent: Africa",
-      "Continent: Americas",
-      "Continent: Asia",
-      "Continent: Europe"
+plot_list <-
+  purrr::pmap(
+    .l = list(
+      data = continent_list,
+      x = "lifeExp",
+      xlab = "Life expectancy",
+      test.value = list(35.6, 58.4, 41.6, 64.7),
+      type = list("p", "np", "r", "bf"),
+      bf.message = list(TRUE, FALSE, FALSE, FALSE),
+      title = list(
+        "Continent: Africa",
+        "Continent: Americas",
+        "Continent: Asia",
+        "Continent: Europe"
+      ),
+      bar.measure = list("proportion", "count", "mix", "density"),
+      fill.gradient = list(TRUE, FALSE, FALSE, TRUE),
+      low.color = list("#56B4E9", "white", "#999999", "#009E73"),
+      high.color = list("#D55E00", "white", "#F0E442", "#F0E442"),
+      bar.fill = list("white", "red", "orange", "blue"),
+      effsize.type = list("d", "d", "g", "g"),
+      effsize.noncentral = list(TRUE, FALSE, TRUE, FALSE),
+      centrality.color = "black",
+      test.value.line = TRUE,
+      test.value.color = "black",
+      centrality.para = "mean",
+      normal.curve = TRUE,
+      ggtheme = list(
+        ggplot2::theme_classic(),
+        ggthemes::theme_fivethirtyeight(),
+        ggplot2::theme_minimal(),
+        ggthemes::theme_few()
+      ),
+      messages = FALSE
     ),
-    bar.measure = list("proportion", "count", "mix", "density"),
-    fill.gradient = list(TRUE, FALSE, FALSE, TRUE),
-    low.color = list("#56B4E9", "white", "#999999", "#009E73"),
-    high.color = list("#D55E00", "white", "#F0E442", "#F0E442"),
-    bar.fill = list("white", "red", "orange", "blue"),
-    effsize.type = list("d", "d", "g", "g"),
-    effsize.noncentral = list(TRUE, FALSE, TRUE, FALSE),
-    centrality.color = "black",
-    test.value.line = TRUE,
-    test.value.color = "black",
-    centrality.para = "mean",
-    normal.curve = TRUE,
-    ggtheme = list(
-      ggplot2::theme_classic(),
-      ggthemes::theme_fivethirtyeight(),
-      ggplot2::theme_minimal(),
-      ggthemes::theme_few()
-    ),
-    messages = FALSE
-  ),
-  .f = ggstatsplot::gghistostats
-)
+    .f = ggstatsplot::gghistostats
+  )
 
 # combining all individual plots from the list into a single plot using combine_plots function
 ggstatsplot::combine_plots(
@@ -743,6 +746,28 @@ plotlist <-
 # given that we had three different datasets, we expect a list of length 3
 # (each of which contains a `grouped_` plot)
 length(plotlist)
+```
+
+# Repeating function execution across multiple columns in a dataframe
+
+```{r purrr_columns, warning = FALSE, message = FALSE}
+# running the same analysis on two different columns
+plotlist <- 
+  purrr::pmap(
+  .l = list(
+    data = list(mtcars),
+    x = "am",
+    y = list("wt", "qsec"),
+    messages = FALSE
+  ),
+  .f = ggstatsplot::ggbetweenstats
+)
+
+# wt
+plotlist[[1]] 
+
+# qsec
+plotlist[[2]] 
 ```
 
 # Suggestions

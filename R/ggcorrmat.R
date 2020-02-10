@@ -29,8 +29,6 @@
 #'   (nonparametric/Spearman's *rho*), `"r"` (robust).
 #' @param beta A numeric bending constant for percentage bend robust correlation
 #'   coefficient (Default: `0.1`).
-#' @param k Decides the number of decimal digits to be displayed
-#'   (Default: `2`).
 #' @param sig.level Significance level (Default: `0.05`). If the *p*-value in
 #'   *p*-value matrix is bigger than `sig.level`, then the corresponding
 #'   correlation coefficient is regarded as insignificant and flagged as such in
@@ -46,8 +44,6 @@
 #' @param colors A vector of 3 colors for low, mid, and high correlation values.
 #'   If set to `NULL`, manual specification of colors will be turned off and 3
 #'   colors from the specified `palette` from `package` will be selected.
-#' @param outline.color The outline color of square or circle. Default value is
-#'   `"gray"`.
 #' @param title The text for the plot title.
 #' @param subtitle The text for the plot subtitle.
 #' @param caption The text for the plot caption. If `NULL`, a default caption
@@ -70,7 +66,7 @@
 #' @importFrom ggcorrplot ggcorrplot
 #' @importFrom dplyr select group_by summarize n arrange bind_cols
 #' @importFrom dplyr mutate mutate_at mutate_if
-#' @importFrom purrr is_bare_numeric keep
+#' @importFrom purrr is_bare_numeric keep pluck
 #' @importFrom stats median
 #' @importFrom tibble as_tibble
 #' @importFrom rlang !! enquo quo_name is_null
@@ -90,7 +86,7 @@
 #' # for reproducibility
 #' set.seed(123)
 #'
-#' # if `cor.vars` not specified, all numeric varibles used
+#' # if `cor.vars` not specified, all numeric variables used
 #' ggstatsplot::ggcorrmat(data = iris)
 #'
 #' # to get the correlalogram
@@ -224,58 +220,21 @@ ggcorrmat <- function(data,
 
   # ===================== statistics ========================================
 
-  if (corr.method %in% c("pearson", "spearman")) {
-    # computing correlations using `psych` package
-    corr_df <-
-      psych::corr.test(
-        x = as.data.frame(df),
-        use = "pairwise",
-        method = corr.method,
-        adjust = p.adjust.method,
-        alpha = 0.05,
-        ci = ci,
-        minlength = 20
-      )
+  # creating a list of all the needed correlation objects
+  corr_obj_list <-
+    corr_objects(
+      data = df,
+      ci = ci,
+      corr.method = corr.method,
+      p.adjust.method = p.adjust.method,
+      beta = beta,
+      k = k
+    )
 
-    # computing correlations on all included variables
-    corr.mat <- round(x = corr_df$r, digits = k)
-
-    # compute a correlation matrix of p-values
-    p.mat <- corr_df$p
-  }
-
-  # robust correlation
-  if (corr.method == "robust") {
-    # get matrix of samples sizes to be used later in `corr.p` function (`n`)
-    corr_df <-
-      psych::corr.test(
-        x = as.data.frame(df),
-        use = "pairwise",
-        adjust = "none",
-        alpha = 0.05,
-        ci = FALSE,
-        minlength = 20
-      )
-
-    # computing the percentage bend correlation matrix
-    rob_cor <- WRS2::pball(x = df, beta = beta)
-
-    # extracting the correlations and formatting them
-    corr.mat <- round(x = rob_cor$pbcorm, digits = k)
-
-    # converting `NA`s to 0's
-    rob_cor$p.values[is.na(rob_cor$p.values)] <- 0
-
-    # adjusting for multiple comparisons (if needed)
-    p.mat <-
-      psych::corr.p(
-        r = corr.mat,
-        n = corr_df$n,
-        adjust = p.adjust.method,
-        alpha = 0.05,
-        minlength = 20
-      )$p
-  }
+  # creating needed objects
+  psych_corr_obj <- purrr::pluck(corr_obj_list, "psych_corr_obj")
+  corr.mat <- purrr::pluck(corr_obj_list, "corr.mat")
+  p.mat <- purrr::pluck(corr_obj_list, "p.mat")
 
   # ========================== plot =========================================
 
@@ -295,9 +254,9 @@ ggcorrmat <- function(data,
     # in case of NAs, compute minimum and maximum sample sizes of pairs
     n_summary <-
       tibble::tibble(
-        n_min = range(corr_df$n, na.rm = TRUE)[[1]],
-        n_median = stats::median(corr_df$n, na.rm = TRUE),
-        n_max = range(corr_df$n, na.rm = TRUE)[[2]]
+        n_min = range(psych_corr_obj$n, na.rm = TRUE)[[1]],
+        n_median = stats::median(psych_corr_obj$n, na.rm = TRUE),
+        n_max = range(psych_corr_obj$n, na.rm = TRUE)[[2]]
       )
 
     # legend title with information about correlation type and sample
@@ -417,11 +376,118 @@ ggcorrmat <- function(data,
   return(
     switch(output,
       "r" = tibble::as_tibble(corr.mat, rownames = "variable"),
-      "n" = tibble::as_tibble(corr_df$n, rownames = "variable"),
-      "ci" = tibble::as_tibble(corr_df$ci, rownames = "pair"),
+      "n" = tibble::as_tibble(psych_corr_obj$n, rownames = "variable"),
+      "ci" = tibble::as_tibble(psych_corr_obj$ci, rownames = "pair"),
       "p" = tibble::as_tibble(p.mat, rownames = "variable"),
       "plot" = plot,
       plot
     )
   )
+}
+
+
+#' @name corr_objects
+#' @title Create all needed objects for correlation matrix.
+#' @description This function is mostly useful in the context of
+#'   `ggstatsplot::ggcorrmat`. It returns the correlation matrix, p-value
+#'   matrix, and a correlation object from `psych`/`WRS2` package that contains
+#'   all the details about the test.
+#'
+#' @return A list with all needed objects for displaying correlation tests in a
+#'   correlation matrix visualization.
+#'
+#' @param ... Currently ignored.
+#' @param data Dataframe from which variables specified are preferentially to be
+#'   taken. Only numeric variables should be present.
+#' @param corr.method A character string indicating which correlation
+#'   coefficient is to be computed (`"pearson"` (default) or `"kendall"` or
+#'   `"spearman"`). `"robust"` can also be entered but only if `output` argument
+#'   is set to either `"correlations"` or `"p-values"`. The robust correlation
+#'   used is percentage bend correlation (see `?WRS2::pball`). Abbreviations
+#'   will also work: `"p"` (for parametric/Pearson's *r*), `"np"`
+#'   (nonparametric/Spearman's *rho*), `"r"` (robust).
+#' @param p.adjust.method What adjustment for multiple tests should be used?
+#'   (`"holm"`, `"hochberg"`, `"hommel"`, `"bonferroni"`, `"BH"`, `"BY"`,
+#'   `"fdr"`, `"none"`). See `stats::p.adjust` for details about why to use
+#'   `"holm"` rather than `"bonferroni"`). Default is `"none"`. If adjusted
+#'   *p*-values are displayed in the visualization of correlation matrix, the
+#'   **adjusted** *p*-values will be used for the **upper** triangle, while
+#'   **unadjusted** *p*-values will be used for the **lower** triangle of the
+#'   matrix.
+#' @param beta A numeric bending constant for percentage bend robust correlation
+#'   coefficient (Default: `0.1`).
+#' @param k Decides the number of decimal digits to be displayed
+#'   (Default: `2`).
+#' @inheritParams psych::corr.test
+#'
+#' @examples
+#' # only numeric variables
+#' df <- purrr::keep(WRS2::diet, purrr::is_bare_numeric)
+#'
+#' # using function
+#' ggstatsplot:::corr_objects(df)
+#' @keywords internal
+
+corr_objects <- function(data,
+                         ci = FALSE,
+                         corr.method = "pearson",
+                         p.adjust.method = "none",
+                         beta = 0.1,
+                         k = 2,
+                         ...) {
+  if (corr.method %in% c("pearson", "spearman")) {
+    # computing correlations using `psych` package
+    psych_corr_obj <-
+      psych::corr.test(
+        x = as.data.frame(data),
+        use = "pairwise",
+        method = corr.method,
+        adjust = p.adjust.method,
+        alpha = 0.05,
+        ci = ci,
+        minlength = 20
+      )
+
+    # computing correlations on all included variables
+    corr.mat <- round(x = psych_corr_obj$r, digits = k)
+
+    # compute a correlation matrix of p-values
+    p.mat <- psych_corr_obj$p
+  }
+
+  # robust correlation
+  if (corr.method == "robust") {
+    # get matrix of samples sizes to be used later in `corr.p` function (`n`)
+    psych_corr_obj <-
+      psych::corr.test(
+        x = as.data.frame(data),
+        use = "pairwise",
+        adjust = "none",
+        alpha = 0.05,
+        ci = FALSE,
+        minlength = 20
+      )
+
+    # computing the percentage bend correlation matrix
+    rob_cor <- WRS2::pball(x = data, beta = beta)
+
+    # extracting the correlations and formatting them
+    corr.mat <- round(x = rob_cor$pbcorm, digits = k)
+
+    # converting `NA`s to 0's
+    rob_cor$p.values[is.na(rob_cor$p.values)] <- 0
+
+    # adjusting for multiple comparisons (if needed)
+    p.mat <-
+      psych::corr.p(
+        r = corr.mat,
+        n = psych_corr_obj$n,
+        adjust = p.adjust.method,
+        alpha = 0.05,
+        minlength = 20
+      )$p
+  }
+
+  # return everything as a list
+  list("corr.mat" = corr.mat, "p.mat" = p.mat, "psych_corr_obj" = psych_corr_obj)
 }
