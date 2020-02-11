@@ -363,7 +363,6 @@ parameters_tidy <- function(x, ...) {
 #'
 #' # `tidy`-fied output
 #' ggstatsplot:::easystats_to_tidy_names(parameters::model_parameters(mod))
-#'
 #' @keywords internal
 
 easystats_to_tidy_names <- function(x) {

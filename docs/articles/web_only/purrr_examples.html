@@ -152,7 +152,7 @@
       <h1>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-02-08</h4>
+            <h4 class="date">2020-02-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -461,54 +461,55 @@
 <span id="cb6-23"><a href="#cb6-23"></a><span class="co"># running function on every element of this list note that if you want the same</span></span>
 <span id="cb6-24"><a href="#cb6-24"></a><span class="co"># value for a given argument across all elements of the list, you need to</span></span>
 <span id="cb6-25"><a href="#cb6-25"></a><span class="co"># specify it just once</span></span>
-<span id="cb6-26"><a href="#cb6-26"></a>plot_list &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(</span>
-<span id="cb6-27"><a href="#cb6-27"></a>  <span class="dt">.l =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
-<span id="cb6-28"><a href="#cb6-28"></a>    <span class="dt">data =</span> cut_list,</span>
-<span id="cb6-29"><a href="#cb6-29"></a>    <span class="dt">cor.vars =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"carat"</span>, <span class="st">"depth"</span>, <span class="st">"table"</span>, <span class="st">"price"</span>)),</span>
-<span id="cb6-30"><a href="#cb6-30"></a>    <span class="dt">cor.vars.names =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(</span>
-<span id="cb6-31"><a href="#cb6-31"></a>      <span class="st">"carat"</span>,</span>
-<span id="cb6-32"><a href="#cb6-32"></a>      <span class="st">"total depth"</span>,</span>
-<span id="cb6-33"><a href="#cb6-33"></a>      <span class="st">"table"</span>,</span>
-<span id="cb6-34"><a href="#cb6-34"></a>      <span class="st">"price"</span></span>
-<span id="cb6-35"><a href="#cb6-35"></a>    )),</span>
-<span id="cb6-36"><a href="#cb6-36"></a>    <span class="dt">corr.method =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"pearson"</span>, <span class="st">"np"</span>, <span class="st">"robust"</span>, <span class="st">"kendall"</span>),</span>
-<span id="cb6-37"><a href="#cb6-37"></a>    <span class="dt">title =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"Cut: Good"</span>, <span class="st">"Cut: Very Good"</span>, <span class="st">"Cut: Premium"</span>, <span class="st">"Cut: Ideal"</span>),</span>
-<span id="cb6-38"><a href="#cb6-38"></a>    <span class="co"># note that we are changing both p-value adjustment method *and*</span></span>
-<span id="cb6-39"><a href="#cb6-39"></a>    <span class="co"># significance level to display the significant correlations in the</span></span>
-<span id="cb6-40"><a href="#cb6-40"></a>    <span class="co"># visualization matrix</span></span>
-<span id="cb6-41"><a href="#cb6-41"></a>    <span class="dt">p.adjust.method =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"hommel"</span>, <span class="st">"fdr"</span>, <span class="st">"BY"</span>, <span class="st">"hochberg"</span>),</span>
-<span id="cb6-42"><a href="#cb6-42"></a>    <span class="dt">sig.level =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span>, <span class="fl">0.003</span>),</span>
-<span id="cb6-43"><a href="#cb6-43"></a>    <span class="dt">lab.size =</span> <span class="fl">3.5</span>,</span>
-<span id="cb6-44"><a href="#cb6-44"></a>    <span class="dt">colors =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
-<span id="cb6-45"><a href="#cb6-45"></a>      <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#56B4E9"</span>, <span class="st">"white"</span>, <span class="st">"#999999"</span>),</span>
-<span id="cb6-46"><a href="#cb6-46"></a>      <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#CC79A7"</span>, <span class="st">"white"</span>, <span class="st">"#F0E442"</span>),</span>
-<span id="cb6-47"><a href="#cb6-47"></a>      <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#56B4E9"</span>, <span class="st">"white"</span>, <span class="st">"#D55E00"</span>),</span>
-<span id="cb6-48"><a href="#cb6-48"></a>      <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#999999"</span>, <span class="st">"white"</span>, <span class="st">"#0072B2"</span>)</span>
-<span id="cb6-49"><a href="#cb6-49"></a>    ),</span>
-<span id="cb6-50"><a href="#cb6-50"></a>    <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb6-51"><a href="#cb6-51"></a>    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
-<span id="cb6-52"><a href="#cb6-52"></a>      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),</span>
-<span id="cb6-53"><a href="#cb6-53"></a>      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),</span>
-<span id="cb6-54"><a href="#cb6-54"></a>      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>(),</span>
-<span id="cb6-55"><a href="#cb6-55"></a>      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>()</span>
-<span id="cb6-56"><a href="#cb6-56"></a>    ),</span>
-<span id="cb6-57"><a href="#cb6-57"></a>    <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
-<span id="cb6-58"><a href="#cb6-58"></a>  ),</span>
-<span id="cb6-59"><a href="#cb6-59"></a>  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggcorrmat</span>
-<span id="cb6-60"><a href="#cb6-60"></a>)</span>
-<span id="cb6-61"><a href="#cb6-61"></a></span>
-<span id="cb6-62"><a href="#cb6-62"></a><span class="co"># combining all individual plots from the list into a single plot using</span></span>
-<span id="cb6-63"><a href="#cb6-63"></a><span class="co"># `combine_plots` function</span></span>
-<span id="cb6-64"><a href="#cb6-64"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</span>
-<span id="cb6-65"><a href="#cb6-65"></a>  <span class="dt">plotlist =</span> plot_list,</span>
-<span id="cb6-66"><a href="#cb6-66"></a>  <span class="dt">title.text =</span> <span class="st">"Relationship between diamond attributes and price across cut"</span>,</span>
-<span id="cb6-67"><a href="#cb6-67"></a>  <span class="dt">title.size =</span> <span class="dv">14</span>,</span>
-<span id="cb6-68"><a href="#cb6-68"></a>  <span class="dt">title.color =</span> <span class="st">"red"</span>,</span>
-<span id="cb6-69"><a href="#cb6-69"></a>  <span class="dt">caption.text =</span> <span class="st">"Dataset: Diamonds from ggplot2 package"</span>,</span>
-<span id="cb6-70"><a href="#cb6-70"></a>  <span class="dt">caption.size =</span> <span class="dv">12</span>,</span>
-<span id="cb6-71"><a href="#cb6-71"></a>  <span class="dt">caption.color =</span> <span class="st">"blue"</span>,</span>
-<span id="cb6-72"><a href="#cb6-72"></a>  <span class="dt">nrow =</span> <span class="dv">2</span></span>
-<span id="cb6-73"><a href="#cb6-73"></a>)</span></code></pre></div>
+<span id="cb6-26"><a href="#cb6-26"></a>plot_list &lt;-</span>
+<span id="cb6-27"><a href="#cb6-27"></a><span class="st">  </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(</span>
+<span id="cb6-28"><a href="#cb6-28"></a>    <span class="dt">.l =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb6-29"><a href="#cb6-29"></a>      <span class="dt">data =</span> cut_list,</span>
+<span id="cb6-30"><a href="#cb6-30"></a>      <span class="dt">cor.vars =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"carat"</span>, <span class="st">"depth"</span>, <span class="st">"table"</span>, <span class="st">"price"</span>)),</span>
+<span id="cb6-31"><a href="#cb6-31"></a>      <span class="dt">cor.vars.names =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(</span>
+<span id="cb6-32"><a href="#cb6-32"></a>        <span class="st">"carat"</span>,</span>
+<span id="cb6-33"><a href="#cb6-33"></a>        <span class="st">"total depth"</span>,</span>
+<span id="cb6-34"><a href="#cb6-34"></a>        <span class="st">"table"</span>,</span>
+<span id="cb6-35"><a href="#cb6-35"></a>        <span class="st">"price"</span></span>
+<span id="cb6-36"><a href="#cb6-36"></a>      )),</span>
+<span id="cb6-37"><a href="#cb6-37"></a>      <span class="dt">corr.method =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"pearson"</span>, <span class="st">"np"</span>, <span class="st">"robust"</span>, <span class="st">"kendall"</span>),</span>
+<span id="cb6-38"><a href="#cb6-38"></a>      <span class="dt">title =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"Cut: Good"</span>, <span class="st">"Cut: Very Good"</span>, <span class="st">"Cut: Premium"</span>, <span class="st">"Cut: Ideal"</span>),</span>
+<span id="cb6-39"><a href="#cb6-39"></a>      <span class="co"># note that we are changing both p-value adjustment method *and*</span></span>
+<span id="cb6-40"><a href="#cb6-40"></a>      <span class="co"># significance level to display the significant correlations in the</span></span>
+<span id="cb6-41"><a href="#cb6-41"></a>      <span class="co"># visualization matrix</span></span>
+<span id="cb6-42"><a href="#cb6-42"></a>      <span class="dt">p.adjust.method =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"hommel"</span>, <span class="st">"fdr"</span>, <span class="st">"BY"</span>, <span class="st">"hochberg"</span>),</span>
+<span id="cb6-43"><a href="#cb6-43"></a>      <span class="dt">sig.level =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span>, <span class="fl">0.003</span>),</span>
+<span id="cb6-44"><a href="#cb6-44"></a>      <span class="dt">lab.size =</span> <span class="fl">3.5</span>,</span>
+<span id="cb6-45"><a href="#cb6-45"></a>      <span class="dt">colors =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb6-46"><a href="#cb6-46"></a>        <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#56B4E9"</span>, <span class="st">"white"</span>, <span class="st">"#999999"</span>),</span>
+<span id="cb6-47"><a href="#cb6-47"></a>        <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#CC79A7"</span>, <span class="st">"white"</span>, <span class="st">"#F0E442"</span>),</span>
+<span id="cb6-48"><a href="#cb6-48"></a>        <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#56B4E9"</span>, <span class="st">"white"</span>, <span class="st">"#D55E00"</span>),</span>
+<span id="cb6-49"><a href="#cb6-49"></a>        <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#999999"</span>, <span class="st">"white"</span>, <span class="st">"#0072B2"</span>)</span>
+<span id="cb6-50"><a href="#cb6-50"></a>      ),</span>
+<span id="cb6-51"><a href="#cb6-51"></a>      <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb6-52"><a href="#cb6-52"></a>      <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb6-53"><a href="#cb6-53"></a>        ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),</span>
+<span id="cb6-54"><a href="#cb6-54"></a>        ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),</span>
+<span id="cb6-55"><a href="#cb6-55"></a>        ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>(),</span>
+<span id="cb6-56"><a href="#cb6-56"></a>        ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>()</span>
+<span id="cb6-57"><a href="#cb6-57"></a>      ),</span>
+<span id="cb6-58"><a href="#cb6-58"></a>      <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
+<span id="cb6-59"><a href="#cb6-59"></a>    ),</span>
+<span id="cb6-60"><a href="#cb6-60"></a>    <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggcorrmat</span>
+<span id="cb6-61"><a href="#cb6-61"></a>  )</span>
+<span id="cb6-62"><a href="#cb6-62"></a></span>
+<span id="cb6-63"><a href="#cb6-63"></a><span class="co"># combining all individual plots from the list into a single plot using</span></span>
+<span id="cb6-64"><a href="#cb6-64"></a><span class="co"># `combine_plots` function</span></span>
+<span id="cb6-65"><a href="#cb6-65"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</span>
+<span id="cb6-66"><a href="#cb6-66"></a>  <span class="dt">plotlist =</span> plot_list,</span>
+<span id="cb6-67"><a href="#cb6-67"></a>  <span class="dt">title.text =</span> <span class="st">"Relationship between diamond attributes and price across cut"</span>,</span>
+<span id="cb6-68"><a href="#cb6-68"></a>  <span class="dt">title.size =</span> <span class="dv">14</span>,</span>
+<span id="cb6-69"><a href="#cb6-69"></a>  <span class="dt">title.color =</span> <span class="st">"red"</span>,</span>
+<span id="cb6-70"><a href="#cb6-70"></a>  <span class="dt">caption.text =</span> <span class="st">"Dataset: Diamonds from ggplot2 package"</span>,</span>
+<span id="cb6-71"><a href="#cb6-71"></a>  <span class="dt">caption.size =</span> <span class="dv">12</span>,</span>
+<span id="cb6-72"><a href="#cb6-72"></a>  <span class="dt">caption.color =</span> <span class="st">"blue"</span>,</span>
+<span id="cb6-73"><a href="#cb6-73"></a>  <span class="dt">nrow =</span> <span class="dv">2</span></span>
+<span id="cb6-74"><a href="#cb6-74"></a>)</span></code></pre></div>
 <p><img src="purrr_examples_files/figure-html/purrr_ggcorrmat-1.png" width="960"></p>
 </div>
 <div id="gghistostats" class="section level1">
@@ -523,68 +524,70 @@
 <span id="cb7-6"><a href="#cb7-6"></a></span>
 <span id="cb7-7"><a href="#cb7-7"></a><span class="co"># let's split the dataframe and create a list by continent</span></span>
 <span id="cb7-8"><a href="#cb7-8"></a><span class="co"># let's leave out Oceania because it has just two data points</span></span>
-<span id="cb7-9"><a href="#cb7-9"></a>continent_list &lt;-<span class="st"> </span>gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></span>
-<span id="cb7-10"><a href="#cb7-10"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span>) <span class="op">%&gt;%</span></span>
-<span id="cb7-11"><a href="#cb7-11"></a><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="dt">x =</span> ., <span class="dt">f =</span> .<span class="op">$</span>continent, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb7-12"><a href="#cb7-12"></a></span>
-<span id="cb7-13"><a href="#cb7-13"></a><span class="co"># this created a list with 4 elements, one for each continent</span></span>
-<span id="cb7-14"><a href="#cb7-14"></a><span class="co"># you can check the structure of the file for yourself</span></span>
-<span id="cb7-15"><a href="#cb7-15"></a><span class="co"># str(continent_list)</span></span>
-<span id="cb7-16"><a href="#cb7-16"></a></span>
-<span id="cb7-17"><a href="#cb7-17"></a><span class="co"># checking the length and names of each element</span></span>
-<span id="cb7-18"><a href="#cb7-18"></a><span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span>(continent_list)</span>
-<span id="cb7-19"><a href="#cb7-19"></a><span class="co">#&gt; [1] 4</span></span>
-<span id="cb7-20"><a href="#cb7-20"></a><span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(continent_list)</span>
-<span id="cb7-21"><a href="#cb7-21"></a><span class="co">#&gt; [1] "Africa"   "Americas" "Asia"     "Europe"</span></span>
-<span id="cb7-22"><a href="#cb7-22"></a></span>
-<span id="cb7-23"><a href="#cb7-23"></a><span class="co"># running function on every element of this list note that if you want the same</span></span>
-<span id="cb7-24"><a href="#cb7-24"></a><span class="co"># value for a given argument across all elements of the list, you need to</span></span>
-<span id="cb7-25"><a href="#cb7-25"></a><span class="co"># specify it just once</span></span>
-<span id="cb7-26"><a href="#cb7-26"></a>plot_list &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(</span>
-<span id="cb7-27"><a href="#cb7-27"></a>  <span class="dt">.l =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
-<span id="cb7-28"><a href="#cb7-28"></a>    <span class="dt">data =</span> continent_list,</span>
-<span id="cb7-29"><a href="#cb7-29"></a>    <span class="dt">x =</span> <span class="st">"lifeExp"</span>,</span>
-<span id="cb7-30"><a href="#cb7-30"></a>    <span class="dt">xlab =</span> <span class="st">"Life expectancy"</span>,</span>
-<span id="cb7-31"><a href="#cb7-31"></a>    <span class="dt">test.value =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">35.6</span>, <span class="fl">58.4</span>, <span class="fl">41.6</span>, <span class="fl">64.7</span>),</span>
-<span id="cb7-32"><a href="#cb7-32"></a>    <span class="dt">type =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"p"</span>, <span class="st">"np"</span>, <span class="st">"r"</span>, <span class="st">"bf"</span>),</span>
-<span id="cb7-33"><a href="#cb7-33"></a>    <span class="dt">bf.message =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>),</span>
-<span id="cb7-34"><a href="#cb7-34"></a>    <span class="dt">title =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
-<span id="cb7-35"><a href="#cb7-35"></a>      <span class="st">"Continent: Africa"</span>,</span>
-<span id="cb7-36"><a href="#cb7-36"></a>      <span class="st">"Continent: Americas"</span>,</span>
-<span id="cb7-37"><a href="#cb7-37"></a>      <span class="st">"Continent: Asia"</span>,</span>
-<span id="cb7-38"><a href="#cb7-38"></a>      <span class="st">"Continent: Europe"</span></span>
-<span id="cb7-39"><a href="#cb7-39"></a>    ),</span>
-<span id="cb7-40"><a href="#cb7-40"></a>    <span class="dt">bar.measure =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"proportion"</span>, <span class="st">"count"</span>, <span class="st">"mix"</span>, <span class="st">"density"</span>),</span>
-<span id="cb7-41"><a href="#cb7-41"></a>    <span class="dt">fill.gradient =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>),</span>
-<span id="cb7-42"><a href="#cb7-42"></a>    <span class="dt">low.color =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"#56B4E9"</span>, <span class="st">"white"</span>, <span class="st">"#999999"</span>, <span class="st">"#009E73"</span>),</span>
-<span id="cb7-43"><a href="#cb7-43"></a>    <span class="dt">high.color =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"#D55E00"</span>, <span class="st">"white"</span>, <span class="st">"#F0E442"</span>, <span class="st">"#F0E442"</span>),</span>
-<span id="cb7-44"><a href="#cb7-44"></a>    <span class="dt">bar.fill =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"white"</span>, <span class="st">"red"</span>, <span class="st">"orange"</span>, <span class="st">"blue"</span>),</span>
-<span id="cb7-45"><a href="#cb7-45"></a>    <span class="dt">effsize.type =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"d"</span>, <span class="st">"d"</span>, <span class="st">"g"</span>, <span class="st">"g"</span>),</span>
-<span id="cb7-46"><a href="#cb7-46"></a>    <span class="dt">effsize.noncentral =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>),</span>
-<span id="cb7-47"><a href="#cb7-47"></a>    <span class="dt">centrality.color =</span> <span class="st">"black"</span>,</span>
-<span id="cb7-48"><a href="#cb7-48"></a>    <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb7-49"><a href="#cb7-49"></a>    <span class="dt">test.value.color =</span> <span class="st">"black"</span>,</span>
-<span id="cb7-50"><a href="#cb7-50"></a>    <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,</span>
-<span id="cb7-51"><a href="#cb7-51"></a>    <span class="dt">normal.curve =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb7-52"><a href="#cb7-52"></a>    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
-<span id="cb7-53"><a href="#cb7-53"></a>      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),</span>
-<span id="cb7-54"><a href="#cb7-54"></a>      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>(),</span>
-<span id="cb7-55"><a href="#cb7-55"></a>      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>(),</span>
-<span id="cb7-56"><a href="#cb7-56"></a>      ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_few.html">theme_few</a></span>()</span>
-<span id="cb7-57"><a href="#cb7-57"></a>    ),</span>
-<span id="cb7-58"><a href="#cb7-58"></a>    <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
-<span id="cb7-59"><a href="#cb7-59"></a>  ),</span>
-<span id="cb7-60"><a href="#cb7-60"></a>  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>gghistostats</span>
-<span id="cb7-61"><a href="#cb7-61"></a>)</span>
-<span id="cb7-62"><a href="#cb7-62"></a></span>
-<span id="cb7-63"><a href="#cb7-63"></a><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></span>
-<span id="cb7-64"><a href="#cb7-64"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</span>
-<span id="cb7-65"><a href="#cb7-65"></a>  <span class="dt">plotlist =</span> plot_list,</span>
-<span id="cb7-66"><a href="#cb7-66"></a>  <span class="dt">title.text =</span> <span class="st">"Improvement in life expectancy worldwide since 1950"</span>,</span>
-<span id="cb7-67"><a href="#cb7-67"></a>  <span class="dt">caption.text =</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>,</span>
-<span id="cb7-68"><a href="#cb7-68"></a>  <span class="dt">nrow =</span> <span class="dv">4</span>,</span>
-<span id="cb7-69"><a href="#cb7-69"></a>  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>)</span>
-<span id="cb7-70"><a href="#cb7-70"></a>)</span></code></pre></div>
+<span id="cb7-9"><a href="#cb7-9"></a>continent_list &lt;-</span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="st">  </span>gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span>) <span class="op">%&gt;%</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="dt">x =</span> ., <span class="dt">f =</span> .<span class="op">$</span>continent, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb7-13"><a href="#cb7-13"></a></span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="co"># this created a list with 4 elements, one for each continent</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a><span class="co"># you can check the structure of the file for yourself</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a><span class="co"># str(continent_list)</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a></span>
+<span id="cb7-18"><a href="#cb7-18"></a><span class="co"># checking the length and names of each element</span></span>
+<span id="cb7-19"><a href="#cb7-19"></a><span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span>(continent_list)</span>
+<span id="cb7-20"><a href="#cb7-20"></a><span class="co">#&gt; [1] 4</span></span>
+<span id="cb7-21"><a href="#cb7-21"></a><span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(continent_list)</span>
+<span id="cb7-22"><a href="#cb7-22"></a><span class="co">#&gt; [1] "Africa"   "Americas" "Asia"     "Europe"</span></span>
+<span id="cb7-23"><a href="#cb7-23"></a></span>
+<span id="cb7-24"><a href="#cb7-24"></a><span class="co"># running function on every element of this list note that if you want the same</span></span>
+<span id="cb7-25"><a href="#cb7-25"></a><span class="co"># value for a given argument across all elements of the list, you need to</span></span>
+<span id="cb7-26"><a href="#cb7-26"></a><span class="co"># specify it just once</span></span>
+<span id="cb7-27"><a href="#cb7-27"></a>plot_list &lt;-</span>
+<span id="cb7-28"><a href="#cb7-28"></a><span class="st">  </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(</span>
+<span id="cb7-29"><a href="#cb7-29"></a>    <span class="dt">.l =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb7-30"><a href="#cb7-30"></a>      <span class="dt">data =</span> continent_list,</span>
+<span id="cb7-31"><a href="#cb7-31"></a>      <span class="dt">x =</span> <span class="st">"lifeExp"</span>,</span>
+<span id="cb7-32"><a href="#cb7-32"></a>      <span class="dt">xlab =</span> <span class="st">"Life expectancy"</span>,</span>
+<span id="cb7-33"><a href="#cb7-33"></a>      <span class="dt">test.value =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">35.6</span>, <span class="fl">58.4</span>, <span class="fl">41.6</span>, <span class="fl">64.7</span>),</span>
+<span id="cb7-34"><a href="#cb7-34"></a>      <span class="dt">type =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"p"</span>, <span class="st">"np"</span>, <span class="st">"r"</span>, <span class="st">"bf"</span>),</span>
+<span id="cb7-35"><a href="#cb7-35"></a>      <span class="dt">bf.message =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>),</span>
+<span id="cb7-36"><a href="#cb7-36"></a>      <span class="dt">title =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb7-37"><a href="#cb7-37"></a>        <span class="st">"Continent: Africa"</span>,</span>
+<span id="cb7-38"><a href="#cb7-38"></a>        <span class="st">"Continent: Americas"</span>,</span>
+<span id="cb7-39"><a href="#cb7-39"></a>        <span class="st">"Continent: Asia"</span>,</span>
+<span id="cb7-40"><a href="#cb7-40"></a>        <span class="st">"Continent: Europe"</span></span>
+<span id="cb7-41"><a href="#cb7-41"></a>      ),</span>
+<span id="cb7-42"><a href="#cb7-42"></a>      <span class="dt">bar.measure =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"proportion"</span>, <span class="st">"count"</span>, <span class="st">"mix"</span>, <span class="st">"density"</span>),</span>
+<span id="cb7-43"><a href="#cb7-43"></a>      <span class="dt">fill.gradient =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>),</span>
+<span id="cb7-44"><a href="#cb7-44"></a>      <span class="dt">low.color =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"#56B4E9"</span>, <span class="st">"white"</span>, <span class="st">"#999999"</span>, <span class="st">"#009E73"</span>),</span>
+<span id="cb7-45"><a href="#cb7-45"></a>      <span class="dt">high.color =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"#D55E00"</span>, <span class="st">"white"</span>, <span class="st">"#F0E442"</span>, <span class="st">"#F0E442"</span>),</span>
+<span id="cb7-46"><a href="#cb7-46"></a>      <span class="dt">bar.fill =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"white"</span>, <span class="st">"red"</span>, <span class="st">"orange"</span>, <span class="st">"blue"</span>),</span>
+<span id="cb7-47"><a href="#cb7-47"></a>      <span class="dt">effsize.type =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"d"</span>, <span class="st">"d"</span>, <span class="st">"g"</span>, <span class="st">"g"</span>),</span>
+<span id="cb7-48"><a href="#cb7-48"></a>      <span class="dt">effsize.noncentral =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>),</span>
+<span id="cb7-49"><a href="#cb7-49"></a>      <span class="dt">centrality.color =</span> <span class="st">"black"</span>,</span>
+<span id="cb7-50"><a href="#cb7-50"></a>      <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb7-51"><a href="#cb7-51"></a>      <span class="dt">test.value.color =</span> <span class="st">"black"</span>,</span>
+<span id="cb7-52"><a href="#cb7-52"></a>      <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,</span>
+<span id="cb7-53"><a href="#cb7-53"></a>      <span class="dt">normal.curve =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb7-54"><a href="#cb7-54"></a>      <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb7-55"><a href="#cb7-55"></a>        ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),</span>
+<span id="cb7-56"><a href="#cb7-56"></a>        ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>(),</span>
+<span id="cb7-57"><a href="#cb7-57"></a>        ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>(),</span>
+<span id="cb7-58"><a href="#cb7-58"></a>        ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_few.html">theme_few</a></span>()</span>
+<span id="cb7-59"><a href="#cb7-59"></a>      ),</span>
+<span id="cb7-60"><a href="#cb7-60"></a>      <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
+<span id="cb7-61"><a href="#cb7-61"></a>    ),</span>
+<span id="cb7-62"><a href="#cb7-62"></a>    <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>gghistostats</span>
+<span id="cb7-63"><a href="#cb7-63"></a>  )</span>
+<span id="cb7-64"><a href="#cb7-64"></a></span>
+<span id="cb7-65"><a href="#cb7-65"></a><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></span>
+<span id="cb7-66"><a href="#cb7-66"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</span>
+<span id="cb7-67"><a href="#cb7-67"></a>  <span class="dt">plotlist =</span> plot_list,</span>
+<span id="cb7-68"><a href="#cb7-68"></a>  <span class="dt">title.text =</span> <span class="st">"Improvement in life expectancy worldwide since 1950"</span>,</span>
+<span id="cb7-69"><a href="#cb7-69"></a>  <span class="dt">caption.text =</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>,</span>
+<span id="cb7-70"><a href="#cb7-70"></a>  <span class="dt">nrow =</span> <span class="dv">4</span>,</span>
+<span id="cb7-71"><a href="#cb7-71"></a>  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>)</span>
+<span id="cb7-72"><a href="#cb7-72"></a>)</span></code></pre></div>
 <p><img src="purrr_examples_files/figure-html/purrr_gghistostats-1.png" width="576"></p>
 </div>
 <div id="ggdotplotstats" class="section level1">
@@ -825,6 +828,30 @@
 <span id="cb11-17"><a href="#cb11-17"></a><span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span>(plotlist)</span>
 <span id="cb11-18"><a href="#cb11-18"></a><span class="co">#&gt; [1] 3</span></span></code></pre></div>
 </div>
+<div id="repeating-function-execution-across-multiple-columns-in-a-dataframe" class="section level1">
+<h1 class="hasAnchor">
+<a href="#repeating-function-execution-across-multiple-columns-in-a-dataframe" class="anchor"></a>Repeating function execution across multiple columns in a dataframe</h1>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># running the same analysis on two different columns</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>plotlist &lt;-<span class="st"> </span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="st">  </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(</span>
+<span id="cb12-4"><a href="#cb12-4"></a>  <span class="dt">.l =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb12-5"><a href="#cb12-5"></a>    <span class="dt">data =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(mtcars),</span>
+<span id="cb12-6"><a href="#cb12-6"></a>    <span class="dt">x =</span> <span class="st">"am"</span>,</span>
+<span id="cb12-7"><a href="#cb12-7"></a>    <span class="dt">y =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"wt"</span>, <span class="st">"qsec"</span>),</span>
+<span id="cb12-8"><a href="#cb12-8"></a>    <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a>  ),</span>
+<span id="cb12-10"><a href="#cb12-10"></a>  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggbetweenstats</span>
+<span id="cb12-11"><a href="#cb12-11"></a>)</span>
+<span id="cb12-12"><a href="#cb12-12"></a></span>
+<span id="cb12-13"><a href="#cb12-13"></a><span class="co"># wt</span></span>
+<span id="cb12-14"><a href="#cb12-14"></a>plotlist[[<span class="dv">1</span>]] </span></code></pre></div>
+<p><img src="purrr_examples_files/figure-html/purrr_columns-1.png" width="700"></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a></span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="co"># qsec</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>plotlist[[<span class="dv">2</span>]] </span></code></pre></div>
+<p><img src="purrr_examples_files/figure-html/purrr_columns-2.png" width="700"></p>
+</div>
 <div id="suggestions" class="section level1">
 <h1 class="hasAnchor">
 <a href="#suggestions" class="anchor"></a>Suggestions</h1>
@@ -854,6 +881,7 @@
       <li><a href="#ggpiestats"><code>ggpiestats</code></a></li>
       <li><a href="#ggbarstats"><code>ggbarstats</code></a></li>
       <li><a href="#grouped_-variants"><code>grouped_</code> variants</a></li>
+      <li><a href="#repeating-function-execution-across-multiple-columns-in-a-dataframe">Repeating function execution across multiple columns in a dataframe</a></li>
       <li><a href="#suggestions">Suggestions</a></li>
       <li><a href="#session-information">Session Information</a></li>
       </ul>

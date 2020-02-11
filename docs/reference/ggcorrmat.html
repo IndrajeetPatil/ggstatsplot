@@ -297,8 +297,8 @@ coefficient (Default: <code>0.1</code>).</p></td>
     </tr>
     <tr>
       <th>k</th>
-      <td><p>Decides the number of decimal digits to be displayed
-(Default: <code>2</code>).</p></td>
+      <td><p>Number of digits after decimal point (should be an integer)
+(Default: <code>k = 2</code>).</p></td>
     </tr>
     <tr>
       <th>sig.level</th>
@@ -397,11 +397,6 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
       <th>...</th>
       <td><p>Currently ignored.</p></td>
     </tr>
-    <tr>
-      <th>outline.color</th>
-      <td><p>The outline color of square or circle. Default value is
-<code>"gray"</code>.</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -421,7 +416,7 @@ of <em>p</em>-values.</p>
 <span class='co'># for reproducibility</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
 
-<span class='co'># if `cor.vars` not specified, all numeric varibles used</span>
+<span class='co'># if `cor.vars` not specified, all numeric variables used</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html'>ggcorrmat</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>)</div><div class='img'><img src='ggcorrmat-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># to get the correlalogram</span>
 <span class='co'># note that the function will run even if the vector with variable names is</span>

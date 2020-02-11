@@ -280,8 +280,6 @@ will also work: <code>"p"</code> (for parametric/Pearson's <em>r</em>), <code>"n
 (nonparametric/Spearman's <em>rho</em>), <code>"r"</code> (robust).</p></dd>
     <dt><code>beta</code></dt><dd><p>A numeric bending constant for percentage bend robust correlation
 coefficient (Default: <code>0.1</code>).</p></dd>
-    <dt><code>k</code></dt><dd><p>Decides the number of decimal digits to be displayed
-(Default: <code>2</code>).</p></dd>
     <dt><code>sig.level</code></dt><dd><p>Significance level (Default: <code>0.05</code>). If the <em>p</em>-value in
 <em>p</em>-value matrix is bigger than <code>sig.level</code>, then the corresponding
 correlation coefficient is regarded as insignificant and flagged as such in
@@ -328,6 +326,8 @@ used with <code>formula = y ~ s(x, bs = "cs")</code>. Somewhat anecdotally,
 so does not work for larger datasets.If you have fewer than 1,000 observations but want to use the same <code>gam()</code>
 model that <code>method = "auto"</code> would use, then set
 <code>method = "gam", formula = y ~ s(x, bs = "cs")</code>.</p></dd>
+    <dt><code>k</code></dt><dd><p>Number of digits after decimal point (should be an integer)
+(Default: <code>k = 2</code>).</p></dd>
     <dt><code>conf.level</code></dt><dd><p>Scalar between 0 and 1. If unspecified, the defaults return
 <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></dd>
     <dt><code>package</code></dt><dd><p>Name of package from which the palette is desired as string

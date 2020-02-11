@@ -10,7 +10,10 @@ BREAKING CHANGES
     were providing `labels` argument explicitly, it will be ignored).
   - All functions lose the `return` argument, which was supposed to be
     alternative to enter `output`. But this was just leading to more confusion
-    on the user's part.
+    on the user's part. The biggest user-visible impact this is going to have is
+    that `ggcorrmat` will no longer be backward-compatible. The older scripts
+    will still work but if the `return` argument was anything except `"plot"`,
+    it will just be ignored.
   - `ggcorrmat` no longer has `corr.method` argument. To be consistent with rest
     of the functions in this package, the type of statistics should be specified
     using `type` argument. Additional, it gains a new argument

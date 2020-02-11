@@ -62,8 +62,6 @@ will also work: \code{"p"} (for parametric/Pearson's \emph{r}), \code{"np"}
 (nonparametric/Spearman's \emph{rho}), \code{"r"} (robust).}
     \item{\code{beta}}{A numeric bending constant for percentage bend robust correlation
 coefficient (Default: \code{0.1}).}
-    \item{\code{k}}{Decides the number of decimal digits to be displayed
-(Default: \code{2}).}
     \item{\code{sig.level}}{Significance level (Default: \code{0.05}). If the \emph{p}-value in
 \emph{p}-value matrix is bigger than \code{sig.level}, then the corresponding
 correlation coefficient is regarded as insignificant and flagged as such in
@@ -114,6 +112,8 @@ so does not work for larger datasets.
 If you have fewer than 1,000 observations but want to use the same \code{gam()}
 model that \code{method = "auto"} would use, then set
 \code{method = "gam", formula = y ~ s(x, bs = "cs")}.}
+    \item{\code{k}}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 2}).}
     \item{\code{conf.level}}{Scalar between 0 and 1. If unspecified, the defaults return
 \verb{95\%} lower and upper confidence intervals (\code{0.95}).}
     \item{\code{package}}{Name of package from which the palette is desired as string

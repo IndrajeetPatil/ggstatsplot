@@ -19,6 +19,5 @@ mod <- stats::lm(formula = wt ~ am * cyl, data = mtcars)
 
 # `tidy`-fied output
 ggstatsplot:::easystats_to_tidy_names(parameters::model_parameters(mod))
-
 }
 \keyword{internal}
