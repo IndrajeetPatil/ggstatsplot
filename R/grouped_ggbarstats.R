@@ -84,10 +84,10 @@ grouped_ggbarstats <- function(data,
   # check that conditioning and grouping.var are different
   if (rlang::as_name(y) == rlang::as_name(grouping.var)) {
     message(cat(
-      crayon::red("\nError: "),
-      crayon::blue(
+      ipmisc::red("\nError: "),
+      ipmisc::blue(
         "Identical variable (",
-        crayon::yellow(rlang::as_name(y)),
+        ipmisc::yellow(rlang::as_name(y)),
         ") was used for both grouping and conditioning, which is not allowed.\n"
       ),
       sep = ""

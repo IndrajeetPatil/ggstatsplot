@@ -43,7 +43,6 @@
 #' @importFrom rlang enquo as_name !!
 #' @importFrom scales percent percent_format
 #' @importFrom stats dnorm
-#' @importFrom crayon green blue yellow red
 #' @importFrom statsExpressions expr_t_onesample bf_ttest
 #'
 #' @references

@@ -20,6 +20,7 @@
 #' @importFrom rlang exec !! enquo :=
 #' @importFrom statsExpressions bf_ttest bf_oneway_anova
 #' @importFrom pairwiseComparisons pairwise_comparisons
+#' @importFrom ipmisc sort_xy outlier_df
 #'
 #' @details
 #'
@@ -166,7 +167,7 @@ ggwithinstats <- function(data,
 
   # add a logical column indicating whether a point is or is not an outlier
   data %<>%
-    outlier_df(
+    ipmisc::outlier_df(
       data = .,
       x = {{ x }},
       y = {{ y }},
@@ -183,12 +184,12 @@ ggwithinstats <- function(data,
   # if sorting is happening
   if (sort != "none") {
     data %<>%
-      sort_xy(
+      ipmisc::sort_xy(
         data = .,
         x = {{ x }},
         y = {{ y }},
         sort = sort,
-        sort.fun = sort.fun
+        .fun = sort.fun
       )
   }
 

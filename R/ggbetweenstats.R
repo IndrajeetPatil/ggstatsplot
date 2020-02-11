@@ -126,11 +126,11 @@
 #' @importFrom stats na.omit t.test oneway.test
 #' @importFrom rlang enquo quo_name as_name !! as_string
 #' @importFrom ggrepel geom_label_repel
-#' @importFrom crayon blue green red yellow
 #' @importFrom paletteer scale_color_paletteer_d scale_fill_paletteer_d
 #' @importFrom ggsignif geom_signif
 #' @importFrom statsExpressions bf_ttest bf_oneway_anova
 #' @importFrom pairwiseComparisons pairwise_comparisons
+#' @importFrom ipmisc sort_xy outlier_df
 #'
 #' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggwithinstats}},
 #'  \code{\link{grouped_ggwithinstats}}
@@ -291,7 +291,7 @@ ggbetweenstats <- function(data,
 
   # add a logical column indicating whether a point is or is not an outlier
   data %<>%
-    outlier_df(
+    ipmisc::outlier_df(
       data = .,
       x = {{ x }},
       y = {{ y }},
@@ -308,12 +308,12 @@ ggbetweenstats <- function(data,
   # if sorting is happening
   if (sort != "none") {
     data %<>%
-      sort_xy(
+      ipmisc::sort_xy(
         data = .,
         x = {{ x }},
         y = {{ y }},
         sort = sort,
-        sort.fun = sort.fun
+        .fun = sort.fun
       )
   }
 

@@ -173,9 +173,9 @@ ggscatterstats <- function(data,
 
     # tell the user
     message(cat(
-      crayon::red("Warning: "),
-      crayon::blue("The statistical analysis is available only for linear model\n"),
-      crayon::blue("(formula = y ~ x, method = 'lm'). Returning only the plot.\n"),
+      ipmisc::red("Warning: "),
+      ipmisc::blue("The statistical analysis is available only for linear model\n"),
+      ipmisc::blue("(formula = y ~ x, method = 'lm'). Returning only the plot.\n"),
       sep = ""
     ))
   }
@@ -471,9 +471,9 @@ ggscatterstats <- function(data,
   # display warning that this function doesn't produce a `ggplot2` object
   if (isTRUE(marginal) && isTRUE(messages)) {
     message(cat(
-      crayon::red("Warning: "),
-      crayon::blue("This plot can't be further modified with `ggplot2` functions.\n"),
-      crayon::blue("In case you want a `ggplot` object, set `marginal = FALSE`."),
+      ipmisc::red("Warning: "),
+      ipmisc::blue("This plot can't be further modified with `ggplot2` functions.\n"),
+      ipmisc::blue("In case you want a `ggplot` object, set `marginal = FALSE`."),
       sep = ""
     ))
   }

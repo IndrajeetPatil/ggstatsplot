@@ -203,7 +203,7 @@
 <p>BREAKING CHANGES</p>
 <ul>
 <li>All <code>grouped_</code> functions have been refactored to reduce the number of arguments. These functions now internally use the new <code>combine_plots2</code> instead of <code>combine_plots</code>. The additional arguments to primary functions can be provided through <code>...</code>. These changes will not necessarily break the existing code but will lead to some minor graphical changes (e.g., if you were providing <code>labels</code> argument explicitly, it will be ignored).</li>
-<li>All functions lose the <code>return</code> argument, which was supposed to be alternative to enter <code>output</code>. But this was just leading to more confusion on the user’s part.</li>
+<li>All functions lose the <code>return</code> argument, which was supposed to be alternative to enter <code>output</code>. But this was just leading to more confusion on the user’s part. The biggest user-visible impact this is going to have is that <code>ggcorrmat</code> will no longer be backward-compatible. The older scripts will still work but if the <code>return</code> argument was anything except <code>"plot"</code>, it will just be ignored.</li>
 <li>
 <code>ggcorrmat</code> no longer has <code>corr.method</code> argument. To be consistent with rest of the functions in this package, the type of statistics should be specified using <code>type</code> argument. Additional, it gains a new argument <code>ggcorrplot.args</code>, which can be used to pass additional arguments to the underlying plotting function (<code><a href="https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html">ggcorrplot::ggcorrplot</a></code>).</li>
 </ul>
@@ -217,6 +217,7 @@
 <p>MINOR CHANGES</p>
 <ul>
 <li>More models supported in <code>ggcoefstats</code>: <code>BBreg</code>, <code>cglm</code>, <code>DirichReg</code>, <code>zeroinfl</code>.</li>
+<li>Following functions are now re-exported from <code>ipmisc</code>: <code>bartlett_message</code>, <code>normality_message</code>. A few other internal data wrangling functions now reside in <code>ipmisc</code>.</li>
 </ul>
 </div>
     <div id="ggstatsplot-020" class="section level1">

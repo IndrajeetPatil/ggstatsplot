@@ -202,93 +202,6 @@ mean_ggrepel <- function(plot,
   return(plot)
 }
 
-
-#' @title Finding the outliers in the dataframe using Tukey's interquartile
-#'   range rule
-#' @name check_outlier
-#' @description Returns a logical vector
-#'
-#' @param var A numeric vector.
-#' @param coef Coefficient for outlier detection using Tukey's method.
-#'   With Tukey's method, outliers are below (1st Quartile) or above (3rd
-#'   Quartile) `coef` times the Inter-Quartile Range (IQR) (Default: `1.5`).
-#'
-#' @importFrom stats quantile
-#'
-#' @noRd
-
-# defining function to detect outliers
-check_outlier <- function(var, coef = 1.5) {
-  # compute the quantiles
-  quantiles <- stats::quantile(x = var, probs = c(0.25, 0.75), na.rm = TRUE)
-
-  # compute the interquartile range
-  IQR <- quantiles[2] - quantiles[1]
-
-  # check for outlier and output a logical
-  return((var < (quantiles[1] - coef * IQR)) | (var > (quantiles[2] + coef * IQR)))
-}
-
-
-#' @title Adding a column to dataframe describing outlier status
-#' @name outlier_df
-#'
-#' @inheritParams ggbetweenstats
-#' @param ... Additional arguments.
-#'
-#' @importFrom rlang !! enquo ensym
-#' @importFrom dplyr group_by mutate ungroup
-#'
-#' @examples
-#' # adding column for outlier and a label for that outlier
-#' ggstatsplot:::outlier_df(
-#'   data = morley,
-#'   x = Expt,
-#'   y = Speed,
-#'   outlier.label = Run,
-#'   outlier.coef = 2
-#' ) %>%
-#'   dplyr::arrange(outlier)
-#' @noRd
-
-# function body
-outlier_df <- function(data,
-                       x,
-                       y,
-                       outlier.label,
-                       outlier.coef = 1.5,
-                       ...) {
-  # make sure both quoted and unquoted arguments are allowed
-  x <- rlang::ensym(x)
-  y <- rlang::ensym(y)
-  outlier.label <- rlang::ensym(outlier.label)
-
-  # add a logical column indicating whether a point is or is not an outlier
-  data %<>%
-    dplyr::group_by(.data = ., {{ x }}) %>%
-    dplyr::mutate(
-      .data = .,
-      isanoutlier = ifelse(
-        test = check_outlier(var = {{ y }}, coef = outlier.coef),
-        yes = TRUE,
-        no = FALSE
-      )
-    ) %>%
-    dplyr::mutate(
-      .data = .,
-      outlier = ifelse(
-        test = isanoutlier,
-        yes = {{ outlier.label }},
-        no = NA
-      )
-    ) %>%
-    dplyr::ungroup(x = .)
-
-  # return the data frame with outlier
-  return(data)
-}
-
-
 #' @title Adding `geom_signif` to `ggplot`
 #' @name ggsignif_adder
 #'
@@ -446,45 +359,6 @@ ggsignif_xy <- function(x, y) {
     )
   )
 }
-
-#' @name sort_xy
-#'
-#' @importFrom forcats fct_reorder
-#' @importFrom dplyr mutate
-#'
-#' @inheritParams ggbetweenstats
-#'
-#' @keywords internal
-#' @noRd
-
-# function body
-sort_xy <- function(data,
-                    x,
-                    y,
-                    sort = "none",
-                    sort.fun = mean,
-                    ...) {
-
-  # make sure both quoted and unquoted arguments are allowed
-  x <- rlang::ensym(x)
-  y <- rlang::ensym(y)
-
-  # reordering `x` based on its mean values
-  return(
-    data %<>%
-      dplyr::mutate(
-        .data = .,
-        {{ x }} := forcats::fct_reorder(
-          .f = {{ x }},
-          .x = {{ y }},
-          .fun = sort.fun,
-          na.rm = TRUE,
-          .desc = ifelse(sort == "ascending", FALSE, TRUE)
-        )
-      )
-  )
-}
-
 
 #' @title Making aesthetic modifications to the plot
 #' @name aesthetic_addon

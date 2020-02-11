@@ -87,10 +87,10 @@ grouped_ggpiestats <- function(data,
   if ("condition" %in% names(param_list)) {
     if (as.character(param_list$condition) == as.character(param_list$grouping.var)) {
       message(cat(
-        crayon::red("\nError: "),
-        crayon::blue(
+        ipmisc::red("\nError: "),
+        ipmisc::blue(
           "Identical variable (",
-          crayon::yellow(param_list$condition),
+          ipmisc::yellow(param_list$condition),
           ") was used for both grouping and conditioning, which is not allowed.\n"
         ),
         sep = ""
