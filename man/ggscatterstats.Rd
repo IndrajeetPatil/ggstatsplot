@@ -8,14 +8,12 @@ ggscatterstats(
   data,
   x,
   y,
-  type = "pearson",
+  type = "parametric",
   conf.level = 0.95,
   bf.prior = 0.707,
   bf.message = TRUE,
   label.var = NULL,
   label.expression = NULL,
-  xlab = NULL,
-  ylab = NULL,
   method = "lm",
   method.args = list(),
   formula = y ~ x,
@@ -30,8 +28,8 @@ ggscatterstats(
   marginal.type = "histogram",
   marginal.size = 5,
   margins = c("both", "x", "y"),
-  package = "wesanderson",
-  palette = "Royal1",
+  package = "RColorBrewer",
+  palette = "Dark2",
   direction = 1,
   xfill = "#009E73",
   yfill = "#D55E00",
@@ -42,6 +40,8 @@ ggscatterstats(
   centrality.para = NULL,
   results.subtitle = TRUE,
   stat.title = NULL,
+  xlab = NULL,
+  ylab = NULL,
   title = NULL,
   subtitle = NULL,
   caption = NULL,
@@ -94,12 +94,6 @@ a character string (e.g., \code{"var1"}) or as a bare expression (e.g, \code{var
 determines the subset of data points to label. This argument can be entered
 either as a character string (e.g., \code{"y < 4 & z < 20"}) or as a bare
 expression (e.g., \code{y < 4 & z < 20}).}
-
-\item{xlab}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
-variable names for \code{x} and \code{y} will be used.}
-
-\item{ylab}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
-variable names for \code{x} and \code{y} will be used.}
 
 \item{method}{Smoothing method (function) to use, accepts either a character vector,
 e.g. \code{"auto"}, \code{"lm"}, \code{"glm"}, \code{"gam"}, \code{"loess"} or a function, e.g.
@@ -177,6 +171,12 @@ the plot will be returned.}
 \item{stat.title}{A character describing the test being run, which will be
 added as a prefix in the subtitle. The default is \code{NULL}. An example of a
 \code{stat.title} argument will be something like \code{"Student's t-test: "}.}
+
+\item{xlab}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
+variable names for \code{x} and \code{y} will be used.}
+
+\item{ylab}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
+variable names for \code{x} and \code{y} will be used.}
 
 \item{title}{The text for the plot title.}
 

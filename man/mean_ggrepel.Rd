@@ -12,7 +12,6 @@ mean_ggrepel(
   mean.size = 5,
   mean.color = "darkred",
   mean.label.size = 3,
-  mean.label.fontface = "bold",
   mean.label.color = "black",
   inherit.aes = TRUE,
   ...
@@ -36,9 +35,6 @@ The columns should be titled \code{x}, \code{y}, and \code{label}.}
 \code{"darkred"}).}
 
 \item{mean.label.size}{Aesthetics for
-the label displaying mean. Defaults: \code{3}, \code{"bold"},\code{"black"}, respectively.}
-
-\item{mean.label.fontface}{Aesthetics for
 the label displaying mean. Defaults: \code{3}, \code{"bold"},\code{"black"}, respectively.}
 
 \item{mean.label.color}{Aesthetics for

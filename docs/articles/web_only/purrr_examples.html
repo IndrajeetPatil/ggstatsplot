@@ -152,7 +152,7 @@
       <h1>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-02-11</h4>
+            <h4 class="date">2020-02-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -404,7 +404,7 @@
 <span id="cb5-28"><a href="#cb5-28"></a>    <span class="dt">type =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"r"</span>, <span class="st">"np"</span>, <span class="st">"bf"</span>),</span>
 <span id="cb5-29"><a href="#cb5-29"></a>    <span class="dt">nboot =</span> <span class="dv">25</span>,</span>
 <span id="cb5-30"><a href="#cb5-30"></a>    <span class="dt">marginal.type =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"boxplot"</span>, <span class="st">"density"</span>, <span class="st">"violin"</span>),</span>
-<span id="cb5-31"><a href="#cb5-31"></a>    <span class="dt">centrality.para =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"mean"</span>, <span class="st">"median"</span>, <span class="st">"mean"</span>),</span>
+<span id="cb5-31"><a href="#cb5-31"></a>    <span class="dt">centrality.parameter =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"mean"</span>, <span class="st">"median"</span>, <span class="st">"mean"</span>),</span>
 <span id="cb5-32"><a href="#cb5-32"></a>    <span class="dt">xfill =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"#009E73"</span>, <span class="st">"#999999"</span>, <span class="st">"#0072B2"</span>),</span>
 <span id="cb5-33"><a href="#cb5-33"></a>    <span class="dt">yfill =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"#CC79A7"</span>, <span class="st">"#F0E442"</span>, <span class="st">"#D55E00"</span>),</span>
 <span id="cb5-34"><a href="#cb5-34"></a>    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
@@ -564,30 +564,31 @@
 <span id="cb7-46"><a href="#cb7-46"></a>      <span class="dt">bar.fill =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"white"</span>, <span class="st">"red"</span>, <span class="st">"orange"</span>, <span class="st">"blue"</span>),</span>
 <span id="cb7-47"><a href="#cb7-47"></a>      <span class="dt">effsize.type =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"d"</span>, <span class="st">"d"</span>, <span class="st">"g"</span>, <span class="st">"g"</span>),</span>
 <span id="cb7-48"><a href="#cb7-48"></a>      <span class="dt">effsize.noncentral =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>),</span>
-<span id="cb7-49"><a href="#cb7-49"></a>      <span class="dt">centrality.color =</span> <span class="st">"black"</span>,</span>
-<span id="cb7-50"><a href="#cb7-50"></a>      <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb7-51"><a href="#cb7-51"></a>      <span class="dt">test.value.color =</span> <span class="st">"black"</span>,</span>
-<span id="cb7-52"><a href="#cb7-52"></a>      <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,</span>
-<span id="cb7-53"><a href="#cb7-53"></a>      <span class="dt">normal.curve =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb7-54"><a href="#cb7-54"></a>      <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
-<span id="cb7-55"><a href="#cb7-55"></a>        ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),</span>
-<span id="cb7-56"><a href="#cb7-56"></a>        ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>(),</span>
-<span id="cb7-57"><a href="#cb7-57"></a>        ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>(),</span>
-<span id="cb7-58"><a href="#cb7-58"></a>        ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_few.html">theme_few</a></span>()</span>
-<span id="cb7-59"><a href="#cb7-59"></a>      ),</span>
-<span id="cb7-60"><a href="#cb7-60"></a>      <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
-<span id="cb7-61"><a href="#cb7-61"></a>    ),</span>
-<span id="cb7-62"><a href="#cb7-62"></a>    <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>gghistostats</span>
-<span id="cb7-63"><a href="#cb7-63"></a>  )</span>
-<span id="cb7-64"><a href="#cb7-64"></a></span>
-<span id="cb7-65"><a href="#cb7-65"></a><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></span>
-<span id="cb7-66"><a href="#cb7-66"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</span>
-<span id="cb7-67"><a href="#cb7-67"></a>  <span class="dt">plotlist =</span> plot_list,</span>
-<span id="cb7-68"><a href="#cb7-68"></a>  <span class="dt">title.text =</span> <span class="st">"Improvement in life expectancy worldwide since 1950"</span>,</span>
-<span id="cb7-69"><a href="#cb7-69"></a>  <span class="dt">caption.text =</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>,</span>
-<span id="cb7-70"><a href="#cb7-70"></a>  <span class="dt">nrow =</span> <span class="dv">4</span>,</span>
-<span id="cb7-71"><a href="#cb7-71"></a>  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>)</span>
-<span id="cb7-72"><a href="#cb7-72"></a>)</span></code></pre></div>
+<span id="cb7-49"><a href="#cb7-49"></a>      <span class="dt">normal.curve =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb7-50"><a href="#cb7-50"></a>      <span class="dt">normal.curve.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb7-51"><a href="#cb7-51"></a>        <span class="dt">color =</span> <span class="st">"darkred"</span>,</span>
+<span id="cb7-52"><a href="#cb7-52"></a>        <span class="dt">linetype =</span> <span class="st">"dashed"</span>,</span>
+<span id="cb7-53"><a href="#cb7-53"></a>        <span class="dt">size =</span> <span class="fl">0.8</span></span>
+<span id="cb7-54"><a href="#cb7-54"></a>      )), </span>
+<span id="cb7-55"><a href="#cb7-55"></a>      <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb7-56"><a href="#cb7-56"></a>        ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),</span>
+<span id="cb7-57"><a href="#cb7-57"></a>        ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>(),</span>
+<span id="cb7-58"><a href="#cb7-58"></a>        ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>(),</span>
+<span id="cb7-59"><a href="#cb7-59"></a>        ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_few.html">theme_few</a></span>()</span>
+<span id="cb7-60"><a href="#cb7-60"></a>      ),</span>
+<span id="cb7-61"><a href="#cb7-61"></a>      <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
+<span id="cb7-62"><a href="#cb7-62"></a>    ),</span>
+<span id="cb7-63"><a href="#cb7-63"></a>    <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>gghistostats</span>
+<span id="cb7-64"><a href="#cb7-64"></a>  )</span>
+<span id="cb7-65"><a href="#cb7-65"></a></span>
+<span id="cb7-66"><a href="#cb7-66"></a><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></span>
+<span id="cb7-67"><a href="#cb7-67"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</span>
+<span id="cb7-68"><a href="#cb7-68"></a>  <span class="dt">plotlist =</span> plot_list,</span>
+<span id="cb7-69"><a href="#cb7-69"></a>  <span class="dt">title.text =</span> <span class="st">"Improvement in life expectancy worldwide since 1950"</span>,</span>
+<span id="cb7-70"><a href="#cb7-70"></a>  <span class="dt">caption.text =</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>,</span>
+<span id="cb7-71"><a href="#cb7-71"></a>  <span class="dt">nrow =</span> <span class="dv">4</span>,</span>
+<span id="cb7-72"><a href="#cb7-72"></a>  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>)</span>
+<span id="cb7-73"><a href="#cb7-73"></a>)</span></code></pre></div>
 <p><img src="purrr_examples_files/figure-html/purrr_gghistostats-1.png" width="576"></p>
 </div>
 <div id="ggdotplotstats" class="section level1">
@@ -639,31 +640,41 @@
 <span id="cb8-43"><a href="#cb8-43"></a>      ),</span>
 <span id="cb8-44"><a href="#cb8-44"></a>      <span class="dt">effsize.type =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"d"</span>, <span class="st">"d"</span>, <span class="st">"g"</span>, <span class="st">"g"</span>),</span>
 <span id="cb8-45"><a href="#cb8-45"></a>      <span class="dt">effsize.noncentral =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>),</span>
-<span id="cb8-46"><a href="#cb8-46"></a>      <span class="dt">centrality.color =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"red"</span>, <span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>, <span class="st">"#CC79A7"</span>),</span>
-<span id="cb8-47"><a href="#cb8-47"></a>      <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb8-48"><a href="#cb8-48"></a>      <span class="dt">test.value.color =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"#E69F00"</span>, <span class="st">"#56B4E9"</span>, <span class="st">"#009E73"</span>, <span class="st">"blue"</span>),</span>
-<span id="cb8-49"><a href="#cb8-49"></a>      <span class="dt">centrality.para =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"median"</span>, <span class="st">"mean"</span>, <span class="st">"mean"</span>, <span class="st">"median"</span>),</span>
-<span id="cb8-50"><a href="#cb8-50"></a>      <span class="dt">point.color =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"green"</span>, <span class="st">"blue"</span>, <span class="st">"#E69F00"</span>, <span class="st">"darkgreen"</span>),</span>
-<span id="cb8-51"><a href="#cb8-51"></a>      <span class="dt">point.size =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>),</span>
-<span id="cb8-52"><a href="#cb8-52"></a>      <span class="dt">point.shape =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">17</span>, <span class="dv">18</span>),</span>
-<span id="cb8-53"><a href="#cb8-53"></a>      <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
-<span id="cb8-54"><a href="#cb8-54"></a>        ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>(<span class="dt">base_family =</span> <span class="st">"serif"</span>),</span>
-<span id="cb8-55"><a href="#cb8-55"></a>        ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),</span>
-<span id="cb8-56"><a href="#cb8-56"></a>        hrbrthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_rc.html">theme_ipsum_rc</a></span>(<span class="dt">axis_title_size =</span> <span class="dv">10</span>),</span>
-<span id="cb8-57"><a href="#cb8-57"></a>        ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_hc.html">theme_hc</a></span>(<span class="dt">bgcolor =</span> <span class="st">"darkunica"</span>)</span>
-<span id="cb8-58"><a href="#cb8-58"></a>      ),</span>
-<span id="cb8-59"><a href="#cb8-59"></a>      <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
-<span id="cb8-60"><a href="#cb8-60"></a>    ),</span>
-<span id="cb8-61"><a href="#cb8-61"></a>    <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggdotplotstats</span>
-<span id="cb8-62"><a href="#cb8-62"></a>  )</span>
-<span id="cb8-63"><a href="#cb8-63"></a></span>
-<span id="cb8-64"><a href="#cb8-64"></a><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></span>
-<span id="cb8-65"><a href="#cb8-65"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</span>
-<span id="cb8-66"><a href="#cb8-66"></a>  <span class="dt">plotlist =</span> plot_list,</span>
-<span id="cb8-67"><a href="#cb8-67"></a>  <span class="dt">title.text =</span> <span class="st">"Improvement in GDP per capita from 1952-2007"</span>,</span>
-<span id="cb8-68"><a href="#cb8-68"></a>  <span class="dt">nrow =</span> <span class="dv">4</span>,</span>
-<span id="cb8-69"><a href="#cb8-69"></a>  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(i)"</span>, <span class="st">"(ii)"</span>, <span class="st">"(iii)"</span>, <span class="st">"(iv)"</span>)</span>
-<span id="cb8-70"><a href="#cb8-70"></a>)</span></code></pre></div>
+<span id="cb8-46"><a href="#cb8-46"></a>      <span class="dt">centrality.line.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb8-47"><a href="#cb8-47"></a>        <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">color =</span> <span class="st">"red"</span>),</span>
+<span id="cb8-48"><a href="#cb8-48"></a>        <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">color =</span> <span class="st">"#0072B2"</span>),</span>
+<span id="cb8-49"><a href="#cb8-49"></a>        <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">color =</span> <span class="st">"#D55E00"</span>),</span>
+<span id="cb8-50"><a href="#cb8-50"></a>        <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">color =</span> <span class="st">"#CC79A7"</span>)</span>
+<span id="cb8-51"><a href="#cb8-51"></a>      ), </span>
+<span id="cb8-52"><a href="#cb8-52"></a>      <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb8-53"><a href="#cb8-53"></a>      <span class="dt">test.value.line.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb8-54"><a href="#cb8-54"></a>        <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">color =</span> <span class="st">"#E69F00"</span>, <span class="dt">size =</span> <span class="dv">1</span>),</span>
+<span id="cb8-55"><a href="#cb8-55"></a>        <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">color =</span> <span class="st">"#56B4E9"</span>, <span class="dt">size =</span> <span class="fl">0.8</span>),</span>
+<span id="cb8-56"><a href="#cb8-56"></a>        <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">color =</span> <span class="st">"#009E73"</span>, <span class="dt">size =</span> <span class="fl">1.5</span>),</span>
+<span id="cb8-57"><a href="#cb8-57"></a>        <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">color =</span> <span class="st">"blue"</span>, <span class="dt">size =</span> <span class="fl">0.4</span>)</span>
+<span id="cb8-58"><a href="#cb8-58"></a>      ), </span>
+<span id="cb8-59"><a href="#cb8-59"></a>      <span class="dt">centrality.parameter =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"median"</span>, <span class="st">"mean"</span>, <span class="st">"mean"</span>, <span class="st">"none"</span>),</span>
+<span id="cb8-60"><a href="#cb8-60"></a>      <span class="dt">point.color =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"green"</span>, <span class="st">"blue"</span>, <span class="st">"#E69F00"</span>, <span class="st">"darkgreen"</span>),</span>
+<span id="cb8-61"><a href="#cb8-61"></a>      <span class="dt">point.size =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>),</span>
+<span id="cb8-62"><a href="#cb8-62"></a>      <span class="dt">point.shape =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">17</span>, <span class="dv">18</span>),</span>
+<span id="cb8-63"><a href="#cb8-63"></a>      <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb8-64"><a href="#cb8-64"></a>        ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>(<span class="dt">base_family =</span> <span class="st">"serif"</span>),</span>
+<span id="cb8-65"><a href="#cb8-65"></a>        ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),</span>
+<span id="cb8-66"><a href="#cb8-66"></a>        hrbrthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_rc.html">theme_ipsum_rc</a></span>(<span class="dt">axis_title_size =</span> <span class="dv">10</span>),</span>
+<span id="cb8-67"><a href="#cb8-67"></a>        ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_hc.html">theme_hc</a></span>(<span class="dt">bgcolor =</span> <span class="st">"darkunica"</span>)</span>
+<span id="cb8-68"><a href="#cb8-68"></a>      ),</span>
+<span id="cb8-69"><a href="#cb8-69"></a>      <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
+<span id="cb8-70"><a href="#cb8-70"></a>    ),</span>
+<span id="cb8-71"><a href="#cb8-71"></a>    <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggdotplotstats</span>
+<span id="cb8-72"><a href="#cb8-72"></a>  )</span>
+<span id="cb8-73"><a href="#cb8-73"></a></span>
+<span id="cb8-74"><a href="#cb8-74"></a><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></span>
+<span id="cb8-75"><a href="#cb8-75"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</span>
+<span id="cb8-76"><a href="#cb8-76"></a>  <span class="dt">plotlist =</span> plot_list,</span>
+<span id="cb8-77"><a href="#cb8-77"></a>  <span class="dt">title.text =</span> <span class="st">"Improvement in GDP per capita from 1952-2007"</span>,</span>
+<span id="cb8-78"><a href="#cb8-78"></a>  <span class="dt">nrow =</span> <span class="dv">4</span>,</span>
+<span id="cb8-79"><a href="#cb8-79"></a>  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(i)"</span>, <span class="st">"(ii)"</span>, <span class="st">"(iii)"</span>, <span class="st">"(iv)"</span>)</span>
+<span id="cb8-80"><a href="#cb8-80"></a>)</span></code></pre></div>
 <p><img src="purrr_examples_files/figure-html/purrr_ggdotplotstats-1.png" width="576"></p>
 </div>
 <div id="ggpiestats" class="section level1">

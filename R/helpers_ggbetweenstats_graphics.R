@@ -152,7 +152,6 @@ mean_ggrepel <- function(plot,
                          mean.size = 5,
                          mean.color = "darkred",
                          mean.label.size = 3,
-                         mean.label.fontface = "bold",
                          mean.label.color = "black",
                          inherit.aes = TRUE,
                          ...) {
@@ -185,7 +184,6 @@ mean_ggrepel <- function(plot,
       data = mean.data,
       mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, label = label),
       size = mean.label.size,
-      fontface = mean.label.fontface,
       color = mean.label.color,
       direction = "both",
       min.segment.length = 0,
@@ -351,13 +349,7 @@ ggsignif_xy <- function(x, y) {
   y_end <- y_start + (step_length * n_comparions)
 
   # creating a vector of positions for the ggsignif lines
-  return(
-    seq(
-      from = y_start,
-      to = y_end,
-      length.out = n_comparions
-    )
-  )
+  seq(y_start, y_end, length.out = n_comparions)
 }
 
 #' @title Making aesthetic modifications to the plot

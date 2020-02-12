@@ -207,21 +207,11 @@
   <span class='no'>x</span>,
   <span class='no'>y</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='no'>color</span>,
   <span class='no'>label.text</span>,
+  <span class='kw'>label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
   <span class='kw'>line.direction</span> <span class='kw'>=</span> <span class='st'>"vline"</span>,
-  <span class='kw'>jitter</span> <span class='kw'>=</span> <span class='fl'>0.25</span>
-)
-
-<span class='fu'>line_labeler</span>(
-  <span class='no'>plot</span>,
-  <span class='no'>x</span>,
-  <span class='no'>y</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='no'>color</span>,
-  <span class='no'>label.text</span>,
-  <span class='kw'>line.direction</span> <span class='kw'>=</span> <span class='st'>"vline"</span>,
-  <span class='kw'>jitter</span> <span class='kw'>=</span> <span class='fl'>0.25</span>
+  <span class='kw'>jitter</span> <span class='kw'>=</span> <span class='fl'>0.25</span>,
+  <span class='no'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -241,12 +231,13 @@
 (Default: <code>k = 2</code>).</p></td>
     </tr>
     <tr>
-      <th>color</th>
-      <td><p>Color of the label.</p></td>
-    </tr>
-    <tr>
       <th>label.text</th>
       <td><p>The text to include in the label (e.g., <code>"mean"</code>).</p></td>
+    </tr>
+    <tr>
+      <th>label.args</th>
+      <td><p>A list of additional aesthetic arguments to be
+passed to <code>geom_label</code>.</p></td>
     </tr>
     <tr>
       <th>line.direction</th>
@@ -259,6 +250,10 @@ label is to be attached is vertical (<code>"vline"</code>, default) or horizonta
       <td><p>Numeric that specifies how much the label should be jittered in
 the vertical direction (default:  <code>0.25</code>). The sign will determine the
 direction (upwards or downwards).</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Currently ignored.</p></td>
     </tr>
     </table>
 
@@ -276,7 +271,7 @@ direction (upwards or downwards).</p></td>
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/median.html'>median</a></span>(<span class='no'>mtcars</span>$<span class='no'>wt</span>),
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='no'>mtcars</span>$<span class='no'>mpg</span>),
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
+  <span class='kw'>label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>),
   <span class='kw'>label.text</span> <span class='kw'>=</span> <span class='st'>"median"</span>
 )</div><div class='img'><img src='line_labeller-1.png' alt='' width='700' height='433' /></div></pre>
   </div>

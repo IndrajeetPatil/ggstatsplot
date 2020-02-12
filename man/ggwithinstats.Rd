@@ -37,7 +37,6 @@ ggwithinstats(
   sort.fun = mean,
   axes.range.restrict = FALSE,
   mean.label.size = 3,
-  mean.label.fontface = "bold",
   mean.label.color = "black",
   notch = FALSE,
   notchwidth = 0.5,
@@ -178,9 +177,6 @@ values ranges to \code{min} and \code{max} values of the axes variables (Default
 type.}
 
 \item{mean.label.size}{Aesthetics for
-the label displaying mean. Defaults: \code{3}, \code{"bold"},\code{"black"}, respectively.}
-
-\item{mean.label.fontface}{Aesthetics for
 the label displaying mean. Defaults: \code{3}, \code{"bold"},\code{"black"}, respectively.}
 
 \item{mean.label.color}{Aesthetics for

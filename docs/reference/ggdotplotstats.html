@@ -230,18 +230,14 @@ included in the plot as a subtitle.</p>
   <span class='kw'>point.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>point.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
   <span class='kw'>point.shape</span> <span class='kw'>=</span> <span class='fl'>16</span>,
-  <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='st'>"mean"</span>,
-  <span class='kw'>centrality.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
-  <span class='kw'>centrality.size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>centrality.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>,
-  <span class='kw'>centrality.line.labeller</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>centrality.k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>test.value.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>test.value.size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>test.value.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>,
-  <span class='kw'>test.line.labeller</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>test.k</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>test.value.line.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1</span>),
+  <span class='kw'>test.value.label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  <span class='kw'>centrality.parameter</span> <span class='kw'>=</span> <span class='st'>"mean"</span>,
+  <span class='kw'>centrality.k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>centrality.line.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1</span>),
+  <span class='kw'>centrality.label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>),
   <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
@@ -383,29 +379,32 @@ override some aspects of the selected <code>ggtheme</code>.</p></td>
 (<strong>a dot</strong>)).</p></td>
     </tr>
     <tr>
-      <th>centrality.para</th>
-      <td><p>Decides <em>which</em> measure of central tendency (<code>"mean"</code>
-or <code>"median"</code>) is to be displayed as a vertical line.</p></td>
+      <th>test.k</th>
+      <td><p>Integer denoting the number of decimal places expected for
+<code>test.value</code> label. (Default: <code>0</code> ).</p></td>
     </tr>
     <tr>
-      <th>centrality.color</th>
-      <td><p>Decides color for the vertical line for centrality
-parameter (Default: <code>"blue"</code>).</p></td>
+      <th>test.value.line</th>
+      <td><p>Logical that decides whether a line corresponding to
+the <code>test.value</code> should be superimposed on the plot.</p></td>
     </tr>
     <tr>
-      <th>centrality.size</th>
-      <td><p>Decides size for the vertical line for centrality
-parameter (Default: <code>1.2</code>).</p></td>
+      <th>test.value.line.args</th>
+      <td><p>A list of additional
+aesthetic arguments to be passed to the <code>geom_line</code> used to display the
+lines corresponding to the centrality parameter and test value.</p></td>
     </tr>
     <tr>
-      <th>centrality.linetype</th>
-      <td><p>Decides linetype for the vertical line for
-centrality parameter (Default: <code>"dashed"</code>).</p></td>
+      <th>test.value.label.args</th>
+      <td><p>A list of additional
+aesthetic arguments to be passed to the <code>geom_label</code> used to display the
+label corresponding to the centrality parameter and test value.</p></td>
     </tr>
     <tr>
-      <th>centrality.line.labeller</th>
-      <td><p>A logical that decides whether line labels
-should be displayed for the <strong>centrality.para</strong> line (Default: <code>TRUE</code>).</p></td>
+      <th>centrality.parameter</th>
+      <td><p>Decides <em>which</em> measure of central tendency
+(<code>"mean"</code> or <code>"median"</code>) is to be displayed as a vertical line. To not show
+any parameter, set this to <code>"none"</code>.</p></td>
     </tr>
     <tr>
       <th>centrality.k</th>
@@ -413,34 +412,16 @@ should be displayed for the <strong>centrality.para</strong> line (Default: <cod
 for centrality parameter label. (Default: <code>2</code>).</p></td>
     </tr>
     <tr>
-      <th>test.value.line</th>
-      <td><p>Decides whether test value is to be displayed as a
-vertical line (Default: <code>FALSE</code>).</p></td>
+      <th>centrality.line.args</th>
+      <td><p>A list of additional
+aesthetic arguments to be passed to the <code>geom_line</code> used to display the
+lines corresponding to the centrality parameter and test value.</p></td>
     </tr>
     <tr>
-      <th>test.value.color</th>
-      <td><p>Decides color for the vertical line denoting test
-value (Default: <code>"black"</code>).</p></td>
-    </tr>
-    <tr>
-      <th>test.value.size</th>
-      <td><p>Decides size for the vertical line for test value
-(Default: <code>1.2</code>).</p></td>
-    </tr>
-    <tr>
-      <th>test.value.linetype</th>
-      <td><p>Decides linetype for the vertical line for test
-value (Default: <code>"dashed"</code>).</p></td>
-    </tr>
-    <tr>
-      <th>test.line.labeller</th>
-      <td><p>A logical that decides whether line labels should
-be displayed for <strong>test.value</strong> line (Default: <code>TRUE</code>).</p></td>
-    </tr>
-    <tr>
-      <th>test.k</th>
-      <td><p>Integer denoting the number of decimal places expected for
-<code>test.value</code> label. (Default: <code>0</code> ).</p></td>
+      <th>centrality.label.args</th>
+      <td><p>A list of additional
+aesthetic arguments to be passed to the <code>geom_label</code> used to display the
+label corresponding to the centrality parameter and test value.</p></td>
     </tr>
     <tr>
       <th>ggplot.component</th>
@@ -495,7 +476,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>test.line.labeller</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>test.value.color</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
-  <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='st'>"median"</span>,
+  <span class='kw'>centrality.parameter</span> <span class='kw'>=</span> <span class='st'>"median"</span>,
   <span class='kw'>centrality.k</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Fuel economy data"</span>,
   <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"city miles per gallon"</span>,

@@ -17,7 +17,6 @@ testthat::test_that(
         title = "starwars: character heights",
         binwidth = 20,
         test.value = 150,
-        bf.message = TRUE,
         bf.prior = 0.9,
         test.k = 0,
         centrality.k = 0,
@@ -36,11 +35,8 @@ testthat::test_that(
         .funs = ~ as.character(.)
       )
 
-    # checking dimensions of data
-    data_dims <- dim(dat)
-
     # testing everything is okay with data
-    testthat::expect_equal(data_dims, c(81L, 1L))
+    testthat::expect_equal(dim(dat), c(81L, 1L))
 
     # checking different data layers
     testthat::expect_equal(length(pb$data), 5L)
@@ -50,11 +46,13 @@ testthat::test_that(
     testthat::expect_equal(dim(pb$data[[4]]), c(1L, 7L))
     testthat::expect_equal(dim(pb$data[[5]]), c(81L, 15L))
 
-    testthat::expect_equal(pb$data[[4]]$xintercept,
+    testthat::expect_equal(
+      pb$data[[4]]$xintercept,
       mean(dplyr::starwars$height, na.rm = TRUE),
       tolerance = 0.001
     )
-    testthat::expect_equal(pb$data[[2]]$xintercept,
+    testthat::expect_equal(
+      pb$data[[2]]$xintercept,
       150.000,
       tolerance = 0.001
     )
@@ -136,7 +134,7 @@ testthat::test_that(
         xlab = "city miles per gallon",
         title = "fuel economy",
         caption = substitute(paste(italic("source"), ": government website")),
-        centrality.para = "median",
+        centrality.parameter = "median",
         bar.measure = "mix",
         binwidth = 5,
         test.value = 20,
@@ -265,7 +263,7 @@ testthat::test_that(
         test.value = 2.5,
         type = "r",
         test.value.line = FALSE,
-        centrality.para = FALSE,
+        centrality.parameter = FALSE,
         messages = FALSE
       ) +
       scale_x_continuous(limits = c(1, 6))
@@ -352,7 +350,7 @@ testthat::test_that(
         test.value = 2.5,
         type = "bf",
         test.value.line = FALSE,
-        centrality.para = FALSE,
+        centrality.parameter = FALSE,
         messages = FALSE
       ))
 
@@ -415,58 +413,71 @@ testthat::test_that(
     dat2 <- ggplot2::msleep
 
     # plot-1
-    p1 <- ggstatsplot::gghistostats(
-      data = dat1,
-      x = sales,
-      results.subtitle = FALSE,
-      normal.curve = TRUE,
-      bar.measure = "count",
-      messages = FALSE
-    )
+    p1 <-
+      ggstatsplot::gghistostats(
+        data = dat1,
+        x = sales,
+        results.subtitle = FALSE,
+        normal.curve = TRUE,
+        bar.measure = "count",
+        messages = FALSE
+      )
 
     # plot-2
-    p2 <- ggstatsplot::gghistostats(
-      data = dat1,
-      x = sales,
-      results.subtitle = FALSE,
-      normal.curve = TRUE,
-      binwidth = 100,
-      bar.measure = "proportion",
-      messages = FALSE
-    )
+    p2 <-
+      ggstatsplot::gghistostats(
+        data = dat1,
+        x = sales,
+        results.subtitle = FALSE,
+        normal.curve = TRUE,
+        binwidth = 100,
+        bar.measure = "proportion",
+        messages = FALSE
+      )
 
     # plot-3
-    p3 <- ggstatsplot::gghistostats(
-      data = dat2,
-      x = brainwt,
-      results.subtitle = FALSE,
-      normal.curve = TRUE,
-      normal.curve.color = "red",
-      normal.curve.size = 0.8,
-      bar.measure = "mix",
-      messages = FALSE
-    )
+    p3 <-
+      ggstatsplot::gghistostats(
+        data = dat2,
+        x = brainwt,
+        results.subtitle = FALSE,
+        normal.curve = TRUE,
+        normal.curve.args =
+          list(
+            color = "red",
+            size = 0.8
+          ),
+        bar.measure = "mix",
+        messages = FALSE
+      )
 
     # plot-4
-    p4 <- ggstatsplot::gghistostats(
-      data = dat2,
-      x = brainwt,
-      results.subtitle = FALSE,
-      normal.curve = TRUE,
-      bar.measure = "density",
-      binwidth = 0.05,
-      normal.curve.linetype = "dashed",
-      messages = FALSE
-    )
+    p4 <-
+      ggstatsplot::gghistostats(
+        data = dat2,
+        x = brainwt,
+        results.subtitle = FALSE,
+        normal.curve = TRUE,
+        bar.measure = "density",
+        binwidth = 0.05,
+        normal.curve.args =
+          list(
+            color = "black",
+            linetype = "dashed",
+            size = 1
+          ),
+        messages = FALSE
+      )
 
     # plot-5
-    p5 <- ggstatsplot::gghistostats(
-      data = dat2,
-      x = brainwt,
-      results.subtitle = FALSE,
-      normal.curve = FALSE,
-      messages = FALSE
-    )
+    p5 <-
+      ggstatsplot::gghistostats(
+        data = dat2,
+        x = brainwt,
+        results.subtitle = FALSE,
+        normal.curve = FALSE,
+        messages = FALSE
+      )
 
     # build plots
     pb1 <- ggplot2::ggplot_build(p1)
@@ -485,8 +496,8 @@ testthat::test_that(
     # check aesthetic of the respective layer
     testthat::expect_equal(dim(pb1$data[[2]]), c(101L, 8L))
     testthat::expect_identical(unique(pb1$data[[2]]$colour), "black")
-    testthat::expect_identical(unique(pb1$data[[2]]$linetype), "solid")
-    testthat::expect_equal(unique(pb1$data[[2]]$size), 1L)
+    testthat::expect_equal(unique(pb1$data[[2]]$linetype), 1)
+    testthat::expect_equal(unique(pb1$data[[2]]$size), 0.5)
     testthat::expect_identical(unique(pb3$data[[2]]$colour), "red")
     testthat::expect_equal(unique(pb3$data[[2]]$size), 0.8)
     testthat::expect_identical(unique(pb4$data[[2]]$linetype), "dashed")

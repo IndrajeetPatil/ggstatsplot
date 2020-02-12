@@ -2,91 +2,59 @@
 % Please edit documentation in R/helpers_gghistostats_graphics.R
 \name{histo_labeller}
 \alias{histo_labeller}
-\alias{histo_labeler}
 \title{Custom function for adding labeled lines for \code{x}-axis variable.}
 \usage{
 histo_labeller(
   plot,
   x,
   y.label.position,
-  centrality.para = "mean",
-  centrality.color = "blue",
-  centrality.size = 1,
-  centrality.linetype = "dashed",
-  centrality.line.labeller = TRUE,
-  centrality.k = 2,
   test.value = 0,
+  test.k = 0,
   test.value.line = FALSE,
-  test.value.color = "black",
-  test.value.size = 1,
-  test.value.linetype = "dashed",
-  test.line.labeller = TRUE,
-  test.k = 0
-)
-
-histo_labeler(
-  plot,
-  x,
-  y.label.position,
-  centrality.para = "mean",
-  centrality.color = "blue",
-  centrality.size = 1,
-  centrality.linetype = "dashed",
-  centrality.line.labeller = TRUE,
+  test.value.line.args = list(size = 1),
+  test.value.label.args = list(),
+  centrality.parameter = "mean",
   centrality.k = 2,
-  test.value = 0,
-  test.value.line = FALSE,
-  test.value.color = "black",
-  test.value.size = 1,
-  test.value.linetype = "dashed",
-  test.line.labeller = TRUE,
-  test.k = 0
+  centrality.line.args = list(color = "blue", size = 1),
+  centrality.label.args = list(color = "blue"),
+  ...
 )
 }
 \arguments{
-\item{plot}{A \code{ggplot} object for which the labeled lines need to be
-added for a test value and/or a centrality parameter (mean/median) value.}
+\item{plot}{A \code{ggplot} object for which the labeled lines need to be added
+for a test value and/or a centrality parameter (mean/median) value.}
 
 \item{x}{A numeric variable.}
-
-\item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"}
-or \code{"median"}) is to be displayed as a vertical line.}
-
-\item{centrality.color}{Decides color for the vertical line for centrality
-parameter (Default: \code{"blue"}).}
-
-\item{centrality.size}{Decides size for the vertical line for centrality
-parameter (Default: \code{1.2}).}
-
-\item{centrality.linetype}{Decides linetype for the vertical line for
-centrality parameter (Default: \code{"dashed"}).}
-
-\item{centrality.line.labeller}{A logical that decides whether line labels
-should be displayed for the \strong{centrality.para} line (Default: \code{TRUE}).}
-
-\item{centrality.k}{Integer denoting the number of decimal places expected
-for centrality parameter label. (Default: \code{2}).}
 
 \item{test.value}{A number specifying the value of the null hypothesis
 (Default: \code{0}).}
 
-\item{test.value.line}{Decides whether test value is to be displayed as a
-vertical line (Default: \code{FALSE}).}
-
-\item{test.value.color}{Decides color for the vertical line denoting test
-value (Default: \code{"black"}).}
-
-\item{test.value.size}{Decides size for the vertical line for test value
-(Default: \code{1.2}).}
-
-\item{test.value.linetype}{Decides linetype for the vertical line for test
-value (Default: \code{"dashed"}).}
-
-\item{test.line.labeller}{A logical that decides whether line labels should
-be displayed for \strong{test.value} line (Default: \code{TRUE}).}
-
 \item{test.k}{Integer denoting the number of decimal places expected for
 \code{test.value} label. (Default: \code{0} ).}
+
+\item{test.value.line}{Logical that decides whether a line corresponding to
+the \code{test.value} should be superimposed on the plot.}
+
+\item{test.value.line.args}{A list of additional aesthetic arguments to be
+passed to the \code{geom_line} used to display the line corresponding to
+\code{test.value}.}
+
+\item{centrality.parameter}{Decides \emph{which} measure of central tendency
+(\code{"mean"} or \code{"median"}) is to be displayed as a vertical line. To not show
+any parameter, set this to \code{"none"}.}
+
+\item{centrality.k}{Integer denoting the number of decimal places expected
+for centrality parameter label. (Default: \code{2}).}
+
+\item{centrality.line.args, test.value.line.args}{A list of additional
+aesthetic arguments to be passed to the \code{geom_line} used to display the
+lines corresponding to the centrality parameter and test value.}
+
+\item{centrality.label.args, test.value.label.args}{A list of additional
+aesthetic arguments to be passed to the \code{geom_label} used to display the
+label corresponding to the centrality parameter and test value.}
+
+\item{...}{Currently ignored.}
 }
 \description{
 Helper function for adding centrality parameter value and/or a
@@ -96,7 +64,7 @@ test value for the continuous, numeric \code{x}-axis variable.
 \donttest{
 library(ggplot2)
 
-# creating a ploton which lines and labels are to be superposed
+# creating a plot; lines and labels will be superposed on this plot
 p <- ggplot(mtcars, aes(wt, mpg)) +
   geom_point()
 

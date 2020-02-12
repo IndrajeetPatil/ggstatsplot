@@ -145,9 +145,11 @@ ggstatsplot::grouped_gghistostats(
   test.value = 20, # test value against which sample mean is to be compared
   test.value.line = TRUE, # show a vertical line at `test.value`
   bar.measure = "density", # density
-  centrality.para = "median", # plotting centrality parameter
-  centrality.color = "#D55E00", # color for centrality line and label
-  test.value.color = "#009E73", # color for test line and label
+  centrality.parameter = "median", # plotting centrality parameter
+  centrality.line.args = list(color = "#D55E00"), 
+  centrality.label.args = list(color = "#D55E00"),
+  test.value.line.args = list(color = "#009E73"),
+  test.value.label.args = list(color = "#009E73"),
   messages = FALSE, # turn off messages
   ggtheme = ggthemes::theme_stata(), # changing default theme
   ggstatsplot.layer = FALSE, # turn off ggstatsplot theme layer

@@ -2,7 +2,6 @@
 % Please edit documentation in R/helpers_gghistostats_graphics.R
 \name{line_labeller}
 \alias{line_labeller}
-\alias{line_labeler}
 \title{Adds a label to the horizontal or vertical line.}
 \usage{
 line_labeller(
@@ -10,21 +9,11 @@ line_labeller(
   x,
   y,
   k = 2,
-  color,
   label.text,
+  label.args = list(),
   line.direction = "vline",
-  jitter = 0.25
-)
-
-line_labeler(
-  plot,
-  x,
-  y,
-  k = 2,
-  color,
-  label.text,
-  line.direction = "vline",
-  jitter = 0.25
+  jitter = 0.25,
+  ...
 )
 }
 \arguments{
@@ -35,9 +24,10 @@ line_labeler(
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
 
-\item{color}{Color of the label.}
-
 \item{label.text}{The text to include in the label (e.g., \code{"mean"}).}
+
+\item{label.args}{A list of additional aesthetic arguments to be
+passed to \code{geom_label}.}
 
 \item{line.direction}{Character that specifies whether the line on which
 label is to be attached is vertical (\code{"vline"}, default) or horizontal
@@ -46,6 +36,8 @@ label is to be attached is vertical (\code{"vline"}, default) or horizontal
 \item{jitter}{Numeric that specifies how much the label should be jittered in
 the vertical direction (default:  \code{0.25}). The sign will determine the
 direction (upwards or downwards).}
+
+\item{...}{Currently ignored.}
 }
 \description{
 Adds a label to the horizontal or vertical line.
@@ -63,7 +55,7 @@ ggstatsplot:::line_labeller(
   x = median(mtcars$wt),
   y = mean(mtcars$mpg),
   k = 2,
-  color = "red",
+  label.args = list(color = "red"),
   label.text = "median"
 )
 }

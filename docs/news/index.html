@@ -206,6 +206,7 @@
 <li>All functions lose the <code>return</code> argument, which was supposed to be alternative to enter <code>output</code>. But this was just leading to more confusion on the user’s part. The biggest user-visible impact this is going to have is that <code>ggcorrmat</code> will no longer be backward-compatible. The older scripts will still work but if the <code>return</code> argument was anything except <code>"plot"</code>, it will just be ignored.</li>
 <li>
 <code>ggcorrmat</code> no longer has <code>corr.method</code> argument. To be consistent with rest of the functions in this package, the type of statistics should be specified using <code>type</code> argument. Additional, it gains a new argument <code>ggcorrplot.args</code>, which can be used to pass additional arguments to the underlying plotting function (<code><a href="https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html">ggcorrplot::ggcorrplot</a></code>).</li>
+<li>Both <code>gghistostats</code> and <code>ggdotplotstats</code> now use the following arguments to modify <code>geom</code>s corresponding to the lines and labels: <code>test.value.line.args</code>, <code>test.value.label.args</code>, <code>centrality.line.args</code>, <code>centrality.label.args</code>. This helps avoid specifying millions of arguments.</li>
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>

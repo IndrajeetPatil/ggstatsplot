@@ -275,19 +275,23 @@ testthat::test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # checking intercepts
-    testthat::expect_equal(pb$plot$plot_env$x_label_pos,
+    testthat::expect_equal(
+      pb$plot$plot_env$x_label_pos,
       0.8083333,
       tolerance = 1e-3
     )
-    testthat::expect_equal(pb$plot$plot_env$y_label_pos,
+    testthat::expect_equal(
+      pb$plot$plot_env$y_label_pos,
       13.39839,
       tolerance = 1e-3
     )
-    testthat::expect_equal(pb$data[[3]]$xintercept[[1]],
+    testthat::expect_equal(
+      pb$data[[3]]$xintercept[[1]],
       median(ggplot2::msleep$sleep_cycle, na.rm = TRUE),
       tolerance = 1e-3
     )
-    testthat::expect_equal(pb$data[[4]]$yintercept[[1]],
+    testthat::expect_equal(
+      pb$data[[4]]$yintercept[[1]],
       median(ggplot2::msleep$awake, na.rm = TRUE),
       tolerance = 1e-3
     )
