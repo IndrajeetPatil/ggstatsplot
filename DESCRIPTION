@@ -31,11 +31,8 @@ BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
 Depends: 
     R (>= 3.5.0)
 Imports:
-    broomExtra (>= 1.0.1),
     cowplot (>= 1.0.0),
-    crayon (>= 1.3.4),
     dplyr (>= 0.8.3),
-    forcats (>= 0.4.0),
     ggcorrplot (>= 0.1.3),
     ggExtra (>= 0.9),
     ggplot2 (>= 3.2.1),
@@ -44,6 +41,7 @@ Imports:
     grid,
     groupedstats (>= 0.1.1),
     insight (>= 0.8.0),
+    ipmisc (>= 1.1.0),
     pairwiseComparisons (>= 0.2.0),
     paletteer,
     parameters (>= 0.4.1),
@@ -58,8 +56,8 @@ Imports:
     tidyr (>= 1.0.0),
     WRS2 (>= 1.0-0)
 Suggests:
-    broom,
-    broom.mixed,
+    broomExtra,
+    forcats,
     knitr,
     lme4,
     MASS,

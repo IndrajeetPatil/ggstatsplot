@@ -136,46 +136,6 @@ testthat::test_that(
   }
 )
 
-# outlier_df ----------------------------------------------------
-
-context(desc = "outlier_df")
-
-# outlier_df works ----------------------------------------------------
-
-testthat::test_that(
-  desc = "outlier_df works as expected",
-  code = {
-    testthat::skip_on_cran()
-    set.seed(123)
-
-    # dataframe with outlier column (data without NA)
-    df1 <- ggstatsplot:::outlier_df(
-      data = morley,
-      x = "Expt",
-      y = Speed,
-      outlier.label = "Run",
-      outlier.coef = 2
-    ) %>%
-      dplyr::arrange(outlier)
-
-    testthat::expect_equal(dim(df1), c(100L, 5L))
-    testthat::expect_equal(dim(tidyr::drop_na(df1)), c(4L, 5L))
-
-    # dataframe with outlier column (data with NA)
-    df2 <- ggstatsplot:::outlier_df(
-      data = ggplot2::msleep,
-      x = vore,
-      y = "brainwt",
-      outlier.label = genus,
-      outlier.coef = 3
-    ) %>%
-      dplyr::arrange(outlier)
-
-    testthat::expect_equal(dim(df2), c(83L, 13L))
-    testthat::expect_equal(dim(dplyr::filter(df2, !is.na(outlier))), c(4L, 13L))
-  }
-)
-
 # `mean` pattern names ---------------------------------------------------
 
 testthat::test_that(
@@ -255,43 +215,5 @@ testthat::test_that(
     testthat::expect_true(is.character(mean_data2$n_label))
     testthat::expect_true(is.factor(mean_data1$condition))
     testthat::expect_true(is.factor(mean_data2$group))
-  }
-)
-
-# sort_xy works as expected ---------------------------------------------------
-
-testthat::test_that(
-  desc = "sort_xy works as expected",
-  code = {
-    testthat::skip_on_cran()
-    library(ggplot2)
-
-    # without NAs
-    set.seed(123)
-    df1 <- ggstatsplot:::sort_xy(iris_long, "condition", value, sort = "none")
-    df2 <- ggstatsplot:::sort_xy(iris_long, condition, value, sort = "descending")
-    df3 <- ggstatsplot:::sort_xy(iris_long, condition, "value", sort = "ascending")
-
-    testthat::expect_equal(
-      levels(df1$condition),
-      c("Sepal.Length", "Petal.Length", "Sepal.Width", "Petal.Width")
-    )
-    testthat::expect_equal(levels(df1$condition), levels(df2$condition))
-    testthat::expect_equal(levels(df3$condition), rev(levels(df1$condition)))
-    testthat::expect_equal(names(iris_long), names(df1))
-
-    # with NAs
-    set.seed(123)
-    df4 <- ggstatsplot:::sort_xy(msleep, vore, brainwt, sort = "none")
-    df5 <- ggstatsplot:::sort_xy(msleep, "vore", brainwt, sort = "descending")
-    df6 <- ggstatsplot:::sort_xy(msleep, vore, "brainwt", sort = "ascending")
-
-    testthat::expect_equal(
-      levels(df4$vore),
-      c("herbi", "omni", "carni", "insecti")
-    )
-    testthat::expect_equal(levels(df4$vore), levels(df5$vore))
-    testthat::expect_equal(levels(df5$vore), rev(levels(df6$vore)))
-    testthat::expect_equal(names(msleep), names(df5))
   }
 )

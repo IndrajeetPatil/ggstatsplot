@@ -330,7 +330,7 @@ plot_list <- purrr::pmap(
     type = list("r", "np", "bf"),
     nboot = 25,
     marginal.type = list("boxplot", "density", "violin"),
-    centrality.para = list("mean", "median", "mean"),
+    centrality.parameter = list("mean", "median", "mean"),
     xfill = list("#009E73", "#999999", "#0072B2"),
     yfill = list("#CC79A7", "#F0E442", "#D55E00"),
     ggtheme = list(
@@ -486,11 +486,12 @@ plot_list <-
       bar.fill = list("white", "red", "orange", "blue"),
       effsize.type = list("d", "d", "g", "g"),
       effsize.noncentral = list(TRUE, FALSE, TRUE, FALSE),
-      centrality.color = "black",
-      test.value.line = TRUE,
-      test.value.color = "black",
-      centrality.para = "mean",
       normal.curve = TRUE,
+      normal.curve.args = list(list(
+        color = "darkred",
+        linetype = "dashed",
+        size = 0.8
+      )), 
       ggtheme = list(
         ggplot2::theme_classic(),
         ggthemes::theme_fivethirtyeight(),
@@ -558,10 +559,20 @@ plot_list <-
       ),
       effsize.type = list("d", "d", "g", "g"),
       effsize.noncentral = list(TRUE, FALSE, TRUE, FALSE),
-      centrality.color = list("red", "#0072B2", "#D55E00", "#CC79A7"),
+      centrality.line.args = list(
+        list(color = "red"),
+        list(color = "#0072B2"),
+        list(color = "#D55E00"),
+        list(color = "#CC79A7")
+      ), 
       test.value.line = TRUE,
-      test.value.color = list("#E69F00", "#56B4E9", "#009E73", "blue"),
-      centrality.para = list("median", "mean", "mean", "median"),
+      test.value.line.args = list(
+        list(color = "#E69F00", size = 1),
+        list(color = "#56B4E9", size = 0.8),
+        list(color = "#009E73", size = 1.5),
+        list(color = "blue", size = 0.4)
+      ), 
+      centrality.parameter = list("median", "mean", "mean", "none"),
       point.color = list("green", "blue", "#E69F00", "darkgreen"),
       point.size = list(3, 4, 4, 3),
       point.shape = list(12, 13, 17, 18),

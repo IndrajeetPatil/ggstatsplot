@@ -136,8 +136,6 @@ values ranges to \code{min} and \code{max} values of the axes variables (Default
 type.}
     \item{\code{mean.label.size}}{Aesthetics for
 the label displaying mean. Defaults: \code{3}, \code{"bold"},\code{"black"}, respectively.}
-    \item{\code{mean.label.fontface}}{Aesthetics for
-the label displaying mean. Defaults: \code{3}, \code{"bold"},\code{"black"}, respectively.}
     \item{\code{mean.label.color}}{Aesthetics for
 the label displaying mean. Defaults: \code{3}, \code{"bold"},\code{"black"}, respectively.}
     \item{\code{notch}}{A logical. If \code{FALSE} (default), a standard box plot will be

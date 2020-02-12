@@ -37,7 +37,6 @@ ggbetweenstats(
   sort.fun = mean,
   axes.range.restrict = FALSE,
   mean.label.size = 3,
-  mean.label.fontface = "bold",
   mean.label.color = "black",
   notch = FALSE,
   notchwidth = 0.5,
@@ -181,7 +180,7 @@ values ranges to \code{min} and \code{max} values of the axes variables (Default
 \code{FALSE}), only relevant for functions where axes variables are of numeric
 type.}
 
-\item{mean.label.size, mean.label.fontface, mean.label.color}{Aesthetics for
+\item{mean.label.size, mean.label.color}{Aesthetics for
 the label displaying mean. Defaults: \code{3}, \code{"bold"},\code{"black"}, respectively.}
 
 \item{notch}{A logical. If \code{FALSE} (default), a standard box plot will be

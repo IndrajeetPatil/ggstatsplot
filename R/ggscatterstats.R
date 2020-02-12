@@ -95,14 +95,12 @@
 ggscatterstats <- function(data,
                            x,
                            y,
-                           type = "pearson",
+                           type = "parametric",
                            conf.level = 0.95,
                            bf.prior = 0.707,
                            bf.message = TRUE,
                            label.var = NULL,
                            label.expression = NULL,
-                           xlab = NULL,
-                           ylab = NULL,
                            method = "lm",
                            method.args = list(),
                            formula = y ~ x,
@@ -117,8 +115,8 @@ ggscatterstats <- function(data,
                            marginal.type = "histogram",
                            marginal.size = 5,
                            margins = c("both", "x", "y"),
-                           package = "wesanderson",
-                           palette = "Royal1",
+                           package = "RColorBrewer",
+                           palette = "Dark2",
                            direction = 1,
                            xfill = "#009E73",
                            yfill = "#D55E00",
@@ -129,6 +127,8 @@ ggscatterstats <- function(data,
                            centrality.para = NULL,
                            results.subtitle = TRUE,
                            stat.title = NULL,
+                           xlab = NULL,
+                           ylab = NULL,
                            title = NULL,
                            subtitle = NULL,
                            caption = NULL,
@@ -173,9 +173,9 @@ ggscatterstats <- function(data,
 
     # tell the user
     message(cat(
-      crayon::red("Warning: "),
-      crayon::blue("The statistical analysis is available only for linear model\n"),
-      crayon::blue("(formula = y ~ x, method = 'lm'). Returning only the plot.\n"),
+      ipmisc::red("Warning: "),
+      ipmisc::blue("The statistical analysis is available only for linear model\n"),
+      ipmisc::blue("(formula = y ~ x, method = 'lm'). Returning only the plot.\n"),
       sep = ""
     ))
   }
@@ -422,7 +422,6 @@ ggscatterstats <- function(data,
       ggrepel::geom_label_repel(
         data = label_data,
         mapping = ggplot2::aes(label = {{ label.var }}),
-        fontface = "bold",
         color = "black",
         max.iter = 3e2,
         box.padding = 0.35,
@@ -471,9 +470,9 @@ ggscatterstats <- function(data,
   # display warning that this function doesn't produce a `ggplot2` object
   if (isTRUE(marginal) && isTRUE(messages)) {
     message(cat(
-      crayon::red("Warning: "),
-      crayon::blue("This plot can't be further modified with `ggplot2` functions.\n"),
-      crayon::blue("In case you want a `ggplot` object, set `marginal = FALSE`."),
+      ipmisc::red("Warning: "),
+      ipmisc::blue("This plot can't be further modified with `ggplot2` functions.\n"),
+      ipmisc::blue("In case you want a `ggplot` object, set `marginal = FALSE`."),
       sep = ""
     ))
   }

@@ -70,7 +70,7 @@
 #' @importFrom stats median
 #' @importFrom tibble as_tibble
 #' @importFrom rlang !! enquo quo_name is_null
-#' @importFrom crayon green blue yellow red
+#' @importFrom ipmisc green blue yellow red
 #' @importFrom WRS2 pball
 #' @importFrom psych corr.p corr.test
 #' @importFrom pairwiseComparisons p_adjust_text
@@ -181,8 +181,8 @@ ggcorrmat <- function(data,
     if (length(df) != length(cor.vars.names)) {
       # display a warning message if not
       message(cat(
-        crayon::red("Warning: "),
-        crayon::blue("No. of variable names doesn't equal no. of variables.\n"),
+        ipmisc::red("Warning: "),
+        ipmisc::blue("No. of variable names doesn't equal no. of variables.\n"),
         sep = ""
       ))
     } else {
@@ -359,8 +359,8 @@ ggcorrmat <- function(data,
   # CI computation
   if (output == "ci" && corr.method == "robust") {
     stop(message(cat(
-      crayon::red("Warning: "),
-      crayon::blue("Confidence intervals not supported for robust correlation.\n"),
+      ipmisc::red("Warning: "),
+      ipmisc::blue("Confidence intervals not supported for robust correlation.\n"),
       sep = ""
     )))
   }

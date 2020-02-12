@@ -65,17 +65,10 @@ provides redundant information in light of y-axis labels.}
 Defaults are colorblind-friendly.}
     \item{\code{high.color}}{Colors for low and high ends of the gradient.
 Defaults are colorblind-friendly.}
-    \item{\code{normal.curve}}{Logical decides whether to super-impose a normal curve
-using \code{stats::dnorm(mean(x), sd(x))}. Default is \code{FALSE}.}
-    \item{\code{normal.curve.color}}{If
-\code{normal.curve = TRUE}, then these arguments can be used to modify color
-(Default: \code{"black"}), size (default: \code{1.0}), linetype (default: \code{"solid"}).}
-    \item{\code{normal.curve.linetype}}{If
-\code{normal.curve = TRUE}, then these arguments can be used to modify color
-(Default: \code{"black"}), size (default: \code{1.0}), linetype (default: \code{"solid"}).}
-    \item{\code{normal.curve.size}}{If
-\code{normal.curve = TRUE}, then these arguments can be used to modify color
-(Default: \code{"black"}), size (default: \code{1.0}), linetype (default: \code{"solid"}).}
+    \item{\code{normal.curve}}{A logical value that decides whether to super-impose a
+normal curve using \code{stats::dnorm(mean(x), sd(x))}. Default is \code{FALSE}.}
+    \item{\code{normal.curve.args}}{A list of additional aesthetic arguments to be
+passed to the normal curve.}
     \item{\code{bar.fill}}{If \code{fill.gradient = FALSE}, then \code{bar.fill} decides which
 color will uniformly fill all the bars in the histogram (Default:
 \code{"grey50"}).}
@@ -107,30 +100,27 @@ for the effect size (Default: \code{100}).}
 (Default: \code{k = 2}).}
     \item{\code{messages}}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
-    \item{\code{centrality.para}}{Decides \emph{which} measure of central tendency (\code{"mean"}
-or \code{"median"}) is to be displayed as a vertical line.}
-    \item{\code{centrality.color}}{Decides color for the vertical line for centrality
-parameter (Default: \code{"blue"}).}
-    \item{\code{centrality.size}}{Decides size for the vertical line for centrality
-parameter (Default: \code{1.2}).}
-    \item{\code{centrality.linetype}}{Decides linetype for the vertical line for
-centrality parameter (Default: \code{"dashed"}).}
-    \item{\code{centrality.line.labeller}}{A logical that decides whether line labels
-should be displayed for the \strong{centrality.para} line (Default: \code{TRUE}).}
-    \item{\code{centrality.k}}{Integer denoting the number of decimal places expected
-for centrality parameter label. (Default: \code{2}).}
-    \item{\code{test.value.line}}{Decides whether test value is to be displayed as a
-vertical line (Default: \code{FALSE}).}
-    \item{\code{test.value.color}}{Decides color for the vertical line denoting test
-value (Default: \code{"black"}).}
-    \item{\code{test.value.size}}{Decides size for the vertical line for test value
-(Default: \code{1.2}).}
-    \item{\code{test.value.linetype}}{Decides linetype for the vertical line for test
-value (Default: \code{"dashed"}).}
-    \item{\code{test.line.labeller}}{A logical that decides whether line labels should
-be displayed for \strong{test.value} line (Default: \code{TRUE}).}
     \item{\code{test.k}}{Integer denoting the number of decimal places expected for
 \code{test.value} label. (Default: \code{0} ).}
+    \item{\code{test.value.line}}{Logical that decides whether a line corresponding to
+the \code{test.value} should be superimposed on the plot.}
+    \item{\code{test.value.line.args}}{A list of additional
+aesthetic arguments to be passed to the \code{geom_line} used to display the
+lines corresponding to the centrality parameter and test value.}
+    \item{\code{test.value.label.args}}{A list of additional
+aesthetic arguments to be passed to the \code{geom_label} used to display the
+label corresponding to the centrality parameter and test value.}
+    \item{\code{centrality.parameter}}{Decides \emph{which} measure of central tendency
+(\code{"mean"} or \code{"median"}) is to be displayed as a vertical line. To not show
+any parameter, set this to \code{"none"}.}
+    \item{\code{centrality.k}}{Integer denoting the number of decimal places expected
+for centrality parameter label. (Default: \code{2}).}
+    \item{\code{centrality.line.args}}{A list of additional
+aesthetic arguments to be passed to the \code{geom_line} used to display the
+lines corresponding to the centrality parameter and test value.}
+    \item{\code{centrality.label.args}}{A list of additional
+aesthetic arguments to be passed to the \code{geom_label} used to display the
+label corresponding to the centrality parameter and test value.}
     \item{\code{xlab}}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
 variable names for \code{x} and \code{y} will be used.}
     \item{\code{subtitle}}{The text for the plot subtitle. Will work only if

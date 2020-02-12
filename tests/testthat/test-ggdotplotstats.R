@@ -44,7 +44,7 @@ testthat::test_that(
         ),
         bf.prior = 0.88,
         test.value.line = TRUE,
-        centrality.para = TRUE,
+        centrality.parameter = "mean",
         messages = TRUE
       )
 

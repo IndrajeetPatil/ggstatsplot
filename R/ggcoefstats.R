@@ -129,7 +129,7 @@
 #'
 #' @import ggplot2
 #' @importFrom rlang exec
-#' @importFrom broomExtra tidy glance augment
+#' @importFrom ipmisc tidy glance augment
 #' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if n
 #' @importFrom dplyr group_by arrange full_join vars matches desc everything
 #' @importFrom dplyr vars all_vars filter_at starts_with row_number
@@ -351,7 +351,7 @@ ggcoefstats <- function(x,
   # ============================= model summary ============================
 
   # creating glance dataframe
-  glance_df <- broomExtra::glance(x)
+  glance_df <- ipmisc::glance(x)
 
   # if `NULL`, try with `performance`
   if (is.null(glance_df)) {
@@ -369,8 +369,8 @@ ggcoefstats <- function(x,
       !all(c("aic", "bic") %in% tolower(names(glance_df)))) {
       # inform the user
       message(cat(
-        crayon::green("Note: "),
-        crayon::blue("No model diagnostics information available, so skipping caption.\n"),
+        ipmisc::green("Note: "),
+        ipmisc::blue("No model diagnostics information available, so skipping caption.\n"),
         sep = ""
       ))
 
@@ -393,11 +393,11 @@ ggcoefstats <- function(x,
       # inform the user
       if (output == "plot") {
         message(cat(
-          crayon::red("Note"),
-          crayon::blue(": For the object of class"),
-          crayon::yellow(class(x)[[1]]),
-          crayon::blue(", the argument `statistic` must be specified ('t', 'z', or 'f').\n"),
-          crayon::blue("Statistical labels will therefore be skipped.\n"),
+          ipmisc::red("Note"),
+          ipmisc::blue(": For the object of class"),
+          ipmisc::yellow(class(x)[[1]]),
+          ipmisc::blue(", the argument `statistic` must be specified ('t', 'z', or 'f').\n"),
+          ipmisc::blue("Statistical labels will therefore be skipped.\n"),
           sep = ""
         ))
       }
@@ -410,7 +410,7 @@ ggcoefstats <- function(x,
     if (class(x)[[1]] %in% mixed.mods) {
       # getting tidy output using `broom.mixed`
       tidy_df <-
-        broomExtra::tidy(
+        ipmisc::tidy(
           x = x,
           conf.int = conf.int,
           # exponentiate = exponentiate,
@@ -446,7 +446,7 @@ ggcoefstats <- function(x,
       # ==================== tidying everything else ===========================
     } else {
       tidy_df <-
-        broomExtra::tidy(
+        ipmisc::tidy(
           x = x,
           conf.int = conf.int,
           conf.level = conf.level,
@@ -462,7 +462,7 @@ ggcoefstats <- function(x,
   }
 
   # try again with `broomExtra` and `easystats`
-  if (rlang::is_null(tidy_df)) tidy_df <- broomExtra::tidy(x, ...)
+  if (rlang::is_null(tidy_df)) tidy_df <- ipmisc::tidy(x, ...)
   if (rlang::is_null(tidy_df)) tidy_df <- parameters_tidy(x, ci = conf.level, ...)
 
   # =================== tidy dataframe cleanup ================================
@@ -470,11 +470,11 @@ ggcoefstats <- function(x,
   # check for the one necessary column
   if (rlang::is_null(tidy_df) || !"estimate" %in% names(tidy_df)) {
     stop(message(cat(
-      crayon::red("Error: "),
-      crayon::blue("The object of class "),
-      crayon::yellow(class(x)[[1]]),
-      crayon::blue(" *must* contain column called 'estimate' in tidy output.\n"),
-      crayon::blue("Check the tidy output using argument `output = 'tidy'`."),
+      ipmisc::red("Error: "),
+      ipmisc::blue("The object of class "),
+      ipmisc::yellow(class(x)[[1]]),
+      ipmisc::blue(" *must* contain column called 'estimate' in tidy output.\n"),
+      ipmisc::blue("Check the tidy output using argument `output = 'tidy'`."),
       sep = ""
     )),
     call. = FALSE
@@ -530,8 +530,8 @@ ggcoefstats <- function(x,
   # halt if there are repeated terms
   if (any(duplicated(dplyr::select(tidy_df, term)))) {
     message(cat(
-      crayon::red("Error: "),
-      crayon::blue("All elements in the column `term` should be unique.\n"),
+      ipmisc::red("Error: "),
+      ipmisc::blue("All elements in the column `term` should be unique.\n"),
       sep = ""
     ))
     return(invisible(tidy_df))
@@ -567,9 +567,9 @@ ggcoefstats <- function(x,
     # (relevant only in case of a plot)
     if (output == "plot") {
       message(cat(
-        crayon::green("Note: "),
-        crayon::blue("No p-values and/or statistic available for the model object;"),
-        crayon::blue("\nskipping labels with statistical details.\n"),
+        ipmisc::green("Note: "),
+        ipmisc::blue("No p-values and/or statistic available for the model object;"),
+        ipmisc::blue("\nskipping labels with statistical details.\n"),
         sep = ""
       ))
     }
@@ -602,9 +602,9 @@ ggcoefstats <- function(x,
 
       # inform the user that skipping labels for the same reason
       message(cat(
-        crayon::green("Note: "),
-        crayon::blue("No confidence intervals available for regression coefficients"),
-        crayon::blue("object, so skipping whiskers in the plot.\n"),
+        ipmisc::green("Note: "),
+        ipmisc::blue("No confidence intervals available for regression coefficients"),
+        ipmisc::blue("object, so skipping whiskers in the plot.\n"),
         sep = ""
       ))
     }
@@ -676,9 +676,9 @@ ggcoefstats <- function(x,
     if (dim(dplyr::filter(.data = tidy_df, is.na(std.error)))[[1]] > 0L) {
       # inform the user that skipping labels for the same reason
       message(cat(
-        crayon::red("Error: "),
-        crayon::blue("At least one of the `std.error` column values is `NA`.\n"),
-        crayon::blue("No meta-analysis will be carried out.\n"),
+        ipmisc::red("Error: "),
+        ipmisc::blue("At least one of the `std.error` column values is `NA`.\n"),
+        ipmisc::blue("No meta-analysis will be carried out.\n"),
         sep = ""
       ))
 
@@ -920,7 +920,7 @@ ggcoefstats <- function(x,
     "df" = tidy_df,
     "glance" = glance_df,
     "summary" = glance_df,
-    "augment" = tibble::as_tibble(broomExtra::augment(x = x, ...)),
+    "augment" = tibble::as_tibble(ipmisc::augment(x = x, ...)),
     "plot"
   ))
 }

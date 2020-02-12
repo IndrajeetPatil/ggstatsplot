@@ -10,7 +10,6 @@ APA
 AppVeyor
 ascender
 au
-bartlett
 bayes
 bayesian
 bbolker
@@ -117,6 +116,7 @@ IndrajeetPatil
 intentionality
 interpretable
 io
+ipmisc
 issuecomment
 jitter
 js
@@ -134,7 +134,6 @@ LFHD
 Licence
 lifecycle
 Likert
-linetype
 linux
 lm
 machiavellianism
@@ -194,7 +193,6 @@ README
 reproducibility
 ridgeplot
 rlbt
-Royston
 RStudio
 sdcor
 setosa
@@ -230,7 +228,6 @@ Wilk
 Winsorized
 WRS
 www
-xy
 yellowgreen
 youtube
 Yuen's

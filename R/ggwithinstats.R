@@ -20,6 +20,7 @@
 #' @importFrom rlang exec !! enquo :=
 #' @importFrom statsExpressions bf_ttest bf_oneway_anova
 #' @importFrom pairwiseComparisons pairwise_comparisons
+#' @importFrom ipmisc sort_xy outlier_df
 #'
 #' @details
 #'
@@ -91,7 +92,6 @@ ggwithinstats <- function(data,
                           sort.fun = mean,
                           axes.range.restrict = FALSE,
                           mean.label.size = 3,
-                          mean.label.fontface = "bold",
                           mean.label.color = "black",
                           notch = FALSE,
                           notchwidth = 0.5,
@@ -166,7 +166,7 @@ ggwithinstats <- function(data,
 
   # add a logical column indicating whether a point is or is not an outlier
   data %<>%
-    outlier_df(
+    ipmisc::outlier_df(
       data = .,
       x = {{ x }},
       y = {{ y }},
@@ -183,12 +183,12 @@ ggwithinstats <- function(data,
   # if sorting is happening
   if (sort != "none") {
     data %<>%
-      sort_xy(
+      ipmisc::sort_xy(
         data = .,
         x = {{ x }},
         y = {{ y }},
         sort = sort,
-        sort.fun = sort.fun
+        .fun = sort.fun
       )
   }
 
@@ -294,7 +294,6 @@ ggwithinstats <- function(data,
         data = dplyr::filter(.data = data, isanoutlier) %>%
           dplyr::select(.data = ., -outlier),
         mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, label = outlier.label),
-        fontface = "bold",
         color = outlier.label.color,
         max.iter = 3e2,
         box.padding = 0.35,
@@ -330,7 +329,6 @@ ggwithinstats <- function(data,
       mean.size = mean.size,
       mean.color = mean.color,
       mean.label.size = mean.label.size,
-      mean.label.fontface = mean.label.fontface,
       mean.label.color = mean.label.color,
       inherit.aes = FALSE
     )

@@ -544,7 +544,7 @@ ggstatsplot::ggscatterstats(
   yfill = "#009E73", # color fill for y-axis marginal distribution
   xalpha = 0.6, # transparency for x-axis marginal distribution
   yalpha = 0.6, # transparency for y-axis marginal distribution
-  centrality.para = "median", # central tendency lines to be displayed
+  centrality.parameter = "median", # central tendency lines to be displayed
   messages = FALSE # turn off messages and notes
 )
 ```
@@ -847,9 +847,8 @@ ggstatsplot::gghistostats(
   bar.measure = "mix", # what does the bar length denote
   test.value = 5, # default value is 0
   test.value.line = TRUE, # display a vertical line at test value
-  test.value.color = "#0072B2", # color for the line for test value
-  centrality.para = "mean", # which measure of central tendency is to be plotted
-  centrality.color = "darkred", # decides color for central tendency line
+  centrality.parameter = "mean", # which measure of central tendency is to be plotted
+  centrality.line.args = list(color = "darkred"), # aesthetics for central tendency line
   binwidth = 0.10, # binwidth value (experiment)
   bf.prior = 0.8, # prior width for computing bayes factor
   messages = FALSE, # turn off the messages
@@ -879,7 +878,7 @@ ggstatsplot::grouped_gghistostats(
   type = "robust", # use robust location measure
   grouping.var = genre, # grouping variable
   normal.curve = TRUE, # superimpose a normal distribution curve
-  normal.curve.color = "red",
+  normal.curve.args = list(color = "red", size = 1),
   title.prefix = "Movie genre",
   ggtheme = ggthemes::theme_tufte(),
   ggplot.component = list( # modify the defaults from `ggstatsplot` for each plot
@@ -932,9 +931,8 @@ ggdotplotstats(
   x = lifeExp,
   test.value = 55,
   test.value.line = TRUE,
-  test.line.labeller = TRUE,
-  test.value.color = "red",
-  centrality.para = "median",
+  test.value.line.args = list(color = "red"),
+  centrality.parameter = "median",
   centrality.k = 0,
   title = "Distribution of life expectancy in Asian continent",
   xlab = "Life expectancy",

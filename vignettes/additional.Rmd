@@ -121,6 +121,14 @@ displayed in `ggbetweenstats` and `ggwithinstats` functions.
 For more exhaustive documentation for this package, see:
 <https://indrajeetpatil.github.io/pairwiseComparisons/>
 
+## `ipmisc`
+
+The `ipmisc` package contains some of the data wrangling/cleaning functions and
+a few other miscellaneous functions.
+
+For more exhaustive documentation for this package, see:
+<https://indrajeetpatil.github.io/ipmisc/>
+
 # Other resources
 
 Few other people have also written about `ggstatsplot` and its usage in their

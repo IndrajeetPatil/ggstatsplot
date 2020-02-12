@@ -267,30 +267,27 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
 <code>"black"</code>).</p></dd>
     <dt><code>test.value</code></dt><dd><p>A number specifying the value of the null hypothesis
 (Default: <code>0</code>).</p></dd>
-    <dt><code>centrality.para</code></dt><dd><p>Decides <em>which</em> measure of central tendency (<code>"mean"</code>
-or <code>"median"</code>) is to be displayed as a vertical line.</p></dd>
-    <dt><code>centrality.color</code></dt><dd><p>Decides color for the vertical line for centrality
-parameter (Default: <code>"blue"</code>).</p></dd>
-    <dt><code>centrality.size</code></dt><dd><p>Decides size for the vertical line for centrality
-parameter (Default: <code>1.2</code>).</p></dd>
-    <dt><code>centrality.linetype</code></dt><dd><p>Decides linetype for the vertical line for
-centrality parameter (Default: <code>"dashed"</code>).</p></dd>
-    <dt><code>centrality.line.labeller</code></dt><dd><p>A logical that decides whether line labels
-should be displayed for the <strong>centrality.para</strong> line (Default: <code>TRUE</code>).</p></dd>
-    <dt><code>centrality.k</code></dt><dd><p>Integer denoting the number of decimal places expected
-for centrality parameter label. (Default: <code>2</code>).</p></dd>
-    <dt><code>test.value.line</code></dt><dd><p>Decides whether test value is to be displayed as a
-vertical line (Default: <code>FALSE</code>).</p></dd>
-    <dt><code>test.value.color</code></dt><dd><p>Decides color for the vertical line denoting test
-value (Default: <code>"black"</code>).</p></dd>
-    <dt><code>test.value.size</code></dt><dd><p>Decides size for the vertical line for test value
-(Default: <code>1.2</code>).</p></dd>
-    <dt><code>test.value.linetype</code></dt><dd><p>Decides linetype for the vertical line for test
-value (Default: <code>"dashed"</code>).</p></dd>
-    <dt><code>test.line.labeller</code></dt><dd><p>A logical that decides whether line labels should
-be displayed for <strong>test.value</strong> line (Default: <code>TRUE</code>).</p></dd>
     <dt><code>test.k</code></dt><dd><p>Integer denoting the number of decimal places expected for
 <code>test.value</code> label. (Default: <code>0</code> ).</p></dd>
+    <dt><code>test.value.line</code></dt><dd><p>Logical that decides whether a line corresponding to
+the <code>test.value</code> should be superimposed on the plot.</p></dd>
+    <dt><code>test.value.line.args</code></dt><dd><p>A list of additional
+aesthetic arguments to be passed to the <code>geom_line</code> used to display the
+lines corresponding to the centrality parameter and test value.</p></dd>
+    <dt><code>test.value.label.args</code></dt><dd><p>A list of additional
+aesthetic arguments to be passed to the <code>geom_label</code> used to display the
+label corresponding to the centrality parameter and test value.</p></dd>
+    <dt><code>centrality.parameter</code></dt><dd><p>Decides <em>which</em> measure of central tendency
+(<code>"mean"</code> or <code>"median"</code>) is to be displayed as a vertical line. To not show
+any parameter, set this to <code>"none"</code>.</p></dd>
+    <dt><code>centrality.k</code></dt><dd><p>Integer denoting the number of decimal places expected
+for centrality parameter label. (Default: <code>2</code>).</p></dd>
+    <dt><code>centrality.line.args</code></dt><dd><p>A list of additional
+aesthetic arguments to be passed to the <code>geom_line</code> used to display the
+lines corresponding to the centrality parameter and test value.</p></dd>
+    <dt><code>centrality.label.args</code></dt><dd><p>A list of additional
+aesthetic arguments to be passed to the <code>geom_label</code> used to display the
+label corresponding to the centrality parameter and test value.</p></dd>
     <dt><code>xlab</code></dt><dd><p>Labels for <code>x</code> and <code>y</code> axis variables. If <code>NULL</code> (default),
 variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
     <dt><code>stat.title</code></dt><dd><p>A character describing the test being run, which will be

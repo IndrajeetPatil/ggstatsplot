@@ -19,6 +19,10 @@ BREAKING CHANGES
     using `type` argument. Additional, it gains a new argument
     `ggcorrplot.args`, which can be used to pass additional arguments to the
     underlying plotting function (`ggcorrplot::ggcorrplot`).
+  - Both `gghistostats` and `ggdotplotstats` now use the following arguments to
+    modify `geom`s corresponding to the lines and labels:
+    `test.value.line.args`, `test.value.label.args`, `centrality.line.args`,
+    `centrality.label.args`. This helps avoid specifying millions of arguments.
   
 MAJOR CHANGES
 
@@ -30,6 +34,9 @@ MINOR CHANGES
 
   - More models supported in `ggcoefstats`: `BBreg`, `cglm`, `DirichReg`,
     `zeroinfl`.
+  - Following functions are now re-exported from `ipmisc`: `bartlett_message`,
+    `normality_message`. A few other internal data wrangling functions now
+    reside in `ipmisc`.
 
 # ggstatsplot 0.2.0
 

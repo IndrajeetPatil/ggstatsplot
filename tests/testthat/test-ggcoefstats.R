@@ -28,7 +28,7 @@ testthat::test_that(
     tidy_df <- p$plot_env$tidy_df
 
     # dataframe from `broom` package
-    broom_df <- broom::tidy(
+    broom_df <- broomExtra::tidy(
       x = mod,
       conf.int = TRUE,
       conf.level = 0.99
@@ -123,7 +123,7 @@ testthat::test_that(
 
     # dataframe from `broom` package
     set.seed(123)
-    broom_df <- broom.mixed::tidy(
+    broom_df <- broomExtra::tidy(
       x = mod,
       conf.int = TRUE,
       conf.level = 0.90,
@@ -442,7 +442,7 @@ testthat::test_that(
 
     # broom output
     set.seed(123)
-    broom_df1 <- broom.mixed::tidy(
+    broom_df1 <- broomExtra::tidy(
       x = mod1,
       conf.int = TRUE,
       conf.level = 0.99,
@@ -450,7 +450,7 @@ testthat::test_that(
     )
 
     set.seed(123)
-    broom_df2 <- broom.mixed::tidy(
+    broom_df2 <- broomExtra::tidy(
       x = mod2,
       conf.int = TRUE,
       conf.level = 0.50,
@@ -522,8 +522,8 @@ testthat::test_that(
       )
 
     # broom outputs
-    broom_df1 <- broom::tidy(mod1, conf.int = 0.90)
-    broom_df2 <- broom::tidy(mod2, conf.int = 0.99)
+    broom_df1 <- broomExtra::tidy(mod1, conf.int = 0.90)
+    broom_df2 <- broomExtra::tidy(mod2, conf.int = 0.99)
 
     # exponentiation
     p <- ggstatsplot::ggcoefstats(
@@ -605,7 +605,7 @@ testthat::test_that(
     )
 
     # broom outputs
-    broom_df <- broom::tidy(afit)
+    broom_df <- broomExtra::tidy(afit)
 
     # ggcoefstats outputs
     tidy_df <- ggstatsplot::ggcoefstats(
@@ -756,7 +756,7 @@ testthat::test_that(
     )
 
     # output from broom.mixed
-    broom_df <- broom.mixed::tidy(
+    broom_df <- broomExtra::tidy(
       x = mm0,
       conf.int = TRUE,
       effects = "fixed"
@@ -1028,12 +1028,12 @@ testthat::test_that(
     # creating broom dataframes
     set.seed(123)
     mod <- stats::lm(data = iris, formula = Sepal.Length ~ Species)
-    df1 <- broom::tidy(
+    df1 <- broomExtra::tidy(
       x = mod,
       conf.int = TRUE,
       conf.level = 0.95
     )
-    df2 <- broom::tidy(
+    df2 <- broomExtra::tidy(
       x = mod,
       conf.int = TRUE,
       conf.level = 0.50
@@ -1086,7 +1086,7 @@ testthat::test_that(
     # lm
     set.seed(123)
     mod1 <- stats::lm(data = iris, formula = Sepal.Length ~ Species)
-    broom_df1 <- broom::glance(mod1)
+    broom_df1 <- broomExtra::glance(mod1)
     glance_df1 <- ggstatsplot::ggcoefstats(x = mod1, output = "glance")
 
     # lmer
@@ -1096,7 +1096,7 @@ testthat::test_that(
         formula = Reaction ~ Days + (Days | Subject),
         data = sleepstudy
       )
-    broom_df2 <- broom.mixed::glance(x = mod2)
+    broom_df2 <- broomExtra::glance(x = mod2)
     glance_df2 <- ggstatsplot::ggcoefstats(x = mod2, output = "glance")
     tidy_df2 <- ggstatsplot::ggcoefstats(
       x = mod2,
@@ -1138,7 +1138,7 @@ testthat::test_that(
       formula = mpg ~ wt + qsec,
       data = mtcars
     )
-    df1.broom <- broom::augment(mod1)
+    df1.broom <- broomExtra::augment(mod1)
     df1.ggstats <- ggstatsplot::ggcoefstats(x = mod1, output = "augment")
 
     # mixed-effects model
@@ -1151,7 +1151,7 @@ testthat::test_that(
         psi = psi.hampel,
         init = "lts"
       )
-    df2.broom <- tibble::as_tibble(broom.mixed::augment(mod2))
+    df2.broom <- tibble::as_tibble(broomExtra::augment(mod2))
     df2.ggstats <- ggstatsplot::ggcoefstats(x = mod2, output = "augment")
     df2.tidy <- ggstatsplot::ggcoefstats(
       x = mod2,
@@ -1165,7 +1165,7 @@ testthat::test_that(
       data = ggplot2::msleep,
       formula = sleep_rem ~ brainwt * vore
     )
-    df3.broom <- tibble::as_tibble(broom::augment(mod3))
+    df3.broom <- tibble::as_tibble(broomExtra::augment(mod3))
     df3.ggstats <- ggstatsplot::ggcoefstats(x = mod3, output = "augment")
 
     # checking if they are equal
@@ -1318,8 +1318,8 @@ testthat::test_that(
     df <-
       ggstatsplot:::ggcoefstats_label_maker(
         x = m1,
-        tidy_df = broom::tidy(m1),
-        glance_df = broom::glance(m1)
+        tidy_df = broomExtra::tidy(m1),
+        glance_df = broomExtra::glance(m1)
       )
 
     # checking the labels
@@ -1397,8 +1397,8 @@ testthat::test_that(
     # dataframe with labels
     df <- ggstatsplot:::ggcoefstats_label_maker(
       x = mod,
-      tidy_df = broom.mixed::tidy(x = mod, effects = "fixed"),
-      glance_df = broom.mixed::glance(mod)
+      tidy_df = broomExtra::tidy(x = mod, effects = "fixed"),
+      glance_df = broomExtra::glance(mod)
     )
 
     # checking the labels

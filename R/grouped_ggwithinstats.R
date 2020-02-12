@@ -71,10 +71,10 @@ grouped_ggwithinstats <- function(data,
   # check that conditioning and grouping.var are different
   if (as.character(param_list$x) == as.character(param_list$grouping.var)) {
     message(cat(
-      crayon::red("\nError: "),
-      crayon::blue(
+      ipmisc::red("\nError: "),
+      ipmisc::blue(
         "Identical variable (",
-        crayon::yellow(param_list$x),
+        ipmisc::yellow(param_list$x),
         ") was used for both grouping and x axis, which is not allowed.\n"
       ),
       sep = ""

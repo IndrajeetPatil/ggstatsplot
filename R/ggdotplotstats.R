@@ -35,7 +35,7 @@
 #'   test.value.line = TRUE,
 #'   test.line.labeller = TRUE,
 #'   test.value.color = "red",
-#'   centrality.para = "median",
+#'   centrality.parameter = "median",
 #'   centrality.k = 0,
 #'   title = "Fuel economy data",
 #'   xlab = "city miles per gallon",
@@ -72,18 +72,14 @@ ggdotplotstats <- function(data,
                            point.color = "black",
                            point.size = 3,
                            point.shape = 16,
-                           centrality.para = "mean",
-                           centrality.color = "blue",
-                           centrality.size = 1.0,
-                           centrality.linetype = "dashed",
-                           centrality.line.labeller = TRUE,
-                           centrality.k = 2,
-                           test.value.line = FALSE,
-                           test.value.color = "black",
-                           test.value.size = 1.0,
-                           test.value.linetype = "dashed",
-                           test.line.labeller = TRUE,
                            test.k = 0,
+                           test.value.line = FALSE,
+                           test.value.line.args = list(size = 1),
+                           test.value.label.args = list(),
+                           centrality.parameter = "mean",
+                           centrality.k = 2,
+                           centrality.line.args = list(color = "blue", size = 1),
+                           centrality.label.args = list(color = "blue"),
                            ggplot.component = NULL,
                            output = "plot",
                            messages = TRUE,
@@ -157,7 +153,8 @@ ggdotplotstats <- function(data,
   # ------------------------------ basic plot ----------------------------
 
   # creating the basic plot
-  plot <- ggplot2::ggplot(data = data, mapping = ggplot2::aes(x = {{ x }}, y = rank)) +
+  plot <-
+    ggplot2::ggplot(data = data, mapping = ggplot2::aes(x = {{ x }}, y = rank)) +
     ggplot2::geom_point(
       color = point.color,
       size = point.size,
@@ -189,24 +186,21 @@ ggdotplotstats <- function(data,
   y_label_pos <- median(ggplot2::layer_scales(plot)$y$range$range, na.rm = TRUE)
 
   # using custom function for adding labels
-  plot <- histo_labeller(
-    plot = plot,
-    x = data %>% dplyr::pull({{ x }}),
-    y.label.position = y_label_pos,
-    centrality.para = centrality.para,
-    centrality.color = centrality.color,
-    centrality.size = centrality.size,
-    centrality.linetype = centrality.linetype,
-    centrality.line.labeller = centrality.line.labeller,
-    centrality.k = centrality.k,
-    test.value = test.value,
-    test.value.line = test.value.line,
-    test.value.color = test.value.color,
-    test.value.size = test.value.size,
-    test.value.linetype = test.value.linetype,
-    test.line.labeller = test.line.labeller,
-    test.k = test.k
-  )
+  plot <-
+    histo_labeller(
+      plot = plot,
+      x = data %>% dplyr::pull({{ x }}),
+      y.label.position = y_label_pos,
+      test.value = test.value,
+      test.k = test.k,
+      test.value.line = test.value.line,
+      test.value.line.args = test.value.line.args,
+      test.value.label.args = test.value.label.args,
+      centrality.parameter = centrality.parameter,
+      centrality.k = centrality.k,
+      centrality.line.args = centrality.line.args,
+      centrality.label.args = centrality.label.args
+    )
 
   # ------------------------ annotations and themes -------------------------
 

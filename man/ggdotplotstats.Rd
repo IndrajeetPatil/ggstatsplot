@@ -30,18 +30,14 @@ ggdotplotstats(
   point.color = "black",
   point.size = 3,
   point.shape = 16,
-  centrality.para = "mean",
-  centrality.color = "blue",
-  centrality.size = 1,
-  centrality.linetype = "dashed",
-  centrality.line.labeller = TRUE,
-  centrality.k = 2,
-  test.value.line = FALSE,
-  test.value.color = "black",
-  test.value.size = 1,
-  test.value.linetype = "dashed",
-  test.line.labeller = TRUE,
   test.k = 0,
+  test.value.line = FALSE,
+  test.value.line.args = list(size = 1),
+  test.value.label.args = list(),
+  centrality.parameter = "mean",
+  centrality.k = 2,
+  centrality.line.args = list(color = "blue", size = 1),
+  centrality.label.args = list(color = "blue"),
   ggplot.component = NULL,
   output = "plot",
   messages = TRUE,
@@ -130,41 +126,34 @@ override some aspects of the selected \code{ggtheme}.}
 \item{point.shape}{Numeric specifying shape to draw the points (Default: \code{16}
 (\strong{a dot})).}
 
-\item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"}
-or \code{"median"}) is to be displayed as a vertical line.}
+\item{test.k}{Integer denoting the number of decimal places expected for
+\code{test.value} label. (Default: \code{0} ).}
 
-\item{centrality.color}{Decides color for the vertical line for centrality
-parameter (Default: \code{"blue"}).}
+\item{test.value.line}{Logical that decides whether a line corresponding to
+the \code{test.value} should be superimposed on the plot.}
 
-\item{centrality.size}{Decides size for the vertical line for centrality
-parameter (Default: \code{1.2}).}
+\item{test.value.line.args}{A list of additional
+aesthetic arguments to be passed to the \code{geom_line} used to display the
+lines corresponding to the centrality parameter and test value.}
 
-\item{centrality.linetype}{Decides linetype for the vertical line for
-centrality parameter (Default: \code{"dashed"}).}
+\item{test.value.label.args}{A list of additional
+aesthetic arguments to be passed to the \code{geom_label} used to display the
+label corresponding to the centrality parameter and test value.}
 
-\item{centrality.line.labeller}{A logical that decides whether line labels
-should be displayed for the \strong{centrality.para} line (Default: \code{TRUE}).}
+\item{centrality.parameter}{Decides \emph{which} measure of central tendency
+(\code{"mean"} or \code{"median"}) is to be displayed as a vertical line. To not show
+any parameter, set this to \code{"none"}.}
 
 \item{centrality.k}{Integer denoting the number of decimal places expected
 for centrality parameter label. (Default: \code{2}).}
 
-\item{test.value.line}{Decides whether test value is to be displayed as a
-vertical line (Default: \code{FALSE}).}
+\item{centrality.line.args}{A list of additional
+aesthetic arguments to be passed to the \code{geom_line} used to display the
+lines corresponding to the centrality parameter and test value.}
 
-\item{test.value.color}{Decides color for the vertical line denoting test
-value (Default: \code{"black"}).}
-
-\item{test.value.size}{Decides size for the vertical line for test value
-(Default: \code{1.2}).}
-
-\item{test.value.linetype}{Decides linetype for the vertical line for test
-value (Default: \code{"dashed"}).}
-
-\item{test.line.labeller}{A logical that decides whether line labels should
-be displayed for \strong{test.value} line (Default: \code{TRUE}).}
-
-\item{test.k}{Integer denoting the number of decimal places expected for
-\code{test.value} label. (Default: \code{0} ).}
+\item{centrality.label.args}{A list of additional
+aesthetic arguments to be passed to the \code{geom_label} used to display the
+label corresponding to the centrality parameter and test value.}
 
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
@@ -205,7 +194,7 @@ ggdotplotstats(
   test.value.line = TRUE,
   test.line.labeller = TRUE,
   test.value.color = "red",
-  centrality.para = "median",
+  centrality.parameter = "median",
   centrality.k = 0,
   title = "Fuel economy data",
   xlab = "city miles per gallon",

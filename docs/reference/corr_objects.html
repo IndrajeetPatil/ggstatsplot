@@ -277,7 +277,44 @@ correlation matrix visualization.</p>
 <span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/keep.html'>keep</a></span>(<span class='kw pkg'>WRS2</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/WRS2/man/diet.html'>diet</a></span>, <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='no'><a href='https://purrr.tidyverse.org/reference/reexports.html'>is_bare_numeric</a></span>)
 
 <span class='co'># using function</span>
-<span class='fu'>corr_objects</span>(<span class='no'>df</span>)</div><div class='output co'>#&gt; <span class='error'>Error in corr_objects(df): could not find function "corr_objects"</span></div></pre>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/corr_objects.html'>corr_objects</a></span>(<span class='no'>df</span>)</div><div class='output co'>#&gt; $corr.mat
+#&gt;                  age height initial.weight final.weight weight.loss
+#&gt; age             1.00   0.08           0.03         0.06       -0.07
+#&gt; height          0.08   1.00           0.16         0.19       -0.11
+#&gt; initial.weight  0.03   0.16           1.00         0.95        0.12
+#&gt; final.weight    0.06   0.19           0.95         1.00       -0.19
+#&gt; weight.loss    -0.07  -0.11           0.12        -0.19        1.00
+#&gt; 
+#&gt; $p.mat
+#&gt;                      age     height initial.weight final.weight weight.loss
+#&gt; age            0.0000000 0.47381123   7.710657e-01 6.323255e-01   0.5401552
+#&gt; height         0.4738112 0.00000000   1.749620e-01 9.870145e-02   0.3297073
+#&gt; initial.weight 0.7710657 0.17496196   0.000000e+00 1.578869e-39   0.2886374
+#&gt; final.weight   0.6323255 0.09870145   1.578869e-39 0.000000e+00   0.1021555
+#&gt; weight.loss    0.5401552 0.32970727   2.886374e-01 1.021555e-01   0.0000000
+#&gt; 
+#&gt; $psych_corr_obj
+#&gt; Call:psych::corr.test(x = as.data.frame(data), use = "pairwise", method = corr.method, 
+#&gt;     adjust = p.adjust.method, alpha = 0.05, ci = ci, minlength = 20)
+#&gt; Correlation matrix 
+#&gt;                  age height initial.weight final.weight weight.loss
+#&gt; age             1.00   0.08           0.03         0.06       -0.07
+#&gt; height          0.08   1.00           0.16         0.19       -0.11
+#&gt; initial.weight  0.03   0.16           1.00         0.95        0.12
+#&gt; final.weight    0.06   0.19           0.95         1.00       -0.19
+#&gt; weight.loss    -0.07  -0.11           0.12        -0.19        1.00
+#&gt; Sample Size 
+#&gt; [1] 76
+#&gt; Probability values (Entries above the diagonal are adjusted for multiple tests.) 
+#&gt;                 age height initial.weight final.weight weight.loss
+#&gt; age            0.00   0.47           0.77         0.63        0.54
+#&gt; height         0.47   0.00           0.17         0.10        0.33
+#&gt; initial.weight 0.77   0.17           0.00         0.00        0.29
+#&gt; final.weight   0.63   0.10           0.00         0.00        0.10
+#&gt; weight.loss    0.54   0.33           0.29         0.10        0.00
+#&gt; 
+#&gt;  To see confidence intervals of the correlations, print with the short=FALSE option
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>

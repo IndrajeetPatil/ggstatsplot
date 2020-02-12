@@ -20,7 +20,6 @@ reference:
     desc:  Main functions to use from `ggstatsplot`.
     contents:
       - starts_with("gg")
-      - starts_with("combine")
 
   - title: Grouped variants of primary functions
     desc:  Convenience functions to run the main functions repeatedly across all levels of a single grouping variable.
@@ -41,16 +40,13 @@ reference:
       - "%||%"
       - "%|%"
       - "%<-%"
-
-  - title: Helper functions (messages)
-    desc:  Simple function to display messages from tests carried out to check statistical assumptions of tests.
-    contents:
       - ends_with("_message")
 
-  - title: Themes used
-    desc: The `ggplot2` themes used as default in `ggstatsplot`.
+  - title: Graphics helper functions
+    desc: The `ggplot2` themes and other graphics-related helpers in `ggstatsplot`.
     contents:
       - starts_with("theme_")
+      - starts_with("combine")
 
   - title: Data
     desc:  Datasets included in the package.

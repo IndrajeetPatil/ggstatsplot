@@ -41,7 +41,7 @@
 #' @param sample.size.label Logical that decides whether sample size information
 #'   should be displayed for each level of the grouping variable `x` (Default:
 #'   `TRUE`).
-#' @param mean.label.size,mean.label.fontface,mean.label.color Aesthetics for
+#' @param mean.label.size,mean.label.color Aesthetics for
 #' the label displaying mean. Defaults: `3`, `"bold"`,`"black"`, respectively.
 #' @param notch A logical. If `FALSE` (default), a standard box plot will be
 #'   displayed. If `TRUE`, a notched box plot will be used. Notches are used to
@@ -126,11 +126,11 @@
 #' @importFrom stats na.omit t.test oneway.test
 #' @importFrom rlang enquo quo_name as_name !! as_string
 #' @importFrom ggrepel geom_label_repel
-#' @importFrom crayon blue green red yellow
 #' @importFrom paletteer scale_color_paletteer_d scale_fill_paletteer_d
 #' @importFrom ggsignif geom_signif
 #' @importFrom statsExpressions bf_ttest bf_oneway_anova
 #' @importFrom pairwiseComparisons pairwise_comparisons
+#' @importFrom ipmisc sort_xy outlier_df
 #'
 #' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggwithinstats}},
 #'  \code{\link{grouped_ggwithinstats}}
@@ -228,7 +228,6 @@ ggbetweenstats <- function(data,
                            sort.fun = mean,
                            axes.range.restrict = FALSE,
                            mean.label.size = 3,
-                           mean.label.fontface = "bold",
                            mean.label.color = "black",
                            notch = FALSE,
                            notchwidth = 0.5,
@@ -291,7 +290,7 @@ ggbetweenstats <- function(data,
 
   # add a logical column indicating whether a point is or is not an outlier
   data %<>%
-    outlier_df(
+    ipmisc::outlier_df(
       data = .,
       x = {{ x }},
       y = {{ y }},
@@ -308,12 +307,12 @@ ggbetweenstats <- function(data,
   # if sorting is happening
   if (sort != "none") {
     data %<>%
-      sort_xy(
+      ipmisc::sort_xy(
         data = .,
         x = {{ x }},
         y = {{ y }},
         sort = sort,
-        sort.fun = sort.fun
+        .fun = sort.fun
       )
   }
 
@@ -478,7 +477,6 @@ ggbetweenstats <- function(data,
         data = dplyr::filter(.data = data, isanoutlier) %>%
           dplyr::select(.data = ., -outlier),
         mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, label = outlier.label),
-        fontface = "bold",
         color = outlier.label.color,
         max.iter = 3e2,
         box.padding = 0.35,
@@ -514,7 +512,6 @@ ggbetweenstats <- function(data,
       mean.size = mean.size,
       mean.color = mean.color,
       mean.label.size = mean.label.size,
-      mean.label.fontface = mean.label.fontface,
       mean.label.color = mean.label.color
     )
   }

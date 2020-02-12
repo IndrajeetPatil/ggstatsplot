@@ -60,6 +60,7 @@ jobs:
       - remotes
       - knitr
       - pairwiseComparisons
+      - ipmisc
       - rmarkdown
       - statsExpressions
     r_github_packages:
@@ -111,6 +112,7 @@ jobs:
       - remotes
       - knitr
       - pairwiseComparisons
+      - ipmisc
       - rmarkdown
       - statsExpressions
     r_github_packages:
