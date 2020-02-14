@@ -90,6 +90,8 @@ will be passed to \code{ggcorrplot::ggcorrplot} function. The list should avoid
 any of the following arguments since they are already being used: \code{corr},
 \code{method}, \code{p.mat}, \code{sig.level}, \code{ggtheme}, \code{colors}, \code{matrix.type}, \code{lab},
 \code{pch}, \code{legend.title}, \code{digits}.}
+    \item{\code{k}}{Decides the number of decimal digits to be displayed
+(Default: \code{2}).}
     \item{\code{ggtheme}}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
 extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
@@ -112,8 +114,6 @@ so does not work for larger datasets.
 If you have fewer than 1,000 observations but want to use the same \code{gam()}
 model that \code{method = "auto"} would use, then set
 \code{method = "gam", formula = y ~ s(x, bs = "cs")}.}
-    \item{\code{k}}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2}).}
     \item{\code{conf.level}}{Scalar between 0 and 1. If unspecified, the defaults return
 \verb{95\%} lower and upper confidence intervals (\code{0.95}).}
     \item{\code{package}}{Name of package from which the palette is desired as string

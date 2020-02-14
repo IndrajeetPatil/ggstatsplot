@@ -81,8 +81,8 @@ will also work: \code{"p"} (for parametric/Pearson's \emph{r}), \code{"np"}
 \item{beta}{A numeric bending constant for percentage bend robust correlation
 coefficient (Default: \code{0.1}).}
 
-\item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2}).}
+\item{k}{Decides the number of decimal digits to be displayed
+(Default: \code{2}).}
 
 \item{sig.level}{Significance level (Default: \code{0.05}). If the \emph{p}-value in
 \emph{p}-value matrix is bigger than \code{sig.level}, then the corresponding

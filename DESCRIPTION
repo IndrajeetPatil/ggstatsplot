@@ -31,13 +31,13 @@ BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
 Depends: 
     R (>= 3.5.0)
 Imports:
-    cowplot (>= 1.0.0),
-    dplyr (>= 0.8.3),
-    ggcorrplot (>= 0.1.3),
-    ggExtra (>= 0.9),
-    ggplot2 (>= 3.2.1),
-    ggrepel (>= 0.8.1),
-    ggsignif (>= 0.6.0),
+    cowplot,
+    dplyr,
+    ggcorrplot,
+    ggExtra,
+    ggplot2,
+    ggrepel,
+    ggsignif,
     grid,
     groupedstats (>= 0.1.1),
     insight (>= 0.8.0),
@@ -46,15 +46,13 @@ Imports:
     paletteer,
     parameters (>= 0.4.1),
     performance (>= 0.4.3),
-    psych (>= 1.9.12.31),
-    purrr (>= 0.3.3),
-    rlang (>= 0.4.2),
-    scales (>= 1.1.0),
+    purrr,
+    rlang,
+    scales,
     stats,
-    statsExpressions (>= 0.3.0),
-    tibble (>= 2.1.3),
-    tidyr (>= 1.0.0),
-    WRS2 (>= 1.0-0)
+    statsExpressions (>= 0.3.1),
+    tibble,
+    tidyr
 Suggests:
     broomExtra,
     forcats,
@@ -67,9 +65,13 @@ Suggests:
     rmarkdown,
     spelling,
     survival,
-    testthat
+    testthat,
+    WRS2
 VignetteBuilder: 
     knitr
+Remotes:
+    IndrajeetPatil/ipmisc,
+    IndrajeetPatil/statsExpressions
 Encoding: UTF-8
 Language: en-US
 LazyData: true
