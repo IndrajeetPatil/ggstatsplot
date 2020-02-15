@@ -94,15 +94,15 @@ ggwithinstats <- function(data,
                           mean.plotting = TRUE,
                           mean.ci = FALSE,
                           mean.point.args = list(size = 5, color = "darkred"),
-                          mean.label.args = list(),
+                          mean.label.args = list(size = 3),
                           notch = FALSE,
                           notchwidth = 0.5,
                           linetype = "solid",
                           outlier.tagging = FALSE,
+                          outlier.label = NULL,
+                          outlier.coef = 1.5,
                           outlier.shape = 19,
                           outlier.color = "black",
-                          outlier.coef = 1.5,
-                          outlier.label = NULL,
                           outlier.label.args = list(),
                           outlier.point.args = list(),
                           ggtheme = ggplot2::theme_bw(),
@@ -177,62 +177,6 @@ ggwithinstats <- function(data,
   # independent variables
   test <- ifelse(nlevels(data %>% dplyr::pull({{ x }}))[[1]] < 3, "t", "anova")
 
-  # --------------------------------- sorting --------------------------------
-
-  # if sorting is happening
-  if (sort != "none") {
-    data %<>%
-      ipmisc::sort_xy(
-        data = .,
-        x = {{ x }},
-        y = {{ y }},
-        sort = sort,
-        .fun = sort.fun
-      )
-  }
-
-  # --------------------------------- basic plot ------------------------------
-
-  # plot
-  plot <- ggplot2::ggplot(
-    data = data,
-    mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, group = id)
-  ) +
-    ggplot2::geom_point(
-      alpha = 0.5,
-      size = 3,
-      na.rm = TRUE,
-      ggplot2::aes(color = {{ x }})
-    ) +
-    ggplot2::geom_boxplot(
-      mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),
-      inherit.aes = FALSE,
-      fill = "white",
-      width = 0.2,
-      alpha = 0.5,
-      notch = notch,
-      notchwidth = notchwidth
-    ) +
-    ggplot2::geom_violin(
-      mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),
-      inherit.aes = FALSE,
-      width = 0.5,
-      alpha = 0.2,
-      fill = "white",
-      na.rm = TRUE
-    )
-
-  # add a connecting path only if there are only two groups
-  if (test != "anova" && isTRUE(path.point)) {
-    plot <- plot +
-      ggplot2::geom_path(
-        color = "grey50",
-        size = 0.5,
-        alpha = 0.5,
-        linetype = "dashed"
-      )
-  }
-
   # --------------------- subtitle/caption preparation ------------------------
 
   if (isTRUE(results.subtitle)) {
@@ -279,6 +223,72 @@ ggwithinstats <- function(data,
     test <- "none"
   }
 
+  # quit early if only subtitle is needed
+  if (output %in% c("subtitle", "caption")) {
+    return(switch(
+      EXPR = output,
+      "subtitle" = subtitle,
+      "caption" = caption
+    ))
+  }
+
+  # --------------------------------- sorting --------------------------------
+
+  # if sorting is happening
+  if (sort != "none") {
+    data %<>%
+      ipmisc::sort_xy(
+        data = .,
+        x = {{ x }},
+        y = {{ y }},
+        sort = sort,
+        .fun = sort.fun
+      )
+  }
+
+  # --------------------------------- basic plot ------------------------------
+
+  # plot
+  plot <-
+    ggplot2::ggplot(
+      data = data,
+      mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, group = id)
+    ) +
+    ggplot2::geom_point(
+      alpha = 0.5,
+      size = 3,
+      na.rm = TRUE,
+      ggplot2::aes(color = {{ x }})
+    ) +
+    ggplot2::geom_boxplot(
+      mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),
+      inherit.aes = FALSE,
+      fill = "white",
+      width = 0.2,
+      alpha = 0.5,
+      notch = notch,
+      notchwidth = notchwidth
+    ) +
+    ggplot2::geom_violin(
+      mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),
+      inherit.aes = FALSE,
+      width = 0.5,
+      alpha = 0.2,
+      fill = "white",
+      na.rm = TRUE
+    )
+
+  # add a connecting path only if there are only two groups
+  if (test != "anova" && isTRUE(path.point)) {
+    plot <- plot +
+      ggplot2::geom_path(
+        color = "grey50",
+        size = 0.5,
+        alpha = 0.5,
+        linetype = "dashed"
+      )
+  }
+
   # ---------------------------- outlier tagging -----------------------------
 
   # If `outlier.label` is not provided, outlier labels will just be values of
@@ -292,11 +302,11 @@ ggwithinstats <- function(data,
         .fn = ggrepel::geom_label_repel,
         data = dplyr::filter(.data = data, isanoutlier),
         mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, label = outlier.label),
-        !!!outlier.label.args,
         show.legend = FALSE,
         min.segment.length = 0,
         inherit.aes = FALSE,
-        na.rm = TRUE
+        na.rm = TRUE,
+        !!!outlier.label.args
       )
   }
 
@@ -388,35 +398,34 @@ ggwithinstats <- function(data,
   # ------------------------ annotations and themes -------------------------
 
   # specifying annotations and other aesthetic aspects for the plot
-  if (output == "plot") {
-    plot <-
-      aesthetic_addon(
-        plot = plot,
-        x = data %>% dplyr::pull({{ x }}),
-        xlab = xlab,
-        ylab = ylab,
-        title = title,
-        subtitle = subtitle,
-        caption = caption,
-        ggtheme = ggtheme,
-        ggstatsplot.layer = ggstatsplot.layer,
-        package = package,
-        palette = palette,
-        direction = direction,
-        ggplot.component = ggplot.component
-      )
+  plot <-
+    aesthetic_addon(
+      plot = plot,
+      x = data %>% dplyr::pull({{ x }}),
+      xlab = xlab,
+      ylab = ylab,
+      title = title,
+      subtitle = subtitle,
+      caption = caption,
+      ggtheme = ggtheme,
+      ggstatsplot.layer = ggstatsplot.layer,
+      package = package,
+      palette = palette,
+      direction = direction,
+      ggplot.component = ggplot.component
+    )
 
-    # don't do scale restriction in case of post hoc comparisons
-    if (isTRUE(axes.range.restrict) && isFALSE(pairwise.comparisons)) {
-      # pull out vector for y-values
-      y_vec <- data %>% dplyr::pull({{ y }})
+  # don't do scale restriction in case of post hoc comparisons
+  if (isTRUE(axes.range.restrict) && isFALSE(pairwise.comparisons)) {
+    # pull out vector for y-values
+    y_vec <- data %>% dplyr::pull({{ y }})
 
-      # restricting axes
-      plot <- plot +
-        ggplot2::coord_cartesian(ylim = c(min(y_vec), max(y_vec))) +
-        ggplot2::scale_y_continuous(limits = c(min(y_vec), max(y_vec)))
-    }
+    # restricting axes
+    plot <- plot +
+      ggplot2::coord_cartesian(ylim = c(min(y_vec), max(y_vec))) +
+      ggplot2::scale_y_continuous(limits = c(min(y_vec), max(y_vec)))
   }
+
   # --------------------- messages ------------------------------------------
 
   if (isTRUE(messages)) {
@@ -438,11 +447,5 @@ ggwithinstats <- function(data,
   }
 
   # return the final plot
-  return(switch(
-    EXPR = output,
-    "plot" = plot,
-    "subtitle" = subtitle,
-    "caption" = caption,
-    plot
-  ))
+  return(plot)
 }

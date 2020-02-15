@@ -40,9 +40,10 @@ testthat::test_that(
       data = dat,
       x = genre,
       y = rating,
+      results.subtitle = FALSE,
       grouping.var = mpaa,
       outlier.tagging = FALSE,
-      messages = TRUE
+      messages = FALSE
     )
 
     # `outlier.label` is not specified
@@ -55,13 +56,14 @@ testthat::test_that(
         grouping.var = mpaa,
         type = "p",
         output = "plot",
+        results.subtitle = FALSE,
         effsize.type = "biased",
         plot.type = "box",
         bf.message = TRUE,
         outlier.tagging = TRUE,
         pairwise.comparisons = TRUE,
         pairwise.annotation = "p.value",
-        messages = TRUE
+        messages = FALSE
       ),
       what = "gg"
     ))
@@ -79,6 +81,7 @@ testthat::test_that(
         pairwise.comparisons = TRUE,
         messages = FALSE,
         outlier.tagging = TRUE,
+        results.subtitle = FALSE,
         outlier.label = title
       ),
       what = "gg"
@@ -98,6 +101,7 @@ testthat::test_that(
         grouping.var = mpaa,
         messages = FALSE,
         type = "r",
+        results.subtitle = FALSE,
         pairwise.comparisons = TRUE,
         outlier.tagging = TRUE,
         outlier.label = "title",
@@ -126,23 +130,24 @@ testthat::test_that(
         y = "tvhours",
         grouping.var = "marital",
         output = "subtitle",
+        k = 4,
         messages = FALSE
       )
 
     # tests
     testthat::expect_equal(length(ls_results), 5L)
-    testthat::expect_identical(
-      ls_results[[1]],
-      ggplot2::expr(
-        paste(
+    testthat::expect_equal(
+      ls_results,
+      list(
+        `Never married` = ggplot2::expr(paste(
           NULL,
           italic("F"),
           "(",
           "2",
           ",",
-          "287.06",
+          "287.0552",
           ") = ",
-          "14.02",
+          "14.0191",
           ", ",
           italic("p"),
           " = ",
@@ -150,150 +155,130 @@ testthat::test_that(
           ", ",
           widehat(omega["p"]^2),
           " = ",
-          "0.03",
+          "0.0316",
           ", CI"["95%"],
           " [",
-          "0.01",
+          "0.0053",
           ", ",
-          "0.07",
+          "0.0660",
           "]",
           ", ",
           italic("n")["obs"],
           " = ",
           779L
-        )
-      )
-    )
-    testthat::expect_identical(
-      ls_results[[2]],
-      ggplot2::expr(
-        paste(
+        )),
+        Separated = ggplot2::expr(paste(
           NULL,
           italic("F"),
           "(",
           "2",
           ",",
-          "39.53",
+          "39.5287",
           ") = ",
-          "3.24",
+          "3.2411",
           ", ",
           italic("p"),
           " = ",
-          "0.050",
+          "0.0497",
           ", ",
           widehat(omega["p"]^2),
           " = ",
-          "0.06",
+          "0.0634",
           ", CI"["95%"],
           " [",
-          "-0.04",
+          "-0.0354",
           ", ",
-          "0.18",
+          "0.1806",
           "]",
           ", ",
           italic("n")["obs"],
           " = ",
           107L
-        )
-      )
-    )
-    testthat::expect_identical(
-      ls_results[[3]],
-      ggplot2::expr(
-        paste(
+        )),
+        Divorced = ggplot2::expr(paste(
           NULL,
           italic("F"),
           "(",
           "2",
           ",",
-          "60.53",
+          "60.5312",
           ") = ",
-          "4.46",
+          "4.4639",
           ", ",
           italic("p"),
           " = ",
-          "0.016",
+          "0.0155",
           ", ",
           widehat(omega["p"]^2),
           " = ",
-          "0.02",
+          "0.0170",
           ", CI"["95%"],
           " [",
-          "-0.01",
+          "-0.0073",
           ", ",
-          "0.05",
+          "0.0520",
           "]",
           ", ",
           italic("n")["obs"],
           " = ",
           451L
-        )
-      )
-    )
-    testthat::expect_identical(
-      ls_results[[4]],
-      ggplot2::expr(
-        paste(
+        )),
+        Widowed = ggplot2::expr(paste(
           NULL,
           italic("F"),
           "(",
           "2",
           ",",
-          "15.50",
+          "15.4966",
           ") = ",
-          "4.14",
+          "4.1371",
           ", ",
           italic("p"),
           " = ",
-          "0.036",
+          "0.0363",
           ", ",
           widehat(omega["p"]^2),
           " = ",
-          "0.05",
+          "0.0464",
           ", CI"["95%"],
           " [",
-          "-0.01",
+          "-0.0149",
           ", ",
-          "0.12",
+          "0.1264",
           "]",
           ", ",
           italic("n")["obs"],
           " = ",
           249L
-        )
-      )
-    )
-    testthat::expect_identical(
-      ls_results[[5]],
-      ggplot2::expr(
-        paste(
+        )),
+        Married = ggplot2::expr(paste(
           NULL,
           italic("F"),
           "(",
           "2",
           ",",
-          "163.64",
+          "163.6435",
           ") = ",
-          "6.96",
+          "6.9614",
           ", ",
           italic("p"),
           " = ",
-          "0.001",
+          "0.0013",
           ", ",
           widehat(omega["p"]^2),
           " = ",
-          "0.02",
+          "0.0215",
           ", CI"["95%"],
           " [",
-          "0.00",
+          "3e-04",
           ", ",
-          "0.04",
+          "0.0427",
           "]",
           ", ",
           italic("n")["obs"],
           " = ",
           1264L
-        )
+        ))
       )
     )
   }

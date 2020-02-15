@@ -25,6 +25,7 @@ testthat::test_that(
         data = mtcars,
         grouping.var = am,
         main = "cyl",
+        results.subtitle = FALSE,
         messages = FALSE
       )
     ),
@@ -50,9 +51,10 @@ testthat::test_that(
       ggstatsplot::grouped_ggpiestats(
         data = mpg_short,
         main = "cyl",
+        results.subtitle = FALSE,
         condition = class,
         grouping.var = class,
-        messages = TRUE
+        messages = FALSE
       )
     )
 
@@ -63,8 +65,9 @@ testthat::test_that(
         data = mpg_short,
         x = cyl,
         y = "class",
+        results.subtitle = FALSE,
         grouping.var = drv,
-        messages = TRUE
+        messages = FALSE
       )
     ),
     what = "gg"
@@ -79,6 +82,7 @@ testthat::test_that(
         data = as.data.frame(Titanic),
         grouping.var = Class,
         main = Sex,
+        results.subtitle = FALSE,
         condition = Survived,
         counts = "Freq",
         messages = FALSE
@@ -104,95 +108,95 @@ testthat::test_that(
         main = relig,
         condition = marital,
         grouping.var = race,
-        output = "caption",
-        results.subtitle = FALSE,
-        facet.proptest = FALSE,
+        output = "subtitle",
         messages = FALSE
       ))
 
     # tests
-    testthat::expect_equal(length(ls_results), 3L)
-    testthat::expect_null(ls_results[[1]], NULL)
-    testthat::expect_null(ls_results[[2]], NULL)
-    testthat::expect_null(ls_results[[3]], NULL)
-  }
-)
-
-# checking if results coincide with base version -----------------------------
-
-testthat::test_that(
-  desc = "checking if results coincide with base version",
-  code = {
-    testthat::skip_on_cran()
-
-    # creating new datasets from the existing one
-    mtcars2 <- dplyr::mutate(mtcars, grp = "1")
-    mtcars3 <- dplyr::filter(mtcars2, cyl != "8")
-    msleep2 <- dplyr::mutate(ggplot2::msleep, grp = "1")
-
-    set.seed(123)
-    p1 <-
-      suppressWarnings(ggpiestats(
-        data = mtcars,
-        main = "am",
-        condition = cyl,
-        messages = FALSE,
-        output = "subtitle"
-      ))
-
-    set.seed(123)
-    p2 <-
-      suppressWarnings(ggpiestats(
-        data = mtcars3,
-        x = am,
-        y = cyl,
-        messages = FALSE,
-        output = "subtitle"
-      ))
-
-    set.seed(123)
-    p3 <-
-      suppressWarnings(grouped_ggpiestats(
-        data = mtcars2,
-        main = am,
-        y = "cyl",
-        grouping.var = grp,
-        messages = FALSE,
-        output = "subtitle"
-      ))
-
-    set.seed(123)
-    p4 <-
-      suppressWarnings(grouped_ggpiestats(
-        data = mtcars3,
-        x = "am",
-        condition = cyl,
-        grouping.var = "grp",
-        messages = FALSE,
-        output = "subtitle"
-      ))
-
-    set.seed(123)
-    p5 <-
-      suppressWarnings(ggpiestats(
-        data = ggplot2::msleep,
-        x = vore,
-        messages = FALSE,
-        output = "subtitle"
-      ))
-
-    set.seed(123)
-    p6 <-
-      suppressWarnings(grouped_ggpiestats(msleep2,
-        vore,
-        grouping.var = grp,
-        messages = FALSE,
-        output = "subtitle"
-      ))
-
-    # testing if grouped and base versions results are same
-    testthat::expect_identical(p1, p3$`1`)
-    testthat::expect_identical(p2, p4$`1`)
-    testthat::expect_identical(p5, p6$`1`)
+    testthat::expect_equal(
+      ls_results,
+      list(
+        Other = ggplot2::expr(paste(
+          NULL,
+          chi["Pearson"]^2,
+          "(",
+          "40",
+          ") = ",
+          "40.27",
+          ", ",
+          italic("p"),
+          " = ",
+          "0.458",
+          ", ",
+          widehat(italic("V"))["Cramer"],
+          " = ",
+          "0.01",
+          ", CI"["95%"],
+          " [",
+          "-0.30",
+          ", ",
+          "-0.02",
+          "]",
+          ", ",
+          italic("n")["obs"],
+          " = ",
+          182L
+        )),
+        Black = ggplot2::expr(paste(
+          NULL,
+          chi["Pearson"]^
+            2,
+          "(",
+          "32",
+          ") = ",
+          "25.11",
+          ", ",
+          italic("p"),
+          " = ",
+          "0.801",
+          ", ",
+          widehat(italic("V"))["Cramer"],
+          " = ",
+          "0.00",
+          ", CI"["95%"],
+          " [",
+          "-0.17",
+          ", ",
+          "0.01",
+          "]",
+          ", ",
+          italic("n")["obs"],
+          " = ",
+          317L
+        )),
+        White = ggplot2::expr(paste(
+          NULL,
+          chi["Pearson"]^
+            2,
+          "(",
+          "52",
+          ") = ",
+          "109.65",
+          ", ",
+          italic("p"),
+          " = ",
+          "< 0.001",
+          ", ",
+          widehat(italic("V"))["Cramer"],
+          " = ",
+          "0.09",
+          ", CI"["95%"],
+          " [",
+          "0.03",
+          ", ",
+          "0.10",
+          "]",
+          ", ",
+          italic("n")["obs"],
+          " = ",
+          1649L
+        ))
+      )
+    )
   }
 )

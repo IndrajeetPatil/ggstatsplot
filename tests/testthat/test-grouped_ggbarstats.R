@@ -15,13 +15,13 @@ testthat::test_that(
       data = mpg_short,
       main = cyl,
       grouping.var = class,
-      messages = TRUE
+      messages = FALSE
     ))
 
     testthat::expect_error(ggstatsplot::grouped_ggbarstats(
       data = mpg_short,
       main = cyl,
-      messages = TRUE
+      messages = FALSE
     ))
 
     testthat::expect_output(
@@ -30,7 +30,7 @@ testthat::test_that(
         main = cyl,
         condition = class,
         grouping.var = class,
-        messages = TRUE
+        messages = FALSE
       )
     )
 
@@ -43,7 +43,7 @@ testthat::test_that(
         condition = class,
         grouping.var = drv,
         x.axis.orientation = "horizontal",
-        messages = TRUE
+        messages = FALSE
       )
     ),
     what = "gg"

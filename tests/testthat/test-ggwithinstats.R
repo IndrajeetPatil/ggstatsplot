@@ -237,12 +237,10 @@ testthat::test_that(
     set.seed(123)
     p1 <-
       ggstatsplot::ggwithinstats(
-        data = WineTasting,
-        x = Wine,
-        y = Taste,
+        data = iris,
+        x = Species,
+        y = Sepal.Length,
         sort = "none",
-        package = "wesanderson",
-        palette = "Royal1",
         results.subtitle = FALSE,
         messages = FALSE
       )
@@ -250,9 +248,9 @@ testthat::test_that(
     set.seed(123)
     p2 <-
       ggstatsplot::ggwithinstats(
-        data = WineTasting,
-        x = Wine,
-        y = Taste,
+        data = iris,
+        x = Species,
+        y = Sepal.Length,
         sort = "ascending",
         results.subtitle = FALSE,
         messages = FALSE
@@ -261,9 +259,9 @@ testthat::test_that(
     set.seed(123)
     p3 <-
       ggstatsplot::ggwithinstats(
-        data = WineTasting,
-        x = Wine,
-        y = Taste,
+        data = iris,
+        x = Species,
+        y = Sepal.Length,
         sort = "xxx",
         results.subtitle = FALSE,
         messages = FALSE

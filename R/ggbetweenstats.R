@@ -76,12 +76,8 @@
 #' @param palette If a character string (e.g., `"Set1"`), will use that named
 #'   palette. If a number, will index into the list of palettes of appropriate
 #'   type. Default palette is `"Dark2"`.
-#' @param point.jitter.width Numeric specifying the degree of jitter in `x`
-#'   direction. Defaults to `40%` of the resolution of the data.
-#' @param point.jitter.height Numeric specifying the degree of jitter in `y`
-#'   direction. Defaults to `0.1`.
-#' @param point.dodge.width Numeric specifying the amount to dodge in the `x`
-#'   direction. Defaults to `0.60`.
+#' @param point.args A list of additional aesthetic arguments to be passed to
+#'   the `geom_point` displaying the raw data.
 #' @param ggplot.component A `ggplot` component to be added to the plot prepared
 #'   by `ggstatsplot`. This argument is primarily helpful for `grouped_` variant
 #'   of the current function. Default is `NULL`. The argument should be entered
@@ -228,20 +224,23 @@ ggbetweenstats <- function(data,
                            mean.plotting = TRUE,
                            mean.ci = FALSE,
                            mean.point.args = list(size = 5, color = "darkred"),
-                           mean.label.args = list(),
+                           mean.label.args = list(size = 3),
                            notch = FALSE,
                            notchwidth = 0.5,
                            linetype = "solid",
                            outlier.tagging = FALSE,
+                           outlier.label = NULL,
+                           outlier.coef = 1.5,
                            outlier.shape = 19,
                            outlier.color = "black",
-                           outlier.coef = 1.5,
-                           outlier.label = NULL,
-                           outlier.label.args = list(),
+                           outlier.label.args = list(size = 3),
                            outlier.point.args = list(),
-                           point.jitter.width = NULL,
-                           point.jitter.height = 0,
-                           point.dodge.width = 0.60,
+                           point.args = list(
+                             position = ggplot2::position_jitterdodge(dodge.width = 0.60),
+                             alpha = 0.4,
+                             size = 3,
+                             stroke = 0
+                           ),
                            ggtheme = ggplot2::theme_bw(),
                            ggstatsplot.layer = TRUE,
                            package = "RColorBrewer",
@@ -299,6 +298,61 @@ ggbetweenstats <- function(data,
   # independent variables
   test <- ifelse(nlevels(data %>% dplyr::pull({{ x }}))[[1]] < 3, "t", "anova")
 
+  # --------------------- subtitle/caption preparation ------------------------
+
+  if (isTRUE(results.subtitle)) {
+    # preparing the Bayes factor message
+    if (type == "parametric" && isTRUE(bf.message)) {
+      caption <-
+        caption_function_switch(
+          test = test,
+          data = data,
+          x = rlang::as_string(x),
+          y = rlang::as_string(y),
+          bf.prior = bf.prior,
+          caption = caption,
+          paired = FALSE,
+          output = "caption",
+          k = k
+        )
+    }
+
+    # extracting the subtitle using the switch function
+    subtitle <-
+      subtitle_function_switch(
+        # switch based on
+        type = type,
+        test = test,
+        # arguments relevant for subtitle helper functions
+        data = data,
+        x = {{ x }},
+        y = {{ y }},
+        paired = FALSE,
+        effsize.type = effsize.type,
+        partial = partial,
+        effsize.noncentral = effsize.noncentral,
+        var.equal = var.equal,
+        bf.prior = bf.prior,
+        tr = tr,
+        nboot = nboot,
+        conf.level = conf.level,
+        stat.title = stat.title,
+        k = k,
+        messages = messages
+      )
+  } else {
+    test <- "none"
+  }
+
+  # quit early if only subtitle is needed
+  if (output %in% c("subtitle", "caption")) {
+    return(switch(
+      EXPR = output,
+      "subtitle" = subtitle,
+      "caption" = caption
+    ))
+  }
+
   # --------------------------------- sorting --------------------------------
 
   # if sorting is happening
@@ -325,41 +379,31 @@ ggbetweenstats <- function(data,
     )
 
   # create the basic plot
+  # add only the points which are *not* outliers
   plot <-
     ggplot2::ggplot(data = data, mapping = ggplot2::aes(x = {{ x }}, y = {{ y }})) +
-    # add all points which are not outliers
-    ggplot2::geom_point(
+    rlang::exec(
+      .fn = ggplot2::geom_point,
       data = dplyr::filter(.data = data, !isanoutlier),
-      position = ggplot2::position_jitterdodge(
-        jitter.width = point.jitter.width,
-        dodge.width = point.dodge.width,
-        jitter.height = point.jitter.height
-      ),
-      alpha = 0.4,
-      size = 3,
-      stroke = 0,
       na.rm = TRUE,
-      ggplot2::aes(color = {{ x }})
+      ggplot2::aes(color = {{ x }}),
+      !!!point.args
     )
 
-  # decide how to plot outliers if it's desired
+  # if outliers are not being tagged, then add the points that were left out
   if (isFALSE(outlier.tagging)) {
     plot <- plot +
-      # add all outliers in using same method
-      ggplot2::geom_point(
+      rlang::exec(
+        .fn = ggplot2::geom_point,
         data = dplyr::filter(.data = data, isanoutlier),
-        position = ggplot2::position_jitterdodge(
-          jitter.width = point.jitter.width,
-          dodge.width = point.dodge.width,
-          jitter.height = point.jitter.height
-        ),
-        alpha = 0.4,
-        size = 3,
-        stroke = 0,
         na.rm = TRUE,
-        ggplot2::aes(color = {{ x }})
+        ggplot2::aes(color = {{ x }}),
+        !!!point.args
       )
-  } else {
+  }
+
+  # if outlier tagging is happening, decide how those points should be displayed
+  if (isTRUE(outlier.tagging)) {
     if (plot.type == "violin") {
       plot <- plot +
         # add all outliers in
@@ -415,52 +459,6 @@ ggbetweenstats <- function(data,
     plot <- plot + ggbetweenstats_geom_violin
   }
 
-  # --------------------- subtitle/caption preparation ------------------------
-
-  if (isTRUE(results.subtitle)) {
-    # preparing the Bayes factor message
-    if (type == "parametric" && isTRUE(bf.message)) {
-      caption <-
-        caption_function_switch(
-          test = test,
-          data = data,
-          x = rlang::as_string(x),
-          y = rlang::as_string(y),
-          bf.prior = bf.prior,
-          caption = caption,
-          paired = FALSE,
-          output = "caption",
-          k = k
-        )
-    }
-
-    # extracting the subtitle using the switch function
-    subtitle <-
-      subtitle_function_switch(
-        # switch based on
-        type = type,
-        test = test,
-        # arguments relevant for subtitle helper functions
-        data = data,
-        x = {{ x }},
-        y = {{ y }},
-        paired = FALSE,
-        effsize.type = effsize.type,
-        partial = partial,
-        effsize.noncentral = effsize.noncentral,
-        var.equal = var.equal,
-        bf.prior = bf.prior,
-        tr = tr,
-        nboot = nboot,
-        conf.level = conf.level,
-        stat.title = stat.title,
-        k = k,
-        messages = messages
-      )
-  } else {
-    test <- "none"
-  }
-
   # ---------------------------- outlier tagging -----------------------------
 
   # If `outlier.label` is not provided, outlier labels will just be values of
@@ -474,11 +472,11 @@ ggbetweenstats <- function(data,
         .fn = ggrepel::geom_label_repel,
         data = dplyr::filter(.data = data, isanoutlier),
         mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, label = outlier.label),
-        !!!outlier.label.args,
         show.legend = FALSE,
         min.segment.length = 0,
         inherit.aes = FALSE,
-        na.rm = TRUE
+        na.rm = TRUE,
+        !!!outlier.label.args
       )
   }
 
@@ -557,24 +555,22 @@ ggbetweenstats <- function(data,
   # ------------------------ annotations and themes -------------------------
 
   # specifying annotations and other aesthetic aspects for the plot
-  if (output == "plot") {
-    plot <-
-      aesthetic_addon(
-        plot = plot,
-        x = data %>% dplyr::pull({{ x }}),
-        xlab = xlab,
-        ylab = ylab,
-        title = title,
-        subtitle = subtitle,
-        caption = caption,
-        ggtheme = ggtheme,
-        ggstatsplot.layer = ggstatsplot.layer,
-        package = package,
-        palette = palette,
-        direction = direction,
-        ggplot.component = ggplot.component
-      )
-  }
+  plot <-
+    aesthetic_addon(
+      plot = plot,
+      x = data %>% dplyr::pull({{ x }}),
+      xlab = xlab,
+      ylab = ylab,
+      title = title,
+      subtitle = subtitle,
+      caption = caption,
+      ggtheme = ggtheme,
+      ggstatsplot.layer = ggstatsplot.layer,
+      package = package,
+      palette = palette,
+      direction = direction,
+      ggplot.component = ggplot.component
+    )
 
   # don't do scale restriction in case of post hoc comparisons
   if (isTRUE(axes.range.restrict) && isFALSE(pairwise.comparisons)) {
@@ -608,11 +604,5 @@ ggbetweenstats <- function(data,
   }
 
   # return the final plot
-  return(switch(
-    EXPR = output,
-    "plot" = plot,
-    "subtitle" = subtitle,
-    "caption" = caption,
-    plot
-  ))
+  return(plot)
 }

@@ -123,12 +123,8 @@ Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
 and its value to be displayed (Default: \code{TRUE}).}
     \item{\code{mean.ci}}{Logical that decides whether \verb{95\%} confidence interval for
 mean is to be displayed (Default: \code{FALSE}).}
-    \item{\code{point.jitter.width}}{Numeric specifying the degree of jitter in \code{x}
-direction. Defaults to \verb{40\%} of the resolution of the data.}
-    \item{\code{point.jitter.height}}{Numeric specifying the degree of jitter in \code{y}
-direction. Defaults to \code{0.1}.}
-    \item{\code{point.dodge.width}}{Numeric specifying the amount to dodge in the \code{x}
-direction. Defaults to \code{0.60}.}
+    \item{\code{point.args}}{A list of additional aesthetic arguments to be passed to
+the \code{geom_point} displaying the raw data.}
     \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
 of the current function. Default is \code{NULL}. The argument should be entered

@@ -170,12 +170,12 @@ mean_ggrepel <- function(plot,
       .fn = ggrepel::geom_label_repel,
       data = mean.data,
       mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, label = label),
-      !!!mean.label.args,
       show.legend = FALSE,
       min.segment.length = 0,
       inherit.aes = FALSE,
       parse = TRUE,
-      na.rm = TRUE
+      na.rm = TRUE,
+      !!!mean.label.args
     )
 }
 
@@ -330,7 +330,7 @@ ggsignif_xy <- function(x, y) {
   # end position on `y`-axis for the `ggsignif` lines
   y_end <- y_start + (step_length * n_comparions)
 
-  # creating a vector of positions for the ggsignif lines
+  # creating a vector of positions for the `ggsignif` lines
   seq(y_start, y_end, length.out = n_comparions)
 }
 

@@ -1,4 +1,155 @@
 
+# checking labels and data from plot -------------------------------------
+
+testthat::test_that(
+  desc = "checking labels and data from plot",
+  code = {
+    testthat::skip_on_cran()
+
+    # creating the plot
+    set.seed(123)
+    p <-
+      ggstatsplot::ggbetweenstats(
+        data = ggplot2::msleep,
+        x = vore,
+        y = brainwt,
+        title = "mammalian sleep",
+        caption = "From ggplot2 package",
+        xlab = "vore",
+        ylab = "brain weight",
+        axes.range.restrict = TRUE,
+        outlier.tagging = TRUE,
+        outlier.label = name,
+        outlier.label.args = list(color = "darkgreen"),
+        conf.level = 0.99,
+        k = 5,
+        bf.message = TRUE,
+        messages = FALSE
+      )
+
+    # subtitle
+    set.seed(123)
+    p_subtitle <-
+      statsExpressions::expr_anova_parametric(
+        data = ggplot2::msleep,
+        x = vore,
+        y = brainwt,
+        k = 5,
+        messages = FALSE,
+        conf.level = 0.99
+      )
+
+    # plot build
+    pb <- ggplot2::ggplot_build(p)
+
+    # dataframe used for visualization
+    testthat::expect_equal(length(pb$data), 6L)
+    testthat::expect_equal(dim(pb$data[[1]]), c(44L, 13L))
+    testthat::expect_equal(dim(pb$data[[2]]), c(4L, 25L))
+    testthat::expect_equal(dim(pb$data[[3]]), c(2048L, 20L))
+    testthat::expect_equal(dim(pb$data[[5]]), c(4L, 12L))
+
+    # data from difference layers
+    testthat::expect_equal(length(pb$data), 6L)
+    testthat::expect_equal(pb$data[[5]]$x, c(1L, 2L, 3L, 4L))
+    testthat::expect_equal(pb$data[[5]]$y,
+      c(0.07925556, 0.62159750, 0.02155000, 0.14573118),
+      tolerance = 0.001
+    )
+
+    # checking displayed outlier labels
+    testthat::expect_equal(
+      pb$data[[4]],
+      structure(
+        list(
+          x = c(2L, 2L, 1L, 4L, 2L, 1L, 3L),
+          y = c(
+            4.603,
+            0.655, 0.325, 1.32, 5.712, 0.157, 0.081
+          ),
+          label = c(
+            "Asian elephant",
+            "Horse",
+            "Gray seal",
+            "Human",
+            "African elephant",
+            "Jaguar",
+            "Giant armadillo"
+          ),
+          PANEL = structure(c(1L, 1L, 1L, 1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
+          group = structure(c(2L, 2L, 1L, 4L, 2L, 1L, 3L), n = 4L),
+          colour = c(
+            "darkgreen",
+            "darkgreen",
+            "darkgreen",
+            "darkgreen",
+            "darkgreen",
+            "darkgreen",
+            "darkgreen"
+          ),
+          fill = c("white", "white", "white", "white", "white", "white", "white"),
+          size = c(3.88, 3.88, 3.88, 3.88, 3.88, 3.88, 3.88),
+          angle = c(0, 0, 0, 0, 0, 0, 0),
+          alpha = c(NA, NA, NA, NA, NA, NA, NA),
+          family = c("", "", "", "", "", "", ""),
+          fontface = c(1, 1, 1, 1, 1, 1, 1),
+          lineheight = c(1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2),
+          hjust = c(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5),
+          vjust = c(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+        ),
+        row.names = c(NA, -7L),
+        class = "data.frame"
+      )
+    )
+
+    # range of y variable
+    testthat::expect_equal(ggplot2::layer_scales(p)$y$range$range,
+      c(0.00014, 5.71200000),
+      tolerance = 1e-5
+    )
+
+    # limits of data
+    testthat::expect_equal(ggplot2::layer_scales(p)$y$limits,
+      c(0.00014, 5.71200),
+      tolerance = 1e-3
+    )
+
+    # checking x-axis sample size labels
+    testthat::expect_identical(
+      ggplot2::layer_scales(p)$x$labels,
+      c(
+        "carni\n(n = 9)",
+        "herbi\n(n = 20)",
+        "insecti\n(n = 5)",
+        "omni\n(n = 17)"
+      )
+    )
+
+    # checking plot labels
+    testthat::expect_identical(p$labels$title, "mammalian sleep")
+    testthat::expect_identical(
+      p$labels$caption,
+      ggplot2::expr(atop(
+        displaystyle("From ggplot2 package"),
+        expr = paste(
+          "In favor of null: ",
+          "log"["e"],
+          "(BF"["01"],
+          ") = ",
+          "1.54274",
+          ", ",
+          italic("r")["Cauchy"]^"JZS",
+          " = ",
+          "0.70700"
+        )
+      ))
+    )
+    testthat::expect_identical(p$labels$x, "vore")
+    testthat::expect_identical(p$labels$y, "brain weight")
+  }
+)
+
+
 # outlier labeling works ----------------------------------------------------
 
 testthat::test_that(
@@ -9,7 +160,7 @@ testthat::test_that(
     # `outlier.label` is numeric
     set.seed(123)
     testthat::expect_true(inherits(
-      x = ggstatsplot::ggbetweenstats(
+      ggstatsplot::ggbetweenstats(
         data = dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25),
         x = genre,
         y = rating,
@@ -17,6 +168,7 @@ testthat::test_that(
         messages = TRUE,
         palette = "Set3",
         outlier.tagging = TRUE,
+        results.subtitle = FALSE,
         outlier.label = length,
         pairwise.comparisons = TRUE,
         pairwise.annotation = "asterisk"
@@ -32,6 +184,7 @@ testthat::test_that(
         x = genre,
         y = rating,
         messages = FALSE,
+        results.subtitle = FALSE,
         palette = "Set3",
         outlier.tagging = TRUE,
         outlier.label = "title"
@@ -53,6 +206,7 @@ testthat::test_that(
         y = "rating",
         messages = FALSE,
         palette = "Set3",
+        results.subtitle = FALSE,
         outlier.tagging = TRUE,
         outlier.label = "title",
         outlier.coef = 5
@@ -113,125 +267,6 @@ testthat::test_that(
   }
 )
 
-# checking labels and data from plot -------------------------------------
-
-testthat::test_that(
-  desc = "checking labels and data from plot",
-  code = {
-    testthat::skip_on_cran()
-
-    # creating the plot
-    set.seed(123)
-    p <- ggstatsplot::ggbetweenstats(
-      data = ggplot2::msleep,
-      x = vore,
-      y = brainwt,
-      title = "mammalian sleep",
-      caption = "From ggplot2 package",
-      xlab = "vore",
-      ylab = "brain weight",
-      axes.range.restrict = TRUE,
-      outlier.tagging = TRUE,
-      outlier.label = name,
-      conf.level = 0.99,
-      k = 5,
-      bf.message = TRUE,
-      messages = FALSE
-    )
-
-    # subtitle
-    set.seed(123)
-    p_subtitle <-
-      statsExpressions::expr_anova_parametric(
-        data = ggplot2::msleep,
-        x = vore,
-        y = brainwt,
-        k = 5,
-        messages = FALSE,
-        conf.level = 0.99
-      )
-
-    # plot build
-    pb <- ggplot2::ggplot_build(p)
-
-    # dataframe used for visualization
-    testthat::expect_equal(length(pb$data), 6L)
-    testthat::expect_equal(dim(pb$data[[1]]), c(44L, 13L))
-    testthat::expect_equal(dim(pb$data[[2]]), c(4L, 25L))
-    testthat::expect_equal(dim(pb$data[[3]]), c(2048L, 20L))
-    testthat::expect_equal(dim(pb$data[[5]]), c(4L, 12L))
-
-    # data from difference layers
-    testthat::expect_equal(length(pb$data), 6L)
-    testthat::expect_equal(pb$data[[5]]$x, c(1L, 2L, 3L, 4L))
-    testthat::expect_equal(pb$data[[5]]$y,
-      c(0.07925556, 0.62159750, 0.02155000, 0.14573118),
-      tolerance = 0.001
-    )
-
-    # checking displayed outlier labels
-    outlier.labels <- ggplot2::layer_grob(p, i = 4L)$`1`$lab
-
-    testthat::expect_equal(length(outlier.labels), 7L)
-    testthat::expect_identical(
-      outlier.labels,
-      c(
-        "Asian elephant",
-        "Horse",
-        "Gray seal",
-        "Human",
-        "African elephant",
-        "Jaguar",
-        "Giant armadillo"
-      )
-    )
-
-    # range of y variable
-    testthat::expect_equal(ggplot2::layer_scales(p)$y$range$range,
-      c(0.00014, 5.71200000),
-      tolerance = 1e-5
-    )
-
-    # limits of data
-    testthat::expect_equal(ggplot2::layer_scales(p)$y$limits,
-      c(0.00014, 5.71200),
-      tolerance = 1e-3
-    )
-
-    # checking x-axis sample size labels
-    testthat::expect_identical(
-      ggplot2::layer_scales(p)$x$labels,
-      c(
-        "carni\n(n = 9)",
-        "herbi\n(n = 20)",
-        "insecti\n(n = 5)",
-        "omni\n(n = 17)"
-      )
-    )
-
-    # checking plot labels
-    testthat::expect_identical(p$labels$title, "mammalian sleep")
-    testthat::expect_identical(
-      p$labels$caption,
-      ggplot2::expr(atop(
-        displaystyle("From ggplot2 package"),
-        expr = paste(
-          "In favor of null: ",
-          "log"["e"],
-          "(BF"["01"],
-          ") = ",
-          "1.54274",
-          ", ",
-          italic("r")["Cauchy"]^"JZS",
-          " = ",
-          "0.70700"
-        )
-      ))
-    )
-    testthat::expect_identical(p$labels$x, "vore")
-    testthat::expect_identical(p$labels$y, "brain weight")
-  }
-)
 
 # mean labelling tests work ------------------------------------------
 
@@ -461,25 +496,186 @@ testthat::test_that(
       c("5", "10", "15", "20", "25", "30")
     )
 
-    # tests for data
+    # dims for data
     testthat::expect_equal(dim(pb1$data[[1]]), c(58L, 13L))
     testthat::expect_equal(dim(pb1$data[[2]]), c(2L, 25L))
     testthat::expect_equal(dim(pb1$data[[4]]), c(2L, 12L))
-    testthat::expect_equal(pb1$data[[4]]$x, c(1L, 2L))
-    testthat::expect_identical(
-      c("list(~italic(widehat(mu))== 20.66 )", "list(~italic(widehat(mu))== 16.96 )"),
-      pb1$data[[5]]$label
-    )
     testthat::expect_equal(dim(pb1$data[[2]]), c(2L, 25L))
     testthat::expect_equal(dim(pb1$data[[4]]), c(2L, 12L))
-    testthat::expect_equal(pb1$data[[4]]$x, c(1L, 2L))
-    testthat::expect_identical(pb1$data[[3]]$colour[1], "black")
-    testthat::expect_identical(pb1$data[[4]]$colour[1], "darkgreen")
-    # testthat::expect_identical(pb1$data[[5]]$colour[1], "blue")
-    testthat::expect_equal(pb1$data[[5]]$size[1], 3.88, tolerance = 0.001)
     testthat::expect_equal(dim(pb2$data[[1]]), c(58L, 13L))
     testthat::expect_equal(dim(pb2$data[[2]]), c(2L, 10L))
     testthat::expect_equal(dim(pb2$data[[3]]), c(1024L, 20L))
+
+    # checking geom data
+    testthat::expect_equal(
+      pb1$data[[2]],
+      structure(
+        list(
+          ymin = c(8.2, 4.2),
+          lower = c(15.525, 11.2),
+          middle = c(22.7, 16.5),
+          upper = c(25.725, 23.1),
+          ymax = c(30.9, 29.5),
+          outliers = list(numeric(0), c(33.9, 32.5)),
+          notchupper = c(25.6423655789178, 19.9327598420707),
+          notchlower = c(19.7576344210822, 13.0672401579293),
+          x = c(1, 2),
+          PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
+          group = 1:2,
+          ymin_final = c(8.2, 4.2),
+          ymax_final = c(30.9, 33.9),
+          xmin = c(0.85, 1.85),
+          xmax = c(1.15, 2.15),
+          xid = c(1, 2),
+          newx = c(1, 2),
+          new_width = c(0.3, 0.3),
+          weight = c(1, 1),
+          colour = c("grey20", "grey20"),
+          fill = c("white", "white"),
+          size = c(0.5, 0.5),
+          alpha = c(0.2, 0.2),
+          shape = c(19, 19),
+          linetype = c("solid", "solid")
+        ),
+        row.names = c(NA, -2L),
+        class = "data.frame"
+      )
+    )
+
+    testthat::expect_equal(
+      pb1$data[[3]],
+      structure(
+        list(
+          x = c(2L, 2L),
+          y = c(33.9, 32.5),
+          label = c(
+            33.9,
+            32.5
+          ),
+          PANEL = structure(c(1L, 1L), class = "factor", .Label = "1"),
+          group = structure(c(1L, 1L), n = 1L),
+          colour = c(
+            "black",
+            "black"
+          ),
+          fill = c("white", "white"),
+          size = c(3, 3),
+          angle = c(0, 0),
+          alpha = c(NA, NA),
+          family = c("", ""),
+          fontface = c(1, 1),
+          lineheight = c(1.2, 1.2),
+          hjust = c(
+            0.5,
+            0.5
+          ),
+          vjust = c(0.5, 0.5)
+        ),
+        row.names = c(NA, -2L),
+        class = "data.frame"
+      )
+    )
+
+    testthat::expect_equal(
+      pb1$data[[4]],
+      structure(
+        list(
+          x = 1:2,
+          group = 1:2,
+          y = c(
+            20.6633333333333,
+            16.9633333333333
+          ),
+          ymin = c(NA_real_, NA_real_),
+          ymax = c(NA_real_, NA_real_),
+          PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
+          shape = c(19, 19),
+          colour = c("darkgreen", "darkgreen"),
+          size = c(5, 5),
+          fill = c(NA, NA),
+          alpha = c(NA, NA),
+          stroke = c(0.5, 0.5)
+        ),
+        row.names = c(NA, -2L),
+        class = "data.frame"
+      )
+    )
+
+    testthat::expect_equal(
+      pb1$data[[5]],
+      structure(
+        list(
+          x = 1:2,
+          y = c(20.6633333333333, 16.9633333333333),
+          label = c(
+            "list(~italic(widehat(mu))== 20.66 )",
+            "list(~italic(widehat(mu))== 16.96 )"
+          ),
+          PANEL = structure(c(1L, 1L), class = "factor", .Label = "1"),
+          group = structure(1:2, n = 2L),
+          colour = c("blue", "blue"),
+          fill = c("white", "white"),
+          size = c(3.88, 3.88),
+          angle = c(0, 0),
+          alpha = c(NA, NA),
+          family = c("", ""),
+          fontface = c(1, 1),
+          lineheight = c(1.2, 1.2),
+          hjust = c(0.5, 0.5),
+          vjust = c(0.5, 0.5)
+        ),
+        row.names = c(NA, -2L),
+        class = "data.frame"
+      )
+    )
+
+    testthat::expect_equal(
+      pb2$data[[2]],
+      structure(
+        list(
+          y = c(33.9, 32.5),
+          x = c(2L, 2L),
+          PANEL = structure(c(1L, 1L), class = "factor", .Label = "1"),
+          group = structure(c(1L, 1L), n = 1L),
+          shape = c(19, 19),
+          colour = c("blue", "blue"),
+          size = c(3, 3),
+          fill = c(NA, NA),
+          alpha = c(0.7, 0.7),
+          stroke = c(0, 0)
+        ),
+        row.names = c(NA, -2L),
+        class = "data.frame"
+      )
+    )
+
+    testthat::expect_equal(
+      pb2$data[[4]],
+      structure(
+        list(
+          y = c(33.9, 32.5),
+          x = c(2L, 2L),
+          label = c(
+            33.9,
+            32.5
+          ),
+          PANEL = structure(c(1L, 1L), class = "factor", .Label = "1"),
+          group = structure(c(1L, 1L), n = 1L),
+          colour = c("black", "black"),
+          fill = c("white", "white"),
+          size = c(3, 3),
+          angle = c(0, 0),
+          alpha = c(NA, NA),
+          family = c("", ""),
+          fontface = c(1, 1),
+          lineheight = c(1.2, 1.2),
+          hjust = c(0.5, 0.5),
+          vjust = c(0.5, 0.5)
+        ),
+        row.names = c(NA, -2L),
+        class = "data.frame"
+      )
+    )
   }
 )
 

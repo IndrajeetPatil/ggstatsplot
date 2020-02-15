@@ -171,73 +171,73 @@ df_year <- dplyr::filter(.data = gapminder::gapminder, year == 2007 | year == 19
 set.seed(123)
 
 # parametric t-test and box plot
-p1 <- 
+p1 <-
   ggstatsplot::ggbetweenstats(
-  data = df_year,
-  x = year,
-  y = lifeExp,
-  plot.type = "box",
-  type = "p",
-  effsize.type = "d",
-  conf.level = 0.99,
-  title = "Parametric test",
-  package = "ggsci",
-  palette = "nrc_npg",
-  messages = FALSE
-)
+    data = df_year,
+    x = year,
+    y = lifeExp,
+    plot.type = "box",
+    type = "p",
+    effsize.type = "d",
+    conf.level = 0.99,
+    title = "Parametric test",
+    package = "ggsci",
+    palette = "nrc_npg",
+    messages = FALSE
+  )
 
 # Mann-Whitney U test (nonparametric t) and violin plot
-p2 <- 
+p2 <-
   ggstatsplot::ggbetweenstats(
-  data = df_year,
-  x = year,
-  y = lifeExp,
-  xlab = "Year",
-  ylab = "Life expectancy",
-  plot.type = "violin",
-  type = "np",
-  conf.level = 0.99,
-  title = "Non-parametric Test (violin plot)",
-  package = "ggsci",
-  palette = "uniform_startrek",
-  messages = FALSE
-)
+    data = df_year,
+    x = year,
+    y = lifeExp,
+    xlab = "Year",
+    ylab = "Life expectancy",
+    plot.type = "violin",
+    type = "np",
+    conf.level = 0.99,
+    title = "Non-parametric Test (violin plot)",
+    package = "ggsci",
+    palette = "uniform_startrek",
+    messages = FALSE
+  )
 
 # robust t-test and boxviolin plot
-p3 <- 
+p3 <-
   ggstatsplot::ggbetweenstats(
-  data = df_year,
-  x = year,
-  y = lifeExp,
-  xlab = "Year",
-  ylab = "Life expectancy",
-  plot.type = "boxviolin",
-  type = "r",
-  conf.level = 0.99,
-  title = "Robust Test (box & violin plot)",
-  tr = 0.005,
-  package = "wesanderson",
-  palette = "Royal2",
-  nboot = 15,
-  k = 3,
-  messages = FALSE
-)
+    data = df_year,
+    x = year,
+    y = lifeExp,
+    xlab = "Year",
+    ylab = "Life expectancy",
+    plot.type = "boxviolin",
+    type = "r",
+    conf.level = 0.99,
+    title = "Robust Test (box & violin plot)",
+    tr = 0.005,
+    package = "wesanderson",
+    palette = "Royal2",
+    nboot = 15,
+    k = 3,
+    messages = FALSE
+  )
 
 # Bayes Factor for parametric t-test and boxviolin plot
-p4 <- 
+p4 <-
   ggstatsplot::ggbetweenstats(
-  data = df_year,
-  x = year,
-  y = lifeExp,
-  xlab = "Year",
-  ylab = "Life expectancy",
-  type = "bf",
-  plot.type = "box",
-  title = "Bayesian Test (box plot)",
-  package = "ggsci",
-  palette = "nrc_npg",
-  messages = FALSE
-)
+    data = df_year,
+    x = year,
+    y = lifeExp,
+    xlab = "Year",
+    ylab = "Life expectancy",
+    type = "bf",
+    plot.type = "box",
+    title = "Bayesian Test (box plot)",
+    package = "ggsci",
+    palette = "nrc_npg",
+    messages = FALSE
+  )
 
 # combining the individual plots into a single plot
 ggstatsplot::combine_plots(

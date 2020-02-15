@@ -158,15 +158,15 @@ of line to draw box plots (Default: \code{"solid"}). Alternatively, the numbers
 \code{0} to \code{6} can be used (\code{0} for "blank", \code{1} for "solid", etc.).}
     \item{\code{outlier.tagging}}{Decides whether outliers should be tagged (Default:
 \code{FALSE}).}
+    \item{\code{outlier.coef}}{Coefficient for outlier detection using Tukey's method.
+With Tukey's method, outliers are below (1st Quartile) or above (3rd
+Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
+\code{1.5}).}
     \item{\code{outlier.shape}}{Hiding the outliers can be achieved by setting
 \code{outlier.shape = NA}. Importantly, this does not remove the outliers,
 it only hides them, so the range calculated for the \code{y}-axis will be
 the same with outliers shown and outliers hidden.}
     \item{\code{outlier.color}}{Default aesthetics for outliers (Default: \code{"black"}).}
-    \item{\code{outlier.coef}}{Coefficient for outlier detection using Tukey's method.
-With Tukey's method, outliers are below (1st Quartile) or above (3rd
-Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
-\code{1.5}).}
     \item{\code{outlier.label.args}}{A list of additional aesthetic arguments to be
 passed to \code{ggplot2::geom_point} and \code{ggrepel::geom_label_repel} geoms
 involved outlier value plotting.}

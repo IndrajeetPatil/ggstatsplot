@@ -39,20 +39,19 @@ ggbetweenstats(
   mean.plotting = TRUE,
   mean.ci = FALSE,
   mean.point.args = list(size = 5, color = "darkred"),
-  mean.label.args = list(),
+  mean.label.args = list(size = 3),
   notch = FALSE,
   notchwidth = 0.5,
   linetype = "solid",
   outlier.tagging = FALSE,
+  outlier.label = NULL,
+  outlier.coef = 1.5,
   outlier.shape = 19,
   outlier.color = "black",
-  outlier.coef = 1.5,
-  outlier.label = NULL,
-  outlier.label.args = list(),
+  outlier.label.args = list(size = 3),
   outlier.point.args = list(),
-  point.jitter.width = NULL,
-  point.jitter.height = 0,
-  point.dodge.width = 0.6,
+  point.args = list(position = ggplot2::position_jitterdodge(dodge.width = 0.6), alpha =
+    0.4, size = 3, stroke = 0),
   ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE,
   package = "RColorBrewer",
@@ -207,6 +206,14 @@ of line to draw box plots (Default: \code{"solid"}). Alternatively, the numbers
 \item{outlier.tagging}{Decides whether outliers should be tagged (Default:
 \code{FALSE}).}
 
+\item{outlier.label}{Label to put on the outliers that have been tagged. This
+\strong{can't} be the same as \code{x} argument.}
+
+\item{outlier.coef}{Coefficient for outlier detection using Tukey's method.
+With Tukey's method, outliers are below (1st Quartile) or above (3rd
+Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
+\code{1.5}).}
+
 \item{outlier.shape}{Hiding the outliers can be achieved by setting
 \code{outlier.shape = NA}. Importantly, this does not remove the outliers,
 it only hides them, so the range calculated for the \code{y}-axis will be
@@ -214,26 +221,12 @@ the same with outliers shown and outliers hidden.}
 
 \item{outlier.color}{Default aesthetics for outliers (Default: \code{"black"}).}
 
-\item{outlier.coef}{Coefficient for outlier detection using Tukey's method.
-With Tukey's method, outliers are below (1st Quartile) or above (3rd
-Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
-\code{1.5}).}
-
-\item{outlier.label}{Label to put on the outliers that have been tagged. This
-\strong{can't} be the same as \code{x} argument.}
-
 \item{outlier.point.args, outlier.label.args}{A list of additional aesthetic arguments to be
 passed to \code{ggplot2::geom_point} and \code{ggrepel::geom_label_repel} geoms
 involved outlier value plotting.}
 
-\item{point.jitter.width}{Numeric specifying the degree of jitter in \code{x}
-direction. Defaults to \verb{40\%} of the resolution of the data.}
-
-\item{point.jitter.height}{Numeric specifying the degree of jitter in \code{y}
-direction. Defaults to \code{0.1}.}
-
-\item{point.dodge.width}{Numeric specifying the amount to dodge in the \code{x}
-direction. Defaults to \code{0.60}.}
+\item{point.args}{A list of additional aesthetic arguments to be passed to
+the \code{geom_point} displaying the raw data.}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from

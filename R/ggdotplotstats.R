@@ -150,6 +150,15 @@ ggdotplotstats <- function(data,
       )
   }
 
+  # quit early if only subtitle is needed
+  if (output %in% c("subtitle", "caption")) {
+    return(switch(
+      EXPR = output,
+      "subtitle" = subtitle,
+      "caption" = caption
+    ))
+  }
+
   # ------------------------------ basic plot ----------------------------
 
   # creating the basic plot
@@ -239,17 +248,10 @@ ggdotplotstats <- function(data,
     normality_message(
       x = data %>% dplyr::pull({{ x }}),
       lab = xlab,
-      k = k,
-      output = "message"
+      k = k
     )
   }
 
   # return the plot
-  return(switch(
-    EXPR = output,
-    "plot" = plot,
-    "subtitle" = subtitle,
-    "caption" = caption,
-    plot
-  ))
+  return(plot)
 }

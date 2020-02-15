@@ -295,7 +295,7 @@ iris2 <- dplyr::filter(.data = iris, Species != "setosa")
 
 # let's change the levels of our factors, a common routine in data analysis
 # pipeline, to see if this function respects the new factor levels
-iris2$Species <- factor(x = iris2$Species, levels = c("virginica", "versicolor"))
+iris2$Species <- factor(iris2$Species, levels = c("virginica", "versicolor"))
 
 # plot
 ggstatsplot::ggbetweenstats(
@@ -309,7 +309,7 @@ ggstatsplot::ggbetweenstats(
   k = 3, # number of decimal places for statistical results
   outlier.tagging = TRUE, # whether outliers need to be tagged
   outlier.label = Sepal.Width, # variable to be used for the outlier tag
-  outlier.label.color = "darkgreen", # changing the color for the text label
+  outlier.label.args = list(color = "darkgreen"), # changing the color for the text label
   xlab = "Type of Species", # label for the x-axis variable
   ylab = "Attribute: Sepal Length", # label for the y-axis variable
   title = "Dataset: Iris flower data set", # title text for the plot

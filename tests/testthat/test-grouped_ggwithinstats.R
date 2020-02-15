@@ -35,9 +35,10 @@ testthat::test_that(
         x = modality,
         y = score,
         grouping.var = order,
+        results.subtitle = FALSE,
         outlier.tagging = FALSE,
         type = "bayes",
-        messages = TRUE
+        messages = FALSE
       ),
       "ggplot"
     )
@@ -53,10 +54,11 @@ testthat::test_that(
         type = "p",
         output = "plot",
         bf.message = TRUE,
+        results.subtitle = FALSE,
         outlier.tagging = TRUE,
         pairwise.comparisons = TRUE,
         pairwise.annotation = "p.score",
-        messages = TRUE
+        messages = FALSE
       ),
       what = "gg"
     ))
@@ -75,6 +77,7 @@ testthat::test_that(
         grouping.var = Species,
         messages = FALSE,
         type = "r",
+        results.subtitle = FALSE,
         pairwise.comparisons = TRUE,
         outlier.tagging = TRUE,
         outlier.label = "id",
@@ -119,14 +122,15 @@ testthat::test_that(
 
     # should output a list of length 3
     set.seed(123)
-    ls_results <- ggstatsplot::grouped_ggwithinstats(
-      data = iris_long,
-      x = condition,
-      y = value,
-      grouping.var = Species,
-      output = "subtitle",
-      messages = FALSE
-    )
+    ls_results <-
+      ggstatsplot::grouped_ggwithinstats(
+        data = iris_long,
+        x = condition,
+        y = value,
+        grouping.var = Species,
+        output = "subtitle",
+        messages = FALSE
+      )
 
     # tests
     testthat::expect_equal(length(ls_results), 3L)
