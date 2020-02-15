@@ -130,20 +130,20 @@ Functions | Type | Test | Effect size | 95% CI available?
 
 # Installation
 
-To get the latest, stable `CRAN` release (`0.3.0`):
+To get the latest, stable `CRAN` release:
 
 ```{r installationCRAN, eval = FALSE}
-utils::install.packages(pkgs = "ggstatsplot")
+install.packages(pkgs = "ggstatsplot")
 ```
 
 *Note*: If you are on a linux machine, you will need to have OpenGL libraries
 installed (specifically, `libx11`, `mesa` and Mesa OpenGL Utility library -
 `glu`) for the dependency package `rgl` to work.
 
-You can get the **development** version of the package from GitHub
-(`0.3.0.9000`). To see what new changes (and bug fixes) have been made to the
-package since the last release on `CRAN`, you can check the detailed log of
-changes here: <https://indrajeetpatil.github.io/ggstatsplot/news/index.html>
+You can get the **development** version of the package from GitHub. To see what
+new changes (and bug fixes) have been made to the package since the last release
+on `CRAN`, you can check the detailed log of changes here:
+<https://indrajeetpatil.github.io/ggstatsplot/news/index.html>
 
 If you are in hurry and want to reduce the time of installation,
 prefer-
@@ -216,15 +216,14 @@ Another handy tool to see arguments to any of the functions is `args`. For
 example-
 
 ```{r args, message = FALSE, warning = FALSE}
-args(name = ggstatsplot::specify_decimal_p)
+args(ggstatsplot::specify_decimal_p)
 ```
 
 In case you want to look at the function body for any of the functions, just
 type the name of the function without the parentheses:
 
 ```{r funbody, message = FALSE, warning = FALSE}
-# function to convert class of any object to `ggplot` class
-ggstatsplot::ggplot_converter
+ggstatsplot::specify_decimal_p
 ```
 
 If you are not familiar either with what the namespace `::` does or how to use
@@ -306,7 +305,6 @@ ggstatsplot::ggbetweenstats(
   notch = TRUE, # show notched box plot
   mean.plotting = TRUE, # whether mean for each group is to be displayed
   mean.ci = TRUE, # whether to display confidence interval for means
-  mean.label.size = 2.5, # size of the label for mean
   type = "parametric", # which type of test is to be run
   k = 3, # number of decimal places for statistical results
   outlier.tagging = TRUE, # whether outliers need to be tagged
@@ -354,15 +352,11 @@ ggstatsplot::grouped_ggbetweenstats(
   pairwise.annotation = "p.value", # how do you want to annotate the pairwise comparisons
   p.adjust.method = "bonferroni", # method for adjusting p-values for multiple comparisons
   conf.level = 0.99, # changing confidence level to 99%
-  ggplot.component = list( # adding new components to `ggstatsplot` default
-    ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis())
-  ),
+  # adding new components to `ggstatsplot` default
+  ggplot.component = list(ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis())),
   k = 3,
   title.prefix = "Movie genre",
-  caption = substitute(paste(
-    italic("Source"),
-    ":IMDb (Internet Movie Database)"
-  )),
+  caption = substitute(paste(italic("Source"), ":IMDb (Internet Movie Database)")),
   palette = "default_jama",
   package = "ggsci",
   messages = FALSE,
@@ -664,12 +658,13 @@ results from McNemar's $\chi^2$ test-
 set.seed(123)
 
 # data
-survey.data <- data.frame(
-  `1st survey` = c("Approve", "Approve", "Disapprove", "Disapprove"),
-  `2nd survey` = c("Approve", "Disapprove", "Approve", "Disapprove"),
-  `Counts` = c(794, 150, 86, 570),
-  check.names = FALSE
-)
+survey.data <-
+  data.frame(
+    `1st survey` = c("Approve", "Approve", "Disapprove", "Disapprove"),
+    `2nd survey` = c("Approve", "Disapprove", "Approve", "Disapprove"),
+    `Counts` = c(794, 150, 86, 570),
+    check.names = FALSE
+  )
 
 # plot
 ggstatsplot::ggpiestats(

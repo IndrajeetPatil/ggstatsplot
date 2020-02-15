@@ -308,10 +308,6 @@ the plot will be returned.</p></dd>
     <dt><code>sample.size.label</code></dt><dd><p>Logical that decides whether sample size information
 should be displayed for each level of the grouping variable <code>x</code> (Default:
 <code>TRUE</code>).</p></dd>
-    <dt><code>mean.label.size</code></dt><dd><p>Aesthetics for
-the label displaying mean. Defaults: <code>3</code>, <code>"bold"</code>,<code>"black"</code>, respectively.</p></dd>
-    <dt><code>mean.label.color</code></dt><dd><p>Aesthetics for
-the label displaying mean. Defaults: <code>3</code>, <code>"bold"</code>,<code>"black"</code>, respectively.</p></dd>
     <dt><code>notch</code></dt><dd><p>A logical. If <code>FALSE</code> (default), a standard box plot will be
 displayed. If <code>TRUE</code>, a notched box plot will be used. Notches are used to
 compare groups; if the notches of two boxes do not overlap, this suggests
@@ -331,8 +327,12 @@ of line to draw box plots (Default: <code>"solid"</code>). Alternatively, the nu
 <code>outlier.shape = NA</code>. Importantly, this does not remove the outliers,
 it only hides them, so the range calculated for the <code>y</code>-axis will be
 the same with outliers shown and outliers hidden.</p></dd>
-    <dt><code>outlier.label.color</code></dt><dd><p>Color for the label to to put on the outliers that
-have been tagged (Default: <code>"black"</code>).</p></dd>
+    <dt><code>outlier.point.args</code></dt><dd><p>A list of additional aesthetic arguments to be
+passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point</a></code> and <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geoms
+involved outlier value plotting.</p></dd>
+    <dt><code>outlier.label.args</code></dt><dd><p>A list of additional aesthetic arguments to be
+passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point</a></code> and <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geoms
+involved outlier value plotting.</p></dd>
     <dt><code>outlier.coef</code></dt><dd><p>Coefficient for outlier detection using Tukey's method.
 With Tukey's method, outliers are below (1st Quartile) or above (3rd
 Quartile) <code>outlier.coef</code> times the Inter-Quartile Range (IQR) (Default:
@@ -341,10 +341,6 @@ Quartile) <code>outlier.coef</code> times the Inter-Quartile Range (IQR) (Defaul
 and its value to be displayed (Default: <code>TRUE</code>).</p></dd>
     <dt><code>mean.ci</code></dt><dd><p>Logical that decides whether <code>95%</code> confidence interval for
 mean is to be displayed (Default: <code>FALSE</code>).</p></dd>
-    <dt><code>mean.color</code></dt><dd><p>Color for the data point corresponding to mean (Default:
-<code>"darkred"</code>).</p></dd>
-    <dt><code>mean.size</code></dt><dd><p>Point size for the data point corresponding to mean
-(Default: <code>5</code>).</p></dd>
     <dt><code>point.jitter.width</code></dt><dd><p>Numeric specifying the degree of jitter in <code>x</code>
 direction. Defaults to <code>40%</code> of the resolution of the data.</p></dd>
     <dt><code>point.jitter.height</code></dt><dd><p>Numeric specifying the degree of jitter in <code>y</code>
@@ -369,6 +365,12 @@ be sorted based on increasing values of <code>y</code>-axis variable. If
 or symbol.</p></dd>
     <dt><code>palette</code></dt><dd><p>Name of palette as string or symbol.</p></dd>
     <dt><code>direction</code></dt><dd><p>Either <code>1</code> or <code>-1</code>. If <code>-1</code> the palette will be reversed.</p></dd>
+    <dt><code>mean.point.args</code></dt><dd><p>A list of additional aesthetic
+arguments to be passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point</a></code> and
+<code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geoms involved mean value plotting.</p></dd>
+    <dt><code>mean.label.args</code></dt><dd><p>A list of additional aesthetic
+arguments to be passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point</a></code> and
+<code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geoms involved mean value plotting.</p></dd>
     <dt><code>ggtheme</code></dt><dd><p>A function, <code>ggplot2</code> theme name. Default value is
 <code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
 extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>,

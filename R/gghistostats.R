@@ -128,7 +128,7 @@ gghistostats <- function(data,
   df <-
     dplyr::select(.data = data, {{ x }}) %>%
     tidyr::drop_na(data = .) %>%
-    tibble::as_tibble(x = .)
+    as_tibble(x = .)
 
   # column as a vector
   x_vec <- df %>% dplyr::pull({{ x }})

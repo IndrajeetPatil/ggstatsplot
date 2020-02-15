@@ -48,12 +48,11 @@
 #'
 #' @import ggplot2
 #'
-#' @importFrom dplyr select group_by summarize n mutate mutate_at mutate_if
+#' @importFrom dplyr select mutate vars pull
 #' @importFrom rlang !! enquo quo_name as_name ensym
 #' @importFrom paletteer scale_fill_paletteer_d
 #' @importFrom groupedstats grouped_proptest
 #' @importFrom tidyr uncount drop_na
-#' @importFrom tibble as_tibble
 #'
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
@@ -163,7 +162,7 @@ ggpiestats <- function(data,
   data %<>%
     dplyr::select(.data = ., {{ x }}, {{ y }}, {{ counts }}) %>%
     tidyr::drop_na(data = .) %>%
-    tibble::as_tibble(x = .)
+    as_tibble(x = .)
 
   # =========================== converting counts ============================
 

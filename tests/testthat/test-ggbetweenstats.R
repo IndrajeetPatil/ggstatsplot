@@ -43,22 +43,20 @@ testthat::test_that(
     # `outlier.label` is character
     # also x, y, and outlier.label arguments as characters
     set.seed(123)
-    movies_long1 <-
-      dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25)
+    movies_long1 <- dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25)
     movies_long1$title <- as.character(movies_long1$title)
 
     testthat::expect_true(inherits(
-      x =
-        ggstatsplot::ggbetweenstats(
-          data = movies_long1,
-          x = "genre",
-          y = "rating",
-          messages = FALSE,
-          palette = "Set3",
-          outlier.tagging = TRUE,
-          outlier.label = "title",
-          outlier.coef = 5
-        ),
+      ggstatsplot::ggbetweenstats(
+        data = movies_long1,
+        x = "genre",
+        y = "rating",
+        messages = FALSE,
+        palette = "Set3",
+        outlier.tagging = TRUE,
+        outlier.label = "title",
+        outlier.coef = 5
+      ),
       what = "gg"
     ))
   }
@@ -72,34 +70,37 @@ testthat::test_that(
     testthat::skip_on_cran()
 
     set.seed(123)
-    p1 <- ggstatsplot::ggbetweenstats(
-      data = iris,
-      x = Species,
-      y = Sepal.Length,
-      sort = "none",
-      results.subtitle = FALSE,
-      messages = FALSE
-    )
+    p1 <-
+      ggstatsplot::ggbetweenstats(
+        data = iris,
+        x = Species,
+        y = Sepal.Length,
+        sort = "none",
+        results.subtitle = FALSE,
+        messages = FALSE
+      )
 
     set.seed(123)
-    p2 <- ggstatsplot::ggbetweenstats(
-      data = iris,
-      x = Species,
-      y = Sepal.Length,
-      sort = "ascending",
-      results.subtitle = FALSE,
-      messages = FALSE
-    )
+    p2 <-
+      ggstatsplot::ggbetweenstats(
+        data = iris,
+        x = Species,
+        y = Sepal.Length,
+        sort = "ascending",
+        results.subtitle = FALSE,
+        messages = FALSE
+      )
 
     set.seed(123)
-    p3 <- ggstatsplot::ggbetweenstats(
-      data = iris,
-      x = Species,
-      y = Sepal.Length,
-      sort = "xxx",
-      results.subtitle = FALSE,
-      messages = FALSE
-    )
+    p3 <-
+      ggstatsplot::ggbetweenstats(
+        data = iris,
+        x = Species,
+        y = Sepal.Length,
+        sort = "xxx",
+        results.subtitle = FALSE,
+        messages = FALSE
+      )
 
     # built plots
     pb1 <- ggplot2::ggplot_build(p1)
@@ -140,14 +141,15 @@ testthat::test_that(
 
     # subtitle
     set.seed(123)
-    p_subtitle <- statsExpressions::expr_anova_parametric(
-      data = ggplot2::msleep,
-      x = vore,
-      y = brainwt,
-      k = 5,
-      messages = FALSE,
-      conf.level = 0.99
-    )
+    p_subtitle <-
+      statsExpressions::expr_anova_parametric(
+        data = ggplot2::msleep,
+        x = vore,
+        y = brainwt,
+        k = 5,
+        messages = FALSE,
+        conf.level = 0.99
+      )
 
     # plot build
     pb <- ggplot2::ggplot_build(p)
@@ -240,22 +242,23 @@ testthat::test_that(
 
     # creating the plot
     set.seed(123)
-    p <- ggstatsplot::ggbetweenstats(
-      data = tibble::as_tibble(mtcars, rownames = "name") %>%
-        dplyr::rename(.data = ., n = wt),
-      x = "cyl",
-      y = "n",
-      type = "np",
-      mean.ci = TRUE,
-      k = 2L,
-      conf.level = 0.90,
-      outlier.tagging = TRUE,
-      outlier.label = "name",
-      outlier.coef = 2.5,
-      nboot = 5,
-      results.subtitle = FALSE,
-      messages = FALSE
-    ) +
+    p <-
+      ggstatsplot::ggbetweenstats(
+        data = tibble::as_tibble(mtcars, rownames = "name") %>%
+          dplyr::rename(.data = ., n = wt),
+        x = "cyl",
+        y = "n",
+        type = "np",
+        mean.ci = TRUE,
+        k = 2L,
+        conf.level = 0.90,
+        outlier.tagging = TRUE,
+        outlier.label = "name",
+        outlier.coef = 2.5,
+        nboot = 5,
+        results.subtitle = FALSE,
+        messages = FALSE
+      ) +
       ggplot2::coord_cartesian(ylim = c(1, 6)) +
       ggplot2::scale_y_continuous(limits = c(1, 6), breaks = seq(1, 6, 1))
 
@@ -357,9 +360,9 @@ testthat::test_that(
   desc = "checking if plot.type argument works",
   code = {
     testthat::skip_on_cran()
-    set.seed(123)
 
     # boxplot
+    set.seed(123)
     p1 <-
       ggstatsplot::ggbetweenstats(
         data = ToothGrowth,
@@ -373,12 +376,13 @@ testthat::test_that(
         bf.message = TRUE,
         outlier.coef = 0.75,
         outlier.color = "blue",
-        mean.color = "darkgreen",
-        mean.label.color = "blue",
+        mean.point.args = list(size = 5, color = "darkgreen"),
+        mean.label.args = list(color = "blue"),
         messages = FALSE
       )
 
     # violin
+    set.seed(123)
     p2 <-
       ggstatsplot::ggbetweenstats(
         data = ToothGrowth,
@@ -471,7 +475,8 @@ testthat::test_that(
     testthat::expect_equal(pb1$data[[4]]$x, c(1L, 2L))
     testthat::expect_identical(pb1$data[[3]]$colour[1], "black")
     testthat::expect_identical(pb1$data[[4]]$colour[1], "darkgreen")
-    testthat::expect_identical(pb1$data[[5]]$colour[1], "blue")
+    # testthat::expect_identical(pb1$data[[5]]$colour[1], "blue")
+    testthat::expect_equal(pb1$data[[5]]$size[1], 3.88, tolerance = 0.001)
     testthat::expect_equal(dim(pb2$data[[1]]), c(58L, 13L))
     testthat::expect_equal(dim(pb2$data[[2]]), c(2L, 10L))
     testthat::expect_equal(dim(pb2$data[[3]]), c(1024L, 20L))
@@ -486,14 +491,15 @@ testthat::test_that(
     testthat::skip_on_cran()
 
     # plot
-    p <- ggstatsplot::ggbetweenstats(
-      data = iris,
-      x = Species,
-      y = Sepal.Length,
-      results.subtitle = FALSE,
-      messages = FALSE,
-      ggplot.component = ggplot2::labs(y = "SL")
-    )
+    p <-
+      ggstatsplot::ggbetweenstats(
+        data = iris,
+        x = Species,
+        y = Sepal.Length,
+        results.subtitle = FALSE,
+        messages = FALSE,
+        ggplot.component = ggplot2::labs(y = "SL")
+      )
 
     # build plot
     pb <- ggplot2::ggplot_build(p)

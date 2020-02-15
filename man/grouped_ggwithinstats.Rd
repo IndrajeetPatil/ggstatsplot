@@ -134,10 +134,16 @@ be sorted based on increasing values of \code{y}-axis variable. If
 values ranges to \code{min} and \code{max} values of the axes variables (Default:
 \code{FALSE}), only relevant for functions where axes variables are of numeric
 type.}
-    \item{\code{mean.label.size}}{Aesthetics for
-the label displaying mean. Defaults: \code{3}, \code{"bold"},\code{"black"}, respectively.}
-    \item{\code{mean.label.color}}{Aesthetics for
-the label displaying mean. Defaults: \code{3}, \code{"bold"},\code{"black"}, respectively.}
+    \item{\code{mean.plotting}}{Logical that decides whether mean is to be highlighted
+and its value to be displayed (Default: \code{TRUE}).}
+    \item{\code{mean.ci}}{Logical that decides whether \verb{95\%} confidence interval for
+mean is to be displayed (Default: \code{FALSE}).}
+    \item{\code{mean.point.args}}{A list of additional aesthetic
+arguments to be passed to \code{ggplot2::geom_point} and
+\code{ggrepel::geom_label_repel} geoms involved mean value plotting.}
+    \item{\code{mean.label.args}}{A list of additional aesthetic
+arguments to be passed to \code{ggplot2::geom_point} and
+\code{ggrepel::geom_label_repel} geoms involved mean value plotting.}
     \item{\code{notch}}{A logical. If \code{FALSE} (default), a standard box plot will be
 displayed. If \code{TRUE}, a notched box plot will be used. Notches are used to
 compare groups; if the notches of two boxes do not overlap, this suggests
@@ -156,21 +162,17 @@ of line to draw box plots (Default: \code{"solid"}). Alternatively, the numbers
 \code{outlier.shape = NA}. Importantly, this does not remove the outliers,
 it only hides them, so the range calculated for the \code{y}-axis will be
 the same with outliers shown and outliers hidden.}
-    \item{\code{outlier.label.color}}{Color for the label to to put on the outliers that
-have been tagged (Default: \code{"black"}).}
     \item{\code{outlier.color}}{Default aesthetics for outliers (Default: \code{"black"}).}
     \item{\code{outlier.coef}}{Coefficient for outlier detection using Tukey's method.
 With Tukey's method, outliers are below (1st Quartile) or above (3rd
 Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
 \code{1.5}).}
-    \item{\code{mean.plotting}}{Logical that decides whether mean is to be highlighted
-and its value to be displayed (Default: \code{TRUE}).}
-    \item{\code{mean.ci}}{Logical that decides whether \verb{95\%} confidence interval for
-mean is to be displayed (Default: \code{FALSE}).}
-    \item{\code{mean.size}}{Point size for the data point corresponding to mean
-(Default: \code{5}).}
-    \item{\code{mean.color}}{Color for the data point corresponding to mean (Default:
-\code{"darkred"}).}
+    \item{\code{outlier.label.args}}{A list of additional aesthetic arguments to be
+passed to \code{ggplot2::geom_point} and \code{ggrepel::geom_label_repel} geoms
+involved outlier value plotting.}
+    \item{\code{outlier.point.args}}{A list of additional aesthetic arguments to be
+passed to \code{ggplot2::geom_point} and \code{ggrepel::geom_label_repel} geoms
+involved outlier value plotting.}
     \item{\code{ggtheme}}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
 extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},

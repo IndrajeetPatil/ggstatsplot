@@ -111,7 +111,7 @@ ggdotplotstats <- function(data,
       percent_rank = dplyr::percent_rank({{ x }}),
       rank = dplyr::row_number()
     ) %>%
-    tibble::as_tibble(x = .)
+    as_tibble(x = .)
 
   # ================ stats labels ==========================================
 

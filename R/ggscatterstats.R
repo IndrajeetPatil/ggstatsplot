@@ -51,9 +51,7 @@
 #' @importFrom dplyr mutate mutate_at mutate_if
 #' @importFrom rlang !! enquo quo_name parse_expr ensym as_name enexpr
 #' @importFrom ggExtra ggMarginal
-#' @importFrom stats cor.test
 #' @importFrom ggrepel geom_label_repel
-#' @importFrom tibble as_tibble
 #' @importFrom statsExpressions expr_corr_test bf_corr_test
 #'
 #' @seealso \code{\link{grouped_ggscatterstats}}, \code{\link{ggcorrmat}},
@@ -72,9 +70,10 @@
 #' \donttest{
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
+#' library(ggstatsplot)
 #'
 #' # creating dataframe with rownames converted to a new column
-#' mtcars_new <- tibble::as_tibble(mtcars, rownames = "car")
+#' mtcars_new <- as_tibble(mtcars, rownames = "car")
 #'
 #' # simple function call with the defaults
 #' ggstatsplot::ggscatterstats(
@@ -185,7 +184,7 @@ ggscatterstats <- function(data,
   # preparing the dataframe
   data %<>%
     dplyr::filter(.data = ., !is.na({{ x }}), !is.na({{ y }})) %>%
-    tibble::as_tibble(.)
+    as_tibble(.)
 
   #---------------------------- user expression -------------------------
 

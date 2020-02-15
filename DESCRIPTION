@@ -38,7 +38,6 @@ Imports:
     ggplot2,
     ggrepel,
     ggsignif,
-    grid,
     groupedstats (>= 0.1.1),
     insight (>= 0.8.0),
     ipmisc (>= 1.1.0),
@@ -51,7 +50,6 @@ Imports:
     scales,
     stats,
     statsExpressions (>= 0.3.1),
-    tibble,
     tidyr
 Suggests:
     broomExtra,
@@ -66,11 +64,11 @@ Suggests:
     spelling,
     survival,
     testthat,
+    tibble,    
     WRS2
 VignetteBuilder: 
     knitr
 Remotes:
-    IndrajeetPatil/ipmisc,
     IndrajeetPatil/statsExpressions
 Encoding: UTF-8
 Language: en-US

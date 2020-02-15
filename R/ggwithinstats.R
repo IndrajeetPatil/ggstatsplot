@@ -48,7 +48,7 @@
 #' library(WRS2)
 #'
 #' ggstatsplot::ggwithinstats(
-#'   data = tibble::as_tibble(WineTasting),
+#'   data = as_tibble(WineTasting),
 #'   x = Wine,
 #'   y = Taste,
 #'   type = "np",
@@ -91,21 +91,20 @@ ggwithinstats <- function(data,
                           sort = "none",
                           sort.fun = mean,
                           axes.range.restrict = FALSE,
-                          mean.label.size = 3,
-                          mean.label.color = "black",
+                          mean.plotting = TRUE,
+                          mean.ci = FALSE,
+                          mean.point.args = list(size = 5, color = "darkred"),
+                          mean.label.args = list(),
                           notch = FALSE,
                           notchwidth = 0.5,
                           linetype = "solid",
                           outlier.tagging = FALSE,
                           outlier.shape = 19,
-                          outlier.label = NULL,
-                          outlier.label.color = "black",
                           outlier.color = "black",
                           outlier.coef = 1.5,
-                          mean.plotting = TRUE,
-                          mean.ci = FALSE,
-                          mean.size = 5,
-                          mean.color = "darkred",
+                          outlier.label = NULL,
+                          outlier.label.args = list(),
+                          outlier.point.args = list(),
                           ggtheme = ggplot2::theme_bw(),
                           ggstatsplot.layer = TRUE,
                           package = "RColorBrewer",
@@ -120,7 +119,7 @@ ggwithinstats <- function(data,
   type <- stats_type_switch(type)
 
   # no pairwise comparisons are available for Bayesian t-tests
-  if (type == "bayes" && isTRUE(pairwise.comparisons)) pairwise.comparisons <- FALSE
+  if (type == "bayes") pairwise.comparisons <- FALSE
 
   # ------------------------------ variable names ----------------------------
 
@@ -141,7 +140,7 @@ ggwithinstats <- function(data,
   data %<>%
     dplyr::select(.data = ., {{ x }}, {{ y }}, outlier.label = {{ outlier.label }}) %>%
     dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }}))) %>%
-    tibble::as_tibble(x = .)
+    as_tibble(x = .)
 
   # figuring out number of levels in the grouping factor
   x_n_levels <- nlevels(data %>% dplyr::pull({{ x }}))[[1]]
@@ -288,20 +287,16 @@ ggwithinstats <- function(data,
 
   if (isTRUE(outlier.tagging)) {
     # applying the labels to tagged outliers with ggrepel
-    plot <-
-      plot +
-      ggrepel::geom_label_repel(
-        data = dplyr::filter(.data = data, isanoutlier) %>%
-          dplyr::select(.data = ., -outlier),
+    plot <- plot +
+      rlang::exec(
+        .fn = ggrepel::geom_label_repel,
+        data = dplyr::filter(.data = data, isanoutlier),
         mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, label = outlier.label),
-        color = outlier.label.color,
-        max.iter = 3e2,
-        box.padding = 0.35,
-        point.padding = 0.5,
-        segment.color = "black",
-        force = 2,
-        na.rm = TRUE,
-        seed = 123
+        !!!outlier.label.args,
+        show.legend = FALSE,
+        min.segment.length = 0,
+        inherit.aes = FALSE,
+        na.rm = TRUE
       )
   }
 
@@ -321,17 +316,16 @@ ggwithinstats <- function(data,
 
   # add labels for mean values
   if (isTRUE(mean.plotting)) {
-    plot <- mean_ggrepel(
-      plot = plot,
-      x = {{ x }},
-      y = {{ y }},
-      mean.data = mean_dat,
-      mean.size = mean.size,
-      mean.color = mean.color,
-      mean.label.size = mean.label.size,
-      mean.label.color = mean.label.color,
-      inherit.aes = FALSE
-    )
+    plot <-
+      mean_ggrepel(
+        mean.data = mean_dat,
+        x = {{ x }},
+        y = {{ y }},
+        plot = plot,
+        mean.point.args = mean.point.args,
+        mean.label.args = mean.label.args,
+        inherit.aes = FALSE
+      )
 
     # if there should be lines connecting mean values across groups
     if (isTRUE(path.mean)) {
@@ -430,8 +424,7 @@ ggwithinstats <- function(data,
     normality_message(
       x = data %>% dplyr::pull({{ y }}),
       lab = ylab,
-      k = k,
-      output = "message"
+      k = k
     )
 
     # display homogeneity of variance test as a message
@@ -440,8 +433,7 @@ ggwithinstats <- function(data,
       x = {{ x }},
       y = {{ y }},
       lab = xlab,
-      k = k,
-      output = "message"
+      k = k
     )
   }
 

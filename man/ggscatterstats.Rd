@@ -243,9 +243,10 @@ have a lot of labels that overlap.
 \donttest{
 # to get reproducible results from bootstrapping
 set.seed(123)
+library(ggstatsplot)
 
 # creating dataframe with rownames converted to a new column
-mtcars_new <- tibble::as_tibble(mtcars, rownames = "car")
+mtcars_new <- as_tibble(mtcars, rownames = "car")
 
 # simple function call with the defaults
 ggstatsplot::ggscatterstats(

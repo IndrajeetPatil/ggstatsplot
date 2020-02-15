@@ -41,8 +41,6 @@
 #' @param sample.size.label Logical that decides whether sample size information
 #'   should be displayed for each level of the grouping variable `x` (Default:
 #'   `TRUE`).
-#' @param mean.label.size,mean.label.color Aesthetics for
-#' the label displaying mean. Defaults: `3`, `"bold"`,`"black"`, respectively.
 #' @param notch A logical. If `FALSE` (default), a standard box plot will be
 #'   displayed. If `TRUE`, a notched box plot will be used. Notches are used to
 #'   compare groups; if the notches of two boxes do not overlap, this suggests
@@ -64,8 +62,9 @@
 #'   `outlier.shape = NA`. Importantly, this does not remove the outliers,
 #'   it only hides them, so the range calculated for the `y`-axis will be
 #'   the same with outliers shown and outliers hidden.
-#' @param outlier.label.color Color for the label to to put on the outliers that
-#'   have been tagged (Default: `"black"`).
+#' @param outlier.point.args,outlier.label.args A list of additional aesthetic arguments to be
+#'   passed to `ggplot2::geom_point` and `ggrepel::geom_label_repel` geoms
+#'   involved outlier value plotting.
 #' @param outlier.coef Coefficient for outlier detection using Tukey's method.
 #'   With Tukey's method, outliers are below (1st Quartile) or above (3rd
 #'   Quartile) `outlier.coef` times the Inter-Quartile Range (IQR) (Default:
@@ -74,10 +73,6 @@
 #'   and its value to be displayed (Default: `TRUE`).
 #' @param mean.ci Logical that decides whether `95%` confidence interval for
 #'   mean is to be displayed (Default: `FALSE`).
-#' @param mean.color Color for the data point corresponding to mean (Default:
-#'   `"darkred"`).
-#' @param mean.size Point size for the data point corresponding to mean
-#'   (Default: `5`).
 #' @param palette If a character string (e.g., `"Set1"`), will use that named
 #'   palette. If a number, will index into the list of palettes of appropriate
 #'   type. Default palette is `"Dark2"`.
@@ -114,6 +109,9 @@
 #'   `bf.message = TRUE`, otherwise this will return a `NULL`.
 #' @param ... Currently ignored.
 #' @inheritParams theme_ggstatsplot
+#' @param mean.point.args,mean.label.args A list of additional aesthetic
+#'   arguments to be passed to `ggplot2::geom_point` and
+#'   `ggrepel::geom_label_repel` geoms involved mean value plotting.
 #' @inheritParams statsExpressions::expr_anova_parametric
 #' @inheritParams statsExpressions::expr_t_parametric
 #' @inheritParams statsExpressions::expr_t_onesample
@@ -123,7 +121,7 @@
 #'
 #' @importFrom dplyr select group_by arrange mutate mutate_at mutate_if
 #' @importFrom ggrepel geom_label_repel
-#' @importFrom stats na.omit t.test oneway.test
+#' @importFrom stats t.test oneway.test
 #' @importFrom rlang enquo quo_name as_name !! as_string
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom paletteer scale_color_paletteer_d scale_fill_paletteer_d
@@ -227,21 +225,20 @@ ggbetweenstats <- function(data,
                            sort = "none",
                            sort.fun = mean,
                            axes.range.restrict = FALSE,
-                           mean.label.size = 3,
-                           mean.label.color = "black",
+                           mean.plotting = TRUE,
+                           mean.ci = FALSE,
+                           mean.point.args = list(size = 5, color = "darkred"),
+                           mean.label.args = list(),
                            notch = FALSE,
                            notchwidth = 0.5,
                            linetype = "solid",
                            outlier.tagging = FALSE,
                            outlier.shape = 19,
-                           outlier.label = NULL,
-                           outlier.label.color = "black",
                            outlier.color = "black",
                            outlier.coef = 1.5,
-                           mean.plotting = TRUE,
-                           mean.ci = FALSE,
-                           mean.size = 5,
-                           mean.color = "darkred",
+                           outlier.label = NULL,
+                           outlier.label.args = list(),
+                           outlier.point.args = list(),
                            point.jitter.width = NULL,
                            point.jitter.height = 0,
                            point.dodge.width = 0.60,
@@ -259,7 +256,7 @@ ggbetweenstats <- function(data,
   type <- stats_type_switch(type)
 
   # no pairwise comparisons are available for Bayesian t-tests
-  if (type == "bayes" && isTRUE(pairwise.comparisons)) pairwise.comparisons <- FALSE
+  if (type == "bayes") pairwise.comparisons <- FALSE
 
   # ------------------------------ variable names ----------------------------
 
@@ -281,7 +278,7 @@ ggbetweenstats <- function(data,
     dplyr::select(.data = ., {{ x }}, {{ y }}, outlier.label = {{ outlier.label }}) %>%
     tidyr::drop_na(data = .) %>%
     dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }}))) %>%
-    tibble::as_tibble(x = .)
+    as_tibble(x = .)
 
   # if outlier.label column is not present, just use the values from `y` column
   if (rlang::quo_is_null(rlang::enquo(outlier.label))) {
@@ -473,18 +470,15 @@ ggbetweenstats <- function(data,
   if (isTRUE(outlier.tagging)) {
     # applying the labels to tagged outliers with ggrepel
     plot <- plot +
-      ggrepel::geom_label_repel(
-        data = dplyr::filter(.data = data, isanoutlier) %>%
-          dplyr::select(.data = ., -outlier),
+      rlang::exec(
+        .fn = ggrepel::geom_label_repel,
+        data = dplyr::filter(.data = data, isanoutlier),
         mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, label = outlier.label),
-        color = outlier.label.color,
-        max.iter = 3e2,
-        box.padding = 0.35,
-        point.padding = 0.5,
-        segment.color = "black",
-        force = 2,
-        na.rm = TRUE,
-        seed = 123
+        !!!outlier.label.args,
+        show.legend = FALSE,
+        min.segment.length = 0,
+        inherit.aes = FALSE,
+        na.rm = TRUE
       )
   }
 
@@ -504,16 +498,16 @@ ggbetweenstats <- function(data,
 
   # add labels for mean values
   if (isTRUE(mean.plotting)) {
-    plot <- mean_ggrepel(
-      x = {{ x }},
-      y = {{ y }},
-      plot = plot,
-      mean.data = mean_dat,
-      mean.size = mean.size,
-      mean.color = mean.color,
-      mean.label.size = mean.label.size,
-      mean.label.color = mean.label.color
-    )
+    plot <-
+      mean_ggrepel(
+        mean.data = mean_dat,
+        x = {{ x }},
+        y = {{ y }},
+        plot = plot,
+        mean.point.args = mean.point.args,
+        mean.label.args = mean.label.args,
+        inherit.aes = TRUE
+      )
   }
 
   # ----------------- sample size labels --------------------------------------
@@ -600,8 +594,7 @@ ggbetweenstats <- function(data,
     normality_message(
       x = data %>% dplyr::pull({{ y }}),
       lab = ylab,
-      k = k,
-      output = "message"
+      k = k
     )
 
     # display homogeneity of variance test as a message
@@ -610,8 +603,7 @@ ggbetweenstats <- function(data,
       x = {{ x }},
       y = {{ y }},
       lab = xlab,
-      k = k,
-      output = "message"
+      k = k
     )
   }
 

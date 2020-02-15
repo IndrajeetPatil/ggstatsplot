@@ -66,11 +66,12 @@ combine_plots2 <- function(plotlist,
                            ...) {
 
   # preparing the basic plot
-  plot <- rlang::exec(
-    .f = cowplot::plot_grid,
-    plotlist = plotlist,
-    !!!plotgrid.args
-  )
+  plot <-
+    rlang::exec(
+      .f = cowplot::plot_grid,
+      plotlist = plotlist,
+      !!!plotgrid.args
+    )
 
   # preparing the title
   if (!is.null(title.text)) {

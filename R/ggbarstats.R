@@ -32,7 +32,6 @@
 #' @importFrom paletteer scale_fill_paletteer_d
 #' @importFrom groupedstats grouped_proptest
 #' @importFrom tidyr uncount drop_na
-#' @importFrom tibble as_tibble
 #' @importFrom scales percent
 #' @importFrom statsExpressions expr_contingency_tab bf_contingency_tab
 #'
@@ -124,7 +123,7 @@ ggbarstats <- function(data,
   data %<>%
     dplyr::select(.data = ., {{ x }}, {{ y }}, {{ counts }}) %>%
     tidyr::drop_na(data = .) %>%
-    tibble::as_tibble(x = .)
+    as_tibble(x = .)
 
   # =========================== converting counts ============================
 

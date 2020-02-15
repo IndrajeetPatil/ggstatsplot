@@ -8,7 +8,6 @@
 #' @importFrom groupedstats grouped_summary
 #' @importFrom dplyr select group_by vars contains mutate mutate_at group_nest
 #' @importFrom rlang !! enquo ensym
-#' @importFrom tibble as_tibble
 #' @importFrom purrr map
 #' @importFrom tidyr drop_na unnest
 #'
@@ -35,7 +34,7 @@ mean_labeller <- function(data,
     dplyr::select(.data = ., {{ x }}, {{ y }}) %>%
     tidyr::drop_na(data = .) %>%
     dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }}))) %>%
-    tibble::as_tibble(x = .)
+    as_tibble(x = .)
 
   # computing mean and confidence interval for mean
   mean_dat <-
@@ -113,7 +112,7 @@ mean_labeller <- function(data,
 #' @inheritParams ggrepel::geom_label_repel
 #'
 #' @importFrom ggrepel geom_label_repel
-#' @importFrom rlang !! enquo ensym
+#' @importFrom rlang !! enquo ensym exec
 #'
 #' @examples
 #'
@@ -149,60 +148,41 @@ mean_ggrepel <- function(plot,
                          x,
                          y,
                          mean.data,
-                         mean.size = 5,
-                         mean.color = "darkred",
-                         mean.label.size = 3,
-                         mean.label.color = "black",
+                         mean.point.args = list(size = 5, color = "darkred"),
+                         mean.label.args = list(size = 3),
                          inherit.aes = TRUE,
                          ...) {
   # highlight the mean of each group
-  if (isTRUE(inherit.aes)) {
-    plot <- plot +
-      ggplot2::stat_summary(
-        fun.y = mean,
-        geom = "point",
-        color = mean.color,
-        size = mean.size,
-        na.rm = TRUE
-      )
-  } else {
-    plot <- plot +
-      ggplot2::stat_summary(
-        mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),
-        fun.y = mean,
-        geom = "point",
-        color = mean.color,
-        size = mean.size,
-        inherit.aes = FALSE,
-        na.rm = TRUE
-      )
-  }
+  plot <- plot +
+    rlang::exec(
+      .fn = ggplot2::stat_summary,
+      mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),
+      fun.y = mean,
+      geom = "point",
+      inherit.aes = inherit.aes,
+      na.rm = TRUE,
+      !!!mean.point.args
+    )
 
   # attach the labels with means to the plot
-  plot <- plot +
-    ggrepel::geom_label_repel(
+  plot +
+    rlang::exec(
+      .fn = ggrepel::geom_label_repel,
       data = mean.data,
       mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, label = label),
-      size = mean.label.size,
-      color = mean.label.color,
-      direction = "both",
+      !!!mean.label.args,
+      show.legend = FALSE,
       min.segment.length = 0,
-      box.padding = 0.35,
-      point.padding = 0.5,
-      segment.color = "black",
-      force = 2,
       inherit.aes = FALSE,
       parse = TRUE,
       na.rm = TRUE
     )
-
-  # return the plot with labels
-  return(plot)
 }
 
 #' @title Adding `geom_signif` to `ggplot`
 #' @name ggsignif_adder
 #'
+#' @param ... Currently ignored.
 #' @param plot A `ggplot` object on which `geom_signif` needed to be added.
 #' @param df_pairwise A dataframe containing results from pairwise comparisons
 #'   (produced by `pairwiseComparisons::pairwise_comparisons()` function).
@@ -221,11 +201,12 @@ mean_ggrepel <- function(plot,
 #'   geom_boxplot()
 #'
 #' # dataframe with pairwise comparison test results
-#' df_pair <- pairwiseComparisons::pairwise_comparisons(
-#'   data = iris,
-#'   x = Species,
-#'   y = Sepal.Length
-#' )
+#' df_pair <-
+#'   pairwiseComparisons::pairwise_comparisons(
+#'     data = iris,
+#'     x = Species,
+#'     y = Sepal.Length
+#'   )
 #'
 #' # adding a geom for pairwise comparisons
 #' ggstatsplot:::ggsignif_adder(
@@ -243,7 +224,8 @@ ggsignif_adder <- function(plot,
                            x,
                            y,
                            pairwise.annotation = "p.value",
-                           pairwise.display = "significant") {
+                           pairwise.display = "significant",
+                           ...) {
   # creating a column for group combinations
   df_pairwise %<>%
     dplyr::mutate(.data = ., groups = purrr::pmap(.l = list(group1, group2), .f = c))
