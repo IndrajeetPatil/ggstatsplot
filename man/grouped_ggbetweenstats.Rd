@@ -90,10 +90,6 @@ the plot will be returned.}
     \item{\code{sample.size.label}}{Logical that decides whether sample size information
 should be displayed for each level of the grouping variable \code{x} (Default:
 \code{TRUE}).}
-    \item{\code{mean.label.size}}{Aesthetics for
-the label displaying mean. Defaults: \code{3}, \code{"bold"},\code{"black"}, respectively.}
-    \item{\code{mean.label.color}}{Aesthetics for
-the label displaying mean. Defaults: \code{3}, \code{"bold"},\code{"black"}, respectively.}
     \item{\code{notch}}{A logical. If \code{FALSE} (default), a standard box plot will be
 displayed. If \code{TRUE}, a notched box plot will be used. Notches are used to
 compare groups; if the notches of two boxes do not overlap, this suggests
@@ -113,8 +109,12 @@ of line to draw box plots (Default: \code{"solid"}). Alternatively, the numbers
 \code{outlier.shape = NA}. Importantly, this does not remove the outliers,
 it only hides them, so the range calculated for the \code{y}-axis will be
 the same with outliers shown and outliers hidden.}
-    \item{\code{outlier.label.color}}{Color for the label to to put on the outliers that
-have been tagged (Default: \code{"black"}).}
+    \item{\code{outlier.point.args}}{A list of additional aesthetic arguments to be
+passed to \code{ggplot2::geom_point} and \code{ggrepel::geom_label_repel} geoms
+involved outlier value plotting.}
+    \item{\code{outlier.label.args}}{A list of additional aesthetic arguments to be
+passed to \code{ggplot2::geom_point} and \code{ggrepel::geom_label_repel} geoms
+involved outlier value plotting.}
     \item{\code{outlier.coef}}{Coefficient for outlier detection using Tukey's method.
 With Tukey's method, outliers are below (1st Quartile) or above (3rd
 Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
@@ -123,16 +123,8 @@ Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
 and its value to be displayed (Default: \code{TRUE}).}
     \item{\code{mean.ci}}{Logical that decides whether \verb{95\%} confidence interval for
 mean is to be displayed (Default: \code{FALSE}).}
-    \item{\code{mean.color}}{Color for the data point corresponding to mean (Default:
-\code{"darkred"}).}
-    \item{\code{mean.size}}{Point size for the data point corresponding to mean
-(Default: \code{5}).}
-    \item{\code{point.jitter.width}}{Numeric specifying the degree of jitter in \code{x}
-direction. Defaults to \verb{40\%} of the resolution of the data.}
-    \item{\code{point.jitter.height}}{Numeric specifying the degree of jitter in \code{y}
-direction. Defaults to \code{0.1}.}
-    \item{\code{point.dodge.width}}{Numeric specifying the amount to dodge in the \code{x}
-direction. Defaults to \code{0.60}.}
+    \item{\code{point.args}}{A list of additional aesthetic arguments to be passed to
+the \code{geom_point} displaying the raw data.}
     \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
 of the current function. Default is \code{NULL}. The argument should be entered
@@ -151,6 +143,12 @@ be sorted based on increasing values of \code{y}-axis variable. If
 or symbol.}
     \item{\code{palette}}{Name of palette as string or symbol.}
     \item{\code{direction}}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
+    \item{\code{mean.point.args}}{A list of additional aesthetic
+arguments to be passed to \code{ggplot2::geom_point} and
+\code{ggrepel::geom_label_repel} geoms involved mean value plotting.}
+    \item{\code{mean.label.args}}{A list of additional aesthetic
+arguments to be passed to \code{ggplot2::geom_point} and
+\code{ggrepel::geom_label_repel} geoms involved mean value plotting.}
     \item{\code{ggtheme}}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
 extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},

@@ -28,10 +28,11 @@ testthat::test_that(
       title.prefix = "cylinder count",
       point.color = "red",
       point.size = 5,
+      results.subtitle = FALSE,
       point.shape = 13,
       test.value.line = TRUE,
       ggtheme = ggplot2::theme_classic(),
-      messages = TRUE,
+      messages = FALSE,
       title.text = "Fuel economy data"
     )
 
@@ -42,6 +43,7 @@ testthat::test_that(
       y = manufacturer,
       grouping.var = "cyl",
       test.value = 15.5,
+      results.subtitle = FALSE,
       effsize.type = "d",
       ggplot.component = ggplot2::scale_y_continuous(
         sec.axis = ggplot2::dup_axis(name = "percentile score"),

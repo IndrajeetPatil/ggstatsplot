@@ -51,9 +51,7 @@
 #' @importFrom dplyr mutate mutate_at mutate_if
 #' @importFrom rlang !! enquo quo_name parse_expr ensym as_name enexpr
 #' @importFrom ggExtra ggMarginal
-#' @importFrom stats cor.test
 #' @importFrom ggrepel geom_label_repel
-#' @importFrom tibble as_tibble
 #' @importFrom statsExpressions expr_corr_test bf_corr_test
 #'
 #' @seealso \code{\link{grouped_ggscatterstats}}, \code{\link{ggcorrmat}},
@@ -72,9 +70,10 @@
 #' \donttest{
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
+#' library(ggstatsplot)
 #'
 #' # creating dataframe with rownames converted to a new column
-#' mtcars_new <- tibble::as_tibble(mtcars, rownames = "car")
+#' mtcars_new <- as_tibble(mtcars, rownames = "car")
 #'
 #' # simple function call with the defaults
 #' ggstatsplot::ggscatterstats(
@@ -143,6 +142,9 @@ ggscatterstats <- function(data,
                            messages = TRUE,
                            ...) {
 
+  # convert entered stats type to a standard notation
+  type <- stats_type_switch(type)
+
   #---------------------- variable names --------------------------------
 
   # ensure the arguments work quoted or unquoted
@@ -185,7 +187,7 @@ ggscatterstats <- function(data,
   # preparing the dataframe
   data %<>%
     dplyr::filter(.data = ., !is.na({{ x }}), !is.na({{ y }})) %>%
-    tibble::as_tibble(.)
+    as_tibble(.)
 
   #---------------------------- user expression -------------------------
 
@@ -255,12 +257,19 @@ ggscatterstats <- function(data,
     }
 
     # if bayes factor message needs to be displayed
-    if (type %in% c("pearson", "parametric", "p") && isTRUE(bf.message)) {
-      caption <- bf.caption.text
-    }
+    if (type == "parametric" && isTRUE(bf.message)) caption <- bf.caption.text
   }
 
-  #--------------------------------- basic plot ---------------------------
+  # quit early if only subtitle is needed
+  if (output %in% c("subtitle", "caption")) {
+    return(switch(
+      EXPR = output,
+      "subtitle" = subtitle,
+      "caption" = caption
+    ))
+  }
+
+  # --------------------------------- basic plot ---------------------------
 
   # creating jittered positions
   pos <- ggplot2::position_jitter(
@@ -422,12 +431,6 @@ ggscatterstats <- function(data,
       ggrepel::geom_label_repel(
         data = label_data,
         mapping = ggplot2::aes(label = {{ label.var }}),
-        color = "black",
-        max.iter = 3e2,
-        box.padding = 0.35,
-        point.padding = 0.5,
-        segment.color = "black",
-        force = 2,
         position = pos,
         na.rm = TRUE
       )
@@ -478,11 +481,5 @@ ggscatterstats <- function(data,
   }
 
   # return the final plot
-  return(switch(
-    EXPR = output,
-    "plot" = plot,
-    "subtitle" = subtitle,
-    "caption" = caption,
-    plot
-  ))
+  return(plot)
 }

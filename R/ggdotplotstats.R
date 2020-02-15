@@ -111,7 +111,7 @@ ggdotplotstats <- function(data,
       percent_rank = dplyr::percent_rank({{ x }}),
       rank = dplyr::row_number()
     ) %>%
-    tibble::as_tibble(x = .)
+    as_tibble(x = .)
 
   # ================ stats labels ==========================================
 
@@ -148,6 +148,15 @@ ggdotplotstats <- function(data,
         stat.title = stat.title,
         messages = messages
       )
+  }
+
+  # quit early if only subtitle is needed
+  if (output %in% c("subtitle", "caption")) {
+    return(switch(
+      EXPR = output,
+      "subtitle" = subtitle,
+      "caption" = caption
+    ))
   }
 
   # ------------------------------ basic plot ----------------------------
@@ -239,17 +248,10 @@ ggdotplotstats <- function(data,
     normality_message(
       x = data %>% dplyr::pull({{ x }}),
       lab = xlab,
-      k = k,
-      output = "message"
+      k = k
     )
   }
 
   # return the plot
-  return(switch(
-    EXPR = output,
-    "plot" = plot,
-    "subtitle" = subtitle,
-    "caption" = caption,
-    plot
-  ))
+  return(plot)
 }

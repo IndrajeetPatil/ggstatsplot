@@ -201,12 +201,14 @@
 <a href="#ggstatsplot-0309000" class="anchor"></a>ggstatsplot 0.3.0.9000<small> Unreleased </small>
 </h1>
 <p>BREAKING CHANGES</p>
+<p>To give users more flexibility in terms of modifying the aesthetic defaults for <strong>all</strong> <code>geoms</code> included in the <code>ggstatsplot</code> plots (each plot typically has multiple geoms), the package now uses a new form of syntax. Previously, each <code>geom</code> had a separate argument to specify each aesthetic (e.g., <code>geom_point</code> would get <code>point.size</code>, <code>point.color</code>, etc.), which resulted in functions with a massive number of arguments and was unsustainable in the long run. Instead, <code>ggstatsplot</code> functions now expect a list of such arguments for the respective geom (e.g., <code>geom_point</code> will have <code>point.args</code> argument where a list of arguments <code><a href="https://rdrr.io/r/base/list.html">list(size = 5, color = "darkgreen", alpha = 0.8)</a></code> can be supplied).</p>
 <ul>
 <li>All <code>grouped_</code> functions have been refactored to reduce the number of arguments. These functions now internally use the new <code>combine_plots2</code> instead of <code>combine_plots</code>. The additional arguments to primary functions can be provided through <code>...</code>. These changes will not necessarily break the existing code but will lead to some minor graphical changes (e.g., if you were providing <code>labels</code> argument explicitly, it will be ignored).</li>
 <li>All functions lose the <code>return</code> argument, which was supposed to be alternative to enter <code>output</code>. But this was just leading to more confusion on the user’s part. The biggest user-visible impact this is going to have is that <code>ggcorrmat</code> will no longer be backward-compatible. The older scripts will still work but if the <code>return</code> argument was anything except <code>"plot"</code>, it will just be ignored.</li>
 <li>
 <code>ggcorrmat</code> no longer has <code>corr.method</code> argument. To be consistent with rest of the functions in this package, the type of statistics should be specified using <code>type</code> argument. Additional, it gains a new argument <code>ggcorrplot.args</code>, which can be used to pass additional arguments to the underlying plotting function (<code><a href="https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html">ggcorrplot::ggcorrplot</a></code>).</li>
 <li>Both <code>gghistostats</code> and <code>ggdotplotstats</code> now use the following arguments to modify <code>geom</code>s corresponding to the lines and labels: <code>test.value.line.args</code>, <code>test.value.label.args</code>, <code>centrality.line.args</code>, <code>centrality.label.args</code>. This helps avoid specifying millions of arguments.</li>
+<li>Removes the vestigial <code>ggplot_converter</code> function.</li>
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>

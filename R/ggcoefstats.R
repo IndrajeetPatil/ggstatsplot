@@ -136,7 +136,6 @@
 #' @importFrom stats as.formula lm confint qnorm p.adjust
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom parameters p_value
-#' @importFrom tibble as_tibble
 #' @importFrom tidyr unite
 #' @importFrom groupedstats lm_effsize_standardizer
 #' @importFrom insight is_model
@@ -315,8 +314,6 @@ ggcoefstats <- function(x,
                         stats.labels = TRUE,
                         stats.label.color = NULL,
                         stats.label.args = list(
-                          size = 3,
-                          min.segment.length = 0,
                           segment.color = "grey50",
                           direction = "y"
                         ),
@@ -357,7 +354,7 @@ ggcoefstats <- function(x,
   if (is.null(glance_df)) {
     glance_df <-
       tryCatch(
-        expr = tibble::as_tibble(performance::model_performance(x)),
+        expr = as_tibble(performance::model_performance(x)),
         error = function(e) NULL
       )
   }
@@ -383,7 +380,7 @@ ggcoefstats <- function(x,
 
   if (isFALSE(insight::is_model(x))) {
     # set tidy_df to entered dataframe
-    tidy_df <- tibble::as_tibble(x)
+    tidy_df <- as_tibble(x)
 
     # check that `statistic` is specified
     if (rlang::is_null(statistic)) {
@@ -551,7 +548,7 @@ ggcoefstats <- function(x,
           by = c("term" = "Parameter")
         ) %>%
         dplyr::filter(.data = ., !is.na(estimate)) %>%
-        tibble::as_tibble(x = .),
+        as_tibble(x = .),
       error = function(e) tidy_df
     )
   }
@@ -859,7 +856,7 @@ ggcoefstats <- function(x,
 
       # computing the number of colors in a given palette
       palette_df <-
-        tibble::as_tibble(x = paletteer::palettes_d_names) %>%
+        as_tibble(x = paletteer::palettes_d_names) %>%
         dplyr::filter(.data = ., package == !!package, palette == !!palette) %>%
         dplyr::select(.data = ., length)
 
@@ -886,6 +883,7 @@ ggcoefstats <- function(x,
           na.rm = TRUE,
           show.legend = FALSE,
           parse = TRUE,
+          min.segment.length = 0,
           color = stats.label.color,
           !!!stats.label.args
         )
@@ -920,7 +918,7 @@ ggcoefstats <- function(x,
     "df" = tidy_df,
     "glance" = glance_df,
     "summary" = glance_df,
-    "augment" = tibble::as_tibble(ipmisc::augment(x = x, ...)),
+    "augment" = as_tibble(ipmisc::augment(x = x, ...)),
     "plot"
   ))
 }

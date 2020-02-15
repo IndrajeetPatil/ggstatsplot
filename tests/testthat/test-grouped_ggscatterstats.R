@@ -24,7 +24,7 @@ testthat::test_that(
         grouping.var = Species,
         results.subtitle = FALSE,
         marginal = FALSE,
-        messages = TRUE
+        messages = FALSE
       ),
       what = "gg"
     ))
@@ -48,8 +48,9 @@ testthat::test_that(
         label.var = "title",
         grouping.var = mpaa,
         type = "bf",
+        results.subtitle = FALSE,
         marginal = FALSE,
-        messages = TRUE
+        messages = FALSE
       ),
       what = "gg"
     ))
@@ -82,6 +83,7 @@ testthat::test_that(
         label.var = "title",
         grouping.var = mpaa,
         type = "p",
+        results.subtitle = FALSE,
         marginal = FALSE,
         messages = FALSE
       ),

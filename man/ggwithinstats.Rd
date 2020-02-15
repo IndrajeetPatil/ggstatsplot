@@ -36,21 +36,20 @@ ggwithinstats(
   sort = "none",
   sort.fun = mean,
   axes.range.restrict = FALSE,
-  mean.label.size = 3,
-  mean.label.color = "black",
+  mean.plotting = TRUE,
+  mean.ci = FALSE,
+  mean.point.args = list(size = 5, color = "darkred"),
+  mean.label.args = list(size = 3),
   notch = FALSE,
   notchwidth = 0.5,
   linetype = "solid",
   outlier.tagging = FALSE,
-  outlier.shape = 19,
   outlier.label = NULL,
-  outlier.label.color = "black",
-  outlier.color = "black",
   outlier.coef = 1.5,
-  mean.plotting = TRUE,
-  mean.ci = FALSE,
-  mean.size = 5,
-  mean.color = "darkred",
+  outlier.shape = 19,
+  outlier.color = "black",
+  outlier.label.args = list(),
+  outlier.point.args = list(),
   ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE,
   package = "RColorBrewer",
@@ -176,11 +175,19 @@ values ranges to \code{min} and \code{max} values of the axes variables (Default
 \code{FALSE}), only relevant for functions where axes variables are of numeric
 type.}
 
-\item{mean.label.size}{Aesthetics for
-the label displaying mean. Defaults: \code{3}, \code{"bold"},\code{"black"}, respectively.}
+\item{mean.plotting}{Logical that decides whether mean is to be highlighted
+and its value to be displayed (Default: \code{TRUE}).}
 
-\item{mean.label.color}{Aesthetics for
-the label displaying mean. Defaults: \code{3}, \code{"bold"},\code{"black"}, respectively.}
+\item{mean.ci}{Logical that decides whether \verb{95\%} confidence interval for
+mean is to be displayed (Default: \code{FALSE}).}
+
+\item{mean.point.args}{A list of additional aesthetic
+arguments to be passed to \code{ggplot2::geom_point} and
+\code{ggrepel::geom_label_repel} geoms involved mean value plotting.}
+
+\item{mean.label.args}{A list of additional aesthetic
+arguments to be passed to \code{ggplot2::geom_point} and
+\code{ggrepel::geom_label_repel} geoms involved mean value plotting.}
 
 \item{notch}{A logical. If \code{FALSE} (default), a standard box plot will be
 displayed. If \code{TRUE}, a notched box plot will be used. Notches are used to
@@ -200,35 +207,28 @@ of line to draw box plots (Default: \code{"solid"}). Alternatively, the numbers
 \item{outlier.tagging}{Decides whether outliers should be tagged (Default:
 \code{FALSE}).}
 
-\item{outlier.shape}{Hiding the outliers can be achieved by setting
-\code{outlier.shape = NA}. Importantly, this does not remove the outliers,
-it only hides them, so the range calculated for the \code{y}-axis will be
-the same with outliers shown and outliers hidden.}
-
 \item{outlier.label}{Label to put on the outliers that have been tagged. This
 \strong{can't} be the same as \code{x} argument.}
-
-\item{outlier.label.color}{Color for the label to to put on the outliers that
-have been tagged (Default: \code{"black"}).}
-
-\item{outlier.color}{Default aesthetics for outliers (Default: \code{"black"}).}
 
 \item{outlier.coef}{Coefficient for outlier detection using Tukey's method.
 With Tukey's method, outliers are below (1st Quartile) or above (3rd
 Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
 \code{1.5}).}
 
-\item{mean.plotting}{Logical that decides whether mean is to be highlighted
-and its value to be displayed (Default: \code{TRUE}).}
+\item{outlier.shape}{Hiding the outliers can be achieved by setting
+\code{outlier.shape = NA}. Importantly, this does not remove the outliers,
+it only hides them, so the range calculated for the \code{y}-axis will be
+the same with outliers shown and outliers hidden.}
 
-\item{mean.ci}{Logical that decides whether \verb{95\%} confidence interval for
-mean is to be displayed (Default: \code{FALSE}).}
+\item{outlier.color}{Default aesthetics for outliers (Default: \code{"black"}).}
 
-\item{mean.size}{Point size for the data point corresponding to mean
-(Default: \code{5}).}
+\item{outlier.label.args}{A list of additional aesthetic arguments to be
+passed to \code{ggplot2::geom_point} and \code{ggrepel::geom_label_repel} geoms
+involved outlier value plotting.}
 
-\item{mean.color}{Color for the data point corresponding to mean (Default:
-\code{"darkred"}).}
+\item{outlier.point.args}{A list of additional aesthetic arguments to be
+passed to \code{ggplot2::geom_point} and \code{ggrepel::geom_label_repel} geoms
+involved outlier value plotting.}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
@@ -297,7 +297,7 @@ ggstatsplot::ggwithinstats(
 library(WRS2)
 
 ggstatsplot::ggwithinstats(
-  data = tibble::as_tibble(WineTasting),
+  data = as_tibble(WineTasting),
   x = Wine,
   y = Taste,
   type = "np",

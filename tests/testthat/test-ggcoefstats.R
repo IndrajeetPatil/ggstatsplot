@@ -24,28 +24,6 @@ testthat::test_that(
     # plot build
     pb <- ggplot2::ggplot_build(p)
 
-    # tidy dataframe from the function
-    tidy_df <- p$plot_env$tidy_df
-
-    # dataframe from `broom` package
-    broom_df <- broomExtra::tidy(
-      x = mod,
-      conf.int = TRUE,
-      conf.level = 0.99
-    )
-
-    # testing statistical details
-    testthat::expect_equal(tidy_df$estimate, broom_df$estimate, tolerance = 1e-3)
-    testthat::expect_equal(tidy_df$std.error, broom_df$std.error, tolerance = 1e-3)
-    testthat::expect_equal(tidy_df$conf.low, broom_df$conf.low, tolerance = 1e-3)
-    testthat::expect_equal(tidy_df$conf.high, broom_df$conf.high, tolerance = 1e-3)
-    testthat::expect_equal(tidy_df$p.value, broom_df$p.value, tolerance = 1e-3)
-    testthat::expect_identical(tidy_df$significance, c("***", "***", "*", "ns"))
-    testthat::expect_identical(
-      tidy_df$p.value.formatted,
-      c("<= 0.001", "<= 0.001", "== 0.014", "== 0.064")
-    )
-
     # checking panel parameters
     testthat::expect_equal(pb$layout$panel_params[[1]]$x.range,
       c(-4.292139, 8.302817),
@@ -84,9 +62,137 @@ testthat::test_that(
       unclass(pb$data[[4]]$colour),
       c("#1B9E77FF", "#D95F02FF", "#7570B3FF", "#E7298AFF")
     )
+
+    # testing specific geoms
+    testthat::expect_equal(
+      pb$data[[1]],
+      structure(
+        list(
+          xintercept = 0,
+          PANEL = structure(1L, .Label = "1", class = "factor"),
+          group = -1L,
+          colour = "black",
+          size = 1,
+          linetype = "dashed",
+          alpha = NA
+        ),
+        row.names = c(NA, -1L),
+        class = "data.frame"
+      )
+    )
+
+    testthat::expect_equal(
+      pb$data[[2]],
+      structure(
+        list(
+          x = c(
+            6.43796567445635,
+            -0.155654842893403,
+            -1.80872180643164,
+            0.0647145392531592
+          ),
+          xmin = c(
+            5.14561263697835,
+            -0.22929852538016,
+            -3.71964129697769,
+            -0.0278495128482078
+          ),
+          xmax = c(
+            7.73031871193436,
+            -0.0820111604066467,
+            0.102197684114411,
+            0.157278591354526
+          ),
+          y = 1:4,
+          PANEL = structure(c(1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
+          group = structure(1:4, n = 4L),
+          ymin = c(1, 2, 3, 4),
+          ymax = c(
+            1,
+            2, 3, 4
+          ),
+          colour = c("black", "black", "black", "black"),
+          size = c(0.5, 0.5, 0.5, 0.5),
+          linetype = c(1, 1, 1, 1),
+          height = c(
+            0,
+            0, 0, 0
+          ),
+          alpha = c(NA, NA, NA, NA)
+        ),
+        row.names = c(NA, -4L),
+        class = "data.frame"
+      ),
+      tolerance = 0.001
+    )
+
+    testthat::expect_equal(
+      pb$data[[3]],
+      structure(
+        list(
+          x = c(
+            6.43796567445635,
+            -0.155654842893403,
+            -1.80872180643164,
+            0.0647145392531592
+          ),
+          y = 1:4,
+          PANEL = structure(c(1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
+          group = structure(1:4, n = 4L),
+          shape = c(16, 16, 16, 16),
+          colour = c("blue", "blue", "blue", "blue"),
+          size = c(3, 3, 3, 3),
+          fill = c(NA, NA, NA, NA),
+          alpha = c(NA, NA, NA, NA),
+          stroke = c(0.5, 0.5, 0.5, 0.5)
+        ),
+        row.names = c(NA, -4L),
+        class = "data.frame"
+      )
+    )
+
+    testthat::expect_equal(
+      pb$data[[4]],
+      structure(
+        list(
+          x = c(
+            6.43796567445635,
+            -0.155654842893403,
+            -1.80872180643164,
+            0.0647145392531592
+          ),
+          y = 1:4,
+          label = c(
+            "list(~widehat(italic(beta))==6.438, ~italic(t)(28)==13.765, ~italic(p)<= 0.001)",
+            "list(~widehat(italic(beta))==-0.156, ~italic(t)(28)==-5.840, ~italic(p)<= 0.001)",
+            "list(~widehat(italic(beta))==-1.809, ~italic(t)(28)==-2.615, ~italic(p)== 0.014)",
+            NA
+          ),
+          PANEL = structure(c(1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
+          group = structure(1:4, n = 4L),
+          colour = structure(c(
+            "#1B9E77FF",
+            "#D95F02FF", "#7570B3FF", "#E7298AFF"
+          ), class = "colors"),
+          fill = c("white", "white", "white", "white"),
+          size = c(
+            3.88,
+            3.88, 3.88, 3.88
+          ),
+          angle = c(0, 0, 0, 0),
+          alpha = c(NA, NA, NA, NA),
+          family = c("", "", "", ""),
+          fontface = c(1, 1, 1, 1),
+          lineheight = c(1.2, 1.2, 1.2, 1.2),
+          hjust = c(0.5, 0.5, 0.5, 0.5),
+          vjust = c(0.5, 0.5, 0.5, 0.5)
+        ),
+        row.names = c(NA, -4L),
+        class = "data.frame"
+      )
+    )
   }
 )
-
 
 # z-statistic --------------------------------------------------
 
@@ -118,33 +224,57 @@ testthat::test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # tidy dataframe from the function
-    tidy_df <- p$plot_env$tidy_df
-    pb_df <- pb$data[[4]]
-
-    # dataframe from `broom` package
-    set.seed(123)
-    broom_df <- broomExtra::tidy(
-      x = mod,
-      conf.int = TRUE,
-      conf.level = 0.90,
-      effects = "fixed"
-    )
-
-    testthat::expect_equal(tidy_df$estimate, broom_df$estimate, tolerance = 1e-3)
-    testthat::expect_equal(tidy_df$std.error, broom_df$std.error, tolerance = 1e-3)
-    testthat::expect_equal(tidy_df$conf.low, broom_df$conf.low, tolerance = 1e-3)
-    testthat::expect_equal(tidy_df$conf.high, broom_df$conf.high, tolerance = 1e-3)
-    testthat::expect_equal(tidy_df$p.value, broom_df$p.value, tolerance = 1e-3)
-    testthat::expect_identical(
-      tidy_df$statistic,
-      trimws(as.character(format(broom_df$statistic, digits = 3)))
-    )
-    testthat::expect_identical(tidy_df$label, pb_df$label)
-
-    # checking panel parameters
-    testthat::expect_equal(pb$layout$panel_params[[1]]$y.range,
-      c(0.4, 4.6),
-      tolerance = 0.001
+    testthat::expect_equal(
+      pb$data[[4]],
+      structure(
+        list(
+          x = c(
+            -1.39834286447115,
+            -0.991924974975739,
+            -1.12821621594334,
+            -1.57974541364919
+          ),
+          y = 1:4,
+          label = c(
+            "list(~widehat(italic(beta))==-1.40, ~italic(z)==-6.05, ~italic(p)<= 0.001)",
+            "list(~widehat(italic(beta))==-0.99, ~italic(z)==-3.27, ~italic(p)== 0.001)",
+            "list(~widehat(italic(beta))==-1.13, ~italic(z)==-3.49, ~italic(p)<= 0.001)",
+            "list(~widehat(italic(beta))==-1.58, ~italic(z)==-3.74, ~italic(p)<= 0.001)"
+          ),
+          PANEL = structure(c(1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
+          group = structure(1:4, n = 4L),
+          colour = structure(c(
+            "#1B9E77FF",
+            "#D95F02FF", "#7570B3FF", "#E7298AFF"
+          ), class = "colors"),
+          fill = c("white", "white", "white", "white"),
+          size = c(
+            3.88,
+            3.88, 3.88, 3.88
+          ),
+          angle = c(0, 0, 0, 0),
+          alpha = c(
+            NA, NA,
+            NA, NA
+          ),
+          family = c("", "", "", ""),
+          fontface = c(
+            1, 1, 1,
+            1
+          ),
+          lineheight = c(1.2, 1.2, 1.2, 1.2),
+          hjust = c(
+            0.5, 0.5,
+            0.5, 0.5
+          ),
+          vjust = c(0.5, 0.5, 0.5, 0.5)
+        ),
+        row.names = c(
+          NA,
+          -4L
+        ),
+        class = "data.frame"
+      )
     )
   }
 )

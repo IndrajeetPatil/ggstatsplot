@@ -9,7 +9,6 @@
 #'   bare name `x` or as a string `"x"`).
 #'
 #' @importFrom dplyr filter mutate_if
-#' @importFrom tibble as_tibble
 #' @importFrom rlang !! enquo quo_text ensym := quo_is_null
 #'
 #' @examples
@@ -23,7 +22,7 @@ grouped_list <- function(data, grouping.var = NULL) {
   if (!rlang::quo_is_null(rlang::enquo(grouping.var))) {
     grouping.var <- rlang::ensym(grouping.var)
   } else {
-    return(tibble::as_tibble(data))
+    return(as_tibble(data))
   }
 
   # creating a nested dataframe
@@ -35,6 +34,6 @@ grouped_list <- function(data, grouping.var = NULL) {
       .funs = ~ droplevels(.)
     ) %>%
     dplyr::filter(.data = ., !is.na({{ grouping.var }})) %>%
-    tibble::as_tibble(x = .) %>%
+    as_tibble(x = .) %>%
     split(x = ., f = .[[rlang::quo_text(grouping.var)]], drop = TRUE)
 }

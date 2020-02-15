@@ -9,10 +9,8 @@ mean_ggrepel(
   x,
   y,
   mean.data,
-  mean.size = 5,
-  mean.color = "darkred",
-  mean.label.size = 3,
-  mean.label.color = "black",
+  mean.point.args = list(size = 5, color = "darkred"),
+  mean.label.args = list(size = 3),
   inherit.aes = TRUE,
   ...
 )
@@ -28,17 +26,13 @@ dataframe \code{data}.}
 \item{mean.data}{A dataframe containing means for each level of the factor.
 The columns should be titled \code{x}, \code{y}, and \code{label}.}
 
-\item{mean.size}{Point size for the data point corresponding to mean
-(Default: \code{5}).}
+\item{mean.point.args}{A list of additional aesthetic
+arguments to be passed to \code{ggplot2::geom_point} and
+\code{ggrepel::geom_label_repel} geoms involved mean value plotting.}
 
-\item{mean.color}{Color for the data point corresponding to mean (Default:
-\code{"darkred"}).}
-
-\item{mean.label.size}{Aesthetics for
-the label displaying mean. Defaults: \code{3}, \code{"bold"},\code{"black"}, respectively.}
-
-\item{mean.label.color}{Aesthetics for
-the label displaying mean. Defaults: \code{3}, \code{"bold"},\code{"black"}, respectively.}
+\item{mean.label.args}{A list of additional aesthetic
+arguments to be passed to \code{ggplot2::geom_point} and
+\code{ggrepel::geom_label_repel} geoms involved mean value plotting.}
 
 \item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions

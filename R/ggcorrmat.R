@@ -65,11 +65,9 @@
 #' @import ggplot2
 #'
 #' @importFrom ggcorrplot ggcorrplot
-#' @importFrom dplyr select group_by summarize n arrange bind_cols
-#' @importFrom dplyr mutate mutate_at mutate_if
+#' @importFrom dplyr select
 #' @importFrom purrr is_bare_numeric keep pluck
 #' @importFrom stats median
-#' @importFrom tibble as_tibble
 #' @importFrom rlang !! enquo quo_name is_null
 #' @importFrom ipmisc green blue yellow red
 #' @importFrom pairwiseComparisons p_adjust_text
@@ -253,7 +251,7 @@ ggcorrmat <- function(data,
 
     # in case of NAs, compute minimum and maximum sample sizes of pairs
     n_summary <-
-      tibble::tibble(
+      tibble(
         n_min = range(psych_corr_obj$n, na.rm = TRUE)[[1]],
         n_median = stats::median(psych_corr_obj$n, na.rm = TRUE),
         n_max = range(psych_corr_obj$n, na.rm = TRUE)[[2]]
@@ -375,10 +373,10 @@ ggcorrmat <- function(data,
   # return the desired result
   return(
     switch(output,
-      "r" = tibble::as_tibble(corr.mat, rownames = "variable"),
-      "n" = tibble::as_tibble(psych_corr_obj$n, rownames = "variable"),
-      "ci" = tibble::as_tibble(psych_corr_obj$ci, rownames = "pair"),
-      "p" = tibble::as_tibble(p.mat, rownames = "variable"),
+      "r" = as_tibble(corr.mat, rownames = "variable"),
+      "n" = as_tibble(psych_corr_obj$n, rownames = "variable"),
+      "ci" = as_tibble(psych_corr_obj$ci, rownames = "pair"),
+      "p" = as_tibble(p.mat, rownames = "variable"),
       "plot" = plot,
       plot
     )

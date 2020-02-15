@@ -308,6 +308,8 @@ will be passed to <code><a href='https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.h
 any of the following arguments since they are already being used: <code>corr</code>,
 <code>method</code>, <code>p.mat</code>, <code>sig.level</code>, <code>ggtheme</code>, <code>colors</code>, <code>matrix.type</code>, <code>lab</code>,
 <code>pch</code>, <code>legend.title</code>, <code>digits</code>.</p></dd>
+    <dt><code>k</code></dt><dd><p>Decides the number of decimal digits to be displayed
+(Default: <code>2</code>).</p></dd>
     <dt><code>ggtheme</code></dt><dd><p>A function, <code>ggplot2</code> theme name. Default value is
 <code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
 extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>,
@@ -326,8 +328,6 @@ used with <code>formula = y ~ s(x, bs = "cs")</code>. Somewhat anecdotally,
 so does not work for larger datasets.If you have fewer than 1,000 observations but want to use the same <code>gam()</code>
 model that <code>method = "auto"</code> would use, then set
 <code>method = "gam", formula = y ~ s(x, bs = "cs")</code>.</p></dd>
-    <dt><code>k</code></dt><dd><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 2</code>).</p></dd>
     <dt><code>conf.level</code></dt><dd><p>Scalar between 0 and 1. If unspecified, the defaults return
 <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></dd>
     <dt><code>package</code></dt><dd><p>Name of package from which the palette is desired as string

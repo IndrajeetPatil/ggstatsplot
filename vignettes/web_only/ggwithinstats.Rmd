@@ -171,71 +171,75 @@ library(ggstatsplot)
 df_disgust <- dplyr::filter(.data = data_bugs, key %in% c("LDHF", "HDHF"))
 
 # parametric t-test
-p1 <- ggstatsplot::ggwithinstats(
-  data = df_disgust,
-  x = key,
-  y = value,
-  type = "p",
-  effsize.type = "d",
-  conf.level = 0.99,
-  title = "Parametric test",
-  package = "ggsci",
-  palette = "nrc_npg",
-  ggtheme = ggthemr::ggthemr(palette = "light"),
-  messages = FALSE
-)
+p1 <-
+  ggstatsplot::ggwithinstats(
+    data = df_disgust,
+    x = key,
+    y = value,
+    type = "p",
+    effsize.type = "d",
+    conf.level = 0.99,
+    title = "Parametric test",
+    package = "ggsci",
+    palette = "nrc_npg",
+    ggtheme = ggthemr::ggthemr(palette = "light"),
+    messages = FALSE
+  )
 
 # Mann-Whitney U test (nonparametric test)
-p2 <- ggstatsplot::ggwithinstats(
-  data = df_disgust,
-  x = key,
-  y = value,
-  xlab = "Condition",
-  ylab = "Desire to kill bugs",
-  type = "np",
-  conf.level = 0.99,
-  sort = "ascending",
-  title = "Non-parametric Test",
-  package = "ggsci",
-  palette = "uniform_startrek",
-  ggtheme = ggthemes::theme_map(),
-  ggstatsplot.layer = FALSE,
-  messages = FALSE
-)
+p2 <-
+  ggstatsplot::ggwithinstats(
+    data = df_disgust,
+    x = key,
+    y = value,
+    xlab = "Condition",
+    ylab = "Desire to kill bugs",
+    type = "np",
+    conf.level = 0.99,
+    sort = "ascending",
+    title = "Non-parametric Test",
+    package = "ggsci",
+    palette = "uniform_startrek",
+    ggtheme = ggthemes::theme_map(),
+    ggstatsplot.layer = FALSE,
+    messages = FALSE
+  )
 
 # robust t-test
-p3 <- ggstatsplot::ggwithinstats(
-  data = df_disgust,
-  x = key,
-  y = value,
-  xlab = "Condition",
-  ylab = "Desire to kill bugs",
-  type = "r",
-  conf.level = 0.99,
-  sort = "descending",
-  title = "Robust Test",
-  tr = 0.2,
-  package = "wesanderson",
-  palette = "Royal2",
-  ggtheme = hrbrthemes::theme_ipsum_tw(),
-  ggstatsplot.layer = FALSE,
-  messages = FALSE
-)
+p3 <-
+  ggstatsplot::ggwithinstats(
+    data = df_disgust,
+    x = key,
+    y = value,
+    xlab = "Condition",
+    ylab = "Desire to kill bugs",
+    type = "r",
+    conf.level = 0.99,
+    sort = "descending",
+    title = "Robust Test",
+    tr = 0.2,
+    package = "wesanderson",
+    palette = "Royal2",
+    ggtheme = hrbrthemes::theme_ipsum_tw(),
+    ggstatsplot.layer = FALSE,
+    messages = FALSE
+  )
 
 # Bayes Factor for parametric t-test
-p4 <- ggstatsplot::ggwithinstats(
-  data = df_disgust,
-  x = key,
-  y = value,
-  xlab = "Condition",
-  ylab = "Desire to kill bugs",
-  type = "bf",
-  title = "Bayesian Test",
-  package = "ggsci",
-  palette = "nrc_npg",
-  ggtheme = ggthemes::theme_fivethirtyeight(),
-  messages = FALSE
-)
+p4 <-
+  ggstatsplot::ggwithinstats(
+    data = df_disgust,
+    x = key,
+    y = value,
+    xlab = "Condition",
+    ylab = "Desire to kill bugs",
+    type = "bf",
+    title = "Bayesian Test",
+    package = "ggsci",
+    palette = "nrc_npg",
+    ggtheme = ggthemes::theme_fivethirtyeight(),
+    messages = FALSE
+  )
 
 # combining the individual plots into a single plot
 ggstatsplot::combine_plots(
@@ -372,4 +376,3 @@ If you find any bugs or have any suggestions/remarks, please file an issue on
 
 For details, see-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>
-

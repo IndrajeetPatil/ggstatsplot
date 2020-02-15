@@ -240,24 +240,22 @@ the plot as a subtitle.</p>
   <span class='kw'>sort</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
   <span class='kw'>sort.fun</span> <span class='kw'>=</span> <span class='no'>mean</span>,
   <span class='kw'>axes.range.restrict</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>mean.label.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>mean.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>mean.plotting</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>mean.ci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>mean.point.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>),
+  <span class='kw'>mean.label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>),
   <span class='kw'>notch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>notchwidth</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
   <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>,
   <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>outlier.shape</span> <span class='kw'>=</span> <span class='fl'>19</span>,
   <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>outlier.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>outlier.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>outlier.coef</span> <span class='kw'>=</span> <span class='fl'>1.5</span>,
-  <span class='kw'>mean.plotting</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>mean.ci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>mean.size</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>mean.color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>,
-  <span class='kw'>point.jitter.width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>point.jitter.height</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>point.dodge.width</span> <span class='kw'>=</span> <span class='fl'>0.6</span>,
+  <span class='kw'>outlier.shape</span> <span class='kw'>=</span> <span class='fl'>19</span>,
+  <span class='kw'>outlier.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>outlier.label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>),
+  <span class='kw'>outlier.point.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  <span class='kw'>point.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>position</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/position_jitterdodge.html'>position_jitterdodge</a></span>(<span class='kw'>dodge.width</span> <span class='kw'>=</span> <span class='fl'>0.6</span>), <span class='kw'>alpha</span> <span class='kw'>=</span>
+    <span class='fl'>0.4</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>stroke</span> <span class='kw'>=</span> <span class='fl'>0</span>),
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>,
@@ -445,9 +443,20 @@ values ranges to <code>min</code> and <code>max</code> values of the axes variab
 type.</p></td>
     </tr>
     <tr>
-      <th>mean.label.size, mean.label.color</th>
-      <td><p>Aesthetics for
-the label displaying mean. Defaults: <code>3</code>, <code>"bold"</code>,<code>"black"</code>, respectively.</p></td>
+      <th>mean.plotting</th>
+      <td><p>Logical that decides whether mean is to be highlighted
+and its value to be displayed (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>mean.ci</th>
+      <td><p>Logical that decides whether <code>95%</code> confidence interval for
+mean is to be displayed (Default: <code>FALSE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>mean.point.args, mean.label.args</th>
+      <td><p>A list of additional aesthetic
+arguments to be passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point</a></code> and
+<code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geoms involved mean value plotting.</p></td>
     </tr>
     <tr>
       <th>notch</th>
@@ -476,25 +485,9 @@ of line to draw box plots (Default: <code>"solid"</code>). Alternatively, the nu
 <code>FALSE</code>).</p></td>
     </tr>
     <tr>
-      <th>outlier.shape</th>
-      <td><p>Hiding the outliers can be achieved by setting
-<code>outlier.shape = NA</code>. Importantly, this does not remove the outliers,
-it only hides them, so the range calculated for the <code>y</code>-axis will be
-the same with outliers shown and outliers hidden.</p></td>
-    </tr>
-    <tr>
       <th>outlier.label</th>
       <td><p>Label to put on the outliers that have been tagged. This
 <strong>can't</strong> be the same as <code>x</code> argument.</p></td>
-    </tr>
-    <tr>
-      <th>outlier.label.color</th>
-      <td><p>Color for the label to to put on the outliers that
-have been tagged (Default: <code>"black"</code>).</p></td>
-    </tr>
-    <tr>
-      <th>outlier.color</th>
-      <td><p>Default aesthetics for outliers (Default: <code>"black"</code>).</p></td>
     </tr>
     <tr>
       <th>outlier.coef</th>
@@ -504,39 +497,26 @@ Quartile) <code>outlier.coef</code> times the Inter-Quartile Range (IQR) (Defaul
 <code>1.5</code>).</p></td>
     </tr>
     <tr>
-      <th>mean.plotting</th>
-      <td><p>Logical that decides whether mean is to be highlighted
-and its value to be displayed (Default: <code>TRUE</code>).</p></td>
+      <th>outlier.shape</th>
+      <td><p>Hiding the outliers can be achieved by setting
+<code>outlier.shape = NA</code>. Importantly, this does not remove the outliers,
+it only hides them, so the range calculated for the <code>y</code>-axis will be
+the same with outliers shown and outliers hidden.</p></td>
     </tr>
     <tr>
-      <th>mean.ci</th>
-      <td><p>Logical that decides whether <code>95%</code> confidence interval for
-mean is to be displayed (Default: <code>FALSE</code>).</p></td>
+      <th>outlier.color</th>
+      <td><p>Default aesthetics for outliers (Default: <code>"black"</code>).</p></td>
     </tr>
     <tr>
-      <th>mean.size</th>
-      <td><p>Point size for the data point corresponding to mean
-(Default: <code>5</code>).</p></td>
+      <th>outlier.point.args, outlier.label.args</th>
+      <td><p>A list of additional aesthetic arguments to be
+passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point</a></code> and <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geoms
+involved outlier value plotting.</p></td>
     </tr>
     <tr>
-      <th>mean.color</th>
-      <td><p>Color for the data point corresponding to mean (Default:
-<code>"darkred"</code>).</p></td>
-    </tr>
-    <tr>
-      <th>point.jitter.width</th>
-      <td><p>Numeric specifying the degree of jitter in <code>x</code>
-direction. Defaults to <code>40%</code> of the resolution of the data.</p></td>
-    </tr>
-    <tr>
-      <th>point.jitter.height</th>
-      <td><p>Numeric specifying the degree of jitter in <code>y</code>
-direction. Defaults to <code>0.1</code>.</p></td>
-    </tr>
-    <tr>
-      <th>point.dodge.width</th>
-      <td><p>Numeric specifying the amount to dodge in the <code>x</code>
-direction. Defaults to <code>0.60</code>.</p></td>
+      <th>point.args</th>
+      <td><p>A list of additional aesthetic arguments to be passed to
+the <code>geom_point</code> displaying the raw data.</p></td>
     </tr>
     <tr>
       <th>ggtheme</th>

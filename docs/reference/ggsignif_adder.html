@@ -209,7 +209,8 @@
   <span class='no'>x</span>,
   <span class='no'>y</span>,
   <span class='kw'>pairwise.annotation</span> <span class='kw'>=</span> <span class='st'>"p.value"</span>,
-  <span class='kw'>pairwise.display</span> <span class='kw'>=</span> <span class='st'>"significant"</span>
+  <span class='kw'>pairwise.display</span> <span class='kw'>=</span> <span class='st'>"significant"</span>,
+  <span class='no'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -253,6 +254,10 @@ argument to make sure that your plot is not uber-cluttered when you have
 multiple groups being compared and scores of pairwise comparisons being
 displayed.</p></td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Currently ignored.</p></td>
+    </tr>
     </table>
 
 
@@ -265,11 +270,12 @@ displayed.</p></td>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_boxplot.html'>geom_boxplot</a></span>()
 
 <span class='co'># dataframe with pairwise comparison test results</span>
-<span class='no'>df_pair</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>pairwiseComparisons</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/pairwiseComparisons//reference/pairwise_comparisons.html'>pairwise_comparisons</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Species</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>
-)
+<span class='no'>df_pair</span> <span class='kw'>&lt;-</span>
+  <span class='kw pkg'>pairwiseComparisons</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/pairwiseComparisons//reference/pairwise_comparisons.html'>pairwise_comparisons</a></span>(
+    <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
+    <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Species</span>,
+    <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>
+  )
 
 <span class='co'># adding a geom for pairwise comparisons</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggsignif_adder.html'>ggsignif_adder</a></span>(

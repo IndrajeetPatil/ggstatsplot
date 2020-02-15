@@ -2,6 +2,16 @@
 
 BREAKING CHANGES
 
+To give users more flexibility in terms of modifying the aesthetic defaults for
+**all** `geoms` included in the `ggstatsplot` plots (each plot typically has
+multiple geoms), the package now uses a new form of syntax. Previously, each
+`geom` had a separate argument to specify each aesthetic (e.g., `geom_point`
+would get `point.size`, `point.color`, etc.), which resulted in functions with a
+massive number of arguments and was unsustainable in the long run. Instead,
+`ggstatsplot` functions now expect a list of such arguments for the respective
+geom (e.g., `geom_point` will have `point.args` argument where a list of
+arguments `list(size = 5, color = "darkgreen", alpha = 0.8)` can be supplied).
+
   - All `grouped_` functions have been refactored to reduce the number of
     arguments. These functions now internally use the new `combine_plots2`
     instead of `combine_plots`. The additional arguments to primary functions
@@ -23,6 +33,7 @@ BREAKING CHANGES
     modify `geom`s corresponding to the lines and labels:
     `test.value.line.args`, `test.value.label.args`, `centrality.line.args`,
     `centrality.label.args`. This helps avoid specifying millions of arguments.
+  - Removes the vestigial `ggplot_converter` function.
   
 MAJOR CHANGES
 

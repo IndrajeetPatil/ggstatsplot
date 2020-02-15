@@ -305,7 +305,7 @@ ggcoefstats_label_maker <- function(x,
     dplyr::select(.data = ., -rowid)
 
   # return the final dataframe
-  return(tibble::as_tibble(tidy_df))
+  return(as_tibble(tidy_df))
 }
 
 

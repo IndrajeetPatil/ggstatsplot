@@ -138,10 +138,10 @@ plot_list <-
       y = "lifeExp",
       outlier.tagging = TRUE,
       outlier.label = "country",
-      outlier.label.color = list(
-        "#56B4E9",
-        "#009E73",
-        "#F0E442"
+      outlier.label.args = list(
+        list(size = 3, color = "#56B4E9"),
+        list(size = 2.5, color = "#009E73"),
+        list(size = 4, color = "#F0E442")
       ),
       xlab = "Continent",
       ylab = "Life expectancy",
@@ -157,7 +157,6 @@ plot_list <-
       p.adjust.method = list("hommel", "bonferroni", "BH"),
       nboot = 25,
       conf.level = list(0.99, 0.95, 0.90),
-      mean.label.size = c(3, 4, 5),
       k = list(1, 2, 3),
       effsize.type = list(
         NULL,
@@ -229,12 +228,12 @@ plot_list <- purrr::pmap(
     outlier.tagging = TRUE,
     outlier.label = "group",
     outlier.coef = list(2, 2, 2.5, 3),
-    outlier.label.color = list(
-      "#009E73",
-      "#56B4E9",
-      "black",
-      "red"
-    ),
+    outlier.label.args = list(
+        list(size = 3, color = "#56B4E9"),
+        list(size = 2.5, color = "#009E73"),
+        list(size = 4, color = "#F0E442"),
+        list(size = 2, color = "red")
+      ),
     xlab = "Flank",
     ylab = "Response time",
     title = list(
@@ -250,7 +249,6 @@ plot_list <- purrr::pmap(
     p.adjust.method = list("fdr", "hommel", "bonferroni", "BH"),
     nboot = 25,
     conf.level = list(0.99, 0.99, 0.95, 0.90),
-    mean.label.size = c(2, 3, 4, 5),
     k = list(3, 2, 2, 3),
     effsize.type = list(
       "omega",

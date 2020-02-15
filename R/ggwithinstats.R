@@ -48,7 +48,7 @@
 #' library(WRS2)
 #'
 #' ggstatsplot::ggwithinstats(
-#'   data = tibble::as_tibble(WineTasting),
+#'   data = as_tibble(WineTasting),
 #'   x = Wine,
 #'   y = Taste,
 #'   type = "np",
@@ -91,21 +91,20 @@ ggwithinstats <- function(data,
                           sort = "none",
                           sort.fun = mean,
                           axes.range.restrict = FALSE,
-                          mean.label.size = 3,
-                          mean.label.color = "black",
+                          mean.plotting = TRUE,
+                          mean.ci = FALSE,
+                          mean.point.args = list(size = 5, color = "darkred"),
+                          mean.label.args = list(size = 3),
                           notch = FALSE,
                           notchwidth = 0.5,
                           linetype = "solid",
                           outlier.tagging = FALSE,
-                          outlier.shape = 19,
                           outlier.label = NULL,
-                          outlier.label.color = "black",
-                          outlier.color = "black",
                           outlier.coef = 1.5,
-                          mean.plotting = TRUE,
-                          mean.ci = FALSE,
-                          mean.size = 5,
-                          mean.color = "darkred",
+                          outlier.shape = 19,
+                          outlier.color = "black",
+                          outlier.label.args = list(),
+                          outlier.point.args = list(),
                           ggtheme = ggplot2::theme_bw(),
                           ggstatsplot.layer = TRUE,
                           package = "RColorBrewer",
@@ -120,7 +119,7 @@ ggwithinstats <- function(data,
   type <- stats_type_switch(type)
 
   # no pairwise comparisons are available for Bayesian t-tests
-  if (type == "bayes" && isTRUE(pairwise.comparisons)) pairwise.comparisons <- FALSE
+  if (type == "bayes") pairwise.comparisons <- FALSE
 
   # ------------------------------ variable names ----------------------------
 
@@ -141,7 +140,7 @@ ggwithinstats <- function(data,
   data %<>%
     dplyr::select(.data = ., {{ x }}, {{ y }}, outlier.label = {{ outlier.label }}) %>%
     dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }}))) %>%
-    tibble::as_tibble(x = .)
+    as_tibble(x = .)
 
   # figuring out number of levels in the grouping factor
   x_n_levels <- nlevels(data %>% dplyr::pull({{ x }}))[[1]]
@@ -177,62 +176,6 @@ ggwithinstats <- function(data,
   # figure out which test to run based on the number of levels of the
   # independent variables
   test <- ifelse(nlevels(data %>% dplyr::pull({{ x }}))[[1]] < 3, "t", "anova")
-
-  # --------------------------------- sorting --------------------------------
-
-  # if sorting is happening
-  if (sort != "none") {
-    data %<>%
-      ipmisc::sort_xy(
-        data = .,
-        x = {{ x }},
-        y = {{ y }},
-        sort = sort,
-        .fun = sort.fun
-      )
-  }
-
-  # --------------------------------- basic plot ------------------------------
-
-  # plot
-  plot <- ggplot2::ggplot(
-    data = data,
-    mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, group = id)
-  ) +
-    ggplot2::geom_point(
-      alpha = 0.5,
-      size = 3,
-      na.rm = TRUE,
-      ggplot2::aes(color = {{ x }})
-    ) +
-    ggplot2::geom_boxplot(
-      mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),
-      inherit.aes = FALSE,
-      fill = "white",
-      width = 0.2,
-      alpha = 0.5,
-      notch = notch,
-      notchwidth = notchwidth
-    ) +
-    ggplot2::geom_violin(
-      mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),
-      inherit.aes = FALSE,
-      width = 0.5,
-      alpha = 0.2,
-      fill = "white",
-      na.rm = TRUE
-    )
-
-  # add a connecting path only if there are only two groups
-  if (test != "anova" && isTRUE(path.point)) {
-    plot <- plot +
-      ggplot2::geom_path(
-        color = "grey50",
-        size = 0.5,
-        alpha = 0.5,
-        linetype = "dashed"
-      )
-  }
 
   # --------------------- subtitle/caption preparation ------------------------
 
@@ -280,6 +223,72 @@ ggwithinstats <- function(data,
     test <- "none"
   }
 
+  # quit early if only subtitle is needed
+  if (output %in% c("subtitle", "caption")) {
+    return(switch(
+      EXPR = output,
+      "subtitle" = subtitle,
+      "caption" = caption
+    ))
+  }
+
+  # --------------------------------- sorting --------------------------------
+
+  # if sorting is happening
+  if (sort != "none") {
+    data %<>%
+      ipmisc::sort_xy(
+        data = .,
+        x = {{ x }},
+        y = {{ y }},
+        sort = sort,
+        .fun = sort.fun
+      )
+  }
+
+  # --------------------------------- basic plot ------------------------------
+
+  # plot
+  plot <-
+    ggplot2::ggplot(
+      data = data,
+      mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, group = id)
+    ) +
+    ggplot2::geom_point(
+      alpha = 0.5,
+      size = 3,
+      na.rm = TRUE,
+      ggplot2::aes(color = {{ x }})
+    ) +
+    ggplot2::geom_boxplot(
+      mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),
+      inherit.aes = FALSE,
+      fill = "white",
+      width = 0.2,
+      alpha = 0.5,
+      notch = notch,
+      notchwidth = notchwidth
+    ) +
+    ggplot2::geom_violin(
+      mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),
+      inherit.aes = FALSE,
+      width = 0.5,
+      alpha = 0.2,
+      fill = "white",
+      na.rm = TRUE
+    )
+
+  # add a connecting path only if there are only two groups
+  if (test != "anova" && isTRUE(path.point)) {
+    plot <- plot +
+      ggplot2::geom_path(
+        color = "grey50",
+        size = 0.5,
+        alpha = 0.5,
+        linetype = "dashed"
+      )
+  }
+
   # ---------------------------- outlier tagging -----------------------------
 
   # If `outlier.label` is not provided, outlier labels will just be values of
@@ -288,20 +297,16 @@ ggwithinstats <- function(data,
 
   if (isTRUE(outlier.tagging)) {
     # applying the labels to tagged outliers with ggrepel
-    plot <-
-      plot +
-      ggrepel::geom_label_repel(
-        data = dplyr::filter(.data = data, isanoutlier) %>%
-          dplyr::select(.data = ., -outlier),
+    plot <- plot +
+      rlang::exec(
+        .fn = ggrepel::geom_label_repel,
+        data = dplyr::filter(.data = data, isanoutlier),
         mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, label = outlier.label),
-        color = outlier.label.color,
-        max.iter = 3e2,
-        box.padding = 0.35,
-        point.padding = 0.5,
-        segment.color = "black",
-        force = 2,
+        show.legend = FALSE,
+        min.segment.length = 0,
+        inherit.aes = FALSE,
         na.rm = TRUE,
-        seed = 123
+        !!!outlier.label.args
       )
   }
 
@@ -321,17 +326,16 @@ ggwithinstats <- function(data,
 
   # add labels for mean values
   if (isTRUE(mean.plotting)) {
-    plot <- mean_ggrepel(
-      plot = plot,
-      x = {{ x }},
-      y = {{ y }},
-      mean.data = mean_dat,
-      mean.size = mean.size,
-      mean.color = mean.color,
-      mean.label.size = mean.label.size,
-      mean.label.color = mean.label.color,
-      inherit.aes = FALSE
-    )
+    plot <-
+      mean_ggrepel(
+        mean.data = mean_dat,
+        x = {{ x }},
+        y = {{ y }},
+        plot = plot,
+        mean.point.args = mean.point.args,
+        mean.label.args = mean.label.args,
+        inherit.aes = FALSE
+      )
 
     # if there should be lines connecting mean values across groups
     if (isTRUE(path.mean)) {
@@ -394,35 +398,34 @@ ggwithinstats <- function(data,
   # ------------------------ annotations and themes -------------------------
 
   # specifying annotations and other aesthetic aspects for the plot
-  if (output == "plot") {
-    plot <-
-      aesthetic_addon(
-        plot = plot,
-        x = data %>% dplyr::pull({{ x }}),
-        xlab = xlab,
-        ylab = ylab,
-        title = title,
-        subtitle = subtitle,
-        caption = caption,
-        ggtheme = ggtheme,
-        ggstatsplot.layer = ggstatsplot.layer,
-        package = package,
-        palette = palette,
-        direction = direction,
-        ggplot.component = ggplot.component
-      )
+  plot <-
+    aesthetic_addon(
+      plot = plot,
+      x = data %>% dplyr::pull({{ x }}),
+      xlab = xlab,
+      ylab = ylab,
+      title = title,
+      subtitle = subtitle,
+      caption = caption,
+      ggtheme = ggtheme,
+      ggstatsplot.layer = ggstatsplot.layer,
+      package = package,
+      palette = palette,
+      direction = direction,
+      ggplot.component = ggplot.component
+    )
 
-    # don't do scale restriction in case of post hoc comparisons
-    if (isTRUE(axes.range.restrict) && isFALSE(pairwise.comparisons)) {
-      # pull out vector for y-values
-      y_vec <- data %>% dplyr::pull({{ y }})
+  # don't do scale restriction in case of post hoc comparisons
+  if (isTRUE(axes.range.restrict) && isFALSE(pairwise.comparisons)) {
+    # pull out vector for y-values
+    y_vec <- data %>% dplyr::pull({{ y }})
 
-      # restricting axes
-      plot <- plot +
-        ggplot2::coord_cartesian(ylim = c(min(y_vec), max(y_vec))) +
-        ggplot2::scale_y_continuous(limits = c(min(y_vec), max(y_vec)))
-    }
+    # restricting axes
+    plot <- plot +
+      ggplot2::coord_cartesian(ylim = c(min(y_vec), max(y_vec))) +
+      ggplot2::scale_y_continuous(limits = c(min(y_vec), max(y_vec)))
   }
+
   # --------------------- messages ------------------------------------------
 
   if (isTRUE(messages)) {
@@ -430,8 +433,7 @@ ggwithinstats <- function(data,
     normality_message(
       x = data %>% dplyr::pull({{ y }}),
       lab = ylab,
-      k = k,
-      output = "message"
+      k = k
     )
 
     # display homogeneity of variance test as a message
@@ -440,17 +442,10 @@ ggwithinstats <- function(data,
       x = {{ x }},
       y = {{ y }},
       lab = xlab,
-      k = k,
-      output = "message"
+      k = k
     )
   }
 
   # return the final plot
-  return(switch(
-    EXPR = output,
-    "plot" = plot,
-    "subtitle" = subtitle,
-    "caption" = caption,
-    plot
-  ))
+  return(plot)
 }

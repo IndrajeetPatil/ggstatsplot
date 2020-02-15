@@ -144,10 +144,7 @@ df_facet_label <- function(data, x, y, k = 3L) {
               .$p.value.formatted,
               ")",
               sep = " "
-            ),
-            .collate = "rows",
-            .to = "label",
-            .labels = TRUE
+            )
           )
       ) %>%
       tidyr::unnest(data = ., c(label, data)) %>%

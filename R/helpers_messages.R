@@ -9,7 +9,6 @@
 #' @param palette Name of palette as string or symbol.
 #' @param min_length Minimum number of colors needed.
 #'
-#' @importFrom tibble as_tibble
 #' @importFrom dplyr filter select
 #' @importFrom ipmisc green blue yellow red
 #' @importFrom rlang !! enquo
@@ -20,7 +19,7 @@
 palette_message <- function(package, palette, min_length) {
   # computing the number of colors in a given palette
   palette_df <-
-    tibble::as_tibble(paletteer::palettes_d_names) %>%
+    as_tibble(paletteer::palettes_d_names) %>%
     dplyr::filter(.data = ., package == !!package, palette == !!palette) %>%
     dplyr::select(.data = ., length)
 

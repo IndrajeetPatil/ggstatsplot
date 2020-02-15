@@ -207,10 +207,8 @@
   <span class='no'>x</span>,
   <span class='no'>y</span>,
   <span class='no'>mean.data</span>,
-  <span class='kw'>mean.size</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>mean.color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>,
-  <span class='kw'>mean.label.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>mean.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>mean.point.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>),
+  <span class='kw'>mean.label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>),
   <span class='kw'>inherit.aes</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='no'>...</span>
 )</pre>
@@ -237,24 +235,16 @@ dataframe <code>data</code>.</p></td>
 The columns should be titled <code>x</code>, <code>y</code>, and <code>label</code>.</p></td>
     </tr>
     <tr>
-      <th>mean.size</th>
-      <td><p>Point size for the data point corresponding to mean
-(Default: <code>5</code>).</p></td>
+      <th>mean.point.args</th>
+      <td><p>A list of additional aesthetic
+arguments to be passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point</a></code> and
+<code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geoms involved mean value plotting.</p></td>
     </tr>
     <tr>
-      <th>mean.color</th>
-      <td><p>Color for the data point corresponding to mean (Default:
-<code>"darkred"</code>).</p></td>
-    </tr>
-    <tr>
-      <th>mean.label.size</th>
-      <td><p>Aesthetics for
-the label displaying mean. Defaults: <code>3</code>, <code>"bold"</code>,<code>"black"</code>, respectively.</p></td>
-    </tr>
-    <tr>
-      <th>mean.label.color</th>
-      <td><p>Aesthetics for
-the label displaying mean. Defaults: <code>3</code>, <code>"bold"</code>,<code>"black"</code>, respectively.</p></td>
+      <th>mean.label.args</th>
+      <td><p>A list of additional aesthetic
+arguments to be passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point</a></code> and
+<code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geoms involved mean value plotting.</p></td>
     </tr>
     <tr>
       <th>inherit.aes</th>

@@ -209,6 +209,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "tibble",
+      "name": "tibble",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=tibble"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "WRS2",
       "name": "WRS2",
       "provider": {
@@ -313,11 +325,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "grid",
-      "name": "grid"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "groupedstats",
       "name": "groupedstats",
       "version": ">= 0.1.1",
@@ -353,7 +360,7 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/IndrajeetPatil/ipmisc"
+      "sameAs": "https://CRAN.R-project.org/package=ipmisc"
     },
     {
       "@type": "SoftwareApplication",
@@ -459,18 +466,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://github.com/IndrajeetPatil/statsExpressions"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "tibble",
-      "name": "tibble",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=tibble"
     },
     {
       "@type": "SoftwareApplication",

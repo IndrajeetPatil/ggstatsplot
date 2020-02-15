@@ -11,7 +11,8 @@ ggsignif_adder(
   x,
   y,
   pairwise.annotation = "p.value",
-  pairwise.display = "significant"
+  pairwise.display = "significant",
+  ...
 )
 }
 \arguments{
@@ -38,6 +39,8 @@ Available options are \code{"significant"} (abbreviation accepted: \code{"s"}) o
 argument to make sure that your plot is not uber-cluttered when you have
 multiple groups being compared and scores of pairwise comparisons being
 displayed.}
+
+\item{...}{Currently ignored.}
 }
 \description{
 Adding \code{geom_signif} to \code{ggplot}
@@ -51,11 +54,12 @@ p <- ggplot(iris, aes(Species, Sepal.Length)) +
   geom_boxplot()
 
 # dataframe with pairwise comparison test results
-df_pair <- pairwiseComparisons::pairwise_comparisons(
-  data = iris,
-  x = Species,
-  y = Sepal.Length
-)
+df_pair <-
+  pairwiseComparisons::pairwise_comparisons(
+    data = iris,
+    x = Species,
+    y = Sepal.Length
+  )
 
 # adding a geom for pairwise comparisons
 ggstatsplot:::ggsignif_adder(

@@ -51,12 +51,12 @@ rlang::`%||%`
 rlang::`%|%`
 
 #' @export
-#' @importFrom tibble tibble
-tibble::tibble
+#' @importFrom ipmisc tibble
+ipmisc::tibble
 
 #' @export
-#' @importFrom tibble as_tibble
-tibble::as_tibble
+#' @importFrom ipmisc as_tibble
+ipmisc::as_tibble
 
 # ----------------------- messages -------------------------------------
 

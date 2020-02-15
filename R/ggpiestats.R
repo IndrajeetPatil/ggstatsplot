@@ -48,12 +48,11 @@
 #'
 #' @import ggplot2
 #'
-#' @importFrom dplyr select group_by summarize n mutate mutate_at mutate_if
+#' @importFrom dplyr select mutate vars pull
 #' @importFrom rlang !! enquo quo_name as_name ensym
 #' @importFrom paletteer scale_fill_paletteer_d
 #' @importFrom groupedstats grouped_proptest
 #' @importFrom tidyr uncount drop_na
-#' @importFrom tibble as_tibble
 #'
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
@@ -163,7 +162,7 @@ ggpiestats <- function(data,
   data %<>%
     dplyr::select(.data = ., {{ x }}, {{ y }}, {{ counts }}) %>%
     tidyr::drop_na(data = .) %>%
-    tibble::as_tibble(x = .)
+    as_tibble(x = .)
 
   # =========================== converting counts ============================
 
@@ -191,6 +190,58 @@ ggpiestats <- function(data,
     data %<>% dplyr::mutate(.data = ., {{ y }} := droplevels(as.factor({{ y }})))
   }
 
+  # ========================= statistical analysis ==========================
+
+  # if subtitle with results is to be displayed
+  if (isTRUE(results.subtitle)) {
+    subtitle <-
+      tryCatch(
+        expr = statsExpressions::expr_contingency_tab(
+          data = data,
+          x = {{ x }},
+          y = {{ y }},
+          ratio = ratio,
+          nboot = nboot,
+          paired = paired,
+          stat.title = stat.title,
+          legend.title = legend.title,
+          conf.level = conf.level,
+          conf.type = "norm",
+          bias.correct = bias.correct,
+          k = k,
+          messages = messages
+        ),
+        error = function(e) NULL
+      )
+
+    # preparing Bayes Factor caption
+    if (isTRUE(bf.message) && !is.null(subtitle)) {
+      caption <-
+        bf_contingency_tab(
+          data = data,
+          x = {{ x }},
+          y = {{ y }},
+          sampling.plan = sampling.plan,
+          fixed.margin = fixed.margin,
+          prior.concentration = prior.concentration,
+          caption = caption,
+          output = "caption",
+          k = k
+        )
+    }
+  }
+
+  # return early if anything other than plot
+  if (output %in% c("subtitle", "caption")) {
+    return(switch(
+      EXPR = output,
+      "subtitle" = subtitle,
+      "caption" = caption
+    ))
+  }
+
+  # =================================== plot =================================
+
   # convert the data into percentages; group by yal variable if needed
   # dataframe with summary labels
   df <-
@@ -201,8 +252,6 @@ ggpiestats <- function(data,
       label.separator = label.separator,
       perc.k = perc.k
     )
-
-  # ============ preparing label dataframe and other annotations  =============
 
   # dataframe containing all details needed for sample size and prop test
   if (!rlang::quo_is_null(rlang::enquo(y))) {
@@ -233,8 +282,6 @@ ggpiestats <- function(data,
     return(lab)
   }
 
-  # =================================== plot =================================
-
   # if no. of factor levels is greater than the default palette color count
   palette_message(
     package = package,
@@ -243,7 +290,8 @@ ggpiestats <- function(data,
   )
 
   # creating the basic plot
-  p <- ggplot2::ggplot(data = df, mapping = ggplot2::aes(x = "", y = counts)) +
+  p <-
+    ggplot2::ggplot(data = df, mapping = ggplot2::aes(x = "", y = counts)) +
     ggplot2::geom_col(
       position = "fill",
       color = "black",
@@ -295,47 +343,6 @@ ggpiestats <- function(data,
     ) + # remove black diagonal line from legend
     ggplot2::guides(fill = ggplot2::guide_legend(override.aes = list(color = NA)))
 
-  # ========================= statistical analysis ==========================
-
-  # if subtitle with results is to be displayed
-  if (isTRUE(results.subtitle)) {
-    subtitle <-
-      tryCatch(
-        expr = statsExpressions::expr_contingency_tab(
-          data = data,
-          x = {{ x }},
-          y = {{ y }},
-          ratio = ratio,
-          nboot = nboot,
-          paired = paired,
-          stat.title = stat.title,
-          legend.title = legend.title,
-          conf.level = conf.level,
-          conf.type = "norm",
-          bias.correct = bias.correct,
-          k = k,
-          messages = messages
-        ),
-        error = function(e) NULL
-      )
-
-    # preparing Bayes Factor caption
-    if (isTRUE(bf.message) && !is.null(subtitle)) {
-      caption <-
-        bf_contingency_tab(
-          data = data,
-          x = {{ x }},
-          y = {{ y }},
-          sampling.plan = sampling.plan,
-          fixed.margin = fixed.margin,
-          prior.concentration = prior.concentration,
-          caption = caption,
-          output = "caption",
-          k = k
-        )
-    }
-  }
-
   # if faceting by y is happening
   if (!rlang::quo_is_null(rlang::enquo(y))) {
 
@@ -386,11 +393,5 @@ ggpiestats <- function(data,
     ggplot.component
 
   # return the final plot
-  return(switch(
-    EXPR = output,
-    "plot" = p,
-    "subtitle" = subtitle,
-    "caption" = caption,
-    p
-  ))
+  return(p)
 }
