@@ -16,12 +16,13 @@ ggcoefstats_label_maker(
 )
 }
 \arguments{
-\item{x}{A model object to be tidied with \code{broom::tidy}, or a tidy data frame
-containing results. If a data frame is to be plotted, it \emph{must} contain
-columns named \code{term} (names of predictors), or \code{estimate} (corresponding
-estimates of coefficients or other quantities of interest). Other optional
-columns are \code{conf.low} and \code{conf.high} (for confidence intervals);
-\code{p.value}. It is important that all \code{term} names should be unique.}
+\item{x}{A model object to be tidied, or a tidy data frame containing
+results. If a data frame is to be plotted, it \emph{must} contain columns named
+\code{term} (names of predictors), or \code{estimate} (corresponding estimates of
+coefficients or other quantities of interest). Other optional columns are
+\code{conf.low} and \code{conf.high} (for confidence intervals); \code{p.value}. It is
+important that all \code{term} names should be unique. Function internally uses
+\code{broom::tidy} or \code{parameters::model_parameters} to get a tidy dataframe.}
 
 \item{tidy_df}{Tidy dataframe from \code{broomExtra::tidy}.}
 

@@ -25,11 +25,7 @@ ggdotplotstats(
   nboot = 100,
   k = 2,
   results.subtitle = TRUE,
-  ggtheme = ggplot2::theme_bw(),
-  ggstatsplot.layer = TRUE,
-  point.color = "black",
-  point.size = 3,
-  point.shape = 16,
+  point.args = list(size = 3, shape = 16),
   test.k = 0,
   test.value.line = FALSE,
   test.value.line.args = list(size = 1),
@@ -39,6 +35,8 @@ ggdotplotstats(
   centrality.line.args = list(color = "blue", size = 1),
   centrality.label.args = list(color = "blue"),
   ggplot.component = NULL,
+  ggtheme = ggplot2::theme_bw(),
+  ggstatsplot.layer = TRUE,
   output = "plot",
   messages = TRUE,
   ...
@@ -55,7 +53,7 @@ be taken. A matrix or tables will \strong{not} be accepted.}
 \item{xlab}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
 variable names for \code{x} and \code{y} will be used.}
 
-\item{ylab}{Label for \code{y} axis variable (Default: \code{"term"}).}
+\item{ylab}{Labels for \code{x} axis variable (Defaults: \code{"regression coefficient"} and \code{"term"}, resp.).}
 
 \item{title}{The text for the plot title.}
 
@@ -108,23 +106,8 @@ for the effect size (Default: \code{100}).}
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}
 
-\item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
-\code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
-extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
-\code{hrbrthemes::theme_ipsum_ps()}, etc.).}
-
-\item{ggstatsplot.layer}{Logical that decides whether \code{theme_ggstatsplot}
-theme elements are to be displayed along with the selected \code{ggtheme}
-(Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
-override some aspects of the selected \code{ggtheme}.}
-
-\item{point.color}{Character describing color for the point (Default:
-\code{"black"}).}
-
-\item{point.size}{Numeric specifying size for the point (Default: \code{3}).}
-
-\item{point.shape}{Numeric specifying shape to draw the points (Default: \code{16}
-(\strong{a dot})).}
+\item{point.args}{A list of additional aesthetic arguments passed to
+\code{geom_point}.}
 
 \item{test.k}{Integer denoting the number of decimal places expected for
 \code{test.value} label. (Default: \code{0} ).}
@@ -162,6 +145,16 @@ as a function. If the given function has an argument \code{axes.range.restrict}
 and if it has been set to \code{TRUE}, the added \code{ggplot} component \emph{might} not
 work as expected.}
 
+\item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
+\code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
+extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
+\code{hrbrthemes::theme_ipsum_ps()}, etc.).}
+
+\item{ggstatsplot.layer}{Logical that decides whether \code{theme_ggstatsplot}
+theme elements are to be displayed along with the selected \code{ggtheme}
+(Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
+override some aspects of the selected \code{ggtheme}.}
+
 \item{output}{Character that describes what is to be returned: can be
 \code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to
 \code{"subtitle"} will return the expression containing statistical results. If
@@ -193,7 +186,6 @@ ggdotplotstats(
   test.value = 15,
   test.value.line = TRUE,
   test.line.labeller = TRUE,
-  test.value.color = "red",
   centrality.parameter = "median",
   centrality.k = 0,
   title = "Fuel economy data",

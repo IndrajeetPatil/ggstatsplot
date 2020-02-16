@@ -1,5 +1,3 @@
-context(desc = "ggdotplotstats")
-
 # ggdotplotstats works ----------------------------------------------
 
 testthat::test_that(
@@ -8,7 +6,8 @@ testthat::test_that(
     testthat::skip_on_cran()
 
     # creating a new dataset
-    morley_new <- morley %>%
+    morley_new <-
+      morley %>%
       dplyr::mutate(
         .data = .,
         Expt = dplyr::case_when(
@@ -51,20 +50,18 @@ testthat::test_that(
     # build the plot
     pb <- ggplot2::ggplot_build(p)
 
-    # data used for statistics
-    dat <- tibble::as_tibble(pb$data[[1]])
-
     # checking subtitle
     set.seed(123)
     p_subtitle <-
       statsExpressions::expr_t_onesample(
-        data = dat,
-        x = x,
-        effsize.type = "d",
-        effsize.noncentral = FALSE,
+        data = morley_new,
+        x = Speed,
+        y = "Expt",
         test.value = 800,
         type = "p",
         k = 4,
+        effsize.type = "d",
+        effsize.noncentral = FALSE,
         messages = FALSE
       )
 
@@ -75,56 +72,27 @@ testthat::test_that(
     )
     testthat::expect_identical(pb$plot$labels$y, "Experimental run")
     testthat::expect_identical(pb$plot$labels$title, "Michelson-Morley experiment")
-    testthat::expect_identical(pb$plot$labels$subtitle, p_subtitle)
-    testthat::expect_identical(pb$plot$labels$caption, ggplot2::expr(atop(
-      displaystyle("Studies carried out in 1887"),
-      expr = paste(
-        "In favor of null: ",
-        "log"["e"],
-        "(BF"["01"],
-        ") = ",
-        "-1.2779",
-        ", ",
-        italic("r")["Cauchy"]^"JZS",
-        " = ",
-        "0.8800"
-      )
-    )))
-
-    # checking different data layers
-    testthat::expect_equal(length(pb$data), 5L)
-    testthat::expect_equal(nrow(pb$data[[1]]), 5L)
-    testthat::expect_equal(pb$data[[1]]$x,
-      c(820.5, 831.5, 845.0, 856.0, 909.0),
-      tolerance = 0.001
-    )
-    testthat::expect_equal(pb$data[[4]]$xintercept,
-      mean(dat$x, na.rm = TRUE),
-      tolerance = 0.001
-    )
-    testthat::expect_equal(pb$data[[2]]$xintercept,
-      800.000,
-      tolerance = 0.001
-    )
-    testthat::expect_equal(
-      class(pb$data[[3]]$label[[1]]),
-      "call"
-    )
-    testthat::expect_equal(
-      class(pb$data[[5]]$label[[1]]),
-      "call"
-    )
-    testthat::expect_equal(
-      pb$data[[3]]$label[[1]],
-      ggplot2::expr("test" == "800")
-    )
-    testthat::expect_equal(
-      pb$data[[5]]$label[[1]],
-      ggplot2::expr("mean" == "852.40")
+    testthat::expect_identical(
+      pb$plot$labels$caption,
+      ggplot2::expr(atop(
+        displaystyle("Studies carried out in 1887"),
+        expr = paste(
+          "In favor of null: ",
+          "log"["e"],
+          "(BF"["01"],
+          ") = ",
+          "-1.2779",
+          ", ",
+          italic("r")["Cauchy"]^"JZS",
+          " = ",
+          "0.8800"
+        )
+      ))
     )
 
     # checking panel parameters
-    testthat::expect_equal(pb$layout$panel_params[[1]]$x.range,
+    testthat::expect_equal(
+      pb$layout$panel_params[[1]]$x.range,
       c(794.55, 914.45),
       tolerance = 0.001
     )
@@ -132,7 +100,8 @@ testthat::test_that(
       pb$layout$panel_params[[1]]$x.labels,
       c("800", "810", "820", "830", "840", "850", "860", "870", "880", "890", "900")
     )
-    testthat::expect_equal(pb$layout$panel_params[[1]]$y.range,
+    testthat::expect_equal(
+      pb$layout$panel_params[[1]]$y.range,
       c(0.8, 5.2),
       tolerance = 0.001
     )
@@ -151,6 +120,129 @@ testthat::test_that(
     testthat::expect_identical(
       pb$layout$panel_params[[1]]$x.labels,
       pb$layout$panel_params[[1]]$x.sec.labels
+    )
+
+    # geom data
+    testthat::expect_equal(
+      pb$data[[1]],
+      structure(
+        list(
+          y = c(1, 2, 3, 4, 5),
+          x = c(820.5, 831.5, 845, 856, 909),
+          PANEL = structure(c(1L, 1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
+          group = c(-1L, -1L, -1L, -1L, -1L),
+          shape = c(16, 16, 16, 16, 16),
+          colour = c("black", "black", "black", "black", "black"),
+          size = c(3, 3, 3, 3, 3),
+          fill = c(NA, NA, NA, NA, NA),
+          alpha = c(NA, NA, NA, NA, NA),
+          stroke = c(0.5, 0.5, 0.5, 0.5, 0.5)
+        ),
+        row.names = c(NA, -5L),
+        class = "data.frame"
+      )
+    )
+
+    testthat::expect_equal(
+      pb$data[[2]],
+      structure(
+        list(
+          xintercept = 800,
+          PANEL = structure(1L, .Label = "1", class = "factor"),
+          group = -1L,
+          colour = "black",
+          size = 1,
+          linetype = "dashed",
+          alpha = NA
+        ),
+        row.names = c(NA, -1L),
+        class = "data.frame"
+      )
+    )
+
+    testthat::expect_equal(
+      pb$data[[3]],
+      structure(
+        list(
+          y = c(2.25, 2.25, 2.25, 2.25, 2.25),
+          x = c(
+            800,
+            800, 800, 800, 800
+          ),
+          label = list(
+            ggplot2::expr("test" == "800"),
+            ggplot2::expr("test" == "800"),
+            ggplot2::expr("test" == "800"),
+            ggplot2::expr("test" == "800"),
+            ggplot2::expr("test" == "800")
+          ),
+          PANEL = structure(c(1L, 1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
+          group = c(-1L, -1L, -1L, -1L, -1L),
+          colour = c("black", "black", "black", "black", "black"),
+          fill = c("white", "white", "white", "white", "white"),
+          size = c(3.88, 3.88, 3.88, 3.88, 3.88),
+          angle = c(0, 0, 0, 0, 0),
+          hjust = c(0.5, 0.5, 0.5, 0.5, 0.5),
+          vjust = c(0.5, 0.5, 0.5, 0.5, 0.5),
+          alpha = c(0.5, 0.5, 0.5, 0.5, 0.5),
+          family = c("", "", "", "", ""),
+          fontface = c(1, 1, 1, 1, 1),
+          lineheight = c(1.2, 1.2, 1.2, 1.2, 1.2)
+        ),
+        row.names = c(
+          NA,
+          -5L
+        ),
+        class = "data.frame"
+      )
+    )
+
+    testthat::expect_equal(
+      pb$data[[4]],
+      structure(
+        list(
+          xintercept = 852.4,
+          PANEL = structure(1L, .Label = "1", class = "factor"),
+          group = -1L,
+          colour = "blue",
+          size = 1,
+          linetype = "dashed",
+          alpha = NA
+        ),
+        row.names = c(NA, -1L),
+        class = "data.frame"
+      )
+    )
+
+    testthat::expect_equal(
+      pb$data[[5]],
+      structure(
+        list(
+          y = c(3.75, 3.75, 3.75, 3.75, 3.75),
+          x = c(852.4, 852.4, 852.4, 852.4, 852.4),
+          label = list(
+            ggplot2::expr("mean" == "852.40"),
+            ggplot2::expr("mean" == "852.40"),
+            ggplot2::expr("mean" == "852.40"),
+            ggplot2::expr("mean" == "852.40"),
+            ggplot2::expr("mean" == "852.40")
+          ),
+          PANEL = structure(c(1L, 1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
+          group = c(-1L, -1L, -1L, -1L, -1L),
+          colour = c("blue", "blue", "blue", "blue", "blue"),
+          fill = c("white", "white", "white", "white", "white"),
+          size = c(3.88, 3.88, 3.88, 3.88, 3.88),
+          angle = c(0, 0, 0, 0, 0),
+          hjust = c(0.5, 0.5, 0.5, 0.5, 0.5),
+          vjust = c(0.5, 0.5, 0.5, 0.5, 0.5),
+          alpha = c(0.5, 0.5, 0.5, 0.5, 0.5),
+          family = c("", "", "", "", ""),
+          fontface = c(1, 1, 1, 1, 1),
+          lineheight = c(1.2, 1.2, 1.2, 1.2, 1.2)
+        ),
+        row.names = c(NA, -5L),
+        class = "data.frame"
+      )
     )
   }
 )
@@ -172,19 +264,21 @@ testthat::test_that(
       )
 
     # plot
-    p <- ggstatsplot::ggdotplotstats(
-      data = df,
-      x = "mean",
-      y = Species,
-      results.subtitle = FALSE,
-      messages = FALSE
-    )
+    p <-
+      ggstatsplot::ggdotplotstats(
+        data = df,
+        x = "mean",
+        y = Species,
+        results.subtitle = FALSE,
+        messages = FALSE
+      )
 
     # build plot
     pb <- ggplot2::ggplot_build(p)
 
     # checking panel parameters
-    testthat::expect_equal(pb$layout$panel_params[[1]]$x.range,
+    testthat::expect_equal(
+      pb$layout$panel_params[[1]]$x.range,
       c(4.931, 6.669),
       tolerance = 0.001
     )
@@ -192,7 +286,8 @@ testthat::test_that(
       pb$layout$panel_params[[1]]$x.labels,
       c("5.0", "5.5", "6.0", "6.5")
     )
-    testthat::expect_equal(pb$layout$panel_params[[1]]$y.range,
+    testthat::expect_equal(
+      pb$layout$panel_params[[1]]$y.range,
       c(0.9, 3.1),
       tolerance = 0.001
     )
@@ -204,7 +299,8 @@ testthat::test_that(
       as.character(pb$layout$panel_params[[1]]$y.sec.labels),
       c("0", "25", "50", "75", "100")
     )
-    testthat::expect_equal(pb$layout$panel_params[[1]]$y.range,
+    testthat::expect_equal(
+      pb$layout$panel_params[[1]]$y.range,
       pb$layout$panel_params[[1]]$y.sec.range,
       tolerance = 0.001
     )
@@ -220,7 +316,7 @@ testthat::test_that(
 # messing with factors --------------------------------------------------
 
 testthat::test_that(
-  desc = "subtitle output",
+  desc = "messing with factors",
   code = {
     testthat::skip_on_cran()
 
@@ -235,22 +331,24 @@ testthat::test_that(
       dplyr::mutate(.data = ., vore = forcats::fct_relevel(vore, "herbi", "insecti", "carni"))
 
     # plot with original data
-    p1 <- ggdotplotstats(
-      data = df_msleep,
-      y = vore,
-      x = brainwt,
-      results.subtitle = FALSE,
-      messages = FALSE
-    )
+    p1 <-
+      ggdotplotstats(
+        data = df_msleep,
+        y = vore,
+        x = brainwt,
+        results.subtitle = FALSE,
+        messages = FALSE
+      )
 
     # plot with modified data
-    p2 <- ggdotplotstats(
-      data = dplyr::filter(ggplot2::msleep, vore != "omni"),
-      y = vore,
-      x = brainwt,
-      results.subtitle = FALSE,
-      messages = FALSE
-    )
+    p2 <-
+      ggdotplotstats(
+        data = dplyr::filter(ggplot2::msleep, vore != "omni"),
+        y = vore,
+        x = brainwt,
+        results.subtitle = FALSE,
+        messages = FALSE
+      )
 
     # build those plots
     pb1 <- ggplot2::ggplot_build(p1)
@@ -284,15 +382,16 @@ testthat::test_that(
 
     # should output a list of length 3
     set.seed(123)
-    p_sub <- suppressWarnings(ggstatsplot::ggdotplotstats(
-      data = morley,
-      x = Speed,
-      y = Expt,
-      test.value = 800,
-      output = "subtitle",
-      type = "np",
-      messages = FALSE
-    ))
+    p_sub <-
+      suppressWarnings(ggstatsplot::ggdotplotstats(
+        data = morley,
+        x = Speed,
+        y = Expt,
+        test.value = 800,
+        output = "subtitle",
+        type = "np",
+        messages = FALSE
+      ))
 
     # tests
     set.seed(123)

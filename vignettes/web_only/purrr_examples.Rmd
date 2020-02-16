@@ -571,9 +571,6 @@ plot_list <-
         list(color = "blue", size = 0.4)
       ), 
       centrality.parameter = list("median", "mean", "mean", "none"),
-      point.color = list("green", "blue", "#E69F00", "darkgreen"),
-      point.size = list(3, 4, 4, 3),
-      point.shape = list(12, 13, 17, 18),
       ggtheme = list(
         ggplot2::theme_minimal(base_family = "serif"),
         ggthemes::theme_tufte(),

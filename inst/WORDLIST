@@ -22,7 +22,6 @@ cbcbbfa
 cbu
 changedate
 checkmark
-ci
 clm
 Cochrane
 codecov
@@ -68,6 +67,7 @@ Fligner
 freighteningness
 fueleconomy
 Gapminder
+geoms
 ggbarstats
 ggbetweenstats
 ggcatstats
@@ -154,7 +154,6 @@ nd
 netlify
 NHST
 noncentral
-noticable
 ns
 NSE
 NumGenre
@@ -178,7 +177,6 @@ plotmath
 pre
 preferrred
 priori
-ps
 pseudolikelihood
 psy
 PsyArXiv
@@ -194,7 +192,6 @@ reproducibility
 ridgeplot
 rlbt
 RStudio
-sdcor
 setosa
 softwares
 spearman
@@ -217,7 +214,6 @@ uber
 uk
 unadjusted
 unjittered
-vcov
 versicolor
 virginica
 vjust

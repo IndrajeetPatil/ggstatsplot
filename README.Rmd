@@ -1159,8 +1159,7 @@ ggstatsplot::ggcoefstats(
   subtitle = "Source: 1974 Motor Trend US magazine",
   ggtheme = hrbrthemes::theme_ipsum_ps(),
   ggstatsplot.layer = FALSE
-) + # further modification with the ggplot2 commands
-  # note the order in which the labels are entered
+) + # note the order in which the labels are entered
   ggplot2::scale_y_discrete(labels = c("transmission", "cylinders", "interaction")) +
   ggplot2::labs(x = "regression coefficient", y = NULL)
 ```

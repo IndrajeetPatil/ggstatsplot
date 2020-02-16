@@ -247,10 +247,7 @@ gghistostats <- function(data,
         alpha = 0.7,
         binwidth = binwidth,
         na.rm = TRUE,
-        mapping = ggplot2::aes(
-          y = ..density..,
-          fill = ..density..
-        )
+        mapping = ggplot2::aes(y = ..density.., fill = ..density..)
       ) +
       ggplot2::scale_fill_gradient(
         name = "density",
@@ -268,10 +265,7 @@ gghistostats <- function(data,
         alpha = 0.7,
         binwidth = binwidth,
         na.rm = TRUE,
-        mapping = ggplot2::aes(
-          y = ..count..,
-          fill = ..count..
-        )
+        mapping = ggplot2::aes(y = ..count.., fill = ..count..)
       ) +
       ggplot2::scale_fill_gradient(
         name = "count",

@@ -47,8 +47,8 @@ about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
 \item{...}{
   Arguments passed on to \code{\link[=ggdotplotstats]{ggdotplotstats}}
   \describe{
-    \item{\code{point.color}}{Character describing color for the point (Default:
-\code{"black"}).}
+    \item{\code{point.args}}{A list of additional aesthetic arguments passed to
+\code{geom_point}.}
     \item{\code{test.value}}{A number specifying the value of the null hypothesis
 (Default: \code{0}).}
     \item{\code{test.k}}{Integer denoting the number of decimal places expected for
@@ -107,6 +107,12 @@ for the effect size (Default: \code{100}).}
     \item{\code{results.subtitle}}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}
+    \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
+by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
+of the current function. Default is \code{NULL}. The argument should be entered
+as a function. If the given function has an argument \code{axes.range.restrict}
+and if it has been set to \code{TRUE}, the added \code{ggplot} component \emph{might} not
+work as expected.}
     \item{\code{ggtheme}}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
 extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
@@ -115,18 +121,9 @@ extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
 theme elements are to be displayed along with the selected \code{ggtheme}
 (Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
 override some aspects of the selected \code{ggtheme}.}
-    \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
-by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
-of the current function. Default is \code{NULL}. The argument should be entered
-as a function. If the given function has an argument \code{axes.range.restrict}
-and if it has been set to \code{TRUE}, the added \code{ggplot} component \emph{might} not
-work as expected.}
     \item{\code{messages}}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
-    \item{\code{ylab}}{Label for \code{y} axis variable (Default: \code{"term"}).}
-    \item{\code{point.size}}{Numeric specifying size for the point (Default: \code{3}).}
-    \item{\code{point.shape}}{Numeric specifying shape to draw the points (Default: \code{16}
-(\strong{a dot})).}
+    \item{\code{ylab}}{Labels for \code{x} axis variable (Defaults: \code{"regression coefficient"} and \code{"term"}, resp.).}
   }}
 
 \item{plotgrid.args}{A list of additional arguments to \code{cowplot::plot_grid}.}

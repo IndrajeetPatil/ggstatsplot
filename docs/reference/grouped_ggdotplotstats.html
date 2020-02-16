@@ -263,8 +263,8 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
     <tr>
       <th>...</th>
       <td><p>Arguments passed on to <code><a href='ggdotplotstats.html'>ggdotplotstats</a></code></p><dl class='dl-horizontal'>
-    <dt><code>point.color</code></dt><dd><p>Character describing color for the point (Default:
-<code>"black"</code>).</p></dd>
+    <dt><code>point.args</code></dt><dd><p>A list of additional aesthetic arguments passed to
+<code>geom_point</code>.</p></dd>
     <dt><code>test.value</code></dt><dd><p>A number specifying the value of the null hypothesis
 (Default: <code>0</code>).</p></dd>
     <dt><code>test.k</code></dt><dd><p>Integer denoting the number of decimal places expected for
@@ -323,6 +323,12 @@ for the effect size (Default: <code>100</code>).</p></dd>
     <dt><code>results.subtitle</code></dt><dd><p>Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
 the plot will be returned.</p></dd>
+    <dt><code>ggplot.component</code></dt><dd><p>A <code>ggplot</code> component to be added to the plot prepared
+by <code>ggstatsplot</code>. This argument is primarily helpful for <code>grouped_</code> variant
+of the current function. Default is <code>NULL</code>. The argument should be entered
+as a function. If the given function has an argument <code>axes.range.restrict</code>
+and if it has been set to <code>TRUE</code>, the added <code>ggplot</code> component <em>might</em> not
+work as expected.</p></dd>
     <dt><code>ggtheme</code></dt><dd><p>A function, <code>ggplot2</code> theme name. Default value is
 <code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
 extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>,
@@ -331,18 +337,9 @@ extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggtheme
 theme elements are to be displayed along with the selected <code>ggtheme</code>
 (Default: <code>TRUE</code>). <code>theme_ggstatsplot</code> is an opinionated theme layer that
 override some aspects of the selected <code>ggtheme</code>.</p></dd>
-    <dt><code>ggplot.component</code></dt><dd><p>A <code>ggplot</code> component to be added to the plot prepared
-by <code>ggstatsplot</code>. This argument is primarily helpful for <code>grouped_</code> variant
-of the current function. Default is <code>NULL</code>. The argument should be entered
-as a function. If the given function has an argument <code>axes.range.restrict</code>
-and if it has been set to <code>TRUE</code>, the added <code>ggplot</code> component <em>might</em> not
-work as expected.</p></dd>
     <dt><code>messages</code></dt><dd><p>Decides whether messages references, notes, and warnings are
 to be displayed (Default: <code>TRUE</code>).</p></dd>
-    <dt><code>ylab</code></dt><dd><p>Label for <code>y</code> axis variable (Default: <code>"term"</code>).</p></dd>
-    <dt><code>point.size</code></dt><dd><p>Numeric specifying size for the point (Default: <code>3</code>).</p></dd>
-    <dt><code>point.shape</code></dt><dd><p>Numeric specifying shape to draw the points (Default: <code>16</code>
-(<strong>a dot</strong>)).</p></dd>
+    <dt><code>ylab</code></dt><dd><p>Labels for <code>x</code> axis variable (Defaults: <code>"regression coefficient"</code> and <code>"term"</code>, resp.).</p></dd>
   
 </dl></td>
     </tr>

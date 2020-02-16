@@ -150,72 +150,6 @@ testthat::test_that(
 )
 
 
-# outlier labeling works ----------------------------------------------------
-
-testthat::test_that(
-  desc = "outlier.labeling works across vector types",
-  code = {
-    testthat::skip_on_cran()
-
-    # `outlier.label` is numeric
-    set.seed(123)
-    testthat::expect_true(inherits(
-      ggstatsplot::ggbetweenstats(
-        data = dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25),
-        x = genre,
-        y = rating,
-        type = "xx",
-        messages = TRUE,
-        palette = "Set3",
-        outlier.tagging = TRUE,
-        results.subtitle = FALSE,
-        outlier.label = length,
-        pairwise.comparisons = TRUE,
-        pairwise.annotation = "asterisk"
-      ),
-      what = "gg"
-    ))
-
-    # `outlier.label` is factor
-    set.seed(123)
-    testthat::expect_true(inherits(
-      ggstatsplot::ggbetweenstats(
-        data = dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25),
-        x = genre,
-        y = rating,
-        messages = FALSE,
-        results.subtitle = FALSE,
-        palette = "Set3",
-        outlier.tagging = TRUE,
-        outlier.label = "title"
-      ),
-      what = "gg"
-    ))
-
-
-    # `outlier.label` is character
-    # also x, y, and outlier.label arguments as characters
-    set.seed(123)
-    movies_long1 <- dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25)
-    movies_long1$title <- as.character(movies_long1$title)
-
-    testthat::expect_true(inherits(
-      ggstatsplot::ggbetweenstats(
-        data = movies_long1,
-        x = "genre",
-        y = "rating",
-        messages = FALSE,
-        palette = "Set3",
-        results.subtitle = FALSE,
-        outlier.tagging = TRUE,
-        outlier.label = "title",
-        outlier.coef = 5
-      ),
-      what = "gg"
-    ))
-  }
-)
-
 # checking sorting -------------------------------------------------------
 
 testthat::test_that(
@@ -413,7 +347,7 @@ testthat::test_that(
         outlier.color = "blue",
         mean.point.args = list(size = 5, color = "darkgreen"),
         mean.label.args = list(color = "blue"),
-        messages = FALSE
+        messages = TRUE
       )
 
     # violin
