@@ -72,20 +72,15 @@ should be displayed for each level of the grouping variable \code{y}
     \item{\code{palette}}{If a character string (e.g., \code{"Set1"}), will use that named
 palette. If a number, will index into the list of palettes of appropriate
 type. Default palette is \code{"Dark2"}.}
-    \item{\code{facet.wrap.name}}{The text for the facet_wrap variable label.}
-    \item{\code{facet.proptest}}{Decides whether proportion test for \code{main} variable is
+    \item{\code{proportion.test}}{Decides whether proportion test for \code{main} variable is
 to be carried out for each level of \code{condition} (Default: \code{TRUE}).}
     \item{\code{perc.k}}{Numeric that decides number of decimal places for percentage
 labels (Default: \code{0}).}
     \item{\code{slice.label}}{Character decides what information needs to be displayed
 on the label in each pie slice. Possible options are \code{"percentage"}
 (default), \code{"counts"}, \code{"both"}.}
-    \item{\code{label.text.size}}{Numeric that decides text size for slice/bar labels
-(Default: \code{4}).}
-    \item{\code{label.fill.color}}{Character that specifies fill color for slice/bar
-labels (Default: \code{white}).}
-    \item{\code{label.fill.alpha}}{Numeric that specifies fill color transparency or
-\code{"alpha"} for slice/bar labels (Default: \code{1} range \code{0} to \code{1}).}
+    \item{\code{label.args}}{Additional aesthetic arguments that will be passed to
+\code{geom_label}.}
     \item{\code{bf.message}}{Logical that decides whether to display a caption with
 results from Bayes Factor test in favor of the null hypothesis (default:
 \code{FALSE}).}
@@ -118,8 +113,6 @@ like \code{"main x condition"} or \code{"interaction"}.}
 \verb{95\%} lower and upper confidence intervals (\code{0.95}).}
     \item{\code{nboot}}{Number of bootstrap samples for computing confidence interval
 for the effect size (Default: \code{100}).}
-    \item{\code{bias.correct}}{If \code{TRUE} (default), a bias correction will be applied to
-Cramer's \emph{V}.}
     \item{\code{legend.title}}{Title text for the legend.}
     \item{\code{messages}}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

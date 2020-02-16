@@ -8,7 +8,7 @@
 #' @param xlab Custom text for the `x` axis label (Default: `NULL`, which
 #'   will cause the `x` axis label to be the `x` variable).
 #' @param ylab Custom text for the `y` axis label (Default: `"percent"`).
-#' @param bar.proptest Decides whether proportion test for `main` variable is
+#' @param proportion.test Decides whether proportion test for `main` variable is
 #'   to be carried out for each level of `y` (Default: `TRUE`).
 #' @param bar.label,data.label Character decides what information needs to be
 #'   displayed on the label in each pie slice. Possible options are
@@ -18,8 +18,6 @@
 #' @param x.axis.orientation The orientation of the `x` axis labels one of
 #'   "slant" or "vertical" to change from the default horizontal
 #'   orientation (Default: `NULL` which is horizontal).
-#' @param bar.outline.color Character specifying color for bars (default:
-#'   `"black"`).
 #' @inheritParams ggpiestats
 #'
 #' @seealso \code{\link{grouped_ggbarstats}}, \code{\link{ggpiestats}},
@@ -64,10 +62,7 @@ ggbarstats <- function(data,
                        stat.title = NULL,
                        sample.size.label = TRUE,
                        label.separator = " ",
-                       label.text.size = 4,
-                       label.fill.color = "white",
-                       label.fill.alpha = 1,
-                       bar.outline.color = "black",
+                       label.args = list(alpha = 1, fill = "white"),
                        bf.message = TRUE,
                        sampling.plan = "indepMulti",
                        fixed.margin = "rows",
@@ -79,7 +74,6 @@ ggbarstats <- function(data,
                        x.axis.orientation = NULL,
                        conf.level = 0.95,
                        nboot = 100,
-                       bias.correct = TRUE,
                        legend.title = NULL,
                        xlab = NULL,
                        ylab = "Percent",
@@ -87,7 +81,7 @@ ggbarstats <- function(data,
                        perc.k = 0,
                        bar.label = "percentage",
                        data.label = NULL,
-                       bar.proptest = TRUE,
+                       proportion.test = TRUE,
                        ggtheme = ggplot2::theme_bw(),
                        ggstatsplot.layer = TRUE,
                        package = "RColorBrewer",
@@ -165,7 +159,7 @@ ggbarstats <- function(data,
           legend.title = legend.title,
           conf.level = conf.level,
           conf.type = "norm",
-          bias.correct = bias.correct,
+          bias.correct = TRUE,
           k = k,
           messages = messages
         ),
@@ -251,7 +245,7 @@ ggbarstats <- function(data,
     ggplot2::geom_bar(
       stat = "identity",
       position = "fill",
-      color = bar.outline.color,
+      color = "black",
       na.rm = TRUE
     ) +
     ggplot2::scale_y_continuous(
@@ -259,15 +253,13 @@ ggbarstats <- function(data,
       breaks = seq(from = 0, to = 1, by = 0.10),
       minor_breaks = seq(from = 0.05, to = 0.95, by = 0.10)
     ) +
-    ggplot2::geom_label(
+    rlang::exec(
+      .fn = ggplot2::geom_label,
       mapping = ggplot2::aes(label = bar.label, group = {{ x }}),
       show.legend = FALSE,
       position = ggplot2::position_fill(vjust = 0.5),
-      color = "black",
-      size = label.text.size,
-      fill = label.fill.color,
-      alpha = label.fill.alpha,
-      na.rm = TRUE
+      na.rm = TRUE,
+      !!!label.args
     ) +
     ggstatsplot::theme_ggstatsplot(
       ggtheme = ggtheme,
@@ -288,7 +280,7 @@ ggbarstats <- function(data,
   # ================ sample size and proportion test labels ===================
 
   # adding significance labels to bars for proportion tests
-  if (isTRUE(bar.proptest)) {
+  if (isTRUE(proportion.test)) {
     # display grouped proportion test results
     if (isTRUE(messages)) print(dplyr::select(df_labels, -label))
 

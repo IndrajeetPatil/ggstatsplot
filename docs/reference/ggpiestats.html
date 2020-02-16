@@ -216,9 +216,7 @@ included in the plot as a subtitle.</p>
   <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>sample.size.label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>label.separator</span> <span class='kw'>=</span> <span class='st'>"\n"</span>,
-  <span class='kw'>label.text.size</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>label.fill.color</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
-  <span class='kw'>label.fill.alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"white"</span>),
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>sampling.plan</span> <span class='kw'>=</span> <span class='st'>"indepMulti"</span>,
   <span class='kw'>fixed.margin</span> <span class='kw'>=</span> <span class='st'>"rows"</span>,
@@ -228,13 +226,11 @@ included in the plot as a subtitle.</p>
   <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>bias.correct</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>facet.wrap.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
   <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>slice.label</span> <span class='kw'>=</span> <span class='st'>"percentage"</span>,
-  <span class='kw'>facet.proptest</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>proportion.test</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>,
@@ -308,19 +304,9 @@ information are going to be on the same line (<code>" "</code>) or on separate l
 (<code>"\n"</code>).</p></td>
     </tr>
     <tr>
-      <th>label.text.size</th>
-      <td><p>Numeric that decides text size for slice/bar labels
-(Default: <code>4</code>).</p></td>
-    </tr>
-    <tr>
-      <th>label.fill.color</th>
-      <td><p>Character that specifies fill color for slice/bar
-labels (Default: <code>white</code>).</p></td>
-    </tr>
-    <tr>
-      <th>label.fill.alpha</th>
-      <td><p>Numeric that specifies fill color transparency or
-<code>"alpha"</code> for slice/bar labels (Default: <code>1</code> range <code>0</code> to <code>1</code>).</p></td>
+      <th>label.args</th>
+      <td><p>Additional aesthetic arguments that will be passed to
+<code>geom_label</code>.</p></td>
     </tr>
     <tr>
       <th>bf.message</th>
@@ -371,17 +357,8 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 for the effect size (Default: <code>100</code>).</p></td>
     </tr>
     <tr>
-      <th>bias.correct</th>
-      <td><p>If <code>TRUE</code> (default), a bias correction will be applied to
-Cramer's <em>V</em>.</p></td>
-    </tr>
-    <tr>
       <th>legend.title</th>
       <td><p>Title text for the legend.</p></td>
-    </tr>
-    <tr>
-      <th>facet.wrap.name</th>
-      <td><p>The text for the facet_wrap variable label.</p></td>
     </tr>
     <tr>
       <th>k</th>
@@ -400,7 +377,7 @@ on the label in each pie slice. Possible options are <code>"percentage"</code>
 (default), <code>"counts"</code>, <code>"both"</code>.</p></td>
     </tr>
     <tr>
-      <th>facet.proptest</th>
+      <th>proportion.test</th>
       <td><p>Decides whether proportion test for <code>main</code> variable is
 to be carried out for each level of <code>condition</code> (Default: <code>TRUE</code>).</p></td>
     </tr>
@@ -517,16 +494,12 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
   <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='st'>"Engine"</span>
 )</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>10</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 11</span><span>
-#&gt;   cyl   counts  perc N        `0`     `1`    statistic  p.value parameter
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> 8         14  43.8 (n = 14) 100.00% </span><span style='color: #BB0000;'>NA</span><span>        14     0.000</span><span style='text-decoration: underline;'>183</span><span>         1
-#&gt; </span><span style='color: #555555;'>2</span><span> 6          7  21.9 (n = 7)  42.86%  57.14%     0.143 0.705            1
-#&gt; </span><span style='color: #555555;'>3</span><span> 4         11  34.4 (n = 11) 9.09%   90.91%     7.36  0.006</span><span style='text-decoration: underline;'>66</span><span>          1
-#&gt;   method                                   significance
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       
-#&gt; </span><span style='color: #555555;'>1</span><span> Chi-squared test for given probabilities ***         
-#&gt; </span><span style='color: #555555;'>2</span><span> Chi-squared test for given probabilities ns          
-#&gt; </span><span style='color: #555555;'>3</span><span> Chi-squared test for given probabilities **          </div><div class='img'><img src='ggpiestats-2.png' alt='' width='700' height='433' /></div></span></pre>
+#&gt;   cyl   counts  perc N     `0`   `1`   statistic p.value parameter method
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> 
+#&gt; </span><span style='color: #555555;'>1</span><span> 8         14  43.8 (n =~ 100.~ </span><span style='color: #BB0000;'>NA</span><span>       14     1.83</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span>         1 Chi-s~
+#&gt; </span><span style='color: #555555;'>2</span><span> 6          7  21.9 (n =~ 42.8~ 57.1~     0.143 7.05</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>         1 Chi-s~
+#&gt; </span><span style='color: #555555;'>3</span><span> 4         11  34.4 (n =~ 9.09% 90.9~     7.36  6.66</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span>         1 Chi-s~
+#&gt; </span><span style='color: #555555;'># ... with 1 more variable: significance </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span></div><div class='img'><img src='ggpiestats-2.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>

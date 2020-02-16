@@ -68,7 +68,7 @@ the \code{x} variable displayed in the legend.}
     \item{\code{xlab}}{Custom text for the \code{x} axis label (Default: \code{NULL}, which
 will cause the \code{x} axis label to be the \code{x} variable).}
     \item{\code{ylab}}{Custom text for the \code{y} axis label (Default: \code{"percent"}).}
-    \item{\code{bar.proptest}}{Decides whether proportion test for \code{main} variable is
+    \item{\code{proportion.test}}{Decides whether proportion test for \code{main} variable is
 to be carried out for each level of \code{y} (Default: \code{TRUE}).}
     \item{\code{bar.label}}{Character decides what information needs to be
 displayed on the label in each pie slice. Possible options are
@@ -81,8 +81,6 @@ displayed on the label in each pie slice. Possible options are
     \item{\code{x.axis.orientation}}{The orientation of the \code{x} axis labels one of
 "slant" or "vertical" to change from the default horizontal
 orientation (Default: \code{NULL} which is horizontal).}
-    \item{\code{bar.outline.color}}{Character specifying color for bars (default:
-\code{"black"}).}
     \item{\code{ratio}}{A vector of proportions: the expected proportions for the
 proportion test (should sum to 1). Default is \code{NULL}, which means the null
 is equal theoretical proportions across the levels of the nominal variable.
@@ -106,12 +104,8 @@ should be displayed for each level of the grouping variable \code{y}
 displayed in a label, this argument decides whether these two pieces of
 information are going to be on the same line (\code{" "}) or on separate lines
 (\code{"\\n"}).}
-    \item{\code{label.text.size}}{Numeric that decides text size for slice/bar labels
-(Default: \code{4}).}
-    \item{\code{label.fill.color}}{Character that specifies fill color for slice/bar
-labels (Default: \code{white}).}
-    \item{\code{label.fill.alpha}}{Numeric that specifies fill color transparency or
-\code{"alpha"} for slice/bar labels (Default: \code{1} range \code{0} to \code{1}).}
+    \item{\code{label.args}}{Additional aesthetic arguments that will be passed to
+\code{geom_label}.}
     \item{\code{bf.message}}{Logical that decides whether to display a caption with
 results from Bayes Factor test in favor of the null hypothesis (default:
 \code{FALSE}).}
@@ -132,8 +126,6 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 \verb{95\%} lower and upper confidence intervals (\code{0.95}).}
     \item{\code{nboot}}{Number of bootstrap samples for computing confidence interval
 for the effect size (Default: \code{100}).}
-    \item{\code{bias.correct}}{If \code{TRUE} (default), a bias correction will be applied to
-Cramer's \emph{V}.}
     \item{\code{legend.title}}{Title text for the legend.}
     \item{\code{k}}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}

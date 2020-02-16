@@ -10,24 +10,22 @@ testthat::test_that(
 
     # creating the plot
     set.seed(123)
-    p <- ggstatsplot::ggpiestats(
-      data = ggplot2::msleep,
-      main = vore,
-      bf.message = TRUE,
-      title = "mammalian sleep",
-      legend.title = "vore",
-      caption = "From ggplot2 package",
-      perc.k = 2,
-      nboot = 25,
-      slice.label = "both",
-      messages = FALSE
-    )
+    p <-
+      ggstatsplot::ggpiestats(
+        data = ggplot2::msleep,
+        main = vore,
+        bf.message = TRUE,
+        title = "mammalian sleep",
+        legend.title = "vore",
+        caption = "From ggplot2 package",
+        perc.k = 2,
+        nboot = 25,
+        slice.label = "both",
+        messages = FALSE
+      )
 
     # built plot
     pb <- ggplot2::ggplot_build(p)
-
-    # checking data used to create a plot
-    dat <- p$data
 
     # subtitle used
     set.seed(123)
@@ -38,32 +36,69 @@ testthat::test_that(
         nboot = 25
       )
 
-    # checking dimensions of data
-    data_dims <- dim(dat)
-
-    # testing everything is okay with data
-    testthat::expect_equal(data_dims, c(4L, 4L))
-    testthat::expect_equal(dat$perc,
-      c(26.30, 6.58, 42.10, 25.00),
-      tolerance = 1e-3
-    )
-    testthat::expect_equal(dat$counts, c(20L, 5L, 32L, 19))
+    # checking geom data
     testthat::expect_equal(
-      as.character(dat$vore),
-      c("omni", "insecti", "herbi", "carni")
-    )
-    testthat::expect_identical(
-      pb$data[[2]]$label,
-      c(
-        "n = 19\n(25%)",
-        "n = 32\n(42.11%)",
-        "n = 5\n(6.58%)",
-        "n = 20\n(26.32%)"
+      pb$data[[1]],
+      structure(
+        list(
+          fill = c("#E7298AFF", "#7570B3FF", "#D95F02FF", "#1B9E77FF"),
+          y = c(0.25, 0.671052631578947, 0.736842105263158, 1),
+          x = c(1L, 1L, 1L, 1L),
+          PANEL = structure(c(1L, 1L, 1L, 1L), .Label = "1", class = "factor"),
+          group = 4:1,
+          ymin = c(0, 0.25, 0.671052631578947, 0.736842105263158),
+          ymax = c(0.25, 0.671052631578947, 0.736842105263158, 1),
+          xmin = c(0.5, 0.5, 0.5, 0.5),
+          xmax = c(1.5, 1.5, 1.5, 1.5),
+          colour = c("black", "black", "black", "black"),
+          size = c(0.5, 0.5, 0.5, 0.5),
+          linetype = c(1, 1, 1, 1),
+          alpha = c(NA, NA, NA, NA)
+        ),
+        row.names = c(NA, -4L),
+        class = "data.frame"
       )
     )
-    testthat::expect_identical(
-      dplyr::arrange(pb$data[[2]], group)$label,
-      dat$slice.label
+
+    testthat::expect_equal(
+      pb$data[[2]],
+      structure(
+        list(
+          y = c(
+            0.125,
+            0.460526315789474,
+            0.703947368421053,
+            0.868421052631579
+          ),
+          x = c(1L, 1L, 1L, 1L),
+          label = c(
+            "n = 19\n(25%)",
+            "n = 32\n(42.11%)",
+            "n = 5\n(6.58%)",
+            "n = 20\n(26.32%)"
+          ),
+          group = 4:1,
+          PANEL = structure(c(1L, 1L, 1L, 1L), .Label = "1", class = "factor"),
+          ymax = c(0.25, 0.671052631578947, 0.736842105263158, 1),
+          xmin = c(1L, 1L, 1L, 1L),
+          xmax = c(1L, 1L, 1L, 1L),
+          ymin = c(
+            0, 0.25, 0.671052631578947, 0.736842105263158
+          ),
+          colour = c("black", "black", "black", "black"),
+          fill = c("white", "white", "white", "white"),
+          size = c(3.88, 3.88, 3.88, 3.88),
+          angle = c(0, 0, 0, 0),
+          hjust = c(0.5, 0.5, 0.5, 0.5),
+          vjust = c(0.5, 0.5, 0.5, 0.5),
+          alpha = c(1, 1, 1, 1),
+          family = c("", "", "", ""),
+          fontface = c(1, 1, 1, 1),
+          lineheight = c(1.2, 1.2, 1.2, 1.2)
+        ),
+        row.names = c(NA, -4L),
+        class = "data.frame"
+      )
     )
 
     # checking plot labels
@@ -89,7 +124,6 @@ testthat::test_that(
     testthat::expect_null(p$labels$x, NULL)
     testthat::expect_null(p$labels$y, NULL)
     testthat::expect_identical(pb$plot$plot_env$legend.title, "vore")
-    testthat::expect_null(pb$plot$plot_env$facet.wrap.name, NULL)
 
     # checking layer data
     testthat::expect_equal(length(pb$data), 2L)
@@ -117,7 +151,6 @@ testthat::test_that(
           data = mtcars,
           main = "am",
           condition = "cyl",
-          bias.correct = FALSE,
           perc.k = 2,
           nboot = 25,
           package = "wesanderson",
@@ -126,7 +159,6 @@ testthat::test_that(
           slice.label = "counts",
           legend.title = "transmission",
           factor.levels = c("0 = automatic", "1 = manual"),
-          facet.wrap.name = "cylinders",
           messages = FALSE
         )
       )
@@ -141,7 +173,6 @@ testthat::test_that(
         main = cyl,
         condition = am,
         nboot = 25,
-        facet.wrap.name = "transmission",
         messages = FALSE
       )
 
@@ -154,7 +185,6 @@ testthat::test_that(
     p_subtitle <-
       suppressWarnings(statsExpressions::expr_contingency_tab(
         data = mtcars,
-        bias.correct = FALSE,
         x = "am",
         y = "cyl",
         nboot = 25,
@@ -257,36 +287,34 @@ testthat::test_that(
 
     # checking plot labels
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
-    testthat::expect_identical(pb$plot$plot_env$facet.wrap.name, "cylinders")
     testthat::expect_identical(
       pb$plot$plot_env$legend.labels, c("0 = automatic", "1 = manual")
     )
-    testthat::expect_identical(pb$plot$labels$caption, ggplot2::expr(atop(
-      displaystyle(NULL),
-      expr = paste(
-        "In favor of null: ",
-        "log"["e"],
-        "(BF"["01"],
-        ") = ",
-        "-2.82",
-        ", sampling = ",
-        "independent multinomial",
-        ", ",
-        italic("a"),
-        " = ",
-        "1.00"
-      )
-    )))
+    testthat::expect_identical(
+      pb$plot$labels$caption,
+      ggplot2::expr(atop(
+        displaystyle(NULL),
+        expr = paste(
+          "In favor of null: ",
+          "log"["e"],
+          "(BF"["01"],
+          ") = ",
+          "-2.82",
+          ", sampling = ",
+          "independent multinomial",
+          ", ",
+          italic("a"),
+          " = ",
+          "1.00"
+        )
+      ))
+    )
     testthat::expect_null(p$labels$x, NULL)
     testthat::expect_null(p$labels$y, NULL)
     testthat::expect_null(pb$plot$plot_env$stat.title, NULL)
     testthat::expect_identical(pb$plot$guides$fill$title[1], "transmission")
     testthat::expect_null(pb1$plot$labels$subtitle, NULL)
     testthat::expect_null(pb1$plot$labels$caption, NULL)
-    testthat::expect_identical(
-      pb1$layout$facet_params$plot_env$facet.wrap.name,
-      "transmission"
-    )
 
     # checking labels
     testthat::expect_identical(
@@ -396,7 +424,6 @@ testthat::test_that(
     # checking plot labels
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
     testthat::expect_null(p$labels$caption, NULL)
-    testthat::expect_identical(pb$plot$plot_env$facet.wrap.name, "Survived")
     testthat::expect_identical(pb$plot$plot_env$legend.title, "Sex")
 
     # checking geometric layers
@@ -432,7 +459,6 @@ testthat::test_that(
       counts = Counts,
       nboot = 25,
       paired = TRUE,
-      facet.wrap.name = NULL,
       conf.level = 0.90,
       messages = FALSE
     )
@@ -455,7 +481,6 @@ testthat::test_that(
 
     # checking plot labels
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
-    testthat::expect_identical(pb$plot$plot_env$facet.wrap.name, "2nd survey")
     testthat::expect_identical(pb$plot$labels$group, "1st survey")
     testthat::expect_identical(pb$plot$labels$fill, "1st survey")
     testthat::expect_identical(pb$plot$labels$label, "slice.label")
@@ -629,9 +654,18 @@ testthat::test_that(
       ggstatsplot::ggpiestats(
         data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
         main = race,
-        bias.correct = FALSE,
         condition = marital,
         output = "subtitle",
+        k = 4,
+        messages = FALSE
+      )
+
+    set.seed(123)
+    stats_output <-
+      statsExpressions::expr_contingency_tab(
+        data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
+        x = race,
+        y = marital,
         k = 4,
         messages = FALSE
       )
@@ -649,38 +683,7 @@ testthat::test_that(
       )
 
     # tests
-    testthat::expect_identical(
-      p_sub,
-      ggplot2::expr(
-        paste(
-          NULL,
-          chi["Pearson"]^2,
-          "(",
-          "8",
-          ") = ",
-          "109.2007",
-          ", ",
-          italic("p"),
-          " = ",
-          "< 0.001",
-          ", ",
-          widehat(italic("V"))["Cramer"],
-          " = ",
-          "0.1594",
-          ", CI"["95%"],
-          " [",
-          "0.1236",
-          ", ",
-          "0.1814",
-          "]",
-          ", ",
-          italic("n")["obs"],
-          " = ",
-          2148L
-        )
-      )
-    )
-
+    testthat::expect_identical(p_sub, stats_output)
     testthat::expect_identical(
       p_cap,
       ggplot2::expr(atop(

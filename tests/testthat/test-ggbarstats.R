@@ -7,7 +7,7 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
 
-    # condition variable is not options for `ggbarstats`
+    # condition variable is not optional for `ggbarstats`
     testthat::expect_error(
       ggstatsplot::ggbarstats(
         data = as.data.frame(Titanic),
@@ -17,59 +17,141 @@ testthat::test_that(
 
     # plot
     set.seed(123)
-    p <- ggstatsplot::ggbarstats(
-      data = as.data.frame(Titanic),
-      main = Sex,
-      condition = Survived,
-      counts = "Freq",
-      perc.k = 2,
-      conf.level = 0.95,
-      xlab = "Passenger sex",
-      ylab = "proportion",
-      label.separator = "\n",
-      bf.message = FALSE,
-      messages = TRUE
-    )
+    p <-
+      ggstatsplot::ggbarstats(
+        data = as.data.frame(Titanic),
+        main = Sex,
+        condition = Survived,
+        counts = "Freq",
+        perc.k = 2,
+        conf.level = 0.95,
+        xlab = "Passenger sex",
+        ylab = "proportion",
+        label.separator = "\n",
+        bf.message = FALSE,
+        messages = TRUE
+      )
 
     # build plot
     pb <- ggplot2::ggplot_build(p)
 
     # subtitle
     set.seed(123)
-    p_subtitle <- statsExpressions::expr_contingency_tab(
-      data = as.data.frame(Titanic),
-      x = "Sex",
-      y = "Survived",
-      counts = Freq,
-      conf.level = 0.95,
-      messages = FALSE
-    )
-
-    # checking data used to create a plot
-    dat <- p$data %>%
-      dplyr::mutate_if(
-        .tbl = .,
-        .predicate = is.factor,
-        .funs = ~ as.character(.)
+    p_subtitle <-
+      statsExpressions::expr_contingency_tab(
+        data = as.data.frame(Titanic),
+        x = "Sex",
+        y = "Survived",
+        counts = Freq,
+        conf.level = 0.95,
+        messages = FALSE
       )
 
-    # checking dimensions of data
-    data_dims <- dim(dat)
-
-    # testing everything is okay with data
-    testthat::expect_equal(data_dims, c(4L, 5L))
-    testthat::expect_equal(dim(pb$data[[2]]), c(4L, 19L))
-    testthat::expect_equal(dim(pb$data[[3]]), c(2L, 14L))
-    testthat::expect_equal(dim(pb$data[[4]]), c(2L, 14L))
-    testthat::expect_equal(dat$perc,
-      c(8.46, 48.38, 91.54, 51.62),
-      tolerance = 1e-3
+    # checking geom data
+    testthat::expect_equal(
+      pb$data[[1]],
+      structure(
+        list(
+          fill = c("#D95F02FF", "#1B9E77FF", "#D95F02FF", "#1B9E77FF"),
+          y = c(0.915436241610738, 1, 0.516174402250352, 1),
+          x = c(1L, 1L, 2L, 2L),
+          PANEL = structure(c(1L, 1L, 1L, 1L), .Label = "1", class = "factor"),
+          group = c(2L, 1L, 4L, 3L),
+          ymin = c(0, 0.915436241610738, 0, 0.516174402250352),
+          ymax = c(0.915436241610738, 1, 0.516174402250352, 1),
+          xmin = c(0.55, 0.55, 1.55, 1.55),
+          xmax = c(1.45, 1.45, 2.45, 2.45),
+          colour = c("black", "black", "black", "black"),
+          size = c(0.5, 0.5, 0.5, 0.5),
+          linetype = c(1, 1, 1, 1),
+          alpha = c(NA, NA, NA, NA)
+        ),
+        row.names = c(NA, -4L),
+        class = "data.frame"
+      )
     )
-    testthat::expect_equal(dat$Survived[1], "No")
-    testthat::expect_equal(dat$Survived[4], "Yes")
-    testthat::expect_equal(dat$Sex[2], "Female")
-    testthat::expect_equal(dat$Sex[3], "Male")
-    testthat::expect_identical(dat$counts, c(126L, 344L, 1364L, 367L))
+
+    testthat::expect_equal(
+      pb$data[[2]],
+      structure(
+        list(
+          y = c(
+            0.457718120805369,
+            0.957718120805369,
+            0.258087201125176,
+            0.758087201125176
+          ),
+          x = c(1L, 1L, 2L, 2L),
+          label = c("91.54%", "8.46%", "51.62%", "48.38%"),
+          group = c(2L, 1L, 2L, 1L),
+          PANEL = structure(c(1L, 1L, 1L, 1L), .Label = "1", class = "factor"),
+          ymax = c(0.915436241610738, 1, 0.516174402250352, 1),
+          xmin = c(1L, 1L, 2L, 2L),
+          xmax = c(1L, 1L, 2L, 2L),
+          ymin = c(0, 0.915436241610738, 0, 0.516174402250352),
+          colour = c("black", "black", "black", "black"),
+          fill = c("white", "white", "white", "white"),
+          size = c(3.88, 3.88, 3.88, 3.88),
+          angle = c(0, 0, 0, 0),
+          hjust = c(0.5, 0.5, 0.5, 0.5),
+          vjust = c(0.5, 0.5, 0.5, 0.5),
+          alpha = c(1, 1, 1, 1),
+          family = c("", "", "", ""),
+          fontface = c(1, 1, 1, 1),
+          lineheight = c(1.2, 1.2, 1.2, 1.2)
+        ),
+        row.names = c(NA, -4L),
+        class = "data.frame"
+      )
+    )
+
+    testthat::expect_equal(
+      pb$data[[3]],
+      structure(
+        list(
+          y = c(1.05, 1.05),
+          x = 2:1,
+          label = c("ns", "***"),
+          PANEL = structure(c(1L, 1L), class = "factor", .Label = "1"),
+          group = structure(2:1, n = 2L),
+          colour = c("black", "black"),
+          size = c(5, 5),
+          angle = c(0, 0),
+          hjust = c(0.5, 0.5),
+          vjust = c(0.5, 0.5),
+          alpha = c(NA, NA),
+          family = c("", ""),
+          fontface = c(1, 1),
+          lineheight = c(1.2, 1.2)
+        ),
+        row.names = c(NA, -2L),
+        class = "data.frame"
+      )
+    )
+
+    testthat::expect_equal(
+      pb$data[[4]],
+      structure(
+        list(
+          y = c(-0.05, -0.05),
+          x = 2:1,
+          label = c("(n = 711)", "(n = 1490)"),
+          PANEL = structure(c(1L, 1L), class = "factor", .Label = "1"),
+          group = structure(2:1, n = 2L),
+          colour = c("black", "black"),
+          size = c(4, 4),
+          angle = c(0, 0),
+          hjust = c(0.5, 0.5),
+          vjust = c(0.5, 0.5),
+          alpha = c(NA, NA),
+          family = c("", ""),
+          fontface = c(1, 1),
+          lineheight = c(1.2, 1.2)
+        ),
+        row.names = c(NA, -2L),
+        class = "data.frame"
+      )
+    )
 
     # checking plot labels
     testthat::expect_identical(pb$plot$labels$subtitle, p_subtitle)
@@ -196,9 +278,18 @@ testthat::test_that(
       ggstatsplot::ggbarstats(
         data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
         main = race,
-        bias.correct = FALSE,
         condition = marital,
         output = "subtitle",
+        k = 4,
+        messages = FALSE
+      )
+
+    set.seed(123)
+    stats_output <-
+      statsExpressions::expr_contingency_tab(
+        data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
+        x = race,
+        y = marital,
         k = 4,
         messages = FALSE
       )
@@ -212,42 +303,11 @@ testthat::test_that(
         condition = marital,
         output = "caption",
         k = 4,
-        bias.correct = FALSE,
         messages = FALSE
       )
 
     # tests
-    testthat::expect_identical(
-      p_sub,
-      ggplot2::expr(
-        paste(
-          NULL,
-          chi["Pearson"]^2,
-          "(",
-          "8",
-          ") = ",
-          "109.2007",
-          ", ",
-          italic("p"),
-          " = ",
-          "< 0.001",
-          ", ",
-          widehat(italic("V"))["Cramer"],
-          " = ",
-          "0.1594",
-          ", CI"["95%"],
-          " [",
-          "0.1236",
-          ", ",
-          "0.1814",
-          "]",
-          ", ",
-          italic("n")["obs"],
-          " = ",
-          2148L
-        )
-      )
-    )
+    testthat::expect_identical(p_sub, stats_output)
 
     testthat::expect_identical(
       p_cap,

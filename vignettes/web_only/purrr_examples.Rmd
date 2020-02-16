@@ -619,7 +619,6 @@ plot_list <-
       y = "Sex",
       slice.label = list("both", "count", "percentage", "both"),
       nboot = 10,
-      facet.wrap.name = "Gender",
       title = list(
         "Passenger class: 1st",
         "Passenger class: 2nd",
@@ -642,7 +641,7 @@ plot_list <-
       ),
       ggstatsplot.layer = list(TRUE, TRUE, FALSE, FALSE),
       sample.size.label = list(TRUE, FALSE, TRUE, FALSE),
-      facet.proptest = list(TRUE, FALSE, TRUE, FALSE),
+      proportion.test = list(TRUE, FALSE, TRUE, FALSE),
       messages = FALSE
     ),
     .f = ggstatsplot::ggpiestats
@@ -707,7 +706,7 @@ plot_list <-
       ),
       ggstatsplot.layer = list(TRUE, TRUE, FALSE, FALSE),
       sample.size.label = list(TRUE, FALSE, TRUE, FALSE),
-      bar.proptest = list(TRUE, FALSE, TRUE, FALSE),
+      proportion.test = list(TRUE, FALSE, TRUE, FALSE),
       messages = FALSE
     ),
     .f = ggstatsplot::ggbarstats

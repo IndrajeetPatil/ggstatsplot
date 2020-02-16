@@ -18,13 +18,14 @@ testthat::test_that(
         xlab = "vore",
         ylab = "brain weight",
         axes.range.restrict = TRUE,
+        pairwise.comparisons = TRUE,
         outlier.tagging = TRUE,
         outlier.label = name,
         outlier.label.args = list(color = "darkgreen"),
         conf.level = 0.99,
         k = 5,
         bf.message = TRUE,
-        messages = FALSE
+        messages = TRUE
       )
 
     # subtitle
@@ -108,12 +109,6 @@ testthat::test_that(
       tolerance = 1e-5
     )
 
-    # limits of data
-    testthat::expect_equal(ggplot2::layer_scales(p)$y$limits,
-      c(0.00014, 5.71200),
-      tolerance = 1e-3
-    )
-
     # checking x-axis sample size labels
     testthat::expect_identical(
       ggplot2::layer_scales(p)$x$labels,
@@ -126,26 +121,66 @@ testthat::test_that(
     )
 
     # checking plot labels
-    testthat::expect_identical(p$labels$title, "mammalian sleep")
-    testthat::expect_identical(
-      p$labels$caption,
-      ggplot2::expr(atop(
-        displaystyle("From ggplot2 package"),
-        expr = paste(
-          "In favor of null: ",
-          "log"["e"],
-          "(BF"["01"],
+    testthat::expect_equal(
+      pb$plot$labels,
+      list(
+        x = "vore",
+        y = "brain weight",
+        colour = "vore",
+        title = "mammalian sleep",
+        subtitle = ggplot2::expr(paste(
+          NULL,
+          italic("F"),
+          "(",
+          "3",
+          ",",
+          "24.04746",
           ") = ",
-          "1.54274",
+          "2.26528",
           ", ",
-          italic("r")["Cauchy"]^"JZS",
+          italic("p"),
           " = ",
-          "0.70700"
-        )
-      ))
+          "0.10662",
+          ", ",
+          widehat(omega["p"]^2),
+          " = ",
+          "0.00349",
+          ", CI"["99%"],
+          " [",
+          "-0.08521",
+          ", ",
+          "0.12874",
+          "]",
+          ", ",
+          italic("n")["obs"],
+          " = ",
+          51L
+        )),
+        caption = ggplot2::expr(atop(
+          displaystyle(atop(
+            displaystyle("From ggplot2 package"),
+            expr = paste(
+              "In favor of null: ",
+              "log"["e"],
+              "(BF"["01"],
+              ") = ",
+              "1.54274",
+              ", ",
+              italic("r")["Cauchy"]^"JZS",
+              " = ",
+              "0.70700"
+            )
+          )),
+          expr = paste(
+            "Pairwise comparisons: ",
+            bold("Games-Howell test"),
+            "; Adjustment (p-value): ",
+            bold("Holm")
+          )
+        )),
+        label = "outlier.label"
+      )
     )
-    testthat::expect_identical(p$labels$x, "vore")
-    testthat::expect_identical(p$labels$y, "brain weight")
   }
 )
 
@@ -347,7 +382,7 @@ testthat::test_that(
         outlier.color = "blue",
         mean.point.args = list(size = 5, color = "darkgreen"),
         mean.label.args = list(color = "blue"),
-        messages = TRUE
+        messages = FALSE
       )
 
     # violin

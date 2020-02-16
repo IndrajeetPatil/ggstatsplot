@@ -703,42 +703,41 @@
 <span id="cb9-25"><a href="#cb9-25"></a>      <span class="dt">y =</span> <span class="st">"Sex"</span>,</span>
 <span id="cb9-26"><a href="#cb9-26"></a>      <span class="dt">slice.label =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"both"</span>, <span class="st">"count"</span>, <span class="st">"percentage"</span>, <span class="st">"both"</span>),</span>
 <span id="cb9-27"><a href="#cb9-27"></a>      <span class="dt">nboot =</span> <span class="dv">10</span>,</span>
-<span id="cb9-28"><a href="#cb9-28"></a>      <span class="dt">facet.wrap.name =</span> <span class="st">"Gender"</span>,</span>
-<span id="cb9-29"><a href="#cb9-29"></a>      <span class="dt">title =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
-<span id="cb9-30"><a href="#cb9-30"></a>        <span class="st">"Passenger class: 1st"</span>,</span>
-<span id="cb9-31"><a href="#cb9-31"></a>        <span class="st">"Passenger class: 2nd"</span>,</span>
-<span id="cb9-32"><a href="#cb9-32"></a>        <span class="st">"Passenger class: 3rd"</span>,</span>
-<span id="cb9-33"><a href="#cb9-33"></a>        <span class="st">"Passenger class: Crew"</span></span>
-<span id="cb9-34"><a href="#cb9-34"></a>      ),</span>
-<span id="cb9-35"><a href="#cb9-35"></a>      <span class="dt">caption =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
-<span id="cb9-36"><a href="#cb9-36"></a>        <span class="st">"Total: 319, Died: 120, Survived: 199, % Survived: 62%"</span>,</span>
-<span id="cb9-37"><a href="#cb9-37"></a>        <span class="st">"Total: 272, Died: 155, Survived: 117, % Survived: 43%"</span>,</span>
-<span id="cb9-38"><a href="#cb9-38"></a>        <span class="st">"Total: 709, Died: 537, Survived: 172, % Survived: 25%"</span>,</span>
-<span id="cb9-39"><a href="#cb9-39"></a>        <span class="st">"Data not available for crew passengers"</span></span>
-<span id="cb9-40"><a href="#cb9-40"></a>      ),</span>
-<span id="cb9-41"><a href="#cb9-41"></a>      <span class="dt">package =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"RColorBrewer"</span>, <span class="st">"ghibli"</span>, <span class="st">"palettetown"</span>, <span class="st">"yarrr"</span>),</span>
-<span id="cb9-42"><a href="#cb9-42"></a>      <span class="dt">palette =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"Accent"</span>, <span class="st">"MarnieMedium1"</span>, <span class="st">"pikachu"</span>, <span class="st">"nemo"</span>),</span>
-<span id="cb9-43"><a href="#cb9-43"></a>      <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
-<span id="cb9-44"><a href="#cb9-44"></a>        ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),</span>
-<span id="cb9-45"><a href="#cb9-45"></a>        ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>(),</span>
-<span id="cb9-46"><a href="#cb9-46"></a>        ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),</span>
-<span id="cb9-47"><a href="#cb9-47"></a>        ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_economist.html">theme_economist</a></span>()</span>
-<span id="cb9-48"><a href="#cb9-48"></a>      ),</span>
-<span id="cb9-49"><a href="#cb9-49"></a>      <span class="dt">ggstatsplot.layer =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>),</span>
-<span id="cb9-50"><a href="#cb9-50"></a>      <span class="dt">sample.size.label =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>),</span>
-<span id="cb9-51"><a href="#cb9-51"></a>      <span class="dt">facet.proptest =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>),</span>
-<span id="cb9-52"><a href="#cb9-52"></a>      <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
-<span id="cb9-53"><a href="#cb9-53"></a>    ),</span>
-<span id="cb9-54"><a href="#cb9-54"></a>    <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggpiestats</span>
-<span id="cb9-55"><a href="#cb9-55"></a>  )</span>
-<span id="cb9-56"><a href="#cb9-56"></a></span>
-<span id="cb9-57"><a href="#cb9-57"></a><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></span>
-<span id="cb9-58"><a href="#cb9-58"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</span>
-<span id="cb9-59"><a href="#cb9-59"></a>  <span class="dt">plotlist =</span> plot_list,</span>
-<span id="cb9-60"><a href="#cb9-60"></a>  <span class="dt">title.text =</span> <span class="st">"Survival in Titanic disaster by gender for all passenger classes"</span>,</span>
-<span id="cb9-61"><a href="#cb9-61"></a>  <span class="dt">ncol =</span> <span class="dv">1</span>,</span>
-<span id="cb9-62"><a href="#cb9-62"></a>  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>)</span>
-<span id="cb9-63"><a href="#cb9-63"></a>)</span></code></pre></div>
+<span id="cb9-28"><a href="#cb9-28"></a>      <span class="dt">title =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb9-29"><a href="#cb9-29"></a>        <span class="st">"Passenger class: 1st"</span>,</span>
+<span id="cb9-30"><a href="#cb9-30"></a>        <span class="st">"Passenger class: 2nd"</span>,</span>
+<span id="cb9-31"><a href="#cb9-31"></a>        <span class="st">"Passenger class: 3rd"</span>,</span>
+<span id="cb9-32"><a href="#cb9-32"></a>        <span class="st">"Passenger class: Crew"</span></span>
+<span id="cb9-33"><a href="#cb9-33"></a>      ),</span>
+<span id="cb9-34"><a href="#cb9-34"></a>      <span class="dt">caption =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb9-35"><a href="#cb9-35"></a>        <span class="st">"Total: 319, Died: 120, Survived: 199, % Survived: 62%"</span>,</span>
+<span id="cb9-36"><a href="#cb9-36"></a>        <span class="st">"Total: 272, Died: 155, Survived: 117, % Survived: 43%"</span>,</span>
+<span id="cb9-37"><a href="#cb9-37"></a>        <span class="st">"Total: 709, Died: 537, Survived: 172, % Survived: 25%"</span>,</span>
+<span id="cb9-38"><a href="#cb9-38"></a>        <span class="st">"Data not available for crew passengers"</span></span>
+<span id="cb9-39"><a href="#cb9-39"></a>      ),</span>
+<span id="cb9-40"><a href="#cb9-40"></a>      <span class="dt">package =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"RColorBrewer"</span>, <span class="st">"ghibli"</span>, <span class="st">"palettetown"</span>, <span class="st">"yarrr"</span>),</span>
+<span id="cb9-41"><a href="#cb9-41"></a>      <span class="dt">palette =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"Accent"</span>, <span class="st">"MarnieMedium1"</span>, <span class="st">"pikachu"</span>, <span class="st">"nemo"</span>),</span>
+<span id="cb9-42"><a href="#cb9-42"></a>      <span class="dt">ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb9-43"><a href="#cb9-43"></a>        ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),</span>
+<span id="cb9-44"><a href="#cb9-44"></a>        ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>(),</span>
+<span id="cb9-45"><a href="#cb9-45"></a>        ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),</span>
+<span id="cb9-46"><a href="#cb9-46"></a>        ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_economist.html">theme_economist</a></span>()</span>
+<span id="cb9-47"><a href="#cb9-47"></a>      ),</span>
+<span id="cb9-48"><a href="#cb9-48"></a>      <span class="dt">ggstatsplot.layer =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>),</span>
+<span id="cb9-49"><a href="#cb9-49"></a>      <span class="dt">sample.size.label =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>),</span>
+<span id="cb9-50"><a href="#cb9-50"></a>      <span class="dt">proportion.test =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>),</span>
+<span id="cb9-51"><a href="#cb9-51"></a>      <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
+<span id="cb9-52"><a href="#cb9-52"></a>    ),</span>
+<span id="cb9-53"><a href="#cb9-53"></a>    <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggpiestats</span>
+<span id="cb9-54"><a href="#cb9-54"></a>  )</span>
+<span id="cb9-55"><a href="#cb9-55"></a></span>
+<span id="cb9-56"><a href="#cb9-56"></a><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></span>
+<span id="cb9-57"><a href="#cb9-57"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</span>
+<span id="cb9-58"><a href="#cb9-58"></a>  <span class="dt">plotlist =</span> plot_list,</span>
+<span id="cb9-59"><a href="#cb9-59"></a>  <span class="dt">title.text =</span> <span class="st">"Survival in Titanic disaster by gender for all passenger classes"</span>,</span>
+<span id="cb9-60"><a href="#cb9-60"></a>  <span class="dt">ncol =</span> <span class="dv">1</span>,</span>
+<span id="cb9-61"><a href="#cb9-61"></a>  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>)</span>
+<span id="cb9-62"><a href="#cb9-62"></a>)</span></code></pre></div>
 <p><img src="purrr_examples_files/figure-html/purrr_ggpiestats-1.png" width="864"></p>
 </div>
 <div id="ggbarstats" class="section level1">
@@ -794,7 +793,7 @@
 <span id="cb10-47"><a href="#cb10-47"></a>      ),</span>
 <span id="cb10-48"><a href="#cb10-48"></a>      <span class="dt">ggstatsplot.layer =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>),</span>
 <span id="cb10-49"><a href="#cb10-49"></a>      <span class="dt">sample.size.label =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>),</span>
-<span id="cb10-50"><a href="#cb10-50"></a>      <span class="dt">bar.proptest =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>),</span>
+<span id="cb10-50"><a href="#cb10-50"></a>      <span class="dt">proportion.test =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>),</span>
 <span id="cb10-51"><a href="#cb10-51"></a>      <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
 <span id="cb10-52"><a href="#cb10-52"></a>    ),</span>
 <span id="cb10-53"><a href="#cb10-53"></a>    <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggbarstats</span>
