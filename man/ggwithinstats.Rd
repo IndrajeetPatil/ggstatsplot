@@ -35,7 +35,6 @@ ggwithinstats(
   path.mean = TRUE,
   sort = "none",
   sort.fun = mean,
-  axes.range.restrict = FALSE,
   mean.plotting = TRUE,
   mean.ci = FALSE,
   mean.point.args = list(size = 5, color = "darkred"),
@@ -170,11 +169,6 @@ be sorted based on increasing values of \code{y}-axis variable. If
 
 \item{sort.fun}{The function used to sort (default: \code{mean}).}
 
-\item{axes.range.restrict}{Logical that decides whether to restrict the axes
-values ranges to \code{min} and \code{max} values of the axes variables (Default:
-\code{FALSE}), only relevant for functions where axes variables are of numeric
-type.}
-
 \item{mean.plotting}{Logical that decides whether mean is to be highlighted
 and its value to be displayed (Default: \code{TRUE}).}
 
@@ -250,9 +244,7 @@ or symbol.}
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
 of the current function. Default is \code{NULL}. The argument should be entered
-as a function. If the given function has an argument \code{axes.range.restrict}
-and if it has been set to \code{TRUE}, the added \code{ggplot} component \emph{might} not
-work as expected.}
+as a function.}
 
 \item{output}{Character that describes what is to be returned: can be
 \code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to

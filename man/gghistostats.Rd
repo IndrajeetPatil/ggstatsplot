@@ -180,9 +180,7 @@ passed to the normal curve.}
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
 of the current function. Default is \code{NULL}. The argument should be entered
-as a function. If the given function has an argument \code{axes.range.restrict}
-and if it has been set to \code{TRUE}, the added \code{ggplot} component \emph{might} not
-work as expected.}
+as a function.}
 
 \item{output}{Character that describes what is to be returned: can be
 \code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to

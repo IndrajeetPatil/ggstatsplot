@@ -128,13 +128,7 @@ the \code{geom_point} displaying the raw data.}
     \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
 of the current function. Default is \code{NULL}. The argument should be entered
-as a function. If the given function has an argument \code{axes.range.restrict}
-and if it has been set to \code{TRUE}, the added \code{ggplot} component \emph{might} not
-work as expected.}
-    \item{\code{axes.range.restrict}}{Logical that decides whether to restrict the axes
-values ranges to \code{min} and \code{max} values of the axes variables (Default:
-\code{FALSE}), only relevant for functions where axes variables are of numeric
-type.}
+as a function.}
     \item{\code{sort}}{If \code{"ascending"} (default), \code{x}-axis variable factor levels will
 be sorted based on increasing values of \code{y}-axis variable. If
 \code{"descending"}, the opposite. If \code{"none"}, no sorting will happen.}

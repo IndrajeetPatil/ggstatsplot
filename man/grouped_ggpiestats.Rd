@@ -132,9 +132,7 @@ the plot will be returned.}
     \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
 of the current function. Default is \code{NULL}. The argument should be entered
-as a function. If the given function has an argument \code{axes.range.restrict}
-and if it has been set to \code{TRUE}, the added \code{ggplot} component \emph{might} not
-work as expected.}
+as a function.}
     \item{\code{label.separator}}{If \code{"both"} counts and proportion information is to be
 displayed in a label, this argument decides whether these two pieces of
 information are going to be on the same line (\code{" "}) or on separate lines

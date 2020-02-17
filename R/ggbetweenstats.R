@@ -81,13 +81,7 @@
 #' @param ggplot.component A `ggplot` component to be added to the plot prepared
 #'   by `ggstatsplot`. This argument is primarily helpful for `grouped_` variant
 #'   of the current function. Default is `NULL`. The argument should be entered
-#'   as a function. If the given function has an argument `axes.range.restrict`
-#'   and if it has been set to `TRUE`, the added `ggplot` component *might* not
-#'   work as expected.
-#' @param axes.range.restrict Logical that decides whether to restrict the axes
-#'   values ranges to `min` and `max` values of the axes variables (Default:
-#'   `FALSE`), only relevant for functions where axes variables are of numeric
-#'   type.
+#'   as a function.
 #' @param sort If `"ascending"` (default), `x`-axis variable factor levels will
 #'   be sorted based on increasing values of `y`-axis variable. If
 #'   `"descending"`, the opposite. If `"none"`, no sorting will happen.
@@ -220,7 +214,6 @@ ggbetweenstats <- function(data,
                            tr = 0.1,
                            sort = "none",
                            sort.fun = mean,
-                           axes.range.restrict = FALSE,
                            mean.plotting = TRUE,
                            mean.ci = FALSE,
                            mean.point.args = list(size = 5, color = "darkred"),
@@ -571,17 +564,6 @@ ggbetweenstats <- function(data,
       direction = direction,
       ggplot.component = ggplot.component
     )
-
-  # don't do scale restriction in case of post hoc comparisons
-  if (isTRUE(axes.range.restrict) && isFALSE(pairwise.comparisons)) {
-    # pull out vector for y-values
-    y_vec <- data %>% dplyr::pull({{ y }})
-
-    # restricting axes
-    plot <- plot +
-      ggplot2::coord_cartesian(ylim = c(min(y_vec), max(y_vec))) +
-      ggplot2::scale_y_continuous(limits = c(min(y_vec), max(y_vec)))
-  }
 
   # --------------------- messages ------------------------------------------
 

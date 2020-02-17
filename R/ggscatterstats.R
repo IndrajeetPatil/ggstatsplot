@@ -11,6 +11,8 @@
 #'   determines the subset of data points to label. This argument can be entered
 #'   either as a character string (e.g., `"y < 4 & z < 20"`) or as a bare
 #'   expression (e.g., `y < 4 & z < 20`).
+#' @param point.label.args A list of additional aesthetic arguments to be passed
+#'   to `ggrepel::geom_label_repel` geom used to display the labels.
 #' @param line.color color for the regression line.
 #' @param line.size Size for the regression line.
 #' @param point.color,point.size,point.alpha Aesthetics specifying geom point
@@ -33,7 +35,7 @@
 #'   default is `1` for both axes.
 #' @param xsize,ysize Size for the marginal distribution boundaries (Default:
 #'   `0.7`).
-#' @param centrality.para Decides *which* measure of central tendency (`"mean"`
+#' @param centrality.parameter Decides *which* measure of central tendency (`"mean"`
 #'   or `"median"`) is to be displayed as vertical (for `x`) and horizontal (for
 #'   `y`) lines. Note that mean values corresponds to arithmetic mean and not
 #'   geometric mean.
@@ -49,7 +51,7 @@
 #'
 #' @importFrom dplyr select group_by summarize n arrange if_else desc
 #' @importFrom dplyr mutate mutate_at mutate_if
-#' @importFrom rlang !! enquo quo_name parse_expr ensym as_name enexpr
+#' @importFrom rlang !! enquo quo_name parse_expr ensym as_name enexpr exec !!!
 #' @importFrom ggExtra ggMarginal
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom statsExpressions expr_corr_test bf_corr_test
@@ -83,8 +85,7 @@
 #'   type = "np",
 #'   label.var = car,
 #'   label.expression = wt < 4 & mpg < 20,
-#'   axes.range.restrict = TRUE,
-#'   centrality.para = "median",
+#'   centrality.parameter = "median",
 #'   xfill = NULL
 #' )
 #' }
@@ -100,6 +101,7 @@ ggscatterstats <- function(data,
                            bf.message = TRUE,
                            label.var = NULL,
                            label.expression = NULL,
+                           point.label.args = list(size = 3),
                            method = "lm",
                            method.args = list(),
                            formula = y ~ x,
@@ -123,7 +125,7 @@ ggscatterstats <- function(data,
                            yalpha = 1,
                            xsize = 0.7,
                            ysize = 0.7,
-                           centrality.para = NULL,
+                           centrality.parameter = "none",
                            results.subtitle = TRUE,
                            stat.title = NULL,
                            xlab = NULL,
@@ -134,7 +136,6 @@ ggscatterstats <- function(data,
                            nboot = 100,
                            beta = 0.1,
                            k = 2,
-                           axes.range.restrict = FALSE,
                            ggtheme = ggplot2::theme_bw(),
                            ggstatsplot.layer = TRUE,
                            ggplot.component = NULL,
@@ -189,40 +190,6 @@ ggscatterstats <- function(data,
     dplyr::filter(.data = ., !is.na({{ x }}), !is.na({{ y }})) %>%
     as_tibble(.)
 
-  #---------------------------- user expression -------------------------
-
-  # check labeling variable has been entered
-  if (!rlang::quo_is_null(rlang::enquo(label.var))) {
-    point.labelling <- TRUE
-
-    # is expression provided?
-    if (!rlang::quo_is_null(rlang::enquo(label.expression))) {
-      expression.present <- TRUE
-    } else {
-      expression.present <- FALSE
-    }
-
-    # creating a new dataframe for showing labels
-    if (isTRUE(expression.present)) {
-      if (!rlang::quo_is_null(rlang::enquo(label.expression))) {
-        label.expression <- rlang::enexpr(label.expression)
-      }
-
-      # testing for whether we received bare or quoted
-      if (typeof(label.expression) == "language") {
-        # unquoted case
-        label_data <- dplyr::filter(.data = data, !!label.expression)
-      } else {
-        # quoted case
-        label_data <- dplyr::filter(.data = data, !!rlang::parse_expr(label.expression))
-      }
-    } else {
-      label_data <- data
-    }
-  } else {
-    point.labelling <- FALSE
-  }
-
   #----------------------- creating results subtitle ------------------------
 
   # adding a subtitle with statistical results
@@ -269,6 +236,41 @@ ggscatterstats <- function(data,
     ))
   }
 
+
+  #---------------------------- user expression -------------------------
+
+  # check labeling variable has been entered
+  if (!rlang::quo_is_null(rlang::enquo(label.var))) {
+    point.labelling <- TRUE
+
+    # is expression provided?
+    if (!rlang::quo_is_null(rlang::enquo(label.expression))) {
+      expression.present <- TRUE
+    } else {
+      expression.present <- FALSE
+    }
+
+    # creating a new dataframe for showing labels
+    if (isTRUE(expression.present)) {
+      if (!rlang::quo_is_null(rlang::enquo(label.expression))) {
+        label.expression <- rlang::enexpr(label.expression)
+      }
+
+      # testing for whether we received bare or quoted
+      if (typeof(label.expression) == "language") {
+        # unquoted case
+        label_data <- dplyr::filter(.data = data, !!label.expression)
+      } else {
+        # quoted case
+        label_data <- dplyr::filter(.data = data, !!rlang::parse_expr(label.expression))
+      }
+    } else {
+      label_data <- data
+    }
+  } else {
+    point.labelling <- FALSE
+  }
+
   # --------------------------------- basic plot ---------------------------
 
   # creating jittered positions
@@ -312,17 +314,6 @@ ggscatterstats <- function(data,
       color = line.color,
       na.rm = TRUE,
       level = conf.level
-    ) +
-    ggstatsplot::theme_ggstatsplot(
-      ggtheme = ggtheme,
-      ggstatsplot.layer = ggstatsplot.layer
-    ) +
-    ggplot2::labs(
-      x = xlab,
-      y = ylab,
-      title = title,
-      subtitle = subtitle,
-      caption = caption
     )
 
   #----------------------- adding centrality parameters --------------------
@@ -342,9 +333,9 @@ ggscatterstats <- function(data,
   )
 
   # adding vertical and horizontal lines and attaching labels
-  if (!is.null(centrality.para) && !isFALSE(centrality.para)) {
+  if (centrality.parameter != "none") {
     # choosing the appropriate intercepts for the lines
-    if (centrality.para == "mean" || isTRUE(centrality.para)) {
+    if (centrality.parameter == "mean") {
       x.intercept <- x_mean
       y.intercept <- y_mean
       x.vline <- x_mean
@@ -408,39 +399,37 @@ ggscatterstats <- function(data,
       )
   }
 
-  #---------------------- range restriction -------------------------------
-
-  # forcing the plots to get cut off at min and max values of the variable
-  if (isTRUE(axes.range.restrict)) {
-    plot <- plot +
-      ggplot2::coord_cartesian(xlim = c(
-        min(data %>% dplyr::pull({{ x }}), na.rm = TRUE),
-        max(data %>% dplyr::pull({{ x }}), na.rm = TRUE)
-      )) +
-      ggplot2::coord_cartesian(ylim = c(
-        min(data %>% dplyr::pull({{ y }}), na.rm = TRUE),
-        max(data %>% dplyr::pull({{ y }}), na.rm = TRUE)
-      ))
-  }
-
   #-------------------- adding point labels --------------------------------
 
   # using geom_repel_label
   if (isTRUE(point.labelling)) {
     plot <- plot +
-      ggrepel::geom_label_repel(
+      rlang::exec(
+        .fn = ggrepel::geom_label_repel,
         data = label_data,
         mapping = ggplot2::aes(label = {{ label.var }}),
         position = pos,
-        na.rm = TRUE
+        na.rm = TRUE,
+        !!!point.label.args
       )
   }
 
-  # ---------------- adding ggplot component ---------------------------------
+  #-------------------------- annotations -------------------------------------
 
-  # if any additional modification needs to be made to the plot
-  # this is primarily useful for grouped_ variant of this function
-  plot <- plot + ggplot.component
+  # annotations
+  plot <- plot +
+    ggstatsplot::theme_ggstatsplot(
+      ggtheme = ggtheme,
+      ggstatsplot.layer = ggstatsplot.layer
+    ) +
+    ggplot2::labs(
+      x = xlab,
+      y = ylab,
+      title = title,
+      subtitle = subtitle,
+      caption = caption
+    ) +
+    ggplot.component
 
   #------------------------- ggMarginal  ---------------------------------
 

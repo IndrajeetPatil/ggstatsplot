@@ -17,7 +17,6 @@ testthat::test_that(
         caption = "From ggplot2 package",
         xlab = "vore",
         ylab = "brain weight",
-        axes.range.restrict = TRUE,
         pairwise.comparisons = TRUE,
         outlier.tagging = TRUE,
         outlier.label = name,

@@ -90,7 +90,6 @@ ggwithinstats <- function(data,
                           path.mean = TRUE,
                           sort = "none",
                           sort.fun = mean,
-                          axes.range.restrict = FALSE,
                           mean.plotting = TRUE,
                           mean.ci = FALSE,
                           mean.point.args = list(size = 5, color = "darkred"),
@@ -414,17 +413,6 @@ ggwithinstats <- function(data,
       direction = direction,
       ggplot.component = ggplot.component
     )
-
-  # don't do scale restriction in case of post hoc comparisons
-  if (isTRUE(axes.range.restrict) && isFALSE(pairwise.comparisons)) {
-    # pull out vector for y-values
-    y_vec <- data %>% dplyr::pull({{ y }})
-
-    # restricting axes
-    plot <- plot +
-      ggplot2::coord_cartesian(ylim = c(min(y_vec), max(y_vec))) +
-      ggplot2::scale_y_continuous(limits = c(min(y_vec), max(y_vec)))
-  }
 
   # --------------------- messages ------------------------------------------
 

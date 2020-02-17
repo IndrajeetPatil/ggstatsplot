@@ -348,10 +348,6 @@ try to play around with the value of <code>tr</code>, which is by default set to
 be sorted based on increasing values of <code>y</code>-axis variable. If
 <code>"descending"</code>, the opposite. If <code>"none"</code>, no sorting will happen.</p></dd>
     <dt><code>sort.fun</code></dt><dd><p>The function used to sort (default: <code>mean</code>).</p></dd>
-    <dt><code>axes.range.restrict</code></dt><dd><p>Logical that decides whether to restrict the axes
-values ranges to <code>min</code> and <code>max</code> values of the axes variables (Default:
-<code>FALSE</code>), only relevant for functions where axes variables are of numeric
-type.</p></dd>
     <dt><code>mean.plotting</code></dt><dd><p>Logical that decides whether mean is to be highlighted
 and its value to be displayed (Default: <code>TRUE</code>).</p></dd>
     <dt><code>mean.ci</code></dt><dd><p>Logical that decides whether <code>95%</code> confidence interval for
@@ -406,9 +402,7 @@ or symbol.</p></dd>
     <dt><code>ggplot.component</code></dt><dd><p>A <code>ggplot</code> component to be added to the plot prepared
 by <code>ggstatsplot</code>. This argument is primarily helpful for <code>grouped_</code> variant
 of the current function. Default is <code>NULL</code>. The argument should be entered
-as a function. If the given function has an argument <code>axes.range.restrict</code>
-and if it has been set to <code>TRUE</code>, the added <code>ggplot</code> component <em>might</em> not
-work as expected.</p></dd>
+as a function.</p></dd>
     <dt><code>messages</code></dt><dd><p>Decides whether messages references, notes, and warnings are
 to be displayed (Default: <code>TRUE</code>).</p></dd>
     <dt><code>sphericity.correction</code></dt><dd><p>Logical that decides whether to apply correction

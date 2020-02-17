@@ -130,10 +130,6 @@ try to play around with the value of \code{tr}, which is by default set to
 be sorted based on increasing values of \code{y}-axis variable. If
 \code{"descending"}, the opposite. If \code{"none"}, no sorting will happen.}
     \item{\code{sort.fun}}{The function used to sort (default: \code{mean}).}
-    \item{\code{axes.range.restrict}}{Logical that decides whether to restrict the axes
-values ranges to \code{min} and \code{max} values of the axes variables (Default:
-\code{FALSE}), only relevant for functions where axes variables are of numeric
-type.}
     \item{\code{mean.plotting}}{Logical that decides whether mean is to be highlighted
 and its value to be displayed (Default: \code{TRUE}).}
     \item{\code{mean.ci}}{Logical that decides whether \verb{95\%} confidence interval for
@@ -188,9 +184,7 @@ or symbol.}
     \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
 of the current function. Default is \code{NULL}. The argument should be entered
-as a function. If the given function has an argument \code{axes.range.restrict}
-and if it has been set to \code{TRUE}, the added \code{ggplot} component \emph{might} not
-work as expected.}
+as a function.}
     \item{\code{messages}}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
     \item{\code{sphericity.correction}}{Logical that decides whether to apply correction

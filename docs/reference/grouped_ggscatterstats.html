@@ -284,6 +284,8 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
     <tr>
       <th>...</th>
       <td><p>Arguments passed on to <code><a href='ggscatterstats.html'>ggscatterstats</a></code></p><dl class='dl-horizontal'>
+    <dt><code>point.label.args</code></dt><dd><p>A list of additional aesthetic arguments to be passed
+to <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geom used to display the labels.</p></dd>
     <dt><code>line.color</code></dt><dd><p>color for the regression line.</p></dd>
     <dt><code>line.size</code></dt><dd><p>Size for the regression line.</p></dd>
     <dt><code>point.color</code></dt><dd><p>Aesthetics specifying geom point
@@ -319,7 +321,7 @@ default is <code>1</code> for both axes.</p></dd>
 <code>0.7</code>).</p></dd>
     <dt><code>ysize</code></dt><dd><p>Size for the marginal distribution boundaries (Default:
 <code>0.7</code>).</p></dd>
-    <dt><code>centrality.para</code></dt><dd><p>Decides <em>which</em> measure of central tendency (<code>"mean"</code>
+    <dt><code>centrality.parameter</code></dt><dd><p>Decides <em>which</em> measure of central tendency (<code>"mean"</code>
 or <code>"median"</code>) is to be displayed as vertical (for <code>x</code>) and horizontal (for
 <code>y</code>) lines. Note that mean values corresponds to arithmetic mean and not
 geometric mean.</p></dd>
@@ -389,16 +391,10 @@ variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
     <dt><code>subtitle</code></dt><dd><p>The text for the plot subtitle. Will work only if
 <code>results.subtitle = FALSE</code>.</p></dd>
     <dt><code>caption</code></dt><dd><p>The text for the plot caption.</p></dd>
-    <dt><code>axes.range.restrict</code></dt><dd><p>Logical that decides whether to restrict the axes
-values ranges to <code>min</code> and <code>max</code> values of the axes variables (Default:
-<code>FALSE</code>), only relevant for functions where axes variables are of numeric
-type.</p></dd>
     <dt><code>ggplot.component</code></dt><dd><p>A <code>ggplot</code> component to be added to the plot prepared
 by <code>ggstatsplot</code>. This argument is primarily helpful for <code>grouped_</code> variant
 of the current function. Default is <code>NULL</code>. The argument should be entered
-as a function. If the given function has an argument <code>axes.range.restrict</code>
-and if it has been set to <code>TRUE</code>, the added <code>ggplot</code> component <em>might</em> not
-work as expected.</p></dd>
+as a function.</p></dd>
   
 </dl></td>
     </tr>

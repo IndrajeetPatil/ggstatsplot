@@ -1313,7 +1313,7 @@ syntax is simpler and follows the following principles-
   - When a given function depends on variables in a dataframe, `data` argument
     must always be specified.
   - The `$` operator cannot be used to specify variables in a dataframe.
-  - All functions accept both quoted (`x = "var1"`) and unquoted (`x = var1`)
+  - All functions accept both string (`x = "var1"`) and symbol (`x = var1`)
     arguments.
 
 These set principles combined with the fact that almost all functions produce

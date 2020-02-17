@@ -296,7 +296,6 @@ testthat::test_that(
         pairwise.annotation = "p",
         outlier.tagging = FALSE,
         pairwise.comparisons = TRUE,
-        axes.range.restrict = TRUE,
         conf.level = 0.90,
         messages = FALSE
       )
@@ -455,15 +454,15 @@ testthat::test_that(
     library(WRS2)
 
     # plot
-    p <- ggstatsplot::ggwithinstats(
-      data = WineTasting,
-      x = Wine,
-      y = Taste,
-      axes.range.restrict = TRUE,
-      results.subtitle = FALSE,
-      messages = FALSE,
-      ggplot.component = ggplot2::labs(y = "Taste rating")
-    )
+    p <-
+      ggstatsplot::ggwithinstats(
+        data = WineTasting,
+        x = Wine,
+        y = Taste,
+        results.subtitle = FALSE,
+        messages = FALSE,
+        ggplot.component = ggplot2::labs(y = "Taste rating")
+      )
 
     # build plot
     pb <- ggplot2::ggplot_build(p)
@@ -538,16 +537,17 @@ testthat::test_that(
 
     # capture the message
     set.seed(123)
-    p <- suppressWarnings(ggstatsplot::ggwithinstats(
-      data = df,
-      x = x,
-      y = y,
-      pairwise.display = "significant",
-      pairwise.annotation = "p.value",
-      pairwise.comparisons = TRUE,
-      sphericity.correction = TRUE,
-      messages = FALSE
-    ))
+    p <-
+      suppressWarnings(ggstatsplot::ggwithinstats(
+        data = df,
+        x = x,
+        y = y,
+        pairwise.display = "significant",
+        pairwise.annotation = "p.value",
+        pairwise.comparisons = TRUE,
+        sphericity.correction = TRUE,
+        messages = FALSE
+      ))
 
     # build the plot
     pb <- ggplot2::ggplot_build(p)
