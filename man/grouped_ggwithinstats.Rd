@@ -53,18 +53,24 @@ about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
 \item{...}{
   Arguments passed on to \code{\link[=ggwithinstats]{ggwithinstats}}
   \describe{
-    \item{\code{path.point}}{Logical that decides whether individual data
+    \item{\code{point.path}}{Logical that decides whether individual data
 points and means, respectively, should be connected using \code{geom_path}. Both
-default to \code{TRUE}. Note that \code{path.point} argument is relevant only when
+default to \code{TRUE}. Note that \code{point.path} argument is relevant only when
 there are two groups (i.e., in case of a \emph{t}-test). In case of large number
-of data points, it is advisable to set \code{path.point = FALSE} as these lines
+of data points, it is advisable to set \code{point.path = FALSE} as these lines
 can overwhelm the plot.}
-    \item{\code{path.mean}}{Logical that decides whether individual data
+    \item{\code{mean.path}}{Logical that decides whether individual data
 points and means, respectively, should be connected using \code{geom_path}. Both
-default to \code{TRUE}. Note that \code{path.point} argument is relevant only when
+default to \code{TRUE}. Note that \code{point.path} argument is relevant only when
 there are two groups (i.e., in case of a \emph{t}-test). In case of large number
-of data points, it is advisable to set \code{path.point = FALSE} as these lines
+of data points, it is advisable to set \code{point.path = FALSE} as these lines
 can overwhelm the plot.}
+    \item{\code{mean.path.args}}{A list of additional aesthetic
+arguments passed on to \code{geom_path} connecting raw data points and mean
+points.}
+    \item{\code{point.path.args}}{A list of additional aesthetic
+arguments passed on to \code{geom_path} connecting raw data points and mean
+points.}
     \item{\code{type}}{Type of statistic expected (\code{"parametric"} or \code{"nonparametric"}
 or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accepted:
 \code{"p"} (for parametric), \code{"np"} (nonparametric), \code{"r"} (robust), or
@@ -148,21 +154,12 @@ notches extend \code{1.58 * IQR / sqrt(n)}. This gives a roughly \verb{95\%}
 confidence interval for comparing medians. IQR: Inter-Quartile Range.}
     \item{\code{notchwidth}}{For a notched box plot, width of the notch relative to the
 body (default \code{0.5}).}
-    \item{\code{linetype}}{Character strings (\code{"blank"}, \code{"solid"}, \code{"dashed"},
-\code{"dotted"}, \code{"dotdash"}, \code{"longdash"}, and \code{"twodash"}) specifying the type
-of line to draw box plots (Default: \code{"solid"}). Alternatively, the numbers
-\code{0} to \code{6} can be used (\code{0} for "blank", \code{1} for "solid", etc.).}
     \item{\code{outlier.tagging}}{Decides whether outliers should be tagged (Default:
 \code{FALSE}).}
     \item{\code{outlier.coef}}{Coefficient for outlier detection using Tukey's method.
 With Tukey's method, outliers are below (1st Quartile) or above (3rd
 Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
 \code{1.5}).}
-    \item{\code{outlier.shape}}{Hiding the outliers can be achieved by setting
-\code{outlier.shape = NA}. Importantly, this does not remove the outliers,
-it only hides them, so the range calculated for the \code{y}-axis will be
-the same with outliers shown and outliers hidden.}
-    \item{\code{outlier.color}}{Default aesthetics for outliers (Default: \code{"black"}).}
     \item{\code{outlier.label.args}}{A list of additional aesthetic arguments to be
 passed to \code{ggplot2::geom_point} and \code{ggrepel::geom_label_repel} geoms
 involved outlier value plotting.}

@@ -6,21 +6,25 @@
 #'   details included in the plot as a subtitle.
 #'
 #' @inheritParams ggbetweenstats
-#' @param path.point,path.mean Logical that decides whether individual data
+#' @param point.path,mean.path Logical that decides whether individual data
 #'   points and means, respectively, should be connected using `geom_path`. Both
-#'   default to `TRUE`. Note that `path.point` argument is relevant only when
+#'   default to `TRUE`. Note that `point.path` argument is relevant only when
 #'   there are two groups (i.e., in case of a *t*-test). In case of large number
-#'   of data points, it is advisable to set `path.point = FALSE` as these lines
+#'   of data points, it is advisable to set `point.path = FALSE` as these lines
 #'   can overwhelm the plot.
+#' @param mean.path.args,point.path.args A list of additional aesthetic
+#'   arguments passed on to `geom_path` connecting raw data points and mean
+#'   points.
 #' @inheritParams statsExpressions::expr_anova_parametric
 #'
 #' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggbetweenstats}},
 #'  \code{\link{grouped_ggwithinstats}}
 #'
-#' @importFrom rlang exec !! enquo :=
+#' @importFrom rlang exec !! enquo := !!! exec
 #' @importFrom statsExpressions bf_ttest bf_oneway_anova
 #' @importFrom pairwiseComparisons pairwise_comparisons
 #' @importFrom ipmisc sort_xy outlier_df
+#' @importFrom dplyr select mutate row_number group_by ungroup anti_join
 #'
 #' @details
 #'
@@ -86,22 +90,21 @@ ggwithinstats <- function(data,
                           conf.level = 0.95,
                           nboot = 100,
                           tr = 0.1,
-                          path.point = TRUE,
-                          path.mean = TRUE,
+                          point.path = TRUE,
+                          mean.path = TRUE,
                           sort = "none",
                           sort.fun = mean,
                           mean.plotting = TRUE,
                           mean.ci = FALSE,
                           mean.point.args = list(size = 5, color = "darkred"),
                           mean.label.args = list(size = 3),
+                          mean.path.args = list(),
+                          point.path.args = list(),
                           notch = FALSE,
                           notchwidth = 0.5,
-                          linetype = "solid",
                           outlier.tagging = FALSE,
                           outlier.label = NULL,
                           outlier.coef = 1.5,
-                          outlier.shape = 19,
-                          outlier.color = "black",
                           outlier.label.args = list(),
                           outlier.point.args = list(),
                           ggtheme = ggplot2::theme_bw(),
@@ -139,23 +142,15 @@ ggwithinstats <- function(data,
   data %<>%
     dplyr::select(.data = ., {{ x }}, {{ y }}, outlier.label = {{ outlier.label }}) %>%
     dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }}))) %>%
-    as_tibble(x = .)
-
-  # figuring out number of levels in the grouping factor
-  x_n_levels <- nlevels(data %>% dplyr::pull({{ x }}))[[1]]
-
-  # removing observations that don't have all repeated values
-  data %<>%
-    dplyr::filter(.data = ., !is.na({{ x }})) %>%
+    as_tibble(.) %>%
     dplyr::group_by(.data = ., {{ x }}) %>%
-    dplyr::mutate(.data = ., id = dplyr::row_number()) %>%
-    dplyr::ungroup(x = .) %>%
-    dplyr::filter(.data = ., !is.na({{ y }})) %>%
-    dplyr::group_by(.data = ., id) %>%
-    dplyr::mutate(.data = ., n = dplyr::n()) %>%
-    dplyr::ungroup(x = .) %>%
-    dplyr::filter(.data = ., n == x_n_levels) %>%
-    dplyr::select(.data = ., -n)
+    dplyr::mutate(.data = ., rowid = dplyr::row_number()) %>%
+    dplyr::ungroup(.) %>%
+    dplyr::anti_join(
+      x = .,
+      y = dplyr::filter(., is.na({{ y }})),
+      by = "rowid"
+    )
 
   # if `outlier.label` column is not present, just use the values from `y` column
   if (rlang::quo_is_null(rlang::enquo(outlier.label))) {
@@ -251,7 +246,7 @@ ggwithinstats <- function(data,
   plot <-
     ggplot2::ggplot(
       data = data,
-      mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, group = id)
+      mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, group = rowid)
     ) +
     ggplot2::geom_point(
       alpha = 0.5,
@@ -278,7 +273,7 @@ ggwithinstats <- function(data,
     )
 
   # add a connecting path only if there are only two groups
-  if (test != "anova" && isTRUE(path.point)) {
+  if (test != "anova" && isTRUE(point.path)) {
     plot <- plot +
       ggplot2::geom_path(
         color = "grey50",
@@ -337,7 +332,7 @@ ggwithinstats <- function(data,
       )
 
     # if there should be lines connecting mean values across groups
-    if (isTRUE(path.mean)) {
+    if (isTRUE(mean.path)) {
       plot <- plot +
         ggplot2::geom_path(
           data = mean_dat,

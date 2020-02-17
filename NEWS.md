@@ -38,6 +38,9 @@ arguments `list(size = 5, color = "darkgreen", alpha = 0.8)` can be supplied).
     `facet.wrap.name`, `bias.correct`, `bar.outline.color`. The `bar.proptest`
     and `facet.proptest` arguments were difficult to remember and confusing and
     are replaced by a common `proportion.test` argument.
+  - `gghistostats` loses the following arguments: `fill.gradient`, `low.color`,
+    `high.color`. It made no sense to add a color gradient to this plot when the
+    Y-axis already displayed the information about what bar represented.
   
 MAJOR CHANGES
 

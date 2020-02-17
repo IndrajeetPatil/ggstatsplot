@@ -316,23 +316,11 @@ ggcoefstats <- function(x,
 
   # =================== list of objects (for tidy and glance) ================
 
-  # creating a list of objects which will have fixed and random "effects"
-  # only fixed effects will be selected
-  mixed.mods <-
-    c(
-      "glmmadmb", "glmerMod", "glmmPQL", "glmmTMB",
-      "bglmerMod", "blmerMod", "lme", "lmerMod", "merMod", "nlmerMod", "rlmerMod", "TMB",
-      "brmsfit", "brmsfit_multiple", "mcmc", "MCMCglmm", "rjags", "stanreg", "stanmvreg"
-    )
-
-  # =================== types of models =====================================
-
   # models for which statistic is F-value
   f.mods <- c("aov", "aovlist", "anova", "Gam", "manova")
 
   # model for which the output names are going to be slightly weird
-  weird_name_mods <-
-    c("gmm", "lmodel2", "gamlss", "drc", "mlm", "DirichletRegModel")
+  weird_name_mods <- c("gmm", "lmodel2", "gamlss", "drc", "mlm", "DirichletRegModel")
 
   # ============================= model summary ============================
 
@@ -393,20 +381,7 @@ ggcoefstats <- function(x,
   # =========================== broom.mixed tidiers =======================
 
   if (isTRUE(insight::is_model(x))) {
-    if (class(x)[[1]] %in% mixed.mods) {
-      # getting tidy output using `broom.mixed`
-      tidy_df <-
-        ipmisc::tidy(
-          x = x,
-          conf.int = conf.int,
-          # exponentiate = exponentiate,
-          conf.level = conf.level,
-          effects = "fixed",
-          ...
-        )
-
-      # ====================== tidying F-statistic objects ===================
-    } else if (class(x)[[1]] %in% f.mods) {
+    if (class(x)[[1]] %in% f.mods) {
       # creating dataframe
       tidy_df <-
         groupedstats::lm_effsize_standardizer(
@@ -453,9 +428,7 @@ ggcoefstats <- function(x,
   if (rlang::is_null(tidy_df) || !"estimate" %in% names(tidy_df)) {
     stop(message(cat(
       ipmisc::red("Error: "),
-      ipmisc::blue("The object of class "),
-      ipmisc::yellow(class(x)[[1]]),
-      ipmisc::blue(" *must* contain column called 'estimate' in tidy output.\n"),
+      ipmisc::blue("The tidy dataframe *must* contain column called 'estimate'.\n"),
       ipmisc::blue("Check the tidy output using argument `output = 'tidy'`."),
       sep = ""
     )),

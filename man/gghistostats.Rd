@@ -26,9 +26,6 @@ gghistostats(
   k = 2,
   ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE,
-  fill.gradient = FALSE,
-  low.color = "#0072B2",
-  high.color = "#D55E00",
   bar.fill = "grey50",
   results.subtitle = TRUE,
   test.k = 0,
@@ -126,17 +123,8 @@ theme elements are to be displayed along with the selected \code{ggtheme}
 (Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
 override some aspects of the selected \code{ggtheme}.}
 
-\item{fill.gradient}{Logical decides whether color fill gradient is to be
-displayed (Default: \code{FALSE}). If \code{FALSE}, the legend and the color gradient
-will also be removed. The default is set to \code{FALSE} because the gradient
-provides redundant information in light of y-axis labels.}
-
-\item{low.color, high.color}{Colors for low and high ends of the gradient.
-Defaults are colorblind-friendly.}
-
-\item{bar.fill}{If \code{fill.gradient = FALSE}, then \code{bar.fill} decides which
-color will uniformly fill all the bars in the histogram (Default:
-\code{"grey50"}).}
+\item{bar.fill}{Character input that decides which color will uniformly fill
+all the bars in the histogram (Default: \code{"grey50"}).}
 
 \item{results.subtitle}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only

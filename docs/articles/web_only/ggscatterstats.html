@@ -152,7 +152,7 @@
       <h1>ggscatterstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-02-16</h4>
+            <h4 class="date">2020-02-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggscatterstats.Rmd"><code>vignettes/web_only/ggscatterstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggscatterstats.Rmd</code></div>
@@ -202,27 +202,27 @@
 <span id="cb2-6"><a href="#cb2-6"></a></span>
 <span id="cb2-7"><a href="#cb2-7"></a><span class="co"># plot</span></span>
 <span id="cb2-8"><a href="#cb2-8"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggscatterstats.html">ggscatterstats</a></span>(</span>
-<span id="cb2-9"><a href="#cb2-9"></a>  <span class="dt">data =</span> movies_<span class="dv">10</span>,                                            <span class="co"># dataframe from which variables are taken</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>  <span class="dt">x =</span> budget,                                                  <span class="co"># predictor/independent variable </span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>  <span class="dt">y =</span> rating,                                                  <span class="co"># dependent variable</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a>  <span class="dt">xlab =</span> <span class="st">"Budget (in millions of US dollars)"</span>,                 <span class="co"># label for the x-axis</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a>  <span class="dt">ylab =</span> <span class="st">"Rating on IMDB"</span>,                                     <span class="co"># label for the y-axis</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a>  <span class="dt">label.var =</span> <span class="st">"title"</span>,                                         <span class="co"># variable to use for labeling data points</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a>  <span class="dt">label.expression =</span> <span class="st">"rating &lt; 5 &amp; budget &gt; 100"</span>,              <span class="co"># expression for deciding which points to label</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>  <span class="dt">data =</span> movies_<span class="dv">10</span>, <span class="co"># dataframe from which variables are taken</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>  <span class="dt">x =</span> budget, <span class="co"># predictor/independent variable</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>  <span class="dt">y =</span> rating, <span class="co"># dependent variable</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>  <span class="dt">xlab =</span> <span class="st">"Budget (in millions of US dollars)"</span>, <span class="co"># label for the x-axis</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>  <span class="dt">ylab =</span> <span class="st">"Rating on IMDB"</span>, <span class="co"># label for the y-axis</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a>  <span class="dt">label.var =</span> <span class="st">"title"</span>, <span class="co"># variable to use for labeling data points</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>  <span class="dt">label.expression =</span> <span class="st">"rating &lt; 5 &amp; budget &gt; 100"</span>, <span class="co"># expression for deciding which points to label</span></span>
 <span id="cb2-16"><a href="#cb2-16"></a>  <span class="dt">point.alpha =</span> <span class="fl">0.7</span>,</span>
 <span id="cb2-17"><a href="#cb2-17"></a>  <span class="dt">point.size =</span> <span class="dv">4</span>,</span>
 <span id="cb2-18"><a href="#cb2-18"></a>  <span class="dt">point.color =</span> <span class="st">"grey50"</span>,</span>
-<span id="cb2-19"><a href="#cb2-19"></a>  <span class="dt">marginal =</span> <span class="ot">TRUE</span>,                                             <span class="co"># show marginal distribution </span></span>
-<span id="cb2-20"><a href="#cb2-20"></a>  <span class="dt">marginal.type =</span> <span class="st">"density"</span>,                                   <span class="co"># type of plot for marginal distribution</span></span>
-<span id="cb2-21"><a href="#cb2-21"></a>  <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,                                    <span class="co"># centrality parameter to be plotted</span></span>
-<span id="cb2-22"><a href="#cb2-22"></a>  <span class="dt">margins =</span> <span class="st">"both"</span>,                                            <span class="co"># marginal distribution on both axes</span></span>
-<span id="cb2-23"><a href="#cb2-23"></a>  <span class="dt">xfill =</span> <span class="st">"#CC79A7"</span>,                                           <span class="co"># fill for marginals on the x-axis</span></span>
-<span id="cb2-24"><a href="#cb2-24"></a>  <span class="dt">yfill =</span> <span class="st">"#009E73"</span>,                                           <span class="co"># fill for marginals on the y-axis</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a>  <span class="dt">xalpha =</span> <span class="fl">0.5</span>,                                                <span class="co"># transparency for the x-axis marginals</span></span>
-<span id="cb2-26"><a href="#cb2-26"></a>  <span class="dt">yalpha =</span> <span class="fl">0.75</span>,                                               <span class="co"># transparency for the y-axis marginals</span></span>
-<span id="cb2-27"><a href="#cb2-27"></a>  <span class="dt">xsize =</span> <span class="dv">1</span>,                                                   <span class="co"># size for the x-axis marginals</span></span>
-<span id="cb2-28"><a href="#cb2-28"></a>  <span class="dt">ysize =</span> <span class="dv">1</span>,                                                   <span class="co"># size for the y-axis marginals</span></span>
-<span id="cb2-29"><a href="#cb2-29"></a>  <span class="dt">type =</span> <span class="st">"pearson"</span>,                                            <span class="co"># type of linear association</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a>  <span class="dt">marginal =</span> <span class="ot">TRUE</span>, <span class="co"># show marginal distribution</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a>  <span class="dt">marginal.type =</span> <span class="st">"density"</span>, <span class="co"># type of plot for marginal distribution</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a>  <span class="dt">centrality.para =</span> <span class="st">"mean"</span>, <span class="co"># centrality parameter to be plotted</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a>  <span class="dt">margins =</span> <span class="st">"both"</span>, <span class="co"># marginal distribution on both axes</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a>  <span class="dt">xfill =</span> <span class="st">"#CC79A7"</span>, <span class="co"># fill for marginals on the x-axis</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a>  <span class="dt">yfill =</span> <span class="st">"#009E73"</span>, <span class="co"># fill for marginals on the y-axis</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a>  <span class="dt">xalpha =</span> <span class="fl">0.5</span>, <span class="co"># transparency for the x-axis marginals</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a>  <span class="dt">yalpha =</span> <span class="fl">0.75</span>, <span class="co"># transparency for the y-axis marginals</span></span>
+<span id="cb2-27"><a href="#cb2-27"></a>  <span class="dt">xsize =</span> <span class="dv">1</span>, <span class="co"># size for the x-axis marginals</span></span>
+<span id="cb2-28"><a href="#cb2-28"></a>  <span class="dt">ysize =</span> <span class="dv">1</span>, <span class="co"># size for the y-axis marginals</span></span>
+<span id="cb2-29"><a href="#cb2-29"></a>  <span class="dt">type =</span> <span class="st">"pearson"</span>, <span class="co"># type of linear association</span></span>
 <span id="cb2-30"><a href="#cb2-30"></a>  <span class="dt">title =</span> <span class="st">"Relationship between movie budget and IMDB rating"</span>,</span>
 <span id="cb2-31"><a href="#cb2-31"></a>  <span class="dt">caption =</span> <span class="st">"Source: www.imdb.com"</span>,</span>
 <span id="cb2-32"><a href="#cb2-32"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
@@ -271,10 +271,11 @@
 <span id="cb3-29"><a href="#cb3-29"></a>  <span class="dt">title.text =</span> <span class="st">"Relationship between movie budget and IMDB rating"</span>,</span>
 <span id="cb3-30"><a href="#cb3-30"></a>  <span class="dt">caption.text =</span> <span class="st">"Source: www.imdb.com"</span>,</span>
 <span id="cb3-31"><a href="#cb3-31"></a>  <span class="dt">plotgrid.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
-<span id="cb3-32"><a href="#cb3-32"></a>  <span class="dt">nrow =</span> <span class="dv">3</span>,</span>
-<span id="cb3-33"><a href="#cb3-33"></a>  <span class="dt">ncol =</span> <span class="dv">1</span>,</span>
-<span id="cb3-34"><a href="#cb3-34"></a>  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>,<span class="st">"(d)"</span>)</span>
-<span id="cb3-35"><a href="#cb3-35"></a>))</span></code></pre></div>
+<span id="cb3-32"><a href="#cb3-32"></a>    <span class="dt">nrow =</span> <span class="dv">3</span>,</span>
+<span id="cb3-33"><a href="#cb3-33"></a>    <span class="dt">ncol =</span> <span class="dv">1</span>,</span>
+<span id="cb3-34"><a href="#cb3-34"></a>    <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>)</span>
+<span id="cb3-35"><a href="#cb3-35"></a>  )</span>
+<span id="cb3-36"><a href="#cb3-36"></a>)</span></code></pre></div>
 <p><img src="ggscatterstats_files/figure-html/grouped1-1.png" width="672"></p>
 <p>As seen from the plot, this analysis has revealed something interesting: The relationship we found between budget and IMDB rating holds only for PG-13 and R-rated movies.</p>
 </div>
@@ -346,38 +347,42 @@
 <span id="cb4-16"><a href="#cb4-16"></a>      <span class="st">"Local Polynomial Regression Fitting"</span>,</span>
 <span id="cb4-17"><a href="#cb4-17"></a>      <span class="st">"Quadratic fit"</span></span>
 <span id="cb4-18"><a href="#cb4-18"></a>    ),</span>
-<span id="cb4-19"><a href="#cb4-19"></a>    <span class="dt">method =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(MASS<span class="op">::</span>rlm, </span>
-<span id="cb4-20"><a href="#cb4-20"></a>                  <span class="st">"gam"</span>, </span>
-<span id="cb4-21"><a href="#cb4-21"></a>                  <span class="st">"loess"</span>, </span>
-<span id="cb4-22"><a href="#cb4-22"></a>                  <span class="st">"lm"</span>),</span>
-<span id="cb4-23"><a href="#cb4-23"></a>    <span class="dt">formula =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(y <span class="op">~</span><span class="st"> </span>x, </span>
-<span id="cb4-24"><a href="#cb4-24"></a>                   y <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(x, <span class="dt">k =</span> <span class="dv">3</span>), </span>
-<span id="cb4-25"><a href="#cb4-25"></a>                   y <span class="op">~</span><span class="st"> </span>x, </span>
-<span id="cb4-26"><a href="#cb4-26"></a>                   y <span class="op">~</span><span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span>(x <span class="op">^</span><span class="st"> </span><span class="dv">2</span>)),</span>
-<span id="cb4-27"><a href="#cb4-27"></a>    <span class="dt">line.color =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"#009E73"</span>, <span class="st">"#F0E442"</span>, <span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>),</span>
-<span id="cb4-28"><a href="#cb4-28"></a>    <span class="dt">marginal =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb4-29"><a href="#cb4-29"></a>    <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
-<span id="cb4-30"><a href="#cb4-30"></a>  ),</span>
-<span id="cb4-31"><a href="#cb4-31"></a>  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggscatterstats</span>
-<span id="cb4-32"><a href="#cb4-32"></a>)</span>
-<span id="cb4-33"><a href="#cb4-33"></a><span class="co">#&gt; Warning: The statistical analysis is available only for linear model</span></span>
-<span id="cb4-34"><a href="#cb4-34"></a><span class="co">#&gt; (formula = y ~ x, method = 'lm'). Returning only the plot.</span></span>
-<span id="cb4-35"><a href="#cb4-35"></a><span class="co">#&gt; Warning: The statistical analysis is available only for linear model</span></span>
-<span id="cb4-36"><a href="#cb4-36"></a><span class="co">#&gt; (formula = y ~ x, method = 'lm'). Returning only the plot.</span></span>
+<span id="cb4-19"><a href="#cb4-19"></a>    <span class="dt">method =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb4-20"><a href="#cb4-20"></a>      MASS<span class="op">::</span>rlm,</span>
+<span id="cb4-21"><a href="#cb4-21"></a>      <span class="st">"gam"</span>,</span>
+<span id="cb4-22"><a href="#cb4-22"></a>      <span class="st">"loess"</span>,</span>
+<span id="cb4-23"><a href="#cb4-23"></a>      <span class="st">"lm"</span></span>
+<span id="cb4-24"><a href="#cb4-24"></a>    ),</span>
+<span id="cb4-25"><a href="#cb4-25"></a>    <span class="dt">formula =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb4-26"><a href="#cb4-26"></a>      y <span class="op">~</span><span class="st"> </span>x,</span>
+<span id="cb4-27"><a href="#cb4-27"></a>      y <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(x, <span class="dt">k =</span> <span class="dv">3</span>),</span>
+<span id="cb4-28"><a href="#cb4-28"></a>      y <span class="op">~</span><span class="st"> </span>x,</span>
+<span id="cb4-29"><a href="#cb4-29"></a>      y <span class="op">~</span><span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span>(x<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb4-30"><a href="#cb4-30"></a>    ),</span>
+<span id="cb4-31"><a href="#cb4-31"></a>    <span class="dt">line.color =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"#009E73"</span>, <span class="st">"#F0E442"</span>, <span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>),</span>
+<span id="cb4-32"><a href="#cb4-32"></a>    <span class="dt">marginal =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb4-33"><a href="#cb4-33"></a>    <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
+<span id="cb4-34"><a href="#cb4-34"></a>  ),</span>
+<span id="cb4-35"><a href="#cb4-35"></a>  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggscatterstats</span>
+<span id="cb4-36"><a href="#cb4-36"></a>)</span>
 <span id="cb4-37"><a href="#cb4-37"></a><span class="co">#&gt; Warning: The statistical analysis is available only for linear model</span></span>
 <span id="cb4-38"><a href="#cb4-38"></a><span class="co">#&gt; (formula = y ~ x, method = 'lm'). Returning only the plot.</span></span>
 <span id="cb4-39"><a href="#cb4-39"></a><span class="co">#&gt; Warning: The statistical analysis is available only for linear model</span></span>
 <span id="cb4-40"><a href="#cb4-40"></a><span class="co">#&gt; (formula = y ~ x, method = 'lm'). Returning only the plot.</span></span>
-<span id="cb4-41"><a href="#cb4-41"></a></span>
-<span id="cb4-42"><a href="#cb4-42"></a><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></span>
-<span id="cb4-43"><a href="#cb4-43"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</span>
-<span id="cb4-44"><a href="#cb4-44"></a>  <span class="dt">plotlist =</span> plot_list2,</span>
-<span id="cb4-45"><a href="#cb4-45"></a>  <span class="dt">title.text =</span> <span class="st">"Trying out different smoothing functions with ggscatterstats"</span>,</span>
-<span id="cb4-46"><a href="#cb4-46"></a>  <span class="dt">caption.text =</span> <span class="st">"Source: www.imdb.com"</span>,</span>
-<span id="cb4-47"><a href="#cb4-47"></a>  <span class="dt">nrow =</span> <span class="dv">2</span>,</span>
-<span id="cb4-48"><a href="#cb4-48"></a>  <span class="dt">ncol =</span> <span class="dv">2</span>,</span>
-<span id="cb4-49"><a href="#cb4-49"></a>  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>)</span>
-<span id="cb4-50"><a href="#cb4-50"></a>)</span></code></pre></div>
+<span id="cb4-41"><a href="#cb4-41"></a><span class="co">#&gt; Warning: The statistical analysis is available only for linear model</span></span>
+<span id="cb4-42"><a href="#cb4-42"></a><span class="co">#&gt; (formula = y ~ x, method = 'lm'). Returning only the plot.</span></span>
+<span id="cb4-43"><a href="#cb4-43"></a><span class="co">#&gt; Warning: The statistical analysis is available only for linear model</span></span>
+<span id="cb4-44"><a href="#cb4-44"></a><span class="co">#&gt; (formula = y ~ x, method = 'lm'). Returning only the plot.</span></span>
+<span id="cb4-45"><a href="#cb4-45"></a></span>
+<span id="cb4-46"><a href="#cb4-46"></a><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></span>
+<span id="cb4-47"><a href="#cb4-47"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</span>
+<span id="cb4-48"><a href="#cb4-48"></a>  <span class="dt">plotlist =</span> plot_list2,</span>
+<span id="cb4-49"><a href="#cb4-49"></a>  <span class="dt">title.text =</span> <span class="st">"Trying out different smoothing functions with ggscatterstats"</span>,</span>
+<span id="cb4-50"><a href="#cb4-50"></a>  <span class="dt">caption.text =</span> <span class="st">"Source: www.imdb.com"</span>,</span>
+<span id="cb4-51"><a href="#cb4-51"></a>  <span class="dt">nrow =</span> <span class="dv">2</span>,</span>
+<span id="cb4-52"><a href="#cb4-52"></a>  <span class="dt">ncol =</span> <span class="dv">2</span>,</span>
+<span id="cb4-53"><a href="#cb4-53"></a>  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>)</span>
+<span id="cb4-54"><a href="#cb4-54"></a>)</span></code></pre></div>
 <p><img src="ggscatterstats_files/figure-html/grouped3-1.png" width="1152"></p>
 </div>
 <div id="suggestions" class="section level1">

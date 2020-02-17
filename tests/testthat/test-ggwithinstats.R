@@ -1,5 +1,3 @@
-context(desc = "ggwithinstats")
-
 # for t-test
 data_bugs_2 <- ggstatsplot::bugs_long %>%
   dplyr::filter(.data = ., condition %in% c("HDLF", "HDHF"))
@@ -13,40 +11,42 @@ testthat::test_that(
 
     # plot
     set.seed(123)
-    p1 <- ggstatsplot::ggwithinstats(
-      data = data_bugs_2,
-      x = condition,
-      y = desire,
-      type = "bayes",
-      sort = "descending",
-      sort.fun = mean,
-      k = 4,
-      conf.level = 0.99,
-      outlier.tagging = TRUE,
-      outlier.label = "region",
-      outlier.coef = 1.5,
-      bf.message = TRUE,
-      pairwise.comparisons = TRUE,
-      pairwise.annotation = "asterisk",
-      title = "bugs dataset",
-      caption = "From `jmv` package",
-      messages = FALSE
-    )
+    p1 <-
+      ggstatsplot::ggwithinstats(
+        data = data_bugs_2,
+        x = condition,
+        y = desire,
+        type = "bayes",
+        sort = "descending",
+        sort.fun = mean,
+        k = 4,
+        conf.level = 0.99,
+        outlier.tagging = TRUE,
+        outlier.label = "region",
+        outlier.coef = 1.5,
+        bf.message = TRUE,
+        pairwise.comparisons = TRUE,
+        pairwise.annotation = "asterisk",
+        title = "bugs dataset",
+        caption = "From `jmv` package",
+        messages = FALSE
+      )
 
     # build the plot
     pb1 <- ggplot2::ggplot_build(p1)
 
     # subtitle
     set.seed(123)
-    p1_subtitle <- statsExpressions::expr_t_bayes(
-      data = data_bugs_2,
-      x = condition,
-      y = desire,
-      k = 4,
-      paired = TRUE,
-      conf.level = 0.99,
-      messages = FALSE
-    )
+    p1_subtitle <-
+      statsExpressions::expr_t_bayes(
+        data = data_bugs_2,
+        x = condition,
+        y = desire,
+        k = 4,
+        paired = TRUE,
+        conf.level = 0.99,
+        messages = FALSE
+      )
 
     # dataframe used for visualization
     testthat::expect_equal(length(pb1$data), 8L)

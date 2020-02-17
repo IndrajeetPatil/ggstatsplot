@@ -47,7 +47,6 @@ Imports:
     performance,
     purrr,
     rlang,
-    scales,
     stats,
     statsExpressions (>= 0.3.1),
     tidyr

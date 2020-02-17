@@ -24,6 +24,9 @@ knitr::opts_chunk$set(
   message = FALSE,
   warning = FALSE
 )
+
+library(future)
+plan("multicore")
 ```
 
 The function `ggstatsplot::ggcoefstats` generates **dot-and-whisker plots** for

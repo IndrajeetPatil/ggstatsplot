@@ -30,7 +30,6 @@
 #' @importFrom paletteer scale_fill_paletteer_d
 #' @importFrom groupedstats grouped_proptest
 #' @importFrom tidyr uncount drop_na
-#' @importFrom scales percent
 #' @importFrom statsExpressions expr_contingency_tab bf_contingency_tab
 #'
 #' @inherit ggpiestats return details
@@ -249,7 +248,7 @@ ggbarstats <- function(data,
       na.rm = TRUE
     ) +
     ggplot2::scale_y_continuous(
-      labels = scales::percent,
+      labels = function(x) paste0(x * 100, "%"),
       breaks = seq(from = 0, to = 1, by = 0.10),
       minor_breaks = seq(from = 0.05, to = 0.95, by = 0.10)
     ) +

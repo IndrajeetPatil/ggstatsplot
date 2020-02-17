@@ -273,21 +273,12 @@ of points in bin, or <code>"density"</code>, which density of points in bin, sca
 integrate to 1, or "<code>proportion</code>", which shows relative frequencies of
 observations in each bin, or "<code>mix</code>", which shows <em>both</em> count and
 proportion in the same plot.</p></dd>
-    <dt><code>fill.gradient</code></dt><dd><p>Logical decides whether color fill gradient is to be
-displayed (Default: <code>FALSE</code>). If <code>FALSE</code>, the legend and the color gradient
-will also be removed. The default is set to <code>FALSE</code> because the gradient
-provides redundant information in light of y-axis labels.</p></dd>
-    <dt><code>low.color</code></dt><dd><p>Colors for low and high ends of the gradient.
-Defaults are colorblind-friendly.</p></dd>
-    <dt><code>high.color</code></dt><dd><p>Colors for low and high ends of the gradient.
-Defaults are colorblind-friendly.</p></dd>
     <dt><code>normal.curve</code></dt><dd><p>A logical value that decides whether to super-impose a
 normal curve using <code><a href='https://rdrr.io/r/stats/Normal.html'>stats::dnorm(mean(x), sd(x))</a></code>. Default is <code>FALSE</code>.</p></dd>
     <dt><code>normal.curve.args</code></dt><dd><p>A list of additional aesthetic arguments to be
 passed to the normal curve.</p></dd>
-    <dt><code>bar.fill</code></dt><dd><p>If <code>fill.gradient = FALSE</code>, then <code>bar.fill</code> decides which
-color will uniformly fill all the bars in the histogram (Default:
-<code>"grey50"</code>).</p></dd>
+    <dt><code>bar.fill</code></dt><dd><p>Character input that decides which color will uniformly fill
+all the bars in the histogram (Default: <code>"grey50"</code>).</p></dd>
     <dt><code>stat.title</code></dt><dd><p>A character describing the test being run, which will be
 added as a prefix in the subtitle. The default is <code>NULL</code>. An example of a
 <code>stat.title</code> argument will be something like <code>"Student's t-test: "</code>.</p></dd>

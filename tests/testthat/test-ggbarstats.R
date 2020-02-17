@@ -1,5 +1,3 @@
-context(desc = "ggbarstats")
-
 # contingency tab (with counts) ----------------------------------------------
 
 testthat::test_that(
