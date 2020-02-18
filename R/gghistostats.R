@@ -10,19 +10,12 @@
 #'   integrate to 1, or "`proportion`", which shows relative frequencies of
 #'   observations in each bin, or "`mix`", which shows *both* count and
 #'   proportion in the same plot.
-#' @param fill.gradient Logical decides whether color fill gradient is to be
-#'   displayed (Default: `FALSE`). If `FALSE`, the legend and the color gradient
-#'   will also be removed. The default is set to `FALSE` because the gradient
-#'   provides redundant information in light of y-axis labels.
-#' @param low.color,high.color Colors for low and high ends of the gradient.
-#'   Defaults are colorblind-friendly.
 #' @param normal.curve A logical value that decides whether to super-impose a
 #'   normal curve using `stats::dnorm(mean(x), sd(x))`. Default is `FALSE`.
 #' @param normal.curve.args A list of additional aesthetic arguments to be
 #'   passed to the normal curve.
-#' @param bar.fill If `fill.gradient = FALSE`, then `bar.fill` decides which
-#'   color will uniformly fill all the bars in the histogram (Default:
-#'   `"grey50"`).
+#' @param bar.fill Character input that decides which color will uniformly fill
+#'   all the bars in the histogram (Default: `"grey50"`).
 #' @param binwidth The width of the histogram bins. Can be specified as a
 #'   numeric value, or a function that calculates width from `x`. The default is
 #'   to use the `max(x) - min(x) / sqrt(N)`. You should always check this value
@@ -40,7 +33,6 @@
 #' @importFrom dplyr select summarize mutate
 #' @importFrom dplyr group_by n arrange
 #' @importFrom rlang enquo as_name !!
-#' @importFrom scales percent percent_format
 #' @importFrom stats dnorm
 #' @importFrom statsExpressions expr_t_onesample bf_ttest
 #'
@@ -96,9 +88,6 @@ gghistostats <- function(data,
                          k = 2,
                          ggtheme = ggplot2::theme_bw(),
                          ggstatsplot.layer = TRUE,
-                         fill.gradient = FALSE,
-                         low.color = "#0072B2",
-                         high.color = "#D55E00",
                          bar.fill = "grey50",
                          results.subtitle = TRUE,
                          test.k = 0,
@@ -184,12 +173,6 @@ gghistostats <- function(data,
 
   # ============================= plot ====================================
 
-  # if no color fill is to be displayed, set low and high color to white
-  if (isFALSE(fill.gradient)) {
-    low.color <- bar.fill
-    high.color <- bar.fill
-  }
-
   # preparing the basic layout of the plot based on whether counts or density
   # information is needed
 
@@ -199,18 +182,11 @@ gghistostats <- function(data,
       ggplot2::ggplot(data = df, mapping = ggplot2::aes(x = {{ x }})) +
       ggplot2::stat_bin(
         col = "black",
+        fill = bar.fill,
         alpha = 0.7,
         binwidth = binwidth,
         na.rm = TRUE,
-        mapping = ggplot2::aes(
-          y = ..count..,
-          fill = ..count..
-        )
-      ) +
-      ggplot2::scale_fill_gradient(
-        name = "count",
-        low = low.color,
-        high = high.color
+        mapping = ggplot2::aes(y = ..count.., fill = ..count..)
       )
   }
 
@@ -220,6 +196,7 @@ gghistostats <- function(data,
       ggplot2::ggplot(data = df, mapping = ggplot2::aes(x = {{ x }})) +
       ggplot2::stat_bin(
         col = "black",
+        fill = bar.fill,
         alpha = 0.7,
         binwidth = binwidth,
         na.rm = TRUE,
@@ -228,13 +205,7 @@ gghistostats <- function(data,
           fill = ..count.. / sum(..count..)
         )
       ) +
-      ggplot2::scale_fill_gradient(
-        name = "proportion",
-        low = low.color,
-        high = high.color,
-        labels = percent
-      ) +
-      ggplot2::scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+      ggplot2::scale_y_continuous(labels = function(x) paste0(x * 100, "%")) +
       ggplot2::ylab("proportion")
   }
 
@@ -244,18 +215,11 @@ gghistostats <- function(data,
       ggplot2::ggplot(data = df, mapping = ggplot2::aes(x = {{ x }})) +
       ggplot2::stat_bin(
         col = "black",
+        fill = bar.fill,
         alpha = 0.7,
         binwidth = binwidth,
         na.rm = TRUE,
-        mapping = ggplot2::aes(
-          y = ..density..,
-          fill = ..density..
-        )
-      ) +
-      ggplot2::scale_fill_gradient(
-        name = "density",
-        low = low.color,
-        high = high.color
+        mapping = ggplot2::aes(y = ..density.., fill = ..density..)
       )
   }
 
@@ -265,23 +229,16 @@ gghistostats <- function(data,
       ggplot2::ggplot(data = df, mapping = ggplot2::aes(x = {{ x }})) +
       ggplot2::stat_bin(
         col = "black",
+        fill = bar.fill,
         alpha = 0.7,
         binwidth = binwidth,
         na.rm = TRUE,
-        mapping = ggplot2::aes(
-          y = ..count..,
-          fill = ..count..
-        )
-      ) +
-      ggplot2::scale_fill_gradient(
-        name = "count",
-        low = low.color,
-        high = high.color
+        mapping = ggplot2::aes(y = ..count.., fill = ..count..)
       ) +
       ggplot2::scale_y_continuous(
         sec.axis = ggplot2::sec_axis(
           trans = ~ . / nrow(df),
-          labels = scales::percent_format(accuracy = 1),
+          labels = function(x) paste0(x * 100, "%"),
           name = "proportion"
         )
       ) +
@@ -361,9 +318,6 @@ gghistostats <- function(data,
       centrality.line.args = centrality.line.args,
       centrality.label.args = centrality.label.args
     )
-
-  # if no color fill gradient is used, then remove the legend
-  if (isFALSE(fill.gradient)) plot <- plot + ggplot2::theme(legend.position = "none")
 
   # ---------------- adding ggplot component ---------------------------------
 

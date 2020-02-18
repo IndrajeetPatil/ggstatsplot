@@ -290,7 +290,7 @@ the <code>x</code> variable displayed in the legend.</p></dd>
     <dt><code>xlab</code></dt><dd><p>Custom text for the <code>x</code> axis label (Default: <code>NULL</code>, which
 will cause the <code>x</code> axis label to be the <code>x</code> variable).</p></dd>
     <dt><code>ylab</code></dt><dd><p>Custom text for the <code>y</code> axis label (Default: <code>"percent"</code>).</p></dd>
-    <dt><code>bar.proptest</code></dt><dd><p>Decides whether proportion test for <code>main</code> variable is
+    <dt><code>proportion.test</code></dt><dd><p>Decides whether proportion test for <code>main</code> variable is
 to be carried out for each level of <code>y</code> (Default: <code>TRUE</code>).</p></dd>
     <dt><code>bar.label</code></dt><dd><p>Character decides what information needs to be
 displayed on the label in each pie slice. Possible options are
@@ -303,8 +303,6 @@ displayed on the label in each pie slice. Possible options are
     <dt><code>x.axis.orientation</code></dt><dd><p>The orientation of the <code>x</code> axis labels one of
 "slant" or "vertical" to change from the default horizontal
 orientation (Default: <code>NULL</code> which is horizontal).</p></dd>
-    <dt><code>bar.outline.color</code></dt><dd><p>Character specifying color for bars (default:
-<code>"black"</code>).</p></dd>
     <dt><code>ratio</code></dt><dd><p>A vector of proportions: the expected proportions for the
 proportion test (should sum to 1). Default is <code>NULL</code>, which means the null
 is equal theoretical proportions across the levels of the nominal variable.
@@ -328,12 +326,8 @@ should be displayed for each level of the grouping variable <code>y</code>
 displayed in a label, this argument decides whether these two pieces of
 information are going to be on the same line (<code>" "</code>) or on separate lines
 (<code>"\n"</code>).</p></dd>
-    <dt><code>label.text.size</code></dt><dd><p>Numeric that decides text size for slice/bar labels
-(Default: <code>4</code>).</p></dd>
-    <dt><code>label.fill.color</code></dt><dd><p>Character that specifies fill color for slice/bar
-labels (Default: <code>white</code>).</p></dd>
-    <dt><code>label.fill.alpha</code></dt><dd><p>Numeric that specifies fill color transparency or
-<code>"alpha"</code> for slice/bar labels (Default: <code>1</code> range <code>0</code> to <code>1</code>).</p></dd>
+    <dt><code>label.args</code></dt><dd><p>Additional aesthetic arguments that will be passed to
+<code>geom_label</code>.</p></dd>
     <dt><code>bf.message</code></dt><dd><p>Logical that decides whether to display a caption with
 results from Bayes Factor test in favor of the null hypothesis (default:
 <code>FALSE</code>).</p></dd>
@@ -354,8 +348,6 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></dd>
     <dt><code>nboot</code></dt><dd><p>Number of bootstrap samples for computing confidence interval
 for the effect size (Default: <code>100</code>).</p></dd>
-    <dt><code>bias.correct</code></dt><dd><p>If <code>TRUE</code> (default), a bias correction will be applied to
-Cramer's <em>V</em>.</p></dd>
     <dt><code>legend.title</code></dt><dd><p>Title text for the legend.</p></dd>
     <dt><code>k</code></dt><dd><p>Number of digits after decimal point (should be an integer)
 (Default: <code>k = 2</code>).</p></dd>
@@ -378,9 +370,7 @@ type. Default palette is <code>"Dark2"</code>.</p></dd>
     <dt><code>ggplot.component</code></dt><dd><p>A <code>ggplot</code> component to be added to the plot prepared
 by <code>ggstatsplot</code>. This argument is primarily helpful for <code>grouped_</code> variant
 of the current function. Default is <code>NULL</code>. The argument should be entered
-as a function. If the given function has an argument <code>axes.range.restrict</code>
-and if it has been set to <code>TRUE</code>, the added <code>ggplot</code> component <em>might</em> not
-work as expected.</p></dd>
+as a function.</p></dd>
     <dt><code>messages</code></dt><dd><p>Decides whether messages references, notes, and warnings are
 to be displayed (Default: <code>TRUE</code>).</p></dd>
   

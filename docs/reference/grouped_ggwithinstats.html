@@ -271,18 +271,24 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
     <tr>
       <th>...</th>
       <td><p>Arguments passed on to <code><a href='ggwithinstats.html'>ggwithinstats</a></code></p><dl class='dl-horizontal'>
-    <dt><code>path.point</code></dt><dd><p>Logical that decides whether individual data
+    <dt><code>point.path</code></dt><dd><p>Logical that decides whether individual data
 points and means, respectively, should be connected using <code>geom_path</code>. Both
-default to <code>TRUE</code>. Note that <code>path.point</code> argument is relevant only when
+default to <code>TRUE</code>. Note that <code>point.path</code> argument is relevant only when
 there are two groups (i.e., in case of a <em>t</em>-test). In case of large number
-of data points, it is advisable to set <code>path.point = FALSE</code> as these lines
+of data points, it is advisable to set <code>point.path = FALSE</code> as these lines
 can overwhelm the plot.</p></dd>
-    <dt><code>path.mean</code></dt><dd><p>Logical that decides whether individual data
+    <dt><code>mean.path</code></dt><dd><p>Logical that decides whether individual data
 points and means, respectively, should be connected using <code>geom_path</code>. Both
-default to <code>TRUE</code>. Note that <code>path.point</code> argument is relevant only when
+default to <code>TRUE</code>. Note that <code>point.path</code> argument is relevant only when
 there are two groups (i.e., in case of a <em>t</em>-test). In case of large number
-of data points, it is advisable to set <code>path.point = FALSE</code> as these lines
+of data points, it is advisable to set <code>point.path = FALSE</code> as these lines
 can overwhelm the plot.</p></dd>
+    <dt><code>mean.path.args</code></dt><dd><p>A list of additional aesthetic
+arguments passed on to <code>geom_path</code> connecting raw data points and mean
+points.</p></dd>
+    <dt><code>point.path.args</code></dt><dd><p>A list of additional aesthetic
+arguments passed on to <code>geom_path</code> connecting raw data points and mean
+points.</p></dd>
     <dt><code>type</code></dt><dd><p>Type of statistic expected (<code>"parametric"</code> or <code>"nonparametric"</code>
 or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations are also accepted:
 <code>"p"</code> (for parametric), <code>"np"</code> (nonparametric), <code>"r"</code> (robust), or
@@ -348,10 +354,6 @@ try to play around with the value of <code>tr</code>, which is by default set to
 be sorted based on increasing values of <code>y</code>-axis variable. If
 <code>"descending"</code>, the opposite. If <code>"none"</code>, no sorting will happen.</p></dd>
     <dt><code>sort.fun</code></dt><dd><p>The function used to sort (default: <code>mean</code>).</p></dd>
-    <dt><code>axes.range.restrict</code></dt><dd><p>Logical that decides whether to restrict the axes
-values ranges to <code>min</code> and <code>max</code> values of the axes variables (Default:
-<code>FALSE</code>), only relevant for functions where axes variables are of numeric
-type.</p></dd>
     <dt><code>mean.plotting</code></dt><dd><p>Logical that decides whether mean is to be highlighted
 and its value to be displayed (Default: <code>TRUE</code>).</p></dd>
     <dt><code>mean.ci</code></dt><dd><p>Logical that decides whether <code>95%</code> confidence interval for
@@ -370,21 +372,12 @@ notches extend <code>1.58 * IQR / sqrt(n)</code>. This gives a roughly <code>95%
 confidence interval for comparing medians. IQR: Inter-Quartile Range.</p></dd>
     <dt><code>notchwidth</code></dt><dd><p>For a notched box plot, width of the notch relative to the
 body (default <code>0.5</code>).</p></dd>
-    <dt><code>linetype</code></dt><dd><p>Character strings (<code>"blank"</code>, <code>"solid"</code>, <code>"dashed"</code>,
-<code>"dotted"</code>, <code>"dotdash"</code>, <code>"longdash"</code>, and <code>"twodash"</code>) specifying the type
-of line to draw box plots (Default: <code>"solid"</code>). Alternatively, the numbers
-<code>0</code> to <code>6</code> can be used (<code>0</code> for "blank", <code>1</code> for "solid", etc.).</p></dd>
     <dt><code>outlier.tagging</code></dt><dd><p>Decides whether outliers should be tagged (Default:
 <code>FALSE</code>).</p></dd>
     <dt><code>outlier.coef</code></dt><dd><p>Coefficient for outlier detection using Tukey's method.
 With Tukey's method, outliers are below (1st Quartile) or above (3rd
 Quartile) <code>outlier.coef</code> times the Inter-Quartile Range (IQR) (Default:
 <code>1.5</code>).</p></dd>
-    <dt><code>outlier.shape</code></dt><dd><p>Hiding the outliers can be achieved by setting
-<code>outlier.shape = NA</code>. Importantly, this does not remove the outliers,
-it only hides them, so the range calculated for the <code>y</code>-axis will be
-the same with outliers shown and outliers hidden.</p></dd>
-    <dt><code>outlier.color</code></dt><dd><p>Default aesthetics for outliers (Default: <code>"black"</code>).</p></dd>
     <dt><code>outlier.label.args</code></dt><dd><p>A list of additional aesthetic arguments to be
 passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point</a></code> and <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geoms
 involved outlier value plotting.</p></dd>
@@ -406,9 +399,7 @@ or symbol.</p></dd>
     <dt><code>ggplot.component</code></dt><dd><p>A <code>ggplot</code> component to be added to the plot prepared
 by <code>ggstatsplot</code>. This argument is primarily helpful for <code>grouped_</code> variant
 of the current function. Default is <code>NULL</code>. The argument should be entered
-as a function. If the given function has an argument <code>axes.range.restrict</code>
-and if it has been set to <code>TRUE</code>, the added <code>ggplot</code> component <em>might</em> not
-work as expected.</p></dd>
+as a function.</p></dd>
     <dt><code>messages</code></dt><dd><p>Decides whether messages references, notes, and warnings are
 to be displayed (Default: <code>TRUE</code>).</p></dd>
     <dt><code>sphericity.correction</code></dt><dd><p>Logical that decides whether to apply correction

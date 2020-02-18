@@ -14,6 +14,7 @@ ggscatterstats(
   bf.message = TRUE,
   label.var = NULL,
   label.expression = NULL,
+  point.label.args = list(size = 3),
   method = "lm",
   method.args = list(),
   formula = y ~ x,
@@ -37,7 +38,7 @@ ggscatterstats(
   yalpha = 1,
   xsize = 0.7,
   ysize = 0.7,
-  centrality.para = NULL,
+  centrality.parameter = "none",
   results.subtitle = TRUE,
   stat.title = NULL,
   xlab = NULL,
@@ -48,7 +49,6 @@ ggscatterstats(
   nboot = 100,
   beta = 0.1,
   k = 2,
-  axes.range.restrict = FALSE,
   ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE,
   ggplot.component = NULL,
@@ -94,6 +94,9 @@ a character string (e.g., \code{"var1"}) or as a bare expression (e.g, \code{var
 determines the subset of data points to label. This argument can be entered
 either as a character string (e.g., \code{"y < 4 & z < 20"}) or as a bare
 expression (e.g., \code{y < 4 & z < 20}).}
+
+\item{point.label.args}{A list of additional aesthetic arguments to be passed
+to \code{ggrepel::geom_label_repel} geom used to display the labels.}
 
 \item{method}{Smoothing method (function) to use, accepts either a character vector,
 e.g. \code{"auto"}, \code{"lm"}, \code{"glm"}, \code{"gam"}, \code{"loess"} or a function, e.g.
@@ -159,7 +162,7 @@ default is \code{1} for both axes.}
 \item{xsize, ysize}{Size for the marginal distribution boundaries (Default:
 \code{0.7}).}
 
-\item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"}
+\item{centrality.parameter}{Decides \emph{which} measure of central tendency (\code{"mean"}
 or \code{"median"}) is to be displayed as vertical (for \code{x}) and horizontal (for
 \code{y}) lines. Note that mean values corresponds to arithmetic mean and not
 geometric mean.}
@@ -193,11 +196,6 @@ for the effect size (Default: \code{100}).}
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
 
-\item{axes.range.restrict}{Logical that decides whether to restrict the axes
-values ranges to \code{min} and \code{max} values of the axes variables (Default:
-\code{FALSE}), only relevant for functions where axes variables are of numeric
-type.}
-
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
 extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
@@ -211,9 +209,7 @@ override some aspects of the selected \code{ggtheme}.}
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
 of the current function. Default is \code{NULL}. The argument should be entered
-as a function. If the given function has an argument \code{axes.range.restrict}
-and if it has been set to \code{TRUE}, the added \code{ggplot} component \emph{might} not
-work as expected.}
+as a function.}
 
 \item{output}{Character that describes what is to be returned: can be
 \code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to
@@ -256,8 +252,7 @@ ggstatsplot::ggscatterstats(
   type = "np",
   label.var = car,
   label.expression = wt < 4 & mpg < 20,
-  axes.range.restrict = TRUE,
-  centrality.para = "median",
+  centrality.parameter = "median",
   xfill = NULL
 )
 }

@@ -226,9 +226,6 @@ in the plot as a subtitle.</p>
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>fill.gradient</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>low.color</span> <span class='kw'>=</span> <span class='st'>"#0072B2"</span>,
-  <span class='kw'>high.color</span> <span class='kw'>=</span> <span class='st'>"#D55E00"</span>,
   <span class='kw'>bar.fill</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>,
   <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>test.k</span> <span class='kw'>=</span> <span class='fl'>0</span>,
@@ -371,22 +368,9 @@ theme elements are to be displayed along with the selected <code>ggtheme</code>
 override some aspects of the selected <code>ggtheme</code>.</p></td>
     </tr>
     <tr>
-      <th>fill.gradient</th>
-      <td><p>Logical decides whether color fill gradient is to be
-displayed (Default: <code>FALSE</code>). If <code>FALSE</code>, the legend and the color gradient
-will also be removed. The default is set to <code>FALSE</code> because the gradient
-provides redundant information in light of y-axis labels.</p></td>
-    </tr>
-    <tr>
-      <th>low.color, high.color</th>
-      <td><p>Colors for low and high ends of the gradient.
-Defaults are colorblind-friendly.</p></td>
-    </tr>
-    <tr>
       <th>bar.fill</th>
-      <td><p>If <code>fill.gradient = FALSE</code>, then <code>bar.fill</code> decides which
-color will uniformly fill all the bars in the histogram (Default:
-<code>"grey50"</code>).</p></td>
+      <td><p>Character input that decides which color will uniformly fill
+all the bars in the histogram (Default: <code>"grey50"</code>).</p></td>
     </tr>
     <tr>
       <th>results.subtitle</th>
@@ -454,9 +438,7 @@ passed to the normal curve.</p></td>
       <td><p>A <code>ggplot</code> component to be added to the plot prepared
 by <code>ggstatsplot</code>. This argument is primarily helpful for <code>grouped_</code> variant
 of the current function. Default is <code>NULL</code>. The argument should be entered
-as a function. If the given function has an argument <code>axes.range.restrict</code>
-and if it has been set to <code>TRUE</code>, the added <code>ggplot</code> component <em>might</em> not
-work as expected.</p></td>
+as a function.</p></td>
     </tr>
     <tr>
       <th>output</th>

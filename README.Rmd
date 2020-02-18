@@ -799,35 +799,9 @@ This is identical to the `ggpiestats` function summary of tests.
 
 To visualize the distribution of a single variable and check if its mean is
 significantly different from a specified value with a one-sample test,
-`gghistostats` can be used. We will again demonstrate here that the outputs are
-`ggplot` objects and can be further modified using any of the `ggplot` extension
-packages:
+`gghistostats` can be used.
 
 ```{r gghistostats1, message = FALSE, warning = FALSE}
-# for reproducibility
-set.seed(123)
-library(firatheme)
-
-# plot
-ggstatsplot::gghistostats(
-  data = ToothGrowth, # dataframe from which variable is to be taken
-  x = len, # numeric variable whose distribution is of interest
-  xlab = "Tooth length", # `x`-axis label
-  title = "Distribution of Tooth Length", # title for the plot
-  fill.gradient = TRUE, # use color gradient
-  test.value = 10, # the comparison value for one-sample test
-  test.value.line = TRUE, # display a vertical line at test value
-  type = "bayes", # bayes factor for one sample t-test
-  bf.prior = 0.8, # prior width for calculating the bayes factor
-  messages = FALSE # turn off the messages
-) + # modification outside of `ggstatsplot` using extension packages
-  theme_fira() +
-  scale_colour_fira()
-```
-
-The aesthetic defaults can be easily modified internally as well-
-
-```{r gghistostats2, message = FALSE, warning = FALSE}
 # for reproducibility
 set.seed(123)
 
@@ -858,7 +832,7 @@ to assess evidence in favor of the null hypothesis.
 Additionally, there is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable:
 
-```{r gghistostats4, message = FALSE, warning = FALSE, fig.height = 10, fig.width = 10}
+```{r gghistostats2, message = FALSE, warning = FALSE, fig.height = 10, fig.width = 10}
 # for reproducibility
 set.seed(123)
 
@@ -1159,8 +1133,7 @@ ggstatsplot::ggcoefstats(
   subtitle = "Source: 1974 Motor Trend US magazine",
   ggtheme = hrbrthemes::theme_ipsum_ps(),
   ggstatsplot.layer = FALSE
-) + # further modification with the ggplot2 commands
-  # note the order in which the labels are entered
+) + # note the order in which the labels are entered
   ggplot2::scale_y_discrete(labels = c("transmission", "cylinders", "interaction")) +
   ggplot2::labs(x = "regression coefficient", y = NULL)
 ```
@@ -1314,7 +1287,7 @@ syntax is simpler and follows the following principles-
   - When a given function depends on variables in a dataframe, `data` argument
     must always be specified.
   - The `$` operator cannot be used to specify variables in a dataframe.
-  - All functions accept both quoted (`x = "var1"`) and unquoted (`x = var1`)
+  - All functions accept both string (`x = "var1"`) and symbol (`x = var1`)
     arguments.
 
 These set principles combined with the fact that almost all functions produce

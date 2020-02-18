@@ -62,6 +62,8 @@ about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
 \item{...}{
   Arguments passed on to \code{\link[=ggscatterstats]{ggscatterstats}}
   \describe{
+    \item{\code{point.label.args}}{A list of additional aesthetic arguments to be passed
+to \code{ggrepel::geom_label_repel} geom used to display the labels.}
     \item{\code{line.color}}{color for the regression line.}
     \item{\code{line.size}}{Size for the regression line.}
     \item{\code{point.color}}{Aesthetics specifying geom point
@@ -97,7 +99,7 @@ default is \code{1} for both axes.}
 \code{0.7}).}
     \item{\code{ysize}}{Size for the marginal distribution boundaries (Default:
 \code{0.7}).}
-    \item{\code{centrality.para}}{Decides \emph{which} measure of central tendency (\code{"mean"}
+    \item{\code{centrality.parameter}}{Decides \emph{which} measure of central tendency (\code{"mean"}
 or \code{"median"}) is to be displayed as vertical (for \code{x}) and horizontal (for
 \code{y}) lines. Note that mean values corresponds to arithmetic mean and not
 geometric mean.}
@@ -171,16 +173,10 @@ variable names for \code{x} and \code{y} will be used.}
     \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
     \item{\code{caption}}{The text for the plot caption.}
-    \item{\code{axes.range.restrict}}{Logical that decides whether to restrict the axes
-values ranges to \code{min} and \code{max} values of the axes variables (Default:
-\code{FALSE}), only relevant for functions where axes variables are of numeric
-type.}
     \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
 of the current function. Default is \code{NULL}. The argument should be entered
-as a function. If the given function has an argument \code{axes.range.restrict}
-and if it has been set to \code{TRUE}, the added \code{ggplot} component \emph{might} not
-work as expected.}
+as a function.}
   }}
 
 \item{plotgrid.args}{A list of additional arguments to \code{cowplot::plot_grid}.}

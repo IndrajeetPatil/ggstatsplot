@@ -4,12 +4,13 @@
 #'   confidence interval whiskers and other statistical details included as
 #'   labels.
 #'
-#' @param x A model object to be tidied with `broom::tidy`, or a tidy data frame
-#'   containing results. If a data frame is to be plotted, it *must* contain
-#'   columns named `term` (names of predictors), or `estimate` (corresponding
-#'   estimates of coefficients or other quantities of interest). Other optional
-#'   columns are `conf.low` and `conf.high` (for confidence intervals);
-#'   `p.value`. It is important that all `term` names should be unique.
+#' @param x A model object to be tidied, or a tidy data frame containing
+#'   results. If a data frame is to be plotted, it *must* contain columns named
+#'   `term` (names of predictors), or `estimate` (corresponding estimates of
+#'   coefficients or other quantities of interest). Other optional columns are
+#'   `conf.low` and `conf.high` (for confidence intervals); `p.value`. It is
+#'   important that all `term` names should be unique. Function internally uses
+#'   `broom::tidy` or `parameters::model_parameters` to get a tidy dataframe.
 #' @param output Character describing the expected output from this function:
 #'   `"plot"` (visualization of regression coefficients) or `"tidy"` (tidy
 #'   dataframe of results from `broom::tidy`) or `"glance"` (object from
@@ -22,8 +23,8 @@
 #'   Bayesian meta-analysis assuming that the effect size *d* varies across
 #'   studies with standard deviation *t* (i.e., a random-effects analysis)
 #'   should be displayed in caption. Defaults to `TRUE`.
-#' @param xlab Label for `x` axis variable (Default: `"regression coefficient"`).
-#' @param ylab Label for `y` axis variable (Default: `"term"`).
+#' @param xlab,ylab Labels for `x` axis variable (Defaults: `"regression
+#'   coefficient"` and `"term"`, resp.).
 #' @param subtitle The text for the plot subtitle. The input to this argument
 #'   will be ignored if `meta.analytic.effect` is set to `TRUE`.
 #' @param p.adjust.method Adjustment method for *p*-values for multiple
@@ -57,13 +58,6 @@
 #'   correspond to `"alpha"` parameters, `"location"` type coefficients will
 #'   correspond to `"beta"` parameters, and `"scale"` type coefficients will
 #'   correspond to `"zeta"` parameters.
-#' @param by.class A logical indicating whether or not to show performance
-#'   measures broken down by class. Defaults to `FALSE`. When `by.class = FALSE`
-#'   only returns a tibble with accuracy and kappa statistics. Mostly relevant
-#'   for an object of class `"confusionMatrix"`.
-#' @param se.type Character specifying the method used to compute standard
-#'   standard errors for quantile regression (Default: `"nid"`). To see all
-#'   available methods, see `quantreg::summary.rq()`.
 #' @param nboot Number of bootstrap samples for confidence intervals for partial
 #'   eta-squared and omega-squared (Default: `500`). This argument is relevant
 #'   only for models objects of class `aov`, `anova`, and `aovlist`.
@@ -119,10 +113,8 @@
 #'   segment. Defaults to the same color as the text.
 #' @param ... Additional arguments to tidying method.
 #' @inheritParams statsExpressions::bf_meta
-#' @inheritParams broom.mixed::tidy.merMod
 #' @inheritParams broom::tidy.clm
 #' @inheritParams broom::tidy.polr
-#' @inheritParams broom::tidy.mjoint
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams statsExpressions::expr_meta_parametric
 #' @inheritParams ggbetweenstats
@@ -279,12 +271,9 @@
 ggcoefstats <- function(x,
                         output = "plot",
                         statistic = NULL,
-                        scales = NULL,
-                        component = "survival",
                         bf.message = TRUE,
                         p.adjust.method = "none",
                         coefficient.type = c("beta", "location", "coefficient"),
-                        by.class = FALSE,
                         effsize = "eta",
                         partial = TRUE,
                         nboot = 500,
@@ -292,7 +281,6 @@ ggcoefstats <- function(x,
                         meta.type = "parametric",
                         conf.int = TRUE,
                         conf.level = 0.95,
-                        se.type = "nid",
                         k = 2,
                         k.caption.summary = 0,
                         exclude.intercept = TRUE,
@@ -314,6 +302,7 @@ ggcoefstats <- function(x,
                         stats.labels = TRUE,
                         stats.label.color = NULL,
                         stats.label.args = list(
+                          size = 3,
                           segment.color = "grey50",
                           direction = "y"
                         ),
@@ -327,23 +316,11 @@ ggcoefstats <- function(x,
 
   # =================== list of objects (for tidy and glance) ================
 
-  # creating a list of objects which will have fixed and random "effects"
-  # only fixed effects will be selected
-  mixed.mods <-
-    c(
-      "glmmadmb", "glmerMod", "glmmPQL", "glmmTMB",
-      "bglmerMod", "blmerMod", "lme", "lmerMod", "merMod", "nlmerMod", "rlmerMod", "TMB",
-      "brmsfit", "brmsfit_multiple", "mcmc", "MCMCglmm", "rjags", "stanreg", "stanmvreg"
-    )
-
-  # =================== types of models =====================================
-
   # models for which statistic is F-value
   f.mods <- c("aov", "aovlist", "anova", "Gam", "manova")
 
   # model for which the output names are going to be slightly weird
-  weird_name_mods <-
-    c("gmm", "lmodel2", "gamlss", "drc", "mlm", "DirichletRegModel")
+  weird_name_mods <- c("gmm", "lmodel2", "gamlss", "drc", "mlm", "DirichletRegModel")
 
   # ============================= model summary ============================
 
@@ -404,21 +381,7 @@ ggcoefstats <- function(x,
   # =========================== broom.mixed tidiers =======================
 
   if (isTRUE(insight::is_model(x))) {
-    if (class(x)[[1]] %in% mixed.mods) {
-      # getting tidy output using `broom.mixed`
-      tidy_df <-
-        ipmisc::tidy(
-          x = x,
-          conf.int = conf.int,
-          # exponentiate = exponentiate,
-          conf.level = conf.level,
-          effects = "fixed",
-          scales = scales,
-          ...
-        )
-
-      # ====================== tidying F-statistic objects ===================
-    } else if (class(x)[[1]] %in% f.mods) {
+    if (class(x)[[1]] %in% f.mods) {
       # creating dataframe
       tidy_df <-
         groupedstats::lm_effsize_standardizer(
@@ -448,9 +411,6 @@ ggcoefstats <- function(x,
           conf.int = conf.int,
           conf.level = conf.level,
           effects = "fixed",
-          se.type = se.type,
-          by_class = by.class,
-          component = component,
           # exponentiate = exponentiate,
           parametric = TRUE, # relevant for `gam` objects
           ...
@@ -468,9 +428,7 @@ ggcoefstats <- function(x,
   if (rlang::is_null(tidy_df) || !"estimate" %in% names(tidy_df)) {
     stop(message(cat(
       ipmisc::red("Error: "),
-      ipmisc::blue("The object of class "),
-      ipmisc::yellow(class(x)[[1]]),
-      ipmisc::blue(" *must* contain column called 'estimate' in tidy output.\n"),
+      ipmisc::blue("The tidy dataframe *must* contain column called 'estimate'.\n"),
       ipmisc::blue("Check the tidy output using argument `output = 'tidy'`."),
       sep = ""
     )),
@@ -914,8 +872,6 @@ ggcoefstats <- function(x,
     EXPR = output,
     "plot" = plot,
     "tidy" = tidy_df,
-    "dataframe" = tidy_df,
-    "df" = tidy_df,
     "glance" = glance_df,
     "summary" = glance_df,
     "augment" = as_tibble(ipmisc::augment(x = x, ...)),

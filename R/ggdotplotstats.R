@@ -5,8 +5,8 @@
 #'
 #' @param ... Currently ignored.
 #' @param y Label or grouping variable.
-#' @param point.color Character describing color for the point (Default:
-#'   `"black"`).
+#' @param point.args A list of additional aesthetic arguments passed to
+#'   `geom_point`.
 #' @inheritParams histo_labeller
 #' @inheritParams gghistostats
 #' @inheritParams ggcoefstats
@@ -34,7 +34,6 @@
 #'   test.value = 15,
 #'   test.value.line = TRUE,
 #'   test.line.labeller = TRUE,
-#'   test.value.color = "red",
 #'   centrality.parameter = "median",
 #'   centrality.k = 0,
 #'   title = "Fuel economy data",
@@ -67,11 +66,7 @@ ggdotplotstats <- function(data,
                            nboot = 100,
                            k = 2,
                            results.subtitle = TRUE,
-                           ggtheme = ggplot2::theme_bw(),
-                           ggstatsplot.layer = TRUE,
-                           point.color = "black",
-                           point.size = 3,
-                           point.shape = 16,
+                           point.args = list(size = 3, shape = 16),
                            test.k = 0,
                            test.value.line = FALSE,
                            test.value.line.args = list(size = 1),
@@ -81,6 +76,8 @@ ggdotplotstats <- function(data,
                            centrality.line.args = list(color = "blue", size = 1),
                            centrality.label.args = list(color = "blue"),
                            ggplot.component = NULL,
+                           ggtheme = ggplot2::theme_bw(),
+                           ggstatsplot.layer = TRUE,
                            output = "plot",
                            messages = TRUE,
                            ...) {
@@ -164,11 +161,10 @@ ggdotplotstats <- function(data,
   # creating the basic plot
   plot <-
     ggplot2::ggplot(data = data, mapping = ggplot2::aes(x = {{ x }}, y = rank)) +
-    ggplot2::geom_point(
-      color = point.color,
-      size = point.size,
-      shape = point.shape,
-      na.rm = TRUE
+    rlang::exec(
+      .fn = ggplot2::geom_point,
+      na.rm = TRUE,
+      !!!point.args
     ) +
     ggplot2::scale_y_continuous(
       name = ylab,
@@ -176,11 +172,7 @@ ggdotplotstats <- function(data,
       breaks = data$rank,
       sec.axis = ggplot2::dup_axis(
         name = "percentile",
-        breaks = seq(
-          from = 1,
-          to = nrow(data),
-          by = (nrow(data) - 1) / 4
-        ),
+        breaks = seq(1, nrow(data), (nrow(data) - 1) / 4),
         labels = 25 * 0:4
       )
     ) +

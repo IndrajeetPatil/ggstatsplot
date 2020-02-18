@@ -239,7 +239,6 @@ the plot as a subtitle.</p>
   <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
   <span class='kw'>sort</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
   <span class='kw'>sort.fun</span> <span class='kw'>=</span> <span class='no'>mean</span>,
-  <span class='kw'>axes.range.restrict</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>mean.plotting</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>mean.ci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>mean.point.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>),
@@ -436,13 +435,6 @@ be sorted based on increasing values of <code>y</code>-axis variable. If
       <td><p>The function used to sort (default: <code>mean</code>).</p></td>
     </tr>
     <tr>
-      <th>axes.range.restrict</th>
-      <td><p>Logical that decides whether to restrict the axes
-values ranges to <code>min</code> and <code>max</code> values of the axes variables (Default:
-<code>FALSE</code>), only relevant for functions where axes variables are of numeric
-type.</p></td>
-    </tr>
-    <tr>
       <th>mean.plotting</th>
       <td><p>Logical that decides whether mean is to be highlighted
 and its value to be displayed (Default: <code>TRUE</code>).</p></td>
@@ -550,9 +542,7 @@ or symbol.</p></td>
       <td><p>A <code>ggplot</code> component to be added to the plot prepared
 by <code>ggstatsplot</code>. This argument is primarily helpful for <code>grouped_</code> variant
 of the current function. Default is <code>NULL</code>. The argument should be entered
-as a function. If the given function has an argument <code>axes.range.restrict</code>
-and if it has been set to <code>TRUE</code>, the added <code>ggplot</code> component <em>might</em> not
-work as expected.</p></td>
+as a function.</p></td>
     </tr>
     <tr>
       <th>output</th>
@@ -635,18 +625,30 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</div><div class='output co'>#&gt; <span class='warning'>Warning: extreme order statistics used as endpoints</span></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>99%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>10</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 10 x 7</span><span>
-#&gt;    group1 group2      W p.value significance test.details       p.value.adjustm~
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>              </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           
-#&gt; </span><span style='color: #555555;'> 1</span><span> 1      2      -</span><span style='color: #BB0000;'>3.24</span><span>    0.369 ns           Dwass-Steel-Crich~ Benjamini &amp; Hoc~
-#&gt; </span><span style='color: #555555;'> 2</span><span> 1      3      -</span><span style='color: #BB0000;'>3.55</span><span>    0.295 ns           Dwass-Steel-Crich~ Benjamini &amp; Hoc~
-#&gt; </span><span style='color: #555555;'> 3</span><span> 1      4      -</span><span style='color: #BB0000;'>4.37</span><span>    0.145 ns           Dwass-Steel-Crich~ Benjamini &amp; Hoc~
-#&gt; </span><span style='color: #555555;'> 4</span><span> 1      5      -</span><span style='color: #BB0000;'>4.13</span><span>    0.145 ns           Dwass-Steel-Crich~ Benjamini &amp; Hoc~
-#&gt; </span><span style='color: #555555;'> 5</span><span> 2      3       0.289   1.00  ns           Dwass-Steel-Crich~ Benjamini &amp; Hoc~
-#&gt; </span><span style='color: #555555;'> 6</span><span> 2      4      -</span><span style='color: #BB0000;'>2.15</span><span>    0.918 ns           Dwass-Steel-Crich~ Benjamini &amp; Hoc~
-#&gt; </span><span style='color: #555555;'> 7</span><span> 2      5      -</span><span style='color: #BB0000;'>1.65</span><span>    0.962 ns           Dwass-Steel-Crich~ Benjamini &amp; Hoc~
-#&gt; </span><span style='color: #555555;'> 8</span><span> 3      4      -</span><span style='color: #BB0000;'>1.88</span><span>    0.961 ns           Dwass-Steel-Crich~ Benjamini &amp; Hoc~
-#&gt; </span><span style='color: #555555;'> 9</span><span> 3      5      -</span><span style='color: #BB0000;'>2.25</span><span>    0.918 ns           Dwass-Steel-Crich~ Benjamini &amp; Hoc~
-#&gt; </span><span style='color: #555555;'>10</span><span> 4      5       0.673   1.00  ns           Dwass-Steel-Crich~ Benjamini &amp; Hoc~
+#&gt;    group1 group2      W p.value significance test.details                      
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                             
+#&gt; </span><span style='color: #555555;'> 1</span><span> 1      2      -</span><span style='color: #BB0000;'>3.24</span><span>    0.369 ns           Dwass-Steel-Crichtlow-Fligner test
+#&gt; </span><span style='color: #555555;'> 2</span><span> 1      3      -</span><span style='color: #BB0000;'>3.55</span><span>    0.295 ns           Dwass-Steel-Crichtlow-Fligner test
+#&gt; </span><span style='color: #555555;'> 3</span><span> 1      4      -</span><span style='color: #BB0000;'>4.37</span><span>    0.145 ns           Dwass-Steel-Crichtlow-Fligner test
+#&gt; </span><span style='color: #555555;'> 4</span><span> 1      5      -</span><span style='color: #BB0000;'>4.13</span><span>    0.145 ns           Dwass-Steel-Crichtlow-Fligner test
+#&gt; </span><span style='color: #555555;'> 5</span><span> 2      3       0.289   1.00  ns           Dwass-Steel-Crichtlow-Fligner test
+#&gt; </span><span style='color: #555555;'> 6</span><span> 2      4      -</span><span style='color: #BB0000;'>2.15</span><span>    0.918 ns           Dwass-Steel-Crichtlow-Fligner test
+#&gt; </span><span style='color: #555555;'> 7</span><span> 2      5      -</span><span style='color: #BB0000;'>1.65</span><span>    0.962 ns           Dwass-Steel-Crichtlow-Fligner test
+#&gt; </span><span style='color: #555555;'> 8</span><span> 3      4      -</span><span style='color: #BB0000;'>1.88</span><span>    0.961 ns           Dwass-Steel-Crichtlow-Fligner test
+#&gt; </span><span style='color: #555555;'> 9</span><span> 3      5      -</span><span style='color: #BB0000;'>2.25</span><span>    0.918 ns           Dwass-Steel-Crichtlow-Fligner test
+#&gt; </span><span style='color: #555555;'>10</span><span> 4      5       0.673   1.00  ns           Dwass-Steel-Crichtlow-Fligner test
+#&gt;    p.value.adjustment  
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               
+#&gt; </span><span style='color: #555555;'> 1</span><span> Benjamini &amp; Hochberg
+#&gt; </span><span style='color: #555555;'> 2</span><span> Benjamini &amp; Hochberg
+#&gt; </span><span style='color: #555555;'> 3</span><span> Benjamini &amp; Hochberg
+#&gt; </span><span style='color: #555555;'> 4</span><span> Benjamini &amp; Hochberg
+#&gt; </span><span style='color: #555555;'> 5</span><span> Benjamini &amp; Hochberg
+#&gt; </span><span style='color: #555555;'> 6</span><span> Benjamini &amp; Hochberg
+#&gt; </span><span style='color: #555555;'> 7</span><span> Benjamini &amp; Hochberg
+#&gt; </span><span style='color: #555555;'> 8</span><span> Benjamini &amp; Hochberg
+#&gt; </span><span style='color: #555555;'> 9</span><span> Benjamini &amp; Hochberg
+#&gt; </span><span style='color: #555555;'>10</span><span> Benjamini &amp; Hochberg
 #&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Shapiro-Wilk Normality Test for </span><span style='color: #BBBB00;'>Speed-of-light measurement</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>0.514</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Bartlett's test for homogeneity of variances for factor </span><span style='color: #BBBB00;'>The experiment number</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>0.021</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-2.png' alt='' width='700' height='433' /></div><div class='input'># }
 </div></span></pre>
   </div>

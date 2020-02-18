@@ -34,6 +34,13 @@ arguments `list(size = 5, color = "darkgreen", alpha = 0.8)` can be supplied).
     `test.value.line.args`, `test.value.label.args`, `centrality.line.args`,
     `centrality.label.args`. This helps avoid specifying millions of arguments.
   - Removes the vestigial `ggplot_converter` function.
+  - `ggpiestats` and `ggbarstats` remove the following vestigial arguments:
+    `facet.wrap.name`, `bias.correct`, `bar.outline.color`. The `bar.proptest`
+    and `facet.proptest` arguments were difficult to remember and confusing and
+    are replaced by a common `proportion.test` argument.
+  - `gghistostats` loses the following arguments: `fill.gradient`, `low.color`,
+    `high.color`. It made no sense to add a color gradient to this plot when the
+    Y-axis already displayed the information about what bar represented.
   
 MAJOR CHANGES
 

@@ -1,5 +1,3 @@
-context("ggcoefstats")
-
 # t-statistic --------------------------------------------------
 
 testthat::test_that(
@@ -46,7 +44,6 @@ testthat::test_that(
     testthat::expect_equal(dim(pb$data[[1]]), c(1L, 7L))
     testthat::expect_equal(dim(pb$data[[2]]), c(4L, 13L))
     testthat::expect_equal(dim(pb$data[[3]]), c(4L, 10L))
-    # testthat::expect_equal(dim(pb$data[[4]]), c(4L, 15L))
 
     # checking ggrepel label layer
     testthat::expect_identical(
@@ -107,17 +104,11 @@ testthat::test_that(
           PANEL = structure(c(1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
           group = structure(1:4, n = 4L),
           ymin = c(1, 2, 3, 4),
-          ymax = c(
-            1,
-            2, 3, 4
-          ),
+          ymax = c(1, 2, 3, 4),
           colour = c("black", "black", "black", "black"),
           size = c(0.5, 0.5, 0.5, 0.5),
           linetype = c(1, 1, 1, 1),
-          height = c(
-            0,
-            0, 0, 0
-          ),
+          height = c(0, 0, 0, 0),
           alpha = c(NA, NA, NA, NA)
         ),
         row.names = c(NA, -4L),
@@ -170,15 +161,11 @@ testthat::test_that(
           ),
           PANEL = structure(c(1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
           group = structure(1:4, n = 4L),
-          colour = structure(c(
-            "#1B9E77FF",
-            "#D95F02FF", "#7570B3FF", "#E7298AFF"
-          ), class = "colors"),
-          fill = c("white", "white", "white", "white"),
-          size = c(
-            3.88,
-            3.88, 3.88, 3.88
+          colour = structure(c("#1B9E77FF", "#D95F02FF", "#7570B3FF", "#E7298AFF"),
+            class = "colors"
           ),
+          fill = c("white", "white", "white", "white"),
+          size = c(3, 3, 3, 3),
           angle = c(0, 0, 0, 0),
           alpha = c(NA, NA, NA, NA),
           family = c("", "", "", ""),
@@ -244,35 +231,19 @@ testthat::test_that(
           PANEL = structure(c(1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
           group = structure(1:4, n = 4L),
           colour = structure(c(
-            "#1B9E77FF",
-            "#D95F02FF", "#7570B3FF", "#E7298AFF"
+            "#1B9E77FF", "#D95F02FF", "#7570B3FF", "#E7298AFF"
           ), class = "colors"),
           fill = c("white", "white", "white", "white"),
-          size = c(
-            3.88,
-            3.88, 3.88, 3.88
-          ),
+          size = c(3, 3, 3, 3),
           angle = c(0, 0, 0, 0),
-          alpha = c(
-            NA, NA,
-            NA, NA
-          ),
+          alpha = c(NA, NA, NA, NA),
           family = c("", "", "", ""),
-          fontface = c(
-            1, 1, 1,
-            1
-          ),
+          fontface = c(1, 1, 1, 1),
           lineheight = c(1.2, 1.2, 1.2, 1.2),
-          hjust = c(
-            0.5, 0.5,
-            0.5, 0.5
-          ),
+          hjust = c(0.5, 0.5, 0.5, 0.5),
           vjust = c(0.5, 0.5, 0.5, 0.5)
         ),
-        row.names = c(
-          NA,
-          -4L
-        ),
+        row.names = c(NA, -4L),
         class = "data.frame"
       )
     )
@@ -1377,9 +1348,9 @@ testthat::test_that(
       ggstatsplot::ggcoefstats(
         x = mod,
         exclude.intercept = FALSE,
+        point.size = 6,
         point.shape = 5,
-        point.color = "red",
-        point.size = 6
+        point.color = "red"
       )
 
     # plot build

@@ -57,21 +57,12 @@ of points in bin, or \code{"density"}, which density of points in bin, scaled to
 integrate to 1, or "\code{proportion}", which shows relative frequencies of
 observations in each bin, or "\code{mix}", which shows \emph{both} count and
 proportion in the same plot.}
-    \item{\code{fill.gradient}}{Logical decides whether color fill gradient is to be
-displayed (Default: \code{FALSE}). If \code{FALSE}, the legend and the color gradient
-will also be removed. The default is set to \code{FALSE} because the gradient
-provides redundant information in light of y-axis labels.}
-    \item{\code{low.color}}{Colors for low and high ends of the gradient.
-Defaults are colorblind-friendly.}
-    \item{\code{high.color}}{Colors for low and high ends of the gradient.
-Defaults are colorblind-friendly.}
     \item{\code{normal.curve}}{A logical value that decides whether to super-impose a
 normal curve using \code{stats::dnorm(mean(x), sd(x))}. Default is \code{FALSE}.}
     \item{\code{normal.curve.args}}{A list of additional aesthetic arguments to be
 passed to the normal curve.}
-    \item{\code{bar.fill}}{If \code{fill.gradient = FALSE}, then \code{bar.fill} decides which
-color will uniformly fill all the bars in the histogram (Default:
-\code{"grey50"}).}
+    \item{\code{bar.fill}}{Character input that decides which color will uniformly fill
+all the bars in the histogram (Default: \code{"grey50"}).}
     \item{\code{stat.title}}{A character describing the test being run, which will be
 added as a prefix in the subtitle. The default is \code{NULL}. An example of a
 \code{stat.title} argument will be something like \code{"Student's t-test: "}.}
@@ -143,9 +134,7 @@ the plot will be returned.}
     \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
 of the current function. Default is \code{NULL}. The argument should be entered
-as a function. If the given function has an argument \code{axes.range.restrict}
-and if it has been set to \code{TRUE}, the added \code{ggplot} component \emph{might} not
-work as expected.}
+as a function.}
   }}
 
 \item{plotgrid.args}{A list of additional arguments to \code{cowplot::plot_grid}.}

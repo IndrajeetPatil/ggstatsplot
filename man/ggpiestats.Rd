@@ -16,9 +16,7 @@ ggpiestats(
   stat.title = NULL,
   sample.size.label = TRUE,
   label.separator = "\\n",
-  label.text.size = 4,
-  label.fill.color = "white",
-  label.fill.alpha = 1,
+  label.args = list(alpha = 1, fill = "white"),
   bf.message = TRUE,
   sampling.plan = "indepMulti",
   fixed.margin = "rows",
@@ -28,13 +26,11 @@ ggpiestats(
   caption = NULL,
   conf.level = 0.95,
   nboot = 100,
-  bias.correct = TRUE,
   legend.title = NULL,
-  facet.wrap.name = NULL,
   k = 2,
   perc.k = 0,
   slice.label = "percentage",
-  facet.proptest = TRUE,
+  proportion.test = TRUE,
   ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE,
   package = "RColorBrewer",
@@ -87,14 +83,8 @@ displayed in a label, this argument decides whether these two pieces of
 information are going to be on the same line (\code{" "}) or on separate lines
 (\code{"\\n"}).}
 
-\item{label.text.size}{Numeric that decides text size for slice/bar labels
-(Default: \code{4}).}
-
-\item{label.fill.color}{Character that specifies fill color for slice/bar
-labels (Default: \code{white}).}
-
-\item{label.fill.alpha}{Numeric that specifies fill color transparency or
-\code{"alpha"} for slice/bar labels (Default: \code{1} range \code{0} to \code{1}).}
+\item{label.args}{Additional aesthetic arguments that will be passed to
+\code{geom_label}.}
 
 \item{bf.message}{Logical that decides whether to display a caption with
 results from Bayes Factor test in favor of the null hypothesis (default:
@@ -126,12 +116,7 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 \item{nboot}{Number of bootstrap samples for computing confidence interval
 for the effect size (Default: \code{100}).}
 
-\item{bias.correct}{If \code{TRUE} (default), a bias correction will be applied to
-Cramer's \emph{V}.}
-
 \item{legend.title}{Title text for the legend.}
-
-\item{facet.wrap.name}{The text for the facet_wrap variable label.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
@@ -143,7 +128,7 @@ labels (Default: \code{0}).}
 on the label in each pie slice. Possible options are \code{"percentage"}
 (default), \code{"counts"}, \code{"both"}.}
 
-\item{facet.proptest}{Decides whether proportion test for \code{main} variable is
+\item{proportion.test}{Decides whether proportion test for \code{main} variable is
 to be carried out for each level of \code{condition} (Default: \code{TRUE}).}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
@@ -168,9 +153,7 @@ type. Default palette is \code{"Dark2"}.}
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
 of the current function. Default is \code{NULL}. The argument should be entered
-as a function. If the given function has an argument \code{axes.range.restrict}
-and if it has been set to \code{TRUE}, the added \code{ggplot} component \emph{might} not
-work as expected.}
+as a function.}
 
 \item{output}{Can either be \code{"null"} (or \code{"caption"} or \code{"H0"} or \code{"h0"}),
 which will return expression with evidence in favor of the null hypothesis,

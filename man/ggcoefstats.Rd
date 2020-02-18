@@ -8,12 +8,9 @@ ggcoefstats(
   x,
   output = "plot",
   statistic = NULL,
-  scales = NULL,
-  component = "survival",
   bf.message = TRUE,
   p.adjust.method = "none",
   coefficient.type = c("beta", "location", "coefficient"),
-  by.class = FALSE,
   effsize = "eta",
   partial = TRUE,
   nboot = 500,
@@ -21,7 +18,6 @@ ggcoefstats(
   meta.type = "parametric",
   conf.int = TRUE,
   conf.level = 0.95,
-  se.type = "nid",
   k = 2,
   k.caption.summary = 0,
   exclude.intercept = TRUE,
@@ -42,7 +38,7 @@ ggcoefstats(
   vline.args = list(size = 1, linetype = "dashed"),
   stats.labels = TRUE,
   stats.label.color = NULL,
-  stats.label.args = list(segment.color = "grey50", direction = "y"),
+  stats.label.args = list(size = 3, segment.color = "grey50", direction = "y"),
   package = "RColorBrewer",
   palette = "Dark2",
   direction = 1,
@@ -53,12 +49,13 @@ ggcoefstats(
 )
 }
 \arguments{
-\item{x}{A model object to be tidied with \code{broom::tidy}, or a tidy data frame
-containing results. If a data frame is to be plotted, it \emph{must} contain
-columns named \code{term} (names of predictors), or \code{estimate} (corresponding
-estimates of coefficients or other quantities of interest). Other optional
-columns are \code{conf.low} and \code{conf.high} (for confidence intervals);
-\code{p.value}. It is important that all \code{term} names should be unique.}
+\item{x}{A model object to be tidied, or a tidy data frame containing
+results. If a data frame is to be plotted, it \emph{must} contain columns named
+\code{term} (names of predictors), or \code{estimate} (corresponding estimates of
+coefficients or other quantities of interest). Other optional columns are
+\code{conf.low} and \code{conf.high} (for confidence intervals); \code{p.value}. It is
+important that all \code{term} names should be unique. Function internally uses
+\code{broom::tidy} or \code{parameters::model_parameters} to get a tidy dataframe.}
 
 \item{output}{Character describing the expected output from this function:
 \code{"plot"} (visualization of regression coefficients) or \code{"tidy"} (tidy
@@ -69,12 +66,6 @@ dataframe of results from \code{broom::tidy}) or \code{"glance"} (object from
 \code{"z"}) in the label. This is especially important if the \code{x} argument in
 \code{ggcoefstats} is a dataframe in which case the function wouldn't know what
 kind of model it is dealing with.}
-
-\item{scales}{scales on which to report the variables: for random effects, the choices are \sQuote{"sdcor"} (standard deviations and correlations: the default if \code{scales} is \code{NULL}) or \sQuote{"vcov"} (variances and covariances). \code{NA} means no transformation, appropriate e.g. for fixed effects.}
-
-\item{component}{Character specifying whether to tidy the survival or
-the longitudinal component of the model. Must be either \code{"survival"} or
-\code{"longitudinal"}. Defaults to \code{"survival"}.}
 
 \item{bf.message}{Logical that decides whether results from running a
 Bayesian meta-analysis assuming that the effect size \emph{d} varies across
@@ -103,11 +94,6 @@ coefficients will be renamed and \code{"intercept"} type coefficients will
 correspond to \code{"alpha"} parameters, \code{"location"} type coefficients will
 correspond to \code{"beta"} parameters, and \code{"scale"} type coefficients will
 correspond to \code{"zeta"} parameters.}
-
-\item{by.class}{A logical indicating whether or not to show performance
-measures broken down by class. Defaults to \code{FALSE}. When \code{by.class = FALSE}
-only returns a tibble with accuracy and kappa statistics. Mostly relevant
-for an object of class \code{"confusionMatrix"}.}
 
 \item{effsize}{Character describing the effect size to be displayed: \code{"eta"}
 (default) or \code{"omega"}. This argument is relevant
@@ -140,10 +126,6 @@ error bars (Default: \code{TRUE}).}
 \code{0.95}). For \code{MCMC} model objects (\code{Stan}, \code{JAGS}, etc.), this will be
 probability level for CI.}
 
-\item{se.type}{Character specifying the method used to compute standard
-standard errors for quantile regression (Default: \code{"nid"}). To see all
-available methods, see \code{quantreg::summary.rq()}.}
-
 \item{k}{Number of decimal places expected for results displayed in labels
 (Default : \code{k = 2}).}
 
@@ -160,9 +142,7 @@ excluded from the plot (Default: \code{TRUE}).}
 increasing coefficient value, or \code{"descending"} sort by decreasing
 coefficient value.}
 
-\item{xlab}{Label for \code{x} axis variable (Default: \code{"regression coefficient"}).}
-
-\item{ylab}{Label for \code{y} axis variable (Default: \code{"term"}).}
+\item{xlab, ylab}{Labels for \code{x} axis variable (Defaults: \code{"regression coefficient"} and \code{"term"}, resp.).}
 
 \item{title}{The text for the plot title.}
 

@@ -294,20 +294,15 @@ should be displayed for each level of the grouping variable <code>y</code>
     <dt><code>palette</code></dt><dd><p>If a character string (e.g., <code>"Set1"</code>), will use that named
 palette. If a number, will index into the list of palettes of appropriate
 type. Default palette is <code>"Dark2"</code>.</p></dd>
-    <dt><code>facet.wrap.name</code></dt><dd><p>The text for the facet_wrap variable label.</p></dd>
-    <dt><code>facet.proptest</code></dt><dd><p>Decides whether proportion test for <code>main</code> variable is
+    <dt><code>proportion.test</code></dt><dd><p>Decides whether proportion test for <code>main</code> variable is
 to be carried out for each level of <code>condition</code> (Default: <code>TRUE</code>).</p></dd>
     <dt><code>perc.k</code></dt><dd><p>Numeric that decides number of decimal places for percentage
 labels (Default: <code>0</code>).</p></dd>
     <dt><code>slice.label</code></dt><dd><p>Character decides what information needs to be displayed
 on the label in each pie slice. Possible options are <code>"percentage"</code>
 (default), <code>"counts"</code>, <code>"both"</code>.</p></dd>
-    <dt><code>label.text.size</code></dt><dd><p>Numeric that decides text size for slice/bar labels
-(Default: <code>4</code>).</p></dd>
-    <dt><code>label.fill.color</code></dt><dd><p>Character that specifies fill color for slice/bar
-labels (Default: <code>white</code>).</p></dd>
-    <dt><code>label.fill.alpha</code></dt><dd><p>Numeric that specifies fill color transparency or
-<code>"alpha"</code> for slice/bar labels (Default: <code>1</code> range <code>0</code> to <code>1</code>).</p></dd>
+    <dt><code>label.args</code></dt><dd><p>Additional aesthetic arguments that will be passed to
+<code>geom_label</code>.</p></dd>
     <dt><code>bf.message</code></dt><dd><p>Logical that decides whether to display a caption with
 results from Bayes Factor test in favor of the null hypothesis (default:
 <code>FALSE</code>).</p></dd>
@@ -340,8 +335,6 @@ like <code>"main x condition"</code> or <code>"interaction"</code>.</p></dd>
 <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></dd>
     <dt><code>nboot</code></dt><dd><p>Number of bootstrap samples for computing confidence interval
 for the effect size (Default: <code>100</code>).</p></dd>
-    <dt><code>bias.correct</code></dt><dd><p>If <code>TRUE</code> (default), a bias correction will be applied to
-Cramer's <em>V</em>.</p></dd>
     <dt><code>legend.title</code></dt><dd><p>Title text for the legend.</p></dd>
     <dt><code>messages</code></dt><dd><p>Decides whether messages references, notes, and warnings are
 to be displayed (Default: <code>TRUE</code>).</p></dd>
@@ -361,9 +354,7 @@ the plot will be returned.</p></dd>
     <dt><code>ggplot.component</code></dt><dd><p>A <code>ggplot</code> component to be added to the plot prepared
 by <code>ggstatsplot</code>. This argument is primarily helpful for <code>grouped_</code> variant
 of the current function. Default is <code>NULL</code>. The argument should be entered
-as a function. If the given function has an argument <code>axes.range.restrict</code>
-and if it has been set to <code>TRUE</code>, the added <code>ggplot</code> component <em>might</em> not
-work as expected.</p></dd>
+as a function.</p></dd>
     <dt><code>label.separator</code></dt><dd><p>If <code>"both"</code> counts and proportion information is to be
 displayed in a label, this argument decides whether these two pieces of
 information are going to be on the same line (<code>" "</code>) or on separate lines

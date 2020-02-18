@@ -17,14 +17,14 @@ testthat::test_that(
         caption = "From ggplot2 package",
         xlab = "vore",
         ylab = "brain weight",
-        axes.range.restrict = TRUE,
+        pairwise.comparisons = TRUE,
         outlier.tagging = TRUE,
         outlier.label = name,
         outlier.label.args = list(color = "darkgreen"),
         conf.level = 0.99,
         k = 5,
         bf.message = TRUE,
-        messages = FALSE
+        messages = TRUE
       )
 
     # subtitle
@@ -108,12 +108,6 @@ testthat::test_that(
       tolerance = 1e-5
     )
 
-    # limits of data
-    testthat::expect_equal(ggplot2::layer_scales(p)$y$limits,
-      c(0.00014, 5.71200),
-      tolerance = 1e-3
-    )
-
     # checking x-axis sample size labels
     testthat::expect_identical(
       ggplot2::layer_scales(p)$x$labels,
@@ -126,95 +120,69 @@ testthat::test_that(
     )
 
     # checking plot labels
-    testthat::expect_identical(p$labels$title, "mammalian sleep")
-    testthat::expect_identical(
-      p$labels$caption,
-      ggplot2::expr(atop(
-        displaystyle("From ggplot2 package"),
-        expr = paste(
-          "In favor of null: ",
-          "log"["e"],
-          "(BF"["01"],
+    testthat::expect_equal(
+      pb$plot$labels,
+      list(
+        x = "vore",
+        y = "brain weight",
+        colour = "vore",
+        title = "mammalian sleep",
+        subtitle = ggplot2::expr(paste(
+          NULL,
+          italic("F"),
+          "(",
+          "3",
+          ",",
+          "24.04746",
           ") = ",
-          "1.54274",
+          "2.26528",
           ", ",
-          italic("r")["Cauchy"]^"JZS",
+          italic("p"),
           " = ",
-          "0.70700"
-        )
-      ))
+          "0.10662",
+          ", ",
+          widehat(omega["p"]^2),
+          " = ",
+          "0.00349",
+          ", CI"["99%"],
+          " [",
+          "-0.08521",
+          ", ",
+          "0.12874",
+          "]",
+          ", ",
+          italic("n")["obs"],
+          " = ",
+          51L
+        )),
+        caption = ggplot2::expr(atop(
+          displaystyle(atop(
+            displaystyle("From ggplot2 package"),
+            expr = paste(
+              "In favor of null: ",
+              "log"["e"],
+              "(BF"["01"],
+              ") = ",
+              "1.54274",
+              ", ",
+              italic("r")["Cauchy"]^"JZS",
+              " = ",
+              "0.70700"
+            )
+          )),
+          expr = paste(
+            "Pairwise comparisons: ",
+            bold("Games-Howell test"),
+            "; Adjustment (p-value): ",
+            bold("Holm")
+          )
+        )),
+        label = "outlier.label"
+      )
     )
-    testthat::expect_identical(p$labels$x, "vore")
-    testthat::expect_identical(p$labels$y, "brain weight")
   }
 )
 
-
-# outlier labeling works ----------------------------------------------------
-
-testthat::test_that(
-  desc = "outlier.labeling works across vector types",
-  code = {
-    testthat::skip_on_cran()
-
-    # `outlier.label` is numeric
-    set.seed(123)
-    testthat::expect_true(inherits(
-      ggstatsplot::ggbetweenstats(
-        data = dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25),
-        x = genre,
-        y = rating,
-        type = "xx",
-        messages = TRUE,
-        palette = "Set3",
-        outlier.tagging = TRUE,
-        results.subtitle = FALSE,
-        outlier.label = length,
-        pairwise.comparisons = TRUE,
-        pairwise.annotation = "asterisk"
-      ),
-      what = "gg"
-    ))
-
-    # `outlier.label` is factor
-    set.seed(123)
-    testthat::expect_true(inherits(
-      ggstatsplot::ggbetweenstats(
-        data = dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25),
-        x = genre,
-        y = rating,
-        messages = FALSE,
-        results.subtitle = FALSE,
-        palette = "Set3",
-        outlier.tagging = TRUE,
-        outlier.label = "title"
-      ),
-      what = "gg"
-    ))
-
-
-    # `outlier.label` is character
-    # also x, y, and outlier.label arguments as characters
-    set.seed(123)
-    movies_long1 <- dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25)
-    movies_long1$title <- as.character(movies_long1$title)
-
-    testthat::expect_true(inherits(
-      ggstatsplot::ggbetweenstats(
-        data = movies_long1,
-        x = "genre",
-        y = "rating",
-        messages = FALSE,
-        palette = "Set3",
-        results.subtitle = FALSE,
-        outlier.tagging = TRUE,
-        outlier.label = "title",
-        outlier.coef = 5
-      ),
-      what = "gg"
-    ))
-  }
-)
 
 # checking sorting -------------------------------------------------------
 

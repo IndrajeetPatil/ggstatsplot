@@ -306,7 +306,8 @@ mpaa_list <- ggstatsplot::movies_wide %>%
   dplyr::sample_frac(tbl = ., size = 0.25) %>%
   split(x = ., f = .$mpaa, drop = TRUE)
 
-plot_list <- purrr::pmap(
+plot_list <- 
+  purrr::pmap(
   .l = list(
     data = mpaa_list,
     x = "budget",
@@ -441,9 +442,6 @@ ggstatsplot::combine_plots(
 # for reproducibility
 set.seed(123)
 
-# libraries needed
-library(ggthemes)
-
 # let's split the dataframe and create a list by continent
 # let's leave out Oceania because it has just two data points
 continent_list <-
@@ -478,9 +476,6 @@ plot_list <-
         "Continent: Europe"
       ),
       bar.measure = list("proportion", "count", "mix", "density"),
-      fill.gradient = list(TRUE, FALSE, FALSE, TRUE),
-      low.color = list("#56B4E9", "white", "#999999", "#009E73"),
-      high.color = list("#D55E00", "white", "#F0E442", "#F0E442"),
       bar.fill = list("white", "red", "orange", "blue"),
       effsize.type = list("d", "d", "g", "g"),
       effsize.noncentral = list(TRUE, FALSE, TRUE, FALSE),
@@ -492,10 +487,11 @@ plot_list <-
       )), 
       ggtheme = list(
         ggplot2::theme_classic(),
-        ggthemes::theme_fivethirtyeight(),
+        hrbrthemes::theme_ipsum_tw(),
         ggplot2::theme_minimal(),
-        ggthemes::theme_few()
+        hrbrthemes::theme_modern_rc()
       ),
+      ggstatsplot.layes = FALSE,
       messages = FALSE
     ),
     .f = ggstatsplot::gghistostats
@@ -571,9 +567,6 @@ plot_list <-
         list(color = "blue", size = 0.4)
       ), 
       centrality.parameter = list("median", "mean", "mean", "none"),
-      point.color = list("green", "blue", "#E69F00", "darkgreen"),
-      point.size = list(3, 4, 4, 3),
-      point.shape = list(12, 13, 17, 18),
       ggtheme = list(
         ggplot2::theme_minimal(base_family = "serif"),
         ggthemes::theme_tufte(),
@@ -622,7 +615,6 @@ plot_list <-
       y = "Sex",
       slice.label = list("both", "count", "percentage", "both"),
       nboot = 10,
-      facet.wrap.name = "Gender",
       title = list(
         "Passenger class: 1st",
         "Passenger class: 2nd",
@@ -645,7 +637,7 @@ plot_list <-
       ),
       ggstatsplot.layer = list(TRUE, TRUE, FALSE, FALSE),
       sample.size.label = list(TRUE, FALSE, TRUE, FALSE),
-      facet.proptest = list(TRUE, FALSE, TRUE, FALSE),
+      proportion.test = list(TRUE, FALSE, TRUE, FALSE),
       messages = FALSE
     ),
     .f = ggstatsplot::ggpiestats
@@ -710,7 +702,7 @@ plot_list <-
       ),
       ggstatsplot.layer = list(TRUE, TRUE, FALSE, FALSE),
       sample.size.label = list(TRUE, FALSE, TRUE, FALSE),
-      bar.proptest = list(TRUE, FALSE, TRUE, FALSE),
+      proportion.test = list(TRUE, FALSE, TRUE, FALSE),
       messages = FALSE
     ),
     .f = ggstatsplot::ggbarstats

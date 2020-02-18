@@ -24,6 +24,9 @@ knitr::opts_chunk$set(
   message = FALSE,
   warning = FALSE
 )
+
+library(future)
+plan("multicore")
 ```
 
 The function `ggstatsplot::ggcoefstats` generates **dot-and-whisker plots** for
@@ -2597,7 +2600,8 @@ Dat.nlrq <-
 # plot
 ggstatsplot::ggcoefstats(
   x = Dat.nlrq,
-  title = "non-linear quantile regression"
+  title = "non-linear quantile regression",
+  se.type = "nid"
 )
 ```
 
@@ -2793,7 +2797,8 @@ hvd <- heart.valve[!is.na(heart.valve$log.grad) &
   heart.valve$num <= 50, ]
 
 # model
-fit <- joineRML::mjoint(
+fit <- 
+  joineRML::mjoint(
   formLongFixed = list(
     "grad" = log.grad ~ time + sex + hs,
     "lvmi" = log.lvmi ~ time + sex
@@ -3001,10 +3006,7 @@ set.seed(123)
 two_class_sample1 <- as.factor(sample(letters[1:2], 100, TRUE))
 two_class_sample2 <- as.factor(sample(letters[1:2], 100, TRUE))
 
-two_class_cm <- caret::confusionMatrix(
-  two_class_sample1,
-  two_class_sample2
-)
+two_class_cm <- caret::confusionMatrix(two_class_sample1, two_class_sample2)
 
 # plot
 ggstatsplot::ggcoefstats(

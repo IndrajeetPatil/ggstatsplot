@@ -31,23 +31,21 @@ ggwithinstats(
   conf.level = 0.95,
   nboot = 100,
   tr = 0.1,
-  path.point = TRUE,
-  path.mean = TRUE,
+  point.path = TRUE,
+  mean.path = TRUE,
   sort = "none",
   sort.fun = mean,
-  axes.range.restrict = FALSE,
   mean.plotting = TRUE,
   mean.ci = FALSE,
   mean.point.args = list(size = 5, color = "darkred"),
   mean.label.args = list(size = 3),
+  mean.path.args = list(),
+  point.path.args = list(),
   notch = FALSE,
   notchwidth = 0.5,
-  linetype = "solid",
   outlier.tagging = FALSE,
   outlier.label = NULL,
   outlier.coef = 1.5,
-  outlier.shape = 19,
-  outlier.color = "black",
   outlier.label.args = list(),
   outlier.point.args = list(),
   ggtheme = ggplot2::theme_bw(),
@@ -157,11 +155,11 @@ variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
 try to play around with the value of \code{tr}, which is by default set to
 \code{0.1}. Lowering the value might help.}
 
-\item{path.point, path.mean}{Logical that decides whether individual data
+\item{point.path, mean.path}{Logical that decides whether individual data
 points and means, respectively, should be connected using \code{geom_path}. Both
-default to \code{TRUE}. Note that \code{path.point} argument is relevant only when
+default to \code{TRUE}. Note that \code{point.path} argument is relevant only when
 there are two groups (i.e., in case of a \emph{t}-test). In case of large number
-of data points, it is advisable to set \code{path.point = FALSE} as these lines
+of data points, it is advisable to set \code{point.path = FALSE} as these lines
 can overwhelm the plot.}
 
 \item{sort}{If \code{"ascending"} (default), \code{x}-axis variable factor levels will
@@ -169,11 +167,6 @@ be sorted based on increasing values of \code{y}-axis variable. If
 \code{"descending"}, the opposite. If \code{"none"}, no sorting will happen.}
 
 \item{sort.fun}{The function used to sort (default: \code{mean}).}
-
-\item{axes.range.restrict}{Logical that decides whether to restrict the axes
-values ranges to \code{min} and \code{max} values of the axes variables (Default:
-\code{FALSE}), only relevant for functions where axes variables are of numeric
-type.}
 
 \item{mean.plotting}{Logical that decides whether mean is to be highlighted
 and its value to be displayed (Default: \code{TRUE}).}
@@ -189,6 +182,10 @@ arguments to be passed to \code{ggplot2::geom_point} and
 arguments to be passed to \code{ggplot2::geom_point} and
 \code{ggrepel::geom_label_repel} geoms involved mean value plotting.}
 
+\item{mean.path.args, point.path.args}{A list of additional aesthetic
+arguments passed on to \code{geom_path} connecting raw data points and mean
+points.}
+
 \item{notch}{A logical. If \code{FALSE} (default), a standard box plot will be
 displayed. If \code{TRUE}, a notched box plot will be used. Notches are used to
 compare groups; if the notches of two boxes do not overlap, this suggests
@@ -198,11 +195,6 @@ confidence interval for comparing medians. IQR: Inter-Quartile Range.}
 
 \item{notchwidth}{For a notched box plot, width of the notch relative to the
 body (default \code{0.5}).}
-
-\item{linetype}{Character strings (\code{"blank"}, \code{"solid"}, \code{"dashed"},
-\code{"dotted"}, \code{"dotdash"}, \code{"longdash"}, and \code{"twodash"}) specifying the type
-of line to draw box plots (Default: \code{"solid"}). Alternatively, the numbers
-\code{0} to \code{6} can be used (\code{0} for "blank", \code{1} for "solid", etc.).}
 
 \item{outlier.tagging}{Decides whether outliers should be tagged (Default:
 \code{FALSE}).}
@@ -214,13 +206,6 @@ of line to draw box plots (Default: \code{"solid"}). Alternatively, the numbers
 With Tukey's method, outliers are below (1st Quartile) or above (3rd
 Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
 \code{1.5}).}
-
-\item{outlier.shape}{Hiding the outliers can be achieved by setting
-\code{outlier.shape = NA}. Importantly, this does not remove the outliers,
-it only hides them, so the range calculated for the \code{y}-axis will be
-the same with outliers shown and outliers hidden.}
-
-\item{outlier.color}{Default aesthetics for outliers (Default: \code{"black"}).}
 
 \item{outlier.label.args}{A list of additional aesthetic arguments to be
 passed to \code{ggplot2::geom_point} and \code{ggrepel::geom_label_repel} geoms
@@ -250,9 +235,7 @@ or symbol.}
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
 of the current function. Default is \code{NULL}. The argument should be entered
-as a function. If the given function has an argument \code{axes.range.restrict}
-and if it has been set to \code{TRUE}, the added \code{ggplot} component \emph{might} not
-work as expected.}
+as a function.}
 
 \item{output}{Character that describes what is to be returned: can be
 \code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to

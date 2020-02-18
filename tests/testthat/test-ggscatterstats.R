@@ -20,7 +20,7 @@ testthat::test_that(
         ylab = "body weight",
         type = "p",
         messages = TRUE,
-        centrality.para = "mean",
+        centrality.parameter = "mean",
         marginal = FALSE,
         bf.message = TRUE,
         caption = "ggplot2 dataset",
@@ -63,18 +63,65 @@ testthat::test_that(
     testthat::expect_equal(dim(pb$data[[6]]), c(83L, 15L))
 
     # checking intercepts
-    testthat::expect_equal(pb$data[[3]]$xintercept, 10.43373, tolerance = 0.001)
-    testthat::expect_equal(pb$data[[4]]$yintercept, 166.1363, tolerance = 0.001)
-    testthat::expect_equal(unclass(pb$data[[3]]$colour), "#A42820FF")
-    testthat::expect_equal(unclass(pb$data[[4]]$colour), "#5F5647FF")
+    testthat::expect_equal(
+      pb$data[[3]],
+      structure(
+        list(
+          xintercept = 10.433734939759,
+          PANEL = structure(1L, .Label = "1", class = "factor"),
+          group = -1L,
+          colour = structure("#A42820FF", class = "colors"),
+          size = 1,
+          linetype = "dashed",
+          alpha = NA
+        ),
+        row.names = c(NA, -1L),
+        class = "data.frame"
+      )
+    )
 
-    # check labels
-    testthat::expect_equal(p$plot_env$x_label_pos, 10.88401, tolerance = 0.002)
-    testthat::expect_equal(p$plot_env$x_median, 10.1000, tolerance = 0.002)
-    testthat::expect_equal(p$plot_env$x_mean, 10.43373, tolerance = 0.002)
-    testthat::expect_equal(p$plot_env$y_label_pos, 2954.955, tolerance = 0.002)
-    testthat::expect_equal(p$plot_env$y_median, 1.6700, tolerance = 0.002)
-    testthat::expect_equal(p$plot_env$y_mean, 166.1363, tolerance = 0.002)
+    testthat::expect_equal(
+      pb$data[[4]],
+      structure(
+        list(
+          yintercept = 166.13634939759,
+          PANEL = structure(1L, .Label = "1", class = "factor"),
+          group = -1L,
+          colour = structure("#5F5647FF", class = "colors"),
+          size = 1,
+          linetype = "dashed",
+          alpha = NA
+        ),
+        row.names = c(NA, -1L),
+        class = "data.frame"
+      )
+    )
+
+    testthat::expect_equal(
+      pb$data[[7]],
+      structure(
+        list(
+          x = c(3.9, 3.3),
+          y = c(2547, 6654),
+          label = c("Asian elephant", "African elephant"),
+          PANEL = structure(c(1L, 1L), class = "factor", .Label = "1"),
+          group = c(-1L, -1L),
+          colour = c("black", "black"),
+          fill = c("white", "white"),
+          size = c(3, 3),
+          angle = c(0, 0),
+          alpha = c(NA, NA),
+          family = c("", ""),
+          fontface = c(1, 1),
+          lineheight = c(1.2, 1.2),
+          hjust = c(0.5, 0.5),
+          vjust = c(0.5, 0.5)
+        ),
+        row.names = c(NA, -2L),
+        class = "data.frame"
+      )
+    )
+
 
     # checking geoms
     testthat::expect_equal(
@@ -156,7 +203,7 @@ testthat::test_that(
         data = ggplot2::msleep,
         x = sleep_total,
         y = bodywt,
-        centrality.para = FALSE,
+        centrality.parameter = "none",
         type = "np",
         conf.level = 0.99,
         marginal = FALSE,
@@ -168,14 +215,15 @@ testthat::test_that(
 
     # subtitle
     set.seed(123)
-    p_subtitle <- statsExpressions::expr_corr_test(
-      data = ggplot2::msleep,
-      x = sleep_total,
-      y = bodywt,
-      type = "np",
-      conf.level = 0.99,
-      messages = FALSE
-    )
+    p_subtitle <-
+      statsExpressions::expr_corr_test(
+        data = ggplot2::msleep,
+        x = sleep_total,
+        y = bodywt,
+        type = "np",
+        conf.level = 0.99,
+        messages = FALSE
+      )
 
     # testing data and annotations
     testthat::expect_equal(length(pb$data), 2L)
@@ -200,7 +248,7 @@ testthat::test_that(
         x = sleep_total,
         y = bodywt,
         type = "r",
-        centrality.para = "mean",
+        centrality.parameter = "mean",
         conf.level = 0.90,
         point.color = "red",
         point.size = 5,
@@ -265,8 +313,7 @@ testthat::test_that(
         package = "wesanderson",
         marginal = FALSE,
         bf.message = FALSE,
-        centrality.para = "median",
-        axes.range.restrict = TRUE,
+        centrality.parameter = "median",
         ggplot.component = ggplot2::scale_y_continuous(breaks = seq(0, 20, 2)),
         messages = FALSE
       )
@@ -306,7 +353,7 @@ testthat::test_that(
       c("0.4", "0.8", "1.2")
     )
     testthat::expect_equal(pb$layout$panel_params[[1]]$y.range,
-      c(3.25, 21.95),
+      c(3.17, 23.63),
       tolerance = 0.001
     )
     testthat::expect_identical(
@@ -341,13 +388,14 @@ testthat::test_that(
       )
 
     # subtitle
-    p_subtitle <- statsExpressions::expr_corr_test(
-      data = ggplot2::msleep,
-      x = sleep_total,
-      y = bodywt,
-      type = "bf",
-      messages = FALSE
-    )
+    p_subtitle <-
+      statsExpressions::expr_corr_test(
+        data = ggplot2::msleep,
+        x = sleep_total,
+        y = bodywt,
+        type = "bf",
+        messages = FALSE
+      )
 
     testthat::expect_identical(class(p)[[1]], "ggExtraPlot")
     testthat::expect_identical(
@@ -382,16 +430,17 @@ testthat::test_that(
 
     # creating the plot
     set.seed(123)
-    p <- ggstatsplot::ggscatterstats(
-      data = ggplot2::msleep,
-      x = sleep_total,
-      y = sleep_cycle,
-      label.expression = "sleep_total > 17",
-      label.var = "order",
-      results.subtitle = FALSE,
-      marginal = FALSE,
-      messages = TRUE
-    ) +
+    p <-
+      ggstatsplot::ggscatterstats(
+        data = ggplot2::msleep,
+        x = sleep_total,
+        y = sleep_cycle,
+        label.expression = "sleep_total > 17",
+        label.var = "order",
+        results.subtitle = FALSE,
+        marginal = FALSE,
+        messages = TRUE
+      ) +
       ggplot2::coord_cartesian(ylim = c(0, 7000)) +
       ggplot2::scale_y_continuous(breaks = seq(0, 7000, 1000))
 
@@ -552,31 +601,34 @@ testthat::test_that(
 
     # creating the messages
     set.seed(123)
-    p1 <- ggstatsplot::ggscatterstats(
-      data = dplyr::starwars,
-      x = mass,
-      y = height,
-      formula = y ~ log(x),
-      method = stats::lm,
-      marginal = FALSE
-    )
+    p1 <-
+      ggstatsplot::ggscatterstats(
+        data = dplyr::starwars,
+        x = mass,
+        y = height,
+        formula = y ~ log(x),
+        method = stats::lm,
+        marginal = FALSE
+      )
 
     set.seed(123)
-    p2 <- ggstatsplot::ggscatterstats(
-      data = dplyr::starwars,
-      x = mass,
-      y = height,
-      method = "gam",
-      marginal = FALSE
-    )
+    p2 <-
+      ggstatsplot::ggscatterstats(
+        data = dplyr::starwars,
+        x = mass,
+        y = height,
+        method = "gam",
+        marginal = FALSE
+      )
 
-    p3 <- suppressWarnings(ggstatsplot::ggscatterstats(
-      data = dplyr::starwars,
-      x = mass,
-      y = height,
-      method = MASS::rlm,
-      marginal = FALSE
-    ))
+    p3 <-
+      suppressWarnings(ggstatsplot::ggscatterstats(
+        data = dplyr::starwars,
+        x = mass,
+        y = height,
+        method = MASS::rlm,
+        marginal = FALSE
+      ))
 
     # build the plot
     pb1 <- ggplot2::ggplot_build(p1)
@@ -653,35 +705,6 @@ testthat::test_that(
           59L
         )
       )
-    )
-  }
-)
-
-
-# message checks ----------------------------------------------------------
-
-testthat::test_that(
-  desc = "message checks",
-  code = {
-    testthat::skip_on_cran()
-
-    # creating the messages
-    p_message1 <-
-      capture.output(
-        ggstatsplot::ggscatterstats(
-          data = dplyr::starwars,
-          x = mass,
-          y = height,
-          conf.level = 0.90,
-          nboot = 15,
-          type = "r"
-        )
-      )
-
-    # checking captured messages
-    testthat::expect_match(p_message1[1],
-      "90% CI for effect size estimate was computed with 15",
-      fixed = TRUE
     )
   }
 )
