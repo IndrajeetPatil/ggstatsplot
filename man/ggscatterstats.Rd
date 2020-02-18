@@ -24,8 +24,8 @@ ggscatterstats(
   point.height.jitter = 0,
   marginal = TRUE,
   marginal.type = "histogram",
-  marginal.size = 5,
   margins = "both",
+  marginal.size = 5,
   xfill = "#009E73",
   yfill = "#D55E00",
   xparams = list(fill = xfill),
@@ -129,11 +129,11 @@ displayed; the default is \code{TRUE}.}
 \item{marginal.type}{Type of marginal distribution to be plotted on the axes
 (\code{"histogram"}, \code{"boxplot"}, \code{"density"}, \code{"violin"}, \code{"densigram"}).}
 
+\item{margins}{Along which margins to show the plots. One of: [both, x, y].}
+
 \item{marginal.size}{Integer describing the relative size of the marginal
 plots compared to the main plot. A size of \code{5} means that the main plot is
 5x wider and 5x taller than the marginal plots.}
-
-\item{margins}{Along which margins to show the plots. One of: [both, x, y].}
 
 \item{xfill, yfill}{Character describing color fill for \code{x} and \code{y} axes
 marginal distributions (default: \code{"#009E73"} (for \code{x}) and \code{"#D55E00"} (for
