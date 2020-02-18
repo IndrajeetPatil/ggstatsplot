@@ -19,39 +19,18 @@ testthat::test_that(
         xlab = "sleep (total)",
         ylab = "body weight",
         type = "p",
+        xfill = "red",
+        yfill = "orange",
         messages = TRUE,
         centrality.parameter = "mean",
         marginal = FALSE,
         bf.message = TRUE,
         caption = "ggplot2 dataset",
-        title = "Mammalian sleep",
-        xfill = NULL,
-        package = "wesanderson",
-        palette = "BottleRocket1"
+        title = "Mammalian sleep"
       )
 
     # plot build
     pb <- ggplot2::ggplot_build(p)
-
-    # checking data used to create a plot
-    dat <- tibble::as_tibble(p$data) %>%
-      dplyr::mutate_if(
-        .tbl = .,
-        .predicate = is.factor,
-        .funs = ~ as.character(.)
-      )
-
-    # checking dimensions of data
-    data_dims <- dim(dat)
-    ggrepel_dims <- dim(p$plot_env$label_data)
-
-    # testing everything is okay with imported and ggrepel data
-    testthat::expect_equal(data_dims, c(83L, 11L))
-    testthat::expect_equal(
-      ggrepel_dims[1],
-      dim(dplyr::filter(ggplot2::msleep, bodywt > 2000))[1]
-    )
-    testthat::expect_equal(ggrepel_dims[2], 11L)
 
     # checking layer data
     testthat::expect_equal(length(pb$data), 7L)
@@ -70,7 +49,7 @@ testthat::test_that(
           xintercept = 10.433734939759,
           PANEL = structure(1L, .Label = "1", class = "factor"),
           group = -1L,
-          colour = structure("#A42820FF", class = "colors"),
+          colour = "red",
           size = 1,
           linetype = "dashed",
           alpha = NA
@@ -87,7 +66,7 @@ testthat::test_that(
           yintercept = 166.13634939759,
           PANEL = structure(1L, .Label = "1", class = "factor"),
           group = -1L,
-          colour = structure("#5F5647FF", class = "colors"),
+          colour = "orange",
           size = 1,
           linetype = "dashed",
           alpha = NA
@@ -250,8 +229,7 @@ testthat::test_that(
         type = "r",
         centrality.parameter = "mean",
         conf.level = 0.90,
-        point.color = "red",
-        point.size = 5,
+        point.args = list(color = "red", size = 5),
         point.height.jitter = 0.40,
         point.width.jitter = 0.20,
         marginal = FALSE,
@@ -308,9 +286,6 @@ testthat::test_that(
         data = ggplot2::msleep,
         x = sleep_cycle,
         y = awake,
-        xfill = NULL,
-        palette = "Royal1",
-        package = "wesanderson",
         marginal = FALSE,
         bf.message = FALSE,
         centrality.parameter = "median",
@@ -437,6 +412,7 @@ testthat::test_that(
         y = sleep_cycle,
         label.expression = "sleep_total > 17",
         label.var = "order",
+        point.label.args = list(size = 4, color = "blue", alpha = 0.5),
         results.subtitle = FALSE,
         marginal = FALSE,
         messages = TRUE
@@ -452,8 +428,33 @@ testthat::test_that(
       c("0", "1000", "2000", "3000", "4000", "5000", "6000", "7000")
     )
 
+    testthat::expect_equal(
+      pb$data[[3]],
+      structure(
+        list(
+          y = c(0.383333333, 0.333333333, 0.116666667, 0.2),
+          x = c(17.4, 18, 19.7, 19.9),
+          label = c("Cingulata", "Didelphimorphia", "Chiroptera", "Chiroptera"),
+          PANEL = structure(c(1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
+          group = c(-1L, -1L, -1L, -1L),
+          colour = c("blue", "blue", "blue", "blue"),
+          fill = c("white", "white", "white", "white"),
+          size = c(4, 4, 4, 4),
+          angle = c(0, 0, 0, 0),
+          alpha = c(0.5, 0.5, 0.5, 0.5),
+          family = c("", "", "", ""),
+          fontface = c(1, 1, 1, 1),
+          lineheight = c(1.2, 1.2, 1.2, 1.2),
+          hjust = c(0.5, 0.5, 0.5, 0.5),
+          vjust = c(0.5, 0.5, 0.5, 0.5)
+        ),
+        row.names = c(NA, -4L),
+        class = "data.frame"
+      )
+    )
+
     # both quoted
-    testthat::expect_true(inherits(p, what = "gg"))
+    testthat::expect_is(p, "gg")
   }
 )
 
@@ -494,36 +495,6 @@ testthat::test_that(
       what = "gg"
     ))
 
-    # one unquoted, one quoted
-    testthat::expect_true(inherits(
-      ggstatsplot::ggscatterstats(
-        data = ggplot2::msleep,
-        x = sleep_total,
-        y = sleep_cycle,
-        label.expression = sleep_total > 17,
-        label.var = "order",
-        results.subtitle = FALSE,
-        marginal = FALSE,
-        messages = TRUE
-      ),
-      what = "gg"
-    ))
-
-    # one unquoted, one quoted
-    testthat::expect_true(inherits(
-      ggstatsplot::ggscatterstats(
-        data = ggplot2::msleep,
-        x = sleep_total,
-        y = sleep_cycle,
-        label.expression = "sleep_total > 17",
-        label.var = order,
-        results.subtitle = FALSE,
-        marginal = FALSE,
-        messages = TRUE
-      ),
-      what = "gg"
-    ))
-
     # label.expression not specified
     testthat::expect_true(inherits(
       ggstatsplot::ggscatterstats(
@@ -550,43 +521,18 @@ testthat::test_that(
 
     # creating the plot
     set.seed(123)
-    p1 <-
-      ggstatsplot::ggscatterstats(
-        data = ggplot2::msleep,
-        x = sleep_total,
-        y = bodywt,
-        margins = "both",
-        messages = TRUE
-      )
-
-    p2 <-
-      ggstatsplot::ggscatterstats(
-        data = ggplot2::msleep,
-        x = sleep_total,
-        y = bodywt,
-        margins = "x",
-        messages = TRUE
-      )
-
-    p3 <-
+    p <-
       ggstatsplot::ggscatterstats(
         data = ggplot2::msleep,
         x = sleep_total,
         y = bodywt,
         margins = "y",
+        results.subtitle = FALSE,
         messages = TRUE
       )
 
     testthat::expect_identical(
-      class(p1),
-      c("ggExtraPlot", "gtable", "gTree", "grob", "gDesc")
-    )
-    testthat::expect_identical(
-      class(p2),
-      c("ggExtraPlot", "gtable", "gTree", "grob", "gDesc")
-    )
-    testthat::expect_identical(
-      class(p3),
+      class(p),
       c("ggExtraPlot", "gtable", "gTree", "grob", "gDesc")
     )
   }
@@ -617,23 +563,25 @@ testthat::test_that(
         data = dplyr::starwars,
         x = mass,
         y = height,
+        results.subtitle = FALSE,
         method = "gam",
         marginal = FALSE
       )
 
     p3 <-
-      suppressWarnings(ggstatsplot::ggscatterstats(
+      ggstatsplot::ggscatterstats(
         data = dplyr::starwars,
         x = mass,
         y = height,
+        results.subtitle = FALSE,
         method = MASS::rlm,
         marginal = FALSE
-      ))
+      )
 
     # build the plot
     pb1 <- ggplot2::ggplot_build(p1)
     pb2 <- ggplot2::ggplot_build(p2)
-    pb3 <- suppressWarnings(ggplot2::ggplot_build(p3))
+    pb3 <- ggplot2::ggplot_build(p3)
 
     # checking subtitle - lack thereof
     testthat::expect_null(pb1$plot$labels$subtitle, NULL)
@@ -649,8 +597,12 @@ testthat::test_that(
       as.character(deparse(pb2$plot$layers[[2]]$stat_params$formula)),
       "y ~ x"
     )
-
+    testthat::expect_identical(
+      as.character(deparse(pb3$plot$layers[[2]]$stat_params$formula)),
+      "y ~ x"
+    )
     testthat::expect_null(pb3$plot$labels$subtitle, NULL)
+    testthat::expect_is(pb3$plot$layers[[2]]$stat_params$method, "function")
   }
 )
 

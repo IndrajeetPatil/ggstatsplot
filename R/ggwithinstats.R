@@ -90,16 +90,16 @@ ggwithinstats <- function(data,
                           conf.level = 0.95,
                           nboot = 100,
                           tr = 0.1,
-                          point.path = TRUE,
-                          mean.path = TRUE,
                           sort = "none",
                           sort.fun = mean,
                           mean.plotting = TRUE,
                           mean.ci = FALSE,
                           mean.point.args = list(size = 5, color = "darkred"),
                           mean.label.args = list(size = 3),
-                          mean.path.args = list(),
-                          point.path.args = list(),
+                          point.path = TRUE,
+                          point.path.args = list(alpha = 0.5, linetype = "dashed"),
+                          mean.path = TRUE,
+                          mean.path.args = list(color = "red", size = 1, alpha = 0.5),
                           notch = FALSE,
                           notchwidth = 0.5,
                           outlier.tagging = FALSE,
@@ -275,11 +275,10 @@ ggwithinstats <- function(data,
   # add a connecting path only if there are only two groups
   if (test != "anova" && isTRUE(point.path)) {
     plot <- plot +
-      ggplot2::geom_path(
-        color = "grey50",
-        size = 0.5,
-        alpha = 0.5,
-        linetype = "dashed"
+      rlang::exec(
+        .fn = ggplot2::geom_path,
+        na.rm = TRUE,
+        !!!point.path.args
       )
   }
 
@@ -334,13 +333,12 @@ ggwithinstats <- function(data,
     # if there should be lines connecting mean values across groups
     if (isTRUE(mean.path)) {
       plot <- plot +
-        ggplot2::geom_path(
+        rlang::exec(
+          .fn = ggplot2::geom_path,
           data = mean_dat,
           mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, group = 1),
-          color = "red",
-          size = 2,
-          alpha = 0.5,
-          inherit.aes = FALSE
+          inherit.aes = FALSE,
+          !!!mean.path.args
         )
     }
   }

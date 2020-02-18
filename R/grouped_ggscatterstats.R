@@ -25,14 +25,11 @@
 #' \donttest{
 #' # to ensure reproducibility
 #' set.seed(123)
+#' library(ggstatsplot)
 #'
 #' # basic function call
 #' ggstatsplot::grouped_ggscatterstats(
-#'   data = dplyr::filter(
-#'     ggstatsplot::movies_long,
-#'     genre == "Comedy" |
-#'       genre == "Drama"
-#'   ),
+#'   data = dplyr::filter(movies_long, genre == "Comedy" | genre == "Drama"),
 #'   x = length,
 #'   y = rating,
 #'   method = "lm",
@@ -42,7 +39,7 @@
 #'
 #' # using labeling
 #' # (also show how to modify basic plot from within function call)
-#' ggstatsplot::grouped_ggscatterstats(
+#' grouped_ggscatterstats(
 #'   data = dplyr::filter(ggplot2::mpg, cyl != 5),
 #'   x = displ,
 #'   y = hwy,
@@ -51,10 +48,7 @@
 #'   type = "robust",
 #'   label.var = manufacturer,
 #'   label.expression = hwy > 25 & displ > 2.5,
-#'   xfill = NULL,
 #'   ggplot.component = ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis()),
-#'   package = "yarrr",
-#'   palette = "appletv",
 #'   messages = FALSE
 #' )
 #'
@@ -62,7 +56,7 @@
 #'
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(
-#'     .data = ggstatsplot::movies_long,
+#'     .data = movies_long,
 #'     rating == 7,
 #'     genre %in% c("Drama", "Comedy")
 #'   ),

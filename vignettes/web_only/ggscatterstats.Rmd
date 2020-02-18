@@ -82,14 +82,10 @@ ggstatsplot::ggscatterstats(
   point.color = "grey50",
   marginal = TRUE, # show marginal distribution
   marginal.type = "density", # type of plot for marginal distribution
-  centrality.para = "mean", # centrality parameter to be plotted
+  centrality.parameter = "mean", # centrality parameter to be plotted
   margins = "both", # marginal distribution on both axes
   xfill = "#CC79A7", # fill for marginals on the x-axis
   yfill = "#009E73", # fill for marginals on the y-axis
-  xalpha = 0.5, # transparency for the x-axis marginals
-  yalpha = 0.75, # transparency for the y-axis marginals
-  xsize = 1, # size for the x-axis marginals
-  ysize = 1, # size for the y-axis marginals
   type = "pearson", # type of linear association
   title = "Relationship between movie budget and IMDB rating",
   caption = "Source: www.imdb.com",
@@ -136,7 +132,8 @@ set.seed(123)
 # to speed up the calculation, let's use only 20% of the data
 # also since there are only 7 movies with NC-17 ratings, leave them out
 movies_20 <-
-  dplyr::filter(.data = ggstatsplot::movies_wide, mpaa != "NC-17") %>%
+  ggstatsplot::movies_wide %>%
+  dplyr::filter(.data = ., mpaa != "NC-17") %>%
   dplyr::sample_frac(tbl = ., size = 0.2)
 
 # plot
@@ -146,9 +143,6 @@ ggstatsplot::grouped_ggscatterstats(
   title.prefix = "MPAA Rating",
   x = budget,
   y = rating,
-  xfill = NULL,
-  package = "ggsci",
-  palette = "nrc_npg",
   grouping.var = mpaa,
   label.var = "title",
   label.expression = "rating < 5 & budget > 75",

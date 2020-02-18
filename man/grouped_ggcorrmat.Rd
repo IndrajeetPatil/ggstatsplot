@@ -116,12 +116,12 @@ model that \code{method = "auto"} would use, then set
 \code{method = "gam", formula = y ~ s(x, bs = "cs")}.}
     \item{\code{conf.level}}{Scalar between 0 and 1. If unspecified, the defaults return
 \verb{95\%} lower and upper confidence intervals (\code{0.95}).}
+    \item{\code{messages}}{Decides whether messages references, notes, and warnings are
+to be displayed (Default: \code{TRUE}).}
     \item{\code{package}}{Name of package from which the palette is desired as string
 or symbol.}
     \item{\code{palette}}{Name of palette as string or symbol.}
     \item{\code{direction}}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
-    \item{\code{messages}}{Decides whether messages references, notes, and warnings are
-to be displayed (Default: \code{TRUE}).}
   }}
 
 \item{plotgrid.args}{A list of additional arguments to \code{cowplot::plot_grid}.}

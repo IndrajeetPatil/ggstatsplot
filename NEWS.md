@@ -41,6 +41,12 @@ arguments `list(size = 5, color = "darkgreen", alpha = 0.8)` can be supplied).
   - `gghistostats` loses the following arguments: `fill.gradient`, `low.color`,
     `high.color`. It made no sense to add a color gradient to this plot when the
     Y-axis already displayed the information about what bar represented.
+  - `ggscatterstats` loses the following arguments: `palette` and `package`.
+    Since this function requires only two colors, it didn't make much sense to
+    use color palettes to specify this. They can be instead specified using
+    `xfill` and `yfill`. You can always use `paletteer::paletteer_d` to get a
+    vector of color values and then provide values of your choosing to `xfill`
+    and `yfill`.
   
 MAJOR CHANGES
 
