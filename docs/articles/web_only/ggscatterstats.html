@@ -214,19 +214,15 @@
 <span id="cb2-18"><a href="#cb2-18"></a>  <span class="dt">point.color =</span> <span class="st">"grey50"</span>,</span>
 <span id="cb2-19"><a href="#cb2-19"></a>  <span class="dt">marginal =</span> <span class="ot">TRUE</span>, <span class="co"># show marginal distribution</span></span>
 <span id="cb2-20"><a href="#cb2-20"></a>  <span class="dt">marginal.type =</span> <span class="st">"density"</span>, <span class="co"># type of plot for marginal distribution</span></span>
-<span id="cb2-21"><a href="#cb2-21"></a>  <span class="dt">centrality.para =</span> <span class="st">"mean"</span>, <span class="co"># centrality parameter to be plotted</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a>  <span class="dt">centrality.parameter =</span> <span class="st">"mean"</span>, <span class="co"># centrality parameter to be plotted</span></span>
 <span id="cb2-22"><a href="#cb2-22"></a>  <span class="dt">margins =</span> <span class="st">"both"</span>, <span class="co"># marginal distribution on both axes</span></span>
 <span id="cb2-23"><a href="#cb2-23"></a>  <span class="dt">xfill =</span> <span class="st">"#CC79A7"</span>, <span class="co"># fill for marginals on the x-axis</span></span>
 <span id="cb2-24"><a href="#cb2-24"></a>  <span class="dt">yfill =</span> <span class="st">"#009E73"</span>, <span class="co"># fill for marginals on the y-axis</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a>  <span class="dt">xalpha =</span> <span class="fl">0.5</span>, <span class="co"># transparency for the x-axis marginals</span></span>
-<span id="cb2-26"><a href="#cb2-26"></a>  <span class="dt">yalpha =</span> <span class="fl">0.75</span>, <span class="co"># transparency for the y-axis marginals</span></span>
-<span id="cb2-27"><a href="#cb2-27"></a>  <span class="dt">xsize =</span> <span class="dv">1</span>, <span class="co"># size for the x-axis marginals</span></span>
-<span id="cb2-28"><a href="#cb2-28"></a>  <span class="dt">ysize =</span> <span class="dv">1</span>, <span class="co"># size for the y-axis marginals</span></span>
-<span id="cb2-29"><a href="#cb2-29"></a>  <span class="dt">type =</span> <span class="st">"pearson"</span>, <span class="co"># type of linear association</span></span>
-<span id="cb2-30"><a href="#cb2-30"></a>  <span class="dt">title =</span> <span class="st">"Relationship between movie budget and IMDB rating"</span>,</span>
-<span id="cb2-31"><a href="#cb2-31"></a>  <span class="dt">caption =</span> <span class="st">"Source: www.imdb.com"</span>,</span>
-<span id="cb2-32"><a href="#cb2-32"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
-<span id="cb2-33"><a href="#cb2-33"></a>)</span></code></pre></div>
+<span id="cb2-25"><a href="#cb2-25"></a>  <span class="dt">type =</span> <span class="st">"pearson"</span>, <span class="co"># type of linear association</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a>  <span class="dt">title =</span> <span class="st">"Relationship between movie budget and IMDB rating"</span>,</span>
+<span id="cb2-27"><a href="#cb2-27"></a>  <span class="dt">caption =</span> <span class="st">"Source: www.imdb.com"</span>,</span>
+<span id="cb2-28"><a href="#cb2-28"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
+<span id="cb2-29"><a href="#cb2-29"></a>)</span></code></pre></div>
 <p><img src="ggscatterstats_files/figure-html/ggscatterstats1-1.png" width="768"></p>
 <p>There is indeed a small, but significant, positive correlation between the amount of money studio invests in a movie and the ratings given by the audiences.</p>
 <p>The <code>type</code> (of test) argument also accepts the following abbreviations: <code>"p"</code> (for <em>parametric</em>/pearson’s), <code>"np"</code> (for <em>nonparametric</em>/spearman), <code>"r"</code> (for <em>robust</em>).</p>
@@ -246,36 +242,34 @@
 <span id="cb3-4"><a href="#cb3-4"></a><span class="co"># to speed up the calculation, let's use only 20% of the data</span></span>
 <span id="cb3-5"><a href="#cb3-5"></a><span class="co"># also since there are only 7 movies with NC-17 ratings, leave them out</span></span>
 <span id="cb3-6"><a href="#cb3-6"></a>movies_<span class="dv">20</span> &lt;-</span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_wide, mpaa <span class="op">!=</span><span class="st"> "NC-17"</span>) <span class="op">%&gt;%</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ., <span class="dt">size =</span> <span class="fl">0.2</span>)</span>
-<span id="cb3-9"><a href="#cb3-9"></a></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="co"># plot</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span>(</span>
-<span id="cb3-12"><a href="#cb3-12"></a>  <span class="co"># arguments relevant for ggstatsplot::ggscatterstats</span></span>
-<span id="cb3-13"><a href="#cb3-13"></a>  <span class="dt">data =</span> movies_<span class="dv">10</span>,</span>
-<span id="cb3-14"><a href="#cb3-14"></a>  <span class="dt">title.prefix =</span> <span class="st">"MPAA Rating"</span>,</span>
-<span id="cb3-15"><a href="#cb3-15"></a>  <span class="dt">x =</span> budget,</span>
-<span id="cb3-16"><a href="#cb3-16"></a>  <span class="dt">y =</span> rating,</span>
-<span id="cb3-17"><a href="#cb3-17"></a>  <span class="dt">xfill =</span> <span class="ot">NULL</span>,</span>
-<span id="cb3-18"><a href="#cb3-18"></a>  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</span>
-<span id="cb3-19"><a href="#cb3-19"></a>  <span class="dt">palette =</span> <span class="st">"nrc_npg"</span>,</span>
-<span id="cb3-20"><a href="#cb3-20"></a>  <span class="dt">grouping.var =</span> mpaa,</span>
-<span id="cb3-21"><a href="#cb3-21"></a>  <span class="dt">label.var =</span> <span class="st">"title"</span>,</span>
-<span id="cb3-22"><a href="#cb3-22"></a>  <span class="dt">label.expression =</span> <span class="st">"rating &lt; 5 &amp; budget &gt; 75"</span>,</span>
-<span id="cb3-23"><a href="#cb3-23"></a>  <span class="dt">marginal.type =</span> <span class="st">"boxplot"</span>,</span>
-<span id="cb3-24"><a href="#cb3-24"></a>  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),</span>
-<span id="cb3-25"><a href="#cb3-25"></a>  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb3-26"><a href="#cb3-26"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb3-27"><a href="#cb3-27"></a>  <span class="dt">k =</span> <span class="dv">2</span>,</span>
-<span id="cb3-28"><a href="#cb3-28"></a>  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></span>
-<span id="cb3-29"><a href="#cb3-29"></a>  <span class="dt">title.text =</span> <span class="st">"Relationship between movie budget and IMDB rating"</span>,</span>
-<span id="cb3-30"><a href="#cb3-30"></a>  <span class="dt">caption.text =</span> <span class="st">"Source: www.imdb.com"</span>,</span>
-<span id="cb3-31"><a href="#cb3-31"></a>  <span class="dt">plotgrid.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
-<span id="cb3-32"><a href="#cb3-32"></a>    <span class="dt">nrow =</span> <span class="dv">3</span>,</span>
-<span id="cb3-33"><a href="#cb3-33"></a>    <span class="dt">ncol =</span> <span class="dv">1</span>,</span>
-<span id="cb3-34"><a href="#cb3-34"></a>    <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>)</span>
-<span id="cb3-35"><a href="#cb3-35"></a>  )</span>
-<span id="cb3-36"><a href="#cb3-36"></a>)</span></code></pre></div>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="st">  </span>ggstatsplot<span class="op">::</span>movies_wide <span class="op">%&gt;%</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., mpaa <span class="op">!=</span><span class="st"> "NC-17"</span>) <span class="op">%&gt;%</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ., <span class="dt">size =</span> <span class="fl">0.2</span>)</span>
+<span id="cb3-10"><a href="#cb3-10"></a></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="co"># plot</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span>(</span>
+<span id="cb3-13"><a href="#cb3-13"></a>  <span class="co"># arguments relevant for ggstatsplot::ggscatterstats</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a>  <span class="dt">data =</span> movies_<span class="dv">10</span>,</span>
+<span id="cb3-15"><a href="#cb3-15"></a>  <span class="dt">title.prefix =</span> <span class="st">"MPAA Rating"</span>,</span>
+<span id="cb3-16"><a href="#cb3-16"></a>  <span class="dt">x =</span> budget,</span>
+<span id="cb3-17"><a href="#cb3-17"></a>  <span class="dt">y =</span> rating,</span>
+<span id="cb3-18"><a href="#cb3-18"></a>  <span class="dt">grouping.var =</span> mpaa,</span>
+<span id="cb3-19"><a href="#cb3-19"></a>  <span class="dt">label.var =</span> <span class="st">"title"</span>,</span>
+<span id="cb3-20"><a href="#cb3-20"></a>  <span class="dt">label.expression =</span> <span class="st">"rating &lt; 5 &amp; budget &gt; 75"</span>,</span>
+<span id="cb3-21"><a href="#cb3-21"></a>  <span class="dt">marginal.type =</span> <span class="st">"boxplot"</span>,</span>
+<span id="cb3-22"><a href="#cb3-22"></a>  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),</span>
+<span id="cb3-23"><a href="#cb3-23"></a>  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb3-24"><a href="#cb3-24"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb3-25"><a href="#cb3-25"></a>  <span class="dt">k =</span> <span class="dv">2</span>,</span>
+<span id="cb3-26"><a href="#cb3-26"></a>  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></span>
+<span id="cb3-27"><a href="#cb3-27"></a>  <span class="dt">title.text =</span> <span class="st">"Relationship between movie budget and IMDB rating"</span>,</span>
+<span id="cb3-28"><a href="#cb3-28"></a>  <span class="dt">caption.text =</span> <span class="st">"Source: www.imdb.com"</span>,</span>
+<span id="cb3-29"><a href="#cb3-29"></a>  <span class="dt">plotgrid.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb3-30"><a href="#cb3-30"></a>    <span class="dt">nrow =</span> <span class="dv">3</span>,</span>
+<span id="cb3-31"><a href="#cb3-31"></a>    <span class="dt">ncol =</span> <span class="dv">1</span>,</span>
+<span id="cb3-32"><a href="#cb3-32"></a>    <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>)</span>
+<span id="cb3-33"><a href="#cb3-33"></a>  )</span>
+<span id="cb3-34"><a href="#cb3-34"></a>)</span></code></pre></div>
 <p><img src="ggscatterstats_files/figure-html/grouped1-1.png" width="672"></p>
 <p>As seen from the plot, this analysis has revealed something interesting: The relationship we found between budget and IMDB rating holds only for PG-13 and R-rated movies.</p>
 </div>

@@ -217,30 +217,24 @@ subtitle.</p>
   <span class='kw'>label.var</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>label.expression</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>point.label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>),
+  <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>x</span>,
+  <span class='kw'>smooth.line.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>),
   <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"lm"</span>,
   <span class='kw'>method.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>x</span>,
-  <span class='kw'>point.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>point.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>point.alpha</span> <span class='kw'>=</span> <span class='fl'>0.4</span>,
+  <span class='kw'>point.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.4</span>),
   <span class='kw'>point.width.jitter</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>point.height.jitter</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>line.size</span> <span class='kw'>=</span> <span class='fl'>1.5</span>,
-  <span class='kw'>line.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
   <span class='kw'>marginal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>marginal.type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>,
   <span class='kw'>marginal.size</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>margins</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"both"</span>, <span class='st'>"x"</span>, <span class='st'>"y"</span>),
-  <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>,
-  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>,
-  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>margins</span> <span class='kw'>=</span> <span class='st'>"both"</span>,
   <span class='kw'>xfill</span> <span class='kw'>=</span> <span class='st'>"#009E73"</span>,
   <span class='kw'>yfill</span> <span class='kw'>=</span> <span class='st'>"#D55E00"</span>,
-  <span class='kw'>xalpha</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>yalpha</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>xsize</span> <span class='kw'>=</span> <span class='fl'>0.7</span>,
-  <span class='kw'>ysize</span> <span class='kw'>=</span> <span class='fl'>0.7</span>,
+  <span class='kw'>xparams</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>fill</span> <span class='kw'>=</span> <span class='no'>xfill</span>),
+  <span class='kw'>yparams</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>fill</span> <span class='kw'>=</span> <span class='no'>yfill</span>),
   <span class='kw'>centrality.parameter</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
+  <span class='kw'>vline.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>xfill</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>),
+  <span class='kw'>hline.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>yfill</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>),
   <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -323,6 +317,16 @@ expression (e.g., <code>y &lt; 4 &amp; z &lt; 20</code>).</p></td>
 to <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geom used to display the labels.</p></td>
     </tr>
     <tr>
+      <th>formula</th>
+      <td><p>Formula to use in smoothing function, eg. <code>y ~ x</code>,
+<code>y ~ poly(x, 2)</code>, <code>y ~ log(x)</code></p></td>
+    </tr>
+    <tr>
+      <th>smooth.line.args</th>
+      <td><p>A list of additional aesthetic arguments to be passed
+to <code><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>ggplot2::geom_smooth</a></code> geom used to display the regression line.</p></td>
+    </tr>
+    <tr>
       <th>method</th>
       <td><p>Smoothing method (function) to use, accepts either a character vector,
 e.g. <code>"auto"</code>, <code>"lm"</code>, <code>"glm"</code>, <code>"gam"</code>, <code>"loess"</code> or a function, e.g.
@@ -343,28 +347,15 @@ model that <code>method = "auto"</code> would use, then set
 function defined by <code>method</code>.</p></td>
     </tr>
     <tr>
-      <th>formula</th>
-      <td><p>Formula to use in smoothing function, eg. <code>y ~ x</code>,
-<code>y ~ poly(x, 2)</code>, <code>y ~ log(x)</code></p></td>
-    </tr>
-    <tr>
-      <th>point.color, point.size, point.alpha</th>
-      <td><p>Aesthetics specifying geom point
-(defaults: <code>point.color = "black"</code>, <code>point.size = 3</code>,<code>point.alpha = 0.4</code>).</p></td>
+      <th>point.args</th>
+      <td><p>A list of additional aesthetic arguments to be passed
+to <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point</a></code> geom used to display the raw data points.</p></td>
     </tr>
     <tr>
       <th>point.width.jitter, point.height.jitter</th>
       <td><p>Degree of jitter in <code>x</code> and <code>y</code>
 direction, respectively. Defaults to <code>0</code> (0%) of the resolution of the
 data.</p></td>
-    </tr>
-    <tr>
-      <th>line.size</th>
-      <td><p>Size for the regression line.</p></td>
-    </tr>
-    <tr>
-      <th>line.color</th>
-      <td><p>color for the regression line.</p></td>
     </tr>
     <tr>
       <th>marginal</th>
@@ -384,39 +375,25 @@ plots compared to the main plot. A size of <code>5</code> means that the main pl
     </tr>
     <tr>
       <th>margins</th>
-      <td><p>Character describing along which margins to show the plots.
-Any of the following arguments are accepted: <code>"both"</code>, <code>"x"</code>, <code>"y"</code>.</p></td>
-    </tr>
-    <tr>
-      <th>package</th>
-      <td><p>Name of package from which the palette is desired as string
-or symbol.</p></td>
-    </tr>
-    <tr>
-      <th>palette</th>
-      <td><p>Name of palette as string or symbol.</p></td>
-    </tr>
-    <tr>
-      <th>direction</th>
-      <td><p>Either <code>1</code> or <code>-1</code>. If <code>-1</code> the palette will be reversed.</p></td>
+      <td><p>Along which margins to show the plots. One of: [both, x, y].</p></td>
     </tr>
     <tr>
       <th>xfill, yfill</th>
       <td><p>Character describing color fill for <code>x</code> and <code>y</code> axes
 marginal distributions (default: <code>"#009E73"</code> (for <code>x</code>) and <code>"#D55E00"</code> (for
-<code>y</code>)). If set to <code>NULL</code>, manual specification of colors will be turned off
-and 2 colors from the specified <code>palette</code> from <code>package</code> will be selected.</p></td>
+<code>y</code>)). The same colors will also be used for the lines denoting centrality
+parameters if <code>centrality.parameter</code> argument is set to <code>TRUE</code>. Note that
+the defaults are colorblind-friendly.</p></td>
     </tr>
     <tr>
-      <th>xalpha, yalpha</th>
-      <td><p>Numeric deciding transparency levels for the marginal
-distributions. Any numbers from <code>0</code> (transparent) to <code>1</code> (opaque). The
-default is <code>1</code> for both axes.</p></td>
+      <th>xparams</th>
+      <td><p>List of extra parameters to use only for the marginal plot along
+the x axis.</p></td>
     </tr>
     <tr>
-      <th>xsize, ysize</th>
-      <td><p>Size for the marginal distribution boundaries (Default:
-<code>0.7</code>).</p></td>
+      <th>yparams</th>
+      <td><p>List of extra parameters to use only for the marginal plot along
+the y axis.</p></td>
     </tr>
     <tr>
       <th>centrality.parameter</th>
@@ -424,6 +401,12 @@ default is <code>1</code> for both axes.</p></td>
 or <code>"median"</code>) is to be displayed as vertical (for <code>x</code>) and horizontal (for
 <code>y</code>) lines. Note that mean values corresponds to arithmetic mean and not
 geometric mean.</p></td>
+    </tr>
+    <tr>
+      <th>vline.args, hline.args</th>
+      <td><p>A list of additional aesthetic arguments to be
+passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>ggplot2::geom_vline</a></code> and <code><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>ggplot2::geom_hline</a></code> geoms used to
+display the centrality parameter labels on vertical and horizontal lines.</p></td>
     </tr>
     <tr>
       <th>results.subtitle</th>
@@ -547,8 +530,7 @@ have a lot of labels that overlap.</p>
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"np"</span>,
   <span class='kw'>label.var</span> <span class='kw'>=</span> <span class='no'>car</span>,
   <span class='kw'>label.expression</span> <span class='kw'>=</span> <span class='no'>wt</span> <span class='kw'>&lt;</span> <span class='fl'>4</span> <span class='kw'>&amp;</span> <span class='no'>mpg</span> <span class='kw'>&lt;</span> <span class='fl'>20</span>,
-  <span class='kw'>centrality.parameter</span> <span class='kw'>=</span> <span class='st'>"median"</span>,
-  <span class='kw'>xfill</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  <span class='kw'>centrality.parameter</span> <span class='kw'>=</span> <span class='st'>"median"</span>
 )</div><div class='output co'>#&gt; <span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>This plot can't be further modified with `ggplot2` functions.
 #&gt; In case you want a `ggplot` object, set `marginal = FALSE`.</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggscatterstats-1.png' alt='' width='700' height='433' /></div><div class='input'># }
 </div></span></pre>

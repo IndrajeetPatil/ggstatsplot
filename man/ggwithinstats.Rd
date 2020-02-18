@@ -31,16 +31,16 @@ ggwithinstats(
   conf.level = 0.95,
   nboot = 100,
   tr = 0.1,
-  point.path = TRUE,
-  mean.path = TRUE,
   sort = "none",
   sort.fun = mean,
   mean.plotting = TRUE,
   mean.ci = FALSE,
   mean.point.args = list(size = 5, color = "darkred"),
   mean.label.args = list(size = 3),
-  mean.path.args = list(),
-  point.path.args = list(),
+  point.path = TRUE,
+  point.path.args = list(alpha = 0.5, linetype = "dashed"),
+  mean.path = TRUE,
+  mean.path.args = list(color = "red", size = 1, alpha = 0.5),
   notch = FALSE,
   notchwidth = 0.5,
   outlier.tagging = FALSE,
@@ -155,13 +155,6 @@ variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
 try to play around with the value of \code{tr}, which is by default set to
 \code{0.1}. Lowering the value might help.}
 
-\item{point.path, mean.path}{Logical that decides whether individual data
-points and means, respectively, should be connected using \code{geom_path}. Both
-default to \code{TRUE}. Note that \code{point.path} argument is relevant only when
-there are two groups (i.e., in case of a \emph{t}-test). In case of large number
-of data points, it is advisable to set \code{point.path = FALSE} as these lines
-can overwhelm the plot.}
-
 \item{sort}{If \code{"ascending"} (default), \code{x}-axis variable factor levels will
 be sorted based on increasing values of \code{y}-axis variable. If
 \code{"descending"}, the opposite. If \code{"none"}, no sorting will happen.}
@@ -181,6 +174,13 @@ arguments to be passed to \code{ggplot2::geom_point} and
 \item{mean.label.args}{A list of additional aesthetic
 arguments to be passed to \code{ggplot2::geom_point} and
 \code{ggrepel::geom_label_repel} geoms involved mean value plotting.}
+
+\item{point.path, mean.path}{Logical that decides whether individual data
+points and means, respectively, should be connected using \code{geom_path}. Both
+default to \code{TRUE}. Note that \code{point.path} argument is relevant only when
+there are two groups (i.e., in case of a \emph{t}-test). In case of large number
+of data points, it is advisable to set \code{point.path = FALSE} as these lines
+can overwhelm the plot.}
 
 \item{mean.path.args, point.path.args}{A list of additional aesthetic
 arguments passed on to \code{geom_path} connecting raw data points and mean

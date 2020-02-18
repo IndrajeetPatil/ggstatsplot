@@ -61,6 +61,7 @@
 #' @inheritParams statsExpressions::corr_objects
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams ggscatterstats
+#' @inheritParams ggbetweenstats
 #'
 #' @import ggplot2
 #'
@@ -234,127 +235,7 @@ ggcorrmat <- function(data,
   corr.mat <- purrr::pluck(corr_obj_list, "corr.mat")
   p.mat <- purrr::pluck(corr_obj_list, "p.mat")
 
-  # ========================== plot =========================================
-
-  # creating the basic plot
-  if (output == "plot") {
-    # if user has not specified colors, then use a color palette
-    if (is.null(colors)) {
-      colors <-
-        paletteer::paletteer_d(
-          palette = paste0(package, "::", palette),
-          n = 3,
-          direction = direction,
-          type = "discrete"
-        )
-    }
-
-    # in case of NAs, compute minimum and maximum sample sizes of pairs
-    n_summary <-
-      tibble(
-        n_min = range(psych_corr_obj$n, na.rm = TRUE)[[1]],
-        n_median = stats::median(psych_corr_obj$n, na.rm = TRUE),
-        n_max = range(psych_corr_obj$n, na.rm = TRUE)[[2]]
-      )
-
-    # legend title with information about correlation type and sample
-    if (isFALSE(any(is.na(df)))) {
-      legend.title.text <-
-        bquote(atop(
-          atop(
-            scriptstyle(bold("sample size:")),
-            italic(n) ~ "=" ~ .(nrow(df))
-          ),
-          atop(
-            scriptstyle(bold("correlation:")),
-            .(corr.method.text)
-          )
-        ))
-    } else {
-      # creating legend with sample size info
-      legend.title.text <-
-        bquote(atop(
-          atop(
-            atop(
-              scriptstyle(bold("sample size:")),
-              italic(n)[min] ~ "=" ~ .(n_summary$n_min[[1]])
-            ),
-            atop(
-              italic(n)[median] ~ "=" ~ .(n_summary$n_median[[1]]),
-              italic(n)[max] ~ "=" ~ .(n_summary$n_max[[1]])
-            )
-          ),
-          atop(
-            scriptstyle(bold("correlation:")),
-            .(corr.method.text)
-          )
-        ))
-    }
-
-    # plotting the correlalogram
-    plot <-
-      rlang::exec(
-        .f = ggcorrplot::ggcorrplot,
-        corr = corr.mat,
-        method = method,
-        p.mat = p.mat,
-        sig.level = sig.level,
-        ggtheme = ggtheme,
-        colors = colors,
-        type = matrix.type,
-        lab = TRUE,
-        pch = pch,
-        legend.title = legend.title.text,
-        digits = k,
-        !!!ggcorrplot.args
-      )
-
-    # =========================== labels ==================================
-
-    # if `caption` is not specified, use the generic version only if
-    # `caption.default` is `TRUE`
-    if (is.null(caption) && pch == 4 && isTRUE(caption.default)) {
-      # preparing the caption
-      caption <-
-        substitute(
-          atop(
-            expr = paste(
-              bold("X"),
-              " = correlation non-significant at ",
-              italic("p"),
-              " < ",
-              sig.level,
-              sep = ""
-            ),
-            bottom.text
-          ),
-          env = list(
-            sig.level = sig.level,
-            bottom.text = paste("Adjustment (p-value): ",
-              pairwiseComparisons::p_adjust_text(p.adjust.method),
-              sep = ""
-            )
-          )
-        )
-    }
-
-    # adding text details to the plot
-    plot <- plot +
-      ggplot2::labs(
-        title = title,
-        subtitle = subtitle,
-        caption = caption,
-        xlab = NULL,
-        ylab = NULL
-      )
-
-    # adding `ggstatsplot` theme for correlation matrix
-    if (isTRUE(ggstatsplot.layer)) plot <- plot + theme_corrmat()
-  }
-
-  # ========================= confidence intervals ===========================
-
-  # CI computation
+  # CI check
   if (output == "ci" && corr.method == "robust") {
     stop(message(cat(
       ipmisc::red("Warning: "),
@@ -363,22 +244,139 @@ ggcorrmat <- function(data,
     )))
   }
 
-  # =============================== output ==================================
-
   # if p-values were adjusted, notify how they are going to be displayed
-  if (p.adjust.method != "none" && messages && corr.method != "robust" && output != "ci") {
+  if (p.adjust.method != "none" && messages && corr.method != "robust") {
     ggcorrmat_matrix_message()
   }
 
-  # return the desired result
-  return(
-    switch(output,
-      "r" = as_tibble(corr.mat, rownames = "variable"),
-      "n" = as_tibble(psych_corr_obj$n, rownames = "variable"),
-      "ci" = as_tibble(psych_corr_obj$ci, rownames = "pair"),
-      "p" = as_tibble(p.mat, rownames = "variable"),
-      "plot" = plot,
-      plot
+  # early stats return
+  if (output != "plot") {
+    return(
+      switch(output,
+        "r" = as_tibble(corr.mat, rownames = "variable"),
+        "n" = as_tibble(psych_corr_obj$n, rownames = "variable"),
+        "ci" = as_tibble(psych_corr_obj$ci, rownames = "pair"),
+        "p" = as_tibble(p.mat, rownames = "variable")
+      )
     )
-  )
+  }
+
+  # ========================== plot =========================================
+
+  # creating the basic plot
+  # if user has not specified colors, then use a color palette
+  if (is.null(colors)) {
+    colors <-
+      paletteer::paletteer_d(
+        palette = paste0(package, "::", palette),
+        n = 3,
+        direction = direction,
+        type = "discrete"
+      )
+  }
+
+  # in case of NAs, compute minimum and maximum sample sizes of pairs
+  n_summary <-
+    tibble(
+      n_min = range(psych_corr_obj$n, na.rm = TRUE)[[1]],
+      n_median = stats::median(psych_corr_obj$n, na.rm = TRUE),
+      n_max = range(psych_corr_obj$n, na.rm = TRUE)[[2]]
+    )
+
+  # legend title with information about correlation type and sample
+  if (isFALSE(any(is.na(df)))) {
+    legend.title.text <-
+      bquote(atop(
+        atop(
+          scriptstyle(bold("sample size:")),
+          italic(n) ~ "=" ~ .(nrow(df))
+        ),
+        atop(
+          scriptstyle(bold("correlation:")),
+          .(corr.method.text)
+        )
+      ))
+  } else {
+    # creating legend with sample size info
+    legend.title.text <-
+      bquote(atop(
+        atop(
+          atop(
+            scriptstyle(bold("sample size:")),
+            italic(n)[min] ~ "=" ~ .(n_summary$n_min[[1]])
+          ),
+          atop(
+            italic(n)[median] ~ "=" ~ .(n_summary$n_median[[1]]),
+            italic(n)[max] ~ "=" ~ .(n_summary$n_max[[1]])
+          )
+        ),
+        atop(
+          scriptstyle(bold("correlation:")),
+          .(corr.method.text)
+        )
+      ))
+  }
+
+  # plotting the correlalogram
+  plot <-
+    rlang::exec(
+      .f = ggcorrplot::ggcorrplot,
+      corr = corr.mat,
+      method = method,
+      p.mat = p.mat,
+      sig.level = sig.level,
+      ggtheme = ggtheme,
+      colors = colors,
+      type = matrix.type,
+      lab = TRUE,
+      pch = pch,
+      legend.title = legend.title.text,
+      digits = k,
+      !!!ggcorrplot.args
+    )
+
+  # =========================== labels ==================================
+
+  # if `caption` is not specified, use the generic version only if
+  # `caption.default` is `TRUE`
+  if (is.null(caption) && pch == 4 && isTRUE(caption.default)) {
+    # preparing the caption
+    caption <-
+      substitute(
+        atop(
+          expr = paste(
+            bold("X"),
+            " = correlation non-significant at ",
+            italic("p"),
+            " < ",
+            sig.level,
+            sep = ""
+          ),
+          bottom.text
+        ),
+        env = list(
+          sig.level = sig.level,
+          bottom.text = paste("Adjustment (p-value): ",
+            pairwiseComparisons::p_adjust_text(p.adjust.method),
+            sep = ""
+          )
+        )
+      )
+  }
+
+  # adding text details to the plot
+  plot <- plot +
+    ggplot2::labs(
+      title = title,
+      subtitle = subtitle,
+      caption = caption,
+      xlab = NULL,
+      ylab = NULL
+    )
+
+  # adding `ggstatsplot` theme for correlation matrix
+  if (isTRUE(ggstatsplot.layer)) plot <- plot + theme_corrmat()
+
+  # return the desired result
+  return(plot)
 }

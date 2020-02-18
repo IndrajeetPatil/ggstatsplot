@@ -27,6 +27,9 @@ testthat::test_that(
         bf.message = TRUE,
         pairwise.comparisons = TRUE,
         pairwise.annotation = "asterisk",
+        point.path.args = list(color = "red"),
+        mean.path.args = list(color = "blue", size = 2, alpha = 0.8),
+        mean.point.args = list(size = 3, color = "darkgreen", alpha = 0.5),
         title = "bugs dataset",
         caption = "From `jmv` package",
         messages = FALSE
@@ -58,6 +61,137 @@ testthat::test_that(
     testthat::expect_equal(dim(pb1$data[[5]]), c(0L, 0L))
     testthat::expect_equal(dim(pb1$data[[6]]), c(2L, 12L))
     testthat::expect_equal(dim(pb1$data[[8]]), c(2L, 8L))
+
+    # checking geom data
+    testthat::expect_identical(pb1$data[[4]]$colour[[1]], "red")
+    testthat::expect_equal(pb1$data[[4]]$linetype[[1]], 1)
+    testthat::expect_equal(pb1$data[[4]]$size[[1]], 0.5)
+    testthat::expect_equal(
+      pb1$data[[2]],
+      structure(
+        list(
+          ymin = c(0, 0),
+          lower = c(6, 4.5),
+          middle = c(8.75, 8),
+          upper = c(10, 9.5),
+          ymax = c(10, 10),
+          outliers = list(numeric(0), numeric(0)),
+          notchupper = c(9.41618649374214, 8.83273311717767),
+          notchlower = c(8.08381350625786, 7.16726688282233),
+          x = c(1, 2),
+          PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
+          group = 1:2,
+          ymin_final = c(0, 0),
+          ymax_final = c(10, 10),
+          xmin = c(0.9, 1.9),
+          xmax = c(1.1, 2.1),
+          xid = c(1, 2),
+          newx = c(1, 2),
+          new_width = c(0.2, 0.2),
+          weight = c(1, 1),
+          colour = c("grey20", "grey20"),
+          fill = c("white", "white"),
+          size = c(0.5, 0.5),
+          alpha = c(0.5, 0.5),
+          shape = c(19, 19),
+          linetype = c("solid", "solid")
+        ),
+        row.names = c(NA, -2L),
+        class = "data.frame"
+      )
+    )
+
+    testthat::expect_equal(
+      pb1$data[[6]],
+      structure(
+        list(
+          x = 1:2,
+          group = 1:2,
+          y = c(
+            7.86666666666667,
+            6.73888888888889
+          ),
+          ymin = c(NA_real_, NA_real_),
+          ymax = c(
+            NA_real_,
+            NA_real_
+          ),
+          PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
+          shape = c(19, 19),
+          colour = c("darkgreen", "darkgreen"),
+          size = c(3, 3),
+          fill = c(NA, NA),
+          alpha = c(0.5, 0.5),
+          stroke = c(
+            0.5,
+            0.5
+          )
+        ),
+        row.names = c(NA, -2L),
+        class = "data.frame"
+      )
+    )
+
+    testthat::expect_equal(
+      pb1$data[[7]],
+      structure(
+        list(
+          x = 1:2,
+          y = c(7.86666666666667, 6.73888888888889),
+          label = c(
+            "list(~italic(widehat(mu))== 7.8667 )",
+            "list(~italic(widehat(mu))== 6.7389 )"
+          ),
+          PANEL = structure(c(1L, 1L), class = "factor", .Label = "1"),
+          group = structure(1:2, n = 2L),
+          colour = c("black", "black"),
+          fill = c("white", "white"),
+          size = c(3, 3),
+          angle = c(
+            0,
+            0
+          ),
+          alpha = c(NA, NA),
+          family = c("", ""),
+          fontface = c(
+            1,
+            1
+          ),
+          lineheight = c(1.2, 1.2),
+          hjust = c(0.5, 0.5),
+          vjust = c(
+            0.5,
+            0.5
+          )
+        ),
+        row.names = c(NA, -2L),
+        class = "data.frame"
+      )
+    )
+
+    testthat::expect_equal(
+      pb1$data[[8]],
+      structure(
+        list(
+          x = 1:2,
+          y = c(7.86666666666667, 6.73888888888889),
+          group = structure(c(1L, 1L), n = 1L),
+          PANEL = structure(c(
+            1L,
+            1L
+          ), class = "factor", .Label = "1"),
+          colour = c("blue", "blue"),
+          size = c(2, 2),
+          linetype = c(1, 1),
+          alpha = c(0.8, 0.8)
+        ),
+        row.names = c(
+          NA,
+          -2L
+        ),
+        class = "data.frame"
+      )
+    )
 
     # data from difference layers
     testthat::expect_equal(max(pb1$data[[4]]$group), 90L)

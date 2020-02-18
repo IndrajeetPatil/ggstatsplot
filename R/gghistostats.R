@@ -105,6 +105,9 @@ gghistostats <- function(data,
                          messages = TRUE,
                          ...) {
 
+  # convert entered stats type to a standard notation
+  type <- stats_type_switch(type)
+
   # ================================= dataframe ==============================
 
   # to ensure that x will be read irrespective of whether it is quoted or unquoted
@@ -128,20 +131,6 @@ gghistostats <- function(data,
   # ================ stats labels ==========================================
 
   if (isTRUE(results.subtitle)) {
-    # preparing the BF message for NULL
-    if (isTRUE(bf.message)) {
-      bf.caption.text <-
-        statsExpressions::bf_ttest(
-          data = df,
-          x = {{ x }},
-          test.value = test.value,
-          bf.prior = bf.prior,
-          caption = caption,
-          output = "caption",
-          k = k
-        )
-    }
-
     # preparing the subtitle with statistical results
     subtitle <-
       statsExpressions::expr_t_onesample(
@@ -160,6 +149,23 @@ gghistostats <- function(data,
         stat.title = stat.title,
         messages = messages
       )
+
+    # preparing the BF message
+    if (isTRUE(bf.message)) {
+      bf.caption.text <-
+        statsExpressions::bf_ttest(
+          data = df,
+          x = {{ x }},
+          test.value = test.value,
+          bf.prior = bf.prior,
+          caption = caption,
+          output = "caption",
+          k = k
+        )
+
+      # if bayes factor message needs to be displayed
+      if (type == "parametric" && isTRUE(bf.message)) caption <- bf.caption.text
+    }
   }
 
   # quit early if only subtitle is needed
@@ -277,11 +283,6 @@ gghistostats <- function(data,
         args = args,
         !!!normal.curve.args
       )
-  }
-
-  # if bayes factor message needs to be displayed
-  if (isTRUE(results.subtitle) && type %in% c("parametric", "p") && isTRUE(bf.message)) {
-    caption <- bf.caption.text
   }
 
   # adding the theme and labels

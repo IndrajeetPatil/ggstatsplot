@@ -459,7 +459,7 @@ ggbetweenstats <- function(data,
   # already created.
 
   if (isTRUE(outlier.tagging)) {
-    # applying the labels to tagged outliers with ggrepel
+    # applying the labels to tagged outliers with `ggrepel`
     plot <- plot +
       rlang::exec(
         .fn = ggrepel::geom_label_repel,

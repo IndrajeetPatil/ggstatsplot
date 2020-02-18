@@ -13,10 +13,13 @@
 #'   expression (e.g., `y < 4 & z < 20`).
 #' @param point.label.args A list of additional aesthetic arguments to be passed
 #'   to `ggrepel::geom_label_repel` geom used to display the labels.
-#' @param line.color color for the regression line.
-#' @param line.size Size for the regression line.
-#' @param point.color,point.size,point.alpha Aesthetics specifying geom point
-#'   (defaults: `point.color = "black"`, `point.size = 3`,`point.alpha = 0.4`).
+#' @param point.width.jitter,point.height.jitter Degree of jitter in `x` and `y`
+#'   direction, respectively. Defaults to `0` (0%) of the resolution of the
+#'   data.
+#' @param smooth.line.args A list of additional aesthetic arguments to be passed
+#'   to `ggplot2::geom_smooth` geom used to display the regression line.
+#' @param point.args A list of additional aesthetic arguments to be passed
+#'   to `ggplot2::geom_point` geom used to display the raw data points.
 #' @param marginal Decides whether `ggExtra::ggMarginal()` plots will be
 #'   displayed; the default is `TRUE`.
 #' @param marginal.type Type of marginal distribution to be plotted on the axes
@@ -24,33 +27,27 @@
 #' @param marginal.size Integer describing the relative size of the marginal
 #'   plots compared to the main plot. A size of `5` means that the main plot is
 #'   5x wider and 5x taller than the marginal plots.
-#' @param margins Character describing along which margins to show the plots.
-#'   Any of the following arguments are accepted: `"both"`, `"x"`, `"y"`.
 #' @param xfill,yfill Character describing color fill for `x` and `y` axes
-#'   marginal distributions (default: `"#009E73"` (for `x`) and `"#D55E00"` (for
-#'   `y`)). If set to `NULL`, manual specification of colors will be turned off
-#'   and 2 colors from the specified `palette` from `package` will be selected.
-#' @param xalpha,yalpha Numeric deciding transparency levels for the marginal
-#'   distributions. Any numbers from `0` (transparent) to `1` (opaque). The
-#'   default is `1` for both axes.
-#' @param xsize,ysize Size for the marginal distribution boundaries (Default:
-#'   `0.7`).
+#'  marginal distributions (default: `"#009E73"` (for `x`) and `"#D55E00"` (for
+#'  `y`)). The same colors will also be used for the lines denoting centrality
+#'  parameters if `centrality.parameter` argument is set to `TRUE`. Note that
+#'  the defaults are colorblind-friendly.
 #' @param centrality.parameter Decides *which* measure of central tendency (`"mean"`
 #'   or `"median"`) is to be displayed as vertical (for `x`) and horizontal (for
 #'   `y`) lines. Note that mean values corresponds to arithmetic mean and not
 #'   geometric mean.
-#' @param point.width.jitter,point.height.jitter Degree of jitter in `x` and `y`
-#'   direction, respectively. Defaults to `0` (0%) of the resolution of the
-#'   data.
+#' @param vline.args,hline.args A list of additional aesthetic arguments to be
+#'   passed to `ggplot2::geom_vline` and `ggplot2::geom_hline` geoms used to
+#'   display the centrality parameter labels on vertical and horizontal lines.
 #' @inheritParams statsExpressions::expr_corr_test
 #' @inheritParams ggplot2::geom_smooth
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams ggbetweenstats
+#' @inheritParams ggExtra::ggMarginal
 #'
 #' @import ggplot2
 #'
-#' @importFrom dplyr select group_by summarize n arrange if_else desc
-#' @importFrom dplyr mutate mutate_at mutate_if
+#' @importFrom dplyr filter pull
 #' @importFrom rlang !! enquo quo_name parse_expr ensym as_name enexpr exec !!!
 #' @importFrom ggExtra ggMarginal
 #' @importFrom ggrepel geom_label_repel
@@ -85,8 +82,7 @@
 #'   type = "np",
 #'   label.var = car,
 #'   label.expression = wt < 4 & mpg < 20,
-#'   centrality.parameter = "median",
-#'   xfill = NULL
+#'   centrality.parameter = "median"
 #' )
 #' }
 #' @export
@@ -102,30 +98,24 @@ ggscatterstats <- function(data,
                            label.var = NULL,
                            label.expression = NULL,
                            point.label.args = list(size = 3),
+                           formula = y ~ x,
+                           smooth.line.args = list(size = 1.5, color = "blue"),
                            method = "lm",
                            method.args = list(),
-                           formula = y ~ x,
-                           point.color = "black",
-                           point.size = 3,
-                           point.alpha = 0.4,
+                           point.args = list(size = 3, alpha = 0.4),
                            point.width.jitter = 0,
                            point.height.jitter = 0,
-                           line.size = 1.5,
-                           line.color = "blue",
                            marginal = TRUE,
                            marginal.type = "histogram",
+                           margins = "both",
                            marginal.size = 5,
-                           margins = c("both", "x", "y"),
-                           package = "RColorBrewer",
-                           palette = "Dark2",
-                           direction = 1,
                            xfill = "#009E73",
                            yfill = "#D55E00",
-                           xalpha = 1,
-                           yalpha = 1,
-                           xsize = 0.7,
-                           ysize = 0.7,
+                           xparams = list(fill = xfill),
+                           yparams = list(fill = yfill),
                            centrality.parameter = "none",
+                           vline.args = list(color = xfill, size = 1, linetype = "dashed"),
+                           hline.args = list(color = yfill, size = 1, linetype = "dashed"),
                            results.subtitle = TRUE,
                            stat.title = NULL,
                            xlab = NULL,
@@ -159,28 +149,30 @@ ggscatterstats <- function(data,
 
   #----------------------- linear model check ----------------------------
 
-  # subtitle statistics is valid only for linear models, so turn off the
-  # analysis if the model is not linear
-  # `method` argument can be a string (`"gam"`) or function (`MASS::rlm`)
-  method_ch <- paste(deparse(method), collapse = "")
+  if (isTRUE(results.subtitle)) {
+    # subtitle statistics is valid only for linear models, so turn off the
+    # analysis if the model is not linear
+    # `method` argument can be a string (`"gam"`) or function (`MASS::rlm`)
+    method_ch <- paste(deparse(method), collapse = "")
 
-  # check the formula and the method
-  if (as.character(deparse(formula)) != "y ~ x" ||
-    if (class(method) == "function") {
-      method_ch != paste(deparse(lm), collapse = "")
-    } else {
-      method != "lm"
-    }) {
-    # turn off the analysis
-    results.subtitle <- FALSE
+    # check the formula and the method
+    if (as.character(deparse(formula)) != "y ~ x" ||
+      if (class(method) == "function") {
+        method_ch != paste(deparse(lm), collapse = "")
+      } else {
+        method != "lm"
+      }) {
+      # tell the user
+      message(cat(
+        ipmisc::red("Warning: "),
+        ipmisc::blue("The statistical analysis is available only for linear model\n"),
+        ipmisc::blue("(formula = y ~ x, method = 'lm'). Returning only the plot.\n"),
+        sep = ""
+      ))
 
-    # tell the user
-    message(cat(
-      ipmisc::red("Warning: "),
-      ipmisc::blue("The statistical analysis is available only for linear model\n"),
-      ipmisc::blue("(formula = y ~ x, method = 'lm'). Returning only the plot.\n"),
-      sep = ""
-    ))
+      # turn off the analysis
+      results.subtitle <- FALSE
+    }
   }
 
   #----------------------- dataframe ---------------------------------------
@@ -279,41 +271,24 @@ ggscatterstats <- function(data,
     height = point.height.jitter
   )
 
-  # if user has not specified colors, then use a color palette
-  if (is.null(xfill) || is.null(yfill)) {
-    colors <-
-      paletteer::paletteer_d(
-        palette = paste0(package, "::", palette),
-        n = 2,
-        direction = direction,
-        type = "discrete"
-      )
-
-    # assigning selected colors
-    xfill <- colors[1]
-    yfill <- colors[2]
-  }
-
   # preparing the scatterplot
   plot <-
     ggplot2::ggplot(data = data, mapping = ggplot2::aes(x = {{ x }}, y = {{ y }})) +
-    ggplot2::geom_point(
-      color = point.color,
-      size = point.size,
-      alpha = point.alpha,
+    rlang::exec(
+      .fn = ggplot2::geom_point,
       stroke = 0,
       position = pos,
-      na.rm = TRUE
+      na.rm = TRUE,
+      !!!point.args
     ) +
-    ggplot2::geom_smooth(
+    rlang::exec(
+      .fn = ggplot2::geom_smooth,
       method = method,
       method.args = method.args,
       formula = formula,
-      se = TRUE,
-      size = line.size,
-      color = line.color,
+      level = conf.level,
       na.rm = TRUE,
-      level = conf.level
+      !!!smooth.line.args
     )
 
   #----------------------- adding centrality parameters --------------------
@@ -356,20 +331,18 @@ ggscatterstats <- function(data,
     # adding lines
     plot <- plot +
       # vertical line
-      ggplot2::geom_vline(
+      rlang::exec(
+        .fn = ggplot2::geom_vline,
         xintercept = x.intercept,
-        linetype = "dashed",
-        color = xfill,
-        size = 1.0,
-        na.rm = TRUE
+        na.rm = TRUE,
+        !!!vline.args
       ) +
       # horizontal line
-      ggplot2::geom_hline(
+      rlang::exec(
+        .fn = ggplot2::geom_hline,
         yintercept = y.intercept,
-        linetype = "dashed",
-        color = yfill,
-        size = 1.0,
-        na.rm = TRUE
+        na.rm = TRUE,
+        !!!hline.args
       )
 
     # adding labels for *vertical* line
@@ -408,8 +381,10 @@ ggscatterstats <- function(data,
         .fn = ggrepel::geom_label_repel,
         data = label_data,
         mapping = ggplot2::aes(label = {{ label.var }}),
-        position = pos,
+        show.legend = FALSE,
+        min.segment.length = 0,
         na.rm = TRUE,
+        position = pos,
         !!!point.label.args
       )
   }
@@ -442,18 +417,8 @@ ggscatterstats <- function(data,
         type = marginal.type,
         margins = margins,
         size = marginal.size,
-        xparams = list(
-          fill = xfill,
-          alpha = xalpha,
-          size = xsize,
-          col = "black"
-        ),
-        yparams = list(
-          fill = yfill,
-          alpha = yalpha,
-          size = ysize,
-          col = "black"
-        )
+        xparams = xparams,
+        yparams = yparams
       )
   }
 

@@ -213,6 +213,8 @@
 <code>ggpiestats</code> and <code>ggbarstats</code> remove the following vestigial arguments: <code>facet.wrap.name</code>, <code>bias.correct</code>, <code>bar.outline.color</code>. The <code>bar.proptest</code> and <code>facet.proptest</code> arguments were difficult to remember and confusing and are replaced by a common <code>proportion.test</code> argument.</li>
 <li>
 <code>gghistostats</code> loses the following arguments: <code>fill.gradient</code>, <code>low.color</code>, <code>high.color</code>. It made no sense to add a color gradient to this plot when the Y-axis already displayed the information about what bar represented.</li>
+<li>
+<code>ggscatterstats</code> loses the following arguments: <code>palette</code> and <code>package</code>. Since this function requires only two colors, it didn’t make much sense to use color palettes to specify this. They can be instead specified using <code>xfill</code> and <code>yfill</code>. You can always use <code><a href="https://rdrr.io/pkg/paletteer/man/paletteer_d.html">paletteer::paletteer_d</a></code> to get a vector of color values and then provide values of your choosing to <code>xfill</code> and <code>yfill</code>.</li>
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>
