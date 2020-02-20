@@ -51,7 +51,6 @@ Imports:
     statsExpressions (>= 0.3.1),
     tidyr
 Suggests:
-    broomExtra,
     forcats,
     knitr,
     lme4,

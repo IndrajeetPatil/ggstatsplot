@@ -64,18 +64,22 @@ about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
   \describe{
     \item{\code{point.label.args}}{A list of additional aesthetic arguments to be passed
 to \code{ggrepel::geom_label_repel} geom used to display the labels.}
-    \item{\code{point.width.jitter}}{Degree of jitter in \code{x} and \code{y}
-direction, respectively. Defaults to \code{0} (0\%) of the resolution of the
-data.}
-    \item{\code{point.height.jitter}}{Degree of jitter in \code{x} and \code{y}
-direction, respectively. Defaults to \code{0} (0\%) of the resolution of the
-data.}
     \item{\code{smooth.line.args}}{A list of additional aesthetic arguments to be passed
 to \code{ggplot2::geom_smooth} geom used to display the regression line.}
     \item{\code{point.args}}{A list of additional aesthetic arguments to be passed
 to \code{ggplot2::geom_point} geom used to display the raw data points.}
     \item{\code{marginal}}{Decides whether \code{ggExtra::ggMarginal()} plots will be
 displayed; the default is \code{TRUE}.}
+    \item{\code{point.width.jitter}}{Degree of jitter in \code{x} and \code{y}
+direction, respectively. Defaults to \code{0} (0\%) of the resolution of the
+data. Note that the jitter should not be specified in the \code{point.args}
+because this information will be passed to two different \code{geom}s: one
+displaying the points and the other displaying the labels for these points.}
+    \item{\code{point.height.jitter}}{Degree of jitter in \code{x} and \code{y}
+direction, respectively. Defaults to \code{0} (0\%) of the resolution of the
+data. Note that the jitter should not be specified in the \code{point.args}
+because this information will be passed to two different \code{geom}s: one
+displaying the points and the other displaying the labels for these points.}
     \item{\code{marginal.type}}{Type of marginal distribution to be plotted on the axes
 (\code{"histogram"}, \code{"boxplot"}, \code{"density"}, \code{"violin"}, \code{"densigram"}).}
     \item{\code{marginal.size}}{Integer describing the relative size of the marginal

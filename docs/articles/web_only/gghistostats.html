@@ -152,7 +152,7 @@
       <h1>gghistostats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-02-18</h4>
+            <h4 class="date">2020-02-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/gghistostats.Rmd"><code>vignettes/web_only/gghistostats.Rmd</code></a></small>
       <div class="hidden name"><code>gghistostats.Rmd</code></div>
@@ -255,27 +255,26 @@
 <span id="cb4-7"><a href="#cb4-7"></a>  <span class="dt">title.prefix =</span> <span class="st">"Gender"</span>, <span class="co"># prefix for the fixed title</span></span>
 <span id="cb4-8"><a href="#cb4-8"></a>  <span class="dt">k =</span> <span class="dv">1</span>, <span class="co"># number of decimal places in results</span></span>
 <span id="cb4-9"><a href="#cb4-9"></a>  <span class="dt">type =</span> <span class="st">"r"</span>, <span class="co"># robust test: one-sample percentile bootstrap</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a>  <span class="dt">robust.estimator =</span> <span class="st">"mom"</span>, <span class="co"># changing the robust estimator used</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a>  <span class="dt">test.value =</span> <span class="dv">20</span>, <span class="co"># test value against which sample mean is to be compared</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a>  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>, <span class="co"># show a vertical line at `test.value`</span></span>
-<span id="cb4-13"><a href="#cb4-13"></a>  <span class="dt">bar.measure =</span> <span class="st">"density"</span>, <span class="co"># density</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a>  <span class="dt">centrality.parameter =</span> <span class="st">"median"</span>, <span class="co"># plotting centrality parameter</span></span>
-<span id="cb4-15"><a href="#cb4-15"></a>  <span class="dt">centrality.line.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">color =</span> <span class="st">"#D55E00"</span>), </span>
-<span id="cb4-16"><a href="#cb4-16"></a>  <span class="dt">centrality.label.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">color =</span> <span class="st">"#D55E00"</span>),</span>
-<span id="cb4-17"><a href="#cb4-17"></a>  <span class="dt">test.value.line.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">color =</span> <span class="st">"#009E73"</span>),</span>
-<span id="cb4-18"><a href="#cb4-18"></a>  <span class="dt">test.value.label.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">color =</span> <span class="st">"#009E73"</span>),</span>
-<span id="cb4-19"><a href="#cb4-19"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>, <span class="co"># turn off messages</span></span>
-<span id="cb4-20"><a href="#cb4-20"></a>  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_stata.html">theme_stata</a></span>(), <span class="co"># changing default theme</span></span>
-<span id="cb4-21"><a href="#cb4-21"></a>  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>, <span class="co"># turn off ggstatsplot theme layer</span></span>
-<span id="cb4-22"><a href="#cb4-22"></a>  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></span>
-<span id="cb4-23"><a href="#cb4-23"></a>  <span class="dt">title.text =</span> <span class="st">"Distribution of ACT scores across genders"</span>,</span>
-<span id="cb4-24"><a href="#cb4-24"></a>  <span class="dt">caption.text =</span> <span class="st">"Data courtesy of: SAPA project (https://sapa-project.org)"</span>,</span>
-<span id="cb4-25"><a href="#cb4-25"></a>  <span class="dt">plotgrid.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
-<span id="cb4-26"><a href="#cb4-26"></a>    <span class="dt">nrow =</span> <span class="dv">2</span>,</span>
-<span id="cb4-27"><a href="#cb4-27"></a>    <span class="dt">ncol =</span> <span class="dv">1</span>,</span>
-<span id="cb4-28"><a href="#cb4-28"></a>    <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>)</span>
-<span id="cb4-29"><a href="#cb4-29"></a>  )</span>
-<span id="cb4-30"><a href="#cb4-30"></a>)</span></code></pre></div>
+<span id="cb4-10"><a href="#cb4-10"></a>  <span class="dt">test.value =</span> <span class="dv">20</span>, <span class="co"># test value against which sample mean is to be compared</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a>  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>, <span class="co"># show a vertical line at `test.value`</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a>  <span class="dt">bar.measure =</span> <span class="st">"density"</span>, <span class="co"># density</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a>  <span class="dt">centrality.parameter =</span> <span class="st">"median"</span>, <span class="co"># plotting centrality parameter</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a>  <span class="dt">centrality.line.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">color =</span> <span class="st">"#D55E00"</span>), </span>
+<span id="cb4-15"><a href="#cb4-15"></a>  <span class="dt">centrality.label.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">color =</span> <span class="st">"#D55E00"</span>),</span>
+<span id="cb4-16"><a href="#cb4-16"></a>  <span class="dt">test.value.line.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">color =</span> <span class="st">"#009E73"</span>),</span>
+<span id="cb4-17"><a href="#cb4-17"></a>  <span class="dt">test.value.label.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">color =</span> <span class="st">"#009E73"</span>),</span>
+<span id="cb4-18"><a href="#cb4-18"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>, <span class="co"># turn off messages</span></span>
+<span id="cb4-19"><a href="#cb4-19"></a>  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ggthemes/man/theme_stata.html">theme_stata</a></span>(), <span class="co"># changing default theme</span></span>
+<span id="cb4-20"><a href="#cb4-20"></a>  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>, <span class="co"># turn off ggstatsplot theme layer</span></span>
+<span id="cb4-21"><a href="#cb4-21"></a>  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></span>
+<span id="cb4-22"><a href="#cb4-22"></a>  <span class="dt">title.text =</span> <span class="st">"Distribution of ACT scores across genders"</span>,</span>
+<span id="cb4-23"><a href="#cb4-23"></a>  <span class="dt">caption.text =</span> <span class="st">"Data courtesy of: SAPA project (https://sapa-project.org)"</span>,</span>
+<span id="cb4-24"><a href="#cb4-24"></a>  <span class="dt">plotgrid.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb4-25"><a href="#cb4-25"></a>    <span class="dt">nrow =</span> <span class="dv">2</span>,</span>
+<span id="cb4-26"><a href="#cb4-26"></a>    <span class="dt">ncol =</span> <span class="dv">1</span>,</span>
+<span id="cb4-27"><a href="#cb4-27"></a>    <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>)</span>
+<span id="cb4-28"><a href="#cb4-28"></a>  )</span>
+<span id="cb4-29"><a href="#cb4-29"></a>)</span></code></pre></div>
 <p><img src="gghistostats_files/figure-html/grouped1-1.png" width="672"></p>
 <p>As can be seen from these plots, the mean value is much higher than the national norm. Additionally, we see the benefits of plotting this data separately for each gender. We can <em>see</em> the differences in distributions.</p>
 </div>

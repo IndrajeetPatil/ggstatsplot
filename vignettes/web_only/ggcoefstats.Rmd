@@ -65,8 +65,7 @@ be invariant across models:
   - The caption will always contain diagnostic information, if available, about
     models that can be useful for model selection: The smaller the Akaike's
     Information Criterion (**AIC**) and the Bayesian Information Criterion
-    (**BIC**) values, the "better" the model is. Additionally, the higher the
-    **log-likelihood** value the "better" is the model fit.
+    (**BIC**) values, the "better" the model is. 
 
 - The output of this function will be a `ggplot2` object and, thus, it can be
   further modified (e.g., change themes, etc.) with `ggplot2` functions.
@@ -77,17 +76,18 @@ Most of the regression models that are supported in the `broom` and
 
 `aareg`, `anova`, `aov`, `aovlist`, `Arima`, `BBreg`, `bglmerMod`, `bigglm`,
 `biglm`, `blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm2`, `brmsfit`, `btergm`,
-`cch`, `cgam`, `cgamm`, `cglm`, `clm`, `clmm`, `coeftest`, `confusionMatrix`,
-`coxme`, `coxph`, `cpglm`, `cpglmm`, `complmrob`, `DirichReg`, `drc`, `emmGrid`,
+`cch`, `cgam`, `cgamm`, `cglm`, `clm`, `clmm`, `coeftest`, `complmrob`, `confusionMatrix`,
+`coxme`, `coxph`, `cpglm`, `cpglmm`, `crch`, `DirichReg`, `drc`, `emmGrid`,
 `epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`, `flexsurvreg`, `glmc`,
 `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`, `garch`, `glm`,
 `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`, `hurdle`, `ivreg`,
 `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`, `lmRob`, `lmrob`,
-`mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`, `mediate`, `mixor`, `mjoint`, `mle2`,
-`mlm`, `multinom`, `negbin`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`,
-`plm`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `rqss`, `slm`,
-`speedglm`, `speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`,
-`svyglm`, `tobit`, `truncreg`, `vgam`, `wbgee`, `wblm`, `zeroinfl`, etc.
+`LORgee`, `mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`, `mediate`, `mixor`,
+`mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `nlmerMod`, `nlrq`, `nlreg`,
+`nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`,
+`rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`,
+`svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`, `wbgee`, `wblm`, `zeroinfl`,
+etc.
 
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
@@ -740,15 +740,15 @@ library(lme4)
 set.seed(101)
 
 # data
-dd <- expand.grid(
-  f1 = factor(1:3),
-  f2 = LETTERS[1:2],
-  g = 1:9,
-  rep = 1:15,
-  KEEP.OUT.ATTRS = FALSE
-)
-summary(mu <-
-  5 * (-4 + with(dd, as.integer(f1) + 4 * as.numeric(f2))))
+dd <-
+  expand.grid(
+    f1 = factor(1:3),
+    f2 = LETTERS[1:2],
+    g = 1:9,
+    rep = 1:15,
+    KEEP.OUT.ATTRS = FALSE
+  )
+mu <- 5 * (-4 + with(dd, as.integer(f1) + 4 * as.numeric(f2)))
 dd$y <- rnbinom(nrow(dd), mu = mu, size = 0.5)
 
 # model
@@ -790,10 +790,7 @@ set.seed(123)
 library(cplm)
 
 # model
-mod <- cpglmm(
-  formula = RLD ~ Stock + Spacing + (1 | Plant),
-  data = FineRoot
-)
+mod <- cpglmm(formula = RLD ~ Stock + Spacing + (1 | Plant), data = FineRoot)
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -999,19 +996,19 @@ ggstatsplot::ggcoefstats(
 set.seed(18)
 library(PROreg)
 
-# We simulate a covariate, fix the paramters of the beta-binomial 
+# We simulate a covariate, fix the paramters of the beta-binomial
 # distribution and simulate a response variable.
 # Then we apply the model, and try to get the same values.
 k <- 1000
 m <- 10
-x <- rnorm(k,5,3)
-beta <- c(-10,2)
-p <- 1/(1+exp(-(beta[1]+beta[2]*x)))
+x <- rnorm(k, 5, 3)
+beta <- c(-10, 2)
+p <- 1 / (1 + exp(-(beta[1] + beta[2] * x)))
 phi <- 1.2
-y <- rBB(k,m,p,phi)
+y <- rBB(k, m, p, phi)
 
 # model
-model <- BBreg(y~x,m)
+model <- BBreg(y ~ x, m)
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -1572,11 +1569,13 @@ ggstatsplot::ggcoefstats(
 ## multinomial logistic regression models (`multinom`)
 
 ```{r multinom, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 6}
-# model
+# setup
 set.seed(123)
 library(nnet)
 library(MASS)
 utils::example(topic = birthwt, echo = FALSE)
+
+# model
 bwt.mu <- nnet::multinom(formula = low ~ ., data = bwt, trace = FALSE)
 
 # plot
@@ -1638,11 +1637,7 @@ dclus1 <-
 dclus1 <- update(dclus1, mealcat = cut(meals, c(0, 25, 50, 75, 100)))
 
 # model
-m <-
-  survey::svyolr(
-    formula = mealcat ~ avg.ed + mobility + stype,
-    design = dclus1
-  )
+m <- survey::svyolr(formula = mealcat ~ avg.ed + mobility + stype, design = dclus1)
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -2401,11 +2396,12 @@ set.seed(123)
 library(mgcv)
 
 # model
-g <- mgcv::gam(
-  formula = mpg ~ s(hp) + am + qsec,
-  family = stats::quasi(),
-  data = mtcars
-)
+g <-
+  mgcv::gam(
+    formula = mpg ~ s(hp) + am + qsec,
+    family = stats::quasi(),
+    data = mtcars
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -2797,21 +2793,21 @@ hvd <- heart.valve[!is.na(heart.valve$log.grad) &
   heart.valve$num <= 50, ]
 
 # model
-fit <- 
+fit <-
   joineRML::mjoint(
-  formLongFixed = list(
-    "grad" = log.grad ~ time + sex + hs,
-    "lvmi" = log.lvmi ~ time + sex
-  ),
-  formLongRandom = list(
-    "grad" = ~ 1 | num,
-    "lvmi" = ~ time | num
-  ),
-  formSurv = Surv(fuyrs, status) ~ age,
-  data = hvd,
-  inits = list("gamma" = c(0.11, 1.51, 0.80)),
-  timeVar = "time"
-)
+    formLongFixed = list(
+      "grad" = log.grad ~ time + sex + hs,
+      "lvmi" = log.lvmi ~ time + sex
+    ),
+    formLongRandom = list(
+      "grad" = ~ 1 | num,
+      "lvmi" = ~ time | num
+    ),
+    formSurv = Surv(fuyrs, status) ~ age,
+    data = hvd,
+    inits = list("gamma" = c(0.11, 1.51, 0.80)),
+    timeVar = "time"
+  )
 
 # extract the survival fixed effects and plot them
 ggstatsplot::ggcoefstats(
@@ -3051,11 +3047,12 @@ library(flexsurv)
 data(ovarian)
 
 # compare generalized gamma fit with Weibull
-fitg <- flexsurvreg(
-  formula = Surv(futime, fustat) ~ 1,
-  data = ovarian,
-  dist = "gengamma"
-)
+fitg <-
+  flexsurvreg(
+    formula = Surv(futime, fustat) ~ 1,
+    data = ovarian,
+    dist = "gengamma"
+  )
 
 ggstatsplot::ggcoefstats(
   x = fitg,
@@ -3099,10 +3096,11 @@ data("WageData")
 wages <- panelr::panel_data(data = WageData, id = id, wave = t)
 
 # model
-model <- panelr::wbgee(
-  formula = lwage ~ lag(union) + wks | blk + fem | blk * lag(union),
-  data = wages
-)
+model <-
+  panelr::wbgee(
+    formula = lwage ~ lag(union) + wks | blk + fem | blk * lag(union),
+    data = wages
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -3110,6 +3108,61 @@ ggstatsplot::ggcoefstats(
   exclude.intercept = FALSE,
   conf.level = 0.99,
   title = "panel regression models fit \nvia generalized estimating equations"
+)
+```
+
+## Censored Regression with Conditional Heteroscedasticy (`crch`)
+
+```{r crch, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 8}
+# setup
+set.seed(123)
+library(crch)
+data("RainIbk")
+
+# mean and standard deviation of square root transformed ensemble forecasts
+RainIbk$sqrtensmean <- apply(sqrt(RainIbk[, grep("^rainfc", names(RainIbk))]), 1, mean)
+RainIbk$sqrtenssd <- apply(sqrt(RainIbk[, grep("^rainfc", names(RainIbk))]), 1, sd)
+
+# fit linear regression model with Gaussian distribution
+CRCH <-
+  crch(
+    formula = sqrt(rain) ~ sqrtensmean,
+    data = RainIbk,
+    dist = "gaussian"
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = CRCH,
+  title = "Censored Regression with Conditional Heteroscedasticy"
+)
+```
+
+## Marginal Models For Correlated Ordinal Multinomial Responses (`LORgee`)
+
+```{r LORgee, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 8}
+# setup
+set.seed(123)
+library(multgee)
+data("arthritis")
+
+# model
+fit <-
+  ordLORgee(
+    formula = y ~ factor(time) + factor(trt) + factor(baseline),
+    link = "logit",
+    id = id,
+    repeated = time,
+    data = arthritis,
+    LORstr = "uniform"
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = fit,
+  title = "Marginal Models For Correlated Ordinal Multinomial Responses",
+  package = "ggthemes",
+  palette = "Classic 20"
 )
 ```
 

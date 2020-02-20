@@ -2,7 +2,7 @@
 #' @name ggcoefstats_label_maker
 #'
 #' @param ... Currently ignored.
-#' @param tidy_df Tidy dataframe from `broomExtra::tidy`.
+#' @param tidy_df Tidy dataframe from `ipmisc::tidy`.
 #' @param glance_df Glance model summary dataframe from `broom::glance`
 #'   (default: `NULL`). This is optional argument. If provide, the `glance`
 #'   summary will be used to write `caption` for the final plot.
@@ -23,7 +23,7 @@
 #'
 #' #------------------------- models with *t*-statistic ------------------
 #' # model with t-statistic
-#' ggstatsplot:::ggcoefstats_label_maker(x = broomExtra::tidy(stats::lm(
+#' ggstatsplot:::ggcoefstats_label_maker(x = ipmisc::tidy(stats::lm(
 #'   data = mtcars, formula = wt ~ cyl * mpg
 #' )), statistic = "t")
 #'
@@ -50,7 +50,7 @@
 #' # model with t-statistic
 #' ggstatsplot:::ggcoefstats_label_maker(
 #'   x = mod,
-#'   tidy_df = broomExtra::tidy(
+#'   tidy_df = ipmisc::tidy(
 #'     x = mod,
 #'     conf.int = TRUE,
 #'     conf.level = 0.95
@@ -73,7 +73,7 @@
 #' )
 #'
 #' # creating tidy dataframe with label column
-#' ggstatsplot:::ggcoefstats_label_maker(x = mod, tidy_df = broomExtra::tidy(mod))
+#' ggstatsplot:::ggcoefstats_label_maker(x = mod, tidy_df = ipmisc::tidy(mod))
 #'
 #' #------------------------- models with *f*-statistic --------------------
 #' # creating a model object

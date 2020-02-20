@@ -18,7 +18,6 @@ ggdotplotstats(
   test.value = 0,
   bf.prior = 0.707,
   bf.message = TRUE,
-  robust.estimator = "onestep",
   effsize.type = "g",
   effsize.noncentral = TRUE,
   conf.level = 0.95,
@@ -80,10 +79,6 @@ prior width to use in calculating Bayes Factors.}
 \item{bf.message}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
 parametric test} (Default: \code{TRUE}).}
-
-\item{robust.estimator}{If \code{type = "robust"}, a robust estimator to be used
-(\code{"onestep"} (Default), \code{"mom"}, or \code{"median"}). For more, see
-\code{?WRS2::onesampb}.}
 
 \item{effsize.type}{Type of effect size needed for \emph{parametric} tests. The
 argument can be \code{"biased"} (\code{"d"} for Cohen's \emph{d}) or \code{"unbiased"}

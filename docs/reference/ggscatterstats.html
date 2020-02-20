@@ -355,7 +355,9 @@ to <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplo
       <th>point.width.jitter, point.height.jitter</th>
       <td><p>Degree of jitter in <code>x</code> and <code>y</code>
 direction, respectively. Defaults to <code>0</code> (0%) of the resolution of the
-data.</p></td>
+data. Note that the jitter should not be specified in the <code>point.args</code>
+because this information will be passed to two different <code>geom</code>s: one
+displaying the points and the other displaying the labels for these points.</p></td>
     </tr>
     <tr>
       <th>marginal</th>

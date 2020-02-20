@@ -65,18 +65,6 @@
   "softwareSuggestions": [
     {
       "@type": "SoftwareApplication",
-      "identifier": "broomExtra",
-      "name": "broomExtra",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=broomExtra"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "forcats",
       "name": "forcats",
       "provider": {

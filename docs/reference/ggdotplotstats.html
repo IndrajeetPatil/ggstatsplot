@@ -218,7 +218,6 @@ included in the plot as a subtitle.</p>
   <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>robust.estimator</span> <span class='kw'>=</span> <span class='st'>"onestep"</span>,
   <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"g"</span>,
   <span class='kw'>effsize.noncentral</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
@@ -308,12 +307,6 @@ prior width to use in calculating Bayes Factors.</p></td>
       <td><p>Logical that decides whether to display Bayes Factor in
 favor of the <em>null</em> hypothesis. This argument is relevant only <strong>for
 parametric test</strong> (Default: <code>TRUE</code>).</p></td>
-    </tr>
-    <tr>
-      <th>robust.estimator</th>
-      <td><p>If <code>type = "robust"</code>, a robust estimator to be used
-(<code>"onestep"</code> (Default), <code>"mom"</code>, or <code>"median"</code>). For more, see
-<code><a href='https://rdrr.io/pkg/WRS2/man/onesampb.html'>?WRS2::onesampb</a></code>.</p></td>
     </tr>
     <tr>
       <th>effsize.type</th>

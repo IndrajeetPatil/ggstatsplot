@@ -74,9 +74,6 @@ or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accep
 (Default: \code{0}).}
     \item{\code{bf.prior}}{A numeric value between \code{0.5} and \code{2} (default \code{0.707}), the
 prior width to use in calculating Bayes Factors.}
-    \item{\code{robust.estimator}}{If \code{type = "robust"}, a robust estimator to be used
-(\code{"onestep"} (Default), \code{"mom"}, or \code{"median"}). For more, see
-\code{?WRS2::onesampb}.}
     \item{\code{effsize.type}}{Type of effect size needed for \emph{parametric} tests. The
 argument can be \code{"biased"} (\code{"d"} for Cohen's \emph{d}) or \code{"unbiased"}
 (\code{"g"} Hedge's \emph{g} for \strong{t-test}). The default is \code{"g"}.}
