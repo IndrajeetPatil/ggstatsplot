@@ -56,8 +56,8 @@ MAJOR CHANGES
 
 MINOR CHANGES
 
-  - More models supported in `ggcoefstats`: `BBreg`, `cglm`, `DirichReg`,
-    `zeroinfl`.
+  - More models supported in `ggcoefstats`: `BBreg`, `cglm`, `crch`,
+    `DirichReg`, `LORgee`, `zeroinfl`.
   - Following functions are now re-exported from `ipmisc`: `bartlett_message`,
     `normality_message`. A few other internal data wrangling functions now
     reside in `ipmisc`.

@@ -286,18 +286,22 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
       <td><p>Arguments passed on to <code><a href='ggscatterstats.html'>ggscatterstats</a></code></p><dl class='dl-horizontal'>
     <dt><code>point.label.args</code></dt><dd><p>A list of additional aesthetic arguments to be passed
 to <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geom used to display the labels.</p></dd>
-    <dt><code>point.width.jitter</code></dt><dd><p>Degree of jitter in <code>x</code> and <code>y</code>
-direction, respectively. Defaults to <code>0</code> (0%) of the resolution of the
-data.</p></dd>
-    <dt><code>point.height.jitter</code></dt><dd><p>Degree of jitter in <code>x</code> and <code>y</code>
-direction, respectively. Defaults to <code>0</code> (0%) of the resolution of the
-data.</p></dd>
     <dt><code>smooth.line.args</code></dt><dd><p>A list of additional aesthetic arguments to be passed
 to <code><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>ggplot2::geom_smooth</a></code> geom used to display the regression line.</p></dd>
     <dt><code>point.args</code></dt><dd><p>A list of additional aesthetic arguments to be passed
 to <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point</a></code> geom used to display the raw data points.</p></dd>
     <dt><code>marginal</code></dt><dd><p>Decides whether <code><a href='https://rdrr.io/pkg/ggExtra/man/ggMarginal.html'>ggExtra::ggMarginal()</a></code> plots will be
 displayed; the default is <code>TRUE</code>.</p></dd>
+    <dt><code>point.width.jitter</code></dt><dd><p>Degree of jitter in <code>x</code> and <code>y</code>
+direction, respectively. Defaults to <code>0</code> (0%) of the resolution of the
+data. Note that the jitter should not be specified in the <code>point.args</code>
+because this information will be passed to two different <code>geom</code>s: one
+displaying the points and the other displaying the labels for these points.</p></dd>
+    <dt><code>point.height.jitter</code></dt><dd><p>Degree of jitter in <code>x</code> and <code>y</code>
+direction, respectively. Defaults to <code>0</code> (0%) of the resolution of the
+data. Note that the jitter should not be specified in the <code>point.args</code>
+because this information will be passed to two different <code>geom</code>s: one
+displaying the points and the other displaying the labels for these points.</p></dd>
     <dt><code>marginal.type</code></dt><dd><p>Type of marginal distribution to be plotted on the axes
 (<code>"histogram"</code>, <code>"boxplot"</code>, <code>"density"</code>, <code>"violin"</code>, <code>"densigram"</code>).</p></dd>
     <dt><code>marginal.size</code></dt><dd><p>Integer describing the relative size of the marginal

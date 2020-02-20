@@ -121,7 +121,9 @@ to \code{ggplot2::geom_point} geom used to display the raw data points.}
 
 \item{point.width.jitter, point.height.jitter}{Degree of jitter in \code{x} and \code{y}
 direction, respectively. Defaults to \code{0} (0\%) of the resolution of the
-data.}
+data. Note that the jitter should not be specified in the \code{point.args}
+because this information will be passed to two different \code{geom}s: one
+displaying the points and the other displaying the labels for these points.}
 
 \item{marginal}{Decides whether \code{ggExtra::ggMarginal()} plots will be
 displayed; the default is \code{TRUE}.}

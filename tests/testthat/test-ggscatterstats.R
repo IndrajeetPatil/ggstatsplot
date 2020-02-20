@@ -563,7 +563,7 @@ testthat::test_that(
         data = dplyr::starwars,
         x = mass,
         y = height,
-        results.subtitle = FALSE,
+        results.subtitle = TRUE,
         method = "gam",
         marginal = FALSE
       )
@@ -573,7 +573,7 @@ testthat::test_that(
         data = dplyr::starwars,
         x = mass,
         y = height,
-        results.subtitle = FALSE,
+        results.subtitle = TRUE,
         method = MASS::rlm,
         marginal = FALSE
       )

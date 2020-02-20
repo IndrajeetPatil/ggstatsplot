@@ -339,8 +339,7 @@ ggcoefstats <- function(x,
   # if the object is not a dataframe, check if summary caption is to be displayed
   if (isTRUE(insight::is_model(x))) {
     # if glance is not available, inform the user
-    if (is.null(glance_df) ||
-      !all(c("aic", "bic") %in% tolower(names(glance_df)))) {
+    if (is.null(glance_df) || !all(c("aic", "bic") %in% tolower(names(glance_df)))) {
       # inform the user
       message(cat(
         ipmisc::green("Note: "),
@@ -506,7 +505,7 @@ ggcoefstats <- function(x,
           by = c("term" = "Parameter")
         ) %>%
         dplyr::filter(.data = ., !is.na(estimate)) %>%
-        as_tibble(x = .),
+        as_tibble(.),
       error = function(e) tidy_df
     )
   }
@@ -814,7 +813,7 @@ ggcoefstats <- function(x,
 
       # computing the number of colors in a given palette
       palette_df <-
-        as_tibble(x = paletteer::palettes_d_names) %>%
+        as_tibble(paletteer::palettes_d_names) %>%
         dplyr::filter(.data = ., package == !!package, palette == !!palette) %>%
         dplyr::select(.data = ., length)
 

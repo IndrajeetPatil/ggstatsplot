@@ -13,15 +13,17 @@
 #'   expression (e.g., `y < 4 & z < 20`).
 #' @param point.label.args A list of additional aesthetic arguments to be passed
 #'   to `ggrepel::geom_label_repel` geom used to display the labels.
-#' @param point.width.jitter,point.height.jitter Degree of jitter in `x` and `y`
-#'   direction, respectively. Defaults to `0` (0%) of the resolution of the
-#'   data.
 #' @param smooth.line.args A list of additional aesthetic arguments to be passed
 #'   to `ggplot2::geom_smooth` geom used to display the regression line.
 #' @param point.args A list of additional aesthetic arguments to be passed
 #'   to `ggplot2::geom_point` geom used to display the raw data points.
 #' @param marginal Decides whether `ggExtra::ggMarginal()` plots will be
 #'   displayed; the default is `TRUE`.
+#' @param point.width.jitter,point.height.jitter Degree of jitter in `x` and `y`
+#'   direction, respectively. Defaults to `0` (0%) of the resolution of the
+#'   data. Note that the jitter should not be specified in the `point.args`
+#'   because this information will be passed to two different `geom`s: one
+#'   displaying the points and the other displaying the labels for these points.
 #' @param marginal.type Type of marginal distribution to be plotted on the axes
 #'   (`"histogram"`, `"boxplot"`, `"density"`, `"violin"`, `"densigram"`).
 #' @param marginal.size Integer describing the relative size of the marginal
@@ -294,18 +296,12 @@ ggscatterstats <- function(data,
   #----------------------- adding centrality parameters --------------------
 
   # computing summary statistics needed for displaying labels
-  x_mean <- mean(x = data %>% dplyr::pull({{ x }}), na.rm = TRUE)
-  x_median <- median(x = data %>% dplyr::pull({{ x }}), na.rm = TRUE)
-  y_mean <- mean(x = data %>% dplyr::pull({{ y }}), na.rm = TRUE)
-  y_median <- median(x = data %>% dplyr::pull({{ y }}), na.rm = TRUE)
-  x_label_pos <- median(
-    x = ggplot2::layer_scales(plot)$x$range$range,
-    na.rm = TRUE
-  )
-  y_label_pos <- median(
-    x = ggplot2::layer_scales(plot)$y$range$range,
-    na.rm = TRUE
-  )
+  x_mean <- mean(data %>% dplyr::pull({{ x }}), na.rm = TRUE)
+  x_median <- median(data %>% dplyr::pull({{ x }}), na.rm = TRUE)
+  y_mean <- mean(data %>% dplyr::pull({{ y }}), na.rm = TRUE)
+  y_median <- median(data %>% dplyr::pull({{ y }}), na.rm = TRUE)
+  x_label_pos <- median(ggplot2::layer_scales(plot)$x$range$range, na.rm = TRUE)
+  y_label_pos <- median(ggplot2::layer_scales(plot)$y$range$range, na.rm = TRUE)
 
   # adding vertical and horizontal lines and attaching labels
   if (centrality.parameter != "none") {

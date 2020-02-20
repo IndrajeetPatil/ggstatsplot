@@ -141,7 +141,6 @@ ggstatsplot::grouped_gghistostats(
   title.prefix = "Gender", # prefix for the fixed title
   k = 1, # number of decimal places in results
   type = "r", # robust test: one-sample percentile bootstrap
-  robust.estimator = "mom", # changing the robust estimator used
   test.value = 20, # test value against which sample mean is to be compared
   test.value.line = TRUE, # show a vertical line at `test.value`
   bar.measure = "density", # density

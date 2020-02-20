@@ -468,7 +468,10 @@ of <em>p</em>-values.</p>
   <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>sleep_total</span>:<span class='no'>bodywt</span>,
   <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"BH"</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"ci"</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 15 x 5</span><span>
+)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>In the correlation matrix,
+#&gt; the upper triangle: p-values adjusted for multiple comparisons
+#&gt; the lower triangle: unadjusted p-values.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 15 x 5</span><span>
 #&gt;    pair                      lower      r   upper         p
 #&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'> 1</span><span> sleep_total-sleep_rem    0.617   0.752  0.844  2.92</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 12</span><span>
