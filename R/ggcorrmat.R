@@ -244,11 +244,6 @@ ggcorrmat <- function(data,
     )))
   }
 
-  # if p-values were adjusted, notify how they are going to be displayed
-  if (p.adjust.method != "none" && messages && corr.method != "robust") {
-    ggcorrmat_matrix_message()
-  }
-
   # early stats return
   if (output != "plot") {
     return(
@@ -376,6 +371,11 @@ ggcorrmat <- function(data,
 
   # adding `ggstatsplot` theme for correlation matrix
   if (isTRUE(ggstatsplot.layer)) plot <- plot + theme_corrmat()
+
+  # if p-values were adjusted, notify how they are going to be displayed
+  if (p.adjust.method != "none" && messages && corr.method != "robust") {
+    ggcorrmat_matrix_message()
+  }
 
   # return the desired result
   return(plot)

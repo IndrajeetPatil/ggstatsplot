@@ -24,7 +24,7 @@ coefficients or other quantities of interest). Other optional columns are
 important that all \code{term} names should be unique. Function internally uses
 \code{broom::tidy} or \code{parameters::model_parameters} to get a tidy dataframe.}
 
-\item{tidy_df}{Tidy dataframe from \code{ipmisc::tidy}.}
+\item{tidy_df}{Tidy dataframe from \code{broomExtra::tidy}.}
 
 \item{glance_df}{Glance model summary dataframe from \code{broom::glance}
 (default: \code{NULL}). This is optional argument. If provide, the \code{glance}
@@ -62,7 +62,7 @@ set.seed(123)
 
 #------------------------- models with *t*-statistic ------------------
 # model with t-statistic
-ggstatsplot:::ggcoefstats_label_maker(x = ipmisc::tidy(stats::lm(
+ggstatsplot:::ggcoefstats_label_maker(x = broomExtra::tidy(stats::lm(
   data = mtcars, formula = wt ~ cyl * mpg
 )), statistic = "t")
 
@@ -89,7 +89,7 @@ mod <-
 # model with t-statistic
 ggstatsplot:::ggcoefstats_label_maker(
   x = mod,
-  tidy_df = ipmisc::tidy(
+  tidy_df = broomExtra::tidy(
     x = mod,
     conf.int = TRUE,
     conf.level = 0.95
@@ -112,7 +112,7 @@ mod <- stats::glm(
 )
 
 # creating tidy dataframe with label column
-ggstatsplot:::ggcoefstats_label_maker(x = mod, tidy_df = ipmisc::tidy(mod))
+ggstatsplot:::ggcoefstats_label_maker(x = mod, tidy_df = broomExtra::tidy(mod))
 
 #------------------------- models with *f*-statistic --------------------
 # creating a model object

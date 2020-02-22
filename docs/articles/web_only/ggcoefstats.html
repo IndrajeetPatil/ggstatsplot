@@ -152,7 +152,7 @@
       <h1>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-02-20</h4>
+            <h4 class="date">2020-02-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -524,160 +524,107 @@
 <span id="cb11-2"><a href="#cb11-2"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggstatsplot)</span>
 <span id="cb11-3"><a href="#cb11-3"></a></span>
 <span id="cb11-4"><a href="#cb11-4"></a><span class="co"># dataframe #1</span></span>
-<span id="cb11-5"><a href="#cb11-5"></a>(</span>
-<span id="cb11-6"><a href="#cb11-6"></a>  df.counts &lt;-</span>
-<span id="cb11-7"><a href="#cb11-7"></a><span class="st">    </span>base<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(</span>
-<span id="cb11-8"><a href="#cb11-8"></a>      <span class="dt">treatment =</span> <span class="kw"><a href="https://rdrr.io/r/base/gl.html">gl</a></span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">k =</span> <span class="dv">3</span>, <span class="dt">length =</span> <span class="dv">9</span>),</span>
-<span id="cb11-9"><a href="#cb11-9"></a>      <span class="dt">outcome =</span> <span class="kw"><a href="https://rdrr.io/r/base/gl.html">gl</a></span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">k =</span> <span class="dv">1</span>, <span class="dt">length =</span> <span class="dv">9</span>),</span>
-<span id="cb11-10"><a href="#cb11-10"></a>      <span class="dt">counts =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">18</span>, <span class="dv">17</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">13</span>, <span class="dv">12</span>)</span>
-<span id="cb11-11"><a href="#cb11-11"></a>    ) <span class="op">%&gt;%</span></span>
-<span id="cb11-12"><a href="#cb11-12"></a><span class="st">    </span>tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(<span class="dt">x =</span> .)</span>
-<span id="cb11-13"><a href="#cb11-13"></a>)</span>
-<span id="cb11-14"><a href="#cb11-14"></a><span class="co">#&gt; # A tibble: 9 x 3</span></span>
-<span id="cb11-15"><a href="#cb11-15"></a><span class="co">#&gt;   treatment outcome counts</span></span>
-<span id="cb11-16"><a href="#cb11-16"></a><span class="co">#&gt;   &lt;fct&gt;     &lt;fct&gt;    &lt;dbl&gt;</span></span>
-<span id="cb11-17"><a href="#cb11-17"></a><span class="co">#&gt; 1 1         1           18</span></span>
-<span id="cb11-18"><a href="#cb11-18"></a><span class="co">#&gt; 2 1         2           17</span></span>
-<span id="cb11-19"><a href="#cb11-19"></a><span class="co">#&gt; 3 1         3           15</span></span>
-<span id="cb11-20"><a href="#cb11-20"></a><span class="co">#&gt; 4 2         1           20</span></span>
-<span id="cb11-21"><a href="#cb11-21"></a><span class="co">#&gt; 5 2         2           10</span></span>
-<span id="cb11-22"><a href="#cb11-22"></a><span class="co">#&gt; 6 2         3           20</span></span>
-<span id="cb11-23"><a href="#cb11-23"></a><span class="co">#&gt; 7 3         1           25</span></span>
-<span id="cb11-24"><a href="#cb11-24"></a><span class="co">#&gt; 8 3         2           13</span></span>
-<span id="cb11-25"><a href="#cb11-25"></a><span class="co">#&gt; 9 3         3           12</span></span>
-<span id="cb11-26"><a href="#cb11-26"></a></span>
-<span id="cb11-27"><a href="#cb11-27"></a><span class="co"># dataframe #2</span></span>
-<span id="cb11-28"><a href="#cb11-28"></a>(df.clotting &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(</span>
-<span id="cb11-29"><a href="#cb11-29"></a>  <span class="dt">u =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">60</span>, <span class="dv">80</span>, <span class="dv">100</span>),</span>
-<span id="cb11-30"><a href="#cb11-30"></a>  <span class="dt">lot1 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">118</span>, <span class="dv">58</span>, <span class="dv">42</span>, <span class="dv">35</span>, <span class="dv">27</span>, <span class="dv">25</span>, <span class="dv">21</span>, <span class="dv">19</span>, <span class="dv">18</span>),</span>
-<span id="cb11-31"><a href="#cb11-31"></a>  <span class="dt">lot2 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">69</span>, <span class="dv">35</span>, <span class="dv">26</span>, <span class="dv">21</span>, <span class="dv">18</span>, <span class="dv">16</span>, <span class="dv">13</span>, <span class="dv">12</span>, <span class="dv">12</span>)</span>
-<span id="cb11-32"><a href="#cb11-32"></a>) <span class="op">%&gt;%</span></span>
-<span id="cb11-33"><a href="#cb11-33"></a><span class="st">  </span>tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(<span class="dt">x =</span> .))</span>
-<span id="cb11-34"><a href="#cb11-34"></a><span class="co">#&gt; # A tibble: 9 x 3</span></span>
-<span id="cb11-35"><a href="#cb11-35"></a><span class="co">#&gt;       u  lot1  lot2</span></span>
-<span id="cb11-36"><a href="#cb11-36"></a><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span id="cb11-37"><a href="#cb11-37"></a><span class="co">#&gt; 1     5   118    69</span></span>
-<span id="cb11-38"><a href="#cb11-38"></a><span class="co">#&gt; 2    10    58    35</span></span>
-<span id="cb11-39"><a href="#cb11-39"></a><span class="co">#&gt; 3    15    42    26</span></span>
-<span id="cb11-40"><a href="#cb11-40"></a><span class="co">#&gt; 4    20    35    21</span></span>
-<span id="cb11-41"><a href="#cb11-41"></a><span class="co">#&gt; 5    30    27    18</span></span>
-<span id="cb11-42"><a href="#cb11-42"></a><span class="co">#&gt; 6    40    25    16</span></span>
-<span id="cb11-43"><a href="#cb11-43"></a><span class="co">#&gt; 7    60    21    13</span></span>
-<span id="cb11-44"><a href="#cb11-44"></a><span class="co">#&gt; 8    80    19    12</span></span>
-<span id="cb11-45"><a href="#cb11-45"></a><span class="co">#&gt; 9   100    18    12</span></span>
-<span id="cb11-46"><a href="#cb11-46"></a></span>
-<span id="cb11-47"><a href="#cb11-47"></a><span class="co"># dataframe #3</span></span>
-<span id="cb11-48"><a href="#cb11-48"></a>x1 &lt;-<span class="st"> </span>stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">50</span>)</span>
-<span id="cb11-49"><a href="#cb11-49"></a>y1 &lt;-<span class="st"> </span>stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/Poisson.html">rpois</a></span>(<span class="dt">n =</span> <span class="dv">50</span>, <span class="dt">lambda =</span> <span class="kw"><a href="https://rdrr.io/r/base/Log.html">exp</a></span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>x1))</span>
-<span id="cb11-50"><a href="#cb11-50"></a>(df<span class="fl">.3</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">x =</span> x1, <span class="dt">y =</span> y1) <span class="op">%&gt;%</span></span>
-<span id="cb11-51"><a href="#cb11-51"></a><span class="st">  </span>tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(<span class="dt">x =</span> .))</span>
-<span id="cb11-52"><a href="#cb11-52"></a><span class="co">#&gt; # A tibble: 50 x 2</span></span>
-<span id="cb11-53"><a href="#cb11-53"></a><span class="co">#&gt;         x     y</span></span>
-<span id="cb11-54"><a href="#cb11-54"></a><span class="co">#&gt;     &lt;dbl&gt; &lt;int&gt;</span></span>
-<span id="cb11-55"><a href="#cb11-55"></a><span class="co">#&gt;  1 -1.03      2</span></span>
-<span id="cb11-56"><a href="#cb11-56"></a><span class="co">#&gt;  2 -0.729     0</span></span>
-<span id="cb11-57"><a href="#cb11-57"></a><span class="co">#&gt;  3 -0.625     1</span></span>
-<span id="cb11-58"><a href="#cb11-58"></a><span class="co">#&gt;  4 -1.69      0</span></span>
-<span id="cb11-59"><a href="#cb11-59"></a><span class="co">#&gt;  5  0.838     4</span></span>
-<span id="cb11-60"><a href="#cb11-60"></a><span class="co">#&gt;  6  0.153     4</span></span>
-<span id="cb11-61"><a href="#cb11-61"></a><span class="co">#&gt;  7 -1.14      2</span></span>
-<span id="cb11-62"><a href="#cb11-62"></a><span class="co">#&gt;  8  1.25      9</span></span>
-<span id="cb11-63"><a href="#cb11-63"></a><span class="co">#&gt;  9  0.426     3</span></span>
-<span id="cb11-64"><a href="#cb11-64"></a><span class="co">#&gt; 10 -0.295     1</span></span>
-<span id="cb11-65"><a href="#cb11-65"></a><span class="co">#&gt; # ... with 40 more rows</span></span>
-<span id="cb11-66"><a href="#cb11-66"></a></span>
-<span id="cb11-67"><a href="#cb11-67"></a><span class="co"># dataframe #4</span></span>
-<span id="cb11-68"><a href="#cb11-68"></a>x2 &lt;-<span class="st"> </span>stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">50</span>)</span>
-<span id="cb11-69"><a href="#cb11-69"></a>y2 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span>(</span>
-<span id="cb11-70"><a href="#cb11-70"></a>  <span class="dt">n =</span> <span class="dv">50</span>,</span>
-<span id="cb11-71"><a href="#cb11-71"></a>  <span class="dt">size =</span> <span class="dv">1</span>,</span>
-<span id="cb11-72"><a href="#cb11-72"></a>  <span class="dt">prob =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/Logistic.html">plogis</a></span>(x2)</span>
-<span id="cb11-73"><a href="#cb11-73"></a>)</span>
-<span id="cb11-74"><a href="#cb11-74"></a></span>
-<span id="cb11-75"><a href="#cb11-75"></a>(df<span class="fl">.4</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">x =</span> x2, <span class="dt">y =</span> y2) <span class="op">%&gt;%</span></span>
-<span id="cb11-76"><a href="#cb11-76"></a><span class="st">  </span>tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(<span class="dt">x =</span> .))</span>
-<span id="cb11-77"><a href="#cb11-77"></a><span class="co">#&gt; # A tibble: 50 x 2</span></span>
-<span id="cb11-78"><a href="#cb11-78"></a><span class="co">#&gt;          x     y</span></span>
-<span id="cb11-79"><a href="#cb11-79"></a><span class="co">#&gt;      &lt;dbl&gt; &lt;int&gt;</span></span>
-<span id="cb11-80"><a href="#cb11-80"></a><span class="co">#&gt;  1 -1.03       0</span></span>
-<span id="cb11-81"><a href="#cb11-81"></a><span class="co">#&gt;  2 -0.710      1</span></span>
-<span id="cb11-82"><a href="#cb11-82"></a><span class="co">#&gt;  3  0.257      0</span></span>
-<span id="cb11-83"><a href="#cb11-83"></a><span class="co">#&gt;  4 -0.247      0</span></span>
-<span id="cb11-84"><a href="#cb11-84"></a><span class="co">#&gt;  5 -0.348      1</span></span>
-<span id="cb11-85"><a href="#cb11-85"></a><span class="co">#&gt;  6 -0.952      1</span></span>
-<span id="cb11-86"><a href="#cb11-86"></a><span class="co">#&gt;  7 -0.0450     1</span></span>
-<span id="cb11-87"><a href="#cb11-87"></a><span class="co">#&gt;  8 -0.785      0</span></span>
-<span id="cb11-88"><a href="#cb11-88"></a><span class="co">#&gt;  9 -1.67       0</span></span>
-<span id="cb11-89"><a href="#cb11-89"></a><span class="co">#&gt; 10 -0.380      0</span></span>
-<span id="cb11-90"><a href="#cb11-90"></a><span class="co">#&gt; # ... with 40 more rows</span></span>
-<span id="cb11-91"><a href="#cb11-91"></a></span>
-<span id="cb11-92"><a href="#cb11-92"></a><span class="co"># combining all plots in a single plot</span></span>
-<span id="cb11-93"><a href="#cb11-93"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</span>
-<span id="cb11-94"><a href="#cb11-94"></a>  <span class="co"># Family: Poisson</span></span>
-<span id="cb11-95"><a href="#cb11-95"></a>  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</span>
-<span id="cb11-96"><a href="#cb11-96"></a>    <span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(</span>
-<span id="cb11-97"><a href="#cb11-97"></a>      <span class="dt">formula =</span> counts <span class="op">~</span><span class="st"> </span>outcome <span class="op">+</span><span class="st"> </span>treatment,</span>
-<span id="cb11-98"><a href="#cb11-98"></a>      <span class="dt">data =</span> df.counts,</span>
-<span id="cb11-99"><a href="#cb11-99"></a>      <span class="dt">family =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/family.html">poisson</a></span>(<span class="dt">link =</span> <span class="st">"log"</span>)</span>
-<span id="cb11-100"><a href="#cb11-100"></a>    ),</span>
-<span id="cb11-101"><a href="#cb11-101"></a>    <span class="dt">title =</span> <span class="st">"Family: Poisson"</span>,</span>
-<span id="cb11-102"><a href="#cb11-102"></a>    <span class="dt">stats.label.color =</span> <span class="st">"black"</span></span>
-<span id="cb11-103"><a href="#cb11-103"></a>  ),</span>
-<span id="cb11-104"><a href="#cb11-104"></a>  <span class="co"># Family: Gamma</span></span>
-<span id="cb11-105"><a href="#cb11-105"></a>  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</span>
-<span id="cb11-106"><a href="#cb11-106"></a>    <span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(</span>
-<span id="cb11-107"><a href="#cb11-107"></a>      <span class="dt">formula =</span> lot1 <span class="op">~</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(u),</span>
-<span id="cb11-108"><a href="#cb11-108"></a>      <span class="dt">data =</span> df.clotting,</span>
-<span id="cb11-109"><a href="#cb11-109"></a>      <span class="dt">family =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/family.html">Gamma</a></span>(<span class="dt">link =</span> <span class="st">"inverse"</span>)</span>
-<span id="cb11-110"><a href="#cb11-110"></a>    ),</span>
-<span id="cb11-111"><a href="#cb11-111"></a>    <span class="dt">title =</span> <span class="st">"Family: Gamma"</span>,</span>
-<span id="cb11-112"><a href="#cb11-112"></a>    <span class="dt">stats.label.color =</span> <span class="st">"black"</span></span>
-<span id="cb11-113"><a href="#cb11-113"></a>  ),</span>
-<span id="cb11-114"><a href="#cb11-114"></a>  <span class="co"># Family: Quasi</span></span>
-<span id="cb11-115"><a href="#cb11-115"></a>  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</span>
-<span id="cb11-116"><a href="#cb11-116"></a>    <span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(</span>
-<span id="cb11-117"><a href="#cb11-117"></a>      <span class="dt">formula =</span> y <span class="op">~</span><span class="st"> </span>x,</span>
-<span id="cb11-118"><a href="#cb11-118"></a>      <span class="dt">family =</span> <span class="kw"><a href="https://rdrr.io/r/stats/family.html">quasi</a></span>(<span class="dt">variance =</span> <span class="st">"mu"</span>, <span class="dt">link =</span> <span class="st">"log"</span>),</span>
-<span id="cb11-119"><a href="#cb11-119"></a>      <span class="dt">data =</span> df<span class="fl">.3</span></span>
-<span id="cb11-120"><a href="#cb11-120"></a>    ),</span>
-<span id="cb11-121"><a href="#cb11-121"></a>    <span class="dt">title =</span> <span class="st">"Family: Quasi"</span>,</span>
-<span id="cb11-122"><a href="#cb11-122"></a>    <span class="dt">stats.label.color =</span> <span class="st">"black"</span></span>
-<span id="cb11-123"><a href="#cb11-123"></a>  ),</span>
-<span id="cb11-124"><a href="#cb11-124"></a>  <span class="co"># Family: Quasibinomial</span></span>
-<span id="cb11-125"><a href="#cb11-125"></a>  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</span>
-<span id="cb11-126"><a href="#cb11-126"></a>    <span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(</span>
-<span id="cb11-127"><a href="#cb11-127"></a>      <span class="dt">formula =</span> y <span class="op">~</span><span class="st"> </span>x,</span>
-<span id="cb11-128"><a href="#cb11-128"></a>      <span class="dt">family =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/family.html">quasibinomial</a></span>(<span class="dt">link =</span> <span class="st">"logit"</span>),</span>
-<span id="cb11-129"><a href="#cb11-129"></a>      <span class="dt">data =</span> df<span class="fl">.4</span></span>
-<span id="cb11-130"><a href="#cb11-130"></a>    ),</span>
-<span id="cb11-131"><a href="#cb11-131"></a>    <span class="dt">title =</span> <span class="st">"Family: Quasibinomial"</span>,</span>
-<span id="cb11-132"><a href="#cb11-132"></a>    <span class="dt">stats.label.color =</span> <span class="st">"black"</span></span>
-<span id="cb11-133"><a href="#cb11-133"></a>  ),</span>
-<span id="cb11-134"><a href="#cb11-134"></a>  <span class="co"># Family: Quasipoisson</span></span>
-<span id="cb11-135"><a href="#cb11-135"></a>  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</span>
-<span id="cb11-136"><a href="#cb11-136"></a>    <span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(</span>
-<span id="cb11-137"><a href="#cb11-137"></a>      <span class="dt">formula =</span> y <span class="op">~</span><span class="st"> </span>x,</span>
-<span id="cb11-138"><a href="#cb11-138"></a>      <span class="dt">family =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/family.html">quasipoisson</a></span>(<span class="dt">link =</span> <span class="st">"log"</span>),</span>
-<span id="cb11-139"><a href="#cb11-139"></a>      <span class="dt">data =</span> df<span class="fl">.4</span></span>
-<span id="cb11-140"><a href="#cb11-140"></a>    ),</span>
-<span id="cb11-141"><a href="#cb11-141"></a>    <span class="dt">title =</span> <span class="st">"Family: Quasipoisson"</span>,</span>
-<span id="cb11-142"><a href="#cb11-142"></a>    <span class="dt">stats.label.color =</span> <span class="st">"black"</span></span>
-<span id="cb11-143"><a href="#cb11-143"></a>  ),</span>
-<span id="cb11-144"><a href="#cb11-144"></a>  <span class="co"># Family: Gaussian</span></span>
-<span id="cb11-145"><a href="#cb11-145"></a>  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</span>
-<span id="cb11-146"><a href="#cb11-146"></a>    <span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(</span>
-<span id="cb11-147"><a href="#cb11-147"></a>      <span class="dt">formula =</span> Sepal.Length <span class="op">~</span><span class="st"> </span>Species,</span>
-<span id="cb11-148"><a href="#cb11-148"></a>      <span class="dt">family =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/family.html">gaussian</a></span>(<span class="dt">link =</span> <span class="st">"identity"</span>),</span>
-<span id="cb11-149"><a href="#cb11-149"></a>      <span class="dt">data =</span> iris</span>
-<span id="cb11-150"><a href="#cb11-150"></a>    ),</span>
-<span id="cb11-151"><a href="#cb11-151"></a>    <span class="dt">title =</span> <span class="st">"Family: Gaussian"</span>,</span>
-<span id="cb11-152"><a href="#cb11-152"></a>    <span class="dt">stats.label.color =</span> <span class="st">"black"</span></span>
-<span id="cb11-153"><a href="#cb11-153"></a>  ),</span>
-<span id="cb11-154"><a href="#cb11-154"></a>  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>, <span class="st">"(e)"</span>, <span class="st">"(f)"</span>),</span>
-<span id="cb11-155"><a href="#cb11-155"></a>  <span class="dt">ncol =</span> <span class="dv">2</span>,</span>
-<span id="cb11-156"><a href="#cb11-156"></a>  <span class="dt">title.text =</span> <span class="st">"Exploring models with different `glm` families"</span>,</span>
-<span id="cb11-157"><a href="#cb11-157"></a>  <span class="dt">title.color =</span> <span class="st">"blue"</span></span>
-<span id="cb11-158"><a href="#cb11-158"></a>)</span></code></pre></div>
+<span id="cb11-5"><a href="#cb11-5"></a>df.counts &lt;-</span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="st">  </span>base<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(</span>
+<span id="cb11-7"><a href="#cb11-7"></a>    <span class="dt">treatment =</span> <span class="kw"><a href="https://rdrr.io/r/base/gl.html">gl</a></span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">k =</span> <span class="dv">3</span>, <span class="dt">length =</span> <span class="dv">9</span>),</span>
+<span id="cb11-8"><a href="#cb11-8"></a>    <span class="dt">outcome =</span> <span class="kw"><a href="https://rdrr.io/r/base/gl.html">gl</a></span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">k =</span> <span class="dv">1</span>, <span class="dt">length =</span> <span class="dv">9</span>),</span>
+<span id="cb11-9"><a href="#cb11-9"></a>    <span class="dt">counts =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">18</span>, <span class="dv">17</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">13</span>, <span class="dv">12</span>)</span>
+<span id="cb11-10"><a href="#cb11-10"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a><span class="st">  </span>tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(.)</span>
+<span id="cb11-12"><a href="#cb11-12"></a></span>
+<span id="cb11-13"><a href="#cb11-13"></a><span class="co"># dataframe #2</span></span>
+<span id="cb11-14"><a href="#cb11-14"></a>df.clotting &lt;-</span>
+<span id="cb11-15"><a href="#cb11-15"></a><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(</span>
+<span id="cb11-16"><a href="#cb11-16"></a>    <span class="dt">u =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">60</span>, <span class="dv">80</span>, <span class="dv">100</span>),</span>
+<span id="cb11-17"><a href="#cb11-17"></a>    <span class="dt">lot1 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">118</span>, <span class="dv">58</span>, <span class="dv">42</span>, <span class="dv">35</span>, <span class="dv">27</span>, <span class="dv">25</span>, <span class="dv">21</span>, <span class="dv">19</span>, <span class="dv">18</span>),</span>
+<span id="cb11-18"><a href="#cb11-18"></a>    <span class="dt">lot2 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">69</span>, <span class="dv">35</span>, <span class="dv">26</span>, <span class="dv">21</span>, <span class="dv">18</span>, <span class="dv">16</span>, <span class="dv">13</span>, <span class="dv">12</span>, <span class="dv">12</span>)</span>
+<span id="cb11-19"><a href="#cb11-19"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb11-20"><a href="#cb11-20"></a><span class="st">  </span>tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(.)</span>
+<span id="cb11-21"><a href="#cb11-21"></a></span>
+<span id="cb11-22"><a href="#cb11-22"></a><span class="co"># dataframe #3</span></span>
+<span id="cb11-23"><a href="#cb11-23"></a>x1 &lt;-<span class="st"> </span>stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">50</span>)</span>
+<span id="cb11-24"><a href="#cb11-24"></a>y1 &lt;-<span class="st"> </span>stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/Poisson.html">rpois</a></span>(<span class="dt">n =</span> <span class="dv">50</span>, <span class="dt">lambda =</span> <span class="kw"><a href="https://rdrr.io/r/base/Log.html">exp</a></span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>x1))</span>
+<span id="cb11-25"><a href="#cb11-25"></a>df<span class="fl">.3</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">x =</span> x1, <span class="dt">y =</span> y1) <span class="op">%&gt;%</span></span>
+<span id="cb11-26"><a href="#cb11-26"></a><span class="st">  </span>tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(.)</span>
+<span id="cb11-27"><a href="#cb11-27"></a></span>
+<span id="cb11-28"><a href="#cb11-28"></a><span class="co"># dataframe #4</span></span>
+<span id="cb11-29"><a href="#cb11-29"></a>x2 &lt;-<span class="st"> </span>stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">50</span>)</span>
+<span id="cb11-30"><a href="#cb11-30"></a>y2 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span>(</span>
+<span id="cb11-31"><a href="#cb11-31"></a>  <span class="dt">n =</span> <span class="dv">50</span>,</span>
+<span id="cb11-32"><a href="#cb11-32"></a>  <span class="dt">size =</span> <span class="dv">1</span>,</span>
+<span id="cb11-33"><a href="#cb11-33"></a>  <span class="dt">prob =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/Logistic.html">plogis</a></span>(x2)</span>
+<span id="cb11-34"><a href="#cb11-34"></a>)</span>
+<span id="cb11-35"><a href="#cb11-35"></a></span>
+<span id="cb11-36"><a href="#cb11-36"></a>df<span class="fl">.4</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">x =</span> x2, <span class="dt">y =</span> y2) <span class="op">%&gt;%</span></span>
+<span id="cb11-37"><a href="#cb11-37"></a><span class="st">  </span>tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(.)</span>
+<span id="cb11-38"><a href="#cb11-38"></a></span>
+<span id="cb11-39"><a href="#cb11-39"></a><span class="co"># combining all plots in a single plot</span></span>
+<span id="cb11-40"><a href="#cb11-40"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</span>
+<span id="cb11-41"><a href="#cb11-41"></a>  <span class="co"># Family: Poisson</span></span>
+<span id="cb11-42"><a href="#cb11-42"></a>  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</span>
+<span id="cb11-43"><a href="#cb11-43"></a>    <span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(</span>
+<span id="cb11-44"><a href="#cb11-44"></a>      <span class="dt">formula =</span> counts <span class="op">~</span><span class="st"> </span>outcome <span class="op">+</span><span class="st"> </span>treatment,</span>
+<span id="cb11-45"><a href="#cb11-45"></a>      <span class="dt">data =</span> df.counts,</span>
+<span id="cb11-46"><a href="#cb11-46"></a>      <span class="dt">family =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/family.html">poisson</a></span>(<span class="dt">link =</span> <span class="st">"log"</span>)</span>
+<span id="cb11-47"><a href="#cb11-47"></a>    ),</span>
+<span id="cb11-48"><a href="#cb11-48"></a>    <span class="dt">title =</span> <span class="st">"Family: Poisson"</span>,</span>
+<span id="cb11-49"><a href="#cb11-49"></a>    <span class="dt">stats.label.color =</span> <span class="st">"black"</span></span>
+<span id="cb11-50"><a href="#cb11-50"></a>  ),</span>
+<span id="cb11-51"><a href="#cb11-51"></a>  <span class="co"># Family: Gamma</span></span>
+<span id="cb11-52"><a href="#cb11-52"></a>  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</span>
+<span id="cb11-53"><a href="#cb11-53"></a>    <span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(</span>
+<span id="cb11-54"><a href="#cb11-54"></a>      <span class="dt">formula =</span> lot1 <span class="op">~</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(u),</span>
+<span id="cb11-55"><a href="#cb11-55"></a>      <span class="dt">data =</span> df.clotting,</span>
+<span id="cb11-56"><a href="#cb11-56"></a>      <span class="dt">family =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/family.html">Gamma</a></span>(<span class="dt">link =</span> <span class="st">"inverse"</span>)</span>
+<span id="cb11-57"><a href="#cb11-57"></a>    ),</span>
+<span id="cb11-58"><a href="#cb11-58"></a>    <span class="dt">title =</span> <span class="st">"Family: Gamma"</span>,</span>
+<span id="cb11-59"><a href="#cb11-59"></a>    <span class="dt">stats.label.color =</span> <span class="st">"black"</span></span>
+<span id="cb11-60"><a href="#cb11-60"></a>  ),</span>
+<span id="cb11-61"><a href="#cb11-61"></a>  <span class="co"># Family: Quasi</span></span>
+<span id="cb11-62"><a href="#cb11-62"></a>  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</span>
+<span id="cb11-63"><a href="#cb11-63"></a>    <span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(</span>
+<span id="cb11-64"><a href="#cb11-64"></a>      <span class="dt">formula =</span> y <span class="op">~</span><span class="st"> </span>x,</span>
+<span id="cb11-65"><a href="#cb11-65"></a>      <span class="dt">family =</span> <span class="kw"><a href="https://rdrr.io/r/stats/family.html">quasi</a></span>(<span class="dt">variance =</span> <span class="st">"mu"</span>, <span class="dt">link =</span> <span class="st">"log"</span>),</span>
+<span id="cb11-66"><a href="#cb11-66"></a>      <span class="dt">data =</span> df<span class="fl">.3</span></span>
+<span id="cb11-67"><a href="#cb11-67"></a>    ),</span>
+<span id="cb11-68"><a href="#cb11-68"></a>    <span class="dt">title =</span> <span class="st">"Family: Quasi"</span>,</span>
+<span id="cb11-69"><a href="#cb11-69"></a>    <span class="dt">stats.label.color =</span> <span class="st">"black"</span></span>
+<span id="cb11-70"><a href="#cb11-70"></a>  ),</span>
+<span id="cb11-71"><a href="#cb11-71"></a>  <span class="co"># Family: Quasibinomial</span></span>
+<span id="cb11-72"><a href="#cb11-72"></a>  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</span>
+<span id="cb11-73"><a href="#cb11-73"></a>    <span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(</span>
+<span id="cb11-74"><a href="#cb11-74"></a>      <span class="dt">formula =</span> y <span class="op">~</span><span class="st"> </span>x,</span>
+<span id="cb11-75"><a href="#cb11-75"></a>      <span class="dt">family =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/family.html">quasibinomial</a></span>(<span class="dt">link =</span> <span class="st">"logit"</span>),</span>
+<span id="cb11-76"><a href="#cb11-76"></a>      <span class="dt">data =</span> df<span class="fl">.4</span></span>
+<span id="cb11-77"><a href="#cb11-77"></a>    ),</span>
+<span id="cb11-78"><a href="#cb11-78"></a>    <span class="dt">title =</span> <span class="st">"Family: Quasibinomial"</span>,</span>
+<span id="cb11-79"><a href="#cb11-79"></a>    <span class="dt">stats.label.color =</span> <span class="st">"black"</span></span>
+<span id="cb11-80"><a href="#cb11-80"></a>  ),</span>
+<span id="cb11-81"><a href="#cb11-81"></a>  <span class="co"># Family: Quasipoisson</span></span>
+<span id="cb11-82"><a href="#cb11-82"></a>  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</span>
+<span id="cb11-83"><a href="#cb11-83"></a>    <span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(</span>
+<span id="cb11-84"><a href="#cb11-84"></a>      <span class="dt">formula =</span> y <span class="op">~</span><span class="st"> </span>x,</span>
+<span id="cb11-85"><a href="#cb11-85"></a>      <span class="dt">family =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/family.html">quasipoisson</a></span>(<span class="dt">link =</span> <span class="st">"log"</span>),</span>
+<span id="cb11-86"><a href="#cb11-86"></a>      <span class="dt">data =</span> df<span class="fl">.4</span></span>
+<span id="cb11-87"><a href="#cb11-87"></a>    ),</span>
+<span id="cb11-88"><a href="#cb11-88"></a>    <span class="dt">title =</span> <span class="st">"Family: Quasipoisson"</span>,</span>
+<span id="cb11-89"><a href="#cb11-89"></a>    <span class="dt">stats.label.color =</span> <span class="st">"black"</span></span>
+<span id="cb11-90"><a href="#cb11-90"></a>  ),</span>
+<span id="cb11-91"><a href="#cb11-91"></a>  <span class="co"># Family: Gaussian</span></span>
+<span id="cb11-92"><a href="#cb11-92"></a>  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</span>
+<span id="cb11-93"><a href="#cb11-93"></a>    <span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(</span>
+<span id="cb11-94"><a href="#cb11-94"></a>      <span class="dt">formula =</span> Sepal.Length <span class="op">~</span><span class="st"> </span>Species,</span>
+<span id="cb11-95"><a href="#cb11-95"></a>      <span class="dt">family =</span> stats<span class="op">::</span><span class="kw"><a href="https://rdrr.io/r/stats/family.html">gaussian</a></span>(<span class="dt">link =</span> <span class="st">"identity"</span>),</span>
+<span id="cb11-96"><a href="#cb11-96"></a>      <span class="dt">data =</span> iris</span>
+<span id="cb11-97"><a href="#cb11-97"></a>    ),</span>
+<span id="cb11-98"><a href="#cb11-98"></a>    <span class="dt">title =</span> <span class="st">"Family: Gaussian"</span>,</span>
+<span id="cb11-99"><a href="#cb11-99"></a>    <span class="dt">stats.label.color =</span> <span class="st">"black"</span></span>
+<span id="cb11-100"><a href="#cb11-100"></a>  ),</span>
+<span id="cb11-101"><a href="#cb11-101"></a>  <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>, <span class="st">"(e)"</span>, <span class="st">"(f)"</span>),</span>
+<span id="cb11-102"><a href="#cb11-102"></a>  <span class="dt">ncol =</span> <span class="dv">2</span>,</span>
+<span id="cb11-103"><a href="#cb11-103"></a>  <span class="dt">title.text =</span> <span class="st">"Exploring models with different `glm` families"</span>,</span>
+<span id="cb11-104"><a href="#cb11-104"></a>  <span class="dt">title.color =</span> <span class="st">"blue"</span></span>
+<span id="cb11-105"><a href="#cb11-105"></a>)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/glm_full-1.png" width="960"></p>
 </div>
 <div id="modified-fitting-for-generalized-linear-models-glm2" class="section level2">
@@ -1219,7 +1166,7 @@
 <span id="cb31-14"><a href="#cb31-14"></a><span class="co"># plotting the model</span></span>
 <span id="cb31-15"><a href="#cb31-15"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</span>
 <span id="cb31-16"><a href="#cb31-16"></a>  <span class="dt">x =</span> mod,</span>
-<span id="cb31-17"><a href="#cb31-17"></a>  <span class="dt">conf.method =</span> <span class="st">"uniroot"</span>,</span>
+<span id="cb31-17"><a href="#cb31-17"></a>  <span class="co">#conf.method = "uniroot",</span></span>
 <span id="cb31-18"><a href="#cb31-18"></a>  <span class="dt">title =</span> <span class="st">"generalized linear mixed models </span><span class="ch">\n</span><span class="st">using Template Model Builder"</span></span>
 <span id="cb31-19"><a href="#cb31-19"></a>)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/glmmTMB-1.png" width="576"></p>
@@ -1396,29 +1343,7 @@
 <span id="cb37-20"><a href="#cb37-20"></a>  <span class="dt">x =</span> mod,</span>
 <span id="cb37-21"><a href="#cb37-21"></a>  <span class="dt">title =</span> <span class="st">"Mixed-Effects Ordinal Regression Analysis"</span>,</span>
 <span id="cb37-22"><a href="#cb37-22"></a>  <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span></span>
-<span id="cb37-23"><a href="#cb37-23"></a>)</span>
-<span id="cb37-24"><a href="#cb37-24"></a><span class="co">#&gt; </span></span>
-<span id="cb37-25"><a href="#cb37-25"></a><span class="co">#&gt; Call:</span></span>
-<span id="cb37-26"><a href="#cb37-26"></a><span class="co">#&gt; mixor(formula = thksord ~ thkspre + cc + tv + cctv, data = SmokingPrevention, </span></span>
-<span id="cb37-27"><a href="#cb37-27"></a><span class="co">#&gt;     id = school, link = "logit")</span></span>
-<span id="cb37-28"><a href="#cb37-28"></a><span class="co">#&gt; </span></span>
-<span id="cb37-29"><a href="#cb37-29"></a><span class="co">#&gt; Deviance =         4239.486 </span></span>
-<span id="cb37-30"><a href="#cb37-30"></a><span class="co">#&gt; Log-likelihood =  -2119.743 </span></span>
-<span id="cb37-31"><a href="#cb37-31"></a><span class="co">#&gt; RIDGEMAX =         0.2 </span></span>
-<span id="cb37-32"><a href="#cb37-32"></a><span class="co">#&gt; AIC =             -2127.743 </span></span>
-<span id="cb37-33"><a href="#cb37-33"></a><span class="co">#&gt; SBC =             -2133.072 </span></span>
-<span id="cb37-34"><a href="#cb37-34"></a><span class="co">#&gt; </span></span>
-<span id="cb37-35"><a href="#cb37-35"></a><span class="co">#&gt;                     Estimate Std. Error z value P(&gt;|z|)    </span></span>
-<span id="cb37-36"><a href="#cb37-36"></a><span class="co">#&gt; (Intercept)         0.088180   0.313111  0.2816 0.77823    </span></span>
-<span id="cb37-37"><a href="#cb37-37"></a><span class="co">#&gt; thkspre             0.403280   0.042928  9.3944 &lt; 2e-16 ***</span></span>
-<span id="cb37-38"><a href="#cb37-38"></a><span class="co">#&gt; cc                  0.924101   0.371345  2.4885 0.01283 *  </span></span>
-<span id="cb37-39"><a href="#cb37-39"></a><span class="co">#&gt; tv                  0.275213   0.315155  0.8733 0.38252    </span></span>
-<span id="cb37-40"><a href="#cb37-40"></a><span class="co">#&gt; cctv               -0.466194   0.406211 -1.1477 0.25111    </span></span>
-<span id="cb37-41"><a href="#cb37-41"></a><span class="co">#&gt; Random.(Intercept)  0.073498   0.049480  1.4854 0.13743    </span></span>
-<span id="cb37-42"><a href="#cb37-42"></a><span class="co">#&gt; Threshold2          1.241768   0.088310 14.0614 &lt; 2e-16 ***</span></span>
-<span id="cb37-43"><a href="#cb37-43"></a><span class="co">#&gt; Threshold3          2.420359   0.083617 28.9456 &lt; 2e-16 ***</span></span>
-<span id="cb37-44"><a href="#cb37-44"></a><span class="co">#&gt; ---</span></span>
-<span id="cb37-45"><a href="#cb37-45"></a><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code></pre></div>
+<span id="cb37-23"><a href="#cb37-23"></a>)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/mixor-1.png" width="576"></p>
 </div>
 <div id="bias-reduction-in-generalized-linear-models-brglm2" class="section level2">
@@ -1526,9 +1451,8 @@
 <span id="cb40-47"><a href="#cb40-47"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</span>
 <span id="cb40-48"><a href="#cb40-48"></a>  <span class="dt">x =</span> gfit,</span>
 <span id="cb40-49"><a href="#cb40-49"></a>  <span class="dt">title =</span> <span class="st">"generalized linear models </span><span class="ch">\n</span><span class="st">subject to population constraints"</span>,</span>
-<span id="cb40-50"><a href="#cb40-50"></a>  <span class="dt">conf.int =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb40-51"><a href="#cb40-51"></a>  <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span></span>
-<span id="cb40-52"><a href="#cb40-52"></a>)</span></code></pre></div>
+<span id="cb40-50"><a href="#cb40-50"></a>  <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span></span>
+<span id="cb40-51"><a href="#cb40-51"></a>)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/glmc-1.png" width="576"></p>
 </div>
 <div id="bayesian-linear-linear-mixed-effects-models-blmermod" class="section level2">
@@ -1631,7 +1555,7 @@
 <span id="cb44-11"><a href="#cb44-11"></a>  <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span></span>
 <span id="cb44-12"><a href="#cb44-12"></a>)</span>
 <span id="cb44-13"><a href="#cb44-13"></a><span class="co">#&gt; Note: No model diagnostics information available, so skipping caption.</span></span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/mlm-1.png" width="480"></p>
+<p><img src="ggcoefstats_files/figure-html/mlm-1.png" width="576"></p>
 </div>
 <div id="multinomial-logistic-regression-models-multinom" class="section level2">
 <h2 class="hasAnchor">
@@ -1685,15 +1609,15 @@
 <span id="cb46-25"><a href="#cb46-25"></a><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb46-26"><a href="#cb46-26"></a><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb46-27"><a href="#cb46-27"></a><span class="co">#&gt; Chain 1: </span></span>
-<span id="cb46-28"><a href="#cb46-28"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 23.846 seconds (Warm-up)</span></span>
-<span id="cb46-29"><a href="#cb46-29"></a><span class="co">#&gt; Chain 1:                14.714 seconds (Sampling)</span></span>
-<span id="cb46-30"><a href="#cb46-30"></a><span class="co">#&gt; Chain 1:                38.56 seconds (Total)</span></span>
+<span id="cb46-28"><a href="#cb46-28"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 26.105 seconds (Warm-up)</span></span>
+<span id="cb46-29"><a href="#cb46-29"></a><span class="co">#&gt; Chain 1:                16.066 seconds (Sampling)</span></span>
+<span id="cb46-30"><a href="#cb46-30"></a><span class="co">#&gt; Chain 1:                42.171 seconds (Total)</span></span>
 <span id="cb46-31"><a href="#cb46-31"></a><span class="co">#&gt; Chain 1: </span></span>
 <span id="cb46-32"><a href="#cb46-32"></a><span class="co">#&gt; </span></span>
 <span id="cb46-33"><a href="#cb46-33"></a><span class="co">#&gt; SAMPLING FOR MODEL 'bmlm' NOW (CHAIN 2).</span></span>
 <span id="cb46-34"><a href="#cb46-34"></a><span class="co">#&gt; Chain 2: </span></span>
-<span id="cb46-35"><a href="#cb46-35"></a><span class="co">#&gt; Chain 2: Gradient evaluation took 0 seconds</span></span>
-<span id="cb46-36"><a href="#cb46-36"></a><span class="co">#&gt; Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span></span>
+<span id="cb46-35"><a href="#cb46-35"></a><span class="co">#&gt; Chain 2: Gradient evaluation took 0.001 seconds</span></span>
+<span id="cb46-36"><a href="#cb46-36"></a><span class="co">#&gt; Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.</span></span>
 <span id="cb46-37"><a href="#cb46-37"></a><span class="co">#&gt; Chain 2: Adjust your expectations accordingly!</span></span>
 <span id="cb46-38"><a href="#cb46-38"></a><span class="co">#&gt; Chain 2: </span></span>
 <span id="cb46-39"><a href="#cb46-39"></a><span class="co">#&gt; Chain 2: </span></span>
@@ -1710,9 +1634,9 @@
 <span id="cb46-50"><a href="#cb46-50"></a><span class="co">#&gt; Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb46-51"><a href="#cb46-51"></a><span class="co">#&gt; Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb46-52"><a href="#cb46-52"></a><span class="co">#&gt; Chain 2: </span></span>
-<span id="cb46-53"><a href="#cb46-53"></a><span class="co">#&gt; Chain 2:  Elapsed Time: 24.953 seconds (Warm-up)</span></span>
-<span id="cb46-54"><a href="#cb46-54"></a><span class="co">#&gt; Chain 2:                14.962 seconds (Sampling)</span></span>
-<span id="cb46-55"><a href="#cb46-55"></a><span class="co">#&gt; Chain 2:                39.915 seconds (Total)</span></span>
+<span id="cb46-53"><a href="#cb46-53"></a><span class="co">#&gt; Chain 2:  Elapsed Time: 27.182 seconds (Warm-up)</span></span>
+<span id="cb46-54"><a href="#cb46-54"></a><span class="co">#&gt; Chain 2:                16.222 seconds (Sampling)</span></span>
+<span id="cb46-55"><a href="#cb46-55"></a><span class="co">#&gt; Chain 2:                43.404 seconds (Total)</span></span>
 <span id="cb46-56"><a href="#cb46-56"></a><span class="co">#&gt; Chain 2: </span></span>
 <span id="cb46-57"><a href="#cb46-57"></a><span class="co">#&gt; </span></span>
 <span id="cb46-58"><a href="#cb46-58"></a><span class="co">#&gt; SAMPLING FOR MODEL 'bmlm' NOW (CHAIN 3).</span></span>
@@ -1735,9 +1659,9 @@
 <span id="cb46-75"><a href="#cb46-75"></a><span class="co">#&gt; Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb46-76"><a href="#cb46-76"></a><span class="co">#&gt; Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb46-77"><a href="#cb46-77"></a><span class="co">#&gt; Chain 3: </span></span>
-<span id="cb46-78"><a href="#cb46-78"></a><span class="co">#&gt; Chain 3:  Elapsed Time: 24.192 seconds (Warm-up)</span></span>
-<span id="cb46-79"><a href="#cb46-79"></a><span class="co">#&gt; Chain 3:                14.707 seconds (Sampling)</span></span>
-<span id="cb46-80"><a href="#cb46-80"></a><span class="co">#&gt; Chain 3:                38.899 seconds (Total)</span></span>
+<span id="cb46-78"><a href="#cb46-78"></a><span class="co">#&gt; Chain 3:  Elapsed Time: 26.462 seconds (Warm-up)</span></span>
+<span id="cb46-79"><a href="#cb46-79"></a><span class="co">#&gt; Chain 3:                15.814 seconds (Sampling)</span></span>
+<span id="cb46-80"><a href="#cb46-80"></a><span class="co">#&gt; Chain 3:                42.276 seconds (Total)</span></span>
 <span id="cb46-81"><a href="#cb46-81"></a><span class="co">#&gt; Chain 3: </span></span>
 <span id="cb46-82"><a href="#cb46-82"></a><span class="co">#&gt; </span></span>
 <span id="cb46-83"><a href="#cb46-83"></a><span class="co">#&gt; SAMPLING FOR MODEL 'bmlm' NOW (CHAIN 4).</span></span>
@@ -1760,9 +1684,9 @@
 <span id="cb46-100"><a href="#cb46-100"></a><span class="co">#&gt; Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb46-101"><a href="#cb46-101"></a><span class="co">#&gt; Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb46-102"><a href="#cb46-102"></a><span class="co">#&gt; Chain 4: </span></span>
-<span id="cb46-103"><a href="#cb46-103"></a><span class="co">#&gt; Chain 4:  Elapsed Time: 23.91 seconds (Warm-up)</span></span>
-<span id="cb46-104"><a href="#cb46-104"></a><span class="co">#&gt; Chain 4:                14.728 seconds (Sampling)</span></span>
-<span id="cb46-105"><a href="#cb46-105"></a><span class="co">#&gt; Chain 4:                38.638 seconds (Total)</span></span>
+<span id="cb46-103"><a href="#cb46-103"></a><span class="co">#&gt; Chain 4:  Elapsed Time: 26.031 seconds (Warm-up)</span></span>
+<span id="cb46-104"><a href="#cb46-104"></a><span class="co">#&gt; Chain 4:                16.063 seconds (Sampling)</span></span>
+<span id="cb46-105"><a href="#cb46-105"></a><span class="co">#&gt; Chain 4:                42.094 seconds (Total)</span></span>
 <span id="cb46-106"><a href="#cb46-106"></a><span class="co">#&gt; Chain 4:</span></span>
 <span id="cb46-107"><a href="#cb46-107"></a></span>
 <span id="cb46-108"><a href="#cb46-108"></a><span class="co"># exctrating summary</span></span>
@@ -2281,26 +2205,7 @@
 <span id="cb62-12"><a href="#cb62-12"></a>  <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span>,</span>
 <span id="cb62-13"><a href="#cb62-13"></a>  <span class="dt">title =</span> <span class="st">"mixed effects Cox model"</span></span>
 <span id="cb62-14"><a href="#cb62-14"></a>)</span>
-<span id="cb62-15"><a href="#cb62-15"></a><span class="co">#&gt; Note: No model diagnostics information available, so skipping caption.</span></span>
-<span id="cb62-16"><a href="#cb62-16"></a><span class="co">#&gt; Cox mixed-effects model fit by maximum likelihood</span></span>
-<span id="cb62-17"><a href="#cb62-17"></a><span class="co">#&gt;   Data: eortc</span></span>
-<span id="cb62-18"><a href="#cb62-18"></a><span class="co">#&gt;   events, n = 1463, 2323</span></span>
-<span id="cb62-19"><a href="#cb62-19"></a><span class="co">#&gt;   Iterations= 9 49 </span></span>
-<span id="cb62-20"><a href="#cb62-20"></a><span class="co">#&gt;                     NULL Integrated    Fitted</span></span>
-<span id="cb62-21"><a href="#cb62-21"></a><span class="co">#&gt; Log-likelihood -10638.71  -10520.65 -10478.84</span></span>
-<span id="cb62-22"><a href="#cb62-22"></a><span class="co">#&gt; </span></span>
-<span id="cb62-23"><a href="#cb62-23"></a><span class="co">#&gt;                    Chisq    df p    AIC    BIC</span></span>
-<span id="cb62-24"><a href="#cb62-24"></a><span class="co">#&gt; Integrated loglik 236.11  2.00 0 232.11 221.53</span></span>
-<span id="cb62-25"><a href="#cb62-25"></a><span class="co">#&gt;  Penalized loglik 319.74 28.69 0 262.37 110.67</span></span>
-<span id="cb62-26"><a href="#cb62-26"></a><span class="co">#&gt; </span></span>
-<span id="cb62-27"><a href="#cb62-27"></a><span class="co">#&gt; Model:  Surv(y, uncens) ~ trt + (1 | center) </span></span>
-<span id="cb62-28"><a href="#cb62-28"></a><span class="co">#&gt; Fixed coefficients</span></span>
-<span id="cb62-29"><a href="#cb62-29"></a><span class="co">#&gt;          coef exp(coef)   se(coef)     z p</span></span>
-<span id="cb62-30"><a href="#cb62-30"></a><span class="co">#&gt; trt 0.7086127  2.031171 0.06424398 11.03 0</span></span>
-<span id="cb62-31"><a href="#cb62-31"></a><span class="co">#&gt; </span></span>
-<span id="cb62-32"><a href="#cb62-32"></a><span class="co">#&gt; Random effects</span></span>
-<span id="cb62-33"><a href="#cb62-33"></a><span class="co">#&gt;  Group  Variable  Std Dev   Variance </span></span>
-<span id="cb62-34"><a href="#cb62-34"></a><span class="co">#&gt;  center Intercept 0.3292140 0.1083818</span></span></code></pre></div>
+<span id="cb62-15"><a href="#cb62-15"></a><span class="co">#&gt; Note: No model diagnostics information available, so skipping caption.</span></span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/coxme-1.png" width="384"></p>
 </div>
 <div id="truncated-gaussian-regression-models-truncreg" class="section level2">
@@ -3515,9 +3420,9 @@
 <span id="cb107-35"><a href="#cb107-35"></a><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb107-36"><a href="#cb107-36"></a><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb107-37"><a href="#cb107-37"></a><span class="co">#&gt; Chain 1: </span></span>
-<span id="cb107-38"><a href="#cb107-38"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 12.463 seconds (Warm-up)</span></span>
-<span id="cb107-39"><a href="#cb107-39"></a><span class="co">#&gt; Chain 1:                5.835 seconds (Sampling)</span></span>
-<span id="cb107-40"><a href="#cb107-40"></a><span class="co">#&gt; Chain 1:                18.298 seconds (Total)</span></span>
+<span id="cb107-38"><a href="#cb107-38"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 13.285 seconds (Warm-up)</span></span>
+<span id="cb107-39"><a href="#cb107-39"></a><span class="co">#&gt; Chain 1:                6.173 seconds (Sampling)</span></span>
+<span id="cb107-40"><a href="#cb107-40"></a><span class="co">#&gt; Chain 1:                19.458 seconds (Total)</span></span>
 <span id="cb107-41"><a href="#cb107-41"></a><span class="co">#&gt; Chain 1: </span></span>
 <span id="cb107-42"><a href="#cb107-42"></a><span class="co">#&gt; </span></span>
 <span id="cb107-43"><a href="#cb107-43"></a><span class="co">#&gt; SAMPLING FOR MODEL '48d3c6d0c01bc5c25f2639c8331fe9e8' NOW (CHAIN 2).</span></span>
@@ -3540,9 +3445,9 @@
 <span id="cb107-60"><a href="#cb107-60"></a><span class="co">#&gt; Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb107-61"><a href="#cb107-61"></a><span class="co">#&gt; Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb107-62"><a href="#cb107-62"></a><span class="co">#&gt; Chain 2: </span></span>
-<span id="cb107-63"><a href="#cb107-63"></a><span class="co">#&gt; Chain 2:  Elapsed Time: 29.166 seconds (Warm-up)</span></span>
-<span id="cb107-64"><a href="#cb107-64"></a><span class="co">#&gt; Chain 2:                62.997 seconds (Sampling)</span></span>
-<span id="cb107-65"><a href="#cb107-65"></a><span class="co">#&gt; Chain 2:                92.163 seconds (Total)</span></span>
+<span id="cb107-63"><a href="#cb107-63"></a><span class="co">#&gt; Chain 2:  Elapsed Time: 27.943 seconds (Warm-up)</span></span>
+<span id="cb107-64"><a href="#cb107-64"></a><span class="co">#&gt; Chain 2:                65.066 seconds (Sampling)</span></span>
+<span id="cb107-65"><a href="#cb107-65"></a><span class="co">#&gt; Chain 2:                93.009 seconds (Total)</span></span>
 <span id="cb107-66"><a href="#cb107-66"></a><span class="co">#&gt; Chain 2: </span></span>
 <span id="cb107-67"><a href="#cb107-67"></a><span class="co">#&gt; </span></span>
 <span id="cb107-68"><a href="#cb107-68"></a><span class="co">#&gt; SAMPLING FOR MODEL '48d3c6d0c01bc5c25f2639c8331fe9e8' NOW (CHAIN 3).</span></span>
@@ -3565,9 +3470,9 @@
 <span id="cb107-85"><a href="#cb107-85"></a><span class="co">#&gt; Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb107-86"><a href="#cb107-86"></a><span class="co">#&gt; Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb107-87"><a href="#cb107-87"></a><span class="co">#&gt; Chain 3: </span></span>
-<span id="cb107-88"><a href="#cb107-88"></a><span class="co">#&gt; Chain 3:  Elapsed Time: 9.325 seconds (Warm-up)</span></span>
-<span id="cb107-89"><a href="#cb107-89"></a><span class="co">#&gt; Chain 3:                6.606 seconds (Sampling)</span></span>
-<span id="cb107-90"><a href="#cb107-90"></a><span class="co">#&gt; Chain 3:                15.931 seconds (Total)</span></span>
+<span id="cb107-88"><a href="#cb107-88"></a><span class="co">#&gt; Chain 3:  Elapsed Time: 8.785 seconds (Warm-up)</span></span>
+<span id="cb107-89"><a href="#cb107-89"></a><span class="co">#&gt; Chain 3:                6.308 seconds (Sampling)</span></span>
+<span id="cb107-90"><a href="#cb107-90"></a><span class="co">#&gt; Chain 3:                15.093 seconds (Total)</span></span>
 <span id="cb107-91"><a href="#cb107-91"></a><span class="co">#&gt; Chain 3: </span></span>
 <span id="cb107-92"><a href="#cb107-92"></a><span class="co">#&gt; </span></span>
 <span id="cb107-93"><a href="#cb107-93"></a><span class="co">#&gt; SAMPLING FOR MODEL '48d3c6d0c01bc5c25f2639c8331fe9e8' NOW (CHAIN 4).</span></span>
@@ -3590,9 +3495,9 @@
 <span id="cb107-110"><a href="#cb107-110"></a><span class="co">#&gt; Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb107-111"><a href="#cb107-111"></a><span class="co">#&gt; Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb107-112"><a href="#cb107-112"></a><span class="co">#&gt; Chain 4: </span></span>
-<span id="cb107-113"><a href="#cb107-113"></a><span class="co">#&gt; Chain 4:  Elapsed Time: 8.026 seconds (Warm-up)</span></span>
-<span id="cb107-114"><a href="#cb107-114"></a><span class="co">#&gt; Chain 4:                6.486 seconds (Sampling)</span></span>
-<span id="cb107-115"><a href="#cb107-115"></a><span class="co">#&gt; Chain 4:                14.512 seconds (Total)</span></span>
+<span id="cb107-113"><a href="#cb107-113"></a><span class="co">#&gt; Chain 4:  Elapsed Time: 7.77 seconds (Warm-up)</span></span>
+<span id="cb107-114"><a href="#cb107-114"></a><span class="co">#&gt; Chain 4:                6.22 seconds (Sampling)</span></span>
+<span id="cb107-115"><a href="#cb107-115"></a><span class="co">#&gt; Chain 4:                13.99 seconds (Total)</span></span>
 <span id="cb107-116"><a href="#cb107-116"></a><span class="co">#&gt; Chain 4:</span></span>
 <span id="cb107-117"><a href="#cb107-117"></a></span>
 <span id="cb107-118"><a href="#cb107-118"></a><span class="co"># plot</span></span>
@@ -3644,9 +3549,9 @@
 <span id="cb108-34"><a href="#cb108-34"></a><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb108-35"><a href="#cb108-35"></a><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb108-36"><a href="#cb108-36"></a><span class="co">#&gt; Chain 1: </span></span>
-<span id="cb108-37"><a href="#cb108-37"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 0.136 seconds (Warm-up)</span></span>
-<span id="cb108-38"><a href="#cb108-38"></a><span class="co">#&gt; Chain 1:                0.035 seconds (Sampling)</span></span>
-<span id="cb108-39"><a href="#cb108-39"></a><span class="co">#&gt; Chain 1:                0.171 seconds (Total)</span></span>
+<span id="cb108-37"><a href="#cb108-37"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 0.181 seconds (Warm-up)</span></span>
+<span id="cb108-38"><a href="#cb108-38"></a><span class="co">#&gt; Chain 1:                0.05 seconds (Sampling)</span></span>
+<span id="cb108-39"><a href="#cb108-39"></a><span class="co">#&gt; Chain 1:                0.231 seconds (Total)</span></span>
 <span id="cb108-40"><a href="#cb108-40"></a><span class="co">#&gt; Chain 1: </span></span>
 <span id="cb108-41"><a href="#cb108-41"></a><span class="co">#&gt; </span></span>
 <span id="cb108-42"><a href="#cb108-42"></a><span class="co">#&gt; SAMPLING FOR MODEL '7314ca32b757518f6b6cf5c642a54cb2' NOW (CHAIN 1).</span></span>
@@ -3669,9 +3574,9 @@
 <span id="cb108-59"><a href="#cb108-59"></a><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb108-60"><a href="#cb108-60"></a><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb108-61"><a href="#cb108-61"></a><span class="co">#&gt; Chain 1: </span></span>
-<span id="cb108-62"><a href="#cb108-62"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 0.132 seconds (Warm-up)</span></span>
-<span id="cb108-63"><a href="#cb108-63"></a><span class="co">#&gt; Chain 1:                0.037 seconds (Sampling)</span></span>
-<span id="cb108-64"><a href="#cb108-64"></a><span class="co">#&gt; Chain 1:                0.169 seconds (Total)</span></span>
+<span id="cb108-62"><a href="#cb108-62"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 0.143 seconds (Warm-up)</span></span>
+<span id="cb108-63"><a href="#cb108-63"></a><span class="co">#&gt; Chain 1:                0.038 seconds (Sampling)</span></span>
+<span id="cb108-64"><a href="#cb108-64"></a><span class="co">#&gt; Chain 1:                0.181 seconds (Total)</span></span>
 <span id="cb108-65"><a href="#cb108-65"></a><span class="co">#&gt; Chain 1: </span></span>
 <span id="cb108-66"><a href="#cb108-66"></a><span class="co">#&gt; </span></span>
 <span id="cb108-67"><a href="#cb108-67"></a><span class="co">#&gt; SAMPLING FOR MODEL '7314ca32b757518f6b6cf5c642a54cb2' NOW (CHAIN 1).</span></span>
@@ -3694,9 +3599,9 @@
 <span id="cb108-84"><a href="#cb108-84"></a><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb108-85"><a href="#cb108-85"></a><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb108-86"><a href="#cb108-86"></a><span class="co">#&gt; Chain 1: </span></span>
-<span id="cb108-87"><a href="#cb108-87"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 0.175 seconds (Warm-up)</span></span>
-<span id="cb108-88"><a href="#cb108-88"></a><span class="co">#&gt; Chain 1:                0.044 seconds (Sampling)</span></span>
-<span id="cb108-89"><a href="#cb108-89"></a><span class="co">#&gt; Chain 1:                0.219 seconds (Total)</span></span>
+<span id="cb108-87"><a href="#cb108-87"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 0.141 seconds (Warm-up)</span></span>
+<span id="cb108-88"><a href="#cb108-88"></a><span class="co">#&gt; Chain 1:                0.032 seconds (Sampling)</span></span>
+<span id="cb108-89"><a href="#cb108-89"></a><span class="co">#&gt; Chain 1:                0.173 seconds (Total)</span></span>
 <span id="cb108-90"><a href="#cb108-90"></a><span class="co">#&gt; Chain 1: </span></span>
 <span id="cb108-91"><a href="#cb108-91"></a><span class="co">#&gt; </span></span>
 <span id="cb108-92"><a href="#cb108-92"></a><span class="co">#&gt; SAMPLING FOR MODEL '7314ca32b757518f6b6cf5c642a54cb2' NOW (CHAIN 1).</span></span>
@@ -3719,9 +3624,9 @@
 <span id="cb108-109"><a href="#cb108-109"></a><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb108-110"><a href="#cb108-110"></a><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb108-111"><a href="#cb108-111"></a><span class="co">#&gt; Chain 1: </span></span>
-<span id="cb108-112"><a href="#cb108-112"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 0.135 seconds (Warm-up)</span></span>
-<span id="cb108-113"><a href="#cb108-113"></a><span class="co">#&gt; Chain 1:                0.032 seconds (Sampling)</span></span>
-<span id="cb108-114"><a href="#cb108-114"></a><span class="co">#&gt; Chain 1:                0.167 seconds (Total)</span></span>
+<span id="cb108-112"><a href="#cb108-112"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 0.141 seconds (Warm-up)</span></span>
+<span id="cb108-113"><a href="#cb108-113"></a><span class="co">#&gt; Chain 1:                0.044 seconds (Sampling)</span></span>
+<span id="cb108-114"><a href="#cb108-114"></a><span class="co">#&gt; Chain 1:                0.185 seconds (Total)</span></span>
 <span id="cb108-115"><a href="#cb108-115"></a><span class="co">#&gt; Chain 1: </span></span>
 <span id="cb108-116"><a href="#cb108-116"></a><span class="co">#&gt; </span></span>
 <span id="cb108-117"><a href="#cb108-117"></a><span class="co">#&gt; SAMPLING FOR MODEL '7314ca32b757518f6b6cf5c642a54cb2' NOW (CHAIN 1).</span></span>
@@ -3744,9 +3649,9 @@
 <span id="cb108-134"><a href="#cb108-134"></a><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb108-135"><a href="#cb108-135"></a><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb108-136"><a href="#cb108-136"></a><span class="co">#&gt; Chain 1: </span></span>
-<span id="cb108-137"><a href="#cb108-137"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 0.147 seconds (Warm-up)</span></span>
-<span id="cb108-138"><a href="#cb108-138"></a><span class="co">#&gt; Chain 1:                0.036 seconds (Sampling)</span></span>
-<span id="cb108-139"><a href="#cb108-139"></a><span class="co">#&gt; Chain 1:                0.183 seconds (Total)</span></span>
+<span id="cb108-137"><a href="#cb108-137"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 0.146 seconds (Warm-up)</span></span>
+<span id="cb108-138"><a href="#cb108-138"></a><span class="co">#&gt; Chain 1:                0.033 seconds (Sampling)</span></span>
+<span id="cb108-139"><a href="#cb108-139"></a><span class="co">#&gt; Chain 1:                0.179 seconds (Total)</span></span>
 <span id="cb108-140"><a href="#cb108-140"></a><span class="co">#&gt; Chain 1:</span></span>
 <span id="cb108-141"><a href="#cb108-141"></a></span>
 <span id="cb108-142"><a href="#cb108-142"></a><span class="co"># plot</span></span>
@@ -3795,9 +3700,9 @@
 <span id="cb109-30"><a href="#cb109-30"></a><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span id="cb109-31"><a href="#cb109-31"></a><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span id="cb109-32"><a href="#cb109-32"></a><span class="co">#&gt; Chain 1: </span></span>
-<span id="cb109-33"><a href="#cb109-33"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 0.057 seconds (Warm-up)</span></span>
-<span id="cb109-34"><a href="#cb109-34"></a><span class="co">#&gt; Chain 1:                0.071 seconds (Sampling)</span></span>
-<span id="cb109-35"><a href="#cb109-35"></a><span class="co">#&gt; Chain 1:                0.128 seconds (Total)</span></span>
+<span id="cb109-33"><a href="#cb109-33"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 0.083 seconds (Warm-up)</span></span>
+<span id="cb109-34"><a href="#cb109-34"></a><span class="co">#&gt; Chain 1:                0.064 seconds (Sampling)</span></span>
+<span id="cb109-35"><a href="#cb109-35"></a><span class="co">#&gt; Chain 1:                0.147 seconds (Total)</span></span>
 <span id="cb109-36"><a href="#cb109-36"></a><span class="co">#&gt; Chain 1:</span></span>
 <span id="cb109-37"><a href="#cb109-37"></a></span>
 <span id="cb109-38"><a href="#cb109-38"></a><span class="co"># plot</span></span>
@@ -3883,9 +3788,9 @@
 <span id="cb111-35"><a href="#cb111-35"></a><span class="co">#&gt; Chain 1: Iteration: 900 / 1000 [ 90%]  (Sampling)</span></span>
 <span id="cb111-36"><a href="#cb111-36"></a><span class="co">#&gt; Chain 1: Iteration: 1000 / 1000 [100%]  (Sampling)</span></span>
 <span id="cb111-37"><a href="#cb111-37"></a><span class="co">#&gt; Chain 1: </span></span>
-<span id="cb111-38"><a href="#cb111-38"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 0.954 seconds (Warm-up)</span></span>
-<span id="cb111-39"><a href="#cb111-39"></a><span class="co">#&gt; Chain 1:                0.524 seconds (Sampling)</span></span>
-<span id="cb111-40"><a href="#cb111-40"></a><span class="co">#&gt; Chain 1:                1.478 seconds (Total)</span></span>
+<span id="cb111-38"><a href="#cb111-38"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 0.972 seconds (Warm-up)</span></span>
+<span id="cb111-39"><a href="#cb111-39"></a><span class="co">#&gt; Chain 1:                0.595 seconds (Sampling)</span></span>
+<span id="cb111-40"><a href="#cb111-40"></a><span class="co">#&gt; Chain 1:                1.567 seconds (Total)</span></span>
 <span id="cb111-41"><a href="#cb111-41"></a><span class="co">#&gt; Chain 1:</span></span>
 <span id="cb111-42"><a href="#cb111-42"></a></span>
 <span id="cb111-43"><a href="#cb111-43"></a><span class="co"># plot</span></span>
@@ -4085,9 +3990,9 @@
 <span id="cb116-38"><a href="#cb116-38"></a><span class="co">#&gt; Chain 1: Iteration: 1400 / 1500 [ 93%]  (Sampling)</span></span>
 <span id="cb116-39"><a href="#cb116-39"></a><span class="co">#&gt; Chain 1: Iteration: 1500 / 1500 [100%]  (Sampling)</span></span>
 <span id="cb116-40"><a href="#cb116-40"></a><span class="co">#&gt; Chain 1: </span></span>
-<span id="cb116-41"><a href="#cb116-41"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 14.304 seconds (Warm-up)</span></span>
-<span id="cb116-42"><a href="#cb116-42"></a><span class="co">#&gt; Chain 1:                23.494 seconds (Sampling)</span></span>
-<span id="cb116-43"><a href="#cb116-43"></a><span class="co">#&gt; Chain 1:                37.798 seconds (Total)</span></span>
+<span id="cb116-41"><a href="#cb116-41"></a><span class="co">#&gt; Chain 1:  Elapsed Time: 21.472 seconds (Warm-up)</span></span>
+<span id="cb116-42"><a href="#cb116-42"></a><span class="co">#&gt; Chain 1:                40.547 seconds (Sampling)</span></span>
+<span id="cb116-43"><a href="#cb116-43"></a><span class="co">#&gt; Chain 1:                62.019 seconds (Total)</span></span>
 <span id="cb116-44"><a href="#cb116-44"></a><span class="co">#&gt; Chain 1: </span></span>
 <span id="cb116-45"><a href="#cb116-45"></a><span class="co">#&gt; </span></span>
 <span id="cb116-46"><a href="#cb116-46"></a><span class="co">#&gt; SAMPLING FOR MODEL 'stanmarg' NOW (CHAIN 2).</span></span>
@@ -4110,15 +4015,15 @@
 <span id="cb116-63"><a href="#cb116-63"></a><span class="co">#&gt; Chain 2: Iteration: 1400 / 1500 [ 93%]  (Sampling)</span></span>
 <span id="cb116-64"><a href="#cb116-64"></a><span class="co">#&gt; Chain 2: Iteration: 1500 / 1500 [100%]  (Sampling)</span></span>
 <span id="cb116-65"><a href="#cb116-65"></a><span class="co">#&gt; Chain 2: </span></span>
-<span id="cb116-66"><a href="#cb116-66"></a><span class="co">#&gt; Chain 2:  Elapsed Time: 14.212 seconds (Warm-up)</span></span>
-<span id="cb116-67"><a href="#cb116-67"></a><span class="co">#&gt; Chain 2:                24.636 seconds (Sampling)</span></span>
-<span id="cb116-68"><a href="#cb116-68"></a><span class="co">#&gt; Chain 2:                38.848 seconds (Total)</span></span>
+<span id="cb116-66"><a href="#cb116-66"></a><span class="co">#&gt; Chain 2:  Elapsed Time: 19.129 seconds (Warm-up)</span></span>
+<span id="cb116-67"><a href="#cb116-67"></a><span class="co">#&gt; Chain 2:                39.371 seconds (Sampling)</span></span>
+<span id="cb116-68"><a href="#cb116-68"></a><span class="co">#&gt; Chain 2:                58.5 seconds (Total)</span></span>
 <span id="cb116-69"><a href="#cb116-69"></a><span class="co">#&gt; Chain 2: </span></span>
 <span id="cb116-70"><a href="#cb116-70"></a><span class="co">#&gt; </span></span>
 <span id="cb116-71"><a href="#cb116-71"></a><span class="co">#&gt; SAMPLING FOR MODEL 'stanmarg' NOW (CHAIN 3).</span></span>
 <span id="cb116-72"><a href="#cb116-72"></a><span class="co">#&gt; Chain 3: </span></span>
-<span id="cb116-73"><a href="#cb116-73"></a><span class="co">#&gt; Chain 3: Gradient evaluation took 0.001 seconds</span></span>
-<span id="cb116-74"><a href="#cb116-74"></a><span class="co">#&gt; Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.</span></span>
+<span id="cb116-73"><a href="#cb116-73"></a><span class="co">#&gt; Chain 3: Gradient evaluation took 0.002 seconds</span></span>
+<span id="cb116-74"><a href="#cb116-74"></a><span class="co">#&gt; Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 20 seconds.</span></span>
 <span id="cb116-75"><a href="#cb116-75"></a><span class="co">#&gt; Chain 3: Adjust your expectations accordingly!</span></span>
 <span id="cb116-76"><a href="#cb116-76"></a><span class="co">#&gt; Chain 3: </span></span>
 <span id="cb116-77"><a href="#cb116-77"></a><span class="co">#&gt; Chain 3: </span></span>
@@ -4135,9 +4040,9 @@
 <span id="cb116-88"><a href="#cb116-88"></a><span class="co">#&gt; Chain 3: Iteration: 1400 / 1500 [ 93%]  (Sampling)</span></span>
 <span id="cb116-89"><a href="#cb116-89"></a><span class="co">#&gt; Chain 3: Iteration: 1500 / 1500 [100%]  (Sampling)</span></span>
 <span id="cb116-90"><a href="#cb116-90"></a><span class="co">#&gt; Chain 3: </span></span>
-<span id="cb116-91"><a href="#cb116-91"></a><span class="co">#&gt; Chain 3:  Elapsed Time: 15.619 seconds (Warm-up)</span></span>
-<span id="cb116-92"><a href="#cb116-92"></a><span class="co">#&gt; Chain 3:                22.942 seconds (Sampling)</span></span>
-<span id="cb116-93"><a href="#cb116-93"></a><span class="co">#&gt; Chain 3:                38.561 seconds (Total)</span></span>
+<span id="cb116-91"><a href="#cb116-91"></a><span class="co">#&gt; Chain 3:  Elapsed Time: 23.068 seconds (Warm-up)</span></span>
+<span id="cb116-92"><a href="#cb116-92"></a><span class="co">#&gt; Chain 3:                36.401 seconds (Sampling)</span></span>
+<span id="cb116-93"><a href="#cb116-93"></a><span class="co">#&gt; Chain 3:                59.469 seconds (Total)</span></span>
 <span id="cb116-94"><a href="#cb116-94"></a><span class="co">#&gt; Chain 3: </span></span>
 <span id="cb116-95"><a href="#cb116-95"></a><span class="co">#&gt; Computing posterior predictives...</span></span>
 <span id="cb116-96"><a href="#cb116-96"></a></span>

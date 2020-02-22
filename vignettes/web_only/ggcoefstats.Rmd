@@ -497,29 +497,28 @@ child).
 library(ggstatsplot)
 
 # dataframe #1
-(
-  df.counts <-
-    base::data.frame(
-      treatment = gl(n = 3, k = 3, length = 9),
-      outcome = gl(n = 3, k = 1, length = 9),
-      counts = c(18, 17, 15, 20, 10, 20, 25, 13, 12)
-    ) %>%
-    tibble::as_tibble(x = .)
-)
+df.counts <-
+  base::data.frame(
+    treatment = gl(n = 3, k = 3, length = 9),
+    outcome = gl(n = 3, k = 1, length = 9),
+    counts = c(18, 17, 15, 20, 10, 20, 25, 13, 12)
+  ) %>%
+  tibble::as_tibble(.)
 
 # dataframe #2
-(df.clotting <- data.frame(
-  u = c(5, 10, 15, 20, 30, 40, 60, 80, 100),
-  lot1 = c(118, 58, 42, 35, 27, 25, 21, 19, 18),
-  lot2 = c(69, 35, 26, 21, 18, 16, 13, 12, 12)
-) %>%
-  tibble::as_tibble(x = .))
+df.clotting <-
+  data.frame(
+    u = c(5, 10, 15, 20, 30, 40, 60, 80, 100),
+    lot1 = c(118, 58, 42, 35, 27, 25, 21, 19, 18),
+    lot2 = c(69, 35, 26, 21, 18, 16, 13, 12, 12)
+  ) %>%
+  tibble::as_tibble(.)
 
 # dataframe #3
 x1 <- stats::rnorm(50)
 y1 <- stats::rpois(n = 50, lambda = exp(1 + x1))
-(df.3 <- data.frame(x = x1, y = y1) %>%
-  tibble::as_tibble(x = .))
+df.3 <- data.frame(x = x1, y = y1) %>%
+  tibble::as_tibble(.)
 
 # dataframe #4
 x2 <- stats::rnorm(50)
@@ -529,8 +528,8 @@ y2 <- rbinom(
   prob = stats::plogis(x2)
 )
 
-(df.4 <- data.frame(x = x2, y = y2) %>%
-  tibble::as_tibble(x = .))
+df.4 <- data.frame(x = x2, y = y2) %>%
+  tibble::as_tibble(.)
 
 # combining all plots in a single plot
 ggstatsplot::combine_plots(
@@ -1147,7 +1146,7 @@ mod <-
 # plotting the model
 ggstatsplot::ggcoefstats(
   x = mod,
-  conf.method = "uniroot",
+  #conf.method = "uniroot",
   title = "generalized linear mixed models \nusing Template Model Builder"
 )
 ```
@@ -1460,7 +1459,6 @@ gfit <-
 ggstatsplot::ggcoefstats(
   x = gfit,
   title = "generalized linear models \nsubject to population constraints",
-  conf.int = FALSE,
   exclude.intercept = FALSE
 )
 ```
@@ -1551,7 +1549,7 @@ ggstatsplot::ggcoefstats(
 
 ## multiple linear regression models (`mlm`)
 
-```{r mlm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+```{r mlm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6}
 # model (converting all numeric columns in data to z-scores)
 mod <-
   stats::lm(

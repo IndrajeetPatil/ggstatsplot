@@ -31,6 +31,7 @@ BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
 Depends: 
     R (>= 3.5.0)
 Imports:
+    broomExtra (>= 2.0.0),
     cowplot,
     dplyr,
     ggcorrplot,
@@ -40,15 +41,13 @@ Imports:
     ggsignif,
     groupedstats,
     insight,
-    ipmisc,
-    pairwiseComparisons (>= 0.2.0),
+    ipmisc (>= 1.1.0.9000),
+    pairwiseComparisons (>= 0.2.6),
     paletteer,
-    parameters,
-    performance,
     purrr,
     rlang,
     stats,
-    statsExpressions (>= 0.3.1),
+    statsExpressions,
     tidyr
 Suggests:
     forcats,
@@ -62,12 +61,14 @@ Suggests:
     spelling,
     survival,
     testthat,
-    tibble,    
+    tibble,
     WRS2
 VignetteBuilder: 
     knitr
 Remotes:
-    IndrajeetPatil/statsExpressions
+    IndrajeetPatil/broomExtra,
+    IndrajeetPatil/ipmisc,
+    IndrajeetPatil/pairwiseComparisons
 Encoding: UTF-8
 Language: en-US
 LazyData: true

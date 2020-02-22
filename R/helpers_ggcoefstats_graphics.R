@@ -2,7 +2,7 @@
 #' @name ggcoefstats_label_maker
 #'
 #' @param ... Currently ignored.
-#' @param tidy_df Tidy dataframe from `ipmisc::tidy`.
+#' @param tidy_df Tidy dataframe from `broomExtra::tidy`.
 #' @param glance_df Glance model summary dataframe from `broom::glance`
 #'   (default: `NULL`). This is optional argument. If provide, the `glance`
 #'   summary will be used to write `caption` for the final plot.
@@ -23,7 +23,7 @@
 #'
 #' #------------------------- models with *t*-statistic ------------------
 #' # model with t-statistic
-#' ggstatsplot:::ggcoefstats_label_maker(x = ipmisc::tidy(stats::lm(
+#' ggstatsplot:::ggcoefstats_label_maker(x = broomExtra::tidy(stats::lm(
 #'   data = mtcars, formula = wt ~ cyl * mpg
 #' )), statistic = "t")
 #'
@@ -50,7 +50,7 @@
 #' # model with t-statistic
 #' ggstatsplot:::ggcoefstats_label_maker(
 #'   x = mod,
-#'   tidy_df = ipmisc::tidy(
+#'   tidy_df = broomExtra::tidy(
 #'     x = mod,
 #'     conf.int = TRUE,
 #'     conf.level = 0.95
@@ -73,7 +73,7 @@
 #' )
 #'
 #' # creating tidy dataframe with label column
-#' ggstatsplot:::ggcoefstats_label_maker(x = mod, tidy_df = ipmisc::tidy(mod))
+#' ggstatsplot:::ggcoefstats_label_maker(x = mod, tidy_df = broomExtra::tidy(mod))
 #'
 #' #------------------------- models with *f*-statistic --------------------
 #' # creating a model object
@@ -306,43 +306,4 @@ ggcoefstats_label_maker <- function(x,
 
   # return the final dataframe
   return(as_tibble(tidy_df))
-}
-
-
-#' @title Tidier for `parameters` package objects
-#' @name parameters_tidy
-#'
-#' @inheritParams parameters::model_parameters
-#'
-#' @importFrom parameters model_parameters
-#' @importFrom dplyr filter
-#' @importFrom ipmisc easystats_to_tidy_names
-#'
-#' @examples
-#' \donttest{
-#' # setup
-#' library(lme4)
-#' library(parameters)
-#' set.seed(123)
-#'
-#' # model
-#' mm0 <-
-#'   lme4::lmer(
-#'     formula = scale(Reaction) ~ scale(Days) + (1 | Subject),
-#'     data = sleepstudy
-#'   )
-#'
-#' # model parameters
-#' ggstatsplot:::parameters_tidy(mm0)
-#' }
-#'
-#' @keywords internal
-
-parameters_tidy <- function(x, ...) {
-  tryCatch(
-    expr = parameters::model_parameters(x, ...) %>%
-      ipmisc::easystats_to_tidy_names(.) %>%
-      dplyr::filter(.data = ., !is.na(estimate)),
-    error = function(e) NULL
-  )
 }

@@ -120,18 +120,16 @@
 #' @inheritParams ggbetweenstats
 #'
 #' @import ggplot2
-#' @importFrom rlang exec
-#' @importFrom ipmisc tidy glance augment
+#' @importFrom rlang exec !!!
+#' @importFrom broomExtra tidy glance augment
 #' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if n
 #' @importFrom dplyr group_by arrange full_join vars matches desc everything
 #' @importFrom dplyr vars all_vars filter_at starts_with row_number
 #' @importFrom stats as.formula lm confint qnorm p.adjust
 #' @importFrom ggrepel geom_label_repel
-#' @importFrom parameters p_value
 #' @importFrom tidyr unite
 #' @importFrom groupedstats lm_effsize_standardizer
 #' @importFrom insight is_model
-#' @importFrom performance model_performance
 #' @importFrom statsExpressions expr_meta_parametric bf_meta
 #'
 #' @references
@@ -325,20 +323,10 @@ ggcoefstats <- function(x,
   # ============================= model summary ============================
 
   # creating glance dataframe
-  glance_df <- ipmisc::glance(x)
+  glance_df <- broomExtra::glance_performance(x)
 
-  # if `NULL`, try with `performance`
-  if (is.null(glance_df)) {
-    glance_df <-
-      tryCatch(
-        expr = as_tibble(performance::model_performance(x)),
-        error = function(e) NULL
-      )
-  }
-
-  # if the object is not a dataframe, check if summary caption is to be displayed
+  # if glance is not available, inform the user
   if (isTRUE(insight::is_model(x))) {
-    # if glance is not available, inform the user
     if (is.null(glance_df) || !all(c("aic", "bic") %in% tolower(names(glance_df)))) {
       # inform the user
       message(cat(
@@ -405,21 +393,16 @@ ggcoefstats <- function(x,
       # ==================== tidying everything else ===========================
     } else {
       tidy_df <-
-        ipmisc::tidy(
+        broomExtra::tidy_parameters(
           x = x,
           conf.int = conf.int,
           conf.level = conf.level,
           effects = "fixed",
-          # exponentiate = exponentiate,
-          parametric = TRUE, # relevant for `gam` objects
+          parametric = TRUE, # for `gam` objects
           ...
         )
     }
   }
-
-  # try again with `broomExtra` and `easystats`
-  if (rlang::is_null(tidy_df)) tidy_df <- ipmisc::tidy(x, ...)
-  if (rlang::is_null(tidy_df)) tidy_df <- parameters_tidy(x, ci = conf.level, ...)
 
   # =================== tidy dataframe cleanup ================================
 
@@ -489,25 +472,6 @@ ggcoefstats <- function(x,
       sep = ""
     ))
     return(invisible(tidy_df))
-  }
-
-  # =================== p-value computation ==================================
-
-  # p-values won't be computed by default for some of the models
-  if (isTRUE(insight::is_model(x)) && !"p.value" %in% names(tidy_df)) {
-    # use `sjstats` S3 methods to add them to the tidy dataframe
-    tryCatch(
-      expr = tidy_df %<>%
-        dplyr::full_join(
-          x = .,
-          y = parameters::p_value(model = x, method = "wald", component = "all") %>%
-            dplyr::rename(.data = ., p.value = p),
-          by = c("term" = "Parameter")
-        ) %>%
-        dplyr::filter(.data = ., !is.na(estimate)) %>%
-        as_tibble(.),
-      error = function(e) tidy_df
-    )
   }
 
   # ================== statistic and p-value check ===========================
@@ -737,6 +701,8 @@ ggcoefstats <- function(x,
 
   # ========================== basic plot ===================================
 
+
+
   # palette check is necessary only if output is a plot
   if (output == "plot") {
     # setting up the basic architecture
@@ -873,7 +839,7 @@ ggcoefstats <- function(x,
     "tidy" = tidy_df,
     "glance" = glance_df,
     "summary" = glance_df,
-    "augment" = as_tibble(ipmisc::augment(x = x, ...)),
+    "augment" = as_tibble(broomExtra::augment(x = x, ...)),
     "plot"
   ))
 }
