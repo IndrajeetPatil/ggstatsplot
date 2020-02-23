@@ -31,40 +31,28 @@ theme_ggstatsplot <- function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer =
         axis.title.x = ggplot2::element_text(size = 11, face = "bold"),
         axis.title.y = ggplot2::element_text(size = 11, face = "bold"),
         axis.text.x = ggplot2::element_text(size = 11, face = "bold"),
-        axis.text.y = ggplot2::element_text(size = 11, face = "bold"),
-        strip.text.x = ggplot2::element_text(size = 11, face = "bold"),
-        strip.text.y = ggplot2::element_text(size = 11, face = "bold"),
-        strip.text = ggplot2::element_text(size = 11, face = "bold"),
-        axis.line = ggplot2::element_line(),
-        legend.text = ggplot2::element_text(size = 11),
-        legend.title = ggplot2::element_text(size = 11, face = "bold"),
-        legend.title.align = 0.5,
-        legend.text.align = 0.5,
-        legend.key.height = ggplot2::unit(x = 1, units = "line"),
-        legend.key.width = ggplot2::unit(x = 1, units = "line"),
-        plot.margin = ggplot2::unit(x = c(1, 1, 1, 1), units = "lines"),
-        panel.border = ggplot2::element_rect(
-          color = "black",
-          fill = NA,
-          size = 1
-        ),
-        plot.title = ggplot2::element_text(
-          color = "black",
-          size = 13,
-          face = "bold",
-          hjust = 0.5
-        ),
-        plot.subtitle = ggplot2::element_text(
-          color = "black",
-          size = 10,
-          face = "plain",
-          hjust = 0.5
-        )
-      )
+        axis.text.y = ggplot2::element_text(size = 11, face = "bold")
+      ) +
+      common_theme_element
   } else {
     ggtheme
   }
 }
+
+#' @rdname theme_ggstatsplot
+#' @aliases theme_ggstatsplot
+#' @export
+
+theme_corrmat <- function() {
+  ggplot2::theme(
+    axis.title.x = ggplot2::element_blank(),
+    axis.title.y = ggplot2::element_blank(),
+    axis.text.x = ggplot2::element_text(size = 10, face = "bold"),
+    axis.text.y = ggplot2::element_text(size = 10, face = "bold")
+  ) +
+    common_theme_element
+}
+
 
 #' @rdname theme_ggstatsplot
 #' @aliases theme_ggstatsplot
@@ -78,81 +66,23 @@ theme_pie <- function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE) {
         axis.ticks = ggplot2::element_blank(),
         axis.title = ggplot2::element_blank(),
         axis.text.x = ggplot2::element_blank(),
-        axis.text.y = ggplot2::element_blank(),
-        strip.text.x = ggplot2::element_text(size = 10, face = "bold"),
-        strip.text.y = ggplot2::element_text(size = 10, face = "bold"),
-        strip.text = ggplot2::element_text(size = 10, face = "bold"),
-        legend.text = ggplot2::element_text(size = 10),
-        legend.title = ggplot2::element_text(size = 10, face = "bold"),
-        legend.title.align = 0.5,
-        legend.text.align = 0.5,
-        legend.direction = "horizontal",
-        legend.position = "bottom",
-        legend.key = ggplot2::element_rect(size = 5),
-        legend.key.size = ggplot2::unit(x = 1.5, units = "lines"),
-        legend.margin = ggplot2::margin(t = 5, r = 5, b = 5, l = 5, unit = "pt"),
-        legend.box.margin = ggplot2::margin(t = 5, r = 5, b = 5, l = 5, unit = "pt"),
-        panel.border = ggplot2::element_rect(
-          color = "black",
-          fill = NA,
-          size = 1
-        ),
-        plot.subtitle = ggplot2::element_text(
-          color = "black",
-          size = 10,
-          face = "plain",
-          hjust = 0.5
-        ),
-        plot.title = ggplot2::element_text(
-          color = "black",
-          size = 10,
-          face = "bold",
-          hjust = 0.5
-        )
-      )
+        axis.text.y = ggplot2::element_blank()
+      ) +
+      common_theme_element
   } else {
     ggtheme
   }
 }
 
-
-#' @rdname theme_ggstatsplot
-#' @aliases theme_ggstatsplot
-#' @export
-
-theme_corrmat <- function() {
+# common theme element for all default themes
+common_theme_element <-
   ggplot2::theme(
-    axis.title.x = ggplot2::element_blank(),
     strip.text.x = ggplot2::element_text(size = 10, face = "bold"),
     strip.text.y = ggplot2::element_text(size = 10, face = "bold"),
     strip.text = ggplot2::element_text(size = 10, face = "bold"),
-    axis.title.y = ggplot2::element_blank(),
-    axis.text.x = ggplot2::element_text(size = 10, face = "bold"),
-    axis.text.y = ggplot2::element_text(size = 10, face = "bold"),
-    axis.line = ggplot2::element_line(),
-    legend.text = ggplot2::element_text(size = 12),
-    legend.title = ggplot2::element_text(size = 12, face = "plain"),
-    legend.title.align = 0.5,
-    legend.text.align = 0.5,
-    legend.key.height = ggplot2::unit(x = 1, units = "line"),
-    legend.key.width = ggplot2::unit(x = 1, units = "line"),
-    plot.margin = ggplot2::unit(x = c(1, 1, 1, 1), units = "lines"),
-    panel.border = ggplot2::element_rect(
-      color = "black",
-      fill = NA,
-      size = 1
-    ),
-    plot.title = ggplot2::element_text(
-      color = "black",
-      size = 10,
-      face = "bold",
-      hjust = 0.5
-    ),
-    plot.subtitle = ggplot2::element_text(
-      color = "black",
-      size = 10,
-      face = "plain",
-      hjust = 0.5
-    )
+    legend.text = ggplot2::element_text(size = 10),
+    legend.title = ggplot2::element_text(size = 10, face = "bold"),
+    panel.border = ggplot2::element_rect(fill = NA, size = 1),
+    plot.title = ggplot2::element_text(size = 13, face = "bold"),
+    plot.subtitle = ggplot2::element_text(size = 10)
   )
-}

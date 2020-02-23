@@ -150,9 +150,9 @@ prefer-
 
 ```{r installation1, eval = FALSE}
 # needed package to download from GitHub repo
-utils::install.packages(pkgs = "remotes")
+install.packages(pkgs = "remotes")
 
-# downloading the package from GitHub
+# downloading the package from GitHub (needs `remotes` package to be installed)
 remotes::install_github(
   repo = "IndrajeetPatil/ggstatsplot", # package path on GitHub
   dependencies = FALSE, # assumes you have already installed needed packages
@@ -185,7 +185,7 @@ rmarkdown::pandoc_available()
 If you want to cite this package in a scientific journal or in any other
 context, run the following code in your `R` console:
 
-```{r citation, eval = FALSE}
+```{r citation}
 citation("ggstatsplot")
 ```
 
@@ -206,32 +206,6 @@ version of the package, see:
 To see the documentation relevant for the **development** version of the package,
 see the dedicated website for `ggstatplot`, which is updated after every new
 commit: <https://indrajeetpatil.github.io/ggstatsplot/>.
-
-## Help
-
-In `R`, documentation for any function can be accessed with the standard `help`
-command (e.g., `?ggbetweenstats`).
-
-Another handy tool to see arguments to any of the functions is `args`. For
-example-
-
-```{r args, message = FALSE, warning = FALSE}
-args(ggstatsplot::specify_decimal_p)
-```
-
-In case you want to look at the function body for any of the functions, just
-type the name of the function without the parentheses:
-
-```{r funbody, message = FALSE, warning = FALSE}
-ggstatsplot::specify_decimal_p
-```
-
-If you are not familiar either with what the namespace `::` does or how to use
-pipe operator `%>%`, something this package and its documentation relies a lot
-on, you can check out these links-
-
-  - <http://r-pkgs.had.co.nz/namespace.html>
-  - <http://r4ds.had.co.nz/pipes.html>
 
 # Primary functions
 
@@ -261,6 +235,7 @@ ggstatsplot::ggbetweenstats(
   data = iris,
   x = Species,
   y = Sepal.Length,
+  title = "Distribution of sepal length across Iris species",
   messages = FALSE
 ) + # further modification outside of ggstatsplot
   ggplot2::coord_cartesian(ylim = c(3, 8)) +
@@ -351,7 +326,6 @@ ggstatsplot::grouped_ggbetweenstats(
   pairwise.comparisons = TRUE, # display significant pairwise comparisons
   pairwise.annotation = "p.value", # how do you want to annotate the pairwise comparisons
   p.adjust.method = "bonferroni", # method for adjusting p-values for multiple comparisons
-  conf.level = 0.99, # changing confidence level to 99%
   # adding new components to `ggstatsplot` default
   ggplot.component = list(ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis())),
   k = 3,
@@ -521,15 +495,12 @@ ggstatsplot::ggscatterstats(
   x = budget,
   y = rating,
   type = "robust", # type of test that needs to be run
-  conf.level = 0.99, # confidence level
   xlab = "Movie budget (in million/ US$)", # label for x axis
   ylab = "IMDB rating", # label for y axis
   label.var = "title", # variable for labeling data points
   label.expression = "rating < 5 & budget > 100", # expression that decides which points to label
   title = "Movie budget and IMDB rating (action)", # title text for the plot
-  caption = expression( # caption text for the plot
-    paste(italic("Note"), ": IMDB stands for Internet Movie DataBase")
-  ),
+  caption = expression(paste(italic("Note"), ": IMDB stands for Internet Movie DataBase")),
   ggtheme = hrbrthemes::theme_ipsum_ps(), # choosing a different theme
   ggstatsplot.layer = FALSE, # turn off ggstatsplot theme layer
   marginal.type = "density", # type of marginal distribution to be displayed
@@ -561,7 +532,6 @@ ggstatsplot::grouped_ggscatterstats(
   y = length,
   label.var = title,
   label.expression = length > 200,
-  conf.level = 0.99,
   k = 3, # no. of decimal places in the results
   xfill = "#E69F00",
   yfill = "#8b3058",
@@ -631,7 +601,6 @@ ggstatsplot::ggpiestats(
   data = mtcars,
   x = am,
   y = cyl,
-  conf.level = 0.99, # confidence interval for effect size measure
   title = "Dataset: Motor Trend Car Road Tests", # title for the plot
   stat.title = "interaction: ", # title for the results
   legend.title = "Transmission", # title for the legend
@@ -639,10 +608,8 @@ ggstatsplot::ggpiestats(
   slice.label = "counts", # show counts data instead of percentages
   package = "ggsci", # package from which color palette is to be taken
   palette = "default_jama", # choosing a different color palette
-  caption = substitute( # text for the caption
-    paste(italic("Source"), ": 1974 Motor Trend US magazine")
-  ),
-  messages = FALSE # turn off messages and notes
+  caption = substitute(paste(italic("Source"), ": 1974 Motor Trend US magazine")),
+  messages = FALSE 
 )
 ```
 
@@ -656,8 +623,8 @@ set.seed(123)
 # data
 survey.data <-
   data.frame(
-    `1st survey` = c("Approve", "Approve", "Disapprove", "Disapprove"),
-    `2nd survey` = c("Approve", "Disapprove", "Approve", "Disapprove"),
+    "before" = c("Approve", "Approve", "Disapprove", "Disapprove"),
+    "after" = c("Approve", "Disapprove", "Approve", "Disapprove"),
     `Counts` = c(794, 150, 86, 570),
     check.names = FALSE
   )
@@ -665,11 +632,11 @@ survey.data <-
 # plot
 ggstatsplot::ggpiestats(
   data = survey.data,
-  x = `1st survey`,
-  y = `2nd survey`,
+  x = before,
+  y = after,
   counts = Counts,
+  title = "Survey results before and after the intervention",
   paired = TRUE, # within-subjects design
-  conf.level = 0.99, # confidence interval for effect size measure
   package = "wesanderson",
   palette = "Royal1"
 )
@@ -749,14 +716,6 @@ ggstatsplot::ggbarstats(
 )
 ```
 
-Note that *p*-values for results from one-sample proportion tests are displayed
-for each bar in the form of asterisks with the following convention: <br>
-
-  - $***$: $p < 0.001$
-  - $**$: $p < 0.01$
-  - $*$: $p < 0.05$
-  - $ns$: $p > 0.05$
-
 And, needless to say, there is also a `grouped_` variant of this function-
 
 ```{r ggbarstats2, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 10}
@@ -808,7 +767,6 @@ ggstatsplot::gghistostats(
   title = "Distribution of Iris sepal length", # title for the plot
   caption = substitute(paste(italic("Source:"), "Ronald Fisher's Iris data set")),
   type = "parametric", # one sample t-test
-  conf.level = 0.99, # changing confidence level for effect size
   bar.measure = "mix", # what does the bar length denote
   test.value = 5, # default value is 0
   test.value.line = TRUE, # display a vertical line at test value
@@ -915,7 +873,7 @@ As with the rest of the functions in this package, there is also a `grouped_`
 variant of this function to facilitate looping the same operation for all levels
 of a single grouping variable.
 
-```{r ggdotplotstats2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 10}
+```{r ggdotplotstats2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 12}
 # for reproducibility
 set.seed(123)
 
@@ -933,11 +891,8 @@ ggstatsplot::grouped_ggdotplotstats(
   grouping.var = cyl, # grouping variable
   test.value = 15.5,
   title.prefix = "cylinder count",
-  point.color = "red",
-  point.size = 5,
-  point.shape = 13,
+  point.args = list(color = "red", size = 5, shape = 13),
   test.value.line = TRUE,
-  ggtheme = ggthemes::theme_par(),
   messages = FALSE,
   title.text = "Fuel economy data"
 )
@@ -1315,6 +1270,32 @@ location in the plot.
 
 Additionally, all functions share the `ggtheme` and `palette` arguments that can
 be used to specify your favorite `ggplot` theme and color palette.
+
+## Help
+
+In `R`, documentation for any function can be accessed with the standard `help`
+command (e.g., `?ggbetweenstats`).
+
+Another handy tool to see arguments to any of the functions is `args`. For
+example-
+
+```{r args, message = FALSE, warning = FALSE}
+args(ggstatsplot::specify_decimal_p)
+```
+
+In case you want to look at the function body for any of the functions, just
+type the name of the function without the parentheses:
+
+```{r funbody, message = FALSE, warning = FALSE, eval = FALSE}
+ggstatsplot::ggcorrmat
+```
+
+If you are not familiar either with what the namespace `::` does or how to use
+pipe operator `%>%`, something this package and its documentation relies a lot
+on, you can check out these links-
+
+  - <http://r-pkgs.had.co.nz/namespace.html>
+  - <http://r4ds.had.co.nz/pipes.html>
 
 # Acknowledgments
 
