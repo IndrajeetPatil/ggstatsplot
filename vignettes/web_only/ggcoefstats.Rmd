@@ -1146,7 +1146,7 @@ mod <-
 # plotting the model
 ggstatsplot::ggcoefstats(
   x = mod,
-  #conf.method = "uniroot",
+  # conf.method = "uniroot",
   title = "generalized linear mixed models \nusing Template Model Builder"
 )
 ```
@@ -1554,12 +1554,15 @@ ggstatsplot::ggcoefstats(
 mod <-
   stats::lm(
     formula = cbind(mpg, disp) ~ wt,
-    data = purrr::modify_if(.x = mtcars, .p = is.numeric, .f = scale)
+    data = purrr::modify_if(.x = mtcars, .p = is.numeric, ~ {
+      as.numeric(scale(.x))
+    })
   )
 
 # plot
 ggstatsplot::ggcoefstats(
   x = mod,
+  title = "multiple linear regression models",
   exclude.intercept = FALSE
 )
 ```
@@ -1574,7 +1577,12 @@ library(MASS)
 utils::example(topic = birthwt, echo = FALSE)
 
 # model
-bwt.mu <- nnet::multinom(formula = low ~ ., data = bwt, trace = FALSE)
+bwt.mu <-
+  nnet::multinom(
+    formula = low ~ .,
+    data = bwt,
+    trace = FALSE
+  )
 
 # plot
 ggstatsplot::ggcoefstats(

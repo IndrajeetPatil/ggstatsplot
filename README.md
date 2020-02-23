@@ -9,7 +9,7 @@
 | [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)                      | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Forks](https://img.shields.io/badge/forks-88-blue.svg)](https://github.com/IndrajeetPatil/ggstatsplot/)                                                     | [![Rdoc](https://www.rdocumentation.org/badges/version/ggstatsplot)](https://www.rdocumentation.org/packages/ggstatsplot)                                       |
 | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/)                                                      | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                                               | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](https://img.shields.io/badge/issues-22-red.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)                                       | [![vignettes](https://img.shields.io/badge/vignettes-0.3.0-orange.svg?colorB=FF5722)](https://CRAN.R-project.org/package=ggstatsplot/vignettes/)                |
 | [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot) | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2074621.svg)](https://doi.org/10.5281/zenodo.2074621)                                                       |
-| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.com/IndrajeetPatil/ggstatsplot)                               | [![Last-changedate](https://img.shields.io/badge/last%20change-2020--02--22-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
+| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.com/IndrajeetPatil/ggstatsplot)                               | [![Last-changedate](https://img.shields.io/badge/last%20change-2020--02--23-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
 | [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                                    | [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                                            | [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ggstatsplot/community)                                           | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)                                                     | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
 
 # Raison d’être <img src="man/figures/logo.png" align="right" width="360" />
@@ -133,9 +133,9 @@ If you are in hurry and want to reduce the time of installation, prefer-
 
 ``` r
 # needed package to download from GitHub repo
-utils::install.packages(pkgs = "remotes")
+install.packages(pkgs = "remotes")
 
-# downloading the package from GitHub
+# downloading the package from GitHub (needs `remotes` package to be installed)
 remotes::install_github(
   repo = "IndrajeetPatil/ggstatsplot", # package path on GitHub
   dependencies = FALSE, # assumes you have already installed needed packages
@@ -172,6 +172,21 @@ context, run the following code in your `R` console:
 
 ``` r
 citation("ggstatsplot")
+#> 
+#> Patil I (2018). _ggstatsplot: "ggplot2" Based Plots with Statistical
+#> Details_. doi: 10.5281/zenodo.2074621 (URL:
+#> https://doi.org/10.5281/zenodo.2074621), <URL:
+#> https://CRAN.R-project.org/package=ggstatsplot>.
+#> 
+#> A BibTeX entry for LaTeX users is
+#> 
+#>   @Manual{,
+#>     title = {ggstatsplot: "ggplot2" Based Plots with Statistical Details},
+#>     author = {Indrajeet Patil},
+#>     year = {2018},
+#>     url = {https://CRAN.R-project.org/package=ggstatsplot},
+#>     doi = {10.5281/zenodo.2074621},
+#>   }
 ```
 
 There is currently a publication in preparation corresponding to this
@@ -192,50 +207,6 @@ To see the detailed documentation for each function in the stable
 To see the documentation relevant for the **development** version of the
 package, see the dedicated website for `ggstatplot`, which is updated
 after every new commit: <https://indrajeetpatil.github.io/ggstatsplot/>.
-
-## Help
-
-In `R`, documentation for any function can be accessed with the standard
-`help` command (e.g., `?ggbetweenstats`).
-
-Another handy tool to see arguments to any of the functions is `args`.
-For example-
-
-``` r
-args(ggstatsplot::specify_decimal_p)
-#> function (x, k = 3, p.value = FALSE) 
-#> NULL
-```
-
-In case you want to look at the function body for any of the functions,
-just type the name of the function without the parentheses:
-
-``` r
-ggstatsplot::specify_decimal_p
-#> function(x, k = 3, p.value = FALSE) {
-#> 
-#>   # for example, if p.value is 0.002, it should be displayed as such
-#>   if (k < 3 && isTRUE(p.value)) k <- 3
-#> 
-#>   # formatting the output properly
-#>   output <- trimws(format(round(x = x, digits = k), nsmall = k), which = "both")
-#> 
-#>   # if it's a p-value, then format it properly
-#>   if (isTRUE(p.value) && output < 0.001) output <- "< 0.001"
-#> 
-#>   # this will return a character
-#>   return(output)
-#> }
-#> <bytecode: 0x000000002f5c9ed8>
-#> <environment: namespace:ipmisc>
-```
-
-If you are not familiar either with what the namespace `::` does or how
-to use pipe operator `%>%`, something this package and its documentation
-relies a lot on, you can check out these links-
-
-  - <http://r-pkgs.had.co.nz/namespace.html>
-  - <http://r4ds.had.co.nz/pipes.html>
 
 # Primary functions
 
@@ -268,6 +239,7 @@ ggstatsplot::ggbetweenstats(
   data = iris,
   x = Species,
   y = Sepal.Length,
+  title = "Distribution of sepal length across Iris species",
   messages = FALSE
 ) + # further modification outside of ggstatsplot
   ggplot2::coord_cartesian(ylim = c(3, 8)) +
@@ -371,7 +343,6 @@ ggstatsplot::grouped_ggbetweenstats(
   pairwise.comparisons = TRUE, # display significant pairwise comparisons
   pairwise.annotation = "p.value", # how do you want to annotate the pairwise comparisons
   p.adjust.method = "bonferroni", # method for adjusting p-values for multiple comparisons
-  conf.level = 0.99, # changing confidence level to 99%
   # adding new components to `ggstatsplot` default
   ggplot.component = list(ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis())),
   k = 3,
@@ -552,15 +523,12 @@ ggstatsplot::ggscatterstats(
   x = budget,
   y = rating,
   type = "robust", # type of test that needs to be run
-  conf.level = 0.99, # confidence level
   xlab = "Movie budget (in million/ US$)", # label for x axis
   ylab = "IMDB rating", # label for y axis
   label.var = "title", # variable for labeling data points
   label.expression = "rating < 5 & budget > 100", # expression that decides which points to label
   title = "Movie budget and IMDB rating (action)", # title text for the plot
-  caption = expression( # caption text for the plot
-    paste(italic("Note"), ": IMDB stands for Internet Movie DataBase")
-  ),
+  caption = expression(paste(italic("Note"), ": IMDB stands for Internet Movie DataBase")),
   ggtheme = hrbrthemes::theme_ipsum_ps(), # choosing a different theme
   ggstatsplot.layer = FALSE, # turn off ggstatsplot theme layer
   marginal.type = "density", # type of marginal distribution to be displayed
@@ -595,7 +563,6 @@ ggstatsplot::grouped_ggscatterstats(
   y = length,
   label.var = title,
   label.expression = length > 200,
-  conf.level = 0.99,
   k = 3, # no. of decimal places in the results
   xfill = "#E69F00",
   yfill = "#8b3058",
@@ -673,7 +640,6 @@ ggstatsplot::ggpiestats(
   data = mtcars,
   x = am,
   y = cyl,
-  conf.level = 0.99, # confidence interval for effect size measure
   title = "Dataset: Motor Trend Car Road Tests", # title for the plot
   stat.title = "interaction: ", # title for the results
   legend.title = "Transmission", # title for the legend
@@ -681,10 +647,8 @@ ggstatsplot::ggpiestats(
   slice.label = "counts", # show counts data instead of percentages
   package = "ggsci", # package from which color palette is to be taken
   palette = "default_jama", # choosing a different color palette
-  caption = substitute( # text for the caption
-    paste(italic("Source"), ": 1974 Motor Trend US magazine")
-  ),
-  messages = FALSE # turn off messages and notes
+  caption = substitute(paste(italic("Source"), ": 1974 Motor Trend US magazine")),
+  messages = FALSE 
 )
 ```
 
@@ -702,8 +666,8 @@ set.seed(123)
 # data
 survey.data <-
   data.frame(
-    `1st survey` = c("Approve", "Approve", "Disapprove", "Disapprove"),
-    `2nd survey` = c("Approve", "Disapprove", "Approve", "Disapprove"),
+    "before" = c("Approve", "Approve", "Disapprove", "Disapprove"),
+    "after" = c("Approve", "Disapprove", "Approve", "Disapprove"),
     `Counts` = c(794, 150, 86, 570),
     check.names = FALSE
   )
@@ -711,20 +675,20 @@ survey.data <-
 # plot
 ggstatsplot::ggpiestats(
   data = survey.data,
-  x = `1st survey`,
-  y = `2nd survey`,
+  x = before,
+  y = after,
   counts = Counts,
+  title = "Survey results before and after the intervention",
   paired = TRUE, # within-subjects design
-  conf.level = 0.99, # confidence interval for effect size measure
   package = "wesanderson",
   palette = "Royal1"
 )
-#> Note: 99% CI for effect size estimate was computed with 100 bootstrap samples.
+#> Note: 95% CI for effect size estimate was computed with 100 bootstrap samples.
 #> # A tibble: 2 x 11
-#>   `2nd survey` counts  perc N         Approve Disapprove statistic   p.value
-#>   <fct>         <int> <dbl> <chr>     <chr>   <chr>          <dbl>     <dbl>
-#> 1 Disapprove      720   45  (n = 720) 20.83%  79.17%          245  3.20e- 55
-#> 2 Approve         880   55. (n = 880) 90.23%  9.77%           570. 6.80e-126
+#>   after      counts  perc N         Approve Disapprove statistic   p.value
+#>   <fct>       <int> <dbl> <chr>     <chr>   <chr>          <dbl>     <dbl>
+#> 1 Disapprove    720   45  (n = 720) 20.83%  79.17%          245  3.20e- 55
+#> 2 Approve       880   55. (n = 880) 90.23%  9.77%           570. 6.80e-126
 #>   parameter method                                   significance
 #>       <dbl> <chr>                                    <chr>       
 #> 1         1 Chi-squared test for given probabilities ***         
@@ -812,23 +776,6 @@ ggstatsplot::ggbarstats(
 
 <img src="man/figures/README-ggbarstats1-1.png" width="100%" />
 
-Note that *p*-values for results from one-sample proportion tests are
-displayed for each bar in the form of asterisks with the following
-convention: <br>
-
-  - ![\*\*\*](https://latex.codecogs.com/png.latex?%2A%2A%2A "***"): ![p
-    \< 0.001](https://latex.codecogs.com/png.latex?p%20%3C%200.001
-    "p \< 0.001")
-  - ![\*\*](https://latex.codecogs.com/png.latex?%2A%2A "**"): ![p
-    \< 0.01](https://latex.codecogs.com/png.latex?p%20%3C%200.01
-    "p \< 0.01")
-  - ![\*](https://latex.codecogs.com/png.latex?%2A "*"): ![p
-    \< 0.05](https://latex.codecogs.com/png.latex?p%20%3C%200.05
-    "p \< 0.05")
-  - ![ns](https://latex.codecogs.com/png.latex?ns "ns"): ![p
-    \> 0.05](https://latex.codecogs.com/png.latex?p%20%3E%200.05
-    "p \> 0.05")
-
 And, needless to say, there is also a `grouped_` variant of this
 function-
 
@@ -883,7 +830,6 @@ ggstatsplot::gghistostats(
   title = "Distribution of Iris sepal length", # title for the plot
   caption = substitute(paste(italic("Source:"), "Ronald Fisher's Iris data set")),
   type = "parametric", # one sample t-test
-  conf.level = 0.99, # changing confidence level for effect size
   bar.measure = "mix", # what does the bar length denote
   test.value = 5, # default value is 0
   test.value.line = TRUE, # display a vertical line at test value
@@ -1015,11 +961,8 @@ ggstatsplot::grouped_ggdotplotstats(
   grouping.var = cyl, # grouping variable
   test.value = 15.5,
   title.prefix = "cylinder count",
-  point.color = "red",
-  point.size = 5,
-  point.shape = 13,
+  point.args = list(color = "red", size = 5, shape = 13),
   test.value.line = TRUE,
-  ggtheme = ggthemes::theme_par(),
   messages = FALSE,
   title.text = "Fuel economy data"
 )
@@ -1473,6 +1416,34 @@ plot and at a custom location in the plot.
 Additionally, all functions share the `ggtheme` and `palette` arguments
 that can be used to specify your favorite `ggplot` theme and color
 palette.
+
+## Help
+
+In `R`, documentation for any function can be accessed with the standard
+`help` command (e.g., `?ggbetweenstats`).
+
+Another handy tool to see arguments to any of the functions is `args`.
+For example-
+
+``` r
+args(ggstatsplot::specify_decimal_p)
+#> function (x, k = 3, p.value = FALSE) 
+#> NULL
+```
+
+In case you want to look at the function body for any of the functions,
+just type the name of the function without the parentheses:
+
+``` r
+ggstatsplot::ggcorrmat
+```
+
+If you are not familiar either with what the namespace `::` does or how
+to use pipe operator `%>%`, something this package and its documentation
+relies a lot on, you can check out these links-
+
+  - <http://r-pkgs.had.co.nz/namespace.html>
+  - <http://r4ds.had.co.nz/pipes.html>
 
 # Acknowledgments
 

@@ -38,22 +38,15 @@ Here is a simple example:
 library(ggplot2)
 
 ggstatsplot::combine_plots(
-  # basic scatter plot
-  ggplot2::ggplot(
-    data = datasets::mtcars,
-    mapping = ggplot2::aes(x = wt, y = mpg)
-  ) +
-    ggplot2::geom_point(),
-  # basic scatter plot with theme_ggstatsplot() added
-  ggplot2::ggplot(
-    data = datasets::mtcars,
-    mapping = ggplot2::aes(x = wt, y = mpg)
-  ) +
-    ggplot2::geom_point() +
+  # basic scatter plot with `theme_ggstatsplot()` added
+  ggplot(mtcars, aes(x = wt, y = mpg)) +
+    geom_point() +
     ggstatsplot::theme_ggstatsplot(),
-  labels = c("(i)", "(ii)"),
+  # basic scatter plot without the default theme
+  ggplot(mtcars, aes(x = wt, y = mpg)) +
+    geom_point(),
   nrow = 1,
-  title.text = "Plot with and without ggstatsplot theme"
+  title.text = "Plot with and without the default `theme_ggstatsplot` overlaid"
 )
 ```
 
@@ -66,7 +59,7 @@ ggstatsplot::ggcorrmat(
   data = datasets::iris,
   cor.vars = c(Sepal.Length:Petal.Width),
   matrix.type = "upper",
-  ggtheme = ggthemes::theme_fivethirtyeight(),            # selected ggplot2 theme
+  ggtheme = ggthemes::theme_fivethirtyeight(), # selected ggplot2 theme
   ggstatsplot.layer = FALSE
 )
 ```
@@ -83,5 +76,3 @@ If you find any bugs or have any suggestions/remarks, please file an issue on
 
 For details, see-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>
-
-

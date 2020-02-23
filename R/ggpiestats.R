@@ -148,7 +148,7 @@ ggpiestats <- function(data,
   data %<>%
     dplyr::select(.data = ., {{ x }}, {{ y }}, {{ counts }}) %>%
     tidyr::drop_na(data = .) %>%
-    as_tibble(x = .)
+    as_tibble(.)
 
   # =========================== converting counts ============================
 

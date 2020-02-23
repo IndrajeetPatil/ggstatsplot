@@ -53,6 +53,10 @@ MAJOR CHANGES
   - `ggcorrmat` was never supposed to work with Kendall's correlation coefficient
     but it accidentally did. This is no longer the case.
   - `ggstatsplot` now has a logo, thanks to Sarah! :)
+  - The default `theme_ggstatsplot` changes slightly. The biggest change is that
+    the title and the subtitle for plots are now aligned to the left of the
+    plot. This change also forced the legend for `ggpiestats` to be displayed
+    on the right side of the plot rather than at the bottom.
 
 MINOR CHANGES
 
