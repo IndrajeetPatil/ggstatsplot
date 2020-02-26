@@ -18,7 +18,7 @@ testthat::test_that(
           Expt == 5 ~ "5th"
         )
       ) %>%
-      tibble::as_tibble(x = .)
+      as_tibble(x = .)
 
     # creating the plot
     set.seed(123)
@@ -165,10 +165,7 @@ testthat::test_that(
       structure(
         list(
           y = c(2.25, 2.25, 2.25, 2.25, 2.25),
-          x = c(
-            800,
-            800, 800, 800, 800
-          ),
+          x = c(800, 800, 800, 800, 800),
           label = list(
             ggplot2::expr("test" == "800"),
             ggplot2::expr("test" == "800"),
@@ -180,7 +177,7 @@ testthat::test_that(
           group = c(-1L, -1L, -1L, -1L, -1L),
           colour = c("black", "black", "black", "black", "black"),
           fill = c("white", "white", "white", "white", "white"),
-          size = c(3.88, 3.88, 3.88, 3.88, 3.88),
+          size = c(3, 3, 3, 3, 3),
           angle = c(0, 0, 0, 0, 0),
           hjust = c(0.5, 0.5, 0.5, 0.5, 0.5),
           vjust = c(0.5, 0.5, 0.5, 0.5, 0.5),
@@ -189,10 +186,7 @@ testthat::test_that(
           fontface = c(1, 1, 1, 1, 1),
           lineheight = c(1.2, 1.2, 1.2, 1.2, 1.2)
         ),
-        row.names = c(
-          NA,
-          -5L
-        ),
+        row.names = c(NA, -5L),
         class = "data.frame"
       )
     )
@@ -231,7 +225,7 @@ testthat::test_that(
           group = c(-1L, -1L, -1L, -1L, -1L),
           colour = c("blue", "blue", "blue", "blue", "blue"),
           fill = c("white", "white", "white", "white", "white"),
-          size = c(3.88, 3.88, 3.88, 3.88, 3.88),
+          size = c(3, 3, 3, 3, 3),
           angle = c(0, 0, 0, 0, 0),
           hjust = c(0.5, 0.5, 0.5, 0.5, 0.5),
           vjust = c(0.5, 0.5, 0.5, 0.5, 0.5),

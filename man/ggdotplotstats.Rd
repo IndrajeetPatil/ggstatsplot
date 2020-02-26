@@ -24,15 +24,15 @@ ggdotplotstats(
   nboot = 100,
   k = 2,
   results.subtitle = TRUE,
-  point.args = list(size = 3, shape = 16),
+  point.args = list(color = "black", size = 3, shape = 16),
   test.k = 0,
   test.value.line = FALSE,
   test.value.line.args = list(size = 1),
-  test.value.label.args = list(),
+  test.value.label.args = list(size = 3),
   centrality.parameter = "mean",
   centrality.k = 2,
   centrality.line.args = list(color = "blue", size = 1),
-  centrality.label.args = list(color = "blue"),
+  centrality.label.args = list(color = "blue", size = 3),
   ggplot.component = NULL,
   ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE,
@@ -162,8 +162,9 @@ to be displayed (Default: \code{TRUE}).}
 \item{...}{Currently ignored.}
 }
 \description{
-A dot chart with statistical details from one-sample test
-included in the plot as a subtitle.
+A dot chart (as described by William S. Cleveland) with
+statistical details from one-sample test included in the plot as a
+subtitle.
 }
 \examples{
 \donttest{

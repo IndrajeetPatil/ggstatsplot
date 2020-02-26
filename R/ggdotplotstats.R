@@ -1,7 +1,8 @@
 #' @title Dot plot/chart for labeled numeric data.
 #' @name ggdotplotstats
-#' @description A dot chart with statistical details from one-sample test
-#'   included in the plot as a subtitle.
+#' @description A dot chart (as described by William S. Cleveland) with
+#'   statistical details from one-sample test included in the plot as a
+#'   subtitle.
 #'
 #' @param ... Currently ignored.
 #' @param y Label or grouping variable.
@@ -65,21 +66,24 @@ ggdotplotstats <- function(data,
                            nboot = 100,
                            k = 2,
                            results.subtitle = TRUE,
-                           point.args = list(size = 3, shape = 16),
+                           point.args = list(color = "black", size = 3, shape = 16),
                            test.k = 0,
                            test.value.line = FALSE,
                            test.value.line.args = list(size = 1),
-                           test.value.label.args = list(),
+                           test.value.label.args = list(size = 3),
                            centrality.parameter = "mean",
                            centrality.k = 2,
                            centrality.line.args = list(color = "blue", size = 1),
-                           centrality.label.args = list(color = "blue"),
+                           centrality.label.args = list(color = "blue", size = 3),
                            ggplot.component = NULL,
                            ggtheme = ggplot2::theme_bw(),
                            ggstatsplot.layer = TRUE,
                            output = "plot",
                            messages = TRUE,
                            ...) {
+
+  # convert entered stats type to a standard notation
+  type <- stats_type_switch(type)
 
   # ------------------------------ variable names ----------------------------
 
@@ -107,13 +111,13 @@ ggdotplotstats <- function(data,
       percent_rank = dplyr::percent_rank({{ x }}),
       rank = dplyr::row_number()
     ) %>%
-    as_tibble(x = .)
+    as_tibble(.)
 
   # ================ stats labels ==========================================
 
   if (isTRUE(results.subtitle)) {
     # preparing the BF message for NULL
-    if (isTRUE(bf.message) && type %in% c("parametric", "p")) {
+    if (isTRUE(bf.message) && type == "parametric") {
       caption <-
         statsExpressions::bf_ttest(
           data = data,

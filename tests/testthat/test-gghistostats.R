@@ -602,7 +602,7 @@ testthat::test_that(
     testthat::expect_equal(dim(pb1$data[[2]]), c(101L, 8L))
     testthat::expect_identical(unique(pb1$data[[2]]$colour), "black")
     testthat::expect_equal(unique(pb1$data[[2]]$linetype), 1)
-    testthat::expect_equal(unique(pb1$data[[2]]$size), 0.5)
+    testthat::expect_equal(unique(pb1$data[[2]]$size), 3)
     testthat::expect_identical(unique(pb3$data[[2]]$colour), "red")
     testthat::expect_equal(unique(pb3$data[[2]]$size), 0.8)
     testthat::expect_identical(unique(pb4$data[[2]]$linetype), "dashed")
@@ -620,60 +620,6 @@ testthat::test_that(
     testthat::expect_null(pb2$plot$labels$caption, NULL)
     testthat::expect_null(pb3$plot$labels$caption, NULL)
     testthat::expect_null(pb4$plot$labels$caption, NULL)
-  }
-)
-
-# checking with default binwidth -------------------------------------
-
-testthat::test_that(
-  desc = "checking with default binwidth",
-  code = {
-    testthat::skip_on_cran()
-
-    # creating the plot
-    set.seed(123)
-    p <-
-      suppressWarnings(ggstatsplot::gghistostats(
-        data = morley,
-        x = Speed,
-        effsize.type = "d",
-        effsize.noncentral = FALSE,
-        bf.message = FALSE,
-        ggplot.component = ggplot2::scale_x_continuous(
-          sec.axis = ggplot2::dup_axis(name = ggplot2::element_blank())
-        ),
-        messages = FALSE
-      ))
-
-    # build the plot
-    pb <- ggplot2::ggplot_build(p)
-
-    # tests
-    testthat::expect_null(pb$plot$labels$caption, NULL)
-    testthat::expect_equal(pb$layout$panel_params[[1]]$x.range,
-      c(582.75, 1127.25),
-      tolerance = 0.001
-    )
-    testthat::expect_equal(pb$layout$panel_params[[1]]$x.range,
-      pb$layout$panel_params[[1]]$x.sec.range,
-      tolerance = 0.001
-    )
-    testthat::expect_identical(
-      pb$layout$panel_params[[1]]$x.labels,
-      c("600", "700", "800", "900", "1000", "1100")
-    )
-    testthat::expect_identical(
-      pb$layout$panel_params[[1]]$x.labels,
-      pb$layout$panel_params[[1]]$x.sec.labels
-    )
-    testthat::expect_equal(pb$layout$panel_params[[1]]$y.range,
-      c(-1.15, 24.15),
-      tolerance = 0.001
-    )
-    testthat::expect_identical(
-      pb$layout$panel_params[[1]]$y.labels,
-      c("0", "5", "10", "15", "20")
-    )
   }
 )
 

@@ -67,6 +67,7 @@ country, average life expectancy, and GDP per capita across countries only for
 the year 2007.
 
 The simplest way to get a correlation matrix is to stick to the defaults-
+
 ```{r ggcorrmat1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
 library(ggstatsplot)
 
@@ -81,6 +82,7 @@ ggstatsplot::ggcorrmat(
 ```
 
 This plot can be further modified with additional arguments-
+
 ```{r ggcorrmat2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 6}
 ggstatsplot::ggcorrmat(
   data = gapminder_2007, # data from which variable is to be taken
@@ -141,7 +143,7 @@ ggstatsplot::ggcorrmat(
     "width (in mm)",
     "depth (in mm)"
   ),
-  hc.order = TRUE # use hierarchical clustering
+  ggcorrplot.args = list(outline.color = "black", hc.order = TRUE)
 )
 ```
 
@@ -229,6 +231,14 @@ ggstatsplot::ggcorrmat(
   return = "p-values",
   type = "nonparametric",
   digits = 3
+)
+
+# getting the sample sizes for all pairs (using a different dataset)
+ggstatsplot::ggcorrmat(
+  data = ggplot2::msleep,
+  cor.vars = sleep_total:bodywt,
+  type = "robust",
+  output = "n" # note that n is different due to NAs
 )
 ```
 

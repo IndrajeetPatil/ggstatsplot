@@ -233,6 +233,7 @@ subtitle.</p>
   <span class='kw'>xparams</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>fill</span> <span class='kw'>=</span> <span class='no'>xfill</span>),
   <span class='kw'>yparams</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>fill</span> <span class='kw'>=</span> <span class='no'>yfill</span>),
   <span class='kw'>centrality.parameter</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
+  <span class='kw'>centrality.label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>),
   <span class='kw'>vline.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>xfill</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>),
   <span class='kw'>hline.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>yfill</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>),
   <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
@@ -403,6 +404,12 @@ the y axis.</p></td>
 or <code>"median"</code>) is to be displayed as vertical (for <code>x</code>) and horizontal (for
 <code>y</code>) lines. Note that mean values corresponds to arithmetic mean and not
 geometric mean.</p></td>
+    </tr>
+    <tr>
+      <th>centrality.label.args</th>
+      <td><p>A list of additional
+aesthetic arguments to be passed to the <code>geom_label</code> used to display the
+label corresponding to the centrality parameter and test value.</p></td>
     </tr>
     <tr>
       <th>vline.args, hline.args</th>
