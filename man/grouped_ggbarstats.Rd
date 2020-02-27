@@ -70,14 +70,9 @@ will cause the \code{x} axis label to be the \code{x} variable).}
     \item{\code{ylab}}{Custom text for the \code{y} axis label (Default: \code{"percent"}).}
     \item{\code{proportion.test}}{Decides whether proportion test for \code{main} variable is
 to be carried out for each level of \code{y} (Default: \code{TRUE}).}
-    \item{\code{bar.label}}{Character decides what information needs to be
+    \item{\code{label}}{Character decides what information needs to be
 displayed on the label in each pie slice. Possible options are
 \code{"percentage"} (default), \code{"counts"}, \code{"both"}.}
-    \item{\code{data.label}}{Character decides what information needs to be
-displayed on the label in each pie slice. Possible options are
-\code{"percentage"} (default), \code{"counts"}, \code{"both"}.}
-    \item{\code{legend.position}}{The position of the legend
-\code{"none"}, \code{"left"}, \code{"right"}, \code{"bottom"}, \code{"top"} (Default: \code{"right"}).}
     \item{\code{x.axis.orientation}}{The orientation of the \code{x} axis labels one of
 "slant" or "vertical" to change from the default horizontal
 orientation (Default: \code{NULL} which is horizontal).}
@@ -100,6 +95,8 @@ like \code{"main x condition"} or \code{"interaction"}.}
     \item{\code{sample.size.label}}{Logical that decides whether sample size information
 should be displayed for each level of the grouping variable \code{y}
 (Default: \code{TRUE}).}
+    \item{\code{perc.k}}{Numeric that decides number of decimal places for percentage
+labels (Default: \code{0}).}
     \item{\code{label.separator}}{If \code{"both"} counts and proportion information is to be
 displayed in a label, this argument decides whether these two pieces of
 information are going to be on the same line (\code{" "}) or on separate lines
@@ -129,8 +126,6 @@ for the effect size (Default: \code{100}).}
     \item{\code{legend.title}}{Title text for the legend.}
     \item{\code{k}}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
-    \item{\code{perc.k}}{Numeric that decides number of decimal places for percentage
-labels (Default: \code{0}).}
     \item{\code{ggtheme}}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
 extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},

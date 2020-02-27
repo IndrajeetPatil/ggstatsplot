@@ -23,7 +23,7 @@
 #'   to be carried out for each level of `condition` (Default: `TRUE`).
 #' @param perc.k Numeric that decides number of decimal places for percentage
 #'   labels (Default: `0`).
-#' @param slice.label Character decides what information needs to be displayed
+#' @param label Character decides what information needs to be displayed
 #'   on the label in each pie slice. Possible options are `"percentage"`
 #'   (default), `"counts"`, `"both"`.
 #' @param label.args Additional aesthetic arguments that will be passed to
@@ -100,6 +100,8 @@ ggpiestats <- function(data,
                        factor.levels = NULL,
                        stat.title = NULL,
                        sample.size.label = TRUE,
+                       label = "percentage",
+                       perc.k = 0,
                        label.separator = "\n",
                        label.args = list(alpha = 1, fill = "white"),
                        bf.message = TRUE,
@@ -113,8 +115,6 @@ ggpiestats <- function(data,
                        nboot = 100,
                        legend.title = NULL,
                        k = 2,
-                       perc.k = 0,
-                       slice.label = "percentage",
                        proportion.test = TRUE,
                        ggtheme = ggplot2::theme_bw(),
                        ggstatsplot.layer = TRUE,
@@ -233,8 +233,8 @@ ggpiestats <- function(data,
   df <-
     cat_label_df(
       data = cat_counter(data = data, x = {{ x }}, y = {{ y }}),
-      label.col.name = "slice.label",
-      label.content = slice.label,
+      label.col.name = "label",
+      label.content = label,
       label.separator = label.separator,
       perc.k = perc.k
     )
@@ -279,7 +279,7 @@ ggpiestats <- function(data,
     ) +
     rlang::exec(
       .fn = ggplot2::geom_label,
-      mapping = ggplot2::aes(label = slice.label, group = {{ x }}),
+      mapping = ggplot2::aes(label = label, group = {{ x }}),
       position = ggplot2::position_fill(vjust = 0.5),
       show.legend = FALSE,
       na.rm = TRUE,

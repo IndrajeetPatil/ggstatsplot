@@ -30,13 +30,10 @@ plan("multicore")
 ```
 
 The function `ggstatsplot::ggcoefstats` generates **dot-and-whisker plots** for
-regression models saved in a tidy data frame (produced with the `broom` package
-and its mixed-effects modeling variant `broom.mixed` package).
-
-By default, the plot displays `95%` confidence intervals for the regression
-coefficients. The function currently supports only those classes of object that
-are supported by the `broom` package. For an exhaustive list, see-
-<https://broom.tidyverse.org/articles/available-methods.html>
+regression models saved in a tidy data frame. The tidy dataframes are prepared
+using the following packages: `broom`, `broom.mixed`, and `parameters`.
+Additionally, if available, the model summary indices are also extracted from
+the following packages: `broom`, `broom.mixed`, and `performance`.
 
 In this vignette, we will see examples of how to use this function. We will try
 to cover as many classes of objects as possible. Unfortunately, there is no
@@ -65,29 +62,28 @@ be invariant across models:
   - The caption will always contain diagnostic information, if available, about
     models that can be useful for model selection: The smaller the Akaike's
     Information Criterion (**AIC**) and the Bayesian Information Criterion
-    (**BIC**) values, the "better" the model is. 
+    (**BIC**) values, the "better" the model is.
 
-- The output of this function will be a `ggplot2` object and, thus, it can be
-  further modified (e.g., change themes, etc.) with `ggplot2` functions.
+  - The output of this function will be a `ggplot2` object and, thus, it can be
+    further modified (e.g., change themes, etc.) with `ggplot2` functions.
 
-Most of the regression models that are supported in the `broom` and
-`broom.mixed` packages with `tidy` and `glance` methods are also supported by
-`ggcoefstats`. For example-
+Most of the regression models that are supported in the underlying packages are
+also supported by `ggcoefstats`. For example-
 
-`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `BBreg`, `bglmerMod`, `bigglm`,
-`biglm`, `blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm2`, `brmsfit`, `btergm`,
-`cch`, `cgam`, `cgamm`, `cglm`, `clm`, `clmm`, `coeftest`, `complmrob`, `confusionMatrix`,
-`coxme`, `coxph`, `cpglm`, `cpglmm`, `crch`, `DirichReg`, `drc`, `emmGrid`,
-`epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`, `flexsurvreg`, `glmc`,
-`glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`, `garch`, `glm`,
-`glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`, `hurdle`, `ivreg`,
-`iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`, `lmRob`, `lmrob`,
-`LORgee`, `mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`, `mediate`, `mixor`,
-`mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `nlmerMod`, `nlrq`, `nlreg`,
-`nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`,
-`rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`,
-`svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`, `wbgee`, `wblm`, `zeroinfl`,
-etc.
+`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `BBreg`, `bglmerMod`, `bife`,
+`bigglm`, `biglm`, `blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm2`, `brmsfit`,
+`btergm`, `cch`, `cgam`, `cgamm`, `cglm`, `clm`, `clmm`, `coeftest`,
+`complmrob`, `confusionMatrix`, `coxme`, `coxph`, `cpglm`, `cpglmm`, `crch`,
+`DirichReg`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`,
+`flexsurvreg`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`,
+`garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`,
+`hurdle`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`,
+`lmRob`, `lmrob`, `LORgee`, `mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`,
+`mediate`, `mixor`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `nlmerMod`,
+`nlrq`, `nlreg`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`,
+`rlmerMod`, `rq`, `rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`,
+`survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`, `wbgee`,
+`wblm`, `zeroinfl`, etc.
 
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
@@ -1014,6 +1010,28 @@ ggstatsplot::ggcoefstats(
   x = model,
   exclude.intercept = FALSE,
   title = "beta-binomial logistic regression model"
+)
+```
+
+## binary choice models with fixed effects (`bife`)
+
+```{r bife, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 8}
+# setup
+set.seed(123)
+library(bife)
+dataset <- psid
+
+# binary choice models with fixed effects
+mod <-
+  bife(
+    LFP ~ I(AGE^2) + log(INCH) + KID1 + KID2 + KID3 + factor(TIME) | ID,
+    dataset
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
+  title = "binary choice models with fixed effects"
 )
 ```
 

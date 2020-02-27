@@ -215,6 +215,8 @@ included in the plot as a subtitle.</p>
   <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>sample.size.label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"percentage"</span>,
+  <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>label.separator</span> <span class='kw'>=</span> <span class='st'>" "</span>,
   <span class='kw'>label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"white"</span>),
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
@@ -224,7 +226,6 @@ included in the plot as a subtitle.</p>
   <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>legend.position</span> <span class='kw'>=</span> <span class='st'>"right"</span>,
   <span class='kw'>x.axis.orientation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
@@ -232,9 +233,6 @@ included in the plot as a subtitle.</p>
   <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Percent"</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>bar.label</span> <span class='kw'>=</span> <span class='st'>"percentage"</span>,
-  <span class='kw'>data.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>proportion.test</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
@@ -314,6 +312,17 @@ should be displayed for each level of the grouping variable <code>y</code>
 (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
+      <th>label</th>
+      <td><p>Character decides what information needs to be
+displayed on the label in each pie slice. Possible options are
+<code>"percentage"</code> (default), <code>"counts"</code>, <code>"both"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>perc.k</th>
+      <td><p>Numeric that decides number of decimal places for percentage
+labels (Default: <code>0</code>).</p></td>
+    </tr>
+    <tr>
       <th>label.separator</th>
       <td><p>If <code>"both"</code> counts and proportion information is to be
 displayed in a label, this argument decides whether these two pieces of
@@ -364,11 +373,6 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
       <td><p>The text for the plot caption.</p></td>
     </tr>
     <tr>
-      <th>legend.position</th>
-      <td><p>The position of the legend
-<code>"none"</code>, <code>"left"</code>, <code>"right"</code>, <code>"bottom"</code>, <code>"top"</code> (Default: <code>"right"</code>).</p></td>
-    </tr>
-    <tr>
       <th>x.axis.orientation</th>
       <td><p>The orientation of the <code>x</code> axis labels one of
 "slant" or "vertical" to change from the default horizontal
@@ -401,17 +405,6 @@ will cause the <code>x</code> axis label to be the <code>x</code> variable).</p>
       <th>k</th>
       <td><p>Number of digits after decimal point (should be an integer)
 (Default: <code>k = 2</code>).</p></td>
-    </tr>
-    <tr>
-      <th>perc.k</th>
-      <td><p>Numeric that decides number of decimal places for percentage
-labels (Default: <code>0</code>).</p></td>
-    </tr>
-    <tr>
-      <th>bar.label, data.label</th>
-      <td><p>Character decides what information needs to be
-displayed on the label in each pie slice. Possible options are
-<code>"percentage"</code> (default), <code>"counts"</code>, <code>"both"</code>.</p></td>
     </tr>
     <tr>
       <th>proportion.test</th>
@@ -516,12 +509,16 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
   <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='st'>"Engine"</span>
 )</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>10</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 11</span><span>
-#&gt;   cyl   counts  perc N     `0`   `1`   statistic p.value parameter method
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> 
-#&gt; </span><span style='color: #555555;'>1</span><span> 8         14  43.8 (n =~ 100.~ </span><span style='color: #BB0000;'>NA</span><span>       14     1.83</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span>         1 Chi-s~
-#&gt; </span><span style='color: #555555;'>2</span><span> 6          7  21.9 (n =~ 42.8~ 57.1~     0.143 7.05</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>         1 Chi-s~
-#&gt; </span><span style='color: #555555;'>3</span><span> 4         11  34.4 (n =~ 9.09% 90.9~     7.36  6.66</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span>         1 Chi-s~
-#&gt; </span><span style='color: #555555;'># ... with 1 more variable: significance </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span></div><div class='img'><img src='ggbarstats-1.png' alt='' width='700' height='433' /></div></span></pre>
+#&gt;   cyl   counts  perc N        `0`     `1`    statistic  p.value parameter
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> 8         14  43.8 (n = 14) 100.00% </span><span style='color: #BB0000;'>NA</span><span>        14     0.000</span><span style='text-decoration: underline;'>183</span><span>         1
+#&gt; </span><span style='color: #555555;'>2</span><span> 6          7  21.9 (n = 7)  42.86%  57.14%     0.143 0.705            1
+#&gt; </span><span style='color: #555555;'>3</span><span> 4         11  34.4 (n = 11) 9.09%   90.91%     7.36  0.006</span><span style='text-decoration: underline;'>66</span><span>          1
+#&gt;   method                                   significance
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       
+#&gt; </span><span style='color: #555555;'>1</span><span> Chi-squared test for given probabilities ***         
+#&gt; </span><span style='color: #555555;'>2</span><span> Chi-squared test for given probabilities ns          
+#&gt; </span><span style='color: #555555;'>3</span><span> Chi-squared test for given probabilities **          </div><div class='img'><img src='ggbarstats-1.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>

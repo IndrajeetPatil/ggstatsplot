@@ -196,13 +196,12 @@ testthat::test_that(
       condition = "cyl",
       bf.message = TRUE,
       nboot = 10,
-      data.label = "both",
+      label = "both",
       package = "wesanderson",
       palette = "Royal2",
       labels.legend = c("0 = V-shaped", "1 = straight"),
       legend.title = "Engine",
       x.axis.orientation = "slant",
-      legend.position = "top",
       label.separator = "\n",
       messages = FALSE
     ))
@@ -211,7 +210,7 @@ testthat::test_that(
       data = mtcars,
       main = vs,
       condition = cyl,
-      bar.label = "counts",
+      label = "counts",
       bf.message = FALSE,
       nboot = 10,
       x.axis.orientation = "vertical",
@@ -258,8 +257,6 @@ testthat::test_that(
     testthat::expect_identical(pb$plot$guides$fill$title, "Engine")
     testthat::expect_equal(pb$plot$theme$axis.text.x$angle, 45L)
     testthat::expect_equal(pb1$plot$theme$axis.text.x$angle, 90L)
-    testthat::expect_identical(pb$plot$theme$legend.position, "top")
-    testthat::expect_identical(pb1$plot$theme$legend.position, "right")
   }
 )
 
