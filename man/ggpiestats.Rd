@@ -15,6 +15,8 @@ ggpiestats(
   factor.levels = NULL,
   stat.title = NULL,
   sample.size.label = TRUE,
+  label = "percentage",
+  perc.k = 0,
   label.separator = "\\n",
   label.args = list(alpha = 1, fill = "white"),
   bf.message = TRUE,
@@ -28,8 +30,6 @@ ggpiestats(
   nboot = 100,
   legend.title = NULL,
   k = 2,
-  perc.k = 0,
-  slice.label = "percentage",
   proportion.test = TRUE,
   ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE,
@@ -78,6 +78,13 @@ like \code{"main x condition"} or \code{"interaction"}.}
 should be displayed for each level of the grouping variable \code{y}
 (Default: \code{TRUE}).}
 
+\item{label}{Character decides what information needs to be displayed
+on the label in each pie slice. Possible options are \code{"percentage"}
+(default), \code{"counts"}, \code{"both"}.}
+
+\item{perc.k}{Numeric that decides number of decimal places for percentage
+labels (Default: \code{0}).}
+
 \item{label.separator}{If \code{"both"} counts and proportion information is to be
 displayed in a label, this argument decides whether these two pieces of
 information are going to be on the same line (\code{" "}) or on separate lines
@@ -120,13 +127,6 @@ for the effect size (Default: \code{100}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
-
-\item{perc.k}{Numeric that decides number of decimal places for percentage
-labels (Default: \code{0}).}
-
-\item{slice.label}{Character decides what information needs to be displayed
-on the label in each pie slice. Possible options are \code{"percentage"}
-(default), \code{"counts"}, \code{"both"}.}
 
 \item{proportion.test}{Decides whether proportion test for \code{main} variable is
 to be carried out for each level of \code{condition} (Default: \code{TRUE}).}

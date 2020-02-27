@@ -10,11 +10,9 @@
 #' @param ylab Custom text for the `y` axis label (Default: `"percent"`).
 #' @param proportion.test Decides whether proportion test for `main` variable is
 #'   to be carried out for each level of `y` (Default: `TRUE`).
-#' @param bar.label,data.label Character decides what information needs to be
+#' @param label Character decides what information needs to be
 #'   displayed on the label in each pie slice. Possible options are
 #'   `"percentage"` (default), `"counts"`, `"both"`.
-#' @param legend.position The position of the legend
-#'   `"none"`, `"left"`, `"right"`, `"bottom"`, `"top"` (Default: `"right"`).
 #' @param x.axis.orientation The orientation of the `x` axis labels one of
 #'   "slant" or "vertical" to change from the default horizontal
 #'   orientation (Default: `NULL` which is horizontal).
@@ -60,6 +58,8 @@ ggbarstats <- function(data,
                        results.subtitle = TRUE,
                        stat.title = NULL,
                        sample.size.label = TRUE,
+                       label = "percentage",
+                       perc.k = 0,
                        label.separator = " ",
                        label.args = list(alpha = 1, fill = "white"),
                        bf.message = TRUE,
@@ -69,7 +69,6 @@ ggbarstats <- function(data,
                        title = NULL,
                        subtitle = NULL,
                        caption = NULL,
-                       legend.position = "right",
                        x.axis.orientation = NULL,
                        conf.level = 0.95,
                        nboot = 100,
@@ -77,9 +76,6 @@ ggbarstats <- function(data,
                        xlab = NULL,
                        ylab = "Percent",
                        k = 2,
-                       perc.k = 0,
-                       bar.label = "percentage",
-                       data.label = NULL,
                        proportion.test = TRUE,
                        ggtheme = ggplot2::theme_bw(),
                        ggstatsplot.layer = TRUE,
@@ -195,12 +191,11 @@ ggbarstats <- function(data,
 
   # convert the data into percentages; group by yal variable
   # dataframe with summary labels
-  bar.label <- data.label %||% bar.label
   df <-
     cat_label_df(
       data = cat_counter(data = data, x = {{ x }}, y = {{ y }}),
-      label.col.name = "bar.label",
-      label.content = bar.label,
+      label.col.name = "label",
+      label.content = label,
       label.separator = label.separator,
       perc.k = perc.k
     )
@@ -254,7 +249,7 @@ ggbarstats <- function(data,
     ) +
     rlang::exec(
       .fn = ggplot2::geom_label,
-      mapping = ggplot2::aes(label = bar.label, group = {{ x }}),
+      mapping = ggplot2::aes(label = label, group = {{ x }}),
       show.legend = FALSE,
       position = ggplot2::position_fill(vjust = 0.5),
       na.rm = TRUE,
@@ -264,10 +259,7 @@ ggbarstats <- function(data,
       ggtheme = ggtheme,
       ggstatsplot.layer = ggstatsplot.layer
     ) +
-    ggplot2::theme(
-      panel.grid.major.x = ggplot2::element_blank(),
-      legend.position = legend.position
-    ) +
+    ggplot2::theme(panel.grid.major.x = ggplot2::element_blank()) +
     ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title)) +
     paletteer::scale_fill_paletteer_d(
       palette = paste0(package, "::", palette),

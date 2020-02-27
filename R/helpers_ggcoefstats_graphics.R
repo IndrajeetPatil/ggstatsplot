@@ -2,102 +2,17 @@
 #' @name ggcoefstats_label_maker
 #'
 #' @param ... Currently ignored.
-#' @param tidy_df Tidy dataframe from `broomExtra::tidy`.
-#' @param glance_df Glance model summary dataframe from `broom::glance`
-#'   (default: `NULL`). This is optional argument. If provide, the `glance`
-#'   summary will be used to write `caption` for the final plot.
+#' @param tidy_df A tidy dataframe.
+#' @param glance_df A tidy model summary dataframe (default: `NULL`). If
+#'   provided, this dataframe will be used to write `caption` for the final
+#'   plot.
 #' @param ... Currently ignored.
 #' @inheritParams ggcoefstats
 #'
-#' @importFrom insight is_model find_statistic
-#' @importFrom purrr pmap_dfc
-#' @importFrom dplyr select_if
+#' @importFrom purrr map
+#' @importFrom dplyr group_nest mutate
+#' @importFrom tidyr unnest
 #'
-#' @examples
-#' \donttest{
-#' # show all columns in output tibble
-#' options(tibble.width = Inf)
-#'
-#' # for reproducibility
-#' set.seed(123)
-#'
-#' #------------------------- models with *t*-statistic ------------------
-#' # model with t-statistic
-#' ggstatsplot:::ggcoefstats_label_maker(x = broomExtra::tidy(stats::lm(
-#'   data = mtcars, formula = wt ~ cyl * mpg
-#' )), statistic = "t")
-#'
-#' # (in case `x` is not a dataframe, no need to specify `statistic` argument;
-#' # this will be figured out by the function itself)
-#'
-#' #------------------------- models with *t*-statistic ------------------
-#'
-#' # dataframe
-#' clotting <- data.frame(
-#'   u = c(5, 10, 15, 20, 30, 40, 60, 80, 100),
-#'   lot1 = c(118, 58, 42, 35, 27, 25, 21, 19, 18),
-#'   lot2 = c(69, 35, 26, 21, 18, 16, 13, 12, 12)
-#' )
-#'
-#' # model
-#' mod <-
-#'   stats::glm(
-#'     formula = lot1 ~ log(u),
-#'     data = clotting,
-#'     family = Gamma
-#'   )
-#'
-#' # model with t-statistic
-#' ggstatsplot:::ggcoefstats_label_maker(
-#'   x = mod,
-#'   tidy_df = broomExtra::tidy(
-#'     x = mod,
-#'     conf.int = TRUE,
-#'     conf.level = 0.95
-#'   )
-#' )
-#'
-#' #------------------------- models with *z*-statistic --------------------
-#'
-#' # preparing dataframe
-#' counts <- c(18, 17, 15, 20, 10, 20, 25, 13, 12)
-#' outcome <- gl(3, 1, 9)
-#' treatment <- gl(3, 3)
-#' d.AD <- data.frame(treatment, outcome, counts)
-#'
-#' # model
-#' mod <- stats::glm(
-#'   formula = counts ~ outcome + treatment,
-#'   family = poisson(),
-#'   data = d.AD
-#' )
-#'
-#' # creating tidy dataframe with label column
-#' ggstatsplot:::ggcoefstats_label_maker(x = mod, tidy_df = broomExtra::tidy(mod))
-#'
-#' #------------------------- models with *f*-statistic --------------------
-#' # creating a model object
-#' op <- options(contrasts = c("contr.helmert", "contr.poly"))
-#' npk.aov <- stats::aov(formula = yield ~ block + N * P * K, data = npk)
-#'
-#' # extracting a tidy dataframe with effect size estimate and their CIs
-#' tidy_df <-
-#'   groupedstats::lm_effsize_ci(
-#'     object = npk.aov,
-#'     effsize = "omega",
-#'     partial = FALSE,
-#'     nboot = 50
-#'   ) %>%
-#'   dplyr::rename(.data = ., estimate = omegasq, statistic = F.value)
-#'
-#' # including a new column with a label
-#' ggstatsplot:::ggcoefstats_label_maker(
-#'   x = npk.aov,
-#'   tidy_df = tidy_df,
-#'   effsize = "omega",
-#'   partial = FALSE
-#' )
-#' }
 #' @keywords internal
 
 # function body
@@ -109,42 +24,6 @@ ggcoefstats_label_maker <- function(x,
                                     effsize = "eta",
                                     partial = TRUE,
                                     ...) {
-
-  #----------------------- statistic cleanup ----------------------------------
-
-  # if a dataframe
-  if (isFALSE(insight::is_model(x))) {
-    tidy_df <- x
-  } else {
-    # if not a dataframe, figure out what's the relevant statistic
-    statistic <- insight::find_statistic(x)
-
-    # standardize statistic type symbol for regression models
-    # checking entered strings to extract the statistic
-    grep_stat <- function(x, pattern) {
-      if (isTRUE(grepl(pattern, x, ignore.case = TRUE))) {
-        return(tolower(substring(x, 1, 1)))
-      } else {
-        return(NA_character_)
-      }
-    }
-
-    # extracting statistic value
-    statistic <-
-      purrr::pmap_dfc(
-        .l =
-          list(
-            pattern = list("^t", "^f", "^z", "^chi"),
-            x = list(statistic)
-          ),
-        .f = grep_stat
-      ) %>%
-      dplyr::select_if(.tbl = ., .predicate = ~ sum(!is.na(.)) > 0) %>%
-      unlist(x = ., use.names = FALSE)
-  }
-
-  # No glance method is available for F-statistic
-  if (statistic == "f") glance_df <- NULL
 
   #----------------------- p-value cleanup ------------------------------------
 
@@ -306,4 +185,40 @@ ggcoefstats_label_maker <- function(x,
 
   # return the final dataframe
   return(as_tibble(tidy_df))
+}
+
+
+#' @name extract_statistic
+#'
+#' @importFrom insight find_statistic
+#' @importFrom purrr pmap_dfc
+#' @importFrom dplyr select_if
+#'
+#' @noRd
+
+extract_statistic <- function(x, ...) {
+  # if not a dataframe, figure out what's the relevant statistic
+  statistic <- insight::find_statistic(x)
+
+  # standardize statistic type symbol for regression models
+  # checking entered strings to extract the statistic
+  grep_stat <- function(x, pattern) {
+    if (isTRUE(grepl(pattern, x, ignore.case = TRUE))) {
+      return(tolower(substring(x, 1, 1)))
+    } else {
+      return(NA_character_)
+    }
+  }
+
+  # extracting statistic value
+  purrr::pmap_dfc(
+    .l =
+      list(
+        pattern = list("^t", "^f", "^z", "^chi"),
+        x = list(statistic)
+      ),
+    .f = grep_stat
+  ) %>%
+    dplyr::select_if(.tbl = ., .predicate = ~ sum(!is.na(.)) > 0) %>%
+    unlist(x = ., use.names = FALSE)
 }

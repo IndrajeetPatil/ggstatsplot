@@ -569,6 +569,7 @@ ggcoefstats <- function(x,
   if (isTRUE(stats.labels)) {
     # in case a dataframe was entered, `x` and `tidy_df` are going to be same
     if (isFALSE(insight::is_model(x))) x <- tidy_df
+    if (isTRUE(insight::is_model(x))) statistic <- extract_statistic(x)
 
     # adding a column with labels using custom function
     tidy_df %<>%

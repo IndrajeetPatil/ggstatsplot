@@ -620,7 +620,7 @@ plot_list <-
       data = class_list,
       x = "Survived",
       y = "Sex",
-      slice.label = list("both", "count", "percentage", "both"),
+      label = list("both", "count", "percentage", "both"),
       nboot = 10,
       title = list(
         "Passenger class: 1st",
@@ -686,7 +686,7 @@ plot_list <-
       x = "Survived",
       y = "Sex",
       nboot = 10,
-      bar.label = list("both", "count", "percentage", "both"),
+      label = list("both", "count", "percentage", "both"),
       title = list(
         "Passenger class: 1st",
         "Passenger class: 2nd",

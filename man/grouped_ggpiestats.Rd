@@ -76,7 +76,7 @@ type. Default palette is \code{"Dark2"}.}
 to be carried out for each level of \code{condition} (Default: \code{TRUE}).}
     \item{\code{perc.k}}{Numeric that decides number of decimal places for percentage
 labels (Default: \code{0}).}
-    \item{\code{slice.label}}{Character decides what information needs to be displayed
+    \item{\code{label}}{Character decides what information needs to be displayed
 on the label in each pie slice. Possible options are \code{"percentage"}
 (default), \code{"counts"}, \code{"both"}.}
     \item{\code{label.args}}{Additional aesthetic arguments that will be passed to

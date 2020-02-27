@@ -637,7 +637,7 @@ ggstatsplot::grouped_ggpiestats(
   x = mpaa,
   grouping.var = genre, # grouping variable
   title.prefix = "Movie genre", # prefix for the facetted title
-  slice.label = "both", # show both counts and percentage data
+  label = "both", # show both counts and percentage data
   messages = FALSE,
   package = "ggsci", # package from which color palette is to be taken
   palette = "default_jama", # choosing a different color palette
@@ -962,26 +962,31 @@ For examples and more information, see the `ggcorrmat` vignette:
 
 ## `ggcoefstats`
 
-`ggcoefstats` creates a dot-and-whisker plot for regression models. Although the
-statistical models displayed in the plot may differ based on the class of models
-being investigated, there are few aspects of the plot that will be invariant
-across models:
+The function `ggstatsplot::ggcoefstats` generates **dot-and-whisker plots** for
+regression models saved in a tidy data frame. The tidy dataframes are prepared
+using the following packages: `broom`, `broom.mixed`, and `parameters`.
+Additionally, if available, the model summary indices are also extracted from
+the following packages: `broom`, `broom.mixed`, and `performance`.
 
-- The dot-whisker plot contains a dot representing the **estimate** and their
-**confidence intervals** (`95%` is the default). The estimate can either be
-  effect sizes (for tests that depend on the `F` statistic) or regression
-  coefficients (for tests with `t` and `z` statistic), etc. The function will, by
-  default, display a helpful `x`-axis label that should clear up what estimates are
-  being displayed. The confidence intervals can sometimes be asymmetric if
-  bootstrapping was used.
+Although the statistical models displayed in the plot may differ based on the
+class of models being investigated, there are few aspects of the plot that will
+be invariant across models:
+
+  - The dot-whisker plot contains a dot representing the **estimate** and their
+    **confidence intervals** (`95%` is the default). The estimate can either be
+    effect sizes (for tests that depend on the `F` statistic) or regression
+    coefficients (for tests with `t` and `z` statistic), etc. The function will,
+    by default, display a helpful `x`-axis label that should clear up what
+    estimates are being displayed. The confidence intervals can sometimes be
+    asymmetric if bootstrapping was used.
   
-- The caption will always contain diagnostic information, if available, about
-  models that can be useful for model selection: The smaller the Akaike's
-  Information Criterion (**AIC**) and the Bayesian Information Criterion (**BIC**)
-  values, the "better" the model is. 
+  - The caption will always contain diagnostic information, if available, about
+    models that can be useful for model selection: The smaller the Akaike's
+    Information Criterion (**AIC**) and the Bayesian Information Criterion
+    (**BIC**) values, the "better" the model is.
 
-- The output of this function will be a `ggplot2` object and, thus, it can be
-  further modified (e.g., change themes, etc.) with `ggplot2` functions.
+  - The output of this function will be a `ggplot2` object and, thus, it can be
+    further modified (e.g., change themes, etc.) with `ggplot2` functions.
 
 ```{r ggcoefstats1, message = FALSE, warning = FALSE, fig.height = 5, fig.width = 6}
 # for reproducibility
@@ -1020,24 +1025,23 @@ ggstatsplot::ggcoefstats(
   ggplot2::labs(x = "regression coefficient", y = NULL)
 ```
 
-Most of the regression models that are supported in the `broom` and
-`broom.mixed` packages with `tidy` and `glance` methods are also supported by
-`ggcoefstats`. For example-
+Most of the regression models that are supported in the underlying packages are
+also supported by `ggcoefstats`. For example-
 
-`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `BBreg`, `bglmerMod`, `bigglm`,
-`biglm`, `blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm2`, `brmsfit`, `btergm`,
-`cch`, `cgam`, `cgamm`, `cglm`, `clm`, `clmm`, `coeftest`, `complmrob`, `confusionMatrix`,
-`coxme`, `coxph`, `cpglm`, `cpglmm`, `crch`, `DirichReg`, `drc`, `emmGrid`,
-`epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`, `flexsurvreg`, `glmc`,
-`glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`, `garch`, `glm`,
-`glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`, `hurdle`, `ivreg`,
-`iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`, `lmRob`, `lmrob`,
-`LORgee`, `mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`, `mediate`, `mixor`,
-`mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `nlmerMod`, `nlrq`, `nlreg`,
-`nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`,
-`rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`,
-`svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`, `wbgee`, `wblm`, `zeroinfl`,
-etc.
+`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `BBreg`, `bglmerMod`, `bife`,
+`bigglm`, `biglm`, `blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm2`, `brmsfit`,
+`btergm`, `cch`, `cgam`, `cgamm`, `cglm`, `clm`, `clmm`, `coeftest`,
+`complmrob`, `confusionMatrix`, `coxme`, `coxph`, `cpglm`, `cpglmm`, `crch`,
+`DirichReg`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`,
+`flexsurvreg`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`,
+`garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`,
+`hurdle`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`,
+`lmRob`, `lmrob`, `LORgee`, `mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`,
+`mediate`, `mixor`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `nlmerMod`,
+`nlrq`, `nlreg`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`,
+`rlmerMod`, `rq`, `rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`,
+`survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`, `wbgee`,
+`wblm`, `zeroinfl`, etc.
 
 Although not shown here, this function can also be used to carry out both
 frequentist and Bayesian random-effects meta-analysis.

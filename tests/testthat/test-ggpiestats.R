@@ -20,7 +20,8 @@ testthat::test_that(
         caption = "From ggplot2 package",
         perc.k = 2,
         nboot = 25,
-        slice.label = "both",
+        ggstatsplot.layer = FALSE,
+        label = "both",
         messages = FALSE
       )
 
@@ -156,7 +157,7 @@ testthat::test_that(
           package = "wesanderson",
           palette = "Royal2",
           ggtheme = ggplot2::theme_bw(),
-          slice.label = "counts",
+          label = "counts",
           legend.title = "transmission",
           factor.levels = c("0 = automatic", "1 = manual"),
           messages = FALSE
@@ -213,7 +214,7 @@ testthat::test_that(
     testthat::expect_identical(levels(p1$data$am), c("0"))
     testthat::expect_identical(
       colnames(p1$data),
-      c("am", "cyl", "counts", "perc", "slice.label")
+      c("am", "cyl", "counts", "perc", "label")
     )
 
     # checking layer data
@@ -335,7 +336,7 @@ testthat::test_that(
     )
     testthat::expect_identical(
       dplyr::arrange(pb$data[[2]], group, PANEL)$label,
-      dat$slice.label
+      dat$label
     )
 
     # check if palette changed
@@ -483,7 +484,7 @@ testthat::test_that(
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
     testthat::expect_identical(pb$plot$labels$group, "1st survey")
     testthat::expect_identical(pb$plot$labels$fill, "1st survey")
-    testthat::expect_identical(pb$plot$labels$label, "slice.label")
+    testthat::expect_identical(pb$plot$labels$label, "label")
     testthat::expect_null(pb$plot$labels$x, NULL)
     testthat::expect_null(pb$plot$labels$y, NULL)
     testthat::expect_null(pb$plot$labels$title, NULL)

@@ -18,29 +18,39 @@ arguments `list(size = 5, color = "darkgreen", alpha = 0.8)` can be supplied).
     can be provided through `...`. These changes will not necessarily break the
     existing code but will lead to some minor graphical changes (e.g., if you
     were providing `labels` argument explicitly, it will be ignored).
+    
   - All functions lose the `return` argument, which was supposed to be
     alternative to enter `output`. But this was just leading to more confusion
     on the user's part. The biggest user-visible impact this is going to have is
     that `ggcorrmat` will no longer be backward-compatible. The older scripts
     will still work but if the `return` argument was anything except `"plot"`,
     it will just be ignored.
+    
   - `ggcorrmat` no longer has `corr.method` argument. To be consistent with rest
     of the functions in this package, the type of statistics should be specified
     using `type` argument. Additional, it gains a new argument
     `ggcorrplot.args`, which can be used to pass additional arguments to the
     underlying plotting function (`ggcorrplot::ggcorrplot`).
+    
   - Both `gghistostats` and `ggdotplotstats` now use the following arguments to
     modify `geom`s corresponding to the lines and labels:
     `test.value.line.args`, `test.value.label.args`, `centrality.line.args`,
     `centrality.label.args`. This helps avoid specifying millions of arguments.
+    
   - Removes the vestigial `ggplot_converter` function.
+  
   - `ggpiestats` and `ggbarstats` remove the following vestigial arguments:
     `facet.wrap.name`, `bias.correct`, `bar.outline.color`. The `bar.proptest`
     and `facet.proptest` arguments were difficult to remember and confusing and
-    are replaced by a common `proportion.test` argument.
+    are replaced by a common `proportion.test` argument. Additionally, the
+    following arguments have all been removed and replaced by `label` argument:
+    `slice.label`, `bar.label`, `data.label`. These plethora of options was a
+    headache to remember.
+    
   - `gghistostats` loses the following arguments: `fill.gradient`, `low.color`,
     `high.color`. It made no sense to add a color gradient to this plot when the
     Y-axis already displayed the information about what bar represented.
+    
   - `ggscatterstats` loses the following arguments: `palette` and `package`.
     Since this function requires only two colors, it didn't make much sense to
     use color palettes to specify this. They can be instead specified using
@@ -60,7 +70,7 @@ MAJOR CHANGES
 
 MINOR CHANGES
 
-  - More models supported in `ggcoefstats`: `BBreg`, `cglm`, `crch`,
+  - More models supported in `ggcoefstats`: `BBreg`, `bife`, `cglm`, `crch`,
     `DirichReg`, `LORgee`, `zeroinfl`.
   - Following functions are now re-exported from `ipmisc`: `bartlett_message`,
     `normality_message`. A few other internal data wrangling functions now

@@ -15,6 +15,8 @@ ggbarstats(
   results.subtitle = TRUE,
   stat.title = NULL,
   sample.size.label = TRUE,
+  label = "percentage",
+  perc.k = 0,
   label.separator = " ",
   label.args = list(alpha = 1, fill = "white"),
   bf.message = TRUE,
@@ -24,7 +26,6 @@ ggbarstats(
   title = NULL,
   subtitle = NULL,
   caption = NULL,
-  legend.position = "right",
   x.axis.orientation = NULL,
   conf.level = 0.95,
   nboot = 100,
@@ -32,9 +33,6 @@ ggbarstats(
   xlab = NULL,
   ylab = "Percent",
   k = 2,
-  perc.k = 0,
-  bar.label = "percentage",
-  data.label = NULL,
   proportion.test = TRUE,
   ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE,
@@ -91,6 +89,13 @@ like \code{"main x condition"} or \code{"interaction"}.}
 should be displayed for each level of the grouping variable \code{y}
 (Default: \code{TRUE}).}
 
+\item{label}{Character decides what information needs to be
+displayed on the label in each pie slice. Possible options are
+\code{"percentage"} (default), \code{"counts"}, \code{"both"}.}
+
+\item{perc.k}{Numeric that decides number of decimal places for percentage
+labels (Default: \code{0}).}
+
 \item{label.separator}{If \code{"both"} counts and proportion information is to be
 displayed in a label, this argument decides whether these two pieces of
 information are going to be on the same line (\code{" "}) or on separate lines
@@ -123,9 +128,6 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 
 \item{caption}{The text for the plot caption.}
 
-\item{legend.position}{The position of the legend
-\code{"none"}, \code{"left"}, \code{"right"}, \code{"bottom"}, \code{"top"} (Default: \code{"right"}).}
-
 \item{x.axis.orientation}{The orientation of the \code{x} axis labels one of
 "slant" or "vertical" to change from the default horizontal
 orientation (Default: \code{NULL} which is horizontal).}
@@ -145,13 +147,6 @@ will cause the \code{x} axis label to be the \code{x} variable).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
-
-\item{perc.k}{Numeric that decides number of decimal places for percentage
-labels (Default: \code{0}).}
-
-\item{bar.label, data.label}{Character decides what information needs to be
-displayed on the label in each pie slice. Possible options are
-\code{"percentage"} (default), \code{"counts"}, \code{"both"}.}
 
 \item{proportion.test}{Decides whether proportion test for \code{main} variable is
 to be carried out for each level of \code{y} (Default: \code{TRUE}).}
