@@ -46,13 +46,14 @@
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams ggbetweenstats
 #' @inheritParams ggExtra::ggMarginal
+#' @inheritParams gghistostats
 #'
 #' @import ggplot2
 #'
 #' @importFrom dplyr filter pull
 #' @importFrom rlang !! enquo quo_name parse_expr ensym as_name enexpr exec !!!
-#' @importFrom ggExtra ggMarginal
 #' @importFrom ggrepel geom_label_repel
+#' @importFrom ggExtra ggMarginal
 #' @importFrom statsExpressions expr_corr_test bf_corr_test
 #'
 #' @seealso \code{\link{grouped_ggscatterstats}}, \code{\link{ggcorrmat}},
@@ -116,6 +117,7 @@ ggscatterstats <- function(data,
                            xparams = list(fill = xfill),
                            yparams = list(fill = yfill),
                            centrality.parameter = "none",
+                           centrality.label.args = list(size = 3),
                            vline.args = list(color = xfill, size = 1, linetype = "dashed"),
                            hline.args = list(color = yfill, size = 1, linetype = "dashed"),
                            results.subtitle = TRUE,
@@ -349,6 +351,7 @@ ggscatterstats <- function(data,
         y = y.vline,
         k = 2,
         color = xfill,
+        label.args = centrality.label.args,
         label.text = label.text,
         line.direction = "vline",
         jitter = 0.25
@@ -363,6 +366,7 @@ ggscatterstats <- function(data,
         k = 2,
         line.direction = "hline",
         color = yfill,
+        label.args = centrality.label.args,
         label.text = label.text,
         jitter = 0.25
       )

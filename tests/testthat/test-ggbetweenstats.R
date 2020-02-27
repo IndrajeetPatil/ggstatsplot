@@ -18,6 +18,7 @@ testthat::test_that(
         xlab = "vore",
         ylab = "brain weight",
         pairwise.comparisons = TRUE,
+        ggstatsplot.layer = FALSE,
         outlier.tagging = TRUE,
         outlier.label = name,
         outlier.label.args = list(color = "darkgreen"),

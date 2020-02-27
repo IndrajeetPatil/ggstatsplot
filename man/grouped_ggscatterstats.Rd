@@ -174,6 +174,9 @@ as a function.}
 the x axis.}
     \item{\code{yparams}}{List of extra parameters to use only for the marginal plot along
 the y axis.}
+    \item{\code{centrality.label.args}}{A list of additional
+aesthetic arguments to be passed to the \code{geom_label} used to display the
+label corresponding to the centrality parameter and test value.}
   }}
 
 \item{plotgrid.args}{A list of additional arguments to \code{cowplot::plot_grid}.}

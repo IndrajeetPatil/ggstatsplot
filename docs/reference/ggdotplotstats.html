@@ -51,8 +51,9 @@
   
 
 <meta property="og:title" content="Dot plot/chart for labeled numeric data. — ggdotplotstats" />
-<meta property="og:description" content="A dot chart with statistical details from one-sample test
-included in the plot as a subtitle." />
+<meta property="og:description" content="A dot chart (as described by William S. Cleveland) with
+statistical details from one-sample test included in the plot as a
+subtitle." />
 <meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -200,8 +201,9 @@ included in the plot as a subtitle." />
     </div>
 
     <div class="ref-description">
-    <p>A dot chart with statistical details from one-sample test
-included in the plot as a subtitle.</p>
+    <p>A dot chart (as described by William S. Cleveland) with
+statistical details from one-sample test included in the plot as a
+subtitle.</p>
     </div>
 
     <pre class="usage"><span class='fu'>ggdotplotstats</span>(
@@ -224,15 +226,15 @@ included in the plot as a subtitle.</p>
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
   <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>point.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>shape</span> <span class='kw'>=</span> <span class='fl'>16</span>),
+  <span class='kw'>point.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>shape</span> <span class='kw'>=</span> <span class='fl'>16</span>),
   <span class='kw'>test.k</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>test.value.line.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1</span>),
-  <span class='kw'>test.value.label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  <span class='kw'>test.value.label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>),
   <span class='kw'>centrality.parameter</span> <span class='kw'>=</span> <span class='st'>"mean"</span>,
   <span class='kw'>centrality.k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
   <span class='kw'>centrality.line.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1</span>),
-  <span class='kw'>centrality.label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>),
+  <span class='kw'>centrality.label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>),
   <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,

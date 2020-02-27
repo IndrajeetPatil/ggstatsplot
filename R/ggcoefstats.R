@@ -299,11 +299,7 @@ ggcoefstats <- function(x,
                         vline.args = list(size = 1, linetype = "dashed"),
                         stats.labels = TRUE,
                         stats.label.color = NULL,
-                        stats.label.args = list(
-                          size = 3,
-                          segment.color = "grey50",
-                          direction = "y"
-                        ),
+                        stats.label.args = list(size = 3, direction = "y"),
                         package = "RColorBrewer",
                         palette = "Dark2",
                         direction = 1,

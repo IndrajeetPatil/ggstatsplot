@@ -31,6 +31,7 @@ ggscatterstats(
   xparams = list(fill = xfill),
   yparams = list(fill = yfill),
   centrality.parameter = "none",
+  centrality.label.args = list(size = 3),
   vline.args = list(color = xfill, size = 1, linetype = "dashed"),
   hline.args = list(color = yfill, size = 1, linetype = "dashed"),
   results.subtitle = TRUE,
@@ -153,6 +154,10 @@ the y axis.}
 or \code{"median"}) is to be displayed as vertical (for \code{x}) and horizontal (for
 \code{y}) lines. Note that mean values corresponds to arithmetic mean and not
 geometric mean.}
+
+\item{centrality.label.args}{A list of additional
+aesthetic arguments to be passed to the \code{geom_label} used to display the
+label corresponding to the centrality parameter and test value.}
 
 \item{vline.args, hline.args}{A list of additional aesthetic arguments to be
 passed to \code{ggplot2::geom_vline} and \code{ggplot2::geom_hline} geoms used to
