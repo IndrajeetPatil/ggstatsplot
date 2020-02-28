@@ -78,14 +78,12 @@
 #'   type. Default palette is `"Dark2"`.
 #' @param point.args A list of additional aesthetic arguments to be passed to
 #'   the `geom_point` displaying the raw data.
+#' @param violin.args A list of additional aesthetic arguments to be passed to
+#'   the `geom_violin`.
 #' @param ggplot.component A `ggplot` component to be added to the plot prepared
 #'   by `ggstatsplot`. This argument is primarily helpful for `grouped_` variant
 #'   of the current function. Default is `NULL`. The argument should be entered
 #'   as a function.
-#' @param sort If `"ascending"` (default), `x`-axis variable factor levels will
-#'   be sorted based on increasing values of `y`-axis variable. If
-#'   `"descending"`, the opposite. If `"none"`, no sorting will happen.
-#' @param sort.fun The function used to sort (default: `mean`).
 #' @param package Name of package from which the palette is desired as string
 #' or symbol.
 #' @param palette Name of palette as string or symbol.
@@ -118,7 +116,7 @@
 #' @importFrom ggsignif geom_signif
 #' @importFrom statsExpressions bf_ttest bf_oneway_anova
 #' @importFrom pairwiseComparisons pairwise_comparisons
-#' @importFrom ipmisc sort_xy outlier_df
+#' @importFrom ipmisc outlier_df
 #'
 #' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggwithinstats}},
 #'  \code{\link{grouped_ggwithinstats}}
@@ -212,8 +210,6 @@ ggbetweenstats <- function(data,
                            conf.level = 0.95,
                            nboot = 100,
                            tr = 0.1,
-                           sort = "none",
-                           sort.fun = mean,
                            mean.plotting = TRUE,
                            mean.ci = FALSE,
                            mean.point.args = list(size = 5, color = "darkred"),
@@ -234,6 +230,7 @@ ggbetweenstats <- function(data,
                              size = 3,
                              stroke = 0
                            ),
+                           violin.args = list(width = 0.5, alpha = 0.2),
                            ggtheme = ggplot2::theme_bw(),
                            ggstatsplot.layer = TRUE,
                            package = "RColorBrewer",
@@ -346,30 +343,7 @@ ggbetweenstats <- function(data,
     ))
   }
 
-  # --------------------------------- sorting --------------------------------
-
-  # if sorting is happening
-  if (sort != "none") {
-    data %<>%
-      ipmisc::sort_xy(
-        data = .,
-        x = {{ x }},
-        y = {{ y }},
-        sort = sort,
-        .fun = sort.fun
-      )
-  }
-
   # -------------------------- basic plot -----------------------------------
-
-  # single component for creating geom_violin
-  ggbetweenstats_geom_violin <-
-    ggplot2::geom_violin(
-      width = 0.5,
-      alpha = 0.2,
-      fill = "white",
-      na.rm = TRUE
-    )
 
   # create the basic plot
   # add only the points which are *not* outliers
@@ -445,11 +419,17 @@ ggbetweenstats <- function(data,
           na.rm = TRUE
         )
     }
-    if (plot.type == "boxviolin") {
-      plot <- plot + ggbetweenstats_geom_violin
-    }
-  } else if (plot.type == "violin") {
-    plot <- plot + ggbetweenstats_geom_violin
+  }
+
+  # add violin geom
+  if (plot.type %in% c("violin", "boxviolin")) {
+    plot <- plot +
+      rlang::exec(
+        .fn = ggplot2::geom_violin,
+        fill = "white",
+        na.rm = TRUE,
+        !!!violin.args
+      )
   }
 
   # ---------------------------- outlier tagging -----------------------------

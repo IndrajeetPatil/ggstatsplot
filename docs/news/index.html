@@ -211,6 +211,7 @@
 <li><p><code>ggpiestats</code> and <code>ggbarstats</code> remove the following vestigial arguments: <code>facet.wrap.name</code>, <code>bias.correct</code>, <code>bar.outline.color</code>. The <code>bar.proptest</code> and <code>facet.proptest</code> arguments were difficult to remember and confusing and are replaced by a common <code>proportion.test</code> argument. Additionally, the following arguments have all been removed and replaced by <code>label</code> argument: <code>slice.label</code>, <code>bar.label</code>, <code>data.label</code>. These plethora of options was a headache to remember.</p></li>
 <li><p><code>gghistostats</code> loses the following arguments: <code>fill.gradient</code>, <code>low.color</code>, <code>high.color</code>. It made no sense to add a color gradient to this plot when the Y-axis already displayed the information about what bar represented.</p></li>
 <li><p><code>ggscatterstats</code> loses the following arguments: <code>palette</code> and <code>package</code>. Since this function requires only two colors, it didn’t make much sense to use color palettes to specify this. They can be instead specified using <code>xfill</code> and <code>yfill</code>. You can always use <code><a href="https://rdrr.io/pkg/paletteer/man/paletteer_d.html">paletteer::paletteer_d</a></code> to get a vector of color values and then provide values of your choosing to <code>xfill</code> and <code>yfill</code>.</p></li>
+<li><p>Removes sorting options in <code>ggbetweenstats</code> and <code>ggwithinstats</code> functions. This is something the users can easily do before entering the data in these functions.</p></li>
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>
@@ -222,7 +223,7 @@
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
-<li>More models supported in <code>ggcoefstats</code>: <code>BBreg</code>, <code>bife</code>, <code>cglm</code>, <code>crch</code>, <code>DirichReg</code>, <code>LORgee</code>, <code>zeroinfl</code>.</li>
+<li>More models supported in <code>ggcoefstats</code>: <code>BBreg</code>, <code>bcplm</code>, <code>bife</code>, <code>cglm</code>, <code>crch</code>, <code>DirichReg</code>, <code>LORgee</code>, <code>zcpglm</code>, <code>zeroinfl</code>.</li>
 <li>Following functions are now re-exported from <code>ipmisc</code>: <code>bartlett_message</code>, <code>normality_message</code>. A few other internal data wrangling functions now reside in <code>ipmisc</code>.</li>
 </ul>
 </div>

@@ -350,10 +350,6 @@ get error stating "Standard error cannot be computed because of Winsorized
 variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
 try to play around with the value of <code>tr</code>, which is by default set to
 <code>0.1</code>. Lowering the value might help.</p></dd>
-    <dt><code>sort</code></dt><dd><p>If <code>"ascending"</code> (default), <code>x</code>-axis variable factor levels will
-be sorted based on increasing values of <code>y</code>-axis variable. If
-<code>"descending"</code>, the opposite. If <code>"none"</code>, no sorting will happen.</p></dd>
-    <dt><code>sort.fun</code></dt><dd><p>The function used to sort (default: <code>mean</code>).</p></dd>
     <dt><code>mean.plotting</code></dt><dd><p>Logical that decides whether mean is to be highlighted
 and its value to be displayed (Default: <code>TRUE</code>).</p></dd>
     <dt><code>mean.ci</code></dt><dd><p>Logical that decides whether <code>95%</code> confidence interval for
@@ -384,6 +380,8 @@ involved outlier value plotting.</p></dd>
     <dt><code>outlier.point.args</code></dt><dd><p>A list of additional aesthetic arguments to be
 passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point</a></code> and <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geoms
 involved outlier value plotting.</p></dd>
+    <dt><code>violin.args</code></dt><dd><p>A list of additional aesthetic arguments to be passed to
+the <code>geom_violin</code>.</p></dd>
     <dt><code>ggtheme</code></dt><dd><p>A function, <code>ggplot2</code> theme name. Default value is
 <code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
 extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>,

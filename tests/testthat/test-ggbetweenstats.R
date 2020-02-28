@@ -184,59 +184,6 @@ testthat::test_that(
   }
 )
 
-
-# checking sorting -------------------------------------------------------
-
-testthat::test_that(
-  desc = "checking sorting",
-  code = {
-    testthat::skip_on_cran()
-
-    set.seed(123)
-    p1 <-
-      ggstatsplot::ggbetweenstats(
-        data = iris,
-        x = Species,
-        y = Sepal.Length,
-        sort = "none",
-        results.subtitle = FALSE,
-        messages = FALSE
-      )
-
-    set.seed(123)
-    p2 <-
-      ggstatsplot::ggbetweenstats(
-        data = iris,
-        x = Species,
-        y = Sepal.Length,
-        sort = "ascending",
-        results.subtitle = FALSE,
-        messages = FALSE
-      )
-
-    set.seed(123)
-    p3 <-
-      ggstatsplot::ggbetweenstats(
-        data = iris,
-        x = Species,
-        y = Sepal.Length,
-        sort = "xxx",
-        results.subtitle = FALSE,
-        messages = FALSE
-      )
-
-    # built plots
-    pb1 <- ggplot2::ggplot_build(p1)
-    pb2 <- ggplot2::ggplot_build(p2)
-    pb3 <- ggplot2::ggplot_build(p3)
-
-    # tests
-    testthat::expect_equal(pb1$data[[6]]$label, rev(pb3$data[[6]]$label))
-    testthat::expect_equal(pb1$data[[6]]$label, pb2$data[[6]]$label)
-  }
-)
-
-
 # mean labelling tests work ------------------------------------------
 
 testthat::test_that(

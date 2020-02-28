@@ -57,6 +57,10 @@ arguments `list(size = 5, color = "darkgreen", alpha = 0.8)` can be supplied).
     `xfill` and `yfill`. You can always use `paletteer::paletteer_d` to get a
     vector of color values and then provide values of your choosing to `xfill`
     and `yfill`.
+    
+  - Removes sorting options in `ggbetweenstats` and `ggwithinstats` functions.
+    This is something the users can easily do before entering the data in these
+    functions.
   
 MAJOR CHANGES
 
@@ -70,8 +74,8 @@ MAJOR CHANGES
 
 MINOR CHANGES
 
-  - More models supported in `ggcoefstats`: `BBreg`, `bife`, `cglm`, `crch`,
-    `DirichReg`, `LORgee`, `zeroinfl`.
+  - More models supported in `ggcoefstats`: `BBreg`, `bcplm`, `bife`, `cglm`,
+    `crch`, `DirichReg`, `LORgee`, `zcpglm`, `zeroinfl`.
   - Following functions are now re-exported from `ipmisc`: `bartlett_message`,
     `normality_message`. A few other internal data wrangling functions now
     reside in `ipmisc`.
