@@ -327,7 +327,7 @@ testthat::test_that(
     testthat::expect_identical(p1$labels$y, "Taste")
 
     # checking pairwise comparisons
-    testthat::expect_equal(levels(pb1$data[[8]]$annotation), c("*", "**"))
+    # testthat::expect_equal(levels(pb1$data[[8]]$annotation), c("*", "**"))
 
     # caption for the plot
     set.seed(254)
