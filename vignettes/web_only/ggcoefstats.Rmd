@@ -70,9 +70,9 @@ be invariant across models:
 Most of the regression models that are supported in the underlying packages are
 also supported by `ggcoefstats`. For example-
 
-`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `BBreg`, `bglmerMod`, `bife`,
-`bigglm`, `biglm`, `blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm2`, `brmsfit`,
-`btergm`, `cch`, `cgam`, `cgamm`, `cglm`, `clm`, `clmm`, `coeftest`,
+`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `BBreg`, `bcplm`, `bglmerMod`,
+`bife`, `bigglm`, `biglm`, `blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm2`,
+`brmsfit`, `btergm`, `cch`, `cgam`, `cgamm`, `cglm`, `clm`, `clmm`, `coeftest`,
 `complmrob`, `confusionMatrix`, `coxme`, `coxph`, `cpglm`, `cpglmm`, `crch`,
 `DirichReg`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`,
 `flexsurvreg`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`,
@@ -83,7 +83,8 @@ also supported by `ggcoefstats`. For example-
 `nlrq`, `nlreg`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`,
 `rlmerMod`, `rq`, `rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`,
 `survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`, `wbgee`,
-`wblm`, `zeroinfl`, etc.
+`wblm`, `zcpglm`, `zeroinfl`, etc.
+
 
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
@@ -796,7 +797,7 @@ ggstatsplot::ggcoefstats(
 
 ## Bayesian Compound Poisson Linear Models (`bcplm`)
 
-```{r bcplm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 10, eval=FALSE}
+```{r bcplm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 10}
 # set up
 set.seed(123)
 library(cplm)
@@ -821,7 +822,7 @@ ggstatsplot::ggcoefstats(
 
 ## Zero-inflated Compound Poisson Generalized Linear Models (`zcpglm`)
 
-```{r zcpglm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 10, eval=FALSE}
+```{r zcpglm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 10}
 # set up
 set.seed(123)
 library(cplm)

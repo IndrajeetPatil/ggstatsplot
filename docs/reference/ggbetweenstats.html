@@ -237,8 +237,6 @@ the plot as a subtitle.</p>
   <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
   <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
-  <span class='kw'>sort</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
-  <span class='kw'>sort.fun</span> <span class='kw'>=</span> <span class='no'>mean</span>,
   <span class='kw'>mean.plotting</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>mean.ci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>mean.point.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>),
@@ -255,6 +253,7 @@ the plot as a subtitle.</p>
   <span class='kw'>outlier.point.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
   <span class='kw'>point.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>position</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/position_jitterdodge.html'>position_jitterdodge</a></span>(<span class='kw'>dodge.width</span> <span class='kw'>=</span> <span class='fl'>0.6</span>), <span class='kw'>alpha</span> <span class='kw'>=</span>
     <span class='fl'>0.4</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>stroke</span> <span class='kw'>=</span> <span class='fl'>0</span>),
+  <span class='kw'>violin.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.2</span>),
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>,
@@ -425,16 +424,6 @@ try to play around with the value of <code>tr</code>, which is by default set to
 <code>0.1</code>. Lowering the value might help.</p></td>
     </tr>
     <tr>
-      <th>sort</th>
-      <td><p>If <code>"ascending"</code> (default), <code>x</code>-axis variable factor levels will
-be sorted based on increasing values of <code>y</code>-axis variable. If
-<code>"descending"</code>, the opposite. If <code>"none"</code>, no sorting will happen.</p></td>
-    </tr>
-    <tr>
-      <th>sort.fun</th>
-      <td><p>The function used to sort (default: <code>mean</code>).</p></td>
-    </tr>
-    <tr>
       <th>mean.plotting</th>
       <td><p>Logical that decides whether mean is to be highlighted
 and its value to be displayed (Default: <code>TRUE</code>).</p></td>
@@ -509,6 +498,11 @@ involved outlier value plotting.</p></td>
       <th>point.args</th>
       <td><p>A list of additional aesthetic arguments to be passed to
 the <code>geom_point</code> displaying the raw data.</p></td>
+    </tr>
+    <tr>
+      <th>violin.args</th>
+      <td><p>A list of additional aesthetic arguments to be passed to
+the <code>geom_violin</code>.</p></td>
     </tr>
     <tr>
       <th>ggtheme</th>

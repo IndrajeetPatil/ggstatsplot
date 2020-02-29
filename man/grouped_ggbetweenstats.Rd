@@ -125,14 +125,12 @@ and its value to be displayed (Default: \code{TRUE}).}
 mean is to be displayed (Default: \code{FALSE}).}
     \item{\code{point.args}}{A list of additional aesthetic arguments to be passed to
 the \code{geom_point} displaying the raw data.}
+    \item{\code{violin.args}}{A list of additional aesthetic arguments to be passed to
+the \code{geom_violin}.}
     \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
 of the current function. Default is \code{NULL}. The argument should be entered
 as a function.}
-    \item{\code{sort}}{If \code{"ascending"} (default), \code{x}-axis variable factor levels will
-be sorted based on increasing values of \code{y}-axis variable. If
-\code{"descending"}, the opposite. If \code{"none"}, no sorting will happen.}
-    \item{\code{sort.fun}}{The function used to sort (default: \code{mean}).}
     \item{\code{package}}{Name of package from which the palette is desired as string
 or symbol.}
     \item{\code{palette}}{Name of palette as string or symbol.}

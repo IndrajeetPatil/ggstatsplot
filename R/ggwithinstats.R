@@ -23,7 +23,7 @@
 #' @importFrom rlang exec !! enquo := !!! exec
 #' @importFrom statsExpressions bf_ttest bf_oneway_anova
 #' @importFrom pairwiseComparisons pairwise_comparisons
-#' @importFrom ipmisc sort_xy outlier_df
+#' @importFrom ipmisc outlier_df
 #' @importFrom dplyr select mutate row_number group_by ungroup anti_join
 #'
 #' @details
@@ -90,8 +90,6 @@ ggwithinstats <- function(data,
                           conf.level = 0.95,
                           nboot = 100,
                           tr = 0.1,
-                          sort = "none",
-                          sort.fun = mean,
                           mean.plotting = TRUE,
                           mean.ci = FALSE,
                           mean.point.args = list(size = 5, color = "darkred"),
@@ -107,6 +105,7 @@ ggwithinstats <- function(data,
                           outlier.coef = 1.5,
                           outlier.label.args = list(),
                           outlier.point.args = list(),
+                          violin.args = list(width = 0.5, alpha = 0.2),
                           ggtheme = ggplot2::theme_bw(),
                           ggstatsplot.layer = TRUE,
                           package = "RColorBrewer",
@@ -226,20 +225,6 @@ ggwithinstats <- function(data,
     ))
   }
 
-  # --------------------------------- sorting --------------------------------
-
-  # if sorting is happening
-  if (sort != "none") {
-    data %<>%
-      ipmisc::sort_xy(
-        data = .,
-        x = {{ x }},
-        y = {{ y }},
-        sort = sort,
-        .fun = sort.fun
-      )
-  }
-
   # --------------------------------- basic plot ------------------------------
 
   # plot
@@ -263,13 +248,13 @@ ggwithinstats <- function(data,
       notch = notch,
       notchwidth = notchwidth
     ) +
-    ggplot2::geom_violin(
+    rlang::exec(
+      .fn = ggplot2::geom_violin,
       mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),
       inherit.aes = FALSE,
-      width = 0.5,
-      alpha = 0.2,
       fill = "white",
-      na.rm = TRUE
+      na.rm = TRUE,
+      !!!violin.args
     )
 
   # add a connecting path only if there are only two groups

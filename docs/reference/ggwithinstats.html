@@ -235,8 +235,6 @@ details included in the plot as a subtitle.</p>
   <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
   <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
-  <span class='kw'>sort</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
-  <span class='kw'>sort.fun</span> <span class='kw'>=</span> <span class='no'>mean</span>,
   <span class='kw'>mean.plotting</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>mean.ci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>mean.point.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>),
@@ -252,6 +250,7 @@ details included in the plot as a subtitle.</p>
   <span class='kw'>outlier.coef</span> <span class='kw'>=</span> <span class='fl'>1.5</span>,
   <span class='kw'>outlier.label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
   <span class='kw'>outlier.point.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  <span class='kw'>violin.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.2</span>),
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>,
@@ -412,16 +411,6 @@ try to play around with the value of <code>tr</code>, which is by default set to
 <code>0.1</code>. Lowering the value might help.</p></td>
     </tr>
     <tr>
-      <th>sort</th>
-      <td><p>If <code>"ascending"</code> (default), <code>x</code>-axis variable factor levels will
-be sorted based on increasing values of <code>y</code>-axis variable. If
-<code>"descending"</code>, the opposite. If <code>"none"</code>, no sorting will happen.</p></td>
-    </tr>
-    <tr>
-      <th>sort.fun</th>
-      <td><p>The function used to sort (default: <code>mean</code>).</p></td>
-    </tr>
-    <tr>
       <th>mean.plotting</th>
       <td><p>Logical that decides whether mean is to be highlighted
 and its value to be displayed (Default: <code>TRUE</code>).</p></td>
@@ -500,6 +489,11 @@ involved outlier value plotting.</p></td>
       <td><p>A list of additional aesthetic arguments to be
 passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point</a></code> and <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geoms
 involved outlier value plotting.</p></td>
+    </tr>
+    <tr>
+      <th>violin.args</th>
+      <td><p>A list of additional aesthetic arguments to be passed to
+the <code>geom_violin</code>.</p></td>
     </tr>
     <tr>
       <th>ggtheme</th>
@@ -594,16 +588,11 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
   <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='no'>Taster</span>
 )</div><div class='output co'>#&gt; <span class='warning'>Warning: extreme order statistics used as endpoints</span></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>99%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>100</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 7</span><span>
-#&gt;   group1 group2 statistic p.value significance test.details       
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>              
-#&gt; </span><span style='color: #555555;'>1</span><span> Wine A Wine B      1.05 0.301   ns           Durbin-Conover test
-#&gt; </span><span style='color: #555555;'>2</span><span> Wine A Wine C      3.66 0.002</span><span style='text-decoration: underline;'>07</span><span> **           Durbin-Conover test
-#&gt; </span><span style='color: #555555;'>3</span><span> Wine B Wine C      2.62 0.024</span><span style='text-decoration: underline;'>6</span><span>  *            Durbin-Conover test
-#&gt;   p.value.adjustment
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             
-#&gt; </span><span style='color: #555555;'>1</span><span> Holm              
-#&gt; </span><span style='color: #555555;'>2</span><span> Holm              
-#&gt; </span><span style='color: #555555;'>3</span><span> Holm              
+#&gt;   group1 group2 statistic p.value significance test.details     p.value.adjustm~
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           
+#&gt; </span><span style='color: #555555;'>1</span><span> Wine A Wine B      1.05 0.301   ns           Durbin-Conover ~ Holm            
+#&gt; </span><span style='color: #555555;'>2</span><span> Wine A Wine C      3.66 0.002</span><span style='text-decoration: underline;'>07</span><span> **           Durbin-Conover ~ Holm            
+#&gt; </span><span style='color: #555555;'>3</span><span> Wine B Wine C      2.62 0.024</span><span style='text-decoration: underline;'>6</span><span>  *            Durbin-Conover ~ Holm            
 #&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Shapiro-Wilk Normality Test for </span><span style='color: #BBBB00;'>Taste</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>0.002</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Bartlett's test for homogeneity of variances for factor </span><span style='color: #BBBB00;'>Wine</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>0.970</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggwithinstats-2.png' alt='' width='700' height='433' /></div><div class='input'># }
 </div></span></pre>
   </div>

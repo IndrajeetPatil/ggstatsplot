@@ -33,8 +33,6 @@ ggbetweenstats(
   conf.level = 0.95,
   nboot = 100,
   tr = 0.1,
-  sort = "none",
-  sort.fun = mean,
   mean.plotting = TRUE,
   mean.ci = FALSE,
   mean.point.args = list(size = 5, color = "darkred"),
@@ -51,6 +49,7 @@ ggbetweenstats(
   outlier.point.args = list(),
   point.args = list(position = ggplot2::position_jitterdodge(dodge.width = 0.6), alpha =
     0.4, size = 3, stroke = 0),
+  violin.args = list(width = 0.5, alpha = 0.2),
   ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE,
   package = "RColorBrewer",
@@ -166,12 +165,6 @@ variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
 try to play around with the value of \code{tr}, which is by default set to
 \code{0.1}. Lowering the value might help.}
 
-\item{sort}{If \code{"ascending"} (default), \code{x}-axis variable factor levels will
-be sorted based on increasing values of \code{y}-axis variable. If
-\code{"descending"}, the opposite. If \code{"none"}, no sorting will happen.}
-
-\item{sort.fun}{The function used to sort (default: \code{mean}).}
-
 \item{mean.plotting}{Logical that decides whether mean is to be highlighted
 and its value to be displayed (Default: \code{TRUE}).}
 
@@ -221,6 +214,9 @@ involved outlier value plotting.}
 
 \item{point.args}{A list of additional aesthetic arguments to be passed to
 the \code{geom_point} displaying the raw data.}
+
+\item{violin.args}{A list of additional aesthetic arguments to be passed to
+the \code{geom_violin}.}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
