@@ -613,6 +613,7 @@ ggstatsplot::ggpiestats(
   y = after,
   counts = Counts,
   title = "Survey results before and after the intervention",
+  label = "both",
   paired = TRUE, # within-subjects design
   package = "wesanderson",
   palette = "Royal1"
@@ -637,7 +638,6 @@ ggstatsplot::grouped_ggpiestats(
   x = mpaa,
   grouping.var = genre, # grouping variable
   title.prefix = "Movie genre", # prefix for the facetted title
-  label = "both", # show both counts and percentage data
   messages = FALSE,
   package = "ggsci", # package from which color palette is to be taken
   palette = "default_jama", # choosing a different color palette

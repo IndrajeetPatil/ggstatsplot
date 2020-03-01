@@ -847,14 +847,15 @@ testthat::test_that(
 
     # model
     set.seed(123)
-    mm0 <- MCMCglmm::MCMCglmm(
-      fixed = scale(Reaction) ~ scale(Days),
-      random = ~Subject,
-      data = sleepstudy,
-      nitt = 4000,
-      pr = TRUE,
-      verbose = FALSE
-    )
+    mm0 <-
+      MCMCglmm::MCMCglmm(
+        fixed = scale(Reaction) ~ scale(Days),
+        random = ~Subject,
+        data = sleepstudy,
+        nitt = 4000,
+        pr = TRUE,
+        verbose = FALSE
+      )
 
     # output from broom.mixed
     broom_df <- broomExtra::tidy(

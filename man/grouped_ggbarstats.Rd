@@ -97,10 +97,6 @@ should be displayed for each level of the grouping variable \code{y}
 (Default: \code{TRUE}).}
     \item{\code{perc.k}}{Numeric that decides number of decimal places for percentage
 labels (Default: \code{0}).}
-    \item{\code{label.separator}}{If \code{"both"} counts and proportion information is to be
-displayed in a label, this argument decides whether these two pieces of
-information are going to be on the same line (\code{" "}) or on separate lines
-(\code{"\\n"}).}
     \item{\code{label.args}}{Additional aesthetic arguments that will be passed to
 \code{geom_label}.}
     \item{\code{bf.message}}{Logical that decides whether to display a caption with

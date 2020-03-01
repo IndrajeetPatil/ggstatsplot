@@ -116,6 +116,24 @@ ggstatsplot::combine_plots(
 )
 ```
 
+## Can you customize which pairs are shown in pairwise comparisons?
+
+Currently, for `ggbetweenstats` and `ggwithinstats`, you can either display all
+**significant** comparisons, all **non-significant** comparisons, or **all**
+comparisons. But what if I am only interested in just one particular comparison?
+
+Here is a workaround using `ggsignif`:
+
+```{r custom_pairwise}
+set.seed(123)
+library(ggstatsplot)
+library(ggsignif)
+
+# displaying only one comparison
+ggbetweenstats(mtcars, cyl, wt, messages = FALSE) + 
+  geom_signif(comparisons = list(c("4", "6")))
+```
+
 ## How can I remove a a particular `geom` layer from the plot?
 
 Sometimes you may not want a particular `geom` layer to be displayed. You can
