@@ -110,9 +110,6 @@
       <a href="../articles/additional.html">additional vignettes</a>
     </li>
     <li>
-      <a href="../articles/tests_and_coverage.html">Tests and Coverage</a>
-    </li>
-    <li>
       <a href="../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
@@ -201,7 +198,7 @@
 <a href="#ggstatsplot-030" class="anchor"></a>ggstatsplot 0.3.0<small> Unreleased </small>
 </h1>
 <p>BREAKING CHANGES</p>
-<p>To give users more flexibility in terms of modifying the aesthetic defaults for <strong>all</strong> <code>geoms</code> included in the <code>ggstatsplot</code> plots (each plot typically has multiple geoms), the package now uses a new form of syntax. Previously, each <code>geom</code> had a separate argument to specify each aesthetic (e.g., <code>geom_point</code> would get <code>point.size</code>, <code>point.color</code>, etc.), which resulted in functions with a massive number of arguments and was unsustainable in the long run. Instead, <code>ggstatsplot</code> functions now expect a list of such arguments for the respective geom (e.g., <code>geom_point</code> will have <code>point.args</code> argument where a list of arguments <code><a href="https://rdrr.io/r/base/list.html">list(size = 5, color = "darkgreen", alpha = 0.8)</a></code> can be supplied).</p>
+<p>To give users more flexibility in terms of modifying the aesthetic defaults for <strong>all</strong> <code>geoms</code> included in the <code>ggstatsplot</code> plots (each plot typically has multiple geoms), the package now uses a new form of syntax. Previously, each <code>geom</code> had a separate argument to specify each aesthetic (e.g., <code>geom_point</code> would get arguments like <code>point.size</code>, <code>point.color</code>, etc.), which resulted in functions with a massive number of arguments and was unsustainable in the long run. Instead, <code>ggstatsplot</code> functions now expect a list of such arguments for the respective geom (e.g., <code>geom_point</code> will have <code>point.args</code> argument where a list of arguments <code><a href="https://rdrr.io/r/base/list.html">list(size = 5, color = "darkgreen", alpha = 0.8)</a></code> can be supplied).</p>
 <ul>
 <li><p>All <code>grouped_</code> functions have been refactored to reduce the number of arguments. These functions now internally use the new <code>combine_plots2</code> instead of <code>combine_plots</code>. The additional arguments to primary functions can be provided through <code>...</code>. These changes will not necessarily break the existing code but will lead to some minor graphical changes (e.g., if you were providing <code>labels</code> argument explicitly, it will be ignored).</p></li>
 <li><p>All functions lose the <code>return</code> argument, which was supposed to be alternative to enter <code>output</code>. But this was just leading to more confusion on the user’s part. The biggest user-visible impact this is going to have is that <code>ggcorrmat</code> will no longer be backward-compatible. The older scripts will still work but if the <code>return</code> argument was anything except <code>"plot"</code>, it will just be ignored.</p></li>
@@ -209,22 +206,20 @@
 <li><p>Both <code>gghistostats</code> and <code>ggdotplotstats</code> now use the following arguments to modify <code>geom</code>s corresponding to the lines and labels: <code>test.value.line.args</code>, <code>test.value.label.args</code>, <code>centrality.line.args</code>, <code>centrality.label.args</code>. This helps avoid specifying millions of arguments.</p></li>
 <li><p>Removes the vestigial <code>ggplot_converter</code> function.</p></li>
 <li><p><code>ggpiestats</code> and <code>ggbarstats</code> remove the following vestigial arguments: <code>facet.wrap.name</code>, <code>bias.correct</code>, <code>bar.outline.color</code>. The <code>bar.proptest</code> and <code>facet.proptest</code> arguments were difficult to remember and confusing and are replaced by a common <code>proportion.test</code> argument. Additionally, the following arguments have all been removed and replaced by <code>label</code> argument: <code>slice.label</code>, <code>bar.label</code>, <code>data.label</code>. These plethora of options was a headache to remember.</p></li>
-<li><p><code>gghistostats</code> loses the following arguments: <code>fill.gradient</code>, <code>low.color</code>, <code>high.color</code>. It made no sense to add a color gradient to this plot when the Y-axis already displayed the information about what bar represented.</p></li>
+<li><p><code>gghistostats</code> loses the following arguments: <code>fill.gradient</code>, <code>low.color</code>, <code>high.color</code>. It made no sense to add a color gradient to this plot when the Y-axis already displayed the information about what the bar represented.</p></li>
 <li><p><code>ggscatterstats</code> loses the following arguments: <code>palette</code> and <code>package</code>. Since this function requires only two colors, it didn’t make much sense to use color palettes to specify this. They can be instead specified using <code>xfill</code> and <code>yfill</code>. You can always use <code><a href="https://rdrr.io/pkg/paletteer/man/paletteer_d.html">paletteer::paletteer_d</a></code> to get a vector of color values and then provide values of your choosing to <code>xfill</code> and <code>yfill</code>.</p></li>
 <li><p>Removes sorting options in <code>ggbetweenstats</code> and <code>ggwithinstats</code> functions. This is something the users can easily do before entering the data in these functions.</p></li>
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>
-<li>
-<code>ggcorrmat</code> was never supposed to work with Kendall’s correlation coefficient but it accidentally did. This is no longer the case.</li>
-<li>
-<code>ggstatsplot</code> now has a logo, thanks to Sarah! :)</li>
-<li>The default <code>theme_ggstatsplot</code> changes slightly. The biggest change is that the title and the subtitle for plots are now aligned to the left of the plot. This change also forced the legend for <code>ggpiestats</code> to be displayed on the right side of the plot rather than at the bottom.</li>
+<li><p><code>ggcorrmat</code> was never supposed to work with Kendall’s correlation coefficient but it accidentally did. This is no longer the case.</p></li>
+<li><p><code>ggstatsplot</code> now has a logo, thanks to Sarah! :)</p></li>
+<li><p>The default <code>theme_ggstatsplot</code> changes slightly. The biggest change is that the title and the subtitle for plots are now aligned to the left of the plot. This change also forced the legend for <code>ggpiestats</code> to be displayed on the right side of the plot rather than at the bottom.</p></li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
-<li>More models supported in <code>ggcoefstats</code>: <code>BBreg</code>, <code>bcplm</code>, <code>bife</code>, <code>cglm</code>, <code>crch</code>, <code>DirichReg</code>, <code>LORgee</code>, <code>zcpglm</code>, <code>zeroinfl</code>.</li>
-<li>Following functions are now re-exported from <code>ipmisc</code>: <code>bartlett_message</code>, <code>normality_message</code>. A few other internal data wrangling functions now reside in <code>ipmisc</code>.</li>
+<li><p>More models supported in <code>ggcoefstats</code>: <code>BBreg</code>, <code>bcplm</code>, <code>bife</code>, <code>cglm</code>, <code>crch</code>, <code>DirichReg</code>, <code>LORgee</code>, <code>zcpglm</code>, <code>zeroinfl</code>.</p></li>
+<li><p>Following functions are now re-exported from <code>ipmisc</code>: <code>bartlett_message</code>, <code>normality_message</code>. A few other internal data wrangling functions now reside in <code>ipmisc</code>.</p></li>
 </ul>
 </div>
     <div id="ggstatsplot-020" class="section level1">
