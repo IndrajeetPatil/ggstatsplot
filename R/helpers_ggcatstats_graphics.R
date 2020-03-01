@@ -5,16 +5,10 @@
 #'
 #' @param data A dataframe containing summaries for categorical variables.
 #'   Should contain columns named either `"perc"` or `"counts"` or both.
-#' @param label.col.name Character that decides the column name containing
-#'   summary label. This can either be `"slice.label"` (default) or
-#'   `"data.label"`.
 #' @param label.content Character decides what information needs to be displayed
 #'   on the label in each pie or bar slice. Possible options are `"percentage"`
 #'   (default), `"counts"`, `"both"`.
-#' @param label.separator If `"both"` counts and proportion information is to be
-#'   displayed in a label, this argument decides whether these two pieces of
-#'   information are going to be on the same line (`" "`) or on separate lines
-#'   (`"\n"`).
+#' @param ... Ignored.
 #' @inheritParams ggpiestats
 #'
 #' @importFrom dplyr mutate
@@ -25,7 +19,6 @@
 #' # dataframe with label column
 #' ggstatsplot:::cat_label_df(
 #'   data = ggstatsplot:::cat_counter(mtcars, am, cyl),
-#'   label.col.name = "slice.label",
 #'   label.content = "both",
 #'   perc.k = 1
 #' )
@@ -34,38 +27,26 @@
 
 # function body
 cat_label_df <- function(data,
-                         label.col.name = "slice.label",
                          label.content = "percentage",
-                         label.separator = c("\n", " "),
-                         perc.k = 1) {
+                         perc.k = 1,
+                         ...) {
 
   # checking what needs to be displayed in a label
   # only percentage
   if (label.content %in% c("percentage", "perc", "proportion", "prop", "%")) {
-    data %<>%
-      dplyr::mutate(
-        .data = ., !!label.col.name := paste0(round(x = perc, digits = perc.k), "%")
-      )
+    data %<>% dplyr::mutate(.data = ., label = paste0(round(perc, perc.k), "%"))
   }
 
   # only raw counts
   if (label.content %in% c("counts", "n", "count", "N")) {
-    data %<>% dplyr::mutate(.data = ., !!label.col.name := paste0("n = ", counts))
+    data %<>% dplyr::mutate(.data = ., label = paste0("n = ", counts))
   }
 
   # both raw counts and percentages
   if (label.content %in% c("both", "mix", "all", "everything")) {
     data %<>%
       dplyr::mutate(
-        .data = .,
-        !!label.col.name := paste0(
-          "n = ",
-          counts,
-          label.separator,
-          "(",
-          round(x = perc, digits = perc.k),
-          "%)"
-        )
+        .data = ., label = paste0("n = ", counts, "\n", "(", round(perc, perc.k), "%)")
       )
   }
 

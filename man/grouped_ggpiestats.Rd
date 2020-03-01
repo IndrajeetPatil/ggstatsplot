@@ -133,10 +133,6 @@ the plot will be returned.}
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
 of the current function. Default is \code{NULL}. The argument should be entered
 as a function.}
-    \item{\code{label.separator}}{If \code{"both"} counts and proportion information is to be
-displayed in a label, this argument decides whether these two pieces of
-information are going to be on the same line (\code{" "}) or on separate lines
-(\code{"\\n"}).}
     \item{\code{package}}{Name of package from which the palette is desired as string
 or symbol.}
     \item{\code{direction}}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}

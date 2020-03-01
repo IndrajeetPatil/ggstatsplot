@@ -2086,10 +2086,11 @@ test1 <- list(
 )
 
 # fit a stratified model
-mod <- survival::coxph(
-  formula = Surv(time, status) ~ x + strata(sex),
-  data = test1
-)
+mod <-
+  survival::coxph(
+    formula = Surv(time, status) ~ x + strata(sex),
+    data = test1
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -2165,13 +2166,17 @@ ggstatsplot::ggcoefstats(
 Example of high performance linear model-
 
 ```{r speedlm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
-# model
+# setup
+library(speedglm)
 set.seed(123)
-mod <- speedglm::speedlm(
-  formula = mpg ~ wt + qsec,
-  data = mtcars,
-  fitted = TRUE
-)
+
+# model
+mod <-
+  speedglm::speedlm(
+    formula = mpg ~ wt + qsec,
+    data = mtcars,
+    fitted = TRUE
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -2241,12 +2246,13 @@ library(biglm)
 data(trees)
 
 # model
-mod <- biglm::bigglm(
-  formula = log(Volume) ~ log(Girth) + log(Height),
-  data = trees,
-  chunksize = 10,
-  sandwich = TRUE
-)
+mod <-
+  biglm::bigglm(
+    formula = log(Volume) ~ log(Girth) + log(Height),
+    data = trees,
+    chunksize = 10,
+    sandwich = TRUE
+  )
 # plot
 ggstatsplot::ggcoefstats(
   x = mod,
@@ -2262,11 +2268,12 @@ set.seed(123)
 library(survival)
 
 # model
-mod <- survival::survreg(
-  formula = Surv(futime, fustat) ~ ecog.ps + rx,
-  data = ovarian,
-  dist = "logistic"
-)
+mod <-
+  survival::survreg(
+    formula = Surv(futime, fustat) ~ ecog.ps + rx,
+    data = ovarian,
+    dist = "logistic"
+  )
 
 # plot
 ggstatsplot::ggcoefstats(

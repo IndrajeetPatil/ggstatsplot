@@ -60,7 +60,6 @@ ggbarstats <- function(data,
                        sample.size.label = TRUE,
                        label = "percentage",
                        perc.k = 0,
-                       label.separator = " ",
                        label.args = list(alpha = 1, fill = "white"),
                        bf.message = TRUE,
                        sampling.plan = "indepMulti",
@@ -194,9 +193,7 @@ ggbarstats <- function(data,
   df <-
     cat_label_df(
       data = cat_counter(data = data, x = {{ x }}, y = {{ y }}),
-      label.col.name = "label",
       label.content = label,
-      label.separator = label.separator,
       perc.k = perc.k
     )
 

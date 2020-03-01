@@ -282,8 +282,6 @@ ggstatsplot::combine_plots(
   plotlist = plot_list,
   title.text = "Response times across flank conditions for each type of cue",
   title.color = "blue",
-  caption.text = "Simulated data from Attention Network Test",
-  caption.color = "orange",
   ncol = 1
 )
 ```

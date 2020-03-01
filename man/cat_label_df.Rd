@@ -4,33 +4,20 @@
 \alias{cat_label_df}
 \title{Summary dataframe for categorical variables.}
 \usage{
-cat_label_df(
-  data,
-  label.col.name = "slice.label",
-  label.content = "percentage",
-  label.separator = c("\\n", " "),
-  perc.k = 1
-)
+cat_label_df(data, label.content = "percentage", perc.k = 1, ...)
 }
 \arguments{
 \item{data}{A dataframe containing summaries for categorical variables.
 Should contain columns named either \code{"perc"} or \code{"counts"} or both.}
 
-\item{label.col.name}{Character that decides the column name containing
-summary label. This can either be \code{"slice.label"} (default) or
-\code{"data.label"}.}
-
 \item{label.content}{Character decides what information needs to be displayed
 on the label in each pie or bar slice. Possible options are \code{"percentage"}
 (default), \code{"counts"}, \code{"both"}.}
 
-\item{label.separator}{If \code{"both"} counts and proportion information is to be
-displayed in a label, this argument decides whether these two pieces of
-information are going to be on the same line (\code{" "}) or on separate lines
-(\code{"\\n"}).}
-
 \item{perc.k}{Numeric that decides number of decimal places for percentage
 labels (Default: \code{0}).}
+
+\item{...}{Ignored.}
 }
 \description{
 Creating a dataframe with an added column corresponding to
@@ -41,7 +28,6 @@ summary for categorical variables.
 # dataframe with label column
 ggstatsplot:::cat_label_df(
   data = ggstatsplot:::cat_counter(mtcars, am, cyl),
-  label.col.name = "slice.label",
   label.content = "both",
   perc.k = 1
 )

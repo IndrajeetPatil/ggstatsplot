@@ -23,23 +23,22 @@ testthat::test_that(
     # mix of counts and percentage
     df1 <- ggstatsplot:::cat_label_df(
       data = summary_df,
-      label.col.name = "slice.label",
+      label.col = "label",
       label.content = "both",
-      label.separator = "\n",
       perc.k = 1
     )
 
     # just counts
     df2 <- ggstatsplot:::cat_label_df(
       data = summary_df,
-      label.col.name = "data.label",
+      label.col = "label",
       label.content = "n"
     )
 
     # just percentage
     df3 <- ggstatsplot:::cat_label_df(
       data = summary_df,
-      label.col.name = "data.label",
+      label.col = "label",
       label.content = "perc",
       perc.k = 2
     )
@@ -50,24 +49,24 @@ testthat::test_that(
     testthat::expect_equal(dim(df3), c(4L, 5L))
     testthat::expect_identical(
       colnames(df1),
-      c("cyl", "fl", "counts", "perc", "slice.label")
+      c("cyl", "fl", "counts", "perc", "label")
     )
     testthat::expect_identical(
       colnames(df2),
-      c("cyl", "fl", "counts", "perc", "data.label")
+      c("cyl", "fl", "counts", "perc", "label")
     )
 
     # checking the label column
     testthat::expect_identical(
-      df1$slice.label,
+      df1$label,
       c("n = 3\n(75%)", "n = 1\n(100%)", "n = 1\n(100%)", "n = 1\n(25%)")
     )
     testthat::expect_identical(
-      df2$data.label,
+      df2$label,
       c("n = 3", "n = 1", "n = 1", "n = 1")
     )
     testthat::expect_identical(
-      df3$data.label,
+      df3$label,
       c("75%", "100%", "100%", "25%")
     )
   }

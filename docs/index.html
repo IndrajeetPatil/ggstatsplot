@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.3.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.3.0</span>
       </span>
     </div>
 
@@ -188,7 +188,7 @@
 <td><a href="https://cran.r-project.org/web/checks/check_results_ggstatsplot.html"><img src="https://cranchecks.info/badges/summary/ggstatsplot" alt="CRAN Checks"></a></td>
 <td><a href="https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot"><img src="https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue" alt="Weekly downloads badge"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/"><img src="https://img.shields.io/badge/forks-89-blue.svg" alt="Forks"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/"><img src="https://img.shields.io/badge/forks-90-blue.svg" alt="Forks"></a></td>
 <td><a href="https://www.rdocumentation.org/packages/ggstatsplot"><img src="https://www.rdocumentation.org/badges/version/ggstatsplot" alt="Rdoc"></a></td>
 </tr>
 <tr class="odd">
@@ -209,7 +209,7 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
 <td><a href="http://hits.dwyl.com/IndrajeetPatil/ggstatsplot"><img src="http://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2020--02--28-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2020--02--29-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg" alt="GitHub last commit"></a></td>
 </tr>
 <tr class="even">
@@ -1169,20 +1169,21 @@
 <span id="cb15-17"><a href="#cb15-17"></a>  <span class="dt">y =</span> after,</span>
 <span id="cb15-18"><a href="#cb15-18"></a>  <span class="dt">counts =</span> Counts,</span>
 <span id="cb15-19"><a href="#cb15-19"></a>  <span class="dt">title =</span> <span class="st">"Survey results before and after the intervention"</span>,</span>
-<span id="cb15-20"><a href="#cb15-20"></a>  <span class="dt">paired =</span> <span class="ot">TRUE</span>, <span class="co"># within-subjects design</span></span>
-<span id="cb15-21"><a href="#cb15-21"></a>  <span class="dt">package =</span> <span class="st">"wesanderson"</span>,</span>
-<span id="cb15-22"><a href="#cb15-22"></a>  <span class="dt">palette =</span> <span class="st">"Royal1"</span></span>
-<span id="cb15-23"><a href="#cb15-23"></a>)</span>
-<span id="cb15-24"><a href="#cb15-24"></a><span class="co">#&gt; Note: 95% CI for effect size estimate was computed with 100 bootstrap samples.</span></span>
-<span id="cb15-25"><a href="#cb15-25"></a><span class="co">#&gt; # A tibble: 2 x 11</span></span>
-<span id="cb15-26"><a href="#cb15-26"></a><span class="co">#&gt;   after      counts  perc N         Approve Disapprove statistic   p.value</span></span>
-<span id="cb15-27"><a href="#cb15-27"></a><span class="co">#&gt;   &lt;fct&gt;       &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;</span></span>
-<span id="cb15-28"><a href="#cb15-28"></a><span class="co">#&gt; 1 Disapprove    720   45  (n = 720) 20.83%  79.17%          245  3.20e- 55</span></span>
-<span id="cb15-29"><a href="#cb15-29"></a><span class="co">#&gt; 2 Approve       880   55. (n = 880) 90.23%  9.77%           570. 6.80e-126</span></span>
-<span id="cb15-30"><a href="#cb15-30"></a><span class="co">#&gt;   parameter method                                   significance</span></span>
-<span id="cb15-31"><a href="#cb15-31"></a><span class="co">#&gt;       &lt;dbl&gt; &lt;chr&gt;                                    &lt;chr&gt;       </span></span>
-<span id="cb15-32"><a href="#cb15-32"></a><span class="co">#&gt; 1         1 Chi-squared test for given probabilities ***         </span></span>
-<span id="cb15-33"><a href="#cb15-33"></a><span class="co">#&gt; 2         1 Chi-squared test for given probabilities ***</span></span></code></pre></div>
+<span id="cb15-20"><a href="#cb15-20"></a>  <span class="dt">label =</span> <span class="st">"both"</span>,</span>
+<span id="cb15-21"><a href="#cb15-21"></a>  <span class="dt">paired =</span> <span class="ot">TRUE</span>, <span class="co"># within-subjects design</span></span>
+<span id="cb15-22"><a href="#cb15-22"></a>  <span class="dt">package =</span> <span class="st">"wesanderson"</span>,</span>
+<span id="cb15-23"><a href="#cb15-23"></a>  <span class="dt">palette =</span> <span class="st">"Royal1"</span></span>
+<span id="cb15-24"><a href="#cb15-24"></a>)</span>
+<span id="cb15-25"><a href="#cb15-25"></a><span class="co">#&gt; Note: 95% CI for effect size estimate was computed with 100 bootstrap samples.</span></span>
+<span id="cb15-26"><a href="#cb15-26"></a><span class="co">#&gt; # A tibble: 2 x 11</span></span>
+<span id="cb15-27"><a href="#cb15-27"></a><span class="co">#&gt;   after      counts  perc N         Approve Disapprove statistic   p.value</span></span>
+<span id="cb15-28"><a href="#cb15-28"></a><span class="co">#&gt;   &lt;fct&gt;       &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb15-29"><a href="#cb15-29"></a><span class="co">#&gt; 1 Disapprove    720   45  (n = 720) 20.83%  79.17%          245  3.20e- 55</span></span>
+<span id="cb15-30"><a href="#cb15-30"></a><span class="co">#&gt; 2 Approve       880   55. (n = 880) 90.23%  9.77%           570. 6.80e-126</span></span>
+<span id="cb15-31"><a href="#cb15-31"></a><span class="co">#&gt;   parameter method                                   significance</span></span>
+<span id="cb15-32"><a href="#cb15-32"></a><span class="co">#&gt;       &lt;dbl&gt; &lt;chr&gt;                                    &lt;chr&gt;       </span></span>
+<span id="cb15-33"><a href="#cb15-33"></a><span class="co">#&gt; 1         1 Chi-squared test for given probabilities ***         </span></span>
+<span id="cb15-34"><a href="#cb15-34"></a><span class="co">#&gt; 2         1 Chi-squared test for given probabilities ***</span></span></code></pre></div>
 <p><img src="reference/figures/README-ggpiestats2-1.png" width="100%"></p>
 <p>Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable. Following example is a case where the theoretical question is about proportions for different levels of a single nominal variable:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># for reproducibility</span></span>
@@ -1197,12 +1198,11 @@
 <span id="cb16-10"><a href="#cb16-10"></a>  <span class="dt">x =</span> mpaa,</span>
 <span id="cb16-11"><a href="#cb16-11"></a>  <span class="dt">grouping.var =</span> genre, <span class="co"># grouping variable</span></span>
 <span id="cb16-12"><a href="#cb16-12"></a>  <span class="dt">title.prefix =</span> <span class="st">"Movie genre"</span>, <span class="co"># prefix for the facetted title</span></span>
-<span id="cb16-13"><a href="#cb16-13"></a>  <span class="dt">label =</span> <span class="st">"both"</span>, <span class="co"># show both counts and percentage data</span></span>
-<span id="cb16-14"><a href="#cb16-14"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb16-15"><a href="#cb16-15"></a>  <span class="dt">package =</span> <span class="st">"ggsci"</span>, <span class="co"># package from which color palette is to be taken</span></span>
-<span id="cb16-16"><a href="#cb16-16"></a>  <span class="dt">palette =</span> <span class="st">"default_jama"</span>, <span class="co"># choosing a different color palette</span></span>
-<span id="cb16-17"><a href="#cb16-17"></a>  <span class="dt">title.text =</span> <span class="st">"Composition of MPAA ratings for different genres"</span></span>
-<span id="cb16-18"><a href="#cb16-18"></a>)</span></code></pre></div>
+<span id="cb16-13"><a href="#cb16-13"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb16-14"><a href="#cb16-14"></a>  <span class="dt">package =</span> <span class="st">"ggsci"</span>, <span class="co"># package from which color palette is to be taken</span></span>
+<span id="cb16-15"><a href="#cb16-15"></a>  <span class="dt">palette =</span> <span class="st">"default_jama"</span>, <span class="co"># choosing a different color palette</span></span>
+<span id="cb16-16"><a href="#cb16-16"></a>  <span class="dt">title.text =</span> <span class="st">"Composition of MPAA ratings for different genres"</span></span>
+<span id="cb16-17"><a href="#cb16-17"></a>)</span></code></pre></div>
 <p><img src="reference/figures/README-ggpiestats3-1.png" width="100%"></p>
 <div id="summary-of-tests-3" class="section level3">
 <h3 class="hasAnchor">
