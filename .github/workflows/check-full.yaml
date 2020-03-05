@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-        #- { os: windows-latest, r: '3.6', args: "--no-manual"}
+        - { os: windows-latest, r: '3.6', args: "--no-manual"}
         - { os: macOS-latest, r: '3.6', args: "--no-manual"}
         - { os: macOS-latest, r: 'devel', args: "--no-manual"}
         - { os: ubuntu-16.04, r: '3.6', cran: "https://demo.rstudiopm.com/all/__linux__/xenial/latest", args: "--no-manual" }
@@ -33,12 +33,12 @@ jobs:
       - uses: r-lib/actions/setup-tinytex@master
         if: contains(matrix.config.args, 'no-manual') == false
 
-#      - name: Cache R packages
-#        uses: actions/cache@v1
-#        if: runner.os != 'Windows'
-#        with:
-#          path: ${{ env.R_LIBS_USER }}
-#          key: ${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('**/DESCRIPTION') }}
+     - name: Cache R packages
+       uses: actions/cache@v1
+       if: runner.os != 'Windows'
+       with:
+         path: ${{ env.R_LIBS_USER }}
+         key: ${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('**/DESCRIPTION') }}
 
       - name: Install system dependencies
         if: runner.os == 'Linux'
