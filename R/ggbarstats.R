@@ -16,6 +16,9 @@
 #' @param x.axis.orientation The orientation of the `x` axis labels one of
 #'   "slant" or "vertical" to change from the default horizontal
 #'   orientation (Default: `NULL` which is horizontal).
+#' @param sample.size.label Logical that decides whether sample size information
+#'   should be displayed for each level of the grouping variable `y`
+#'   (Default: `TRUE`).
 #' @inheritParams ggpiestats
 #'
 #' @seealso \code{\link{grouped_ggbarstats}}, \code{\link{ggpiestats}},

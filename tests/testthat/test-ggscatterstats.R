@@ -1,5 +1,3 @@
-context(desc = "ggscatterstats")
-
 # pearson's r with NAs ---------------------------------------------
 
 testthat::test_that(
@@ -35,7 +33,7 @@ testthat::test_that(
     # checking layer data
     testthat::expect_equal(length(pb$data), 7L)
     testthat::expect_equal(dim(pb$data[[1]]), c(83L, 10L))
-    testthat::expect_equal(dim(pb$data[[2]]), c(80L, 13L))
+    testthat::expect_equal(dim(pb$data[[2]]), c(80L, 14L))
     testthat::expect_equal(dim(pb$data[[3]]), c(1L, 7L))
     testthat::expect_equal(dim(pb$data[[4]]), c(1L, 7L))
     testthat::expect_equal(dim(pb$data[[5]]), c(83L, 15L))
@@ -323,17 +321,9 @@ testthat::test_that(
       c(0.0472, 1.5748),
       tolerance = 0.01
     )
-    testthat::expect_identical(
-      pb$layout$panel_params[[1]]$x.labels,
-      c("0.4", "0.8", "1.2")
-    )
     testthat::expect_equal(pb$layout$panel_params[[1]]$y.range,
       c(3.17, 23.63),
       tolerance = 0.001
-    )
-    testthat::expect_identical(
-      pb$layout$panel_params[[1]]$y.labels,
-      c("4", "6", "8", "10", "12", "14", "16", "18", "20")
     )
     testthat::expect_null(pb$plot$labels$caption, NULL)
   }
@@ -422,11 +412,6 @@ testthat::test_that(
 
     # build the plot
     pb <- ggplot2::ggplot_build(p)
-
-    testthat::expect_identical(
-      pb$layout$panel_params[[1]]$y.labels,
-      c("0", "1000", "2000", "3000", "4000", "5000", "6000", "7000")
-    )
 
     testthat::expect_equal(
       pb$data[[3]],

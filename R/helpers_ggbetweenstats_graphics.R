@@ -157,7 +157,7 @@ mean_ggrepel <- function(plot,
     rlang::exec(
       .fn = ggplot2::stat_summary,
       mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),
-      fun.y = mean,
+      fun = mean,
       geom = "point",
       inherit.aes = inherit.aes,
       na.rm = TRUE,

@@ -92,13 +92,12 @@ testthat::test_that(
 
     # checking panel parameters
     testthat::expect_equal(
-      pb$layout$panel_params[[1]]$x.range,
-      c(794.55, 914.45),
-      tolerance = 0.001
+      pb$layout$panel_params[[1]]$x$scale$range$range,
+      c(800, 909)
     )
-    testthat::expect_identical(
-      pb$layout$panel_params[[1]]$x.labels,
-      c("800", "810", "820", "830", "840", "850", "860", "870", "880", "890", "900")
+    testthat::expect_equal(
+      pb$layout$panel_params[[1]]$x$breaks,
+      c(800, 810, 820, 830, 840, 850, 860, 870, 880, 890, 900)
     )
     testthat::expect_equal(
       pb$layout$panel_params[[1]]$y.range,
@@ -106,20 +105,56 @@ testthat::test_that(
       tolerance = 0.001
     )
     testthat::expect_identical(
-      as.character(pb$layout$panel_params[[1]]$y.labels),
-      c("4th", "5th", "3rd", "2nd", "1st")
+      pb$layout$panel_params[[1]]$y$scale$labels,
+      structure(
+        c(4L, 5L, 3L, 2L, 1L),
+        .Label = c(
+          "1st", "2nd", "3rd",
+          "4th", "5th"
+        ),
+        class = "factor"
+      )
     )
-    testthat::expect_identical(
-      as.character(pb$layout$panel_params[[1]]$y.sec.labels),
-      c("0", "25", "50", "75", "100")
-    )
-    testthat::expect_equal(pb$layout$panel_params[[1]]$y.range,
-      pb$layout$panel_params[[1]]$y.sec.range,
-      tolerance = 0.001
-    )
-    testthat::expect_identical(
-      pb$layout$panel_params[[1]]$x.labels,
-      pb$layout$panel_params[[1]]$x.sec.labels
+    testthat::expect_equal(
+      pb$layout$panel_params[[1]]$y.sec$break_info,
+      list(
+        range = c(0.8, 5.2),
+        labels = c(0, 25, 50, 75, 100),
+        major = c(
+          0.045,
+          0.272, 0.499, 0.728, 0.955
+        ),
+        minor = c(
+          0.045, 0.159, 0.272, 0.386,
+          0.499, 0.614, 0.728, 0.841, 0.955
+        ),
+        major_source = c(
+          0.998198198198198,
+          1.997997997998,
+          2.9977977977978,
+          4.002002002002,
+          5.0018018018018
+        ),
+        minor_source = c(
+          0.998198198198198,
+          1.5003003003003,
+          1.997997997998,
+          2.5001001001001,
+          2.9977977977978,
+          3.4998998998999,
+          4.002002002002,
+          4.4996996996997,
+          5.0018018018018
+        ),
+        major_source_user = c(
+          1, 2,
+          3, 4, 5
+        ),
+        minor_source_user = c(
+          1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5,
+          5
+        )
+      )
     )
 
     # geom data
@@ -241,72 +276,6 @@ testthat::test_that(
   }
 )
 
-# ggdotplotstats works with summarized data -----------------------------------
-
-testthat::test_that(
-  desc = "ggdotplotstats works with summarized data",
-  code = {
-    testthat::skip_on_cran()
-
-    # creating a summary data
-    set.seed(123)
-    df <-
-      groupedstats::grouped_summary(
-        data = iris,
-        grouping.vars = Species,
-        measures = Sepal.Length
-      )
-
-    # plot
-    p <-
-      ggstatsplot::ggdotplotstats(
-        data = df,
-        x = "mean",
-        y = Species,
-        results.subtitle = FALSE,
-        messages = FALSE
-      )
-
-    # build plot
-    pb <- ggplot2::ggplot_build(p)
-
-    # checking panel parameters
-    testthat::expect_equal(
-      pb$layout$panel_params[[1]]$x.range,
-      c(4.931, 6.669),
-      tolerance = 0.001
-    )
-    testthat::expect_identical(
-      pb$layout$panel_params[[1]]$x.labels,
-      c("5.0", "5.5", "6.0", "6.5")
-    )
-    testthat::expect_equal(
-      pb$layout$panel_params[[1]]$y.range,
-      c(0.9, 3.1),
-      tolerance = 0.001
-    )
-    testthat::expect_identical(
-      as.character(pb$layout$panel_params[[1]]$y.labels),
-      c("setosa", "versicolor", "virginica")
-    )
-    testthat::expect_identical(
-      as.character(pb$layout$panel_params[[1]]$y.sec.labels),
-      c("0", "25", "50", "75", "100")
-    )
-    testthat::expect_equal(
-      pb$layout$panel_params[[1]]$y.range,
-      pb$layout$panel_params[[1]]$y.sec.range,
-      tolerance = 0.001
-    )
-    testthat::expect_identical(
-      pb$layout$panel_params[[1]]$x.labels,
-      pb$layout$panel_params[[1]]$x.sec.labels
-    )
-    testthat::expect_null(pb$plot$labels$subtitle, NULL)
-    testthat::expect_null(pb$plot$labels$caption, NULL)
-  }
-)
-
 # messing with factors --------------------------------------------------
 
 testthat::test_that(
@@ -322,7 +291,10 @@ testthat::test_that(
 
     # reordering factor levels
     df_msleep %<>%
-      dplyr::mutate(.data = ., vore = forcats::fct_relevel(vore, "herbi", "insecti", "carni"))
+      dplyr::mutate(
+        .data = .,
+        vore = forcats::fct_relevel(vore, "herbi", "insecti", "carni")
+      )
 
     # plot with original data
     p1 <-

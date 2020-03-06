@@ -4,7 +4,8 @@
 \name{VR_dilemma}
 \alias{VR_dilemma}
 \title{Virtual reality moral dilemmas.}
-\format{A data frame with 68 rows and 4 variables
+\format{
+A data frame with 68 rows and 4 variables
 \itemize{
 \item id. Dummy identity number for each participant.
 \item order.	The order in which the participants completed the two
@@ -15,7 +16,8 @@ participants: either in text format (\code{"text"}) or in Virtual Reality
 \item score.	Proportion of "utilitarian" decisions. In other words, of the
 4 decisions, how many affirmative were responses. Range: 0 (all
 utilitarian) - 1 (none utilitarian).
-}}
+}
+}
 \source{
 \url{https://psyarxiv.com/ry3ap/}
 }

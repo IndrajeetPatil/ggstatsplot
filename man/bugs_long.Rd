@@ -4,7 +4,8 @@
 \name{bugs_long}
 \alias{bugs_long}
 \title{Tidy version of the "Bugs" dataset.}
-\format{A data frame with 372 rows and 6 variables
+\format{
+A data frame with 372 rows and 6 variables
 \itemize{
 \item subject. Dummy identity number for each participant.
 \item gender. Participant's gender (Female, Male).
@@ -17,7 +18,8 @@ and low disgustingness; \strong{HFHD}: high freighteningness and high
 disgustingness).
 \item desire. The desire to kill an arthropod was indicated on a scale from
 0 to 10.
-}}
+}
+}
 \source{
 \url{https://www.sciencedirect.com/science/article/pii/S0747563213000277}
 }

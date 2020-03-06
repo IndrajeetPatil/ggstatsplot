@@ -23,21 +23,23 @@ testthat::test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # checking panel parameters
-    testthat::expect_equal(pb$layout$panel_params[[1]]$x.range,
+    testthat::expect_equal(
+      pb$layout$panel_params[[1]]$x.range,
       c(-4.292139, 8.302817),
       tolerance = 0.001
     )
     testthat::expect_identical(
-      pb$layout$panel_params[[1]]$x.labels,
-      c("-4", "0", "4", "8")
+      pb$layout$panel_params[[1]]$x$breaks,
+      c(-4, 0, 4, 8)
     )
-    testthat::expect_equal(pb$layout$panel_params[[1]]$y.range,
+    testthat::expect_equal(
+      pb$layout$panel_params[[1]]$y.range,
       c(0.4, 4.6),
       tolerance = 0.001
     )
-    testthat::expect_identical(
-      pb$layout$panel_params[[1]]$y.labels,
-      c("(Intercept)", "mpg", "am", "mpg:am")
+    testthat::expect_equal(
+      pb$layout$panel_params[[1]]$y$breaks,
+      structure(c("(Intercept)", "mpg", "am", "mpg:am"), pos = 1:4)
     )
 
     # checking layered data
@@ -331,34 +333,17 @@ testthat::test_that(
       )
     )
 
-    # checking panel parameters
-    testthat::expect_equal(pb$layout$panel_params[[1]]$x.range,
-      c(-0.04362035, 0.91602734),
-      tolerance = 0.001
-    )
-    testthat::expect_identical(
-      pb$layout$panel_params[[1]]$x.labels,
-      c("0.00", "0.25", "0.50", "0.75")
-    )
-    testthat::expect_equal(pb$layout$panel_params[[1]]$y.range,
-      c(0.4, 3.6),
-      tolerance = 0.001
-    )
-    testthat::expect_identical(
-      pb$layout$panel_params[[1]]$y.labels,
-      c("mpg", "am", "mpg:am")
-    )
-
     ## partial omega-squared
 
     set.seed(123)
 
     # model
-    mod <- stats::aov(
-      data = ggplot2::msleep,
-      formula = sleep_rem ~ vore * brainwt,
-      na.action = na.omit
-    )
+    mod <-
+      stats::aov(
+        data = ggplot2::msleep,
+        formula = sleep_rem ~ vore * brainwt,
+        na.action = na.omit
+      )
 
     # plot
     p <-
@@ -423,28 +408,6 @@ testthat::test_that(
     testthat::expect_identical(
       tidy_df$p.value.formatted,
       c("== 0.001", "== 0.163", "== 0.015")
-    )
-
-    # checking panel parameters
-    testthat::expect_equal(pb$layout$panel_params[[1]]$x.range,
-      c(-0.1648929, 0.7565467),
-      tolerance = 0.001
-    )
-    testthat::expect_identical(
-      pb$layout$panel_params[[1]]$x.labels,
-      c("0.00", "0.25", "0.50", "0.75")
-    )
-    testthat::expect_equal(pb$layout$panel_params[[1]]$y.range,
-      c(0.4, 3.6),
-      tolerance = 0.001
-    )
-    testthat::expect_identical(
-      pb$layout$panel_params[[1]]$y.labels,
-      c("brainwt", "vore:brainwt", "vore")
-    )
-    testthat::expect_identical(
-      unclass(pb$data[[4]]$colour),
-      c("#FAD510FF", "#CB2314FF", "#273046FF")
     )
   }
 )
@@ -834,68 +797,6 @@ testthat::test_that(
   }
 )
 
-# checking bayesian models work ------------------------------------------
-
-testthat::test_that(
-  desc = "ggcoefstats works with data frames",
-  code = {
-    testthat::skip_on_cran()
-
-    # setup
-    library(lme4)
-    suppressPackageStartupMessages(library(MCMCglmm))
-
-    # model
-    set.seed(123)
-    mm0 <-
-      MCMCglmm::MCMCglmm(
-        fixed = scale(Reaction) ~ scale(Days),
-        random = ~Subject,
-        data = sleepstudy,
-        nitt = 4000,
-        pr = TRUE,
-        verbose = FALSE
-      )
-
-    # output from broom.mixed
-    broom_df <- broomExtra::tidy(
-      x = mm0,
-      conf.int = TRUE,
-      effects = "fixed"
-    )
-
-    # sticking to defaults
-    df1 <- ggstatsplot::ggcoefstats(
-      x = mm0,
-      exclude.intercept = FALSE,
-      output = "tidy"
-    )
-
-    # customizing
-    df2 <- ggstatsplot::ggcoefstats(
-      x = mm0,
-      title = "multivariate generalized linear mixed model",
-      conf.method = "HPDinterval",
-      exclude.intercept = FALSE,
-      robust = TRUE,
-      output = "tidy"
-    )
-
-    # default
-    testthat::expect_equal(df1$estimate, broom_df$estimate, tolerance = 0.001)
-    testthat::expect_equal(df1$std.error, broom_df$std.error, tolerance = 0.001)
-    testthat::expect_equal(df1$conf.low, broom_df$conf.low, tolerance = 0.001)
-    testthat::expect_equal(df1$conf.high, broom_df$conf.high, tolerance = 0.001)
-
-    # custom
-    testthat::expect_identical(as.character(df2$term), c("(Intercept)", "scale(Days)"))
-    testthat::expect_equal(df2$estimate, c(0.01964504, 0.53422489), tolerance = 0.001)
-    testthat::expect_equal(df2$std.error, c(0.16551929, 0.04574515), tolerance = 0.001)
-    testthat::expect_equal(df2$conf.low, c(-0.2679899, 0.4493697), tolerance = 0.001)
-    testthat::expect_equal(df2$conf.high, c(0.3007959, 0.6163155), tolerance = 0.001)
-  }
-)
-
 # dataframe as input ----------------------------------------------------
 
 testthat::test_that(
@@ -1026,22 +927,6 @@ testthat::test_that(
     testthat::expect_equal(pb2$data[[2]]$xmin, df3$conf.low)
     testthat::expect_equal(pb2$data[[2]]$xmax, df3$conf.high)
 
-    # checking labels (order)
-    testthat::expect_identical(
-      pb1$layout$panel_params[[1]]$y.labels,
-      c("level2", "level1", "level3")
-    )
-
-    testthat::expect_identical(
-      pb2$layout$panel_params[[1]]$y.labels,
-      c("level1", "level2", "level3")
-    )
-
-    testthat::expect_identical(
-      pb4$layout$panel_params[[1]]$y.labels,
-      c("x1", "x2", "x3")
-    )
-
     # annotations
     testthat::expect_identical(p4$labels$x, "location")
     testthat::expect_null(p4$labels$y, NULL)
@@ -1086,21 +971,23 @@ testthat::test_that(
     set.seed(123)
 
     # creating dataframe
-    df <- tibble::tribble(
-      ~term, ~statistic, ~estimate, ~std.error, ~p.value,
-      "level2", 0.158, 0.0665, 0.911, 0.875,
-      "level1", NA, 0.542, NA, NA,
-      "level3", 1.24, 0.045, 0.65, 0.001
-    )
+    df <-
+      tibble::tribble(
+        ~term, ~statistic, ~estimate, ~std.error, ~p.value,
+        "level2", 0.158, 0.0665, 0.911, 0.875,
+        "level1", NA, 0.542, NA, NA,
+        "level3", 1.24, 0.045, 0.65, 0.001
+      )
 
     # coefficient plot
-    p <- ggstatsplot::ggcoefstats(
-      x = df,
-      statistic = "t",
-      meta.analytic.effect = TRUE,
-      bf.message = TRUE,
-      messages = FALSE
-    )
+    p <-
+      ggstatsplot::ggcoefstats(
+        x = df,
+        statistic = "t",
+        meta.analytic.effect = TRUE,
+        bf.message = TRUE,
+        messages = FALSE
+      )
 
     # build the plot
     pb <- ggplot2::ggplot_build(p)

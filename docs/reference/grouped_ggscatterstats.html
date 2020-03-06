@@ -89,7 +89,7 @@ subtitle." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.3.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.3.1</span>
       </span>
     </div>
 
@@ -346,16 +346,20 @@ for the effect size (Default: <code>100</code>).</p></dd>
     <dt><code>messages</code></dt><dd><p>Decides whether messages references, notes, and warnings are
 to be displayed (Default: <code>TRUE</code>).</p></dd>
     <dt><code>formula</code></dt><dd><p>Formula to use in smoothing function, eg. <code>y ~ x</code>,
-<code>y ~ poly(x, 2)</code>, <code>y ~ log(x)</code></p></dd>
-    <dt><code>method</code></dt><dd><p>Smoothing method (function) to use, accepts either a character vector,
-e.g. <code>"auto"</code>, <code>"lm"</code>, <code>"glm"</code>, <code>"gam"</code>, <code>"loess"</code> or a function, e.g.
-<code><a href='https://rdrr.io/pkg/MASS/man/rlm.html'>MASS::rlm</a></code> or <code><a href='https://rdrr.io/pkg/mgcv/man/gam.html'>mgcv::gam</a></code>, <code><a href='https://rdrr.io/r/stats/lm.html'>stats::lm</a></code>, or <code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess</a></code>.For <code>method = "auto"</code> the smoothing method is chosen based on the
+<code>y ~ poly(x, 2)</code>, <code>y ~ log(x)</code>. <code>NULL</code> by default, in which case
+<code>method = NULL</code> implies <code>formula = y ~ x</code> when there are fewer than 1,000
+observations and <code>formula = y ~ s(x, bs = "cs")</code> otherwise.</p></dd>
+    <dt><code>method</code></dt><dd><p>Smoothing method (function) to use, accepts either
+<code>NULL</code> or a character vector, e.g. <code>"lm"</code>, <code>"glm"</code>, <code>"gam"</code>, <code>"loess"</code>
+or a function, e.g. <code><a href='https://rdrr.io/pkg/MASS/man/rlm.html'>MASS::rlm</a></code> or <code><a href='https://rdrr.io/pkg/mgcv/man/gam.html'>mgcv::gam</a></code>, <code><a href='https://rdrr.io/r/stats/lm.html'>stats::lm</a></code>, or <code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess</a></code>.
+<code>"auto"</code> is also accepted for backwards compatibility.  It is equivalent to
+<code>NULL</code>.For <code>method = NULL</code> the smoothing method is chosen based on the
 size of the largest group (across all panels). <code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess()</a></code> is
 used for less than 1,000 observations; otherwise <code><a href='https://rdrr.io/pkg/mgcv/man/gam.html'>mgcv::gam()</a></code> is
-used with <code>formula = y ~ s(x, bs = "cs")</code>. Somewhat anecdotally,
+used with <code>formula = y ~ s(x, bs = "cs")</code> with <code>method = "REML"</code>. Somewhat anecdotally,
 <code>loess</code> gives a better appearance, but is \(O(N^{2})\) in memory,
 so does not work for larger datasets.If you have fewer than 1,000 observations but want to use the same <code>gam()</code>
-model that <code>method = "auto"</code> would use, then set
+model that <code>method = NULL</code> would use, then set
 <code>method = "gam", formula = y ~ s(x, bs = "cs")</code>.</p></dd>
     <dt><code>method.args</code></dt><dd><p>List of additional arguments passed on to the modelling
 function defined by <code>method</code>.</p></dd>

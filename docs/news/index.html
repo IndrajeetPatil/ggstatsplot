@@ -84,7 +84,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.3.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.3.1</span>
       </span>
     </div>
 
@@ -193,10 +193,16 @@
       <small>Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="ggstatsplot-0309000" class="section level1">
+    <div id="ggstatsplot-031" class="section level1">
 <h1 class="page-header">
-<a href="#ggstatsplot-0309000" class="anchor"></a>ggstatsplot 0.3.0.9000<small> Unreleased </small>
+<a href="#ggstatsplot-031" class="anchor"></a>ggstatsplot 0.3.1<small> Unreleased </small>
 </h1>
+<p>This is a hotfix release to correct some of the failing tests and other minor breakages.</p>
+<p>MAJOR CHANGES</p>
+<ul>
+<li>
+<code>ggpiestats</code> loses <code>sample.size.label</code> argument since this information is included in the goodness of fit test results itself. So setting <code>proportion.test</code> to <code>FALSE</code> will suppress this information.</li>
+</ul>
 </div>
     <div id="ggstatsplot-030" class="section level1">
 <h1 class="page-header">
@@ -769,7 +775,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#ggstatsplot-0309000">0.3.0.9000</a></li>
+        <li><a href="#ggstatsplot-031">0.3.1</a></li>
         <li><a href="#ggstatsplot-030">0.3.0</a></li>
         <li><a href="#ggstatsplot-020">0.2.0</a></li>
         <li><a href="#ggstatsplot-014">0.1.4</a></li>

@@ -46,9 +46,9 @@ testthat::test_that(
     # dataframe used for visualization
     testthat::expect_equal(length(pb$data), 6L)
     testthat::expect_equal(dim(pb$data[[1]]), c(44L, 13L))
-    testthat::expect_equal(dim(pb$data[[2]]), c(4L, 25L))
-    testthat::expect_equal(dim(pb$data[[3]]), c(2048L, 20L))
-    testthat::expect_equal(dim(pb$data[[5]]), c(4L, 12L))
+    testthat::expect_equal(dim(pb$data[[2]]), c(4L, 26L))
+    testthat::expect_equal(dim(pb$data[[3]]), c(2048L, 21L))
+    testthat::expect_equal(dim(pb$data[[5]]), c(4L, 13L))
 
     # data from difference layers
     testthat::expect_equal(length(pb$data), 6L)
@@ -233,13 +233,13 @@ testthat::test_that(
 
     # check if the y-axis labels have changed
     testthat::expect_identical(
-      pb$layout$panel_params[[1]]$x.labels,
+      pb$layout$panel_params[[1]]$x$scale$labels,
       c("4\n(n = 11)", "6\n(n = 7)", "8\n(n = 14)")
     )
 
     testthat::expect_identical(
-      pb$layout$panel_params[[1]]$y.labels,
-      c("1", "2", "3", "4", "5", "6")
+      pb$layout$panel_params[[1]]$y$breaks,
+      c(1, 2, 3, 4, 5, 6)
     )
 
     # edge case
@@ -397,30 +397,22 @@ testthat::test_that(
     testthat::expect_identical(length(pb2$data), 4L)
     testthat::expect_identical(
       unique(pb1$data[[1]]$colour),
-      c("#1B9E77FF", "#D95F02FF")
+      c("#D95F02FF", "#1B9E77FF")
     )
     testthat::expect_identical(
       unique(pb2$data[[1]]$colour),
-      c("#899DA4FF", "#C93312FF")
-    )
-    testthat::expect_identical(
-      pb2$layout$panel_params[[1]]$x.labels,
-      c("OJ", "VC")
-    )
-    testthat::expect_identical(
-      pb2$layout$panel_params[[1]]$y.labels,
-      c("5", "10", "15", "20", "25", "30")
+      c("#C93312FF", "#899DA4FF")
     )
 
     # dims for data
     testthat::expect_equal(dim(pb1$data[[1]]), c(58L, 13L))
-    testthat::expect_equal(dim(pb1$data[[2]]), c(2L, 25L))
-    testthat::expect_equal(dim(pb1$data[[4]]), c(2L, 12L))
-    testthat::expect_equal(dim(pb1$data[[2]]), c(2L, 25L))
-    testthat::expect_equal(dim(pb1$data[[4]]), c(2L, 12L))
+    testthat::expect_equal(dim(pb1$data[[2]]), c(2L, 26L))
+    testthat::expect_equal(dim(pb1$data[[4]]), c(2L, 13L))
+    testthat::expect_equal(dim(pb1$data[[2]]), c(2L, 26L))
+    testthat::expect_equal(dim(pb1$data[[4]]), c(2L, 13L))
     testthat::expect_equal(dim(pb2$data[[1]]), c(58L, 13L))
     testthat::expect_equal(dim(pb2$data[[2]]), c(2L, 10L))
-    testthat::expect_equal(dim(pb2$data[[3]]), c(1024L, 20L))
+    testthat::expect_equal(dim(pb2$data[[3]]), c(1024L, 21L))
 
     # checking geom data
     testthat::expect_equal(
@@ -429,28 +421,50 @@ testthat::test_that(
         list(
           ymin = c(8.2, 4.2),
           lower = c(15.525, 11.2),
-          middle = c(22.7, 16.5),
+          middle = c(
+            22.7,
+            16.5
+          ),
           upper = c(25.725, 23.1),
           ymax = c(30.9, 29.5),
           outliers = list(numeric(0), c(33.9, 32.5)),
-          notchupper = c(25.6423655789178, 19.9327598420707),
+          notchupper = c(
+            25.6423655789178,
+            19.9327598420707
+          ),
           notchlower = c(19.7576344210822, 13.0672401579293),
           x = c(1, 2),
-          PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
+          flipped_aes = c(FALSE, FALSE),
+          PANEL = structure(c(
+            1L,
+            1L
+          ), .Label = "1", class = "factor"),
           group = 1:2,
-          ymin_final = c(8.2, 4.2),
+          ymin_final = c(
+            8.2,
+            4.2
+          ),
           ymax_final = c(30.9, 33.9),
           xmin = c(0.85, 1.85),
-          xmax = c(1.15, 2.15),
+          xmax = c(
+            1.15,
+            2.15
+          ),
           xid = c(1, 2),
           newx = c(1, 2),
           new_width = c(0.3, 0.3),
           weight = c(1, 1),
           colour = c("grey20", "grey20"),
-          fill = c("white", "white"),
+          fill = c(
+            "white",
+            "white"
+          ),
           size = c(0.5, 0.5),
           alpha = c(0.2, 0.2),
-          shape = c(19, 19),
+          shape = c(
+            19,
+            19
+          ),
           linetype = c("solid", "solid")
         ),
         row.names = c(NA, -2L),
@@ -468,7 +482,7 @@ testthat::test_that(
             33.9,
             32.5
           ),
-          PANEL = structure(c(1L, 1L), class = "factor", .Label = "1"),
+          PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
           group = structure(c(1L, 1L), n = 1L),
           colour = c(
             "black",
@@ -476,16 +490,22 @@ testthat::test_that(
           ),
           fill = c("white", "white"),
           size = c(3, 3),
-          angle = c(0, 0),
+          angle = c(
+            0,
+            0
+          ),
           alpha = c(NA, NA),
           family = c("", ""),
-          fontface = c(1, 1),
+          fontface = c(
+            1,
+            1
+          ),
           lineheight = c(1.2, 1.2),
-          hjust = c(
+          hjust = c(0.5, 0.5),
+          vjust = c(
             0.5,
             0.5
-          ),
-          vjust = c(0.5, 0.5)
+          )
         ),
         row.names = c(NA, -2L),
         class = "data.frame"
@@ -503,13 +523,23 @@ testthat::test_that(
             16.9633333333333
           ),
           ymin = c(NA_real_, NA_real_),
-          ymax = c(NA_real_, NA_real_),
+          ymax = c(
+            NA_real_,
+            NA_real_
+          ),
           PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
+          flipped_aes = c(FALSE, FALSE),
           shape = c(19, 19),
-          colour = c("darkgreen", "darkgreen"),
+          colour = c(
+            "darkgreen",
+            "darkgreen"
+          ),
           size = c(5, 5),
           fill = c(NA, NA),
-          alpha = c(NA, NA),
+          alpha = c(
+            NA,
+            NA
+          ),
           stroke = c(0.5, 0.5)
         ),
         row.names = c(NA, -2L),

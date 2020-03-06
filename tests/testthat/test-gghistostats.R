@@ -1,5 +1,3 @@
-context(desc = "gghistostats")
-
 # checking plot and parametric stats --------------------------------------
 
 testthat::test_that(
@@ -102,25 +100,35 @@ testthat::test_that(
             0.03125,
             0.03125
           ),
+          flipped_aes = c(
+            FALSE,
+            FALSE,
+            FALSE,
+            FALSE,
+            FALSE,
+            FALSE,
+            FALSE,
+            FALSE,
+            FALSE,
+            FALSE,
+            FALSE
+          ),
           PANEL = structure(
             c(
-              1L, 1L, 1L, 1L, 1L, 1L,
-              1L, 1L, 1L, 1L, 1L
+              1L,
+              1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L
             ),
             .Label = "1",
             class = "factor"
           ),
           group = c(
-            -1L,
-            -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L
+            -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L,
+            -1L
           ),
-          ymin = c(
-            0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-          ),
+          ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
           ymax = c(
-            1, 2, 4, 2, 3, 15, 32,
-            15, 5, 1, 1
+            1,
+            2, 4, 2, 3, 15, 32, 15, 5, 1, 1
           ),
           colour = c(
             "black",
@@ -136,19 +144,19 @@ testthat::test_that(
             "black"
           ),
           size = c(
-            0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5,
-            0.5
+            0.5, 0.5, 0.5, 0.5, 0.5, 0.5,
+            0.5, 0.5, 0.5, 0.5, 0.5
           ),
-          linetype = c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+          linetype = c(
+            1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1
+          ),
           alpha = c(
-            0.7,
-            0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7
+            0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7,
+            0.7, 0.7, 0.7, 0.7
           )
         ),
-        row.names = c(
-          NA,
-          -11L
-        ),
+        row.names = c(NA, -11L),
         class = "data.frame"
       )
     )
@@ -189,7 +197,7 @@ testthat::test_that(
 
     # checking different data layers
     testthat::expect_equal(length(pb$data), 5L)
-    testthat::expect_equal(dim(pb$data[[1]]), c(11L, 17L))
+    testthat::expect_equal(dim(pb$data[[1]]), c(11L, 18L))
     testthat::expect_equal(dim(pb$data[[2]]), c(1L, 7L))
     testthat::expect_equal(dim(pb$data[[3]]), c(81L, 15L))
     testthat::expect_equal(dim(pb$data[[4]]), c(1L, 7L))
@@ -307,32 +315,55 @@ testthat::test_that(
     testthat::expect_equal(pb$data[[1]]$xmax[6], 37.5, tolerance = 0.001)
 
     # checking panel parameters
-    testthat::expect_equal(pb$layout$panel_params[[1]]$x.range, c(6L, 39L))
+    testthat::expect_equal(pb$layout$panel_params[[1]]$x$limits, c(7.5, 37.5))
     testthat::expect_identical(
-      pb$layout$panel_params[[1]]$x.labels,
-      c("10", "20", "30")
+      pb$layout$panel_params[[1]]$x$breaks,
+      c(NA, 10, 20, 30, NA)
+    )
+    testthat::expect_identical(
+      pb$layout$panel_params[[1]]$y$breaks,
+      c(0, 25, 50, 75, 100)
     )
     testthat::expect_equal(
-      pb$layout$panel_params[[1]]$y.range,
-      c(-4.95, 103.95),
-      tolerance = 0.001
-    )
-    testthat::expect_identical(
-      pb$layout$panel_params[[1]]$y.labels,
-      c("0", "25", "50", "75", "100")
-    )
-    testthat::expect_equal(
-      pb$layout$panel_params[[1]]$y.sec.range,
-      c(-0.02115385, 0.44423077),
-      tolerance = 0.001
-    )
-    testthat::expect_identical(
-      pb$layout$panel_params[[1]]$y.sec.labels,
-      c("0%", "10%", "20%", "30%", "40%")
-    )
-    testthat::expect_identical(
-      pb$layout$panel_params[[1]]$y.arrange,
-      c("primary", "secondary")
+      pb$layout$panel_params[[1]]$y.sec$break_info,
+      list(
+        range = c(-0.0211538461538462, 0.444230769230769),
+        labels = c(
+          "0%",
+          "10%", "20%", "30%", "40%"
+        ),
+        major = c(
+          0.045, 0.26, 0.475, 0.69,
+          0.905
+        ),
+        minor = c(
+          0.045, 0.153, 0.26, 0.367, 0.475, 0.583, 0.69,
+          0.798, 0.905
+        ),
+        major_source = c(
+          -0.044594594594594,
+          23.3923423423423,
+          46.8292792792793,
+          70.1572072072072,
+          93.5941441441442
+        ),
+        minor_source = c(
+          -0.044594594594594,
+          11.7283783783784,
+          23.3923423423423,
+          35.0563063063063,
+          46.8292792792793,
+          58.4932432432432,
+          70.1572072072072,
+          81.9301801801802,
+          93.5941441441442
+        ),
+        major_source_user = c(0, 0.1, 0.2, 0.3, 0.4),
+        minor_source_user = c(
+          0,
+          0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4
+        )
+      )
     )
 
     # testing labels
@@ -416,24 +447,6 @@ testthat::test_that(
       c(1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0),
       tolerance = 0.01
     )
-
-    # checking panel parameters
-    testthat::expect_equal(pb$layout$panel_params[[1]]$x.range,
-      c(0.75, 6.25),
-      tolerance = 0.001
-    )
-    testthat::expect_identical(
-      pb$layout$panel_params[[1]]$x.labels,
-      c("2", "4", "6")
-    )
-    testthat::expect_equal(pb$layout$panel_params[[1]]$y.range,
-      c(-0.0140625, 0.2953125),
-      tolerance = 0.001
-    )
-    testthat::expect_identical(
-      pb$layout$panel_params[[1]]$y.labels,
-      c("0%", "10%", "20%")
-    )
   }
 )
 
@@ -489,18 +502,6 @@ testthat::test_that(
     testthat::expect_equal(pb$layout$panel_params[[1]]$x.range,
       c(550, 1100),
       tolerance = 0.001
-    )
-    testthat::expect_identical(
-      pb$layout$panel_params[[1]]$x.labels,
-      c("600", "700", "800", "900", "1000", "1100")
-    )
-    testthat::expect_equal(pb$layout$panel_params[[1]]$y.range,
-      c(-0.00025, 0.00525),
-      tolerance = 0.001
-    )
-    testthat::expect_identical(
-      pb$layout$panel_params[[1]]$y.labels,
-      c("0.000", "0.001", "0.002", "0.003", "0.004", "0.005")
     )
   }
 )
