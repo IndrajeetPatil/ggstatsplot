@@ -1793,7 +1793,7 @@ ggstatsplot::combine_plots(
 Another alternative is to use robust models, as implemented in the `robustbase`
 package.
 
-```{r robustbase, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 6}
+```{r robustbase, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 6, eval=FALSE}
 # setup
 set.seed(123)
 library(robustbase)
@@ -3230,7 +3230,7 @@ ggstatsplot::ggcoefstats(
 
 ## Bayesian generalized (non-)linear multivariate multilevel models (`brmsfit`)
 
-```{r brmsfit, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+```{r brmsfit, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5, eval=FALSE}
 # setup
 set.seed(123)
 library(brms)

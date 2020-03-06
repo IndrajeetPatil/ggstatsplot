@@ -14,7 +14,6 @@ ggpiestats(
   results.subtitle = TRUE,
   factor.levels = NULL,
   stat.title = NULL,
-  sample.size.label = TRUE,
   label = "percentage",
   perc.k = 0,
   label.args = list(alpha = 1, fill = "white"),
@@ -72,10 +71,6 @@ the plot will be returned.}
 test. The default is \code{NULL}, i.e. no title will be added to describe the
 effect being shown. An example of a \code{stat.title} argument will be something
 like \code{"main x condition"} or \code{"interaction"}.}
-
-\item{sample.size.label}{Logical that decides whether sample size information
-should be displayed for each level of the grouping variable \code{y}
-(Default: \code{TRUE}).}
 
 \item{label}{Character decides what information needs to be displayed
 on the label in each pie slice. Possible options are \code{"percentage"}

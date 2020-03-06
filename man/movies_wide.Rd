@@ -4,7 +4,8 @@
 \name{movies_wide}
 \alias{movies_wide}
 \title{Movie information and user ratings from IMDB.com (wide format).}
-\format{A data frame with 1,579 rows and 13 variables
+\format{
+A data frame with 1,579 rows and 13 variables
 \itemize{
 \item title.  Title of the movie.
 \item year.  Year of release.
@@ -17,7 +18,8 @@
 variables representing if movie was classified as belonging to that genre.
 \item NumGenre.  The number of different genres a film was classified in an
 integer between one and four
-}}
+}
+}
 \source{
 \url{https://CRAN.R-project.org/package=ggplot2movies}
 }

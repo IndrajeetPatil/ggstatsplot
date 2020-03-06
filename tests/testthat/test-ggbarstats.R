@@ -50,15 +50,28 @@ testthat::test_that(
       pb$data[[1]],
       structure(
         list(
-          fill = c("#D95F02FF", "#1B9E77FF", "#D95F02FF", "#1B9E77FF"),
-          y = c(0.915436241610738, 1, 0.516174402250352, 1),
-          x = c(1L, 1L, 2L, 2L),
+          fill = c(
+            "#1B9E77FF", "#1B9E77FF", "#D95F02FF",
+            "#D95F02FF"
+          ),
+          y = c(1, 1, 0.915436241610738, 0.516174402250352),
+          x = c(1L, 2L, 1L, 2L),
           PANEL = structure(c(1L, 1L, 1L, 1L), .Label = "1", class = "factor"),
-          group = c(2L, 1L, 4L, 3L),
-          ymin = c(0, 0.915436241610738, 0, 0.516174402250352),
-          ymax = c(0.915436241610738, 1, 0.516174402250352, 1),
-          xmin = c(0.55, 0.55, 1.55, 1.55),
-          xmax = c(1.45, 1.45, 2.45, 2.45),
+          group = c(1L, 3L, 2L, 4L),
+          flipped_aes = c(
+            FALSE, FALSE,
+            FALSE, FALSE
+          ),
+          ymin = c(
+            0.915436241610738, 0.516174402250352,
+            0, 0
+          ),
+          ymax = c(1, 1, 0.915436241610738, 0.516174402250352),
+          xmin = c(0.55, 1.55, 0.55, 1.55),
+          xmax = c(
+            1.45, 2.45,
+            1.45, 2.45
+          ),
           colour = c("black", "black", "black", "black"),
           size = c(0.5, 0.5, 0.5, 0.5),
           linetype = c(1, 1, 1, 1),
@@ -74,29 +87,53 @@ testthat::test_that(
       structure(
         list(
           y = c(
-            0.457718120805369,
             0.957718120805369,
-            0.258087201125176,
-            0.758087201125176
+            0.758087201125176,
+            0.457718120805369,
+            0.258087201125176
           ),
-          x = c(1L, 1L, 2L, 2L),
-          label = c("91.54%", "8.46%", "51.62%", "48.38%"),
-          group = c(2L, 1L, 2L, 1L),
-          PANEL = structure(c(1L, 1L, 1L, 1L), .Label = "1", class = "factor"),
-          ymax = c(0.915436241610738, 1, 0.516174402250352, 1),
-          xmin = c(1L, 1L, 2L, 2L),
-          xmax = c(1L, 1L, 2L, 2L),
-          ymin = c(0, 0.915436241610738, 0, 0.516174402250352),
+          x = c(1L, 2L, 1L, 2L),
+          label = c(
+            "8.46%",
+            "48.38%", "91.54%", "51.62%"
+          ),
+          group = c(1L, 1L, 2L, 2L),
+          PANEL = structure(c(
+            1L,
+            1L, 1L, 1L
+          ), .Label = "1", class = "factor"),
+          ymax = c(
+            1, 1,
+            0.915436241610738, 0.516174402250352
+          ),
+          xmin = c(1L, 2L, 1L, 2L),
+          xmax = c(1L, 2L, 1L, 2L),
+          ymin = c(
+            0.915436241610738, 0.516174402250352,
+            0, 0
+          ),
           colour = c("black", "black", "black", "black"),
-          fill = c("white", "white", "white", "white"),
+          fill = c(
+            "white",
+            "white", "white", "white"
+          ),
           size = c(3.88, 3.88, 3.88, 3.88),
           angle = c(0, 0, 0, 0),
           hjust = c(0.5, 0.5, 0.5, 0.5),
-          vjust = c(0.5, 0.5, 0.5, 0.5),
+          vjust = c(
+            0.5,
+            0.5, 0.5, 0.5
+          ),
           alpha = c(1, 1, 1, 1),
-          family = c("", "", "", ""),
+          family = c(
+            "", "",
+            "", ""
+          ),
           fontface = c(1, 1, 1, 1),
-          lineheight = c(1.2, 1.2, 1.2, 1.2)
+          lineheight = c(
+            1.2, 1.2,
+            1.2, 1.2
+          )
         ),
         row.names = c(NA, -4L),
         class = "data.frame"
@@ -161,13 +198,9 @@ testthat::test_that(
     testthat::expect_equal(length(pb$data), 4L)
     testthat::expect_equal(unique(pb$data[[3]]$y), 1.05, tolerance = 0.01)
     testthat::expect_equal(unique(pb$data[[4]]$y), -0.05, tolerance = 0.01)
-    testthat::expect_equal(pb$data[[2]]$y,
-      c(0.4577181, 0.9577181, 0.2580872, 0.7580872),
-      tolerance = 0.0001
-    )
     testthat::expect_identical(
       pb$data[[2]]$label,
-      c("91.54%", "8.46%", "51.62%", "48.38%")
+      c("8.46%", "48.38%", "91.54%", "51.62%")
     )
     testthat::expect_identical(pb$data[[3]]$label, c("ns", "***"))
     testthat::expect_identical(pb$data[[4]]$label, c("(n = 711)", "(n = 1490)"))
@@ -237,23 +270,19 @@ testthat::test_that(
     testthat::expect_identical(
       pb$data[[2]]$label,
       c(
-        "n = 1\n(9%)",
         "n = 10\n(91%)",
-        "n = 3\n(43%)",
         "n = 4\n(57%)",
+        "n = 1\n(9%)",
+        "n = 3\n(43%)",
         "n = 14\n(100%)"
       )
     )
     testthat::expect_identical(
       pb1$data[[2]]$label,
-      c("n = 1", "n = 10", "n = 3", "n = 4", "n = 14")
+      c("n = 10", "n = 4", "n = 1", "n = 3", "n = 14")
     )
 
     # checking layered data
-    testthat::expect_identical(
-      pb$data[[1]]$fill,
-      c("#F5CDB4FF", "#9A8822FF", "#F5CDB4FF", "#9A8822FF", "#F5CDB4FF")
-    )
     testthat::expect_identical(pb$plot$guides$fill$title, "Engine")
     testthat::expect_equal(pb$plot$theme$axis.text.x$angle, 45L)
     testthat::expect_equal(pb1$plot$theme$axis.text.x$angle, 90L)

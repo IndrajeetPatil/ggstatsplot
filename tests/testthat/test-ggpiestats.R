@@ -1,6 +1,3 @@
-# context ------------------------------------------------------------
-context(desc = "ggpiestats")
-
 # one sample proportion test -----------------------------------------
 
 testthat::test_that(
@@ -42,19 +39,41 @@ testthat::test_that(
       pb$data[[1]],
       structure(
         list(
-          fill = c("#E7298AFF", "#7570B3FF", "#D95F02FF", "#1B9E77FF"),
-          y = c(0.25, 0.671052631578947, 0.736842105263158, 1),
+          fill = c(
+            "#1B9E77FF", "#D95F02FF", "#7570B3FF",
+            "#E7298AFF"
+          ),
+          y = c(
+            1, 0.736842105263158, 0.671052631578947,
+            0.25
+          ),
           x = c(1L, 1L, 1L, 1L),
-          PANEL = structure(c(1L, 1L, 1L, 1L), .Label = "1", class = "factor"),
-          group = 4:1,
-          ymin = c(0, 0.25, 0.671052631578947, 0.736842105263158),
-          ymax = c(0.25, 0.671052631578947, 0.736842105263158, 1),
+          PANEL = structure(c(
+            1L, 1L, 1L,
+            1L
+          ), .Label = "1", class = "factor"),
+          group = 1:4,
+          flipped_aes = c(
+            FALSE,
+            FALSE, FALSE, FALSE
+          ),
+          ymin = c(
+            0.736842105263158, 0.671052631578947,
+            0.25, 0
+          ),
+          ymax = c(1, 0.736842105263158, 0.671052631578947, 0.25),
           xmin = c(0.5, 0.5, 0.5, 0.5),
           xmax = c(1.5, 1.5, 1.5, 1.5),
           colour = c("black", "black", "black", "black"),
-          size = c(0.5, 0.5, 0.5, 0.5),
+          size = c(
+            0.5,
+            0.5, 0.5, 0.5
+          ),
           linetype = c(1, 1, 1, 1),
-          alpha = c(NA, NA, NA, NA)
+          alpha = c(
+            NA, NA,
+            NA, NA
+          )
         ),
         row.names = c(NA, -4L),
         class = "data.frame"
@@ -66,32 +85,39 @@ testthat::test_that(
       structure(
         list(
           y = c(
-            0.125,
-            0.460526315789474,
+            0.868421052631579,
             0.703947368421053,
-            0.868421052631579
+            0.460526315789474,
+            0.125
           ),
           x = c(1L, 1L, 1L, 1L),
           label = c(
-            "n = 19\n(25%)",
-            "n = 32\n(42.11%)",
+            "n = 20\n(26.32%)",
             "n = 5\n(6.58%)",
-            "n = 20\n(26.32%)"
+            "n = 32\n(42.11%)",
+            "n = 19\n(25%)"
           ),
-          group = 4:1,
+          group = 1:4,
           PANEL = structure(c(1L, 1L, 1L, 1L), .Label = "1", class = "factor"),
-          ymax = c(0.25, 0.671052631578947, 0.736842105263158, 1),
+          ymax = c(1, 0.736842105263158, 0.671052631578947, 0.25),
           xmin = c(1L, 1L, 1L, 1L),
           xmax = c(1L, 1L, 1L, 1L),
           ymin = c(
-            0, 0.25, 0.671052631578947, 0.736842105263158
+            0.736842105263158,
+            0.671052631578947, 0.25, 0
           ),
-          colour = c("black", "black", "black", "black"),
+          colour = c(
+            "black", "black",
+            "black", "black"
+          ),
           fill = c("white", "white", "white", "white"),
           size = c(3.88, 3.88, 3.88, 3.88),
           angle = c(0, 0, 0, 0),
           hjust = c(0.5, 0.5, 0.5, 0.5),
-          vjust = c(0.5, 0.5, 0.5, 0.5),
+          vjust = c(
+            0.5, 0.5, 0.5,
+            0.5
+          ),
           alpha = c(1, 1, 1, 1),
           family = c("", "", "", ""),
           fontface = c(1, 1, 1, 1),
@@ -125,15 +151,6 @@ testthat::test_that(
     testthat::expect_null(p$labels$x, NULL)
     testthat::expect_null(p$labels$y, NULL)
     testthat::expect_identical(pb$plot$plot_env$legend.title, "vore")
-
-    # checking layer data
-    testthat::expect_equal(length(pb$data), 2L)
-    testthat::expect_equal(dim(pb$data[[1]]), c(4L, 13L))
-    testthat::expect_equal(dim(pb$data[[2]]), c(4L, 19L))
-    testthat::expect_identical(
-      pb$data[[1]]$fill,
-      c("#E7298AFF", "#7570B3FF", "#D95F02FF", "#1B9E77FF")
-    )
   }
 )
 
@@ -192,67 +209,34 @@ testthat::test_that(
         messages = FALSE
       ))
 
-    # checking data used to create a plot
-    dat <- p$data
-
-    # checking dimensions of data
-    data_dims <- dim(dat)
-
-    # testing everything is okay with data
-    testthat::expect_equal(data_dims, c(6L, 5L))
-    testthat::expect_equal(
-      dat$perc,
-      c(72.73, 42.86, 14.29, 27.27, 57.14, 85.71),
-      tolerance = 1e-3
-    )
-    testthat::expect_equal(p1$data$perc,
-      c(63.15789, 21.05263, 15.78947),
-      tolerance = 0.001
-    )
-    testthat::expect_equal(p1$data$counts, c(12L, 4L, 3L))
-    testthat::expect_identical(levels(p1$data$cyl), c("8", "6", "4"))
-    testthat::expect_identical(levels(p1$data$am), c("0"))
-    testthat::expect_identical(
-      colnames(p1$data),
-      c("am", "cyl", "counts", "perc", "label")
-    )
-
-    # checking layer data
-
     # with facets
-    testthat::expect_equal(length(pb$data), 4L)
-    testthat::expect_equal(dim(pb$data[[1]]), c(6L, 13L))
+    testthat::expect_equal(length(pb$data), 3L)
+    testthat::expect_equal(dim(pb$data[[1]]), c(6L, 14L))
     testthat::expect_equal(dim(pb$data[[2]]), c(6L, 19L))
     testthat::expect_equal(dim(pb$data[[3]]), c(3L, 18L))
-    testthat::expect_equal(dim(pb$data[[4]]), c(3L, 18L))
 
     # without facets
-    testthat::expect_equal(length(pb1$data), 4L)
-    testthat::expect_equal(dim(pb1$data[[1]]), c(3L, 13L))
+    testthat::expect_equal(length(pb1$data), 3L)
+    testthat::expect_equal(dim(pb1$data[[1]]), c(3L, 14L))
     testthat::expect_equal(dim(pb1$data[[2]]), c(3L, 19L))
     testthat::expect_equal(dim(pb1$data[[3]]), c(1L, 18L))
-    testthat::expect_equal(dim(pb1$data[[4]]), c(1L, 18L))
 
     # check geoms
     testthat::expect_equal(
       pb$data[[2]]$y,
       c(
-        0.136363636363636,
         0.636363636363636,
-        0.285714285714286,
+        0.136363636363636,
         0.785714285714286,
-        0.428571428571429,
-        0.928571428571429
+        0.285714285714286,
+        0.928571428571429,
+        0.428571428571429
       ),
       tolerance = 0.001
     )
     testthat::expect_equal(
       pb1$data[[2]]$y,
-      c(
-        0.07894737,
-        0.26315789,
-        0.68421053
-      ),
+      c(0.684210526315789, 0.263157894736842, 0.0789473684210526),
       tolerance = 0.001
     )
     testthat::expect_equal(
@@ -263,26 +247,6 @@ testthat::test_that(
     testthat::expect_equal(
       unique(pb$data[[3]]$y),
       unique(pb1$data[[3]]$y),
-      tolerance = 0.001
-    )
-    testthat::expect_equal(
-      unique(pb$data[[3]]$xmin),
-      unique(pb1$data[[3]]$xmin),
-      tolerance = 0.001
-    )
-    testthat::expect_equal(
-      unique(pb$data[[3]]$x),
-      unique(pb$data[[4]]$x),
-      tolerance = 0.001
-    )
-    testthat::expect_equal(
-      unique(pb$data[[3]]$y),
-      1,
-      tolerance = 0.001
-    )
-    testthat::expect_equal(
-      unique(pb1$data[[4]]$y),
-      0.5,
       tolerance = 0.001
     )
 
@@ -320,47 +284,33 @@ testthat::test_that(
     # checking labels
     testthat::expect_identical(
       pb$data[[2]]$label,
-      c("n = 3", "n = 8", "n = 4", "n = 3", "n = 12", "n = 2")
+      c("n = 8", "n = 3", "n = 3", "n = 4", "n = 2", "n = 12")
     )
     testthat::expect_identical(
       pb$data[[3]]$label,
       c(
-        "list(~chi['gof']^2~ ( 1 )== 2.27 , ~italic(p) == 0.132 )",
-        "list(~chi['gof']^2~ ( 1 )== 0.14 , ~italic(p) == 0.705 )",
-        "list(~chi['gof']^2~ ( 1 )== 7.14 , ~italic(p) == 0.008 )"
+        "list(~chi['gof']^2~ ( 1 )== 2.27 , ~italic(p) == 0.132 , ~italic(n) == 11 )",
+        "list(~chi['gof']^2~ ( 1 )== 0.14 , ~italic(p) == 0.705 , ~italic(n) == 7 )",
+        "list(~chi['gof']^2~ ( 1 )== 7.14 , ~italic(p) == 0.008 , ~italic(n) == 14 )"
       )
-    )
-    testthat::expect_identical(
-      pb$data[[4]]$label,
-      c("(n = 11)", "(n = 7)", "(n = 14)")
-    )
-    testthat::expect_identical(
-      dplyr::arrange(pb$data[[2]], group, PANEL)$label,
-      dat$label
     )
 
     # check if palette changed
     testthat::expect_identical(
       pb$data[[1]]$fill,
       c(
-        "#F5CDB4FF",
         "#9A8822FF",
         "#F5CDB4FF",
         "#9A8822FF",
         "#F5CDB4FF",
-        "#9A8822FF"
+        "#9A8822FF",
+        "#F5CDB4FF"
       )
     )
     testthat::expect_identical(
       pb1$data[[1]]$fill,
-      c("#7570B3FF", "#D95F02FF", "#1B9E77FF")
+      c("#1B9E77FF", "#D95F02FF", "#7570B3FF")
     )
-
-    # test layout
-    df_layout <- tibble::as_tibble(pb$layout$layout)
-    testthat::expect_equal(dim(df_layout), c(3L, 6L))
-    testthat::expect_identical(class(df_layout$cyl), "factor")
-    testthat::expect_identical(levels(df_layout$cyl), c("4", "6", "8"))
   }
 )
 
@@ -426,12 +376,6 @@ testthat::test_that(
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
     testthat::expect_null(p$labels$caption, NULL)
     testthat::expect_identical(pb$plot$plot_env$legend.title, "Sex")
-
-    # checking geometric layers
-    testthat::expect_equal(pb$data[[1]]$y,
-      c(0.915436241610738, 1, 0.516174402250352, 1),
-      tolerance = 0.001
-    )
   }
 )
 
@@ -469,16 +413,17 @@ testthat::test_that(
 
     # subtitle
     set.seed(123)
-    p_subtitle <- statsExpressions::expr_contingency_tab(
-      data = survey.data,
-      x = `1st survey`,
-      y = `2nd survey`,
-      counts = Counts,
-      nboot = 25,
-      paired = TRUE,
-      conf.level = 0.90,
-      messages = FALSE
-    )
+    p_subtitle <-
+      statsExpressions::expr_contingency_tab(
+        data = survey.data,
+        x = `1st survey`,
+        y = `2nd survey`,
+        counts = Counts,
+        nboot = 25,
+        paired = TRUE,
+        conf.level = 0.90,
+        messages = FALSE
+      )
 
     # checking plot labels
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
@@ -493,128 +438,9 @@ testthat::test_that(
     testthat::expect_identical(
       pb$data[[3]]$label,
       c(
-        "list(~chi['gof']^2~ ( 1 )== 569.62 , ~italic(p) <= 0.001 )",
-        "list(~chi['gof']^2~ ( 1 )== 245.00 , ~italic(p) <= 0.001 )"
+        "list(~chi['gof']^2~ ( 1 )== 569.62 , ~italic(p) <= 0.001 , ~italic(n) == 880 )",
+        "list(~chi['gof']^2~ ( 1 )== 245.00 , ~italic(p) <= 0.001 , ~italic(n) == 720 )"
       )
-    )
-  }
-)
-
-# one sample prop test bf caption ---------------------------------------------
-
-testthat::test_that(
-  desc = "checking one sample prop test bf caption",
-  code = {
-    testthat::skip_on_cran()
-
-    # plots
-    set.seed(123)
-    p1 <-
-      ggstatsplot::ggpiestats(
-        data = mtcars,
-        main = am,
-        ratio = c(0.5, 0.5),
-        messages = FALSE
-      )
-
-    set.seed(123)
-    p2 <-
-      ggstatsplot::ggpiestats(
-        data = mtcars,
-        main = am,
-        ratio = c(0.6, 0.4),
-        caption = "dolore",
-        messages = FALSE
-      )
-
-    set.seed(123)
-    p3 <- ggstatsplot::ggpiestats(
-      data = mtcars,
-      main = cyl,
-      messages = FALSE
-    )
-
-    set.seed(123)
-    p4 <-
-      ggstatsplot::ggpiestats(
-        data = mtcars,
-        main = cyl,
-        ratio = c(0.3, 0.3, 0.4),
-        messages = FALSE
-      )
-
-
-    # testing overall call
-    testthat::expect_identical(
-      p1$labels$caption,
-      ggplot2::expr(atop(
-        displaystyle(NULL),
-        expr = paste(
-          "In favor of null: ",
-          "log"["e"],
-          "(BF"["01"],
-          ") = ",
-          "1.40",
-          ", ",
-          italic("a"),
-          " = ",
-          "1.00"
-        )
-      ))
-    )
-
-    testthat::expect_identical(
-      p2$labels$caption,
-      ggplot2::expr(atop(
-        displaystyle("dolore"),
-        expr = paste(
-          "In favor of null: ",
-          "log"["e"],
-          "(BF"["01"],
-          ") = ",
-          "1.40",
-          ", ",
-          italic("a"),
-          " = ",
-          "1.00"
-        )
-      ))
-    )
-
-    testthat::expect_identical(
-      p3$labels$caption,
-      ggplot2::expr(atop(
-        displaystyle(NULL),
-        expr = paste(
-          "In favor of null: ",
-          "log"["e"],
-          "(BF"["01"],
-          ") = ",
-          "2.81",
-          ", ",
-          italic("a"),
-          " = ",
-          "1.00"
-        )
-      ))
-    )
-
-    testthat::expect_identical(
-      p4$labels$caption,
-      ggplot2::expr(atop(
-        displaystyle(NULL),
-        expr = paste(
-          "In favor of null: ",
-          "log"["e"],
-          "(BF"["01"],
-          ") = ",
-          "2.81",
-          ", ",
-          italic("a"),
-          " = ",
-          "1.00"
-        )
-      ))
     )
   }
 )

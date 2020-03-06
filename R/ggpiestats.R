@@ -13,9 +13,6 @@
 #'   `main` variable.
 #' @param title The text for the plot title.
 #' @param caption The text for the plot caption.
-#' @param sample.size.label Logical that decides whether sample size information
-#'   should be displayed for each level of the grouping variable `y`
-#'   (Default: `TRUE`).
 #' @param palette If a character string (e.g., `"Set1"`), will use that named
 #'   palette. If a number, will index into the list of palettes of appropriate
 #'   type. Default palette is `"Dark2"`.
@@ -99,7 +96,6 @@ ggpiestats <- function(data,
                        results.subtitle = TRUE,
                        factor.levels = NULL,
                        stat.title = NULL,
-                       sample.size.label = TRUE,
                        label = "percentage",
                        perc.k = 0,
                        label.args = list(alpha = 1, fill = "white"),
@@ -322,18 +318,6 @@ ggpiestats <- function(data,
           size = 2.8,
           na.rm = TRUE,
           parse = TRUE
-        )
-    }
-
-    # adding sample size info
-    if (isTRUE(sample.size.label)) {
-      p <- p +
-        ggplot2::geom_text(
-          data = df_labels,
-          mapping = ggplot2::aes(label = N, x = 1.65, y = 1),
-          position = ggplot2::position_fill(vjust = 0.5),
-          size = 4,
-          na.rm = TRUE
         )
     }
   }

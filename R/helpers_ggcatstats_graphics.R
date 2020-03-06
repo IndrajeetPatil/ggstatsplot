@@ -123,6 +123,9 @@ df_facet_label <- function(data, x, y, k = 3L) {
               specify_decimal_p(x = .$statistic, k = k),
               ", ~italic(p)",
               .$p.value.formatted,
+              ", ~italic(n)",
+              "==",
+              .$counts,
               ")",
               sep = " "
             )

@@ -53,11 +53,11 @@ testthat::test_that(
     testthat::expect_equal(length(pb1$data), 8L)
     testthat::expect_equal(dim(p1$data), c(180L, 6L))
     testthat::expect_equal(dim(pb1$data[[1]]), c(180L, 10L))
-    testthat::expect_equal(dim(pb1$data[[2]]), c(2L, 25L))
-    testthat::expect_equal(dim(pb1$data[[3]]), c(1024L, 20L))
+    testthat::expect_equal(dim(pb1$data[[2]]), c(2L, 26L))
+    testthat::expect_equal(dim(pb1$data[[3]]), c(1024L, 21L))
     testthat::expect_equal(dim(pb1$data[[4]]), c(180L, 8L))
     testthat::expect_equal(dim(pb1$data[[5]]), c(0L, 0L))
-    testthat::expect_equal(dim(pb1$data[[6]]), c(2L, 12L))
+    testthat::expect_equal(dim(pb1$data[[6]]), c(2L, 13L))
     testthat::expect_equal(dim(pb1$data[[8]]), c(2L, 8L))
 
     # checking geom data
@@ -70,28 +70,50 @@ testthat::test_that(
         list(
           ymin = c(0, 0),
           lower = c(6, 4.5),
-          middle = c(8.75, 8),
+          middle = c(
+            8.75,
+            8
+          ),
           upper = c(10, 9.5),
           ymax = c(10, 10),
-          outliers = list(numeric(0), numeric(0)),
+          outliers = list(
+            numeric(0),
+            numeric(0)
+          ),
           notchupper = c(9.41618649374214, 8.83273311717767),
           notchlower = c(8.08381350625786, 7.16726688282233),
-          x = c(1, 2),
+          x = c(
+            1,
+            2
+          ),
+          flipped_aes = c(FALSE, FALSE),
           PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
           group = 1:2,
-          ymin_final = c(0, 0),
+          ymin_final = c(
+            0,
+            0
+          ),
           ymax_final = c(10, 10),
           xmin = c(0.9, 1.9),
-          xmax = c(1.1, 2.1),
+          xmax = c(
+            1.1,
+            2.1
+          ),
           xid = c(1, 2),
           newx = c(1, 2),
           new_width = c(0.2, 0.2),
           weight = c(1, 1),
           colour = c("grey20", "grey20"),
-          fill = c("white", "white"),
+          fill = c(
+            "white",
+            "white"
+          ),
           size = c(0.5, 0.5),
           alpha = c(0.5, 0.5),
-          shape = c(19, 19),
+          shape = c(
+            19,
+            19
+          ),
           linetype = c("solid", "solid")
         ),
         row.names = c(NA, -2L),
@@ -115,15 +137,19 @@ testthat::test_that(
             NA_real_
           ),
           PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
+          flipped_aes = c(FALSE, FALSE),
           shape = c(19, 19),
-          colour = c("darkgreen", "darkgreen"),
+          colour = c(
+            "darkgreen",
+            "darkgreen"
+          ),
           size = c(3, 3),
           fill = c(NA, NA),
-          alpha = c(0.5, 0.5),
-          stroke = c(
+          alpha = c(
             0.5,
             0.5
-          )
+          ),
+          stroke = c(0.5, 0.5)
         ),
         row.names = c(NA, -2L),
         class = "data.frame"
@@ -261,9 +287,9 @@ testthat::test_that(
     # dataframe used for visualization
     testthat::expect_equal(length(pb1$data), 8L)
     testthat::expect_equal(dim(pb1$data[[1]]), c(66L, 10L))
-    testthat::expect_equal(dim(pb1$data[[2]]), c(3L, 25L))
-    testthat::expect_equal(dim(pb1$data[[3]]), c(1536L, 20L))
-    testthat::expect_equal(dim(pb1$data[[5]]), c(3L, 12L))
+    testthat::expect_equal(dim(pb1$data[[2]]), c(3L, 26L))
+    testthat::expect_equal(dim(pb1$data[[3]]), c(1536L, 21L))
+    testthat::expect_equal(dim(pb1$data[[5]]), c(3L, 13L))
     testthat::expect_equal(dim(pb1$data[[7]]), c(3L, 8L))
     testthat::expect_equal(dim(pb1$data[[8]]), c(6L, 19L))
 

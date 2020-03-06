@@ -4,7 +4,8 @@
 \name{bugs_wide}
 \alias{bugs_wide}
 \title{Wide-format version of the "Bugs" dataset.}
-\format{A data frame with 93 rows and 6 variables
+\format{
+A data frame with 93 rows and 6 variables
 \itemize{
 \item subject. Dummy identity number for each participant.
 \item gender. Participant's gender (Female, Male).
@@ -15,7 +16,8 @@ a scale from 0 to 10 in each condition of the experiment (\strong{LDLF}: low
 freighteningness and low disgustingness; \strong{LFHD}: low freighteningness and
 high disgustingness; \strong{HFHD}: high freighteningness and low
 disgustingness; \strong{HFHD}: high freighteningness and high disgustingness).
-}}
+}
+}
 \source{
 \url{https://www.sciencedirect.com/science/article/pii/S0747563213000277}
 }

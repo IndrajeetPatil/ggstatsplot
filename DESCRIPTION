@@ -1,7 +1,7 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.3.0.9000
+Version: 0.3.1
 Authors@R: 
     c(person(given = "Indrajeet",
              family = "Patil",
@@ -36,7 +36,7 @@ Imports:
     dplyr,
     ggcorrplot,
     ggExtra,
-    ggplot2,
+    ggplot2 (>= 3.3.0),
     ggrepel,
     ggsignif,
     groupedstats,
@@ -54,7 +54,6 @@ Suggests:
     knitr,
     lme4,
     MASS,
-    MCMCglmm,
     ordinal,
     rmarkdown,
     spelling,

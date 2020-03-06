@@ -4,7 +4,8 @@
 \name{iris_long}
 \alias{iris_long}
 \title{Edgar Anderson's Iris Data in long format.}
-\format{A data frame with 600 rows and 5 variables
+\format{
+A data frame with 600 rows and 5 variables
 \itemize{
 \item id. Dummy identity number for each flower (150 flowers in total).
 \item Species.	The species are \emph{Iris setosa}, \emph{versicolor}, and
@@ -16,7 +17,8 @@
 \item measure.	What aspect of the attribute is being measured (\code{"Length"}
 or \code{"Width"}).
 \item value.	Value of the measurement.
-}}
+}
+}
 \source{
 \url{https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/iris.html}
 }

@@ -66,9 +66,6 @@ association test will be run. This argument can not be \code{NULL} for
     \item{\code{factor.levels}}{A character vector with labels for factor levels of
 \code{main} variable.}
     \item{\code{caption}}{The text for the plot caption.}
-    \item{\code{sample.size.label}}{Logical that decides whether sample size information
-should be displayed for each level of the grouping variable \code{y}
-(Default: \code{TRUE}).}
     \item{\code{palette}}{If a character string (e.g., \code{"Set1"}), will use that named
 palette. If a number, will index into the list of palettes of appropriate
 type. Default palette is \code{"Dark2"}.}

@@ -4,14 +4,16 @@
 \name{Titanic_full}
 \alias{Titanic_full}
 \title{Titanic dataset.}
-\format{A data frame with 2201 rows and 5 variables
+\format{
+A data frame with 2201 rows and 5 variables
 \itemize{
 \item id. Dummy identity number for each person.
 \item Class.	1st, 2nd, 3rd, Crew.
 \item Sex.	Male, Female.
 \item Age.	Child, Adult.
 \item Survived.	No, Yes.
-}}
+}
+}
 \source{
 \url{https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Titanic.html}
 }

@@ -76,6 +76,9 @@ displayed on the label in each pie slice. Possible options are
     \item{\code{x.axis.orientation}}{The orientation of the \code{x} axis labels one of
 "slant" or "vertical" to change from the default horizontal
 orientation (Default: \code{NULL} which is horizontal).}
+    \item{\code{sample.size.label}}{Logical that decides whether sample size information
+should be displayed for each level of the grouping variable \code{y}
+(Default: \code{TRUE}).}
     \item{\code{ratio}}{A vector of proportions: the expected proportions for the
 proportion test (should sum to 1). Default is \code{NULL}, which means the null
 is equal theoretical proportions across the levels of the nominal variable.
@@ -92,9 +95,6 @@ the plot will be returned.}
 test. The default is \code{NULL}, i.e. no title will be added to describe the
 effect being shown. An example of a \code{stat.title} argument will be something
 like \code{"main x condition"} or \code{"interaction"}.}
-    \item{\code{sample.size.label}}{Logical that decides whether sample size information
-should be displayed for each level of the grouping variable \code{y}
-(Default: \code{TRUE}).}
     \item{\code{perc.k}}{Numeric that decides number of decimal places for percentage
 labels (Default: \code{0}).}
     \item{\code{label.args}}{Additional aesthetic arguments that will be passed to
