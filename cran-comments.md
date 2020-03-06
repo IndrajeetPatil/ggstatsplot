@@ -1,5 +1,5 @@
 ## Test environments
-* local Windows install, R 3.6.1
+* local Windows install, R devel
 * ubuntu 14.04 on travis-ci (devel and release)
 * win-builder (devel and release)
 
@@ -7,4 +7,5 @@
 
 0 errors | 0 warnings | 0 notes
 
-  - Maintenance release and major internal refactoring.
+  - Hotfix release to address some of the breakages resulting from the new
+    release of `ggplot2`.

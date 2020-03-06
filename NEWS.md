@@ -1,7 +1,7 @@
 # ggstatsplot 0.3.1
 
 This is a hotfix release to correct some of the failing tests and other minor
-breakages.
+breakages resulting from the new release of `ggplot2 3.3.0`.
 
 MAJOR CHANGES
 

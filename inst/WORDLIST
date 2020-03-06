@@ -1,5 +1,4 @@
 Aalen's
-aareg
 accidently
 al
 anevaluator
@@ -23,7 +22,6 @@ cbu
 changedate
 checkmark
 Cikara
-clm
 Cochrane
 codecov
 Codecov
@@ -32,9 +30,6 @@ colorbar
 compositional
 Conover
 correlalogram
-couter
-covr
-covrpage
 Cramer
 Cramer's
 Cramér's
@@ -48,7 +43,6 @@ d'être
 d’être
 Delacre
 densigram
-df
 disgustingness
 djnavarro
 DOI
@@ -69,9 +63,7 @@ freighteningness
 fueleconomy
 Gapminder
 geoms
-ggbarstats
 ggbetweenstats
-ggcatstats
 ggcoefstats
 ggcorrmat
 ggdotplotstats
@@ -79,7 +71,6 @@ gghistostats
 ggpiestats
 ggplot
 ggscatterstats
-ggsignif
 ggtheme
 ggwithinstats
 gh
@@ -87,10 +78,7 @@ github
 Github
 Gitter
 gla
-glm
-glmer
 GLMM
-glmmPQL
 GLMMs
 glyphs
 gof
@@ -104,6 +92,7 @@ Heteroscedasticy
 hexsticker
 HFHD
 HitCount
+hotfix
 http
 https
 hv
@@ -123,7 +112,6 @@ jitter
 js
 Kass
 labelled
-labeller
 Lakens
 Larntz
 ldhf
@@ -136,16 +124,12 @@ Licence
 lifecycle
 Likert
 linux
-lm
 machiavellianism
 McNemar
 McNemar's
 McNemar’s
-merMod
 metafor
 Mina
-mingw
-mlm
 modelling
 Mora
 mpaa
@@ -169,7 +153,6 @@ pandoc
 paulvanderlaken
 pb
 pearson's
-pearson’s
 piechart
 pkgs
 plotgrid
@@ -197,7 +180,6 @@ RStudio
 setosa
 softwares
 spearman
-spearman’s
 sphericity
 StackOverflow
 statsExpressions
@@ -206,7 +188,6 @@ steve
 svg
 tblr
 TERGM
-testthat
 tibble
 tibbles
 tidiers
