@@ -314,7 +314,7 @@ ggcoefstats <- function(x,
   f.mods <- c("aov", "aovlist", "anova", "Gam", "manova")
 
   # model for which the output names are going to be slightly weird
-  weird_name_mods <- c("gmm", "lmodel2", "gamlss", "drc", "mlm", "DirichletRegModel")
+  weird_name_mods <- c("gmm", "lmodel2", "gamlss", "drc", "glmmTMB", "mlm", "DirichletRegModel")
 
   # ============================= model summary ============================
 
@@ -454,7 +454,7 @@ ggcoefstats <- function(x,
       tidyr::unite(
         data = .,
         col = "term",
-        dplyr::matches("term|variable|parameter|method|curve|response"),
+        dplyr::matches("term|variable|parameter|method|curve|response|component"),
         remove = TRUE,
         sep = "_"
       )

@@ -1165,8 +1165,34 @@ mod <-
 # plotting the model
 ggstatsplot::ggcoefstats(
   x = mod,
-  # conf.method = "uniroot",
+  conf.method = "uniroot",
   title = "generalized linear mixed models \nusing Template Model Builder"
+)
+```
+
+Another example (given the number of terms, let's only display labels for
+significant effects):
+
+```{r glmmTMB2, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 8}
+# setup
+set.seed(123)
+library(glmmTMB)
+data(Salamanders)
+
+# model
+zipm3 <-
+  glmmTMB(count ~ spp * mined + (1 | site),
+    zi = ~ spp * mined,
+    data = Salamanders,
+    family = "poisson"
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = zipm3,
+  package = "palettesForR",
+  palette = "Inkscape",
+  only.significant = TRUE
 )
 ```
 
@@ -3230,7 +3256,7 @@ ggstatsplot::ggcoefstats(
 
 ## Bayesian generalized (non-)linear multivariate multilevel models (`brmsfit`)
 
-```{r brmsfit, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5, eval=FALSE}
+```{r brmsfit, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
 # setup
 set.seed(123)
 library(brms)

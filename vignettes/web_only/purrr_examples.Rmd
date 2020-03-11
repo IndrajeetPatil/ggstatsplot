@@ -225,7 +225,8 @@ cue_list <- ANT %>%
 length(cue_list)
 
 # creating a list of plots by applying the same function for elements of the list
-plot_list <- purrr::pmap(
+plot_list <- 
+  purrr::pmap(
   .l = list(
     data = cue_list,
     x = "flank",
@@ -594,7 +595,7 @@ ggstatsplot::combine_plots(
 
 # `ggpiestats`
 
-```{r purrr_ggpiestats, warning = FALSE, message = FALSE, fig.height = 20, fig.width = 9}
+```{r purrr_ggpiestats, warning = FALSE, message = FALSE, fig.height = 22, fig.width = 9}
 # for reproducibility
 set.seed(123)
 
@@ -641,7 +642,6 @@ plot_list <-
         ggthemes::theme_economist()
       ),
       ggstatsplot.layer = list(TRUE, TRUE, FALSE, FALSE),
-      sample.size.label = list(TRUE, FALSE, TRUE, FALSE),
       proportion.test = list(TRUE, FALSE, TRUE, FALSE),
       messages = FALSE
     ),
