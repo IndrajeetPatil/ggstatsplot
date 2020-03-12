@@ -41,7 +41,18 @@ functions included in `ggstatsplot`.
 
   - <https://medium.com/yulun-ding-ambassador/ggplot-ch1-3-ways-to-present-discrete-vs-discrete-in-graph-7cbcbbfa4803>
  
+  - <https://www.r-bloggers.com/how-to-remove-outliers-in-r/>
 
 # Videos
 
   - <https://www.youtube.com/watch?v=aw6HDz9zA1Q>
+
+# RPubs posts
+
+  - <https://rpubs.com/adg93/IGNITE_RepeatedMs>
+
+# Publications
+
+A list of publications that use `ggstatsplot` can be found in Google Scholar:
+
+<https://scholar.google.com/scholar?hl=en&scisbd=2&as_sdt=0%2C22&q=ggstatsplot&btnG=>
