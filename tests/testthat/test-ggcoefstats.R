@@ -691,49 +691,6 @@ testthat::test_that(
   }
 )
 
-# glmmPQL object --------------------------------------------
-
-testthat::test_that(
-  desc = "ggcoefstats works with glmmPQL object",
-  code = {
-    testthat::skip_on_cran()
-
-    # setup
-    set.seed(123)
-    library(MASS)
-
-    # model
-    mod <- MASS::glmmPQL(
-      fixed = y ~ trt + I(week > 2),
-      random = ~ 1 | ID,
-      family = binomial,
-      data = bacteria,
-      verbose = FALSE
-    )
-
-    # coefficient plot
-    p <- ggstatsplot::ggcoefstats(mod, exclude.intercept = FALSE)
-
-    # build the plot
-    pb <- ggplot2::ggplot_build(p)
-
-    # checking annotations
-    testthat::expect_null(p$labels$caption, NULL)
-    testthat::expect_null(p$labels$subtitle, NULL)
-
-    # labels
-    testthat::expect_identical(
-      pb$data[[4]]$label,
-      c(
-        "list(~widehat(italic(beta))==3.41, ~italic(t)(169)==6.58, ~italic(p)<= 0.001)",
-        "list(~widehat(italic(beta))==-1.25, ~italic(t)(47)==-1.94, ~italic(p)== 0.059)",
-        "list(~widehat(italic(beta))==-0.75, ~italic(t)(47)==-1.17, ~italic(p)== 0.248)",
-        "list(~widehat(italic(beta))==-1.61, ~italic(t)(169)==-4.49, ~italic(p)<= 0.001)"
-      )
-    )
-  }
-)
-
 # check clm models (minimal) ----------------------------------------
 
 testthat::test_that(
@@ -751,12 +708,13 @@ testthat::test_that(
 
     # plot
     set.seed(123)
-    p <- ggstatsplot::ggcoefstats(
-      x = mod.clm,
-      exclude.intercept = FALSE,
-      conf.int = 0.99,
-      k = 4L
-    )
+    p <-
+      ggstatsplot::ggcoefstats(
+        x = mod.clm,
+        exclude.intercept = FALSE,
+        conf.int = 0.99,
+        k = 4L
+      )
 
     # build the plot
     pb <- ggplot2::ggplot_build(p)
@@ -1075,7 +1033,6 @@ testthat::test_that(
     # lm
     set.seed(123)
     mod1 <- stats::lm(data = iris, formula = Sepal.Length ~ Species)
-    broom_df1 <- broomExtra::glance(mod1)
     glance_df1 <- ggstatsplot::ggcoefstats(x = mod1, output = "glance")
 
     # lmer
@@ -1085,28 +1042,11 @@ testthat::test_that(
         formula = Reaction ~ Days + (Days | Subject),
         data = sleepstudy
       )
-    broom_df2 <- broomExtra::glance(x = mod2)
     glance_df2 <- ggstatsplot::ggcoefstats(x = mod2, output = "glance")
-    tidy_df2 <- ggstatsplot::ggcoefstats(
-      x = mod2,
-      output = "tidy",
-      exclude.intercept = FALSE
-    )
 
     # checking if they are equal
-    testthat::expect_identical(broom_df1, glance_df1)
-    testthat::expect_identical(broom_df2, glance_df2)
-
-    testthat::expect_true(inherits(glance_df1, what = "tbl_df"))
-    testthat::expect_true(inherits(glance_df2, what = "tbl_df"))
-
-    testthat::expect_identical(
-      tidy_df2$label,
-      c(
-        "list(~widehat(italic(beta))==251.41, ~italic(t)(174)==36.84, ~italic(p)<= 0.001)",
-        "list(~widehat(italic(beta))==10.47, ~italic(t)(174)==6.77, ~italic(p)<= 0.001)"
-      )
-    )
+    testthat::expect_true(all(c("aic", "bic") %in% names(glance_df1)))
+    testthat::expect_true(all(c("aic", "bic") %in% names(glance_df2)))
   }
 )
 
@@ -1130,24 +1070,6 @@ testthat::test_that(
     df1.broom <- broomExtra::augment(mod1)
     df1.ggstats <- ggstatsplot::ggcoefstats(x = mod1, output = "augment")
 
-    # mixed-effects model
-    set.seed(123)
-    library(MASS)
-    mod2 <-
-      MASS::rlm(
-        formula = stack.loss ~ .,
-        data = stackloss,
-        psi = psi.hampel,
-        init = "lts"
-      )
-    df2.broom <- tibble::as_tibble(broomExtra::augment(mod2))
-    df2.ggstats <- ggstatsplot::ggcoefstats(x = mod2, output = "augment")
-    df2.tidy <- ggstatsplot::ggcoefstats(
-      x = mod2,
-      output = "tidy",
-      exclude.intercept = FALSE
-    )
-
     # model with F-statistic
     set.seed(123)
     mod3 <- stats::aov(
@@ -1159,22 +1081,9 @@ testthat::test_that(
 
     # checking if they are equal
     testthat::expect_identical(df1.broom, df1.ggstats)
-    testthat::expect_identical(df2.broom, df2.ggstats)
     testthat::expect_identical(df3.broom, df3.ggstats)
     testthat::expect_true(inherits(df1.ggstats, what = "tbl_df"))
-    testthat::expect_true(inherits(df2.ggstats, what = "tbl_df"))
     testthat::expect_true(inherits(df3.ggstats, what = "tbl_df"))
-
-    # wait for parameters' new version to make it to CRAN
-    testthat::expect_identical(
-      df2.tidy$label,
-      c(
-        "list(~widehat(italic(beta))==-40.47, ~italic(t)==-3.40, ~italic(p)== 0.003)",
-        "list(~widehat(italic(beta))==0.74, ~italic(t)==5.50, ~italic(p)<= 0.001)",
-        "list(~widehat(italic(beta))==1.23, ~italic(t)==3.33, ~italic(p)== 0.004)",
-        "list(~widehat(italic(beta))==-0.15, ~italic(t)==-0.93, ~italic(p)== 0.365)"
-      )
-    )
   }
 )
 
