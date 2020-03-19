@@ -30,17 +30,6 @@ reference:
     desc:  Useful functions re-exported from other packages.
     contents:
       - specify_decimal_p
-      - signif_column
-      - pairwise_p
-      - pairwise_comparisons
-      - set_cwd
-      - "%>%"
-      - "%<>%"
-      - "%$%"
-      - "%||%"
-      - "%|%"
-      - "%<-%"
-      - ends_with("_message")
 
   - title: Graphics helper functions
     desc: The `ggplot2` themes and other graphics-related helpers in `ggstatsplot`.

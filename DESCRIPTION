@@ -31,12 +31,12 @@ BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
 Depends: 
     R (>= 3.5.0)
 Imports:
-    broomExtra (>= 2.0.0.9000),
+    broomExtra,
     cowplot,
     dplyr,
     ggcorrplot,
     ggExtra,
-    ggplot2 (>= 3.3.0),
+    ggplot2,
     ggrepel,
     ggsignif,
     groupedstats,
@@ -61,8 +61,6 @@ Suggests:
     testthat,
     tibble,
     WRS2
-Remotes:
-    IndrajeetPatil/broomExtra
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

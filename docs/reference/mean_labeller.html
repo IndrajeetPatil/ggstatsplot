@@ -18,12 +18,12 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous" />
@@ -43,7 +43,7 @@
 
 <!-- docsearch -->
 <script src="../docsearch.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
@@ -168,7 +168,7 @@ ggbetweenstats plot." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/IndrajeetPatil/ggstatsplot">
+  <a href="https://github.com/IndrajeetPatil/ggstatsplot/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -247,24 +247,12 @@ mean is to be displayed (Default: <code>FALSE</code>).</p></td>
   <span class='kw'>mean.ci</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>
 )</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 x 4</span><span>
-#&gt;   vore    brainwt
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> carni    0.079</span><span style='text-decoration: underline;'>3</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> herbi    0.622 
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> insecti  0.021</span><span style='text-decoration: underline;'>6</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> omni     0.146 
-#&gt;   label                                                            
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                                            
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> list(~italic(widehat(mu))==0.079,CI[95*'%']*'['*0.000,0.158*']') 
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> list(~italic(widehat(mu))==0.622,CI[95*'%']*'['*-0.114,1.357*']')
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> list(~italic(widehat(mu))==0.022,CI[95*'%']*'['*-0.022,0.065*']')
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> list(~italic(widehat(mu))==0.146,CI[95*'%']*'['*-0.021,0.313*']')
-#&gt;   n_label           
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> </span><span style='color: #949494;'>"</span><span>carni\n(n = 9)</span><span style='color: #949494;'>"</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> </span><span style='color: #949494;'>"</span><span>herbi\n(n = 20)</span><span style='color: #949494;'>"</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> </span><span style='color: #949494;'>"</span><span>insecti\n(n = 5)</span><span style='color: #949494;'>"</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> </span><span style='color: #949494;'>"</span><span>omni\n(n = 17)</span><span style='color: #949494;'>"</span><span>  </div></span></pre>
+#&gt;   vore    brainwt label                                           n_label       
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                           </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>         
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> carni    0.079</span><span style='text-decoration: underline;'>3</span><span> list(~italic(widehat(mu))==0.079,CI[95*'%']*'[~ </span><span style='color: #949494;'>"</span><span>carni\n(n = ~
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> herbi    0.622  list(~italic(widehat(mu))==0.622,CI[95*'%']*'[~ </span><span style='color: #949494;'>"</span><span>herbi\n(n = ~
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> insecti  0.021</span><span style='text-decoration: underline;'>6</span><span> list(~italic(widehat(mu))==0.022,CI[95*'%']*'[~ </span><span style='color: #949494;'>"</span><span>insecti\n(n ~
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> omni     0.146  list(~italic(widehat(mu))==0.146,CI[95*'%']*'[~ </span><span style='color: #949494;'>"</span><span>omni\n(n = 1~</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>

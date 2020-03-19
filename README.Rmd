@@ -1191,32 +1191,6 @@ location in the plot.
 Additionally, all functions share the `ggtheme` and `palette` arguments that can
 be used to specify your favorite `ggplot` theme and color palette.
 
-## Help
-
-In `R`, documentation for any function can be accessed with the standard `help`
-command (e.g., `?ggbetweenstats`).
-
-Another handy tool to see arguments to any of the functions is `args`. For
-example-
-
-```{r args, message = FALSE, warning = FALSE}
-args(ggstatsplot::specify_decimal_p)
-```
-
-In case you want to look at the function body for any of the functions, just
-type the name of the function without the parentheses:
-
-```{r funbody, message = FALSE, warning = FALSE, eval = FALSE}
-ggstatsplot::ggcorrmat
-```
-
-If you are not familiar either with what the namespace `::` does or how to use
-pipe operator `%>%`, something this package and its documentation relies a lot
-on, you can check out these links-
-
-  - <http://r-pkgs.had.co.nz/namespace.html>
-  - <http://r4ds.had.co.nz/pipes.html>
-
 # Acknowledgments
 
 The hexsticker was generously designed by Sarah Otterstetter (Max Planck

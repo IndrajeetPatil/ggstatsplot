@@ -17,9 +17,9 @@ modeling in its turn can suggest a different visualization method, and so
 on and so forth. The central idea of \code{ggstatsplot} is simple: combine these
 two phases into one in the form of graphics with statistical details, which
 makes data exploration simpler and faster. Currently, it supports only the
-most common types of statistical tests (parametric, non-parametric,
-Bayes Factor, and robust versions of \emph{t}-test/anova, correlation, regression,
-contingency tables analyses, and meta-analysis).
+most common types of statistical tests (parametric, non-parametric, Bayes
+Factor, and robust versions of \emph{t}-test/anova, correlation, regression
+analyses, contingency tables analyses, and meta-analysis).
 }
 \details{
 \code{ggstatsplot}
@@ -50,11 +50,9 @@ results from one sample test displayed in the subtitle.
 correlation matrix.
 \item \code{\link[ggstatsplot]{ggcoefstats}} function to visualize
 results from regression analyses.
-\item \code{\link[ggstatsplot]{combine_plots}} helper function to combine
+\item \code{\link[ggstatsplot]{combine_plots2}} helper function to combine
 multiple \code{ggstatsplot} plots using \code{cowplot::plot_grid()} with a
 combination of title, caption, and annotation label.
-\item \code{\link[ggstatsplot]{theme_ggstatsplot}} default theme used for
-this package.
 }
 
 For more documentation, see the dedicated
