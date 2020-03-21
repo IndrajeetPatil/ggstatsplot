@@ -192,7 +192,7 @@
 <td><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg" alt="minimal R version"></a></td>
 <td><a href="https://www.tidyverse.org/lifecycle/"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue" alt="Monthly downloads badge"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-24-red.svg" alt="Github Issues"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-25-red.svg" alt="Github Issues"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot/vignettes/"><img src="https://img.shields.io/badge/vignettes-0.3.0-orange.svg?colorB=FF5722" alt="vignettes"></a></td>
 </tr>
 <tr class="even">
@@ -1509,7 +1509,7 @@
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># for reproducibility</span></span>
 <span id="cb23-2"><a href="#cb23-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
 <span id="cb23-3"><a href="#cb23-3"></a></span>
-<span id="cb23-4"><a href="#cb23-4"></a><span class="co"># as a default this function outputs a correlalogram plot</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a><span class="co"># as a default this function outputs a correlation matrix plot</span></span>
 <span id="cb23-5"><a href="#cb23-5"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</span>
 <span id="cb23-6"><a href="#cb23-6"></a>  <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</span>
 <span id="cb23-7"><a href="#cb23-7"></a>  <span class="dt">type =</span> <span class="st">"robust"</span>, <span class="co"># correlation method</span></span>
@@ -1525,8 +1525,9 @@
 <span id="cb23-17"><a href="#cb23-17"></a>  <span class="dt">matrix.type =</span> <span class="st">"upper"</span>, <span class="co"># type of visualization matrix</span></span>
 <span id="cb23-18"><a href="#cb23-18"></a>  <span class="dt">colors =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#B2182B"</span>, <span class="st">"white"</span>, <span class="st">"#4D4D4D"</span>),</span>
 <span id="cb23-19"><a href="#cb23-19"></a>  <span class="dt">title =</span> <span class="st">"Correlalogram for mammals sleep dataset"</span>,</span>
-<span id="cb23-20"><a href="#cb23-20"></a>  <span class="dt">subtitle =</span> <span class="st">"sleep units: hours; weight units: kilograms"</span></span>
-<span id="cb23-21"><a href="#cb23-21"></a>)</span></code></pre></div>
+<span id="cb23-20"><a href="#cb23-20"></a>  <span class="dt">subtitle =</span> <span class="st">"sleep units: hours; weight units: kilograms"</span>,</span>
+<span id="cb23-21"><a href="#cb23-21"></a>  <span class="dt">caption =</span> <span class="st">"Source: `ggplot2` R package"</span></span>
+<span id="cb23-22"><a href="#cb23-22"></a>)</span></code></pre></div>
 <p><img src="reference/figures/README-ggcorrmat1-1.png" width="100%"></p>
 <p>Two things to note:</p>
 <ul>

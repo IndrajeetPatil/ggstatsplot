@@ -29,7 +29,6 @@ ggcorrmat(
   title = NULL,
   subtitle = NULL,
   caption = NULL,
-  caption.default = TRUE,
   messages = TRUE,
   ...
 )
@@ -142,9 +141,6 @@ override some aspects of the selected \code{ggtheme}.}
 
 \item{caption}{The text for the plot caption. If \code{NULL}, a default caption
 will be shown.}
-
-\item{caption.default}{Logical that decides whether the default caption
-should be shown (default: \code{TRUE}).}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

@@ -13,6 +13,7 @@ testthat::test_that(
         data = ggplot2::msleep,
         type = "p",
         cor.vars = "sleep_total":"awake",
+        cor.vars.names = c("1", "2", "3", "4"),
         p.adjust.method = "BH",
         output = "aaa"
       )
@@ -55,6 +56,8 @@ testthat::test_that(
     testthat::expect_equal(dim(df2), c(6L, 9L))
     testthat::expect_equal(dim(df3), c(6L, 10L))
     testthat::expect_equal(dim(df4), c(6L, 12L))
+
+    testthat::expect_identical(unique(df1$parameter1), c("1", "2", "3"))
   }
 )
 
@@ -157,17 +160,22 @@ testthat::test_that(
         )
       ))
     )
-    testthat::expect_identical(p$labels$caption, ggplot2::expr(atop(
-      expr = paste(
-        bold("X"),
-        " = correlation non-significant at ",
-        italic("p"),
-        " < ",
-        0.001,
-        sep = ""
-      ),
-      "Adjustment (p-value): Benjamini & Hochberg"
-    )))
+    testthat::expect_identical(
+      p$labels$caption,
+      ggplot2::expr(atop(
+        displaystyle(NULL),
+        expr = paste(
+          bold("X"),
+          " = non-significant at ",
+          italic("p"),
+          " < ",
+          0.001,
+          " (Adjustment: ",
+          "Benjamini & Hochberg",
+          ")"
+        )
+      ))
+    )
     testthat::expect_null(p$labels$xlab, NULL)
     testthat::expect_null(p$labels$ylab, NULL)
 
@@ -209,9 +217,9 @@ testthat::test_that(
         sig.level = 0.01,
         p.adjust.method = "hommel",
         matrix.type = "upper",
-        caption.default = FALSE,
         messages = FALSE
-      )
+      ) +
+      labs(caption = NULL)
 
     # checking legend title
     pb <- ggplot2::ggplot_build(p)
@@ -267,19 +275,6 @@ testthat::test_that(
     )
 
     # checking plot labels
-    testthat::expect_equal(
-      pb$plot$labels,
-      list(
-        xlab = NULL,
-        ylab = NULL,
-        title = NULL,
-        subtitle = NULL,
-        caption = NULL,
-        fill = "value",
-        x = "Var1",
-        y = "Var2"
-      )
-    )
     testthat::expect_identical(
       p_legend_title,
       ggplot2::expr(atop(atop(
@@ -317,6 +312,7 @@ testthat::test_that(
       suppressWarnings(ggstatsplot::ggcorrmat(
         data = ggplot2::msleep,
         cor.vars = sleep_total:awake,
+        cor.vars.names = "sleep_total",
         type = "np",
         sig.level = 0.01,
         p.adjust.method = "hommel",
@@ -354,10 +350,13 @@ testthat::test_that(
     testthat::expect_equal(dat$signif[7], 0L)
     testthat::expect_equal(dat$signif[10], 0L)
     testthat::expect_equal(dat$signif[11], 1L)
+
+    # checking aesthetics
     testthat::expect_identical(
-      unclass(p$plot_env$colors),
-      c("#E1BD6DFF", "#EABE94FF", "#0B775EFF")
+      unique(pb$data[[1]]$fill),
+      c("#0B775E", "#57896B", "#E6BE81", "#E1BD6D", "#E7BE87", "#E3BD77", "#8E9C79")
     )
+
     testthat::expect_identical(
       p_legend_title,
       ggplot2::expr(atop(atop(

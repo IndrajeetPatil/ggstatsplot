@@ -59,7 +59,7 @@ and was collected by the Gapminder Foundation. Let's have a look at the data-
 library(gapminder)
 library(dplyr)
 
-dplyr::glimpse(x = gapminder)
+dplyr::glimpse(gapminder)
 ```
 
 Let's say we are interested in studying correlation between population of a
@@ -69,6 +69,8 @@ the year 2007.
 The simplest way to get a correlation matrix is to stick to the defaults-
 
 ```{r ggcorrmat1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+# setup
+set.seed(123)
 library(ggstatsplot)
 
 # select data only from the year 2007

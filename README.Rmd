@@ -892,7 +892,7 @@ correlation matrix.
 # for reproducibility
 set.seed(123)
 
-# as a default this function outputs a correlalogram plot
+# as a default this function outputs a correlation matrix plot
 ggstatsplot::ggcorrmat(
   data = ggplot2::msleep,
   type = "robust", # correlation method
@@ -908,7 +908,8 @@ ggstatsplot::ggcorrmat(
   matrix.type = "upper", # type of visualization matrix
   colors = c("#B2182B", "white", "#4D4D4D"),
   title = "Correlalogram for mammals sleep dataset",
-  subtitle = "sleep units: hours; weight units: kilograms"
+  subtitle = "sleep units: hours; weight units: kilograms",
+  caption = "Source: `ggplot2` R package"
 )
 ```
 

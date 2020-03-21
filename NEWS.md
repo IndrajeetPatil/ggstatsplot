@@ -8,9 +8,9 @@ BREAKING CHANGES
 
 MAJOR CHANGES
 
-  - `ggcorrmat` legend, in case of missing values, shows the minimum and maximum
-    number of pairs, and mode - instead of median - for the distribution of
-    sample pairs.
+  - `ggcorrmat` legend, in case of missing values, shows mode - instead of
+    median - for the distribution of sample pairs.
+  - The vestigial `caption.default` argument in `ggcorrmat` is retired.
 
 MINOR CHANGES
 

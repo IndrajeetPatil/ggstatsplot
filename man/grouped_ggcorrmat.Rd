@@ -76,8 +76,6 @@ If set to \code{NULL}, manual specification of colors will be turned off and 3
 colors from the specified \code{palette} from \code{package} will be selected.}
     \item{\code{caption}}{The text for the plot caption. If \code{NULL}, a default caption
 will be shown.}
-    \item{\code{caption.default}}{Logical that decides whether the default caption
-should be shown (default: \code{TRUE}).}
     \item{\code{pch}}{Decides the glyphs (read point shapes) to be used for
 insignificant correlation coefficients (only valid when \code{insig = "pch"}).
 Default value is \code{pch = 4}.}

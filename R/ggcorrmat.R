@@ -46,8 +46,6 @@
 #'   colors from the specified `palette` from `package` will be selected.
 #' @param caption The text for the plot caption. If `NULL`, a default caption
 #'   will be shown.
-#' @param caption.default Logical that decides whether the default caption
-#'   should be shown (default: `TRUE`).
 #' @param pch Decides the glyphs (read point shapes) to be used for
 #'   insignificant correlation coefficients (only valid when `insig = "pch"`).
 #'   Default value is `pch = 4`.
@@ -130,7 +128,6 @@ ggcorrmat <- function(data,
                       title = NULL,
                       subtitle = NULL,
                       caption = NULL,
-                      caption.default = TRUE,
                       messages = TRUE,
                       ...) {
 
@@ -295,29 +292,27 @@ ggcorrmat <- function(data,
 
   # =========================== labels ==================================
 
-  # if `caption` is not specified, use the generic version only if
-  # `caption.default` is `TRUE`
-  if (is.null(caption) && pch == 4 && isTRUE(caption.default)) {
-    # preparing the caption
+  # preparing the `pch` caption
+  if (pch == 4) {
     caption <-
       substitute(
         atop(
+          displaystyle(top.text),
           expr = paste(
             bold("X"),
-            " = correlation non-significant at ",
+            " = non-significant at ",
             italic("p"),
             " < ",
             sig.level,
-            sep = ""
-          ),
-          bottom.text
+            " (Adjustment: ",
+            adj_text,
+            ")"
+          )
         ),
         env = list(
           sig.level = sig.level,
-          bottom.text = paste("Adjustment (p-value): ",
-            pairwiseComparisons::p_adjust_text(p.adjust.method),
-            sep = ""
-          )
+          adj_text = pairwiseComparisons::p_adjust_text(p.adjust.method),
+          top.text = caption
         )
       )
   }
