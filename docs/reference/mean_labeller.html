@@ -25,6 +25,10 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
+
 <!-- Font Awesome icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous" />
@@ -73,7 +77,7 @@ ggbetweenstats plot." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -87,7 +91,7 @@ ggbetweenstats plot." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.3.1.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0.9000</span>
       </span>
     </div>
 
@@ -246,21 +250,30 @@ mean is to be displayed (Default: <code>FALSE</code>).</p></td>
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>brainwt</span>,
   <span class='kw'>mean.ci</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>
-)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 x 4</span><span>
-#&gt;   vore    brainwt label                                           n_label       
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                           </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>         
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> carni    0.079</span><span style='text-decoration: underline;'>3</span><span> list(~italic(widehat(mu))==0.079,CI[95*'%']*'[~ </span><span style='color: #949494;'>"</span><span>carni\n(n = ~
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> herbi    0.622  list(~italic(widehat(mu))==0.622,CI[95*'%']*'[~ </span><span style='color: #949494;'>"</span><span>herbi\n(n = ~
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> insecti  0.021</span><span style='text-decoration: underline;'>6</span><span> list(~italic(widehat(mu))==0.022,CI[95*'%']*'[~ </span><span style='color: #949494;'>"</span><span>insecti\n(n ~
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> omni     0.146  list(~italic(widehat(mu))==0.146,CI[95*'%']*'[~ </span><span style='color: #949494;'>"</span><span>omni\n(n = 1~</div></span></pre>
+)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 4 x 4</span><span>
+#&gt;   vore    brainwt
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> carni    0.079</span><span style='text-decoration: underline;'>3</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span> herbi    0.622 
+#&gt; </span><span style='color: #555555;'>3</span><span> insecti  0.021</span><span style='text-decoration: underline;'>6</span><span>
+#&gt; </span><span style='color: #555555;'>4</span><span> omni     0.146 
+#&gt;   label                                                            
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                                            
+#&gt; </span><span style='color: #555555;'>1</span><span> list(~italic(widehat(mu))==0.079,CI[95*'%']*'['*0.000,0.158*']') 
+#&gt; </span><span style='color: #555555;'>2</span><span> list(~italic(widehat(mu))==0.622,CI[95*'%']*'['*-0.114,1.357*']')
+#&gt; </span><span style='color: #555555;'>3</span><span> list(~italic(widehat(mu))==0.022,CI[95*'%']*'['*-0.022,0.065*']')
+#&gt; </span><span style='color: #555555;'>4</span><span> list(~italic(widehat(mu))==0.146,CI[95*'%']*'['*-0.021,0.313*']')
+#&gt;   n_label           
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             
+#&gt; </span><span style='color: #555555;'>1</span><span> </span><span style='color: #555555;'>"</span><span>carni\n(n = 9)</span><span style='color: #555555;'>"</span><span>  
+#&gt; </span><span style='color: #555555;'>2</span><span> </span><span style='color: #555555;'>"</span><span>herbi\n(n = 20)</span><span style='color: #555555;'>"</span><span> 
+#&gt; </span><span style='color: #555555;'>3</span><span> </span><span style='color: #555555;'>"</span><span>insecti\n(n = 5)</span><span style='color: #555555;'>"</span><span>
+#&gt; </span><span style='color: #555555;'>4</span><span> </span><span style='color: #555555;'>"</span><span>omni\n(n = 17)</span><span style='color: #555555;'>"</span><span>  </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 

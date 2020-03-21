@@ -204,12 +204,11 @@ As seen here, and unsurprisingly, the strongest predictor of the diamond price
 is its carat value, which a unit of mass equal to 200 mg. In other words, the
 heavier the diamond, the more expensive it is going to be.
 
-## Correlation statistics matrix with `ggcorrmat`
+## Dataframe containing statistics with `ggcorrmat`
 
-Another utility of `ggcorrmat` is in obtaining matrix of correlation
-coefficients and their *p*-values for a quick and dirty exploratory data
-analysis. For example, for the correlation matrix we just ran, we can get a
-coefficient matrix and a *p*-value matrix.
+Another utility of `ggcorrmat` is in obtaining a dataframe containing all
+details from statistical analyses. Such dataframes can be easily embedded in
+manuscripts as tables.
 
 ```{r ggcorrmat5, warning = FALSE, message = FALSE}
 # for reproducibility
@@ -219,26 +218,9 @@ set.seed(123)
 ggstatsplot::ggcorrmat(
   data = dplyr::sample_frac(tbl = ggplot2::txhousing, size = 0.15),
   cor.vars = sales:inventory,
-  return = "correlations",
+  output = "dataframe",
   type = "robust",
   digits = 3
-)
-
-# to get p-values
-ggstatsplot::ggcorrmat(
-  data = dplyr::sample_frac(tbl = ggplot2::txhousing, size = 0.15),
-  cor.vars = c(volume, listings:inventory),
-  return = "p-values",
-  type = "nonparametric",
-  digits = 3
-)
-
-# getting the sample sizes for all pairs (using a different dataset)
-ggstatsplot::ggcorrmat(
-  data = ggplot2::msleep,
-  cor.vars = sleep_total:bodywt,
-  type = "robust",
-  output = "n" # note that n is different due to NAs
 )
 ```
 
@@ -257,33 +239,7 @@ options(pillar.sigfig = 4)
 ggstatsplot::ggcorrmat(
   data = iris, # all numeric variables from data will be used
   type = "np", # non-parametric
-  return = "corr" # correlations
-)
-
-# getting the p-value matrix
-ggstatsplot::ggcorrmat(
-  data = ggplot2::msleep,
-  cor.vars = sleep_total:bodywt,
-  type = "r", # robust
-  return = "p", # p-values
-  p.adjust.method = "holm"
-)
-
-# getting the confidence intervals for correlations
-ggstatsplot::ggcorrmat(
-  data = ggplot2::msleep,
-  cor.vars = sleep_total:bodywt,
-  type = "p", # parametric
-  return = "ci", # confidence intervals
-  p.adjust.method = "holm"
-)
-
-# getting the sample sizes for all pairs
-ggstatsplot::ggcorrmat(
-  data = ggplot2::msleep,
-  cor.vars = sleep_total:bodywt,
-  type = "robust",
-  return = "n" # note that n is different due to NAs
+  output = "dataframe"
 )
 ```
 
@@ -337,9 +293,7 @@ ggstatsplot::grouped_ggcorrmat(
 ```
 
 Note that this function also makes it easy to run the same correlation matrix
-across different levels of a factor/grouping variable. For example, if we wanted
-to get the same correlation coefficient matrix for `color` of the diamond, we
-can do the following-
+across different levels of a factor/grouping variable.
 
 ```{r ggcorrmat8, warning = FALSE, message = FALSE}
 # for reproducibility
@@ -349,7 +303,7 @@ set.seed(123)
 ggstatsplot::grouped_ggcorrmat(
   data = ggplot2::msleep,
   grouping.var = vore,
-  return = "ci"
+  output = "dataframe"
 )
 ```
 

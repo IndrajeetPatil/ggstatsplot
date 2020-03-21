@@ -24,6 +24,10 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
+
 <!-- Font Awesome icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous" />
@@ -70,7 +74,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -84,7 +88,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.3.1.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0.9000</span>
       </span>
     </div>
 
@@ -235,40 +239,42 @@ rated by at least one imdb user.  Small categories such as documentaries
 and NC-17 movies were removed.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='no'>movies_wide</span>)</div><div class='output co'>#&gt; [1] 1579   13</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>movies_wide</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 13</span><span>
-#&gt;   title  year length budget rating votes mpaa  Action Animation Comedy Drama
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 'Til~  </span><span style='text-decoration: underline;'>1</span><span>997    113   23      4.8   799 PG-13      0         0      1     0
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 10 T~  </span><span style='text-decoration: underline;'>1</span><span>999     97   16      6.7 </span><span style='text-decoration: underline;'>19</span><span>095 PG-13      0         0      1     0
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 100 ~  </span><span style='text-decoration: underline;'>2</span><span>002     98    1.1    5.6   181 R          0         0      1     0
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> 13 G~  </span><span style='text-decoration: underline;'>2</span><span>004     98   37      6.4  </span><span style='text-decoration: underline;'>7</span><span>859 PG-13      0         0      1     1
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> 13th~  </span><span style='text-decoration: underline;'>1</span><span>999    102   85      6.1 </span><span style='text-decoration: underline;'>14</span><span>344 R          1         0      0     0
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> 15 M~  </span><span style='text-decoration: underline;'>2</span><span>001    120   42      6.1 </span><span style='text-decoration: underline;'>10</span><span>866 R          0         0      0     1
-#&gt; </span><span style='color: #949494;'># ... with 2 more variables: Romance </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span style='color: #949494;'>, NumGenre </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span></div><div class='input'><span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>(<span class='no'>movies_wide</span>)</div><div class='output co'>#&gt; Observations: 1,579
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='no'>movies_wide</span>)</div><div class='output co'>#&gt; [1] 1579   13</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>movies_wide</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 6 x 13</span><span>
+#&gt;   title                       year length budget rating votes mpaa  Action
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> 'Til There Was You          </span><span style='text-decoration: underline;'>1</span><span>997    113   23      4.8   799 PG-13      0
+#&gt; </span><span style='color: #555555;'>2</span><span> 10 Things I Hate About You  </span><span style='text-decoration: underline;'>1</span><span>999     97   16      6.7 </span><span style='text-decoration: underline;'>19</span><span>095 PG-13      0
+#&gt; </span><span style='color: #555555;'>3</span><span> 100 Mile Rule               </span><span style='text-decoration: underline;'>2</span><span>002     98    1.1    5.6   181 R          0
+#&gt; </span><span style='color: #555555;'>4</span><span> 13 Going On 30              </span><span style='text-decoration: underline;'>2</span><span>004     98   37      6.4  </span><span style='text-decoration: underline;'>7</span><span>859 PG-13      0
+#&gt; </span><span style='color: #555555;'>5</span><span> 13th Warrior, The           </span><span style='text-decoration: underline;'>1</span><span>999    102   85      6.1 </span><span style='text-decoration: underline;'>14</span><span>344 R          1
+#&gt; </span><span style='color: #555555;'>6</span><span> 15 Minutes                  </span><span style='text-decoration: underline;'>2</span><span>001    120   42      6.1 </span><span style='text-decoration: underline;'>10</span><span>866 R          0
+#&gt;   Animation Comedy Drama Romance NumGenre
+#&gt;       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>         0      1     0       1        2
+#&gt; </span><span style='color: #555555;'>2</span><span>         0      1     0       1        2
+#&gt; </span><span style='color: #555555;'>3</span><span>         0      1     0       0        1
+#&gt; </span><span style='color: #555555;'>4</span><span>         0      1     1       1        3
+#&gt; </span><span style='color: #555555;'>5</span><span>         0      0     0       0        1
+#&gt; </span><span style='color: #555555;'>6</span><span>         0      0     1       0        1</div><div class='input'><span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>(<span class='no'>movies_wide</span>)</div><div class='output co'>#&gt; Observations: 1,579
 #&gt; Variables: 13
-#&gt; $ title     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "'Til There Was You", "10 Things I Hate About You", "100 ...
-#&gt; $ year      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> 1997, 1999, 2002, 2004, 1999, 2001, 1972, 2003, 1999, 200...
-#&gt; $ length    </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> 113, 97, 98, 98, 102, 120, 180, 107, 101, 99, 129, 124, 9...
-#&gt; $ budget    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 23.0, 16.0, 1.1, 37.0, 85.0, 42.0, 4.0, 76.0, 6.0, 26.0, ...
-#&gt; $ rating    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 4.8, 6.7, 5.6, 6.4, 6.1, 6.1, 7.3, 5.1, 5.4, 2.5, 7.6, 8....
-#&gt; $ votes     </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> 799, 19095, 181, 7859, 14344, 10866, 1754, 9556, 4514, 20...
-#&gt; $ mpaa      </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> PG-13, PG-13, R, PG-13, R, R, PG, PG-13, R, R, R, R, R, R...
-#&gt; $ Action    </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, ...
-#&gt; $ Animation </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ...
-#&gt; $ Comedy    </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, ...
-#&gt; $ Drama     </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, ...
-#&gt; $ Romance   </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, ...
-#&gt; $ NumGenre  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> 2, 2, 1, 3, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 2, 3, 2, 2, ...</div></span></pre>
+#&gt; $ title     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "'Til There Was You", "10 Things I Hate About You", "100 ...
+#&gt; $ year      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> 1997, 1999, 2002, 2004, 1999, 2001, 1972, 2003, 1999, 200...
+#&gt; $ length    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> 113, 97, 98, 98, 102, 120, 180, 107, 101, 99, 129, 124, 9...
+#&gt; $ budget    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> 23.0, 16.0, 1.1, 37.0, 85.0, 42.0, 4.0, 76.0, 6.0, 26.0, ...
+#&gt; $ rating    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> 4.8, 6.7, 5.6, 6.4, 6.1, 6.1, 7.3, 5.1, 5.4, 2.5, 7.6, 8....
+#&gt; $ votes     </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> 799, 19095, 181, 7859, 14344, 10866, 1754, 9556, 4514, 20...
+#&gt; $ mpaa      </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> PG-13, PG-13, R, PG-13, R, R, PG, PG-13, R, R, R, R, R, R...
+#&gt; $ Action    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, ...
+#&gt; $ Animation </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ...
+#&gt; $ Comedy    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, ...
+#&gt; $ Drama     </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, ...
+#&gt; $ Romance   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, ...
+#&gt; $ NumGenre  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> 2, 2, 1, 3, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 2, 3, 2, 2, ...</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#format">Format</a></li>
-      <li><a href="#source">Source</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 

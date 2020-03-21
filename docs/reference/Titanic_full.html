@@ -24,6 +24,10 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
+
 <!-- Font Awesome icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous" />
@@ -70,7 +74,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -84,7 +88,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.3.1.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0.9000</span>
       </span>
     </div>
 
@@ -222,31 +226,26 @@ economic status (class), sex, age and survival.</p>
 <p>This is a modified dataset from <code>datasets</code> package.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='no'>Titanic_full</span>)</div><div class='output co'>#&gt; [1] 2201    5</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>Titanic_full</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 5</span><span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='no'>Titanic_full</span>)</div><div class='output co'>#&gt; [1] 2201    5</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>Titanic_full</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 6 x 5</span><span>
 #&gt;      id Class Sex   Age   Survived
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>     1 3rd   Male  Child No      
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>     2 3rd   Male  Child No      
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span>     3 3rd   Male  Child No      
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span>     4 3rd   Male  Child No      
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span>     5 3rd   Male  Child No      
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span>     6 3rd   Male  Child No      </div><div class='input'><span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>(<span class='no'>Titanic_full</span>)</div><div class='output co'>#&gt; Observations: 2,201
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>   
+#&gt; </span><span style='color: #555555;'>1</span><span>     1 3rd   Male  Child No      
+#&gt; </span><span style='color: #555555;'>2</span><span>     2 3rd   Male  Child No      
+#&gt; </span><span style='color: #555555;'>3</span><span>     3 3rd   Male  Child No      
+#&gt; </span><span style='color: #555555;'>4</span><span>     4 3rd   Male  Child No      
+#&gt; </span><span style='color: #555555;'>5</span><span>     5 3rd   Male  Child No      
+#&gt; </span><span style='color: #555555;'>6</span><span>     6 3rd   Male  Child No      </div><div class='input'><span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>(<span class='no'>Titanic_full</span>)</div><div class='output co'>#&gt; Observations: 2,201
 #&gt; Variables: 5
-#&gt; $ id       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,...
-#&gt; $ Class    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd...
-#&gt; $ Sex      </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Male, Male, Male, Male, Male, Male, Male, Male, Male, Male...
-#&gt; $ Age      </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Child, Child, Child, Child, Child, Child, Child, Child, Ch...
-#&gt; $ Survived </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> No, No, No, No, No, No, No, No, No, No, No, No, No, No, No...</div></span></pre>
+#&gt; $ id       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,...
+#&gt; $ Class    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd...
+#&gt; $ Sex      </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> Male, Male, Male, Male, Male, Male, Male, Male, Male, Male...
+#&gt; $ Age      </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> Child, Child, Child, Child, Child, Child, Child, Child, Ch...
+#&gt; $ Survived </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> No, No, No, No, No, No, No, No, No, No, No, No, No, No, No...</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#format">Format</a></li>
-      <li><a href="#source">Source</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 

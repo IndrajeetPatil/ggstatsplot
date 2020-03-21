@@ -214,7 +214,8 @@ utils::globalVariables(
     "vjust",
     "x_pos",
     "y_pos",
-    "label.value"
+    "label.value",
+    "n_obs"
   ),
   package = "ggstatsplot",
   add = FALSE
