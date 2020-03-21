@@ -25,6 +25,10 @@ levels of a grouping variable — grouped_ggcorrmat • ggstatsplot</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
+
 <!-- Font Awesome icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous" />
@@ -74,7 +78,7 @@ resulting plots using ggstatsplot::combine_plots." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -88,7 +92,7 @@ resulting plots using ggstatsplot::combine_plots." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.3.1.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0.9000</span>
       </span>
     </div>
 
@@ -254,32 +258,29 @@ variable name entered for <code>grouping.var</code> will be used.</p></td>
     </tr>
     <tr>
       <th>output</th>
-      <td><p>Character that decides expected output from this
-function: <code>"plot"</code> (for visualization matrix) or <code>"correlations"</code> (or
-<code>"corr"</code> or <code>"r"</code>; for correlation matrix) or <code>"p-values"</code> (or <code>"p.values"</code>
-or <code>"p"</code>; for a matrix of <em>p</em>-values) or <code>"ci"</code> (for a tibble with
-confidence intervals for unique correlation pairs; not available for robust
-correlation) or <code>"n"</code> (or <code>"sample.size"</code> for a tibble with sample sizes
-for each correlation pair).</p></td>
+      <td><p>Character that decides expected output from this function. If
+<code>"plot"</code>, the visualization matrix will be returned. If <code>"dataframe"</code> (or
+literally anything other than <code>"plot"</code>), a dataframe containing all details
+from statistical analyses (e.g., correlation coefficients, statistic
+values, <em>p</em>-values, no. of observations, etc.) will be returned.</p></td>
     </tr>
     <tr>
       <th>...</th>
       <td><p>Arguments passed on to <code><a href='ggcorrmat.html'>ggcorrmat</a></code></p><dl class='dl-horizontal'>
     <dt><code>matrix.type</code></dt><dd><p>Character, <code>"full"</code> (default), <code>"upper"</code> or <code>"lower"</code>,
 display full matrix, lower triangular or upper triangular matrix.</p></dd>
-    <dt><code>type</code></dt><dd><p>A character string indicating which correlation
-coefficient is to be computed (<code>"pearson"</code> (default) or <code>"kendall"</code> or
-<code>"spearman"</code>). <code>"robust"</code> can also be entered but only if <code>output</code> argument
-is set to either <code>"correlations"</code> or <code>"p-values"</code>. The robust correlation
-used is percentage bend correlation (see <code><a href='https://rdrr.io/pkg/WRS2/man/pbcor.html'>?WRS2::pball</a></code>). Abbreviations
-will also work: <code>"p"</code> (for parametric/Pearson's <em>r</em>), <code>"np"</code>
-(nonparametric/Spearman's <em>rho</em>), <code>"r"</code> (robust).</p></dd>
+    <dt><code>type</code></dt><dd><p>A character string indicating which correlation coefficient is to
+be computed: <code>"pearson"</code> (Pearson's <em>r</em>), <code>"spearman"</code> (Spearman's <em>rho</em>),
+<code>"robust"</code> (percentage bend correlation (see <code><a href='https://rdrr.io/pkg/WRS2/man/pbcor.html'>?WRS2::pball</a></code>)) or <code>"bayes"</code>,
+which would compute Bayes Factor for Pearson's <em>r</em>.
+Abbreviations will also work: <code>"p"</code> (for parametric), <code>"np"</code>
+(nonparametric), <code>"r"</code> (robust), <code>"bf"</code> (Bayes Factor).</p></dd>
     <dt><code>beta</code></dt><dd><p>A numeric bending constant for percentage bend robust correlation
 coefficient (Default: <code>0.1</code>).</p></dd>
     <dt><code>sig.level</code></dt><dd><p>Significance level (Default: <code>0.05</code>). If the <em>p</em>-value in
 <em>p</em>-value matrix is bigger than <code>sig.level</code>, then the corresponding
 correlation coefficient is regarded as insignificant and flagged as such in
-the plot. This argument is relevant only when <code>output = "plot"</code>.</p></dd>
+the plot. Relevant only when <code>output = "plot"</code>.</p></dd>
     <dt><code>p.adjust.method</code></dt><dd><p>What adjustment for multiple tests should be used?
 (<code>"holm"</code>, <code>"hochberg"</code>, <code>"hommel"</code>, <code>"bonferroni"</code>, <code>"BH"</code>, <code>"BY"</code>,
 <code>"fdr"</code>, <code>"none"</code>). See <code><a href='https://rdrr.io/r/stats/p.adjust.html'>stats::p.adjust</a></code> for details about why to use
@@ -291,19 +292,16 @@ matrix.</p></dd>
     <dt><code>colors</code></dt><dd><p>A vector of 3 colors for low, mid, and high correlation values.
 If set to <code>NULL</code>, manual specification of colors will be turned off and 3
 colors from the specified <code>palette</code> from <code>package</code> will be selected.</p></dd>
-    <dt><code>subtitle</code></dt><dd><p>The text for the plot subtitle.</p></dd>
     <dt><code>caption</code></dt><dd><p>The text for the plot caption. If <code>NULL</code>, a default caption
 will be shown.</p></dd>
-    <dt><code>caption.default</code></dt><dd><p>Logical that decides whether the default caption
-should be shown (default: <code>TRUE</code>).</p></dd>
     <dt><code>pch</code></dt><dd><p>Decides the glyphs (read point shapes) to be used for
 insignificant correlation coefficients (only valid when <code>insig = "pch"</code>).
 Default value is <code>pch = 4</code>.</p></dd>
     <dt><code>ggcorrplot.args</code></dt><dd><p>A list of additional (mostly aesthetic) arguments that
 will be passed to <code><a href='https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html'>ggcorrplot::ggcorrplot</a></code> function. The list should avoid
-any of the following arguments since they are already being used: <code>corr</code>,
-<code>method</code>, <code>p.mat</code>, <code>sig.level</code>, <code>ggtheme</code>, <code>colors</code>, <code>matrix.type</code>, <code>lab</code>,
-<code>pch</code>, <code>legend.title</code>, <code>digits</code>.</p></dd>
+any of the following arguments since they are already internally being used
+by <code>ggstatsplot</code>: <code>corr</code>, <code>method</code>, <code>p.mat</code>, <code>sig.level</code>, <code>ggtheme</code>,
+<code>colors</code>, <code>matrix.type</code>, <code>lab</code>, <code>pch</code>, <code>legend.title</code>, <code>digits</code>.</p></dd>
     <dt><code>k</code></dt><dd><p>Decides the number of decimal digits to be displayed
 (Default: <code>2</code>).</p></dd>
     <dt><code>ggtheme</code></dt><dd><p>A function, <code>ggplot2</code> theme name. Default value is
@@ -328,6 +326,10 @@ model that <code>method = NULL</code> would use, then set
 <code>method = "gam", formula = y ~ s(x, bs = "cs")</code>.</p></dd>
     <dt><code>conf.level</code></dt><dd><p>Scalar between 0 and 1. If unspecified, the defaults return
 <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></dd>
+    <dt><code>bf.prior</code></dt><dd><p>A numeric value between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the
+prior width to use in calculating Bayes Factors.</p></dd>
+    <dt><code>subtitle</code></dt><dd><p>The text for the plot subtitle. Will work only if
+<code>results.subtitle = FALSE</code>.</p></dd>
     <dt><code>messages</code></dt><dd><p>Decides whether messages references, notes, and warnings are
 to be displayed (Default: <code>TRUE</code>).</p></dd>
     <dt><code>package</code></dt><dd><p>Name of package from which the palette is desired as string
@@ -375,8 +377,11 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Correlation matrix plot or correlation coefficient matrix or matrix
-of <em>p</em>-values.</p>
+    <p>Correlation matrix plot or a dataframe containing results from
+pairwise correlation tests. The package internally uses
+<code><a href='https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html'>ggcorrplot::ggcorrplot</a></code> for creating the visualization matrix, while the
+correlation analysis is carried out using the <code><a href='https://rdrr.io/pkg/correlation/man/correlation.html'>correlation::correlation</a></code>
+function.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p><a href='https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html'>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html</a></p>
@@ -391,67 +396,39 @@ of <em>p</em>-values.</p>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
 
 <span class='co'># for plot</span>
-<span class='co'># (without specifying needed variables; all numeric variables will be used)</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html'>grouped_ggcorrmat</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
-  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>vore</span>
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
+  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>Species</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"robust"</span>,
+  <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"holm"</span>
 )</div><div class='img'><img src='grouped_ggcorrmat-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># for getting plot</span>
+<span class='co'># for dataframe</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html'>grouped_ggcorrmat</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>vore</span>,
-  <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>sleep_total</span>:<span class='no'>bodywt</span>,
-  <span class='kw'>corr.method</span> <span class='kw'>=</span> <span class='st'>"r"</span>,
-  <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"holm"</span>,
-  <span class='kw'>colors</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"wesanderson"</span>,
-  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"BottleRocket2"</span>,
-  <span class='kw'>plotgrid.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>2</span>)
-)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>In the correlation matrix,
-#&gt; the upper triangle: p-values adjusted for multiple comparisons
-#&gt; the lower triangle: unadjusted p-values.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>In the correlation matrix,
-#&gt; the upper triangle: p-values adjusted for multiple comparisons
-#&gt; the lower triangle: unadjusted p-values.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>In the correlation matrix,
-#&gt; the upper triangle: p-values adjusted for multiple comparisons
-#&gt; the lower triangle: unadjusted p-values.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>In the correlation matrix,
-#&gt; the upper triangle: p-values adjusted for multiple comparisons
-#&gt; the lower triangle: unadjusted p-values.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggcorrmat-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># for getting correlations</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html'>grouped_ggcorrmat</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
-  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>vore</span>,
-  <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>sleep_total</span>:<span class='no'>bodywt</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"correlations"</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 24 x 8</span><span>
-#&gt;    vore  variable    sleep_total sleep_rem sleep_cycle awake brainwt bodywt
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> carni sleep_total        1         0.92        0.38 -</span><span style='color: #BB0000;'>1</span><span>      -</span><span style='color: #BB0000;'>0.52</span><span>  -</span><span style='color: #BB0000;'>0.44</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> carni sleep_rem          0.92      1           0.12 -</span><span style='color: #BB0000;'>0.92</span><span>   -</span><span style='color: #BB0000;'>0.5</span><span>   -</span><span style='color: #BB0000;'>0.48</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> carni sleep_cycle        0.38      0.12        1    -</span><span style='color: #BB0000;'>0.38</span><span>   -</span><span style='color: #BB0000;'>0.81</span><span>  -</span><span style='color: #BB0000;'>0.27</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> carni awake             -</span><span style='color: #BB0000;'>1</span><span>        -</span><span style='color: #BB0000;'>0.92</span><span>       -</span><span style='color: #BB0000;'>0.38</span><span>  1       0.52   0.44
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> carni brainwt           -</span><span style='color: #BB0000;'>0.52</span><span>     -</span><span style='color: #BB0000;'>0.5</span><span>        -</span><span style='color: #BB0000;'>0.81</span><span>  0.52    1      0.86
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> carni bodywt            -</span><span style='color: #BB0000;'>0.44</span><span>     -</span><span style='color: #BB0000;'>0.48</span><span>       -</span><span style='color: #BB0000;'>0.27</span><span>  0.44    0.86   1   
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> herbi sleep_total        1         0.86       -</span><span style='color: #BB0000;'>0.71</span><span> -</span><span style='color: #BB0000;'>1</span><span>      -</span><span style='color: #BB0000;'>0.39</span><span>  -</span><span style='color: #BB0000;'>0.38</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> herbi sleep_rem          0.86      1          -</span><span style='color: #BB0000;'>0.41</span><span> -</span><span style='color: #BB0000;'>0.86</span><span>   -</span><span style='color: #BB0000;'>0.43</span><span>  -</span><span style='color: #BB0000;'>0.4</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> herbi sleep_cycle       -</span><span style='color: #BB0000;'>0.71</span><span>     -</span><span style='color: #BB0000;'>0.41</span><span>        1     0.71    0.85   0.71
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> herbi awake             -</span><span style='color: #BB0000;'>1</span><span>        -</span><span style='color: #BB0000;'>0.86</span><span>        0.71  1       0.39   0.38
-#&gt; </span><span style='color: #949494;'># ... with 14 more rows</span><span></div><div class='input'># }
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"bayes"</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"dataframe"</span>
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: Series not converged.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Series not converged.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Series not converged.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Series not converged.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 60 x 13</span><span>
+#&gt;    vore  parameter1 parameter2     rho ci_low ci_high    pd rope_percentage
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> carni sleep_tot~ sleep_rem   0.850   0.641  0.961  1              0     
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> carni sleep_tot~ sleep_cyc~  0.213  -</span><span style='color: #BB0000;'>0.359</span><span>  0.750  0.692          0.176 
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> carni sleep_tot~ awake      -</span><span style='color: #BB0000;'>1.00</span><span>   -</span><span style='color: #BB0000;'>1.00</span><span>  -</span><span style='color: #BB0000;'>1.00</span><span>   1              0     
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> carni sleep_tot~ brainwt    -</span><span style='color: #BB0000;'>0.389</span><span>  -</span><span style='color: #BB0000;'>0.787</span><span>  0.020</span><span style='text-decoration: underline;'>5</span><span> 0.897          0.115 
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> carni sleep_tot~ bodywt     -</span><span style='color: #BB0000;'>0.371</span><span>  -</span><span style='color: #BB0000;'>0.654</span><span> -</span><span style='color: #BB0000;'>0.070</span><span style='color: #BB0000;text-decoration: underline;'>1</span><span> 0.96           0.087</span><span style='text-decoration: underline;'>5</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> carni sleep_rem  sleep_cyc~  0.072</span><span style='text-decoration: underline;'>7</span><span> -</span><span style='color: #BB0000;'>0.518</span><span>  0.610  0.552          0.192 
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> carni sleep_rem  awake      -</span><span style='color: #BB0000;'>0.843</span><span>  -</span><span style='color: #BB0000;'>0.958</span><span> -</span><span style='color: #BB0000;'>0.660</span><span>  1              0     
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> carni sleep_rem  brainwt    -</span><span style='color: #BB0000;'>0.316</span><span>  -</span><span style='color: #BB0000;'>0.763</span><span>  0.244  0.785          0.157 
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> carni sleep_rem  bodywt     -</span><span style='color: #BB0000;'>0.366</span><span>  -</span><span style='color: #BB0000;'>0.766</span><span>  0.041</span><span style='text-decoration: underline;'>1</span><span> 0.887          0.116 
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> carni sleep_cyc~ awake      -</span><span style='color: #BB0000;'>0.214</span><span>  -</span><span style='color: #BB0000;'>0.741</span><span>  0.356  0.692          0.182 
+#&gt; </span><span style='color: #949494;'># ... with 50 more rows, and 5 more variables: prior_distribution </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>,
+#&gt; #   prior_location </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, prior_scale </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, bf </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, n </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span></div><div class='input'># }
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#references">References</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 

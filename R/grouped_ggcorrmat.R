@@ -25,31 +25,19 @@
 #' set.seed(123)
 #'
 #' # for plot
-#' # (without specifying needed variables; all numeric variables will be used)
 #' ggstatsplot::grouped_ggcorrmat(
-#'   data = ggplot2::msleep,
-#'   grouping.var = vore
+#'   data = iris,
+#'   grouping.var = Species,
+#'   type = "robust",
+#'   p.adjust.method = "holm"
 #' )
 #'
-#' # for getting plot
+#' # for dataframe
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = ggplot2::msleep,
 #'   grouping.var = vore,
-#'   cor.vars = sleep_total:bodywt,
-#'   corr.method = "r",
-#'   p.adjust.method = "holm",
-#'   colors = NULL,
-#'   package = "wesanderson",
-#'   palette = "BottleRocket2",
-#'   plotgrid.args = list(nrow = 2)
-#' )
-#'
-#' # for getting correlations
-#' ggstatsplot::grouped_ggcorrmat(
-#'   data = ggplot2::msleep,
-#'   grouping.var = vore,
-#'   cor.vars = sleep_total:bodywt,
-#'   output = "correlations"
+#'   type = "bayes",
+#'   output = "dataframe"
 #' )
 #' }
 #' @export

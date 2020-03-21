@@ -1,4 +1,21 @@
-# ggstatsplot 0.3.1.9000
+# ggstatsplot 0.4.0.9000
+
+BREAKING CHANGES
+
+  - `ggcorrmat` no longer returns matrices of correlation coefficients or other
+    details. It now returns either a plot or a dataframe and this can dataframe
+    can then be used to create matrices.
+
+MAJOR CHANGES
+
+  - `ggcorrmat` legend, in case of missing values, shows mode - instead of
+    median - for the distribution of sample pairs.
+  - The vestigial `caption.default` argument in `ggcorrmat` is retired.
+
+MINOR CHANGES
+
+  - More models supported in `ggcoefstats`: `lmerModLmerTest`.
+  - `ggcorrmat` now internally relies on `correlation` for correlation analyses.
 
 # ggstatsplot 0.3.1
 

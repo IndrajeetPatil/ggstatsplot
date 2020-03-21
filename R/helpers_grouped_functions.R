@@ -34,6 +34,6 @@ grouped_list <- function(data, grouping.var = NULL) {
       .funs = ~ droplevels(.)
     ) %>%
     dplyr::filter(.data = ., !is.na({{ grouping.var }})) %>%
-    as_tibble(x = .) %>%
+    as_tibble(.) %>%
     split(x = ., f = .[[rlang::quo_text(grouping.var)]], drop = TRUE)
 }

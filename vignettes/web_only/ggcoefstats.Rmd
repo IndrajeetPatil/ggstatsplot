@@ -77,14 +77,13 @@ also supported by `ggcoefstats`. For example-
 `DirichReg`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`,
 `flexsurvreg`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`,
 `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`,
-`hurdle`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`,
-`lmRob`, `lmrob`, `LORgee`, `mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`,
-`mediate`, `mixor`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `nlmerMod`,
-`nlrq`, `nlreg`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`,
-`rlmerMod`, `rq`, `rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`,
-`survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`, `wbgee`,
-`wblm`, `zcpglm`, `zeroinfl`, etc.
-
+`hurdle`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`,
+`lmerModLmerTest`, `lmodel2`, `lmRob`, `lmrob`, `LORgee`, `mcmc`, `MCMCglmm`,
+`mclogit`, `mmclogit`, `mediate`, `mixor`, `mjoint`, `mle2`, `mlm`, `multinom`,
+`negbin`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `plm`, `polr`,
+`ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `rqss`, `slm`, `speedglm`,
+`speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`,
+`tobit`, `truncreg`, `vgam`, `wbgee`, `wblm`, `zcpglm`, `zeroinfl`, etc.
 
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
@@ -249,7 +248,7 @@ is rated to be for animations or actions movies as more money can help with
 better visual effects and animations, but this may not be true for dramas, so we
 don't want to use `stats::lm`. In this case, therefore, we will be running a
 linear mixed-effects model (using `lme4::lmer` and *p*-values generated using
-the `sjstats::p_values` function) with a random slope for the genre variable.
+the `parameters::p_values` function) with a random slope for the genre variable.
 
 ```{r lmer1, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 7}
 # set up
@@ -328,6 +327,7 @@ Robust version of `lmer` (as implemented in `robustlmm` package) is also
 supported-
 
 ```{r rlmer, warning = FALSE, message = FALSE, width = 5, height = 5}
+# setups
 set.seed(123)
 library(robustlmm)
 
@@ -345,6 +345,28 @@ ggstatsplot::ggcoefstats(
   x = roblmm.mod,
   title = "robust estimation of linear mixed-effects model",
   conf.level = 0.90
+)
+```
+
+## linear mixed-effects models with `lmerTest` (`lmerModLmerTest`)
+
+```{r lmerModLmerTest, warning = FALSE, message = FALSE, width = 6, height = 10}
+# setup
+set.seed(123)
+library(lmerTest)
+
+# fit linear mixed model to the ham data:
+fm <-
+  lmerTest::lmer(
+    formula = Informed.liking ~ Gender + Information * Product + (1 | Consumer) +
+      (1 | Consumer:Product),
+    data = ham
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = fm,
+  title = "linear mixed-effects models with `lmerTest`"
 )
 ```
 
@@ -1819,7 +1841,7 @@ ggstatsplot::combine_plots(
 Another alternative is to use robust models, as implemented in the `robustbase`
 package.
 
-```{r robustbase, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 6, eval=FALSE}
+```{r robustbase, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 6}
 # setup
 set.seed(123)
 library(robustbase)
@@ -1911,6 +1933,8 @@ effects from the normal equations before estimating the remaining coefficients
 with OLS.
 
 ```{r felm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# setup
+set.seed(123)
 library(lfe)
 
 # create covariates

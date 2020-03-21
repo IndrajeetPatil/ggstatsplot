@@ -1,7 +1,7 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.3.1.9000
+Version: 0.4.0.9000
 Authors@R: 
     c(person(given = "Indrajeet",
              family = "Patil",
@@ -32,6 +32,7 @@ Depends:
     R (>= 3.5.0)
 Imports:
     broomExtra,
+    correlation (>= 0.1.1),
     cowplot,
     dplyr,
     ggcorrplot,
@@ -61,6 +62,8 @@ Suggests:
     testthat,
     tibble,
     WRS2
+Remotes:
+    easystats/correlation
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

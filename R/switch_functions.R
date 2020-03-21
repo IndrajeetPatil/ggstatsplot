@@ -67,16 +67,3 @@ stats_type_switch <- function(type) {
     TRUE ~ "parametric"
   )
 }
-
-#' @noRd
-
-ggcorrmat_output_switch <- function(output) {
-  dplyr::case_when(
-    grepl("^corr|^r", output, TRUE) ~ "r",
-    grepl("^n|^sample", output, TRUE) ~ "n",
-    grepl("^ci|^conf", output, TRUE) ~ "ci",
-    grepl("^plot$", output, TRUE) ~ "plot",
-    grepl("^p", output, TRUE) ~ "p",
-    TRUE ~ "plot"
-  )
-}

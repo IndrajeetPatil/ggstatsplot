@@ -1,7 +1,10 @@
 #' @title Visualization of a correlation matrix
 #' @name ggcorrmat
-#' @return Correlation matrix plot or correlation coefficient matrix or matrix
-#'   of *p*-values.
+#' @return Correlation matrix plot or a dataframe containing results from
+#'   pairwise correlation tests. The package internally uses
+#'   `ggcorrplot::ggcorrplot` for creating the visualization matrix, while the
+#'   correlation analysis is carried out using the `correlation::correlation`
+#'   function.
 #'
 #' @param ... Currently ignored.
 #' @param data Dataframe from which variables specified are preferentially to be
@@ -11,28 +14,25 @@
 #'   `data` will be used.
 #' @param cor.vars.names Optional list of names to be used for `cor.vars`. The
 #'   names should be entered in the same order.
-#' @param output Character that decides expected output from this
-#'   function: `"plot"` (for visualization matrix) or `"correlations"` (or
-#'   `"corr"` or `"r"`; for correlation matrix) or `"p-values"` (or `"p.values"`
-#'   or `"p"`; for a matrix of *p*-values) or `"ci"` (for a tibble with
-#'   confidence intervals for unique correlation pairs; not available for robust
-#'   correlation) or `"n"` (or `"sample.size"` for a tibble with sample sizes
-#'   for each correlation pair).
+#' @param output Character that decides expected output from this function. If
+#'   `"plot"`, the visualization matrix will be returned. If `"dataframe"` (or
+#'   literally anything other than `"plot"`), a dataframe containing all details
+#'   from statistical analyses (e.g., correlation coefficients, statistic
+#'   values, *p*-values, no. of observations, etc.) will be returned.
 #' @param matrix.type Character, `"full"` (default), `"upper"` or `"lower"`,
 #'   display full matrix, lower triangular or upper triangular matrix.
-#' @param type A character string indicating which correlation
-#'   coefficient is to be computed (`"pearson"` (default) or `"kendall"` or
-#'   `"spearman"`). `"robust"` can also be entered but only if `output` argument
-#'   is set to either `"correlations"` or `"p-values"`. The robust correlation
-#'   used is percentage bend correlation (see `?WRS2::pball`). Abbreviations
-#'   will also work: `"p"` (for parametric/Pearson's *r*), `"np"`
-#'   (nonparametric/Spearman's *rho*), `"r"` (robust).
+#' @param type A character string indicating which correlation coefficient is to
+#'   be computed: `"pearson"` (Pearson's *r*), `"spearman"` (Spearman's *rho*),
+#'   `"robust"` (percentage bend correlation (see `?WRS2::pball`)) or `"bayes"`,
+#'   which would compute Bayes Factor for Pearson's *r*.
+#'   Abbreviations will also work: `"p"` (for parametric), `"np"`
+#'   (nonparametric), `"r"` (robust), `"bf"` (Bayes Factor).
 #' @param beta A numeric bending constant for percentage bend robust correlation
 #'   coefficient (Default: `0.1`).
 #' @param sig.level Significance level (Default: `0.05`). If the *p*-value in
 #'   *p*-value matrix is bigger than `sig.level`, then the corresponding
 #'   correlation coefficient is regarded as insignificant and flagged as such in
-#'   the plot. This argument is relevant only when `output = "plot"`.
+#'   the plot. Relevant only when `output = "plot"`.
 #' @param p.adjust.method What adjustment for multiple tests should be used?
 #'   (`"holm"`, `"hochberg"`, `"hommel"`, `"bonferroni"`, `"BH"`, `"BY"`,
 #'   `"fdr"`, `"none"`). See `stats::p.adjust` for details about why to use
@@ -44,20 +44,16 @@
 #' @param colors A vector of 3 colors for low, mid, and high correlation values.
 #'   If set to `NULL`, manual specification of colors will be turned off and 3
 #'   colors from the specified `palette` from `package` will be selected.
-#' @param title The text for the plot title.
-#' @param subtitle The text for the plot subtitle.
 #' @param caption The text for the plot caption. If `NULL`, a default caption
 #'   will be shown.
-#' @param caption.default Logical that decides whether the default caption
-#'   should be shown (default: `TRUE`).
 #' @param pch Decides the glyphs (read point shapes) to be used for
 #'   insignificant correlation coefficients (only valid when `insig = "pch"`).
 #'   Default value is `pch = 4`.
 #' @param ggcorrplot.args A list of additional (mostly aesthetic) arguments that
 #'   will be passed to `ggcorrplot::ggcorrplot` function. The list should avoid
-#'   any of the following arguments since they are already being used: `corr`,
-#'   `method`, `p.mat`, `sig.level`, `ggtheme`, `colors`, `matrix.type`, `lab`,
-#'   `pch`, `legend.title`, `digits`.
+#'   any of the following arguments since they are already internally being used
+#'   by `ggstatsplot`: `corr`, `method`, `p.mat`, `sig.level`, `ggtheme`,
+#'   `colors`, `matrix.type`, `lab`, `pch`, `legend.title`, `digits`.
 #' @inheritParams statsExpressions::corr_objects
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams ggscatterstats
@@ -67,12 +63,11 @@
 #'
 #' @importFrom ggcorrplot ggcorrplot
 #' @importFrom dplyr select
-#' @importFrom purrr is_bare_numeric keep pluck
-#' @importFrom stats median
+#' @importFrom purrr is_bare_numeric keep
 #' @importFrom rlang !! enquo quo_name is_null
 #' @importFrom ipmisc green blue yellow red
 #' @importFrom pairwiseComparisons p_adjust_text
-#' @importFrom statsExpressions corr_objects
+#' @importFrom correlation correlation
 #'
 #' @seealso \code{\link{grouped_ggcorrmat}} \code{\link{ggscatterstats}}
 #'   \code{\link{grouped_ggscatterstats}}
@@ -86,53 +81,24 @@
 #' set.seed(123)
 #'
 #' # if `cor.vars` not specified, all numeric variables used
-#' ggstatsplot::ggcorrmat(data = iris)
+#' ggstatsplot::ggcorrmat(iris)
 #'
 #' # to get the correlalogram
 #' # note that the function will run even if the vector with variable names is
 #' # not of same length as the number of variables
 #' ggstatsplot::ggcorrmat(
 #'   data = ggplot2::msleep,
+#'   type = "robust",
 #'   cor.vars = sleep_total:bodywt,
-#'   cor.vars.names = c("total sleep", "REM sleep")
-#' ) + # further modification using `ggplot2`
-#'   ggplot2::scale_y_discrete(position = "right")
+#'   cor.vars.names = c("total sleep", "REM sleep"),
+#'   matrix.type = "lower"
+#' )
 #'
-#' # to get the correlation matrix
+#' # to get the correlation analyses results in a dataframe
 #' ggstatsplot::ggcorrmat(
 #'   data = ggplot2::msleep,
 #'   cor.vars = sleep_total:bodywt,
-#'   output = "r"
-#' )
-#'
-#' # setting output = "p-values" (or "p") will return the p-value matrix
-#' ggstatsplot::ggcorrmat(
-#'   data = ggplot2::msleep,
-#'   cor.vars = sleep_total:bodywt,
-#'   corr.method = "r",
-#'   p.adjust.method = "bonferroni",
-#'   output = "p"
-#' )
-#'
-#' # setting `output = "ci"` will return the confidence intervals for unique
-#' # correlation pairs
-#' ggstatsplot::ggcorrmat(
-#'   data = ggplot2::msleep,
-#'   cor.vars = sleep_total:bodywt,
-#'   p.adjust.method = "BH",
-#'   output = "ci"
-#' )
-#'
-#' # modifying elements of the correlation matrix by changing function defaults
-#' ggstatsplot::ggcorrmat(
-#'   data = datasets::iris,
-#'   cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
-#'   sig.level = 0.01,
-#'   ggtheme = ggplot2::theme_bw(),
-#'   hc.order = TRUE,
-#'   matrix.type = "lower",
-#'   outline.col = "white",
-#'   title = "Dataset: Iris"
+#'   output = "dataframe"
 #' )
 #' }
 #' @export
@@ -149,6 +115,7 @@ ggcorrmat <- function(data,
                       k = 2,
                       sig.level = 0.05,
                       conf.level = 0.95,
+                      bf.prior = 0.707,
                       p.adjust.method = "none",
                       pch = 4,
                       ggcorrplot.args = list(outline.color = "black"),
@@ -161,7 +128,6 @@ ggcorrmat <- function(data,
                       title = NULL,
                       subtitle = NULL,
                       caption = NULL,
-                      caption.default = TRUE,
                       messages = TRUE,
                       ...) {
 
@@ -193,7 +159,6 @@ ggcorrmat <- function(data,
   # ============================ checking corr.method =======================
 
   # see which method was used to specify type of correlation
-  output <- ggcorrmat_output_switch(output)
   stats_type <- stats_type_switch(type)
 
   # if any of the abbreviations have been entered, change them
@@ -202,7 +167,8 @@ ggcorrmat <- function(data,
       EXPR = stats_type,
       "parametric" = "pearson",
       "nonparametric" = "spearman",
-      "robust" = "robust"
+      "robust" = "percentage",
+      "bayes" = "pearson"
     )
 
   # create unique name for each method
@@ -211,57 +177,47 @@ ggcorrmat <- function(data,
       EXPR = corr.method,
       "pearson" = "Pearson",
       "spearman" = "Spearman",
-      "robust" = "robust (% bend)"
+      "percentage" = "robust (% bend)",
+      "bayes" = "Pearson"
     )
 
   # compute confidence intervals only when requested by the user
-  ci <- ifelse(output == "ci", yes = TRUE, no = FALSE)
+  bayesian <- ifelse(stats_type == "bayes", yes = TRUE, no = FALSE)
 
   # ===================== statistics ========================================
 
-  # creating a list of all the needed correlation objects
-  corr_obj_list <-
-    statsExpressions::corr_objects(
+  # creating a dataframe of results
+  df_correlation <-
+    correlation::correlation(
       data = df,
-      ci = ci,
-      corr.method = corr.method,
-      p.adjust.method = p.adjust.method,
-      beta = beta,
-      k = k
+      method = corr.method,
+      p_adjust = p.adjust.method,
+      ci = conf.level,
+      bayesian = bayesian,
+      bayesian_prior = bf.prior,
+      bayesian_test = c("pd", "rope", "bf"),
+      beta = beta
     )
-
-  # creating needed objects
-  psych_corr_obj <- purrr::pluck(corr_obj_list, "psych_corr_obj")
-  corr.mat <- purrr::pluck(corr_obj_list, "corr.mat")
-  p.mat <- purrr::pluck(corr_obj_list, "p.mat")
-
-  # CI check
-  if (output == "ci" && corr.method == "robust") {
-    stop(message(cat(
-      ipmisc::red("Warning: "),
-      ipmisc::blue("Confidence intervals not supported for robust correlation.\n"),
-      sep = ""
-    )))
-  }
-
-  # if p-values were adjusted, notify how they are going to be displayed
-  if (p.adjust.method != "none" && messages && corr.method != "robust") {
-    ggcorrmat_matrix_message()
-  }
 
   # early stats return
   if (output != "plot") {
-    return(
-      switch(output,
-        "r" = as_tibble(corr.mat, rownames = "variable"),
-        "n" = as_tibble(psych_corr_obj$n, rownames = "variable"),
-        "ci" = as_tibble(psych_corr_obj$ci, rownames = "pair"),
-        "p" = as_tibble(p.mat, rownames = "variable")
-      )
-    )
+    return(tibble::as_tibble(df_correlation) %>%
+      dplyr::rename_all(., tolower) %>%
+      dplyr::rename(., n = n_obs))
   }
 
   # ========================== plot =========================================
+
+  # create matrices for correlation coefficients and p-values
+  corr.mat <-
+    df_correlation %>%
+    dplyr::select(dplyr::matches("^parameter|^r")) %>%
+    as.matrix()
+
+  p.mat <-
+    df_correlation %>%
+    dplyr::select(dplyr::matches("^parameter|^p")) %>%
+    as.matrix()
 
   # creating the basic plot
   # if user has not specified colors, then use a color palette
@@ -276,12 +232,11 @@ ggcorrmat <- function(data,
   }
 
   # in case of NAs, compute minimum and maximum sample sizes of pairs
-  n_summary <-
-    tibble(
-      n_min = range(psych_corr_obj$n, na.rm = TRUE)[[1]],
-      n_median = stats::median(psych_corr_obj$n, na.rm = TRUE),
-      n_max = range(psych_corr_obj$n, na.rm = TRUE)[[2]]
-    )
+  # also compute mode
+  getmode <- function(v) {
+    uniqv <- unique(v)
+    uniqv[which.max(tabulate(match(v, uniqv)))]
+  }
 
   # legend title with information about correlation type and sample
   if (isFALSE(any(is.na(df)))) {
@@ -303,11 +258,11 @@ ggcorrmat <- function(data,
         atop(
           atop(
             scriptstyle(bold("sample size:")),
-            italic(n)[min] ~ "=" ~ .(n_summary$n_min[[1]])
+            italic(n)[min] ~ "=" ~ .(min(df_correlation$n_Obs))
           ),
           atop(
-            italic(n)[median] ~ "=" ~ .(n_summary$n_median[[1]]),
-            italic(n)[max] ~ "=" ~ .(n_summary$n_max[[1]])
+            italic(n)[mode] ~ "=" ~ .(getmode(df_correlation$n_Obs)),
+            italic(n)[max] ~ "=" ~ .(max(df_correlation$n_Obs))
           )
         ),
         atop(
@@ -337,29 +292,27 @@ ggcorrmat <- function(data,
 
   # =========================== labels ==================================
 
-  # if `caption` is not specified, use the generic version only if
-  # `caption.default` is `TRUE`
-  if (is.null(caption) && pch == 4 && isTRUE(caption.default)) {
-    # preparing the caption
+  # preparing the `pch` caption
+  if (pch == 4) {
     caption <-
       substitute(
         atop(
+          displaystyle(top.text),
           expr = paste(
             bold("X"),
-            " = correlation non-significant at ",
+            " = non-significant at ",
             italic("p"),
             " < ",
             sig.level,
-            sep = ""
-          ),
-          bottom.text
+            " (Adjustment: ",
+            adj_text,
+            ")"
+          )
         ),
         env = list(
           sig.level = sig.level,
-          bottom.text = paste("Adjustment (p-value): ",
-            pairwiseComparisons::p_adjust_text(p.adjust.method),
-            sep = ""
-          )
+          adj_text = pairwiseComparisons::p_adjust_text(p.adjust.method),
+          top.text = caption
         )
       )
   }

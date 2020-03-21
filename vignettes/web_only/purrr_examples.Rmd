@@ -402,7 +402,7 @@ plot_list <-
         "table",
         "price"
       )),
-      corr.method = list("pearson", "np", "robust", "kendall"),
+      corr.method = list("pearson", "np", "robust", "robust"),
       title = list("Cut: Good", "Cut: Very Good", "Cut: Premium", "Cut: Ideal"),
       # note that we are changing both p-value adjustment method *and*
       # significance level to display the significant correlations in the
