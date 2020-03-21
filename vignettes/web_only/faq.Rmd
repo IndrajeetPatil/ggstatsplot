@@ -1,5 +1,5 @@
 ---
-title: "Frequently asked questions"
+title: "Frequently asked questions about `ggstatsplot`"
 author: "Indrajeet Patil"
 date: "`r Sys.Date()`"
 output:
@@ -59,7 +59,8 @@ library(ggstatsplot)
 library(plotly)
 
 # creating ggplot object with ggstatsplot
-p <- ggstatsplot::ggbetweenstats(
+p <- 
+  ggstatsplot::ggbetweenstats(
   data = mtcars,
   x = cyl,
   y = mpg,
@@ -96,17 +97,18 @@ length(df_list)
 
 # running correlation analyses between
 # this will return a *list* of plots
-plot_list <- purrr::pmap(
-  .l = list(
-    data = df_list,
-    x = "displ",
-    y = "hwy",
-    results.subtitle = FALSE,
-    marginal.type = "densigram",
-    messages = FALSE
-  ),
-  .f = ggstatsplot::ggscatterstats
-)
+plot_list <-
+  purrr::pmap(
+    .l = list(
+      data = df_list,
+      x = "displ",
+      y = "hwy",
+      results.subtitle = FALSE,
+      marginal.type = "densigram",
+      messages = FALSE
+    ),
+    .f = ggstatsplot::ggscatterstats
+  )
 
 # arragen the list in a single plot
 ggstatsplot::combine_plots(
@@ -130,7 +132,7 @@ library(ggstatsplot)
 library(ggsignif)
 
 # displaying only one comparison
-ggbetweenstats(mtcars, cyl, wt, messages = FALSE) + 
+ggbetweenstats(mtcars, cyl, wt, messages = FALSE) +
   geom_signif(comparisons = list(c("4", "6")))
 ```
 
@@ -148,13 +150,14 @@ library(ggstatsplot)
 library(gginnards)
 
 # plot with all geoms
-p <- ggbetweenstats(
-  data = iris,
-  x = Species,
-  y = Sepal.Length,
-  mean.plotting = FALSE,
-  messages = FALSE
-)
+p <-
+  ggbetweenstats(
+    data = iris,
+    x = Species,
+    y = Sepal.Length,
+    mean.plotting = FALSE,
+    messages = FALSE
+  )
 
 # delete geom corresponding to points
 gginnards::delete_layers(x = p, match_type = "GeomPoint")
@@ -197,4 +200,3 @@ If you find any bugs or have any suggestions/remarks, please file an issue on
 
 For details, see-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>
-

@@ -17,11 +17,6 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r library, include = FALSE}
-library(rlang)
-library(ggstatsplot)
-```
-
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -92,7 +87,6 @@ only available on the website for this package: <br>
   - Session information:
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>)
 
-    
 # Presentation
 
 In addition to these vignettes, another quick way to get an overview of this
@@ -102,15 +96,26 @@ package is to go through the following slides:
 # Components of `ggstatsplot`
 
 To make the maintenance and development of `ggstatsplot` more manageable, it is
-being broken into smaller pieces.
+being broken into smaller pieces. Currently, the package internally relies on
+the following packages that manage different aspects of statistical analyses:
 
 ## `statsExpressions`
 
 The `statsExpressions` package forms the statistical backend that processes data
-and creates expressions containing results from statistical tests. 
+and creates expressions containing results from statistical tests and are by
+default displayed in as plot **subtitle**.
 
 For more exhaustive documentation for this package, see:
 <https://indrajeetpatil.github.io/statsExpressions/>
+
+## `tidyBF`
+
+The `tidyBF` package forms the backend that processes data and creates
+expressions containing results from Bayes Factor tests and are by default
+displayed in as plot **caption**.
+
+For more exhaustive documentation for this package, see:
+<https://indrajeetpatil.github.io/tidyBF/>
 
 ## `pairwiseComparisons`
 

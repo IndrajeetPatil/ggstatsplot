@@ -60,7 +60,7 @@ ggstatsplot::ggcorrmat(
   cor.vars = c(Sepal.Length:Petal.Width),
   matrix.type = "upper",
   ggtheme = ggthemes::theme_fivethirtyeight(), # selected ggplot2 theme
-  ggstatsplot.layer = FALSE
+  ggstatsplot.layer = FALSE # turn of default theme layer
 )
 ```
 

@@ -1841,7 +1841,7 @@ ggstatsplot::combine_plots(
 Another alternative is to use robust models, as implemented in the `robustbase`
 package.
 
-```{r robustbase, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 6, eval=FALSE}
+```{r robustbase, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 6}
 # setup
 set.seed(123)
 library(robustbase)
@@ -1933,6 +1933,8 @@ effects from the normal equations before estimating the remaining coefficients
 with OLS.
 
 ```{r felm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# setup
+set.seed(123)
 library(lfe)
 
 # create covariates
