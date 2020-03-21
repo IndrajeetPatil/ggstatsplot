@@ -19,7 +19,7 @@ jobs:
       matrix:
         config:
           - {os: windows-latest, r: '3.6', args: "--no-manual"}
-          - {os: windows-latest, r: 'devel', args: "--no-manual"}
+          #- {os: windows-latest, r: 'devel', args: "--no-manual"}
           - {os: macOS-latest, r: '3.6', args: "--no-manual"}
           - {os: macOS-latest, r: 'devel', args: "--no-manual"}
           - {os: ubuntu-16.04, r: '3.6', cran: "https://demo.rstudiopm.com/all/__linux__/xenial/latest", args: "--no-manual"}
@@ -77,7 +77,7 @@ jobs:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
 
-      - name: Test coverage
-        if: matrix.config.os == 'macOS-latest'
-        run: covr::codecov(token = "${{secrets.CODECOV_TOKEN}}")
-        shell: Rscript {0}
+      # - name: Test coverage
+      #   if: matrix.config.os == 'macOS-latest'
+      #   run: covr::codecov(token = "${{secrets.CODECOV_TOKEN}}")
+      #   shell: Rscript {0}

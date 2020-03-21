@@ -222,11 +222,6 @@ ggcorrmat <- function(data,
     dplyr::select(dplyr::matches("^parameter|^p")) %>%
     as.matrix()
 
-  n.mat <-
-    df_correlation %>%
-    dplyr::select(dplyr::matches("^parameter|^n")) %>%
-    as.matrix()
-
   # creating the basic plot
   # if user has not specified colors, then use a color palette
   if (is.null(colors)) {
