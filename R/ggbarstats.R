@@ -180,15 +180,6 @@ ggbarstats <- function(data,
     }
   }
 
-  # return early if anything other than plot
-  if (output %in% c("subtitle", "caption")) {
-    return(switch(
-      EXPR = output,
-      "subtitle" = subtitle,
-      "caption" = caption
-    ))
-  }
-
   # ============================ percentage dataframe ========================
 
   # convert the data into percentages; group by yal variable
@@ -209,10 +200,20 @@ ggbarstats <- function(data,
       k = k
     )
 
-  # ====================== preparing names for legend  ======================
-
   # reorder the category factor levels to order the legend
   df %<>% dplyr::mutate(.data = ., {{ x }} := factor({{ x }}, unique({{ x }})))
+
+  # return early if anything other than plot
+  if (output != "plot") {
+    return(switch(
+      EXPR = output,
+      "subtitle" = subtitle,
+      "caption" = caption,
+      "proptest" = df_labels
+    ))
+  }
+
+  # =================================== plot =================================
 
   # getting labels for all levels of the 'x' variable factor
   if (is.null(labels.legend)) {
@@ -221,7 +222,6 @@ ggbarstats <- function(data,
     legend.labels <- labels.legend
   }
 
-  # =================================== plot =================================
 
   # if no. of factor levels is greater than the default palette color count
   palette_message(

@@ -212,17 +212,6 @@ ggpiestats <- function(data,
     }
   }
 
-  # return early if anything other than plot
-  if (output %in% c("subtitle", "caption")) {
-    return(switch(
-      EXPR = output,
-      "subtitle" = subtitle,
-      "caption" = caption
-    ))
-  }
-
-  # =================================== plot =================================
-
   # convert the data into percentages; group by yal variable if needed
   # dataframe with summary labels
   df <-
@@ -241,10 +230,24 @@ ggpiestats <- function(data,
         y = {{ y }},
         k = k
       )
+  } else {
+    df_labels <- NULL
   }
 
   # reorder the category factor levels to order the legend
   df %<>% dplyr::mutate(.data = ., {{ x }} := factor({{ x }}, unique({{ x }})))
+
+  # return early if anything other than plot
+  if (output != "plot") {
+    return(switch(
+      EXPR = output,
+      "subtitle" = subtitle,
+      "caption" = caption,
+      "proptest" = df_labels
+    ))
+  }
+
+  # =================================== plot =================================
 
   # getting labels for all levels of the 'x' variable factor
   if (is.null(factor.levels)) {

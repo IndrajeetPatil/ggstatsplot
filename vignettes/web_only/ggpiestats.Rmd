@@ -18,6 +18,9 @@ vignette: >
 ---
 
 ```{r setup, include = FALSE}
+# show me all columns
+options(tibble.width = Inf)
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -109,9 +112,6 @@ can specify any hypothesized ratio you like with `ratio` so if our hypothesis
 was that 80% died and 20% survived we would add `ratio = c(.80,.20)` when we
 entered the code.
 
-Let's move on to a more complex example statistically and in terms of the
-features we will use in `ggpiestats`
-
 ## Independence (or association) with `ggpiestats`
 
 Let's next investigate whether the passenger's gender was independent of, or
@@ -169,8 +169,17 @@ ggstatsplot::ggpiestats(
 The plot clearly shows that survival rates were very different between males and
 females. The Pearson's $\chi^2$-test of independence is significant given our
 large sample size. Additionally, for both females and males, the survival rates
-were significantly different than 50% as indicated by the `***` which is
-equivalent to a goodness of fit test for each gender.
+were significantly different than 50% as indicated by a goodness of fit test for
+each gender.
+
+In case you need to extract the results from proportion tests in a separate
+dataframe, `ggpiestats`'s `output` argument can be used:
+
+```{r proptest_df}
+set.seed(123)
+
+ggpiestats(mtcars, am, cyl, output = "proptest", results.subtitle = FALSE)
+```
 
 ## Grouped analysis with `grouped_ggpiestats`
 

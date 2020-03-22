@@ -18,6 +18,9 @@ vignette: >
 ---
 
 ```{r setup, include = FALSE}
+# show me all columns
+options(tibble.width = Inf)
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"

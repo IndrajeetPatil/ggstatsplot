@@ -73,9 +73,12 @@ or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accep
 \code{"bf"}resp.}
 
 \item{pairwise.comparisons}{Logical that decides whether pairwise comparisons
-are to be displayed (default: \code{FALSE}). Please note that \strong{only significant
-comparisons} will be shown by default. To change this behavior, select
-appropriate option with \code{pairwise.display} argument.}
+are to be displayed (default: \code{FALSE}). Please note that only
+\strong{significant} comparisons will be shown by default. To change this
+behavior, select appropriate option with \code{pairwise.display} argument. The
+pairwise comparison dataframes are prepared using the
+\code{pairwiseComparisons::pairwise_comparisons} function. For more details
+about pairwise comparisons, see the documentation for that function.}
 
 \item{pairwise.annotation}{Character that decides the annotations to use for
 pairwise comparisons. Either \code{"p.value"} (default) or \code{"asterisk"}.}
@@ -239,7 +242,9 @@ as a function.}
 you have set \code{results.subtitle = FALSE}, then this will return a \code{NULL}.
 Setting this to \code{"caption"} will return the expression containing details
 about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
-\code{bf.message = TRUE}, otherwise this will return a \code{NULL}.}
+\code{bf.message = TRUE}, otherwise this will return a \code{NULL}. For functions
+\code{ggpiestats} and \code{ggbarstats}, setting \code{output = "proptest"} will return a
+dataframe containing results from proportion tests.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

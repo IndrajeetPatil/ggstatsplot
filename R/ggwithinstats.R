@@ -212,8 +212,6 @@ ggwithinstats <- function(data,
         k = k,
         messages = messages
       )
-  } else {
-    test <- "none"
   }
 
   # quit early if only subtitle is needed

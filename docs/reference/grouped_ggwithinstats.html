@@ -123,7 +123,7 @@ grouping variable." />
       <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
-      <a href="../articles/web_only/faq.html">Frequently asked questions</a>
+      <a href="../articles/web_only/faq.html">Frequently asked questions about `ggstatsplot`</a>
     </li>
     <li>
       <a href="../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
@@ -266,7 +266,9 @@ variable name entered for <code>grouping.var</code> will be used.</p></td>
 you have set <code>results.subtitle = FALSE</code>, then this will return a <code>NULL</code>.
 Setting this to <code>"caption"</code> will return the expression containing details
 about Bayes Factor analysis, but valid only when <code>type = "parametric"</code> and
-<code>bf.message = TRUE</code>, otherwise this will return a <code>NULL</code>.</p></td>
+<code>bf.message = TRUE</code>, otherwise this will return a <code>NULL</code>. For functions
+<code>ggpiestats</code> and <code>ggbarstats</code>, setting <code>output = "proptest"</code> will return a
+dataframe containing results from proportion tests.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -294,9 +296,12 @@ or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations ar
 <code>"p"</code> (for parametric), <code>"np"</code> (nonparametric), <code>"r"</code> (robust), or
 <code>"bf"</code>resp.</p></dd>
     <dt><code>pairwise.comparisons</code></dt><dd><p>Logical that decides whether pairwise comparisons
-are to be displayed (default: <code>FALSE</code>). Please note that <strong>only significant
-comparisons</strong> will be shown by default. To change this behavior, select
-appropriate option with <code>pairwise.display</code> argument.</p></dd>
+are to be displayed (default: <code>FALSE</code>). Please note that only
+<strong>significant</strong> comparisons will be shown by default. To change this
+behavior, select appropriate option with <code>pairwise.display</code> argument. The
+pairwise comparison dataframes are prepared using the
+<code><a href='https://indrajeetpatil.github.io/pairwiseComparisons//reference/pairwise_comparisons.html'>pairwiseComparisons::pairwise_comparisons</a></code> function. For more details
+about pairwise comparisons, see the documentation for that function.</p></dd>
     <dt><code>pairwise.annotation</code></dt><dd><p>Character that decides the annotations to use for
 pairwise comparisons. Either <code>"p.value"</code> (default) or <code>"asterisk"</code>.</p></dd>
     <dt><code>pairwise.display</code></dt><dd><p>Decides which pairwise comparisons to display.

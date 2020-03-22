@@ -355,6 +355,28 @@ testthat::test_that(
   }
 )
 
+# proptest output ---------------------------------------------------------
+
+testthat::test_that(
+  desc = "proptest output",
+  code = {
+    testthat::skip_on_cran()
+
+    df <-
+      suppressWarnings(ggbarstats(
+        mtcars,
+        am,
+        cyl,
+        results.subtitle = FALSE,
+        output = "proptest",
+        messages = FALSE
+      ))
+
+    # tests
+    testthat::expect_equal(dim(df), c(3L, 12L))
+  }
+)
+
 # without enough data ---------------------------------------------------------
 
 testthat::test_that(

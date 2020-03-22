@@ -48,7 +48,9 @@ variable name entered for \code{grouping.var} will be used.}
 you have set \code{results.subtitle = FALSE}, then this will return a \code{NULL}.
 Setting this to \code{"caption"} will return the expression containing details
 about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
-\code{bf.message = TRUE}, otherwise this will return a \code{NULL}.}
+\code{bf.message = TRUE}, otherwise this will return a \code{NULL}. For functions
+\code{ggpiestats} and \code{ggbarstats}, setting \code{output = "proptest"} will return a
+dataframe containing results from proportion tests.}
 
 \item{...}{
   Arguments passed on to \code{\link[=ggbetweenstats]{ggbetweenstats}}
@@ -61,9 +63,12 @@ variable names for \code{x} and \code{y} will be used.}
     \item{\code{ylab}}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
 variable names for \code{x} and \code{y} will be used.}
     \item{\code{pairwise.comparisons}}{Logical that decides whether pairwise comparisons
-are to be displayed (default: \code{FALSE}). Please note that \strong{only significant
-comparisons} will be shown by default. To change this behavior, select
-appropriate option with \code{pairwise.display} argument.}
+are to be displayed (default: \code{FALSE}). Please note that only
+\strong{significant} comparisons will be shown by default. To change this
+behavior, select appropriate option with \code{pairwise.display} argument. The
+pairwise comparison dataframes are prepared using the
+\code{pairwiseComparisons::pairwise_comparisons} function. For more details
+about pairwise comparisons, see the documentation for that function.}
     \item{\code{p.adjust.method}}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}

@@ -73,7 +73,7 @@
       <a href="../../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
-      <a href="../../articles/web_only/faq.html">Frequently asked questions</a>
+      <a href="../../articles/web_only/faq.html">Frequently asked questions about `ggstatsplot`</a>
     </li>
     <li>
       <a href="../../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
@@ -149,7 +149,7 @@
       <h1 data-toc-skip>ggpiestats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-03-21</h4>
+            <h4 class="date">2020-03-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggpiestats.Rmd"><code>vignettes/web_only/ggpiestats.Rmd</code></a></small>
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
@@ -219,7 +219,6 @@
 <span id="cb2-16"><a href="#cb2-16"></a>)</span></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats3-1.png" width="576"></p>
 <p><strong>Note:</strong> equal proportions per category are the default, e.g. 50/50, but you can specify any hypothesized ratio you like with <code>ratio</code> so if our hypothesis was that 80% died and 20% survived we would add <code>ratio = c(.80,.20)</code> when we entered the code.</p>
-<p>Let’s move on to a more complex example statistically and in terms of the features we will use in <code>ggpiestats</code></p>
 </div>
 <div id="independence-or-association-with-ggpiestats" class="section level2">
 <h2 class="hasAnchor">
@@ -266,7 +265,28 @@
 <span id="cb3-31"><a href="#cb3-31"></a>    )</span>
 <span id="cb3-32"><a href="#cb3-32"></a>  )</span></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats1-1.png" width="768"></p>
-<p>The plot clearly shows that survival rates were very different between males and females. The Pearson’s <span class="math inline">\(\chi^2\)</span>-test of independence is significant given our large sample size. Additionally, for both females and males, the survival rates were significantly different than 50% as indicated by the <code>***</code> which is equivalent to a goodness of fit test for each gender.</p>
+<p>The plot clearly shows that survival rates were very different between males and females. The Pearson’s <span class="math inline">\(\chi^2\)</span>-test of independence is significant given our large sample size. Additionally, for both females and males, the survival rates were significantly different than 50% as indicated by a goodness of fit test for each gender.</p>
+<p>In case you need to extract the results from proportion tests in a separate dataframe, <code>ggpiestats</code>’s <code>output</code> argument can be used:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="kw"><a href="../../reference/ggpiestats.html">ggpiestats</a></span>(mtcars, am, cyl, <span class="dt">output =</span> <span class="st">"proptest"</span>, <span class="dt">results.subtitle =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co">#&gt; Warning in stats::chisq.test(xtab): Chi-squared approximation may be incorrect</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co">#&gt; # A tibble: 3 x 12</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="co">#&gt;   cyl   counts  perc N        `0`    `1`    statistic p.value parameter</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co">#&gt;   &lt;fct&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="co">#&gt; 1 8         14  43.8 (n = 14) 85.71% 14.29%     7.14  0.00753         1</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co">#&gt; 2 6          7  21.9 (n = 7)  57.14% 42.86%     0.143 0.705           1</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="co">#&gt; 3 4         11  34.4 (n = 11) 27.27% 72.73%     2.27  0.132           1</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="co">#&gt;   method                                   significance</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="co">#&gt;   &lt;chr&gt;                                    &lt;chr&gt;       </span></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="co">#&gt; 1 Chi-squared test for given probabilities **          </span></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="co">#&gt; 2 Chi-squared test for given probabilities ns          </span></span>
+<span id="cb4-15"><a href="#cb4-15"></a><span class="co">#&gt; 3 Chi-squared test for given probabilities ns          </span></span>
+<span id="cb4-16"><a href="#cb4-16"></a><span class="co">#&gt;   label                                                                      </span></span>
+<span id="cb4-17"><a href="#cb4-17"></a><span class="co">#&gt;   &lt;chr&gt;                                                                      </span></span>
+<span id="cb4-18"><a href="#cb4-18"></a><span class="co">#&gt; 1 list(~chi['gof']^2~ ( 1 )== 7.14 , ~italic(p) == 0.008 , ~italic(n) == 14 )</span></span>
+<span id="cb4-19"><a href="#cb4-19"></a><span class="co">#&gt; 2 list(~chi['gof']^2~ ( 1 )== 0.14 , ~italic(p) == 0.705 , ~italic(n) == 7 ) </span></span>
+<span id="cb4-20"><a href="#cb4-20"></a><span class="co">#&gt; 3 list(~chi['gof']^2~ ( 1 )== 2.27 , ~italic(p) == 0.132 , ~italic(n) == 11 )</span></span></code></pre></div>
 </div>
 <div id="grouped-analysis-with-grouped_ggpiestats" class="section level2">
 <h2 class="hasAnchor">
@@ -274,28 +294,28 @@
 </h2>
 <p>What if we want to do the same analysis of gender but also factor in the passenger’s age (Age)? We have information that classifies the passengers as Child or Adult, perhaps that makes a difference to their survival rate?</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggpiestats</code>. It is a convenient wrapper function around <code><a href="../../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggpiestats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines the list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># since effect size confidence intervals are computed using bootstrapping, let's</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="co"># set seed for reproducibility</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
-<span id="cb4-4"><a href="#cb4-4"></a></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="co"># plot</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggpiestats.html">grouped_ggpiestats</a></span>(</span>
-<span id="cb4-7"><a href="#cb4-7"></a>  <span class="co"># arguments relevant for ggstatsplot::gghistostats</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a>  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>Titanic_full,</span>
-<span id="cb4-9"><a href="#cb4-9"></a>  <span class="dt">x =</span> Survived,</span>
-<span id="cb4-10"><a href="#cb4-10"></a>  <span class="dt">y =</span> Sex,</span>
-<span id="cb4-11"><a href="#cb4-11"></a>  <span class="dt">grouping.var =</span> Age,</span>
-<span id="cb4-12"><a href="#cb4-12"></a>  <span class="dt">title.prefix =</span> <span class="st">"Child or Adult?"</span>,</span>
-<span id="cb4-13"><a href="#cb4-13"></a>  <span class="dt">nboot =</span> <span class="dv">10</span>,</span>
-<span id="cb4-14"><a href="#cb4-14"></a>  <span class="dt">perc.k =</span> <span class="dv">1</span>,</span>
-<span id="cb4-15"><a href="#cb4-15"></a>  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</span>
-<span id="cb4-16"><a href="#cb4-16"></a>  <span class="dt">palette =</span> <span class="st">"category10_d3"</span>,</span>
-<span id="cb4-17"><a href="#cb4-17"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb4-18"><a href="#cb4-18"></a>  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></span>
-<span id="cb4-19"><a href="#cb4-19"></a>  <span class="dt">title.text =</span> <span class="st">"Passenger survival on the Titanic by gender and age"</span>,</span>
-<span id="cb4-20"><a href="#cb4-20"></a>  <span class="dt">caption.text =</span> <span class="st">"Asterisks denote results from proportion tests; </span><span class="ch">\n</span><span class="st">***: p &lt; 0.001, ns: non-significant"</span>,</span>
-<span id="cb4-21"><a href="#cb4-21"></a>  <span class="dt">plotgrid.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">nrow =</span> <span class="dv">2</span>)</span>
-<span id="cb4-22"><a href="#cb4-22"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># since effect size confidence intervals are computed using bootstrapping, let's</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="co"># set seed for reproducibility</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co"># plot</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggpiestats.html">grouped_ggpiestats</a></span>(</span>
+<span id="cb5-7"><a href="#cb5-7"></a>  <span class="co"># arguments relevant for ggstatsplot::gghistostats</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>Titanic_full,</span>
+<span id="cb5-9"><a href="#cb5-9"></a>  <span class="dt">x =</span> Survived,</span>
+<span id="cb5-10"><a href="#cb5-10"></a>  <span class="dt">y =</span> Sex,</span>
+<span id="cb5-11"><a href="#cb5-11"></a>  <span class="dt">grouping.var =</span> Age,</span>
+<span id="cb5-12"><a href="#cb5-12"></a>  <span class="dt">title.prefix =</span> <span class="st">"Child or Adult?"</span>,</span>
+<span id="cb5-13"><a href="#cb5-13"></a>  <span class="dt">nboot =</span> <span class="dv">10</span>,</span>
+<span id="cb5-14"><a href="#cb5-14"></a>  <span class="dt">perc.k =</span> <span class="dv">1</span>,</span>
+<span id="cb5-15"><a href="#cb5-15"></a>  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</span>
+<span id="cb5-16"><a href="#cb5-16"></a>  <span class="dt">palette =</span> <span class="st">"category10_d3"</span>,</span>
+<span id="cb5-17"><a href="#cb5-17"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb5-18"><a href="#cb5-18"></a>  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a>  <span class="dt">title.text =</span> <span class="st">"Passenger survival on the Titanic by gender and age"</span>,</span>
+<span id="cb5-20"><a href="#cb5-20"></a>  <span class="dt">caption.text =</span> <span class="st">"Asterisks denote results from proportion tests; </span><span class="ch">\n</span><span class="st">***: p &lt; 0.001, ns: non-significant"</span>,</span>
+<span id="cb5-21"><a href="#cb5-21"></a>  <span class="dt">plotgrid.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb5-22"><a href="#cb5-22"></a>)</span></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats4-1.png" width="768"></p>
 <p>The resulting pie charts and statistics make the story clear. For adults gender very much matters. Women survived at much higher rates than men. For children gender is not significantly associated with survival and both male and female children have a survival rate that is not significantly different from 50/50.</p>
 </div>
@@ -311,71 +331,71 @@
 <a href="#working-with-data-organized-by-counts" class="anchor"></a>Working with data organized by <code>counts</code>
 </h2>
 <p><code>ggpiestats</code> can also work with dataframe containing counts (aka tabled data), i.e., when each row doesn’t correspond to a unique observation. For example, consider the following notional <code>fishing</code> dataframe containing data from two boats (<code>A</code> and <code>B</code>) about the number of different types fish they caught in the months of <code>February</code> and <code>March</code>. In this dataframe, each row corresponds to a unique combination of <code>Boat</code> and <code>Month</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># for reproducibility</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
-<span id="cb5-3"><a href="#cb5-3"></a></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="co"># creating a dataframe</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="co"># (this is completely fictional; I don't know first thing about fishing!)</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a>(</span>
-<span id="cb5-7"><a href="#cb5-7"></a>  fishing &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(</span>
-<span id="cb5-8"><a href="#cb5-8"></a>    <span class="dt">Boat =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"B"</span>, <span class="dv">4</span>), <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"A"</span>, <span class="dv">4</span>), <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"A"</span>, <span class="dv">4</span>), <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"B"</span>, <span class="dv">4</span>)),</span>
-<span id="cb5-9"><a href="#cb5-9"></a>    <span class="dt">Month =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"February"</span>, <span class="dv">2</span>), <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"March"</span>, <span class="dv">2</span>), <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"February"</span>, <span class="dv">2</span>), <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"March"</span>, <span class="dv">2</span>)),</span>
-<span id="cb5-10"><a href="#cb5-10"></a>    <span class="dt">Fish =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(</span>
-<span id="cb5-11"><a href="#cb5-11"></a>      <span class="st">"Bass"</span>,</span>
-<span id="cb5-12"><a href="#cb5-12"></a>      <span class="st">"Catfish"</span>,</span>
-<span id="cb5-13"><a href="#cb5-13"></a>      <span class="st">"Cod"</span>,</span>
-<span id="cb5-14"><a href="#cb5-14"></a>      <span class="st">"Haddock"</span>,</span>
-<span id="cb5-15"><a href="#cb5-15"></a>      <span class="st">"Cod"</span>,</span>
-<span id="cb5-16"><a href="#cb5-16"></a>      <span class="st">"Haddock"</span>,</span>
-<span id="cb5-17"><a href="#cb5-17"></a>      <span class="st">"Bass"</span>,</span>
-<span id="cb5-18"><a href="#cb5-18"></a>      <span class="st">"Catfish"</span>,</span>
-<span id="cb5-19"><a href="#cb5-19"></a>      <span class="st">"Bass"</span>,</span>
-<span id="cb5-20"><a href="#cb5-20"></a>      <span class="st">"Catfish"</span>,</span>
-<span id="cb5-21"><a href="#cb5-21"></a>      <span class="st">"Cod"</span>,</span>
-<span id="cb5-22"><a href="#cb5-22"></a>      <span class="st">"Haddock"</span>,</span>
-<span id="cb5-23"><a href="#cb5-23"></a>      <span class="st">"Cod"</span>,</span>
-<span id="cb5-24"><a href="#cb5-24"></a>      <span class="st">"Haddock"</span>,</span>
-<span id="cb5-25"><a href="#cb5-25"></a>      <span class="st">"Bass"</span>,</span>
-<span id="cb5-26"><a href="#cb5-26"></a>      <span class="st">"Catfish"</span></span>
-<span id="cb5-27"><a href="#cb5-27"></a>    ),</span>
-<span id="cb5-28"><a href="#cb5-28"></a>    <span class="dt">SumOfCaught =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">25</span>, <span class="dv">20</span>, <span class="dv">35</span>, <span class="dv">40</span>, <span class="dv">40</span>, <span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">42</span>, <span class="dv">40</span>, <span class="dv">30</span>, <span class="dv">33</span>, <span class="dv">26</span>, <span class="dv">100</span>, <span class="dv">30</span>, <span class="dv">20</span>, <span class="dv">20</span>)</span>
-<span id="cb5-29"><a href="#cb5-29"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># converting to a tibble dataframe</span></span>
-<span id="cb5-30"><a href="#cb5-30"></a><span class="st">    </span>tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/deprecated.html">as_data_frame</a></span>(<span class="dt">x =</span> .)</span>
-<span id="cb5-31"><a href="#cb5-31"></a>)</span>
-<span id="cb5-32"><a href="#cb5-32"></a><span class="co">#&gt; # A tibble: 16 x 4</span></span>
-<span id="cb5-33"><a href="#cb5-33"></a><span class="co">#&gt;    Boat  Month    Fish    SumOfCaught</span></span>
-<span id="cb5-34"><a href="#cb5-34"></a><span class="co">#&gt;    &lt;fct&gt; &lt;fct&gt;    &lt;fct&gt;         &lt;dbl&gt;</span></span>
-<span id="cb5-35"><a href="#cb5-35"></a><span class="co">#&gt;  1 B     February Bass             25</span></span>
-<span id="cb5-36"><a href="#cb5-36"></a><span class="co">#&gt;  2 B     February Catfish          20</span></span>
-<span id="cb5-37"><a href="#cb5-37"></a><span class="co">#&gt;  3 B     March    Cod              35</span></span>
-<span id="cb5-38"><a href="#cb5-38"></a><span class="co">#&gt;  4 B     March    Haddock          40</span></span>
-<span id="cb5-39"><a href="#cb5-39"></a><span class="co">#&gt;  5 A     February Cod              40</span></span>
-<span id="cb5-40"><a href="#cb5-40"></a><span class="co">#&gt;  6 A     February Haddock          25</span></span>
-<span id="cb5-41"><a href="#cb5-41"></a><span class="co">#&gt;  7 A     March    Bass             30</span></span>
-<span id="cb5-42"><a href="#cb5-42"></a><span class="co">#&gt;  8 A     March    Catfish          42</span></span>
-<span id="cb5-43"><a href="#cb5-43"></a><span class="co">#&gt;  9 A     February Bass             40</span></span>
-<span id="cb5-44"><a href="#cb5-44"></a><span class="co">#&gt; 10 A     February Catfish          30</span></span>
-<span id="cb5-45"><a href="#cb5-45"></a><span class="co">#&gt; 11 A     March    Cod              33</span></span>
-<span id="cb5-46"><a href="#cb5-46"></a><span class="co">#&gt; 12 A     March    Haddock          26</span></span>
-<span id="cb5-47"><a href="#cb5-47"></a><span class="co">#&gt; 13 B     February Cod             100</span></span>
-<span id="cb5-48"><a href="#cb5-48"></a><span class="co">#&gt; 14 B     February Haddock          30</span></span>
-<span id="cb5-49"><a href="#cb5-49"></a><span class="co">#&gt; 15 B     March    Bass             20</span></span>
-<span id="cb5-50"><a href="#cb5-50"></a><span class="co">#&gt; 16 B     March    Catfish          20</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># for reproducibility</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co"># creating a dataframe</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="co"># (this is completely fictional; I don't know first thing about fishing!)</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>(</span>
+<span id="cb6-7"><a href="#cb6-7"></a>  fishing &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(</span>
+<span id="cb6-8"><a href="#cb6-8"></a>    <span class="dt">Boat =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"B"</span>, <span class="dv">4</span>), <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"A"</span>, <span class="dv">4</span>), <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"A"</span>, <span class="dv">4</span>), <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"B"</span>, <span class="dv">4</span>)),</span>
+<span id="cb6-9"><a href="#cb6-9"></a>    <span class="dt">Month =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"February"</span>, <span class="dv">2</span>), <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"March"</span>, <span class="dv">2</span>), <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"February"</span>, <span class="dv">2</span>), <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"March"</span>, <span class="dv">2</span>)),</span>
+<span id="cb6-10"><a href="#cb6-10"></a>    <span class="dt">Fish =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(</span>
+<span id="cb6-11"><a href="#cb6-11"></a>      <span class="st">"Bass"</span>,</span>
+<span id="cb6-12"><a href="#cb6-12"></a>      <span class="st">"Catfish"</span>,</span>
+<span id="cb6-13"><a href="#cb6-13"></a>      <span class="st">"Cod"</span>,</span>
+<span id="cb6-14"><a href="#cb6-14"></a>      <span class="st">"Haddock"</span>,</span>
+<span id="cb6-15"><a href="#cb6-15"></a>      <span class="st">"Cod"</span>,</span>
+<span id="cb6-16"><a href="#cb6-16"></a>      <span class="st">"Haddock"</span>,</span>
+<span id="cb6-17"><a href="#cb6-17"></a>      <span class="st">"Bass"</span>,</span>
+<span id="cb6-18"><a href="#cb6-18"></a>      <span class="st">"Catfish"</span>,</span>
+<span id="cb6-19"><a href="#cb6-19"></a>      <span class="st">"Bass"</span>,</span>
+<span id="cb6-20"><a href="#cb6-20"></a>      <span class="st">"Catfish"</span>,</span>
+<span id="cb6-21"><a href="#cb6-21"></a>      <span class="st">"Cod"</span>,</span>
+<span id="cb6-22"><a href="#cb6-22"></a>      <span class="st">"Haddock"</span>,</span>
+<span id="cb6-23"><a href="#cb6-23"></a>      <span class="st">"Cod"</span>,</span>
+<span id="cb6-24"><a href="#cb6-24"></a>      <span class="st">"Haddock"</span>,</span>
+<span id="cb6-25"><a href="#cb6-25"></a>      <span class="st">"Bass"</span>,</span>
+<span id="cb6-26"><a href="#cb6-26"></a>      <span class="st">"Catfish"</span></span>
+<span id="cb6-27"><a href="#cb6-27"></a>    ),</span>
+<span id="cb6-28"><a href="#cb6-28"></a>    <span class="dt">SumOfCaught =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">25</span>, <span class="dv">20</span>, <span class="dv">35</span>, <span class="dv">40</span>, <span class="dv">40</span>, <span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">42</span>, <span class="dv">40</span>, <span class="dv">30</span>, <span class="dv">33</span>, <span class="dv">26</span>, <span class="dv">100</span>, <span class="dv">30</span>, <span class="dv">20</span>, <span class="dv">20</span>)</span>
+<span id="cb6-29"><a href="#cb6-29"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># converting to a tibble dataframe</span></span>
+<span id="cb6-30"><a href="#cb6-30"></a><span class="st">    </span>tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/deprecated.html">as_data_frame</a></span>(<span class="dt">x =</span> .)</span>
+<span id="cb6-31"><a href="#cb6-31"></a>)</span>
+<span id="cb6-32"><a href="#cb6-32"></a><span class="co">#&gt; # A tibble: 16 x 4</span></span>
+<span id="cb6-33"><a href="#cb6-33"></a><span class="co">#&gt;    Boat  Month    Fish    SumOfCaught</span></span>
+<span id="cb6-34"><a href="#cb6-34"></a><span class="co">#&gt;    &lt;fct&gt; &lt;fct&gt;    &lt;fct&gt;         &lt;dbl&gt;</span></span>
+<span id="cb6-35"><a href="#cb6-35"></a><span class="co">#&gt;  1 B     February Bass             25</span></span>
+<span id="cb6-36"><a href="#cb6-36"></a><span class="co">#&gt;  2 B     February Catfish          20</span></span>
+<span id="cb6-37"><a href="#cb6-37"></a><span class="co">#&gt;  3 B     March    Cod              35</span></span>
+<span id="cb6-38"><a href="#cb6-38"></a><span class="co">#&gt;  4 B     March    Haddock          40</span></span>
+<span id="cb6-39"><a href="#cb6-39"></a><span class="co">#&gt;  5 A     February Cod              40</span></span>
+<span id="cb6-40"><a href="#cb6-40"></a><span class="co">#&gt;  6 A     February Haddock          25</span></span>
+<span id="cb6-41"><a href="#cb6-41"></a><span class="co">#&gt;  7 A     March    Bass             30</span></span>
+<span id="cb6-42"><a href="#cb6-42"></a><span class="co">#&gt;  8 A     March    Catfish          42</span></span>
+<span id="cb6-43"><a href="#cb6-43"></a><span class="co">#&gt;  9 A     February Bass             40</span></span>
+<span id="cb6-44"><a href="#cb6-44"></a><span class="co">#&gt; 10 A     February Catfish          30</span></span>
+<span id="cb6-45"><a href="#cb6-45"></a><span class="co">#&gt; 11 A     March    Cod              33</span></span>
+<span id="cb6-46"><a href="#cb6-46"></a><span class="co">#&gt; 12 A     March    Haddock          26</span></span>
+<span id="cb6-47"><a href="#cb6-47"></a><span class="co">#&gt; 13 B     February Cod             100</span></span>
+<span id="cb6-48"><a href="#cb6-48"></a><span class="co">#&gt; 14 B     February Haddock          30</span></span>
+<span id="cb6-49"><a href="#cb6-49"></a><span class="co">#&gt; 15 B     March    Bass             20</span></span>
+<span id="cb6-50"><a href="#cb6-50"></a><span class="co">#&gt; 16 B     March    Catfish          20</span></span></code></pre></div>
 <p>When the data is organized this way, we make a slightly different call to the <code>ggpiestats</code> function: we use the <code>counts</code> argument. If we want to investigate the relationship of type of fish by month (a test of independence), our command would be:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># running `ggpiestats` with counts information</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</span>
-<span id="cb6-3"><a href="#cb6-3"></a>  <span class="dt">data =</span> fishing,</span>
-<span id="cb6-4"><a href="#cb6-4"></a>  <span class="dt">x =</span> Fish,</span>
-<span id="cb6-5"><a href="#cb6-5"></a>  <span class="dt">y =</span> Month,</span>
-<span id="cb6-6"><a href="#cb6-6"></a>  <span class="dt">counts =</span> SumOfCaught,</span>
-<span id="cb6-7"><a href="#cb6-7"></a>  <span class="dt">label =</span> <span class="st">"both"</span>,</span>
-<span id="cb6-8"><a href="#cb6-8"></a>  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</span>
-<span id="cb6-9"><a href="#cb6-9"></a>  <span class="dt">palette =</span> <span class="st">"default_jama"</span>,</span>
-<span id="cb6-10"><a href="#cb6-10"></a>  <span class="dt">title =</span> <span class="st">"Type fish caught by month"</span>,</span>
-<span id="cb6-11"><a href="#cb6-11"></a>  <span class="dt">caption =</span> <span class="st">"Source: completely made up"</span>,</span>
-<span id="cb6-12"><a href="#cb6-12"></a>  <span class="dt">legend.title =</span> <span class="st">"Type fish caught: "</span>,</span>
-<span id="cb6-13"><a href="#cb6-13"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># running `ggpiestats` with counts information</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="dt">data =</span> fishing,</span>
+<span id="cb7-4"><a href="#cb7-4"></a>  <span class="dt">x =</span> Fish,</span>
+<span id="cb7-5"><a href="#cb7-5"></a>  <span class="dt">y =</span> Month,</span>
+<span id="cb7-6"><a href="#cb7-6"></a>  <span class="dt">counts =</span> SumOfCaught,</span>
+<span id="cb7-7"><a href="#cb7-7"></a>  <span class="dt">label =</span> <span class="st">"both"</span>,</span>
+<span id="cb7-8"><a href="#cb7-8"></a>  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</span>
+<span id="cb7-9"><a href="#cb7-9"></a>  <span class="dt">palette =</span> <span class="st">"default_jama"</span>,</span>
+<span id="cb7-10"><a href="#cb7-10"></a>  <span class="dt">title =</span> <span class="st">"Type fish caught by month"</span>,</span>
+<span id="cb7-11"><a href="#cb7-11"></a>  <span class="dt">caption =</span> <span class="st">"Source: completely made up"</span>,</span>
+<span id="cb7-12"><a href="#cb7-12"></a>  <span class="dt">legend.title =</span> <span class="st">"Type fish caught: "</span>,</span>
+<span id="cb7-13"><a href="#cb7-13"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a>)</span></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats8-1.png" width="768"></p>
 <p>The results support our hypothesis that the type of fish caught is related to the month in which we’re fishing. The <span class="math inline">\(\chi^2\)</span> independence test results at the top of the plot. In February we catch significantly more Haddock than we would hypothesize for an equal distribution. Whereas in March our results indicate there’s no strong evidence that the distribution isn’t equal.</p>
 </div>
@@ -384,33 +404,33 @@
 <a href="#within-subjects-designs" class="anchor"></a>Within-subjects designs</h2>
 <p>For our final example let’s imagine we’re conducting clinical trials for some new imaginary wonder drug. We have 134 subjects entering the trial. Some of them enter healthy (<em>n</em> = 96), some of them enter the trial already being sick (<em>n</em> = 38). All of them receive our treatment or intervention. Then we check back in a month to see if they are healthy or sick. A classic pre/post experimental design. We’re interested in seeing the change in both groupings. In the case of within-subjects designs, you can set <code>paired = TRUE</code>, which will display results from <strong>McNemar test</strong> in the subtitle.</p>
 <p>(<strong>Note:</strong> If you forget to set <code>paired = TRUE</code>, the results you get will be inaccurate.)</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># seed for reproducibility</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
-<span id="cb7-3"><a href="#cb7-3"></a></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="co"># create our imaginary data</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a>clinical_trial &lt;-</span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="st">  </span>tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span>(</span>
-<span id="cb7-7"><a href="#cb7-7"></a>    <span class="op">~</span>SickBefore, <span class="op">~</span>SickAfter, <span class="op">~</span>Counts,</span>
-<span id="cb7-8"><a href="#cb7-8"></a>    <span class="st">"No"</span>, <span class="st">"Yes"</span>, <span class="dv">4</span>,</span>
-<span id="cb7-9"><a href="#cb7-9"></a>    <span class="st">"Yes"</span>, <span class="st">"No"</span>, <span class="dv">25</span>,</span>
-<span id="cb7-10"><a href="#cb7-10"></a>    <span class="st">"Yes"</span>, <span class="st">"Yes"</span>, <span class="dv">13</span>,</span>
-<span id="cb7-11"><a href="#cb7-11"></a>    <span class="st">"No"</span>, <span class="st">"No"</span>, <span class="dv">92</span></span>
-<span id="cb7-12"><a href="#cb7-12"></a>  )</span>
-<span id="cb7-13"><a href="#cb7-13"></a></span>
-<span id="cb7-14"><a href="#cb7-14"></a><span class="co"># plot</span></span>
-<span id="cb7-15"><a href="#cb7-15"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</span>
-<span id="cb7-16"><a href="#cb7-16"></a>  <span class="dt">data =</span> clinical_trial,</span>
-<span id="cb7-17"><a href="#cb7-17"></a>  <span class="dt">x =</span> SickAfter,</span>
-<span id="cb7-18"><a href="#cb7-18"></a>  <span class="dt">y =</span> SickBefore,</span>
-<span id="cb7-19"><a href="#cb7-19"></a>  <span class="dt">counts =</span> Counts,</span>
-<span id="cb7-20"><a href="#cb7-20"></a>  <span class="dt">paired =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb7-21"><a href="#cb7-21"></a>  <span class="dt">label =</span> <span class="st">"both"</span>,</span>
-<span id="cb7-22"><a href="#cb7-22"></a>  <span class="dt">title =</span> <span class="st">"Results from imaginary clinical trial"</span>,</span>
-<span id="cb7-23"><a href="#cb7-23"></a>  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</span>
-<span id="cb7-24"><a href="#cb7-24"></a>  <span class="dt">palette =</span> <span class="st">"default_ucscgb"</span>,</span>
-<span id="cb7-25"><a href="#cb7-25"></a>  <span class="dt">direction =</span> <span class="dv">-1</span>,</span>
-<span id="cb7-26"><a href="#cb7-26"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
-<span id="cb7-27"><a href="#cb7-27"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># seed for reproducibility</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
+<span id="cb8-3"><a href="#cb8-3"></a></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="co"># create our imaginary data</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>clinical_trial &lt;-</span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="st">  </span>tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span>(</span>
+<span id="cb8-7"><a href="#cb8-7"></a>    <span class="op">~</span>SickBefore, <span class="op">~</span>SickAfter, <span class="op">~</span>Counts,</span>
+<span id="cb8-8"><a href="#cb8-8"></a>    <span class="st">"No"</span>, <span class="st">"Yes"</span>, <span class="dv">4</span>,</span>
+<span id="cb8-9"><a href="#cb8-9"></a>    <span class="st">"Yes"</span>, <span class="st">"No"</span>, <span class="dv">25</span>,</span>
+<span id="cb8-10"><a href="#cb8-10"></a>    <span class="st">"Yes"</span>, <span class="st">"Yes"</span>, <span class="dv">13</span>,</span>
+<span id="cb8-11"><a href="#cb8-11"></a>    <span class="st">"No"</span>, <span class="st">"No"</span>, <span class="dv">92</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a>  )</span>
+<span id="cb8-13"><a href="#cb8-13"></a></span>
+<span id="cb8-14"><a href="#cb8-14"></a><span class="co"># plot</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</span>
+<span id="cb8-16"><a href="#cb8-16"></a>  <span class="dt">data =</span> clinical_trial,</span>
+<span id="cb8-17"><a href="#cb8-17"></a>  <span class="dt">x =</span> SickAfter,</span>
+<span id="cb8-18"><a href="#cb8-18"></a>  <span class="dt">y =</span> SickBefore,</span>
+<span id="cb8-19"><a href="#cb8-19"></a>  <span class="dt">counts =</span> Counts,</span>
+<span id="cb8-20"><a href="#cb8-20"></a>  <span class="dt">paired =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb8-21"><a href="#cb8-21"></a>  <span class="dt">label =</span> <span class="st">"both"</span>,</span>
+<span id="cb8-22"><a href="#cb8-22"></a>  <span class="dt">title =</span> <span class="st">"Results from imaginary clinical trial"</span>,</span>
+<span id="cb8-23"><a href="#cb8-23"></a>  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</span>
+<span id="cb8-24"><a href="#cb8-24"></a>  <span class="dt">palette =</span> <span class="st">"default_ucscgb"</span>,</span>
+<span id="cb8-25"><a href="#cb8-25"></a>  <span class="dt">direction =</span> <span class="dv">-1</span>,</span>
+<span id="cb8-26"><a href="#cb8-26"></a>  <span class="dt">messages =</span> <span class="ot">FALSE</span></span>
+<span id="cb8-27"><a href="#cb8-27"></a>)</span></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats9-1.png" width="768"></p>
 <p>The results bode well for our experimental wonder drug. Of the 96 who started out healthy only 4% were sick after a month. Ideally, we would have hoped for zero but reality is seldom perfect. On the other side of the 38 who started out sick that number has reduced to just 13 or 34% which is a marked improvement.</p>
 </div>

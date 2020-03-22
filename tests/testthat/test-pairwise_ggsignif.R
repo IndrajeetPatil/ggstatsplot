@@ -1,5 +1,3 @@
-context(desc = "pairwise comparisons with ggsignif")
-
 # significant display works -------------------------------------------------
 
 testthat::test_that(
@@ -9,17 +7,19 @@ testthat::test_that(
 
     # creating the plot
     set.seed(123)
-    p <- ggstatsplot::ggbetweenstats(
-      data = ggplot2::msleep,
-      x = vore,
-      y = brainwt,
-      bf.message = FALSE,
-      messages = FALSE,
-      pairwise.comparisons = TRUE,
-      pairwise.display = "s",
-      caption = "mammalian sleep",
-      k = 3
-    )
+    p <-
+      ggstatsplot::ggbetweenstats(
+        data = ggplot2::msleep,
+        x = vore,
+        y = brainwt,
+        results.subtitle = FALSE,
+        bf.message = FALSE,
+        messages = FALSE,
+        pairwise.comparisons = TRUE,
+        pairwise.display = "s",
+        caption = "mammalian sleep",
+        k = 3
+      )
 
     # build the plot
     pb <- ggplot2::ggplot_build(p)
@@ -53,130 +53,38 @@ testthat::test_that(
 
     # creating the plot
     set.seed(123)
-    p <- ggstatsplot::ggbetweenstats(
-      data = ggstatsplot::movies_wide,
-      x = mpaa,
-      y = votes,
-      bf.message = FALSE,
-      messages = FALSE,
-      pairwise.comparisons = TRUE,
-      p.adjust.method = "none",
-      pairwise.display = "ns",
-      pairwise.annotation = "p.value",
-      k = 3
-    )
+    p <-
+      ggstatsplot::ggbetweenstats(
+        data = ggstatsplot::movies_wide,
+        x = mpaa,
+        y = votes,
+        results.subtitle = FALSE,
+        bf.message = FALSE,
+        messages = FALSE,
+        pairwise.comparisons = TRUE,
+        p.adjust.method = "none",
+        pairwise.display = "ns",
+        pairwise.annotation = "p.value",
+        k = 3
+      )
 
     # build the plot
     pb <- ggplot2::ggplot_build(p)
 
     # checking comparison groups and labels
-    # testthat::expect_equal(
-    #   pb$data[[7]],
-    #   structure(
-    #     list(
-    #       x = c(2L, 2L, 3L, 1L, 1L, 2L, 1L, 1L, 3L),
-    #       xend = c(
-    #         2L,
-    #         3L, 3L, 1L, 2L, 2L, 1L, 3L, 3L
-    #       ),
-    #       y = c(
-    #         159972.2,
-    #         161548.2,
-    #         161548.2,
-    #         171792.2,
-    #         173368.2,
-    #         173368.2,
-    #         183612.2,
-    #         185188.2,
-    #         185188.2
-    #       ),
-    #       yend = c(
-    #         161548.2,
-    #         161548.2,
-    #         159972.2,
-    #         173368.2,
-    #         173368.2,
-    #         171792.2,
-    #         185188.2,
-    #         185188.2,
-    #         183612.2
-    #       ),
-    #       annotation = structure(
-    #         c(
-    #           1L,
-    #           1L, 1L, 2L, 2L, 2L, 3L, 3L, 3L
-    #         ),
-    #         .Label = c(
-    #           "list(~italic(p)[ unadjusted ]== 0.079 )",
-    #           "list(~italic(p)[ unadjusted ]== 0.139 )",
-    #           "list(~italic(p)[ unadjusted ]== 0.825 )"
-    #         ),
-    #         class = "factor"
-    #       ),
-    #       group = structure(
-    #         c(
-    #           1L, 1L, 1L, 2L,
-    #           2L, 2L, 3L, 3L, 3L
-    #         ),
-    #         .Label = c(
-    #           "PG-13-R-1", "PG-13-PG-2",
-    #           "R-PG-3"
-    #         ),
-    #         class = "factor"
-    #       ),
-    #       PANEL = structure(
-    #         c(
-    #           1L, 1L,
-    #           1L, 1L, 1L, 1L, 1L, 1L, 1L
-    #         ),
-    #         .Label = "1",
-    #         class = "factor"
-    #       ),
-    #       shape = c(19, 19, 19, 19, 19, 19, 19, 19, 19),
-    #       colour = c(
-    #         "black",
-    #         "black",
-    #         "black",
-    #         "black",
-    #         "black",
-    #         "black",
-    #         "black",
-    #         "black",
-    #         "black"
-    #       ),
-    #       textsize = c(3, 3, 3, 3, 3, 3, 3, 3, 3),
-    #       angle = c(
-    #         0,
-    #         0, 0, 0, 0, 0, 0, 0, 0
-    #       ),
-    #       hjust = c(
-    #         0.5, 0.5, 0.5, 0.5, 0.5,
-    #         0.5, 0.5, 0.5, 0.5
-    #       ),
-    #       vjust = c(0, 0, 0, 0, 0, 0, 0, 0, 0),
-    #       alpha = c(NA, NA, NA, NA, NA, NA, NA, NA, NA),
-    #       family = c(
-    #         "",
-    #         "", "", "", "", "", "", "", ""
-    #       ),
-    #       fontface = c(
-    #         1, 1, 1, 1,
-    #         1, 1, 1, 1, 1
-    #       ),
-    #       lineheight = c(
-    #         1.2, 1.2, 1.2, 1.2, 1.2, 1.2,
-    #         1.2, 1.2, 1.2
-    #       ),
-    #       linetype = c(1, 1, 1, 1, 1, 1, 1, 1, 1),
-    #       size = c(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
-    #     ),
-    #     row.names = c(
-    #       NA,
-    #       -9L
-    #     ),
-    #     class = "data.frame"
-    #   )
-    # )
+    testthat::expect_equal(
+      unique(as.character(pb$data[[7]]$annotation)),
+      c(
+        "list(~italic(p)[ unadjusted ]== 0.079 )",
+        "list(~italic(p)[ unadjusted ]== 0.139 )",
+        "list(~italic(p)[ unadjusted ]== 0.825 )"
+      )
+    )
+
+    testthat::expect_equal(
+      unique(as.character(pb$data[[7]]$group)),
+      c("PG-13-R-1", "PG-13-PG-2", "R-PG-3")
+    )
 
     # checking caption
     testthat::expect_identical(
@@ -210,6 +118,7 @@ testthat::test_that(
       ),
       x = genre,
       y = rating,
+      results.subtitle = FALSE,
       type = "np",
       messages = FALSE,
       bf.message = FALSE,
@@ -301,6 +210,7 @@ testthat::test_that(
       data = ggplot2::mpg,
       x = drv,
       y = cty,
+      results.subtitle = FALSE,
       bf.message = FALSE,
       messages = FALSE,
       k = 3,
