@@ -17,7 +17,6 @@ ggbetweenstats(
   p.adjust.method = "holm",
   effsize.type = "unbiased",
   partial = TRUE,
-  effsize.noncentral = TRUE,
   bf.prior = 0.707,
   bf.message = TRUE,
   results.subtitle = TRUE,
@@ -26,7 +25,6 @@ ggbetweenstats(
   caption = NULL,
   title = NULL,
   subtitle = NULL,
-  stat.title = NULL,
   sample.size.label = TRUE,
   k = 2,
   var.equal = FALSE,
@@ -108,14 +106,7 @@ argument can be \code{"biased"} (equivalent to \code{"d"} for Cohen's \emph{d} f
 \code{"unbiased"} (equivalent to \code{"g"} Hedge's \emph{g} for \strong{t-test};
 \code{"partial_omega"} for partial omega-squared for \strong{anova})).}
 
-\item{partial}{Logical that decides if partial eta-squared or omega-squared
-are returned (Default: \code{TRUE}). If \code{FALSE}, eta-squared or omega-squared
-will be returned. Valid only for objects of class \code{lm}, \code{aov}, \code{anova}, or
-\code{aovlist}.}
-
-\item{effsize.noncentral}{Logical indicating whether to use non-central
-\emph{t}-distributions for computing the confidence interval for Cohen's \emph{d}
-or Hedge's \emph{g} (Default: \code{TRUE}).}
+\item{partial}{If \code{TRUE}, return partial indices.}
 
 \item{bf.prior}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
 width to use in calculating Bayes factors.}
@@ -137,10 +128,6 @@ variable names for \code{x} and \code{y} will be used.}
 
 \item{subtitle}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
-
-\item{stat.title}{A character describing the test being run, which will be
-added as a prefix in the subtitle. The default is \code{NULL}. An example of a
-\code{stat.title} argument will be something like \code{"Student's t-test: "}.}
 
 \item{sample.size.label}{Logical that decides whether sample size information
 should be displayed for each level of the grouping variable \code{x} (Default:

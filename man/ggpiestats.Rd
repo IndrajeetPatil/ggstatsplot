@@ -13,7 +13,6 @@ ggpiestats(
   paired = FALSE,
   results.subtitle = TRUE,
   factor.levels = NULL,
-  stat.title = NULL,
   label = "percentage",
   perc.k = 0,
   label.args = list(alpha = 1, fill = "white"),
@@ -43,8 +42,8 @@ ggpiestats(
 )
 }
 \arguments{
-\item{data}{A dataframe (or a tibble) from which variables specified are to
-be taken. A matrix or tables will \strong{not} be accepted.}
+\item{data}{for use with \code{formula}, a data frame containing all the
+data}
 
 \item{counts}{A string naming a variable in data containing counts, or \code{NULL}
 if each row represents a single observation (Default).}
@@ -66,11 +65,6 @@ the plot will be returned.}
 
 \item{factor.levels}{A character vector with labels for factor levels of
 \code{main} variable.}
-
-\item{stat.title}{Title for the effect being investigated with the chi-square
-test. The default is \code{NULL}, i.e. no title will be added to describe the
-effect being shown. An example of a \code{stat.title} argument will be something
-like \code{"main x condition"} or \code{"interaction"}.}
 
 \item{label}{Character decides what information needs to be displayed
 on the label in each pie slice. Possible options are \code{"percentage"}
@@ -188,9 +182,7 @@ set.seed(123)
 ggstatsplot::ggpiestats(
   data = ggplot2::msleep,
   x = vore,
-  perc.k = 1,
-  bf.message = FALSE,
-  k = 3
+  perc.k = 1
 )
 
 # association test (or contingency table analysis)

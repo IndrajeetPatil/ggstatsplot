@@ -66,11 +66,6 @@ grouped_ggbarstats <- function(data,
 
   # ======================== check user input =============================
 
-  # check that there is a grouping.var
-  if (!"grouping.var" %in% names(as.list(match.call()))) {
-    stop("You must specify a grouping variable")
-  }
-
   # ensure the grouping variable works quoted or unquoted
   grouping.var <- rlang::ensym(grouping.var)
   main <- rlang::ensym(main)
@@ -81,20 +76,6 @@ grouped_ggbarstats <- function(data,
   y <- y %||% condition
   counts <- if (!rlang::quo_is_null(rlang::enquo(counts))) rlang::ensym(counts)
 
-  # check that conditioning and grouping.var are different
-  if (rlang::as_name(y) == rlang::as_name(grouping.var)) {
-    message(cat(
-      ipmisc::red("\nError: "),
-      ipmisc::blue(
-        "Identical variable (",
-        ipmisc::yellow(rlang::as_name(y)),
-        ") was used for both grouping and conditioning, which is not allowed.\n"
-      ),
-      sep = ""
-    ))
-    return(invisible(rlang::as_name(y)))
-  }
-
   # if `title.prefix` is not provided, use the variable `grouping.var` name
   if (is.null(title.prefix)) title.prefix <- rlang::as_name(grouping.var)
 
@@ -103,7 +84,6 @@ grouped_ggbarstats <- function(data,
   # creating a dataframe
   df <-
     dplyr::select(.data = data, {{ grouping.var }}, {{ x }}, {{ y }}, {{ counts }}) %>%
-    tidyr::drop_na(data = .) %>% # creating a list for grouped analysis
     grouped_list(data = ., grouping.var = {{ grouping.var }})
 
   # ================ creating a list of return objects ========================

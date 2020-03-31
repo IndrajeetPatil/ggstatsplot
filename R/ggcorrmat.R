@@ -54,7 +54,6 @@
 #'   any of the following arguments since they are already internally being used
 #'   by `ggstatsplot`: `corr`, `method`, `p.mat`, `sig.level`, `ggtheme`,
 #'   `colors`, `matrix.type`, `lab`, `pch`, `legend.title`, `digits`.
-#' @inheritParams statsExpressions::corr_objects
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams ggscatterstats
 #' @inheritParams ggbetweenstats
@@ -159,7 +158,7 @@ ggcorrmat <- function(data,
   # ============================ checking corr.method =======================
 
   # see which method was used to specify type of correlation
-  stats_type <- stats_type_switch(type)
+  stats_type <- ipmisc::stats_type_switch(type)
 
   # if any of the abbreviations have been entered, change them
   corr.method <-
@@ -203,7 +202,7 @@ ggcorrmat <- function(data,
   if (output != "plot") {
     return(tibble::as_tibble(df_correlation) %>%
       dplyr::rename_all(., tolower) %>%
-      dplyr::rename(., n = n_obs))
+      dplyr::rename(., nobs = n_obs))
   }
 
   # ========================== plot =========================================

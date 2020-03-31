@@ -90,10 +90,7 @@ grouped_ggscatterstats <- function(data,
                                    sub.text = NULL,
                                    sub.args = list(size = 12)) {
 
-  # check that there is a grouping.var
-  if (!"grouping.var" %in% names(as.list(match.call()))) {
-    stop("You must specify a grouping variable")
-  }
+  # ======================== check user input =============================
 
   # ensure the grouping variable works quoted or unquoted
   grouping.var <- rlang::ensym(grouping.var)

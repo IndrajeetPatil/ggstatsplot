@@ -1,5 +1,3 @@
-context("grouped_ggpiestats")
-
 testthat::test_that(
   desc = "grouped_ggpiestats works",
   code = {
@@ -45,18 +43,6 @@ testthat::test_that(
         class %in% c("suv", "midsize"),
         trans %in% c("auto(l4)", "auto(l5)")
       )
-
-    ## expecting error message
-    testthat::expect_output(
-      ggstatsplot::grouped_ggpiestats(
-        data = mpg_short,
-        main = "cyl",
-        results.subtitle = FALSE,
-        condition = class,
-        grouping.var = class,
-        messages = FALSE
-      )
-    )
 
     # when arguments are entered as bare expressions
     set.seed(123)

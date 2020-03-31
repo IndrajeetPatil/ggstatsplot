@@ -9,6 +9,11 @@
       $('body').css('padding-top', $('.navbar').height() + 10);
     });
 
+    $('body').scrollspy({
+      target: '#sidebar',
+      offset: 60
+    });
+
     $('[data-toggle="tooltip"]').tooltip();
 
     var cur_path = paths(location.pathname);

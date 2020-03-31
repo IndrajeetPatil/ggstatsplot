@@ -18,20 +18,16 @@ variable — grouped_ggscatterstats • ggstatsplot</title>
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
-
-<!-- bootstrap-toc -->
-<link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
@@ -47,7 +43,7 @@ variable — grouped_ggscatterstats • ggstatsplot</title>
 
 <!-- docsearch -->
 <script src="../docsearch.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
@@ -61,6 +57,7 @@ variable — grouped_ggscatterstats" />
 histograms/boxplots/density plots with statistical details added as a
 subtitle." />
 <meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/logo.png" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -78,7 +75,7 @@ subtitle." />
 
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -173,7 +170,7 @@ subtitle." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/IndrajeetPatil/ggstatsplot/">
+  <a href="https://github.com/IndrajeetPatil/ggstatsplot">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -233,8 +230,8 @@ subtitle.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>A dataframe (or a tibble) from which variables specified are to
-be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
+      <td><p>for use with <code>formula</code>, a data frame containing all the
+data</p></td>
     </tr>
     <tr>
       <th>x</th>
@@ -338,18 +335,13 @@ parametric/pearson's), <code>"np"</code> (nonparametric/spearman), <code>"r"</co
 <code>"bf"</code> (for bayes factor), resp.</p></dd>
     <dt><code>conf.level</code></dt><dd><p>Scalar between 0 and 1. If unspecified, the defaults return
 <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></dd>
-    <dt><code>bf.prior</code></dt><dd><p>A numeric value between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the
-prior width to use in calculating Bayes Factors.</p></dd>
-    <dt><code>stat.title</code></dt><dd><p>A character describing the test being run, which will be
-added as a prefix in the subtitle. The default is <code>NULL</code>. An example of a
-<code>stat.title</code> argument will be something like <code>"Student's t-test: "</code>.</p></dd>
+    <dt><code>bf.prior</code></dt><dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
+width to use in calculating Bayes factors.</p></dd>
     <dt><code>nboot</code></dt><dd><p>Number of bootstrap samples for computing confidence interval
 for the effect size (Default: <code>100</code>).</p></dd>
     <dt><code>beta</code></dt><dd><p>bending constant (Default: <code>0.1</code>). For more, see <code><a href='https://rdrr.io/pkg/WRS2/man/pbcor.html'>?WRS2::pbcor</a></code>.</p></dd>
     <dt><code>k</code></dt><dd><p>Number of digits after decimal point (should be an integer)
 (Default: <code>k = 2</code>).</p></dd>
-    <dt><code>messages</code></dt><dd><p>Decides whether messages references, notes, and warnings are
-to be displayed (Default: <code>TRUE</code>).</p></dd>
     <dt><code>formula</code></dt><dd><p>Formula to use in smoothing function, eg. <code>y ~ x</code>,
 <code>y ~ poly(x, 2)</code>, <code>y ~ log(x)</code>. <code>NULL</code> by default, in which case
 <code>method = NULL</code> implies <code>formula = y ~ x</code> when there are fewer than 1,000
@@ -393,6 +385,8 @@ variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
 by <code>ggstatsplot</code>. This argument is primarily helpful for <code>grouped_</code> variant
 of the current function. Default is <code>NULL</code>. The argument should be entered
 as a function.</p></dd>
+    <dt><code>messages</code></dt><dd><p>Decides whether messages references, notes, and warnings are
+to be displayed (Default: <code>TRUE</code>).</p></dd>
     <dt><code>margins</code></dt><dd><p>Along which margins to show the plots. One of: [both, x, y].</p></dd>
     <dt><code>xparams</code></dt><dd><p>List of extra parameters to use only for the marginal plot along
 the x axis.</p></dd>
@@ -502,10 +496,15 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
 )</div><div class='img'><img src='grouped_ggscatterstats-3.png' alt='' width='700' height='433' /></div><div class='input'># }
 </div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <nav id="toc" data-toggle="toc" class="sticky-top">
-      <h2 data-toc-skip>Contents</h2>
-    </nav>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#references">References</a></li>
+      <li><a href="#see-also">See also</a></li>
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
   </div>
 </div>
 
@@ -516,7 +515,7 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
 
       </footer>

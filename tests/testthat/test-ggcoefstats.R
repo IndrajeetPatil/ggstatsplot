@@ -130,16 +130,25 @@ testthat::test_that(
             0.0647145392531592
           ),
           y = 1:4,
-          PANEL = structure(c(1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
+          PANEL = structure(c(
+            1L, 1L, 1L,
+            1L
+          ), .Label = "1", class = "factor"),
           group = structure(1:4, n = 4L),
           shape = c(16, 16, 16, 16),
-          colour = c("blue", "blue", "blue", "blue"),
+          colour = c(
+            "blue", "blue", "blue",
+            "blue"
+          ),
           size = c(3, 3, 3, 3),
           fill = c(NA, NA, NA, NA),
           alpha = c(NA, NA, NA, NA),
           stroke = c(0.5, 0.5, 0.5, 0.5)
         ),
-        row.names = c(NA, -4L),
+        row.names = c(
+          NA,
+          -4L
+        ),
         class = "data.frame"
       )
     )

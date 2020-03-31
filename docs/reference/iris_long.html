@@ -17,20 +17,16 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
-
-<!-- bootstrap-toc -->
-<link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
@@ -46,7 +42,7 @@
 
 <!-- docsearch -->
 <script src="../docsearch.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
@@ -57,6 +53,7 @@
 <meta property="og:title" content="Edgar Anderson's Iris Data in long format. — iris_long" />
 <meta property="og:description" content="Edgar Anderson's Iris Data in long format." />
 <meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/logo.png" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -74,7 +71,7 @@
 
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -169,7 +166,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/IndrajeetPatil/ggstatsplot/">
+  <a href="https://github.com/IndrajeetPatil/ggstatsplot">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -240,8 +237,8 @@ of iris. The species are Iris setosa, versicolor, and virginica.</p>
 #&gt; </span><span style='color: #BCBCBC;'>3</span><span>     3 setosa  Sepal.Length Sepal     Length    4.7
 #&gt; </span><span style='color: #BCBCBC;'>4</span><span>     4 setosa  Sepal.Length Sepal     Length    4.6
 #&gt; </span><span style='color: #BCBCBC;'>5</span><span>     5 setosa  Sepal.Length Sepal     Length    5  
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span>     6 setosa  Sepal.Length Sepal     Length    5.4</div><div class='input'><span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>(<span class='no'>iris_long</span>)</div><div class='output co'>#&gt; Observations: 600
-#&gt; Variables: 6
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span>     6 setosa  Sepal.Length Sepal     Length    5.4</div><div class='input'><span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>(<span class='no'>iris_long</span>)</div><div class='output co'>#&gt; Rows: 600
+#&gt; Columns: 6
 #&gt; $ id        </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17...
 #&gt; $ Species   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> setosa, setosa, setosa, setosa, setosa, setosa, setosa, s...
 #&gt; $ condition </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Sepal.Length, Sepal.Length, Sepal.Length, Sepal.Length, S...
@@ -249,10 +246,15 @@ of iris. The species are Iris setosa, versicolor, and virginica.</p>
 #&gt; $ measure   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Length, Length, Length, Length, Length, Length, Length, L...
 #&gt; $ value     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4....</div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <nav id="toc" data-toggle="toc" class="sticky-top">
-      <h2 data-toc-skip>Contents</h2>
-    </nav>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#format">Format</a></li>
+      <li><a href="#source">Source</a></li>
+      <li><a href="#details">Details</a></li>
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
   </div>
 </div>
 
@@ -263,7 +265,7 @@ of iris. The species are Iris setosa, versicolor, and virginica.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
 
       </footer>

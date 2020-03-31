@@ -611,37 +611,18 @@ testthat::test_that(
         messages = FALSE
       )
 
-    # checking captured messages
-    testthat::expect_identical(
-      p_sub,
-      ggplot2::expr(
-        paste(
-          NULL,
-          italic("t"),
-          "(",
-          "57",
-          ") = ",
-          "8.48",
-          ", ",
-          italic("p"),
-          " = ",
-          "< 0.001",
-          ", ",
-          widehat(italic(rho))["pb"],
-          " = ",
-          "0.75",
-          ", CI"["90%"],
-          " [",
-          "0.64",
-          ", ",
-          "0.87",
-          "]",
-          ", ",
-          italic("n")["pairs"],
-          " = ",
-          59L
-        )
+    fun_sub <-
+      statsExpressions::expr_corr_test(
+        data = dplyr::starwars,
+        x = mass,
+        y = height,
+        conf.level = 0.90,
+        type = "r",
+        output = "subtitle",
+        messages = FALSE
       )
-    )
+
+    # checking captured messages
+    testthat::expect_identical(p_sub, fun_sub)
   }
 )

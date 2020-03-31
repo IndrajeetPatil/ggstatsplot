@@ -87,10 +87,8 @@ grouped_gghistostats <- function(data,
   # ======================== preparing dataframe ============================
 
   # getting the dataframe ready
-  # creating a dataframe
   df <-
     dplyr::select(.data = data, {{ grouping.var }}, {{ x }}) %>%
-    tidyr::drop_na(data = .) %>% # creating a list for grouped analysis
     grouped_list(data = ., grouping.var = {{ grouping.var }})
 
   # creating a list of plots

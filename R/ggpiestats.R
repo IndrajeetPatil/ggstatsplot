@@ -28,7 +28,7 @@
 #' @param bf.message Logical that decides whether to display a caption with
 #'   results from Bayes Factor test in favor of the null hypothesis (default:
 #'   `FALSE`).
-#' @inheritParams statsExpressions::bf_contingency_tab
+#' @inheritParams tidyBF::bf_contingency_tab
 #' @inheritParams statsExpressions::expr_contingency_tab
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams gghistostats
@@ -69,9 +69,7 @@
 #' ggstatsplot::ggpiestats(
 #'   data = ggplot2::msleep,
 #'   x = vore,
-#'   perc.k = 1,
-#'   bf.message = FALSE,
-#'   k = 3
+#'   perc.k = 1
 #' )
 #'
 #' # association test (or contingency table analysis)
@@ -95,7 +93,6 @@ ggpiestats <- function(data,
                        paired = FALSE,
                        results.subtitle = TRUE,
                        factor.levels = NULL,
-                       stat.title = NULL,
                        label = "percentage",
                        perc.k = 0,
                        label.args = list(alpha = 1, fill = "white"),
@@ -184,7 +181,6 @@ ggpiestats <- function(data,
           ratio = ratio,
           nboot = nboot,
           paired = paired,
-          stat.title = stat.title,
           legend.title = legend.title,
           conf.level = conf.level,
           conf.type = "norm",

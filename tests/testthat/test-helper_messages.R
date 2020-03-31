@@ -1,4 +1,3 @@
-
 # ggcorrmat_matrix_message is working ------------------------------------
 
 testthat::test_that(

@@ -25,8 +25,8 @@ grouped_ggpiestats(
 )
 }
 \arguments{
-\item{data}{A dataframe (or a tibble) from which variables specified are to
-be taken. A matrix or tables will \strong{not} be accepted.}
+\item{data}{for use with \code{formula}, a data frame containing all the
+data}
 
 \item{main}{The variable to use as the \strong{rows} in the contingency table.}
 
@@ -102,10 +102,6 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 repeated measures design study (Default: \code{FALSE}). If \code{TRUE}, McNemar's
 test subtitle will be returned. If \code{FALSE}, Pearson's chi-square test will
 be returned.}
-    \item{\code{stat.title}}{Title for the effect being investigated with the chi-square
-test. The default is \code{NULL}, i.e. no title will be added to describe the
-effect being shown. An example of a \code{stat.title} argument will be something
-like \code{"main x condition"} or \code{"interaction"}.}
     \item{\code{conf.level}}{Scalar between 0 and 1. If unspecified, the defaults return
 \verb{95\%} lower and upper confidence intervals (\code{0.95}).}
     \item{\code{nboot}}{Number of bootstrap samples for computing confidence interval

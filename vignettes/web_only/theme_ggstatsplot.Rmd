@@ -25,6 +25,8 @@ knitr::opts_chunk$set(
   dpi = 300,
   out.width = "100%",
   collapse = TRUE,
+  message = FALSE,
+  warning = FALSE,
   comment = "#>"
 )
 ```

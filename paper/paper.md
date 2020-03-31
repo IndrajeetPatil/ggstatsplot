@@ -4,7 +4,7 @@ author:
 - Indrajeet Patil^[Max Planck Institute for Human Development, patilindrajeet.science@gmail.com]
 - Iyad Rahwan^[Max Planck Institute for Human Development]
 - Mina Cikara^[Harvard University]
-date: "2020-03-21"
+date: "2020-03-30"
 output: 
   bookdown::pdf_document2:
     fig_caption: true

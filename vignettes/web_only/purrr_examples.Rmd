@@ -295,9 +295,7 @@ histograms/boxplots/density plots with statistical details added as a subtitle.
 For data we'll use `movies_wide` which is from IMDB and part of the
 `ggstatsplot` package. Since it's a large dataset with some relatively small
 categories like **NC-17** we'll sample only one quarter of the data and
-completely drop NC-17 using `dplyr`. Once again we'll feed `purrr::pmap` a list
-of lists via `.l` and for `.f` we'll specify `.f =
-ggstatsplot::ggscatterstats`.
+completely drop NC-17 using `dplyr`. 
 
 This time we'll put all the code in one block-
 
@@ -484,7 +482,6 @@ plot_list <-
       bar.measure = list("proportion", "count", "mix", "density"),
       bar.fill = list("white", "red", "orange", "blue"),
       effsize.type = list("d", "d", "g", "g"),
-      effsize.noncentral = list(TRUE, FALSE, TRUE, FALSE),
       normal.curve = TRUE,
       normal.curve.args = list(list(
         color = "darkred",
@@ -706,8 +703,6 @@ plot_list <-
         ggthemes::theme_economist()
       ),
       ggstatsplot.layer = list(TRUE, TRUE, FALSE, FALSE),
-      sample.size.label = list(TRUE, FALSE, TRUE, FALSE),
-      proportion.test = list(TRUE, FALSE, TRUE, FALSE),
       messages = FALSE
     ),
     .f = ggstatsplot::ggbarstats

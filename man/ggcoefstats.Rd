@@ -136,7 +136,11 @@ displayed in captions (Default : \code{k.caption.summary = 0}).}
 excluded from the plot (Default: \code{TRUE}).}
 
 \item{exponentiate}{If \code{TRUE}, the \code{x}-axis will be logarithmic (Default:
-\code{FALSE}).}
+\code{FALSE}). Note that exponents for the coefficient estimates and associated
+standard errors plus confidence intervals are computed by the underlying
+tidying packages (\code{broom}/\code{parameters}) and not done by \code{ggcoefstats}. So
+this might not work if the underlying packages don't support
+exponentiation.}
 
 \item{sort}{If \code{"none"} (default) do not sort, \code{"ascending"} sort by
 increasing coefficient value, or \code{"descending"} sort by decreasing

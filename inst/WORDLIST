@@ -20,9 +20,7 @@ boxviolin
 btnG
 Camilli
 cbcbbfa
-cbu
 changedate
-checkmark
 Cikara
 Cochrane
 codecov
@@ -37,7 +35,6 @@ Cramer's
 Cramér's
 Cramer'V
 Cramér’s
-cran
 Crichtlow
 Cushman
 customizable
@@ -52,7 +49,6 @@ ds
 dsquintana
 Durbin
 Dwass
-effectSize
 effsize
 eg
 elasticnet
@@ -73,13 +69,11 @@ gghistostats
 ggpiestats
 ggplot
 ggscatterstats
-ggtheme
 ggwithinstats
 gh
 github
 Github
 Gitter
-gla
 GLMM
 GLMMs
 glyphs
@@ -127,7 +121,11 @@ Licence
 lifecycle
 Likert
 linux
+Lüdecke
 machiavellianism
+Mair
+Makowski
+Mangiafico
 McNemar
 McNemar's
 McNemar’s
@@ -137,7 +135,6 @@ modelling
 Mora
 mpaa
 MPAA
-mrc
 multiway
 nd
 netlify
@@ -154,7 +151,6 @@ Otterstetter
 pairwiseComparisons
 pandoc
 paulvanderlaken
-pb
 pearson's
 piechart
 plotgrid
@@ -164,15 +160,12 @@ pre
 preferrred
 priori
 pseudolikelihood
-psy
 PsyArXiv
 purrr
 Quartile
 Rafferty
 Rahwan
 Raison
-rcompanion
-Rdoc
 readme
 README
 RepeatedMs
@@ -190,8 +183,6 @@ spearman
 sphericity
 StackOverflow
 statsExpressions
-statswiki
-steve
 svg
 tblr
 TERGM
@@ -203,7 +194,6 @@ tidyverse
 tobit
 Tufte
 uber
-uk
 unadjusted
 unjittered
 versicolor
@@ -214,7 +204,6 @@ Welch's
 Welch’s
 Wilk
 Winsorized
-WRS
 www
 yellowgreen
 youtube

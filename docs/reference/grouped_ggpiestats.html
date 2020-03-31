@@ -17,20 +17,16 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
-
-<!-- bootstrap-toc -->
-<link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
@@ -46,7 +42,7 @@
 
 <!-- docsearch -->
 <script src="../docsearch.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
@@ -59,6 +55,7 @@
 function across multiple levels of a given factor and combining the
 resulting plots using ggstatsplot::combine_plots." />
 <meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/logo.png" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -76,7 +73,7 @@ resulting plots using ggstatsplot::combine_plots." />
 
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -171,7 +168,7 @@ resulting plots using ggstatsplot::combine_plots." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/IndrajeetPatil/ggstatsplot/">
+  <a href="https://github.com/IndrajeetPatil/ggstatsplot">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -231,8 +228,8 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>A dataframe (or a tibble) from which variables specified are to
-be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
+      <td><p>for use with <code>formula</code>, a data frame containing all the
+data</p></td>
     </tr>
     <tr>
       <th>main</th>
@@ -324,10 +321,6 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 repeated measures design study (Default: <code>FALSE</code>). If <code>TRUE</code>, McNemar's
 test subtitle will be returned. If <code>FALSE</code>, Pearson's chi-square test will
 be returned.</p></dd>
-    <dt><code>stat.title</code></dt><dd><p>Title for the effect being investigated with the chi-square
-test. The default is <code>NULL</code>, i.e. no title will be added to describe the
-effect being shown. An example of a <code>stat.title</code> argument will be something
-like <code>"main x condition"</code> or <code>"interaction"</code>.</p></dd>
     <dt><code>conf.level</code></dt><dd><p>Scalar between 0 and 1. If unspecified, the defaults return
 <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></dd>
     <dt><code>nboot</code></dt><dd><p>Number of bootstrap samples for computing confidence interval
@@ -449,10 +442,16 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
 )</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='img'><img src='grouped_ggpiestats-2.png' alt='' width='700' height='433' /></div><div class='input'># }
 </div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <nav id="toc" data-toggle="toc" class="sticky-top">
-      <h2 data-toc-skip>Contents</h2>
-    </nav>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#references">References</a></li>
+      <li><a href="#see-also">See also</a></li>
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
   </div>
 </div>
 
@@ -463,7 +462,7 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
 
       </footer>

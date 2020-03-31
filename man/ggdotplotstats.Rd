@@ -11,7 +11,6 @@ ggdotplotstats(
   xlab = NULL,
   ylab = NULL,
   title = NULL,
-  stat.title = NULL,
   subtitle = NULL,
   caption = NULL,
   type = "parametric",
@@ -19,7 +18,6 @@ ggdotplotstats(
   bf.prior = 0.707,
   bf.message = TRUE,
   effsize.type = "g",
-  effsize.noncentral = TRUE,
   conf.level = 0.95,
   nboot = 100,
   k = 2,
@@ -56,10 +54,6 @@ variable names for \code{x} and \code{y} will be used.}
 
 \item{title}{The text for the plot title.}
 
-\item{stat.title}{A character describing the test being run, which will be
-added as a prefix in the subtitle. The default is \code{NULL}. An example of a
-\code{stat.title} argument will be something like \code{"Student's t-test: "}.}
-
 \item{subtitle}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
 
@@ -73,8 +67,8 @@ or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accep
 \item{test.value}{A number specifying the value of the null hypothesis
 (Default: \code{0}).}
 
-\item{bf.prior}{A numeric value between \code{0.5} and \code{2} (default \code{0.707}), the
-prior width to use in calculating Bayes Factors.}
+\item{bf.prior}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
+width to use in calculating Bayes factors.}
 
 \item{bf.message}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
@@ -83,10 +77,6 @@ parametric test} (Default: \code{TRUE}).}
 \item{effsize.type}{Type of effect size needed for \emph{parametric} tests. The
 argument can be \code{"biased"} (\code{"d"} for Cohen's \emph{d}) or \code{"unbiased"}
 (\code{"g"} Hedge's \emph{g} for \strong{t-test}). The default is \code{"g"}.}
-
-\item{effsize.noncentral}{Logical indicating whether to use non-central
-\emph{t}-distributions for computing the confidence interval for Cohen's \emph{d}
-or Hedge's \emph{g} (Default: \code{TRUE}).}
 
 \item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
 \verb{95\%} lower and upper confidence intervals (\code{0.95}).}

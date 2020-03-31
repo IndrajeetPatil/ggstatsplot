@@ -1,5 +1,3 @@
-context("grouped_ggbarstats")
-
 testthat::test_that(
   desc = "grouped_ggbarstats works",
   code = {

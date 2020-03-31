@@ -5,7 +5,7 @@ Version: 0.4.0.9000
 Authors@R: 
     c(person(given = "Indrajeet",
              family = "Patil",
-             role = c("cre", "aut", "ctb"),
+             role = c("cre", "aut"),
              email = "patilindrajeet.science@gmail.com",
              comment = c(ORCID = "0000-0003-1995-6531")),
       person(given = "Chuck",
@@ -62,10 +62,12 @@ Suggests:
     testthat,
     tibble,
     WRS2
-Remotes:
-    easystats/correlation
 VignetteBuilder: 
     knitr
+Remotes: 
+    easystats/correlation,
+    IndrajeetPatil/statsExpressions,
+    IndrajeetPatil/ipmisc
 Encoding: UTF-8
 Language: en-US
 LazyData: true

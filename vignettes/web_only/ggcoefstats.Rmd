@@ -1458,7 +1458,7 @@ ggstatsplot::ggcoefstats(
 
 ## bias reduction for adjacent category logit models (`bracl`)
 
-```{r bracl, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 7}
+```{r bracl, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 7, eval=FALSE}
 # setup
 set.seed(123)
 library(brglm2)
@@ -1844,7 +1844,7 @@ ggstatsplot::combine_plots(
 Another alternative is to use robust models, as implemented in the `robustbase`
 package.
 
-```{r robustbase, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 6}
+```{r robustbase, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 6, eval=FALSE}
 # setup
 set.seed(123)
 library(robustbase)

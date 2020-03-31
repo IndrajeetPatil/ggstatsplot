@@ -75,30 +75,6 @@ grouped_ggpiestats <- function(data,
 
   # ======================== check user input =============================
 
-  # create a list of function call to check
-  param_list <- as.list(match.call())
-
-  # check that there is a grouping.var
-  if (!"grouping.var" %in% names(param_list)) {
-    stop("You must specify a grouping variable")
-  }
-
-  # check that conditioning and grouping.var are different
-  if ("condition" %in% names(param_list)) {
-    if (as.character(param_list$condition) == as.character(param_list$grouping.var)) {
-      message(cat(
-        ipmisc::red("\nError: "),
-        ipmisc::blue(
-          "Identical variable (",
-          ipmisc::yellow(param_list$condition),
-          ") was used for both grouping and conditioning, which is not allowed.\n"
-        ),
-        sep = ""
-      ))
-      return(invisible(param_list$condition))
-    }
-  }
-
   # ensure the grouping variable works quoted or unquoted
   grouping.var <- rlang::ensym(grouping.var)
   main <- rlang::ensym(main)
@@ -117,7 +93,6 @@ grouped_ggpiestats <- function(data,
   # creating a dataframe
   df <-
     dplyr::select(.data = data, {{ grouping.var }}, {{ x }}, {{ y }}, {{ counts }}) %>%
-    tidyr::drop_na(data = .) %>% # creating a list for grouped analysis
     grouped_list(data = ., grouping.var = {{ grouping.var }})
 
   # ==================== creating a list of return objects ===================

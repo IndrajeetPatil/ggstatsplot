@@ -40,13 +40,6 @@
   "contributor": [
     {
       "@type": "Person",
-      "givenName": "Indrajeet",
-      "familyName": "Patil",
-      "email": "patilindrajeet.science@gmail.com",
-      "@id": "https://orcid.org/0000-0003-1995-6531"
-    },
-    {
-      "@type": "Person",
       "givenName": "Chuck",
       "familyName": "Powell",
       "email": "ibecav@gmail.com",
@@ -346,7 +339,7 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=ipmisc"
+      "sameAs": "https://github.com/IndrajeetPatil/ipmisc"
     },
     {
       "@type": "SoftwareApplication",
@@ -411,7 +404,7 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=statsExpressions"
+      "sameAs": "https://github.com/IndrajeetPatil/statsExpressions"
     },
     {
       "@type": "SoftwareApplication",

@@ -86,11 +86,23 @@ ggstatsplot::ggbetweenstats(
 ```
 
 **Note**:
+  
   - The function automatically decides whether an independent samples *t*-test
     is preferred (for 2 groups) or a Oneway ANOVA (3 or more groups). based on
     the number of levels in the grouping variable.
+    
   - The output of the function is a `ggplot` object which means that it can be
     further modified with `ggplot2` functions.
+
+As can be seen from the plot, the function by default returns Bayes Factor for
+the test. If the null hypothesis can't be rejected with the null hypothesis
+significance testing (NHST) approach, the Bayesian approach can help index
+evidence in favor of the null hypothesis (i.e., $BF_{01}$).
+
+By default, natural logarithms are shown because Bayes Factor values can
+sometimes be pretty large. Having values on logarithmic scale also makes it easy
+to compare evidence in favor alternative ($BF_{10}$) versus null ($BF_{01}$)
+hypotheses (since $log_{e}(BF_{01}) = - log_{e}(BF_{01})$). 
 
 We can make the output much more aesthetically pleasing as well as informative
 by making use of the many optional parameters in `ggbetweenstats`. We'll add a

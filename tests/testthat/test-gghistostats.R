@@ -633,44 +633,28 @@ testthat::test_that(
 
     # should output a list of length 3
     set.seed(123)
-    p_sub <- ggstatsplot::gghistostats(
-      data = ggplot2::msleep,
-      x = brainwt,
-      output = "subtitle",
-      type = "np",
-      test.value = 0.25,
-      messages = FALSE
-    )
+    p_sub <-
+      ggstatsplot::gghistostats(
+        data = ggplot2::msleep,
+        x = brainwt,
+        output = "subtitle",
+        type = "np",
+        test.value = 0.25,
+        messages = FALSE
+      )
+
+    set.seed(123)
+    sub <-
+      statsExpressions::expr_t_onesample(
+        data = ggplot2::msleep,
+        x = brainwt,
+        output = "subtitle",
+        type = "np",
+        test.value = 0.25,
+        messages = FALSE
+      )
 
     # tests
-    testthat::expect_identical(
-      p_sub,
-      ggplot2::expr(
-        paste(
-          NULL,
-          "log"["e"](italic("V")),
-          " = ",
-          "5.57",
-          ", ",
-          italic("p"),
-          " = ",
-          "< 0.001",
-          ", ",
-          widehat(italic("r")),
-          " = ",
-          "-0.58",
-          ", CI"["95%"],
-          " [",
-          "-0.81",
-          ", ",
-          "-0.38",
-          "]",
-          ", ",
-          italic("n")["obs"],
-          " = ",
-          56L
-        )
-      )
-    )
+    testthat::expect_identical(p_sub, sub)
   }
 )

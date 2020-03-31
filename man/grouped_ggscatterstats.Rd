@@ -25,8 +25,8 @@ grouped_ggscatterstats(
 )
 }
 \arguments{
-\item{data}{A dataframe (or a tibble) from which variables specified are to
-be taken. A matrix or tables will \strong{not} be accepted.}
+\item{data}{for use with \code{formula}, a data frame containing all the
+data}
 
 \item{x}{The column in \code{data} containing the explanatory variable to be
 plotted on the \code{x}-axis. Can be entered either as a character string (e.g.,
@@ -116,18 +116,13 @@ parametric/pearson's), \code{"np"} (nonparametric/spearman), \code{"r"} (robust)
 \code{"bf"} (for bayes factor), resp.}
     \item{\code{conf.level}}{Scalar between 0 and 1. If unspecified, the defaults return
 \verb{95\%} lower and upper confidence intervals (\code{0.95}).}
-    \item{\code{bf.prior}}{A numeric value between \code{0.5} and \code{2} (default \code{0.707}), the
-prior width to use in calculating Bayes Factors.}
-    \item{\code{stat.title}}{A character describing the test being run, which will be
-added as a prefix in the subtitle. The default is \code{NULL}. An example of a
-\code{stat.title} argument will be something like \code{"Student's t-test: "}.}
+    \item{\code{bf.prior}}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
+width to use in calculating Bayes factors.}
     \item{\code{nboot}}{Number of bootstrap samples for computing confidence interval
 for the effect size (Default: \code{100}).}
     \item{\code{beta}}{bending constant (Default: \code{0.1}). For more, see \code{?WRS2::pbcor}.}
     \item{\code{k}}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
-    \item{\code{messages}}{Decides whether messages references, notes, and warnings are
-to be displayed (Default: \code{TRUE}).}
     \item{\code{formula}}{Formula to use in smoothing function, eg. \code{y ~ x},
 \code{y ~ poly(x, 2)}, \code{y ~ log(x)}. \code{NULL} by default, in which case
 \code{method = NULL} implies \code{formula = y ~ x} when there are fewer than 1,000
@@ -175,6 +170,8 @@ variable names for \code{x} and \code{y} will be used.}
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
 of the current function. Default is \code{NULL}. The argument should be entered
 as a function.}
+    \item{\code{messages}}{Decides whether messages references, notes, and warnings are
+to be displayed (Default: \code{TRUE}).}
     \item{\code{margins}}{Along which margins to show the plots. One of: [both, x, y].}
     \item{\code{xparams}}{List of extra parameters to use only for the marginal plot along
 the x axis.}

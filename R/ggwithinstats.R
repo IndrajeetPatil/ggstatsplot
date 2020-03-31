@@ -75,7 +75,6 @@ ggwithinstats <- function(data,
                           p.adjust.method = "holm",
                           effsize.type = "unbiased",
                           partial = TRUE,
-                          effsize.noncentral = TRUE,
                           bf.prior = 0.707,
                           bf.message = TRUE,
                           sphericity.correction = TRUE,
@@ -117,7 +116,7 @@ ggwithinstats <- function(data,
                           ...) {
 
   # convert entered stats type to a standard notation
-  type <- stats_type_switch(type)
+  type <- ipmisc::stats_type_switch(type)
 
   # no pairwise comparisons are available for Bayesian t-tests
   if (type == "bayes") pairwise.comparisons <- FALSE
@@ -202,7 +201,6 @@ ggwithinstats <- function(data,
         paired = TRUE,
         effsize.type = effsize.type,
         partial = partial,
-        effsize.noncentral = effsize.noncentral,
         var.equal = TRUE,
         sphericity.correction = sphericity.correction,
         bf.prior = bf.prior,

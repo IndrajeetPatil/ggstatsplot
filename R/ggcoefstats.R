@@ -84,7 +84,11 @@
 #' @param exclude.intercept Logical that decides whether the intercept should be
 #'   excluded from the plot (Default: `TRUE`).
 #' @param exponentiate If `TRUE`, the `x`-axis will be logarithmic (Default:
-#'   `FALSE`).
+#'   `FALSE`). Note that exponents for the coefficient estimates and associated
+#'   standard errors plus confidence intervals are computed by the underlying
+#'   tidying packages (`broom`/`parameters`) and not done by `ggcoefstats`. So
+#'   this might not work if the underlying packages don't support
+#'   exponentiation.
 #' @param errorbar.args Additional arguments that will be passed to
 #'   `ggplot2::geom_errorbarh` geom. Please see documentation for that function
 #'   to know more about these arguments.
@@ -393,6 +397,7 @@ ggcoefstats <- function(x,
           x = x,
           conf.int = conf.int,
           conf.level = conf.level,
+          exponentiate = exponentiate,
           effects = "fixed",
           parametric = TRUE, # for `gam` objects
           ...
@@ -543,17 +548,6 @@ ggcoefstats <- function(x,
     tidy_df %<>%
       dplyr::filter(
         .data = ., !grepl(pattern = "(Intercept)", x = term, ignore.case = TRUE)
-      )
-  }
-
-  # if the coefficients are to be exponentiated, the label positions will also
-  # have to be adjusted
-  if (isTRUE(exponentiate)) {
-    tidy_df %<>%
-      dplyr::mutate_at(
-        .tbl = .,
-        .vars = dplyr::vars(dplyr::matches(match = "estimate|conf", ignore.case = TRUE)),
-        .funs = exp
       )
   }
 

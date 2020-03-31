@@ -72,7 +72,6 @@ gghistostats <- function(data,
                          binwidth = NULL,
                          bar.measure = "count",
                          xlab = NULL,
-                         stat.title = NULL,
                          title = NULL,
                          subtitle = NULL,
                          caption = NULL,
@@ -81,7 +80,6 @@ gghistostats <- function(data,
                          bf.prior = 0.707,
                          bf.message = TRUE,
                          effsize.type = "g",
-                         effsize.noncentral = TRUE,
                          conf.level = 0.95,
                          nboot = 100,
                          k = 2,
@@ -105,7 +103,7 @@ gghistostats <- function(data,
                          ...) {
 
   # convert entered stats type to a standard notation
-  type <- stats_type_switch(type)
+  type <- ipmisc::stats_type_switch(type)
 
   # ================================= dataframe ==============================
 
@@ -140,12 +138,10 @@ gghistostats <- function(data,
         bf.prior = bf.prior,
         robust.estimator = "onestep",
         effsize.type = effsize.type,
-        effsize.noncentral = effsize.noncentral,
         conf.type = "norm",
         conf.level = conf.level,
         nboot = nboot,
         k = k,
-        stat.title = stat.title,
         messages = messages
       )
 

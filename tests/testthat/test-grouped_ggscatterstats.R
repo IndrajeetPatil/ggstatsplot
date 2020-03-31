@@ -1,5 +1,3 @@
-context("grouped_ggscatterstats")
-
 testthat::test_that(
   desc = "grouped_ggscatterstats works",
   code = {
@@ -172,14 +170,13 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
 
-    # should output a list of length 3
+    # data
+    df <- dplyr::filter(.data = ggstatsplot::movies_long, genre %in% c("Action Drama"))
+
     set.seed(123)
     ls_results <-
       ggstatsplot::grouped_ggscatterstats(
-        data = dplyr::filter(
-          .data = ggstatsplot::movies_long,
-          genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
-        ),
+        data = df,
         x = rating,
         y = length,
         k = 3,
@@ -189,131 +186,20 @@ testthat::test_that(
         messages = FALSE
       )
 
+    set.seed(123)
+    basic_results <-
+      statsExpressions::expr_corr_test(
+        data = df,
+        x = rating,
+        y = length,
+        k = 3,
+        conf.level = 0.99,
+        output = "subtitle",
+        messages = FALSE
+      )
+
     # tests
-    testthat::expect_equal(length(ls_results), 4L)
-    testthat::expect_identical(
-      ls_results[[1]],
-      ggplot2::expr(
-        paste(
-          NULL,
-          italic("t"),
-          "(",
-          "184",
-          ") = ",
-          "10.145",
-          ", ",
-          italic("p"),
-          " = ",
-          "< 0.001",
-          ", ",
-          widehat(italic("r"))["Pearson"],
-          " = ",
-          "0.599",
-          ", CI"["99%"],
-          " [",
-          "0.463",
-          ", ",
-          "0.707",
-          "]",
-          ", ",
-          italic("n")["pairs"],
-          " = ",
-          186L
-        )
-      )
-    )
-    testthat::expect_identical(
-      ls_results[[2]],
-      ggplot2::expr(
-        paste(
-          NULL,
-          italic("t"),
-          "(",
-          "86",
-          ") = ",
-          "3.626",
-          ", ",
-          italic("p"),
-          " = ",
-          "< 0.001",
-          ", ",
-          widehat(italic("r"))["Pearson"],
-          " = ",
-          "0.364",
-          ", CI"["99%"],
-          " [",
-          "0.102",
-          ", ",
-          "0.579",
-          "]",
-          ", ",
-          italic("n")["pairs"],
-          " = ",
-          88L
-        )
-      )
-    )
-    testthat::expect_identical(
-      ls_results[[3]],
-      ggplot2::expr(
-        paste(
-          NULL,
-          italic("t"),
-          "(",
-          "120",
-          ") = ",
-          "7.173",
-          ", ",
-          italic("p"),
-          " = ",
-          "< 0.001",
-          ", ",
-          widehat(italic("r"))["Pearson"],
-          " = ",
-          "0.548",
-          ", CI"["99%"],
-          " [",
-          "0.362",
-          ", ",
-          "0.692",
-          "]",
-          ", ",
-          italic("n")["pairs"],
-          " = ",
-          122L
-        )
-      )
-    )
-    testthat::expect_identical(
-      ls_results[[4]],
-      ggplot2::expr(
-        paste(
-          NULL,
-          italic("t"),
-          "(",
-          "258",
-          ") = ",
-          "5.202",
-          ", ",
-          italic("p"),
-          " = ",
-          "< 0.001",
-          ", ",
-          widehat(italic("r"))["Pearson"],
-          " = ",
-          "0.308",
-          ", CI"["99%"],
-          " [",
-          "0.156",
-          ", ",
-          "0.446",
-          "]",
-          ", ",
-          italic("n")["pairs"],
-          " = ",
-          260L
-        )
-      )
-    )
+    testthat::expect_equal(length(ls_results), 1L)
+    testthat::expect_identical(ls_results$`Action Drama`, basic_results)
   }
 )

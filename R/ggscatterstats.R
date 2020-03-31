@@ -121,7 +121,6 @@ ggscatterstats <- function(data,
                            vline.args = list(color = xfill, size = 1, linetype = "dashed"),
                            hline.args = list(color = yfill, size = 1, linetype = "dashed"),
                            results.subtitle = TRUE,
-                           stat.title = NULL,
                            xlab = NULL,
                            ylab = NULL,
                            title = NULL,
@@ -138,7 +137,7 @@ ggscatterstats <- function(data,
                            ...) {
 
   # convert entered stats type to a standard notation
-  type <- stats_type_switch(type)
+  type <- ipmisc::stats_type_switch(type)
 
   #---------------------- variable names --------------------------------
 
@@ -201,7 +200,6 @@ ggscatterstats <- function(data,
         conf.level = conf.level,
         conf.type = "norm",
         k = k,
-        stat.title = stat.title,
         messages = messages
       )
 

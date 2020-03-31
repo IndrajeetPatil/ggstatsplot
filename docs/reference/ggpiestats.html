@@ -17,20 +17,16 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
-
-<!-- bootstrap-toc -->
-<link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
@@ -46,7 +42,7 @@
 
 <!-- docsearch -->
 <script src="../docsearch.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
@@ -58,6 +54,7 @@
 <meta property="og:description" content="Pie charts for categorical data with statistical details
 included in the plot as a subtitle." />
 <meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/logo.png" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -75,7 +72,7 @@ included in the plot as a subtitle." />
 
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -170,7 +167,7 @@ included in the plot as a subtitle." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/IndrajeetPatil/ggstatsplot/">
+  <a href="https://github.com/IndrajeetPatil/ggstatsplot">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -213,7 +210,6 @@ included in the plot as a subtitle.</p>
   <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>factor.levels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"percentage"</span>,
   <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"white"</span>),
@@ -247,8 +243,8 @@ included in the plot as a subtitle.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>A dataframe (or a tibble) from which variables specified are to
-be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
+      <td><p>for use with <code>formula</code>, a data frame containing all the
+data</p></td>
     </tr>
     <tr>
       <th>counts</th>
@@ -280,13 +276,6 @@ the plot will be returned.</p></td>
       <th>factor.levels</th>
       <td><p>A character vector with labels for factor levels of
 <code>main</code> variable.</p></td>
-    </tr>
-    <tr>
-      <th>stat.title</th>
-      <td><p>Title for the effect being investigated with the chi-square
-test. The default is <code>NULL</code>, i.e. no title will be added to describe the
-effect being shown. An example of a <code>stat.title</code> argument will be something
-like <code>"main x condition"</code> or <code>"interaction"</code>.</p></td>
     </tr>
     <tr>
       <th>label</th>
@@ -461,9 +450,7 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html'>ggpiestats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
-  <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>
+  <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>1</span>
 )</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>100</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggpiestats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># association test (or contingency table analysis)</span>
@@ -488,10 +475,16 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
 #&gt; </span><span style='color: #BCBCBC;'>2</span><span> Chi-squared test for given probabilities ns          
 #&gt; </span><span style='color: #BCBCBC;'>3</span><span> Chi-squared test for given probabilities **          </div><div class='img'><img src='ggpiestats-2.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <nav id="toc" data-toggle="toc" class="sticky-top">
-      <h2 data-toc-skip>Contents</h2>
-    </nav>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#references">References</a></li>
+      <li><a href="#see-also">See also</a></li>
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
   </div>
 </div>
 
@@ -502,7 +495,7 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
 
       </footer>
