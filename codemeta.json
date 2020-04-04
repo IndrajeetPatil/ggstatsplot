@@ -200,13 +200,14 @@
       "@type": "SoftwareApplication",
       "identifier": "broomExtra",
       "name": "broomExtra",
+      "version": ">= 2.6.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=broomExtra"
+      "sameAs": "https://github.com/IndrajeetPatil/broomExtra"
     },
     {
       "@type": "SoftwareApplication",
@@ -470,7 +471,15 @@
       "sameAs": "https://doi.org/10.5281/zenodo.2074621"
     }
   ],
-  "copyrightHolder": {},
+  "copyrightHolder": [
+    {
+      "@type": "Person",
+      "givenName": "Indrajeet",
+      "familyName": "Patil",
+      "email": "patilindrajeet.science@gmail.com",
+      "@id": "https://orcid.org/0000-0003-1995-6531"
+    }
+  ],
   "funder": {},
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
 }

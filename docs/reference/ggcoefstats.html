@@ -17,23 +17,27 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -42,7 +46,7 @@
 
 <!-- docsearch -->
 <script src="../docsearch.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
@@ -53,7 +57,6 @@
 <meta property="og:title" content="Dot-and-whisker plots for regression analyses — ggcoefstats" />
 <meta property="og:description" content="Dot-and-whisker plots for regression analyses" />
 <meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/logo.png" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -71,7 +74,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -166,7 +169,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/IndrajeetPatil/ggstatsplot">
+  <a href="https://github.com/IndrajeetPatil/ggstatsplot/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -516,9 +519,9 @@ labels.</p>
 <span class='no'>mod</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span>(<span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>mpg</span> ~ <span class='no'>cyl</span> * <span class='no'>am</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>)
 
 <span class='co'># to get a plot</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html'>ggcoefstats</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>)</div><div class='img'><img src='ggcoefstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggcoefstats</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>)</div><div class='img'><img src='ggcoefstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># to get a tidy dataframe</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html'>ggcoefstats</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"tidy"</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 3 x 11</span><span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggcoefstats</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"tidy"</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 3 x 11</span><span>
 #&gt;   term   estimate conf.low conf.high std.error statistic  p.value significance
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span> cyl       -</span><span style='color: #BB0000;'>1.98</span><span>    -</span><span style='color: #BB0000;'>2.89</span><span>    -</span><span style='color: #BB0000;'>1.06</span><span>      0.449 -4.40     0.000</span><span style='text-decoration: underline;'>141</span><span> ***         
@@ -535,7 +538,7 @@ labels.</p>
 #&gt; </span><span style='color: #BCBCBC;'>2</span><span> list(~widehat(italic(beta))==10.18, ~italic(t)(28)==2.36, ~italic(p)== 0.025) 
 #&gt; </span><span style='color: #BCBCBC;'>3</span><span> list(~widehat(italic(beta))==-1.31, ~italic(t)(28)==-1.85, ~italic(p)== 0.076)</div><div class='input'>
 <span class='co'># to get a glance summary</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html'>ggcoefstats</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"glance"</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 13</span><span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggcoefstats</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"glance"</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 13</span><span>
 #&gt;   r.squared adj.r.squared sigma statistic       p.value    df loglik   aic   bic
 #&gt;       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span>     0.785         0.762  2.94      34.1 0.000</span><span style='text-decoration: underline;'>000</span><span>001</span><span style='text-decoration: underline;'>73</span><span>     3  -</span><span style='color: #BB0000;'>77.8</span><span>  166.  173.
@@ -543,7 +546,7 @@ labels.</p>
 #&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span>     242.          28    32  2.75</div><div class='input'>
 <span class='co'># to get augmented dataframe</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html'>ggcoefstats</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"augment"</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 32 x 10</span><span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggcoefstats</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"augment"</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 32 x 10</span><span>
 #&gt;    .rownames           mpg   cyl    am .fitted .resid .std.resid   .hat .sigma
 #&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Mazda RX4          21       6     1    21.4  0.364    -</span><span style='color: #BB0000;'>0.131</span><span>  0.106    2.99
@@ -638,12 +641,12 @@ labels.</p>
   )
 
 <span class='co'># plotting the dataframe</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html'>ggcoefstats</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggcoefstats</span>(
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>df</span>,
   <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='st'>"t"</span>,
   <span class='kw'>meta.analytic.effect</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: There were 2 divergent transitions after warmup. Increasing adapt_delta above 0.95 may help. See</span>
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: There were 1 divergent transitions after warmup. Increasing adapt_delta above 0.95 may help. See</span>
 #&gt; <span class='warning'>http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Examine the pairs() plot to diagnose sampling problems</span></div><div class='img'><img src='ggcoefstats-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># -------------- getting model summary ------------------------------</span>
 
@@ -655,7 +658,7 @@ labels.</p>
 )
 
 <span class='co'># dataframe with model summary</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html'>ggcoefstats</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>lmm1</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"glance"</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 10</span><span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggcoefstats</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>lmm1</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"glance"</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 10</span><span>
 #&gt;   sigma loglik   aic   bic remlcrit df.residual r2.conditional r2.marginal   icc
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span>  25.6  -</span><span style='color: #BB0000;'>872.</span><span> </span><span style='text-decoration: underline;'>1</span><span>756. </span><span style='text-decoration: underline;'>1</span><span>775.    </span><span style='text-decoration: underline;'>1</span><span>744.         174          0.799       0.279 0.722
@@ -673,7 +676,7 @@ labels.</p>
   <span class='kw pkg'>survival</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/survival/man/coxph.html'>coxph</a></span>(<span class='kw'>formula</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/survival/man/Surv.html'>Surv</a></span>(<span class='no'>time</span>, <span class='no'>status</span>) ~ <span class='no'>age</span> + <span class='no'>sex</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>lung</span>)
 
 <span class='co'># augmented dataframe</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html'>ggcoefstats</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggcoefstats</span>(
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>cfit</span>,
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>lung</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"augment"</span>,
@@ -706,15 +709,10 @@ labels.</p>
 #&gt; </span><span style='color: #949494;'># ... with 218 more rows</span><span></div><div class='input'># }
 </div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#references">References</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -725,7 +723,7 @@ labels.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.9000.</p>
 </div>
 
       </footer>

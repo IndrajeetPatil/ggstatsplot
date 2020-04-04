@@ -1,7 +1,7 @@
 ---
 output: 
   github_document:
-    pandoc_args: --webtex=https://latex.codecogs.com/
+    pandoc_args: --webtex=http://chart.apis.google.com/chart?cht=tx&chl=
 ---
 
   <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -84,7 +84,7 @@ Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
 `ggbetweenstats` | Between group/condition comparisons | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
 `ggwithinstats` | Within group/condition comparisons | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
 `gghistostats`, `ggdotplotstats` | Distribution of a numeric variable | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
-`ggcorrmat` | Correlation matrix | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font>
+`ggcorrmat` | Correlation matrix | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
 `ggscatterstats` | Correlation between two variables | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
 `ggpiestats`, `ggbarstats` | Association between categorical variables | <font color="green">Yes</font> | `NA` | `NA` | <font color="green">Yes</font>
 `ggpiestats`, `ggbarstats` | Equal proportions for categorical variable levels | <font color="green">Yes</font> | `NA` | `NA` | <font color="green">Yes</font>

@@ -597,19 +597,19 @@ testthat::test_that(
     set.seed(123)
     subtitle_exp <-
       ggstatsplot::ggbetweenstats(
-        data = iris,
-        x = Species,
-        y = Sepal.Length,
+        data = mtcars,
+        x = am,
+        y = wt,
         output = "subtitle",
         messages = FALSE
       )
 
     set.seed(123)
     sub <-
-      statsExpressions::expr_anova_parametric(
-        data = iris,
-        x = Species,
-        y = Sepal.Length,
+      statsExpressions::expr_t_parametric(
+        data = mtcars,
+        x = am,
+        y = wt,
         output = "subtitle",
         messages = FALSE
       )

@@ -37,7 +37,7 @@ MINOR CHANGES
     redundant information.
     
   - The subtitles are more explicit about the details of the test. For the same
-    reason `stat.title` argument from all releavant functions is retired since
+    reason `stat.title` argument from all relevant functions is retired since
     this argument was supposed to be for entering some additional details about
     the test.
   

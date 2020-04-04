@@ -240,7 +240,6 @@ testthat::test_that(
     testthat::expect_equal(data_dims, c(15L, 7L))
     testthat::expect_equal(dim(pb$data[[1]]), c(15L, 15L))
     testthat::expect_equal(dim(pb$data[[2]]), c(15L, 15L))
-    # testthat::expect_equal(dim(pb$data[[3]]), c(1L, 10L))
     testthat::expect_equal(length(pb$data), 3L)
     testthat::expect_equal(
       dat$coef,

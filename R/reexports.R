@@ -43,12 +43,12 @@ ipmisc::`%<-%`
 
 
 #' @export
-#' @importFrom rlang "%||%"
-rlang::`%||%`
+#' @importFrom ipmisc "%||%"
+ipmisc::`%||%`
 
 #' @export
-#' @importFrom rlang "%|%"
-rlang::`%|%`
+#' @importFrom ipmisc "%|%"
+ipmisc::`%|%`
 
 #' @export
 #' @importFrom ipmisc tibble
