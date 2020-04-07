@@ -607,8 +607,7 @@ ggcoefstats <- function(x,
         test = "meta",
         type = meta.type,
         data = tidy_df,
-        k = k,
-        messages = messages
+        k = k
       )
 
     # results from Bayesian random-effects meta-analysis
@@ -616,9 +615,9 @@ ggcoefstats <- function(x,
       caption <-
         statsExpressions::bf_meta(
           caption = caption,
+          output = "caption",
           data = tidy_df,
-          k = k,
-          messages = messages
+          k = k
         )
     }
 
@@ -629,7 +628,6 @@ ggcoefstats <- function(x,
           data = tidy_df,
           k = k,
           caption = caption,
-          messages = FALSE,
           output = "caption"
         )
     } else {
@@ -648,9 +646,6 @@ ggcoefstats <- function(x,
 
     # for non-dataframe objects
     if (isTRUE(insight::is_model(x))) {
-      # lowercase names to account for tidiers from `jtools`
-      g_df <- dplyr::rename_all(glance_df, tolower)
-
       # preparing caption with model diagnostics
       caption <-
         substitute(
@@ -660,8 +655,8 @@ ggcoefstats <- function(x,
           ),
           env = list(
             top.text = caption,
-            AIC = specify_decimal_p(x = g_df$aic[[1]], k = k.caption.summary),
-            BIC = specify_decimal_p(x = g_df$bic[[1]], k = k.caption.summary)
+            AIC = specify_decimal_p(x = glance_df$aic[[1]], k = k.caption.summary),
+            BIC = specify_decimal_p(x = glance_df$bic[[1]], k = k.caption.summary)
           )
         )
     }
@@ -827,10 +822,11 @@ ggcoefstats <- function(x,
   return(switch(
     EXPR = output,
     "plot" = plot,
+    "subtitle" = subtitle,
+    "caption" = caption,
     "tidy" = tidy_df,
     "glance" = glance_df,
-    "summary" = glance_df,
-    "augment" = as_tibble(broomExtra::augment(x = x, ...)),
+    "augment" = as_tibble(broomExtra::augment(x, ...)),
     "plot"
   ))
 }

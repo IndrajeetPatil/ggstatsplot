@@ -907,25 +907,22 @@ testthat::test_that(
       meta.analytic.effect = TRUE
     ))
 
+    testthat::expect_identical(pb7$plot$labels$caption, "mnp")
+
     # subtitle
     set.seed(123)
-    meta_info <- suppressWarnings(capture.output(ggstatsplot::ggcoefstats(
-      x = df5,
-      statistic = "t",
-      k = 3,
-      meta.analytic.effect = TRUE,
-      bf.message = TRUE,
-      messages = TRUE
-    )))
-
-    # tests
-    testthat::expect_identical(meta_info[13], "Q(df = 2) = 5.6910, p-val = 0.0581")
-    testthat::expect_identical(meta_info[30], "  random_H0     1.000      1.31")
-    testthat::expect_identical(
-      meta_info[18],
-      "  0.1515  0.1171  1.2938  0.1957  -0.0780  0.3811    "
-    )
-    testthat::expect_identical(pb7$plot$labels$caption, "mnp")
+    meta_info <-
+      suppressWarnings(ggstatsplot::ggcoefstats(
+        x = df5,
+        statistic = "t",
+        k = 3,
+        caption.summary = FALSE,
+        meta.analytic.effect = TRUE,
+        bf.message = TRUE,
+        output = "caption",
+        messages = TRUE
+      ))
+    testthat::expect_identical(as.character(meta_info$expr)[6], "0.267")
   }
 )
 

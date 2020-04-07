@@ -17,23 +17,27 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -42,7 +46,7 @@
 
 <!-- docsearch -->
 <script src="../docsearch.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
@@ -52,7 +56,6 @@
 
 <meta property="og:title" content="Changelog" />
 <meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/logo.png" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -70,7 +73,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -165,7 +168,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/IndrajeetPatil/ggstatsplot">
+  <a href="https://github.com/IndrajeetPatil/ggstatsplot/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -189,12 +192,12 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
+      <h1 data-toc-skip>Changelog <small></small></h1>
       <small>Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
     <div id="ggstatsplot-0409000" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4.0.9000">
 <a href="#ggstatsplot-0409000" class="anchor"></a>ggstatsplot 0.4.0.9000<small> Unreleased </small>
 </h1>
 <p>BREAKING CHANGES</p>
@@ -218,13 +221,13 @@
 <li><p>More models supported in <code>ggcoefstats</code>: <code>lmerModLmerTest</code>.</p></li>
 <li><p><code>ggcorrmat</code> now internally relies on <code>correlation</code> for correlation analyses.</p></li>
 <li><p><code>ggbarstats</code> no longer displays <code>"percent"</code> for Y-axis label as this was redundant information.</p></li>
-<li><p>The subtitles are more explicit about the details of the test. For the same reason <code>stat.title</code> argument from all releavant functions is retired since this argument was supposed to be for entering some additional details about the test.</p></li>
+<li><p>The subtitles are more explicit about the details of the test. For the same reason <code>stat.title</code> argument from all relevant functions is retired since this argument was supposed to be for entering some additional details about the test.</p></li>
 <li><p><code>ggcorrmat</code> legend, in case of missing values, shows mode - instead of median - for the distribution of sample pairs.</p></li>
 <li><p>The vestigial <code>caption.default</code> argument in <code>ggcorrmat</code> is retired.</p></li>
 </ul>
 </div>
     <div id="ggstatsplot-031" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.3.1">
 <a href="#ggstatsplot-031" class="anchor"></a>ggstatsplot 0.3.1<small> 2020-03-06 </small>
 </h1>
 <p>This is a hotfix release to correct some of the failing tests and other minor breakages resulting from the new release of <code>ggplot2 3.3.0</code>.</p>
@@ -235,7 +238,7 @@
 </ul>
 </div>
     <div id="ggstatsplot-030" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.3.0">
 <a href="#ggstatsplot-030" class="anchor"></a>ggstatsplot 0.3.0<small> 2020-03-01 </small>
 </h1>
 <p>BREAKING CHANGES</p>
@@ -264,7 +267,7 @@
 </ul>
 </div>
     <div id="ggstatsplot-020" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.2.0">
 <a href="#ggstatsplot-020" class="anchor"></a>ggstatsplot 0.2.0<small> 2020-02-03 </small>
 </h1>
 <p>BREAKING CHANGES</p>
@@ -285,7 +288,7 @@
 </ul>
 </div>
     <div id="ggstatsplot-014" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.1.4">
 <a href="#ggstatsplot-014" class="anchor"></a>ggstatsplot 0.1.4<small> 2019-12-18 </small>
 </h1>
 <p>BUG FIXES</p>
@@ -300,13 +303,13 @@
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
-<li><p><code>ggbetweenstats</code> and <code>ggwithinstats</code> use <code><a href="https://rdrr.io/r/base/Extract.html">[</a></code> instead of <code>(</code> to display confidence intervals. Additionally, $$\mu$$ denoted sample mean, but was confused with population mean by some users. So these functions instead display $$\hat{\mu}$$.</p></li>
+<li><p><code>ggbetweenstats</code> and <code>ggwithinstats</code> use <code><a href="https://rdrr.io/r/base/Extract.html">[</a></code> instead of <code>(</code> to display confidence intervals. Additionally, <br><span class="math display"><em>μ</em></span><br> denoted sample mean, but was confused with population mean by some users. So these functions instead display <br><span class="math display"><em>μ̂</em></span><br>.</p></li>
 <li><p>More models supported in <code>ggcoefstats</code>: <code>bmlm</code>, <code>coeftest</code></p></li>
 <li><p>Adapts to the new syntax provided in <code>paletteer</code> package.</p></li>
 </ul>
 </div>
     <div id="ggstatsplot-013" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.1.3">
 <a href="#ggstatsplot-013" class="anchor"></a>ggstatsplot 0.1.3<small> 2019-11-21 </small>
 </h1>
 <p>MAJOR CHANGES</p>
@@ -326,7 +329,7 @@
 </ul>
 </div>
     <div id="ggstatsplot-012" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.1.2">
 <a href="#ggstatsplot-012" class="anchor"></a>ggstatsplot 0.1.2<small> 2019-09-17 </small>
 </h1>
 <p>MINOR</p>
@@ -339,7 +342,7 @@
 </ul>
 </div>
     <div id="ggstatsplot-011" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.1.1">
 <a href="#ggstatsplot-011" class="anchor"></a>ggstatsplot 0.1.1<small> 2019-08-30 </small>
 </h1>
 <p>ANNOUNCEMENTS</p>
@@ -358,9 +361,9 @@
 <p>MAJOR CHANGES</p>
 <ul>
 <li><p>Major refactoring to reduce the codesize and to rely fully on <code>rlang</code>.</p></li>
-<li><p>There was confusion about what did the red point in <code>ggbetweenstats</code> and <code>ggbetweenstats</code> plots represents. Now the label also contains $\mu$ to highlight that what is being displayed is a mean value.</p></li>
+<li><p>There was confusion about what did the red point in <code>ggbetweenstats</code> and <code>ggbetweenstats</code> plots represents. Now the label also contains <span class="math inline"><em>μ</em></span> to highlight that what is being displayed is a mean value.</p></li>
 <li><p>To be consistent with the rest of the functions, <code>ggpiestats</code> and <code>ggbarstats</code> now uses the following aliases for arguments: <code>x</code> for <code>main</code> and <code>y</code> for <code>condition</code>. This change is backward-compatible and should not pose any problems for scripts that used <code>main</code> and <code>condition</code> arguments in these functions.</p></li>
-<li><p>Most subtitle expressions now report details about the design. In case of between-subjects design, this will be $n_{obs}$, while in case of repeated measures design, this will be $n_{pairs}$.</p></li>
+<li><p>Most subtitle expressions now report details about the design. In case of between-subjects design, this will be <span class="math inline"><em>n</em>_<em>o</em><em>b</em><em>s</em></span>, while in case of repeated measures design, this will be <span class="math inline"><em>n</em>_<em>p</em><em>a</em><em>i</em><em>r</em><em>s</em></span>.</p></li>
 <li><p><code>pairwise.annotation</code> now defaults to <code>"p.value"</code> rather than <code>"asterisk"</code> for <code>ggbetweenstats</code> and <code>ggwithinstats</code> (and their <code>grouped_</code> variants) functions. This was done because the asterisk conventions are not consistent across various scientific disciplines.</p></li>
 </ul>
 <p>MINOR CHANGES</p>
@@ -374,7 +377,7 @@
 </ul>
 </div>
     <div id="ggstatsplot-0012" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.12">
 <a href="#ggstatsplot-0012" class="anchor"></a>ggstatsplot 0.0.12<small> 2019-07-12 </small>
 </h1>
 <p>BUG FIXES</p>
@@ -400,7 +403,7 @@
 </ul>
 </div>
     <div id="ggstatsplot-0011" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.11">
 <a href="#ggstatsplot-0011" class="anchor"></a>ggstatsplot 0.0.11<small> 2019-06-14 </small>
 </h1>
 <p>BREAKING CHANGES</p>
@@ -433,7 +436,7 @@
 </ul>
 </div>
     <div id="ggstatsplot-0010" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.10">
 <a href="#ggstatsplot-0010" class="anchor"></a>ggstatsplot 0.0.10<small> 2019-03-17 </small>
 </h1>
 <p>NEW FEATURES</p>
@@ -447,11 +450,11 @@
 <ul>
 <li><p>The internal function <code>outlier_df</code> to add a column specifying outlier status of any given data point is now exported.</p></li>
 <li><p><code>ggstatsplot</code> previously relied on an internal function <code>chisq_v_ci</code> to compute confidence intervals for Cramer’s <em>V</em> using bootstrapping but it was pretty slow. It now instead relies on <code>rcompanion</code> package to compute confidence intervals for <em>V</em>. <code>ggstatsplot</code>, therefore, gains a new dependency.</p></li>
-<li><p><code>subtitle_mann_nonparametric</code> and <code>subtitle_t_onesample</code> now computes effect size <em>r</em> and its confidence intervals as $$Z/\sqrt{N}$$ (with the help of <code>rcompanion</code> package), instead of using Spearman correlation.</p></li>
+<li><p><code>subtitle_mann_nonparametric</code> and <code>subtitle_t_onesample</code> now computes effect size <em>r</em> and its confidence intervals as <br><span class="math display">$$Z/\sqrt{N}$$</span><br> (with the help of <code>rcompanion</code> package), instead of using Spearman correlation.</p></li>
 </ul>
 </div>
     <div id="ggstatsplot-009" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.9">
 <a href="#ggstatsplot-009" class="anchor"></a>ggstatsplot 0.0.9<small> 2019-02-18 </small>
 </h1>
 <p>BREAKING CHANGES</p>
@@ -490,7 +493,7 @@
 </ul>
 </div>
     <div id="ggstatsplot-008" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.8">
 <a href="#ggstatsplot-008" class="anchor"></a>ggstatsplot 0.0.8<small> 2019-01-07 </small>
 </h1>
 <p>NEW FEATURES</p>
@@ -517,7 +520,7 @@
 </ul>
 </div>
     <div id="ggstatsplot-007" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.7">
 <a href="#ggstatsplot-007" class="anchor"></a>ggstatsplot 0.0.7<small> 2018-12-08 </small>
 </h1>
 <p>BUG FIXES</p>
@@ -562,7 +565,7 @@
 </ul>
 </div>
     <div id="ggstatsplot-006" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.6">
 <a href="#ggstatsplot-006" class="anchor"></a>ggstatsplot 0.0.6<small> 2018-09-30 </small>
 </h1>
 <p>MAJOR CHANGES</p>
@@ -599,7 +602,7 @@
 </ul>
 </div>
     <div id="ggstatsplot-005" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.5">
 <a href="#ggstatsplot-005" class="anchor"></a>ggstatsplot 0.0.5<small> 2018-08-14 </small>
 </h1>
 <p>MAJOR CHANGES</p>
@@ -624,7 +627,7 @@
 </ul>
 </div>
     <div id="ggstatsplot-004" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.4">
 <a href="#ggstatsplot-004" class="anchor"></a>ggstatsplot 0.0.4<small> 2018-07-05 </small>
 </h1>
 <p>MAJOR CHANGES</p>
@@ -650,7 +653,7 @@
 </ul>
 </div>
     <div id="ggstatsplot-003" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.3">
 <a href="#ggstatsplot-003" class="anchor"></a>ggstatsplot 0.0.3<small> 2018-05-22 </small>
 </h1>
 <p>NEW FEATURES</p>
@@ -680,7 +683,7 @@
 </ul>
 </div>
     <div id="ggstatsplot-002" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.2">
 <a href="#ggstatsplot-002" class="anchor"></a>ggstatsplot 0.0.2<small> 2018-04-28 </small>
 </h1>
 <p>NEW FEATURES</p>
@@ -705,7 +708,7 @@
 </ul>
 </div>
     <div id="ggstatsplot-001" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.1">
 <a href="#ggstatsplot-001" class="anchor"></a>ggstatsplot 0.0.1<small> 2018-04-03 </small>
 </h1>
 <ul>
@@ -714,32 +717,10 @@
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#ggstatsplot-0409000">0.4.0.9000</a></li>
-        <li><a href="#ggstatsplot-031">0.3.1</a></li>
-        <li><a href="#ggstatsplot-030">0.3.0</a></li>
-        <li><a href="#ggstatsplot-020">0.2.0</a></li>
-        <li><a href="#ggstatsplot-014">0.1.4</a></li>
-        <li><a href="#ggstatsplot-013">0.1.3</a></li>
-        <li><a href="#ggstatsplot-012">0.1.2</a></li>
-        <li><a href="#ggstatsplot-011">0.1.1</a></li>
-        <li><a href="#ggstatsplot-0012">0.0.12</a></li>
-        <li><a href="#ggstatsplot-0011">0.0.11</a></li>
-        <li><a href="#ggstatsplot-0010">0.0.10</a></li>
-        <li><a href="#ggstatsplot-009">0.0.9</a></li>
-        <li><a href="#ggstatsplot-008">0.0.8</a></li>
-        <li><a href="#ggstatsplot-007">0.0.7</a></li>
-        <li><a href="#ggstatsplot-006">0.0.6</a></li>
-        <li><a href="#ggstatsplot-005">0.0.5</a></li>
-        <li><a href="#ggstatsplot-004">0.0.4</a></li>
-        <li><a href="#ggstatsplot-003">0.0.3</a></li>
-        <li><a href="#ggstatsplot-002">0.0.2</a></li>
-        <li><a href="#ggstatsplot-001">0.0.1</a></li>
-      </ul>
-    </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 
 </div>
@@ -751,7 +732,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.9000.</p>
 </div>
 
       </footer>

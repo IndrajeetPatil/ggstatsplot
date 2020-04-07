@@ -212,8 +212,7 @@ theme elements are to be displayed along with the selected \code{ggtheme}
 (Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
 override some aspects of the selected \code{ggtheme}.}
 
-\item{messages}{Decides whether messages references, notes, and warnings are
-to be displayed (Default: \code{TRUE}).}
+\item{messages}{Deprecated. Retained only for backward compatibility.}
 
 \item{...}{Additional arguments to tidying method.}
 }
