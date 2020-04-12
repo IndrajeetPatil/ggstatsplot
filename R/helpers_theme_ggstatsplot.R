@@ -83,6 +83,6 @@ common_theme_element <-
     legend.text = ggplot2::element_text(size = 10),
     legend.title = ggplot2::element_text(size = 10, face = "bold"),
     panel.border = ggplot2::element_rect(fill = NA, size = 1),
-    plot.title = ggplot2::element_text(size = 13, face = "bold"),
+    plot.title = ggplot2::element_text(size = 12, face = "bold"),
     plot.subtitle = ggplot2::element_text(size = 10)
   )

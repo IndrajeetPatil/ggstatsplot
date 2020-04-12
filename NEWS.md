@@ -20,12 +20,25 @@ NEW FEATURES
     if `results.subtitle` is set to `FALSE`.
     
   - `ggcorrmat` supports computing Bayes Factors for Pearson's *r* correlation.
+  
+  - `ggbetweenstats` and `ggwithinstats` now support pairwise comparisons for
+    Bayes Factor test.
 
 MAJOR CHANGES
 
   - For changes related to subtitle details, see changes made in new version of
     `statsExpressions 4.0.0`:
     <https://CRAN.R-project.org/package=statsExpressions/news/news.html>
+    
+  - `ggbetweenstats` and `ggwithinstats` no longer print dataframes containing
+    results from pairwise comparisons tests because this is too cluttering for
+    the user's console. The users are now instead advised to either extract this
+    dataframe using `ggplot2::ggplot_build()` function or use the
+    `pairwiseComparisons::pairwise_comparisons()` function used in the
+    background by `ggstatsplot` to carry out this analysis.
+    
+  - Due to changes in one of the downstream dependenices, `ggstatsplot` now
+    expects the minimum R version to be `3.6.0`.
 
 MINOR CHANGES
 

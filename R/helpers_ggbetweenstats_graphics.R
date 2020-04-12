@@ -230,84 +230,65 @@ ggsignif_adder <- function(plot,
   df_pairwise %<>%
     dplyr::mutate(.data = ., groups = purrr::pmap(.l = list(group1, group2), .f = c))
 
-  # decide what needs to be displayed:
-  # only significant comparisons shown
-  if (pairwise.display %in% c("s", "significant")) {
-    df_pairwise %<>% dplyr::filter(.data = ., significance != "ns")
-  }
-
-  # only non-significant comparisons shown
-  if (pairwise.display %in% c("ns", "nonsignificant", "non-significant")) {
-    df_pairwise %<>% dplyr::filter(.data = ., significance == "ns")
-  }
-
-  # proceed only if there are any significant comparisons to display
-  if (dim(df_pairwise)[[1]] != 0L) {
-    # deciding what needs to be displayed
-    if (pairwise.annotation %in% c("p", "p-value", "p.value")) {
-      # if p-values are to be displayed
-      textsize <- 3
-      vjust <- 0
-      parse <- TRUE
-    } else {
-      # otherwise just show the asterisks
-      df_pairwise %<>%
-        dplyr::select(.data = ., -label) %>%
-        dplyr::rename(.data = ., label = significance)
-      textsize <- 4
-      vjust <- 0.2
-      parse <- FALSE
+  # for Bayes Factor, there will be no "significance" column
+  if ("significance" %in% names(df_pairwise)) {
+    # decide what needs to be displayed:
+    # only significant comparisons shown
+    if (pairwise.display %in% c("s", "significant")) {
+      df_pairwise %<>% dplyr::filter(.data = ., significance != "ns")
     }
 
-    # arrange the dataframe so that annotations are properly aligned
-    df_pairwise %<>% dplyr::arrange(.data = ., group1)
+    # only non-significant comparisons shown
+    if (pairwise.display %in% c("ns", "nonsignificant", "non-significant")) {
+      df_pairwise %<>% dplyr::filter(.data = ., significance == "ns")
+    }
 
-    # computing y coordinates for ggsignif bars
-    ggsignif_coords <-
-      ggsignif_xy(data %>% dplyr::pull({{ x }}), data %>% dplyr::pull({{ y }}))
-
-    # adding ggsignif comparisons to the plot
-    plot <- plot +
-      ggsignif::geom_signif(
-        comparisons = df_pairwise$groups,
-        map_signif_level = TRUE,
-        textsize = textsize,
-        tip_length = 0.01,
-        vjust = vjust,
-        y_position = ggsignif_coords,
-        annotations = df_pairwise$label,
-        test = NULL,
-        na.rm = TRUE,
-        parse = parse
-      )
+    # proceed only if there are any significant comparisons to display
+    if (dim(df_pairwise)[[1]] != 0L) {
+      # deciding what needs to be displayed
+      if (pairwise.annotation %in% c("p", "p-value", "p.value")) {
+        # if p-values are to be displayed
+        # textsize <- 3
+        # vjust <- 0
+        parse <- TRUE
+      } else {
+        # otherwise just show the asterisks
+        df_pairwise %<>%
+          dplyr::select(.data = ., -label) %>%
+          dplyr::rename(.data = ., label = significance)
+        # textsize <- 4
+        # vjust <- 0.2
+        parse <- FALSE
+      }
+    } else {
+      return(plot)
+    }
+  } else {
+    parse <- TRUE
   }
 
-  # return the plot
-  return(plot)
-}
+  # arrange the dataframe so that annotations are properly aligned
+  df_pairwise %<>% dplyr::arrange(.data = ., group1)
 
-#' @name pairwise_caption
-#' @noRd
+  # computing y coordinates for `ggsignif` bars
+  ggsignif_coords <-
+    ggsignif_xy(data %>% dplyr::pull({{ x }}), data %>% dplyr::pull({{ y }}))
 
-pairwise_caption <- function(caption, test.description, p.adjust.method) {
-  substitute(
-    atop(
-      displaystyle(top.text),
-      expr = paste(
-        "Pairwise comparisons: ",
-        bold(test.description),
-        "; Adjustment (p-value): ",
-        bold(p.adjust.method.text)
-      )
-    ),
-    env = list(
-      top.text = caption,
-      test.description = test.description,
-      p.adjust.method.text = p_adjust_text(p.adjust.method)
+  # adding ggsignif comparisons to the plot
+  plot +
+    ggsignif::geom_signif(
+      comparisons = df_pairwise$groups,
+      map_signif_level = TRUE,
+      textsize = 3,
+      tip_length = 0.01,
+      vjust = 0,
+      y_position = ggsignif_coords,
+      annotations = df_pairwise$label,
+      test = NULL,
+      na.rm = TRUE,
+      parse = parse
     )
-  )
 }
-
 
 #' @name ggsignif_xy
 #' @importFrom utils combn

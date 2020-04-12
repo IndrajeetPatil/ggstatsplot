@@ -22,7 +22,7 @@
 #'
 #' @importFrom rlang exec !! enquo := !!! exec
 #' @importFrom statsExpressions bf_ttest bf_oneway_anova
-#' @importFrom pairwiseComparisons pairwise_comparisons
+#' @importFrom pairwiseComparisons pairwise_comparisons pairwise_caption
 #' @importFrom ipmisc outlier_df
 #' @importFrom dplyr select mutate row_number group_by ungroup anti_join
 #'
@@ -117,9 +117,6 @@ ggwithinstats <- function(data,
 
   # convert entered stats type to a standard notation
   type <- ipmisc::stats_type_switch(type)
-
-  # no pairwise comparisons are available for Bayesian t-tests
-  if (type == "bayes") pairwise.comparisons <- FALSE
 
   # ------------------------------ variable names ----------------------------
 
@@ -349,9 +346,6 @@ ggwithinstats <- function(data,
         messages = FALSE
       )
 
-    # display the results if needed
-    if (isTRUE(messages)) print(dplyr::select(df_pairwise, -label))
-
     # adding the layer for pairwise comparisons
     plot <-
       ggsignif_adder(
@@ -365,7 +359,14 @@ ggwithinstats <- function(data,
       )
 
     # preparing the caption for pairwise comparisons test
-    caption <- pairwise_caption(caption, unique(df_pairwise$test.details), p.adjust.method)
+    if (type != "bayes") {
+      caption <-
+        pairwiseComparisons::pairwise_caption(
+          caption,
+          unique(df_pairwise$test.details),
+          p.adjust.method
+        )
+    }
   }
 
   # ------------------------ annotations and themes -------------------------

@@ -178,7 +178,6 @@ plot_list <-
         ggthemes::theme_fivethirtyeight()
       ),
       ggstatsplot.layer = list(FALSE, FALSE, FALSE),
-      sample.size.label = list(TRUE, FALSE, TRUE),
       messages = FALSE
     ),
     .f = ggstatsplot::ggbetweenstats
@@ -271,8 +270,7 @@ plot_list <-
       ggthemes::theme_solarized(),
       ggthemes::theme_gdocs()
     ),
-    ggstatsplot.layer = TRUE,
-    sample.size.label = list(FALSE, TRUE, FALSE, TRUE),
+    ggstatsplot.layer = FALSE,
     messages = FALSE
   ),
   .f = ggstatsplot::ggwithinstats

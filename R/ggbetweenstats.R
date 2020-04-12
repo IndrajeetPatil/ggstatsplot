@@ -120,7 +120,7 @@
 #' @importFrom paletteer scale_color_paletteer_d scale_fill_paletteer_d
 #' @importFrom ggsignif geom_signif
 #' @importFrom statsExpressions bf_ttest bf_oneway_anova
-#' @importFrom pairwiseComparisons pairwise_comparisons
+#' @importFrom pairwiseComparisons pairwise_comparisons pairwise_caption
 #' @importFrom ipmisc outlier_df
 #'
 #' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggwithinstats}},
@@ -246,9 +246,6 @@ ggbetweenstats <- function(data,
 
   # convert entered stats type to a standard notation
   type <- ipmisc::stats_type_switch(type)
-
-  # no pairwise comparisons are available for Bayesian t-tests
-  if (type == "bayes") pairwise.comparisons <- FALSE
 
   # ------------------------------ variable names ----------------------------
 
@@ -521,7 +518,14 @@ ggbetweenstats <- function(data,
       )
 
     # preparing the caption for pairwise comparisons test
-    caption <- pairwise_caption(caption, unique(df_pairwise$test.details), p.adjust.method)
+    if (type != "bayes") {
+      caption <-
+        pairwiseComparisons::pairwise_caption(
+          caption,
+          unique(df_pairwise$test.details),
+          p.adjust.method
+        )
+    }
   }
 
   # ------------------------ annotations and themes -------------------------

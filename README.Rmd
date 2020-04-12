@@ -309,8 +309,8 @@ Robust | 2 |  Yuen's test for trimmed means
 Bayes Factor | 2 | Student's *t*-test
 
 The omnibus effect in one-way ANOVA design can also be followed up with more
-focal pairwise comparison tests. Here is a summary of *multiple pairwise
-comparison* tests supported in *ggbetweenstats*-
+focal pairwise comparison tests. Here is a summary of multiple pairwise
+comparison tests supported in *ggbetweenstats*-
 
 Type | Equal variance? | Test | *p*-value adjustment? 
 ----------- | --- | ------------------------- | ---
@@ -318,8 +318,7 @@ Parametric | No | Games-Howell test | <font color="green">Yes</font>
 Parametric | Yes | Student's *t*-test | <font color="green">Yes</font>  
 Non-parametric | No | Dwass-Steel-Crichtlow-Fligner test | <font color="green">Yes</font>  
 Robust | No | Yuen's trimmed means test | <font color="green">Yes</font>  
-Bayes Factor | No | <font color="red">No</font> | <font color="red">No</font>
-Bayes Factor | Yes | <font color="red">No</font> | <font color="red">No</font>
+Bayes Factor | `NA` | Student's *t*-test | `NA`
 
 For more, see the `ggbetweenstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>
@@ -356,7 +355,7 @@ As with the `ggbetweenstats`, this function also has a `grouped_` variant that
 makes repeating the same analysis across a single grouping variable quicker. We
 will see an example with only repeated measurements-
 
-```{r ggwithinstats2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 12}
+```{r ggwithinstats2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 13}
 # common setup
 set.seed(123)
 
@@ -396,15 +395,15 @@ Robust | 2 | Yuen's test on trimmed means for dependent samples
 Bayes Factor | 2 | Student's *t*-test
 
 The omnibus effect in one-way ANOVA design can also be followed up with more
-focal pairwise comparison tests. Here is a summary of *multiple pairwise
-comparison* tests supported in *ggwithinstats*-
+focal pairwise comparison tests. Here is a summary of multiple pairwise
+comparison tests supported in *ggwithinstats*-
 
 Type | Test | *p*-value adjustment? 
 ----------- | ---------------------------- | ---
 Parametric | Student's *t*-test | <font color="green">Yes</font>  
 Non-parametric | Durbin-Conover test | <font color="green">Yes</font>  
 Robust | Yuen's trimmed means test | <font color="green">Yes</font>  
-Bayes Factor | <font color="red">No</font> | <font color="red">No</font>
+Bayes Factor | Student's *t*-test | `NA`
 
 For more, see the `ggwithinstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
@@ -917,8 +916,8 @@ Type | Test | CI?
 ----------- | ------------------------- | ---
 Parametric | Pearson's correlation coefficient | <font color="green">Yes<font>
 Non-parametric | Spearman's rank correlation coefficient | <font color="green">Yes<font>
-Robust | Percentage bend correlation coefficient | <font color="red">No<font>
-Bayes Factor | Pearson's correlation coefficient | <font color="red">No<font>
+Robust | Percentage bend correlation coefficient | <font color="green">Yes<font>
+Bayes Factor | Pearson's correlation coefficient | <font color="green">Yes<font>
 
 For examples and more information, see the `ggcorrmat` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html>

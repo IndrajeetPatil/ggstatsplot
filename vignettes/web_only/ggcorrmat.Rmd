@@ -328,12 +328,12 @@ See the associated vignette here:
 
 Following tests are carried out for each type of analyses-
 
-Type | Test
------------ | -------------------------
-Parametric | Pearson's correlation coefficient
-Non-parametric | Spearman's rank correlation coefficient
-Robust | Percentage bend correlation coefficient
-Bayes Factor | Pearson's correlation coefficient
+Type | Test | CI?
+----------- | ------------------------- | ---
+Parametric | Pearson's correlation coefficient | <font color="green">Yes<font>
+Non-parametric | Spearman's rank correlation coefficient | <font color="green">Yes<font>
+Robust | Percentage bend correlation coefficient | <font color="green">Yes<font>
+Bayes Factor | Pearson's correlation coefficient | <font color="green">Yes<font>
 
 # Suggestions
 

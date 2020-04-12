@@ -372,7 +372,7 @@ Type | Test | *p*-value adjustment?
 Parametric | Student's *t*-test | <font color="green">Yes</font>  
 Non-parametric | Durbin-Conover test | <font color="green">Yes</font>  
 Robust | Yuen's trimmed means test | <font color="green">Yes</font>  
-Bayes Factor | <font color="red">No</font> | <font color="red">No</font>
+Bayes Factor | Student's *t*-test | `NA`
 
 ## Effect size interpretation
 
