@@ -19,7 +19,6 @@ ggcoefstats(
   conf.int = TRUE,
   conf.level = 0.95,
   k = 2,
-  k.caption.summary = 0,
   exclude.intercept = TRUE,
   exponentiate = FALSE,
   sort = "none",
@@ -129,9 +128,6 @@ probability level for CI.}
 \item{k}{Number of decimal places expected for results displayed in labels
 (Default : \code{k = 2}).}
 
-\item{k.caption.summary}{Number of decimal places expected for results
-displayed in captions (Default : \code{k.caption.summary = 0}).}
-
 \item{exclude.intercept}{Logical that decides whether the intercept should be
 excluded from the plot (Default: \code{TRUE}).}
 
@@ -146,7 +142,8 @@ exponentiation.}
 increasing coefficient value, or \code{"descending"} sort by decreasing
 coefficient value.}
 
-\item{xlab, ylab}{Labels for \code{x} axis variable (Defaults: \code{"regression coefficient"} and \code{"term"}, resp.).}
+\item{xlab, ylab}{Labels for \code{x}- and \code{y}- axis variables, respectively
+(Defaults: \code{"regression coefficient"} and \code{"term"}).}
 
 \item{title}{The text for the plot title.}
 

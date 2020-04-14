@@ -8,8 +8,7 @@
 #' @param grouping.var A single grouping variable (can be entered either as a
 #'   bare name `x` or as a string `"x"`).
 #'
-#' @importFrom dplyr filter mutate_if
-#' @importFrom rlang !! enquo quo_text ensym := quo_is_null
+#' @importFrom rlang enquo quo_text ensym quo_is_null
 #'
 #' @examples
 #' ggstatsplot:::grouped_list(data = ggplot2::msleep, grouping.var = vore)

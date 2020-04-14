@@ -16,8 +16,7 @@
 #' @keywords internal
 
 # function body
-ggcoefstats_label_maker <- function(x,
-                                    tidy_df = NULL,
+ggcoefstats_label_maker <- function(tidy_df,
                                     glance_df = NULL,
                                     statistic = NULL,
                                     k = 2,

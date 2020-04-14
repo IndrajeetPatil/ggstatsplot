@@ -19,9 +19,6 @@ or \code{"Width"}).
 \item value.	Value of the measurement.
 }
 }
-\source{
-\url{https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/iris.html}
-}
 \usage{
 iris_long
 }

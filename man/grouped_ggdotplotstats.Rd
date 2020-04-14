@@ -114,7 +114,8 @@ theme elements are to be displayed along with the selected \code{ggtheme}
 override some aspects of the selected \code{ggtheme}.}
     \item{\code{messages}}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
-    \item{\code{ylab}}{Labels for \code{x} axis variable (Defaults: \code{"regression coefficient"} and \code{"term"}, resp.).}
+    \item{\code{ylab}}{Labels for \code{x}- and \code{y}- axis variables, respectively
+(Defaults: \code{"regression coefficient"} and \code{"term"}).}
   }}
 
 \item{plotgrid.args}{A list of additional arguments to \code{cowplot::plot_grid}.}

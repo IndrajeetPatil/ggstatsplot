@@ -37,7 +37,7 @@ MAJOR CHANGES
     `pairwiseComparisons::pairwise_comparisons()` function used in the
     background by `ggstatsplot` to carry out this analysis.
     
-  - Due to changes in one of the downstream dependenices, `ggstatsplot` now
+  - Due to changes in one of the downstream dependencies, `ggstatsplot` now
     expects the minimum R version to be `3.6.0`.
 
 MINOR CHANGES
@@ -57,7 +57,10 @@ MINOR CHANGES
   - `ggcorrmat` legend, in case of missing values, shows mode - instead of
     median - for the distribution of sample pairs.
   
-  - The vestigial `caption.default` argument in `ggcorrmat` is retired.
+  - The following vestigial arguments are retired:
+      - `caption.default` in `ggcorrmat`
+      - `k.caption.summary` in `ggcoefstats`
+
   
 # ggstatsplot 0.3.1
 

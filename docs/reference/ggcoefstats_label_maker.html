@@ -203,8 +203,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>ggcoefstats_label_maker</span>(
-  <span class='no'>x</span>,
-  <span class='kw'>tidy_df</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>tidy_df</span>,
   <span class='kw'>glance_df</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
@@ -216,16 +215,6 @@
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>x</th>
-      <td><p>A model object to be tidied, or a tidy data frame containing
-results. If a data frame is to be plotted, it <em>must</em> contain columns named
-<code>term</code> (names of predictors), or <code>estimate</code> (corresponding estimates of
-coefficients or other quantities of interest). Other optional columns are
-<code>conf.low</code> and <code>conf.high</code> (for confidence intervals); <code>p.value</code>. It is
-important that all <code>term</code> names should be unique. Function internally uses
-<code><a href='http://broom.tidyverse.org/reference/reexports.html'>broom::tidy</a></code> or <code><a href='https://rdrr.io/pkg/parameters/man/model_parameters.html'>parameters::model_parameters</a></code> to get a tidy dataframe.</p></td>
-    </tr>
     <tr>
       <th>tidy_df</th>
       <td><p>A tidy dataframe.</p></td>

@@ -300,11 +300,11 @@ Following (between-subjects) tests are carried out for each type of analyses-
 Type | No. of groups | Test
 ----------- | --- | -------------------------
 Parametric | > 2 | Fisher's or Welch's one-way ANOVA
-Non-parametric | > 2 | Kruskal–Wallis one-way ANOVA
+Non-parametric | > 2 | Kruskal-Wallis one-way ANOVA
 Robust | > 2 | Heteroscedastic one-way ANOVA for trimmed means
 Bayes Factor | > 2 | Fisher's ANOVA
 Parametric | 2 | Student's or Welch's *t*-test
-Non-parametric | 2 | Mann–Whitney *U* test
+Non-parametric | 2 | Mann-Whitney *U* test
 Robust | 2 |  Yuen's test for trimmed means
 Bayes Factor | 2 | Student's *t*-test
 

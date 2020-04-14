@@ -23,8 +23,8 @@
 #'   Bayesian meta-analysis assuming that the effect size *d* varies across
 #'   studies with standard deviation *t* (i.e., a random-effects analysis)
 #'   should be displayed in caption. Defaults to `TRUE`.
-#' @param xlab,ylab Labels for `x` axis variable (Defaults: `"regression
-#'   coefficient"` and `"term"`, resp.).
+#' @param xlab,ylab Labels for `x`- and `y`- axis variables, respectively
+#'   (Defaults: `"regression coefficient"` and `"term"`).
 #' @param subtitle The text for the plot subtitle. The input to this argument
 #'   will be ignored if `meta.analytic.effect` is set to `TRUE`.
 #' @param p.adjust.method Adjustment method for *p*-values for multiple
@@ -79,8 +79,6 @@
 #'   `"bayes"`, `metaBMA::meta_random` function will be used.
 #' @param k Number of decimal places expected for results displayed in labels
 #'   (Default : `k = 2`).
-#' @param k.caption.summary Number of decimal places expected for results
-#'   displayed in captions (Default : `k.caption.summary = 0`).
 #' @param exclude.intercept Logical that decides whether the intercept should be
 #'   excluded from the plot (Default: `TRUE`).
 #' @param exponentiate If `TRUE`, the `x`-axis will be logarithmic (Default:
@@ -284,7 +282,6 @@ ggcoefstats <- function(x,
                         conf.int = TRUE,
                         conf.level = 0.95,
                         k = 2,
-                        k.caption.summary = 0,
                         exclude.intercept = TRUE,
                         exponentiate = FALSE,
                         sort = "none",
@@ -562,16 +559,14 @@ ggcoefstats <- function(x,
   # adding a column with labels to be used with `ggrepel`
   if (isTRUE(stats.labels)) {
     # in case a dataframe was entered, `x` and `tidy_df` are going to be same
-    if (isFALSE(insight::is_model(x))) x <- tidy_df
     if (isTRUE(insight::is_model(x))) statistic <- extract_statistic(x)
 
     # adding a column with labels using custom function
     tidy_df %<>%
       ggcoefstats_label_maker(
-        x = x,
-        statistic = statistic,
         tidy_df = .,
         glance_df = glance_df,
+        statistic = statistic,
         k = k,
         effsize = effsize,
         partial = partial
@@ -655,8 +650,8 @@ ggcoefstats <- function(x,
           ),
           env = list(
             top.text = caption,
-            AIC = specify_decimal_p(x = glance_df$aic[[1]], k = k.caption.summary),
-            BIC = specify_decimal_p(x = glance_df$bic[[1]], k = k.caption.summary)
+            AIC = specify_decimal_p(x = glance_df$aic[[1]], k = 0L),
+            BIC = specify_decimal_p(x = glance_df$bic[[1]], k = 0L)
           )
         )
     }

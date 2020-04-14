@@ -164,9 +164,6 @@
 #'   \item value.	Value of the measurement.
 #' }
 #'
-#' @source
-#' \url{https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/iris.html}
-#'
 #' @examples
 #' dim(iris_long)
 #' head(iris_long)

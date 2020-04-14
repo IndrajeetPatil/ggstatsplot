@@ -50,7 +50,8 @@ be taken. A matrix or tables will \strong{not} be accepted.}
 \item{xlab}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
 variable names for \code{x} and \code{y} will be used.}
 
-\item{ylab}{Labels for \code{x} axis variable (Defaults: \code{"regression coefficient"} and \code{"term"}, resp.).}
+\item{ylab}{Labels for \code{x}- and \code{y}- axis variables, respectively
+(Defaults: \code{"regression coefficient"} and \code{"term"}).}
 
 \item{title}{The text for the plot title.}
 
