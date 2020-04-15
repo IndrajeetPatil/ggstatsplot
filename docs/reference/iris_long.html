@@ -29,15 +29,15 @@
 <script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -88,7 +88,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0</span>
       </span>
     </div>
 
@@ -220,9 +220,6 @@ or <code>"Width"</code>).</p></li>
 <li><p>value.	Value of the measurement.</p></li>
 </ul>
 
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
-    <p><a href='https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/iris.html'>https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/iris.html</a></p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This famous (Fisher's or Anderson's) iris data set gives the
@@ -240,14 +237,14 @@ of iris. The species are Iris setosa, versicolor, and virginica.</p>
 #&gt; </span><span style='color: #BCBCBC;'>3</span><span>     3 setosa  Sepal.Length Sepal     Length    4.7
 #&gt; </span><span style='color: #BCBCBC;'>4</span><span>     4 setosa  Sepal.Length Sepal     Length    4.6
 #&gt; </span><span style='color: #BCBCBC;'>5</span><span>     5 setosa  Sepal.Length Sepal     Length    5  
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span>     6 setosa  Sepal.Length Sepal     Length    5.4</div><div class='input'><span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>(<span class='no'>iris_long</span>)</div><div class='output co'>#&gt; Observations: 600
-#&gt; Variables: 6
-#&gt; $ id        </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17...
-#&gt; $ Species   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> setosa, setosa, setosa, setosa, setosa, setosa, setosa, s...
-#&gt; $ condition </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Sepal.Length, Sepal.Length, Sepal.Length, Sepal.Length, S...
-#&gt; $ attribute </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, S...
-#&gt; $ measure   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Length, Length, Length, Length, Length, Length, Length, L...
-#&gt; $ value     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4....</div></span></pre>
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span>     6 setosa  Sepal.Length Sepal     Length    5.4</div><div class='input'><span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>(<span class='no'>iris_long</span>)</div><div class='output co'>#&gt; Rows: 600
+#&gt; Columns: 6
+#&gt; $ id        </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 3...
+#&gt; $ Species   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, ...
+#&gt; $ condition </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Sepal.Length, Sepal.Length, Sepal.Length, Sepal.Length, Sepal.Length, Sepal.Length, Sepal.Length, Sepal.Length, ...
+#&gt; $ attribute </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, ...
+#&gt; $ measure   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Length, Length, Length, Length, Length, Length, Length, Length, Length, Length, Length, Length, Length, Length, ...
+#&gt; $ value     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.8, 4.8, 4.3, 5.8, 5.7, 5.4, 5.1, 5.7, 5.1, 5.4, 5.1, 4....</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -263,7 +260,7 @@ of iris. The species are Iris setosa, versicolor, and virginica.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

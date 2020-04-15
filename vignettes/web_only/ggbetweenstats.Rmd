@@ -74,10 +74,7 @@ set.seed(123)
 
 # function call
 ggstatsplot::ggbetweenstats(
-  data = dplyr::filter(
-    .data = gapminder::gapminder,
-    year == 2007, continent != "Oceania"
-  ),
+  data = dplyr::filter(gapminder::gapminder, year == 2007, continent != "Oceania"),
   x = continent,
   y = lifeExp,
   nboot = 10,
@@ -86,11 +83,23 @@ ggstatsplot::ggbetweenstats(
 ```
 
 **Note**:
+  
   - The function automatically decides whether an independent samples *t*-test
     is preferred (for 2 groups) or a Oneway ANOVA (3 or more groups). based on
     the number of levels in the grouping variable.
+    
   - The output of the function is a `ggplot` object which means that it can be
     further modified with `ggplot2` functions.
+
+As can be seen from the plot, the function by default returns Bayes Factor for
+the test. If the null hypothesis can't be rejected with the null hypothesis
+significance testing (NHST) approach, the Bayesian approach can help index
+evidence in favor of the null hypothesis (i.e., $BF_{01}$).
+
+By default, natural logarithms are shown because Bayes Factor values can
+sometimes be pretty large. Having values on logarithmic scale also makes it easy
+to compare evidence in favor alternative ($BF_{10}$) versus null ($BF_{01}$)
+hypotheses (since $log_{e}(BF_{01}) = - log_{e}(BF_{01})$). 
 
 We can make the output much more aesthetically pleasing as well as informative
 by making use of the many optional parameters in `ggbetweenstats`. We'll add a
@@ -246,7 +255,6 @@ p4 <-
 ggstatsplot::combine_plots(
   p1, p2, p3, p4,
   nrow = 2,
-  labels = c("(a)", "(b)", "(c)", "(d)"),
   title.text = "Comparison of life expectancy between 1957 and 2007",
   caption.text = "Source: Gapminder Foundation",
   title.size = 14,
@@ -366,8 +374,7 @@ Parametric | No | Games-Howell test | <font color="green">Yes</font>
 Parametric | Yes | Student's *t*-test | <font color="green">Yes</font>  
 Non-parametric | No | Dwass-Steel-Crichtlow-Fligner test | <font color="green">Yes</font>  
 Robust | No | Yuen's trimmed means test | <font color="green">Yes</font>  
-Bayes Factor | No | <font color="red">No</font> | <font color="red">No</font>
-Bayes Factor | Yes | <font color="red">No</font> | <font color="red">No</font>
+Bayes Factor | `NA` | Student's *t*-test | `NA`
 
 ## Effect size interpretation
 

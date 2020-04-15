@@ -1,10 +1,13 @@
 language: r
+r:
+  - release
+#  - devel
+
 latex: true
 warnings_are_errors: TRUE
 
 env:
   global:
-    #- R_MAX_NUM_DLLS=999
     - _R_CHECK_FORCE_SUGGESTS_=true
     - _R_CHECK_CRAN_INCOMING_=true
 
@@ -12,112 +15,52 @@ cache:
   - packages
   - ccache
 
-jobs:
-  include:
-  - r: devel
-    r_binary_packages:
-      - magrittr
-      - curl
-      - jsonlite
-      - rstan
-      - Rcpp
-      - RcppEigen
-      - openssl
-      - utf8
-      - gss
-      - haven
-      - minqa
-      - mvtnorm
-      - nloptr
-      - SparseM
-      - httpuv
-      - markdown
-      - sem
-      - readxl
-      - openxlsx
-      - pander
-      - lme4
-      - psych
-      - git2r
-      - rlang
-      - bindrcpp
-      - tidyr
-      - dplyr
-      - rstantools
-      - bridgesampling
-      - BH
-      - stringi
-      - metaBMA
-    r_packages:
-      - coin
-      - bayestestR
-      - effectsize
-      - parameters
-      - performance
-      - sjstats
-      - WRS2
-      - coda
-      - remotes
-      - knitr
-      - pairwiseComparisons
-      - ipmisc
-      - rmarkdown
-      - statsExpressions
-    r_github_packages:
-      - jimhester/lintr
-      - r-lib/covr
-  - r: release
-    r_binary_packages:
-      - magrittr
-      - curl
-      - jsonlite
-      - rstan
-      - Rcpp
-      - RcppEigen
-      - openssl
-      - utf8
-      - gss
-      - haven
-      - minqa
-      - mvtnorm
-      - nloptr
-      - SparseM
-      - httpuv
-      - markdown
-      - sem
-      - readxl
-      - openxlsx
-      - pander
-      - lme4
-      - psych
-      - git2r
-      - rlang
-      - bindrcpp
-      - tidyr
-      - dplyr
-      - rstantools
-      - bridgesampling
-      - BH
-      - stringi
-      - metaBMA
-    r_packages:
-      - coin
-      - bayestestR
-      - effectsize
-      - parameters
-      - performance
-      - sjstats
-      - WRS2
-      - coda
-      - remotes
-      - knitr
-      - pairwiseComparisons
-      - ipmisc
-      - rmarkdown
-      - statsExpressions
-    r_github_packages:
-      - jimhester/lintr
-      - r-lib/covr
+r_binary_packages:
+  - magrittr
+  - curl
+  - jsonlite
+  - rstan
+  - Rcpp
+  - RcppEigen
+  - openssl
+  - utf8
+  - gss
+  - haven
+  - minqa
+  - mvtnorm
+  - nloptr
+  - SparseM
+  - httpuv
+  - markdown
+  - readxl
+  - openxlsx
+  - pander
+  - git2r
+  - rlang
+  - bindrcpp
+  - tidyr
+  - dplyr
+  - rstantools
+  - bridgesampling
+  - BH
+  - stringi
+  - metaBMA
+  - metaplus
+  - fastGHQuad
+  - multcomp
+  - coda
+r_packages:
+  - coin
+  - effectsize
+  - insight
+  - parameters
+  - WRS2
+  - remotes
+  - knitr
+  - rmarkdown
+r_github_packages:
+  - jimhester/lintr
+  - r-lib/covr
 
 addons:
   apt:

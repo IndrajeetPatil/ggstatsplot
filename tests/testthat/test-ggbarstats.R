@@ -223,32 +223,31 @@ testthat::test_that(
 
     # plot
     set.seed(123)
-    p <- suppressWarnings(ggstatsplot::ggbarstats(
-      data = mtcars,
-      main = vs,
-      condition = "cyl",
-      bf.message = TRUE,
-      nboot = 10,
-      label = "both",
-      package = "wesanderson",
-      palette = "Royal2",
-      labels.legend = c("0 = V-shaped", "1 = straight"),
-      legend.title = "Engine",
-      x.axis.orientation = "slant",
-      label.separator = "\n",
-      messages = FALSE
-    ))
+    p <-
+      suppressWarnings(ggstatsplot::ggbarstats(
+        data = mtcars,
+        main = vs,
+        condition = "cyl",
+        bf.message = TRUE,
+        nboot = 10,
+        label = "both",
+        package = "wesanderson",
+        palette = "Royal2",
+        labels.legend = c("0 = V-shaped", "1 = straight"),
+        legend.title = "Engine",
+        messages = FALSE
+      ))
 
-    p1 <- suppressWarnings(ggstatsplot::ggbarstats(
-      data = mtcars,
-      main = vs,
-      condition = cyl,
-      label = "counts",
-      bf.message = FALSE,
-      nboot = 10,
-      x.axis.orientation = "vertical",
-      messages = FALSE
-    ))
+    p1 <-
+      suppressWarnings(ggstatsplot::ggbarstats(
+        data = mtcars,
+        main = vs,
+        condition = cyl,
+        label = "counts",
+        bf.message = FALSE,
+        nboot = 10,
+        messages = FALSE
+      ))
 
     # build plot
     pb <- ggplot2::ggplot_build(p)
@@ -284,8 +283,6 @@ testthat::test_that(
 
     # checking layered data
     testthat::expect_identical(pb$plot$guides$fill$title, "Engine")
-    testthat::expect_equal(pb$plot$theme$axis.text.x$angle, 45L)
-    testthat::expect_equal(pb1$plot$theme$axis.text.x$angle, 90L)
   }
 )
 

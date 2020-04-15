@@ -1,10 +1,15 @@
-# ggstatsplot 0.4.0.9000
+# ggstatsplot 0.4.0
 
 BREAKING CHANGES
 
   - `ggcorrmat` no longer returns matrices of correlation coefficients or other
     details. It now returns either a plot or a dataframe and this can dataframe
     can then be used to create matrices.
+    
+  - `ggbarstats` loses `x.axis.orientation` argument. This argument was supposed
+    to help avoid overlapping *x*-axis label, but now `ggplot2 3.3.0` has a
+    better way to handle this:
+    <https://www.tidyverse.org/blog/2020/03/ggplot2-3-3-0/#rewrite-of-axis-code>
 
 NEW FEATURES
   
@@ -15,19 +20,53 @@ NEW FEATURES
     if `results.subtitle` is set to `FALSE`.
     
   - `ggcorrmat` supports computing Bayes Factors for Pearson's *r* correlation.
+  
+  - `ggbetweenstats` and `ggwithinstats` now support pairwise comparisons for
+    Bayes Factor test.
 
 MAJOR CHANGES
 
-  - `ggcorrmat` legend, in case of missing values, shows mode - instead of
-    median - for the distribution of sample pairs.
-  
-  - The vestigial `caption.default` argument in `ggcorrmat` is retired.
+  - For changes related to subtitle details, see changes made in new version of
+    `statsExpressions 4.0.0`:
+    <https://CRAN.R-project.org/package=statsExpressions/news/news.html>
+    
+  - `ggbetweenstats` and `ggwithinstats` no longer print dataframes containing
+    results from pairwise comparisons tests because this is too cluttering for
+    the user's console. The users are now instead advised to either extract this
+    dataframe using `ggplot2::ggplot_build()` function or use the
+    `pairwiseComparisons::pairwise_comparisons()` function used in the
+    background by `ggstatsplot` to carry out this analysis.
+    
+  - Due to changes in one of the downstream dependencies, `ggstatsplot` now
+    expects the minimum R version to be `3.6.0`.
 
 MINOR CHANGES
 
-  - More models supported in `ggcoefstats`: `lmerModLmerTest`.
+  - More models supported in `ggcoefstats`: `bayesx`, `BBmm`, `brmultinom`,
+    `lmerModLmerTest`, `lrm`.
+    
   - `ggcorrmat` now internally relies on `correlation` for correlation analyses.
+  
+  - `ggbarstats` no longer displays `"percent"` for Y-axis label as this was
+    redundant information.
+    
+  - Continuing the argument cleanup that began in `0.3.0`, `ggcoefstats` gains
+    `point.args` argument instead of individuals `point.*` arguments.
+    
+  - The subtitles are more explicit about the details of the test. For the same
+    reason `stat.title` argument from all relevant functions is retired since
+    this argument was supposed to be for entering some additional details about
+    the test. Additionally, the plot titles and subtitles for some of the plots
+    are aligned with the plot.
+  
+  - `ggcorrmat` legend, in case of missing values, shows mode - instead of
+    median - for the distribution of sample pairs.
+  
+  - The following vestigial arguments are retired:
+      - `caption.default` in `ggcorrmat`
+      - `k.caption.summary` in `ggcoefstats`
 
+  
 # ggstatsplot 0.3.1
 
 This is a hotfix release to correct some of the failing tests and other minor

@@ -1,3 +1,72 @@
+# z-statistic --------------------------------------------------
+
+testthat::test_that(
+  desc = "ggcoefstats with glmer model",
+  code = {
+    testthat::skip_on_cran()
+    library(lme4)
+
+    # model
+    set.seed(123)
+    mod <-
+      lme4::glmer(
+        formula = cbind(incidence, size - incidence) ~ period + (1 | herd),
+        data = lme4::cbpp,
+        family = binomial
+      )
+
+    # plot
+    set.seed(123)
+    p <-
+      ggstatsplot::ggcoefstats(
+        x = mod,
+        conf.level = 0.90,
+        exclude.intercept = FALSE
+      )
+
+    # plot build
+    pb <- ggplot2::ggplot_build(p)
+
+    # tidy dataframe from the function
+    testthat::expect_equal(
+      pb$data[[4]],
+      structure(
+        list(
+          x = c(
+            -1.39834286447115,
+            -0.991924974975739,
+            -1.12821621594334,
+            -1.57974541364919
+          ),
+          y = 1:4,
+          label = c(
+            "list(~widehat(italic(beta))==-1.40, ~italic(z)==-6.05, ~italic(p)<= 0.001)",
+            "list(~widehat(italic(beta))==-0.99, ~italic(z)==-3.27, ~italic(p)== 0.001)",
+            "list(~widehat(italic(beta))==-1.13, ~italic(z)==-3.49, ~italic(p)<= 0.001)",
+            "list(~widehat(italic(beta))==-1.58, ~italic(z)==-3.74, ~italic(p)<= 0.001)"
+          ),
+          PANEL = structure(c(1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
+          group = structure(1:4, n = 4L),
+          colour = structure(c(
+            "#1B9E77FF", "#D95F02FF", "#7570B3FF", "#E7298AFF"
+          ), class = "colors"),
+          fill = c("white", "white", "white", "white"),
+          size = c(3, 3, 3, 3),
+          angle = c(0, 0, 0, 0),
+          alpha = c(NA, NA, NA, NA),
+          family = c("", "", "", ""),
+          fontface = c(1, 1, 1, 1),
+          lineheight = c(1.2, 1.2, 1.2, 1.2),
+          hjust = c(0.5, 0.5, 0.5, 0.5),
+          vjust = c(0.5, 0.5, 0.5, 0.5)
+        ),
+        row.names = c(NA, -4L),
+        class = "data.frame"
+      )
+    )
+  }
+)
+
 # t-statistic --------------------------------------------------
 
 testthat::test_that(
@@ -130,16 +199,25 @@ testthat::test_that(
             0.0647145392531592
           ),
           y = 1:4,
-          PANEL = structure(c(1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
+          PANEL = structure(c(
+            1L, 1L, 1L,
+            1L
+          ), .Label = "1", class = "factor"),
           group = structure(1:4, n = 4L),
-          shape = c(16, 16, 16, 16),
-          colour = c("blue", "blue", "blue", "blue"),
+          shape = c(19, 19, 19, 19),
+          colour = c(
+            "blue", "blue", "blue",
+            "blue"
+          ),
           size = c(3, 3, 3, 3),
           fill = c(NA, NA, NA, NA),
           alpha = c(NA, NA, NA, NA),
           stroke = c(0.5, 0.5, 0.5, 0.5)
         ),
-        row.names = c(NA, -4L),
+        row.names = c(
+          NA,
+          -4L
+        ),
         class = "data.frame"
       )
     )
@@ -183,74 +261,6 @@ testthat::test_that(
   }
 )
 
-# z-statistic --------------------------------------------------
-
-testthat::test_that(
-  desc = "ggcoefstats with glmer model",
-  code = {
-    testthat::skip_on_cran()
-    library(lme4)
-
-    # model
-    set.seed(123)
-    mod <-
-      lme4::glmer(
-        formula = cbind(incidence, size - incidence) ~ period + (1 | herd),
-        data = cbpp,
-        family = binomial
-      )
-
-    # plot
-    set.seed(123)
-    p <-
-      ggstatsplot::ggcoefstats(
-        x = mod,
-        conf.level = 0.90,
-        exclude.intercept = FALSE
-      )
-
-    # plot build
-    pb <- ggplot2::ggplot_build(p)
-
-    # tidy dataframe from the function
-    testthat::expect_equal(
-      pb$data[[4]],
-      structure(
-        list(
-          x = c(
-            -1.39834286447115,
-            -0.991924974975739,
-            -1.12821621594334,
-            -1.57974541364919
-          ),
-          y = 1:4,
-          label = c(
-            "list(~widehat(italic(beta))==-1.40, ~italic(z)==-6.05, ~italic(p)<= 0.001)",
-            "list(~widehat(italic(beta))==-0.99, ~italic(z)==-3.27, ~italic(p)== 0.001)",
-            "list(~widehat(italic(beta))==-1.13, ~italic(z)==-3.49, ~italic(p)<= 0.001)",
-            "list(~widehat(italic(beta))==-1.58, ~italic(z)==-3.74, ~italic(p)<= 0.001)"
-          ),
-          PANEL = structure(c(1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
-          group = structure(1:4, n = 4L),
-          colour = structure(c(
-            "#1B9E77FF", "#D95F02FF", "#7570B3FF", "#E7298AFF"
-          ), class = "colors"),
-          fill = c("white", "white", "white", "white"),
-          size = c(3, 3, 3, 3),
-          angle = c(0, 0, 0, 0),
-          alpha = c(NA, NA, NA, NA),
-          family = c("", "", "", ""),
-          fontface = c(1, 1, 1, 1),
-          lineheight = c(1.2, 1.2, 1.2, 1.2),
-          hjust = c(0.5, 0.5, 0.5, 0.5),
-          vjust = c(0.5, 0.5, 0.5, 0.5)
-        ),
-        row.names = c(NA, -4L),
-        class = "data.frame"
-      )
-    )
-  }
-)
 
 # f-statistic and partial eta- and omega-squared -----------------------------
 
@@ -898,25 +908,22 @@ testthat::test_that(
       meta.analytic.effect = TRUE
     ))
 
+    testthat::expect_identical(pb7$plot$labels$caption, "mnp")
+
     # subtitle
     set.seed(123)
-    meta_info <- suppressWarnings(capture.output(ggstatsplot::ggcoefstats(
-      x = df5,
-      statistic = "t",
-      k = 3,
-      meta.analytic.effect = TRUE,
-      bf.message = TRUE,
-      messages = TRUE
-    )))
-
-    # tests
-    testthat::expect_identical(meta_info[13], "Q(df = 2) = 5.6910, p-val = 0.0581")
-    testthat::expect_identical(meta_info[30], "  random_H0     1.000      1.31")
-    testthat::expect_identical(
-      meta_info[18],
-      "  0.1515  0.1171  1.2938  0.1957  -0.0780  0.3811    "
-    )
-    testthat::expect_identical(pb7$plot$labels$caption, "mnp")
+    meta_info <-
+      suppressWarnings(ggstatsplot::ggcoefstats(
+        x = df5,
+        statistic = "t",
+        k = 3,
+        caption.summary = FALSE,
+        meta.analytic.effect = TRUE,
+        bf.message = TRUE,
+        output = "caption",
+        messages = TRUE
+      ))
+    testthat::expect_identical(as.character(meta_info$expr)[6], "0.267")
   }
 )
 
@@ -1145,9 +1152,7 @@ testthat::test_that(
       ggstatsplot::ggcoefstats(
         x = mod,
         exclude.intercept = FALSE,
-        point.size = 6,
-        point.shape = 5,
-        point.color = "red"
+        point.args = list(size = 6, shape = 5, color = "red")
       )
 
     # plot build

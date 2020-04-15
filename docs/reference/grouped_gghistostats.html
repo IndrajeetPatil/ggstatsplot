@@ -29,15 +29,15 @@
 <script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -90,7 +90,7 @@ resulting plots using ggstatsplot::combine_plots." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0</span>
       </span>
     </div>
 
@@ -268,7 +268,7 @@ dataframe containing results from proportion tests.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Arguments passed on to <code><a href='gghistostats.html'>gghistostats</a></code></p><dl class='dl-horizontal'>
+      <td><p>Arguments passed on to <code><a href='gghistostats.html'>gghistostats</a></code></p><dl'>
     <dt><code>bar.measure</code></dt><dd><p>Character describing what value needs to be represented as
 height in the bar chart. This can either be <code>"count"</code>, which shows number
 of points in bin, or <code>"density"</code>, which density of points in bin, scaled to
@@ -281,23 +281,17 @@ normal curve using <code><a href='https://rdrr.io/r/stats/Normal.html'>stats::dn
 passed to the normal curve.</p></dd>
     <dt><code>bar.fill</code></dt><dd><p>Character input that decides which color will uniformly fill
 all the bars in the histogram (Default: <code>"grey50"</code>).</p></dd>
-    <dt><code>stat.title</code></dt><dd><p>A character describing the test being run, which will be
-added as a prefix in the subtitle. The default is <code>NULL</code>. An example of a
-<code>stat.title</code> argument will be something like <code>"Student's t-test: "</code>.</p></dd>
     <dt><code>type</code></dt><dd><p>Type of statistic expected (<code>"parametric"</code> or <code>"nonparametric"</code>
 or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations are also accepted:
 <code>"p"</code> (for parametric), <code>"np"</code> (nonparametric), <code>"r"</code> (robust), or
 <code>"bf"</code>resp.</p></dd>
     <dt><code>test.value</code></dt><dd><p>A number specifying the value of the null hypothesis
 (Default: <code>0</code>).</p></dd>
-    <dt><code>bf.prior</code></dt><dd><p>A numeric value between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the
-prior width to use in calculating Bayes Factors.</p></dd>
+    <dt><code>bf.prior</code></dt><dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
+width to use in calculating Bayes factors.</p></dd>
     <dt><code>effsize.type</code></dt><dd><p>Type of effect size needed for <em>parametric</em> tests. The
 argument can be <code>"biased"</code> (<code>"d"</code> for Cohen's <em>d</em>) or <code>"unbiased"</code>
 (<code>"g"</code> Hedge's <em>g</em> for <strong>t-test</strong>). The default is <code>"g"</code>.</p></dd>
-    <dt><code>effsize.noncentral</code></dt><dd><p>Logical indicating whether to use non-central
-<em>t</em>-distributions for computing the confidence interval for Cohen's <em>d</em>
-or Hedge's <em>g</em> (Default: <code>TRUE</code>).</p></dd>
     <dt><code>conf.level</code></dt><dd><p>Scalar between 0 and 1. If unspecified, the defaults return
 <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></dd>
     <dt><code>nboot</code></dt><dd><p>Number of bootstrap samples for computing confidence interval
@@ -403,7 +397,7 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
 
 <span class='co'># plot</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_gghistostats.html'>grouped_gghistostats</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>grouped_gghistostats</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>,
   <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>5</span>,
@@ -415,7 +409,7 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
   ),
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>plotgrid.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"(i)"</span>, <span class='st'>"(ii)"</span>, <span class='st'>"(iii)"</span>)),
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: full precision may not have been achieved in 'pnt{final}'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: full precision may not have been achieved in 'pnt{final}'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: full precision may not have been achieved in 'pnt{final}'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: full precision may not have been achieved in 'pnt{final}'</span></div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='img'><img src='grouped_gghistostats-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='img'><img src='grouped_gghistostats-1.png' alt='' width='700' height='433' /></div><div class='input'># }
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -432,7 +426,7 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

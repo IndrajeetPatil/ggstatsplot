@@ -351,37 +351,6 @@ testthat::test_that(
     )
     testthat::expect_identical(p1$labels$x, "Wine")
     testthat::expect_identical(p1$labels$y, "Taste")
-
-    # checking pairwise comparisons
-    # testthat::expect_equal(levels(pb1$data[[8]]$annotation), c("*", "**"))
-
-    # caption for the plot
-    set.seed(254)
-    plot_caption <-
-      ggstatsplot::ggwithinstats(
-        data = ggstatsplot::bugs_long,
-        x = condition,
-        y = desire,
-        messages = FALSE,
-        bf.prior = 0.85,
-        k = 3,
-        output = "caption"
-      )
-
-    # function output
-    set.seed(254)
-    fun_output <-
-      bf_oneway_anova(
-        data = ggstatsplot::bugs_long,
-        x = condition,
-        y = desire,
-        paired = TRUE,
-        bf.prior = 0.85,
-        k = 3
-      )
-
-    # these should be equal
-    testthat::expect_identical(plot_caption, fun_output)
   }
 )
 
@@ -421,7 +390,7 @@ testthat::test_that(
 
     set.seed(123)
     p2 <-
-      ggstatsplot::ggwithinstats(
+      suppressWarnings(ggstatsplot::ggwithinstats(
         data = ggstatsplot::iris_long,
         x = condition,
         y = value,
@@ -432,7 +401,7 @@ testthat::test_that(
         pairwise.annotation = "p-value",
         conf.level = 0.90,
         messages = FALSE
-      )
+      ))
 
     set.seed(123)
     p2_subtitle <-
@@ -576,120 +545,5 @@ testthat::test_that(
 
     # test
     testthat::expect_identical(p$labels$y, "Taste rating")
-  }
-)
-
-# checking warning message when too few obs --------------------------------
-
-testthat::test_that(
-  desc = "checking warning message when too few obs",
-  code = {
-    testthat::skip_on_cran()
-    set.seed(123)
-
-    # dataframe
-    df <- structure(list(
-      x = c(
-        30, 40, 50, 60, 70, 80, 90, 30, 40, 50,
-        60, 70, 80, 90, 30, 40, 50, 60, 70, 80, 90, 30, 40, 50, 60, 70,
-        80, 90, 30, 40, 50, 60, 70, 80, 90
-      ),
-      Participant = c(
-        "FH2", "FH2",
-        "FH2", "FH2", "FH2", "FH2", "FH2", "ZW", "ZW", "ZW", "ZW", "ZW",
-        "ZW", "ZW", "KS", "KS", "KS", "KS", "KS", "KS", "KS", "CL", "CL",
-        "CL", "CL", "CL", "CL", "CL", "AG", "AG", "AG", "AG", "AG", "AG",
-        "AG"
-      ),
-      Method = c(
-        2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-        2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2
-      ),
-      y = c(
-        2571.25, 2688.003333, 2779.363333, 2832.046667,
-        3050.72, 3255.553333, 3327.173667, 1766.296667, 2107.890333,
-        2391.7, 2569.24, 2680.22, 2807.59, 2807.953333, 2078.734,
-        2414.366667, 2583.27, 2923.253333, 3085.96, 3094.003333,
-        3121.49, 2824.990667, 2716.429667, 2844.323333, 3124.713333,
-        3252.863333, 3424.24, 3674.463333, 2401.996667, 2719.046667,
-        2712.99, 2951.965667, 3046.526667, 3100.902667, 3195.331333
-      )
-    ),
-    class = c("spec_tbl_df", "tbl_df", "tbl", "data.frame"),
-    row.names = c(NA, -35L),
-    spec = structure(list(
-      cols = list(
-        x = structure(list(), class = c("collector_double", "collector")),
-        Participant = structure(list(), class = c(
-          "collector_character",
-          "collector"
-        )),
-        Method = structure(list(), class = c(
-          "collector_double",
-          "collector"
-        )),
-        y = structure(list(), class = c(
-          "collector_double",
-          "collector"
-        ))
-      ),
-      default = structure(list(), class = c(
-        "collector_guess",
-        "collector"
-      )), skip = 1
-    ),
-    class = "col_spec"
-    )
-    )
-
-    # capture the message
-    set.seed(123)
-    p <-
-      suppressWarnings(ggstatsplot::ggwithinstats(
-        data = df,
-        x = x,
-        y = y,
-        pairwise.display = "significant",
-        pairwise.annotation = "p.value",
-        pairwise.comparisons = TRUE,
-        sphericity.correction = TRUE,
-        messages = FALSE
-      ))
-
-    # build the plot
-    pb <- ggplot2::ggplot_build(p)
-
-    # check that
-    testthat::expect_identical(
-      pb$plot$labels$subtitle,
-      ggplot2::expr(paste(
-        NULL,
-        italic("F"),
-        "(",
-        "6",
-        ",",
-        "24",
-        ") = ",
-        "43.14",
-        ", ",
-        italic("p"),
-        " = ",
-        "< 0.001",
-        ", ",
-        widehat(omega^2),
-        " = ",
-        "0.60",
-        ", CI"["95%"],
-        " [",
-        "0.77",
-        ", ",
-        "0.93",
-        "]",
-        ", ",
-        italic("n")["pairs"],
-        " = ",
-        5L
-      ))
-    )
   }
 )

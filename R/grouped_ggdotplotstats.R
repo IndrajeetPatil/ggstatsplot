@@ -9,8 +9,7 @@
 #' @inheritParams grouped_ggbetweenstats
 #' @inheritDotParams ggdotplotstats -title
 #'
-#' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
-#' @importFrom dplyr group_by n arrange
+#' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if group_by
 #' @importFrom rlang !! enquo quo_name ensym
 #' @importFrom purrr pmap
 #'
@@ -75,7 +74,6 @@ grouped_ggdotplotstats <- function(data,
   # creating a dataframe
   df <-
     dplyr::select(.data = data, {{ grouping.var }}, {{ x }}, {{ y }}) %>%
-    tidyr::drop_na(data = .) %>% # creating a list for grouped analysis
     grouped_list(data = ., grouping.var = {{ grouping.var }})
 
   # creating a list of plots

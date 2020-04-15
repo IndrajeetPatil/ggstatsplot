@@ -121,7 +121,6 @@ ggscatterstats <- function(data,
                            vline.args = list(color = xfill, size = 1, linetype = "dashed"),
                            hline.args = list(color = yfill, size = 1, linetype = "dashed"),
                            results.subtitle = TRUE,
-                           stat.title = NULL,
                            xlab = NULL,
                            ylab = NULL,
                            title = NULL,
@@ -138,7 +137,7 @@ ggscatterstats <- function(data,
                            ...) {
 
   # convert entered stats type to a standard notation
-  type <- stats_type_switch(type)
+  type <- ipmisc::stats_type_switch(type)
 
   #---------------------- variable names --------------------------------
 
@@ -190,24 +189,9 @@ ggscatterstats <- function(data,
 
   # adding a subtitle with statistical results
   if (isTRUE(results.subtitle)) {
-    subtitle <-
-      statsExpressions::expr_corr_test(
-        data = data,
-        x = {{ x }},
-        y = {{ y }},
-        nboot = nboot,
-        beta = beta,
-        type = type,
-        conf.level = conf.level,
-        conf.type = "norm",
-        k = k,
-        stat.title = stat.title,
-        messages = messages
-      )
-
     # preparing the BF message for null hypothesis support
-    if (isTRUE(bf.message)) {
-      bf.caption.text <-
+    if (type == "parametric" && isTRUE(bf.message)) {
+      caption <-
         statsExpressions::bf_corr_test(
           data = data,
           x = {{ x }},
@@ -219,8 +203,20 @@ ggscatterstats <- function(data,
         )
     }
 
-    # if bayes factor message needs to be displayed
-    if (type == "parametric" && isTRUE(bf.message)) caption <- bf.caption.text
+    # extracting the subtitle using the switch function
+    subtitle <-
+      statsExpressions::expr_corr_test(
+        data = data,
+        x = {{ x }},
+        y = {{ y }},
+        nboot = nboot,
+        beta = beta,
+        type = type,
+        conf.level = conf.level,
+        conf.type = "norm",
+        k = k,
+        messages = messages
+      )
   }
 
   # quit early if only subtitle is needed
@@ -393,16 +389,16 @@ ggscatterstats <- function(data,
 
   # annotations
   plot <- plot +
-    ggstatsplot::theme_ggstatsplot(
-      ggtheme = ggtheme,
-      ggstatsplot.layer = ggstatsplot.layer
-    ) +
     ggplot2::labs(
       x = xlab,
       y = ylab,
       title = title,
       subtitle = subtitle,
       caption = caption
+    ) +
+    ggstatsplot::theme_ggstatsplot(
+      ggtheme = ggtheme,
+      ggstatsplot.layer = ggstatsplot.layer
     ) +
     ggplot.component
 

@@ -78,28 +78,6 @@ grouped_ggbetweenstats <- function(data,
 
   # =================== check user input and prep =========================
 
-  # create a list of function call to check
-  param_list <- as.list(match.call())
-
-  # check that there is a grouping.var
-  if (!"grouping.var" %in% names(param_list)) {
-    stop("You must specify a grouping variable")
-  }
-
-  # check that conditioning and grouping.var are different
-  if (as.character(param_list$x) == as.character(param_list$grouping.var)) {
-    message(cat(
-      ipmisc::red("\nError: "),
-      ipmisc::blue(
-        "Identical variable (",
-        ipmisc::yellow(param_list$x),
-        ") was used for both grouping and x axis, which is not allowed.\n"
-      ),
-      sep = ""
-    ))
-    return(invisible(param_list$x))
-  }
-
   # ensure the grouping variable works quoted or unquoted
   x <- rlang::ensym(x)
   y <- rlang::ensym(y)
@@ -123,7 +101,6 @@ grouped_ggbetweenstats <- function(data,
       {{ y }},
       {{ outlier.label }}
     ) %>%
-    tidyr::drop_na(data = .) %>% # creating a list for grouped analysis
     grouped_list(data = ., grouping.var = {{ grouping.var }})
 
   # ============== creating a list of plots using `pmap`=======================

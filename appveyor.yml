@@ -37,12 +37,10 @@ environment:
   - R_VERSION: release
     R_ARCH: x64
     GCC_PATH: mingw_64
-    #PKGTYPE: both
 
-  - R_VERSION: devel
-    R_ARCH: x64
-    GCC_PATH: mingw_64
-    #PKGTYPE: both
+  # - R_VERSION: devel
+  #   R_ARCH: x64
+  #   GCC_PATH: mingw_64
 
 matrix:
   fast_finish: true

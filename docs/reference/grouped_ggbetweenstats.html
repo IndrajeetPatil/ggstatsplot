@@ -30,15 +30,15 @@ designs repeated across all levels of a grouping variable. — grouped_ggbetween
 <script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -91,7 +91,7 @@ grouping variable." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0</span>
       </span>
     </div>
 
@@ -272,7 +272,7 @@ dataframe containing results from proportion tests.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Arguments passed on to <code><a href='ggbetweenstats.html'>ggbetweenstats</a></code></p><dl class='dl-horizontal'>
+      <td><p>Arguments passed on to <code><a href='ggbetweenstats.html'>ggbetweenstats</a></code></p><dl'>
     <dt><code>plot.type</code></dt><dd><p>Character describing the <em>type</em> of plot. Currently supported
 plots are <code>"box"</code> (for pure boxplots), <code>"violin"</code> (for pure violin plots),
 and <code>"boxviolin"</code> (for a combination of box and violin plots; default).</p></dd>
@@ -377,13 +377,7 @@ argument can be <code>"biased"</code> (equivalent to <code>"d"</code> for Cohen'
 <strong>t-test</strong>; <code>"partial_eta"</code> for partial eta-squared for <strong>anova</strong>) or
 <code>"unbiased"</code> (equivalent to <code>"g"</code> Hedge's <em>g</em> for <strong>t-test</strong>;
 <code>"partial_omega"</code> for partial omega-squared for <strong>anova</strong>)).</p></dd>
-    <dt><code>partial</code></dt><dd><p>Logical that decides if partial eta-squared or omega-squared
-are returned (Default: <code>TRUE</code>). If <code>FALSE</code>, eta-squared or omega-squared
-will be returned. Valid only for objects of class <code>lm</code>, <code>aov</code>, <code>anova</code>, or
-<code>aovlist</code>.</p></dd>
-    <dt><code>stat.title</code></dt><dd><p>A character describing the test being run, which will be
-added as a prefix in the subtitle. The default is <code>NULL</code>. An example of a
-<code>stat.title</code> argument will be something like <code>"Student's t-test: "</code>.</p></dd>
+    <dt><code>partial</code></dt><dd><p>If <code>TRUE</code>, return partial indices.</p></dd>
     <dt><code>k</code></dt><dd><p>Number of digits after decimal point (should be an integer)
 (Default: <code>k = 2</code>).</p></dd>
     <dt><code>var.equal</code></dt><dd><p>a logical variable indicating whether to treat the
@@ -394,17 +388,14 @@ added as a prefix in the subtitle. The default is <code>NULL</code>. An example 
     the case of arbitrarily many samples.</p></dd>
     <dt><code>conf.level</code></dt><dd><p>Scalar between 0 and 1. If unspecified, the defaults return
 <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></dd>
-    <dt><code>nboot</code></dt><dd><p>Number of bootstrap samples for computing confidence interval
-for the effect size (Default: <code>100</code>).</p></dd>
     <dt><code>messages</code></dt><dd><p>Decides whether messages references, notes, and warnings are
 to be displayed (Default: <code>TRUE</code>).</p></dd>
-    <dt><code>effsize.noncentral</code></dt><dd><p>Logical indicating whether to use non-central
-<em>t</em>-distributions for computing the confidence interval for Cohen's <em>d</em>
-or Hedge's <em>g</em> (Default: <code>TRUE</code>).</p></dd>
     <dt><code>type</code></dt><dd><p>Type of statistic expected (<code>"parametric"</code> or <code>"nonparametric"</code>
 or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations are also accepted:
 <code>"p"</code> (for parametric), <code>"np"</code> (nonparametric), <code>"r"</code> (robust), or
 <code>"bf"</code>resp.</p></dd>
+    <dt><code>nboot</code></dt><dd><p>Number of bootstrap samples for computing confidence interval
+for the effect size (Default: <code>100</code>).</p></dd>
     <dt><code>tr</code></dt><dd><p>Trim level for the mean when carrying out <code>robust</code> tests. If you
 get error stating "Standard error cannot be computed because of Winsorized
 variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
@@ -481,7 +472,7 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
 
 <span class='co'># the most basic function call</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggbetweenstats.html'>grouped_ggbetweenstats</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>grouped_ggbetweenstats</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/mpg.html'>mpg</a></span>, <span class='no'>drv</span> <span class='kw'>!=</span> <span class='st'>"4"</span>),
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>year</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>hwy</span>,
@@ -489,9 +480,9 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
   <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.99</span>
 )</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Shapiro-Wilk Normality Test for </span><span style='color: #BBBB00;'>hwy</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>&lt; 0.001</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Bartlett's test for homogeneity of variances for factor </span><span style='color: #BBBB00;'>year</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>0.144</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Shapiro-Wilk Normality Test for </span><span style='color: #BBBB00;'>hwy</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>0.033</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Bartlett's test for homogeneity of variances for factor </span><span style='color: #BBBB00;'>year</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>0.682</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggbetweenstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># modifying individual plots using `ggplot.component` argument</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggbetweenstats.html'>grouped_ggbetweenstats</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>grouped_ggbetweenstats</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
-    <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='no'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/movies_long.html'>movies_long</a></span>,
+    <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='no'><a href='movies_long.html'>movies_long</a></span>,
     <span class='no'>genre</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Action"</span>, <span class='st'>"Comedy"</span>),
     <span class='no'>mpaa</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"R"</span>, <span class='st'>"PG"</span>)
   ),
@@ -521,7 +512,7 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

@@ -1,4 +1,3 @@
-
 # checking labels and data from plot -------------------------------------
 
 testthat::test_that(
@@ -128,34 +127,37 @@ testthat::test_that(
         y = "brain weight",
         colour = "vore",
         title = "mammalian sleep",
-        subtitle = ggplot2::expr(paste(
-          NULL,
-          italic("F"),
-          "(",
-          "3",
-          ",",
-          "24.04746",
-          ") = ",
-          "2.26528",
-          ", ",
-          italic("p"),
-          " = ",
-          "0.10662",
-          ", ",
-          widehat(omega["p"]^2),
-          " = ",
-          "0.00349",
-          ", CI"["99%"],
-          " [",
-          "-0.08521",
-          ", ",
-          "0.12874",
-          "]",
-          ", ",
-          italic("n")["obs"],
-          " = ",
-          51L
-        )),
+        subtitle =
+          ggplot2::expr(
+            paste(
+              NULL,
+              italic("F")["Welch"],
+              "(",
+              "3",
+              ",",
+              "24.04746",
+              ") = ",
+              "2.26528",
+              ", ",
+              italic("p"),
+              " = ",
+              "0.10662",
+              ", ",
+              widehat(omega["p"]^2),
+              " = ",
+              "0.00349",
+              ", CI"["99%"],
+              " [",
+              "-0.06250",
+              ", ",
+              "0.07503",
+              "]",
+              ", ",
+              italic("n")["obs"],
+              " = ",
+              51L
+            )
+          ),
         caption = ggplot2::expr(atop(
           displaystyle(atop(
             displaystyle("From ggplot2 package"),
@@ -268,43 +270,6 @@ testthat::test_that(
   }
 )
 
-# plot caption is correct --------------------------------------------------
-
-testthat::test_that(
-  desc = "checking mean labels are working",
-  code = {
-    testthat::skip_on_cran()
-    library(ggplot2)
-
-    # caption for the plot
-    set.seed(254)
-    plot_caption <-
-      ggstatsplot::ggbetweenstats(
-        data = msleep,
-        x = vore,
-        y = brainwt,
-        messages = FALSE,
-        bf.prior = 0.85,
-        k = 3,
-        output = "caption"
-      )
-
-    # function output
-    set.seed(254)
-    fun_output <-
-      bf_oneway_anova(
-        data = msleep,
-        x = vore,
-        y = brainwt,
-        bf.prior = 0.85,
-        k = 3
-      )
-
-    # these should be equal
-    testthat::expect_identical(plot_caption, fun_output)
-  }
-)
-
 # checking if plot.type argument works --------------------------------------
 
 testthat::test_that(
@@ -339,6 +304,7 @@ testthat::test_that(
         data = ToothGrowth,
         x = supp,
         y = len,
+        results.subtitle = FALSE,
         effsize.noncentral = FALSE,
         plot.type = "violin",
         outlier.tagging = TRUE,
@@ -360,37 +326,6 @@ testthat::test_that(
     # tests for labels
     testthat::expect_null(pb1$plot$labels$subtitle, NULL)
     testthat::expect_null(pb1$plot$labels$caption, NULL)
-    testthat::expect_identical(
-      pb2$plot$labels$subtitle,
-      ggplot2::expr(
-        paste(
-          NULL,
-          italic("t"),
-          "(",
-          "55.31",
-          ") = ",
-          "1.92",
-          ", ",
-          italic("p"),
-          " = ",
-          "0.061",
-          ", ",
-          widehat(italic("g")),
-          " = ",
-          "0.49",
-          ", CI"["95%"],
-          " [",
-          "-0.04",
-          ", ",
-          "1.01",
-          "]",
-          ", ",
-          italic("n")["obs"],
-          " = ",
-          60L
-        )
-      )
-    )
     testthat::expect_null(pb2$plot$labels$caption, NULL)
     testthat::expect_identical(length(pb1$data), 5L)
     testthat::expect_identical(length(pb1$data), 5L)
@@ -662,93 +597,24 @@ testthat::test_that(
     set.seed(123)
     subtitle_exp <-
       ggstatsplot::ggbetweenstats(
-        data = iris,
-        x = Species,
-        y = Sepal.Length,
+        data = mtcars,
+        x = am,
+        y = wt,
         output = "subtitle",
         messages = FALSE
       )
 
-    # plot
     set.seed(123)
-    # add as a test
-    DF <- mtcars
-
-    DF$type <- mtcars$am
-
-    subtitle_exp2 <-
-      ggstatsplot::ggbetweenstats(
-        data = DF,
-        x = "type",
-        y = "mpg",
-        messages = FALSE,
-        output = "subtitle"
+    sub <-
+      statsExpressions::expr_t_parametric(
+        data = mtcars,
+        x = am,
+        y = wt,
+        output = "subtitle",
+        messages = FALSE
       )
-
 
     # test
-    testthat::expect_identical(
-      subtitle_exp,
-      ggplot2::expr(paste(
-        NULL,
-        italic("F"),
-        "(",
-        "2",
-        ",",
-        "92.21",
-        ") = ",
-        "138.91",
-        ", ",
-        italic("p"),
-        " = ",
-        "< 0.001",
-        ", ",
-        widehat(omega["p"]^2),
-        " = ",
-        "0.61",
-        ", CI"["95%"],
-        " [",
-        "0.54",
-        ", ",
-        "0.69",
-        "]",
-        ", ",
-        italic("n")["obs"],
-        " = ",
-        150L
-      ))
-    )
-
-    testthat::expect_identical(
-      subtitle_exp2,
-      ggplot2::expr(
-        paste(
-          NULL,
-          italic("t"),
-          "(",
-          "18.33",
-          ") = ",
-          "-3.77",
-          ", ",
-          italic("p"),
-          " = ",
-          "0.001",
-          ", ",
-          widehat(italic("g")),
-          " = ",
-          "-1.38",
-          ", CI"["95%"],
-          " [",
-          "-2.17",
-          ", ",
-          "-0.51",
-          "]",
-          ", ",
-          italic("n")["obs"],
-          " = ",
-          32L
-        )
-      )
-    )
+    testthat::expect_identical(subtitle_exp, sub)
   }
 )

@@ -7,15 +7,12 @@
 #'   the `x` variable displayed in the legend.
 #' @param xlab Custom text for the `x` axis label (Default: `NULL`, which
 #'   will cause the `x` axis label to be the `x` variable).
-#' @param ylab Custom text for the `y` axis label (Default: `"percent"`).
+#' @param ylab Custom text for the `y` axis label (Default: `NULL`).
 #' @param proportion.test Decides whether proportion test for `main` variable is
 #'   to be carried out for each level of `y` (Default: `TRUE`).
 #' @param label Character decides what information needs to be
 #'   displayed on the label in each pie slice. Possible options are
 #'   `"percentage"` (default), `"counts"`, `"both"`.
-#' @param x.axis.orientation The orientation of the `x` axis labels one of
-#'   "slant" or "vertical" to change from the default horizontal
-#'   orientation (Default: `NULL` which is horizontal).
 #' @param sample.size.label Logical that decides whether sample size information
 #'   should be displayed for each level of the grouping variable `y`
 #'   (Default: `TRUE`).
@@ -59,7 +56,6 @@ ggbarstats <- function(data,
                        paired = FALSE,
                        labels.legend = NULL,
                        results.subtitle = TRUE,
-                       stat.title = NULL,
                        sample.size.label = TRUE,
                        label = "percentage",
                        perc.k = 0,
@@ -71,12 +67,11 @@ ggbarstats <- function(data,
                        title = NULL,
                        subtitle = NULL,
                        caption = NULL,
-                       x.axis.orientation = NULL,
                        conf.level = 0.95,
                        nboot = 100,
                        legend.title = NULL,
                        xlab = NULL,
-                       ylab = "Percent",
+                       ylab = NULL,
                        k = 2,
                        proportion.test = TRUE,
                        ggtheme = ggplot2::theme_bw(),
@@ -93,7 +88,7 @@ ggbarstats <- function(data,
 
   # ensure the variables work quoted or unquoted
   main <- rlang::ensym(main)
-  condition <- if (!rlang::quo_is_null(rlang::enquo(condition))) rlang::ensym(condition)
+  condition <- rlang::ensym(condition)
   x <- if (!rlang::quo_is_null(rlang::enquo(x))) rlang::ensym(x)
   y <- if (!rlang::quo_is_null(rlang::enquo(y))) rlang::ensym(y)
   x <- x %||% main
@@ -152,7 +147,6 @@ ggbarstats <- function(data,
           ratio = ratio,
           nboot = nboot,
           paired = paired,
-          stat.title = stat.title,
           legend.title = legend.title,
           conf.level = conf.level,
           conf.type = "norm",
@@ -307,26 +301,6 @@ ggbarstats <- function(data,
   }
 
   # =========================== putting all together ========================
-
-  # if we need to modify `x`-axis orientation
-  if (!is.null(x.axis.orientation)) {
-    if (x.axis.orientation == "slant") {
-      c(angle, vjust) %<-% c(45, 1)
-    } else {
-      c(angle, vjust) %<-% c(90, 0.5)
-    }
-
-    # adjusting plot label
-    p <- p +
-      ggplot2::theme(
-        axis.text.x = ggplot2::element_text(
-          angle = angle,
-          vjust = vjust,
-          hjust = 1,
-          face = "bold"
-        )
-      )
-  }
 
   # preparing the plot
   p <- p +

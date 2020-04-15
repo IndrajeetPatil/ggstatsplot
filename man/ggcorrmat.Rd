@@ -80,8 +80,8 @@ Abbreviations will also work: \code{"p"} (for parametric), \code{"np"}
 \item{beta}{A numeric bending constant for percentage bend robust correlation
 coefficient (Default: \code{0.1}).}
 
-\item{k}{Decides the number of decimal digits to be displayed
-(Default: \code{2}).}
+\item{k}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 2}).}
 
 \item{sig.level}{Significance level (Default: \code{0.05}). If the \emph{p}-value in
 \emph{p}-value matrix is bigger than \code{sig.level}, then the corresponding
@@ -91,8 +91,8 @@ the plot. Relevant only when \code{output = "plot"}.}
 \item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
 \verb{95\%} lower and upper confidence intervals (\code{0.95}).}
 
-\item{bf.prior}{A numeric value between \code{0.5} and \code{2} (default \code{0.707}), the
-prior width to use in calculating Bayes Factors.}
+\item{bf.prior}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
+width to use in calculating Bayes factors.}
 
 \item{p.adjust.method}{What adjustment for multiple tests should be used?
 (\code{"holm"}, \code{"hochberg"}, \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"},

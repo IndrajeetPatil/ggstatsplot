@@ -7,5 +7,5 @@
 
 0 errors | 0 warnings | 0 notes
 
-  - Hotfix release to address some of the breakages resulting from the new
-    release of `ggplot2`.
+  - Makes compatible with the new release of `statsExpressions`.
+  - Minor internal refactoring and maintenance.

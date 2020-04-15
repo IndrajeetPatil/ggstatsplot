@@ -19,7 +19,6 @@ ggcoefstats(
   conf.int = TRUE,
   conf.level = 0.95,
   k = 2,
-  k.caption.summary = 0,
   exclude.intercept = TRUE,
   exponentiate = FALSE,
   sort = "none",
@@ -30,9 +29,7 @@ ggcoefstats(
   only.significant = FALSE,
   caption = NULL,
   caption.summary = TRUE,
-  point.color = "blue",
-  point.size = 3,
-  point.shape = 16,
+  point.args = list(size = 3, color = "blue"),
   errorbar.args = list(height = 0),
   vline = TRUE,
   vline.args = list(size = 1, linetype = "dashed"),
@@ -129,20 +126,22 @@ probability level for CI.}
 \item{k}{Number of decimal places expected for results displayed in labels
 (Default : \code{k = 2}).}
 
-\item{k.caption.summary}{Number of decimal places expected for results
-displayed in captions (Default : \code{k.caption.summary = 0}).}
-
 \item{exclude.intercept}{Logical that decides whether the intercept should be
 excluded from the plot (Default: \code{TRUE}).}
 
 \item{exponentiate}{If \code{TRUE}, the \code{x}-axis will be logarithmic (Default:
-\code{FALSE}).}
+\code{FALSE}). Note that exponents for the coefficient estimates and associated
+standard errors plus confidence intervals are computed by the underlying
+tidying packages (\code{broom}/\code{parameters}) and not done by \code{ggcoefstats}. So
+this might not work if the underlying packages don't support
+exponentiation.}
 
 \item{sort}{If \code{"none"} (default) do not sort, \code{"ascending"} sort by
 increasing coefficient value, or \code{"descending"} sort by decreasing
 coefficient value.}
 
-\item{xlab, ylab}{Labels for \code{x} axis variable (Defaults: \code{"regression coefficient"} and \code{"term"}, resp.).}
+\item{xlab, ylab}{Labels for \code{x}- and \code{y}- axis variables, respectively
+(Defaults: \code{"regression coefficient"} and \code{"term"}).}
 
 \item{title}{The text for the plot title.}
 
@@ -161,13 +160,9 @@ when \code{output = "caption"}.}
 displayed as a cation to the plot (Default: \code{TRUE}). Color of the line
 segment. Defaults to the same color as the text.}
 
-\item{point.color}{Character describing color for the point (Default:
-\code{"blue"}).}
-
-\item{point.size}{Numeric specifying size for the point (Default: \code{3}).}
-
-\item{point.shape}{Numeric specifying shape to draw the points (Default: \code{16}
-(\strong{a dot})).}
+\item{point.args}{Additional arguments that will be passed to
+\code{ggplot2::geom_point} geom. Please see documentation for that function to
+know more about these arguments.}
 
 \item{errorbar.args}{Additional arguments that will be passed to
 \code{ggplot2::geom_errorbarh} geom. Please see documentation for that function
@@ -208,8 +203,7 @@ theme elements are to be displayed along with the selected \code{ggtheme}
 (Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
 override some aspects of the selected \code{ggtheme}.}
 
-\item{messages}{Decides whether messages references, notes, and warnings are
-to be displayed (Default: \code{TRUE}).}
+\item{messages}{Deprecated. Retained only for backward compatibility.}
 
 \item{...}{Additional arguments to tidying method.}
 }

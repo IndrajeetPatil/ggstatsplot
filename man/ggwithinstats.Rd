@@ -16,7 +16,6 @@ ggwithinstats(
   p.adjust.method = "holm",
   effsize.type = "unbiased",
   partial = TRUE,
-  effsize.noncentral = TRUE,
   bf.prior = 0.707,
   bf.message = TRUE,
   sphericity.correction = TRUE,
@@ -101,14 +100,7 @@ argument can be \code{"biased"} (equivalent to \code{"d"} for Cohen's \emph{d} f
 \code{"unbiased"} (equivalent to \code{"g"} Hedge's \emph{g} for \strong{t-test};
 \code{"partial_omega"} for partial omega-squared for \strong{anova})).}
 
-\item{partial}{Logical that decides if partial eta-squared or omega-squared
-are returned (Default: \code{TRUE}). If \code{FALSE}, eta-squared or omega-squared
-will be returned. Valid only for objects of class \code{lm}, \code{aov}, \code{anova}, or
-\code{aovlist}.}
-
-\item{effsize.noncentral}{Logical indicating whether to use non-central
-\emph{t}-distributions for computing the confidence interval for Cohen's \emph{d}
-or Hedge's \emph{g} (Default: \code{TRUE}).}
+\item{partial}{If \code{TRUE}, return partial indices.}
 
 \item{bf.prior}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
 width to use in calculating Bayes factors.}

@@ -14,9 +14,9 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../../apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../../bootstrap-toc.css">
-<script src="../../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
+<script src="../../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
 <script src="../../pkgdown.js"></script><!-- docsearch --><script src="../../docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
 <link href="../../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><link href="../../extra.css" rel="stylesheet">
@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0</span>
       </span>
     </div>
 
@@ -149,7 +149,7 @@
       <h1 data-toc-skip>ggcorrmat</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-03-22</h4>
+            <h4 class="date">2020-04-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcorrmat.Rmd"><code>vignettes/web_only/ggcorrmat.Rmd</code></a></small>
       <div class="hidden name"><code>ggcorrmat.Rmd</code></div>
@@ -172,134 +172,134 @@
 <a href="#correlation-matrix-plot-with-ggcorrmat" class="anchor"></a>Correlation matrix plot with <code>ggcorrmat</code>
 </h2>
 <p>For the first example, we will use the <code>gapminder</code> dataset (available in eponymous <a href="https://CRAN.R-project.org/package=gapminder">package</a> on CRAN) provides values for life expectancy, Gross Domestic Product (GDP) per capita, and population, every five years, from 1952 to 2007, for each of 142 countries and was collected by the Gapminder Foundation. Let’s have a look at the data-</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(gapminder)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(gapminder)</span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="co">#&gt; Observations: 1,704</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="co">#&gt; Variables: 6</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co">#&gt; $ country   &lt;fct&gt; Afghanistan, Afghanistan, Afghanistan, Afghanistan, Afgha...</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="co">#&gt; $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asi...</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="co">#&gt; $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 199...</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="co">#&gt; $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 4...</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="co">#&gt; $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372,...</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="co">#&gt; $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.113...</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">gapminder</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)
+
+<span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="no">gapminder</span>)
+<span class="co">#&gt; Rows: 1,704</span>
+<span class="co">#&gt; Columns: 6</span>
+<span class="co">#&gt; $ country   &lt;fct&gt; Afghanistan, Afghanistan, Afghanistan, Afghanistan, Afgha...</span>
+<span class="co">#&gt; $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asi...</span>
+<span class="co">#&gt; $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 199...</span>
+<span class="co">#&gt; $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 4...</span>
+<span class="co">#&gt; $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372,...</span>
+<span class="co">#&gt; $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.113...</span></pre></body></html></div>
 <p>Let’s say we are interested in studying correlation between population of a country, average life expectancy, and GDP per capita across countries only for the year 2007.</p>
 <p>The simplest way to get a correlation matrix is to stick to the defaults-</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># setup</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggstatsplot)</span>
-<span id="cb2-4"><a href="#cb2-4"></a></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="co"># select data only from the year 2007</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a>gapminder_<span class="dv">2007</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder<span class="op">::</span>gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>)</span>
-<span id="cb2-7"><a href="#cb2-7"></a></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="co"># producing the correlation matrix</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</span>
-<span id="cb2-10"><a href="#cb2-10"></a>  <span class="dt">data =</span> gapminder_<span class="dv">2007</span>, <span class="co"># data from which variable is to be taken</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>  <span class="dt">cor.vars =</span> lifeExp<span class="op">:</span>gdpPercap <span class="co"># specifying correlation matrix variables</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># setup</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
+
+<span class="co"># select data only from the year 2007</span>
+<span class="no">gapminder_2007</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">.data</span> <span class="kw">=</span> <span class="kw pkg">gapminder</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html">gapminder</a></span>, <span class="no">year</span> <span class="kw">==</span> <span class="fl">2007</span>)
+
+<span class="co"># producing the correlation matrix</span>
+<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span>(
+  <span class="kw">data</span> <span class="kw">=</span> <span class="no">gapminder_2007</span>, <span class="co"># data from which variable is to be taken</span>
+  <span class="kw">cor.vars</span> <span class="kw">=</span> <span class="no">lifeExp</span>:<span class="no">gdpPercap</span> <span class="co"># specifying correlation matrix variables</span>
+)</pre></body></html></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat1-1.png" width="576"></p>
 <p>This plot can be further modified with additional arguments-</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="dt">data =</span> gapminder_<span class="dv">2007</span>, <span class="co"># data from which variable is to be taken</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>  <span class="dt">cor.vars =</span> lifeExp<span class="op">:</span>gdpPercap, <span class="co"># specifying correlation matrix variables</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>  <span class="dt">cor.vars.names =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(</span>
-<span id="cb3-5"><a href="#cb3-5"></a>    <span class="st">"Life Expectancy"</span>,</span>
-<span id="cb3-6"><a href="#cb3-6"></a>    <span class="st">"population"</span>,</span>
-<span id="cb3-7"><a href="#cb3-7"></a>    <span class="st">"GDP (per capita)"</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a>  ),</span>
-<span id="cb3-9"><a href="#cb3-9"></a>  <span class="dt">type =</span> <span class="st">"spearman"</span>, <span class="co"># which correlation coefficient is to be computed</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a>  <span class="dt">lab.col =</span> <span class="st">"red"</span>, <span class="co"># label color</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a>  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span>(), <span class="co"># selected ggplot2 theme</span></span>
-<span id="cb3-12"><a href="#cb3-12"></a>  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>, <span class="co"># turn off default ggestatsplot theme overlay</span></span>
-<span id="cb3-13"><a href="#cb3-13"></a>  <span class="dt">matrix.type =</span> <span class="st">"lower"</span>, <span class="co"># correlation matrix structure</span></span>
-<span id="cb3-14"><a href="#cb3-14"></a>  <span class="dt">colors =</span> <span class="ot">NULL</span>, <span class="co"># turning off manual specification of colors</span></span>
-<span id="cb3-15"><a href="#cb3-15"></a>  <span class="dt">palette =</span> <span class="st">"category10_d3"</span>, <span class="co"># choosing a color palette</span></span>
-<span id="cb3-16"><a href="#cb3-16"></a>  <span class="dt">package =</span> <span class="st">"ggsci"</span>, <span class="co"># package to which color palette belongs</span></span>
-<span id="cb3-17"><a href="#cb3-17"></a>  <span class="dt">title =</span> <span class="st">"Gapminder correlation matrix"</span>, <span class="co"># custom title</span></span>
-<span id="cb3-18"><a href="#cb3-18"></a>  <span class="dt">subtitle =</span> <span class="st">"Source: Gapminder Foundation"</span> <span class="co"># custom subtitle</span></span>
-<span id="cb3-19"><a href="#cb3-19"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span>(
+  <span class="kw">data</span> <span class="kw">=</span> <span class="no">gapminder_2007</span>, <span class="co"># data from which variable is to be taken</span>
+  <span class="kw">cor.vars</span> <span class="kw">=</span> <span class="no">lifeExp</span>:<span class="no">gdpPercap</span>, <span class="co"># specifying correlation matrix variables</span>
+  <span class="kw">cor.vars.names</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+    <span class="st">"Life Expectancy"</span>,
+    <span class="st">"population"</span>,
+    <span class="st">"GDP (per capita)"</span>
+  ),
+  <span class="kw">type</span> <span class="kw">=</span> <span class="st">"spearman"</span>, <span class="co"># which correlation coefficient is to be computed</span>
+  <span class="kw">lab.col</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="co"># label color</span>
+  <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span>(), <span class="co"># selected ggplot2 theme</span>
+  <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="co"># turn off default ggestatsplot theme overlay</span>
+  <span class="kw">matrix.type</span> <span class="kw">=</span> <span class="st">"lower"</span>, <span class="co"># correlation matrix structure</span>
+  <span class="kw">colors</span> <span class="kw">=</span> <span class="kw">NULL</span>, <span class="co"># turning off manual specification of colors</span>
+  <span class="kw">palette</span> <span class="kw">=</span> <span class="st">"category10_d3"</span>, <span class="co"># choosing a color palette</span>
+  <span class="kw">package</span> <span class="kw">=</span> <span class="st">"ggsci"</span>, <span class="co"># package to which color palette belongs</span>
+  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Gapminder correlation matrix"</span>, <span class="co"># custom title</span>
+  <span class="kw">subtitle</span> <span class="kw">=</span> <span class="st">"Source: Gapminder Foundation"</span> <span class="co"># custom subtitle</span>
+)</pre></body></html></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat2-1.png" width="576"></p>
 <p>As seen from this correlation matrix, although there is no relationship between population and life expectancy worldwide, at least in 2007, there is a strong positive relationship between GDP, a well-established indicator of a country’s economic performance.</p>
 <p>Given that there were only three variables, this doesn’t look that impressive. So let’s work with another example from <code>ggplot2</code> package: the <code>diamonds</code> <a href="http://ggplot2.tidyverse.org/reference/diamonds.html">dataset</a>. This dataset contains the prices and other attributes of almost 54,000 diamonds.</p>
 <p>Let’s have a look at the data-</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</span>
-<span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(ggplot2<span class="op">::</span>diamonds)</span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="co">#&gt; Observations: 53,940</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="co">#&gt; Variables: 10</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="co">#&gt; $ carat   &lt;dbl&gt; 0.23, 0.21, 0.23, 0.29, 0.31, 0.24, 0.24, 0.26, 0.22, 0.23,...</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="co">#&gt; $ cut     &lt;ord&gt; Ideal, Premium, Good, Premium, Good, Very Good, Very Good, ...</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="co">#&gt; $ color   &lt;ord&gt; E, E, E, I, J, J, I, H, E, H, J, J, F, J, E, E, I, J, J, J,...</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="co">#&gt; $ clarity &lt;ord&gt; SI2, SI1, VS1, VS2, SI2, VVS2, VVS1, SI1, VS2, VS1, SI1, VS...</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="co">#&gt; $ depth   &lt;dbl&gt; 61.5, 59.8, 56.9, 62.4, 63.3, 62.8, 62.3, 61.9, 65.1, 59.4,...</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="co">#&gt; $ table   &lt;dbl&gt; 55, 61, 65, 58, 58, 57, 57, 55, 61, 61, 55, 56, 61, 54, 62,...</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a><span class="co">#&gt; $ price   &lt;int&gt; 326, 326, 327, 334, 335, 336, 336, 337, 337, 338, 339, 340,...</span></span>
-<span id="cb4-13"><a href="#cb4-13"></a><span class="co">#&gt; $ x       &lt;dbl&gt; 3.95, 3.89, 4.05, 4.20, 4.34, 3.94, 3.95, 4.07, 3.87, 4.00,...</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a><span class="co">#&gt; $ y       &lt;dbl&gt; 3.98, 3.84, 4.07, 4.23, 4.35, 3.96, 3.98, 4.11, 3.78, 4.05,...</span></span>
-<span id="cb4-15"><a href="#cb4-15"></a><span class="co">#&gt; $ z       &lt;dbl&gt; 2.43, 2.31, 2.31, 2.63, 2.75, 2.48, 2.47, 2.53, 2.49, 2.39,...</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
+
+<span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="no"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html">diamonds</a></span>)
+<span class="co">#&gt; Rows: 53,940</span>
+<span class="co">#&gt; Columns: 10</span>
+<span class="co">#&gt; $ carat   &lt;dbl&gt; 0.23, 0.21, 0.23, 0.29, 0.31, 0.24, 0.24, 0.26, 0.22, 0.23,...</span>
+<span class="co">#&gt; $ cut     &lt;ord&gt; Ideal, Premium, Good, Premium, Good, Very Good, Very Good, ...</span>
+<span class="co">#&gt; $ color   &lt;ord&gt; E, E, E, I, J, J, I, H, E, H, J, J, F, J, E, E, I, J, J, J,...</span>
+<span class="co">#&gt; $ clarity &lt;ord&gt; SI2, SI1, VS1, VS2, SI2, VVS2, VVS1, SI1, VS2, VS1, SI1, VS...</span>
+<span class="co">#&gt; $ depth   &lt;dbl&gt; 61.5, 59.8, 56.9, 62.4, 63.3, 62.8, 62.3, 61.9, 65.1, 59.4,...</span>
+<span class="co">#&gt; $ table   &lt;dbl&gt; 55, 61, 65, 58, 58, 57, 57, 55, 61, 61, 55, 56, 61, 54, 62,...</span>
+<span class="co">#&gt; $ price   &lt;int&gt; 326, 326, 327, 334, 335, 336, 336, 337, 337, 338, 339, 340,...</span>
+<span class="co">#&gt; $ x       &lt;dbl&gt; 3.95, 3.89, 4.05, 4.20, 4.34, 3.94, 3.95, 4.07, 3.87, 4.00,...</span>
+<span class="co">#&gt; $ y       &lt;dbl&gt; 3.98, 3.84, 4.07, 4.23, 4.35, 3.96, 3.98, 4.11, 3.78, 4.05,...</span>
+<span class="co">#&gt; $ z       &lt;dbl&gt; 2.43, 2.31, 2.31, 2.63, 2.75, 2.48, 2.47, 2.53, 2.49, 2.39,...</span></pre></body></html></div>
 <p>Let’s see the correlation matrix between different attributes of the diamond and the price.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># for reproducibility</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
-<span id="cb5-3"><a href="#cb5-3"></a></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="co"># let's use just 5% of the data to speed it up</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</span>
-<span id="cb5-6"><a href="#cb5-6"></a>  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.05</span>),</span>
-<span id="cb5-7"><a href="#cb5-7"></a>  <span class="dt">cor.vars =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(carat, depth<span class="op">:</span>z), <span class="co"># note how the variables are getting selected</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a>  <span class="dt">cor.vars.names =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(</span>
-<span id="cb5-9"><a href="#cb5-9"></a>    <span class="st">"carat"</span>,</span>
-<span id="cb5-10"><a href="#cb5-10"></a>    <span class="st">"total depth"</span>,</span>
-<span id="cb5-11"><a href="#cb5-11"></a>    <span class="st">"table"</span>,</span>
-<span id="cb5-12"><a href="#cb5-12"></a>    <span class="st">"price"</span>,</span>
-<span id="cb5-13"><a href="#cb5-13"></a>    <span class="st">"length (in mm)"</span>,</span>
-<span id="cb5-14"><a href="#cb5-14"></a>    <span class="st">"width (in mm)"</span>,</span>
-<span id="cb5-15"><a href="#cb5-15"></a>    <span class="st">"depth (in mm)"</span></span>
-<span id="cb5-16"><a href="#cb5-16"></a>  ),</span>
-<span id="cb5-17"><a href="#cb5-17"></a>  <span class="dt">ggcorrplot.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">outline.color =</span> <span class="st">"black"</span>, <span class="dt">hc.order =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb5-18"><a href="#cb5-18"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+
+<span class="co"># let's use just 5% of the data to speed it up</span>
+<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span>(
+  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="no"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html">diamonds</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.05</span>),
+  <span class="kw">cor.vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">carat</span>, <span class="no">depth</span>:<span class="no">z</span>), <span class="co"># note how the variables are getting selected</span>
+  <span class="kw">cor.vars.names</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+    <span class="st">"carat"</span>,
+    <span class="st">"total depth"</span>,
+    <span class="st">"table"</span>,
+    <span class="st">"price"</span>,
+    <span class="st">"length (in mm)"</span>,
+    <span class="st">"width (in mm)"</span>,
+    <span class="st">"depth (in mm)"</span>
+  ),
+  <span class="kw">ggcorrplot.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">outline.color</span> <span class="kw">=</span> <span class="st">"black"</span>, <span class="kw">hc.order</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+)</pre></body></html></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat3-1.png" width="672"></p>
 <p>We can make a number of changes to this basic correlation matrix. For example, since we were interested in relationship between price and other attributes, let’s make the <code>price</code> column to the the first column. Additionally, since we are running 6 correlations that are of <em>a priori</em> interest to us, we can adjust our threshold of significance to (0.05/6 ~ 0.008). Additionally, let’s use a non-parametric correlation coefficient. Please note that it is <strong>important</strong> to always make sure that the order in which <code>cor.vars</code> and <code>cor.vars.names</code> are entered is in sync. Otherwise, wrong column labels will be displayed.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># for reproducibility</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
-<span id="cb6-3"><a href="#cb6-3"></a></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="co"># let's use just 5% of the data to speed it up</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</span>
-<span id="cb6-6"><a href="#cb6-6"></a>  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.05</span>),</span>
-<span id="cb6-7"><a href="#cb6-7"></a>  <span class="dt">cor.vars =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(price, carat, depth<span class="op">:</span>table, x<span class="op">:</span>z), <span class="co"># note how the variables are getting selected</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a>  <span class="dt">cor.vars.names =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(</span>
-<span id="cb6-9"><a href="#cb6-9"></a>    <span class="st">"price"</span>,</span>
-<span id="cb6-10"><a href="#cb6-10"></a>    <span class="st">"carat"</span>,</span>
-<span id="cb6-11"><a href="#cb6-11"></a>    <span class="st">"total depth"</span>,</span>
-<span id="cb6-12"><a href="#cb6-12"></a>    <span class="st">"table"</span>,</span>
-<span id="cb6-13"><a href="#cb6-13"></a>    <span class="st">"length (in mm)"</span>,</span>
-<span id="cb6-14"><a href="#cb6-14"></a>    <span class="st">"width (in mm)"</span>,</span>
-<span id="cb6-15"><a href="#cb6-15"></a>    <span class="st">"depth (in mm)"</span></span>
-<span id="cb6-16"><a href="#cb6-16"></a>  ),</span>
-<span id="cb6-17"><a href="#cb6-17"></a>  <span class="dt">type =</span> <span class="st">"spearman"</span>,</span>
-<span id="cb6-18"><a href="#cb6-18"></a>  <span class="dt">sig.level =</span> <span class="fl">0.008</span>,</span>
-<span id="cb6-19"><a href="#cb6-19"></a>  <span class="dt">matrix.type =</span> <span class="st">"lower"</span>,</span>
-<span id="cb6-20"><a href="#cb6-20"></a>  <span class="dt">title =</span> <span class="st">"Relationship between diamond attributes and price"</span>,</span>
-<span id="cb6-21"><a href="#cb6-21"></a>  <span class="dt">subtitle =</span> <span class="st">"Dataset: Diamonds from ggplot2 package"</span>,</span>
-<span id="cb6-22"><a href="#cb6-22"></a>  <span class="dt">colors =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>, <span class="st">"#CC79A7"</span>),</span>
-<span id="cb6-23"><a href="#cb6-23"></a>  <span class="dt">pch =</span> <span class="dv">7</span>,</span>
-<span id="cb6-24"><a href="#cb6-24"></a>  <span class="co"># additional aesthetic arguments passed to `ggcorrmat`</span></span>
-<span id="cb6-25"><a href="#cb6-25"></a>  <span class="dt">ggcorrplot.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
-<span id="cb6-26"><a href="#cb6-26"></a>    <span class="dt">lab_col =</span> <span class="st">"yellow"</span>,</span>
-<span id="cb6-27"><a href="#cb6-27"></a>    <span class="dt">lab_size =</span> <span class="dv">6</span>,</span>
-<span id="cb6-28"><a href="#cb6-28"></a>    <span class="dt">tl.srt =</span> <span class="dv">90</span>, <span class="co"># vertical labels for the x-axis (useful in case of long variable names)</span></span>
-<span id="cb6-29"><a href="#cb6-29"></a>    <span class="dt">pch.col =</span> <span class="st">"white"</span>,</span>
-<span id="cb6-30"><a href="#cb6-30"></a>    <span class="dt">pch.cex =</span> <span class="dv">14</span></span>
-<span id="cb6-31"><a href="#cb6-31"></a>  ),</span>
-<span id="cb6-32"><a href="#cb6-32"></a>  <span class="dt">caption =</span></span>
-<span id="cb6-33"><a href="#cb6-33"></a>    <span class="kw"><a href="https://rdrr.io/r/base/substitute.html">substitute</a></span>(</span>
-<span id="cb6-34"><a href="#cb6-34"></a>      <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="kw"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span>(<span class="st">"Note"</span>), <span class="st">": Point shape denotes correlation non-significant at p &lt; 0.008; adjusted for 6 comparisons"</span>)</span>
-<span id="cb6-35"><a href="#cb6-35"></a>    )</span>
-<span id="cb6-36"><a href="#cb6-36"></a>) <span class="op">+</span><span class="st"> </span><span class="co"># modification outside ggstatsplot using ggplot functions</span></span>
-<span id="cb6-37"><a href="#cb6-37"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(</span>
-<span id="cb6-38"><a href="#cb6-38"></a>    <span class="dt">axis.text.x =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(</span>
-<span id="cb6-39"><a href="#cb6-39"></a>      <span class="dt">margin =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span>(<span class="dt">t =</span> <span class="fl">0.15</span>, <span class="dt">r =</span> <span class="fl">0.15</span>, <span class="dt">b =</span> <span class="fl">0.15</span>, <span class="dt">l =</span> <span class="fl">0.15</span>, <span class="dt">unit =</span> <span class="st">"cm"</span>)</span>
-<span id="cb6-40"><a href="#cb6-40"></a>    )</span>
-<span id="cb6-41"><a href="#cb6-41"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+
+<span class="co"># let's use just 5% of the data to speed it up</span>
+<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span>(
+  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="no"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html">diamonds</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.05</span>),
+  <span class="kw">cor.vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">price</span>, <span class="no">carat</span>, <span class="no">depth</span>:<span class="no">table</span>, <span class="no">x</span>:<span class="no">z</span>), <span class="co"># note how the variables are getting selected</span>
+  <span class="kw">cor.vars.names</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+    <span class="st">"price"</span>,
+    <span class="st">"carat"</span>,
+    <span class="st">"total depth"</span>,
+    <span class="st">"table"</span>,
+    <span class="st">"length (in mm)"</span>,
+    <span class="st">"width (in mm)"</span>,
+    <span class="st">"depth (in mm)"</span>
+  ),
+  <span class="kw">type</span> <span class="kw">=</span> <span class="st">"spearman"</span>,
+  <span class="kw">sig.level</span> <span class="kw">=</span> <span class="fl">0.008</span>,
+  <span class="kw">matrix.type</span> <span class="kw">=</span> <span class="st">"lower"</span>,
+  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Relationship between diamond attributes and price"</span>,
+  <span class="kw">subtitle</span> <span class="kw">=</span> <span class="st">"Dataset: Diamonds from ggplot2 package"</span>,
+  <span class="kw">colors</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>, <span class="st">"#CC79A7"</span>),
+  <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">7</span>,
+  <span class="co"># additional aesthetic arguments passed to `ggcorrmat`</span>
+  <span class="kw">ggcorrplot.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+    <span class="kw">lab_col</span> <span class="kw">=</span> <span class="st">"yellow"</span>,
+    <span class="kw">lab_size</span> <span class="kw">=</span> <span class="fl">6</span>,
+    <span class="kw">tl.srt</span> <span class="kw">=</span> <span class="fl">90</span>, <span class="co"># vertical labels for the x-axis (useful in case of long variable names)</span>
+    <span class="kw">pch.col</span> <span class="kw">=</span> <span class="st">"white"</span>,
+    <span class="kw">pch.cex</span> <span class="kw">=</span> <span class="fl">14</span>
+  ),
+  <span class="kw">caption</span> <span class="kw">=</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/substitute.html">substitute</a></span>(
+      <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span>(<span class="st">"Note"</span>), <span class="st">": Point shape denotes correlation non-significant at p &lt; 0.008; adjusted for 6 comparisons"</span>)
+    )
+) + <span class="co"># modification outside ggstatsplot using ggplot functions</span>
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(
+    <span class="kw">axis.text.x</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(
+      <span class="kw">margin</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span>(<span class="kw">t</span> <span class="kw">=</span> <span class="fl">0.15</span>, <span class="kw">r</span> <span class="kw">=</span> <span class="fl">0.15</span>, <span class="kw">b</span> <span class="kw">=</span> <span class="fl">0.15</span>, <span class="kw">l</span> <span class="kw">=</span> <span class="fl">0.15</span>, <span class="kw">unit</span> <span class="kw">=</span> <span class="st">"cm"</span>)
+    )
+  )</pre></body></html></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat4-1.png" width="672"></p>
 <p>As seen here, and unsurprisingly, the strongest predictor of the diamond price is its carat value, which a unit of mass equal to 200 mg. In other words, the heavier the diamond, the more expensive it is going to be.</p>
 </div>
@@ -308,53 +308,53 @@
 <a href="#dataframe-containing-statistics-with-ggcorrmat" class="anchor"></a>Dataframe containing statistics with <code>ggcorrmat</code>
 </h2>
 <p>Another utility of <code>ggcorrmat</code> is in obtaining a dataframe containing all details from statistical analyses. Such dataframes can be easily embedded in manuscripts as tables.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># for reproducibility</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
-<span id="cb7-3"><a href="#cb7-3"></a></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="co"># to get correlations</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</span>
-<span id="cb7-6"><a href="#cb7-6"></a>  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>txhousing, <span class="dt">size =</span> <span class="fl">0.15</span>),</span>
-<span id="cb7-7"><a href="#cb7-7"></a>  <span class="dt">cor.vars =</span> sales<span class="op">:</span>inventory,</span>
-<span id="cb7-8"><a href="#cb7-8"></a>  <span class="dt">output =</span> <span class="st">"dataframe"</span>,</span>
-<span id="cb7-9"><a href="#cb7-9"></a>  <span class="dt">type =</span> <span class="st">"robust"</span>,</span>
-<span id="cb7-10"><a href="#cb7-10"></a>  <span class="dt">digits =</span> <span class="dv">3</span></span>
-<span id="cb7-11"><a href="#cb7-11"></a>)</span>
-<span id="cb7-12"><a href="#cb7-12"></a><span class="co">#&gt; # A tibble: 10 x 10</span></span>
-<span id="cb7-13"><a href="#cb7-13"></a><span class="co">#&gt;    parameter1 parameter2      r ci_low ci_high      t    df        p method</span></span>
-<span id="cb7-14"><a href="#cb7-14"></a><span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; </span></span>
-<span id="cb7-15"><a href="#cb7-15"></a><span class="co">#&gt;  1 sales      volume      0.980  0.978   0.982 172.    1202 0.       Perce~</span></span>
-<span id="cb7-16"><a href="#cb7-16"></a><span class="co">#&gt;  2 sales      median      0.469  0.423   0.512  18.3   1195 0.       Perce~</span></span>
-<span id="cb7-17"><a href="#cb7-17"></a><span class="co">#&gt;  3 sales      listings    0.930  0.921   0.937  83.0   1083 0.       Perce~</span></span>
-<span id="cb7-18"><a href="#cb7-18"></a><span class="co">#&gt;  4 sales      inventory  -0.385 -0.434  -0.333 -13.7   1080 0.       Perce~</span></span>
-<span id="cb7-19"><a href="#cb7-19"></a><span class="co">#&gt;  5 volume     median      0.550  0.509   0.588  22.7   1195 0.       Perce~</span></span>
-<span id="cb7-20"><a href="#cb7-20"></a><span class="co">#&gt;  6 volume     listings    0.898  0.886   0.909  67.1   1083 0.       Perce~</span></span>
-<span id="cb7-21"><a href="#cb7-21"></a><span class="co">#&gt;  7 volume     inventory  -0.368 -0.419  -0.316 -13.0   1080 0.       Perce~</span></span>
-<span id="cb7-22"><a href="#cb7-22"></a><span class="co">#&gt;  8 median     listings    0.403  0.352   0.451  14.5   1083 0.       Perce~</span></span>
-<span id="cb7-23"><a href="#cb7-23"></a><span class="co">#&gt;  9 median     inventory  -0.203 -0.259  -0.145  -6.80  1080 1.70e-11 Perce~</span></span>
-<span id="cb7-24"><a href="#cb7-24"></a><span class="co">#&gt; 10 listings   inventory  -0.163 -0.220  -0.104  -5.42  1080 7.25e- 8 Perce~</span></span>
-<span id="cb7-25"><a href="#cb7-25"></a><span class="co">#&gt; # ... with 1 more variable: n &lt;int&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+
+<span class="co"># to get correlations</span>
+<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span>(
+  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="no"><a href="https://ggplot2.tidyverse.org/reference/txhousing.html">txhousing</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.15</span>),
+  <span class="kw">cor.vars</span> <span class="kw">=</span> <span class="no">sales</span>:<span class="no">inventory</span>,
+  <span class="kw">output</span> <span class="kw">=</span> <span class="st">"dataframe"</span>,
+  <span class="kw">type</span> <span class="kw">=</span> <span class="st">"robust"</span>,
+  <span class="kw">digits</span> <span class="kw">=</span> <span class="fl">3</span>
+)
+<span class="co">#&gt; # A tibble: 10 x 10</span>
+<span class="co">#&gt;    parameter1 parameter2      r ci_low ci_high      t    df        p method</span>
+<span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; </span>
+<span class="co">#&gt;  1 sales      volume      0.980  0.978   0.982 172.    1202 0.       Perce~</span>
+<span class="co">#&gt;  2 sales      median      0.469  0.423   0.512  18.3   1195 0.       Perce~</span>
+<span class="co">#&gt;  3 sales      listings    0.930  0.921   0.937  83.0   1083 0.       Perce~</span>
+<span class="co">#&gt;  4 sales      inventory  -0.385 -0.434  -0.333 -13.7   1080 0.       Perce~</span>
+<span class="co">#&gt;  5 volume     median      0.550  0.509   0.588  22.7   1195 0.       Perce~</span>
+<span class="co">#&gt;  6 volume     listings    0.898  0.886   0.909  67.1   1083 0.       Perce~</span>
+<span class="co">#&gt;  7 volume     inventory  -0.368 -0.419  -0.316 -13.0   1080 0.       Perce~</span>
+<span class="co">#&gt;  8 median     listings    0.403  0.352   0.451  14.5   1083 0.       Perce~</span>
+<span class="co">#&gt;  9 median     inventory  -0.203 -0.259  -0.145  -6.80  1080 1.70e-11 Perce~</span>
+<span class="co">#&gt; 10 listings   inventory  -0.163 -0.220  -0.104  -5.42  1080 7.25e- 8 Perce~</span>
+<span class="co">#&gt; # ... with 1 more variable: nobs &lt;int&gt;</span></pre></body></html></div>
 <p>Note that if <code>cor.vars</code> are not specified, all numeric variables will be used. Moreover, you can also use abbreviations to specify what output you want in return.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># for reproducibility</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
-<span id="cb8-3"><a href="#cb8-3"></a></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="co"># show four digits in a tibble</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="kw"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="dt">pillar.sigfig =</span> <span class="dv">4</span>)</span>
-<span id="cb8-6"><a href="#cb8-6"></a></span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="co"># getting the correlation coefficient matrix</span></span>
-<span id="cb8-8"><a href="#cb8-8"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</span>
-<span id="cb8-9"><a href="#cb8-9"></a>  <span class="dt">data =</span> iris, <span class="co"># all numeric variables from data will be used</span></span>
-<span id="cb8-10"><a href="#cb8-10"></a>  <span class="dt">type =</span> <span class="st">"np"</span>, <span class="co"># non-parametric</span></span>
-<span id="cb8-11"><a href="#cb8-11"></a>  <span class="dt">output =</span> <span class="st">"dataframe"</span></span>
-<span id="cb8-12"><a href="#cb8-12"></a>)</span>
-<span id="cb8-13"><a href="#cb8-13"></a><span class="co">#&gt; # A tibble: 6 x 9</span></span>
-<span id="cb8-14"><a href="#cb8-14"></a><span class="co">#&gt;   parameter1  parameter2      rho ci_low ci_high       s         p method      n</span></span>
-<span id="cb8-15"><a href="#cb8-15"></a><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;dbl&gt; &lt;lgl&gt;  &lt;lgl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;int&gt;</span></span>
-<span id="cb8-16"><a href="#cb8-16"></a><span class="co">#&gt; 1 Sepal.Leng~ Sepal.Width -0.1668 NA     NA      656283. 4.137e- 2 Spearm~   150</span></span>
-<span id="cb8-17"><a href="#cb8-17"></a><span class="co">#&gt; 2 Sepal.Leng~ Petal.Leng~  0.8819 NA     NA       66429. 3.443e-50 Spearm~   150</span></span>
-<span id="cb8-18"><a href="#cb8-18"></a><span class="co">#&gt; 3 Sepal.Leng~ Petal.Width  0.8343 NA     NA       93208. 4.189e-40 Spearm~   150</span></span>
-<span id="cb8-19"><a href="#cb8-19"></a><span class="co">#&gt; 4 Sepal.Width Petal.Leng~ -0.3096 NA     NA      736637. 1.154e- 4 Spearm~   150</span></span>
-<span id="cb8-20"><a href="#cb8-20"></a><span class="co">#&gt; 5 Sepal.Width Petal.Width -0.2890 NA     NA      725048. 3.343e- 4 Spearm~   150</span></span>
-<span id="cb8-21"><a href="#cb8-21"></a><span class="co">#&gt; 6 Petal.Leng~ Petal.Width  0.9377 NA     NA       35061. 8.157e-70 Spearm~   150</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+
+<span class="co"># show four digits in a tibble</span>
+<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="kw">pillar.sigfig</span> <span class="kw">=</span> <span class="fl">4</span>)
+
+<span class="co"># getting the correlation coefficient matrix</span>
+<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span>(
+  <span class="kw">data</span> <span class="kw">=</span> <span class="no">iris</span>, <span class="co"># all numeric variables from data will be used</span>
+  <span class="kw">type</span> <span class="kw">=</span> <span class="st">"np"</span>, <span class="co"># non-parametric</span>
+  <span class="kw">output</span> <span class="kw">=</span> <span class="st">"dataframe"</span>
+)
+<span class="co">#&gt; # A tibble: 6 x 9</span>
+<span class="co">#&gt;   parameter1  parameter2      rho ci_low ci_high       s         p method   nobs</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;dbl&gt; &lt;lgl&gt;  &lt;lgl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;int&gt;</span>
+<span class="co">#&gt; 1 Sepal.Leng~ Sepal.Width -0.1668 NA     NA      656283. 4.137e- 2 Spearm~   150</span>
+<span class="co">#&gt; 2 Sepal.Leng~ Petal.Leng~  0.8819 NA     NA       66429. 3.443e-50 Spearm~   150</span>
+<span class="co">#&gt; 3 Sepal.Leng~ Petal.Width  0.8343 NA     NA       93208. 4.189e-40 Spearm~   150</span>
+<span class="co">#&gt; 4 Sepal.Width Petal.Leng~ -0.3096 NA     NA      736637. 1.154e- 4 Spearm~   150</span>
+<span class="co">#&gt; 5 Sepal.Width Petal.Width -0.2890 NA     NA      725048. 3.343e- 4 Spearm~   150</span>
+<span class="co">#&gt; 6 Petal.Leng~ Petal.Width  0.9377 NA     NA       35061. 8.157e-70 Spearm~   150</span></pre></body></html></div>
 </div>
 <div id="grouped-analysis-with-grouped_ggcorrmat" class="section level2">
 <h2 class="hasAnchor">
@@ -362,65 +362,66 @@
 </h2>
 <p>What if we want to do the same analysis separately for each quality of the diamond <code>cut</code> (Fair, Good, Very Good, Premium, Ideal)?</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggcorrmat</code>. This is merely a wrapper function around <code><a href="../../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggcorrmat</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># for reproducibility</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
-<span id="cb9-3"><a href="#cb9-3"></a></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="co"># let's use just 5% of the data to speed it up</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span>(</span>
-<span id="cb9-6"><a href="#cb9-6"></a>  <span class="co"># arguments relevant for ggstatsplot::ggcorrmat</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a>  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.05</span>),</span>
-<span id="cb9-8"><a href="#cb9-8"></a>  <span class="dt">type =</span> <span class="st">"robust"</span>, <span class="co"># percentage bend correlation coefficient</span></span>
-<span id="cb9-9"><a href="#cb9-9"></a>  <span class="dt">beta =</span> <span class="fl">0.2</span>, <span class="co"># bending constant</span></span>
-<span id="cb9-10"><a href="#cb9-10"></a>  <span class="dt">p.adjust.method =</span> <span class="st">"holm"</span>, <span class="co"># method to adjust p-values for multiple comparisons</span></span>
-<span id="cb9-11"><a href="#cb9-11"></a>  <span class="dt">grouping.var =</span> cut,</span>
-<span id="cb9-12"><a href="#cb9-12"></a>  <span class="dt">title.prefix =</span> <span class="st">"Quality of cut"</span>,</span>
-<span id="cb9-13"><a href="#cb9-13"></a>  <span class="dt">cor.vars =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(carat, depth<span class="op">:</span>z),</span>
-<span id="cb9-14"><a href="#cb9-14"></a>  <span class="dt">cor.vars.names =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(</span>
-<span id="cb9-15"><a href="#cb9-15"></a>    <span class="st">"carat"</span>,</span>
-<span id="cb9-16"><a href="#cb9-16"></a>    <span class="st">"total depth"</span>,</span>
-<span id="cb9-17"><a href="#cb9-17"></a>    <span class="st">"table"</span>,</span>
-<span id="cb9-18"><a href="#cb9-18"></a>    <span class="st">"price"</span>,</span>
-<span id="cb9-19"><a href="#cb9-19"></a>    <span class="st">"length (in mm)"</span>,</span>
-<span id="cb9-20"><a href="#cb9-20"></a>    <span class="st">"width (in mm)"</span>,</span>
-<span id="cb9-21"><a href="#cb9-21"></a>    <span class="st">"depth (in mm)"</span></span>
-<span id="cb9-22"><a href="#cb9-22"></a>  ),</span>
-<span id="cb9-23"><a href="#cb9-23"></a>  <span class="dt">lab.size =</span> <span class="fl">3.5</span>,</span>
-<span id="cb9-24"><a href="#cb9-24"></a>  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></span>
-<span id="cb9-25"><a href="#cb9-25"></a>  <span class="dt">title.text =</span> <span class="st">"Relationship between diamond attributes and price across cut"</span>,</span>
-<span id="cb9-26"><a href="#cb9-26"></a>  <span class="dt">title.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">size =</span> <span class="dv">16</span>, <span class="dt">color =</span> <span class="st">"red"</span>),</span>
-<span id="cb9-27"><a href="#cb9-27"></a>  <span class="dt">caption.text =</span> <span class="st">"Dataset: Diamonds from ggplot2 package"</span>,</span>
-<span id="cb9-28"><a href="#cb9-28"></a>  <span class="dt">caption.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">size =</span> <span class="dv">14</span>, <span class="dt">color =</span> <span class="st">"blue"</span>),</span>
-<span id="cb9-29"><a href="#cb9-29"></a>  <span class="dt">plotgrid.args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
-<span id="cb9-30"><a href="#cb9-30"></a>    <span class="dt">labels =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>, <span class="st">"(e)"</span>),</span>
-<span id="cb9-31"><a href="#cb9-31"></a>    <span class="dt">nrow =</span> <span class="dv">3</span>,</span>
-<span id="cb9-32"><a href="#cb9-32"></a>    <span class="dt">ncol =</span> <span class="dv">2</span></span>
-<span id="cb9-33"><a href="#cb9-33"></a>  )</span>
-<span id="cb9-34"><a href="#cb9-34"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+
+<span class="co"># let's use just 5% of the data to speed it up</span>
+<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span>(
+  <span class="co"># arguments relevant for ggstatsplot::ggcorrmat</span>
+  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="no"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html">diamonds</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.05</span>),
+  <span class="kw">type</span> <span class="kw">=</span> <span class="st">"robust"</span>, <span class="co"># percentage bend correlation coefficient</span>
+  <span class="kw">beta</span> <span class="kw">=</span> <span class="fl">0.2</span>, <span class="co"># bending constant</span>
+  <span class="kw">p.adjust.method</span> <span class="kw">=</span> <span class="st">"holm"</span>, <span class="co"># method to adjust p-values for multiple comparisons</span>
+  <span class="kw">grouping.var</span> <span class="kw">=</span> <span class="no">cut</span>,
+  <span class="kw">title.prefix</span> <span class="kw">=</span> <span class="st">"Quality of cut"</span>,
+  <span class="kw">cor.vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">carat</span>, <span class="no">depth</span>:<span class="no">z</span>),
+  <span class="kw">cor.vars.names</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+    <span class="st">"carat"</span>,
+    <span class="st">"total depth"</span>,
+    <span class="st">"table"</span>,
+    <span class="st">"price"</span>,
+    <span class="st">"length (in mm)"</span>,
+    <span class="st">"width (in mm)"</span>,
+    <span class="st">"depth (in mm)"</span>
+  ),
+  <span class="kw">lab.size</span> <span class="kw">=</span> <span class="fl">3.5</span>,
+  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span>
+  <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Relationship between diamond attributes and price across cut"</span>,
+  <span class="kw">title.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">16</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"red"</span>),
+  <span class="kw">caption.text</span> <span class="kw">=</span> <span class="st">"Dataset: Diamonds from ggplot2 package"</span>,
+  <span class="kw">caption.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">14</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"blue"</span>),
+  <span class="kw">plotgrid.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+    <span class="kw">labels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>, <span class="st">"(e)"</span>),
+    <span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">3</span>,
+    <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">2</span>
+  )
+)</pre></body></html></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat7-1.png" width="960"></p>
 <p>Note that this function also makes it easy to run the same correlation matrix across different levels of a factor/grouping variable.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># for reproducibility</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</span>
-<span id="cb10-3"><a href="#cb10-3"></a></span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="co"># let's obtain correlation coefficients with their CIs</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span>(</span>
-<span id="cb10-6"><a href="#cb10-6"></a>  <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</span>
-<span id="cb10-7"><a href="#cb10-7"></a>  <span class="dt">grouping.var =</span> vore,</span>
-<span id="cb10-8"><a href="#cb10-8"></a>  <span class="dt">output =</span> <span class="st">"dataframe"</span></span>
-<span id="cb10-9"><a href="#cb10-9"></a>)</span>
-<span id="cb10-10"><a href="#cb10-10"></a><span class="co">#&gt; # A tibble: 60 x 11</span></span>
-<span id="cb10-11"><a href="#cb10-11"></a><span class="co">#&gt;    vore  parameter1 parameter2       r  ci_low  ci_high         t    df</span></span>
-<span id="cb10-12"><a href="#cb10-12"></a><span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt;</span></span>
-<span id="cb10-13"><a href="#cb10-13"></a><span class="co">#&gt;  1 carni sleep_tot~ sleep_rem   0.9189  0.6864  0.9810   6.589e+0     8</span></span>
-<span id="cb10-14"><a href="#cb10-14"></a><span class="co">#&gt;  2 carni sleep_tot~ sleep_cyc~  0.3764 -0.7574  0.9449   7.038e-1     3</span></span>
-<span id="cb10-15"><a href="#cb10-15"></a><span class="co">#&gt;  3 carni sleep_tot~ awake      -1.000  -1.000  -1.000   -1.386e+3    17</span></span>
-<span id="cb10-16"><a href="#cb10-16"></a><span class="co">#&gt;  4 carni sleep_tot~ brainwt    -0.5244 -0.8815  0.2144  -1.629e+0     7</span></span>
-<span id="cb10-17"><a href="#cb10-17"></a><span class="co">#&gt;  5 carni sleep_tot~ bodywt     -0.4427 -0.7468  0.01441 -2.036e+0    17</span></span>
-<span id="cb10-18"><a href="#cb10-18"></a><span class="co">#&gt;  6 carni sleep_rem  sleep_cyc~  0.1216 -0.8521  0.9066   2.122e-1     3</span></span>
-<span id="cb10-19"><a href="#cb10-19"></a><span class="co">#&gt;  7 carni sleep_rem  awake      -0.9189 -0.9810 -0.6865  -6.589e+0     8</span></span>
-<span id="cb10-20"><a href="#cb10-20"></a><span class="co">#&gt;  8 carni sleep_rem  brainwt    -0.5006 -0.9331  0.5237  -1.157e+0     4</span></span>
-<span id="cb10-21"><a href="#cb10-21"></a><span class="co">#&gt;  9 carni sleep_rem  bodywt     -0.4786 -0.8516  0.2162  -1.542e+0     8</span></span>
-<span id="cb10-22"><a href="#cb10-22"></a><span class="co">#&gt; 10 carni sleep_cyc~ awake      -0.3764 -0.9449  0.7574  -7.038e-1     3</span></span>
-<span id="cb10-23"><a href="#cb10-23"></a><span class="co">#&gt; # ... with 50 more rows, and 3 more variables: p &lt;dbl&gt;, method &lt;chr&gt;, n &lt;int&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+
+<span class="co"># let's obtain correlation coefficients with their CIs</span>
+<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span>(
+  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="no"><a href="https://ggplot2.tidyverse.org/reference/msleep.html">msleep</a></span>,
+  <span class="kw">grouping.var</span> <span class="kw">=</span> <span class="no">vore</span>,
+  <span class="kw">output</span> <span class="kw">=</span> <span class="st">"dataframe"</span>
+)
+<span class="co">#&gt; # A tibble: 60 x 11</span>
+<span class="co">#&gt;    vore  parameter1 parameter2       r  ci_low  ci_high         t    df</span>
+<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt;</span>
+<span class="co">#&gt;  1 carni sleep_tot~ sleep_rem   0.9189  0.6864  0.9810   6.589e+0     8</span>
+<span class="co">#&gt;  2 carni sleep_tot~ sleep_cyc~  0.3764 -0.7574  0.9449   7.038e-1     3</span>
+<span class="co">#&gt;  3 carni sleep_tot~ awake      -1.000  -1.000  -1.000   -1.386e+3    17</span>
+<span class="co">#&gt;  4 carni sleep_tot~ brainwt    -0.5244 -0.8815  0.2144  -1.629e+0     7</span>
+<span class="co">#&gt;  5 carni sleep_tot~ bodywt     -0.4427 -0.7468  0.01441 -2.036e+0    17</span>
+<span class="co">#&gt;  6 carni sleep_rem  sleep_cyc~  0.1216 -0.8521  0.9066   2.122e-1     3</span>
+<span class="co">#&gt;  7 carni sleep_rem  awake      -0.9189 -0.9810 -0.6865  -6.589e+0     8</span>
+<span class="co">#&gt;  8 carni sleep_rem  brainwt    -0.5006 -0.9331  0.5237  -1.157e+0     4</span>
+<span class="co">#&gt;  9 carni sleep_rem  bodywt     -0.4786 -0.8516  0.2162  -1.542e+0     8</span>
+<span class="co">#&gt; 10 carni sleep_cyc~ awake      -0.3764 -0.9449  0.7574  -7.038e-1     3</span>
+<span class="co">#&gt; # ... with 50 more rows, and 3 more variables: p &lt;dbl&gt;, method &lt;chr&gt;,</span>
+<span class="co">#&gt; #   nobs &lt;int&gt;</span></pre></body></html></div>
 <p>As this example illustrates, there is a minimal coding overhead to explore correlations in your dataset with the <code>grouped_ggcorrmat</code> function.</p>
 </div>
 <div id="grouped-analysis-with-ggcorrmat-purrr" class="section level2">
@@ -438,23 +439,28 @@
 <thead><tr class="header">
 <th>Type</th>
 <th>Test</th>
+<th>CI?</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td>Parametric</td>
 <td>Pearson’s correlation coefficient</td>
+<td><font color="green">Yes<font></font></font></td>
 </tr>
 <tr class="even">
 <td>Non-parametric</td>
 <td>Spearman’s rank correlation coefficient</td>
+<td><font color="green">Yes<font></font></font></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
 <td>Percentage bend correlation coefficient</td>
+<td><font color="green">Yes<font></font></font></td>
 </tr>
 <tr class="even">
 <td>Bayes Factor</td>
 <td>Pearson’s correlation coefficient</td>
+<td><font color="green">Yes<font></font></font></td>
 </tr>
 </tbody>
 </table>
@@ -486,7 +492,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

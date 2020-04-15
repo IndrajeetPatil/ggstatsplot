@@ -29,15 +29,15 @@
 <script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -87,7 +87,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0</span>
       </span>
     </div>
 
@@ -196,31 +196,47 @@
       <small>Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="ggstatsplot-0409000" class="section level1">
-<h1 class="page-header" data-toc-text="0.4.0.9000">
-<a href="#ggstatsplot-0409000" class="anchor"></a>ggstatsplot 0.4.0.9000<small> Unreleased </small>
+    <div id="ggstatsplot-040" class="section level1">
+<h1 class="page-header" data-toc-text="0.4.0">
+<a href="#ggstatsplot-040" class="anchor"></a>ggstatsplot 0.4.0<small> Unreleased </small>
 </h1>
 <p>BREAKING CHANGES</p>
 <ul>
-<li>
-<code>ggcorrmat</code> no longer returns matrices of correlation coefficients or other details. It now returns either a plot or a dataframe and this can dataframe can then be used to create matrices.</li>
+<li><p><code>ggcorrmat</code> no longer returns matrices of correlation coefficients or other details. It now returns either a plot or a dataframe and this can dataframe can then be used to create matrices.</p></li>
+<li><p><code>ggbarstats</code> loses <code>x.axis.orientation</code> argument. This argument was supposed to help avoid overlapping <em>x</em>-axis label, but now <code>ggplot2 3.3.0</code> has a better way to handle this: <a href="https://www.tidyverse.org/blog/2020/03/ggplot2-3-3-0/#rewrite-of-axis-code" class="uri">https://www.tidyverse.org/blog/2020/03/ggplot2-3-3-0/#rewrite-of-axis-code</a></p></li>
 </ul>
 <p>NEW FEATURES</p>
 <ul>
 <li><p>Specifying <code>output = "proptest"</code> for <code>ggpiestats</code> and <code>ggbarstats</code> functions will now return a dataframe containing results from proportion test.</p></li>
 <li><p><code>ggbetweenstats</code> and <code>ggwithinstats</code> will display pairwise comparisons even if <code>results.subtitle</code> is set to <code>FALSE</code>.</p></li>
 <li><p><code>ggcorrmat</code> supports computing Bayes Factors for Pearson’s <em>r</em> correlation.</p></li>
+<li><p><code>ggbetweenstats</code> and <code>ggwithinstats</code> now support pairwise comparisons for Bayes Factor test.</p></li>
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>
-<li><p><code>ggcorrmat</code> legend, in case of missing values, shows mode - instead of median - for the distribution of sample pairs.</p></li>
-<li><p>The vestigial <code>caption.default</code> argument in <code>ggcorrmat</code> is retired.</p></li>
+<li><p>For changes related to subtitle details, see changes made in new version of <code>statsExpressions 4.0.0</code>: <a href="https://CRAN.R-project.org/package=statsExpressions/news/news.html" class="uri">https://CRAN.R-project.org/package=statsExpressions/news/news.html</a></p></li>
+<li><p><code>ggbetweenstats</code> and <code>ggwithinstats</code> no longer print dataframes containing results from pairwise comparisons tests because this is too cluttering for the user’s console. The users are now instead advised to either extract this dataframe using <code><a href="https://ggplot2.tidyverse.org/reference/ggplot_build.html">ggplot2::ggplot_build()</a></code> function or use the <code><a href="https://indrajeetpatil.github.io/pairwiseComparisons//reference/pairwise_comparisons.html">pairwiseComparisons::pairwise_comparisons()</a></code> function used in the background by <code>ggstatsplot</code> to carry out this analysis.</p></li>
+<li><p>Due to changes in one of the downstream dependencies, <code>ggstatsplot</code> now expects the minimum R version to be <code>3.6.0</code>.</p></li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
-<li>More models supported in <code>ggcoefstats</code>: <code>lmerModLmerTest</code>.</li>
+<li><p>More models supported in <code>ggcoefstats</code>: <code>bayesx</code>, <code>BBmm</code>, <code>brmultinom</code>, <code>lmerModLmerTest</code>, <code>lrm</code>.</p></li>
+<li><p><code>ggcorrmat</code> now internally relies on <code>correlation</code> for correlation analyses.</p></li>
+<li><p><code>ggbarstats</code> no longer displays <code>"percent"</code> for Y-axis label as this was redundant information.</p></li>
+<li><p>Continuing the argument cleanup that began in <code>0.3.0</code>, <code>ggcoefstats</code> gains <code>point.args</code> argument instead of individuals <code>point.*</code> arguments.</p></li>
+<li><p>The subtitles are more explicit about the details of the test. For the same reason <code>stat.title</code> argument from all relevant functions is retired since this argument was supposed to be for entering some additional details about the test. Additionally, the plot titles and subtitles for some of the plots are aligned with the plot.</p></li>
+<li><p><code>ggcorrmat</code> legend, in case of missing values, shows mode - instead of median - for the distribution of sample pairs.</p></li>
 <li>
-<code>ggcorrmat</code> now internally relies on <code>correlation</code> for correlation analyses.</li>
+<p>The following vestigial arguments are retired:</p>
+<ul>
+<li>
+<code>caption.default</code> in <code>ggcorrmat</code>
+</li>
+<li>
+<code>k.caption.summary</code> in <code>ggcoefstats</code>
+</li>
+</ul>
+</li>
 </ul>
 </div>
     <div id="ggstatsplot-031" class="section level1">
@@ -729,7 +745,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

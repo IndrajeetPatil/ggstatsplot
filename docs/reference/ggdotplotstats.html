@@ -29,15 +29,15 @@
 <script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -90,7 +90,7 @@ subtitle." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0</span>
       </span>
     </div>
 
@@ -213,7 +213,6 @@ subtitle.</p>
   <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>,
@@ -221,7 +220,6 @@ subtitle.</p>
   <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"g"</span>,
-  <span class='kw'>effsize.noncentral</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
@@ -266,17 +264,12 @@ variable names for <code>x</code> and <code>y</code> will be used.</p></td>
     </tr>
     <tr>
       <th>ylab</th>
-      <td><p>Labels for <code>x</code> axis variable (Defaults: <code>"regression coefficient"</code> and <code>"term"</code>, resp.).</p></td>
+      <td><p>Labels for <code>x</code>- and <code>y</code>- axis variables, respectively
+(Defaults: <code>"regression coefficient"</code> and <code>"term"</code>).</p></td>
     </tr>
     <tr>
       <th>title</th>
       <td><p>The text for the plot title.</p></td>
-    </tr>
-    <tr>
-      <th>stat.title</th>
-      <td><p>A character describing the test being run, which will be
-added as a prefix in the subtitle. The default is <code>NULL</code>. An example of a
-<code>stat.title</code> argument will be something like <code>"Student's t-test: "</code>.</p></td>
     </tr>
     <tr>
       <th>subtitle</th>
@@ -301,8 +294,8 @@ or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations ar
     </tr>
     <tr>
       <th>bf.prior</th>
-      <td><p>A numeric value between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the
-prior width to use in calculating Bayes Factors.</p></td>
+      <td><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
+width to use in calculating Bayes factors.</p></td>
     </tr>
     <tr>
       <th>bf.message</th>
@@ -315,12 +308,6 @@ parametric test</strong> (Default: <code>TRUE</code>).</p></td>
       <td><p>Type of effect size needed for <em>parametric</em> tests. The
 argument can be <code>"biased"</code> (<code>"d"</code> for Cohen's <em>d</em>) or <code>"unbiased"</code>
 (<code>"g"</code> Hedge's <em>g</em> for <strong>t-test</strong>). The default is <code>"g"</code>.</p></td>
-    </tr>
-    <tr>
-      <th>effsize.noncentral</th>
-      <td><p>Logical indicating whether to use non-central
-<em>t</em>-distributions for computing the confidence interval for Cohen's <em>d</em>
-or Hedge's <em>g</em> (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>conf.level</th>
@@ -483,7 +470,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

@@ -96,8 +96,19 @@ ggstatsplot::ggwithinstats(
   - The function automatically decides whether a dependent samples test is
     preferred (for 2 groups) or an ANOVA (3 or more groups). based on the number
     of levels in the grouping variable.
+    
   - The output of the function is a `ggplot` object which means that it can be
     further modified with `ggplot2` functions.
+
+As can be seen from the plot, the function by default returns Bayes Factor for
+the test. If the null hypothesis can't be rejected with the null hypothesis
+significance testing (NHST) approach, the Bayesian approach can help index
+evidence in favor of the null hypothesis (i.e., $BF_{01}$).
+
+By default, natural logarithms are shown because Bayes Factor values can
+sometimes be pretty large. Having values on logarithmic scale also makes it easy
+to compare evidence in favor alternative ($BF_{10}$) versus null ($BF_{01}$)
+hypotheses (since $log_{e}(BF_{01}) = - log_{e}(BF_{01})$).
 
 We can make the output much more aesthetically pleasing as well as informative
 by making use of the many optional parameters in `ggwithinstats`. We'll add a
@@ -165,7 +176,7 @@ recommended, to make each plot have different colors or themes.
 
 For example,
 
-```{r ggwithinstats3, message = FALSE, warning = FALSE, fig.height = 10, fig.width = 10}
+```{r ggwithinstats3, message = FALSE, warning = FALSE, fig.height = 14, fig.width = 14}
 # for reproducibility
 set.seed(123)
 library(ggstatsplot)
@@ -218,7 +229,6 @@ p3 <-
     type = "r",
     conf.level = 0.99,
     title = "Robust Test",
-    tr = 0.2,
     package = "wesanderson",
     palette = "Royal2",
     ggtheme = hrbrthemes::theme_ipsum_tw(),
@@ -361,7 +371,7 @@ Type | Test | *p*-value adjustment?
 Parametric | Student's *t*-test | <font color="green">Yes</font>  
 Non-parametric | Durbin-Conover test | <font color="green">Yes</font>  
 Robust | Yuen's trimmed means test | <font color="green">Yes</font>  
-Bayes Factor | <font color="red">No</font> | <font color="red">No</font>
+Bayes Factor | Student's *t*-test | `NA`
 
 ## Effect size interpretation
 

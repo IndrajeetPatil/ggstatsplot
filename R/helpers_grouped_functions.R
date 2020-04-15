@@ -8,8 +8,7 @@
 #' @param grouping.var A single grouping variable (can be entered either as a
 #'   bare name `x` or as a string `"x"`).
 #'
-#' @importFrom dplyr filter mutate_if
-#' @importFrom rlang !! enquo quo_text ensym := quo_is_null
+#' @importFrom rlang enquo quo_text ensym quo_is_null
 #'
 #' @examples
 #' ggstatsplot:::grouped_list(data = ggplot2::msleep, grouping.var = vore)
@@ -17,23 +16,12 @@
 
 # function body
 grouped_list <- function(data, grouping.var = NULL) {
-
   # ensure the grouping variable works quoted or unquoted
-  if (!rlang::quo_is_null(rlang::enquo(grouping.var))) {
-    grouping.var <- rlang::ensym(grouping.var)
-  } else {
+  if (rlang::quo_is_null(rlang::enquo(grouping.var))) {
     return(as_tibble(data))
   }
 
-  # creating a nested dataframe
-  data %>%
-    dplyr::mutate(.data = ., {{ grouping.var }} := as.factor({{ grouping.var }})) %>%
-    dplyr::mutate_if(
-      .tbl = .,
-      .predicate = is.factor,
-      .funs = ~ droplevels(.)
-    ) %>%
-    dplyr::filter(.data = ., !is.na({{ grouping.var }})) %>%
-    as_tibble(.) %>%
-    split(x = ., f = .[[rlang::quo_text(grouping.var)]], drop = TRUE)
+  # creating a list; don't use `dplyr::group_list` because it removes names
+  as_tibble(data) %>%
+    split(x = ., f = .[[rlang::quo_text(rlang::ensym(grouping.var))]], drop = TRUE)
 }

@@ -58,15 +58,10 @@ grouped_ggcorrmat <- function(data,
                               sub.text = NULL,
                               sub.args = list(size = 12)) {
 
+  # ========================= preparing dataframe =============================
+
   # create a list of function call to check for label.expression
   param_list <- as.list(match.call())
-
-  # check that there is a grouping.var
-  if (!"grouping.var" %in% names(param_list)) {
-    stop("You must specify a grouping variable")
-  }
-
-  # ========================= preparing dataframe =============================
 
   # ensure the grouping variable works quoted or unquoted
   grouping.var <- rlang::ensym(grouping.var)

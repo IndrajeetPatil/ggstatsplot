@@ -1,11 +1,11 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.4.0.9000
+Version: 0.4.0
 Authors@R: 
     c(person(given = "Indrajeet",
              family = "Patil",
-             role = c("cre", "aut", "ctb"),
+             role = c("cre", "aut", "cph"),
              email = "patilindrajeet.science@gmail.com",
              comment = c(ORCID = "0000-0003-1995-6531")),
       person(given = "Chuck",
@@ -29,10 +29,10 @@ URL: https://indrajeetpatil.github.io/ggstatsplot/,
     https://github.com/IndrajeetPatil/ggstatsplot
 BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
 Depends: 
-    R (>= 3.5.0)
+    R (>= 3.6.0)
 Imports:
-    broomExtra,
-    correlation (>= 0.1.1),
+    broomExtra (>= 3.0.0),
+    correlation (>= 0.2.0),
     cowplot,
     dplyr,
     ggcorrplot,
@@ -42,13 +42,13 @@ Imports:
     ggsignif,
     groupedstats,
     insight,
-    ipmisc,
-    pairwiseComparisons,
+    ipmisc (>= 2.0.0),
+    pairwiseComparisons (>= 0.3.0),
     paletteer,
     purrr,
     rlang,
     stats,
-    statsExpressions,
+    statsExpressions (>= 0.4.0),
     tidyr
 Suggests:
     forcats,
@@ -62,8 +62,6 @@ Suggests:
     testthat,
     tibble,
     WRS2
-Remotes:
-    easystats/correlation
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

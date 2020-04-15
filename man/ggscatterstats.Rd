@@ -35,7 +35,6 @@ ggscatterstats(
   vline.args = list(color = xfill, size = 1, linetype = "dashed"),
   hline.args = list(color = yfill, size = 1, linetype = "dashed"),
   results.subtitle = TRUE,
-  stat.title = NULL,
   xlab = NULL,
   ylab = NULL,
   title = NULL,
@@ -53,8 +52,8 @@ ggscatterstats(
 )
 }
 \arguments{
-\item{data}{A dataframe (or a tibble) from which variables specified are to
-be taken. A matrix or tables will \strong{not} be accepted.}
+\item{data}{for use with \code{formula}, a data frame containing all the
+data}
 
 \item{x}{The column in \code{data} containing the explanatory variable to be
 plotted on the \code{x}-axis. Can be entered either as a character string (e.g.,
@@ -75,8 +74,8 @@ parametric/pearson's), \code{"np"} (nonparametric/spearman), \code{"r"} (robust)
 \item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
 \verb{95\%} lower and upper confidence intervals (\code{0.95}).}
 
-\item{bf.prior}{A numeric value between \code{0.5} and \code{2} (default \code{0.707}), the
-prior width to use in calculating Bayes Factors.}
+\item{bf.prior}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
+width to use in calculating Bayes factors.}
 
 \item{bf.message}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
@@ -170,10 +169,6 @@ display the centrality parameter labels on vertical and horizontal lines.}
 \item{results.subtitle}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}
-
-\item{stat.title}{A character describing the test being run, which will be
-added as a prefix in the subtitle. The default is \code{NULL}. An example of a
-\code{stat.title} argument will be something like \code{"Student's t-test: "}.}
 
 \item{xlab}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
 variable names for \code{x} and \code{y} will be used.}

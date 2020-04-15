@@ -30,15 +30,15 @@ variable — grouped_ggscatterstats • ggstatsplot</title>
 <script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -92,7 +92,7 @@ subtitle." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0</span>
       </span>
     </div>
 
@@ -233,8 +233,8 @@ subtitle.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>A dataframe (or a tibble) from which variables specified are to
-be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
+      <td><p>for use with <code>formula</code>, a data frame containing all the
+data</p></td>
     </tr>
     <tr>
       <th>x</th>
@@ -285,7 +285,7 @@ dataframe containing results from proportion tests.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Arguments passed on to <code><a href='ggscatterstats.html'>ggscatterstats</a></code></p><dl class='dl-horizontal'>
+      <td><p>Arguments passed on to <code><a href='ggscatterstats.html'>ggscatterstats</a></code></p><dl'>
     <dt><code>point.label.args</code></dt><dd><p>A list of additional aesthetic arguments to be passed
 to <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geom used to display the labels.</p></dd>
     <dt><code>smooth.line.args</code></dt><dd><p>A list of additional aesthetic arguments to be passed
@@ -338,18 +338,13 @@ parametric/pearson's), <code>"np"</code> (nonparametric/spearman), <code>"r"</co
 <code>"bf"</code> (for bayes factor), resp.</p></dd>
     <dt><code>conf.level</code></dt><dd><p>Scalar between 0 and 1. If unspecified, the defaults return
 <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></dd>
-    <dt><code>bf.prior</code></dt><dd><p>A numeric value between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the
-prior width to use in calculating Bayes Factors.</p></dd>
-    <dt><code>stat.title</code></dt><dd><p>A character describing the test being run, which will be
-added as a prefix in the subtitle. The default is <code>NULL</code>. An example of a
-<code>stat.title</code> argument will be something like <code>"Student's t-test: "</code>.</p></dd>
+    <dt><code>bf.prior</code></dt><dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
+width to use in calculating Bayes factors.</p></dd>
     <dt><code>nboot</code></dt><dd><p>Number of bootstrap samples for computing confidence interval
 for the effect size (Default: <code>100</code>).</p></dd>
     <dt><code>beta</code></dt><dd><p>bending constant (Default: <code>0.1</code>). For more, see <code><a href='https://rdrr.io/pkg/WRS2/man/pbcor.html'>?WRS2::pbcor</a></code>.</p></dd>
     <dt><code>k</code></dt><dd><p>Number of digits after decimal point (should be an integer)
 (Default: <code>k = 2</code>).</p></dd>
-    <dt><code>messages</code></dt><dd><p>Decides whether messages references, notes, and warnings are
-to be displayed (Default: <code>TRUE</code>).</p></dd>
     <dt><code>formula</code></dt><dd><p>Formula to use in smoothing function, eg. <code>y ~ x</code>,
 <code>y ~ poly(x, 2)</code>, <code>y ~ log(x)</code>. <code>NULL</code> by default, in which case
 <code>method = NULL</code> implies <code>formula = y ~ x</code> when there are fewer than 1,000
@@ -393,6 +388,8 @@ variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
 by <code>ggstatsplot</code>. This argument is primarily helpful for <code>grouped_</code> variant
 of the current function. Default is <code>NULL</code>. The argument should be entered
 as a function.</p></dd>
+    <dt><code>messages</code></dt><dd><p>Decides whether messages references, notes, and warnings are
+to be displayed (Default: <code>TRUE</code>).</p></dd>
     <dt><code>margins</code></dt><dd><p>Along which margins to show the plots. One of: [both, x, y].</p></dd>
     <dt><code>xparams</code></dt><dd><p>List of extra parameters to use only for the marginal plot along
 the x axis.</p></dd>
@@ -455,7 +452,7 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggstatsplot</span>)
 
 <span class='co'># basic function call</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggscatterstats.html'>grouped_ggscatterstats</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>grouped_ggscatterstats</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>movies_long</span>, <span class='no'>genre</span> <span class='kw'>==</span> <span class='st'>"Comedy"</span> <span class='kw'>|</span> <span class='no'>genre</span> <span class='kw'>==</span> <span class='st'>"Drama"</span>),
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>length</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>rating</span>,
@@ -485,7 +482,7 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
 )</div><div class='img'><img src='grouped_ggscatterstats-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># labeling without expression</span>
 
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggscatterstats.html'>grouped_ggscatterstats</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>grouped_ggscatterstats</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
     <span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>movies_long</span>,
     <span class='no'>rating</span> <span class='kw'>==</span> <span class='fl'>7</span>,
@@ -516,7 +513,7 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

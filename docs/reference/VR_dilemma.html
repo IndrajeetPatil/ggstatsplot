@@ -29,15 +29,15 @@
 <script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -88,7 +88,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0</span>
       </span>
     </div>
 
@@ -241,12 +241,12 @@ while reading them in text versus experiencing them in virtual reality.</p>
 #&gt; </span><span style='color: #BCBCBC;'>3</span><span>     7 0     text      1   
 #&gt; </span><span style='color: #BCBCBC;'>4</span><span>     8 0     text      1   
 #&gt; </span><span style='color: #BCBCBC;'>5</span><span>     9 0     text      0.5 
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span>    10 0     text      0.75</div><div class='input'><span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>(<span class='no'>VR_dilemma</span>)</div><div class='output co'>#&gt; Observations: 68
-#&gt; Variables: 4
-#&gt; $ id       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 1, 6, 7, 8, 9, 10, 12, 14, 15, 17, 20, 22, 28, 31, 34, 35,...
-#&gt; $ order    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"...
-#&gt; $ modality </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "text", "text", "text", "text", "text", "text", "text", "t...
-#&gt; $ score    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 0.25, 1.00, 1.00, 1.00, 0.50, 0.75, 1.00, 1.00, 0.75, 0.00...</div></span></pre>
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span>    10 0     text      0.75</div><div class='input'><span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>(<span class='no'>VR_dilemma</span>)</div><div class='output co'>#&gt; Rows: 68
+#&gt; Columns: 4
+#&gt; $ id       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 1, 6, 7, 8, 9, 10, 12, 14, 15, 17, 20, 22, 28, 31, 34, 35, 36, 38, 39, 4, 5, 13, 16, 21, 23, 24, 25, 26, 29, 30, ...
+#&gt; $ order    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "1", "1"...
+#&gt; $ modality </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "text", "text", "text", "text", "text", "text", "text", "text", "text", "text", "text", "text", "text", "text", "...
+#&gt; $ score    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 0.25, 1.00, 1.00, 1.00, 0.50, 0.75, 1.00, 1.00, 0.75, 0.00, 0.50, 0.75, 1.00, 0.50, 1.00, 0.75, 1.00, 0.00, 0.00,...</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -262,7 +262,7 @@ while reading them in text versus experiencing them in virtual reality.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

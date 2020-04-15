@@ -30,15 +30,15 @@ within-subjects (or repeated measures) designs. — ggwithinstats • ggstatsplo
 <script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -92,7 +92,7 @@ details included in the plot as a subtitle." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0</span>
       </span>
     </div>
 
@@ -220,7 +220,6 @@ details included in the plot as a subtitle.</p>
   <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"holm"</span>,
   <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"unbiased"</span>,
   <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>effsize.noncentral</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>sphericity.correction</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
@@ -327,16 +326,7 @@ argument can be <code>"biased"</code> (equivalent to <code>"d"</code> for Cohen'
     </tr>
     <tr>
       <th>partial</th>
-      <td><p>Logical that decides if partial eta-squared or omega-squared
-are returned (Default: <code>TRUE</code>). If <code>FALSE</code>, eta-squared or omega-squared
-will be returned. Valid only for objects of class <code>lm</code>, <code>aov</code>, <code>anova</code>, or
-<code>aovlist</code>.</p></td>
-    </tr>
-    <tr>
-      <th>effsize.noncentral</th>
-      <td><p>Logical indicating whether to use non-central
-<em>t</em>-distributions for computing the confidence interval for Cohen's <em>d</em>
-or Hedge's <em>g</em> (Default: <code>TRUE</code>).</p></td>
+      <td><p>If <code>TRUE</code>, return partial indices.</p></td>
     </tr>
     <tr>
       <th>bf.prior</th>
@@ -572,7 +562,7 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggstatsplot</span>)
 
 <span class='co'># two groups (*t*-test)</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggwithinstats.html'>ggwithinstats</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggwithinstats</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>VR_dilemma</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>modality</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>score</span>,
@@ -582,7 +572,7 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
 <span class='co'># more than two groups (anova)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>WRS2</span>)
 
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggwithinstats.html'>ggwithinstats</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggwithinstats</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span>(<span class='no'>WineTasting</span>),
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Wine</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Taste</span>,
@@ -592,18 +582,7 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
   <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='no'>Taster</span>
 )</div><div class='output co'>#&gt; <span class='warning'>Warning: extreme order statistics used as endpoints</span></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>99%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>100</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 3 x 7</span><span>
-#&gt;   group1 group2 statistic p.value significance test.details       
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>              
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Wine A Wine B      1.05 0.301   ns           Durbin-Conover test
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Wine A Wine C      3.66 0.002</span><span style='text-decoration: underline;'>07</span><span> **           Durbin-Conover test
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Wine B Wine C      2.62 0.024</span><span style='text-decoration: underline;'>6</span><span>  *            Durbin-Conover test
-#&gt;   p.value.adjustment
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Holm              
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Holm              
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Holm              
-#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Shapiro-Wilk Normality Test for </span><span style='color: #BBBB00;'>Taste</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>0.002</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Bartlett's test for homogeneity of variances for factor </span><span style='color: #BBBB00;'>Wine</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>0.970</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggwithinstats-2.png' alt='' width='700' height='433' /></div><div class='input'># }
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Shapiro-Wilk Normality Test for </span><span style='color: #BBBB00;'>Taste</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>0.002</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Bartlett's test for homogeneity of variances for factor </span><span style='color: #BBBB00;'>Wine</span><span style='color: #0000BB;'>: p-value = </span><span style='color: #BBBB00;'>0.970</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggwithinstats-2.png' alt='' width='700' height='433' /></div><div class='input'># }
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -620,7 +599,7 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

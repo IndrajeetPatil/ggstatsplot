@@ -1,6 +1,3 @@
-# context -----------------------------------------------------------------
-context(desc = "grouped_ggbetweenstats")
-
 # outlier labeling works --------------------------------------------------
 
 testthat::test_that(
@@ -22,16 +19,6 @@ testthat::test_that(
         data = dat,
         x = genre,
         y = rating
-      )
-    )
-
-    # expect error when x and grouping.var are same
-    testthat::expect_output(
-      ggstatsplot::grouped_ggbetweenstats(
-        data = dat,
-        x = genre,
-        y = rating,
-        grouping.var = genre
       )
     )
 
@@ -121,164 +108,40 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
 
-    # should output a list of length 5
+    set.seed(123)
+    df <- dplyr::sample_frac(forcats::gss_cat, 0.25) %>%
+      dplyr::filter(
+        .data = ., marital %in% c("Never married"),
+        race %in% c("White", "Black")
+      )
+
+
     set.seed(123)
     ls_results <-
       ggstatsplot::grouped_ggbetweenstats(
-        data = dplyr::sample_frac(forcats::gss_cat, 0.25),
+        data = df,
         x = race,
         y = "tvhours",
         grouping.var = "marital",
         output = "subtitle",
+        bf.message = FALSE,
         k = 4,
         messages = FALSE
       )
 
-    # tests
-    testthat::expect_equal(
-      ls_results,
-      list(
-        `Never married` = ggplot2::expr(paste(
-          NULL,
-          italic("F"),
-          "(",
-          "2",
-          ",",
-          "287.0552",
-          ") = ",
-          "14.0191",
-          ", ",
-          italic("p"),
-          " = ",
-          "< 0.001",
-          ", ",
-          widehat(omega["p"]^2),
-          " = ",
-          "0.0316",
-          ", CI"["95%"],
-          " [",
-          "0.0053",
-          ", ",
-          "0.0661",
-          "]",
-          ", ",
-          italic("n")["obs"],
-          " = ",
-          779L
-        )),
-        Separated = ggplot2::expr(paste(
-          NULL,
-          italic("F"),
-          "(",
-          "2",
-          ",",
-          "39.5287",
-          ") = ",
-          "3.2411",
-          ", ",
-          italic("p"),
-          " = ",
-          "0.0497",
-          ", ",
-          widehat(omega["p"]^2),
-          " = ",
-          "0.0634",
-          ", CI"["95%"],
-          " [",
-          "-0.0347",
-          ", ",
-          "0.1797",
-          "]",
-          ", ",
-          italic("n")["obs"],
-          " = ",
-          107L
-        )),
-        Divorced = ggplot2::expr(paste(
-          NULL,
-          italic("F"),
-          "(",
-          "2",
-          ",",
-          "60.5312",
-          ") = ",
-          "4.4639",
-          ", ",
-          italic("p"),
-          " = ",
-          "0.0155",
-          ", ",
-          widehat(omega["p"]^2),
-          " = ",
-          "0.0170",
-          ", CI"["95%"],
-          " [",
-          "-0.0082",
-          ", ",
-          "0.0529",
-          "]",
-          ", ",
-          italic("n")["obs"],
-          " = ",
-          451L
-        )),
-        Widowed = ggplot2::expr(paste(
-          NULL,
-          italic("F"),
-          "(",
-          "2",
-          ",",
-          "15.4966",
-          ") = ",
-          "4.1371",
-          ", ",
-          italic("p"),
-          " = ",
-          "0.0363",
-          ", ",
-          widehat(omega["p"]^2),
-          " = ",
-          "0.0464",
-          ", CI"["95%"],
-          " [",
-          "-0.0163",
-          ", ",
-          "0.1281",
-          "]",
-          ", ",
-          italic("n")["obs"],
-          " = ",
-          249L
-        )),
-        Married = ggplot2::expr(paste(
-          NULL,
-          italic("F"),
-          "(",
-          "2",
-          ",",
-          "163.6435",
-          ") = ",
-          "6.9614",
-          ", ",
-          italic("p"),
-          " = ",
-          "0.0013",
-          ", ",
-          widehat(omega["p"]^2),
-          " = ",
-          "0.0215",
-          ", CI"["95%"],
-          " [",
-          "6e-04",
-          ", ",
-          "0.0424",
-          "]",
-          ", ",
-          italic("n")["obs"],
-          " = ",
-          1264L
-        ))
+
+    set.seed(123)
+    basic_results <-
+      ggstatsplot::ggbetweenstats(
+        data = df,
+        x = race,
+        y = "tvhours",
+        output = "subtitle",
+        bf.message = FALSE,
+        k = 4,
+        messages = FALSE
       )
-    )
+    # tests
+    testthat::expect_equal(ls_results$`Never married`, basic_results)
   }
 )

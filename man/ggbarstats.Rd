@@ -13,7 +13,6 @@ ggbarstats(
   paired = FALSE,
   labels.legend = NULL,
   results.subtitle = TRUE,
-  stat.title = NULL,
   sample.size.label = TRUE,
   label = "percentage",
   perc.k = 0,
@@ -25,12 +24,11 @@ ggbarstats(
   title = NULL,
   subtitle = NULL,
   caption = NULL,
-  x.axis.orientation = NULL,
   conf.level = 0.95,
   nboot = 100,
   legend.title = NULL,
   xlab = NULL,
-  ylab = "Percent",
+  ylab = NULL,
   k = 2,
   proportion.test = TRUE,
   ggtheme = ggplot2::theme_bw(),
@@ -47,8 +45,8 @@ ggbarstats(
 )
 }
 \arguments{
-\item{data}{A dataframe (or a tibble) from which variables specified are to
-be taken. A matrix or tables will \strong{not} be accepted.}
+\item{data}{for use with \code{formula}, a data frame containing all the
+data}
 
 \item{main}{The variable to use as the \strong{rows} in the contingency table.}
 
@@ -78,11 +76,6 @@ the \code{x} variable displayed in the legend.}
 \item{results.subtitle}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}
-
-\item{stat.title}{Title for the effect being investigated with the chi-square
-test. The default is \code{NULL}, i.e. no title will be added to describe the
-effect being shown. An example of a \code{stat.title} argument will be something
-like \code{"main x condition"} or \code{"interaction"}.}
 
 \item{sample.size.label}{Logical that decides whether sample size information
 should be displayed for each level of the grouping variable \code{y}
@@ -122,10 +115,6 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 
 \item{caption}{The text for the plot caption.}
 
-\item{x.axis.orientation}{The orientation of the \code{x} axis labels one of
-"slant" or "vertical" to change from the default horizontal
-orientation (Default: \code{NULL} which is horizontal).}
-
 \item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
 \verb{95\%} lower and upper confidence intervals (\code{0.95}).}
 
@@ -137,7 +126,7 @@ for the effect size (Default: \code{100}).}
 \item{xlab}{Custom text for the \code{x} axis label (Default: \code{NULL}, which
 will cause the \code{x} axis label to be the \code{x} variable).}
 
-\item{ylab}{Custom text for the \code{y} axis label (Default: \code{"percent"}).}
+\item{ylab}{Custom text for the \code{y} axis label (Default: \code{NULL}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}

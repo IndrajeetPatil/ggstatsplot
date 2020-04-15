@@ -1,6 +1,3 @@
-# context -----------------------------------------------------------------
-context(desc = "grouped_ggwithinstats")
-
 # outlier labeling works --------------------------------------------------
 
 testthat::test_that(
@@ -15,16 +12,6 @@ testthat::test_that(
         VR_dilemma,
         x = modality,
         y = score
-      )
-    )
-
-    # expect error when x and grouping.var are same
-    testthat::expect_output(
-      ggstatsplot::grouped_ggwithinstats(
-        VR_dilemma,
-        x = modality,
-        y = score,
-        grouping.var = modality
       )
     )
 
@@ -88,154 +75,6 @@ testthat::test_that(
   }
 )
 
-# grouping.var works across vector types -----------------------------------
-
-testthat::test_that(
-  desc = "grouping.var works across vector types",
-  code = {
-    testthat::skip_on_cran()
-
-    testthat::expect_true(inherits(
-      ggstatsplot::grouped_ggwithinstats(
-        data = VR_dilemma,
-        x = modality,
-        y = score,
-        grouping.var = order,
-        results.subtitle = FALSE,
-        ggplot.component = ggplot2::scale_y_continuous(
-          limits = c(0, 1),
-          breaks = seq(0, 1, 0.1)
-        ),
-        messages = FALSE
-      ),
-      what = "gg"
-    ))
-  }
-)
-
-# subtitle output --------------------------------------------------
-
-testthat::test_that(
-  desc = "subtitle output",
-  code = {
-    testthat::skip_on_cran()
-
-    # should output a list of length 3
-    set.seed(123)
-    ls_results <-
-      ggstatsplot::grouped_ggwithinstats(
-        data = iris_long,
-        x = condition,
-        y = value,
-        grouping.var = Species,
-        output = "subtitle",
-        messages = FALSE
-      )
-
-    # tests
-    testthat::expect_equal(length(ls_results), 3L)
-    testthat::expect_identical(
-      ls_results[[1]],
-      ggplot2::expr(
-        paste(
-          NULL,
-          italic("F"),
-          "(",
-          "1.88",
-          ",",
-          "91.96",
-          ") = ",
-          "4276.86",
-          ", ",
-          italic("p"),
-          " = ",
-          "< 0.001",
-          ", ",
-          widehat(omega^2),
-          " = ",
-          "0.98",
-          ", CI"["95%"],
-          " [",
-          "0.98",
-          ", ",
-          "0.99",
-          "]",
-          ", ",
-          italic("n")["pairs"],
-          " = ",
-          50L
-        )
-      )
-    )
-    testthat::expect_identical(
-      ls_results[[2]],
-      ggplot2::expr(
-        paste(
-          NULL,
-          italic("F"),
-          "(",
-          "2.16",
-          ",",
-          "106.01",
-          ") = ",
-          "2821.59",
-          ", ",
-          italic("p"),
-          " = ",
-          "< 0.001",
-          ", ",
-          widehat(omega^2),
-          " = ",
-          "0.95",
-          ", CI"["95%"],
-          " [",
-          "0.97",
-          ", ",
-          "0.98",
-          "]",
-          ", ",
-          italic("n")["pairs"],
-          " = ",
-          50L
-        )
-      )
-    )
-    testthat::expect_identical(
-      ls_results[[3]],
-      ggplot2::expr(
-        paste(
-          NULL,
-          italic("F"),
-          "(",
-          "1.67",
-          ",",
-          "81.87",
-          ") = ",
-          "1910.86",
-          ", ",
-          italic("p"),
-          " = ",
-          "< 0.001",
-          ", ",
-          widehat(omega^2),
-          " = ",
-          "0.94",
-          ", CI"["95%"],
-          " [",
-          "0.96",
-          ", ",
-          "0.97",
-          "]",
-          ", ",
-          italic("n")["pairs"],
-          " = ",
-          50L
-        )
-      )
-    )
-  }
-)
-
 # subtitle output with NA --------------------------------------------------
 
 testthat::test_that(
@@ -243,87 +82,36 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
 
+    # data
+    df <- ggstatsplot::bugs_long %>%
+      dplyr::filter(., region %in% c("North America"))
+
     # should output a list of length 2
     set.seed(123)
     ls_results <-
-      ggstatsplot::bugs_long %>%
-      dplyr::filter(., region %in% c("North America", "Europe")) %>%
       ggstatsplot::grouped_ggwithinstats(
-        data = .,
+        data = df,
         x = condition,
         y = desire,
         grouping.var = region,
         output = "subtitle",
-        messages = FALSE
+        messages = FALSE,
+        bf.message = FALSE
+      )
+
+    set.seed(123)
+    basic_results <-
+      ggstatsplot::ggwithinstats(
+        data = df,
+        x = condition,
+        y = desire,
+        output = "subtitle",
+        messages = FALSE,
+        bf.message = FALSE
       )
 
     # tests
-    testthat::expect_equal(length(ls_results), 2L)
-    testthat::expect_identical(
-      ls_results[[1]],
-      ggplot2::expr(
-        paste(
-          NULL,
-          italic("F"),
-          "(",
-          "2.13",
-          ",",
-          "14.91",
-          ") = ",
-          "0.93",
-          ", ",
-          italic("p"),
-          " = ",
-          "0.424",
-          ", ",
-          widehat(omega^2),
-          " = ",
-          "0.00",
-          ", CI"["95%"],
-          " [",
-          "NA",
-          ", ",
-          "0.25",
-          "]",
-          ", ",
-          italic("n")["pairs"],
-          " = ",
-          8L
-        )
-      )
-    )
-    testthat::expect_identical(
-      ls_results[[2]],
-      ggplot2::expr(
-        paste(
-          NULL,
-          italic("F"),
-          "(",
-          "2.60",
-          ",",
-          "192.53",
-          ") = ",
-          "11.33",
-          ", ",
-          italic("p"),
-          " = ",
-          "< 0.001",
-          ", ",
-          widehat(omega^2),
-          " = ",
-          "0.08",
-          ", CI"["95%"],
-          " [",
-          "0.04",
-          ", ",
-          "0.17",
-          "]",
-          ", ",
-          italic("n")["pairs"],
-          " = ",
-          75L
-        )
-      )
-    )
+    testthat::expect_equal(length(ls_results), 1L)
+    testthat::expect_identical(ls_results$`North America`, basic_results)
   }
 )

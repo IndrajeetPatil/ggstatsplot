@@ -25,8 +25,8 @@ grouped_ggbarstats(
 )
 }
 \arguments{
-\item{data}{A dataframe (or a tibble) from which variables specified are to
-be taken. A matrix or tables will \strong{not} be accepted.}
+\item{data}{for use with \code{formula}, a data frame containing all the
+data}
 
 \item{main}{The variable to use as the \strong{rows} in the contingency table.}
 
@@ -67,15 +67,12 @@ association test will be run. This argument can not be \code{NULL} for
 the \code{x} variable displayed in the legend.}
     \item{\code{xlab}}{Custom text for the \code{x} axis label (Default: \code{NULL}, which
 will cause the \code{x} axis label to be the \code{x} variable).}
-    \item{\code{ylab}}{Custom text for the \code{y} axis label (Default: \code{"percent"}).}
+    \item{\code{ylab}}{Custom text for the \code{y} axis label (Default: \code{NULL}).}
     \item{\code{proportion.test}}{Decides whether proportion test for \code{main} variable is
 to be carried out for each level of \code{y} (Default: \code{TRUE}).}
     \item{\code{label}}{Character decides what information needs to be
 displayed on the label in each pie slice. Possible options are
 \code{"percentage"} (default), \code{"counts"}, \code{"both"}.}
-    \item{\code{x.axis.orientation}}{The orientation of the \code{x} axis labels one of
-"slant" or "vertical" to change from the default horizontal
-orientation (Default: \code{NULL} which is horizontal).}
     \item{\code{sample.size.label}}{Logical that decides whether sample size information
 should be displayed for each level of the grouping variable \code{y}
 (Default: \code{TRUE}).}
@@ -91,10 +88,6 @@ be returned.}
     \item{\code{results.subtitle}}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}
-    \item{\code{stat.title}}{Title for the effect being investigated with the chi-square
-test. The default is \code{NULL}, i.e. no title will be added to describe the
-effect being shown. An example of a \code{stat.title} argument will be something
-like \code{"main x condition"} or \code{"interaction"}.}
     \item{\code{perc.k}}{Numeric that decides number of decimal places for percentage
 labels (Default: \code{0}).}
     \item{\code{label.args}}{Additional aesthetic arguments that will be passed to

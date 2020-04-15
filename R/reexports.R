@@ -43,12 +43,12 @@ ipmisc::`%<-%`
 
 
 #' @export
-#' @importFrom rlang "%||%"
-rlang::`%||%`
+#' @importFrom ipmisc "%||%"
+ipmisc::`%||%`
 
 #' @export
-#' @importFrom rlang "%|%"
-rlang::`%|%`
+#' @importFrom ipmisc "%|%"
+ipmisc::`%|%`
 
 #' @export
 #' @importFrom ipmisc tibble
@@ -67,18 +67,3 @@ ipmisc::bartlett_message
 #' @export
 #' @importFrom ipmisc normality_message
 ipmisc::normality_message
-
-
-# ----------------------- broom -------------------------------------
-
-#' @export
-#' @importFrom broomExtra tidy
-broomExtra::tidy
-
-#' @export
-#' @importFrom broomExtra glance
-broomExtra::glance
-
-#' @export
-#' @importFrom broomExtra augment
-broomExtra::augment

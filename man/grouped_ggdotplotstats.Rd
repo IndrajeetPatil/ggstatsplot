@@ -76,9 +76,6 @@ aesthetic arguments to be passed to the \code{geom_label} used to display the
 label corresponding to the centrality parameter and test value.}
     \item{\code{xlab}}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
 variable names for \code{x} and \code{y} will be used.}
-    \item{\code{stat.title}}{A character describing the test being run, which will be
-added as a prefix in the subtitle. The default is \code{NULL}. An example of a
-\code{stat.title} argument will be something like \code{"Student's t-test: "}.}
     \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
     \item{\code{caption}}{The text for the plot caption.}
@@ -86,17 +83,14 @@ added as a prefix in the subtitle. The default is \code{NULL}. An example of a
 or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accepted:
 \code{"p"} (for parametric), \code{"np"} (nonparametric), \code{"r"} (robust), or
 \code{"bf"}resp.}
-    \item{\code{bf.prior}}{A numeric value between \code{0.5} and \code{2} (default \code{0.707}), the
-prior width to use in calculating Bayes Factors.}
+    \item{\code{bf.prior}}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
+width to use in calculating Bayes factors.}
     \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
 parametric test} (Default: \code{TRUE}).}
     \item{\code{effsize.type}}{Type of effect size needed for \emph{parametric} tests. The
 argument can be \code{"biased"} (\code{"d"} for Cohen's \emph{d}) or \code{"unbiased"}
 (\code{"g"} Hedge's \emph{g} for \strong{t-test}). The default is \code{"g"}.}
-    \item{\code{effsize.noncentral}}{Logical indicating whether to use non-central
-\emph{t}-distributions for computing the confidence interval for Cohen's \emph{d}
-or Hedge's \emph{g} (Default: \code{TRUE}).}
     \item{\code{conf.level}}{Scalar between 0 and 1. If unspecified, the defaults return
 \verb{95\%} lower and upper confidence intervals (\code{0.95}).}
     \item{\code{nboot}}{Number of bootstrap samples for computing confidence interval
@@ -120,7 +114,8 @@ theme elements are to be displayed along with the selected \code{ggtheme}
 override some aspects of the selected \code{ggtheme}.}
     \item{\code{messages}}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
-    \item{\code{ylab}}{Labels for \code{x} axis variable (Defaults: \code{"regression coefficient"} and \code{"term"}, resp.).}
+    \item{\code{ylab}}{Labels for \code{x}- and \code{y}- axis variables, respectively
+(Defaults: \code{"regression coefficient"} and \code{"term"}).}
   }}
 
 \item{plotgrid.args}{A list of additional arguments to \code{cowplot::plot_grid}.}

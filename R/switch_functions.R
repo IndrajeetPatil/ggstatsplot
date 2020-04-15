@@ -15,6 +15,7 @@
 #' @importFrom statsExpressions expr_meta_parametric
 #' @importFrom statsExpressions expr_meta_robust expr_meta_bayes
 #' @importFrom rlang eval_bare parse_expr
+#' @importFrom ipmisc stats_type_switch
 #' @importFrom dplyr case_when
 #'
 #' @keywords internal
@@ -22,7 +23,7 @@
 
 subtitle_function_switch <- function(test, type, ...) {
   # figuring out type of test needed to run
-  type <- stats_type_switch(type)
+  type <- ipmisc::stats_type_switch(type)
 
   # make a function character string
   .f_string <- paste("statsExpressions::expr_", test, "_", type, "(...)", sep = "")
@@ -53,17 +54,4 @@ caption_function_switch <- function(test, ...) {
 
   # preparing the BF message for null
   rlang::exec(.fn = .f, ...)
-}
-
-
-#' @noRd
-
-stats_type_switch <- function(type) {
-  dplyr::case_when(
-    grepl("^p", type, TRUE) ~ "parametric",
-    grepl("^n", type, TRUE) ~ "nonparametric",
-    grepl("^r", type, TRUE) ~ "robust",
-    grepl("^b", type, TRUE) ~ "bayes",
-    TRUE ~ "parametric"
-  )
 }

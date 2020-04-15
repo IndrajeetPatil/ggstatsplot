@@ -23,8 +23,8 @@
 #'   Bayesian meta-analysis assuming that the effect size *d* varies across
 #'   studies with standard deviation *t* (i.e., a random-effects analysis)
 #'   should be displayed in caption. Defaults to `TRUE`.
-#' @param xlab,ylab Labels for `x` axis variable (Defaults: `"regression
-#'   coefficient"` and `"term"`, resp.).
+#' @param xlab,ylab Labels for `x`- and `y`- axis variables, respectively
+#'   (Defaults: `"regression coefficient"` and `"term"`).
 #' @param subtitle The text for the plot subtitle. The input to this argument
 #'   will be ignored if `meta.analytic.effect` is set to `TRUE`.
 #' @param p.adjust.method Adjustment method for *p*-values for multiple
@@ -34,11 +34,9 @@
 #'   multiway ANOVA designs (see,
 #'   \href{https://link.springer.com/article/10.3758/s13423-015-0913-5}{Cramer
 #'   et al., 2015}).
-#' @param point.color Character describing color for the point (Default:
-#'   `"blue"`).
-#' @param point.size Numeric specifying size for the point (Default: `3`).
-#' @param point.shape Numeric specifying shape to draw the points (Default: `16`
-#'   (**a dot**)).
+#' @param point.args Additional arguments that will be passed to
+#'   `ggplot2::geom_point` geom. Please see documentation for that function to
+#'   know more about these arguments.
 #' @param conf.int Logical. Decides whether to display confidence intervals as
 #'   error bars (Default: `TRUE`).
 #' @param conf.level Numeric deciding level of confidence intervals (Default:
@@ -79,12 +77,14 @@
 #'   `"bayes"`, `metaBMA::meta_random` function will be used.
 #' @param k Number of decimal places expected for results displayed in labels
 #'   (Default : `k = 2`).
-#' @param k.caption.summary Number of decimal places expected for results
-#'   displayed in captions (Default : `k.caption.summary = 0`).
 #' @param exclude.intercept Logical that decides whether the intercept should be
 #'   excluded from the plot (Default: `TRUE`).
 #' @param exponentiate If `TRUE`, the `x`-axis will be logarithmic (Default:
-#'   `FALSE`).
+#'   `FALSE`). Note that exponents for the coefficient estimates and associated
+#'   standard errors plus confidence intervals are computed by the underlying
+#'   tidying packages (`broom`/`parameters`) and not done by `ggcoefstats`. So
+#'   this might not work if the underlying packages don't support
+#'   exponentiation.
 #' @param errorbar.args Additional arguments that will be passed to
 #'   `ggplot2::geom_errorbarh` geom. Please see documentation for that function
 #'   to know more about these arguments.
@@ -280,7 +280,6 @@ ggcoefstats <- function(x,
                         conf.int = TRUE,
                         conf.level = 0.95,
                         k = 2,
-                        k.caption.summary = 0,
                         exclude.intercept = TRUE,
                         exponentiate = FALSE,
                         sort = "none",
@@ -291,9 +290,7 @@ ggcoefstats <- function(x,
                         only.significant = FALSE,
                         caption = NULL,
                         caption.summary = TRUE,
-                        point.color = "blue",
-                        point.size = 3,
-                        point.shape = 16,
+                        point.args = list(size = 3, color = "blue"),
                         errorbar.args = list(height = 0),
                         vline = TRUE,
                         vline.args = list(size = 1, linetype = "dashed"),
@@ -314,7 +311,10 @@ ggcoefstats <- function(x,
   f.mods <- c("aov", "aovlist", "anova", "Gam", "manova")
 
   # model for which the output names are going to be slightly weird
-  weird_name_mods <- c("gmm", "lmodel2", "gamlss", "drc", "glmmTMB", "mlm", "DirichletRegModel")
+  weird_name_mods <- c(
+    "brmultinom", "drc", "DirichletRegModel",
+    "gmm", "gamlss", "glmmTMB", "lmodel2", "mlm", "zcpglm"
+  )
 
   # ============================= model summary ============================
 
@@ -393,6 +393,7 @@ ggcoefstats <- function(x,
           x = x,
           conf.int = conf.int,
           conf.level = conf.level,
+          exponentiate = exponentiate,
           effects = "fixed",
           parametric = TRUE, # for `gam` objects
           ...
@@ -546,17 +547,6 @@ ggcoefstats <- function(x,
       )
   }
 
-  # if the coefficients are to be exponentiated, the label positions will also
-  # have to be adjusted
-  if (isTRUE(exponentiate)) {
-    tidy_df %<>%
-      dplyr::mutate_at(
-        .tbl = .,
-        .vars = dplyr::vars(dplyr::matches(match = "estimate|conf", ignore.case = TRUE)),
-        .funs = exp
-      )
-  }
-
   # # adjust the p-values based on the adjustment used
   if ("p.value" %in% names(tidy_df)) {
     # adjust the p-values based on the adjustment used
@@ -568,16 +558,14 @@ ggcoefstats <- function(x,
   # adding a column with labels to be used with `ggrepel`
   if (isTRUE(stats.labels)) {
     # in case a dataframe was entered, `x` and `tidy_df` are going to be same
-    if (isFALSE(insight::is_model(x))) x <- tidy_df
     if (isTRUE(insight::is_model(x))) statistic <- extract_statistic(x)
 
     # adding a column with labels using custom function
     tidy_df %<>%
       ggcoefstats_label_maker(
-        x = x,
-        statistic = statistic,
         tidy_df = .,
         glance_df = glance_df,
+        statistic = statistic,
         k = k,
         effsize = effsize,
         partial = partial
@@ -613,8 +601,7 @@ ggcoefstats <- function(x,
         test = "meta",
         type = meta.type,
         data = tidy_df,
-        k = k,
-        messages = messages
+        k = k
       )
 
     # results from Bayesian random-effects meta-analysis
@@ -622,9 +609,9 @@ ggcoefstats <- function(x,
       caption <-
         statsExpressions::bf_meta(
           caption = caption,
+          output = "caption",
           data = tidy_df,
-          k = k,
-          messages = messages
+          k = k
         )
     }
 
@@ -635,7 +622,6 @@ ggcoefstats <- function(x,
           data = tidy_df,
           k = k,
           caption = caption,
-          messages = FALSE,
           output = "caption"
         )
     } else {
@@ -654,9 +640,6 @@ ggcoefstats <- function(x,
 
     # for non-dataframe objects
     if (isTRUE(insight::is_model(x))) {
-      # lowercase names to account for tidiers from `jtools`
-      g_df <- dplyr::rename_all(glance_df, tolower)
-
       # preparing caption with model diagnostics
       caption <-
         substitute(
@@ -666,8 +649,8 @@ ggcoefstats <- function(x,
           ),
           env = list(
             top.text = caption,
-            AIC = specify_decimal_p(x = g_df$aic[[1]], k = k.caption.summary),
-            BIC = specify_decimal_p(x = g_df$bic[[1]], k = k.caption.summary)
+            AIC = specify_decimal_p(x = glance_df$aic[[1]], k = 0L),
+            BIC = specify_decimal_p(x = glance_df$bic[[1]], k = 0L)
           )
         )
     }
@@ -738,11 +721,10 @@ ggcoefstats <- function(x,
 
     # changing the point aesthetics
     plot <- plot +
-      ggplot2::geom_point(
-        color = point.color,
-        size = point.size,
-        shape = point.shape,
-        na.rm = TRUE
+      rlang::exec(
+        .fn = ggplot2::geom_point,
+        na.rm = TRUE,
+        !!!point.args
       )
 
     # ========================= ggrepel labels ================================
@@ -833,10 +815,11 @@ ggcoefstats <- function(x,
   return(switch(
     EXPR = output,
     "plot" = plot,
+    "subtitle" = subtitle,
+    "caption" = caption,
     "tidy" = tidy_df,
     "glance" = glance_df,
-    "summary" = glance_df,
-    "augment" = as_tibble(broomExtra::augment(x = x, ...)),
+    "augment" = as_tibble(broomExtra::augment(x, ...)),
     "plot"
   ))
 }

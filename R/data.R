@@ -91,8 +91,6 @@
 #'   \item Survived.	No, Yes.
 #' }
 #'
-#' @source \url{https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Titanic.html}
-#'
 #' @examples
 #' dim(Titanic_full)
 #' head(Titanic_full)
@@ -163,9 +161,6 @@
 #'   or `"Width"`).
 #'   \item value.	Value of the measurement.
 #' }
-#'
-#' @source
-#' \url{https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/iris.html}
 #'
 #' @examples
 #' dim(iris_long)

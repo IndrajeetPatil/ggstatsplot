@@ -373,36 +373,5 @@ testthat::test_that(
         messages = FALSE
       ))
     )
-
-    set.seed(123)
-    testthat::expect_identical(
-      p_sub,
-      ggplot2::expr(
-        paste(
-          NULL,
-          "log"["e"](italic("V")),
-          " = ",
-          "2.71",
-          ", ",
-          italic("p"),
-          " = ",
-          "0.059",
-          ", ",
-          widehat(italic("r")),
-          " = ",
-          "0.90",
-          ", CI"["95%"],
-          " [",
-          "0.88",
-          ", ",
-          "0.91",
-          "]",
-          ", ",
-          italic("n")["obs"],
-          " = ",
-          5L
-        )
-      )
-    )
   }
 )
