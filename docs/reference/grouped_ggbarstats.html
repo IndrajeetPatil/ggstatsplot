@@ -90,7 +90,7 @@ resulting plots using ggstatsplot::combine_plots." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0</span>
       </span>
     </div>
 
@@ -434,45 +434,33 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
   <span class='kw'>bar.label</span> <span class='kw'>=</span> <span class='st'>"both"</span>,
   <span class='kw'>plotgrid.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>2</span>)
 )</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>100</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 4 x 16</span><span>
-#&gt;   clarity counts  perc N         D      E      F      G      H      I     
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;ord&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> 
-#&gt; </span><span style='color: #555555;'>1</span><span> VS1         80  16.8 (n = 80)  10.00% 18.75% 15.00% 20.00% 8.75%  17.50%
-#&gt; </span><span style='color: #555555;'>2</span><span> VS2        133  27.9 (n = 133) 13.53% 16.54% 18.80% 21.05% 15.04% 9.77% 
-#&gt; </span><span style='color: #555555;'>3</span><span> SI1        146  30.6 (n = 146) 13.01% 16.44% 21.23% 17.81% 10.96% 15.07%
-#&gt; </span><span style='color: #555555;'>4</span><span> SI2        118  24.7 (n = 118) 20.34% 12.71% 16.95% 16.95% 17.80% 11.86%
-#&gt;   J      statistic p.value parameter method                                  
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                   
-#&gt; </span><span style='color: #555555;'>1</span><span> 10.00%      7.33  0.292          6 Chi-squared test for given probabilities
-#&gt; </span><span style='color: #555555;'>2</span><span> 5.26%      16.2   0.012</span><span style='text-decoration: underline;'>7</span><span>         6 Chi-squared test for given probabilities
-#&gt; </span><span style='color: #555555;'>3</span><span> 5.48%      16.0   0.014</span><span style='text-decoration: underline;'>0</span><span>         6 Chi-squared test for given probabilities
-#&gt; </span><span style='color: #555555;'>4</span><span> 3.39%      15.7   0.015</span><span style='text-decoration: underline;'>4</span><span>         6 Chi-squared test for given probabilities
-#&gt;   significance
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       
-#&gt; </span><span style='color: #555555;'>1</span><span> ns          
-#&gt; </span><span style='color: #555555;'>2</span><span> *           
-#&gt; </span><span style='color: #555555;'>3</span><span> *           
-#&gt; </span><span style='color: #555555;'>4</span><span> *           
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 4 x 16</span><span>
+#&gt;   clarity counts  perc N         D      E      F      G      H      I      J      statistic p.value parameter
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;ord&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> VS1         80  16.8 (n = 80)  10.00% 18.75% 15.00% 20.00% 8.75%  17.50% 10.00%      7.33  0.292          6
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> VS2        133  27.9 (n = 133) 13.53% 16.54% 18.80% 21.05% 15.04% 9.77%  5.26%      16.2   0.012</span><span style='text-decoration: underline;'>7</span><span>         6
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> SI1        146  30.6 (n = 146) 13.01% 16.44% 21.23% 17.81% 10.96% 15.07% 5.48%      16.0   0.014</span><span style='text-decoration: underline;'>0</span><span>         6
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> SI2        118  24.7 (n = 118) 20.34% 12.71% 16.95% 16.95% 17.80% 11.86% 3.39%      15.7   0.015</span><span style='text-decoration: underline;'>4</span><span>         6
+#&gt;   method                                   significance
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Chi-squared test for given probabilities ns          
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Chi-squared test for given probabilities *           
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Chi-squared test for given probabilities *           
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> Chi-squared test for given probabilities *           
 #&gt; </span><span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>100</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 4 x 16</span><span>
-#&gt;   clarity counts  perc N         D      E      F      G      H      I      J    
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;ord&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> VS1        185  23.6 (n = 185) 11.35% 15.14% 16.76% 25.41% 13.51% 9.19%  8.65%
-#&gt; </span><span style='color: #555555;'>2</span><span> VS2        261  33.2 (n = 261) 19.16% 19.54% 16.09% 17.24% 12.26% 10.34% 5.36%
-#&gt; </span><span style='color: #555555;'>3</span><span> SI1        216  27.5 (n = 216) 16.67% 16.67% 13.89% 19.91% 17.13% 9.72%  6.02%
-#&gt; </span><span style='color: #555555;'>4</span><span> SI2        123  15.7 (n = 123) 16.26% 13.82% 17.07% 18.70% 16.26% 13.82% 4.07%
-#&gt;   statistic   p.value parameter method                                  
-#&gt;       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                   
-#&gt; </span><span style='color: #555555;'>1</span><span>      25.6 0.000</span><span style='text-decoration: underline;'>268</span><span>          6 Chi-squared test for given probabilities
-#&gt; </span><span style='color: #555555;'>2</span><span>      29.7 0.000</span><span style='text-decoration: underline;'>044</span><span>8         6 Chi-squared test for given probabilities
-#&gt; </span><span style='color: #555555;'>3</span><span>      21.2 0.001</span><span style='text-decoration: underline;'>67</span><span>           6 Chi-squared test for given probabilities
-#&gt; </span><span style='color: #555555;'>4</span><span>      12.0 0.060</span><span style='text-decoration: underline;'>9</span><span>            6 Chi-squared test for given probabilities
-#&gt;   significance
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       
-#&gt; </span><span style='color: #555555;'>1</span><span> ***         
-#&gt; </span><span style='color: #555555;'>2</span><span> ***         
-#&gt; </span><span style='color: #555555;'>3</span><span> **          
-#&gt; </span><span style='color: #555555;'>4</span><span> ns          </div><div class='img'><img src='grouped_ggbarstats-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 4 x 16</span><span>
+#&gt;   clarity counts  perc N         D      E      F      G      H      I      J     statistic   p.value parameter
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;ord&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> VS1        185  23.6 (n = 185) 11.35% 15.14% 16.76% 25.41% 13.51% 9.19%  8.65%      25.6 0.000</span><span style='text-decoration: underline;'>268</span><span>          6
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> VS2        261  33.2 (n = 261) 19.16% 19.54% 16.09% 17.24% 12.26% 10.34% 5.36%      29.7 0.000</span><span style='text-decoration: underline;'>044</span><span>8         6
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> SI1        216  27.5 (n = 216) 16.67% 16.67% 13.89% 19.91% 17.13% 9.72%  6.02%      21.2 0.001</span><span style='text-decoration: underline;'>67</span><span>           6
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> SI2        123  15.7 (n = 123) 16.26% 13.82% 17.07% 18.70% 16.26% 13.82% 4.07%      12.0 0.060</span><span style='text-decoration: underline;'>9</span><span>            6
+#&gt;   method                                   significance
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Chi-squared test for given probabilities ***         
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Chi-squared test for given probabilities ***         
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Chi-squared test for given probabilities **          
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> Chi-squared test for given probabilities ns          </div><div class='img'><img src='grouped_ggbarstats-1.png' alt='' width='700' height='433' /></div><div class='input'># }
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

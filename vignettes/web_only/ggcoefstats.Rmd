@@ -20,6 +20,7 @@ vignette: >
 ```{r setup, include = FALSE}
 # show me all columns
 options(tibble.width = Inf)
+options(mc.cores = parallel::detectCores())   # use max # CPUs
 
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -70,29 +71,29 @@ be invariant across models:
   - The output of this function will be a `ggplot2` object and, thus, it can be
     further modified (e.g., change themes, etc.) with `ggplot2` functions.
 
+# Supported models
+
 Most of the regression models that are supported in the underlying packages are
 also supported by `ggcoefstats`. For example-
 
 `aareg`, `anova`, `aov`, `aovlist`, `Arima`, `BBreg`, `bcplm`, `bglmerMod`,
 `bife`, `bigglm`, `biglm`, `blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm2`,
-`brmsfit`, `btergm`, `cch`, `cgam`, `cgamm`, `cglm`, `clm`, `clmm`, `coeftest`,
-`complmrob`, `confusionMatrix`, `coxme`, `coxph`, `cpglm`, `cpglmm`, `crch`,
-`DirichReg`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`,
-`flexsurvreg`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`,
-`garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`,
-`hurdle`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`,
-`lmerModLmerTest`, `lmodel2`, `lmRob`, `lmrob`, `LORgee`, `mcmc`, `MCMCglmm`,
-`mclogit`, `mmclogit`, `mediate`, `mixor`, `mjoint`, `mle2`, `mlm`, `multinom`,
-`negbin`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `plm`, `polr`,
-`ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `rqss`, `slm`, `speedglm`,
+`brmsfit`, `brmultinom`, `btergm`, `cch`, `cgam`, `cgamm`, `cglm`, `clm`,
+`clmm`, `coeftest`, `complmrob`, `confusionMatrix`, `coxme`, `coxph`, `cpglm`,
+`cpglmm`, `crch`, `DirichReg`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`,
+`felm`, `fitdistr`, `flexsurvreg`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`,
+`Gam`, `gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`,
+`glmx`, `gmm`, `hurdle`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`,
+`lmerMod`, `lmerModLmerTest`, `lmodel2`, `lmRob`, `lmrob`, `LORgee`, `lrm`, `mcmc`,
+`MCMCglmm`, `mclogit`, `mmclogit`, `mediate`, `mixor`, `mjoint`, `mle2`, `mlm`,
+`multinom`, `negbin`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `plm`,
+`polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `rqss`, `slm`, `speedglm`,
 `speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`,
 `tobit`, `truncreg`, `vgam`, `wbgee`, `wblm`, `zcpglm`, `zeroinfl`, etc.
 
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
 itself.
-
-# Supported models
 
 ## omnibus ANOVA (`aov`)
 
@@ -122,9 +123,7 @@ ggstatsplot::ggcoefstats(
   ),
   effsize = "eta", # changing the effect size estimate being displayed
   partial = FALSE, # just eta-squared
-  point.color = "red", # changing the point color
-  point.size = 4, # changing the point size
-  point.shape = 15, # changing the point shape
+  point.args = list(color = "red", size = 4, shape = 15), # changing the point geom
   package = "dutchmasters", # package from which color paletter is to be taken
   palette = "milkmaid", # color palette for labels
   title = "omnibus ANOVA" # title for the plot
@@ -643,6 +642,34 @@ ggstatsplot::ggcoefstats(
   x = fit1,
   title = "greater stability for fitting \ngeneralized linear models",
   exclude.intercept = FALSE
+)
+```
+
+## logistic regression model (`lrm`)
+
+```{r lrm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 7}
+# setup
+library(rms)
+set.seed(123)
+
+# data
+n <- 500
+x1 <- runif(n, -1, 1)
+x2 <- runif(n, -1, 1)
+x3 <- sample(0 : 1, n, TRUE)
+y <- x1 + 0.5 * x2 + x3 + rnorm(n)
+y <- as.integer(cut2(y, g=10))
+dd <- datadist(x1, x2, x3); options(datadist='dd')
+
+# model
+f <- rms::lrm(y ~ x1 + pol(x2, 2) + x3, eps = 1e-7) # eps to check against rstan
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = f, 
+  title = "Logistic Regression Model",
+  package = "ggsci",
+  palette = "category20c_d3"
 )
 ```
 
@@ -1455,6 +1482,32 @@ ggstatsplot::ggcoefstats(
   x = lizardsBR_mean,
   only.significant = TRUE,
   title = "bias reduction in generalized linear models"
+)
+```
+
+## Bias Reduction For Multinomial Response Models Using The Poisson Trick (`brmultinom`)
+
+```{r brmultinom, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 7, eval=FALSE}
+# setup
+set.seed(123)
+library(MASS)
+library(brglm2)
+data("housing", package = "MASS")
+
+# Maximum likelihood using brmultinom with baseline category 'Low'
+houseML1 <- 
+  brglm2::brmultinom(
+  formula = Sat ~ Infl + Type + Cont,
+  weights = Freq,
+  data = housing,
+  type = "ML",
+  ref = 1
+)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = houseML1,
+  title = "Bias Reduction For Multinomial Response Models \nUsing The Poisson Trick"
 )
 ```
 
@@ -2465,10 +2518,7 @@ mod <- MASS::lm.ridge(formula = y ~ ., data = longley)
 # plot
 ggstatsplot::ggcoefstats(
   x = mod,
-  title = "ridge regression",
-  point.color = "red",
-  point.shape = 6,
-  point.size = 5
+  title = "ridge regression"
 )
 ```
 
@@ -2565,7 +2615,6 @@ mod <-
 # plot
 ggstatsplot::ggcoefstats(
   x = mod,
-  point.color = "red",
   stats.label.color = "black",
   ggtheme = hrbrthemes::theme_ipsum_ps(),
   ggstatsplot.layer = FALSE,
@@ -2628,8 +2677,7 @@ mod <- MASS::rlm(formula = mpg ~ am * cyl, data = mtcars)
 # plot
 ggstatsplot::ggcoefstats(
   x = mod,
-  point.color = "red",
-  point.shape = 15,
+  point.args = list(color = "red", shape = 15),
   vline.args = list(size = 1, color = "#CC79A7", linetype = "dotdash"),
   stats.label.color = c("#0072B2", "#D55E00", "darkgreen"),
   title = "robust regression using an M estimator",
@@ -3056,8 +3104,7 @@ marginal <- emmeans::emmeans(oranges_rg1, "day")
 # note that since there was column called `term`, the function created one
 ggstatsplot::ggcoefstats(
   x = marginal,
-  point.color = "darkgreen",
-  point.shape = 9,
+  point.args = list(color = "darkgreen", shape = 9),
   title = "summary grid from `emmeans` package"
 )
 ```
@@ -3503,8 +3550,7 @@ jagsfit <-
 # plot
 ggstatsplot::ggcoefstats(
   x = jagsfit,
-  title = "Markov Chain Monte Carlo with\nJust Another Gibbs Sampler",
-  point.color = "darkgreen"
+  title = "Markov Chain Monte Carlo with\nJust Another Gibbs Sampler"
 )
 ```
 
@@ -3676,16 +3722,16 @@ information for additionally displaying labels with statistical information.
 
 ```{r meta4, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 7}
 # let's make up a dataframe (with all available details)
-df_full <- 
+df_full <-
   tibble::tribble(
-  ~term, ~statistic, ~estimate, ~std.error, ~p.value, ~df.residual,
-  "study1", 0.158, 0.0665, 0.778, 0.875, 5L,
-  "study2", 1.33, 0.542, 0.280, 0.191, 10L,
-  "study3", 1.24, 0.045, 0.030, 0.001, 12L,
-  "study4", 0.156, 0.500, 0.708, 0.885, 8L,
-  "study5", 0.33, 0.032, 0.280, 0.101, 2L,
-  "study6", 1.04, 0.085, 0.030, 0.001, 3L
-)
+    ~term, ~statistic, ~estimate, ~std.error, ~p.value, ~df.residual,
+    "study1", 0.158, 0.0665, 0.778, 0.875, 5L,
+    "study2", 1.33, 0.542, 0.280, 0.191, 10L,
+    "study3", 1.24, 0.045, 0.030, 0.001, 12L,
+    "study4", 0.156, 0.500, 0.708, 0.885, 8L,
+    "study5", 0.33, 0.032, 0.280, 0.101, 2L,
+    "study6", 1.04, 0.085, 0.030, 0.001, 3L
+  )
 
 # plot
 ggstatsplot::ggcoefstats(

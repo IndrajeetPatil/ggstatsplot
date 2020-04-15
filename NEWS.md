@@ -1,4 +1,4 @@
-# ggstatsplot 0.4.0.9000
+# ggstatsplot 0.4.0
 
 BREAKING CHANGES
 
@@ -42,12 +42,16 @@ MAJOR CHANGES
 
 MINOR CHANGES
 
-  - More models supported in `ggcoefstats`: `lmerModLmerTest`.
+  - More models supported in `ggcoefstats`: `brmultinom`, `lmerModLmerTest`,
+    `lrm`.
   
   - `ggcorrmat` now internally relies on `correlation` for correlation analyses.
   
   - `ggbarstats` no longer displays `"percent"` for Y-axis label as this was
     redundant information.
+    
+  - Continuing the argument cleanup that began in `0.3.0`, `ggcoefstats` gains
+    `point.args` argument instead of individuals `point.*` arguments.
     
   - The subtitles are more explicit about the details of the test. For the same
     reason `stat.title` argument from all relevant functions is retired since

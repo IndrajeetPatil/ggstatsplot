@@ -29,9 +29,7 @@ ggcoefstats(
   only.significant = FALSE,
   caption = NULL,
   caption.summary = TRUE,
-  point.color = "blue",
-  point.size = 3,
-  point.shape = 16,
+  point.args = list(size = 3, color = "blue"),
   errorbar.args = list(height = 0),
   vline = TRUE,
   vline.args = list(size = 1, linetype = "dashed"),
@@ -162,13 +160,9 @@ when \code{output = "caption"}.}
 displayed as a cation to the plot (Default: \code{TRUE}). Color of the line
 segment. Defaults to the same color as the text.}
 
-\item{point.color}{Character describing color for the point (Default:
-\code{"blue"}).}
-
-\item{point.size}{Numeric specifying size for the point (Default: \code{3}).}
-
-\item{point.shape}{Numeric specifying shape to draw the points (Default: \code{16}
-(\strong{a dot})).}
+\item{point.args}{Additional arguments that will be passed to
+\code{ggplot2::geom_point} geom. Please see documentation for that function to
+know more about these arguments.}
 
 \item{errorbar.args}{Additional arguments that will be passed to
 \code{ggplot2::geom_errorbarh} geom. Please see documentation for that function

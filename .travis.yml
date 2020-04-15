@@ -32,7 +32,6 @@ r_binary_packages:
   - SparseM
   - httpuv
   - markdown
-  - sem
   - readxl
   - openxlsx
   - pander
@@ -48,12 +47,14 @@ r_binary_packages:
   - metaBMA
   - metaplus
   - fastGHQuad
+  - multcomp
+  - coda
 r_packages:
   - coin
   - effectsize
+  - insight
   - parameters
   - WRS2
-  - coda
   - remotes
   - knitr
   - rmarkdown

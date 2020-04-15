@@ -34,11 +34,9 @@
 #'   multiway ANOVA designs (see,
 #'   \href{https://link.springer.com/article/10.3758/s13423-015-0913-5}{Cramer
 #'   et al., 2015}).
-#' @param point.color Character describing color for the point (Default:
-#'   `"blue"`).
-#' @param point.size Numeric specifying size for the point (Default: `3`).
-#' @param point.shape Numeric specifying shape to draw the points (Default: `16`
-#'   (**a dot**)).
+#' @param point.args Additional arguments that will be passed to
+#'   `ggplot2::geom_point` geom. Please see documentation for that function to
+#'   know more about these arguments.
 #' @param conf.int Logical. Decides whether to display confidence intervals as
 #'   error bars (Default: `TRUE`).
 #' @param conf.level Numeric deciding level of confidence intervals (Default:
@@ -292,9 +290,7 @@ ggcoefstats <- function(x,
                         only.significant = FALSE,
                         caption = NULL,
                         caption.summary = TRUE,
-                        point.color = "blue",
-                        point.size = 3,
-                        point.shape = 16,
+                        point.args = list(size = 3, color = "blue"),
                         errorbar.args = list(height = 0),
                         vline = TRUE,
                         vline.args = list(size = 1, linetype = "dashed"),
@@ -315,7 +311,10 @@ ggcoefstats <- function(x,
   f.mods <- c("aov", "aovlist", "anova", "Gam", "manova")
 
   # model for which the output names are going to be slightly weird
-  weird_name_mods <- c("gmm", "lmodel2", "gamlss", "drc", "glmmTMB", "mlm", "DirichletRegModel")
+  weird_name_mods <- c(
+    "brmultinom", "drc", "DirichletRegModel",
+    "gmm", "gamlss", "glmmTMB", "lmodel2", "mlm"
+  )
 
   # ============================= model summary ============================
 
@@ -722,11 +721,10 @@ ggcoefstats <- function(x,
 
     # changing the point aesthetics
     plot <- plot +
-      ggplot2::geom_point(
-        color = point.color,
-        size = point.size,
-        shape = point.shape,
-        na.rm = TRUE
+      rlang::exec(
+        .fn = ggplot2::geom_point,
+        na.rm = TRUE,
+        !!!point.args
       )
 
     # ========================= ggrepel labels ================================

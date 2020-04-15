@@ -14,9 +14,6 @@ A data frame with 2201 rows and 5 variables
 \item Survived.	No, Yes.
 }
 }
-\source{
-\url{https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Titanic.html}
-}
 \usage{
 Titanic_full
 }

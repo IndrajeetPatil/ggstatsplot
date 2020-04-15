@@ -971,8 +971,7 @@ set.seed(123)
 # plot
 ggstatsplot::ggcoefstats(
   x = MASS::rlm(formula = mpg ~ am * cyl, data = mtcars),
-  point.color = "red",
-  point.shape = 15,
+  point.args = list(color = "red", size = 3, shape = 15),
   vline.args = list(size = 1, color = "#CC79A7", linetype = "dotdash"),
   stats.label.color = c("#0072B2", "#D55E00", "darkgreen"),
   title = "Car performance predicted by transmission & cylinder count",
@@ -989,16 +988,16 @@ also supported by `ggcoefstats`. For example-
 
 `aareg`, `anova`, `aov`, `aovlist`, `Arima`, `BBreg`, `bcplm`, `bglmerMod`,
 `bife`, `bigglm`, `biglm`, `blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm2`,
-`brmsfit`, `btergm`, `cch`, `cgam`, `cgamm`, `cglm`, `clm`, `clmm`, `coeftest`,
-`complmrob`, `confusionMatrix`, `coxme`, `coxph`, `cpglm`, `cpglmm`, `crch`,
-`DirichReg`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`,
-`flexsurvreg`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`,
-`garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`,
-`hurdle`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`,
-`lmerModLmerTest`, `lmodel2`, `lmRob`, `lmrob`, `LORgee`, `mcmc`, `MCMCglmm`,
-`mclogit`, `mmclogit`, `mediate`, `mixor`, `mjoint`, `mle2`, `mlm`, `multinom`,
-`negbin`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `plm`, `polr`,
-`ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `rqss`, `slm`, `speedglm`,
+`brmsfit`, `brmultinom`, `btergm`, `cch`, `cgam`, `cgamm`, `cglm`, `clm`,
+`clmm`, `coeftest`, `complmrob`, `confusionMatrix`, `coxme`, `coxph`, `cpglm`,
+`cpglmm`, `crch`, `DirichReg`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`,
+`felm`, `fitdistr`, `flexsurvreg`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`,
+`Gam`, `gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`,
+`glmx`, `gmm`, `hurdle`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`,
+`lmerMod`, `lmerModLmerTest`, `lmodel2`, `lmRob`, `lmrob`, `LORgee`, `lrm`, `mcmc`,
+`MCMCglmm`, `mclogit`, `mmclogit`, `mediate`, `mixor`, `mjoint`, `mle2`, `mlm`,
+`multinom`, `negbin`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `plm`,
+`polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `rqss`, `slm`, `speedglm`,
 `speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`,
 `tobit`, `truncreg`, `vgam`, `wbgee`, `wblm`, `zcpglm`, `zeroinfl`, etc.
 

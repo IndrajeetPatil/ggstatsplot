@@ -87,7 +87,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0</span>
       </span>
     </div>
 
@@ -196,9 +196,9 @@
       <small>Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="ggstatsplot-0409000" class="section level1">
-<h1 class="page-header" data-toc-text="0.4.0.9000">
-<a href="#ggstatsplot-0409000" class="anchor"></a>ggstatsplot 0.4.0.9000<small> Unreleased </small>
+    <div id="ggstatsplot-040" class="section level1">
+<h1 class="page-header" data-toc-text="0.4.0">
+<a href="#ggstatsplot-040" class="anchor"></a>ggstatsplot 0.4.0<small> Unreleased </small>
 </h1>
 <p>BREAKING CHANGES</p>
 <ul>
@@ -216,13 +216,14 @@
 <ul>
 <li><p>For changes related to subtitle details, see changes made in new version of <code>statsExpressions 4.0.0</code>: <a href="https://CRAN.R-project.org/package=statsExpressions/news/news.html" class="uri">https://CRAN.R-project.org/package=statsExpressions/news/news.html</a></p></li>
 <li><p><code>ggbetweenstats</code> and <code>ggwithinstats</code> no longer print dataframes containing results from pairwise comparisons tests because this is too cluttering for the user’s console. The users are now instead advised to either extract this dataframe using <code><a href="https://ggplot2.tidyverse.org/reference/ggplot_build.html">ggplot2::ggplot_build()</a></code> function or use the <code><a href="https://indrajeetpatil.github.io/pairwiseComparisons//reference/pairwise_comparisons.html">pairwiseComparisons::pairwise_comparisons()</a></code> function used in the background by <code>ggstatsplot</code> to carry out this analysis.</p></li>
-<li><p>Due to changes in one of the downstream dependenices, <code>ggstatsplot</code> now expects the minimum R version to be <code>3.6.0</code>.</p></li>
+<li><p>Due to changes in one of the downstream dependencies, <code>ggstatsplot</code> now expects the minimum R version to be <code>3.6.0</code>.</p></li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
-<li><p>More models supported in <code>ggcoefstats</code>: <code>lmerModLmerTest</code>.</p></li>
+<li><p>More models supported in <code>ggcoefstats</code>: <code>brmultinom</code>, <code>lmerModLmerTest</code>, <code>lrm</code>.</p></li>
 <li><p><code>ggcorrmat</code> now internally relies on <code>correlation</code> for correlation analyses.</p></li>
 <li><p><code>ggbarstats</code> no longer displays <code>"percent"</code> for Y-axis label as this was redundant information.</p></li>
+<li><p>Continuing the argument cleanup that began in <code>0.3.0</code>, <code>ggcoefstats</code> gains <code>point.args</code> argument instead of individuals <code>point.*</code> arguments.</p></li>
 <li><p>The subtitles are more explicit about the details of the test. For the same reason <code>stat.title</code> argument from all relevant functions is retired since this argument was supposed to be for entering some additional details about the test.</p></li>
 <li><p><code>ggcorrmat</code> legend, in case of missing values, shows mode - instead of median - for the distribution of sample pairs.</p></li>
 <li>
