@@ -502,9 +502,6 @@ ggbetweenstats <- function(data,
         messages = FALSE
       )
 
-    # display the results if needed
-    if (isTRUE(messages)) print(dplyr::select(df_pairwise, -label))
-
     # adding the layer for pairwise comparisons
     plot <-
       ggsignif_adder(

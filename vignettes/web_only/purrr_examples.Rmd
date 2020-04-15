@@ -224,57 +224,57 @@ cue_list <- ANT %>%
 length(cue_list)
 
 # creating a list of plots by applying the same function for elements of the list
-plot_list <- 
+plot_list <-
   purrr::pmap(
-  .l = list(
-    data = cue_list,
-    x = "flank",
-    y = "rt",
-    outlier.tagging = TRUE,
-    outlier.label = "group",
-    outlier.coef = list(2, 2, 2.5, 3),
-    outlier.label.args = list(
-      list(size = 3, color = "#56B4E9"),
-      list(size = 2.5, color = "#009E73"),
-      list(size = 4, color = "#F0E442"),
-      list(size = 2, color = "red")
+    .l = list(
+      data = cue_list,
+      x = "flank",
+      y = "rt",
+      outlier.tagging = TRUE,
+      outlier.label = "group",
+      outlier.coef = list(2, 2, 2.5, 3),
+      outlier.label.args = list(
+        list(size = 3, color = "#56B4E9"),
+        list(size = 2.5, color = "#009E73"),
+        list(size = 4, color = "#F0E442"),
+        list(size = 2, color = "red")
+      ),
+      xlab = "Flank",
+      ylab = "Response time",
+      title = list(
+        "Cue: None",
+        "Cue: Center",
+        "Cue: Double",
+        "Cue: Spatial"
+      ),
+      type = list("p", "r", "bf", "np"),
+      pairwise.comparisons = TRUE,
+      pairwise.display = list("ns", "s", "ns", "all"),
+      pairwise.annotation = list("p", "asterisk", "asterisk", "p.value"),
+      p.adjust.method = list("fdr", "hommel", "bonferroni", "BH"),
+      nboot = 25,
+      conf.level = list(0.99, 0.99, 0.95, 0.90),
+      k = list(3, 2, 2, 3),
+      effsize.type = list(
+        "omega",
+        "eta",
+        "partial_omega",
+        "partial_eta"
+      ),
+      mean.ci = list(FALSE, TRUE, FALSE, FALSE),
+      package = list("ggsci", "palettetown", "palettetown", "wesanderson"),
+      palette = list("lanonc_lancet", "venomoth", "blastoise", "GrandBudapest1"),
+      ggtheme = list(
+        ggplot2::theme_linedraw(),
+        hrbrthemes::theme_ft_rc(),
+        ggthemes::theme_solarized(),
+        ggthemes::theme_gdocs()
+      ),
+      ggstatsplot.layer = FALSE,
+      messages = FALSE
     ),
-    xlab = "Flank",
-    ylab = "Response time",
-    title = list(
-      "Cue: None",
-      "Cue: Center",
-      "Cue: Double",
-      "Cue: Spatial"
-    ),
-    type = list("p", "r", "bf", "np"),
-    pairwise.comparisons = TRUE,
-    pairwise.display = list("ns", "s", "ns", "all"),
-    pairwise.annotation = list("p", "asterisk", "asterisk", "p.value"),
-    p.adjust.method = list("fdr", "hommel", "bonferroni", "BH"),
-    nboot = 25,
-    conf.level = list(0.99, 0.99, 0.95, 0.90),
-    k = list(3, 2, 2, 3),
-    effsize.type = list(
-      "omega",
-      "eta",
-      "partial_omega",
-      "partial_eta"
-    ),
-    mean.ci = list(FALSE, TRUE, FALSE, FALSE),
-    package = list("ggsci", "palettetown", "palettetown", "wesanderson"),
-    palette = list("lanonc_lancet", "venomoth", "blastoise", "GrandBudapest1"),
-    ggtheme = list(
-      ggplot2::theme_linedraw(),
-      hrbrthemes::theme_ft_rc(),
-      ggthemes::theme_solarized(),
-      ggthemes::theme_gdocs()
-    ),
-    ggstatsplot.layer = FALSE,
-    messages = FALSE
-  ),
-  .f = ggstatsplot::ggwithinstats
-)
+    .f = ggstatsplot::ggwithinstats
+  )
 
 # combining all individual plots from the list into a single plot using combine_plots function
 ggstatsplot::combine_plots(
@@ -353,8 +353,7 @@ ggstatsplot::combine_plots(
   caption.size = 16,
   title.color = "red",
   caption.color = "blue",
-  ncol = 1,
-  labels = c("(a)", "(b)", "(c)", "(d)")
+  ncol = 1
 )
 ```
 
@@ -503,8 +502,7 @@ ggstatsplot::combine_plots(
   plotlist = plot_list,
   title.text = "Improvement in life expectancy worldwide since 1950",
   caption.text = "Note: black line - 1950; blue line - 2007",
-  nrow = 4,
-  labels = c("(a)", "(b)", "(c)", "(d)")
+  nrow = 4
 )
 ```  
 
@@ -583,8 +581,7 @@ plot_list <-
 ggstatsplot::combine_plots(
   plotlist = plot_list,
   title.text = "Improvement in GDP per capita from 1952-2007",
-  nrow = 4,
-  labels = c("(i)", "(ii)", "(iii)", "(iv)")
+  nrow = 4
 )
 ```  
 
@@ -647,8 +644,7 @@ plot_list <-
 ggstatsplot::combine_plots(
   plotlist = plot_list,
   title.text = "Survival in Titanic disaster by gender for all passenger classes",
-  ncol = 1,
-  labels = c("(a)", "(b)", "(c)", "(d)")
+  ncol = 1
 )
 ``` 
 
@@ -711,8 +707,7 @@ ggstatsplot::combine_plots(
   plotlist = plot_list,
   title.text = "Survival in Titanic disaster by gender for all passenger classes",
   caption.text = "Asterisks denote results from proportion tests: \n***: p < 0.001, ns: non-significant",
-  ncol = 1,
-  labels = c("(a)", "(b)", "(c)", "(d)")
+  ncol = 1
 )
 ``` 
 

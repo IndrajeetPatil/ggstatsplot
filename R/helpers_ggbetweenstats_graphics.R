@@ -248,16 +248,13 @@ ggsignif_adder <- function(plot,
       # deciding what needs to be displayed
       if (pairwise.annotation %in% c("p", "p-value", "p.value")) {
         # if p-values are to be displayed
-        # textsize <- 3
-        # vjust <- 0
         parse <- TRUE
       } else {
         # otherwise just show the asterisks
         df_pairwise %<>%
           dplyr::select(.data = ., -label) %>%
           dplyr::rename(.data = ., label = significance)
-        # textsize <- 4
-        # vjust <- 0.2
+
         parse <- FALSE
       }
     } else {
@@ -270,10 +267,6 @@ ggsignif_adder <- function(plot,
   # arrange the dataframe so that annotations are properly aligned
   df_pairwise %<>% dplyr::arrange(.data = ., group1)
 
-  # computing y coordinates for `ggsignif` bars
-  ggsignif_coords <-
-    ggsignif_xy(data %>% dplyr::pull({{ x }}), data %>% dplyr::pull({{ y }}))
-
   # adding ggsignif comparisons to the plot
   plot +
     ggsignif::geom_signif(
@@ -282,7 +275,10 @@ ggsignif_adder <- function(plot,
       textsize = 3,
       tip_length = 0.01,
       vjust = 0,
-      y_position = ggsignif_coords,
+      y_position = ggsignif_xy(
+        data %>% dplyr::pull({{ x }}),
+        data %>% dplyr::pull({{ y }})
+      ),
       annotations = df_pairwise$label,
       test = NULL,
       na.rm = TRUE,

@@ -390,7 +390,7 @@ testthat::test_that(
 
     set.seed(123)
     p2 <-
-      ggstatsplot::ggwithinstats(
+      suppressWarnings(ggstatsplot::ggwithinstats(
         data = ggstatsplot::iris_long,
         x = condition,
         y = value,
@@ -401,7 +401,7 @@ testthat::test_that(
         pairwise.annotation = "p-value",
         conf.level = 0.90,
         messages = FALSE
-      )
+      ))
 
     set.seed(123)
     p2_subtitle <-

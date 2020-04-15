@@ -301,55 +301,55 @@
 <span class="co"># creating a list of plots by applying the same function for elements of the list</span>
 <span class="no">plot_list</span> <span class="kw">&lt;-</span>
   <span class="kw pkg">purrr</span><span class="kw ns">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(
-  <span class="kw">.l</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-    <span class="kw">data</span> <span class="kw">=</span> <span class="no">cue_list</span>,
-    <span class="kw">x</span> <span class="kw">=</span> <span class="st">"flank"</span>,
-    <span class="kw">y</span> <span class="kw">=</span> <span class="st">"rt"</span>,
-    <span class="kw">outlier.tagging</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-    <span class="kw">outlier.label</span> <span class="kw">=</span> <span class="st">"group"</span>,
-    <span class="kw">outlier.coef</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2.5</span>, <span class="fl">3</span>),
-    <span class="kw">outlier.label.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-      <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"#56B4E9"</span>),
-      <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">2.5</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"#009E73"</span>),
-      <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"#F0E442"</span>),
-      <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"red"</span>)
+    <span class="kw">.l</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+      <span class="kw">data</span> <span class="kw">=</span> <span class="no">cue_list</span>,
+      <span class="kw">x</span> <span class="kw">=</span> <span class="st">"flank"</span>,
+      <span class="kw">y</span> <span class="kw">=</span> <span class="st">"rt"</span>,
+      <span class="kw">outlier.tagging</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
+      <span class="kw">outlier.label</span> <span class="kw">=</span> <span class="st">"group"</span>,
+      <span class="kw">outlier.coef</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2.5</span>, <span class="fl">3</span>),
+      <span class="kw">outlier.label.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"#56B4E9"</span>),
+        <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">2.5</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"#009E73"</span>),
+        <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"#F0E442"</span>),
+        <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"red"</span>)
+      ),
+      <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"Flank"</span>,
+      <span class="kw">ylab</span> <span class="kw">=</span> <span class="st">"Response time"</span>,
+      <span class="kw">title</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="st">"Cue: None"</span>,
+        <span class="st">"Cue: Center"</span>,
+        <span class="st">"Cue: Double"</span>,
+        <span class="st">"Cue: Spatial"</span>
+      ),
+      <span class="kw">type</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"p"</span>, <span class="st">"r"</span>, <span class="st">"bf"</span>, <span class="st">"np"</span>),
+      <span class="kw">pairwise.comparisons</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
+      <span class="kw">pairwise.display</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"ns"</span>, <span class="st">"s"</span>, <span class="st">"ns"</span>, <span class="st">"all"</span>),
+      <span class="kw">pairwise.annotation</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"p"</span>, <span class="st">"asterisk"</span>, <span class="st">"asterisk"</span>, <span class="st">"p.value"</span>),
+      <span class="kw">p.adjust.method</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"fdr"</span>, <span class="st">"hommel"</span>, <span class="st">"bonferroni"</span>, <span class="st">"BH"</span>),
+      <span class="kw">nboot</span> <span class="kw">=</span> <span class="fl">25</span>,
+      <span class="kw">conf.level</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">0.99</span>, <span class="fl">0.99</span>, <span class="fl">0.95</span>, <span class="fl">0.90</span>),
+      <span class="kw">k</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span>),
+      <span class="kw">effsize.type</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="st">"omega"</span>,
+        <span class="st">"eta"</span>,
+        <span class="st">"partial_omega"</span>,
+        <span class="st">"partial_eta"</span>
+      ),
+      <span class="kw">mean.ci</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">FALSE</span>, <span class="fl">TRUE</span>, <span class="fl">FALSE</span>, <span class="fl">FALSE</span>),
+      <span class="kw">package</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"ggsci"</span>, <span class="st">"palettetown"</span>, <span class="st">"palettetown"</span>, <span class="st">"wesanderson"</span>),
+      <span class="kw">palette</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"lanonc_lancet"</span>, <span class="st">"venomoth"</span>, <span class="st">"blastoise"</span>, <span class="st">"GrandBudapest1"</span>),
+      <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_linedraw</a></span>(),
+        <span class="kw pkg">hrbrthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_rc.html">theme_ft_rc</a></span>(),
+        <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_solarized.html">theme_solarized</a></span>(),
+        <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_gdocs.html">theme_gdocs</a></span>()
+      ),
+      <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
+      <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>
     ),
-    <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"Flank"</span>,
-    <span class="kw">ylab</span> <span class="kw">=</span> <span class="st">"Response time"</span>,
-    <span class="kw">title</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-      <span class="st">"Cue: None"</span>,
-      <span class="st">"Cue: Center"</span>,
-      <span class="st">"Cue: Double"</span>,
-      <span class="st">"Cue: Spatial"</span>
-    ),
-    <span class="kw">type</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"p"</span>, <span class="st">"r"</span>, <span class="st">"bf"</span>, <span class="st">"np"</span>),
-    <span class="kw">pairwise.comparisons</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-    <span class="kw">pairwise.display</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"ns"</span>, <span class="st">"s"</span>, <span class="st">"ns"</span>, <span class="st">"all"</span>),
-    <span class="kw">pairwise.annotation</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"p"</span>, <span class="st">"asterisk"</span>, <span class="st">"asterisk"</span>, <span class="st">"p.value"</span>),
-    <span class="kw">p.adjust.method</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"fdr"</span>, <span class="st">"hommel"</span>, <span class="st">"bonferroni"</span>, <span class="st">"BH"</span>),
-    <span class="kw">nboot</span> <span class="kw">=</span> <span class="fl">25</span>,
-    <span class="kw">conf.level</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">0.99</span>, <span class="fl">0.99</span>, <span class="fl">0.95</span>, <span class="fl">0.90</span>),
-    <span class="kw">k</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span>),
-    <span class="kw">effsize.type</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-      <span class="st">"omega"</span>,
-      <span class="st">"eta"</span>,
-      <span class="st">"partial_omega"</span>,
-      <span class="st">"partial_eta"</span>
-    ),
-    <span class="kw">mean.ci</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">FALSE</span>, <span class="fl">TRUE</span>, <span class="fl">FALSE</span>, <span class="fl">FALSE</span>),
-    <span class="kw">package</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"ggsci"</span>, <span class="st">"palettetown"</span>, <span class="st">"palettetown"</span>, <span class="st">"wesanderson"</span>),
-    <span class="kw">palette</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"lanonc_lancet"</span>, <span class="st">"venomoth"</span>, <span class="st">"blastoise"</span>, <span class="st">"GrandBudapest1"</span>),
-    <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-      <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_linedraw</a></span>(),
-      <span class="kw pkg">hrbrthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_rc.html">theme_ft_rc</a></span>(),
-      <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_solarized.html">theme_solarized</a></span>(),
-      <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_gdocs.html">theme_gdocs</a></span>()
-    ),
-    <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-    <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-  ),
-  <span class="kw">.f</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span>
-)
+    <span class="kw">.f</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span>
+  )
 
 <span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span>(
@@ -421,8 +421,7 @@
   <span class="kw">caption.size</span> <span class="kw">=</span> <span class="fl">16</span>,
   <span class="kw">title.color</span> <span class="kw">=</span> <span class="st">"red"</span>,
   <span class="kw">caption.color</span> <span class="kw">=</span> <span class="st">"blue"</span>,
-  <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">1</span>,
-  <span class="kw">labels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>)
+  <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">1</span>
 )</pre></body></html></div>
 <p><img src="purrr_examples_files/figure-html/purrr_ggscatterstats-1.png" width="672"></p>
 <p>The remainder of the examples vary in content but follow the exact same methodology as the earlier examples.</p>
@@ -575,8 +574,7 @@
   <span class="kw">plotlist</span> <span class="kw">=</span> <span class="no">plot_list</span>,
   <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Improvement in life expectancy worldwide since 1950"</span>,
   <span class="kw">caption.text</span> <span class="kw">=</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>,
-  <span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">4</span>,
-  <span class="kw">labels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>)
+  <span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">4</span>
 )</pre></body></html></div>
 <p><img src="purrr_examples_files/figure-html/purrr_gghistostats-1.png" width="576"></p>
 </div>
@@ -658,8 +656,7 @@
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span>(
   <span class="kw">plotlist</span> <span class="kw">=</span> <span class="no">plot_list</span>,
   <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Improvement in GDP per capita from 1952-2007"</span>,
-  <span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">4</span>,
-  <span class="kw">labels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(i)"</span>, <span class="st">"(ii)"</span>, <span class="st">"(iii)"</span>, <span class="st">"(iv)"</span>)
+  <span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">4</span>
 )</pre></body></html></div>
 <p><img src="purrr_examples_files/figure-html/purrr_ggdotplotstats-1.png" width="576"></p>
 </div>
@@ -725,8 +722,7 @@
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span>(
   <span class="kw">plotlist</span> <span class="kw">=</span> <span class="no">plot_list</span>,
   <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Survival in Titanic disaster by gender for all passenger classes"</span>,
-  <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">1</span>,
-  <span class="kw">labels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>)
+  <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">1</span>
 )</pre></body></html></div>
 <p><img src="purrr_examples_files/figure-html/purrr_ggpiestats-1.png" width="864"></p>
 </div>
@@ -792,8 +788,7 @@
   <span class="kw">plotlist</span> <span class="kw">=</span> <span class="no">plot_list</span>,
   <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Survival in Titanic disaster by gender for all passenger classes"</span>,
   <span class="kw">caption.text</span> <span class="kw">=</span> <span class="st">"Asterisks denote results from proportion tests: \n***: p &lt; 0.001, ns: non-significant"</span>,
-  <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">1</span>,
-  <span class="kw">labels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>)
+  <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">1</span>
 )</pre></body></html></div>
 <p><img src="purrr_examples_files/figure-html/purrr_ggbarstats-1.png" width="672"></p>
 </div>

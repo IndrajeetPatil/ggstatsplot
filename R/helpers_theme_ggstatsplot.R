@@ -31,7 +31,8 @@ theme_ggstatsplot <- function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer =
         axis.title.x = ggplot2::element_text(size = 11, face = "bold"),
         axis.title.y = ggplot2::element_text(size = 11, face = "bold"),
         axis.text.x = ggplot2::element_text(size = 11, face = "bold"),
-        axis.text.y = ggplot2::element_text(size = 11, face = "bold")
+        axis.text.y = ggplot2::element_text(size = 11, face = "bold"),
+        plot.title.position = "plot"
       ) +
       common_theme_element
   } else {
@@ -82,7 +83,6 @@ common_theme_element <-
     strip.text = ggplot2::element_text(size = 10, face = "bold"),
     legend.text = ggplot2::element_text(size = 10),
     legend.title = ggplot2::element_text(size = 10, face = "bold"),
-    panel.border = ggplot2::element_rect(fill = NA, size = 1),
     plot.title = ggplot2::element_text(size = 12, face = "bold"),
     plot.subtitle = ggplot2::element_text(size = 10)
   )

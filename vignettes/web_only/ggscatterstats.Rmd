@@ -157,11 +157,7 @@ ggstatsplot::grouped_ggscatterstats(
   # arguments relevant for ggstatsplot::combine_plots
   title.text = "Relationship between movie budget and IMDB rating",
   caption.text = "Source: www.imdb.com",
-  plotgrid.args = list(
-    nrow = 3,
-    ncol = 1,
-    labels = c("(a)", "(b)", "(c)", "(d)")
-  )
+  plotgrid.args = list(nrow = 3, ncol = 1)
 )
 ```
 
@@ -254,8 +250,7 @@ ggstatsplot::combine_plots(
   title.text = "Trying out different smoothing functions with ggscatterstats",
   caption.text = "Source: www.imdb.com",
   nrow = 2,
-  ncol = 2,
-  labels = c("(a)", "(b)", "(c)", "(d)")
+  ncol = 2
 )
 ```
 

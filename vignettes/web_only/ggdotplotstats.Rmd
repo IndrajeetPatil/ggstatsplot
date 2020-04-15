@@ -128,7 +128,7 @@ ggstatsplot::grouped_ggdotplotstats(
   messages = FALSE,
   # arguments relevant for ggstatsplot::combine_plots
   title.text = "Fuel economy data",
-  plotgrid.args = list(nrow = 2, labels = c("(i)", "(ii)"))
+  plotgrid.args = list(nrow = 2)
 )
 ```
 

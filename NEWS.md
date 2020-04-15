@@ -42,9 +42,9 @@ MAJOR CHANGES
 
 MINOR CHANGES
 
-  - More models supported in `ggcoefstats`: `brmultinom`, `lmerModLmerTest`,
-    `lrm`.
-  
+  - More models supported in `ggcoefstats`: `bayesx`, `BBmm`, `brmultinom`,
+    `lmerModLmerTest`, `lrm`.
+    
   - `ggcorrmat` now internally relies on `correlation` for correlation analyses.
   
   - `ggbarstats` no longer displays `"percent"` for Y-axis label as this was
@@ -56,7 +56,8 @@ MINOR CHANGES
   - The subtitles are more explicit about the details of the test. For the same
     reason `stat.title` argument from all relevant functions is retired since
     this argument was supposed to be for entering some additional details about
-    the test.
+    the test. Additionally, the plot titles and subtitles for some of the plots
+    are aligned with the plot.
   
   - `ggcorrmat` legend, in case of missing values, shows mode - instead of
     median - for the distribution of sample pairs.

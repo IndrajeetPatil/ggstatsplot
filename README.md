@@ -675,8 +675,7 @@ ggstatsplot::ggbarstats(
   title = "MPAA Ratings by Genre",
   xlab = "movie genre",
   legend.title = "MPAA rating",
-  ggtheme = hrbrthemes::theme_modern_rc(),
-  ggstatsplot.layer = FALSE,
+  ggtheme = hrbrthemes::theme_ipsum_pub(),
   ggplot.component = list(scale_x_discrete(guide = guide_axis(n.dodge = 2))),
   palette = "Set2",
   messages = FALSE
@@ -1090,10 +1089,10 @@ ggstatsplot::ggcoefstats(
 Most of the regression models that are supported in the underlying
 packages are also supported by `ggcoefstats`. For example-
 
-`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `BBreg`, `bcplm`,
-`bglmerMod`, `bife`, `bigglm`, `biglm`, `blavaan`, `bmlm`, `blmerMod`,
-`bracl`, `brglm2`, `brmsfit`, `brmultinom`, `btergm`, `cch`, `cgam`,
-`cgamm`, `cglm`, `clm`, `clmm`, `coeftest`, `complmrob`,
+`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `bayesx`, `BBmm`, `BBreg`,
+`bcplm`, `bglmerMod`, `bife`, `bigglm`, `biglm`, `blavaan`, `bmlm`,
+`blmerMod`, `bracl`, `brglm2`, `brmsfit`, `brmultinom`, `btergm`, `cch`,
+`cgam`, `cgamm`, `cglm`, `clm`, `clmm`, `coeftest`, `complmrob`,
 `confusionMatrix`, `coxme`, `coxph`, `cpglm`, `cpglmm`, `crch`,
 `DirichReg`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`,
 `fitdistr`, `flexsurvreg`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`,

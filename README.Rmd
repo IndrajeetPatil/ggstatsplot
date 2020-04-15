@@ -355,7 +355,7 @@ As with the `ggbetweenstats`, this function also has a `grouped_` variant that
 makes repeating the same analysis across a single grouping variable quicker. We
 will see an example with only repeated measurements-
 
-```{r ggwithinstats2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 13}
+```{r ggwithinstats2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 14}
 # common setup
 set.seed(123)
 
@@ -634,8 +634,7 @@ ggstatsplot::ggbarstats(
   title = "MPAA Ratings by Genre",
   xlab = "movie genre",
   legend.title = "MPAA rating",
-  ggtheme = hrbrthemes::theme_modern_rc(),
-  ggstatsplot.layer = FALSE,
+  ggtheme = hrbrthemes::theme_ipsum_pub(),
   ggplot.component = list(scale_x_discrete(guide = guide_axis(n.dodge = 2))),
   palette = "Set2",
   messages = FALSE
@@ -986,20 +985,21 @@ ggstatsplot::ggcoefstats(
 Most of the regression models that are supported in the underlying packages are
 also supported by `ggcoefstats`. For example-
 
-`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `BBreg`, `bcplm`, `bglmerMod`,
-`bife`, `bigglm`, `biglm`, `blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm2`,
-`brmsfit`, `brmultinom`, `btergm`, `cch`, `cgam`, `cgamm`, `cglm`, `clm`,
-`clmm`, `coeftest`, `complmrob`, `confusionMatrix`, `coxme`, `coxph`, `cpglm`,
-`cpglmm`, `crch`, `DirichReg`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`,
-`felm`, `fitdistr`, `flexsurvreg`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`,
-`Gam`, `gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`,
-`glmx`, `gmm`, `hurdle`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`,
-`lmerMod`, `lmerModLmerTest`, `lmodel2`, `lmRob`, `lmrob`, `LORgee`, `lrm`, `mcmc`,
-`MCMCglmm`, `mclogit`, `mmclogit`, `mediate`, `mixor`, `mjoint`, `mle2`, `mlm`,
-`multinom`, `negbin`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `plm`,
-`polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `rqss`, `slm`, `speedglm`,
-`speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`,
-`tobit`, `truncreg`, `vgam`, `wbgee`, `wblm`, `zcpglm`, `zeroinfl`, etc.
+`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `bayesx`, `BBmm`, `BBreg`, `bcplm`,
+`bglmerMod`, `bife`, `bigglm`, `biglm`, `blavaan`, `bmlm`, `blmerMod`, `bracl`,
+`brglm2`, `brmsfit`, `brmultinom`, `btergm`, `cch`, `cgam`, `cgamm`, `cglm`,
+`clm`, `clmm`, `coeftest`, `complmrob`, `confusionMatrix`, `coxme`, `coxph`,
+`cpglm`, `cpglmm`, `crch`, `DirichReg`, `drc`, `emmGrid`, `epi.2by2`, `ergm`,
+`feis`, `felm`, `fitdistr`, `flexsurvreg`, `glmc`, `glmerMod`, `glmmTMB`, `gls`,
+`gam`, `Gam`, `gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`,
+`glmrob`, `glmx`, `gmm`, `hurdle`, `ivreg`, `iv_robust`, `lavaan`, `lm`,
+`lm.beta`, `lmerMod`, `lmerModLmerTest`, `lmodel2`, `lmRob`, `lmrob`, `LORgee`,
+`lrm`, `mcmc`, `MCMCglmm`, `mclogit`, `mmclogit`, `mediate`, `mixor`, `mjoint`,
+`mle2`, `mlm`, `multinom`, `negbin`, `nlmerMod`, `nlrq`, `nlreg`, `nls`,
+`orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `rqss`,
+`slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`,
+`svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`, `wbgee`, `wblm`, `zcpglm`,
+`zeroinfl`, etc.
 
 Although not shown here, this function can also be used to carry out both
 frequentist and Bayesian random-effects meta-analysis.

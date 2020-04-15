@@ -313,7 +313,7 @@ ggcoefstats <- function(x,
   # model for which the output names are going to be slightly weird
   weird_name_mods <- c(
     "brmultinom", "drc", "DirichletRegModel",
-    "gmm", "gamlss", "glmmTMB", "lmodel2", "mlm"
+    "gmm", "gamlss", "glmmTMB", "lmodel2", "mlm", "zcpglm"
   )
 
   # ============================= model summary ============================

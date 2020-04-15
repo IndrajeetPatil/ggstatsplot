@@ -74,10 +74,7 @@ set.seed(123)
 
 # function call
 ggstatsplot::ggbetweenstats(
-  data = dplyr::filter(
-    .data = gapminder::gapminder,
-    year == 2007, continent != "Oceania"
-  ),
+  data = dplyr::filter(gapminder::gapminder, year == 2007, continent != "Oceania"),
   x = continent,
   y = lifeExp,
   nboot = 10,
@@ -258,7 +255,6 @@ p4 <-
 ggstatsplot::combine_plots(
   p1, p2, p3, p4,
   nrow = 2,
-  labels = c("(a)", "(b)", "(c)", "(d)"),
   title.text = "Comparison of life expectancy between 1957 and 2007",
   caption.text = "Source: Gapminder Foundation",
   title.size = 14,

@@ -190,10 +190,7 @@
 
 <span class="co"># function call</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(
-    <span class="kw">.data</span> <span class="kw">=</span> <span class="kw pkg">gapminder</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html">gapminder</a></span>,
-    <span class="no">year</span> <span class="kw">==</span> <span class="fl">2007</span>, <span class="no">continent</span> <span class="kw">!=</span> <span class="st">"Oceania"</span>
-  ),
+  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw pkg">gapminder</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html">gapminder</a></span>, <span class="no">year</span> <span class="kw">==</span> <span class="fl">2007</span>, <span class="no">continent</span> <span class="kw">!=</span> <span class="st">"Oceania"</span>),
   <span class="kw">x</span> <span class="kw">=</span> <span class="no">continent</span>,
   <span class="kw">y</span> <span class="kw">=</span> <span class="no">lifeExp</span>,
   <span class="kw">nboot</span> <span class="kw">=</span> <span class="fl">10</span>,
@@ -335,7 +332,6 @@
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span>(
   <span class="no">p1</span>, <span class="no">p2</span>, <span class="no">p3</span>, <span class="no">p4</span>,
   <span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">2</span>,
-  <span class="kw">labels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>),
   <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Comparison of life expectancy between 1957 and 2007"</span>,
   <span class="kw">caption.text</span> <span class="kw">=</span> <span class="st">"Source: Gapminder Foundation"</span>,
   <span class="kw">title.size</span> <span class="kw">=</span> <span class="fl">14</span>,

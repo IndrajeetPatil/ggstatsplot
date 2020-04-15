@@ -176,7 +176,7 @@ recommended, to make each plot have different colors or themes.
 
 For example,
 
-```{r ggwithinstats3, message = FALSE, warning = FALSE, fig.height = 10, fig.width = 10}
+```{r ggwithinstats3, message = FALSE, warning = FALSE, fig.height = 14, fig.width = 14}
 # for reproducibility
 set.seed(123)
 library(ggstatsplot)
@@ -229,7 +229,6 @@ p3 <-
     type = "r",
     conf.level = 0.99,
     title = "Robust Test",
-    tr = 0.2,
     package = "wesanderson",
     palette = "Royal2",
     ggtheme = hrbrthemes::theme_ipsum_tw(),

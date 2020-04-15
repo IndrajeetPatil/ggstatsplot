@@ -189,6 +189,21 @@ ggscatterstats <- function(data,
 
   # adding a subtitle with statistical results
   if (isTRUE(results.subtitle)) {
+    # preparing the BF message for null hypothesis support
+    if (type == "parametric" && isTRUE(bf.message)) {
+      caption <-
+        statsExpressions::bf_corr_test(
+          data = data,
+          x = {{ x }},
+          y = {{ y }},
+          bf.prior = bf.prior,
+          caption = caption,
+          output = "caption",
+          k = k
+        )
+    }
+
+    # extracting the subtitle using the switch function
     subtitle <-
       statsExpressions::expr_corr_test(
         data = data,
@@ -202,23 +217,6 @@ ggscatterstats <- function(data,
         k = k,
         messages = messages
       )
-
-    # preparing the BF message for null hypothesis support
-    if (isTRUE(bf.message)) {
-      bf.caption.text <-
-        statsExpressions::bf_corr_test(
-          data = data,
-          x = {{ x }},
-          y = {{ y }},
-          bf.prior = bf.prior,
-          caption = caption,
-          output = "caption",
-          k = k
-        )
-    }
-
-    # if bayes factor message needs to be displayed
-    if (type == "parametric" && isTRUE(bf.message)) caption <- bf.caption.text
   }
 
   # quit early if only subtitle is needed
@@ -391,16 +389,16 @@ ggscatterstats <- function(data,
 
   # annotations
   plot <- plot +
-    ggstatsplot::theme_ggstatsplot(
-      ggtheme = ggtheme,
-      ggstatsplot.layer = ggstatsplot.layer
-    ) +
     ggplot2::labs(
       x = xlab,
       y = ylab,
       title = title,
       subtitle = subtitle,
       caption = caption
+    ) +
+    ggstatsplot::theme_ggstatsplot(
+      ggtheme = ggtheme,
+      ggstatsplot.layer = ggstatsplot.layer
     ) +
     ggplot.component
 
