@@ -291,13 +291,10 @@ ggstatsplot::grouped_ggwithinstats(
   grouping.var = Gender,
   xlab = "Continent",
   ylab = "Desire to kill bugs",
-  sort = "ascending",
-  sort.fun = median,
   nboot = 10,
   type = "np", # type of test
   pairwise.comparisons = TRUE, # display results from pairwise comparisons
   pairwise.display = "significant", # display only significant pairwise comparisons
-  pairwise.annotation = "p.value", # annotate the pairwise comparisons using p-values
   p.adjust.method = "fdr", # adjust p-values for multiple tests using this method
   ggtheme = ggthemes::theme_tufte(),
   package = "ggsci",

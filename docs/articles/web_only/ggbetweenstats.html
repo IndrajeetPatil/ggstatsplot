@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0.9000</span>
       </span>
     </div>
 
@@ -149,7 +149,7 @@
       <h1 data-toc-skip>ggbetweenstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-04-15</h4>
+            <h4 class="date">2020-04-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggbetweenstats.Rmd"><code>vignettes/web_only/ggbetweenstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggbetweenstats.Rmd</code></div>
@@ -205,37 +205,30 @@
 <p>As can be seen from the plot, the function by default returns Bayes Factor for the test. If the null hypothesis can’t be rejected with the null hypothesis significance testing (NHST) approach, the Bayesian approach can help index evidence in favor of the null hypothesis (i.e., <span class="math inline">\(BF_{01}\)</span>).</p>
 <p>By default, natural logarithms are shown because Bayes Factor values can sometimes be pretty large. Having values on logarithmic scale also makes it easy to compare evidence in favor alternative (<span class="math inline">\(BF_{10}\)</span>) versus null (<span class="math inline">\(BF_{01}\)</span>) hypotheses (since <span class="math inline">\(log_{e}(BF_{01}) = - log_{e}(BF_{01})\)</span>).</p>
 <p>We can make the output much more aesthetically pleasing as well as informative by making use of the many optional parameters in <code>ggbetweenstats</code>. We’ll add a title and caption, better <code>x</code> and <code>y</code> axis labels, and tag and label the outliers in the data. We can and will change the overall theme as well as the color palette in use.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">gapminder</span>)
 
-<span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
-
 <span class="co"># plot</span>
-<span class="no">gapminder</span> <span class="kw">%&gt;%</span> <span class="co"># dataframe to use</span>
-  <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span>(
-    <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">.data</span> <span class="kw">=</span> <span class="no">.</span>, <span class="no">year</span> <span class="kw">==</span> <span class="fl">2007</span>, <span class="no">continent</span> <span class="kw">!=</span> <span class="st">"Oceania"</span>),
-    <span class="kw">x</span> <span class="kw">=</span> <span class="no">continent</span>, <span class="co"># grouping/independent variable</span>
-    <span class="kw">y</span> <span class="kw">=</span> <span class="no">lifeExp</span>, <span class="co"># dependent variables</span>
-    <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"Continent"</span>, <span class="co"># label for the x-axis</span>
-    <span class="kw">ylab</span> <span class="kw">=</span> <span class="st">"Life expectancy"</span>, <span class="co"># label for the y-axis</span>
-    <span class="kw">plot.type</span> <span class="kw">=</span> <span class="st">"boxviolin"</span>, <span class="co"># type of plot</span>
-    <span class="kw">type</span> <span class="kw">=</span> <span class="st">"parametric"</span>, <span class="co"># type of statistical test</span>
-    <span class="kw">effsize.type</span> <span class="kw">=</span> <span class="st">"biased"</span>, <span class="co"># type of effect size</span>
-    <span class="kw">nboot</span> <span class="kw">=</span> <span class="fl">10</span>, <span class="co"># number of bootstrap samples used</span>
-    <span class="kw">bf.message</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="co"># display bayes factor in favor of null hypothesis</span>
-    <span class="kw">outlier.tagging</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="co"># whether outliers should be flagged</span>
-    <span class="kw">outlier.coef</span> <span class="kw">=</span> <span class="fl">1.5</span>, <span class="co"># coefficient for Tukey's rule</span>
-    <span class="kw">outlier.label</span> <span class="kw">=</span> <span class="no">country</span>, <span class="co"># label to attach to outlier values</span>
-    <span class="kw">outlier.label.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">color</span> <span class="kw">=</span> <span class="st">"red"</span>), <span class="co"># outlier point label color</span>
-    <span class="kw">mean.plotting</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="co"># whether the mean is to be displayed</span>
-    <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="co"># turn off messages</span>
-    <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_gray</a></span>(), <span class="co"># a different theme</span>
-    <span class="kw">package</span> <span class="kw">=</span> <span class="st">"yarrr"</span>, <span class="co"># package from which color palette is to be taken</span>
-    <span class="kw">palette</span> <span class="kw">=</span> <span class="st">"info2"</span>, <span class="co"># choosing a different color palette</span>
-    <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Comparison of life expectancy across continents (Year: 2007)"</span>,
-    <span class="kw">caption</span> <span class="kw">=</span> <span class="st">"Source: Gapminder Foundation"</span>
-  ) + <span class="co"># modifying the plot further</span>
+<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span>(
+  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">.data</span> <span class="kw">=</span> <span class="no">gapminder</span>, <span class="no">year</span> <span class="kw">==</span> <span class="fl">2007</span>, <span class="no">continent</span> <span class="kw">!=</span> <span class="st">"Oceania"</span>),
+  <span class="kw">x</span> <span class="kw">=</span> <span class="no">continent</span>, <span class="co"># grouping/independent variable</span>
+  <span class="kw">y</span> <span class="kw">=</span> <span class="no">lifeExp</span>, <span class="co"># dependent variables</span>
+  <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"Continent"</span>, <span class="co"># label for the x-axis</span>
+  <span class="kw">ylab</span> <span class="kw">=</span> <span class="st">"Life expectancy"</span>, <span class="co"># label for the y-axis</span>
+  <span class="kw">plot.type</span> <span class="kw">=</span> <span class="st">"boxviolin"</span>, <span class="co"># type of plot</span>
+  <span class="kw">outlier.tagging</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="co"># whether outliers should be flagged</span>
+  <span class="kw">outlier.coef</span> <span class="kw">=</span> <span class="fl">1.5</span>, <span class="co"># coefficient for Tukey's rule</span>
+  <span class="kw">outlier.label</span> <span class="kw">=</span> <span class="no">country</span>, <span class="co"># label to attach to outlier values</span>
+  <span class="kw">outlier.label.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">color</span> <span class="kw">=</span> <span class="st">"red"</span>), <span class="co"># outlier point label color</span>
+  <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="co"># turn off messages</span>
+  <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_gray</a></span>(), <span class="co"># a different theme</span>
+  <span class="kw">package</span> <span class="kw">=</span> <span class="st">"yarrr"</span>, <span class="co"># package from which color palette is to be taken</span>
+  <span class="kw">palette</span> <span class="kw">=</span> <span class="st">"info2"</span>, <span class="co"># choosing a different color palette</span>
+  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Comparison of life expectancy across continents (Year: 2007)"</span>,
+  <span class="kw">caption</span> <span class="kw">=</span> <span class="st">"Source: Gapminder Foundation"</span>
+) + <span class="co"># modifying the plot further</span>
   <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span>(
     <span class="kw">limits</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">35</span>, <span class="fl">85</span>),
     <span class="kw">breaks</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="kw">from</span> <span class="kw">=</span> <span class="fl">35</span>, <span class="kw">to</span> <span class="kw">=</span> <span class="fl">85</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="fl">5</span>)
@@ -362,7 +355,6 @@
     <span class="kw">ylab</span> <span class="kw">=</span> <span class="st">"Life expectancy"</span>,
     <span class="kw">pairwise.comparisons</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="co"># display results from pairwise comparisons</span>
     <span class="kw">pairwise.display</span> <span class="kw">=</span> <span class="st">"significant"</span>, <span class="co"># display only significant pairwise comparisons</span>
-    <span class="kw">pairwise.annotation</span> <span class="kw">=</span> <span class="st">"p.value"</span>, <span class="co"># annotate the pairwise comparisons using p-values</span>
     <span class="kw">p.adjust.method</span> <span class="kw">=</span> <span class="st">"fdr"</span>, <span class="co"># adjust p-values for multiple tests using this method</span>
     <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),
     <span class="kw">package</span> <span class="kw">=</span> <span class="st">"ggsci"</span>,

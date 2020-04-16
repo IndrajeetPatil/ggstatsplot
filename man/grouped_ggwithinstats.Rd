@@ -84,8 +84,6 @@ behavior, select appropriate option with \code{pairwise.display} argument. The
 pairwise comparison dataframes are prepared using the
 \code{pairwiseComparisons::pairwise_comparisons} function. For more details
 about pairwise comparisons, see the documentation for that function.}
-    \item{\code{pairwise.annotation}}{Character that decides the annotations to use for
-pairwise comparisons. Either \code{"p.value"} (default) or \code{"asterisk"}.}
     \item{\code{pairwise.display}}{Decides which pairwise comparisons to display.
 Available options are \code{"significant"} (abbreviation accepted: \code{"s"}) or
 \code{"non-significant"} (abbreviation accepted: \code{"ns"}) or

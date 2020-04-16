@@ -20,8 +20,6 @@
 #' @param p.adjust.method Adjustment method for *p*-values for multiple
 #'   comparisons. Possible methods are: `"holm"` (default), `"hochberg"`,
 #'   `"hommel"`, `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`, `"none"`.
-#' @param pairwise.annotation Character that decides the annotations to use for
-#'   pairwise comparisons. Either `"p.value"` (default) or `"asterisk"`.
 #' @param pairwise.display Decides which pairwise comparisons to display.
 #'   Available options are `"significant"` (abbreviation accepted: `"s"`) or
 #'   `"non-significant"` (abbreviation accepted: `"ns"`) or
@@ -176,7 +174,6 @@
 #'   xlab = "The experiment number",
 #'   ylab = "Speed-of-light measurement",
 #'   pairwise.comparisons = TRUE,
-#'   pairwise.annotation = "p.value",
 #'   p.adjust.method = "fdr",
 #'   outlier.tagging = TRUE,
 #'   outlier.label = Run,
@@ -194,7 +191,6 @@ ggbetweenstats <- function(data,
                            plot.type = "boxviolin",
                            type = "parametric",
                            pairwise.comparisons = FALSE,
-                           pairwise.annotation = "p.value",
                            pairwise.display = "significant",
                            p.adjust.method = "holm",
                            effsize.type = "unbiased",
@@ -510,7 +506,6 @@ ggbetweenstats <- function(data,
         data = data,
         x = {{ x }},
         y = {{ y }},
-        pairwise.annotation = pairwise.annotation,
         pairwise.display = pairwise.display
       )
 

@@ -12,7 +12,6 @@ ggbetweenstats(
   plot.type = "boxviolin",
   type = "parametric",
   pairwise.comparisons = FALSE,
-  pairwise.annotation = "p.value",
   pairwise.display = "significant",
   p.adjust.method = "holm",
   effsize.type = "unbiased",
@@ -84,9 +83,6 @@ behavior, select appropriate option with \code{pairwise.display} argument. The
 pairwise comparison dataframes are prepared using the
 \code{pairwiseComparisons::pairwise_comparisons} function. For more details
 about pairwise comparisons, see the documentation for that function.}
-
-\item{pairwise.annotation}{Character that decides the annotations to use for
-pairwise comparisons. Either \code{"p.value"} (default) or \code{"asterisk"}.}
 
 \item{pairwise.display}{Decides which pairwise comparisons to display.
 Available options are \code{"significant"} (abbreviation accepted: \code{"s"}) or
@@ -297,7 +293,6 @@ ggstatsplot::ggbetweenstats(
   xlab = "The experiment number",
   ylab = "Speed-of-light measurement",
   pairwise.comparisons = TRUE,
-  pairwise.annotation = "p.value",
   p.adjust.method = "fdr",
   outlier.tagging = TRUE,
   outlier.label = Run,

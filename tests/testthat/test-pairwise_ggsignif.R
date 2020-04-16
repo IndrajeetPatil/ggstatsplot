@@ -123,7 +123,6 @@ testthat::test_that(
       messages = FALSE,
       bf.message = FALSE,
       pairwise.comparisons = TRUE,
-      pairwise.annotation = "xyz",
       p.adjust.method = "fdr",
       pairwise.display = "all",
       k = 3,
@@ -193,7 +192,7 @@ testthat::test_that(
       ggsignif_stat$comparisons[[1]],
       c("Action", "Comedy")
     )
-    testthat::expect_equal(ggsignif_stat$annotations, dat$significance)
+    testthat::expect_equal(ggsignif_stat$annotations, dat$label)
   }
 )
 

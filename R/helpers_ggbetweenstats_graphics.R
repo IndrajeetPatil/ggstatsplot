@@ -223,7 +223,6 @@ ggsignif_adder <- function(plot,
                            data,
                            x,
                            y,
-                           pairwise.annotation = "p.value",
                            pairwise.display = "significant",
                            ...) {
   # creating a column for group combinations
@@ -244,24 +243,9 @@ ggsignif_adder <- function(plot,
     }
 
     # proceed only if there are any significant comparisons to display
-    if (dim(df_pairwise)[[1]] != 0L) {
-      # deciding what needs to be displayed
-      if (pairwise.annotation %in% c("p", "p-value", "p.value")) {
-        # if p-values are to be displayed
-        parse <- TRUE
-      } else {
-        # otherwise just show the asterisks
-        df_pairwise %<>%
-          dplyr::select(.data = ., -label) %>%
-          dplyr::rename(.data = ., label = significance)
-
-        parse <- FALSE
-      }
-    } else {
+    if (dim(df_pairwise)[[1]] == 0L) {
       return(plot)
     }
-  } else {
-    parse <- TRUE
   }
 
   # arrange the dataframe so that annotations are properly aligned
@@ -282,7 +266,7 @@ ggsignif_adder <- function(plot,
       annotations = df_pairwise$label,
       test = NULL,
       na.rm = TRUE,
-      parse = parse
+      parse = TRUE
     )
 }
 

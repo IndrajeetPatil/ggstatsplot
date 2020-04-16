@@ -70,7 +70,6 @@ ggwithinstats <- function(data,
                           y,
                           type = "parametric",
                           pairwise.comparisons = FALSE,
-                          pairwise.annotation = "p.value",
                           pairwise.display = "significant",
                           p.adjust.method = "holm",
                           effsize.type = "unbiased",
@@ -354,7 +353,6 @@ ggwithinstats <- function(data,
         data = data,
         x = {{ x }},
         y = {{ y }},
-        pairwise.annotation = pairwise.annotation,
         pairwise.display = pairwise.display
       )
 

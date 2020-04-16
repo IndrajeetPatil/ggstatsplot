@@ -108,37 +108,30 @@ outliers in the data. We can and will change the overall theme as well as the
 color palette in use.
 
 ```{r ggbetweenstats2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
+# for reproducibility
+set.seed(123)
 library(ggstatsplot)
 library(gapminder)
 
-# for reproducibility
-set.seed(123)
-
 # plot
-gapminder %>% # dataframe to use
-  ggstatsplot::ggbetweenstats(
-    data = dplyr::filter(.data = ., year == 2007, continent != "Oceania"),
-    x = continent, # grouping/independent variable
-    y = lifeExp, # dependent variables
-    xlab = "Continent", # label for the x-axis
-    ylab = "Life expectancy", # label for the y-axis
-    plot.type = "boxviolin", # type of plot
-    type = "parametric", # type of statistical test
-    effsize.type = "biased", # type of effect size
-    nboot = 10, # number of bootstrap samples used
-    bf.message = TRUE, # display bayes factor in favor of null hypothesis
-    outlier.tagging = TRUE, # whether outliers should be flagged
-    outlier.coef = 1.5, # coefficient for Tukey's rule
-    outlier.label = country, # label to attach to outlier values
-    outlier.label.args = list(color = "red"), # outlier point label color
-    mean.plotting = TRUE, # whether the mean is to be displayed
-    messages = FALSE, # turn off messages
-    ggtheme = ggplot2::theme_gray(), # a different theme
-    package = "yarrr", # package from which color palette is to be taken
-    palette = "info2", # choosing a different color palette
-    title = "Comparison of life expectancy across continents (Year: 2007)",
-    caption = "Source: Gapminder Foundation"
-  ) + # modifying the plot further
+ggstatsplot::ggbetweenstats(
+  data = dplyr::filter(.data = gapminder, year == 2007, continent != "Oceania"),
+  x = continent, # grouping/independent variable
+  y = lifeExp, # dependent variables
+  xlab = "Continent", # label for the x-axis
+  ylab = "Life expectancy", # label for the y-axis
+  plot.type = "boxviolin", # type of plot
+  outlier.tagging = TRUE, # whether outliers should be flagged
+  outlier.coef = 1.5, # coefficient for Tukey's rule
+  outlier.label = country, # label to attach to outlier values
+  outlier.label.args = list(color = "red"), # outlier point label color
+  messages = FALSE, # turn off messages
+  ggtheme = ggplot2::theme_gray(), # a different theme
+  package = "yarrr", # package from which color palette is to be taken
+  palette = "info2", # choosing a different color palette
+  title = "Comparison of life expectancy across continents (Year: 2007)",
+  caption = "Source: Gapminder Foundation"
+) + # modifying the plot further
   ggplot2::scale_y_continuous(
     limits = c(35, 85),
     breaks = seq(from = 35, to = 85, by = 5)
@@ -295,7 +288,6 @@ gapminder::gapminder %>%
     ylab = "Life expectancy",
     pairwise.comparisons = TRUE, # display results from pairwise comparisons
     pairwise.display = "significant", # display only significant pairwise comparisons
-    pairwise.annotation = "p.value", # annotate the pairwise comparisons using p-values
     p.adjust.method = "fdr", # adjust p-values for multiple tests using this method
     ggtheme = ggthemes::theme_tufte(),
     package = "ggsci",

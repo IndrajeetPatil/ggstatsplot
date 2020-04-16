@@ -1,3 +1,15 @@
+# ggstatsplot 0.4.0.9000
+
+BREAKING CHANGES
+
+  - The `pairwise.annotation` argument for `ggbetweenstats` and `ggwithinstats`
+    is deprecated. This was done because-
+    
+    1.  Different fields have different schema for what significance levels
+        asterisks represent.
+    2.  The *p*-value labels also contain information about whether they are
+        adjusted for multiple comparisons.
+
 # ggstatsplot 0.4.0
 
 BREAKING CHANGES

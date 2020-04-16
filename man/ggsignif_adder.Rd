@@ -10,7 +10,6 @@ ggsignif_adder(
   data,
   x,
   y,
-  pairwise.annotation = "p.value",
   pairwise.display = "significant",
   ...
 )
@@ -28,9 +27,6 @@ be taken. A matrix or tables will \strong{not} be accepted.}
 
 \item{y}{The response (a.k.a. outcome or dependent) variable from the
 dataframe \code{data}.}
-
-\item{pairwise.annotation}{Character that decides the annotations to use for
-pairwise comparisons. Either \code{"p.value"} (default) or \code{"asterisk"}.}
 
 \item{pairwise.display}{Decides which pairwise comparisons to display.
 Available options are \code{"significant"} (abbreviation accepted: \code{"s"}) or

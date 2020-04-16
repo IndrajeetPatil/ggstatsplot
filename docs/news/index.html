@@ -87,7 +87,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0.9000</span>
       </span>
     </div>
 
@@ -196,9 +196,24 @@
       <small>Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="ggstatsplot-0409000" class="section level1">
+<h1 class="page-header" data-toc-text="0.4.0.9000">
+<a href="#ggstatsplot-0409000" class="anchor"></a>ggstatsplot 0.4.0.9000<small> Unreleased </small>
+</h1>
+<p>BREAKING CHANGES</p>
+<ul>
+<li>
+<p>The <code>pairwise.annotation</code> argument for <code>ggbetweenstats</code> and <code>ggwithinstats</code> is deprecated. This was done because-</p>
+<ol>
+<li>Different fields have different schema for what significance levels asterisks represent.</li>
+<li>The <em>p</em>-value labels also contain information about whether they are adjusted for multiple comparisons.</li>
+</ol>
+</li>
+</ul>
+</div>
     <div id="ggstatsplot-040" class="section level1">
 <h1 class="page-header" data-toc-text="0.4.0">
-<a href="#ggstatsplot-040" class="anchor"></a>ggstatsplot 0.4.0<small> Unreleased </small>
+<a href="#ggstatsplot-040" class="anchor"></a>ggstatsplot 0.4.0<small> 2020-04-15 </small>
 </h1>
 <p>BREAKING CHANGES</p>
 <ul>
