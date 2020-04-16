@@ -47,7 +47,6 @@ r_binary_packages:
   - metaBMA
   - metaplus
   - fastGHQuad
-  - multcomp
   - coda
 r_packages:
   - coin
@@ -57,7 +56,12 @@ r_packages:
   - WRS2
   - remotes
   - knitr
+  - multcomp
   - rmarkdown
+  - ipmisc
+  - tidyBF
+  - statsExpressions
+  - pairwiseComparisons
 r_github_packages:
   - jimhester/lintr
   - r-lib/covr
