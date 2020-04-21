@@ -32,8 +32,6 @@ r_binary_packages:
   - SparseM
   - httpuv
   - markdown
-  - readxl
-  - openxlsx
   - pander
   - git2r
   - rlang
@@ -48,7 +46,7 @@ r_binary_packages:
   - metaplus
   - fastGHQuad
   - coda
-  - ggcorrplot
+
 r_packages:
   - coin
   - effectsize
@@ -59,10 +57,7 @@ r_packages:
   - knitr
   - multcomp
   - rmarkdown
-  - ipmisc
-  - tidyBF
-  - statsExpressions
-  - pairwiseComparisons
+
 r_github_packages:
   - jimhester/lintr
   - r-lib/covr
