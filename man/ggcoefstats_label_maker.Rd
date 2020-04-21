@@ -6,9 +6,8 @@
 \usage{
 ggcoefstats_label_maker(
   tidy_df,
-  glance_df = NULL,
   statistic = NULL,
-  k = 2,
+  k = 2L,
   effsize = "eta",
   partial = TRUE,
   ...
@@ -16,10 +15,6 @@ ggcoefstats_label_maker(
 }
 \arguments{
 \item{tidy_df}{A tidy dataframe.}
-
-\item{glance_df}{A tidy model summary dataframe (default: \code{NULL}). If
-provided, this dataframe will be used to write \code{caption} for the final
-plot.}
 
 \item{statistic}{Which statistic is to be displayed (either \code{"t"} or \code{"f"}or
 \code{"z"}) in the label. This is especially important if the \code{x} argument in
@@ -30,13 +25,12 @@ kind of model it is dealing with.}
 (Default : \code{k = 2}).}
 
 \item{effsize}{Character describing the effect size to be displayed: \code{"eta"}
-(default) or \code{"omega"}. This argument is relevant
-only for models objects of class \code{aov}, \code{anova}, and \code{aovlist}.}
+(default) or \code{"omega"}. This argument is relevant only for models objects
+of class \code{aov}, \code{anova}, \code{aovlist}, \code{"Gam"}, and \code{"manova"}.}
 
-\item{partial}{Logical that decides if partial eta-squared or omega-squared
-are returned (Default: \code{TRUE}). If \code{FALSE}, eta-squared or omega-squared
-will be returned. Valid only for objects of class \code{aov}, \code{anova}, or
-\code{aovlist}.}
+\item{partial}{Logical that decides if partial eta-squared or partial
+omega-squared are returned (Default: \code{TRUE}). If \code{FALSE}, eta-squared or
+omega-squared will be returned.}
 
 \item{...}{Currently ignored.}
 }

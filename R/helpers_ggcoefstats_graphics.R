@@ -3,9 +3,6 @@
 #'
 #' @param ... Currently ignored.
 #' @param tidy_df A tidy dataframe.
-#' @param glance_df A tidy model summary dataframe (default: `NULL`). If
-#'   provided, this dataframe will be used to write `caption` for the final
-#'   plot.
 #' @param ... Currently ignored.
 #' @inheritParams ggcoefstats
 #'
@@ -17,9 +14,8 @@
 
 # function body
 ggcoefstats_label_maker <- function(tidy_df,
-                                    glance_df = NULL,
                                     statistic = NULL,
-                                    k = 2,
+                                    k = 2L,
                                     effsize = "eta",
                                     partial = TRUE,
                                     ...) {
@@ -41,21 +37,9 @@ ggcoefstats_label_maker <- function(tidy_df,
 
   # if the statistic is t-value
   if (statistic == "t") {
-    # if `df` column is in the tidy dataframe, rename it to `df.residual`
-    if ("df" %in% names(tidy_df)) {
-      tidy_df %<>% dplyr::mutate(.data = ., df.residual = df)
-    }
-
     # check if df info is available somewhere
-    if ("df.residual" %in% names(glance_df) ||
-      "df.residual" %in% names(tidy_df)) {
-
-      # if glance object is available, use that `df.residual`
-      if ("df.residual" %in% names(glance_df)) {
-        tidy_df$df.residual <- glance_df$df.residual
-      }
-
-      # adding a new column with residual df
+    if ("df.error" %in% names(tidy_df)) {
+      # adding a new column with residual `df`
       tidy_df %<>%
         dplyr::group_nest(.tbl = ., rowid) %>%
         dplyr::mutate(
@@ -68,7 +52,7 @@ ggcoefstats_label_maker <- function(tidy_df,
                 specify_decimal_p(x = .$estimate, k = k),
                 ", ~italic(t)",
                 "(",
-                specify_decimal_p(x = .$df.residual, k = 0L),
+                specify_decimal_p(x = .$df.error, k = 0L),
                 ")==",
                 .$statistic,
                 ", ~italic(p)",

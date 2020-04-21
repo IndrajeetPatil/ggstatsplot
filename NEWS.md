@@ -10,6 +10,17 @@ BREAKING CHANGES
     2.  The *p*-value labels also contain information about whether they are
         adjusted for multiple comparisons.
 
+MAJOR CHANGES
+
+  - `ggcoefstats` has been refactored to reflect that
+    `broomExtra::tidy_parameters` now defaults to `parameters` package instead
+    of `broom`. It also loses the following vestigial arguments:
+    `p.adjust.method` and `coefficient.type`.
+
+NEW FEATURES
+
+  - More models supported in `ggcoefstats`: `bayesGARCH`, `clm2`, `mcmc.list`.
+
 # ggstatsplot 0.4.0
 
 BREAKING CHANGES
@@ -24,7 +35,10 @@ BREAKING CHANGES
     <https://www.tidyverse.org/blog/2020/03/ggplot2-3-3-0/#rewrite-of-axis-code>
 
 NEW FEATURES
-  
+
+  - More models supported in `ggcoefstats`: `bayesx`, `BBmm`, `brmultinom`,
+    `lmerModLmerTest`, `lrm`.
+    
   - Specifying `output = "proptest"` for `ggpiestats` and `ggbarstats` functions
     will now return a dataframe containing results from proportion test.
   
@@ -53,9 +67,6 @@ MAJOR CHANGES
     expects the minimum R version to be `3.6.0`.
 
 MINOR CHANGES
-
-  - More models supported in `ggcoefstats`: `bayesx`, `BBmm`, `brmultinom`,
-    `lmerModLmerTest`, `lrm`.
     
   - `ggcorrmat` now internally relies on `correlation` for correlation analyses.
   

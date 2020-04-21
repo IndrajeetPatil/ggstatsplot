@@ -9,11 +9,9 @@ ggcoefstats(
   output = "plot",
   statistic = NULL,
   bf.message = TRUE,
-  p.adjust.method = "none",
-  coefficient.type = c("beta", "location", "coefficient"),
   effsize = "eta",
   partial = TRUE,
-  nboot = 500,
+  nboot = 500L,
   meta.analytic.effect = FALSE,
   meta.type = "parametric",
   conf.int = TRUE,
@@ -69,47 +67,22 @@ Bayesian meta-analysis assuming that the effect size \emph{d} varies across
 studies with standard deviation \emph{t} (i.e., a random-effects analysis)
 should be displayed in caption. Defaults to \code{TRUE}.}
 
-\item{p.adjust.method}{Adjustment method for \emph{p}-values for multiple
-comparisons. Possible methods are: \code{"holm"}, \code{"hochberg"}, \code{"hommel"},
-\code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}. Default is no correction
-(\code{"none"}). This argument is relevant for multiplicity correction for
-multiway ANOVA designs (see,
-\href{https://link.springer.com/article/10.3758/s13423-015-0913-5}{Cramer
-et al., 2015}).}
-
-\item{coefficient.type}{Relevant only for ordinal regression models (\code{clm} ,
-\code{clmm}, \code{"svyolr"}, and \code{polr}), this argument decides which parameters are
-display in the plot. Available parameters are: parameter that measures the
-\strong{intercept}, i.e. the log-odds distance between response values
-(\code{"alpha"}); effects on the \strong{location} (\code{"beta"}); or effects on the
-\strong{scale} (\code{"zeta"}). For \code{clm} and \code{clmm} models, by default, only
-\code{"beta"} (a vector of regression parameters) parameters will be show. Other
-options are \code{"alpha"} (a vector of threshold parameters) or \code{"both"}. For
-\code{polr} models, by default, only \code{"coefficient"} will be shown. Other option
-is to show \code{"zeta"} parameters. Note that, from \verb{broom 0.7.0} onward,
-coefficients will be renamed and \code{"intercept"} type coefficients will
-correspond to \code{"alpha"} parameters, \code{"location"} type coefficients will
-correspond to \code{"beta"} parameters, and \code{"scale"} type coefficients will
-correspond to \code{"zeta"} parameters.}
-
 \item{effsize}{Character describing the effect size to be displayed: \code{"eta"}
-(default) or \code{"omega"}. This argument is relevant
-only for models objects of class \code{aov}, \code{anova}, and \code{aovlist}.}
+(default) or \code{"omega"}. This argument is relevant only for models objects
+of class \code{aov}, \code{anova}, \code{aovlist}, \code{"Gam"}, and \code{"manova"}.}
 
-\item{partial}{Logical that decides if partial eta-squared or omega-squared
-are returned (Default: \code{TRUE}). If \code{FALSE}, eta-squared or omega-squared
-will be returned. Valid only for objects of class \code{aov}, \code{anova}, or
-\code{aovlist}.}
+\item{partial}{Logical that decides if partial eta-squared or partial
+omega-squared are returned (Default: \code{TRUE}). If \code{FALSE}, eta-squared or
+omega-squared will be returned.}
 
 \item{nboot}{Number of bootstrap samples for confidence intervals for partial
-eta-squared and omega-squared (Default: \code{500}). This argument is relevant
-only for models objects of class \code{aov}, \code{anova}, and \code{aovlist}.}
+eta-squared and omega-squared (Default: \code{500L}).}
 
 \item{meta.analytic.effect}{Logical that decides whether subtitle for
 meta-analysis via linear (mixed-effects) models (default: \code{FALSE}). If
 \code{TRUE}, input to argument \code{subtitle} will be ignored. This will be mostly
 relevant if a data frame with estimates and their standard errors is
-entered as input to \code{x} argument.}
+entered.}
 
 \item{meta.type}{Type of statistics used to carry out random-effects
 meta-analysis. If \code{"parametric"} (default), \code{metafor::rma} function will be
@@ -156,8 +129,8 @@ when the \code{output} is a plot.}
 \item{caption}{Text to display as caption. This argument is relevant only
 when \code{output = "caption"}.}
 
-\item{caption.summary}{Logical. Decides whether the model summary should be
-displayed as a cation to the plot (Default: \code{TRUE}). Color of the line
+\item{caption.summary}{Logical that decides whether the model summary should
+be displayed as a cation to the plot (Default: \code{TRUE}). Color of the line
 segment. Defaults to the same color as the text.}
 
 \item{point.args}{Additional arguments that will be passed to
@@ -293,7 +266,7 @@ df <-
         5.45155840151592e-26,
         2.99171217913312e-13
       ),
-      df.residual = c(
+      df.error = c(
         394L, 358L, 622L,
         298L, 22L
       )
@@ -324,24 +297,6 @@ lmm1 <- lme4::lmer(
 
 # dataframe with model summary
 ggstatsplot::ggcoefstats(x = lmm1, output = "glance")
-
-# -------------- getting augmented dataframe ------------------------------
-
-# setup
-set.seed(123)
-library(survival)
-
-# fit
-cfit <-
-  survival::coxph(formula = Surv(time, status) ~ age + sex, data = lung)
-
-# augmented dataframe
-ggstatsplot::ggcoefstats(
-  x = cfit,
-  data = lung,
-  output = "augment",
-  type.predict = "risk"
-)
 }
 }
 \references{

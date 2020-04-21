@@ -48,6 +48,7 @@ r_binary_packages:
   - metaplus
   - fastGHQuad
   - coda
+  - ggcorrplot
 r_packages:
   - coin
   - effectsize
