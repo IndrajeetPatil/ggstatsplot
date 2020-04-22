@@ -15,48 +15,48 @@ cache:
   - packages
   - ccache
 
-# r_binary_packages:
-#   - magrittr
-#   - curl
-#   - jsonlite
-#   - rstan
-#   - Rcpp
-#   - RcppEigen
-#   - openssl
-#   - utf8
-#   - gss
-#   - haven
-#   - minqa
-#   - mvtnorm
-#   - nloptr
-#   - SparseM
-#   - httpuv
-#   - markdown
-#   - pander
-#   - git2r
-#   - rlang
-#   - bindrcpp
-#   - tidyr
-#   - dplyr
-#   - rstantools
-#   - bridgesampling
-#   - BH
-#   - stringi
-#   - metaBMA
-#   - metaplus
-#   - fastGHQuad
-#   - coda
-#
-# r_packages:
-#   - coin
-#   - effectsize
-#   - insight
-#   - parameters
-#   - WRS2
-#   - remotes
-#   - knitr
-#   - multcomp
-#   - rmarkdown
+r_binary_packages:
+  - magrittr
+  - curl
+  - jsonlite
+  - rstan
+  - Rcpp
+  - RcppEigen
+  - openssl
+  - utf8
+  - gss
+  - haven
+  - minqa
+  - mvtnorm
+  - nloptr
+  - SparseM
+  - httpuv
+  - markdown
+  - pander
+  - git2r
+  - rlang
+  - bindrcpp
+  - tidyr
+  - dplyr
+  - rstantools
+  - bridgesampling
+  - BH
+  - stringi
+  - metaBMA
+  - metaplus
+  - fastGHQuad
+  - coda
+
+r_packages:
+  - coin
+  - effectsize
+  - insight
+  - parameters
+  - WRS2
+  - remotes
+  - knitr
+  - multcomp
+  - rmarkdown
 
 r_github_packages:
   - jimhester/lintr
