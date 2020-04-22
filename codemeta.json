@@ -18,7 +18,6 @@
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "4.0.0",
     "url": "https://r-project.org"
   },
   "runtimePlatform": "R Under development (unstable) (2020-02-28 r77874)",
@@ -375,13 +374,14 @@
       "@type": "SoftwareApplication",
       "identifier": "statsExpressions",
       "name": "statsExpressions",
+      "version": ">= 0.4.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=statsExpressions"
+      "sameAs": "https://github.com/IndrajeetPatil/statsExpressions"
     },
     {
       "@type": "SoftwareApplication",
@@ -397,13 +397,8 @@
     }
   ],
   "releaseNotes": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/NEWS.md",
-  "contIntegration": [
-    "https://travis-ci.org/IndrajeetPatil/ggstatsplot",
-    "https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot",
-    "https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master",
-    "https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"
-  ],
-  "developmentStatus": "https://www.tidyverse.org/lifecycle/",
+  "contIntegration": ["https://travis-ci.org/IndrajeetPatil/ggstatsplot", "https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot", "https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master", "https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"],
+  "developmentStatus": ["https://www.tidyverse.org/lifecycle/", "http://www.repostatus.org/#active"],
   "keywords": [
     "ggplot-extension",
     "statistical-tests",
@@ -457,5 +452,6 @@
     }
   ],
   "funder": {},
-  "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
+  "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md",
+  "fileSize": "39809.539KB"
 }

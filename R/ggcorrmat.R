@@ -21,14 +21,6 @@
 #'   values, *p*-values, no. of observations, etc.) will be returned.
 #' @param matrix.type Character, `"full"` (default), `"upper"` or `"lower"`,
 #'   display full matrix, lower triangular or upper triangular matrix.
-#' @param type A character string indicating which correlation coefficient is to
-#'   be computed: `"pearson"` (Pearson's *r*), `"spearman"` (Spearman's *rho*),
-#'   `"robust"` (percentage bend correlation (see `?WRS2::pball`)) or `"bayes"`,
-#'   which would compute Bayes Factor for Pearson's *r*.
-#'   Abbreviations will also work: `"p"` (for parametric), `"np"`
-#'   (nonparametric), `"r"` (robust), `"bf"` (Bayes Factor).
-#' @param beta A numeric bending constant for percentage bend robust correlation
-#'   coefficient (Default: `0.1`).
 #' @param sig.level Significance level (Default: `0.05`). If the *p*-value in
 #'   *p*-value matrix is bigger than `sig.level`, then the corresponding
 #'   correlation coefficient is regarded as insignificant and flagged as such in
@@ -54,6 +46,7 @@
 #'   any of the following arguments since they are already internally being used
 #'   by `ggstatsplot`: `corr`, `method`, `p.mat`, `sig.level`, `ggtheme`,
 #'   `colors`, `matrix.type`, `lab`, `pch`, `legend.title`, `digits`.
+#' @inheritParams statsExpressions::expr_corr_test
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams ggscatterstats
 #' @inheritParams ggbetweenstats

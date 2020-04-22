@@ -16,6 +16,10 @@ MAJOR CHANGES
     `broomExtra::tidy_parameters` now defaults to `parameters` package instead
     of `broom`. It also loses the following vestigial arguments:
     `p.adjust.method` and `coefficient.type`.
+    
+  - Reverts aligning title and subtitle with the plot and not the axes, since it
+    looked pretty ugly (esp., `ggcoefstats`) and was causing problems for
+    labels.
 
 NEW FEATURES
 

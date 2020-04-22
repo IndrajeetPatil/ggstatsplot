@@ -70,15 +70,15 @@ If you have fewer than 1,000 observations but want to use the same \code{gam()}
 model that \code{method = NULL} would use, then set
 \verb{method = "gam", formula = y ~ s(x, bs = "cs")}.}
 
-\item{type}{A character string indicating which correlation coefficient is to
-be computed: \code{"pearson"} (Pearson's \emph{r}), \code{"spearman"} (Spearman's \emph{rho}),
-\code{"robust"} (percentage bend correlation (see \code{?WRS2::pball})) or \code{"bayes"},
-which would compute Bayes Factor for Pearson's \emph{r}.
-Abbreviations will also work: \code{"p"} (for parametric), \code{"np"}
-(nonparametric), \code{"r"} (robust), \code{"bf"} (Bayes Factor).}
+\item{type}{Type of association between paired samples required
+("\code{"parametric"}: Pearson's product moment correlation coefficient" or
+"\code{"nonparametric"}: Spearman's rho" or "\code{"robust"}: percentage bend
+correlation coefficient" or "\code{"bayes"}: Bayes Factor for Pearson's \emph{r}").
+Corresponding abbreviations are also accepted: \code{"p"} (for
+parametric/pearson's), \code{"np"} (nonparametric/spearman), \code{"r"} (robust),
+\code{"bf"} (for bayes factor), resp.}
 
-\item{beta}{A numeric bending constant for percentage bend robust correlation
-coefficient (Default: \code{0.1}).}
+\item{beta}{bending constant (Default: \code{0.1}). For more, see \code{?WRS2::pbcor}.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}

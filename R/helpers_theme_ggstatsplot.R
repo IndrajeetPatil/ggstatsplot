@@ -23,16 +23,12 @@
 
 # function body
 theme_ggstatsplot <- function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE) {
-
   # if ggstatsplot-specific layer is to be added on top of the default theme
   if (isTRUE(ggstatsplot.layer)) {
     ggtheme +
       ggplot2::theme(
-        axis.title.x = ggplot2::element_text(size = 11, face = "bold"),
-        axis.title.y = ggplot2::element_text(size = 11, face = "bold"),
-        axis.text.x = ggplot2::element_text(size = 11, face = "bold"),
-        axis.text.y = ggplot2::element_text(size = 11, face = "bold"),
-        plot.title.position = "plot"
+        axis.title.x = ggplot2::element_text(face = "bold"),
+        axis.title.y = ggplot2::element_text(face = "bold")
       ) +
       common_theme_element
   } else {
@@ -40,18 +36,21 @@ theme_ggstatsplot <- function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer =
   }
 }
 
+# common theme element for all default themes
+common_theme_element <-
+  ggplot2::theme(
+    legend.text = ggplot2::element_text(size = 10),
+    legend.title = ggplot2::element_text(size = 10, face = "bold"),
+    plot.title = ggplot2::element_text(size = 12, face = "bold"),
+    plot.subtitle = ggplot2::element_text(size = 10)
+  )
+
 #' @rdname theme_ggstatsplot
 #' @aliases theme_ggstatsplot
 #' @export
 
 theme_corrmat <- function() {
-  ggplot2::theme(
-    axis.title.x = ggplot2::element_blank(),
-    axis.title.y = ggplot2::element_blank(),
-    axis.text.x = ggplot2::element_text(size = 10, face = "bold"),
-    axis.text.y = ggplot2::element_text(size = 10, face = "bold")
-  ) +
-    common_theme_element
+  ggplot2::theme() + common_theme_element
 }
 
 
@@ -67,22 +66,13 @@ theme_pie <- function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE) {
         axis.ticks = ggplot2::element_blank(),
         axis.title = ggplot2::element_blank(),
         axis.text.x = ggplot2::element_blank(),
-        axis.text.y = ggplot2::element_blank()
+        axis.text.y = ggplot2::element_blank(),
+        strip.text.x = ggplot2::element_text(size = 10, face = "bold"),
+        strip.text.y = ggplot2::element_text(size = 10, face = "bold"),
+        strip.text = ggplot2::element_text(size = 10, face = "bold")
       ) +
       common_theme_element
   } else {
     ggtheme
   }
 }
-
-# common theme element for all default themes
-common_theme_element <-
-  ggplot2::theme(
-    strip.text.x = ggplot2::element_text(size = 10, face = "bold"),
-    strip.text.y = ggplot2::element_text(size = 10, face = "bold"),
-    strip.text = ggplot2::element_text(size = 10, face = "bold"),
-    legend.text = ggplot2::element_text(size = 10),
-    legend.title = ggplot2::element_text(size = 10, face = "bold"),
-    plot.title = ggplot2::element_text(size = 12, face = "bold"),
-    plot.subtitle = ggplot2::element_text(size = 10)
-  )

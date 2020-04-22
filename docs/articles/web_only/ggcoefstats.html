@@ -149,7 +149,7 @@
       <h1 data-toc-skip>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-04-21</h4>
+            <h4 class="date">2020-04-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -1919,33 +1919,20 @@
 <div id="repeated-measures-anova-aovlist" class="section level2">
 <h2 class="hasAnchor">
 <a href="#repeated-measures-anova-aovlist" class="anchor"></a>repeated measures ANOVA (<code>aovlist</code>)</h2>
-<p>Let’s now consider an example of a repeated measures design where we want to run omnibus ANOVA with a specific error structure. To carry out this analysis, we will first have to convert the iris dataset from wide to long format such that there is one column corresponding to <code>attribute</code> (which part of the calyx of a flower is being measured: <code>sepal</code> or <code>petal</code>?) and one column corresponding to <code>measure</code> used (<code>length</code> or <code>width</code>?). Note that this is within-subjects design since the same flower has both measures for both attributes. The question we are interested in is how much of the variance in measurements is explained by both of these factors and their interaction.</p>
+<p>Let’s now consider an example of a repeated measures design.</p>
 <div class="sourceCode" id="cb56"><html><body><pre class="r"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 
-<span class="co"># having a look at iris before converting to long format</span>
-<span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/iris_long.html">iris_long</a></span>)
-<span class="co">#&gt; Rows: 600</span>
-<span class="co">#&gt; Columns: 6</span>
-<span class="co">#&gt; $ id        &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17...</span>
-<span class="co">#&gt; $ Species   &lt;fct&gt; setosa, setosa, setosa, setosa, setosa, setosa, setosa, s...</span>
-<span class="co">#&gt; $ condition &lt;fct&gt; Sepal.Length, Sepal.Length, Sepal.Length, Sepal.Length, S...</span>
-<span class="co">#&gt; $ attribute &lt;fct&gt; Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, S...</span>
-<span class="co">#&gt; $ measure   &lt;fct&gt; Length, Length, Length, Length, Length, Length, Length, L...</span>
-<span class="co">#&gt; $ value     &lt;dbl&gt; 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4....</span>
-
 <span class="co"># let's use 20% of the sample to speed up the analysis</span>
-<span class="no">iris_long_20</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/iris_long.html">iris_long</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.20</span>)
+<span class="no">mod</span> <span class="kw">&lt;-</span> <span class="kw pkg">stats</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span>(
+  <span class="kw">formula</span> <span class="kw">=</span> <span class="no">value</span> ~ <span class="no">attribute</span> * <span class="no">measure</span> + <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">Error</a></span>(<span class="no">id</span> / (<span class="no">attribute</span> * <span class="no">measure</span>)),
+  <span class="kw">data</span> <span class="kw">=</span> <span class="no">iris_long</span>
+)
 
 <span class="co"># specifying the model (note the error structure)</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
-  <span class="kw">x</span> <span class="kw">=</span> <span class="kw pkg">stats</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span>(
-    <span class="kw">formula</span> <span class="kw">=</span> <span class="no">value</span> ~ <span class="no">attribute</span> * <span class="no">measure</span> + <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">Error</a></span>(<span class="no">id</span> / (<span class="no">attribute</span> * <span class="no">measure</span>)),
-    <span class="kw">data</span> <span class="kw">=</span> <span class="no">iris_long_20</span>
-  ),
+  <span class="kw">x</span> <span class="kw">=</span> <span class="no">mod</span>,
   <span class="kw">effsize</span> <span class="kw">=</span> <span class="st">"eta"</span>,
-  <span class="kw">partial</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-  <span class="kw">nboot</span> <span class="kw">=</span> <span class="fl">50</span>,
   <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>(),
   <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
   <span class="kw">stats.label.color</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>, <span class="st">"darkgreen"</span>),
@@ -2482,18 +2469,18 @@
 <span class="no">fo</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/formula.html">as.formula</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"y~"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"s"</span>, <span class="fl">1</span>:<span class="no">k</span>, <span class="kw">sep</span> <span class="kw">=</span> <span class="st">""</span>), <span class="kw">collapse</span> <span class="kw">=</span> <span class="st">"+"</span>)))
 
 <span class="co"># model</span>
-<span class="no">mod</span> <span class="kw">&lt;-</span> <span class="kw pkg">speedglm</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/speedglm/man/speedglm.html">speedglm</a></span>(
-  <span class="kw">formula</span> <span class="kw">=</span> <span class="no">fo</span>,
-  <span class="kw">data</span> <span class="kw">=</span> <span class="no">da</span>,
-  <span class="kw">family</span> <span class="kw">=</span> <span class="kw pkg">stats</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">Gamma</a></span>(<span class="no">log</span>)
-)
+<span class="no">mod</span> <span class="kw">&lt;-</span>
+  <span class="kw pkg">speedglm</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/speedglm/man/speedglm.html">speedglm</a></span>(
+    <span class="kw">formula</span> <span class="kw">=</span> <span class="no">fo</span>,
+    <span class="kw">data</span> <span class="kw">=</span> <span class="no">da</span>,
+    <span class="kw">family</span> <span class="kw">=</span> <span class="kw pkg">stats</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">Gamma</a></span>(<span class="no">log</span>)
+  )
 
 <span class="co"># plot</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
   <span class="kw">x</span> <span class="kw">=</span> <span class="no">mod</span>,
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"high performance generalized linear model"</span>
 )</pre></body></html></div>
-<p><img src="ggcoefstats_files/figure-html/speedglm-1.png" width="480"></p>
 </div>
 <div id="bounded-memory-linear-regression-biglm" class="section level2">
 <h2 class="hasAnchor">
@@ -2844,6 +2831,7 @@
   <span class="kw">conf.level</span> <span class="kw">=</span> <span class="fl">0.99</span>
 )
 <span class="co">#&gt; Note: No model diagnostics information available, so skipping caption.</span>
+<span class="co">#&gt; Parameters can't be retrieved for objects of class 'simpleError'.</span>
 <span class="co">#&gt; Parameters can't be retrieved for objects of class 'simpleError'.</span></pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/coeftest-1.png" width="384"></p>
 </div>
@@ -2881,7 +2869,7 @@
 <span class="co"># plot</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
   <span class="kw">x</span> <span class="kw">=</span> <span class="kw pkg">quantreg</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/quantreg/man/rq.html">rq</a></span>(
-    <span class="kw">formula</span> <span class="kw">=</span> <span class="no">stack.loss</span> ~ <span class="no">stack.x</span>,
+    <span class="kw">formula</span> <span class="kw">=</span> <span class="no">stack.loss</span> ~ <span class="no">.</span>,
     <span class="kw">data</span> <span class="kw">=</span> <span class="no">stackloss</span>,
     <span class="kw">method</span> <span class="kw">=</span> <span class="st">"br"</span>
   ),
@@ -3164,6 +3152,7 @@
   <span class="kw">palette</span> <span class="kw">=</span> <span class="st">"basel"</span>,
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"joint model to time-to-event data and multivariate longitudinal data"</span>
 )
+<span class="co">#&gt; Parameters can't be retrieved for objects of class 'simpleError'.</span>
 <span class="co">#&gt; Parameters can't be retrieved for objects of class 'simpleError'.</span></pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/mjoint-1.png" width="768"></p>
 </div>
@@ -3229,6 +3218,7 @@
 )
 <span class="co">#&gt; Note: No model diagnostics information available, so skipping caption.</span>
 <span class="co">#&gt; Parameters can't be retrieved for objects of class 'simpleError'.</span>
+<span class="co">#&gt; Parameters can't be retrieved for objects of class 'simpleError'.</span>
 <span class="co">#&gt; Note: No p-values and/or statistic available for the model object;</span>
 <span class="co">#&gt; skipping labels with statistical details.</span></pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/btergm-1.png" width="576"></p>
@@ -3248,6 +3238,8 @@
   <span class="kw">x</span> <span class="kw">=</span> <span class="no">dax.garch</span>,
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"generalized autoregressive conditional heteroscedastic (GARCH)"</span>
 )
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Could not extract p-values from model object.</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Could not extract p-values from model object.</span></pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/garch-1.png" width="480"></p>
@@ -3402,6 +3394,7 @@
   <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_excel_new.html">theme_excel_new</a></span>()
 )
 <span class="co">#&gt; Note: No model diagnostics information available, so skipping caption.</span>
+<span class="co">#&gt; Parameters can't be retrieved for objects of class 'simpleError'.</span>
 <span class="co">#&gt; Parameters can't be retrieved for objects of class 'simpleError'.</span></pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/mle2-1.png" width="384"></p>
 </div>
@@ -3709,7 +3702,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">mice</span>)
 
 <span class="co"># data</span>
-<span class="no">imp</span> <span class="kw">&lt;-</span> <span class="kw pkg">mice</span><span class="kw ns">::</span><span class="fu"><a href="http://stefvanbuuren.github.io/mice/reference/mice.html">mice</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">nhanes2</span>, <span class="kw">print</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
+<span class="no">imp</span> <span class="kw">&lt;-</span> <span class="kw pkg">mice</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/mice/man/mice.html">mice</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">nhanes2</span>, <span class="kw">print</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
 
 <span class="co"># fit the model using brms</span>
 <span class="no">fit</span> <span class="kw">&lt;-</span>
@@ -3739,9 +3732,9 @@
 <span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.477 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.081 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.558 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.129 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.036 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                0.165 seconds (Total)</span>
 <span class="co">#&gt; Chain 1: </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; SAMPLING FOR MODEL 'b4bd45cd39084a7f826358012285004e' NOW (CHAIN 1).</span>
@@ -3764,34 +3757,9 @@
 <span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.55 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.152 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.702 seconds (Total)</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; SAMPLING FOR MODEL 'b4bd45cd39084a7f826358012285004e' NOW (CHAIN 1).</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: Gradient evaluation took 0.001 seconds</span>
-<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.</span>
-<span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.282 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.05 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.332 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.135 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.039 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                0.174 seconds (Total)</span>
 <span class="co">#&gt; Chain 1: </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; SAMPLING FOR MODEL 'b4bd45cd39084a7f826358012285004e' NOW (CHAIN 1).</span>
@@ -3814,9 +3782,9 @@
 <span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.207 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.129 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.336 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.127 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.033 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                0.16 seconds (Total)</span>
 <span class="co">#&gt; Chain 1: </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; SAMPLING FOR MODEL 'b4bd45cd39084a7f826358012285004e' NOW (CHAIN 1).</span>
@@ -3839,9 +3807,34 @@
 <span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.402 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.07 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.472 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.138 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.035 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                0.173 seconds (Total)</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; SAMPLING FOR MODEL 'b4bd45cd39084a7f826358012285004e' NOW (CHAIN 1).</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1: Gradient evaluation took 0 seconds</span>
+<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span>
+<span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.147 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.035 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                0.182 seconds (Total)</span>
 <span class="co">#&gt; Chain 1:</span>
 
 <span class="co"># plot</span>
@@ -3872,8 +3865,8 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; SAMPLING FOR MODEL 'continuous' NOW (CHAIN 1).</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: Gradient evaluation took 0.002 seconds</span>
-<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 20 seconds.</span>
+<span class="co">#&gt; Chain 1: Gradient evaluation took 0.001 seconds</span>
+<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.</span>
 <span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span>
 <span class="co">#&gt; Chain 1: </span>
 <span class="co">#&gt; Chain 1: </span>
@@ -3890,9 +3883,9 @@
 <span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.243 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.196 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.439 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.058 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.067 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                0.125 seconds (Total)</span>
 <span class="co">#&gt; Chain 1:</span>
 
 <span class="co"># plot</span>
@@ -3981,9 +3974,9 @@
 <span class="co">#&gt; Chain 1: Iteration: 900 / 1000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 1000 / 1000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 2.152 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                1.109 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                3.261 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.94 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.543 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                1.483 seconds (Total)</span>
 <span class="co">#&gt; Chain 1:</span>
 
 <span class="co"># plot</span>
@@ -4197,9 +4190,10 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="co">#&gt; skipping labels with statistical details.</span></pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/blavaan-1.png" width="576"></p>
 </div>
-<div id="regression-models-with-list-outputs" class="section level2">
-<h2 class="hasAnchor">
-<a href="#regression-models-with-list-outputs" class="anchor"></a>regression models with <code>list</code> outputs</h2>
+</div>
+<div id="regression-models-with-list-outputs" class="section level1">
+<h1 class="hasAnchor">
+<a href="#regression-models-with-list-outputs" class="anchor"></a>Regression models with <code>list</code> outputs</h1>
 <p>Note that a number of regression models will return an object of class <code>list</code>, in which case this function will fail. But often you can extract the object of interest from this list and use it to plot the regression coefficients.</p>
 <div class="sourceCode" id="cb126"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">gamm4</span>)
@@ -4252,10 +4246,9 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="co">#&gt; Note: No model diagnostics information available, so skipping caption.</span></pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/list_gamm4-1.png" width="960"></p>
 </div>
-</div>
 <div id="meta-analysis" class="section level1">
 <h1 class="hasAnchor">
-<a href="#meta-analysis" class="anchor"></a>meta-analysis</h1>
+<a href="#meta-analysis" class="anchor"></a>Meta-analysis</h1>
 <p>In case the estimates you are displaying come from multiple studies, you can also use this function to carry out random-effects meta-analysis (as implemented in the <a href="http://www.metafor-project.org/doku.php">metafor</a> package; see <code><a href="https://rdrr.io/pkg/metafor/man/rma.uni.html">metafor::rma()</a></code>).</p>
 <p>The dataframe you enter <strong>must</strong> contain at the minimum the following three columns- <code>term</code>, <code>estimate</code>, <code>std.error</code>.</p>
 <div id="parametric" class="section level3">
@@ -4338,7 +4331,7 @@ speed =~ x7 + x8 + x9 "</span>
 </div>
 <div id="dataframes" class="section level1">
 <h1 class="hasAnchor">
-<a href="#dataframes" class="anchor"></a>dataframes</h1>
+<a href="#dataframes" class="anchor"></a>Dataframes</h1>
 <p>Sometimes you don’t have a model object but a custom dataframe that you want display using this function. If a data frame is to be plotted, it <strong>must</strong> contain columns named <code>term</code> (names of predictors), and <code>estimate</code> (corresponding estimates of coefficients or other quantities of interest). Other optional columns are <code>conf.low</code> and <code>conf.high</code> (for confidence intervals), and <code>p.value</code>. You will also have to specify the type of statistic relevant for regression models (<code>"t"</code>, <code>"z"</code>, <code>"f"</code>) in case you want to display statistical labels.</p>
 <div class="sourceCode" id="cb131"><html><body><pre class="r"><span class="co"># set up</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)

@@ -48,7 +48,7 @@ Imports:
     purrr,
     rlang,
     stats,
-    statsExpressions,
+    statsExpressions (>= 0.4.1),
     tidyr
 Suggests:
     forcats,
@@ -61,7 +61,8 @@ Suggests:
     tibble,
     WRS2
 Remotes:
-    IndrajeetPatil/broomExtra
+    IndrajeetPatil/broomExtra,
+    IndrajeetPatil/statsExpressions
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

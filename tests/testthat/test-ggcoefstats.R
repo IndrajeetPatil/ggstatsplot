@@ -472,31 +472,26 @@ testthat::test_that(
       )
 
     # broom outputs
-    broom_df1 <- broomExtra::tidy(mod1, conf.int = 0.90)
-    broom_df2 <- broomExtra::tidy(mod2, conf.int = 0.99)
-
-    # exponentiation
-    p <- ggstatsplot::ggcoefstats(
-      x = mod2,
-      exponentiate = TRUE,
-      exclude.intercept = FALSE
-    )
-
-    pb <- ggplot2::ggplot_build(p)
+    broom_df1 <- broomExtra::tidy(mod1, exponentiate = TRUE, conf.int = 0.90)
+    broom_df2 <- broomExtra::tidy(mod2, exponentiate = TRUE, conf.int = 0.99)
 
     # ggcoefstats outputs
-    tidy_df1 <- ggstatsplot::ggcoefstats(
-      x = mod1,
-      exclude.intercept = FALSE,
-      conf.int = 0.90,
-      output = "tidy"
-    )
-    tidy_df2 <- ggstatsplot::ggcoefstats(
-      x = mod2,
-      exclude.intercept = FALSE,
-      conf.int = 0.99,
-      output = "tidy"
-    )
+    tidy_df1 <-
+      ggstatsplot::ggcoefstats(
+        x = mod1,
+        exclude.intercept = FALSE,
+        conf.int = 0.90,
+        exponentiate = TRUE,
+        output = "tidy"
+      )
+    tidy_df2 <-
+      ggstatsplot::ggcoefstats(
+        x = mod2,
+        exclude.intercept = FALSE,
+        conf.int = 0.99,
+        exponentiate = TRUE,
+        output = "tidy"
+      )
 
     # testing
     testthat::expect_equal(broom_df1$conf.low, tidy_df1$conf.low, tolerance = 0.001)
@@ -505,11 +500,8 @@ testthat::test_that(
     testthat::expect_equal(broom_df2$conf.high, tidy_df2$conf.high, tolerance = 0.001)
     testthat::expect_equal(broom_df1$estimate, tidy_df1$estimate, tolerance = 0.001)
     testthat::expect_equal(broom_df2$estimate, tidy_df2$estimate, tolerance = 0.001)
-    testthat::expect_equal(broom_df1$std.error, tidy_df1$std.error, tolerance = 0.001)
-    testthat::expect_equal(broom_df2$std.error, tidy_df2$std.error, tolerance = 0.001)
     testthat::expect_equal(broom_df1$p.value, tidy_df1$p.value, tolerance = 0.001)
     testthat::expect_equal(broom_df2$p.value, tidy_df2$p.value, tolerance = 0.001)
-    testthat::expect_equal(pb$plot$data$std.error[[1]], 0.09532848, tolerance = 0.001)
   }
 )
 

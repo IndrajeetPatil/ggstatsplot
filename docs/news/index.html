@@ -210,6 +210,15 @@
 </ol>
 </li>
 </ul>
+<p>MAJOR CHANGES</p>
+<ul>
+<li><p><code>ggcoefstats</code> has been refactored to reflect that <code><a href="https://indrajeetpatil.github.io/broomExtra//reference/tidy_parameters.html">broomExtra::tidy_parameters</a></code> now defaults to <code>parameters</code> package instead of <code>broom</code>. It also loses the following vestigial arguments: <code>p.adjust.method</code> and <code>coefficient.type</code>.</p></li>
+<li><p>Reverts aligning title and subtitle with the plot and not the axes, since it looked pretty ugly (esp., <code>ggcoefstats</code>) and was causing problems for labels.</p></li>
+</ul>
+<p>NEW FEATURES</p>
+<ul>
+<li>More models supported in <code>ggcoefstats</code>: <code>bayesGARCH</code>, <code>clm2</code>, <code>mcmc.list</code>.</li>
+</ul>
 </div>
     <div id="ggstatsplot-040" class="section level1">
 <h1 class="page-header" data-toc-text="0.4.0">
@@ -222,6 +231,7 @@
 </ul>
 <p>NEW FEATURES</p>
 <ul>
+<li><p>More models supported in <code>ggcoefstats</code>: <code>bayesx</code>, <code>BBmm</code>, <code>brmultinom</code>, <code>lmerModLmerTest</code>, <code>lrm</code>.</p></li>
 <li><p>Specifying <code>output = "proptest"</code> for <code>ggpiestats</code> and <code>ggbarstats</code> functions will now return a dataframe containing results from proportion test.</p></li>
 <li><p><code>ggbetweenstats</code> and <code>ggwithinstats</code> will display pairwise comparisons even if <code>results.subtitle</code> is set to <code>FALSE</code>.</p></li>
 <li><p><code>ggcorrmat</code> supports computing Bayes Factors for Pearson’s <em>r</em> correlation.</p></li>
@@ -235,7 +245,6 @@
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
-<li><p>More models supported in <code>ggcoefstats</code>: <code>bayesx</code>, <code>BBmm</code>, <code>brmultinom</code>, <code>lmerModLmerTest</code>, <code>lrm</code>.</p></li>
 <li><p><code>ggcorrmat</code> now internally relies on <code>correlation</code> for correlation analyses.</p></li>
 <li><p><code>ggbarstats</code> no longer displays <code>"percent"</code> for Y-axis label as this was redundant information.</p></li>
 <li><p>Continuing the argument cleanup that began in <code>0.3.0</code>, <code>ggcoefstats</code> gains <code>point.args</code> argument instead of individuals <code>point.*</code> arguments.</p></li>
