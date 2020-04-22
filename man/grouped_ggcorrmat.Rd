@@ -121,7 +121,6 @@ to be displayed (Default: \code{TRUE}).}
     \item{\code{package}}{Name of package from which the palette is desired as string
 or symbol.}
     \item{\code{palette}}{Name of palette as string or symbol.}
-    \item{\code{direction}}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
   }}
 
 \item{plotgrid.args}{A list of additional arguments to \code{cowplot::plot_grid}.}

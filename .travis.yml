@@ -1,7 +1,7 @@
 language: r
 r:
   - release
-#  - devel
+  - devel
 
 latex: true
 warnings_are_errors: TRUE
@@ -46,6 +46,8 @@ r_binary_packages:
   - metaplus
   - fastGHQuad
   - coda
+  - lme4
+  - pbkrtest
 
 r_packages:
   - coin

@@ -26,10 +26,7 @@ theme_ggstatsplot <- function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer =
   # if ggstatsplot-specific layer is to be added on top of the default theme
   if (isTRUE(ggstatsplot.layer)) {
     ggtheme +
-      ggplot2::theme(
-        axis.title.x = ggplot2::element_text(face = "bold"),
-        axis.title.y = ggplot2::element_text(face = "bold")
-      ) +
+      ggplot2::theme(axis.title = ggplot2::element_text(face = "bold")) +
       common_theme_element
   } else {
     ggtheme
@@ -65,11 +62,7 @@ theme_pie <- function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE) {
         panel.grid = ggplot2::element_blank(),
         axis.ticks = ggplot2::element_blank(),
         axis.title = ggplot2::element_blank(),
-        axis.text.x = ggplot2::element_blank(),
-        axis.text.y = ggplot2::element_blank(),
-        strip.text.x = ggplot2::element_text(size = 10, face = "bold"),
-        strip.text.y = ggplot2::element_text(size = 10, face = "bold"),
-        strip.text = ggplot2::element_text(size = 10, face = "bold")
+        strip.text = ggplot2::element_text(face = "bold")
       ) +
       common_theme_element
   } else {

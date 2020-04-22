@@ -234,7 +234,6 @@
   <span class='kw'>stats.label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"y"</span>),
   <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>,
   <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>,
-  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
@@ -425,10 +424,6 @@ or symbol.</p></td>
       <td><p>Name of palette as string or symbol.</p></td>
     </tr>
     <tr>
-      <th>direction</th>
-      <td><p>Either <code>1</code> or <code>-1</code>. If <code>-1</code> the palette will be reversed.</p></td>
-    </tr>
-    <tr>
       <th>ggtheme</th>
       <td><p>A function, <code>ggplot2</code> theme name. Default value is
 <code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
@@ -599,7 +594,7 @@ labels.</p>
   <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='st'>"t"</span>,
   <span class='kw'>meta.analytic.effect</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: There were 1 divergent transitions after warmup. Increasing adapt_delta above 0.95 may help. See</span>
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: There were 2 divergent transitions after warmup. Increasing adapt_delta above 0.95 may help. See</span>
 #&gt; <span class='warning'>http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Examine the pairs() plot to diagnose sampling problems</span></div><div class='img'><img src='ggcoefstats-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># -------------- getting model summary ------------------------------</span>
 

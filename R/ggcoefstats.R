@@ -257,7 +257,6 @@ ggcoefstats <- function(x,
                         stats.label.args = list(size = 3, direction = "y"),
                         package = "RColorBrewer",
                         palette = "Dark2",
-                        direction = 1,
                         ggtheme = ggplot2::theme_bw(),
                         ggstatsplot.layer = TRUE,
                         messages = FALSE,
@@ -688,7 +687,6 @@ ggcoefstats <- function(x,
           paletteer::paletteer_d(
             palette = paste0(package, "::", palette),
             n = length(tidy_df$term),
-            direction = direction,
             type = "discrete"
           )
       }

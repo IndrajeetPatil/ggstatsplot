@@ -1105,14 +1105,12 @@
   <span class="kw">x</span> <span class="kw">=</span> <span class="no">Sepal.Length</span>, <span class="co"># numeric variable whose distribution is of interest</span>
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Distribution of Iris sepal length"</span>, <span class="co"># title for the plot</span>
   <span class="kw">caption</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html">substitute</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span>(<span class="st">"Source:"</span>), <span class="st">"Ronald Fisher's Iris data set"</span>)),
-  <span class="kw">type</span> <span class="kw">=</span> <span class="st">"parametric"</span>, <span class="co"># one sample t-test</span>
-  <span class="kw">bar.measure</span> <span class="kw">=</span> <span class="st">"mix"</span>, <span class="co"># what does the bar length denote</span>
+  <span class="kw">bar.measure</span> <span class="kw">=</span> <span class="st">"both"</span>,
   <span class="kw">test.value</span> <span class="kw">=</span> <span class="fl">5</span>, <span class="co"># default value is 0</span>
   <span class="kw">test.value.line</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="co"># display a vertical line at test value</span>
   <span class="kw">centrality.parameter</span> <span class="kw">=</span> <span class="st">"mean"</span>, <span class="co"># which measure of central tendency is to be plotted</span>
   <span class="kw">centrality.line.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">color</span> <span class="kw">=</span> <span class="st">"darkred"</span>), <span class="co"># aesthetics for central tendency line</span>
   <span class="kw">binwidth</span> <span class="kw">=</span> <span class="fl">0.10</span>, <span class="co"># binwidth value (experiment)</span>
-  <span class="kw">bf.prior</span> <span class="kw">=</span> <span class="fl">0.8</span>, <span class="co"># prior width for computing bayes factor</span>
   <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="co"># turn off the messages</span>
   <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">hrbrthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_tw.html">theme_ipsum_tw</a></span>(), <span class="co"># choosing a different theme</span>
   <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fl">FALSE</span> <span class="co"># turn off ggstatsplot theme layer</span>
@@ -1313,7 +1311,7 @@
   <span class="kw">type</span> <span class="kw">=</span> <span class="st">"nonparametric"</span>,
   <span class="kw">colors</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#cbac43"</span>, <span class="st">"white"</span>, <span class="st">"#550000"</span>),
   <span class="kw">grouping.var</span> <span class="kw">=</span> <span class="no">genre</span>, <span class="co"># grouping variable</span>
-  <span class="kw">k</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="co"># number of digits after decimal point</span>
+  <span class="kw">k</span> <span class="kw">=</span> <span class="fl">3L</span>, <span class="co"># number of digits after decimal point</span>
   <span class="kw">title.prefix</span> <span class="kw">=</span> <span class="st">"Movie genre"</span>,
   <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
   <span class="kw">plotgrid.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">2</span>)
@@ -1418,7 +1416,7 @@
 <span class="no">mod</span> <span class="kw">&lt;-</span> <span class="kw pkg">stats</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="kw">formula</span> <span class="kw">=</span> <span class="no">mpg</span> ~ <span class="no">am</span> * <span class="no">cyl</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">mtcars</span>)
 
 <span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">mod</span>)</pre></div>
+<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="no">mod</span>)</pre></div>
 <p><img src="reference/figures/README-ggcoefstats1-1.png" width="100%"></p>
 <p>This default plot can be further modified to one’s liking with additional arguments (also, let’s use a different model now):</p>
 <div class="sourceCode" id="cb27"><pre class="r"><span class="co"># for reproducibility</span>
@@ -1451,45 +1449,12 @@
 <p>In such cases, <code>ggstatsplot</code> contains a helper function <code>combine_plots</code> to combine multiple plots, which can be useful for combining a list of plots produced with <code>purrr</code>. This is a wrapper around <code><a href="https://rdrr.io/pkg/cowplot/man/plot_grid.html">cowplot::plot_grid</a></code> and lets you combine multiple plots and add a combination of title, caption, and annotation texts with suitable defaults.</p>
 <p>For examples (both with <code>plyr</code> and <code>purrr</code>), see the associated vignette- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html</a></p>
 </div>
-<div id="theme_ggstatsplot" class="section level2">
-<h2 class="hasAnchor">
-<a href="#theme_ggstatsplot" class="anchor"></a><code>theme_ggstatsplot</code>
-</h2>
-<p>All plots from <code>ggstatsplot</code> have a default theme: <code>theme_ggstatsplot</code>. You can change this theme by using the <code>ggtheme</code> argument. It is important to note that irrespective of which <code>ggplot</code> theme you choose, <code>ggstatsplot</code> in the backdrop adds a new layer with its idiosyncratic theme settings, chosen to make the graphs more readable or aesthetically pleasing.</p>
-<p>Let’s see an example with <code>gghistostats</code> and see how a certain theme from <code>hrbrthemes</code> package looks like with and without the <code>ggstatsplot</code> layer.</p>
-<div class="sourceCode" id="cb28"><pre class="r"><span class="co"># setup</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
-
-<span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="reference/combine_plots.html">combine_plots</a></span>(
-  <span class="co"># basic scatter plot with `theme_ggstatsplot()` added</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">wt</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">mpg</span>)) +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>() +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(
-      <span class="kw">title</span> <span class="kw">=</span> <span class="st">"this is my title"</span>,
-      <span class="kw">subtitle</span> <span class="kw">=</span> <span class="st">"this is my subtitle"</span>
-    ) +
-    <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="reference/theme_ggstatsplot.html">theme_ggstatsplot</a></span>(),
-  <span class="co"># basic scatter plot without the default theme</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">wt</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">mpg</span>)) +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>() +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(
-      <span class="kw">title</span> <span class="kw">=</span> <span class="st">"this is my title"</span>,
-      <span class="kw">subtitle</span> <span class="kw">=</span> <span class="st">"this is my subtitle"</span>
-    ) +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>(),
-  <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Plot with and without the default `theme_ggstatsplot` overlaid"</span>
-)</pre></div>
-<p><img src="reference/figures/README-theme_ggstatsplot-1.png" width="100%"></p>
-<p>For more on how to modify it, see the associated vignette- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html</a></p>
-</div>
 <div id="using-ggstatsplot-statistical-details-with-custom-plots" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-ggstatsplot-statistical-details-with-custom-plots" class="anchor"></a>Using <code>ggstatsplot</code> statistical details with custom plots</h2>
 <p>Sometimes you may not like the default plots produced by <code>ggstatsplot</code>. In such cases, you can use other <strong>custom</strong> plots (from <code>ggplot2</code> or other plotting packages) and still use <code>ggstatsplot</code> functions to display results from relevant statistical test.</p>
 <p>For example, in the following chunk, we will create plot (<em>ridgeplot</em>) using <code>ggridges</code> package and use <code>ggstatsplot</code> function for extracting results.</p>
-<div class="sourceCode" id="cb29"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<div class="sourceCode" id="cb28"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 
 <span class="co"># loading the needed libraries</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggridges</span>)
@@ -1555,11 +1520,12 @@
 <p>All relevant functions in <code>ggstatsplot</code> have a <code>output</code> argument which can be used to not only return plots (which is the default), but also to return a <code>subtitle</code> or <code>caption</code>, which are objects of type <code>call</code> and can be used to display statistical details in conjunction with a custom plot and at a custom location in the plot.</p>
 <p>Additionally, all functions share the <code>ggtheme</code> and <code>palette</code> arguments that can be used to specify your favorite <code>ggplot</code> theme and color palette.</p>
 </div>
-<div id="components-of-ggstatsplot" class="section level1">
+<div id="ggstatsverse-components-of-ggstatsplot" class="section level1">
 <h1 class="hasAnchor">
-<a href="#components-of-ggstatsplot" class="anchor"></a>Components of <code>ggstatsplot</code>
+<a href="#ggstatsverse-components-of-ggstatsplot" class="anchor"></a><code>ggstatsverse</code>: Components of <code>ggstatsplot</code>
 </h1>
 <p>To make the maintenance and development of <code>ggstatsplot</code> more manageable, it is being broken into smaller pieces. Currently, the package internally relies on the following packages that manage different aspects of statistical analyses:</p>
+<p><img src="reference/figures/ggstatsverse.jpg"></p>
 <div id="statsexpressions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#statsexpressions" class="anchor"></a><code>statsExpressions</code>

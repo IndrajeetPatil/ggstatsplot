@@ -36,7 +36,6 @@ ggcoefstats(
   stats.label.args = list(size = 3, direction = "y"),
   package = "RColorBrewer",
   palette = "Dark2",
-  direction = 1,
   ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE,
   messages = FALSE,
@@ -163,8 +162,6 @@ function to know more about these arguments.}
 or symbol.}
 
 \item{palette}{Name of palette as string or symbol.}
-
-\item{direction}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from

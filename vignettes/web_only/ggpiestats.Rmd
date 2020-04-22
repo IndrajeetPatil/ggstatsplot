@@ -121,15 +121,15 @@ survived was different between the sexes using `ggpiestats`.
 We'll modify a number of arguments to change the appearance of this plot and
 showcase the flexibility of `ggpiestats`. We will:
 
-1. Change the plot theme to `ggplot2::theme_grey()` 
+1.  Change the plot theme to `ggplot2::theme_grey()`
 
-2. Change our color palette to `category10_d3` from `ggsci` package
+2.  Change our color palette to `category10_d3` from `ggsci` package
 
-3. We'll customize the subtitle by being more precise about which chi 
-  squared test this is `stat.title = "chi squared test of independence: "` 
+3.  We'll customize the subtitle by being more precise about which chi squared
+    test this is `stat.title = "chi squared test of independence: "`
 
-4. Finally, we'll make a call to `ggplot2` to modify the size
-   of our plot title and to make it right justified
+4.  Finally, we'll make a call to `ggplot2` to modify the size of our plot title
+    and to make it right justified
 
 ```{r ggpiestats1, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 8}
 # since effect size confidence intervals are computed using bootstrapping, let's

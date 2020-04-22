@@ -16,7 +16,6 @@ aesthetic_addon(
   ggstatsplot.layer = TRUE,
   package = "RColorBrewer",
   palette = "Dark2",
-  direction = 1,
   ggplot.component = NULL,
   ...
 )
@@ -53,8 +52,6 @@ override some aspects of the selected \code{ggtheme}.}
 or symbol.}
 
 \item{palette}{Name of palette as string or symbol.}
-
-\item{direction}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
 
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant

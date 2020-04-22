@@ -113,7 +113,6 @@ ggcorrmat <- function(data,
                       ggcorrplot.args = list(outline.color = "black"),
                       package = "RColorBrewer",
                       palette = "Dark2",
-                      direction = 1,
                       colors = c("#E69F00", "white", "#009E73"),
                       ggtheme = ggplot2::theme_bw(),
                       ggstatsplot.layer = TRUE,
@@ -217,8 +216,7 @@ ggcorrmat <- function(data,
     colors <-
       paletteer::paletteer_d(
         palette = paste0(package, "::", palette),
-        n = 3,
-        direction = direction,
+        n = 3L,
         type = "discrete"
       )
   }

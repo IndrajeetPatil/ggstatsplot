@@ -737,14 +737,12 @@ ggstatsplot::gghistostats(
   x = Sepal.Length, # numeric variable whose distribution is of interest
   title = "Distribution of Iris sepal length", # title for the plot
   caption = substitute(paste(italic("Source:"), "Ronald Fisher's Iris data set")),
-  type = "parametric", # one sample t-test
-  bar.measure = "mix", # what does the bar length denote
+  bar.measure = "both",
   test.value = 5, # default value is 0
   test.value.line = TRUE, # display a vertical line at test value
   centrality.parameter = "mean", # which measure of central tendency is to be plotted
   centrality.line.args = list(color = "darkred"), # aesthetics for central tendency line
   binwidth = 0.10, # binwidth value (experiment)
-  bf.prior = 0.8, # prior width for computing bayes factor
   messages = FALSE, # turn off the messages
   ggtheme = hrbrthemes::theme_ipsum_tw(), # choosing a different theme
   ggstatsplot.layer = FALSE # turn off ggstatsplot theme layer
@@ -939,7 +937,7 @@ ggstatsplot::grouped_ggcorrmat(
   type = "nonparametric",
   colors = c("#cbac43", "white", "#550000"),
   grouping.var = genre, # grouping variable
-  k = 3, # number of digits after decimal point
+  k = 3L, # number of digits after decimal point
   title.prefix = "Movie genre",
   messages = FALSE,
   plotgrid.args = list(nrow = 2)
@@ -1056,7 +1054,7 @@ set.seed(123)
 mod <- stats::lm(formula = mpg ~ am * cyl, data = mtcars)
 
 # plot
-ggstatsplot::ggcoefstats(x = mod)
+ggstatsplot::ggcoefstats(mod)
 ```
 
 <img src="man/figures/README-ggcoefstats1-1.png" width="100%" />
@@ -1131,51 +1129,6 @@ defaults.
 For examples (both with `plyr` and `purrr`), see the associated
 vignette-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html>
-
-## `theme_ggstatsplot`
-
-All plots from `ggstatsplot` have a default theme: `theme_ggstatsplot`.
-You can change this theme by using the `ggtheme` argument. It is
-important to note that irrespective of which `ggplot` theme you choose,
-`ggstatsplot` in the backdrop adds a new layer with its idiosyncratic
-theme settings, chosen to make the graphs more readable or aesthetically
-pleasing.
-
-Let’s see an example with `gghistostats` and see how a certain theme
-from `hrbrthemes` package looks like with and without the `ggstatsplot`
-layer.
-
-``` r
-# setup
-set.seed(123)
-library(ggplot2)
-
-# plot
-ggstatsplot::combine_plots(
-  # basic scatter plot with `theme_ggstatsplot()` added
-  ggplot(mtcars, aes(x = wt, y = mpg)) +
-    geom_point() +
-    labs(
-      title = "this is my title",
-      subtitle = "this is my subtitle"
-    ) + 
-    ggstatsplot::theme_ggstatsplot(),
-  # basic scatter plot without the default theme
-  ggplot(mtcars, aes(x = wt, y = mpg)) +
-    geom_point() +
-    labs(
-      title = "this is my title",
-      subtitle = "this is my subtitle"
-    ) +
-    theme_bw(),
-  title.text = "Plot with and without the default `theme_ggstatsplot` overlaid"
-)
-```
-
-<img src="man/figures/README-theme_ggstatsplot-1.png" width="100%" />
-
-For more on how to modify it, see the associated vignette-
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html>
 
 ## Using `ggstatsplot` statistical details with custom plots
 
@@ -1275,12 +1228,14 @@ Additionally, all functions share the `ggtheme` and `palette` arguments
 that can be used to specify your favorite `ggplot` theme and color
 palette.
 
-# Components of `ggstatsplot`
+# `ggstatsverse`: Components of `ggstatsplot`
 
 To make the maintenance and development of `ggstatsplot` more
 manageable, it is being broken into smaller pieces. Currently, the
 package internally relies on the following packages that manage
 different aspects of statistical analyses:
+
+<img src="man/figures/ggstatsverse.jpg" />
 
 ## `statsExpressions`
 

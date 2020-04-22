@@ -113,7 +113,6 @@ ggpiestats <- function(data,
                        ggstatsplot.layer = TRUE,
                        package = "RColorBrewer",
                        palette = "Dark2",
-                       direction = 1,
                        ggplot.component = NULL,
                        output = "plot",
                        messages = TRUE,
@@ -290,7 +289,6 @@ ggpiestats <- function(data,
     ggplot2::scale_y_continuous(breaks = NULL) +
     paletteer::scale_fill_paletteer_d(
       palette = paste0(package, "::", palette),
-      direction = direction,
       name = "",
       labels = unique(legend.labels)
     ) +

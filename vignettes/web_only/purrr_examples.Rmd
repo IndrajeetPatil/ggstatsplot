@@ -348,7 +348,6 @@ ggstatsplot::combine_plots(
   plotlist = plot_list,
   title.text = "Relationship between movie budget and IMDB rating",
   caption.text = "Source: www.imdb.com",
-  caption.size = 16,
   title.color = "red",
   caption.color = "blue",
   ncol = 1

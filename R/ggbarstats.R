@@ -78,7 +78,6 @@ ggbarstats <- function(data,
                        ggstatsplot.layer = TRUE,
                        package = "RColorBrewer",
                        palette = "Dark2",
-                       direction = 1,
                        ggplot.component = NULL,
                        output = "plot",
                        messages = TRUE,
@@ -257,7 +256,6 @@ ggbarstats <- function(data,
     ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title)) +
     paletteer::scale_fill_paletteer_d(
       palette = paste0(package, "::", palette),
-      direction = direction,
       name = "",
       labels = unique(legend.labels)
     )

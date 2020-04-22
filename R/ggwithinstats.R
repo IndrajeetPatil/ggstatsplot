@@ -108,7 +108,6 @@ ggwithinstats <- function(data,
                           ggstatsplot.layer = TRUE,
                           package = "RColorBrewer",
                           palette = "Dark2",
-                          direction = 1,
                           ggplot.component = NULL,
                           output = "plot",
                           messages = TRUE,
@@ -383,7 +382,6 @@ ggwithinstats <- function(data,
       ggstatsplot.layer = ggstatsplot.layer,
       package = package,
       palette = palette,
-      direction = direction,
       ggplot.component = ggplot.component
     )
 

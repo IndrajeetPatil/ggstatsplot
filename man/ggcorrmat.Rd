@@ -22,7 +22,6 @@ ggcorrmat(
   ggcorrplot.args = list(outline.color = "black"),
   package = "RColorBrewer",
   palette = "Dark2",
-  direction = 1,
   colors = c("#E69F00", "white", "#009E73"),
   ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE,
@@ -117,8 +116,6 @@ by \code{ggstatsplot}: \code{corr}, \code{method}, \code{p.mat}, \code{sig.level
 or symbol.}
 
 \item{palette}{Name of palette as string or symbol.}
-
-\item{direction}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
 
 \item{colors}{A vector of 3 colors for low, mid, and high correlation values.
 If set to \code{NULL}, manual specification of colors will be turned off and 3

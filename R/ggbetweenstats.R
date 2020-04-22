@@ -88,7 +88,6 @@
 #' @param package Name of package from which the palette is desired as string
 #' or symbol.
 #' @param palette Name of palette as string or symbol.
-#' @param direction Either `1` or `-1`. If `-1` the palette will be reversed.
 #' @param output Character that describes what is to be returned: can be
 #'   `"plot"` (default) or `"subtitle"` or `"caption"`. Setting this to
 #'   `"subtitle"` will return the expression containing statistical results. If
@@ -234,7 +233,6 @@ ggbetweenstats <- function(data,
                            ggstatsplot.layer = TRUE,
                            package = "RColorBrewer",
                            palette = "Dark2",
-                           direction = 1,
                            ggplot.component = NULL,
                            output = "plot",
                            messages = TRUE,
@@ -536,7 +534,6 @@ ggbetweenstats <- function(data,
       ggstatsplot.layer = ggstatsplot.layer,
       package = package,
       palette = palette,
-      direction = direction,
       ggplot.component = ggplot.component
     )
 

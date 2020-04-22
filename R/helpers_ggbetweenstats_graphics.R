@@ -316,7 +316,6 @@ aesthetic_addon <- function(plot,
                             ggstatsplot.layer = TRUE,
                             package = "RColorBrewer",
                             palette = "Dark2",
-                            direction = 1,
                             ggplot.component = NULL,
                             ...) {
 
@@ -342,14 +341,8 @@ aesthetic_addon <- function(plot,
       ggstatsplot.layer = ggstatsplot.layer
     ) +
     ggplot2::theme(legend.position = "none") +
-    paletteer::scale_color_paletteer_d(
-      palette = paste0(package, "::", palette),
-      direction = direction
-    ) +
-    paletteer::scale_fill_paletteer_d(
-      palette = paste0(package, "::", palette),
-      direction = direction
-    )
+    paletteer::scale_color_paletteer_d(paste0(package, "::", palette)) +
+    paletteer::scale_fill_paletteer_d(paste0(package, "::", palette))
 
   # ---------------- adding ggplot component ---------------------------------
 
