@@ -47,6 +47,7 @@ r_binary_packages:
   - fastGHQuad
   - coda
   - lme4
+  - lmerTest
   - pbkrtest
   - ggrepel
   - mc2d

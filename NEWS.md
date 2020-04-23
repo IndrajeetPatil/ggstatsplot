@@ -1,4 +1,4 @@
-# ggstatsplot 0.4.0.9000
+# ggstatsplot 0.5.0
 
 BREAKING CHANGES
 
@@ -9,6 +9,17 @@ BREAKING CHANGES
         asterisks represent.
     2.  The *p*-value labels also contain information about whether they are
         adjusted for multiple comparisons.
+        
+  - The `normality_message` and `bartlett_message` helper functions have been
+    removed. This is because model assumption checks don't really fall under the
+    purview of this package. There are excellent visualization tools out there
+    for model assumption checks (`ggResidpanel`, `performance`, `DHARMa`,
+    `olsrr`, etc.), which should be preferred over unhelpful messages with only
+    *p*-values that these functions were printing. For what it's worth, the
+    functions where these messages were displayed (`ggbetweenstats` or
+    `ggwithinstats`) feature visualizations rich enough and defaults sensible
+    enough that most of the time one can either assess these assumptions from
+    the plots or need not worry about them.
 
 MAJOR CHANGES
 

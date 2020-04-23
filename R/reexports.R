@@ -57,13 +57,3 @@ ipmisc::tibble
 #' @export
 #' @importFrom ipmisc as_tibble
 ipmisc::as_tibble
-
-# ----------------------- messages -------------------------------------
-
-#' @export
-#' @importFrom ipmisc bartlett_message
-ipmisc::bartlett_message
-
-#' @export
-#' @importFrom ipmisc normality_message
-ipmisc::normality_message

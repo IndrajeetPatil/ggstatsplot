@@ -385,26 +385,6 @@ ggwithinstats <- function(data,
       ggplot.component = ggplot.component
     )
 
-  # --------------------- messages ------------------------------------------
-
-  if (isTRUE(messages)) {
-    # display normality test result as a message
-    normality_message(
-      x = data %>% dplyr::pull({{ y }}),
-      lab = ylab,
-      k = k
-    )
-
-    # display homogeneity of variance test as a message
-    bartlett_message(
-      data = data,
-      x = {{ x }},
-      y = {{ y }},
-      lab = xlab,
-      k = k
-    )
-  }
-
   # return the final plot
   return(plot)
 }

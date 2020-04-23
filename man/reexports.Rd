@@ -16,8 +16,6 @@
 \alias{\%|\%}
 \alias{tibble}
 \alias{as_tibble}
-\alias{bartlett_message}
-\alias{normality_message}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -25,7 +23,7 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{ipmisc}{\code{\link[ipmisc]{\%$\%}}, \code{\link[ipmisc]{\%|\%}}, \code{\link[ipmisc]{\%||\%}}, \code{\link[ipmisc]{\%<-\%}}, \code{\link[ipmisc]{\%<>\%}}, \code{\link[ipmisc]{\%>\%}}, \code{\link[ipmisc]{as_tibble}}, \code{\link[ipmisc]{bartlett_message}}, \code{\link[ipmisc]{normality_message}}, \code{\link[ipmisc]{set_cwd}}, \code{\link[ipmisc]{signif_column}}, \code{\link[ipmisc]{specify_decimal_p}}, \code{\link[ipmisc]{tibble}}}
+  \item{ipmisc}{\code{\link[ipmisc]{\%$\%}}, \code{\link[ipmisc]{\%|\%}}, \code{\link[ipmisc]{\%||\%}}, \code{\link[ipmisc]{\%<-\%}}, \code{\link[ipmisc]{\%<>\%}}, \code{\link[ipmisc]{\%>\%}}, \code{\link[ipmisc]{as_tibble}}, \code{\link[ipmisc]{set_cwd}}, \code{\link[ipmisc]{signif_column}}, \code{\link[ipmisc]{specify_decimal_p}}, \code{\link[ipmisc]{tibble}}}
 
   \item{pairwiseComparisons}{\code{\link[pairwiseComparisons]{pairwise_comparisons}}, \code{\link[pairwiseComparisons]{pairwise_p}}}
 }}
