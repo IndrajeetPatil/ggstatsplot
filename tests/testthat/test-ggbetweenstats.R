@@ -252,20 +252,20 @@ testthat::test_that(
 
     # plot
     p <-
-      ggstatsplot::ggbetweenstats(
+      suppressWarnings(ggstatsplot::ggbetweenstats(
         data = a,
         x = "group",
         y = "mean.a",
         results.subtitle = FALSE,
         messages = FALSE
-      )
+      ))
 
     # build
     pb <- ggplot2::ggplot_build(p)
 
     testthat::expect_identical(
       pb$data[[6]]$label,
-      c("list(~italic(widehat(mu))== 0.98 )", "list(~italic(widehat(mu))== 1.39 )")
+      c("list(~italic(widehat(mu))==0.98)", "list(~italic(widehat(mu))==1.39)")
     )
   }
 )
@@ -489,8 +489,8 @@ testthat::test_that(
           x = 1:2,
           y = c(20.6633333333333, 16.9633333333333),
           label = c(
-            "list(~italic(widehat(mu))== 20.66 )",
-            "list(~italic(widehat(mu))== 16.96 )"
+            "list(~italic(widehat(mu))==20.66)",
+            "list(~italic(widehat(mu))==16.96)"
           ),
           PANEL = structure(c(1L, 1L), class = "factor", .Label = "1"),
           group = structure(1:2, n = 2L),
@@ -557,32 +557,6 @@ testthat::test_that(
         class = "data.frame"
       )
     )
-  }
-)
-
-# ggplot component addition works ------------------------------------------
-
-testthat::test_that(
-  desc = "ggplot component addition works",
-  code = {
-    testthat::skip_on_cran()
-
-    # plot
-    p <-
-      ggstatsplot::ggbetweenstats(
-        data = iris,
-        x = Species,
-        y = Sepal.Length,
-        results.subtitle = FALSE,
-        messages = FALSE,
-        ggplot.component = ggplot2::labs(y = "SL")
-      )
-
-    # build plot
-    pb <- ggplot2::ggplot_build(p)
-
-    # test
-    testthat::expect_identical(p$labels$y, "SL")
   }
 )
 

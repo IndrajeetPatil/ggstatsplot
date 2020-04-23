@@ -298,8 +298,7 @@ gapminder::gapminder %>%
     title.prefix = "Year",
     messages = FALSE,
     # arguments relevant for ggstatsplot::combine_plots
-    title.text = "Changes in life expectancy across continents (1967-2007)",
-    plotgrid.args = list(nrow = 3, labels = c("(a)", "(b)", "(c)"))
+    title.text = "Changes in life expectancy across continents (1967-2007)"
   )
 ```
 

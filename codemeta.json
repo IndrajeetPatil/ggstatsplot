@@ -343,6 +343,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "parameters",
+      "name": "parameters",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=parameters"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
       "provider": {
@@ -453,5 +465,5 @@
   ],
   "funder": {},
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md",
-  "fileSize": "40286.733KB"
+  "fileSize": "40315.507KB"
 }

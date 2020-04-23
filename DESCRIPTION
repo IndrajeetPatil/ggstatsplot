@@ -45,6 +45,7 @@ Imports:
     ipmisc (>= 2.0.0),
     pairwiseComparisons,
     paletteer,
+    parameters,
     purrr,
     rlang,
     stats,

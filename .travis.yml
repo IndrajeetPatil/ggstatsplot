@@ -49,6 +49,7 @@ r_binary_packages:
   - lme4
   - pbkrtest
   - ggrepel
+  - mc2d
 
 r_packages:
   - coin
