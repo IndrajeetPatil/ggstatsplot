@@ -274,12 +274,11 @@ ggcoefstats <- function(x,
 
   # if glance is not available, inform the user
   if (isTRUE(insight::is_model(x))) {
-    if (is.null(glance_df) || !all(c("aic", "bic") %in% tolower(names(glance_df)))) {
+    if (is.null(glance_df) || !all(c("aic", "bic") %in% names(glance_df))) {
       # inform the user
       message(cat(
-        ipmisc::green("Note: "),
-        ipmisc::blue("No model diagnostics information available, so skipping caption.\n"),
-        sep = ""
+        ipmisc::green("Note:"),
+        ipmisc::blue("AIC and BIC values not available, so skipping caption.\n")
       ))
 
       # and skip the caption

@@ -61,6 +61,7 @@ r_packages:
   - knitr
   - multcomp
   - rmarkdown
+  - GGally
   - ggcorrplot
 
 r_github_packages:

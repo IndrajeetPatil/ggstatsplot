@@ -22,7 +22,7 @@ testthat::test_that(
         palette = "Dark2",
         min_length = 20
       ),
-      "No. of factor levels",
+      "Number of labels",
       fixed = TRUE
     )
   }
