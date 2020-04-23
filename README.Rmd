@@ -535,7 +535,6 @@ ggstatsplot::ggpiestats(
   y = cyl,
   title = "Dataset: Motor Trend Car Road Tests", # title for the plot
   legend.title = "Transmission", # title for the legend
-  factor.levels = c("1 = manual", "0 = automatic"), # renaming the factor level names (`x`)
   caption = substitute(paste(italic("Source"), ": 1974 Motor Trend US magazine")),
   messages = FALSE
 )

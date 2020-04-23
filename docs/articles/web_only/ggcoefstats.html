@@ -149,7 +149,7 @@
       <h1 data-toc-skip>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-04-22</h4>
+            <h4 class="date">2020-04-23</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -2481,6 +2481,7 @@
   <span class="kw">x</span> <span class="kw">=</span> <span class="no">mod</span>,
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"high performance generalized linear model"</span>
 )</pre></body></html></div>
+<p><img src="ggcoefstats_files/figure-html/speedglm-1.png" width="480"></p>
 </div>
 <div id="bounded-memory-linear-regression-biglm" class="section level2">
 <h2 class="hasAnchor">
@@ -2714,7 +2715,9 @@
   <span class="kw">x</span> <span class="kw">=</span> <span class="no">g</span>,
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"generalized additive models with integrated smoothness estimation"</span>,
   <span class="kw">subtitle</span> <span class="kw">=</span> <span class="st">"using `mgcv` package"</span>
-)</pre></body></html></div>
+)
+<span class="co">#&gt; Note: No p-values and/or statistic available for the model object;</span>
+<span class="co">#&gt; skipping labels with statistical details.</span></pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/gam_mgcv-1.png" width="480"></p>
 </div>
 <div id="generalized-additive-model-gam" class="section level2">
@@ -3042,7 +3045,61 @@
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
   <span class="kw">x</span> <span class="kw">=</span> <span class="no">g</span>,
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"generalized additive models for location scale and shape"</span>
-)</pre></body></html></div>
+)
+<span class="co">#&gt; ******************************************************************</span>
+<span class="co">#&gt; Family:  c("BCT", "Box-Cox t") </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Call:  gamlss::gamlss(formula = y ~ pb(x), sigma.formula = ~pb(x),  </span>
+<span class="co">#&gt;     family = BCT, data = abdom, method = mixed(1, 20)) </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Fitting method: mixed(1, 20) </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; ------------------------------------------------------------------</span>
+<span class="co">#&gt; Mu link function:  identity</span>
+<span class="co">#&gt; Mu Coefficients:</span>
+<span class="co">#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span class="co">#&gt; (Intercept) -64.44299    1.33397  -48.31   &lt;2e-16 ***</span>
+<span class="co">#&gt; pb(x)        10.69464    0.05787  184.80   &lt;2e-16 ***</span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; ------------------------------------------------------------------</span>
+<span class="co">#&gt; Sigma link function:  log</span>
+<span class="co">#&gt; Sigma Coefficients:</span>
+<span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span class="co">#&gt; (Intercept) -2.65041    0.10859 -24.407  &lt; 2e-16 ***</span>
+<span class="co">#&gt; pb(x)       -0.01002    0.00380  -2.638  0.00855 ** </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; ------------------------------------------------------------------</span>
+<span class="co">#&gt; Nu link function:  identity </span>
+<span class="co">#&gt; Nu Coefficients:</span>
+<span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)</span>
+<span class="co">#&gt; (Intercept)  -0.1072     0.6296   -0.17    0.865</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; ------------------------------------------------------------------</span>
+<span class="co">#&gt; Tau link function:  log </span>
+<span class="co">#&gt; Tau Coefficients:</span>
+<span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span class="co">#&gt; (Intercept)   2.4948     0.4261   5.855 7.86e-09 ***</span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; ------------------------------------------------------------------</span>
+<span class="co">#&gt; NOTE: Additive smoothing terms exist in the formulas: </span>
+<span class="co">#&gt;  i) Std. Error for smoothers are for the linear effect only. </span>
+<span class="co">#&gt; ii) Std. Error for the linear terms maybe are not accurate. </span>
+<span class="co">#&gt; ------------------------------------------------------------------</span>
+<span class="co">#&gt; No. of observations in the fit:  610 </span>
+<span class="co">#&gt; Degrees of Freedom for the fit:  11.7603</span>
+<span class="co">#&gt;       Residual Deg. of Freedom:  598.2397 </span>
+<span class="co">#&gt;                       at cycle:  3 </span>
+<span class="co">#&gt;  </span>
+<span class="co">#&gt; Global Deviance:     4770.994 </span>
+<span class="co">#&gt;             AIC:     4794.515 </span>
+<span class="co">#&gt;             SBC:     4846.419 </span>
+<span class="co">#&gt; ******************************************************************</span></pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/gamlss-1.png" width="480"></p>
 </div>
 <div id="generalized-method-of-moment-estimation-gmm" class="section level2">
@@ -3702,7 +3759,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">mice</span>)
 
 <span class="co"># data</span>
-<span class="no">imp</span> <span class="kw">&lt;-</span> <span class="kw pkg">mice</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/mice/man/mice.html">mice</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">nhanes2</span>, <span class="kw">print</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
+<span class="no">imp</span> <span class="kw">&lt;-</span> <span class="kw pkg">mice</span><span class="kw ns">::</span><span class="fu"><a href="http://stefvanbuuren.github.io/mice/reference/mice.html">mice</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">nhanes2</span>, <span class="kw">print</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
 
 <span class="co"># fit the model using brms</span>
 <span class="no">fit</span> <span class="kw">&lt;-</span>
@@ -3732,109 +3789,109 @@
 <span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.129 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.137 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.038 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                0.175 seconds (Total)</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; SAMPLING FOR MODEL 'b4bd45cd39084a7f826358012285004e' NOW (CHAIN 1).</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1: Gradient evaluation took 0 seconds</span>
+<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span>
+<span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.14 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.037 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                0.177 seconds (Total)</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; SAMPLING FOR MODEL 'b4bd45cd39084a7f826358012285004e' NOW (CHAIN 1).</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1: Gradient evaluation took 0 seconds</span>
+<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span>
+<span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.134 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.037 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                0.171 seconds (Total)</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; SAMPLING FOR MODEL 'b4bd45cd39084a7f826358012285004e' NOW (CHAIN 1).</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1: Gradient evaluation took 0 seconds</span>
+<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span>
+<span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.15 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.035 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                0.185 seconds (Total)</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; SAMPLING FOR MODEL 'b4bd45cd39084a7f826358012285004e' NOW (CHAIN 1).</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1: Gradient evaluation took 0 seconds</span>
+<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span>
+<span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.155 seconds (Warm-up)</span>
 <span class="co">#&gt; Chain 1:                0.036 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.165 seconds (Total)</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; SAMPLING FOR MODEL 'b4bd45cd39084a7f826358012285004e' NOW (CHAIN 1).</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: Gradient evaluation took 0 seconds</span>
-<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span>
-<span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.135 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.039 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.174 seconds (Total)</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; SAMPLING FOR MODEL 'b4bd45cd39084a7f826358012285004e' NOW (CHAIN 1).</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: Gradient evaluation took 0 seconds</span>
-<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span>
-<span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.127 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.033 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.16 seconds (Total)</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; SAMPLING FOR MODEL 'b4bd45cd39084a7f826358012285004e' NOW (CHAIN 1).</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: Gradient evaluation took 0 seconds</span>
-<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span>
-<span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.138 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.035 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.173 seconds (Total)</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; SAMPLING FOR MODEL 'b4bd45cd39084a7f826358012285004e' NOW (CHAIN 1).</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: Gradient evaluation took 0 seconds</span>
-<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span>
-<span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.147 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.035 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.182 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:                0.191 seconds (Total)</span>
 <span class="co">#&gt; Chain 1:</span>
 
 <span class="co"># plot</span>
@@ -3883,9 +3940,9 @@
 <span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.058 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.067 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.125 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.118 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.069 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                0.187 seconds (Total)</span>
 <span class="co">#&gt; Chain 1:</span>
 
 <span class="co"># plot</span>
@@ -3956,8 +4013,8 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; SAMPLING FOR MODEL 'continuous' NOW (CHAIN 1).</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: Gradient evaluation took 0.001 seconds</span>
-<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.</span>
+<span class="co">#&gt; Chain 1: Gradient evaluation took 0.002 seconds</span>
+<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 20 seconds.</span>
 <span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span>
 <span class="co">#&gt; Chain 1: </span>
 <span class="co">#&gt; Chain 1: </span>
@@ -3974,9 +4031,9 @@
 <span class="co">#&gt; Chain 1: Iteration: 900 / 1000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 1000 / 1000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.94 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.543 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                1.483 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.912 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.563 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                1.475 seconds (Total)</span>
 <span class="co">#&gt; Chain 1:</span>
 
 <span class="co"># plot</span>
@@ -4243,14 +4300,129 @@ speed =~ x7 + x8 + x9 "</span>
   ),
   <span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">1</span>
 )
-<span class="co">#&gt; Note: No model diagnostics information available, so skipping caption.</span></pre></body></html></div>
+<span class="co">#&gt; Note: No model diagnostics information available, so skipping caption.</span>
+<span class="co">#&gt; ******************************************************************</span>
+<span class="co">#&gt; Family:  c("BCT", "Box-Cox t") </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Call:  gamlss::gamlss(formula = y ~ pb(x), sigma.formula = ~pb(x),  </span>
+<span class="co">#&gt;     family = BCT, data = abdom, method = mixed(1, 20)) </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Fitting method: mixed(1, 20) </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; ------------------------------------------------------------------</span>
+<span class="co">#&gt; Mu link function:  identity</span>
+<span class="co">#&gt; Mu Coefficients:</span>
+<span class="co">#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span class="co">#&gt; (Intercept) -64.44299    1.33397  -48.31   &lt;2e-16 ***</span>
+<span class="co">#&gt; pb(x)        10.69464    0.05787  184.80   &lt;2e-16 ***</span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; ------------------------------------------------------------------</span>
+<span class="co">#&gt; Sigma link function:  log</span>
+<span class="co">#&gt; Sigma Coefficients:</span>
+<span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span class="co">#&gt; (Intercept) -2.65041    0.10859 -24.407  &lt; 2e-16 ***</span>
+<span class="co">#&gt; pb(x)       -0.01002    0.00380  -2.638  0.00855 ** </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; ------------------------------------------------------------------</span>
+<span class="co">#&gt; Nu link function:  identity </span>
+<span class="co">#&gt; Nu Coefficients:</span>
+<span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)</span>
+<span class="co">#&gt; (Intercept)  -0.1072     0.6296   -0.17    0.865</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; ------------------------------------------------------------------</span>
+<span class="co">#&gt; Tau link function:  log </span>
+<span class="co">#&gt; Tau Coefficients:</span>
+<span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span class="co">#&gt; (Intercept)   2.4948     0.4261   5.855 7.86e-09 ***</span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; ------------------------------------------------------------------</span>
+<span class="co">#&gt; NOTE: Additive smoothing terms exist in the formulas: </span>
+<span class="co">#&gt;  i) Std. Error for smoothers are for the linear effect only. </span>
+<span class="co">#&gt; ii) Std. Error for the linear terms maybe are not accurate. </span>
+<span class="co">#&gt; ------------------------------------------------------------------</span>
+<span class="co">#&gt; No. of observations in the fit:  610 </span>
+<span class="co">#&gt; Degrees of Freedom for the fit:  11.7603</span>
+<span class="co">#&gt;       Residual Deg. of Freedom:  598.2397 </span>
+<span class="co">#&gt;                       at cycle:  3 </span>
+<span class="co">#&gt;  </span>
+<span class="co">#&gt; Global Deviance:     4770.994 </span>
+<span class="co">#&gt;             AIC:     4794.515 </span>
+<span class="co">#&gt;             SBC:     4846.419 </span>
+<span class="co">#&gt; ******************************************************************</span>
+<span class="co">#&gt; ******************************************************************</span>
+<span class="co">#&gt; Family:  c("BCT", "Box-Cox t") </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Call:  gamlss::gamlss(formula = y ~ pb(x), sigma.formula = ~pb(x),  </span>
+<span class="co">#&gt;     family = BCT, data = abdom, method = mixed(1, 20)) </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Fitting method: mixed(1, 20) </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; ------------------------------------------------------------------</span>
+<span class="co">#&gt; Mu link function:  identity</span>
+<span class="co">#&gt; Mu Coefficients:</span>
+<span class="co">#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span class="co">#&gt; (Intercept) -64.44299    1.33397  -48.31   &lt;2e-16 ***</span>
+<span class="co">#&gt; pb(x)        10.69464    0.05787  184.80   &lt;2e-16 ***</span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; ------------------------------------------------------------------</span>
+<span class="co">#&gt; Sigma link function:  log</span>
+<span class="co">#&gt; Sigma Coefficients:</span>
+<span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span class="co">#&gt; (Intercept) -2.65041    0.10859 -24.407  &lt; 2e-16 ***</span>
+<span class="co">#&gt; pb(x)       -0.01002    0.00380  -2.638  0.00855 ** </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; ------------------------------------------------------------------</span>
+<span class="co">#&gt; Nu link function:  identity </span>
+<span class="co">#&gt; Nu Coefficients:</span>
+<span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)</span>
+<span class="co">#&gt; (Intercept)  -0.1072     0.6296   -0.17    0.865</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; ------------------------------------------------------------------</span>
+<span class="co">#&gt; Tau link function:  log </span>
+<span class="co">#&gt; Tau Coefficients:</span>
+<span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span class="co">#&gt; (Intercept)   2.4948     0.4261   5.855 7.86e-09 ***</span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; ------------------------------------------------------------------</span>
+<span class="co">#&gt; NOTE: Additive smoothing terms exist in the formulas: </span>
+<span class="co">#&gt;  i) Std. Error for smoothers are for the linear effect only. </span>
+<span class="co">#&gt; ii) Std. Error for the linear terms maybe are not accurate. </span>
+<span class="co">#&gt; ------------------------------------------------------------------</span>
+<span class="co">#&gt; No. of observations in the fit:  610 </span>
+<span class="co">#&gt; Degrees of Freedom for the fit:  11.7603</span>
+<span class="co">#&gt;       Residual Deg. of Freedom:  598.2397 </span>
+<span class="co">#&gt;                       at cycle:  3 </span>
+<span class="co">#&gt;  </span>
+<span class="co">#&gt; Global Deviance:     4770.994 </span>
+<span class="co">#&gt;             AIC:     4794.515 </span>
+<span class="co">#&gt;             SBC:     4846.419 </span>
+<span class="co">#&gt; ******************************************************************</span></pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/list_gamm4-1.png" width="960"></p>
 </div>
 <div id="meta-analysis" class="section level1">
 <h1 class="hasAnchor">
 <a href="#meta-analysis" class="anchor"></a>Meta-analysis</h1>
-<p>In case the estimates you are displaying come from multiple studies, you can also use this function to carry out random-effects meta-analysis (as implemented in the <a href="http://www.metafor-project.org/doku.php">metafor</a> package; see <code><a href="https://rdrr.io/pkg/metafor/man/rma.uni.html">metafor::rma()</a></code>).</p>
-<p>The dataframe you enter <strong>must</strong> contain at the minimum the following three columns- <code>term</code>, <code>estimate</code>, <code>std.error</code>.</p>
+<p>In case the estimates you are displaying come from multiple studies, you can also use this function to carry out random-effects meta-analysis. The dataframe you enter <strong>must</strong> contain at the minimum the following three columns-</p>
+<ul>
+<li>
+<code>term</code>: a column with names/identifiers to annotate each study/effect</li>
+<li>
+<code>estimate</code>: a column with the observed effect sizes or outcomes</li>
+<li>
+<code>std.error</code>: a column the corresponding standard errors</li>
+</ul>
 <div id="parametric" class="section level3">
 <h3 class="hasAnchor">
 <a href="#parametric" class="anchor"></a>parametric</h3>

@@ -11,7 +11,6 @@ ggbarstats(
   counts = NULL,
   ratio = NULL,
   paired = FALSE,
-  labels.legend = NULL,
   results.subtitle = TRUE,
   sample.size.label = TRUE,
   label = "percentage",
@@ -69,9 +68,6 @@ repeated measures design study (Default: \code{FALSE}). If \code{TRUE}, McNemar'
 test subtitle will be returned. If \code{FALSE}, Pearson's chi-square test will
 be returned.}
 
-\item{labels.legend}{A character vector with custom labels for levels of
-the \code{x} variable displayed in the legend.}
-
 \item{results.subtitle}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}
@@ -90,9 +86,9 @@ labels (Default: \code{0}).}
 \item{label.args}{Additional aesthetic arguments that will be passed to
 \code{geom_label}.}
 
-\item{bf.message}{Logical that decides whether to display a caption with
-results from Bayes Factor test in favor of the null hypothesis (default:
-\code{FALSE}).}
+\item{bf.message}{Logical that decides whether to display Bayes Factor in
+favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
+parametric test} (Default: \code{TRUE}).}
 
 \item{sampling.plan}{Character describing the sampling plan. Possible options
 are \code{"indepMulti"} (independent multinomial; default), \code{"poisson"},
@@ -201,7 +197,6 @@ ggstatsplot::ggbarstats(
   x = vs,
   y = cyl,
   nboot = 10,
-  labels.legend = c("0 = V-shaped", "1 = straight"),
   legend.title = "Engine"
 )
 }

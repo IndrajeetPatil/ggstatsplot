@@ -49,14 +49,12 @@ r_binary_packages:
   - lme4
   - pbkrtest
   - ggrepel
-  - ggcorrplot
 
 r_packages:
   - coin
   - effectsize
   - insight
   - parameters
-  - WRS2
   - remotes
   - knitr
   - multcomp

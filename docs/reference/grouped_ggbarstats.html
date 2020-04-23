@@ -285,8 +285,6 @@ association test will be run. This argument can not be <code>NULL</code> for
     <tr>
       <th>...</th>
       <td><p>Arguments passed on to <code><a href='ggbarstats.html'>ggbarstats</a></code></p><dl'>
-    <dt><code>labels.legend</code></dt><dd><p>A character vector with custom labels for levels of
-the <code>x</code> variable displayed in the legend.</p></dd>
     <dt><code>xlab</code></dt><dd><p>Custom text for the <code>x</code> axis label (Default: <code>NULL</code>, which
 will cause the <code>x</code> axis label to be the <code>x</code> variable).</p></dd>
     <dt><code>ylab</code></dt><dd><p>Custom text for the <code>y</code> axis label (Default: <code>NULL</code>).</p></dd>
@@ -314,9 +312,9 @@ the plot will be returned.</p></dd>
 labels (Default: <code>0</code>).</p></dd>
     <dt><code>label.args</code></dt><dd><p>Additional aesthetic arguments that will be passed to
 <code>geom_label</code>.</p></dd>
-    <dt><code>bf.message</code></dt><dd><p>Logical that decides whether to display a caption with
-results from Bayes Factor test in favor of the null hypothesis (default:
-<code>FALSE</code>).</p></dd>
+    <dt><code>bf.message</code></dt><dd><p>Logical that decides whether to display Bayes Factor in
+favor of the <em>null</em> hypothesis. This argument is relevant only <strong>for
+parametric test</strong> (Default: <code>TRUE</code>).</p></dd>
     <dt><code>sampling.plan</code></dt><dd><p>Character describing the sampling plan. Possible options
 are <code>"indepMulti"</code> (independent multinomial; default), <code>"poisson"</code>,
 <code>"jointMulti"</code> (joint multinomial), <code>"hypergeom"</code> (hypergeometric). For
@@ -488,7 +486,7 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>

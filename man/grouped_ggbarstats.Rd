@@ -63,8 +63,6 @@ association test will be run. This argument can not be \code{NULL} for
 \item{...}{
   Arguments passed on to \code{\link[=ggbarstats]{ggbarstats}}
   \describe{
-    \item{\code{labels.legend}}{A character vector with custom labels for levels of
-the \code{x} variable displayed in the legend.}
     \item{\code{xlab}}{Custom text for the \code{x} axis label (Default: \code{NULL}, which
 will cause the \code{x} axis label to be the \code{x} variable).}
     \item{\code{ylab}}{Custom text for the \code{y} axis label (Default: \code{NULL}).}
@@ -92,9 +90,9 @@ the plot will be returned.}
 labels (Default: \code{0}).}
     \item{\code{label.args}}{Additional aesthetic arguments that will be passed to
 \code{geom_label}.}
-    \item{\code{bf.message}}{Logical that decides whether to display a caption with
-results from Bayes Factor test in favor of the null hypothesis (default:
-\code{FALSE}).}
+    \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
+favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
+parametric test} (Default: \code{TRUE}).}
     \item{\code{sampling.plan}}{Character describing the sampling plan. Possible options
 are \code{"indepMulti"} (independent multinomial; default), \code{"poisson"},
 \code{"jointMulti"} (joint multinomial), \code{"hypergeom"} (hypergeometric). For

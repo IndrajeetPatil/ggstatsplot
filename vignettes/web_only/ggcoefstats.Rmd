@@ -2311,7 +2311,7 @@ ggstatsplot::ggcoefstats(
 
 Example of high performance generalized linear model-
 
-```{r speedglm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5, eval=FALSE}
+```{r speedglm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
 # setup
 set.seed(123)
 library(speedglm)
@@ -3734,12 +3734,12 @@ ggstatsplot::combine_plots(
 # Meta-analysis
 
 In case the estimates you are displaying come from multiple studies, you can
-also use this function to carry out random-effects meta-analysis (as implemented
-in the [metafor](http://www.metafor-project.org/doku.php) package; see
-`metafor::rma()`).
+also use this function to carry out random-effects meta-analysis. The dataframe
+you enter **must** contain at the minimum the following three columns-
 
-The dataframe you enter **must** contain at the minimum the following three
-columns- `term`, `estimate`, `std.error`.
+  - `term`: a column with names/identifiers to annotate each study/effect
+  - `estimate`: a column with the observed effect sizes or outcomes
+  - `std.error`: a column the corresponding standard errors
 
 ### parametric
 

@@ -149,7 +149,7 @@
       <h1 data-toc-skip>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-04-22</h4>
+            <h4 class="date">2020-04-23</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -816,25 +816,27 @@
 <div id="repeating-function-execution-across-multiple-columns-in-a-dataframe" class="section level1">
 <h1 class="hasAnchor">
 <a href="#repeating-function-execution-across-multiple-columns-in-a-dataframe" class="anchor"></a>Repeating function execution across multiple columns in a dataframe</h1>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="co"># running the same analysis on two different columns</span>
+<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="co"># setup</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">patchwork</span>)
+
+<span class="co"># running the same analysis on two different columns (creates a list of plots)</span>
 <span class="no">plotlist</span> <span class="kw">&lt;-</span>
   <span class="kw pkg">purrr</span><span class="kw ns">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(
     <span class="kw">.l</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-      <span class="kw">data</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">mtcars</span>),
-      <span class="kw">x</span> <span class="kw">=</span> <span class="st">"am"</span>,
-      <span class="kw">y</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"wt"</span>, <span class="st">"qsec"</span>),
+      <span class="kw">data</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">movies_long</span>),
+      <span class="kw">x</span> <span class="kw">=</span> <span class="st">"mpaa"</span>,
+      <span class="kw">y</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"rating"</span>, <span class="st">"length"</span>),
+      <span class="kw">title</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"IMDB score by MPAA rating"</span>, <span class="st">"Movie length by MPAA rating"</span>),
       <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>
     ),
     <span class="kw">.f</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span>
   )
 
-<span class="co"># wt</span>
-<span class="no">plotlist</span><span class="kw">[[</span><span class="fl">1</span>]]</pre></body></html></div>
-<p><img src="purrr_examples_files/figure-html/purrr_columns-1.png" width="700"></p>
-<div class="sourceCode" id="cb13"><html><body><pre class="r">
-<span class="co"># qsec</span>
-<span class="no">plotlist</span><span class="kw">[[</span><span class="fl">2</span>]]</pre></body></html></div>
-<p><img src="purrr_examples_files/figure-html/purrr_columns-2.png" width="700"></p>
+<span class="co"># combine plots using `patchwork`</span>
+<span class="no">plotlist</span><span class="kw">[[</span><span class="fl">1</span>]] + <span class="no">plotlist</span><span class="kw">[[</span><span class="fl">2</span>]]</pre></body></html></div>
+<p><img src="purrr_examples_files/figure-html/purrr_columns-1.png" width="1152"></p>
 </div>
 <div id="suggestions" class="section level1">
 <h1 class="hasAnchor">

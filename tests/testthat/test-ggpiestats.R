@@ -176,7 +176,6 @@ testthat::test_that(
           ggtheme = ggplot2::theme_bw(),
           label = "counts",
           legend.title = "transmission",
-          factor.levels = c("0 = automatic", "1 = manual"),
           messages = FALSE
         )
       )
@@ -252,9 +251,6 @@ testthat::test_that(
 
     # checking plot labels
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
-    testthat::expect_identical(
-      pb$plot$plot_env$legend.labels, c("0 = automatic", "1 = manual")
-    )
     testthat::expect_identical(
       pb$plot$labels$caption,
       ggplot2::expr(atop(

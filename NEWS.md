@@ -20,6 +20,10 @@ MAJOR CHANGES
   - Reverts aligning title and subtitle with the plot and not the axes, since it
     looked pretty ugly (esp., `ggcoefstats`) and was causing problems for
     labels.
+    
+  - `factor.levels` (for `ggpiestats`) and `labels.legend` (for `ggbarstats`)
+    are deprecated. If users would like to changes the names for factor levels,
+    this should be done outside of `ggstatsplot`.
 
 NEW FEATURES
 
