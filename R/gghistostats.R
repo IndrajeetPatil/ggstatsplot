@@ -321,18 +321,6 @@ gghistostats <- function(data,
   # this is primarily useful for grouped_ variant of this function
   plot <- plot + ggplot.component
 
-  # ============================= messages =================================
-
-  # display normality test result as a message
-  if (isTRUE(messages)) {
-    ipmisc::normality_message(
-      x = x_vec,
-      lab = xlab,
-      k = k,
-      output = "message"
-    )
-  }
-
   # return the final plot
   return(plot)
 }

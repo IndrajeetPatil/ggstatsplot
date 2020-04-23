@@ -115,7 +115,6 @@ ggstatsplot::grouped_ggdotplotstats(
   ylab = "car manufacturer",
   grouping.var = cyl, # grouping variable
   type = "bayes", # bayes factor test
-  bf.prior = 0.9,
   test.value = 15.5,
   title.prefix = "cylinder count",
   point.args = list(

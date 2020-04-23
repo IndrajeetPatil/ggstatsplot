@@ -285,8 +285,6 @@ association test will be run. This argument can not be <code>NULL</code> for
     <tr>
       <th>...</th>
       <td><p>Arguments passed on to <code><a href='ggpiestats.html'>ggpiestats</a></code></p><dl'>
-    <dt><code>factor.levels</code></dt><dd><p>A character vector with labels for factor levels of
-<code>main</code> variable.</p></dd>
     <dt><code>caption</code></dt><dd><p>The text for the plot caption.</p></dd>
     <dt><code>palette</code></dt><dd><p>If a character string (e.g., <code>"Set1"</code>), will use that named
 palette. If a number, will index into the list of palettes of appropriate
@@ -300,9 +298,6 @@ on the label in each pie slice. Possible options are <code>"percentage"</code>
 (default), <code>"counts"</code>, <code>"both"</code>.</p></dd>
     <dt><code>label.args</code></dt><dd><p>Additional aesthetic arguments that will be passed to
 <code>geom_label</code>.</p></dd>
-    <dt><code>bf.message</code></dt><dd><p>Logical that decides whether to display a caption with
-results from Bayes Factor test in favor of the null hypothesis (default:
-<code>FALSE</code>).</p></dd>
     <dt><code>ratio</code></dt><dd><p>A vector of proportions: the expected proportions for the
 proportion test (should sum to 1). Default is <code>NULL</code>, which means the null
 is equal theoretical proportions across the levels of the nominal variable.
@@ -342,6 +337,9 @@ override some aspects of the selected <code>ggtheme</code>.</p></dd>
     <dt><code>results.subtitle</code></dt><dd><p>Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
 the plot will be returned.</p></dd>
+    <dt><code>bf.message</code></dt><dd><p>Logical that decides whether to display Bayes Factor in
+favor of the <em>null</em> hypothesis. This argument is relevant only <strong>for
+parametric test</strong> (Default: <code>TRUE</code>).</p></dd>
     <dt><code>subtitle</code></dt><dd><p>The text for the plot subtitle. Will work only if
 <code>results.subtitle = FALSE</code>.</p></dd>
     <dt><code>ggplot.component</code></dt><dd><p>A <code>ggplot</code> component to be added to the plot prepared
@@ -350,7 +348,6 @@ of the current function. Default is <code>NULL</code>. The argument should be en
 as a function.</p></dd>
     <dt><code>package</code></dt><dd><p>Name of package from which the palette is desired as string
 or symbol.</p></dd>
-    <dt><code>direction</code></dt><dd><p>Either <code>1</code> or <code>-1</code>. If <code>-1</code> the palette will be reversed.</p></dd>
   
 </dl></td>
     </tr>
@@ -459,7 +456,7 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>

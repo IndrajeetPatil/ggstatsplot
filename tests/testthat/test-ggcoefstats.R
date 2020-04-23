@@ -93,20 +93,6 @@ testthat::test_that(
 
     # checking panel parameters
     testthat::expect_equal(
-      pb$layout$panel_params[[1]]$x.range,
-      c(-4.292139, 8.302817),
-      tolerance = 0.001
-    )
-    testthat::expect_identical(
-      pb$layout$panel_params[[1]]$x$breaks,
-      c(-4, 0, 4, 8)
-    )
-    testthat::expect_equal(
-      pb$layout$panel_params[[1]]$y.range,
-      c(0.4, 4.6),
-      tolerance = 0.001
-    )
-    testthat::expect_equal(
       pb$layout$panel_params[[1]]$y$breaks,
       structure(c("(Intercept)", "mpg", "am", "mpg:am"), pos = 1:4)
     )
@@ -145,116 +131,6 @@ testthat::test_that(
           alpha = NA
         ),
         row.names = c(NA, -1L),
-        class = "data.frame"
-      )
-    )
-
-    testthat::expect_equal(
-      pb$data[[2]],
-      structure(
-        list(
-          x = c(
-            6.43796567445635,
-            -0.155654842893403,
-            -1.80872180643164,
-            0.0647145392531592
-          ),
-          xmin = c(
-            5.14561263697835,
-            -0.22929852538016,
-            -3.71964129697769,
-            -0.0278495128482078
-          ),
-          xmax = c(
-            7.73031871193436,
-            -0.0820111604066467,
-            0.102197684114411,
-            0.157278591354526
-          ),
-          y = 1:4,
-          PANEL = structure(c(1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
-          group = structure(1:4, n = 4L),
-          ymin = c(1, 2, 3, 4),
-          ymax = c(1, 2, 3, 4),
-          colour = c("black", "black", "black", "black"),
-          size = c(0.5, 0.5, 0.5, 0.5),
-          linetype = c(1, 1, 1, 1),
-          height = c(0, 0, 0, 0),
-          alpha = c(NA, NA, NA, NA)
-        ),
-        row.names = c(NA, -4L),
-        class = "data.frame"
-      ),
-      tolerance = 0.001
-    )
-
-    testthat::expect_equal(
-      pb$data[[3]],
-      structure(
-        list(
-          x = c(
-            6.43796567445635,
-            -0.155654842893403,
-            -1.80872180643164,
-            0.0647145392531592
-          ),
-          y = 1:4,
-          PANEL = structure(c(
-            1L, 1L, 1L,
-            1L
-          ), .Label = "1", class = "factor"),
-          group = structure(1:4, n = 4L),
-          shape = c(19, 19, 19, 19),
-          colour = c(
-            "blue", "blue", "blue",
-            "blue"
-          ),
-          size = c(3, 3, 3, 3),
-          fill = c(NA, NA, NA, NA),
-          alpha = c(NA, NA, NA, NA),
-          stroke = c(0.5, 0.5, 0.5, 0.5)
-        ),
-        row.names = c(
-          NA,
-          -4L
-        ),
-        class = "data.frame"
-      )
-    )
-
-    testthat::expect_equal(
-      pb$data[[4]],
-      structure(
-        list(
-          x = c(
-            6.43796567445635,
-            -0.155654842893403,
-            -1.80872180643164,
-            0.0647145392531592
-          ),
-          y = 1:4,
-          label = c(
-            "list(~widehat(italic(beta))==6.438, ~italic(t)(28)==13.765, ~italic(p)<= 0.001)",
-            "list(~widehat(italic(beta))==-0.156, ~italic(t)(28)==-5.840, ~italic(p)<= 0.001)",
-            "list(~widehat(italic(beta))==-1.809, ~italic(t)(28)==-2.615, ~italic(p)== 0.014)",
-            NA
-          ),
-          PANEL = structure(c(1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
-          group = structure(1:4, n = 4L),
-          colour = structure(c("#1B9E77FF", "#D95F02FF", "#7570B3FF", "#E7298AFF"),
-            class = "colors"
-          ),
-          fill = c("white", "white", "white", "white"),
-          size = c(3, 3, 3, 3),
-          angle = c(0, 0, 0, 0),
-          alpha = c(NA, NA, NA, NA),
-          family = c("", "", "", ""),
-          fontface = c(1, 1, 1, 1),
-          lineheight = c(1.2, 1.2, 1.2, 1.2),
-          hjust = c(0.5, 0.5, 0.5, 0.5),
-          vjust = c(0.5, 0.5, 0.5, 0.5)
-        ),
-        row.names = c(NA, -4L),
         class = "data.frame"
       )
     )
@@ -564,207 +440,6 @@ testthat::test_that(
   }
 )
 
-# check glm output ----------------------------------------------
-
-testthat::test_that(
-  desc = "check glm output",
-  code = {
-    testthat::skip_on_cran()
-
-    # set up
-    set.seed(123)
-
-    # dataframe-1
-    counts <- c(18, 17, 15, 20, 10, 20, 25, 13, 12)
-    outcome <- gl(3, 1, 9)
-    treatment <- gl(3, 3)
-    d.AD <- data.frame(treatment, outcome, counts)
-
-    # dataframe-2
-    x1 <- stats::rnorm(50)
-    y1 <- stats::rpois(n = 50, lambda = exp(1 + x1))
-    df <- data.frame(x = x1, y = y1) %>%
-      tibble::as_tibble(x = .)
-
-    # models
-    mod1 <- stats::glm(counts ~ outcome + treatment, family = poisson())
-    mod2 <-
-      stats::glm(
-        formula = y ~ x,
-        family = quasi(variance = "mu", link = "log"),
-        data = df
-      )
-
-    # broom outputs
-    broom_df1 <- broomExtra::tidy(mod1, conf.int = 0.90)
-    broom_df2 <- broomExtra::tidy(mod2, conf.int = 0.99)
-
-    # exponentiation
-    p <- ggstatsplot::ggcoefstats(
-      x = mod2,
-      exponentiate = TRUE,
-      exclude.intercept = FALSE
-    )
-
-    pb <- ggplot2::ggplot_build(p)
-
-    # ggcoefstats outputs
-    tidy_df1 <- ggstatsplot::ggcoefstats(
-      x = mod1,
-      exclude.intercept = FALSE,
-      conf.int = 0.90,
-      output = "tidy"
-    )
-    tidy_df2 <- ggstatsplot::ggcoefstats(
-      x = mod2,
-      exclude.intercept = FALSE,
-      conf.int = 0.99,
-      output = "tidy"
-    )
-
-    # testing
-    testthat::expect_equal(broom_df1$conf.low, tidy_df1$conf.low, tolerance = 0.001)
-    testthat::expect_equal(broom_df2$conf.low, tidy_df2$conf.low, tolerance = 0.001)
-    testthat::expect_equal(broom_df1$conf.high, tidy_df1$conf.high, tolerance = 0.001)
-    testthat::expect_equal(broom_df2$conf.high, tidy_df2$conf.high, tolerance = 0.001)
-    testthat::expect_equal(broom_df1$estimate, tidy_df1$estimate, tolerance = 0.001)
-    testthat::expect_equal(broom_df2$estimate, tidy_df2$estimate, tolerance = 0.001)
-    testthat::expect_equal(broom_df1$std.error, tidy_df1$std.error, tolerance = 0.001)
-    testthat::expect_equal(broom_df2$std.error, tidy_df2$std.error, tolerance = 0.001)
-    testthat::expect_equal(broom_df1$p.value, tidy_df1$p.value, tolerance = 0.001)
-    testthat::expect_equal(broom_df2$p.value, tidy_df2$p.value, tolerance = 0.001)
-    testthat::expect_equal(pb$plot$data$std.error[[1]], 0.09532848, tolerance = 0.001)
-  }
-)
-
-# check mlm output ----------------------------------------------
-
-testthat::test_that(
-  desc = "check mlm output",
-  code = {
-    testthat::skip_on_cran()
-
-    # model (converting all numeric columns in data to z-scores)
-    res <- stats::lm(
-      formula = cbind(mpg, disp) ~ wt,
-      data = purrr::modify_if(.x = mtcars, .p = is.numeric, .f = scale)
-    )
-
-    # plot
-    df <- ggstatsplot::ggcoefstats(
-      x = res,
-      exclude.intercept = FALSE,
-      output = "tidy"
-    )
-
-    # tests
-    testthat::expect_equal(dim(df), c(4L, 10L))
-  }
-)
-
-# check aareg output ----------------------------------------------
-
-testthat::test_that(
-  desc = "check aareg output",
-  code = {
-    testthat::skip_on_cran()
-
-    # model
-    library(survival)
-    set.seed(123)
-    afit <- survival::aareg(
-      formula = Surv(time, status) ~ age + sex + ph.ecog,
-      data = lung,
-      dfbeta = TRUE
-    )
-
-    # broom outputs
-    broom_df <- broomExtra::tidy(afit)
-
-    # ggcoefstats outputs
-    tidy_df <- ggstatsplot::ggcoefstats(
-      x = afit,
-      output = "tidy",
-      exclude.intercept = FALSE
-    )
-
-    # testing
-    testthat::expect_identical(broom_df$term, as.character(tidy_df$term))
-    testthat::expect_equal(broom_df$estimate, tidy_df$estimate, tolerance = 0.001)
-    testthat::expect_equal(broom_df$std.error, tidy_df$std.error, tolerance = 0.001)
-    testthat::expect_equal(broom_df$p.value, tidy_df$p.value, tolerance = 0.001)
-    testthat::expect_equal(broom_df$statistic, tidy_df$coefficient, tolerance = 0.001)
-    testthat::expect_identical(
-      as.character(round(broom_df$statistic.z, 2)),
-      tidy_df$statistic
-    )
-  }
-)
-
-# check clm models (minimal) ----------------------------------------
-
-testthat::test_that(
-  desc = "check clm models (minimal)",
-  code = {
-    testthat::skip_on_cran()
-
-    # clm model
-    set.seed(123)
-    library(ordinal)
-    mod.clm <- ordinal::clm(
-      formula = as.factor(rating) ~ belief * outcome,
-      data = ggstatsplot::intent_morality
-    )
-
-    # plot
-    set.seed(123)
-    p <-
-      ggstatsplot::ggcoefstats(
-        x = mod.clm,
-        exclude.intercept = FALSE,
-        conf.int = 0.99,
-        k = 4L
-      )
-
-    # build the plot
-    pb <- ggplot2::ggplot_build(p)
-
-    # dataframes
-    df.clm1 <-
-      ggstatsplot::ggcoefstats(
-        x = mod.clm,
-        coefficient.type = "both",
-        exponentiate = TRUE,
-        output = "tidy"
-      )
-    df.clm2 <-
-      ggstatsplot::ggcoefstats(
-        x = mod.clm,
-        exponentiate = TRUE,
-        coefficient.type = c("intercept", "alpha"),
-        output = "tidy"
-      )
-    df.clm3 <-
-      ggstatsplot::ggcoefstats(
-        x = mod.clm,
-        coefficient.type = c("location", "beta"),
-        output = "tidy"
-      )
-    df.clm4 <-
-      ggstatsplot::ggcoefstats(
-        x = mod.clm,
-        coefficient.type = NULL,
-        output = "tidy"
-      )
-
-    # dimensions
-    testthat::expect_equal(dim(df.clm1), c(9L, 11L))
-    testthat::expect_equal(dim(df.clm2), c(6L, 11L))
-    testthat::expect_equal(dim(df.clm3), c(3L, 11L))
-    testthat::expect_equal(dim(df.clm4), c(9L, 11L))
-  }
-)
-
 # dataframe as input ----------------------------------------------------
 
 testthat::test_that(
@@ -775,7 +450,7 @@ testthat::test_that(
 
     # creating dataframe
     df1 <- tibble::tribble(
-      ~term, ~statistic, ~estimate, ~conf.low, ~conf.high, ~p.value, ~df.residual,
+      ~term, ~statistic, ~estimate, ~conf.low, ~conf.high, ~p.value, ~df.error,
       "level2", 0.158, 0.0665, -0.778, 0.911, 0.875, 5L,
       "level1", 1.33, 0.542, -0.280, 1.36, 0.191, 10L,
       "level3", 1.24, 0.045, 0.030, 0.65, 0.001, 12L
@@ -783,13 +458,13 @@ testthat::test_that(
     df2 <- dplyr::select(.data = df1, -p.value)
     df3 <- dplyr::select(.data = df1, -statistic)
     df3$p.value <- as.factor(df3$p.value)
-    df4 <- dplyr::select(.data = df1, -df.residual)
+    df4 <- dplyr::select(.data = df1, -df.error)
     df5 <- tibble::add_column(df1, std.error = c(0.015, 0.2, 0.09))
     df6 <- dplyr::select(.data = df5, -term, -estimate, -std.error)
 
     # repeated term dataframe
     df7 <- tibble::tribble(
-      ~term, ~statistic, ~estimate, ~conf.low, ~conf.high, ~p.value, ~df.residual,
+      ~term, ~statistic, ~estimate, ~conf.low, ~conf.high, ~p.value, ~df.error,
       "x", 0.158, 0.0665, -0.778, 0.911, 0.875, 5L,
       "x", 1.33, 0.542, -0.280, 1.36, 0.191, 10L,
       "x", 1.24, 0.045, 0.030, 0.65, 0.001, 12L
@@ -797,7 +472,7 @@ testthat::test_that(
 
     # check that term column is generated
     df8 <- tibble::tribble(
-      ~statistic, ~estimate, ~conf.low, ~conf.high, ~p.value, ~df.residual,
+      ~statistic, ~estimate, ~conf.low, ~conf.high, ~p.value, ~df.error,
       0.158, 0.0665, -0.778, 0.911, 0.875, 5L,
       1.33, 0.542, -0.280, 1.36, 0.191, 10L,
       1.24, 0.045, 0.030, 0.65, 0.001, 12L
@@ -1091,44 +766,6 @@ testthat::test_that(
     testthat::expect_identical(df3.broom, df3.ggstats)
     testthat::expect_true(inherits(df1.ggstats, what = "tbl_df"))
     testthat::expect_true(inherits(df3.ggstats, what = "tbl_df"))
-  }
-)
-
-# check if p-value adjustment works ----------------------------------------
-
-testthat::test_that(
-  desc = "check if p-value adjustment works",
-  code = {
-    testthat::skip_on_cran()
-    set.seed(123)
-
-    # model
-    mod <- stats::aov(
-      data = mtcars,
-      formula = wt ~ am * cyl * carb
-    )
-
-    # tidy output
-    df <-
-      ggstatsplot::ggcoefstats(
-        x = mod,
-        output = "tidy",
-        p.adjust.method = "holm"
-      )
-
-    # checking adjusted p-values
-    testthat::expect_identical(
-      df$p.value.formatted,
-      c(
-        "<= 0.001",
-        "<= 0.001",
-        "== 0.200",
-        "== 0.570",
-        "== 0.570",
-        "== 0.570",
-        "== 0.570"
-      )
-    )
   }
 )
 

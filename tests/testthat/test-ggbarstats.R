@@ -233,7 +233,6 @@ testthat::test_that(
         label = "both",
         package = "wesanderson",
         palette = "Royal2",
-        labels.legend = c("0 = V-shaped", "1 = straight"),
         legend.title = "Engine",
         messages = FALSE
       ))

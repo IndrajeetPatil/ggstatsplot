@@ -309,9 +309,6 @@ ggstatsplot::grouped_ggcorrmat(
 )
 ```
 
-As this example illustrates, there is a minimal coding overhead to explore
-correlations in your dataset with the `grouped_ggcorrmat` function.
-
 ## Grouped analysis with `ggcorrmat` + `purrr`
 
 Although `grouped_` function is good for quickly exploring the data, it reduces

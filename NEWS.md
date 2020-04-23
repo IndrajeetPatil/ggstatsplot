@@ -1,4 +1,4 @@
-# ggstatsplot 0.4.0.9000
+# ggstatsplot 0.5.0
 
 BREAKING CHANGES
 
@@ -9,6 +9,36 @@ BREAKING CHANGES
         asterisks represent.
     2.  The *p*-value labels also contain information about whether they are
         adjusted for multiple comparisons.
+        
+  - The `normality_message` and `bartlett_message` helper functions have been
+    removed. This is because model assumption checks don't really fall under the
+    purview of this package. There are excellent visualization tools out there
+    for model assumption checks (`ggResidpanel`, `performance`, `DHARMa`,
+    `olsrr`, etc.), which should be preferred over unhelpful messages with only
+    *p*-values that these functions were printing. For what it's worth, the
+    functions where these messages were displayed (`ggbetweenstats` or
+    `ggwithinstats`) feature visualizations rich enough and defaults sensible
+    enough that most of the time one can either assess these assumptions from
+    the plots or need not worry about them.
+
+MAJOR CHANGES
+
+  - `ggcoefstats` has been refactored to reflect that
+    `broomExtra::tidy_parameters` now defaults to `parameters` package instead
+    of `broom`. It also loses the following vestigial arguments:
+    `p.adjust.method` and `coefficient.type`.
+    
+  - Reverts aligning title and subtitle with the plot and not the axes, since it
+    looked pretty ugly (esp., `ggcoefstats`) and was causing problems for
+    labels.
+    
+  - `factor.levels` (for `ggpiestats`) and `labels.legend` (for `ggbarstats`)
+    are deprecated. If users would like to changes the names for factor levels,
+    this should be done outside of `ggstatsplot`.
+
+NEW FEATURES
+
+  - More models supported in `ggcoefstats`: `bayesGARCH`, `clm2`, `mcmc.list`.
 
 # ggstatsplot 0.4.0
 
@@ -24,7 +54,10 @@ BREAKING CHANGES
     <https://www.tidyverse.org/blog/2020/03/ggplot2-3-3-0/#rewrite-of-axis-code>
 
 NEW FEATURES
-  
+
+  - More models supported in `ggcoefstats`: `bayesx`, `BBmm`, `brmultinom`,
+    `lmerModLmerTest`, `lrm`.
+    
   - Specifying `output = "proptest"` for `ggpiestats` and `ggbarstats` functions
     will now return a dataframe containing results from proportion test.
   
@@ -53,9 +86,6 @@ MAJOR CHANGES
     expects the minimum R version to be `3.6.0`.
 
 MINOR CHANGES
-
-  - More models supported in `ggcoefstats`: `bayesx`, `BBmm`, `brmultinom`,
-    `lmerModLmerTest`, `lrm`.
     
   - `ggcorrmat` now internally relies on `correlation` for correlation analyses.
   

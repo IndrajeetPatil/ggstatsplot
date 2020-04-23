@@ -269,14 +269,6 @@ values, <em>p</em>-values, no. of observations, etc.) will be returned.</p></td>
       <td><p>Arguments passed on to <code><a href='ggcorrmat.html'>ggcorrmat</a></code></p><dl'>
     <dt><code>matrix.type</code></dt><dd><p>Character, <code>"full"</code> (default), <code>"upper"</code> or <code>"lower"</code>,
 display full matrix, lower triangular or upper triangular matrix.</p></dd>
-    <dt><code>type</code></dt><dd><p>A character string indicating which correlation coefficient is to
-be computed: <code>"pearson"</code> (Pearson's <em>r</em>), <code>"spearman"</code> (Spearman's <em>rho</em>),
-<code>"robust"</code> (percentage bend correlation (see <code><a href='https://rdrr.io/pkg/WRS2/man/pbcor.html'>?WRS2::pball</a></code>)) or <code>"bayes"</code>,
-which would compute Bayes Factor for Pearson's <em>r</em>.
-Abbreviations will also work: <code>"p"</code> (for parametric), <code>"np"</code>
-(nonparametric), <code>"r"</code> (robust), <code>"bf"</code> (Bayes Factor).</p></dd>
-    <dt><code>beta</code></dt><dd><p>A numeric bending constant for percentage bend robust correlation
-coefficient (Default: <code>0.1</code>).</p></dd>
     <dt><code>sig.level</code></dt><dd><p>Significance level (Default: <code>0.05</code>). If the <em>p</em>-value in
 <em>p</em>-value matrix is bigger than <code>sig.level</code>, then the corresponding
 correlation coefficient is regarded as insignificant and flagged as such in
@@ -302,6 +294,20 @@ will be passed to <code><a href='https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.h
 any of the following arguments since they are already internally being used
 by <code>ggstatsplot</code>: <code>corr</code>, <code>method</code>, <code>p.mat</code>, <code>sig.level</code>, <code>ggtheme</code>,
 <code>colors</code>, <code>matrix.type</code>, <code>lab</code>, <code>pch</code>, <code>legend.title</code>, <code>digits</code>.</p></dd>
+    <dt><code>type</code></dt><dd><p>Type of association between paired samples required
+("<code>"parametric"</code>: Pearson's product moment correlation coefficient" or
+"<code>"nonparametric"</code>: Spearman's rho" or "<code>"robust"</code>: percentage bend
+correlation coefficient" or "<code>"bayes"</code>: Bayes Factor for Pearson's <em>r</em>").
+Corresponding abbreviations are also accepted: <code>"p"</code> (for
+parametric/pearson's), <code>"np"</code> (nonparametric/spearman), <code>"r"</code> (robust),
+<code>"bf"</code> (for bayes factor), resp.</p></dd>
+    <dt><code>beta</code></dt><dd><p>bending constant (Default: <code>0.1</code>). For more, see <code><a href='https://rdrr.io/pkg/WRS2/man/pbcor.html'>?WRS2::pbcor</a></code>.</p></dd>
+    <dt><code>k</code></dt><dd><p>Number of digits after decimal point (should be an integer)
+(Default: <code>k = 2</code>).</p></dd>
+    <dt><code>conf.level</code></dt><dd><p>Scalar between 0 and 1. If unspecified, the defaults return
+<code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></dd>
+    <dt><code>bf.prior</code></dt><dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
+width to use in calculating Bayes factors.</p></dd>
     <dt><code>ggtheme</code></dt><dd><p>A function, <code>ggplot2</code> theme name. Default value is
 <code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
 extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>,
@@ -322,12 +328,6 @@ used with <code>formula = y ~ s(x, bs = "cs")</code> with <code>method = "REML"<
 so does not work for larger datasets.If you have fewer than 1,000 observations but want to use the same <code>gam()</code>
 model that <code>method = NULL</code> would use, then set
 <code>method = "gam", formula = y ~ s(x, bs = "cs")</code>.</p></dd>
-    <dt><code>k</code></dt><dd><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 2</code>).</p></dd>
-    <dt><code>conf.level</code></dt><dd><p>Scalar between 0 and 1. If unspecified, the defaults return
-<code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></dd>
-    <dt><code>bf.prior</code></dt><dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
-width to use in calculating Bayes factors.</p></dd>
     <dt><code>subtitle</code></dt><dd><p>The text for the plot subtitle. Will work only if
 <code>results.subtitle = FALSE</code>.</p></dd>
     <dt><code>messages</code></dt><dd><p>Decides whether messages references, notes, and warnings are
@@ -335,7 +335,6 @@ to be displayed (Default: <code>TRUE</code>).</p></dd>
     <dt><code>package</code></dt><dd><p>Name of package from which the palette is desired as string
 or symbol.</p></dd>
     <dt><code>palette</code></dt><dd><p>Name of palette as string or symbol.</p></dd>
-    <dt><code>direction</code></dt><dd><p>Either <code>1</code> or <code>-1</code>. If <code>-1</code> the palette will be reversed.</p></dd>
   
 </dl></td>
     </tr>
@@ -450,7 +449,7 @@ function.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>

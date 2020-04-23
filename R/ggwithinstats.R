@@ -108,7 +108,6 @@ ggwithinstats <- function(data,
                           ggstatsplot.layer = TRUE,
                           package = "RColorBrewer",
                           palette = "Dark2",
-                          direction = 1,
                           ggplot.component = NULL,
                           output = "plot",
                           messages = TRUE,
@@ -383,29 +382,8 @@ ggwithinstats <- function(data,
       ggstatsplot.layer = ggstatsplot.layer,
       package = package,
       palette = palette,
-      direction = direction,
       ggplot.component = ggplot.component
     )
-
-  # --------------------- messages ------------------------------------------
-
-  if (isTRUE(messages)) {
-    # display normality test result as a message
-    normality_message(
-      x = data %>% dplyr::pull({{ y }}),
-      lab = ylab,
-      k = k
-    )
-
-    # display homogeneity of variance test as a message
-    bartlett_message(
-      data = data,
-      x = {{ x }},
-      y = {{ y }},
-      lab = xlab,
-      k = k
-    )
-  }
 
   # return the final plot
   return(plot)

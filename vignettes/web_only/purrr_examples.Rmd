@@ -348,7 +348,6 @@ ggstatsplot::combine_plots(
   plotlist = plot_list,
   title.text = "Relationship between movie budget and IMDB rating",
   caption.text = "Source: www.imdb.com",
-  caption.size = 16,
   title.color = "red",
   caption.color = "blue",
   ncol = 1
@@ -648,7 +647,7 @@ ggstatsplot::combine_plots(
 
 # `ggbarstats`
 
-```{r purrr_ggbarstats, warning = FALSE, message = FALSE, fig.height = 20, fig.width = 7}
+```{r purrr_ggbarstats, warning = FALSE, message = FALSE, fig.height = 24, fig.width = 6}
 # for reproducibility
 set.seed(123)
 
@@ -742,24 +741,27 @@ length(plotlist)
 
 # Repeating function execution across multiple columns in a dataframe
 
-```{r purrr_columns, warning = FALSE, message = FALSE}
-# running the same analysis on two different columns
+```{r purrr_columns, warning = FALSE, message = FALSE, fig.width=12}
+# setup
+set.seed(123)
+library(ggstatsplot)
+library(patchwork)
+
+# running the same analysis on two different columns (creates a list of plots)
 plotlist <-
   purrr::pmap(
     .l = list(
-      data = list(mtcars),
-      x = "am",
-      y = list("wt", "qsec"),
+      data = list(movies_long),
+      x = "mpaa",
+      y = list("rating", "length"),
+      title = list("IMDB score by MPAA rating", "Movie length by MPAA rating"),
       messages = FALSE
     ),
     .f = ggstatsplot::ggbetweenstats
   )
 
-# wt
-plotlist[[1]]
-
-# qsec
-plotlist[[2]]
+# combine plots using `patchwork`
+plotlist[[1]] + plotlist[[2]]
 ```
 
 # Suggestions

@@ -175,10 +175,11 @@ each gender. We can *see* the differences in distributions.
 Although this is a quick and dirty way to explore a large amount of data with
 minimal effort, it does come with an important limitation: reduced flexibility.
 For example, if we wanted to add, let's say, a separate `test.value` argument
-for each gender, this is not possible with `grouped_gghistostats`. For cases
-like these, or to run separate  kinds of tests (robust for some, parametric for
-other, while Bayesian for some other levels of the group) it would be better to
-use `purrr`.   
+for each gender, this is not possible with `grouped_gghistostats`. 
+
+For cases like these, or to run separate  kinds of tests (robust for some,
+parametric for other, while Bayesian for some other levels of the group) it
+would be better to use `purrr`.
 
 See the associated vignette here:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>

@@ -204,9 +204,8 @@
 
     <pre class="usage"><span class='fu'>ggcoefstats_label_maker</span>(
   <span class='no'>tidy_df</span>,
-  <span class='kw'>glance_df</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2L</span>,
   <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"eta"</span>,
   <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='no'>...</span>
@@ -218,12 +217,6 @@
     <tr>
       <th>tidy_df</th>
       <td><p>A tidy dataframe.</p></td>
-    </tr>
-    <tr>
-      <th>glance_df</th>
-      <td><p>A tidy model summary dataframe (default: <code>NULL</code>). If
-provided, this dataframe will be used to write <code>caption</code> for the final
-plot.</p></td>
     </tr>
     <tr>
       <th>statistic</th>
@@ -240,15 +233,14 @@ kind of model it is dealing with.</p></td>
     <tr>
       <th>effsize</th>
       <td><p>Character describing the effect size to be displayed: <code>"eta"</code>
-(default) or <code>"omega"</code>. This argument is relevant
-only for models objects of class <code>aov</code>, <code>anova</code>, and <code>aovlist</code>.</p></td>
+(default) or <code>"omega"</code>. This argument is relevant only for models objects
+of class <code>aov</code>, <code>anova</code>, <code>aovlist</code>, <code>"Gam"</code>, and <code>"manova"</code>.</p></td>
     </tr>
     <tr>
       <th>partial</th>
-      <td><p>Logical that decides if partial eta-squared or omega-squared
-are returned (Default: <code>TRUE</code>). If <code>FALSE</code>, eta-squared or omega-squared
-will be returned. Valid only for objects of class <code>aov</code>, <code>anova</code>, or
-<code>aovlist</code>.</p></td>
+      <td><p>Logical that decides if partial eta-squared or partial
+omega-squared are returned (Default: <code>TRUE</code>). If <code>FALSE</code>, eta-squared or
+omega-squared will be returned.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -272,7 +264,7 @@ will be returned. Valid only for objects of class <code>aov</code>, <code>anova<
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>

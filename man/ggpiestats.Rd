@@ -12,7 +12,6 @@ ggpiestats(
   ratio = NULL,
   paired = FALSE,
   results.subtitle = TRUE,
-  factor.levels = NULL,
   label = "percentage",
   perc.k = 0,
   label.args = list(alpha = 1, fill = "white"),
@@ -32,7 +31,6 @@ ggpiestats(
   ggstatsplot.layer = TRUE,
   package = "RColorBrewer",
   palette = "Dark2",
-  direction = 1,
   ggplot.component = NULL,
   output = "plot",
   messages = TRUE,
@@ -63,9 +61,6 @@ be returned.}
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}
 
-\item{factor.levels}{A character vector with labels for factor levels of
-\code{main} variable.}
-
 \item{label}{Character decides what information needs to be displayed
 on the label in each pie slice. Possible options are \code{"percentage"}
 (default), \code{"counts"}, \code{"both"}.}
@@ -76,9 +71,9 @@ labels (Default: \code{0}).}
 \item{label.args}{Additional aesthetic arguments that will be passed to
 \code{geom_label}.}
 
-\item{bf.message}{Logical that decides whether to display a caption with
-results from Bayes Factor test in favor of the null hypothesis (default:
-\code{FALSE}).}
+\item{bf.message}{Logical that decides whether to display Bayes Factor in
+favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
+parametric test} (Default: \code{TRUE}).}
 
 \item{sampling.plan}{Character describing the sampling plan. Possible options
 are \code{"indepMulti"} (independent multinomial; default), \code{"poisson"},
@@ -131,8 +126,6 @@ or symbol.}
 palette. If a number, will index into the list of palettes of appropriate
 type. Default palette is \code{"Dark2"}.}
 
-\item{direction}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
-
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
 of the current function. Default is \code{NULL}. The argument should be entered
@@ -179,20 +172,14 @@ included in the plot as a subtitle.
 set.seed(123)
 
 # one sample goodness of fit proportion test
-ggstatsplot::ggpiestats(
-  data = ggplot2::msleep,
-  x = vore,
-  perc.k = 1
-)
+ggstatsplot::ggpiestats(ggplot2::msleep, vore)
 
 # association test (or contingency table analysis)
 ggstatsplot::ggpiestats(
   data = mtcars,
   x = vs,
   y = cyl,
-  bf.message = TRUE,
   nboot = 10,
-  factor.levels = c("0 = V-shaped", "1 = straight"),
   legend.title = "Engine"
 )
 }

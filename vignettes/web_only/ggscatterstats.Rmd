@@ -249,8 +249,7 @@ ggstatsplot::combine_plots(
   plotlist = plot_list2,
   title.text = "Trying out different smoothing functions with ggscatterstats",
   caption.text = "Source: www.imdb.com",
-  nrow = 2,
-  ncol = 2
+  nrow = 2
 )
 ```
 

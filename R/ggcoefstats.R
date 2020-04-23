@@ -27,13 +27,6 @@
 #'   (Defaults: `"regression coefficient"` and `"term"`).
 #' @param subtitle The text for the plot subtitle. The input to this argument
 #'   will be ignored if `meta.analytic.effect` is set to `TRUE`.
-#' @param p.adjust.method Adjustment method for *p*-values for multiple
-#'   comparisons. Possible methods are: `"holm"`, `"hochberg"`, `"hommel"`,
-#'   `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`, `"none"`. Default is no correction
-#'   (`"none"`). This argument is relevant for multiplicity correction for
-#'   multiway ANOVA designs (see,
-#'   \href{https://link.springer.com/article/10.3758/s13423-015-0913-5}{Cramer
-#'   et al., 2015}).
 #' @param point.args Additional arguments that will be passed to
 #'   `ggplot2::geom_point` geom. Please see documentation for that function to
 #'   know more about these arguments.
@@ -42,35 +35,19 @@
 #' @param conf.level Numeric deciding level of confidence intervals (Default:
 #'   `0.95`). For `MCMC` model objects (`Stan`, `JAGS`, etc.), this will be
 #'   probability level for CI.
-#' @param coefficient.type Relevant only for ordinal regression models (`clm` ,
-#'   `clmm`, `"svyolr"`, and `polr`), this argument decides which parameters are
-#'   display in the plot. Available parameters are: parameter that measures the
-#'   **intercept**, i.e. the log-odds distance between response values
-#'   (`"alpha"`); effects on the **location** (`"beta"`); or effects on the
-#'   **scale** (`"zeta"`). For `clm` and `clmm` models, by default, only
-#'   `"beta"` (a vector of regression parameters) parameters will be show. Other
-#'   options are `"alpha"` (a vector of threshold parameters) or `"both"`. For
-#'   `polr` models, by default, only `"coefficient"` will be shown. Other option
-#'   is to show `"zeta"` parameters. Note that, from `broom 0.7.0` onward,
-#'   coefficients will be renamed and `"intercept"` type coefficients will
-#'   correspond to `"alpha"` parameters, `"location"` type coefficients will
-#'   correspond to `"beta"` parameters, and `"scale"` type coefficients will
-#'   correspond to `"zeta"` parameters.
-#' @param nboot Number of bootstrap samples for confidence intervals for partial
-#'   eta-squared and omega-squared (Default: `500`). This argument is relevant
-#'   only for models objects of class `aov`, `anova`, and `aovlist`.
 #' @param effsize Character describing the effect size to be displayed: `"eta"`
-#'   (default) or `"omega"`. This argument is relevant
-#'   only for models objects of class `aov`, `anova`, and `aovlist`.
-#' @param partial Logical that decides if partial eta-squared or omega-squared
-#'   are returned (Default: `TRUE`). If `FALSE`, eta-squared or omega-squared
-#'   will be returned. Valid only for objects of class `aov`, `anova`, or
-#'   `aovlist`.
+#'   (default) or `"omega"`. This argument is relevant only for models objects
+#'   of class `aov`, `anova`, `aovlist`, `"Gam"`, and `"manova"`.
+#' @param partial Logical that decides if partial eta-squared or partial
+#'   omega-squared are returned (Default: `TRUE`). If `FALSE`, eta-squared or
+#'   omega-squared will be returned.
+#' @param nboot Number of bootstrap samples for confidence intervals for partial
+#'   eta-squared and omega-squared (Default: `500L`).
 #' @param meta.analytic.effect Logical that decides whether subtitle for
 #'   meta-analysis via linear (mixed-effects) models (default: `FALSE`). If
 #'   `TRUE`, input to argument `subtitle` will be ignored. This will be mostly
 #'   relevant if a data frame with estimates and their standard errors is
-#'   entered as input to `x` argument.
+#'   entered.
 #' @param meta.type Type of statistics used to carry out random-effects
 #'   meta-analysis. If `"parametric"` (default), `metafor::rma` function will be
 #'   used. If `"robust"`, `metaplus::metaplus` function will be used. If
@@ -108,11 +85,12 @@
 #'   is shown (Default: `FALSE`). This can be helpful when a large number of
 #'   regression coefficients are to be displayed in a single plot. Relevant only
 #'   when the `output` is a plot.
-#' @param caption.summary Logical. Decides whether the model summary should be
-#'   displayed as a cation to the plot (Default: `TRUE`). Color of the line
+#' @param caption.summary Logical that decides whether the model summary should
+#'   be displayed as a cation to the plot (Default: `TRUE`). Color of the line
 #'   segment. Defaults to the same color as the text.
 #' @param ... Additional arguments to tidying method.
 #' @inheritParams statsExpressions::bf_meta
+#' @inheritParams parameters::model_parameters
 #' @inheritParams broom::tidy.clm
 #' @inheritParams broom::tidy.polr
 #' @inheritParams theme_ggstatsplot
@@ -213,7 +191,7 @@
 #'         5.45155840151592e-26,
 #'         2.99171217913312e-13
 #'       ),
-#'       df.residual = c(
+#'       df.error = c(
 #'         394L, 358L, 622L,
 #'         298L, 22L
 #'       )
@@ -244,24 +222,6 @@
 #'
 #' # dataframe with model summary
 #' ggstatsplot::ggcoefstats(x = lmm1, output = "glance")
-#'
-#' # -------------- getting augmented dataframe ------------------------------
-#'
-#' # setup
-#' set.seed(123)
-#' library(survival)
-#'
-#' # fit
-#' cfit <-
-#'   survival::coxph(formula = Surv(time, status) ~ age + sex, data = lung)
-#'
-#' # augmented dataframe
-#' ggstatsplot::ggcoefstats(
-#'   x = cfit,
-#'   data = lung,
-#'   output = "augment",
-#'   type.predict = "risk"
-#' )
 #' }
 #' @export
 
@@ -270,11 +230,9 @@ ggcoefstats <- function(x,
                         output = "plot",
                         statistic = NULL,
                         bf.message = TRUE,
-                        p.adjust.method = "none",
-                        coefficient.type = c("beta", "location", "coefficient"),
                         effsize = "eta",
                         partial = TRUE,
-                        nboot = 500,
+                        nboot = 500L,
                         meta.analytic.effect = FALSE,
                         meta.type = "parametric",
                         conf.int = TRUE,
@@ -299,7 +257,6 @@ ggcoefstats <- function(x,
                         stats.label.args = list(size = 3, direction = "y"),
                         package = "RColorBrewer",
                         palette = "Dark2",
-                        direction = 1,
                         ggtheme = ggplot2::theme_bw(),
                         ggstatsplot.layer = TRUE,
                         messages = FALSE,
@@ -310,12 +267,6 @@ ggcoefstats <- function(x,
   # models for which statistic is F-value
   f.mods <- c("aov", "aovlist", "anova", "Gam", "manova")
 
-  # model for which the output names are going to be slightly weird
-  weird_name_mods <- c(
-    "brmultinom", "drc", "DirichletRegModel",
-    "gmm", "gamlss", "glmmTMB", "lmodel2", "mlm", "zcpglm"
-  )
-
   # ============================= model summary ============================
 
   # creating glance dataframe
@@ -323,12 +274,11 @@ ggcoefstats <- function(x,
 
   # if glance is not available, inform the user
   if (isTRUE(insight::is_model(x))) {
-    if (is.null(glance_df) || !all(c("aic", "bic") %in% tolower(names(glance_df)))) {
+    if (is.null(glance_df) || !all(c("aic", "bic") %in% names(glance_df))) {
       # inform the user
       message(cat(
-        ipmisc::green("Note: "),
-        ipmisc::blue("No model diagnostics information available, so skipping caption.\n"),
-        sep = ""
+        ipmisc::green("Note:"),
+        ipmisc::blue("AIC and BIC values not available, so skipping caption.\n")
       ))
 
       # and skip the caption
@@ -350,11 +300,9 @@ ggcoefstats <- function(x,
       # inform the user
       if (output == "plot") {
         message(cat(
-          ipmisc::red("Note"),
-          ipmisc::blue(": For the object of class"),
-          ipmisc::yellow(class(x)[[1]]),
-          ipmisc::blue(", the argument `statistic` must be specified ('t', 'z', or 'f').\n"),
-          ipmisc::blue("Statistical labels will therefore be skipped.\n"),
+          ipmisc::red("Note: "),
+          ipmisc::blue("The argument `statistic` must be specified.\n"),
+          ipmisc::blue("Skipping labels with statistical details.\n"),
           sep = ""
         ))
       }
@@ -393,6 +341,7 @@ ggcoefstats <- function(x,
           x = x,
           conf.int = conf.int,
           conf.level = conf.level,
+          ci = conf.level,
           exponentiate = exponentiate,
           effects = "fixed",
           parametric = TRUE, # for `gam` objects
@@ -422,35 +371,10 @@ ggcoefstats <- function(x,
       dplyr::mutate(.data = ., term = paste("term", term, sep = "_"))
   }
 
-  # selecting needed coefficients/parameters for ordinal regression models
-  if (any(names(tidy_df) %in% c("coefficient_type", "coef.type"))) {
-    if (any(coefficient.type %in%
-      c("alpha", "beta", "zeta", "intercept", "location", "scale", "coefficient"))) {
-      # subset the dataframe, only if not all coefficients are to be retained
-      tidy_df %<>%
-        dplyr::filter_at(
-          .tbl = .,
-          .vars = dplyr::vars(dplyr::starts_with("coef")),
-          .vars_predicate = dplyr::all_vars(. %in% coefficient.type)
-        )
-    }
-  }
-
-  # changing names of columns to the required format for `aareg` objects
-  if (class(x)[[1]] == "aareg") {
-    tidy_df %<>%
-      dplyr::rename(
-        .data = .,
-        coefficient = statistic,
-        statistic = statistic.z
-      )
-  }
-
   # =================== check for duplicate terms ============================
 
-  # for some class of objects, there are going to be duplicate terms
-  # create a new column by collapsing original `variable` and `term` columns
-  if (class(x)[[1]] %in% weird_name_mods) {
+  # a check if there are repeated terms
+  if (any(duplicated(dplyr::select(tidy_df, term)))) {
     tidy_df %<>%
       tidyr::unite(
         data = .,
@@ -461,7 +385,7 @@ ggcoefstats <- function(x,
       )
   }
 
-  # halt if there are repeated terms
+  # halt if there are still repeated terms
   if (any(duplicated(dplyr::select(tidy_df, term)))) {
     message(cat(
       ipmisc::red("Error: "),
@@ -547,12 +471,6 @@ ggcoefstats <- function(x,
       )
   }
 
-  # # adjust the p-values based on the adjustment used
-  if ("p.value" %in% names(tidy_df)) {
-    # adjust the p-values based on the adjustment used
-    tidy_df %<>% dplyr::mutate(p.value = stats::p.adjust(p.value, p.adjust.method))
-  }
-
   # ========================== preparing label ================================
 
   # adding a column with labels to be used with `ggrepel`
@@ -564,7 +482,6 @@ ggcoefstats <- function(x,
     tidy_df %<>%
       ggcoefstats_label_maker(
         tidy_df = .,
-        glance_df = glance_df,
         statistic = statistic,
         k = k,
         effsize = effsize,
@@ -681,8 +598,6 @@ ggcoefstats <- function(x,
 
   # ========================== basic plot ===================================
 
-
-
   # palette check is necessary only if output is a plot
   if (output == "plot") {
     # setting up the basic architecture
@@ -771,7 +686,6 @@ ggcoefstats <- function(x,
           paletteer::paletteer_d(
             palette = paste0(package, "::", palette),
             n = length(tidy_df$term),
-            direction = direction,
             type = "discrete"
           )
       }

@@ -63,8 +63,6 @@ association test will be run. This argument can not be \code{NULL} for
 \item{...}{
   Arguments passed on to \code{\link[=ggpiestats]{ggpiestats}}
   \describe{
-    \item{\code{factor.levels}}{A character vector with labels for factor levels of
-\code{main} variable.}
     \item{\code{caption}}{The text for the plot caption.}
     \item{\code{palette}}{If a character string (e.g., \code{"Set1"}), will use that named
 palette. If a number, will index into the list of palettes of appropriate
@@ -78,9 +76,6 @@ on the label in each pie slice. Possible options are \code{"percentage"}
 (default), \code{"counts"}, \code{"both"}.}
     \item{\code{label.args}}{Additional aesthetic arguments that will be passed to
 \code{geom_label}.}
-    \item{\code{bf.message}}{Logical that decides whether to display a caption with
-results from Bayes Factor test in favor of the null hypothesis (default:
-\code{FALSE}).}
     \item{\code{ratio}}{A vector of proportions: the expected proportions for the
 proportion test (should sum to 1). Default is \code{NULL}, which means the null
 is equal theoretical proportions across the levels of the nominal variable.
@@ -120,6 +115,9 @@ override some aspects of the selected \code{ggtheme}.}
     \item{\code{results.subtitle}}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}
+    \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
+favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
+parametric test} (Default: \code{TRUE}).}
     \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
     \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
@@ -128,7 +126,6 @@ of the current function. Default is \code{NULL}. The argument should be entered
 as a function.}
     \item{\code{package}}{Name of package from which the palette is desired as string
 or symbol.}
-    \item{\code{direction}}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
   }}
 
 \item{plotgrid.args}{A list of additional arguments to \code{cowplot::plot_grid}.}

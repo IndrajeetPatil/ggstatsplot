@@ -220,7 +220,6 @@
   <span class='kw'>ggcorrplot.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>outline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>),
   <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>,
   <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>,
-  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"#E69F00"</span>, <span class='st'>"white"</span>, <span class='st'>"#009E73"</span>),
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
@@ -282,17 +281,17 @@ model that <code>method = NULL</code> would use, then set
     </tr>
     <tr>
       <th>type</th>
-      <td><p>A character string indicating which correlation coefficient is to
-be computed: <code>"pearson"</code> (Pearson's <em>r</em>), <code>"spearman"</code> (Spearman's <em>rho</em>),
-<code>"robust"</code> (percentage bend correlation (see <code><a href='https://rdrr.io/pkg/WRS2/man/pbcor.html'>?WRS2::pball</a></code>)) or <code>"bayes"</code>,
-which would compute Bayes Factor for Pearson's <em>r</em>.
-Abbreviations will also work: <code>"p"</code> (for parametric), <code>"np"</code>
-(nonparametric), <code>"r"</code> (robust), <code>"bf"</code> (Bayes Factor).</p></td>
+      <td><p>Type of association between paired samples required
+("<code>"parametric"</code>: Pearson's product moment correlation coefficient" or
+"<code>"nonparametric"</code>: Spearman's rho" or "<code>"robust"</code>: percentage bend
+correlation coefficient" or "<code>"bayes"</code>: Bayes Factor for Pearson's <em>r</em>").
+Corresponding abbreviations are also accepted: <code>"p"</code> (for
+parametric/pearson's), <code>"np"</code> (nonparametric/spearman), <code>"r"</code> (robust),
+<code>"bf"</code> (for bayes factor), resp.</p></td>
     </tr>
     <tr>
       <th>beta</th>
-      <td><p>A numeric bending constant for percentage bend robust correlation
-coefficient (Default: <code>0.1</code>).</p></td>
+      <td><p>bending constant (Default: <code>0.1</code>). For more, see <code><a href='https://rdrr.io/pkg/WRS2/man/pbcor.html'>?WRS2::pbcor</a></code>.</p></td>
     </tr>
     <tr>
       <th>k</th>
@@ -349,10 +348,6 @@ or symbol.</p></td>
     <tr>
       <th>palette</th>
       <td><p>Name of palette as string or symbol.</p></td>
-    </tr>
-    <tr>
-      <th>direction</th>
-      <td><p>Either <code>1</code> or <code>-1</code>. If <code>-1</code> the palette will be reversed.</p></td>
     </tr>
     <tr>
       <th>colors</th>
@@ -488,7 +483,7 @@ function.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>

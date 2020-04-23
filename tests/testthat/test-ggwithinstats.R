@@ -163,8 +163,8 @@ testthat::test_that(
           x = 1:2,
           y = c(7.86666666666667, 6.73888888888889),
           label = c(
-            "list(~italic(widehat(mu))== 7.8667 )",
-            "list(~italic(widehat(mu))== 6.7389 )"
+            "list(~italic(widehat(mu))==7.8667)",
+            "list(~italic(widehat(mu))==6.7389)"
           ),
           PANEL = structure(c(1L, 1L), class = "factor", .Label = "1"),
           group = structure(1:2, n = 2L),

@@ -207,11 +207,9 @@
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
   <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
-  <span class='kw'>coefficient.type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"beta"</span>, <span class='st'>"location"</span>, <span class='st'>"coefficient"</span>),
   <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"eta"</span>,
   <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>500</span>,
+  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>500L</span>,
   <span class='kw'>meta.analytic.effect</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>meta.type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>,
   <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
@@ -236,7 +234,6 @@
   <span class='kw'>stats.label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"y"</span>),
   <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>,
   <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>,
-  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
@@ -278,50 +275,21 @@ studies with standard deviation <em>t</em> (i.e., a random-effects analysis)
 should be displayed in caption. Defaults to <code>TRUE</code>.</p></td>
     </tr>
     <tr>
-      <th>p.adjust.method</th>
-      <td><p>Adjustment method for <em>p</em>-values for multiple
-comparisons. Possible methods are: <code>"holm"</code>, <code>"hochberg"</code>, <code>"hommel"</code>,
-<code>"bonferroni"</code>, <code>"BH"</code>, <code>"BY"</code>, <code>"fdr"</code>, <code>"none"</code>. Default is no correction
-(<code>"none"</code>). This argument is relevant for multiplicity correction for
-multiway ANOVA designs (see,
-<a href='https://link.springer.com/article/10.3758/s13423-015-0913-5'>Cramer
-et al., 2015</a>).</p></td>
-    </tr>
-    <tr>
-      <th>coefficient.type</th>
-      <td><p>Relevant only for ordinal regression models (<code>clm</code> ,
-<code>clmm</code>, <code>"svyolr"</code>, and <code>polr</code>), this argument decides which parameters are
-display in the plot. Available parameters are: parameter that measures the
-<strong>intercept</strong>, i.e. the log-odds distance between response values
-(<code>"alpha"</code>); effects on the <strong>location</strong> (<code>"beta"</code>); or effects on the
-<strong>scale</strong> (<code>"zeta"</code>). For <code>clm</code> and <code>clmm</code> models, by default, only
-<code>"beta"</code> (a vector of regression parameters) parameters will be show. Other
-options are <code>"alpha"</code> (a vector of threshold parameters) or <code>"both"</code>. For
-<code>polr</code> models, by default, only <code>"coefficient"</code> will be shown. Other option
-is to show <code>"zeta"</code> parameters. Note that, from <code>broom 0.7.0</code> onward,
-coefficients will be renamed and <code>"intercept"</code> type coefficients will
-correspond to <code>"alpha"</code> parameters, <code>"location"</code> type coefficients will
-correspond to <code>"beta"</code> parameters, and <code>"scale"</code> type coefficients will
-correspond to <code>"zeta"</code> parameters.</p></td>
-    </tr>
-    <tr>
       <th>effsize</th>
       <td><p>Character describing the effect size to be displayed: <code>"eta"</code>
-(default) or <code>"omega"</code>. This argument is relevant
-only for models objects of class <code>aov</code>, <code>anova</code>, and <code>aovlist</code>.</p></td>
+(default) or <code>"omega"</code>. This argument is relevant only for models objects
+of class <code>aov</code>, <code>anova</code>, <code>aovlist</code>, <code>"Gam"</code>, and <code>"manova"</code>.</p></td>
     </tr>
     <tr>
       <th>partial</th>
-      <td><p>Logical that decides if partial eta-squared or omega-squared
-are returned (Default: <code>TRUE</code>). If <code>FALSE</code>, eta-squared or omega-squared
-will be returned. Valid only for objects of class <code>aov</code>, <code>anova</code>, or
-<code>aovlist</code>.</p></td>
+      <td><p>Logical that decides if partial eta-squared or partial
+omega-squared are returned (Default: <code>TRUE</code>). If <code>FALSE</code>, eta-squared or
+omega-squared will be returned.</p></td>
     </tr>
     <tr>
       <th>nboot</th>
       <td><p>Number of bootstrap samples for confidence intervals for partial
-eta-squared and omega-squared (Default: <code>500</code>). This argument is relevant
-only for models objects of class <code>aov</code>, <code>anova</code>, and <code>aovlist</code>.</p></td>
+eta-squared and omega-squared (Default: <code>500L</code>).</p></td>
     </tr>
     <tr>
       <th>meta.analytic.effect</th>
@@ -329,7 +297,7 @@ only for models objects of class <code>aov</code>, <code>anova</code>, and <code
 meta-analysis via linear (mixed-effects) models (default: <code>FALSE</code>). If
 <code>TRUE</code>, input to argument <code>subtitle</code> will be ignored. This will be mostly
 relevant if a data frame with estimates and their standard errors is
-entered as input to <code>x</code> argument.</p></td>
+entered.</p></td>
     </tr>
     <tr>
       <th>meta.type</th>
@@ -402,8 +370,8 @@ when <code>output = "caption"</code>.</p></td>
     </tr>
     <tr>
       <th>caption.summary</th>
-      <td><p>Logical. Decides whether the model summary should be
-displayed as a cation to the plot (Default: <code>TRUE</code>). Color of the line
+      <td><p>Logical that decides whether the model summary should
+be displayed as a cation to the plot (Default: <code>TRUE</code>). Color of the line
 segment. Defaults to the same color as the text.</p></td>
     </tr>
     <tr>
@@ -456,10 +424,6 @@ or symbol.</p></td>
       <td><p>Name of palette as string or symbol.</p></td>
     </tr>
     <tr>
-      <th>direction</th>
-      <td><p>Either <code>1</code> or <code>-1</code>. If <code>-1</code> the palette will be reversed.</p></td>
-    </tr>
-    <tr>
       <th>ggtheme</th>
       <td><p>A function, <code>ggplot2</code> theme name. Default value is
 <code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
@@ -506,16 +470,16 @@ labels.</p>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggcoefstats</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>)</div><div class='img'><img src='ggcoefstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># to get a tidy dataframe</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggcoefstats</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"tidy"</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 3 x 11</span><span>
-#&gt;   term   estimate conf.low conf.high std.error statistic  p.value significance
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       
-#&gt; </span><span style='color: #555555;'>1</span><span> cyl       -</span><span style='color: #BB0000;'>1.98</span><span>    -</span><span style='color: #BB0000;'>2.89</span><span>    -</span><span style='color: #BB0000;'>1.06</span><span>      0.449 -4.40     0.000</span><span style='text-decoration: underline;'>141</span><span> ***         
-#&gt; </span><span style='color: #555555;'>2</span><span> am        10.2      1.36    19.0       4.30  2.36      0.025</span><span style='text-decoration: underline;'>3</span><span>   *           
-#&gt; </span><span style='color: #555555;'>3</span><span> cyl:am    -</span><span style='color: #BB0000;'>1.31</span><span>    -</span><span style='color: #BB0000;'>2.75</span><span>     0.143     0.707 -1.85     0.075</span><span style='text-decoration: underline;'>5</span><span>   ns          
-#&gt;   p.value.formatted df.residual
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> &lt;= 0.001                   28
-#&gt; </span><span style='color: #555555;'>2</span><span> == 0.025                   28
-#&gt; </span><span style='color: #555555;'>3</span><span> == 0.076                   28
+#&gt;   term   estimate conf.low conf.high std.error statistic df.error  p.value
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> cyl       -</span><span style='color: #BB0000;'>1.98</span><span>    -</span><span style='color: #BB0000;'>2.89</span><span>    -</span><span style='color: #BB0000;'>1.06</span><span>      0.449 -4.40           28 0.000</span><span style='text-decoration: underline;'>141</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span> am        10.2      1.36    19.0       4.30  2.36            28 0.025</span><span style='text-decoration: underline;'>3</span><span>  
+#&gt; </span><span style='color: #555555;'>3</span><span> cyl:am    -</span><span style='color: #BB0000;'>1.31</span><span>    -</span><span style='color: #BB0000;'>2.75</span><span>     0.143     0.707 -1.85           28 0.075</span><span style='text-decoration: underline;'>5</span><span>  
+#&gt;   significance p.value.formatted
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            
+#&gt; </span><span style='color: #555555;'>1</span><span> ***          &lt;= 0.001         
+#&gt; </span><span style='color: #555555;'>2</span><span> *            == 0.025         
+#&gt; </span><span style='color: #555555;'>3</span><span> ns           == 0.076         
 #&gt;   label                                                                         
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                                                         
 #&gt; </span><span style='color: #555555;'>1</span><span> list(~widehat(italic(beta))==-1.98, ~italic(t)(28)==-4.40, ~italic(p)&lt;= 0.001)
@@ -612,7 +576,7 @@ labels.</p>
         <span class='fl'>5.45155840151592e-26</span>,
         <span class='fl'>2.99171217913312e-13</span>
       ),
-      <span class='kw'>df.residual</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
+      <span class='kw'>df.error</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
         <span class='fl'>394L</span>, <span class='fl'>358L</span>, <span class='fl'>622L</span>,
         <span class='fl'>298L</span>, <span class='fl'>22L</span>
       )
@@ -648,49 +612,7 @@ labels.</p>
 #&gt; </span><span style='color: #555555;'>1</span><span>  25.6  -</span><span style='color: #BB0000;'>872.</span><span> </span><span style='text-decoration: underline;'>1</span><span>756. </span><span style='text-decoration: underline;'>1</span><span>775.    </span><span style='text-decoration: underline;'>1</span><span>744.         174          0.799       0.279 0.722
 #&gt;    rmse
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>  23.4</div><div class='input'>
-<span class='co'># -------------- getting augmented dataframe ------------------------------</span>
-
-<span class='co'># setup</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>survival</span>)
-
-<span class='co'># fit</span>
-<span class='no'>cfit</span> <span class='kw'>&lt;-</span>
-  <span class='kw pkg'>survival</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/survival/man/coxph.html'>coxph</a></span>(<span class='kw'>formula</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/survival/man/Surv.html'>Surv</a></span>(<span class='no'>time</span>, <span class='no'>status</span>) ~ <span class='no'>age</span> + <span class='no'>sex</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>lung</span>)
-
-<span class='co'># augmented dataframe</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggcoefstats</span>(
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>cfit</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>lung</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"augment"</span>,
-  <span class='kw'>type.predict</span> <span class='kw'>=</span> <span class='st'>"risk"</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 228 x 13</span><span>
-#&gt;     inst  time status   age   sex ph.ecog ph.karno pat.karno meal.cal wt.loss
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>     3   306      2    74     1       1       90       100     </span><span style='text-decoration: underline;'>1</span><span>175      </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'> 2</span><span>     3   455      2    68     1       0       90        90     </span><span style='text-decoration: underline;'>1</span><span>225      15
-#&gt; </span><span style='color: #555555;'> 3</span><span>     3  </span><span style='text-decoration: underline;'>1</span><span>010      1    56     1       0       90        90       </span><span style='color: #BB0000;'>NA</span><span>      15
-#&gt; </span><span style='color: #555555;'> 4</span><span>     5   210      2    57     1       1       90        60     </span><span style='text-decoration: underline;'>1</span><span>150      11
-#&gt; </span><span style='color: #555555;'> 5</span><span>     1   883      2    60     1       0      100        90       </span><span style='color: #BB0000;'>NA</span><span>       0
-#&gt; </span><span style='color: #555555;'> 6</span><span>    12  </span><span style='text-decoration: underline;'>1</span><span>022      1    74     1       1       50        80      513       0
-#&gt; </span><span style='color: #555555;'> 7</span><span>     7   310      2    68     2       2       70        60      384      10
-#&gt; </span><span style='color: #555555;'> 8</span><span>    11   361      2    71     2       2       60        80      538       1
-#&gt; </span><span style='color: #555555;'> 9</span><span>     1   218      2    53     1       1       70        80      825      16
-#&gt; </span><span style='color: #555555;'>10</span><span>     7   166      2    61     1       2       70        70      271      34
-#&gt;    .fitted .se.fit   .resid
-#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>   1.49   0.149   0.004</span><span style='text-decoration: underline;'>39</span><span>
-#&gt; </span><span style='color: #555555;'> 2</span><span>   1.35   0.094</span><span style='text-decoration: underline;'>4</span><span> -</span><span style='color: #BB0000;'>0.506</span><span>  
-#&gt; </span><span style='color: #555555;'> 3</span><span>   1.10   0.095</span><span style='text-decoration: underline;'>6</span><span> -</span><span style='color: #BB0000;'>3.13</span><span>   
-#&gt; </span><span style='color: #555555;'> 4</span><span>   1.12   0.090</span><span style='text-decoration: underline;'>0</span><span>  0.533  
-#&gt; </span><span style='color: #555555;'> 5</span><span>   1.17   0.077</span><span style='text-decoration: underline;'>0</span><span> -</span><span style='color: #BB0000;'>2.35</span><span>   
-#&gt; </span><span style='color: #555555;'> 6</span><span>   1.49   0.149  -</span><span style='color: #BB0000;'>4.25</span><span>   
-#&gt; </span><span style='color: #555555;'> 7</span><span>   0.806  0.104   0.448  
-#&gt; </span><span style='color: #555555;'> 8</span><span>   0.848  0.121   0.290  
-#&gt; </span><span style='color: #555555;'> 9</span><span>   1.04   0.115   0.548  
-#&gt; </span><span style='color: #555555;'>10</span><span>   1.19   0.074</span><span style='text-decoration: underline;'>5</span><span>  0.681  
-#&gt; </span><span style='color: #555555;'># ... with 218 more rows</span><span></div><div class='input'># }
+#&gt; </span><span style='color: #555555;'>1</span><span>  23.4</div><div class='input'># }
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -707,7 +629,7 @@ labels.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>

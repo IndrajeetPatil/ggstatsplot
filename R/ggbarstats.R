@@ -3,8 +3,6 @@
 #' @description Bar charts for categorical data with statistical details
 #'   included in the plot as a subtitle.
 #'
-#' @param labels.legend A character vector with custom labels for levels of
-#'   the `x` variable displayed in the legend.
 #' @param xlab Custom text for the `x` axis label (Default: `NULL`, which
 #'   will cause the `x` axis label to be the `x` variable).
 #' @param ylab Custom text for the `y` axis label (Default: `NULL`).
@@ -42,7 +40,6 @@
 #'   x = vs,
 #'   y = cyl,
 #'   nboot = 10,
-#'   labels.legend = c("0 = V-shaped", "1 = straight"),
 #'   legend.title = "Engine"
 #' )
 #' @export
@@ -54,7 +51,6 @@ ggbarstats <- function(data,
                        counts = NULL,
                        ratio = NULL,
                        paired = FALSE,
-                       labels.legend = NULL,
                        results.subtitle = TRUE,
                        sample.size.label = TRUE,
                        label = "percentage",
@@ -78,7 +74,6 @@ ggbarstats <- function(data,
                        ggstatsplot.layer = TRUE,
                        package = "RColorBrewer",
                        palette = "Dark2",
-                       direction = 1,
                        ggplot.component = NULL,
                        output = "plot",
                        messages = TRUE,
@@ -209,14 +204,6 @@ ggbarstats <- function(data,
 
   # =================================== plot =================================
 
-  # getting labels for all levels of the 'x' variable factor
-  if (is.null(labels.legend)) {
-    legend.labels <- as.character(df %>% dplyr::pull({{ x }}))
-  } else {
-    legend.labels <- labels.legend
-  }
-
-
   # if no. of factor levels is greater than the default palette color count
   palette_message(
     package = package,
@@ -257,9 +244,7 @@ ggbarstats <- function(data,
     ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title)) +
     paletteer::scale_fill_paletteer_d(
       palette = paste0(package, "::", palette),
-      direction = direction,
-      name = "",
-      labels = unique(legend.labels)
+      name = ""
     )
 
   # ================ sample size and proportion test labels ===================

@@ -5,9 +5,10 @@
 #' @inheritParams ggbetweenstats
 #' @param ... Currently ignored.
 #'
-#' @importFrom groupedstats grouped_summary
-#' @importFrom dplyr select group_by vars contains mutate mutate_at group_nest
-#' @importFrom rlang !! enquo ensym
+#' @importFrom parameters describe_distribution
+#' @importFrom broomExtra easystats_to_tidy_names
+#' @importFrom dplyr select group_by matches mutate mutate_at group_nest group_modify
+#' @importFrom rlang !! enquo ensym :=
 #' @importFrom purrr map
 #' @importFrom tidyr drop_na unnest
 #'
@@ -30,35 +31,23 @@ mean_labeller <- function(data,
                           ...) {
 
   # creating the dataframe
-  data %<>%
+  data %>%
     dplyr::select(.data = ., {{ x }}, {{ y }}) %>%
-    tidyr::drop_na(data = .) %>%
+    tidyr::drop_na(.) %>%
     dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }}))) %>%
-    as_tibble(x = .)
-
-  # computing mean and confidence interval for mean
-  mean_dat <-
-    groupedstats::grouped_summary(
-      data = data,
-      grouping.vars = {{ x }},
-      measures = {{ y }}
-    ) %>% # introduce non-syntactic names to allow for `mean` pattern names
-    dplyr::rename_at(
+    as_tibble(.) %>%
+    dplyr::group_by(.data = ., {{ x }}) %>%
+    dplyr::group_modify(
       .tbl = .,
-      .vars = dplyr::vars(dplyr::matches("mean|^n$")),
-      .funs = ~ paste(., "...summary", sep = "")
+      .f = ~ broomExtra::easystats_to_tidy_names(parameters::describe_distribution(.))
     ) %>%
-    dplyr::mutate(.data = ., {{ y }} := `mean...summary`) %>%
-    dplyr::select(.data = ., {{ x }}, {{ y }}, dplyr::contains("...")) %>%
-    dplyr::mutate_at(
-      .tbl = .,
-      .vars = dplyr::vars(dplyr::matches("^mean\\.\\.\\.|^mean\\.conf")),
-      .funs = ~ specify_decimal_p(x = ., k = k)
+    dplyr::ungroup(.) %>%
+    dplyr::mutate(
+      .data = .,
+      mean.conf.low = mean - stats::qt(p = 1 - (0.05 / 2), df = n - 1) * std.error,
+      mean.conf.high = mean + stats::qt(p = 1 - (0.05 / 2), df = n - 1) * std.error
     ) %>%
-    dplyr::group_nest(.tbl = ., {{ x }})
-
-  # adding confidence intervals to the label for mean
-  mean_dat %<>%
+    dplyr::group_nest(.tbl = ., {{ x }}) %>%
     dplyr::mutate(
       .data = .,
       label = data %>% {
@@ -67,13 +56,13 @@ mean_labeller <- function(data,
             .x = .,
             .f = ~ paste(
               "list(~italic(widehat(mu))==",
-              .$`mean...summary`,
+              specify_decimal_p(.$mean, k),
               ",",
               "CI[95*'%']",
               "*'['*",
-              .$`mean.conf.low...summary`,
+              specify_decimal_p(.$mean.conf.low, k),
               ",",
-              .$`mean.conf.high...summary`,
+              specify_decimal_p(.$mean.conf.high, k),
               "*']')",
               sep = ""
             )
@@ -81,23 +70,23 @@ mean_labeller <- function(data,
         } else {
           purrr::map(
             .x = .,
-            .f = ~ paste("list(~italic(widehat(mu))==", .$`mean...summary`, ")", sep = " ")
+            .f = ~ paste(
+              "list(~italic(widehat(mu))==",
+              specify_decimal_p(.$mean, k),
+              ")",
+              sep = ""
+            )
           )
         }
       }
-    )
-
-  # adding sample size labels and arranging by original factor levels
-  mean_dat %<>%
+    ) %>%
     tidyr::unnest(data = ., cols = c(data, label)) %>%
     dplyr::mutate(
       .data = .,
-      n_label = paste0({{ x }}, "\n(n = ", `n...summary`, ")", sep = "")
+      n_label = paste0({{ x }}, "\n(n = ", n, ")", sep = "")
     ) %>%
-    dplyr::arrange(.data = ., {{ x }})
-
-  # return the dataframe with mean information
-  return(dplyr::select(mean_dat, -dplyr::contains("...")))
+    dplyr::arrange(.data = ., {{ x }}) %>%
+    dplyr::select(.data = ., {{ x }}, !!as.character(rlang::ensym(y)) := mean, dplyr::matches("label"))
 }
 
 
@@ -316,7 +305,6 @@ aesthetic_addon <- function(plot,
                             ggstatsplot.layer = TRUE,
                             package = "RColorBrewer",
                             palette = "Dark2",
-                            direction = 1,
                             ggplot.component = NULL,
                             ...) {
 
@@ -342,14 +330,8 @@ aesthetic_addon <- function(plot,
       ggstatsplot.layer = ggstatsplot.layer
     ) +
     ggplot2::theme(legend.position = "none") +
-    paletteer::scale_color_paletteer_d(
-      palette = paste0(package, "::", palette),
-      direction = direction
-    ) +
-    paletteer::scale_fill_paletteer_d(
-      palette = paste0(package, "::", palette),
-      direction = direction
-    )
+    paletteer::scale_color_paletteer_d(paste0(package, "::", palette)) +
+    paletteer::scale_fill_paletteer_d(paste0(package, "::", palette))
 
   # ---------------- adding ggplot component ---------------------------------
 

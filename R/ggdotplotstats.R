@@ -232,17 +232,6 @@ ggdotplotstats <- function(data,
   # this is primarily useful for grouped_ variant of this function
   plot <- plot + ggplot.component
 
-  # ============================= messages =================================
-
-  # display normality test result as a message
-  if (isTRUE(messages)) {
-    normality_message(
-      x = data %>% dplyr::pull({{ x }}),
-      lab = xlab,
-      k = k
-    )
-  }
-
   # return the plot
   return(plot)
 }

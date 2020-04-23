@@ -28,7 +28,7 @@ palette_message <- function(package, palette, min_length) {
     # message to display
     message(cat(
       ipmisc::red("Warning: "),
-      ipmisc::blue("No. of factor levels is greater than default palette color count.\n"),
+      ipmisc::blue("Number of labels is greater than default palette color count.\n"),
       ipmisc::blue("Try using another color `palette` (and/or `package`).\n")
     ),
     sep = ""
