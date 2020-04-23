@@ -440,31 +440,6 @@ testthat::test_that(
   }
 )
 
-# check mlm output ----------------------------------------------
-
-testthat::test_that(
-  desc = "check mlm output",
-  code = {
-    testthat::skip_on_cran()
-
-    # model (converting all numeric columns in data to z-scores)
-    res <- stats::lm(
-      formula = cbind(mpg, disp) ~ wt,
-      data = purrr::modify_if(.x = mtcars, .p = is.numeric, .f = scale)
-    )
-
-    # plot
-    df <- ggstatsplot::ggcoefstats(
-      x = res,
-      exclude.intercept = FALSE,
-      output = "tidy"
-    )
-
-    # tests
-    testthat::expect_equal(dim(df), c(4L, 10L))
-  }
-)
-
 # dataframe as input ----------------------------------------------------
 
 testthat::test_that(

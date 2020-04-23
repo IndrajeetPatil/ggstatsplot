@@ -24,11 +24,6 @@ ggcoefstats_label_maker <- function(tidy_df,
 
   # formatting the p-values
   tidy_df %<>%
-    dplyr::mutate_at(
-      .tbl = .,
-      .vars = "statistic",
-      .funs = ~ specify_decimal_p(x = ., k = k)
-    ) %>%
     signif_column(data = ., p = p.value) %>%
     p_value_formatter(df = ., k = k) %>%
     dplyr::mutate(.data = ., rowid = dplyr::row_number())
@@ -54,7 +49,7 @@ ggcoefstats_label_maker <- function(tidy_df,
                 "(",
                 specify_decimal_p(x = .$df.error, k = 0L),
                 ")==",
-                .$statistic,
+                specify_decimal_p(x = .$statistic, k = k),
                 ", ~italic(p)",
                 .$p.value.formatted,
                 ")",
@@ -76,7 +71,7 @@ ggcoefstats_label_maker <- function(tidy_df,
                 specify_decimal_p(x = .$estimate, k = k),
                 ", ~italic(t)",
                 "==",
-                .$statistic,
+                specify_decimal_p(x = .$statistic, k = k),
                 ", ~italic(p)",
                 .$p.value.formatted,
                 ")",
@@ -102,7 +97,7 @@ ggcoefstats_label_maker <- function(tidy_df,
               "list(~widehat(italic(beta))==",
               specify_decimal_p(x = .$estimate, k = k),
               ", ~italic(z)==",
-              .$statistic,
+              specify_decimal_p(x = .$statistic, k = k),
               ", ~italic(p)",
               .$p.value.formatted,
               ")",
@@ -147,7 +142,7 @@ ggcoefstats_label_maker <- function(tidy_df,
               "*\",\"*",
               .$df2,
               ")==",
-              .$statistic,
+              specify_decimal_p(x = .$statistic, k = k),
               ", ~italic(p)",
               .$p.value.formatted,
               ", ~",
