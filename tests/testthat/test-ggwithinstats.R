@@ -18,7 +18,7 @@ testthat::test_that(
         y = desire,
         type = "bayes",
         k = 4,
-        mean.ci = TRUE,
+        #mean.ci = TRUE,
         conf.level = 0.99,
         outlier.tagging = TRUE,
         outlier.label = "region",
@@ -164,8 +164,8 @@ testthat::test_that(
           x = 1:2,
           y = c(7.86666666666667, 6.73888888888889),
           label = c(
-            "list(~italic(widehat(mu))==7.8667,CI[95*'%']*'['*7.4012,8.3474*']')",
-            "list(~italic(widehat(mu))==6.7389,CI[95*'%']*'['*6.2042,7.4167*']')"
+            "list(~italic(widehat(mu))==7.8667)",
+            "list(~italic(widehat(mu))==6.7389)"
           ),
           PANEL = structure(c(1L, 1L), class = "factor", .Label = "1"),
           group = structure(1:2, n = 2L),
