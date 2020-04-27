@@ -38,7 +38,8 @@ MAJOR CHANGES
 
 NEW FEATURES
 
-  - More models supported in `ggcoefstats`: `bayesGARCH`, `clm2`, `mcmc.list`.
+  - More models supported in `ggcoefstats`: `bayesGARCH`, `clm2`, `clmm2`,
+    `mcmc.list`.
 
 # ggstatsplot 0.4.0
 

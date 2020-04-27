@@ -66,6 +66,7 @@ r_packages:
   - afex
   - effectsize
   - insight
+  - ggcorrplot
 
 r_github_packages:
   - jimhester/lintr
