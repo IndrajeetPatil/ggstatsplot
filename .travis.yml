@@ -1,7 +1,7 @@
 language: r
 r:
   - release
-  #- devel
+#  - devel
 
 latex: true
 warnings_are_errors: TRUE
@@ -11,9 +11,9 @@ env:
     - _R_CHECK_FORCE_SUGGESTS_=true
     - _R_CHECK_CRAN_INCOMING_=true
 
-cache:
-  - packages
-  - ccache
+# cache:
+#   - packages
+#   - ccache
 
 r_binary_packages:
   - magrittr
@@ -42,26 +42,30 @@ r_binary_packages:
   - bridgesampling
   - BH
   - stringi
+  - BayesFactor
   - metaBMA
-  - metaplus
-  - fastGHQuad
   - coda
+  - coin
+  - multcomp
+  - pbkrtest
+  - mc2d
+  - data.table
   - lme4
   - lmerTest
-  - pbkrtest
+  - GGally
+  - emmeans
   - ggrepel
-  - mc2d
+  - metaplus
+  - fastGHQuad
 
 r_packages:
-  - coin
-  - effectsize
-  - insight
-  - parameters
   - remotes
   - knitr
-  - multcomp
   - rmarkdown
-  - GGally
+  - ipmisc
+  - afex
+  - effectsize
+  - insight
   - ggcorrplot
 
 r_github_packages:

@@ -196,9 +196,9 @@
       <small>Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="ggstatsplot-0409000" class="section level1">
-<h1 class="page-header" data-toc-text="0.4.0.9000">
-<a href="#ggstatsplot-0409000" class="anchor"></a>ggstatsplot 0.4.0.9000<small> Unreleased </small>
+    <div id="ggstatsplot-050" class="section level1">
+<h1 class="page-header" data-toc-text="0.5.0">
+<a href="#ggstatsplot-050" class="anchor"></a>ggstatsplot 0.5.0<small> Unreleased </small>
 </h1>
 <p>BREAKING CHANGES</p>
 <ul>
@@ -209,15 +209,17 @@
 <li>The <em>p</em>-value labels also contain information about whether they are adjusted for multiple comparisons.</li>
 </ol>
 </li>
+<li><p>The <code>normality_message</code> and <code>bartlett_message</code> helper functions have been removed. This is because model assumption checks don’t really fall under the purview of this package. There are excellent visualization tools out there for model assumption checks (<code>ggResidpanel</code>, <code>performance</code>, <code>DHARMa</code>, <code>olsrr</code>, etc.), which should be preferred over unhelpful messages with only <em>p</em>-values that these functions were printing. For what it’s worth, the functions where these messages were displayed (<code>ggbetweenstats</code> or <code>ggwithinstats</code>) feature visualizations rich enough and defaults sensible enough that most of the time one can either assess these assumptions from the plots or need not worry about them.</p></li>
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>
 <li><p><code>ggcoefstats</code> has been refactored to reflect that <code><a href="https://indrajeetpatil.github.io/broomExtra//reference/tidy_parameters.html">broomExtra::tidy_parameters</a></code> now defaults to <code>parameters</code> package instead of <code>broom</code>. It also loses the following vestigial arguments: <code>p.adjust.method</code> and <code>coefficient.type</code>.</p></li>
 <li><p>Reverts aligning title and subtitle with the plot and not the axes, since it looked pretty ugly (esp., <code>ggcoefstats</code>) and was causing problems for labels.</p></li>
+<li><p><code>factor.levels</code> (for <code>ggpiestats</code>) and <code>labels.legend</code> (for <code>ggbarstats</code>) are deprecated. If users would like to changes the names for factor levels, this should be done outside of <code>ggstatsplot</code>.</p></li>
 </ul>
 <p>NEW FEATURES</p>
 <ul>
-<li>More models supported in <code>ggcoefstats</code>: <code>bayesGARCH</code>, <code>clm2</code>, <code>mcmc.list</code>.</li>
+<li>More models supported in <code>ggcoefstats</code>: <code>bayesGARCH</code>, <code>clm2</code>, <code>clmm2</code>, <code>mcmc.list</code>.</li>
 </ul>
 </div>
     <div id="ggstatsplot-040" class="section level1">
@@ -769,7 +771,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>

@@ -39,14 +39,11 @@ mean_labeller <- function(data,
     dplyr::group_by(.data = ., {{ x }}) %>%
     dplyr::group_modify(
       .tbl = .,
-      .f = ~ broomExtra::easystats_to_tidy_names(parameters::describe_distribution(.))
+      .f = ~ broomExtra::easystats_to_tidy_names(
+        parameters::describe_distribution(x = ., centrality = "mean", ci = 0.95)
+      )
     ) %>%
     dplyr::ungroup(.) %>%
-    dplyr::mutate(
-      .data = .,
-      mean.conf.low = mean - stats::qt(p = 1 - (0.05 / 2), df = n - 1) * std.error,
-      mean.conf.high = mean + stats::qt(p = 1 - (0.05 / 2), df = n - 1) * std.error
-    ) %>%
     dplyr::group_nest(.tbl = ., {{ x }}) %>%
     dplyr::mutate(
       .data = .,
@@ -60,9 +57,9 @@ mean_labeller <- function(data,
               ",",
               "CI[95*'%']",
               "*'['*",
-              specify_decimal_p(.$mean.conf.low, k),
+              specify_decimal_p(.$conf.low, k),
               ",",
-              specify_decimal_p(.$mean.conf.high, k),
+              specify_decimal_p(.$conf.high, k),
               "*']')",
               sep = ""
             )

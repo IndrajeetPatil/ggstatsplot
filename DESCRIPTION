@@ -45,7 +45,7 @@ Imports:
     ipmisc (>= 2.0.0),
     pairwiseComparisons,
     paletteer,
-    parameters,
+    parameters (>= 0.6.1.1),
     purrr,
     rlang,
     stats,
@@ -63,7 +63,8 @@ Suggests:
     WRS2
 Remotes:
     IndrajeetPatil/broomExtra,
-    IndrajeetPatil/statsExpressions
+    IndrajeetPatil/statsExpressions,
+    easystats/parameters
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

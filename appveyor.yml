@@ -16,8 +16,8 @@ skip_branch_with_pr: true
 
 # Adapt as necessary starting from here
 
-cache:
-  - C:\RLibrary
+# cache:
+#   - C:\RLibrary
 
 # Adapt as necessary starting from here
 before_test:
@@ -41,7 +41,6 @@ environment:
   # - R_VERSION: devel
   #   R_ARCH: x64
   #   GCC_PATH: mingw_64
-  #   PKGTYPE: both
 
 matrix:
   fast_finish: true
