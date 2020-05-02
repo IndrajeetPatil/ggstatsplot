@@ -114,6 +114,10 @@ so does not work for larger datasets.
 If you have fewer than 1,000 observations but want to use the same \code{gam()}
 model that \code{method = NULL} would use, then set
 \verb{method = "gam", formula = y ~ s(x, bs = "cs")}.}
+    \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
+by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
+of the current function. Default is \code{NULL}. The argument should be entered
+as a function.}
     \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
     \item{\code{messages}}{Decides whether messages references, notes, and warnings are

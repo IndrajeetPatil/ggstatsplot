@@ -104,7 +104,7 @@ ggcorrmat <- function(data,
                       method = "square",
                       type = "parametric",
                       beta = 0.1,
-                      k = 2,
+                      k = 2L,
                       sig.level = 0.05,
                       conf.level = 0.95,
                       bf.prior = 0.707,
@@ -116,6 +116,7 @@ ggcorrmat <- function(data,
                       colors = c("#E69F00", "white", "#009E73"),
                       ggtheme = ggplot2::theme_bw(),
                       ggstatsplot.layer = TRUE,
+                      ggplot.component = NULL,
                       title = NULL,
                       subtitle = NULL,
                       caption = NULL,
@@ -319,6 +320,12 @@ ggcorrmat <- function(data,
 
   # adding `ggstatsplot` theme for correlation matrix
   if (isTRUE(ggstatsplot.layer)) plot <- plot + theme_corrmat()
+
+  # ---------------- adding ggplot component ---------------------------------
+
+  # if any additional modification needs to be made to the plot
+  # this is primarily useful for grouped_ variant of this function
+  plot <- plot + ggplot.component
 
   # return the desired result
   return(plot)

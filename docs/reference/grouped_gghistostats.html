@@ -233,7 +233,7 @@ be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
     </tr>
     <tr>
       <th>x</th>
-      <td><p>A numeric variable.</p></td>
+      <td><p>A numeric variable from the dataframe <code>data</code>.</p></td>
     </tr>
     <tr>
       <th>grouping.var</th>
@@ -290,8 +290,7 @@ or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations ar
     <dt><code>bf.prior</code></dt><dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
 width to use in calculating Bayes factors.</p></dd>
     <dt><code>effsize.type</code></dt><dd><p>Type of effect size needed for <em>parametric</em> tests. The
-argument can be <code>"biased"</code> (<code>"d"</code> for Cohen's <em>d</em>) or <code>"unbiased"</code>
-(<code>"g"</code> Hedge's <em>g</em> for <strong>t-test</strong>). The default is <code>"g"</code>.</p></dd>
+argument can be <code>"d"</code> (for Cohen's <em>d</em>) or <code>"g"</code> (for Hedge's <em>g</em>).</p></dd>
     <dt><code>conf.level</code></dt><dd><p>Scalar between 0 and 1. If unspecified, the defaults return
 <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></dd>
     <dt><code>nboot</code></dt><dd><p>Number of bootstrap samples for computing confidence interval

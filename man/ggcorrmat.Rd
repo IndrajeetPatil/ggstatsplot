@@ -13,7 +13,7 @@ ggcorrmat(
   method = "square",
   type = "parametric",
   beta = 0.1,
-  k = 2,
+  k = 2L,
   sig.level = 0.05,
   conf.level = 0.95,
   bf.prior = 0.707,
@@ -25,6 +25,7 @@ ggcorrmat(
   colors = c("#E69F00", "white", "#009E73"),
   ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE,
+  ggplot.component = NULL,
   title = NULL,
   subtitle = NULL,
   caption = NULL,
@@ -130,6 +131,11 @@ extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
 theme elements are to be displayed along with the selected \code{ggtheme}
 (Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
 override some aspects of the selected \code{ggtheme}.}
+
+\item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
+by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
+of the current function. Default is \code{NULL}. The argument should be entered
+as a function.}
 
 \item{title}{The text for the plot title.}
 

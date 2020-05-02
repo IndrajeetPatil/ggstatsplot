@@ -220,7 +220,7 @@ in the plot as a subtitle.</p>
   <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"g"</span>,
   <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2L</span>,
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>bar.fill</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>,
@@ -251,7 +251,7 @@ be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
     </tr>
     <tr>
       <th>x</th>
-      <td><p>A numeric variable.</p></td>
+      <td><p>A numeric variable from the dataframe <code>data</code>.</p></td>
     </tr>
     <tr>
       <th>binwidth</th>
@@ -314,8 +314,7 @@ parametric test</strong> (Default: <code>TRUE</code>).</p></td>
     <tr>
       <th>effsize.type</th>
       <td><p>Type of effect size needed for <em>parametric</em> tests. The
-argument can be <code>"biased"</code> (<code>"d"</code> for Cohen's <em>d</em>) or <code>"unbiased"</code>
-(<code>"g"</code> Hedge's <em>g</em> for <strong>t-test</strong>). The default is <code>"g"</code>.</p></td>
+argument can be <code>"d"</code> (for Cohen's <em>d</em>) or <code>"g"</code> (for Hedge's <em>g</em>).</p></td>
     </tr>
     <tr>
       <th>conf.level</th>
