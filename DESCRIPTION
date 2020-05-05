@@ -40,7 +40,7 @@ Imports:
     ggplot2,
     ggrepel,
     ggsignif,
-    groupedstats,
+    groupedstats (>= 1.0.0),
     insight,
     ipmisc (>= 2.0.0),
     pairwiseComparisons,
@@ -63,6 +63,7 @@ Suggests:
     WRS2
 Remotes:
     IndrajeetPatil/broomExtra,
+    IndrajeetPatil/groupedstats,
     IndrajeetPatil/statsExpressions,
     easystats/parameters
 VignetteBuilder: 
