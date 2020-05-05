@@ -319,8 +319,7 @@ ggcoefstats <- function(x,
           object = x,
           effsize = effsize,
           partial = partial,
-          conf.level = conf.level,
-          nboot = nboot
+          conf.level = conf.level
         ) %>%
         dplyr::rename(.data = ., statistic = F.value)
 

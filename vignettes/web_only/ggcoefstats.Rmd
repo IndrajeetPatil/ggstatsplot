@@ -116,12 +116,12 @@ set.seed(123)
 # to speed up the calculation, let's use only 10% of the data
 movies_10 <- dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.1)
 
+# model
+mod <- stats::aov(formula = rating ~ mpaa * genre, data = movies_10)
+
 # plot
 ggstatsplot::ggcoefstats(
-  x = stats::aov(
-    formula = rating ~ mpaa * genre,
-    data = movies_10
-  ),
+  x = mod,
   effsize = "eta", # changing the effect size estimate being displayed
   partial = FALSE, # just eta-squared
   point.args = list(color = "red", size = 4, shape = 15), # changing the point geom
@@ -132,10 +132,7 @@ ggstatsplot::ggcoefstats(
   # further modification with the ggplot2 commands
   # note the order in which the labels are entered
   ggplot2::scale_y_discrete(labels = c("MPAA", "Genre", "Interaction term")) +
-  ggplot2::labs(
-    x = "effect size estimate (partial omega-squared)",
-    y = NULL
-  )
+  ggplot2::labs(x = "effect size estimate (eta-squared)", y = NULL)
 ```
 
 As this plot shows, there is no interaction effect between these two factors.
@@ -194,6 +191,54 @@ ggstatsplot::combine_plots(
     title = "4. Multiplicative effect of MPAA and genre"
   ),
   title.text = "Model selection using ggcoefstats"
+)
+```
+
+## Anova with `car` package (`anova`)
+
+```{r anova_car, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+# setup
+set.seed(123)
+library(car)
+library(ggstatsplot)
+
+# model
+mod <-
+  stats::lm(
+    formula = conformity ~ fcategory * partner.status,
+    data = Moore,
+    contrasts = list(fcategory = contr.sum, partner.status = contr.sum)
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = car::Anova(mod),
+  title = "Anova with `car`"
+)
+```
+
+## Anova with `ez` package
+
+```{r anova_ez, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+set.seed(123)
+library(ez)
+data(ANT)
+
+# run an ANOVA on the mean correct RT data.
+rt_anova <-
+  suppressWarnings(ez::ezANOVA(
+    data = ANT[ANT$error == 0, ],
+    dv = rt,
+    wid = subnum,
+    within = cue,
+    detailed = TRUE,
+    return_aov = TRUE
+  ))
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = rt_anova$aov,
+  title = "Anova with `ez` package"
 )
 ```
 
@@ -1847,14 +1892,16 @@ Let's now consider an example of a repeated measures design.
 ```{r aovlist1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8}
 # for reproducibility
 set.seed(123)
+library(ggstatsplot)
 
+# specifying the model (note the error structure)
 # let's use 20% of the sample to speed up the analysis
 mod <- stats::aov(
   formula = value ~ attribute * measure + Error(id / (attribute * measure)),
   data = iris_long
 )
 
-# specifying the model (note the error structure)
+# plot
 ggstatsplot::ggcoefstats(
   x = mod,
   effsize = "eta",
@@ -2569,7 +2616,7 @@ ggstatsplot::ggcoefstats(
 
 ## generalized additive model (`Gam`)
 
-```{r Gam, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+```{r Gam, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5, eval=FALSE}
 # setup
 set.seed(123)
 library(gam)
