@@ -175,14 +175,6 @@ testthat::test_that(
     )
     testthat::expect_equal(tidy_df$df1[1], 1L)
     testthat::expect_equal(tidy_df$df2[1], 28L)
-    testthat::expect_equal(tidy_df$conf.low,
-      c(0.64723930, 0.01103056, 0.00000000),
-      tolerance = 1e-3
-    )
-    testthat::expect_equal(tidy_df$conf.high,
-      c(0.8724070, 0.4306446, 0.3409322),
-      tolerance = 1e-3
-    )
     testthat::expect_equal(tidy_df$p.value,
       c(1.378306e-11, 1.156944e-02, 6.355055e-02),
       tolerance = 1e-5
