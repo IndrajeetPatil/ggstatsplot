@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.5.0</span>
       </span>
     </div>
 
@@ -149,7 +149,7 @@
       <h1 data-toc-skip>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-04-23</h4>
+            <h4 class="date">2020-05-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -370,7 +370,7 @@
 <span class="no">mpaa_list</span> <span class="kw">&lt;-</span>
   <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/movies_wide.html">movies_wide</a></span> <span class="kw">%&gt;%</span>
   <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">.data</span> <span class="kw">=</span> <span class="no">.</span>, <span class="no">mpaa</span> <span class="kw">!=</span> <span class="st">"NC-17"</span>) <span class="kw">%&gt;%</span>
-  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="no">.</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.25</span>) <span class="kw">%&gt;%</span>
+  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="no">.</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.25</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">.</span>, <span class="kw">f</span> <span class="kw">=</span> <span class="no">.</span>$<span class="no">mpaa</span>, <span class="kw">drop</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 
 <span class="co"># creating a list of plots</span>
@@ -435,7 +435,7 @@
 <span class="co"># also, to make this fast, let's only use 5% of the sample</span>
 <span class="no">cut_list</span> <span class="kw">&lt;-</span>
   <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="no"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html">diamonds</a></span> <span class="kw">%&gt;%</span>
-  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="no">.</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.05</span>) <span class="kw">%&gt;%</span>
+  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="no">.</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.05</span>) <span class="kw">%&gt;%</span>
   <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">.data</span> <span class="kw">=</span> <span class="no">.</span>, <span class="no">cut</span> <span class="kw">!=</span> <span class="st">"Fair"</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">.</span>, <span class="kw">f</span> <span class="kw">=</span> <span class="no">.</span>$<span class="no">cut</span>, <span class="kw">drop</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 

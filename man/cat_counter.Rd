@@ -7,8 +7,8 @@
 cat_counter(data, x, y = NULL, ...)
 }
 \arguments{
-\item{data}{for use with \code{formula}, a data frame containing all the
-data}
+\item{data}{A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will \strong{not} be accepted.}
 
 \item{x}{The variable to use as the \strong{rows} in the contingency table.}
 

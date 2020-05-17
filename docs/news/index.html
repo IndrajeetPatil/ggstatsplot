@@ -87,7 +87,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.5.0</span>
       </span>
     </div>
 
@@ -410,7 +410,7 @@
 <li><p>New dataset included: <code>bugs_long</code>, for repeated measures designs with <code>NA</code>s present in the data.</p></li>
 <li><p><code>ggstatsplot</code> now uses <code>rcompanion</code> to compute Spearman’s <em>rho</em> and Kendall’s <em>W</em>. Therefore, <code>DescTools</code> is removed from dependencies.</p></li>
 <li><p><code>ggcoefstats</code> supports following objects: <code>bglmerMod</code>, <code>blmerMod</code>, <code>lme</code>, <code>mclogit</code>, <code>mmclogit</code>, <code>tobit</code>, <code>wblm</code>.</p></li>
-<li><p><code>ggcoefstats</code> now respects <code>conf.int</code>. It internally always defaulted to <code>conf.int = TRUE</code> in <code><a href="http://broom.tidyverse.org/reference/reexports.html">broom::tidy</a></code> irrespective of what was specified by the user.</p></li>
+<li><p><code>ggcoefstats</code> now respects <code>conf.int</code>. It internally always defaulted to <code>conf.int = TRUE</code> in <code><a href="https://rdrr.io/pkg/broom/man/reexports.html">broom::tidy</a></code> irrespective of what was specified by the user.</p></li>
 <li><p>It was painfully confusing for a lot of users what exactly the asterisks in each facet of <code>ggpiestats</code> signified. So instead now <code>ggpiestats</code> displays more detailed results from a goodness of fit (gof) test. No such change is made for <code>ggbarstats</code> because there is no space to include more details above the bar.</p></li>
 <li><p>Removed <code>conf.method</code> and <code>conf.type</code> arguments for <code>ggcoefstats</code>. Also, <code>p.kr</code> argument removed because <code>ggcoefstats</code> will begin to rely on <code>parameters</code> instead of <code>sjstats</code> package to compute <em>p</em>-values for some regression models.</p></li>
 </ul>

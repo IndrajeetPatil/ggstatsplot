@@ -14,7 +14,7 @@
   ],
   "issueTracker": "https://github.com/IndrajeetPatil/ggstatsplot/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.4.0.9000",
+  "version": "0.5.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -36,15 +36,7 @@
       "@id": "https://orcid.org/0000-0003-1995-6531"
     }
   ],
-  "contributor": [
-    {
-      "@type": "Person",
-      "givenName": "Chuck",
-      "familyName": "Powell",
-      "email": "ibecav@gmail.com",
-      "@id": "https://orcid.org/0000-0002-3606-2188"
-    }
-  ],
+  "contributor": {},
   "maintainer": [
     {
       "@type": "Person",
@@ -175,14 +167,14 @@
       "@type": "SoftwareApplication",
       "identifier": "broomExtra",
       "name": "broomExtra",
-      "version": ">= 4.0.0",
+      "version": ">= 4.0.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/IndrajeetPatil/broomExtra"
+      "sameAs": "https://CRAN.R-project.org/package=broomExtra"
     },
     {
       "@type": "SoftwareApplication",
@@ -467,5 +459,5 @@
   ],
   "funder": {},
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md",
-  "fileSize": "40579.556KB"
+  "fileSize": "40588.418KB"
 }

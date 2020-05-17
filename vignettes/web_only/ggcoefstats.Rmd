@@ -3283,7 +3283,7 @@ ggstatsplot::ggcoefstats(
 
 ## panel regression models fit via multilevel modeling (`wblm`)
 
-```{r wblm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 7}
+```{r wblm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 7, eval=FALSE}
 # setup
 set.seed(123)
 library(panelr)
@@ -3307,7 +3307,7 @@ ggstatsplot::ggcoefstats(
 
 ## panel regression models fit via generalized estimating equations (`wbgee`)
 
-```{r wbgee, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 6}
+```{r wbgee, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 6, eval=FALSE}
 # setup
 set.seed(123)
 library(panelr)

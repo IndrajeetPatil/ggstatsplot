@@ -11,10 +11,6 @@ env:
     - _R_CHECK_FORCE_SUGGESTS_=true
     - _R_CHECK_CRAN_INCOMING_=true
 
-# cache:
-#   - packages
-#   - ccache
-
 r_binary_packages:
   - magrittr
   - curl

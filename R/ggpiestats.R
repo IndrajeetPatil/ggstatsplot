@@ -9,11 +9,6 @@
 #'   of fit test) will be run for the `x` variable. Otherwise an appropriate
 #'   association test will be run. This argument can not be `NULL` for
 #'   `ggbarstats` function.
-#' @param title The text for the plot title.
-#' @param caption The text for the plot caption.
-#' @param palette If a character string (e.g., `"Set1"`), will use that named
-#'   palette. If a number, will index into the list of palettes of appropriate
-#'   type. Default palette is `"Dark2"`.
 #' @param proportion.test Decides whether proportion test for `main` variable is
 #'   to be carried out for each level of `condition` (Default: `TRUE`).
 #' @param perc.k Numeric that decides number of decimal places for percentage
@@ -23,12 +18,12 @@
 #'   (default), `"counts"`, `"both"`.
 #' @param label.args Additional aesthetic arguments that will be passed to
 #'   `geom_label`.
+#' @inheritParams ggbetweenstats
 #' @inheritParams tidyBF::bf_contingency_tab
 #' @inheritParams statsExpressions::expr_contingency_tab
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams gghistostats
 #' @inheritParams cat_label_df
-#' @inheritParams ggbetweenstats
 #'
 #' @seealso \code{\link{grouped_ggpiestats}}, \code{\link{ggbarstats}},
 #'  \code{\link{grouped_ggbarstats}}

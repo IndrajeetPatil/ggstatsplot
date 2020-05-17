@@ -38,7 +38,6 @@ mean_labeller <- function(data,
     as_tibble(.) %>%
     dplyr::group_by(.data = ., {{ x }}) %>%
     dplyr::group_modify(
-      .tbl = .,
       .f = ~ broomExtra::easystats_to_tidy_names(
         parameters::describe_distribution(x = ., centrality = "mean", ci = 0.95)
       )

@@ -149,7 +149,7 @@
       <h1 data-toc-skip>combine_plots</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-04-22</h4>
+            <h4 class="date">2020-05-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/combine_plots.Rmd"><code>vignettes/web_only/combine_plots.Rmd</code></a></small>
       <div class="hidden name"><code>combine_plots.Rmd</code></div>
@@ -326,7 +326,7 @@
   <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
     <span class="kw">x</span> <span class="kw">=</span> <span class="kw pkg">stats</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(
       <span class="kw">formula</span> <span class="kw">=</span> <span class="no">rating</span> ~ <span class="kw pkg">stats</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span>(<span class="no">budget</span>, <span class="kw">degree</span> <span class="kw">=</span> <span class="fl">3</span>),
-      <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/movies_long.html">movies_long</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.2</span>),
+      <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/movies_long.html">movies_long</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.2</span>),
       <span class="kw">na.action</span> <span class="kw">=</span> <span class="no">na.omit</span>
     ),
     <span class="kw">exclude.intercept</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
@@ -386,7 +386,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>

@@ -25,8 +25,8 @@ grouped_ggpiestats(
 )
 }
 \arguments{
-\item{data}{for use with \code{formula}, a data frame containing all the
-data}
+\item{data}{A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will \strong{not} be accepted.}
 
 \item{main}{The variable to use as the \strong{rows} in the contingency table.}
 
@@ -46,11 +46,15 @@ bare name \code{x} or as a string \code{"x"}).}
 plot title (name of each factor level) (Default: \code{NULL}). If \code{NULL}, the
 variable name entered for \code{grouping.var} will be used.}
 
-\item{output}{Can either be \code{"null"} (or \code{"caption"} or \code{"H0"} or \code{"h0"}),
-which will return expression with evidence in favor of the null hypothesis,
-or \code{"alternative"} (or \code{"title"} or \code{"H1"} or \code{"h1"}), which will return
-expression with evidence in favor of the alternative hypothesis, or
-\code{"results"}, which will return a dataframe with results all the details).}
+\item{output}{Character that describes what is to be returned: can be
+\code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to
+\code{"subtitle"} will return the expression containing statistical results. If
+you have set \code{results.subtitle = FALSE}, then this will return a \code{NULL}.
+Setting this to \code{"caption"} will return the expression containing details
+about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
+\code{bf.message = TRUE}, otherwise this will return a \code{NULL}. For functions
+\code{ggpiestats} and \code{ggbarstats}, setting \code{output = "proptest"} will return a
+dataframe containing results from proportion tests.}
 
 \item{x}{The variable to use as the \strong{rows} in the contingency table.}
 
@@ -63,10 +67,6 @@ association test will be run. This argument can not be \code{NULL} for
 \item{...}{
   Arguments passed on to \code{\link[=ggpiestats]{ggpiestats}}
   \describe{
-    \item{\code{caption}}{The text for the plot caption.}
-    \item{\code{palette}}{If a character string (e.g., \code{"Set1"}), will use that named
-palette. If a number, will index into the list of palettes of appropriate
-type. Default palette is \code{"Dark2"}.}
     \item{\code{proportion.test}}{Decides whether proportion test for \code{main} variable is
 to be carried out for each level of \code{condition} (Default: \code{TRUE}).}
     \item{\code{perc.k}}{Numeric that decides number of decimal places for percentage
@@ -76,6 +76,38 @@ on the label in each pie slice. Possible options are \code{"percentage"}
 (default), \code{"counts"}, \code{"both"}.}
     \item{\code{label.args}}{Additional aesthetic arguments that will be passed to
 \code{geom_label}.}
+    \item{\code{results.subtitle}}{Decides whether the results of statistical tests are
+to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
+the plot will be returned.}
+    \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
+favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
+parametric test} (Default: \code{TRUE}).}
+    \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
+\code{results.subtitle = FALSE}.}
+    \item{\code{caption}}{The text for the plot caption.}
+    \item{\code{conf.level}}{Scalar between 0 and 1. If unspecified, the defaults return
+\verb{95\%} lower and upper confidence intervals (\code{0.95}).}
+    \item{\code{nboot}}{Number of bootstrap samples for computing confidence interval
+for the effect size (Default: \code{100}).}
+    \item{\code{k}}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 2}).}
+    \item{\code{ggtheme}}{A function, \code{ggplot2} theme name. Default value is
+\code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
+extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
+\code{hrbrthemes::theme_ipsum_ps()}, etc.).}
+    \item{\code{ggstatsplot.layer}}{Logical that decides whether \code{theme_ggstatsplot}
+theme elements are to be displayed along with the selected \code{ggtheme}
+(Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
+override some aspects of the selected \code{ggtheme}.}
+    \item{\code{package}}{Name of package from which the palette is desired as string
+or symbol.}
+    \item{\code{palette}}{Name of palette as string or symbol.}
+    \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
+by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
+of the current function. Default is \code{NULL}. The argument should be entered
+as a function.}
+    \item{\code{messages}}{Decides whether messages references, notes, and warnings are
+to be displayed (Default: \code{TRUE}).}
     \item{\code{ratio}}{A vector of proportions: the expected proportions for the
 proportion test (should sum to 1). Default is \code{NULL}, which means the null
 is equal theoretical proportions across the levels of the nominal variable.
@@ -91,41 +123,11 @@ margin is fixed (\code{"rows"} or \code{"cols"}). Defaults to \code{"rows"}.}
 to \code{1} by default. It indexes the expected deviation from the null
 hypothesis under the alternative, and corresponds to Gunel and Dickey's
 (1974) \code{"a"} parameter.}
-    \item{\code{k}}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2}).}
     \item{\code{paired}}{Logical indicating whether data came from a within-subjects or
 repeated measures design study (Default: \code{FALSE}). If \code{TRUE}, McNemar's
 test subtitle will be returned. If \code{FALSE}, Pearson's chi-square test will
 be returned.}
-    \item{\code{conf.level}}{Scalar between 0 and 1. If unspecified, the defaults return
-\verb{95\%} lower and upper confidence intervals (\code{0.95}).}
-    \item{\code{nboot}}{Number of bootstrap samples for computing confidence interval
-for the effect size (Default: \code{100}).}
     \item{\code{legend.title}}{Title text for the legend.}
-    \item{\code{messages}}{Decides whether messages references, notes, and warnings are
-to be displayed (Default: \code{TRUE}).}
-    \item{\code{ggtheme}}{A function, \code{ggplot2} theme name. Default value is
-\code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
-extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
-\code{hrbrthemes::theme_ipsum_ps()}, etc.).}
-    \item{\code{ggstatsplot.layer}}{Logical that decides whether \code{theme_ggstatsplot}
-theme elements are to be displayed along with the selected \code{ggtheme}
-(Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
-override some aspects of the selected \code{ggtheme}.}
-    \item{\code{results.subtitle}}{Decides whether the results of statistical tests are
-to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
-the plot will be returned.}
-    \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
-favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
-parametric test} (Default: \code{TRUE}).}
-    \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
-\code{results.subtitle = FALSE}.}
-    \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
-by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
-of the current function. Default is \code{NULL}. The argument should be entered
-as a function.}
-    \item{\code{package}}{Name of package from which the palette is desired as string
-or symbol.}
   }}
 
 \item{plotgrid.args}{A list of additional arguments to \code{cowplot::plot_grid}.}

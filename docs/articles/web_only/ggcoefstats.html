@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.5.0</span>
       </span>
     </div>
 
@@ -149,7 +149,7 @@
       <h1 data-toc-skip>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-05-05</h4>
+            <h4 class="date">2020-05-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -189,7 +189,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 
 <span class="co"># to speed up the calculation, let's use only 10% of the data</span>
-<span class="no">movies_10</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/movies_long.html">movies_long</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.1</span>)
+<span class="no">movies_10</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/movies_long.html">movies_long</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.1</span>)
 
 <span class="co"># model</span>
 <span class="no">mod</span> <span class="kw">&lt;-</span> <span class="kw pkg">stats</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span>(<span class="kw">formula</span> <span class="kw">=</span> <span class="no">rating</span> ~ <span class="no">mpaa</span> * <span class="no">genre</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">movies_10</span>)
@@ -214,7 +214,7 @@
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
 
 <span class="co"># to speed up the calculation, let's use only 10% of the data</span>
-<span class="no">movies_10</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/movies_long.html">movies_long</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.1</span>)
+<span class="no">movies_10</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/movies_long.html">movies_long</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.1</span>)
 
 <span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
@@ -360,7 +360,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 
 <span class="co"># to speed up the calculation, let's use only 10% of the data</span>
-<span class="no">movies_10</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/movies_long.html">movies_long</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.1</span>)
+<span class="no">movies_10</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/movies_long.html">movies_long</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.1</span>)
 
 <span class="co"># combining the two different plots</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span>(
@@ -397,11 +397,11 @@
 <span class="co">#&gt; Random effect variances not available. Returned R2 does not account for random effects.</span></pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/lmer1-1.png" width="672"></p>
 <p>As can be seen from these plots, although there seems to be a really small correlation between budget and rating in a linear model, this effect is not significant once we take into account the hierarchical structure of the data.</p>
-<p>Note that for mixed-effects models, only the <em>fixed</em> effects are shown because there are no confidence intervals for <em>random</em> effects terms. In case, you would like to see these terms, you can enter the same object you entered as <code>x</code> argument to <code>ggcoefstats</code> in <code><a href="http://broom.tidyverse.org/reference/reexports.html">broom::tidy</a></code>:</p>
+<p>Note that for mixed-effects models, only the <em>fixed</em> effects are shown because there are no confidence intervals for <em>random</em> effects terms. In case, you would like to see these terms, you can enter the same object you entered as <code>x</code> argument to <code>ggcoefstats</code> in <code><a href="https://rdrr.io/pkg/broom/man/reexports.html">broom::tidy</a></code>:</p>
 <div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 
 <span class="co"># to speed up the calculation, let's use only 10% of the data</span>
-<span class="no">movies_10</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/movies_long.html">movies_long</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.1</span>)
+<span class="no">movies_10</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/movies_long.html">movies_long</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.1</span>)
 
 <span class="co"># tidy output</span>
 <span class="kw pkg">broom.mixed</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/broom.mixed/man/reexports.html">tidy</a></span>(
@@ -509,7 +509,7 @@
 <div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
 
 <span class="co"># to speed up the calculation, let's use only 10% of the data</span>
-<span class="no">movies_10</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/movies_long.html">movies_long</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.1</span>)
+<span class="no">movies_10</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/movies_long.html">movies_long</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.1</span>)
 
 <span class="co"># model</span>
 <span class="no">mod</span> <span class="kw">&lt;-</span>
@@ -826,7 +826,7 @@
 <span class="no">mod</span> <span class="kw">&lt;-</span> <span class="kw pkg">lme4</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/lme4/man/glmer.html">glmer</a></span>(
   <span class="kw">formula</span> <span class="kw">=</span> <span class="no">Survived</span> ~ <span class="no">Sex</span> + <span class="no">Age</span> + (<span class="no">Sex</span> + <span class="no">Age</span> <span class="kw">|</span> <span class="no">Class</span>),
   <span class="co"># select 20% of the sample to reduce the time of execution</span>
-  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/Titanic_full.html">Titanic_full</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.2</span>),
+  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/Titanic_full.html">Titanic_full</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.2</span>),
   <span class="kw">family</span> <span class="kw">=</span> <span class="kw pkg">stats</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span>(<span class="kw">link</span> <span class="kw">=</span> <span class="st">"logit"</span>),
   <span class="kw">control</span> <span class="kw">=</span> <span class="kw pkg">lme4</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmerControl.html">glmerControl</a></span>(
     <span class="kw">optimizer</span> <span class="kw">=</span> <span class="st">"Nelder_Mead"</span>,
@@ -1372,7 +1372,7 @@
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"generalized linear mixed models  using Penalized Quasi-Likelihood"</span>,
   <span class="kw">exclude.intercept</span> <span class="kw">=</span> <span class="fl">FALSE</span>
 )
-<span class="co">#&gt; Note: AIC and BIC values not available, so skipping caption.</span></pre></body></html></div>
+<span class="co">#&gt; Can't calculate log-loss.</span></pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/glmmPQL-1.png" width="576"></p>
 </div>
 <div id="generalized-linear-mixed-models-using-template-model-builder-glmmtmb" class="section level2">
@@ -1780,7 +1780,7 @@
   <span class="kw pkg">blme</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/blme/man/blmer.html">bglmer</a></span>(
     <span class="kw">formula</span> <span class="kw">=</span> <span class="no">Survived</span> ~ <span class="no">Sex</span> + <span class="no">Age</span> + (<span class="no">Sex</span> + <span class="no">Age</span> <span class="kw">|</span> <span class="no">Class</span>),
     <span class="co"># select 20% of the sample to reduce the time of execution</span>
-    <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/Titanic_full.html">Titanic_full</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.2</span>),
+    <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/Titanic_full.html">Titanic_full</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.2</span>),
     <span class="kw">family</span> <span class="kw">=</span> <span class="kw pkg">stats</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span>(<span class="kw">link</span> <span class="kw">=</span> <span class="st">"logit"</span>),
     <span class="kw">control</span> <span class="kw">=</span> <span class="kw pkg">lme4</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmerControl.html">glmerControl</a></span>(
       <span class="kw">optimizer</span> <span class="kw">=</span> <span class="st">"Nelder_Mead"</span>,
@@ -1883,7 +1883,7 @@
 <span class="co"># exctrating summary</span>
 <span class="no">df_summary</span> <span class="kw">&lt;-</span>
   <span class="kw pkg">bmlm</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/bmlm/man/mlm_summary.html">mlm_summary</a></span>(<span class="no">fit</span>) <span class="kw">%&gt;%</span>
-  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">rename</a></span>(
+  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span>(
     <span class="kw">.data</span> <span class="kw">=</span> <span class="no">.</span>,
     <span class="kw">estimate</span> <span class="kw">=</span> <span class="no">Mean</span>,
     <span class="kw">term</span> <span class="kw">=</span> <span class="no">Parameter</span>,
@@ -2007,7 +2007,7 @@
   <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
     <span class="kw">x</span> <span class="kw">=</span> <span class="kw pkg">robust</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/robust/man/glmRob.html">glmRob</a></span>(
       <span class="kw">formula</span> <span class="kw">=</span> <span class="no">Survived</span> ~ <span class="no">Sex</span>,
-      <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/Titanic_full.html">Titanic_full</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.20</span>),
+      <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/Titanic_full.html">Titanic_full</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.20</span>),
       <span class="kw">family</span> <span class="kw">=</span> <span class="kw pkg">stats</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span>(<span class="kw">link</span> <span class="kw">=</span> <span class="st">"logit"</span>)
     ),
     <span class="kw">title</span> <span class="kw">=</span> <span class="st">"generalized robust linear model"</span>,
@@ -3196,7 +3196,7 @@
 <span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">100</span> * <span class="fl">20</span>), <span class="fl">100</span>, <span class="fl">20</span>)
 <span class="no">y</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">100</span>)
 <span class="no">fit1</span> <span class="kw">&lt;-</span> <span class="kw pkg">glmnet</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/glmnet/man/glmnet.html">glmnet</a></span>(<span class="no">x</span>, <span class="no">y</span>)
-(<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">broom</span><span class="kw ns">::</span><span class="fu"><a href="http://broom.tidyverse.org/reference/reexports.html">tidy</a></span>(<span class="no">fit1</span>))
+(<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">broom</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/broom/man/reexports.html">tidy</a></span>(<span class="no">fit1</span>))
 <span class="co">#&gt; # A tibble: 1,086 x 5</span>
 <span class="co">#&gt;    term         step estimate lambda dev.ratio</span>
 <span class="co">#&gt;    &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;</span>
@@ -3652,7 +3652,6 @@
   <span class="kw">x</span> <span class="kw">=</span> <span class="no">mod</span>,
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"panel regression models fit via multilevel modeling"</span>
 )</pre></body></html></div>
-<p><img src="ggcoefstats_files/figure-html/wblm-1.png" width="672"></p>
 </div>
 <div id="panel-regression-models-fit-via-generalized-estimating-equations-wbgee" class="section level2">
 <h2 class="hasAnchor">
@@ -3678,9 +3677,7 @@
   <span class="kw">exclude.intercept</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
   <span class="kw">conf.level</span> <span class="kw">=</span> <span class="fl">0.99</span>,
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"panel regression models fit via generalized estimating equations"</span>
-)
-<span class="co">#&gt; Note: AIC and BIC values not available, so skipping caption.</span></pre></body></html></div>
-<p><img src="ggcoefstats_files/figure-html/wbgee-1.png" width="576"></p>
+)</pre></body></html></div>
 </div>
 <div id="censored-regression-with-conditional-heteroscedasticy-crch" class="section level2">
 <h2 class="hasAnchor">
@@ -3841,9 +3838,9 @@
 <span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.18 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.044 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.224 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.153 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.037 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                0.19 seconds (Total)</span>
 <span class="co">#&gt; Chain 1: </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; SAMPLING FOR MODEL 'b4bd45cd39084a7f826358012285004e' NOW (CHAIN 1).</span>
@@ -3866,9 +3863,9 @@
 <span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.239 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.06 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.299 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.14 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.038 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                0.178 seconds (Total)</span>
 <span class="co">#&gt; Chain 1: </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; SAMPLING FOR MODEL 'b4bd45cd39084a7f826358012285004e' NOW (CHAIN 1).</span>
@@ -3891,9 +3888,9 @@
 <span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.267 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.063 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.33 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.126 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.036 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                0.162 seconds (Total)</span>
 <span class="co">#&gt; Chain 1: </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; SAMPLING FOR MODEL 'b4bd45cd39084a7f826358012285004e' NOW (CHAIN 1).</span>
@@ -3916,9 +3913,9 @@
 <span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.279 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.081 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.36 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.159 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.038 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                0.197 seconds (Total)</span>
 <span class="co">#&gt; Chain 1: </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; SAMPLING FOR MODEL 'b4bd45cd39084a7f826358012285004e' NOW (CHAIN 1).</span>
@@ -3941,9 +3938,9 @@
 <span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.197 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.051 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.248 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.163 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.036 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                0.199 seconds (Total)</span>
 <span class="co">#&gt; Chain 1:</span>
 
 <span class="co"># plot</span>
@@ -3974,8 +3971,8 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; SAMPLING FOR MODEL 'continuous' NOW (CHAIN 1).</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: Gradient evaluation took 0.002 seconds</span>
-<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 20 seconds.</span>
+<span class="co">#&gt; Chain 1: Gradient evaluation took 0.001 seconds</span>
+<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.</span>
 <span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span>
 <span class="co">#&gt; Chain 1: </span>
 <span class="co">#&gt; Chain 1: </span>
@@ -3992,9 +3989,9 @@
 <span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.14 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.134 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.274 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.059 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.07 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                0.129 seconds (Total)</span>
 <span class="co">#&gt; Chain 1:</span>
 
 <span class="co"># plot</span>
@@ -4065,8 +4062,8 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; SAMPLING FOR MODEL 'continuous' NOW (CHAIN 1).</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: Gradient evaluation took 0.002 seconds</span>
-<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 20 seconds.</span>
+<span class="co">#&gt; Chain 1: Gradient evaluation took 0.001 seconds</span>
+<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.</span>
 <span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span>
 <span class="co">#&gt; Chain 1: </span>
 <span class="co">#&gt; Chain 1: </span>
@@ -4083,9 +4080,9 @@
 <span class="co">#&gt; Chain 1: Iteration: 900 / 1000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 1000 / 1000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 1.332 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.8 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                2.132 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.909 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.546 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                1.455 seconds (Total)</span>
 <span class="co">#&gt; Chain 1:</span>
 
 <span class="co"># plot</span>
@@ -4377,7 +4374,7 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">metaplus</span>)
 
 <span class="co"># renaming to what the function expects</span>
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="no">mag</span>, <span class="kw">estimate</span> <span class="kw">=</span> <span class="no">yi</span>, <span class="kw">std.error</span> <span class="kw">=</span> <span class="no">sei</span>, <span class="kw">term</span> <span class="kw">=</span> <span class="no">study</span>)
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span>(<span class="no">mag</span>, <span class="kw">estimate</span> <span class="kw">=</span> <span class="no">yi</span>, <span class="kw">std.error</span> <span class="kw">=</span> <span class="no">sei</span>, <span class="kw">term</span> <span class="kw">=</span> <span class="no">study</span>)
 
 <span class="co"># plot</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
@@ -4519,7 +4516,7 @@ speed =~ x7 + x8 + x9 "</span>
 <div id="other-types-of-outputs" class="section level1">
 <h1 class="hasAnchor">
 <a href="#other-types-of-outputs" class="anchor"></a>Other types of outputs</h1>
-<p>This function can also be used to extract outputs other than a plot, although it is much more preferable to use the underlying functions instead (e.g., <code><a href="http://broom.tidyverse.org/reference/reexports.html">broom::tidy</a></code> or <code><a href="https://rdrr.io/pkg/parameters/man/model_parameters.html">parameters::model_parameters</a></code>).</p>
+<p>This function can also be used to extract outputs other than a plot, although it is much more preferable to use the underlying functions instead (e.g., <code><a href="https://rdrr.io/pkg/broom/man/reexports.html">broom::tidy</a></code> or <code><a href="https://rdrr.io/pkg/parameters/man/model_parameters.html">parameters::model_parameters</a></code>).</p>
 <div class="sourceCode" id="cb134"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)

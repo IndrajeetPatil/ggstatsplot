@@ -18,7 +18,7 @@ testthat::test_that(
         y = desire,
         type = "bayes",
         k = 4,
-        #mean.ci = TRUE,
+        # mean.ci = TRUE,
         conf.level = 0.99,
         outlier.tagging = TRUE,
         outlier.label = "region",

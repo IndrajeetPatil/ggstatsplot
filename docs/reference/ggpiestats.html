@@ -244,8 +244,8 @@ included in the plot as a subtitle.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>for use with <code>formula</code>, a data frame containing all the
-data</p></td>
+      <td><p>A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
     </tr>
     <tr>
       <th>counts</th>
@@ -372,9 +372,7 @@ or symbol.</p></td>
     </tr>
     <tr>
       <th>palette</th>
-      <td><p>If a character string (e.g., <code>"Set1"</code>), will use that named
-palette. If a number, will index into the list of palettes of appropriate
-type. Default palette is <code>"Dark2"</code>.</p></td>
+      <td><p>Name of palette as string or symbol.</p></td>
     </tr>
     <tr>
       <th>ggplot.component</th>
@@ -385,11 +383,15 @@ as a function.</p></td>
     </tr>
     <tr>
       <th>output</th>
-      <td><p>Can either be <code>"null"</code> (or <code>"caption"</code> or <code>"H0"</code> or <code>"h0"</code>),
-which will return expression with evidence in favor of the null hypothesis,
-or <code>"alternative"</code> (or <code>"title"</code> or <code>"H1"</code> or <code>"h1"</code>), which will return
-expression with evidence in favor of the alternative hypothesis, or
-<code>"results"</code>, which will return a dataframe with results all the details).</p></td>
+      <td><p>Character that describes what is to be returned: can be
+<code>"plot"</code> (default) or <code>"subtitle"</code> or <code>"caption"</code>. Setting this to
+<code>"subtitle"</code> will return the expression containing statistical results. If
+you have set <code>results.subtitle = FALSE</code>, then this will return a <code>NULL</code>.
+Setting this to <code>"caption"</code> will return the expression containing details
+about Bayes Factor analysis, but valid only when <code>type = "parametric"</code> and
+<code>bf.message = TRUE</code>, otherwise this will return a <code>NULL</code>. For functions
+<code>ggpiestats</code> and <code>ggbarstats</code>, setting <code>output = "proptest"</code> will return a
+dataframe containing results from proportion tests.</p></td>
     </tr>
     <tr>
       <th>messages</th>
@@ -410,7 +412,7 @@ association test will be run. This argument can not be <code>NULL</code> for
     </tr>
     <tr>
       <th>...</th>
-      <td><p>further arguments to be passed to or from methods.</p></td>
+      <td><p>Currently ignored.</p></td>
     </tr>
     </table>
 
@@ -449,13 +451,17 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>,
   <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='st'>"Engine"</span>
 )</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note:</span><span> </span><span style='color: #BBBB00;'>95%</span><span> </span><span style='color: #0000BB;'>CI for effect size estimate was computed with</span><span> </span><span style='color: #BBBB00;'>10</span><span> </span><span style='color: #0000BB;'>bootstrap samples.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 11</span><span>
-#&gt;   cyl   counts  perc N     `0`   `1`   statistic p.value parameter method
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> 
-#&gt; </span><span style='color: #555555;'>1</span><span> 8         14  43.8 (n =~ 100.~ </span><span style='color: #BB0000;'>NA</span><span>       14     1.83</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span>         1 Chi-s~
-#&gt; </span><span style='color: #555555;'>2</span><span> 6          7  21.9 (n =~ 42.8~ 57.1~     0.143 7.05</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>         1 Chi-s~
-#&gt; </span><span style='color: #555555;'>3</span><span> 4         11  34.4 (n =~ 9.09% 90.9~     7.36  6.66</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span>         1 Chi-s~
-#&gt; </span><span style='color: #555555;'># ... with 1 more variable: significance </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span></div><div class='img'><img src='ggpiestats-2.png' alt='' width='700' height='433' /></div></span></pre>
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 3 x 11</span><span>
+#&gt;   cyl   counts  perc N        `0`     `1`    statistic  p.value parameter
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 8         14  43.8 (n = 14) 100.00% </span><span style='color: #BB0000;'>NA</span><span>        14     0.000</span><span style='text-decoration: underline;'>183</span><span>         1
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 6          7  21.9 (n = 7)  42.86%  57.14%     0.143 0.705            1
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 4         11  34.4 (n = 11) 9.09%   90.91%     7.36  0.006</span><span style='text-decoration: underline;'>66</span><span>          1
+#&gt;   method                                   significance
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Chi-squared test for given probabilities ***         
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Chi-squared test for given probabilities ns          
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Chi-squared test for given probabilities **          </div><div class='img'><img src='ggpiestats-2.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
