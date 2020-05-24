@@ -11,48 +11,48 @@ env:
     - _R_CHECK_FORCE_SUGGESTS_=true
     - _R_CHECK_CRAN_INCOMING_=true
 
-r_binary_packages:
-  - magrittr
-  - curl
-  - jsonlite
-  - rstan
-  - Rcpp
-  - RcppEigen
-  - openssl
-  - utf8
-  - gss
-  - haven
-  - minqa
-  - mvtnorm
-  - nloptr
-  - SparseM
-  - httpuv
-  - markdown
-  - pander
-  - git2r
-  - rlang
-  - bindrcpp
-  - tidyr
-  - dplyr
-  - rstantools
-  - bridgesampling
-  - BH
-  - stringi
-  - BayesFactor
-  - metaBMA
-  - coda
-  - coin
-  - multcomp
-  - pbkrtest
-  - mc2d
-  - data.table
-  - lme4
-  - lmerTest
-  - GGally
-  - emmeans
-  - ggrepel
-  - metaplus
-  - fastGHQuad
+# r_binary_packages:
+#   - magrittr
+#   - curl
+#   - jsonlite
+#   - rstan
+#   - Rcpp
+#   - RcppEigen
+#   - openssl
+#   - utf8
+#   - gss
+#   - haven
+#   - minqa
+#   - mvtnorm
+#   - nloptr
+#   - SparseM
+#   - httpuv
+#   - markdown
+#   - pander
+#   - git2r
+#   - rlang
+#   - bindrcpp
+#   - tidyr
+#   - dplyr
+#   - rstantools
+#   - bridgesampling
+#   - BH
+#   - stringi
+#   - BayesFactor
+#   - metaBMA
+#   - coda
+#   - coin
+#   - multcomp
+#   - pbkrtest
+#   - mc2d
+#   - data.table
+#   - lme4
+#   - lmerTest
+#   - GGally
+#   - emmeans
+#   - ggrepel
+#   - metaplus
+#   - fastGHQuad
 
 r_packages:
   - remotes

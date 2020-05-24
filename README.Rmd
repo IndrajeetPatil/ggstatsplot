@@ -837,7 +837,6 @@ set.seed(123)
 ggstatsplot::ggcorrmat(
   data = ggplot2::msleep,
   type = "robust", # correlation method
-  sig.level = 0.001, # threshold of significance
   p.adjust.method = "holm", # p-value adjustment method for multiple comparisons
   cor.vars = c(sleep_rem, awake:bodywt), # a range of variables can be selected
   cor.vars.names = c(
@@ -876,7 +875,6 @@ ggstatsplot::grouped_ggcorrmat(
     genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
   ),
   cor.vars = length:votes,
-  type = "nonparametric",
   colors = c("#cbac43", "white", "#550000"),
   grouping.var = genre, # grouping variable
   k = 3L, # number of digits after decimal point

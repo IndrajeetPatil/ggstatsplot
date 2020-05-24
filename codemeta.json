@@ -283,7 +283,7 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/IndrajeetPatil/groupedstats"
+      "sameAs": "https://CRAN.R-project.org/package=groupedstats"
     },
     {
       "@type": "SoftwareApplication",
@@ -338,14 +338,14 @@
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
-      "version": ">= 0.6.1.1",
+      "version": ">= 0.7.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/easystats/parameters"
+      "sameAs": "https://CRAN.R-project.org/package=parameters"
     },
     {
       "@type": "SoftwareApplication",
@@ -387,7 +387,7 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/IndrajeetPatil/statsExpressions"
+      "sameAs": "https://CRAN.R-project.org/package=statsExpressions"
     },
     {
       "@type": "SoftwareApplication",
@@ -432,7 +432,7 @@
   ],
   "citation": [
     {
-      "@type": "SoftwareSourceCode",
+      "@type": "ScholarlyArticle",
       "datePublished": "2018",
       "author": [
         {
@@ -441,11 +441,19 @@
           "familyName": "Patil"
         }
       ],
-      "name": "ggstatsplot: \"ggplot2\" Based Plots with Statistical Details",
+      "name": "{ggstatsplot}: 'ggplot2' Based Plots with Statistical Details",
       "identifier": "10.5281/zenodo.2074621",
       "url": "https://CRAN.R-project.org/package=ggstatsplot",
       "@id": "https://doi.org/10.5281/zenodo.2074621",
-      "sameAs": "https://doi.org/10.5281/zenodo.2074621"
+      "sameAs": "https://doi.org/10.5281/zenodo.2074621",
+      "isPartOf": {
+        "@type": "PublicationIssue",
+        "datePublished": "2018",
+        "isPartOf": {
+          "@type": ["PublicationVolume", "Periodical"],
+          "name": "CRAN"
+        }
+      }
     }
   ],
   "copyrightHolder": [
@@ -459,5 +467,5 @@
   ],
   "funder": {},
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md",
-  "fileSize": "40588.418KB"
+  "fileSize": "40574.635KB"
 }

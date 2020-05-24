@@ -40,7 +40,7 @@ Imports:
     ipmisc (>= 2.0.0),
     pairwiseComparisons,
     paletteer,
-    parameters (>= 0.6.1.1),
+    parameters (>= 0.7.0),
     purrr,
     rlang,
     stats,
@@ -56,10 +56,6 @@ Suggests:
     testthat,
     tibble,
     WRS2
-Remotes:
-    IndrajeetPatil/groupedstats,
-    IndrajeetPatil/statsExpressions,
-    easystats/parameters
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
