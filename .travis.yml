@@ -11,7 +11,7 @@ env:
     - _R_CHECK_FORCE_SUGGESTS_=true
     - _R_CHECK_CRAN_INCOMING_=true
 
-r_binary_packages:
+#r_binary_packages:
 #   - magrittr
 #   - curl
 #   - jsonlite
@@ -36,7 +36,7 @@ r_binary_packages:
 #   - dplyr
 #   - rstantools
 #   - bridgesampling
-  - BH
+#   - BH
 #   - stringi
 #   - BayesFactor
 #   - metaBMA
