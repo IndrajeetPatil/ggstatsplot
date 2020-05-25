@@ -71,17 +71,23 @@ r_github_packages:
   - jimhester/lintr
   - r-lib/covr
 
-addons:
-  apt:
-    packages:
-      - libudunits2-dev
-      - libgdal-dev
-      - libproj-dev
+# addons:
+#   apt:
+#     packages:
+#       - libudunits2-dev
+#       - libgdal-dev
+#       - libproj-dev
+#
+# before_install:
+#   - mkdir -p ~/.R
+#   - echo "CXX14FLAGS=-O3 -mtune=native -march=native -Wno-unused-variable -Wno-unused-function  -Wno-macro-redefined" >> ~/.R/Makevars
+#   - echo "CXX14=g++ -std=c++1y -fPIC" >> ~/.R/Makevars
 
 before_install:
-  - mkdir -p ~/.R
-  - echo "CXX14FLAGS=-O3 -mtune=native -march=native -Wno-unused-variable -Wno-unused-function  -Wno-macro-redefined" >> ~/.R/Makevars
-  - echo "CXX14=g++ -std=c++1y -fPIC" >> ~/.R/Makevars
+  - curl -OLs https://eddelbuettel.github.io/r-travis/run.sh && chmod 0755 run.sh
+  # optionally add our launchpad repo, but not needed here
+  # - sudo add-apt-repository -y ppa:edd/r-3.5
+  - ./run.sh bootstrap
 
 notifications:
   email:
