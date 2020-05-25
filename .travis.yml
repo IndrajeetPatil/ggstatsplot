@@ -1,7 +1,7 @@
 language: r
 r:
   - release
-#  - devel
+  - devel
 
 latex: true
 warnings_are_errors: TRUE
@@ -11,7 +11,7 @@ env:
     - _R_CHECK_FORCE_SUGGESTS_=true
     - _R_CHECK_CRAN_INCOMING_=true
 
-# r_binary_packages:
+r_binary_packages:
 #   - magrittr
 #   - curl
 #   - jsonlite
@@ -36,7 +36,7 @@ env:
 #   - dplyr
 #   - rstantools
 #   - bridgesampling
-#   - BH
+  - BH
 #   - stringi
 #   - BayesFactor
 #   - metaBMA
@@ -68,17 +68,17 @@ r_github_packages:
   - jimhester/lintr
   - r-lib/covr
 
-addons:
-  apt:
-    packages:
-      - libudunits2-dev
-      - libgdal-dev
-      - libproj-dev
-
-before_install:
-  - mkdir -p ~/.R
-  - echo "CXX14FLAGS=-O3 -mtune=native -march=native -Wno-unused-variable -Wno-unused-function  -Wno-macro-redefined" >> ~/.R/Makevars
-  - echo "CXX14=g++ -std=c++1y -fPIC" >> ~/.R/Makevars
+# addons:
+#   apt:
+#     packages:
+#       - libudunits2-dev
+#       - libgdal-dev
+#       - libproj-dev
+#
+# before_install:
+#   - mkdir -p ~/.R
+#   - echo "CXX14FLAGS=-O3 -mtune=native -march=native -Wno-unused-variable -Wno-unused-function  -Wno-macro-redefined" >> ~/.R/Makevars
+#   - echo "CXX14=g++ -std=c++1y -fPIC" >> ~/.R/Makevars
 
 notifications:
   email:
