@@ -38,7 +38,7 @@
 #'   colors from the specified `palette` from `package` will be selected.
 #' @param caption The text for the plot caption. If `NULL`, a default caption
 #'   will be shown.
-#' @param pch Decides the glyphs (read point shapes) to be used for
+#' @param pch Decides the glyphs (or point shapes) to be used for
 #'   insignificant correlation coefficients (only valid when `insig = "pch"`).
 #'   Default value is `pch = 4`.
 #' @param ggcorrplot.args A list of additional (mostly aesthetic) arguments that
@@ -47,9 +47,9 @@
 #'   by `ggstatsplot`: `corr`, `method`, `p.mat`, `sig.level`, `ggtheme`,
 #'   `colors`, `matrix.type`, `lab`, `pch`, `legend.title`, `digits`.
 #' @inheritParams statsExpressions::expr_corr_test
-#' @inheritParams theme_ggstatsplot
-#' @inheritParams ggscatterstats
 #' @inheritParams ggbetweenstats
+#' @inheritParams theme_ggstatsplot
+#' @inheritParams ggcorrplot::ggcorrplot
 #'
 #' @import ggplot2
 #'

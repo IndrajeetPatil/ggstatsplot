@@ -68,7 +68,7 @@ If set to \code{NULL}, manual specification of colors will be turned off and 3
 colors from the specified \code{palette} from \code{package} will be selected.}
     \item{\code{caption}}{The text for the plot caption. If \code{NULL}, a default caption
 will be shown.}
-    \item{\code{pch}}{Decides the glyphs (read point shapes) to be used for
+    \item{\code{pch}}{Decides the glyphs (or point shapes) to be used for
 insignificant correlation coefficients (only valid when \code{insig = "pch"}).
 Default value is \code{pch = 4}.}
     \item{\code{ggcorrplot.args}}{A list of additional (mostly aesthetic) arguments that
@@ -90,6 +90,9 @@ parametric/pearson's), \code{"np"} (nonparametric/spearman), \code{"r"} (robust)
 \verb{95\%} lower and upper confidence intervals (\code{0.95}).}
     \item{\code{bf.prior}}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
 width to use in calculating Bayes factors.}
+    \item{\code{package}}{Name of package from which the palette is desired as string
+or symbol.}
+    \item{\code{palette}}{Name of palette as string or symbol.}
     \item{\code{ggtheme}}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
 extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
@@ -98,22 +101,6 @@ extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
 theme elements are to be displayed along with the selected \code{ggtheme}
 (Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
 override some aspects of the selected \code{ggtheme}.}
-    \item{\code{method}}{Smoothing method (function) to use, accepts either
-\code{NULL} or a character vector, e.g. \code{"lm"}, \code{"glm"}, \code{"gam"}, \code{"loess"}
-or a function, e.g. \code{MASS::rlm} or \code{mgcv::gam}, \code{stats::lm}, or \code{stats::loess}.
-\code{"auto"} is also accepted for backwards compatibility.  It is equivalent to
-\code{NULL}.
-
-For \code{method = NULL} the smoothing method is chosen based on the
-size of the largest group (across all panels). \code{\link[stats:loess]{stats::loess()}} is
-used for less than 1,000 observations; otherwise \code{\link[mgcv:gam]{mgcv::gam()}} is
-used with \code{formula = y ~ s(x, bs = "cs")} with \code{method = "REML"}. Somewhat anecdotally,
-\code{loess} gives a better appearance, but is \eqn{O(N^{2})}{O(N^2)} in memory,
-so does not work for larger datasets.
-
-If you have fewer than 1,000 observations but want to use the same \code{gam()}
-model that \code{method = NULL} would use, then set
-\verb{method = "gam", formula = y ~ s(x, bs = "cs")}.}
     \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
 of the current function. Default is \code{NULL}. The argument should be entered
@@ -122,9 +109,8 @@ as a function.}
 \code{results.subtitle = FALSE}.}
     \item{\code{messages}}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
-    \item{\code{package}}{Name of package from which the palette is desired as string
-or symbol.}
-    \item{\code{palette}}{Name of palette as string or symbol.}
+    \item{\code{method}}{character, the visualization method of correlation matrix to be
+used. Allowed values are "square" (default), "circle".}
   }}
 
 \item{plotgrid.args}{A list of additional arguments to \code{cowplot::plot_grid}.}

@@ -53,22 +53,8 @@ values, \emph{p}-values, no. of observations, etc.) will be returned.}
 \item{matrix.type}{Character, \code{"full"} (default), \code{"upper"} or \code{"lower"},
 display full matrix, lower triangular or upper triangular matrix.}
 
-\item{method}{Smoothing method (function) to use, accepts either
-\code{NULL} or a character vector, e.g. \code{"lm"}, \code{"glm"}, \code{"gam"}, \code{"loess"}
-or a function, e.g. \code{MASS::rlm} or \code{mgcv::gam}, \code{stats::lm}, or \code{stats::loess}.
-\code{"auto"} is also accepted for backwards compatibility.  It is equivalent to
-\code{NULL}.
-
-For \code{method = NULL} the smoothing method is chosen based on the
-size of the largest group (across all panels). \code{\link[stats:loess]{stats::loess()}} is
-used for less than 1,000 observations; otherwise \code{\link[mgcv:gam]{mgcv::gam()}} is
-used with \code{formula = y ~ s(x, bs = "cs")} with \code{method = "REML"}. Somewhat anecdotally,
-\code{loess} gives a better appearance, but is \eqn{O(N^{2})}{O(N^2)} in memory,
-so does not work for larger datasets.
-
-If you have fewer than 1,000 observations but want to use the same \code{gam()}
-model that \code{method = NULL} would use, then set
-\verb{method = "gam", formula = y ~ s(x, bs = "cs")}.}
+\item{method}{character, the visualization method of correlation matrix to be
+used. Allowed values are "square" (default), "circle".}
 
 \item{type}{Type of association between paired samples required
 ("\code{"parametric"}: Pearson's product moment correlation coefficient" or
@@ -103,7 +89,7 @@ width to use in calculating Bayes factors.}
 \strong{unadjusted} \emph{p}-values will be used for the \strong{lower} triangle of the
 matrix.}
 
-\item{pch}{Decides the glyphs (read point shapes) to be used for
+\item{pch}{Decides the glyphs (or point shapes) to be used for
 insignificant correlation coefficients (only valid when \code{insig = "pch"}).
 Default value is \code{pch = 4}.}
 
