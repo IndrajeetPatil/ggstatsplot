@@ -216,10 +216,11 @@
 <li><p><code>ggcoefstats</code> has been refactored to reflect that <code><a href="https://indrajeetpatil.github.io/broomExtra//reference/tidy_parameters.html">broomExtra::tidy_parameters</a></code> now defaults to <code>parameters</code> package instead of <code>broom</code>. It also loses the following vestigial arguments: <code>p.adjust.method</code> and <code>coefficient.type</code>.</p></li>
 <li><p>Reverts aligning title and subtitle with the plot and not the axes, since it looked pretty ugly (esp., <code>ggcoefstats</code>) and was causing problems for labels.</p></li>
 <li><p><code>factor.levels</code> (for <code>ggpiestats</code>) and <code>labels.legend</code> (for <code>ggbarstats</code>) are deprecated. If users would like to changes the names for factor levels, this should be done outside of <code>ggstatsplot</code>.</p></li>
+<li><p>The non-parametric post hoc test for between-subjects design has been changed from Dwass-Steel-Crichtlow-Fligner test to Dunn test.</p></li>
 </ul>
 <p>NEW FEATURES</p>
 <ul>
-<li>More models supported in <code>ggcoefstats</code>: <code>bayesGARCH</code>, <code>clm2</code>, <code>clmm2</code>, <code>mcmc.list</code>.</li>
+<li>More models supported in <code>ggcoefstats</code>: <code>bayesGARCH</code>, <code>clm2</code>, <code>clmm2</code>, <code>mcmc.list</code>, <code>robmixglm</code>.</li>
 </ul>
 </div>
     <div id="ggstatsplot-040" class="section level1">
@@ -410,7 +411,7 @@
 <li><p>New dataset included: <code>bugs_long</code>, for repeated measures designs with <code>NA</code>s present in the data.</p></li>
 <li><p><code>ggstatsplot</code> now uses <code>rcompanion</code> to compute Spearman’s <em>rho</em> and Kendall’s <em>W</em>. Therefore, <code>DescTools</code> is removed from dependencies.</p></li>
 <li><p><code>ggcoefstats</code> supports following objects: <code>bglmerMod</code>, <code>blmerMod</code>, <code>lme</code>, <code>mclogit</code>, <code>mmclogit</code>, <code>tobit</code>, <code>wblm</code>.</p></li>
-<li><p><code>ggcoefstats</code> now respects <code>conf.int</code>. It internally always defaulted to <code>conf.int = TRUE</code> in <code><a href="https://rdrr.io/pkg/broom/man/reexports.html">broom::tidy</a></code> irrespective of what was specified by the user.</p></li>
+<li><p><code>ggcoefstats</code> now respects <code>conf.int</code>. It internally always defaulted to <code>conf.int = TRUE</code> in <code><a href="https://broom.tidymodels.org/reference/reexports.html">broom::tidy</a></code> irrespective of what was specified by the user.</p></li>
 <li><p>It was painfully confusing for a lot of users what exactly the asterisks in each facet of <code>ggpiestats</code> signified. So instead now <code>ggpiestats</code> displays more detailed results from a goodness of fit (gof) test. No such change is made for <code>ggbarstats</code> because there is no space to include more details above the bar.</p></li>
 <li><p>Removed <code>conf.method</code> and <code>conf.type</code> arguments for <code>ggcoefstats</code>. Also, <code>p.kr</code> argument removed because <code>ggcoefstats</code> will begin to rely on <code>parameters</code> instead of <code>sjstats</code> package to compute <em>p</em>-values for some regression models.</p></li>
 </ul>

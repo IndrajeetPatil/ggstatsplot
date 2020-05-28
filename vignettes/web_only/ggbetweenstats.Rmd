@@ -363,7 +363,7 @@ Type | Equal variance? | Test | *p*-value adjustment?
 ----------- | --- | ------------------------- | ---
 Parametric | No | Games-Howell test | <font color="green">Yes</font>  
 Parametric | Yes | Student's *t*-test | <font color="green">Yes</font>  
-Non-parametric | No | Dwass-Steel-Crichtlow-Fligner test | <font color="green">Yes</font>  
+Non-parametric | No | Dunn test | <font color="green">Yes</font>  
 Robust | No | Yuen's trimmed means test | <font color="green">Yes</font>  
 Bayes Factor | `NA` | Student's *t*-test | `NA`
 

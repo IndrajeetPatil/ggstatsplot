@@ -295,17 +295,6 @@ ggwithinstats <- function(data,
 
   # add labels for mean values
   if (isTRUE(mean.plotting)) {
-    plot <-
-      mean_ggrepel(
-        mean.data = mean_dat,
-        x = {{ x }},
-        y = {{ y }},
-        plot = plot,
-        mean.point.args = mean.point.args,
-        mean.label.args = mean.label.args,
-        inherit.aes = FALSE
-      )
-
     # if there should be lines connecting mean values across groups
     if (isTRUE(mean.path)) {
       plot <- plot +
@@ -317,6 +306,18 @@ ggwithinstats <- function(data,
           !!!mean.path.args
         )
     }
+
+    # add mean points
+    plot <-
+      mean_ggrepel(
+        mean.data = mean_dat,
+        x = {{ x }},
+        y = {{ y }},
+        plot = plot,
+        mean.point.args = mean.point.args,
+        mean.label.args = mean.label.args,
+        inherit.aes = FALSE
+      )
   }
 
   # ----------------- sample size labels --------------------------------------

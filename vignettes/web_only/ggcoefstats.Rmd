@@ -88,22 +88,15 @@ also supported by `ggcoefstats`. For example-
 `lmRob`, `lmrob`, `LORgee`, `lrm`, `mcmc`, `mcmc.list`, `MCMCglmm`, `mclogit`,
 `mmclogit`, `mediate`, `mixor`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`,
 `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`,
-`rlm`, `rlmerMod`, `rq`, `rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`,
-`stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`,
-`wbgee`, `wblm`, `zcpglm`, `zeroinfl`, etc.
+`rlm`, `rlmerMod`, `robmixglm`, `rq`, `rqss`, `slm`, `speedglm`, `speedlm`,
+`stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`,
+`truncreg`, `vgam`, `wbgee`, `wblm`, `zcpglm`, `zeroinfl`, etc.
 
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
 itself.
 
 ## omnibus ANOVA (`aov`)
-
-For this analysis, let's use the `movies_long` dataset, which provides
-information about IMDB ratings, budget, length, MPAA ratings (R-rated, PG, or
-PG-13), and genre for a number of movies. Let's say our hypothesis is that the
-IMDB ratings for a movie are predicted by a multiplicative effect of the genre
-and the MPAA rating it got. Let's carry out an omnibus ANOVA to see if this is
-the case.
 
 ```{r aov1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8}
 # loading needed libraries
@@ -135,59 +128,37 @@ ggstatsplot::ggcoefstats(
   ggplot2::labs(x = "effect size estimate (eta-squared)", y = NULL)
 ```
 
-As this plot shows, there is no interaction effect between these two factors.
-
 Note that we can also use this function for model selection. You can try out
-different models with the code below and see how the AIC, BIC, and
-log-likelihood values change. Looking at the model diagnostics, you should be
-able to see that the model with only `genre` as the predictor of ratings seems
-to perform almost equally well as more complicated additive and multiplicative
-models. Although there is certainly some improvement with additive and
-multiplicative models, it is by no means convincing enough for us to abandon a
-simpler model.
+different models with the code below and see how the AIC and BIC values change.
 
 ```{r aov2, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 10}
+# setup
+set.seed(123)
 library(ggstatsplot)
 
 # to speed up the calculation, let's use only 10% of the data
 movies_10 <- dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.1)
 
-# for reproducibility
-set.seed(123)
-
 # plot
 ggstatsplot::combine_plots(
   # model 1
   ggstatsplot::ggcoefstats(
-    x = stats::aov(
-      formula = rating ~ mpaa,
-      data = movies_10
-    ),
-    stats.label.color = "black",
+    x = stats::aov(formula = rating ~ mpaa, data = movies_10),
     title = "1. Only MPAA ratings"
-  ), # model 2
+  ),
+  # model 2
   ggstatsplot::ggcoefstats(
-    x = stats::aov(
-      formula = rating ~ genre,
-      data = movies_10
-    ),
-    stats.label.color = "black",
+    x = stats::aov(formula = rating ~ genre, data = movies_10),
     title = "2. Only genre"
-  ), # model 3
+  ),
+  # model 3
   ggstatsplot::ggcoefstats(
-    x = stats::aov(
-      formula = rating ~ mpaa + genre,
-      data = movies_10
-    ),
-    stats.label.color = "black",
+    x = stats::aov(formula = rating ~ mpaa + genre, data = movies_10),
     title = "3. Additive effect of MPAA and genre"
-  ), # model 4
+  ),
+  # model 4
   ggstatsplot::ggcoefstats(
-    x = stats::aov(
-      formula = rating ~ mpaa * genre,
-      data = movies_10
-    ),
-    stats.label.color = "black",
+    x = stats::aov(formula = rating ~ mpaa * genre, data = movies_10),
     title = "4. Multiplicative effect of MPAA and genre"
   ),
   title.text = "Model selection using ggcoefstats"
@@ -244,11 +215,6 @@ ggstatsplot::ggcoefstats(
 
 ## linear model (`lm`)
 
-Now that we have figured out that the movie's `genre` explains a fair amount of
-the variation in how people rate the movie on IMDB, let's run a linear
-regression model to see how different types of genres compare with each other
-using **Action** movies as our comparison point.
-
 ```{r lm, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 8}
 # plot
 ggstatsplot::ggcoefstats(
@@ -268,7 +234,6 @@ ggstatsplot::ggcoefstats(
   ),
   conf.level = 0.99, # changing the confidence levels for confidence intervals
   sort = "ascending", # sorting the terms of the model based on estimate values
-  label.direction = "both", # direction in which to adjust position of labels (both x and y)
   ggtheme = ggplot2::theme_gray(), # changing the default theme
   stats.label.color = c("#CC79A7", "darkgreen", "#0072B2", "black", "red"),
   title = "Movie ratings by their genre",
@@ -287,23 +252,7 @@ ggstatsplot::ggcoefstats(
   ggplot2::theme(axis.title.y = ggplot2::element_text(size = 14, face = "bold"))
 ```
 
-As can be seen from the regression coefficients, compared to action movies,
-comedies and action comedies are not rated significantly better. All three of
-the "drama" types (pure, action or comedy dramas) have statistical significantly
-higher regression coefficients. This finding occurs even with our more
-conservative `0.99` confidence interval.
-
 ## linear mixed-effects model (`lmer`/`lmerMod`)
-
-Now let's say we want to see how movie's budget relates to how good the movie is
-rated to be on IMDB (e.g., more money, better ratings?). But we have reasons to
-believe that the relationship between these two variables might be different for
-different genres (e.g., budget might be a good predictor of how good the movie
-is rated to be for animations or actions movies as more money can help with
-better visual effects and animations, but this may not be true for dramas, so we
-don't want to use `stats::lm`. In this case, therefore, we will be running a
-linear mixed-effects model (using `lme4::lmer` and *p*-values generated using
-the `parameters::p_values` function) with a random slope for the genre variable.
 
 ```{r lmer1, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 7}
 # set up
@@ -348,30 +297,26 @@ ggstatsplot::combine_plots(
 )
 ```
 
-As can be seen from these plots, although there seems to be a really small
-correlation between budget and rating in a linear model, this effect is not
-significant once we take into account the hierarchical structure of the data.
-
 Note that for mixed-effects models, only the *fixed* effects are shown because
 there are no confidence intervals for *random* effects terms. In case, you would
 like to see these terms, you can enter the same object you entered as `x`
-argument to `ggcoefstats` in `broom::tidy`:
+argument to `ggcoefstats`:
 
 ```{r lmer2, warning = FALSE, message = FALSE}
+# setup
 set.seed(123)
+library(lme4)
 
 # to speed up the calculation, let's use only 10% of the data
 movies_10 <- dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.1)
 
 # tidy output
-broom.mixed::tidy(
-  x = lme4::lmer(
+broomExtra::tidy_parameters(
+  lme4::lmer(
     formula = scale(rating) ~ scale(budget) + (budget | genre),
     data = movies_10,
     control = lme4::lmerControl(calc.derivs = FALSE)
-  ),
-  conf.int = TRUE,
-  conf.level = 0.95
+  )
 )
 ```
 
@@ -516,19 +461,13 @@ has been continuous. In case the outcome variable is nominal/categorical/factor,
 we can use the **generalized** form of linear model that works even if the
 response is a numeric vector or a factor vector, etc.
 
-To explore this model, we will use the Titanic dataset, which tabulates
-information on the fate of passengers on the fatal maiden voyage of the ocean
-liner *Titanic*, summarized according to economic status (class), sex, age, and
-survival. Let's say we want to know what was the strongest predictor of whether
-someone survived the Titanic disaster-
-
 ```{r glm1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
 # setup
 library(ggstatsplot)
 set.seed(123)
 
 # having a look at the Titanic dataset
-df <- as.data.frame(x = Titanic)
+df <- as.data.frame(Titanic)
 
 # model
 mod <-
@@ -726,17 +665,21 @@ library(fabricatr)
 library(estimatr)
 
 # data
-dat <- fabricate(
-  N = 40,
-  Y = rpois(N, lambda = 4),
-  Z = rbinom(N, 1, prob = 0.4),
-  D = Z * rbinom(N, 1, prob = 0.8),
-  X = rnorm(N),
-  G = sample(letters[1:4], N, replace = TRUE)
-)
+dat <-
+  fabricate(
+    N = 40,
+    Y = rpois(N, lambda = 4),
+    Z = rbinom(N, 1, prob = 0.4),
+    D = Z * rbinom(N, 1, prob = 0.8),
+    X = rnorm(N),
+    G = sample(letters[1:4], N, replace = TRUE)
+  )
 
 # instrument for treatment `D` with encouragement `Z`
-mod <- estimatr::iv_robust(formula = Y ~ D + X | Z + X, data = dat)
+mod <- estimatr::iv_robust(
+  formula = Y ~ D + X | Z + X,
+  data = dat
+)
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -757,13 +700,14 @@ library(lme4)
 set.seed(101)
 
 # data
-dd <- expand.grid(
-  f1 = factor(1:3),
-  f2 = LETTERS[1:2],
-  g = 1:9,
-  rep = 1:15,
-  KEEP.OUT.ATTRS = FALSE
-)
+dd <-
+  expand.grid(
+    f1 = factor(1:3),
+    f2 = LETTERS[1:2],
+    g = 1:9,
+    rep = 1:15,
+    KEEP.OUT.ATTRS = FALSE
+  )
 mu <- 5 * (-4 + with(dd, as.integer(f1) + 4 * as.numeric(f2)))
 dd$y <- rnbinom(nrow(dd), mu = mu, size = 0.5)
 
@@ -783,47 +727,31 @@ ggstatsplot::ggcoefstats(
 
 ## generalized linear mixed-effects model (`glmer`/`glmerMod`)
 
-In the previous example, we saw how being a female and being a child was
-predictive of surviving the Titanic disaster. But in that analysis, we didn't
-take into account one important factor: the passenger class in which people were
-traveling. Naively, we have reasons to believe that the effects of sex and age
-might be dependent on the class (maybe rescuing passengers in the first class
-were given priority?). To take into account this hierarchical structure of the
-data, we can run generalized linear mixed effects model with a random slope for
-class.
-
 ```{r glmer, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
 # setup
 set.seed(123)
 library(lme4)
 
 # model
-mod <- lme4::glmer(
-  formula = Survived ~ Sex + Age + (Sex + Age | Class),
-  # select 20% of the sample to reduce the time of execution
-  data = dplyr::sample_frac(tbl = ggstatsplot::Titanic_full, size = 0.2),
-  family = stats::binomial(link = "logit"),
-  control = lme4::glmerControl(
-    optimizer = "Nelder_Mead",
-    calc.derivs = FALSE,
-    boundary.tol = 1e-7
+mod <-
+  lme4::glmer(
+    formula = Survived ~ Sex + Age + (Sex + Age | Class),
+    data = ggstatsplot::Titanic_full,
+    family = stats::binomial(link = "logit"),
+    control = lme4::glmerControl(
+      optimizer = "Nelder_Mead",
+      calc.derivs = FALSE,
+      boundary.tol = 1e-7
+    )
   )
-)
 
 # plot
 ggstatsplot::ggcoefstats(
   x = mod,
   title = "generalized linear mixed-effects model",
-  exponentiate = TRUE,
-  stats.label.color = "black"
+  exponentiate = TRUE
 )
 ```
-
-As we had expected, once we take into account the differential relationship that
-might exist between survival and predictors across different passenger classes,
-only the sex factor remain a significant predictor. In other words, being a
-female was the strongest predictor of whether someone survived the tragedy that
-befell the Titanic.
 
 ## fitting negative binomial GLMM (`glmer.nb`)
 
@@ -884,7 +812,10 @@ set.seed(123)
 library(cplm)
 
 # model
-mod <- cpglmm(formula = RLD ~ Stock + Spacing + (1 | Plant), data = FineRoot)
+mod <- cpglmm(
+  formula = RLD ~ Stock + Spacing + (1 | Plant),
+  data = FineRoot
+)
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -1136,7 +1067,7 @@ ggstatsplot::ggcoefstats(
 set.seed(18)
 library(PROreg)
 
-# We simulate a covariate, fix the paramters of the beta-binomial
+# we simulate a covariate, fix the paramters of the beta-binomial
 # distribution and simulate a response variable.
 # Then we apply the model, and try to get the same values.
 k <- 1000
@@ -1203,7 +1134,7 @@ ggstatsplot::ggcoefstats(
 
 ## robust generalized linear models (`robmixglm`)
 
-```{r robmixglm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 10, eval=FALSE}
+```{r robmixglm, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
 # setup
 set.seed(123)
 library(robmixglm)
@@ -1563,7 +1494,7 @@ ggstatsplot::ggcoefstats(
 
 ## Bias Reduction For Multinomial Response Models Using The Poisson Trick (`brmultinom`)
 
-```{r brmultinom, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 7, eval=FALSE}
+```{r brmultinom, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 7}
 # setup
 set.seed(123)
 library(MASS)
@@ -1589,7 +1520,7 @@ ggstatsplot::ggcoefstats(
 
 ## bias reduction for adjacent category logit models (`bracl`)
 
-```{r bracl, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 7, eval=FALSE}
+```{r bracl, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 7}
 # setup
 set.seed(123)
 library(brglm2)
@@ -1980,7 +1911,7 @@ clotting <- data.frame(
 ggstatsplot::combine_plots(
   # plot 1: glmrob
   ggstatsplot::ggcoefstats(
-    x = robustglmrob(
+    x = glmrob(
       formula = lot1 ~ log(u),
       data = clotting,
       family = Gamma
@@ -1989,7 +1920,7 @@ ggstatsplot::combine_plots(
   ),
   # plot 2: lmrob
   ggstatsplot::ggcoefstats(
-    x = robustlmrob(formula = Y ~ ., data = coleman),
+    x = lmrob(formula = Y ~ ., data = coleman),
     title = "robust linear model"
   ),
   # arguments relevant for `combine_plots` function
@@ -2777,12 +2708,13 @@ ggstatsplot::ggcoefstats(
 ## nonlinear quantile regression estimates (`nlrq`)
 
 ```{r nlrq, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# setup
+set.seed(123)
 library(quantreg)
 
 # preparing data
 Dat <- NULL
 Dat$x <- rep(1:25, 20)
-set.seed(123)
 Dat$y <- stats::SSlogis(Dat$x, 10, 12, 2) * rnorm(500, 1, 0.1)
 
 # then fit the median using nlrq
@@ -2811,7 +2743,10 @@ library(quantreg)
 data(CobarOre)
 
 # model
-fCO <- rqss(formula = z ~ qss(cbind(x, y), lambda = .08), data = CobarOre)
+fCO <- rqss(
+  formula = z ~ qss(cbind(x, y), lambda = .08),
+  data = CobarOre
+)
 
 # model info
 ggstatsplot::ggcoefstats(
@@ -2830,11 +2765,12 @@ set.seed(123)
 data("CigarettesSW", package = "AER")
 
 # model
-ivr <- AER::ivreg(
-  formula = log(packs) ~ income | population,
-  data = CigarettesSW,
-  subset = year == "1995"
-)
+ivr <-
+  AER::ivreg(
+    formula = log(packs) ~ income | population,
+    data = CigarettesSW,
+    subset = year == "1995"
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -2943,7 +2879,6 @@ data(Finance)
 r <- Finance[1:300, 1:10]
 rm <- Finance[1:300, "rm"]
 rf <- Finance[1:300, "rf"]
-
 z <- as.matrix(r - rf)
 t <- nrow(z)
 zm <- rm - rf
@@ -3091,6 +3026,8 @@ ggstatsplot::ggcoefstats(
 set.seed(123)
 library(tseries)
 data(EuStockMarkets)
+
+# model
 dax <- diff(log(EuStockMarkets))[, "DAX"]
 dax.garch <- tseries::garch(x = dax, trace = FALSE)
 
@@ -3175,20 +3112,17 @@ set.seed(123)
 library(emmeans)
 
 # linear model for sales of oranges per day
-oranges_lm1 <- stats::lm(
-  formula = sales1 ~ price1 + price2 + day + store,
-  data = oranges
-)
+oranges_lm1 <-
+  stats::lm(
+    formula = sales1 ~ price1 + price2 + day + store,
+    data = oranges
+  )
 
 # reference grid; see vignette("basics", package = "emmeans")
 oranges_rg1 <- emmeans::ref_grid(oranges_lm1)
 marginal <- emmeans::emmeans(oranges_rg1, "day")
 
-# looking at the tidy output (you can do this yourself)
-# broom::tidy(marginal)
-
-# plotting it using `ggcoefstats`
-# note that since there was column called `term`, the function created one
+# plot
 ggstatsplot::ggcoefstats(
   x = marginal,
   point.args = list(color = "darkgreen", shape = 9),
@@ -3199,9 +3133,11 @@ ggstatsplot::ggcoefstats(
 ## Cochrane-Orcutt estimation (`orcutt`)
 
 ```{r orcutt, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
-# model
+# setup
 library(orcutt)
 set.seed(123)
+
+# model
 reg <- stats::lm(formula = mpg ~ wt + qsec + disp, data = mtcars)
 co <- orcutt::cochrane.orcutt(reg)
 

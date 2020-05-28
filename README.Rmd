@@ -215,7 +215,7 @@ ggstatsplot::ggbetweenstats(
   y = Sepal.Length,
   title = "Distribution of sepal length across Iris species",
   messages = FALSE
-) 
+)
 ```
 
 Note that this function returns object of class `ggplot` and thus can be further
@@ -315,7 +315,7 @@ Type | Equal variance? | Test | *p*-value adjustment?
 ----------- | --- | ------------------------- | ---
 Parametric | No | Games-Howell test | <font color="green">Yes</font>  
 Parametric | Yes | Student's *t*-test | <font color="green">Yes</font>  
-Non-parametric | No | Dwass-Steel-Crichtlow-Fligner test | <font color="green">Yes</font>  
+Non-parametric | No | Dunn test | <font color="green">Yes</font>  
 Robust | No | Yuen's trimmed means test | <font color="green">Yes</font>  
 Bayes Factor | `NA` | Student's *t*-test | `NA`
 
@@ -991,9 +991,9 @@ also supported by `ggcoefstats`. For example-
 `lmRob`, `lmrob`, `LORgee`, `lrm`, `mcmc`, `mcmc.list`, `MCMCglmm`, `mclogit`,
 `mmclogit`, `mediate`, `mixor`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`,
 `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`,
-`rlm`, `rlmerMod`, `rq`, `rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`,
-`stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`,
-`wbgee`, `wblm`, `zcpglm`, `zeroinfl`, etc.
+`rlm`, `rlmerMod`, `robmixglm`, `rq`, `rqss`, `slm`, `speedglm`, `speedlm`,
+`stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`,
+`truncreg`, `vgam`, `wbgee`, `wblm`, `zcpglm`, `zeroinfl`, etc.
 
 Although not shown here, this function can also be used to carry out both
 frequentist and Bayesian random-effects meta-analysis.

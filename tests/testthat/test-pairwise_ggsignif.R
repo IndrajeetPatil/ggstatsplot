@@ -147,13 +147,13 @@ testthat::test_that(
     # checking comparison groups and labels
     testthat::expect_identical(dat$group1, c("Action", "Action", "Comedy"))
     testthat::expect_identical(dat$group2, c("Comedy", "RomCom", "RomCom"))
-    testthat::expect_identical(dat$significance, c("ns", "**", "**"))
+    testthat::expect_identical(dat$significance, c("ns", "***", "***"))
     testthat::expect_identical(
       dat$label,
       c(
-        "list(~italic(p)[ adjusted ]== 0.915 )",
-        "list(~italic(p)[ adjusted ]== 0.003 )",
-        "list(~italic(p)[ adjusted ]== 0.001 )"
+        "list(~italic(p)[ adjusted ]== 0.812 )",
+        "list(~italic(p)[ adjusted ]<= 0.001 )",
+        "list(~italic(p)[ adjusted ]<= 0.001 )"
       )
     )
     testthat::expect_identical(
@@ -162,7 +162,7 @@ testthat::test_that(
         displaystyle(NULL),
         expr = paste(
           "Pairwise comparisons: ",
-          bold("Dwass-Steel-Crichtlow-Fligner test"),
+          bold("Dunn test"),
           "; Adjustment (p-value): ",
           bold("Benjamini & Hochberg")
         )
@@ -174,12 +174,12 @@ testthat::test_that(
         p.value = TRUE,
         k = 4
       ),
-      "0.9145"
+      "0.8116"
     )
 
     # checking values
-    testthat::expect_equal(dat$W,
-      c(0.5702297, 4.8458729, 5.4434648),
+    testthat::expect_equal(dat$z.value,
+      c(0.238306686320387, 3.63442246865882, 3.69050171235682),
       tolerance = 0.001
     )
 

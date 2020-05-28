@@ -508,8 +508,6 @@ ggstatsplot::combine_plots(
 ```{r purrr_ggdotplotstats, warning = FALSE, message = FALSE, fig.height = 16, fig.width = 6}
 # for reproducibility
 set.seed(123)
-
-# libraries needed
 library(ggthemes)
 library(hrbrthemes)
 

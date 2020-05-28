@@ -35,11 +35,14 @@ MAJOR CHANGES
   - `factor.levels` (for `ggpiestats`) and `labels.legend` (for `ggbarstats`)
     are deprecated. If users would like to changes the names for factor levels,
     this should be done outside of `ggstatsplot`.
+    
+  - The non-parametric post hoc test for between-subjects design has been
+    changed from Dwass-Steel-Crichtlow-Fligner test to Dunn test.
 
 NEW FEATURES
 
   - More models supported in `ggcoefstats`: `bayesGARCH`, `clm2`, `clmm2`,
-    `mcmc.list`.
+    `mcmc.list`, `robmixglm`.
 
 # ggstatsplot 0.4.0
 

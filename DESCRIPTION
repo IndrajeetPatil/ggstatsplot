@@ -38,7 +38,7 @@ Imports:
     groupedstats (>= 1.0.0),
     insight,
     ipmisc (>= 2.0.0),
-    pairwiseComparisons,
+    pairwiseComparisons (>= 1.0.0),
     paletteer,
     parameters (>= 0.7.0),
     purrr,
@@ -56,6 +56,8 @@ Suggests:
     testthat,
     tibble,
     WRS2
+Remotes:
+    IndrajeetPatil/pairwiseComparisons
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
