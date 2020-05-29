@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.4.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.5.0</span>
       </span>
     </div>
 
@@ -143,13 +143,13 @@
 
       
 
-      </header><script src="ggcorrmat_files/header-attrs-2.1/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggcorrmat</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-05-05</h4>
+            <h4 class="date">2020-05-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcorrmat.Rmd"><code>vignettes/web_only/ggcorrmat.Rmd</code></a></small>
       <div class="hidden name"><code>ggcorrmat.Rmd</code></div>
@@ -244,7 +244,7 @@
 
 <span class="co"># let's use just 5% of the data to speed it up</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="no"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html">diamonds</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.05</span>),
+  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="no"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html">diamonds</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.05</span>),
   <span class="kw">cor.vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">carat</span>, <span class="no">depth</span>:<span class="no">z</span>), <span class="co"># note how the variables are getting selected</span>
   <span class="kw">cor.vars.names</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
     <span class="st">"carat"</span>,
@@ -264,7 +264,7 @@
 
 <span class="co"># let's use just 5% of the data to speed it up</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="no"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html">diamonds</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.05</span>),
+  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="no"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html">diamonds</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.05</span>),
   <span class="kw">cor.vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">price</span>, <span class="no">carat</span>, <span class="no">depth</span>:<span class="no">table</span>, <span class="no">x</span>:<span class="no">z</span>), <span class="co"># note how the variables are getting selected</span>
   <span class="kw">cor.vars.names</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
     <span class="st">"price"</span>,
@@ -313,7 +313,7 @@
 
 <span class="co"># to get correlations</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="no"><a href="https://ggplot2.tidyverse.org/reference/txhousing.html">txhousing</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.15</span>),
+  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="no"><a href="https://ggplot2.tidyverse.org/reference/txhousing.html">txhousing</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.15</span>),
   <span class="kw">cor.vars</span> <span class="kw">=</span> <span class="no">sales</span>:<span class="no">inventory</span>,
   <span class="kw">output</span> <span class="kw">=</span> <span class="st">"dataframe"</span>,
   <span class="kw">type</span> <span class="kw">=</span> <span class="st">"robust"</span>,
@@ -347,14 +347,14 @@
   <span class="kw">output</span> <span class="kw">=</span> <span class="st">"dataframe"</span>
 )
 <span class="co">#&gt; # A tibble: 6 x 9</span>
-<span class="co">#&gt;   parameter1  parameter2      rho ci_low ci_high       s         p method   nobs</span>
-<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;dbl&gt; &lt;lgl&gt;  &lt;lgl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;int&gt;</span>
-<span class="co">#&gt; 1 Sepal.Leng~ Sepal.Width -0.1668 NA     NA      656283. 4.137e- 2 Spearm~   150</span>
-<span class="co">#&gt; 2 Sepal.Leng~ Petal.Leng~  0.8819 NA     NA       66429. 3.443e-50 Spearm~   150</span>
-<span class="co">#&gt; 3 Sepal.Leng~ Petal.Width  0.8343 NA     NA       93208. 4.189e-40 Spearm~   150</span>
-<span class="co">#&gt; 4 Sepal.Width Petal.Leng~ -0.3096 NA     NA      736637. 1.154e- 4 Spearm~   150</span>
-<span class="co">#&gt; 5 Sepal.Width Petal.Width -0.2890 NA     NA      725048. 3.343e- 4 Spearm~   150</span>
-<span class="co">#&gt; 6 Petal.Leng~ Petal.Width  0.9377 NA     NA       35061. 8.157e-70 Spearm~   150</span></pre></body></html></div>
+<span class="co">#&gt;   parameter1 parameter2     rho  ci_low   ci_high       s         p method  nobs</span>
+<span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;int&gt;</span>
+<span class="co">#&gt; 1 Sepal.Len~ Sepal.Wid~ -0.1668 -0.3185 -0.006695 656283. 4.137e- 2 Spear~   150</span>
+<span class="co">#&gt; 2 Sepal.Len~ Petal.Len~  0.8819  0.8404  0.9131    66429. 3.443e-50 Spear~   150</span>
+<span class="co">#&gt; 3 Sepal.Len~ Petal.Wid~  0.8343  0.7781  0.8773    93208. 4.189e-40 Spear~   150</span>
+<span class="co">#&gt; 4 Sepal.Wid~ Petal.Len~ -0.3096 -0.4477 -0.1572   736637. 1.154e- 4 Spear~   150</span>
+<span class="co">#&gt; 5 Sepal.Wid~ Petal.Wid~ -0.2890 -0.4294 -0.1350   725048. 3.343e- 4 Spear~   150</span>
+<span class="co">#&gt; 6 Petal.Len~ Petal.Wid~  0.9377  0.9149  0.9545    35061. 8.157e-70 Spear~   150</span></pre></body></html></div>
 </div>
 <div id="grouped-analysis-with-grouped_ggcorrmat" class="section level2">
 <h2 class="hasAnchor">
@@ -368,7 +368,7 @@
 <span class="co"># let's use just 5% of the data to speed it up</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span>(
   <span class="co"># arguments relevant for ggstatsplot::ggcorrmat</span>
-  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="no"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html">diamonds</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.05</span>),
+  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="no"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html">diamonds</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.05</span>),
   <span class="kw">type</span> <span class="kw">=</span> <span class="st">"robust"</span>, <span class="co"># percentage bend correlation coefficient</span>
   <span class="kw">beta</span> <span class="kw">=</span> <span class="fl">0.2</span>, <span class="co"># bending constant</span>
   <span class="kw">p.adjust.method</span> <span class="kw">=</span> <span class="st">"holm"</span>, <span class="co"># method to adjust p-values for multiple comparisons</span>

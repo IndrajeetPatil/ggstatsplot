@@ -75,15 +75,15 @@ testthat::test_that(
     testthat::expect_equal(
       unique(as.character(pb$data[[7]]$annotation)),
       c(
-        "list(~italic(p)[ unadjusted ]== 0.079 )",
         "list(~italic(p)[ unadjusted ]== 0.139 )",
+        "list(~italic(p)[ unadjusted ]== 0.079 )",
         "list(~italic(p)[ unadjusted ]== 0.825 )"
       )
     )
 
     testthat::expect_equal(
       unique(as.character(pb$data[[7]]$group)),
-      c("PG-13-R-1", "PG-13-PG-2", "R-PG-3")
+      c("PG-13-PG-1", "PG-13-R-2", "R-PG-3")
     )
 
     # checking caption

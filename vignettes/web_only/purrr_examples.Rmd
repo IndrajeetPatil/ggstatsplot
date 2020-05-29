@@ -536,7 +536,7 @@ plot_list <-
       x = "gdpPercap",
       y = "year",
       xlab = "GDP per capita (US$, inflation-adjusted)",
-      test.value = list(2500, 9000, 10000, 10000),
+      test.value = list(2500, 9000, 9500, 10000),
       type = list("p", "np", "r", "bf"),
       bf.message = list(TRUE, FALSE, TRUE, FALSE),
       title = list(
