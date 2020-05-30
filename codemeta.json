@@ -167,7 +167,6 @@
       "@type": "SoftwareApplication",
       "identifier": "broomExtra",
       "name": "broomExtra",
-      "version": ">= 4.0.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -204,6 +203,7 @@
       "@type": "SoftwareApplication",
       "identifier": "dplyr",
       "name": "dplyr",
+      "version": ">= 1.0.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -276,7 +276,7 @@
       "@type": "SoftwareApplication",
       "identifier": "groupedstats",
       "name": "groupedstats",
-      "version": ">= 1.0.0",
+      "version": ">= 1.0.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -301,7 +301,6 @@
       "@type": "SoftwareApplication",
       "identifier": "ipmisc",
       "name": "ipmisc",
-      "version": ">= 2.0.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -321,7 +320,7 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/IndrajeetPatil/pairwiseComparisons"
+      "sameAs": "https://CRAN.R-project.org/package=pairwiseComparisons"
     },
     {
       "@type": "SoftwareApplication",
@@ -339,7 +338,6 @@
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
-      "version": ">= 0.7.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -381,7 +379,6 @@
       "@type": "SoftwareApplication",
       "identifier": "statsExpressions",
       "name": "statsExpressions",
-      "version": ">= 0.4.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -468,5 +465,5 @@
   ],
   "funder": {},
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md",
-  "fileSize": "40610.837KB"
+  "fileSize": "40610.635KB"
 }

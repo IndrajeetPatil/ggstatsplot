@@ -7,5 +7,4 @@
 
 0 errors | 0 warnings | 0 notes
 
-  - Makes compatible with the new release of `statsExpressions`.
   - Minor internal refactoring and maintenance.
