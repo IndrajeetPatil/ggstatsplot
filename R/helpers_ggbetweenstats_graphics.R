@@ -234,7 +234,7 @@ ggsignif_adder <- function(plot,
   }
 
   # arrange the dataframe so that annotations are properly aligned
-  df_pairwise %<>% dplyr::arrange(.data = ., group1)
+  df_pairwise %<>% dplyr::arrange(.data = ., group1, group2)
 
   # adding ggsignif comparisons to the plot
   plot +

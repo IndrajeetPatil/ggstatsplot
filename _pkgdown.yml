@@ -43,7 +43,6 @@ reference:
       - movies_wide
       - movies_long
       - Titanic_full
-      - intent_morality
       - iris_long
       - VR_dilemma
       - bugs_wide

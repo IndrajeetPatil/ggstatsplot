@@ -21,6 +21,8 @@
 #'   values, *p*-values, no. of observations, etc.) will be returned.
 #' @param matrix.type Character, `"full"` (default), `"upper"` or `"lower"`,
 #'   display full matrix, lower triangular or upper triangular matrix.
+#' @param matrix.method The visualization method of correlation matrix to be
+#'   used. Allowed values are `"square"` (default) or `"circle"`.
 #' @param sig.level Significance level (Default: `0.05`). If the *p*-value in
 #'   *p*-value matrix is bigger than `sig.level`, then the corresponding
 #'   correlation coefficient is regarded as insignificant and flagged as such in
@@ -36,11 +38,8 @@
 #' @param colors A vector of 3 colors for low, mid, and high correlation values.
 #'   If set to `NULL`, manual specification of colors will be turned off and 3
 #'   colors from the specified `palette` from `package` will be selected.
-#' @param caption The text for the plot caption. If `NULL`, a default caption
-#'   will be shown.
-#' @param pch Decides the glyphs (or point shapes) to be used for
-#'   insignificant correlation coefficients (only valid when `insig = "pch"`).
-#'   Default value is `pch = 4`.
+#' @param pch Decides the point shape to be used for insignificant correlation
+#'   coefficients (only valid when `insig = "pch"`). Default: `pch = "cross"`.
 #' @param ggcorrplot.args A list of additional (mostly aesthetic) arguments that
 #'   will be passed to `ggcorrplot::ggcorrplot` function. The list should avoid
 #'   any of the following arguments since they are already internally being used
@@ -101,7 +100,7 @@ ggcorrmat <- function(data,
                       cor.vars.names = NULL,
                       output = "plot",
                       matrix.type = "full",
-                      method = "square",
+                      matrix.method = "square",
                       type = "parametric",
                       beta = 0.1,
                       k = 2L,
@@ -109,7 +108,7 @@ ggcorrmat <- function(data,
                       conf.level = 0.95,
                       bf.prior = 0.707,
                       p.adjust.method = "none",
-                      pch = 4,
+                      pch = "cross",
                       ggcorrplot.args = list(outline.color = "black"),
                       package = "RColorBrewer",
                       palette = "Dark2",
@@ -268,7 +267,7 @@ ggcorrmat <- function(data,
     rlang::exec(
       .f = ggcorrplot::ggcorrplot,
       corr = corr.mat,
-      method = method,
+      method = matrix.method,
       p.mat = p.mat,
       sig.level = sig.level,
       ggtheme = ggtheme,
@@ -284,7 +283,7 @@ ggcorrmat <- function(data,
   # =========================== labels ==================================
 
   # preparing the `pch` caption
-  if (pch == 4) {
+  if (pch == "cross" | pch == 4) {
     caption <-
       substitute(
         atop(

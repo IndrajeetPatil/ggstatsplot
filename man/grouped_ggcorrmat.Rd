@@ -51,6 +51,8 @@ values, \emph{p}-values, no. of observations, etc.) will be returned.}
   \describe{
     \item{\code{matrix.type}}{Character, \code{"full"} (default), \code{"upper"} or \code{"lower"},
 display full matrix, lower triangular or upper triangular matrix.}
+    \item{\code{matrix.method}}{The visualization method of correlation matrix to be
+used. Allowed values are \code{"square"} (default) or \code{"circle"}.}
     \item{\code{sig.level}}{Significance level (Default: \code{0.05}). If the \emph{p}-value in
 \emph{p}-value matrix is bigger than \code{sig.level}, then the corresponding
 correlation coefficient is regarded as insignificant and flagged as such in
@@ -66,11 +68,8 @@ matrix.}
     \item{\code{colors}}{A vector of 3 colors for low, mid, and high correlation values.
 If set to \code{NULL}, manual specification of colors will be turned off and 3
 colors from the specified \code{palette} from \code{package} will be selected.}
-    \item{\code{caption}}{The text for the plot caption. If \code{NULL}, a default caption
-will be shown.}
-    \item{\code{pch}}{Decides the glyphs (or point shapes) to be used for
-insignificant correlation coefficients (only valid when \code{insig = "pch"}).
-Default value is \code{pch = 4}.}
+    \item{\code{pch}}{Decides the point shape to be used for insignificant correlation
+coefficients (only valid when \code{insig = "pch"}). Default: \code{pch = "cross"}.}
     \item{\code{ggcorrplot.args}}{A list of additional (mostly aesthetic) arguments that
 will be passed to \code{ggcorrplot::ggcorrplot} function. The list should avoid
 any of the following arguments since they are already internally being used
@@ -107,10 +106,9 @@ of the current function. Default is \code{NULL}. The argument should be entered
 as a function.}
     \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
+    \item{\code{caption}}{The text for the plot caption.}
     \item{\code{messages}}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
-    \item{\code{method}}{character, the visualization method of correlation matrix to be
-used. Allowed values are "square" (default), "circle".}
   }}
 
 \item{plotgrid.args}{A list of additional arguments to \code{cowplot::plot_grid}.}

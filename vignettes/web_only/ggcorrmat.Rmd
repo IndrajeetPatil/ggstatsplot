@@ -176,17 +176,16 @@ ggstatsplot::ggcorrmat(
     "depth (in mm)"
   ),
   type = "spearman",
-  sig.level = 0.008,
   matrix.type = "lower",
   title = "Relationship between diamond attributes and price",
   subtitle = "Dataset: Diamonds from ggplot2 package",
   colors = c("#0072B2", "#D55E00", "#CC79A7"),
-  pch = 7,
+  pch = "square cross",
   # additional aesthetic arguments passed to `ggcorrmat`
   ggcorrplot.args = list(
     lab_col = "yellow",
     lab_size = 6,
-    tl.srt = 90, # vertical labels for the x-axis (useful in case of long variable names)
+    tl.srt = 90,
     pch.col = "white",
     pch.cex = 14
   ),

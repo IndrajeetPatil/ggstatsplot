@@ -772,8 +772,8 @@ testthat::test_that(
     set.seed(123)
     mod <-
       stats::lm(
-        formula = rating ~ belief * outcome * question * item,
-        data = ggstatsplot::intent_morality
+        formula = wt ~ am * cyl,
+        data = mtcars
       )
 
     # plot
@@ -788,7 +788,6 @@ testthat::test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # checking layered data
-    testthat::expect_identical(unique(pb$data[[4]]$colour), "black")
     testthat::expect_identical(unique(pb$data[[3]]$colour), "red")
     testthat::expect_equal(unique(pb$data[[3]]$shape), 5L)
     testthat::expect_equal(unique(pb$data[[3]]$size), 6L)

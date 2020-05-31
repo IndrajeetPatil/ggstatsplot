@@ -10,7 +10,7 @@ ggcorrmat(
   cor.vars.names = NULL,
   output = "plot",
   matrix.type = "full",
-  method = "square",
+  matrix.method = "square",
   type = "parametric",
   beta = 0.1,
   k = 2L,
@@ -18,7 +18,7 @@ ggcorrmat(
   conf.level = 0.95,
   bf.prior = 0.707,
   p.adjust.method = "none",
-  pch = 4,
+  pch = "cross",
   ggcorrplot.args = list(outline.color = "black"),
   package = "RColorBrewer",
   palette = "Dark2",
@@ -53,8 +53,8 @@ values, \emph{p}-values, no. of observations, etc.) will be returned.}
 \item{matrix.type}{Character, \code{"full"} (default), \code{"upper"} or \code{"lower"},
 display full matrix, lower triangular or upper triangular matrix.}
 
-\item{method}{character, the visualization method of correlation matrix to be
-used. Allowed values are "square" (default), "circle".}
+\item{matrix.method}{The visualization method of correlation matrix to be
+used. Allowed values are \code{"square"} (default) or \code{"circle"}.}
 
 \item{type}{Type of association between paired samples required
 ("\code{"parametric"}: Pearson's product moment correlation coefficient" or
@@ -89,9 +89,8 @@ width to use in calculating Bayes factors.}
 \strong{unadjusted} \emph{p}-values will be used for the \strong{lower} triangle of the
 matrix.}
 
-\item{pch}{Decides the glyphs (or point shapes) to be used for
-insignificant correlation coefficients (only valid when \code{insig = "pch"}).
-Default value is \code{pch = 4}.}
+\item{pch}{Decides the point shape to be used for insignificant correlation
+coefficients (only valid when \code{insig = "pch"}). Default: \code{pch = "cross"}.}
 
 \item{ggcorrplot.args}{A list of additional (mostly aesthetic) arguments that
 will be passed to \code{ggcorrplot::ggcorrplot} function. The list should avoid
@@ -128,8 +127,7 @@ as a function.}
 \item{subtitle}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
 
-\item{caption}{The text for the plot caption. If \code{NULL}, a default caption
-will be shown.}
+\item{caption}{The text for the plot caption.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

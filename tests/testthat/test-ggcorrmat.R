@@ -142,7 +142,7 @@ testthat::test_that(
     )
 
     # checking layers
-    testthat::expect_equal(pb$plot$layers[[3]]$aes_params$shape, 4L)
+    testthat::expect_equal(pb$plot$layers[[3]]$aes_params$shape, "cross")
     testthat::expect_equal(pb$plot$layers[[3]]$aes_params$size, 14L)
     testthat::expect_identical(pb$plot$layers[[3]]$aes_params$colour, "white")
 
@@ -194,7 +194,7 @@ testthat::test_that(
     testthat::expect_equal(length(unique(pb$data[[1]]$fill)), 7L)
 
     # checking if aesthetic modifications worked
-    testthat::expect_equal(pb$data[[3]]$shape[1], 4L)
+    testthat::expect_equal(pb$data[[3]]$shape[1], "cross")
     testthat::expect_equal(pb$data[[3]]$size[1], 14L)
     testthat::expect_identical(pb$data[[2]]$colour[1], "white")
     testthat::expect_identical(pb$data[[3]]$colour[1], "white")

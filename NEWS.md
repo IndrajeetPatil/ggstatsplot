@@ -1,3 +1,18 @@
+# ggstatsplot 0.5.0.9000
+
+NEW FEATURES
+
+  - More models supported in `ggcoefstats`: `betamfx`.
+
+MAJOR CHANGES
+
+  - Removed unused `intent_morality` dataset.
+
+MINOR CHANGES
+
+  - The argument `method` for `ggcorrmat` has been renamed to `matrix.method`,
+    since it was confusing whether this method referred to correlation method.
+
 # ggstatsplot 0.5.0
 
 BREAKING CHANGES

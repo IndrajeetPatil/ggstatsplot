@@ -3488,6 +3488,36 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
+## marginal effects for a beta regression (`betamfx`)
+
+```{r betamfx, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+# setup
+set.seed(123)
+library(mfx)
+
+# simulate some data
+n <- 1000
+x <- rnorm(n)
+
+# beta outcome
+y <- rbeta(n, shape1 = plogis(1 + 0.5 * x), shape2 = (abs(0.2 * x)))
+
+# use Smithson and Verkuilen correction
+y <- (y * (n - 1) + 0.5) / n
+
+# data
+d <- data.frame(y, x)
+
+# model
+mod_betamfx <- betamfx(y ~ x | x, data = d)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod_betamfx,
+  title = "Marginal effects for a beta regression"
+)
+```
+
 ## STAR Models with BayesX (`bayesx`)
 
 ```{r bayesx, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
