@@ -50,10 +50,6 @@
 #'   confidence interval for comparing medians. IQR: Inter-Quartile Range.
 #' @param notchwidth For a notched box plot, width of the notch relative to the
 #'   body (default `0.5`).
-#' @param linetype Character strings (`"blank"`, `"solid"`, `"dashed"`,
-#'   `"dotted"`, `"dotdash"`, `"longdash"`, and `"twodash"`) specifying the type
-#'   of line to draw box plots (Default: `"solid"`). Alternatively, the numbers
-#'   `0` to `6` can be used (`0` for "blank", `1` for "solid", etc.).
 #' @param outlier.color Default aesthetics for outliers (Default: `"black"`).
 #' @param outlier.tagging Decides whether outliers should be tagged (Default:
 #'   `FALSE`).
@@ -214,7 +210,6 @@ ggbetweenstats <- function(data,
                            mean.label.args = list(size = 3),
                            notch = FALSE,
                            notchwidth = 0.5,
-                           linetype = "solid",
                            outlier.tagging = FALSE,
                            outlier.label = NULL,
                            outlier.coef = 1.5,
@@ -383,7 +378,6 @@ ggbetweenstats <- function(data,
         ggplot2::stat_boxplot(
           notch = notch,
           notchwidth = notchwidth,
-          linetype = linetype,
           geom = "boxplot",
           width = 0.3,
           alpha = 0.2,
@@ -400,7 +394,6 @@ ggbetweenstats <- function(data,
         ggplot2::geom_boxplot(
           notch = notch,
           notchwidth = notchwidth,
-          linetype = linetype,
           width = 0.3,
           alpha = 0.2,
           fill = "white",

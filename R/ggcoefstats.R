@@ -41,8 +41,6 @@
 #' @param partial Logical that decides if partial eta-squared or partial
 #'   omega-squared are returned (Default: `TRUE`). If `FALSE`, eta-squared or
 #'   omega-squared will be returned.
-#' @param nboot Number of bootstrap samples for confidence intervals for partial
-#'   eta-squared and omega-squared (Default: `500L`).
 #' @param meta.analytic.effect Logical that decides whether subtitle for
 #'   meta-analysis via linear (mixed-effects) models (default: `FALSE`). If
 #'   `TRUE`, input to argument `subtitle` will be ignored. This will be mostly
@@ -52,8 +50,6 @@
 #'   meta-analysis. If `"parametric"` (default), `metafor::rma` function will be
 #'   used. If `"robust"`, `metaplus::metaplus` function will be used. If
 #'   `"bayes"`, `metaBMA::meta_random` function will be used.
-#' @param k Number of decimal places expected for results displayed in labels
-#'   (Default : `k = 2`).
 #' @param exclude.intercept Logical that decides whether the intercept should be
 #'   excluded from the plot (Default: `TRUE`).
 #' @param exponentiate If `TRUE`, the `x`-axis will be logarithmic (Default:
@@ -232,7 +228,6 @@ ggcoefstats <- function(x,
                         bf.message = TRUE,
                         effsize = "eta",
                         partial = TRUE,
-                        nboot = 500L,
                         meta.analytic.effect = FALSE,
                         meta.type = "parametric",
                         conf.int = TRUE,
@@ -259,7 +254,6 @@ ggcoefstats <- function(x,
                         palette = "Dark2",
                         ggtheme = ggplot2::theme_bw(),
                         ggstatsplot.layer = TRUE,
-                        messages = FALSE,
                         ...) {
 
   # =================== list of objects (for tidy and glance) ================
@@ -441,25 +435,14 @@ ggcoefstats <- function(x,
       # inform the user that skipping labels for the same reason
       message(cat(
         ipmisc::green("Note: "),
-        ipmisc::blue("No confidence intervals available for regression coefficients"),
-        ipmisc::blue("object, so skipping whiskers in the plot.\n"),
+        ipmisc::blue("No confidence intervals available for regression coefficients,"),
+        ipmisc::blue("so whiskers in the plot will be skipped.\n"),
         sep = ""
       ))
     }
   }
 
   # ============= intercept, exponentiation, and final tidy dataframe =========
-
-  # ordering the dataframe
-  tidy_df %<>%
-    dplyr::select(
-      .data = .,
-      term,
-      estimate,
-      conf.low,
-      conf.high,
-      dplyr::everything()
-    )
 
   # whether to show model intercept
   # if not, remove the corresponding terms from the dataframe

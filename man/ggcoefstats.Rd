@@ -11,7 +11,6 @@ ggcoefstats(
   bf.message = TRUE,
   effsize = "eta",
   partial = TRUE,
-  nboot = 500L,
   meta.analytic.effect = FALSE,
   meta.type = "parametric",
   conf.int = TRUE,
@@ -38,7 +37,6 @@ ggcoefstats(
   palette = "Dark2",
   ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE,
-  messages = FALSE,
   ...
 )
 }
@@ -74,9 +72,6 @@ of class \code{aov}, \code{anova}, \code{aovlist}, \code{"Gam"}, and \code{"mano
 omega-squared are returned (Default: \code{TRUE}). If \code{FALSE}, eta-squared or
 omega-squared will be returned.}
 
-\item{nboot}{Number of bootstrap samples for confidence intervals for partial
-eta-squared and omega-squared (Default: \code{500L}).}
-
 \item{meta.analytic.effect}{Logical that decides whether subtitle for
 meta-analysis via linear (mixed-effects) models (default: \code{FALSE}). If
 \code{TRUE}, input to argument \code{subtitle} will be ignored. This will be mostly
@@ -95,8 +90,8 @@ error bars (Default: \code{TRUE}).}
 \code{0.95}). For \code{MCMC} model objects (\code{Stan}, \code{JAGS}, etc.), this will be
 probability level for CI.}
 
-\item{k}{Number of decimal places expected for results displayed in labels
-(Default : \code{k = 2}).}
+\item{k}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 2}).}
 
 \item{exclude.intercept}{Logical that decides whether the intercept should be
 excluded from the plot (Default: \code{TRUE}).}
@@ -172,8 +167,6 @@ extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
 theme elements are to be displayed along with the selected \code{ggtheme}
 (Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
 override some aspects of the selected \code{ggtheme}.}
-
-\item{messages}{Deprecated. Retained only for backward compatibility.}
 
 \item{...}{Additional arguments to tidying method.}
 }

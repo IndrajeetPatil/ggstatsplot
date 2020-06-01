@@ -988,12 +988,13 @@ also supported by `ggcoefstats`. For example-
 `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`, `garch`, `glm`,
 `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`, `hurdle`, `ivreg`,
 `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmerModLmerTest`, `lmodel2`,
-`lmRob`, `lmrob`, `LORgee`, `lrm`, `mcmc`, `mcmc.list`, `MCMCglmm`, `mclogit`,
-`mmclogit`, `mediate`, `mixor`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`,
-`nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`,
-`rlm`, `rlmerMod`, `robmixglm`, `rq`, `rqss`, `slm`, `speedglm`, `speedlm`,
-`stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`,
-`truncreg`, `vgam`, `wbgee`, `wblm`, `zcpglm`, `zeroinfl`, etc.
+`lmRob`, `lmrob`, `logitmfx`, `LORgee`, `lrm`, `mcmc`, `mcmc.list`, `MCMCglmm`,
+`mclogit`, `mmclogit`, `mediate`, `mixor`, `mjoint`, `mle2`, `mlm`, `multinom`,
+`negbin`, `negbinmfx`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `plm`,
+`poissonmfx`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `robmixglm`, `rq`,
+`rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`,
+`svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`, `wbgee`, `wblm`, `zcpglm`,
+`zeroinfl`, etc.
 
 Although not shown here, this function can also be used to carry out both
 frequentist and Bayesian random-effects meta-analysis.

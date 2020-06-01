@@ -13,18 +13,21 @@ coverage:
         target: 95%
         threshold: 1%
         branches: null
+        informational: true
 
     patch:
       default:
         target: 95%
         branches: null
         threshold: 1%
+        informational: true
 
     changes:
       default:
         target: 95%
         branches: null
         threshold: 1%
+        informational: true
 
 comment:
   layout: "header, diff, changes, sunburst, uncovered, tree"

@@ -2,7 +2,8 @@
 
 NEW FEATURES
 
-  - More models supported in `ggcoefstats`: `betamfx`.
+  - More models supported in `ggcoefstats`: `betamfx`, `negbinmfx`, `logitmfx`,
+    `poissonmfx`.
 
 MAJOR CHANGES
 

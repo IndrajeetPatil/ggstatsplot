@@ -85,12 +85,15 @@ also supported by `ggcoefstats`. For example-
 `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`, `garch`, `glm`,
 `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`, `hurdle`, `ivreg`,
 `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmerModLmerTest`, `lmodel2`,
-`lmRob`, `lmrob`, `LORgee`, `lrm`, `mcmc`, `mcmc.list`, `MCMCglmm`, `mclogit`,
-`mmclogit`, `mediate`, `mixor`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`,
-`nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`,
-`rlm`, `rlmerMod`, `robmixglm`, `rq`, `rqss`, `slm`, `speedglm`, `speedlm`,
-`stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`,
-`truncreg`, `vgam`, `wbgee`, `wblm`, `zcpglm`, `zeroinfl`, etc.
+`lmRob`, `lmrob`, `logitmfx`, `LORgee`, `lrm`, `mcmc`, `mcmc.list`, `MCMCglmm`,
+`mclogit`, `mmclogit`, `mediate`, `mixor`, `mjoint`, `mle2`, `mlm`, `multinom`,
+`negbin`, `negbinmfx`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `plm`,
+`poissonmfx`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `robmixglm`, `rq`,
+`rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`,
+`svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`, `wbgee`, `wblm`, `zcpglm`,
+`zeroinfl`, etc.
+
+# Examples of supported models
 
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
@@ -3515,6 +3518,77 @@ mod_betamfx <- betamfx(y ~ x | x, data = d)
 ggstatsplot::ggcoefstats(
   x = mod_betamfx,
   title = "Marginal effects for a beta regression"
+)
+```
+
+## marginal effects for a logit regression (`logitmfx`)
+
+```{r logitmfx, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+# setup
+set.seed(123)
+library(mfx)
+
+# simulate some data
+n <- 1000
+x <- rnorm(n)
+
+# binary outcome
+y <- ifelse(pnorm(1 + 0.5 * x + rnorm(n)) > 0.5, 1, 0)
+
+# data
+data <- data.frame(y, x)
+
+# model
+mod_betamfx <- logitmfx(formula = y ~ x, data = data)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod_betamfx,
+  title = "Marginal effects for a logit regression"
+)
+```
+
+## marginal effects for a negative binomial regression (`negbinmfx`)
+
+```{r negbinmfx, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+# simulate some data
+set.seed(123)
+n <- 1000
+
+# data
+x <- rnorm(n)
+y <- rnegbin(n, mu = exp(1 + 0.5 * x), theta = 0.5)
+data <- data.frame(y, x)
+
+# model
+mod_betamfx <- negbinmfx(formula = y ~ x, data = data)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod_betamfx,
+  title = "Marginal effects for a negative binomial regression"
+)
+```
+
+## marginal effects for a Poisson regression (`poissonmfx`)
+
+```{r poissonmfx, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+# simulate some data
+set.seed(123)
+n <- 1000
+
+# data
+x <- rnorm(n)
+y <- rnegbin(n, mu = exp(1 + 0.5 * x), theta = 0.5)
+data <- data.frame(y, x)
+
+# model
+mod_betamfx <- poissonmfx(formula = y ~ x, data = data)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod_betamfx,
+  title = "Marginal effects for a Poisson regression"
 )
 ```
 

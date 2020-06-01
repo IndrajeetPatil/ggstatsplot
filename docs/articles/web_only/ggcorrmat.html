@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.5.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.5.0.9000</span>
       </span>
     </div>
 
@@ -149,7 +149,7 @@
       <h1 data-toc-skip>ggcorrmat</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-05-29</h4>
+            <h4 class="date">2020-06-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcorrmat.Rmd"><code>vignettes/web_only/ggcorrmat.Rmd</code></a></small>
       <div class="hidden name"><code>ggcorrmat.Rmd</code></div>
@@ -276,17 +276,16 @@
     <span class="st">"depth (in mm)"</span>
   ),
   <span class="kw">type</span> <span class="kw">=</span> <span class="st">"spearman"</span>,
-  <span class="kw">sig.level</span> <span class="kw">=</span> <span class="fl">0.008</span>,
   <span class="kw">matrix.type</span> <span class="kw">=</span> <span class="st">"lower"</span>,
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Relationship between diamond attributes and price"</span>,
   <span class="kw">subtitle</span> <span class="kw">=</span> <span class="st">"Dataset: Diamonds from ggplot2 package"</span>,
   <span class="kw">colors</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>, <span class="st">"#CC79A7"</span>),
-  <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">7</span>,
+  <span class="kw">pch</span> <span class="kw">=</span> <span class="st">"square cross"</span>,
   <span class="co"># additional aesthetic arguments passed to `ggcorrmat`</span>
   <span class="kw">ggcorrplot.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
     <span class="kw">lab_col</span> <span class="kw">=</span> <span class="st">"yellow"</span>,
     <span class="kw">lab_size</span> <span class="kw">=</span> <span class="fl">6</span>,
-    <span class="kw">tl.srt</span> <span class="kw">=</span> <span class="fl">90</span>, <span class="co"># vertical labels for the x-axis (useful in case of long variable names)</span>
+    <span class="kw">tl.srt</span> <span class="kw">=</span> <span class="fl">90</span>,
     <span class="kw">pch.col</span> <span class="kw">=</span> <span class="st">"white"</span>,
     <span class="kw">pch.cex</span> <span class="kw">=</span> <span class="fl">14</span>
   ),

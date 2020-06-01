@@ -462,19 +462,6 @@ testthat::test_that(
       "x", 1.24, 0.045, 0.030, 0.65, 0.001, 12L
     )
 
-    # check that term column is generated
-    df8 <- tibble::tribble(
-      ~statistic, ~estimate, ~conf.low, ~conf.high, ~p.value, ~df.error,
-      0.158, 0.0665, -0.778, 0.911, 0.875, 5L,
-      1.33, 0.542, -0.280, 1.36, 0.191, 10L,
-      1.24, 0.045, 0.030, 0.65, 0.001, 12L
-    )
-
-    testthat::expect_identical(
-      colnames(ggstatsplot::ggcoefstats(df8, output = "tidy"))[[1]],
-      "term"
-    )
-
     # expect errors
     testthat::expect_message(ggstatsplot::ggcoefstats(x = df1))
     testthat::expect_error(ggstatsplot::ggcoefstats(
@@ -772,7 +759,7 @@ testthat::test_that(
     set.seed(123)
     mod <-
       stats::lm(
-        formula = wt ~ am * cyl,
+        formula = wt ~ am * cyl * vs,
         data = mtcars
       )
 
@@ -781,7 +768,9 @@ testthat::test_that(
       ggstatsplot::ggcoefstats(
         x = mod,
         exclude.intercept = FALSE,
-        point.args = list(size = 6, shape = 5, color = "red")
+        point.args = list(size = 6, shape = 5, color = "red"),
+        package = "ggsci",
+        palette = "alternating_igv"
       )
 
     # plot build

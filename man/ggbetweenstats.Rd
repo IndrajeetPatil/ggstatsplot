@@ -36,7 +36,6 @@ ggbetweenstats(
   mean.label.args = list(size = 3),
   notch = FALSE,
   notchwidth = 0.5,
-  linetype = "solid",
   outlier.tagging = FALSE,
   outlier.label = NULL,
   outlier.coef = 1.5,
@@ -169,11 +168,6 @@ confidence interval for comparing medians. IQR: Inter-Quartile Range.}
 
 \item{notchwidth}{For a notched box plot, width of the notch relative to the
 body (default \code{0.5}).}
-
-\item{linetype}{Character strings (\code{"blank"}, \code{"solid"}, \code{"dashed"},
-\code{"dotted"}, \code{"dotdash"}, \code{"longdash"}, and \code{"twodash"}) specifying the type
-of line to draw box plots (Default: \code{"solid"}). Alternatively, the numbers
-\code{0} to \code{6} can be used (\code{0} for "blank", \code{1} for "solid", etc.).}
 
 \item{outlier.tagging}{Decides whether outliers should be tagged (Default:
 \code{FALSE}).}
