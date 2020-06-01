@@ -441,12 +441,13 @@ testthat::test_that(
     set.seed(123)
 
     # creating dataframe
-    df1 <- tibble::tribble(
-      ~term, ~statistic, ~estimate, ~conf.low, ~conf.high, ~p.value, ~df.error,
-      "level2", 0.158, 0.0665, -0.778, 0.911, 0.875, 5L,
-      "level1", 1.33, 0.542, -0.280, 1.36, 0.191, 10L,
-      "level3", 1.24, 0.045, 0.030, 0.65, 0.001, 12L
-    )
+    df1 <-
+      tibble::tribble(
+        ~term, ~statistic, ~estimate, ~conf.low, ~conf.high, ~p.value, ~df.error,
+        "level2", 0.158, 0.0665, -0.778, 0.911, 0.875, 5L,
+        "level1", 1.33, 0.542, -0.280, 1.36, 0.191, 10L,
+        "level3", 1.24, 0.045, 0.030, 0.65, 0.001, 12L
+      )
     df2 <- dplyr::select(.data = df1, -p.value)
     df3 <- dplyr::select(.data = df1, -statistic)
     df3$p.value <- as.factor(df3$p.value)
@@ -455,11 +456,26 @@ testthat::test_that(
     df6 <- dplyr::select(.data = df5, -term, -estimate, -std.error)
 
     # repeated term dataframe
-    df7 <- tibble::tribble(
-      ~term, ~statistic, ~estimate, ~conf.low, ~conf.high, ~p.value, ~df.error,
-      "x", 0.158, 0.0665, -0.778, 0.911, 0.875, 5L,
-      "x", 1.33, 0.542, -0.280, 1.36, 0.191, 10L,
-      "x", 1.24, 0.045, 0.030, 0.65, 0.001, 12L
+    df7 <-
+      tibble::tribble(
+        ~term, ~statistic, ~estimate, ~conf.low, ~conf.high, ~p.value, ~df.error,
+        "x", 0.158, 0.0665, -0.778, 0.911, 0.875, 5L,
+        "x", 1.33, 0.542, -0.280, 1.36, 0.191, 10L,
+        "x", 1.24, 0.045, 0.030, 0.65, 0.001, 12L
+      )
+
+    # check that term column is generated
+    df8 <-
+      tibble::tribble(
+        ~statistic, ~estimate, ~conf.low, ~conf.high, ~p.value, ~df.error,
+        0.158, 0.0665, -0.778, 0.911, 0.875, 5L,
+        1.33, 0.542, -0.280, 1.36, 0.191, 10L,
+        1.24, 0.045, 0.030, 0.65, 0.001, 12L
+      )
+
+    testthat::expect_identical(
+      colnames(ggstatsplot::ggcoefstats(df8, output = "tidy"))[[7]],
+      "term"
     )
 
     # expect errors
@@ -636,16 +652,18 @@ testthat::test_that(
     # creating broom dataframes
     set.seed(123)
     mod <- stats::lm(data = iris, formula = Sepal.Length ~ Species)
-    df1 <- broomExtra::tidy(
-      x = mod,
-      conf.int = TRUE,
-      conf.level = 0.95
-    )
-    df2 <- broomExtra::tidy(
-      x = mod,
-      conf.int = TRUE,
-      conf.level = 0.50
-    )
+    df1 <-
+      broomExtra::tidy(
+        x = mod,
+        conf.int = TRUE,
+        conf.level = 0.95
+      )
+    df2 <-
+      broomExtra::tidy(
+        x = mod,
+        conf.int = TRUE,
+        conf.level = 0.50
+      )
 
     # computed dataframes
     tidy_df1 <-
@@ -764,14 +782,14 @@ testthat::test_that(
       )
 
     # plot
-    p <-
+    suppressWarnings(suppressMessages(p <-
       ggstatsplot::ggcoefstats(
         x = mod,
         exclude.intercept = FALSE,
         point.args = list(size = 6, shape = 5, color = "red"),
         package = "ggsci",
         palette = "alternating_igv"
-      )
+      )))
 
     # plot build
     pb <- ggplot2::ggplot_build(p)

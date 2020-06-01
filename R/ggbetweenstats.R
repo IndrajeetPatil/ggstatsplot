@@ -355,20 +355,18 @@ ggbetweenstats <- function(data,
   }
 
   # if outlier tagging is happening, decide how those points should be displayed
-  if (isTRUE(outlier.tagging)) {
-    if (plot.type == "violin") {
-      plot <- plot +
-        # add all outliers in
-        ggplot2::geom_point(
-          data = dplyr::filter(.data = data, isanoutlier),
-          size = 3,
-          stroke = 0,
-          alpha = 0.7,
-          na.rm = TRUE,
-          color = outlier.color,
-          shape = outlier.shape
-        )
-    }
+  if (plot.type == "violin" && isTRUE(outlier.tagging)) {
+    plot <- plot +
+      # add all outliers in
+      ggplot2::geom_point(
+        data = dplyr::filter(.data = data, isanoutlier),
+        size = 3,
+        stroke = 0,
+        alpha = 0.7,
+        na.rm = TRUE,
+        color = outlier.color,
+        shape = outlier.shape
+      )
   }
 
   # adding a boxplot
@@ -514,22 +512,18 @@ ggbetweenstats <- function(data,
   # ------------------------ annotations and themes -------------------------
 
   # specifying annotations and other aesthetic aspects for the plot
-  plot <-
-    aesthetic_addon(
-      plot = plot,
-      x = data %>% dplyr::pull({{ x }}),
-      xlab = xlab,
-      ylab = ylab,
-      title = title,
-      subtitle = subtitle,
-      caption = caption,
-      ggtheme = ggtheme,
-      ggstatsplot.layer = ggstatsplot.layer,
-      package = package,
-      palette = palette,
-      ggplot.component = ggplot.component
-    )
-
-  # return the final plot
-  return(plot)
+  aesthetic_addon(
+    plot = plot,
+    x = data %>% dplyr::pull({{ x }}),
+    xlab = xlab,
+    ylab = ylab,
+    title = title,
+    subtitle = subtitle,
+    caption = caption,
+    ggtheme = ggtheme,
+    ggstatsplot.layer = ggstatsplot.layer,
+    package = package,
+    palette = palette,
+    ggplot.component = ggplot.component
+  )
 }

@@ -138,7 +138,7 @@ ggcorrmat <- function(data,
       # display a warning message if not
       message(cat(
         ipmisc::red("Warning: "),
-        ipmisc::blue("No. of variable names doesn't equal no. of variables.\n"),
+        ipmisc::blue("No. of variable names doesn't equal no. of variables."),
         sep = ""
       ))
     } else {
@@ -283,7 +283,7 @@ ggcorrmat <- function(data,
   # =========================== labels ==================================
 
   # preparing the `pch` caption
-  if (pch == "cross" | pch == 4) {
+  if (pch == "cross" || pch == 4) {
     caption <-
       substitute(
         atop(
@@ -324,8 +324,5 @@ ggcorrmat <- function(data,
 
   # if any additional modification needs to be made to the plot
   # this is primarily useful for grouped_ variant of this function
-  plot <- plot + ggplot.component
-
-  # return the desired result
-  return(plot)
+  return(plot + ggplot.component)
 }
