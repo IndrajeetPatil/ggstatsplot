@@ -611,7 +611,8 @@ testthat::test_that(
         ~term, ~statistic, ~estimate, ~std.error, ~p.value,
         "level2", 0.158, 0.0665, 0.911, 0.875,
         "level1", NA, 0.542, NA, NA,
-        "level3", 1.24, 0.045, 0.65, 0.001
+        "level3", 1.24, 0.045, 0.65, 0.001,
+        "level4", NA, NA, NA, NA,
       )
 
     # coefficient plot

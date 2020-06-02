@@ -96,10 +96,8 @@
 #' @import ggplot2
 #' @importFrom rlang exec !!!
 #' @importFrom broomExtra tidy glance augment
-#' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if n
-#' @importFrom dplyr group_by arrange full_join vars matches desc everything
-#' @importFrom dplyr vars all_vars filter_at starts_with row_number
-#' @importFrom stats as.formula lm confint qnorm p.adjust
+#' @importFrom dplyr select mutate matches vars all_vars filter_at row_number
+#' @importFrom stats qnorm lm
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom tidyr unite
 #' @importFrom groupedstats lm_effsize_standardizer
@@ -232,7 +230,7 @@ ggcoefstats <- function(x,
                         meta.type = "parametric",
                         conf.int = TRUE,
                         conf.level = 0.95,
-                        k = 2,
+                        k = 2L,
                         exclude.intercept = TRUE,
                         exponentiate = FALSE,
                         sort = "none",
@@ -256,28 +254,15 @@ ggcoefstats <- function(x,
                         ggstatsplot.layer = TRUE,
                         ...) {
 
-  # =================== list of objects (for tidy and glance) ================
-
-  # models for which statistic is F-value
-  f.mods <- c("aov", "aovlist", "anova", "Gam", "manova")
-
   # ============================= model summary ============================
 
   # creating glance dataframe
   glance_df <- broomExtra::glance_performance(x)
 
   # if glance is not available, inform the user
-  if (isTRUE(insight::is_model(x))) {
-    if (is.null(glance_df) || !all(c("aic", "bic") %in% names(glance_df))) {
-      # inform the user
-      message(cat(
-        ipmisc::green("Note:"),
-        ipmisc::blue("AIC and BIC values not available, so skipping caption.\n")
-      ))
-
-      # and skip the caption
-      caption.summary <- FALSE
-    }
+  if (is.null(glance_df) || !all(c("aic", "bic") %in% names(glance_df))) {
+    # skip the caption
+    caption.summary <- FALSE
   }
 
   # ============================= dataframe ===============================
@@ -306,7 +291,7 @@ ggcoefstats <- function(x,
   # =========================== broom.mixed tidiers =======================
 
   if (isTRUE(insight::is_model(x))) {
-    if (class(x)[[1]] %in% f.mods) {
+    if (class(x)[[1]] %in% c("aov", "aovlist", "anova", "Gam", "manova")) {
       # creating dataframe
       tidy_df <-
         groupedstats::lm_effsize_standardizer(
@@ -364,7 +349,7 @@ ggcoefstats <- function(x,
       dplyr::mutate(.data = ., term = paste("term", term, sep = "_"))
   }
 
-  # =================== check for duplicate terms ============================
+  # ================ check for duplicate terms and columns ===================
 
   # a check if there are repeated terms
   if (any(duplicated(dplyr::select(tidy_df, term)))) {
@@ -382,30 +367,14 @@ ggcoefstats <- function(x,
   if (any(duplicated(dplyr::select(tidy_df, term)))) {
     message(cat(
       ipmisc::red("Error: "),
-      ipmisc::blue("All elements in the column `term` should be unique.\n"),
+      ipmisc::blue("All elements in the column `term` should be unique."),
       sep = ""
     ))
     return(invisible(tidy_df))
   }
 
-  # ================== statistic and p-value check ===========================
-
   # if broom output doesn't contain p-value or statistic column
-  if (sum(c("p.value", "statistic") %in% names(tidy_df)) != 2) {
-    # skip the labels
-    stats.labels <- FALSE
-
-    # inform the user that skipping labels for the same reason
-    # (relevant only in case of a plot)
-    if (output == "plot") {
-      message(cat(
-        ipmisc::green("Note: "),
-        ipmisc::blue("No p-values and/or statistic available for the model object;"),
-        ipmisc::blue("\nskipping labels with statistical details.\n"),
-        sep = ""
-      ))
-    }
-  }
+  if (sum(c("p.value", "statistic") %in% names(tidy_df)) != 2L) stats.labels <- FALSE
 
   # ==================== confidence intervals check ===========================
 
@@ -426,8 +395,7 @@ ggcoefstats <- function(x,
         )
     } else {
       # add NAs so that only dots will be shown
-      tidy_df %<>%
-        dplyr::mutate(.data = ., conf.low = NA_character_, conf.high = NA_character_)
+      tidy_df %<>% dplyr::mutate(conf.low = NA_character_, conf.high = NA_character_)
 
       # stop displaying whiskers
       conf.int <- FALSE
@@ -447,10 +415,7 @@ ggcoefstats <- function(x,
   # whether to show model intercept
   # if not, remove the corresponding terms from the dataframe
   if (isTRUE(exclude.intercept)) {
-    tidy_df %<>%
-      dplyr::filter(
-        .data = ., !grepl(pattern = "(Intercept)", x = term, ignore.case = TRUE)
-      )
+    tidy_df %<>% dplyr::filter(!grepl(pattern = "(Intercept)", x = term, ignore.case = TRUE))
   }
 
   # ========================== preparing label ================================

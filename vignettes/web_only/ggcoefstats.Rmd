@@ -77,18 +77,19 @@ Most of the regression models that are supported in the underlying packages are
 also supported by `ggcoefstats`. For example-
 
 `aareg`, `anova`, `aov`, `aovlist`, `Arima`, `bayesx`, `bayesGARCH`, `BBmm`,
-`BBreg`, `bcplm`, `bglmerMod`, `bife`, `bigglm`, `biglm`, `blavaan`, `bmlm`,
-`blmerMod`, `bracl`, `brglm2`, `brmsfit`, `brmultinom`, `btergm`, `cch`, `cgam`,
-`cgamm`, `cglm`, `clm`, `clm2`, `clmm`, `clmm2`, `coeftest`, `complmrob`,
-`confusionMatrix`, `coxme`, `coxph`, `cpglm`, `cpglmm`, `crch`, `DirichReg`,
-`drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`, `flexsurvreg`,
-`glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`, `garch`, `glm`,
-`glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`, `hurdle`, `ivreg`,
-`iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmerModLmerTest`, `lmodel2`,
-`lmRob`, `lmrob`, `logitmfx`, `LORgee`, `lrm`, `mcmc`, `mcmc.list`, `MCMCglmm`,
-`mclogit`, `mmclogit`, `mediate`, `mixor`, `mjoint`, `mle2`, `mlm`, `multinom`,
-`negbin`, `negbinmfx`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `plm`,
-`poissonmfx`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `robmixglm`, `rq`,
+`BBreg`, `bcplm`, `betamfx`, `betaor`, `bglmerMod`, `bife`, `bigglm`, `biglm`,
+`blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm2`, `brmsfit`, `brmultinom`,
+`btergm`, `cch`, `cgam`, `cgamm`, `cglm`, `clm`, `clm2`, `clmm`, `clmm2`,
+`coeftest`, `complmrob`, `confusionMatrix`, `coxme`, `coxph`, `cpglm`, `cpglmm`,
+`crch`, `DirichReg`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`,
+`fitdistr`, `flexsurvreg`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`,
+`gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`,
+`gmm`, `hurdle`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`,
+`lmerModLmerTest`, `lmodel2`, `lmRob`, `lmrob`, `logitmfx`, `logitor`, `LORgee`,
+`lrm`, `mcmc`, `mcmc.list`, `MCMCglmm`, `mclogit`, `mmclogit`, `mediate`,
+`mixor`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `negbinmfx`,
+`negbinirr`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `plm`, `poissonmfx`,
+`poissonirr`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `robmixglm`, `rq`,
 `rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`,
 `svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`, `wbgee`, `wblm`, `zcpglm`,
 `zeroinfl`, etc.
@@ -3493,6 +3494,8 @@ ggstatsplot::ggcoefstats(
 
 ## marginal effects for a beta regression (`betamfx`)
 
+Same example can also be used for `betaor` object.
+
 ```{r betamfx, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
 # setup
 set.seed(123)
@@ -3523,6 +3526,8 @@ ggstatsplot::ggcoefstats(
 
 ## marginal effects for a logit regression (`logitmfx`)
 
+Same example can also be used for `logitor` object.
+
 ```{r logitmfx, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
 # setup
 set.seed(123)
@@ -3550,6 +3555,8 @@ ggstatsplot::ggcoefstats(
 
 ## marginal effects for a negative binomial regression (`negbinmfx`)
 
+Same example can also be used for `negbinirr` object.
+
 ```{r negbinmfx, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
 # simulate some data
 set.seed(123)
@@ -3571,6 +3578,8 @@ ggstatsplot::ggcoefstats(
 ```
 
 ## marginal effects for a Poisson regression (`poissonmfx`)
+
+Same example can also be used for `poissonirr` object.
 
 ```{r poissonmfx, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
 # simulate some data

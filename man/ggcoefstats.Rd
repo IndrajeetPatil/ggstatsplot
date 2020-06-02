@@ -15,7 +15,7 @@ ggcoefstats(
   meta.type = "parametric",
   conf.int = TRUE,
   conf.level = 0.95,
-  k = 2,
+  k = 2L,
   exclude.intercept = TRUE,
   exponentiate = FALSE,
   sort = "none",
