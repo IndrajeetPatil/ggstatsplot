@@ -90,7 +90,7 @@ resulting plots using ggstatsplot::combine_plots." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.5.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.5.0.9000</span>
       </span>
     </div>
 
@@ -233,7 +233,7 @@ be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
     </tr>
     <tr>
       <th>x</th>
-      <td><p>A numeric variable from the dataframe <code>data</code>.</p></td>
+      <td><p>A numeric variable.</p></td>
     </tr>
     <tr>
       <th>y</th>
@@ -305,7 +305,8 @@ width to use in calculating Bayes factors.</p></dd>
 favor of the <em>null</em> hypothesis. This argument is relevant only <strong>for
 parametric test</strong> (Default: <code>TRUE</code>).</p></dd>
     <dt><code>effsize.type</code></dt><dd><p>Type of effect size needed for <em>parametric</em> tests. The
-argument can be <code>"d"</code> (for Cohen's <em>d</em>) or <code>"g"</code> (for Hedge's <em>g</em>).</p></dd>
+argument can be <code>"biased"</code> (<code>"d"</code> for Cohen's <em>d</em>) or <code>"unbiased"</code>
+(<code>"g"</code> Hedge's <em>g</em> for <strong>t-test</strong>). The default is <code>"g"</code>.</p></dd>
     <dt><code>conf.level</code></dt><dd><p>Scalar between 0 and 1. If unspecified, the defaults return
 <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></dd>
     <dt><code>nboot</code></dt><dd><p>Number of bootstrap samples for computing confidence interval
@@ -377,6 +378,9 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
 
     <div class='dont-index'><p><code><a href='grouped_gghistostats.html'>grouped_gghistostats</a></code>, <code><a href='ggdotplotstats.html'>ggdotplotstats</a></code>,
 <code><a href='gghistostats.html'>gghistostats</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p><a href='https://github.com/IndrajeetPatil'>Indrajeet Patil</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>

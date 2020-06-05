@@ -126,9 +126,8 @@ ggscatterstats <- function(data,
                            title = NULL,
                            subtitle = NULL,
                            caption = NULL,
-                           nboot = 100,
                            beta = 0.1,
-                           k = 2,
+                           k = 2L,
                            ggtheme = ggplot2::theme_bw(),
                            ggstatsplot.layer = TRUE,
                            ggplot.component = NULL,
@@ -209,13 +208,10 @@ ggscatterstats <- function(data,
         data = data,
         x = {{ x }},
         y = {{ y }},
-        nboot = nboot,
         beta = beta,
         type = type,
         conf.level = conf.level,
-        conf.type = "norm",
-        k = k,
-        messages = messages
+        k = k
       )
   }
 

@@ -34,23 +34,19 @@ cat_label_df <- function(data,
   # checking what needs to be displayed in a label
   # only percentage
   if (label.content %in% c("percentage", "perc", "proportion", "prop", "%")) {
-    data %<>% dplyr::mutate(.data = ., label = paste0(round(perc, perc.k), "%"))
+    data %<>% dplyr::mutate(label = paste0(round(perc, perc.k), "%"))
   }
 
   # only raw counts
   if (label.content %in% c("counts", "n", "count", "N")) {
-    data %<>% dplyr::mutate(.data = ., label = paste0("n = ", counts))
+    data %<>% dplyr::mutate(label = paste0("n = ", counts))
   }
 
   # both raw counts and percentages
   if (label.content %in% c("both", "mix", "all", "everything")) {
-    data %<>%
-      dplyr::mutate(
-        .data = ., label = paste0("n = ", counts, "\n", "(", round(perc, perc.k), "%)")
-      )
+    data %<>% dplyr::mutate(label = paste0("n = ", counts, "\n", "(", round(perc, perc.k), "%)"))
   }
 
-  # return dataframe with label column
   return(data)
 }
 
@@ -108,31 +104,25 @@ df_facet_label <- function(data, x, y, k = 3L) {
       by = rlang::as_name(rlang::ensym(y))
     ) %>%
       p_value_formatter(df = ., k = k) %>%
-      dplyr::mutate(.data = ., rowid = dplyr::row_number()) %>%
-      dplyr::group_nest(.tbl = ., rowid) %>%
+      dplyr::rowwise() %>%
       dplyr::mutate(
-        .data = .,
-        label = data %>%
-          purrr::map(
-            .x = .,
-            .f = ~ paste(
-              "list(~chi['gof']^2~",
-              "(",
-              .$parameter,
-              ")==",
-              specify_decimal_p(x = .$statistic, k = k),
-              ", ~italic(p)",
-              .$p.value.formatted,
-              ", ~italic(n)",
-              "==",
-              .$counts,
-              ")",
-              sep = " "
-            )
-          )
+        label = paste(
+          "list(~chi['gof']^2~",
+          "(",
+          parameter,
+          ")==",
+          specify_decimal_p(x = statistic, k = k),
+          ", ~italic(p)",
+          p.value.formatted,
+          ", ~italic(n)",
+          "==",
+          counts,
+          ")",
+          sep = " "
+        )
       ) %>%
-      tidyr::unnest(data = ., c(label, data)) %>%
-      dplyr::select(.data = ., -rowid, -dplyr::matches("p.value.formatted"))
+      dplyr::ungroup() %>%
+      dplyr::select(.data = ., -dplyr::matches("p.value.formatted"))
   }
 }
 
@@ -142,23 +132,13 @@ df_facet_label <- function(data, x, y, k = 3L) {
 
 p_value_formatter <- function(df, k = 3L) {
   df %>%
-    dplyr::mutate(.data = ., rowid = dplyr::row_number()) %>%
-    dplyr::group_nest(.tbl = ., rowid) %>%
+    dplyr::rowwise() %>%
+    dplyr::mutate(p.value.formatted = specify_decimal_p(x = p.value, k = k, p.value = TRUE)) %>%
+    dplyr::ungroup() %>%
     dplyr::mutate(
-      .data = .,
-      p.value.formatted = data %>%
-        purrr::map(
-          .x = .,
-          .f = ~ specify_decimal_p(x = .$p.value, k = k, p.value = TRUE)
-        )
-    ) %>%
-    tidyr::unnest(data = ., cols = c(p.value.formatted, data)) %>%
-    dplyr::mutate(
-      .data = .,
       p.value.formatted = dplyr::case_when(
         p.value.formatted == "< 0.001" ~ "<= 0.001",
         TRUE ~ paste("==", p.value.formatted, sep = " ")
       )
-    ) %>%
-    dplyr::select(.data = ., -rowid)
+    )
 }

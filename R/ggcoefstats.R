@@ -4,21 +4,18 @@
 #'   confidence interval whiskers and other statistical details included as
 #'   labels.
 #'
-#' @param x A model object to be tidied, or a tidy data frame containing
-#'   results. If a data frame is to be plotted, it *must* contain columns named
-#'   `term` (names of predictors), or `estimate` (corresponding estimates of
-#'   coefficients or other quantities of interest). Other optional columns are
-#'   `conf.low` and `conf.high` (for confidence intervals); `p.value`. It is
-#'   important that all `term` names should be unique. Function internally uses
-#'   `broom::tidy` or `parameters::model_parameters` to get a tidy dataframe.
+#' @param x A model object to be tidied, or a tidy data frame containing results
+#'   from a regression model. Function internally uses
+#'   `parameters::model_parameters` or `broom::tidy` to get a tidy dataframe. If
+#'   a data frame is used, it *must* contain columns named `term` (names of
+#'   predictors) and `estimate` (corresponding estimates of coefficients or
+#'   other quantities of interest).
 #' @param output Character describing the expected output from this function:
 #'   `"plot"` (visualization of regression coefficients) or `"tidy"` (tidy
 #'   dataframe of results from `broom::tidy`) or `"glance"` (object from
 #'   `broom::glance`) or `"augment"` (object from `broom::augment`).
 #' @param statistic Which statistic is to be displayed (either `"t"` or `"f"`or
-#'   `"z"`) in the label. This is especially important if the `x` argument in
-#'   `ggcoefstats` is a dataframe in which case the function wouldn't know what
-#'   kind of model it is dealing with.
+#'   `"z"`) in the label. This is relevant if the `x` argument is a dataframe.
 #' @param bf.message Logical that decides whether results from running a
 #'   Bayesian meta-analysis assuming that the effect size *d* varies across
 #'   studies with standard deviation *t* (i.e., a random-effects analysis)
@@ -71,9 +68,9 @@
 #' @param stats.labels Logical. Decides whether the statistic and *p*-values for
 #'   each coefficient are to be attached to each dot as a text label using
 #'   `ggrepel` (Default: `TRUE`).
-#' @param stats.label.color Color for the labels. If `stats.label.color` is
-#'   `NULL`, colors will be chosen from the specified `package` (Default:
-#'   `"RColorBrewer"`) and `palette` (Default: `"Dark2"`).
+#' @param stats.label.color Color for the labels. If set to `NULL`, colors will
+#'   be chosen from the specified `package` (Default: `"RColorBrewer"`) and
+#'   `palette` (Default: `"Dark2"`).
 #' @param stats.label.args Additional arguments that will be passed to
 #'   `ggrepel::geom_label_repel` geom. Please see documentation for that
 #'   function to know more about these arguments.
@@ -84,11 +81,10 @@
 #' @param caption.summary Logical that decides whether the model summary should
 #'   be displayed as a cation to the plot (Default: `TRUE`). Color of the line
 #'   segment. Defaults to the same color as the text.
-#' @param ... Additional arguments to tidying method.
+#' @param ... Additional arguments to tidying method. For more, see
+#'   `?parameters::model_parameters` and `broom::tidy`.
 #' @inheritParams statsExpressions::bf_meta
 #' @inheritParams parameters::model_parameters
-#' @inheritParams broom::tidy.clm
-#' @inheritParams broom::tidy.polr
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams statsExpressions::expr_meta_parametric
 #' @inheritParams ggbetweenstats
@@ -223,24 +219,24 @@
 ggcoefstats <- function(x,
                         output = "plot",
                         statistic = NULL,
-                        bf.message = TRUE,
-                        effsize = "eta",
-                        partial = TRUE,
-                        meta.analytic.effect = FALSE,
-                        meta.type = "parametric",
                         conf.int = TRUE,
                         conf.level = 0.95,
                         k = 2L,
                         exclude.intercept = TRUE,
                         exponentiate = FALSE,
+                        effsize = "eta",
+                        partial = TRUE,
+                        meta.analytic.effect = FALSE,
+                        meta.type = "parametric",
+                        bf.message = TRUE,
                         sort = "none",
                         xlab = "regression coefficient",
                         ylab = "term",
                         title = NULL,
                         subtitle = NULL,
-                        only.significant = FALSE,
                         caption = NULL,
                         caption.summary = TRUE,
+                        only.significant = FALSE,
                         point.args = list(size = 3, color = "blue"),
                         errorbar.args = list(height = 0),
                         vline = TRUE,

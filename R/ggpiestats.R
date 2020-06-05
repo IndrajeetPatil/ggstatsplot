@@ -191,8 +191,7 @@ ggpiestats <- function(data,
     }
   }
 
-  # convert the data into percentages; group by yal variable if needed
-  # dataframe with summary labels
+  # convert the data into percentages and add labels
   df <-
     cat_label_df(
       data = cat_counter(data = data, x = {{ x }}, y = {{ y }}),

@@ -40,9 +40,8 @@ ggscatterstats(
   title = NULL,
   subtitle = NULL,
   caption = NULL,
-  nboot = 100,
   beta = 0.1,
-  k = 2,
+  k = 2L,
   ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE,
   ggplot.component = NULL,
@@ -182,9 +181,6 @@ variable names for \code{x} and \code{y} will be used.}
 \code{results.subtitle = FALSE}.}
 
 \item{caption}{The text for the plot caption.}
-
-\item{nboot}{Number of bootstrap samples for computing confidence interval
-for the effect size (Default: \code{100}).}
 
 \item{beta}{bending constant (Default: \code{0.1}). For more, see \code{?WRS2::pbcor}.}
 

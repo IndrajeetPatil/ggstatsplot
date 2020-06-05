@@ -24,7 +24,7 @@ histo_labeller(
 \item{plot}{A \code{ggplot} object for which the labeled lines need to be added
 for a test value and/or a centrality parameter (mean/median) value.}
 
-\item{x}{A numeric variable from the dataframe \code{data}.}
+\item{x}{A numeric variable.}
 
 \item{test.value}{A number specifying the value of the null hypothesis
 (Default: \code{0}).}

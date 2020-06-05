@@ -8,24 +8,24 @@ ggcoefstats(
   x,
   output = "plot",
   statistic = NULL,
-  bf.message = TRUE,
-  effsize = "eta",
-  partial = TRUE,
-  meta.analytic.effect = FALSE,
-  meta.type = "parametric",
   conf.int = TRUE,
   conf.level = 0.95,
   k = 2L,
   exclude.intercept = TRUE,
   exponentiate = FALSE,
+  effsize = "eta",
+  partial = TRUE,
+  meta.analytic.effect = FALSE,
+  meta.type = "parametric",
+  bf.message = TRUE,
   sort = "none",
   xlab = "regression coefficient",
   ylab = "term",
   title = NULL,
   subtitle = NULL,
-  only.significant = FALSE,
   caption = NULL,
   caption.summary = TRUE,
+  only.significant = FALSE,
   point.args = list(size = 3, color = "blue"),
   errorbar.args = list(height = 0),
   vline = TRUE,
@@ -41,13 +41,12 @@ ggcoefstats(
 )
 }
 \arguments{
-\item{x}{A model object to be tidied, or a tidy data frame containing
-results. If a data frame is to be plotted, it \emph{must} contain columns named
-\code{term} (names of predictors), or \code{estimate} (corresponding estimates of
-coefficients or other quantities of interest). Other optional columns are
-\code{conf.low} and \code{conf.high} (for confidence intervals); \code{p.value}. It is
-important that all \code{term} names should be unique. Function internally uses
-\code{broom::tidy} or \code{parameters::model_parameters} to get a tidy dataframe.}
+\item{x}{A model object to be tidied, or a tidy data frame containing results
+from a regression model. Function internally uses
+\code{parameters::model_parameters} or \code{broom::tidy} to get a tidy dataframe. If
+a data frame is used, it \emph{must} contain columns named \code{term} (names of
+predictors) and \code{estimate} (corresponding estimates of coefficients or
+other quantities of interest).}
 
 \item{output}{Character describing the expected output from this function:
 \code{"plot"} (visualization of regression coefficients) or \code{"tidy"} (tidy
@@ -55,33 +54,7 @@ dataframe of results from \code{broom::tidy}) or \code{"glance"} (object from
 \code{broom::glance}) or \code{"augment"} (object from \code{broom::augment}).}
 
 \item{statistic}{Which statistic is to be displayed (either \code{"t"} or \code{"f"}or
-\code{"z"}) in the label. This is especially important if the \code{x} argument in
-\code{ggcoefstats} is a dataframe in which case the function wouldn't know what
-kind of model it is dealing with.}
-
-\item{bf.message}{Logical that decides whether results from running a
-Bayesian meta-analysis assuming that the effect size \emph{d} varies across
-studies with standard deviation \emph{t} (i.e., a random-effects analysis)
-should be displayed in caption. Defaults to \code{TRUE}.}
-
-\item{effsize}{Character describing the effect size to be displayed: \code{"eta"}
-(default) or \code{"omega"}. This argument is relevant only for models objects
-of class \code{aov}, \code{anova}, \code{aovlist}, \code{"Gam"}, and \code{"manova"}.}
-
-\item{partial}{Logical that decides if partial eta-squared or partial
-omega-squared are returned (Default: \code{TRUE}). If \code{FALSE}, eta-squared or
-omega-squared will be returned.}
-
-\item{meta.analytic.effect}{Logical that decides whether subtitle for
-meta-analysis via linear (mixed-effects) models (default: \code{FALSE}). If
-\code{TRUE}, input to argument \code{subtitle} will be ignored. This will be mostly
-relevant if a data frame with estimates and their standard errors is
-entered.}
-
-\item{meta.type}{Type of statistics used to carry out random-effects
-meta-analysis. If \code{"parametric"} (default), \code{metafor::rma} function will be
-used. If \code{"robust"}, \code{metaplus::metaplus} function will be used. If
-\code{"bayes"}, \code{metaBMA::meta_random} function will be used.}
+\code{"z"}) in the label. This is relevant if the \code{x} argument is a dataframe.}
 
 \item{conf.int}{Logical. Decides whether to display confidence intervals as
 error bars (Default: \code{TRUE}).}
@@ -103,6 +76,30 @@ tidying packages (\code{broom}/\code{parameters}) and not done by \code{ggcoefst
 this might not work if the underlying packages don't support
 exponentiation.}
 
+\item{effsize}{Character describing the effect size to be displayed: \code{"eta"}
+(default) or \code{"omega"}. This argument is relevant only for models objects
+of class \code{aov}, \code{anova}, \code{aovlist}, \code{"Gam"}, and \code{"manova"}.}
+
+\item{partial}{Logical that decides if partial eta-squared or partial
+omega-squared are returned (Default: \code{TRUE}). If \code{FALSE}, eta-squared or
+omega-squared will be returned.}
+
+\item{meta.analytic.effect}{Logical that decides whether subtitle for
+meta-analysis via linear (mixed-effects) models (default: \code{FALSE}). If
+\code{TRUE}, input to argument \code{subtitle} will be ignored. This will be mostly
+relevant if a data frame with estimates and their standard errors is
+entered.}
+
+\item{meta.type}{Type of statistics used to carry out random-effects
+meta-analysis. If \code{"parametric"} (default), \code{metafor::rma} function will be
+used. If \code{"robust"}, \code{metaplus::metaplus} function will be used. If
+\code{"bayes"}, \code{metaBMA::meta_random} function will be used.}
+
+\item{bf.message}{Logical that decides whether results from running a
+Bayesian meta-analysis assuming that the effect size \emph{d} varies across
+studies with standard deviation \emph{t} (i.e., a random-effects analysis)
+should be displayed in caption. Defaults to \code{TRUE}.}
+
 \item{sort}{If \code{"none"} (default) do not sort, \code{"ascending"} sort by
 increasing coefficient value, or \code{"descending"} sort by decreasing
 coefficient value.}
@@ -115,17 +112,17 @@ coefficient value.}
 \item{subtitle}{The text for the plot subtitle. The input to this argument
 will be ignored if \code{meta.analytic.effect} is set to \code{TRUE}.}
 
-\item{only.significant}{If \code{TRUE}, only stats labels for significant effects
-is shown (Default: \code{FALSE}). This can be helpful when a large number of
-regression coefficients are to be displayed in a single plot. Relevant only
-when the \code{output} is a plot.}
-
 \item{caption}{Text to display as caption. This argument is relevant only
 when \code{output = "caption"}.}
 
 \item{caption.summary}{Logical that decides whether the model summary should
 be displayed as a cation to the plot (Default: \code{TRUE}). Color of the line
 segment. Defaults to the same color as the text.}
+
+\item{only.significant}{If \code{TRUE}, only stats labels for significant effects
+is shown (Default: \code{FALSE}). This can be helpful when a large number of
+regression coefficients are to be displayed in a single plot. Relevant only
+when the \code{output} is a plot.}
 
 \item{point.args}{Additional arguments that will be passed to
 \code{ggplot2::geom_point} geom. Please see documentation for that function to
@@ -145,9 +142,9 @@ know more about these arguments.}
 each coefficient are to be attached to each dot as a text label using
 \code{ggrepel} (Default: \code{TRUE}).}
 
-\item{stats.label.color}{Color for the labels. If \code{stats.label.color} is
-\code{NULL}, colors will be chosen from the specified \code{package} (Default:
-\code{"RColorBrewer"}) and \code{palette} (Default: \code{"Dark2"}).}
+\item{stats.label.color}{Color for the labels. If set to \code{NULL}, colors will
+be chosen from the specified \code{package} (Default: \code{"RColorBrewer"}) and
+\code{palette} (Default: \code{"Dark2"}).}
 
 \item{stats.label.args}{Additional arguments that will be passed to
 \code{ggrepel::geom_label_repel} geom. Please see documentation for that
@@ -168,7 +165,8 @@ theme elements are to be displayed along with the selected \code{ggtheme}
 (Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
 override some aspects of the selected \code{ggtheme}.}
 
-\item{...}{Additional arguments to tidying method.}
+\item{...}{Additional arguments to tidying method. For more, see
+\code{?parameters::model_parameters} and \code{broom::tidy}.}
 }
 \value{
 Plot with the regression coefficients' point estimates as dots with
