@@ -1023,6 +1023,12 @@ ggstatsplot::ggcoefstats(
 
 ```{r BBmm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6}
 # setup
+if (isFALSE("PROreg" %in% installed.packages())) {
+  install.packages("https://cran.r-project.org/src/contrib/Archive/PROreg/PROreg_1.0.tar.gz",
+    repos = NULL,
+    type = "source"
+  )
+}
 library(PROreg)
 set.seed(123)
 
@@ -1299,6 +1305,15 @@ Another option is to use `glmmadmb` package.
 
 ```{r glmmadmb, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
 # setup
+if (isFALSE("glmmADMB" %in% installed.packages())) {
+  install.packages("glmmADMB",
+    repos = c(
+      "http://glmmadmb.r-forge.r-project.org/repos",
+      getOption("repos")
+    ),
+    type = "source"
+  )
+}
 library(glmmADMB)
 
 # simulate values
@@ -1870,8 +1885,6 @@ ggstatsplot::combine_plots(
       family = stats::binomial(link = "logit")
     ),
     title = "generalized robust linear model",
-    package = "dichromat",
-    palette = "BrowntoBlue.10",
     ggtheme = ggthemes::theme_fivethirtyeight(),
     ggstatsplot.layer = FALSE
   ),
@@ -1888,7 +1901,7 @@ ggstatsplot::combine_plots(
     ggstatsplot.layer = FALSE
   ),
   # arguments relevant for `combine_plots` function
-  title.text = "Robust variants of `lmRob` and `glmRob` (from`robust` package)",
+  title.text = "Robust variants of `lmRob` and `glmRob` \n(from`robust` package)",
   nrow = 2
 )
 ```
@@ -1905,12 +1918,12 @@ library(robustbase)
 
 # dataframe
 data(coleman)
-clotting <- 
+clotting <-
   data.frame(
-  u = c(5, 10, 15, 20, 30, 40, 60, 80, 100),
-  lot1 = c(118, 58, 42, 35, 27, 25, 21, 19, 18),
-  lot2 = c(69, 35, 26, 21, 18, 16, 13, 12, 12)
-)
+    u = c(5, 10, 15, 20, 30, 40, 60, 80, 100),
+    lot1 = c(118, 58, 42, 35, 27, 25, 21, 19, 18),
+    lot2 = c(69, 35, 26, 21, 18, 16, 13, 12, 12)
+  )
 
 # combined plot for both generalized and simple robust models
 ggstatsplot::combine_plots(
@@ -3322,9 +3335,7 @@ fit <-
 # plot
 ggstatsplot::ggcoefstats(
   x = fit,
-  title = "Marginal Models For Correlated Ordinal Multinomial Responses",
-  package = "ggthemes",
-  palette = "Classic 20"
+  title = "Marginal Models For Correlated Ordinal Multinomial Responses"
 )
 ```
 
@@ -3785,7 +3796,7 @@ Note that a number of regression models will return an object of class `list`,
 in which case this function will fail. But often you can extract the object of
 interest from this list and use it to plot the regression coefficients.
 
-```{r list_gamm4, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 10}
+```{r list_gamm4, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 10, eval=FALSE}
 # setup
 library(gamm4)
 set.seed(123)
@@ -3852,6 +3863,7 @@ df <- dplyr::rename(mag, estimate = yi, std.error = sei, term = study)
 ggstatsplot::ggcoefstats(
   x = df,
   meta.analytic.effect = TRUE,
+  bf.message = TRUE,
   meta.type = "parametric",
   title = "parametric random-effects meta-analysis"
 )

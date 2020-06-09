@@ -86,8 +86,7 @@ set.seed(123)
 ggstatsplot::ggwithinstats(
   data = data_bugs,
   x = key,
-  y = value,
-  messages = FALSE
+  y = value
 )
 ```
 
@@ -142,7 +141,6 @@ ggstatsplot::ggwithinstats(
   outlier.label.color = "red", # outlier point label color
   mean.plotting = TRUE, # whether the mean is to be displayed
   mean.color = "darkblue", # color for mean
-  messages = FALSE, # turn off messages
   ggtheme = firatheme::theme_fira(), # a different theme
   ggstatsplot.layer = FALSE, # turn off default modification of the used theme
   package = "yarrr", # package from which color palette is to be taken
@@ -196,8 +194,7 @@ p1 <-
     title = "Parametric test",
     package = "ggsci",
     palette = "nrc_npg",
-    ggtheme = ggthemr::ggthemr(palette = "light"),
-    messages = FALSE
+    ggtheme = ggthemr::ggthemr(palette = "light")
   )
 
 # Mann-Whitney U test (nonparametric test)
@@ -214,8 +211,7 @@ p2 <-
     package = "ggsci",
     palette = "uniform_startrek",
     ggtheme = ggthemes::theme_map(),
-    ggstatsplot.layer = FALSE,
-    messages = FALSE
+    ggstatsplot.layer = FALSE
   )
 
 # robust t-test
@@ -232,8 +228,7 @@ p3 <-
     package = "wesanderson",
     palette = "Royal2",
     ggtheme = hrbrthemes::theme_ipsum_tw(),
-    ggstatsplot.layer = FALSE,
-    messages = FALSE
+    ggstatsplot.layer = FALSE
   )
 
 # Bayes Factor for parametric t-test
@@ -248,8 +243,7 @@ p4 <-
     title = "Bayesian Test",
     package = "ggsci",
     palette = "nrc_npg",
-    ggtheme = ggthemes::theme_fivethirtyeight(),
-    messages = FALSE
+    ggtheme = ggthemes::theme_fivethirtyeight()
   )
 
 # combining the individual plots into a single plot
@@ -305,7 +299,6 @@ ggstatsplot::grouped_ggwithinstats(
   k = 3,
   mean.ci = TRUE,
   title.prefix = "Year",
-  messages = FALSE,
   # arguments relevant for ggstatsplot::combine_plots
   title.text = "Desire to kill bugs across genders",
   plotgrid.args = list(ncol = 1)

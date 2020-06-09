@@ -125,7 +125,7 @@ ggstatsplot::ggbetweenstats(
   outlier.coef = 1.5, # coefficient for Tukey's rule
   outlier.label = country, # label to attach to outlier values
   outlier.label.args = list(color = "red"), # outlier point label color
-  messages = FALSE, # turn off messages
+  # turn off messages
   ggtheme = ggplot2::theme_gray(), # a different theme
   package = "yarrr", # package from which color palette is to be taken
   palette = "info2", # choosing a different color palette
@@ -296,7 +296,7 @@ gapminder::gapminder %>%
     ggstatsplot.layer = FALSE,
     outlier.label = country,
     title.prefix = "Year",
-    messages = FALSE,
+
     # arguments relevant for ggstatsplot::combine_plots
     title.text = "Changes in life expectancy across continents (1967-2007)"
   )

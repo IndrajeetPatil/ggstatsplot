@@ -120,7 +120,7 @@
       <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
-      <a href="../articles/web_only/faq.html">Frequently asked questions about `ggstatsplot`</a>
+      <a href="../articles/web_only/faq.html">Frequently asked questions</a>
     </li>
     <li>
       <a href="../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
@@ -275,7 +275,7 @@ used. Allowed values are <code>"square"</code> (default) or <code>"circle"</code
 "<code>"nonparametric"</code>: Spearman's rho" or "<code>"robust"</code>: percentage bend
 correlation coefficient" or "<code>"bayes"</code>: Bayes Factor for Pearson's <em>r</em>").
 Corresponding abbreviations are also accepted: <code>"p"</code> (for
-parametric/pearson's), <code>"np"</code> (nonparametric/spearman), <code>"r"</code> (robust),
+parametric/pearson), <code>"np"</code> (nonparametric/spearman), <code>"r"</code> (robust),
 <code>"bf"</code> (for bayes factor), resp.</p></td>
     </tr>
     <tr>
@@ -419,8 +419,7 @@ function.</p>
   <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>sleep_total</span>:<span class='no'>bodywt</span>,
   <span class='kw'>cor.vars.names</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"total sleep"</span>, <span class='st'>"REM sleep"</span>),
   <span class='kw'>matrix.type</span> <span class='kw'>=</span> <span class='st'>"lower"</span>
-)</div><div class='output co'>#&gt; <span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>No. of variable names doesn't equal no. of variables.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggcorrmat-2.png' alt='' width='700' height='433' /></div><div class='input'>
+)</div><div class='output co'>#&gt; <span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>No. of variable names doesn't equal no. of variables.</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggcorrmat-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># to get the correlation analyses results in a dataframe</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggcorrmat</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,

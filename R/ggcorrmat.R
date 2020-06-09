@@ -49,6 +49,7 @@
 #' @inheritParams ggbetweenstats
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams ggcorrplot::ggcorrplot
+#' @inheritParams ggscatterstats
 #'
 #' @import ggplot2
 #'

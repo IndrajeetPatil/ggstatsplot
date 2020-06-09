@@ -73,7 +73,7 @@
       <a href="../../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
-      <a href="../../articles/web_only/faq.html">Frequently asked questions about `ggstatsplot`</a>
+      <a href="../../articles/web_only/faq.html">Frequently asked questions</a>
     </li>
     <li>
       <a href="../../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
@@ -149,7 +149,7 @@
       <h1 data-toc-skip>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-06-02</h4>
+            <h4 class="date">2020-06-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -1105,6 +1105,12 @@
 <h2 class="hasAnchor">
 <a href="#beta-binomial-mixed-effects-model-bbmm" class="anchor"></a>beta-binomial mixed-effects model (<code>BBmm</code>)</h2>
 <div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="co"># setup</span>
+<span class="kw">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/Logic.html">isFALSE</a></span>(<span class="st">"PROreg"</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html">installed.packages</a></span>())) {
+  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"https://cran.r-project.org/src/contrib/Archive/PROreg/PROreg_1.0.tar.gz"</span>,
+    <span class="kw">repos</span> <span class="kw">=</span> <span class="kw">NULL</span>,
+    <span class="kw">type</span> <span class="kw">=</span> <span class="st">"source"</span>
+  )
+}
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">PROreg</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 
@@ -1386,6 +1392,15 @@
 <a href="#generalized-linear-mixed-models-using-ad-model-builder-glmmadmb" class="anchor"></a>generalized linear mixed models using AD Model Builder (<code>glmmadmb</code>)</h2>
 <p>Another option is to use <code>glmmadmb</code> package.</p>
 <div class="sourceCode" id="cb40"><html><body><pre class="r"><span class="co"># setup</span>
+<span class="kw">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/Logic.html">isFALSE</a></span>(<span class="st">"glmmADMB"</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html">installed.packages</a></span>())) {
+  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"glmmADMB"</span>,
+    <span class="kw">repos</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+      <span class="st">"http://glmmadmb.r-forge.r-project.org/repos"</span>,
+      <span class="fu"><a href="https://rdrr.io/r/base/options.html">getOption</a></span>(<span class="st">"repos"</span>)
+    ),
+    <span class="kw">type</span> <span class="kw">=</span> <span class="st">"source"</span>
+  )
+}
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">glmmADMB</span>)
 
 <span class="co"># simulate values</span>
@@ -1969,8 +1984,6 @@
       <span class="kw">family</span> <span class="kw">=</span> <span class="kw pkg">stats</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span>(<span class="kw">link</span> <span class="kw">=</span> <span class="st">"logit"</span>)
     ),
     <span class="kw">title</span> <span class="kw">=</span> <span class="st">"generalized robust linear model"</span>,
-    <span class="kw">package</span> <span class="kw">=</span> <span class="st">"dichromat"</span>,
-    <span class="kw">palette</span> <span class="kw">=</span> <span class="st">"BrowntoBlue.10"</span>,
     <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>(),
     <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fl">FALSE</span>
   ),
@@ -1987,7 +2000,7 @@
     <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fl">FALSE</span>
   ),
   <span class="co"># arguments relevant for `combine_plots` function</span>
-  <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Robust variants of `lmRob` and `glmRob` (from`robust` package)"</span>,
+  <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Robust variants of `lmRob` and `glmRob` \n(from`robust` package)"</span>,
   <span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">2</span>
 )</pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/robust-1.png" width="576"></p>
@@ -2002,11 +2015,12 @@
 
 <span class="co"># dataframe</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">coleman</span>)
-<span class="no">clotting</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-  <span class="kw">u</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">5</span>, <span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">20</span>, <span class="fl">30</span>, <span class="fl">40</span>, <span class="fl">60</span>, <span class="fl">80</span>, <span class="fl">100</span>),
-  <span class="kw">lot1</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">118</span>, <span class="fl">58</span>, <span class="fl">42</span>, <span class="fl">35</span>, <span class="fl">27</span>, <span class="fl">25</span>, <span class="fl">21</span>, <span class="fl">19</span>, <span class="fl">18</span>),
-  <span class="kw">lot2</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">69</span>, <span class="fl">35</span>, <span class="fl">26</span>, <span class="fl">21</span>, <span class="fl">18</span>, <span class="fl">16</span>, <span class="fl">13</span>, <span class="fl">12</span>, <span class="fl">12</span>)
-)
+<span class="no">clotting</span> <span class="kw">&lt;-</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
+    <span class="kw">u</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">5</span>, <span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">20</span>, <span class="fl">30</span>, <span class="fl">40</span>, <span class="fl">60</span>, <span class="fl">80</span>, <span class="fl">100</span>),
+    <span class="kw">lot1</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">118</span>, <span class="fl">58</span>, <span class="fl">42</span>, <span class="fl">35</span>, <span class="fl">27</span>, <span class="fl">25</span>, <span class="fl">21</span>, <span class="fl">19</span>, <span class="fl">18</span>),
+    <span class="kw">lot2</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">69</span>, <span class="fl">35</span>, <span class="fl">26</span>, <span class="fl">21</span>, <span class="fl">18</span>, <span class="fl">16</span>, <span class="fl">13</span>, <span class="fl">12</span>, <span class="fl">12</span>)
+  )
 
 <span class="co"># combined plot for both generalized and simple robust models</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span>(
@@ -2025,9 +2039,10 @@
     <span class="kw">title</span> <span class="kw">=</span> <span class="st">"robust linear model"</span>
   ),
   <span class="co"># arguments relevant for `combine_plots` function</span>
-  <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Robust variants of `lmRob` and `glmRob` (from`robustbase` package)"</span>,
+  <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Robust variants of `lmRob` and `glmRob` \n(from`robustbase` package)"</span>,
   <span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">2</span>
 )</pre></body></html></div>
+<p><img src="ggcoefstats_files/figure-html/robustbase-1.png" width="576"></p>
 </div>
 <div id="mm-type-estimators-for-linear-regression-on-compositional-data-complmrob" class="section level2">
 <h2 class="hasAnchor">
@@ -2380,55 +2395,7 @@
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
   <span class="kw">x</span> <span class="kw">=</span> <span class="no">fit</span>,
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"autoregressive integrated moving average"</span>
-)
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Call:</span>
-<span class="co">#&gt; stats::arima(x = lh, order = c(1, 0, 0))</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Coefficients:</span>
-<span class="co">#&gt;          ar1  intercept</span>
-<span class="co">#&gt;       0.5739     2.4133</span>
-<span class="co">#&gt; s.e.  0.1161     0.1466</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; sigma^2 estimated as 0.1975:  log likelihood = -29.38,  aic = 64.76</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Training set error measures:</span>
-<span class="co">#&gt;                        ME      RMSE       MAE      MPE     MAPE      MASE</span>
-<span class="co">#&gt; Training set 0.0002080786 0.4443979 0.3490217 -3.56676 15.24388 0.9706522</span>
-<span class="co">#&gt;                   ACF1</span>
-<span class="co">#&gt; Training set 0.1355949</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Call:</span>
-<span class="co">#&gt; stats::arima(x = lh, order = c(1, 0, 0))</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Coefficients:</span>
-<span class="co">#&gt;          ar1  intercept</span>
-<span class="co">#&gt;       0.5739     2.4133</span>
-<span class="co">#&gt; s.e.  0.1161     0.1466</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; sigma^2 estimated as 0.1975:  log likelihood = -29.38,  aic = 64.76</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Training set error measures:</span>
-<span class="co">#&gt;                        ME      RMSE       MAE      MPE     MAPE      MASE</span>
-<span class="co">#&gt; Training set 0.0002080786 0.4443979 0.3490217 -3.56676 15.24388 0.9706522</span>
-<span class="co">#&gt;                   ACF1</span>
-<span class="co">#&gt; Training set 0.1355949</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Call:</span>
-<span class="co">#&gt; stats::arima(x = lh, order = c(1, 0, 0))</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Coefficients:</span>
-<span class="co">#&gt;          ar1  intercept</span>
-<span class="co">#&gt;       0.5739     2.4133</span>
-<span class="co">#&gt; s.e.  0.1161     0.1466</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; sigma^2 estimated as 0.1975:  log likelihood = -29.38,  aic = 64.76</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Training set error measures:</span>
-<span class="co">#&gt;                        ME      RMSE       MAE      MPE     MAPE      MASE</span>
-<span class="co">#&gt; Training set 0.0002080786 0.4443979 0.3490217 -3.56676 15.24388 0.9706522</span>
-<span class="co">#&gt;                   ACF1</span>
-<span class="co">#&gt; Training set 0.1355949</span></pre></body></html></div>
+)</pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/arima-1.png" width="480"></p>
 </div>
 <div id="high-performance-linear-model-speedlmspeedglm" class="section level2">
@@ -2718,8 +2685,8 @@
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">gam</span>)
 
 <span class="co"># model</span>
-<span class="no">g</span> <span class="kw">&lt;-</span> <span class="kw pkg">gam</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/gam/man/gam.html">gam</a></span>(
-  <span class="kw">formula</span> <span class="kw">=</span> <span class="no">mpg</span> ~ <span class="fu"><a href="https://rdrr.io/pkg/gam/man/s.html">s</a></span>(<span class="no">hp</span>, <span class="fl">4</span>) + <span class="no">am</span> + <span class="no">qsec</span>,
+<span class="no">g</span> <span class="kw">&lt;-</span> <span class="kw pkg">gam</span><span class="kw ns">::</span><span class="fu">gam</span>(
+  <span class="kw">formula</span> <span class="kw">=</span> <span class="no">mpg</span> ~ <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/s.html">s</a></span>(<span class="no">hp</span>, <span class="fl">4</span>) + <span class="no">am</span> + <span class="no">qsec</span>,
   <span class="kw">data</span> <span class="kw">=</span> <span class="no">mtcars</span>
 )
 
@@ -3553,10 +3520,10 @@
 
 <span class="co"># data</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"WageData"</span>)
-<span class="no">wages</span> <span class="kw">&lt;-</span> <span class="kw pkg">panelr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/panelr/man/panel_data.html">panel_data</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">WageData</span>, <span class="kw">id</span> <span class="kw">=</span> <span class="no">id</span>, <span class="kw">wave</span> <span class="kw">=</span> <span class="no">t</span>)
+<span class="no">wages</span> <span class="kw">&lt;-</span> <span class="kw pkg">panelr</span><span class="kw ns">::</span><span class="fu">panel_data</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">WageData</span>, <span class="kw">id</span> <span class="kw">=</span> <span class="no">id</span>, <span class="kw">wave</span> <span class="kw">=</span> <span class="no">t</span>)
 
 <span class="co"># model</span>
-<span class="no">mod</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/panelr/man/wbm.html">wbm</a></span>(
+<span class="no">mod</span> <span class="kw">&lt;-</span> <span class="fu">wbm</span>(
   <span class="kw">formula</span> <span class="kw">=</span> <span class="no">lwage</span> ~ <span class="fu"><a href="https://rdrr.io/pkg/plm/man/re-export_functions.html">lag</a></span>(<span class="no">union</span>) + <span class="no">wks</span> <span class="kw">|</span> <span class="no">blk</span> + <span class="no">fem</span> <span class="kw">|</span> <span class="no">blk</span> * <span class="fu"><a href="https://rdrr.io/pkg/plm/man/re-export_functions.html">lag</a></span>(<span class="no">union</span>),
   <span class="kw">data</span> <span class="kw">=</span> <span class="no">wages</span>
 )
@@ -3576,11 +3543,11 @@
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"WageData"</span>)
 
 <span class="co"># data</span>
-<span class="no">wages</span> <span class="kw">&lt;-</span> <span class="kw pkg">panelr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/panelr/man/panel_data.html">panel_data</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">WageData</span>, <span class="kw">id</span> <span class="kw">=</span> <span class="no">id</span>, <span class="kw">wave</span> <span class="kw">=</span> <span class="no">t</span>)
+<span class="no">wages</span> <span class="kw">&lt;-</span> <span class="kw pkg">panelr</span><span class="kw ns">::</span><span class="fu">panel_data</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">WageData</span>, <span class="kw">id</span> <span class="kw">=</span> <span class="no">id</span>, <span class="kw">wave</span> <span class="kw">=</span> <span class="no">t</span>)
 
 <span class="co"># model</span>
 <span class="no">model</span> <span class="kw">&lt;-</span>
-  <span class="kw pkg">panelr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/panelr/man/wbgee.html">wbgee</a></span>(
+  <span class="kw pkg">panelr</span><span class="kw ns">::</span><span class="fu">wbgee</span>(
     <span class="kw">formula</span> <span class="kw">=</span> <span class="no">lwage</span> ~ <span class="fu"><a href="https://rdrr.io/pkg/plm/man/re-export_functions.html">lag</a></span>(<span class="no">union</span>) + <span class="no">wks</span> <span class="kw">|</span> <span class="no">blk</span> + <span class="no">fem</span> <span class="kw">|</span> <span class="no">blk</span> * <span class="fu"><a href="https://rdrr.io/pkg/plm/man/re-export_functions.html">lag</a></span>(<span class="no">union</span>),
     <span class="kw">data</span> <span class="kw">=</span> <span class="no">wages</span>
   )
@@ -3642,10 +3609,10 @@
 <span class="co"># plot</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
   <span class="kw">x</span> <span class="kw">=</span> <span class="no">fit</span>,
-  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Marginal Models For Correlated Ordinal Multinomial Responses"</span>,
-  <span class="kw">package</span> <span class="kw">=</span> <span class="st">"ggthemes"</span>,
-  <span class="kw">palette</span> <span class="kw">=</span> <span class="st">"Classic 20"</span>
-)</pre></body></html></div>
+  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Marginal Models For Correlated Ordinal Multinomial Responses"</span>
+)
+<span class="co">#&gt; Warning:  Number of labels is greater than default palette color count.</span>
+<span class="co">#&gt;  Try using another color `palette` (and/or `package`).</span></pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/LORgee-1.png" width="768"></p>
 </div>
 <div id="summary-measures-for-count-data-epi-2by2" class="section level2">
@@ -3744,34 +3711,9 @@
 <span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.216 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.052 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.268 seconds (Total)</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; SAMPLING FOR MODEL '06638bf6dad6b0252e01ce5a7504d5bc' NOW (CHAIN 1).</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: Gradient evaluation took 0 seconds</span>
-<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span>
-<span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.34 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.237 seconds (Warm-up)</span>
 <span class="co">#&gt; Chain 1:                0.054 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.394 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:                0.291 seconds (Total)</span>
 <span class="co">#&gt; Chain 1: </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; SAMPLING FOR MODEL '06638bf6dad6b0252e01ce5a7504d5bc' NOW (CHAIN 1).</span>
@@ -3794,9 +3736,9 @@
 <span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.21 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.055 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.265 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.177 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.051 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                0.228 seconds (Total)</span>
 <span class="co">#&gt; Chain 1: </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; SAMPLING FOR MODEL '06638bf6dad6b0252e01ce5a7504d5bc' NOW (CHAIN 1).</span>
@@ -3819,9 +3761,9 @@
 <span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.271 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.077 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.348 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.137 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.037 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                0.174 seconds (Total)</span>
 <span class="co">#&gt; Chain 1: </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; SAMPLING FOR MODEL '06638bf6dad6b0252e01ce5a7504d5bc' NOW (CHAIN 1).</span>
@@ -3844,9 +3786,34 @@
 <span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.383 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.089 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.472 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.272 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.056 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                0.328 seconds (Total)</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; SAMPLING FOR MODEL '06638bf6dad6b0252e01ce5a7504d5bc' NOW (CHAIN 1).</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1: Gradient evaluation took 0 seconds</span>
+<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span>
+<span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.247 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.059 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                0.306 seconds (Total)</span>
 <span class="co">#&gt; Chain 1:</span>
 
 <span class="co"># plot</span>
@@ -3874,8 +3841,8 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; SAMPLING FOR MODEL 'continuous' NOW (CHAIN 1).</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: Gradient evaluation took 0.002 seconds</span>
-<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 20 seconds.</span>
+<span class="co">#&gt; Chain 1: Gradient evaluation took 0.003 seconds</span>
+<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 30 seconds.</span>
 <span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span>
 <span class="co">#&gt; Chain 1: </span>
 <span class="co">#&gt; Chain 1: </span>
@@ -3892,9 +3859,9 @@
 <span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.167 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.095 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.262 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.099 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.16 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                0.259 seconds (Total)</span>
 <span class="co">#&gt; Chain 1:</span>
 
 <span class="co"># plot</span>
@@ -3977,9 +3944,9 @@
 <span class="co">#&gt; Chain 1: Iteration: 900 / 1000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 1000 / 1000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 1.323 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.908 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                2.231 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 1.067 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.672 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                1.739 seconds (Total)</span>
 <span class="co">#&gt; Chain 1:</span>
 
 <span class="co"># plot</span>
@@ -4292,7 +4259,6 @@ speed =~ x7 + x8 + x9 "</span>
 
 <span class="co"># data</span>
 <span class="no">dat</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/gamSim.html">gamSim</a></span>(<span class="fl">1</span>, <span class="kw">n</span> <span class="kw">=</span> <span class="fl">400</span>, <span class="kw">scale</span> <span class="kw">=</span> <span class="fl">2</span>)
-<span class="co">#&gt; Gu &amp; Wahba 4 term additive model</span>
 
 <span class="co"># now add 20 level random effect `fac'...</span>
 <span class="no">dat</span>$<span class="no">fac</span> <span class="kw">&lt;-</span> <span class="no">fac</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fl">1</span>:<span class="fl">20</span>, <span class="fl">400</span>, <span class="kw">replace</span> <span class="kw">=</span> <span class="fl">TRUE</span>))
@@ -4308,13 +4274,6 @@ speed =~ x7 + x8 + x9 "</span>
 
 <span class="co"># looking at the classes of the objects contained in the list</span>
 <span class="kw pkg">purrr</span><span class="kw ns">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span>(<span class="no">br</span>, <span class="no">class</span>)
-<span class="co">#&gt; $mer</span>
-<span class="co">#&gt; [1] "lmerMod"</span>
-<span class="co">#&gt; attr(,"package")</span>
-<span class="co">#&gt; [1] "lme4"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $gam</span>
-<span class="co">#&gt; [1] "gam"</span>
 
 <span class="co"># plotting</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span>(
@@ -4333,9 +4292,7 @@ speed =~ x7 + x8 + x9 "</span>
     <span class="kw">k</span> <span class="kw">=</span> <span class="fl">3</span>
   ),
   <span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">1</span>
-)
-<span class="co">#&gt; Error: All elements in the column `term` should be unique.</span></pre></body></html></div>
-<p><img src="ggcoefstats_files/figure-html/list_gamm4-1.png" width="960"></p>
+)</pre></body></html></div>
 </div>
 <div id="meta-analysis" class="section level1">
 <h1 class="hasAnchor">
@@ -4363,6 +4320,7 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
   <span class="kw">x</span> <span class="kw">=</span> <span class="no">df</span>,
   <span class="kw">meta.analytic.effect</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
+  <span class="kw">bf.message</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
   <span class="kw">meta.type</span> <span class="kw">=</span> <span class="st">"parametric"</span>,
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"parametric random-effects meta-analysis"</span>
 )

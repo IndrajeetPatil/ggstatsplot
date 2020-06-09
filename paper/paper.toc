@@ -1,23 +1,23 @@
-\contentsline {section}{\numberline {1}Introduction: Raison d'être}{2}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Need for informative visualizations}{2}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Need for better statistical reporting}{2}{subsection.1.2}%
-\contentsline {section}{\numberline {2}\texttt {ggstatsplot} at a glance}{2}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Summary of types of plots included}{2}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Summary of types of statistical analyses}{3}{subsection.2.2}%
-\contentsline {section}{\numberline {3}Graphic design principles}{3}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Graphical perception}{3}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Graphical excellence}{9}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Statistical variation}{10}{subsection.3.3}%
-\contentsline {section}{\numberline {4}Statistical analysis}{12}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Data requirements}{12}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Statistical reporting}{14}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Statistical tests:}{15}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Dealing with \textbf {null results}:}{16}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Avoiding the \textbf {``p-value error''}:}{16}{subsection.4.5}%
-\contentsline {section}{\numberline {5}Acknowledgments}{17}{section.5}%
-\contentsline {section}{\numberline {6}Appendix}{18}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Appendix A: Documentation}{18}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Appendix B: Suggestions}{18}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Appendix C: Contributing}{18}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}Appendix D: Session information}{18}{subsection.6.4}%
-\contentsline {section}{References}{19}{section*.2}%
+\contentsline {section}{\numberline {1}Introduction: Raison d'\IeC {\^e}tre}{1}{section.1}% 
+\contentsline {subsection}{\numberline {1.1}Need for informative visualizations}{2}{subsection.1.1}% 
+\contentsline {subsection}{\numberline {1.2}Need for better statistical reporting}{2}{subsection.1.2}% 
+\contentsline {section}{\numberline {2}\texttt {ggstatsplot} at a glance}{2}{section.2}% 
+\contentsline {subsection}{\numberline {2.1}Summary of types of plots included}{2}{subsection.2.1}% 
+\contentsline {subsection}{\numberline {2.2}Summary of types of statistical analyses}{2}{subsection.2.2}% 
+\contentsline {section}{\numberline {3}Graphic design principles}{3}{section.3}% 
+\contentsline {subsection}{\numberline {3.1}Graphical perception}{3}{subsection.3.1}% 
+\contentsline {subsection}{\numberline {3.2}Graphical excellence}{9}{subsection.3.2}% 
+\contentsline {subsection}{\numberline {3.3}Statistical variation}{9}{subsection.3.3}% 
+\contentsline {section}{\numberline {4}Statistical analysis}{11}{section.4}% 
+\contentsline {subsection}{\numberline {4.1}Data requirements}{11}{subsection.4.1}% 
+\contentsline {subsection}{\numberline {4.2}Statistical reporting}{13}{subsection.4.2}% 
+\contentsline {subsection}{\numberline {4.3}Statistical tests:}{14}{subsection.4.3}% 
+\contentsline {subsection}{\numberline {4.4}Dealing with \textbf {null results}:}{15}{subsection.4.4}% 
+\contentsline {subsection}{\numberline {4.5}Avoiding the \textbf {``p-value error''}:}{15}{subsection.4.5}% 
+\contentsline {section}{\numberline {5}Acknowledgments}{16}{section.5}% 
+\contentsline {section}{\numberline {6}Appendix}{17}{section.6}% 
+\contentsline {subsection}{\numberline {6.1}Appendix A: Documentation}{17}{subsection.6.1}% 
+\contentsline {subsection}{\numberline {6.2}Appendix B: Suggestions}{17}{subsection.6.2}% 
+\contentsline {subsection}{\numberline {6.3}Appendix C: Contributing}{17}{subsection.6.3}% 
+\contentsline {subsection}{\numberline {6.4}Appendix D: Session information}{17}{subsection.6.4}% 
+\contentsline {section}{References}{18}{section*.2}% 

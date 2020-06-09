@@ -8,6 +8,10 @@ NEW FEATURES
 MAJOR CHANGES
 
   - Removed unused `intent_morality` dataset.
+  
+  - `ggcoefstats` retires `caption.summary` argument. So, by default, the
+    caption is going to contain as much information as it can and the users can
+    then choose to modify the default caption using `ggplot2` functions.
 
 MINOR CHANGES
 

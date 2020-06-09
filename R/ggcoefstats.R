@@ -78,9 +78,6 @@
 #'   is shown (Default: `FALSE`). This can be helpful when a large number of
 #'   regression coefficients are to be displayed in a single plot. Relevant only
 #'   when the `output` is a plot.
-#' @param caption.summary Logical that decides whether the model summary should
-#'   be displayed as a cation to the plot (Default: `TRUE`). Color of the line
-#'   segment. Defaults to the same color as the text.
 #' @param ... Additional arguments to tidying method. For more, see
 #'   `?parameters::model_parameters` and `broom::tidy`.
 #' @inheritParams statsExpressions::bf_meta
@@ -235,7 +232,6 @@ ggcoefstats <- function(x,
                         title = NULL,
                         subtitle = NULL,
                         caption = NULL,
-                        caption.summary = TRUE,
                         only.significant = FALSE,
                         point.args = list(size = 3, color = "blue"),
                         errorbar.args = list(height = 0),
@@ -249,17 +245,6 @@ ggcoefstats <- function(x,
                         ggtheme = ggplot2::theme_bw(),
                         ggstatsplot.layer = TRUE,
                         ...) {
-
-  # ============================= model summary ============================
-
-  # creating glance dataframe
-  glance_df <- broomExtra::glance_performance(x)
-
-  # if glance is not available, inform the user
-  if (is.null(glance_df) || !all(c("aic", "bic") %in% names(glance_df))) {
-    # skip the caption
-    caption.summary <- FALSE
-  }
 
   # ============================= dataframe ===============================
 
@@ -432,7 +417,31 @@ ggcoefstats <- function(x,
       )
   }
 
-  # ============== meta-analysis plus Bayes factor =========================
+  # ========================== summary caption ================================
+
+  # for non-dataframe objects
+  if (isTRUE(insight::is_model(x))) {
+    # creating glance dataframe
+    glance_df <- broomExtra::glance_performance(x)
+    meta.analytic.effect <- FALSE
+
+    # if glance is not available, inform the user
+    if (!is.null(glance_df) && all(c("aic", "bic") %in% names(glance_df))) {
+      # preparing caption with model diagnostics
+      caption <-
+        substitute(
+          atop(
+            displaystyle(top.text),
+            expr = paste("AIC = ", AIC, ", BIC = ", BIC)
+          ),
+          env = list(
+            top.text = caption,
+            AIC = specify_decimal_p(x = glance_df$aic[[1]], k = 0L),
+            BIC = specify_decimal_p(x = glance_df$bic[[1]], k = 0L)
+          )
+        )
+    }
+  }
 
   # check if meta-analysis is to be run
   if (isTRUE(meta.analytic.effect) && "std.error" %in% names(tidy_df)) {
@@ -477,41 +486,12 @@ ggcoefstats <- function(x,
 
     # model summary (detailed only for parametric statistics)
     if (meta.type == "parametric") {
-      caption.meta <-
+      caption <-
         statsExpressions::expr_meta_parametric(
           data = tidy_df,
           k = k,
           caption = caption,
           output = "caption"
-        )
-    } else {
-      caption.meta <- caption
-    }
-  }
-
-  # ========================== summary caption ================================
-
-  # caption containing model diagnostics
-  if (isTRUE(caption.summary)) {
-    # for dataframe objects
-    if (isFALSE(insight::is_model(x)) && isTRUE(meta.analytic.effect)) {
-      caption <- caption.meta
-    }
-
-    # for non-dataframe objects
-    if (isTRUE(insight::is_model(x))) {
-      # preparing caption with model diagnostics
-      caption <-
-        substitute(
-          atop(
-            displaystyle(top.text),
-            expr = paste("AIC = ", AIC, ", BIC = ", BIC)
-          ),
-          env = list(
-            top.text = caption,
-            AIC = specify_decimal_p(x = glance_df$aic[[1]], k = 0L),
-            BIC = specify_decimal_p(x = glance_df$bic[[1]], k = 0L)
-          )
         )
     }
   }
@@ -544,19 +524,15 @@ ggcoefstats <- function(x,
   # palette check is necessary only if output is a plot
   if (output == "plot") {
     # setting up the basic architecture
-    plot <-
-      ggplot2::ggplot(data = tidy_df, mapping = ggplot2::aes(x = estimate, y = term))
+    plot <- ggplot2::ggplot(data = tidy_df, mapping = ggplot2::aes(x = estimate, y = term))
 
     # if needed, adding the vertical line
     if (isTRUE(vline)) {
-      # either at 1 - if coefficients are to be exponentiated - or at 0
-      xintercept <- ifelse(exponentiate, 1, 0)
-
       # adding the line geom
       plot <- plot +
         rlang::exec(
           .fn = ggplot2::geom_vline,
-          xintercept = xintercept,
+          xintercept = ifelse(exponentiate, 1, 0),
           na.rm = TRUE,
           !!!vline.args
         )

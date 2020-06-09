@@ -99,7 +99,6 @@ gghistostats <- function(data,
                          normal.curve.args = list(size = 3),
                          ggplot.component = NULL,
                          output = "plot",
-                         messages = TRUE,
                          ...) {
 
   # convert entered stats type to a standard notation
@@ -141,8 +140,7 @@ gghistostats <- function(data,
         conf.type = "norm",
         conf.level = conf.level,
         nboot = nboot,
-        k = k,
-        messages = messages
+        k = k
       )
 
     # preparing the BF message

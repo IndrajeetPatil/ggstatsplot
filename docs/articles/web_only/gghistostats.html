@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.5.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.5.0.9000</span>
       </span>
     </div>
 
@@ -73,7 +73,7 @@
       <a href="../../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
-      <a href="../../articles/web_only/faq.html">Frequently asked questions about `ggstatsplot`</a>
+      <a href="../../articles/web_only/faq.html">Frequently asked questions</a>
     </li>
     <li>
       <a href="../../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
@@ -149,7 +149,7 @@
       <h1 data-toc-skip>gghistostats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-05-29</h4>
+            <h4 class="date">2020-06-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/gghistostats.Rmd"><code>vignettes/web_only/gghistostats.Rmd</code></a></small>
       <div class="hidden name"><code>gghistostats.Rmd</code></div>
@@ -189,7 +189,6 @@
   <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">psych</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/psych/man/sat.act.html">sat.act</a></span>, <span class="co"># data from which variable is to be taken</span>
   <span class="kw">x</span> <span class="kw">=</span> <span class="no">ACT</span>, <span class="co"># numeric variable</span>
   <span class="kw">results.subtitle</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="co"># don't run statistical tests</span>
-  <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="co"># turn off messages</span>
   <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"ACT Score"</span>, <span class="co"># x-axis label</span>
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Distribution of ACT Scores"</span>, <span class="co"># title for the plot</span>
   <span class="kw">subtitle</span> <span class="kw">=</span> <span class="st">"N = 700"</span>, <span class="co"># subtitle for the plot</span>
@@ -202,15 +201,13 @@
 <h2 class="hasAnchor">
 <a href="#statistical-analysis-with-gghistostats" class="anchor"></a>Statistical analysis with <code>gghistostats</code>
 </h2>
-<p>The authors note that “the score means are higher than national norms suggesting both self selection for people taking on line personality and ability tests and a self reporting bias in scores.” Let’s display the national norms (labeled as “Test”) and test (using <code>results.subtitle = TRUE</code>) the hypothesis that our sample mean is the same as our national population mean of 20 using a parametric one sample t-test (<code>type = "p"</code>). To demonstrate some of the options available we’ll also:</p>
+<p>The authors note that “the score means are higher than national norms suggesting both self selection for people taking on line personality and ability tests and a self reporting bias in scores.” Let’s display the national norms (labeled as “Test”) and test (using <code>results.subtitle = TRUE</code>) the hypothesis that our sample mean is the same as our national population mean of 20 using a parametric one sample <em>t</em>-test (<code>type = "p"</code>). To demonstrate some of the options available we’ll also:</p>
 <ol style="list-style-type: decimal">
 <li>Change the overall theme with <code>ggtheme = ggthemes::theme_tufte()</code>
 </li>
 <li>Make the histogram bars a different color with <code>bar.fill = "#D55E00"</code>
 </li>
-<li>Plot proportions on the y axes with <code>bar.measure = "proportion"</code>
-</li>
-<li>Turn messages on to receive additional diagnostic information with <code>messages = TRUE</code>
+<li>Plot proportions on the <code>y</code> axes with <code>bar.measure = "proportion"</code>
 </li>
 <li>Compute information about the Bayes Factor (<code>bf.message = TRUE</code>, see below)</li>
 </ol>
@@ -218,8 +215,6 @@
   <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">psych</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/psych/man/sat.act.html">sat.act</a></span>, <span class="co"># data from which variable is to be taken</span>
   <span class="kw">x</span> <span class="kw">=</span> <span class="no">ACT</span>, <span class="co"># numeric variable</span>
   <span class="kw">results.subtitle</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="co"># run statistical tests</span>
-  <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="co"># turn on messages</span>
-  <span class="kw">bar.measure</span> <span class="kw">=</span> <span class="st">"proportion"</span>, <span class="co"># proportions</span>
   <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"ACT Score"</span>, <span class="co"># x-axis label</span>
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Distribution of ACT Scores"</span>, <span class="co"># title for the plot</span>
   <span class="kw">type</span> <span class="kw">=</span> <span class="st">"p"</span>, <span class="co"># one sample t-test</span>
@@ -259,17 +254,12 @@
   <span class="kw">centrality.label.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">color</span> <span class="kw">=</span> <span class="st">"#D55E00"</span>),
   <span class="kw">test.value.line.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">color</span> <span class="kw">=</span> <span class="st">"#009E73"</span>),
   <span class="kw">test.value.label.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">color</span> <span class="kw">=</span> <span class="st">"#009E73"</span>),
-  <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="co"># turn off messages</span>
   <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_stata.html">theme_stata</a></span>(), <span class="co"># changing default theme</span>
   <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="co"># turn off ggstatsplot theme layer</span>
   <span class="co"># arguments relevant for ggstatsplot::combine_plots</span>
   <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Distribution of ACT scores across genders"</span>,
   <span class="kw">caption.text</span> <span class="kw">=</span> <span class="st">"Data courtesy of: SAPA project (https://sapa-project.org)"</span>,
-  <span class="kw">plotgrid.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-    <span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">2</span>,
-    <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">1</span>,
-    <span class="kw">labels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>)
-  )
+  <span class="kw">plotgrid.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">labels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>))
 )</pre></body></html></div>
 <p><img src="gghistostats_files/figure-html/grouped1-1.png" width="672"></p>
 <p>As can be seen from these plots, the mean value is much higher than the national norm. Additionally, we see the benefits of plotting this data separately for each gender. We can <em>see</em> the differences in distributions.</p>

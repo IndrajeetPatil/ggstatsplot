@@ -72,7 +72,6 @@ ggpomological::paint_pomological(
                          genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")), 
     x = genre,
     y = rating,
-    messages = FALSE,
     xlab = "movie genre",
     ylab = "IMDB rating",
     title = "Differences in IMDB ratings by genre"

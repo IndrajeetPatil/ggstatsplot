@@ -80,7 +80,7 @@ by \code{ggstatsplot}: \code{corr}, \code{method}, \code{p.mat}, \code{sig.level
 "\code{"nonparametric"}: Spearman's rho" or "\code{"robust"}: percentage bend
 correlation coefficient" or "\code{"bayes"}: Bayes Factor for Pearson's \emph{r}").
 Corresponding abbreviations are also accepted: \code{"p"} (for
-parametric/pearson's), \code{"np"} (nonparametric/spearman), \code{"r"} (robust),
+parametric/pearson), \code{"np"} (nonparametric/spearman), \code{"r"} (robust),
 \code{"bf"} (for bayes factor), resp.}
     \item{\code{beta}}{bending constant (Default: \code{0.1}). For more, see \code{?WRS2::pbcor}.}
     \item{\code{k}}{Number of digits after decimal point (should be an integer)

@@ -66,7 +66,6 @@ ggstatsplot::gghistostats(
   data = psych::sat.act, # data from which variable is to be taken
   x = ACT, # numeric variable
   results.subtitle = FALSE, # don't run statistical tests
-  messages = FALSE, # turn off messages
   xlab = "ACT Score", # x-axis label
   title = "Distribution of ACT Scores", # title for the plot
   subtitle = "N = 700", # subtitle for the plot
@@ -82,23 +81,19 @@ both self selection for people taking on line personality and ability tests and
 a self reporting bias in scores."  Let's display the national norms (labeled as
 "Test") and test (using `results.subtitle = TRUE`) the hypothesis that our
 sample mean is the same as our national population mean of 20 using a parametric
-one sample t-test (`type = "p"`).  To demonstrate some of the options available
+one sample *t*-test (`type = "p"`).  To demonstrate some of the options available
 we'll also:
 
   1.  Change the overall theme with `ggtheme = ggthemes::theme_tufte()`
   2.  Make the histogram bars a different color with `bar.fill = "#D55E00"`
-  3.  Plot proportions on the y axes with `bar.measure = "proportion"`
-  4.  Turn messages on to receive additional diagnostic information with
-  `messages = TRUE`
-  5.  Compute information about the Bayes Factor (`bf.message = TRUE`, see below)
+  3.  Plot proportions on the `y` axes with `bar.measure = "proportion"`
+  4.  Compute information about the Bayes Factor (`bf.message = TRUE`, see below)
 
 ```{r psychact3, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 7}
 ggstatsplot::gghistostats(
   data = psych::sat.act, # data from which variable is to be taken
   x = ACT, # numeric variable
   results.subtitle = TRUE, # run statistical tests
-  messages = TRUE, # turn on messages
-  bar.measure = "proportion", # proportions
   xlab = "ACT Score", # x-axis label
   title = "Distribution of ACT Scores", # title for the plot
   type = "p", # one sample t-test
@@ -152,17 +147,12 @@ ggstatsplot::grouped_gghistostats(
   centrality.label.args = list(color = "#D55E00"),
   test.value.line.args = list(color = "#009E73"),
   test.value.label.args = list(color = "#009E73"),
-  messages = FALSE, # turn off messages
   ggtheme = ggthemes::theme_stata(), # changing default theme
   ggstatsplot.layer = FALSE, # turn off ggstatsplot theme layer
   # arguments relevant for ggstatsplot::combine_plots
   title.text = "Distribution of ACT scores across genders",
   caption.text = "Data courtesy of: SAPA project (https://sapa-project.org)",
-  plotgrid.args = list(
-    nrow = 2,
-    ncol = 1,
-    labels = c("Male", "Female")
-  )
+  plotgrid.args = list(nrow = 2, labels = c("Male", "Female"))
 )
 ```
 

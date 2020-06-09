@@ -76,7 +76,6 @@ ggbarstats <- function(data,
                        palette = "Dark2",
                        ggplot.component = NULL,
                        output = "plot",
-                       messages = TRUE,
                        x = NULL,
                        y = NULL,
                        ...) {
@@ -146,8 +145,7 @@ ggbarstats <- function(data,
           conf.level = conf.level,
           conf.type = "norm",
           bias.correct = TRUE,
-          k = k,
-          messages = messages
+          k = k
         ),
         error = function(e) NULL
       )
@@ -251,9 +249,6 @@ ggbarstats <- function(data,
 
   # adding significance labels to bars for proportion tests
   if (isTRUE(proportion.test)) {
-    # display grouped proportion test results
-    if (isTRUE(messages)) print(dplyr::select(df_labels, -label))
-
     # modify plot
     p <- p +
       ggplot2::geom_text(

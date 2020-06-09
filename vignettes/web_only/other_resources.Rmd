@@ -46,6 +46,10 @@ functions included in `ggstatsplot`.
 # Videos
 
   - <https://www.youtube.com/watch?v=aw6HDz9zA1Q>
+  
+  - <https://www.youtube.com/watch?v=m3uInetiC8w>
+  
+  - <https://www.youtube.com/watch?v=-p6_K_l__N4>
 
 # RPubs posts
 

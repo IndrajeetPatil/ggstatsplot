@@ -236,7 +236,6 @@ testthat::test_that(
         caption = substitute(paste(italic("Note"), ": From `tidyverse`")),
         package = "wesanderson",
         palette = "BottleRocket2",
-        caption.summary = FALSE,
         k = 3
       )
 
@@ -251,7 +250,12 @@ testthat::test_that(
     testthat::expect_identical(p$labels$y, "term")
     testthat::expect_identical(
       p$labels$caption,
-      ggplot2::expr(paste(italic("Note"), ": From `tidyverse`"))
+      ggplot2::expr(atop(displaystyle(paste(italic("Note"), ": From `tidyverse`")),
+        expr = paste(
+          "AIC = ", "126", ", BIC = ",
+          "142"
+        )
+      ))
     )
     testthat::expect_identical(p$labels$title, "mammalian sleep")
     testthat::expect_identical(p$labels$subtitle, "Source: `ggplot2` package")
@@ -580,20 +584,19 @@ testthat::test_that(
 
     testthat::expect_identical(pb7$plot$labels$caption, "mnp")
 
-    # subtitle
+    # caption
     set.seed(123)
     meta_info <-
       suppressWarnings(ggstatsplot::ggcoefstats(
         x = df5,
         statistic = "t",
         k = 3,
-        caption.summary = FALSE,
         meta.analytic.effect = TRUE,
         bf.message = TRUE,
         output = "caption",
         messages = TRUE
       ))
-    testthat::expect_identical(as.character(meta_info$expr)[6], "0.267")
+    testthat::expect_identical(as.character(meta_info$expr)[19], "81.42%")
   }
 )
 
@@ -787,6 +790,7 @@ testthat::test_that(
       ggstatsplot::ggcoefstats(
         x = mod,
         exclude.intercept = FALSE,
+        exponentiate = TRUE,
         point.args = list(size = 6, shape = 5, color = "red"),
         package = "ggsci",
         palette = "alternating_igv"

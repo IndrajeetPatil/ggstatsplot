@@ -230,7 +230,6 @@ ggbetweenstats <- function(data,
                            palette = "Dark2",
                            ggplot.component = NULL,
                            output = "plot",
-                           messages = TRUE,
                            ...) {
 
   # convert entered stats type to a standard notation
@@ -314,8 +313,7 @@ ggbetweenstats <- function(data,
         tr = tr,
         nboot = nboot,
         conf.level = conf.level,
-        k = k,
-        messages = messages
+        k = k
       )
   }
 

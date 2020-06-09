@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.5.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.5.0.9000</span>
       </span>
     </div>
 
@@ -73,7 +73,7 @@
       <a href="../../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
-      <a href="../../articles/web_only/faq.html">Frequently asked questions about `ggstatsplot`</a>
+      <a href="../../articles/web_only/faq.html">Frequently asked questions</a>
     </li>
     <li>
       <a href="../../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
@@ -149,7 +149,7 @@
       <h1 data-toc-skip>ggwithinstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-05-29</h4>
+            <h4 class="date">2020-06-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggwithinstats.Rmd"><code>vignettes/web_only/ggwithinstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggwithinstats.Rmd</code></div>
@@ -200,8 +200,7 @@
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span>(
   <span class="kw">data</span> <span class="kw">=</span> <span class="no">data_bugs</span>,
   <span class="kw">x</span> <span class="kw">=</span> <span class="no">key</span>,
-  <span class="kw">y</span> <span class="kw">=</span> <span class="no">value</span>,
-  <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+  <span class="kw">y</span> <span class="kw">=</span> <span class="no">value</span>
 )</pre></body></html></div>
 <p><img src="ggwithinstats_files/figure-html/ggwithinstats1-1.png" width="768"></p>
 <p><strong>Note</strong>:</p>
@@ -237,7 +236,6 @@
   <span class="kw">outlier.label.color</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="co"># outlier point label color</span>
   <span class="kw">mean.plotting</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="co"># whether the mean is to be displayed</span>
   <span class="kw">mean.color</span> <span class="kw">=</span> <span class="st">"darkblue"</span>, <span class="co"># color for mean</span>
-  <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="co"># turn off messages</span>
   <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">firatheme</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/firatheme/man/theme_fira.html">theme_fira</a></span>(), <span class="co"># a different theme</span>
   <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="co"># turn off default modification of the used theme</span>
   <span class="kw">package</span> <span class="kw">=</span> <span class="st">"yarrr"</span>, <span class="co"># package from which color palette is to be taken</span>
@@ -273,8 +271,7 @@
     <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Parametric test"</span>,
     <span class="kw">package</span> <span class="kw">=</span> <span class="st">"ggsci"</span>,
     <span class="kw">palette</span> <span class="kw">=</span> <span class="st">"nrc_npg"</span>,
-    <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">ggthemr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemr/man/ggthemr.html">ggthemr</a></span>(<span class="kw">palette</span> <span class="kw">=</span> <span class="st">"light"</span>),
-    <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+    <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">ggthemr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemr/man/ggthemr.html">ggthemr</a></span>(<span class="kw">palette</span> <span class="kw">=</span> <span class="st">"light"</span>)
   )
 
 <span class="co"># Mann-Whitney U test (nonparametric test)</span>
@@ -291,8 +288,7 @@
     <span class="kw">package</span> <span class="kw">=</span> <span class="st">"ggsci"</span>,
     <span class="kw">palette</span> <span class="kw">=</span> <span class="st">"uniform_startrek"</span>,
     <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_map.html">theme_map</a></span>(),
-    <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-    <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+    <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fl">FALSE</span>
   )
 
 <span class="co"># robust t-test</span>
@@ -309,8 +305,7 @@
     <span class="kw">package</span> <span class="kw">=</span> <span class="st">"wesanderson"</span>,
     <span class="kw">palette</span> <span class="kw">=</span> <span class="st">"Royal2"</span>,
     <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">hrbrthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_tw.html">theme_ipsum_tw</a></span>(),
-    <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-    <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+    <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fl">FALSE</span>
   )
 
 <span class="co"># Bayes Factor for parametric t-test</span>
@@ -325,8 +320,7 @@
     <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Bayesian Test"</span>,
     <span class="kw">package</span> <span class="kw">=</span> <span class="st">"ggsci"</span>,
     <span class="kw">palette</span> <span class="kw">=</span> <span class="st">"nrc_npg"</span>,
-    <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>(),
-    <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+    <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>()
   )
 
 <span class="co"># combining the individual plots into a single plot</span>
@@ -373,7 +367,6 @@
   <span class="kw">k</span> <span class="kw">=</span> <span class="fl">3</span>,
   <span class="kw">mean.ci</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
   <span class="kw">title.prefix</span> <span class="kw">=</span> <span class="st">"Year"</span>,
-  <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
   <span class="co"># arguments relevant for ggstatsplot::combine_plots</span>
   <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Desire to kill bugs across genders"</span>,
   <span class="kw">plotgrid.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">1</span>)

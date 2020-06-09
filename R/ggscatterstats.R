@@ -41,6 +41,8 @@
 #' @param vline.args,hline.args A list of additional aesthetic arguments to be
 #'   passed to `ggplot2::geom_vline` and `ggplot2::geom_hline` geoms used to
 #'   display the centrality parameter labels on vertical and horizontal lines.
+#' @param messages Decides whether messages references, notes, and warnings are
+#'   to be displayed (Default: `TRUE`).
 #' @inheritParams statsExpressions::expr_corr_test
 #' @inheritParams ggplot2::geom_smooth
 #' @inheritParams theme_ggstatsplot

@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.5.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.5.0.9000</span>
       </span>
     </div>
 
@@ -73,7 +73,7 @@
       <a href="../../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
-      <a href="../../articles/web_only/faq.html">Frequently asked questions about `ggstatsplot`</a>
+      <a href="../../articles/web_only/faq.html">Frequently asked questions</a>
     </li>
     <li>
       <a href="../../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
@@ -149,7 +149,7 @@
       <h1 data-toc-skip>ggpiestats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-05-29</h4>
+            <h4 class="date">2020-06-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggpiestats.Rmd"><code>vignettes/web_only/ggpiestats.Rmd</code></a></small>
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
@@ -214,8 +214,7 @@
   <span class="kw">x</span> <span class="kw">=</span> <span class="no">Survived</span>,
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Passenger survival on the Titanic"</span>, <span class="co"># title for the entire plot</span>
   <span class="kw">caption</span> <span class="kw">=</span> <span class="st">"Source: Titanic survival dataset"</span>, <span class="co"># caption for the entire plot</span>
-  <span class="kw">legend.title</span> <span class="kw">=</span> <span class="st">"Survived?"</span>, <span class="co"># legend title</span>
-  <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span> <span class="co"># turn off messages</span>
+  <span class="kw">legend.title</span> <span class="kw">=</span> <span class="st">"Survived?"</span>
 )</pre></body></html></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats3-1.png" width="576"></p>
 <p><strong>Note:</strong> equal proportions per category are the default, e.g. 50/50, but you can specify any hypothesized ratio you like with <code>ratio</code> so if our hypothesis was that 80% died and 20% survived we would add <code>ratio = c(.80,.20)</code> when we entered the code.</p>
@@ -251,11 +250,8 @@
   <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(), <span class="co"># changing plot theme</span>
   <span class="kw">palette</span> <span class="kw">=</span> <span class="st">"category10_d3"</span>, <span class="co"># choosing a different color palette</span>
   <span class="kw">package</span> <span class="kw">=</span> <span class="st">"ggsci"</span>, <span class="co"># package to which color palette belongs</span>
-  <span class="kw">stat.title</span> <span class="kw">=</span> <span class="st">"Association test: "</span>, <span class="co"># title for statistical test</span>
   <span class="kw">k</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="co"># decimal places in result</span>
-  <span class="kw">perc.k</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="co"># decimal places in percentage labels</span>
-  <span class="kw">nboot</span> <span class="kw">=</span> <span class="fl">10</span>, <span class="co"># no. of bootstrap sample for effect size CI</span>
-  <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+  <span class="kw">perc.k</span> <span class="kw">=</span> <span class="fl">1</span> <span class="co"># decimal places in percentage labels</span>
 ) + <span class="co"># further modification with `ggplot2` commands</span>
   <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(
     <span class="kw">plot.title</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(
@@ -310,7 +306,6 @@
   <span class="kw">perc.k</span> <span class="kw">=</span> <span class="fl">1</span>,
   <span class="kw">package</span> <span class="kw">=</span> <span class="st">"ggsci"</span>,
   <span class="kw">palette</span> <span class="kw">=</span> <span class="st">"category10_d3"</span>,
-  <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
   <span class="co"># arguments relevant for ggstatsplot::combine_plots</span>
   <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Passenger survival on the Titanic by gender and age"</span>,
   <span class="kw">caption.text</span> <span class="kw">=</span> <span class="st">"Asterisks denote results from proportion tests; \n***: p &lt; 0.001, ns: non-significant"</span>,
@@ -364,7 +359,7 @@
 )
 <span class="co">#&gt; # A tibble: 16 x 4</span>
 <span class="co">#&gt;    Boat  Month    Fish    SumOfCaught</span>
-<span class="co">#&gt;    &lt;fct&gt; &lt;fct&gt;    &lt;fct&gt;         &lt;dbl&gt;</span>
+<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;         &lt;dbl&gt;</span>
 <span class="co">#&gt;  1 B     February Bass             25</span>
 <span class="co">#&gt;  2 B     February Catfish          20</span>
 <span class="co">#&gt;  3 B     March    Cod              35</span>
@@ -393,8 +388,7 @@
   <span class="kw">palette</span> <span class="kw">=</span> <span class="st">"default_jama"</span>,
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Type fish caught by month"</span>,
   <span class="kw">caption</span> <span class="kw">=</span> <span class="st">"Source: completely made up"</span>,
-  <span class="kw">legend.title</span> <span class="kw">=</span> <span class="st">"Type fish caught: "</span>,
-  <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+  <span class="kw">legend.title</span> <span class="kw">=</span> <span class="st">"Type fish caught: "</span>
 )</pre></body></html></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats8-1.png" width="768"></p>
 <p>The results support our hypothesis that the type of fish caught is related to the month in which we’re fishing. The <span class="math inline">\(\chi^2\)</span> independence test results at the top of the plot. In February we catch significantly more Haddock than we would hypothesize for an equal distribution. Whereas in March our results indicate there’s no strong evidence that the distribution isn’t equal.</p>
@@ -427,9 +421,7 @@
   <span class="kw">label</span> <span class="kw">=</span> <span class="st">"both"</span>,
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Results from imaginary clinical trial"</span>,
   <span class="kw">package</span> <span class="kw">=</span> <span class="st">"ggsci"</span>,
-  <span class="kw">palette</span> <span class="kw">=</span> <span class="st">"default_ucscgb"</span>,
-  <span class="kw">direction</span> <span class="kw">=</span> -<span class="fl">1</span>,
-  <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+  <span class="kw">palette</span> <span class="kw">=</span> <span class="st">"default_ucscgb"</span>
 )</pre></body></html></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats9-1.png" width="768"></p>
 <p>The results bode well for our experimental wonder drug. Of the 96 who started out healthy only 4% were sick after a month. Ideally, we would have hoped for zero but reality is seldom perfect. On the other side of the 38 who started out sick that number has reduced to just 13 or 34% which is a marked improvement.</p>

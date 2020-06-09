@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.5.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.5.0.9000</span>
       </span>
     </div>
 
@@ -73,7 +73,7 @@
       <a href="../../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
-      <a href="../../articles/web_only/faq.html">Frequently asked questions about `ggstatsplot`</a>
+      <a href="../../articles/web_only/faq.html">Frequently asked questions</a>
     </li>
     <li>
       <a href="../../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
@@ -149,7 +149,7 @@
       <h1 data-toc-skip>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-05-29</h4>
+            <h4 class="date">2020-06-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -258,8 +258,7 @@
         <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),
         <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>()
       ),
-      <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">FALSE</span>, <span class="fl">FALSE</span>, <span class="fl">FALSE</span>),
-      <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+      <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">FALSE</span>, <span class="fl">FALSE</span>, <span class="fl">FALSE</span>)
     ),
     <span class="kw">.f</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span>
   )</pre></body></html></div>
@@ -343,8 +342,7 @@
         <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_solarized.html">theme_solarized</a></span>(),
         <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_gdocs.html">theme_gdocs</a></span>()
       ),
-      <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-      <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+      <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fl">FALSE</span>
     ),
     <span class="kw">.f</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span>
   )
@@ -405,11 +403,14 @@
         <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),
         <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span>()
       ),
-      <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">FALSE</span>, <span class="fl">TRUE</span>, <span class="fl">TRUE</span>),
-      <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+      <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">FALSE</span>, <span class="fl">TRUE</span>, <span class="fl">TRUE</span>)
     ),
     <span class="kw">.f</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/ggscatterstats.html">ggscatterstats</a></span>
   )
+<span class="co">#&gt; Warning: This plot can't be further modified with `ggplot2` functions.</span>
+<span class="co">#&gt; In case you want a `ggplot` object, set `marginal = FALSE`.Warning: This plot can't be further modified with `ggplot2` functions.</span>
+<span class="co">#&gt; In case you want a `ggplot` object, set `marginal = FALSE`.Warning: This plot can't be further modified with `ggplot2` functions.</span>
+<span class="co">#&gt; In case you want a `ggplot` object, set `marginal = FALSE`.</span>
 
 <span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span>(
@@ -483,8 +484,7 @@
         <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),
         <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>(),
         <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>()
-      ),
-      <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+      )
     ),
     <span class="kw">.f</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span>
   )
@@ -560,8 +560,7 @@
         <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>(),
         <span class="kw pkg">hrbrthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_rc.html">theme_modern_rc</a></span>()
       ),
-      <span class="kw">ggstatsplot.layes</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-      <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+      <span class="kw">ggstatsplot.layes</span> <span class="kw">=</span> <span class="fl">FALSE</span>
     ),
     <span class="kw">.f</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/gghistostats.html">gghistostats</a></span>
   )
@@ -641,8 +640,7 @@
         <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),
         <span class="kw pkg">hrbrthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_rc.html">theme_ipsum_rc</a></span>(<span class="kw">axis_title_size</span> <span class="kw">=</span> <span class="fl">10</span>),
         <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_hc.html">theme_hc</a></span>(<span class="kw">bgcolor</span> <span class="kw">=</span> <span class="st">"darkunica"</span>)
-      ),
-      <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+      )
     ),
     <span class="kw">.f</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/ggdotplotstats.html">ggdotplotstats</a></span>
   )
@@ -707,8 +705,7 @@
         <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_economist.html">theme_economist</a></span>()
       ),
       <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">TRUE</span>, <span class="fl">TRUE</span>, <span class="fl">FALSE</span>, <span class="fl">FALSE</span>),
-      <span class="kw">proportion.test</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">TRUE</span>, <span class="fl">FALSE</span>, <span class="fl">TRUE</span>, <span class="fl">FALSE</span>),
-      <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+      <span class="kw">proportion.test</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">TRUE</span>, <span class="fl">FALSE</span>, <span class="fl">TRUE</span>, <span class="fl">FALSE</span>)
     ),
     <span class="kw">.f</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/ggpiestats.html">ggpiestats</a></span>
   )
@@ -772,8 +769,7 @@
         <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),
         <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_economist.html">theme_economist</a></span>()
       ),
-      <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">TRUE</span>, <span class="fl">TRUE</span>, <span class="fl">FALSE</span>, <span class="fl">FALSE</span>),
-      <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+      <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">TRUE</span>, <span class="fl">TRUE</span>, <span class="fl">FALSE</span>, <span class="fl">FALSE</span>)
     ),
     <span class="kw">.f</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/ggbarstats.html">ggbarstats</a></span>
   )
@@ -800,8 +796,7 @@
       <span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">alist</a></span>(<span class="no">wt</span>, <span class="no">Sepal.Length</span>, <span class="no">len</span>),
       <span class="kw">results.subtitle</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">FALSE</span>),
       <span class="kw">grouping.var</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">alist</a></span>(<span class="no">am</span>, <span class="no">Species</span>, <span class="no">supp</span>),
-      <span class="kw">title.text</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"Dataset: mtcars"</span>, <span class="st">"Dataset: iris"</span>, <span class="st">"Dataset: ToothGrowth"</span>),
-      <span class="kw">messages</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">FALSE</span>)
+      <span class="kw">title.text</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"Dataset: mtcars"</span>, <span class="st">"Dataset: iris"</span>, <span class="st">"Dataset: ToothGrowth"</span>)
     ),
     <span class="kw">.f</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/grouped_gghistostats.html">grouped_gghistostats</a></span>
   )
@@ -826,8 +821,7 @@
       <span class="kw">data</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">movies_long</span>),
       <span class="kw">x</span> <span class="kw">=</span> <span class="st">"mpaa"</span>,
       <span class="kw">y</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"rating"</span>, <span class="st">"length"</span>),
-      <span class="kw">title</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"IMDB score by MPAA rating"</span>, <span class="st">"Movie length by MPAA rating"</span>),
-      <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+      <span class="kw">title</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"IMDB score by MPAA rating"</span>, <span class="st">"Movie length by MPAA rating"</span>)
     ),
     <span class="kw">.f</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span>
   )

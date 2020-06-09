@@ -215,7 +215,9 @@ utils::globalVariables(
     "x_pos",
     "y_pos",
     "label.value",
-    "n_obs"
+    "n_obs",
+    "df.error",
+    "parameter"
   ),
   package = "ggstatsplot",
   add = FALSE

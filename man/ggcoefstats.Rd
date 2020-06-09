@@ -24,7 +24,6 @@ ggcoefstats(
   title = NULL,
   subtitle = NULL,
   caption = NULL,
-  caption.summary = TRUE,
   only.significant = FALSE,
   point.args = list(size = 3, color = "blue"),
   errorbar.args = list(height = 0),
@@ -114,10 +113,6 @@ will be ignored if \code{meta.analytic.effect} is set to \code{TRUE}.}
 
 \item{caption}{Text to display as caption. This argument is relevant only
 when \code{output = "caption"}.}
-
-\item{caption.summary}{Logical that decides whether the model summary should
-be displayed as a cation to the plot (Default: \code{TRUE}). Color of the line
-segment. Defaults to the same color as the text.}
 
 \item{only.significant}{If \code{TRUE}, only stats labels for significant effects
 is shown (Default: \code{FALSE}). This can be helpful when a large number of

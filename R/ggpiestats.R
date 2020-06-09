@@ -98,7 +98,6 @@ ggpiestats <- function(data,
                        palette = "Dark2",
                        ggplot.component = NULL,
                        output = "plot",
-                       messages = TRUE,
                        x = NULL,
                        y = NULL,
                        ...) {
@@ -168,8 +167,7 @@ ggpiestats <- function(data,
           conf.level = conf.level,
           conf.type = "norm",
           bias.correct = TRUE,
-          k = k,
-          messages = messages
+          k = k
         ),
         error = function(e) NULL
       )
@@ -278,9 +276,6 @@ ggpiestats <- function(data,
   if (!rlang::quo_is_null(rlang::enquo(y))) {
     # adding significance labels to pie charts for grouped proportion tests
     if (isTRUE(proportion.test)) {
-      # display grouped proportion test results
-      if (isTRUE(messages)) print(dplyr::select(df_labels, -label))
-
       # adding labels
       p <- p +
         ggplot2::geom_text(

@@ -124,7 +124,7 @@ subtitle." />
       <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
-      <a href="../articles/web_only/faq.html">Frequently asked questions about `ggstatsplot`</a>
+      <a href="../articles/web_only/faq.html">Frequently asked questions</a>
     </li>
     <li>
       <a href="../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
@@ -329,12 +329,14 @@ display the centrality parameter labels on vertical and horizontal lines.</p></d
     <dt><code>hline.args</code></dt><dd><p>A list of additional aesthetic arguments to be
 passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>ggplot2::geom_vline</a></code> and <code><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>ggplot2::geom_hline</a></code> geoms used to
 display the centrality parameter labels on vertical and horizontal lines.</p></dd>
+    <dt><code>messages</code></dt><dd><p>Decides whether messages references, notes, and warnings are
+to be displayed (Default: <code>TRUE</code>).</p></dd>
     <dt><code>type</code></dt><dd><p>Type of association between paired samples required
 ("<code>"parametric"</code>: Pearson's product moment correlation coefficient" or
 "<code>"nonparametric"</code>: Spearman's rho" or "<code>"robust"</code>: percentage bend
 correlation coefficient" or "<code>"bayes"</code>: Bayes Factor for Pearson's <em>r</em>").
 Corresponding abbreviations are also accepted: <code>"p"</code> (for
-parametric/pearson's), <code>"np"</code> (nonparametric/spearman), <code>"r"</code> (robust),
+parametric/pearson), <code>"np"</code> (nonparametric/spearman), <code>"r"</code> (robust),
 <code>"bf"</code> (for bayes factor), resp.</p></dd>
     <dt><code>conf.level</code></dt><dd><p>Scalar between 0 and 1. If unspecified, the defaults return
 <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></dd>
@@ -386,8 +388,6 @@ variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
 by <code>ggstatsplot</code>. This argument is primarily helpful for <code>grouped_</code> variant
 of the current function. Default is <code>NULL</code>. The argument should be entered
 as a function.</p></dd>
-    <dt><code>messages</code></dt><dd><p>Decides whether messages references, notes, and warnings are
-to be displayed (Default: <code>TRUE</code>).</p></dd>
     <dt><code>margins</code></dt><dd><p>Along which margins to show the plots. One of: [both, x, y].</p></dd>
     <dt><code>xparams</code></dt><dd><p>List of extra parameters to use only for the marginal plot along
 the x axis.</p></dd>

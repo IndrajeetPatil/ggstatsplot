@@ -176,8 +176,7 @@ plot_list <-
         ggplot2::theme_classic(),
         ggthemes::theme_fivethirtyeight()
       ),
-      ggstatsplot.layer = list(FALSE, FALSE, FALSE),
-      messages = FALSE
+      ggstatsplot.layer = list(FALSE, FALSE, FALSE)
     ),
     .f = ggstatsplot::ggbetweenstats
   )
@@ -268,8 +267,7 @@ plot_list <-
         ggthemes::theme_solarized(),
         ggthemes::theme_gdocs()
       ),
-      ggstatsplot.layer = FALSE,
-      messages = FALSE
+      ggstatsplot.layer = FALSE
     ),
     .f = ggstatsplot::ggwithinstats
   )
@@ -337,8 +335,7 @@ plot_list <-
         ggplot2::theme_classic(),
         ggplot2::theme_light()
       ),
-      ggstatsplot.layer = list(FALSE, TRUE, TRUE),
-      messages = FALSE
+      ggstatsplot.layer = list(FALSE, TRUE, TRUE)
     ),
     .f = ggstatsplot::ggscatterstats
   )
@@ -414,8 +411,7 @@ plot_list <-
         ggplot2::theme_classic(),
         ggthemes::theme_fivethirtyeight(),
         ggthemes::theme_tufte()
-      ),
-      messages = FALSE
+      )
     ),
     .f = ggstatsplot::ggcorrmat
   )
@@ -488,8 +484,7 @@ plot_list <-
         ggplot2::theme_minimal(),
         hrbrthemes::theme_modern_rc()
       ),
-      ggstatsplot.layes = FALSE,
-      messages = FALSE
+      ggstatsplot.layes = FALSE
     ),
     .f = ggstatsplot::gghistostats
   )
@@ -566,8 +561,7 @@ plot_list <-
         ggthemes::theme_tufte(),
         hrbrthemes::theme_ipsum_rc(axis_title_size = 10),
         ggthemes::theme_hc(bgcolor = "darkunica")
-      ),
-      messages = FALSE
+      )
     ),
     .f = ggstatsplot::ggdotplotstats
   )
@@ -629,8 +623,7 @@ plot_list <-
         ggthemes::theme_economist()
       ),
       ggstatsplot.layer = list(TRUE, TRUE, FALSE, FALSE),
-      proportion.test = list(TRUE, FALSE, TRUE, FALSE),
-      messages = FALSE
+      proportion.test = list(TRUE, FALSE, TRUE, FALSE)
     ),
     .f = ggstatsplot::ggpiestats
   )
@@ -691,8 +684,7 @@ plot_list <-
         ggthemes::theme_tufte(),
         ggthemes::theme_economist()
       ),
-      ggstatsplot.layer = list(TRUE, TRUE, FALSE, FALSE),
-      messages = FALSE
+      ggstatsplot.layer = list(TRUE, TRUE, FALSE, FALSE)
     ),
     .f = ggstatsplot::ggbarstats
   )
@@ -726,8 +718,7 @@ plotlist <-
       x = alist(wt, Sepal.Length, len),
       results.subtitle = list(FALSE),
       grouping.var = alist(am, Species, supp),
-      title.text = list("Dataset: mtcars", "Dataset: iris", "Dataset: ToothGrowth"),
-      messages = list(FALSE)
+      title.text = list("Dataset: mtcars", "Dataset: iris", "Dataset: ToothGrowth")
     ),
     .f = ggstatsplot::grouped_gghistostats
   )
@@ -752,8 +743,7 @@ plotlist <-
       data = list(movies_long),
       x = "mpaa",
       y = list("rating", "length"),
-      title = list("IMDB score by MPAA rating", "Movie length by MPAA rating"),
-      messages = FALSE
+      title = list("IMDB score by MPAA rating", "Movie length by MPAA rating")
     ),
     .f = ggstatsplot::ggbetweenstats
   )

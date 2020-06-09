@@ -27,7 +27,8 @@ iris_long <- datasets::iris %>%
     remove = FALSE,
     sep = "\\.",
     convert = TRUE
-  ) %>% # converting column types
+  ) %>%
+  # converting column types
   dplyr::mutate_if(
     .tbl = .,
     .predicate = purrr::is_bare_character,

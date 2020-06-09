@@ -119,7 +119,7 @@
       <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
-      <a href="../articles/web_only/faq.html">Frequently asked questions about `ggstatsplot`</a>
+      <a href="../articles/web_only/faq.html">Frequently asked questions</a>
     </li>
     <li>
       <a href="../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
@@ -206,7 +206,8 @@
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>
-<li>Removed unused <code>intent_morality</code> dataset.</li>
+<li><p>Removed unused <code>intent_morality</code> dataset.</p></li>
+<li><p><code>ggcoefstats</code> retires <code>caption.summary</code> argument. So, by default, the caption is going to contain as much information as it can and the users can then choose to modify the default caption using <code>ggplot2</code> functions.</p></li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
@@ -380,7 +381,7 @@
 </ul>
 <p>MINOR</p>
 <ul>
-<li><p><code>ggcoefstats</code> now uses <code><a href="https://rdrr.io/pkg/parameters/man/p_value.html">parameters::p_value</a></code> instead of <code><a href="https://rdrr.io/pkg/sjstats/man/r2.html">sjstats::p_value</a></code>, as requested by the maintainer of that package. This might lead to differences in <em>p</em>-values for <code>lmer</code> models.</p></li>
+<li><p><code>ggcoefstats</code> now uses <code><a href="https://rdrr.io/pkg/parameters/man/p_value.html">parameters::p_value</a></code> instead of <code>sjstats::p_value</code>, as requested by the maintainer of that package. This might lead to differences in <em>p</em>-values for <code>lmer</code> models.</p></li>
 <li><p>More models supported in <code>ggcoefstats</code>: <code>blavaan</code>, <code>bracl</code>, <code>brglm2</code>, <code>glmc</code>, <code>lavaan</code>, <code>nlreg</code>, <code>slm</code>, <code>wbgee</code>.</p></li>
 <li><p><code>ggcoefstats</code> gains <code>only.significant</code> argument to only display display stats labels for significant effects. This can be helpful when a large number of regression coefficients are to be displayed in a single plot.</p></li>
 </ul>
@@ -678,7 +679,7 @@
 <li><p>Removed the trailing comma from the robust correlation analyses.</p></li>
 <li><p><code>gghistostats</code> has a new argument to remove color fill gradient.</p></li>
 <li><p><code>ggbetweenstats</code> takes new argument <code>mean.ci</code> to show confidence intervals for the mean values.</p></li>
-<li><p>For <code>lmer</code> models, <em>p</em>-values are now computed using <code><a href="https://rdrr.io/pkg/sjstats/man/r2.html">sjstats::p_value</a></code>. This removes <code>lmerTest</code> package from dependencies.</p></li>
+<li><p>For <code>lmer</code> models, <em>p</em>-values are now computed using <code>sjstats::p_value</code>. This removes <code>lmerTest</code> package from dependencies.</p></li>
 <li><p><code>sjstats</code> no longer suggests <code>apaTables</code> package to compute confidence intervals for partial eta- and omega-squared. Therefore, <code>apaTables</code> and <code>MBESS</code> are removed from dependencies.</p></li>
 <li><p><code>ggscatterstats</code> supports <code>densigram</code> with the development version of <code>ggExtra</code>. It additionally gains few extra arguments to change aesthetics of marginals (alpha, size, etc.).</p></li>
 </ul>

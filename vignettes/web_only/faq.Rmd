@@ -1,5 +1,5 @@
 ---
-title: "Frequently asked questions about `ggstatsplot`"
+title: "Frequently asked questions"
 author: "Indrajeet Patil"
 date: "`r Sys.Date()`"
 output:
@@ -58,13 +58,12 @@ set.seed(123)
 library(ggstatsplot)
 library(plotly)
 
-# creating ggplot object with ggstatsplot
+# creating ggplot object with `ggstatsplot`
 p <- 
   ggstatsplot::ggbetweenstats(
   data = mtcars,
   x = cyl,
-  y = mpg,
-  messages = FALSE
+  y = mpg
 )
 
 # converting to plotly object
@@ -104,8 +103,7 @@ plot_list <-
       x = "displ",
       y = "hwy",
       results.subtitle = FALSE,
-      marginal.type = "densigram",
-      messages = FALSE
+      marginal.type = "densigram"
     ),
     .f = ggstatsplot::ggscatterstats
   )
@@ -132,7 +130,7 @@ library(ggstatsplot)
 library(ggsignif)
 
 # displaying only one comparison
-ggbetweenstats(mtcars, cyl, wt, messages = FALSE) +
+ggbetweenstats(mtcars, cyl, wt) +
   geom_signif(comparisons = list(c("4", "6")))
 ```
 
@@ -176,8 +174,7 @@ p <-
     data = iris,
     x = Species,
     y = Sepal.Length,
-    mean.plotting = FALSE,
-    messages = FALSE
+    mean.plotting = FALSE
   )
 
 # delete geom corresponding to points
@@ -201,14 +198,13 @@ p <-
     data = bugs_long,
     x = condition,
     y = desire,
-    mean.plotting = FALSE,
-    messages = FALSE
+    mean.plotting = FALSE
   )
 
 # delete the geom_point layer
 p <- gginnards::delete_layers(x = p, match_type = "GeomPoint")
 
-# add a new layers for points with a different `pch`
+# add a new layers for points with a different shape
 p + geom_point(shape = 23, aes(color = condition))
 ```
 

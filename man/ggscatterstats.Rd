@@ -67,7 +67,7 @@ be plotted on the \code{y}-axis. Can be entered either as a character string
 "\code{"nonparametric"}: Spearman's rho" or "\code{"robust"}: percentage bend
 correlation coefficient" or "\code{"bayes"}: Bayes Factor for Pearson's \emph{r}").
 Corresponding abbreviations are also accepted: \code{"p"} (for
-parametric/pearson's), \code{"np"} (nonparametric/spearman), \code{"r"} (robust),
+parametric/pearson), \code{"np"} (nonparametric/spearman), \code{"r"} (robust),
 \code{"bf"} (for bayes factor), resp.}
 
 \item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return

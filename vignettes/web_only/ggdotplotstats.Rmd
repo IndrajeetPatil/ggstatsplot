@@ -79,8 +79,7 @@ ggstatsplot::ggdotplotstats(
   test.value.line = TRUE,
   title = "Distribution of mileage of cars",
   ggtheme = hrbrthemes::theme_ipsum_ps(),
-  ggstatsplot.layer = FALSE,
-  messages = FALSE
+  ggstatsplot.layer = FALSE
 )
 ```
 
@@ -124,7 +123,6 @@ ggstatsplot::grouped_ggdotplotstats(
   ),
   test.value.line = TRUE,
   ggtheme = ggthemes::theme_fivethirtyeight(),
-  messages = FALSE,
   # arguments relevant for ggstatsplot::combine_plots
   title.text = "Fuel economy data",
   plotgrid.args = list(nrow = 2)

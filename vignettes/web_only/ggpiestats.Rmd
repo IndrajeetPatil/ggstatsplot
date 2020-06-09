@@ -102,8 +102,7 @@ ggstatsplot::ggpiestats(
   x = Survived,
   title = "Passenger survival on the Titanic", # title for the entire plot
   caption = "Source: Titanic survival dataset", # caption for the entire plot
-  legend.title = "Survived?", # legend title
-  messages = FALSE # turn off messages
+  legend.title = "Survived?"
 )
 ```
 
@@ -151,11 +150,8 @@ ggstatsplot::ggpiestats(
   ggtheme = ggplot2::theme_grey(), # changing plot theme
   palette = "category10_d3", # choosing a different color palette
   package = "ggsci", # package to which color palette belongs
-  stat.title = "Association test: ", # title for statistical test
   k = 3, # decimal places in result
-  perc.k = 1, # decimal places in percentage labels
-  nboot = 10, # no. of bootstrap sample for effect size CI
-  messages = FALSE
+  perc.k = 1 # decimal places in percentage labels
 ) + # further modification with `ggplot2` commands
   ggplot2::theme(
     plot.title = ggplot2::element_text(
@@ -211,7 +207,6 @@ ggstatsplot::grouped_ggpiestats(
   perc.k = 1,
   package = "ggsci",
   palette = "category10_d3",
-  messages = FALSE,
   # arguments relevant for ggstatsplot::combine_plots
   title.text = "Passenger survival on the Titanic by gender and age",
   caption.text = "Asterisks denote results from proportion tests; \n***: p < 0.001, ns: non-significant",
@@ -294,8 +289,7 @@ ggstatsplot::ggpiestats(
   palette = "default_jama",
   title = "Type fish caught by month",
   caption = "Source: completely made up",
-  legend.title = "Type fish caught: ",
-  messages = FALSE
+  legend.title = "Type fish caught: "
 )
 ```
 
@@ -343,9 +337,7 @@ ggstatsplot::ggpiestats(
   label = "both",
   title = "Results from imaginary clinical trial",
   package = "ggsci",
-  palette = "default_ucscgb",
-  direction = -1,
-  messages = FALSE
+  palette = "default_ucscgb"
 )
 ```
 

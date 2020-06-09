@@ -121,7 +121,7 @@ in the plot as a subtitle." />
       <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
-      <a href="../articles/web_only/faq.html">Frequently asked questions about `ggstatsplot`</a>
+      <a href="../articles/web_only/faq.html">Frequently asked questions</a>
     </li>
     <li>
       <a href="../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
@@ -237,7 +237,6 @@ in the plot as a subtitle.</p>
   <span class='kw'>normal.curve.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>),
   <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
-  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='no'>...</span>
 )</pre>
 
@@ -251,7 +250,7 @@ be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
     </tr>
     <tr>
       <th>x</th>
-      <td><p>A numeric variable.</p></td>
+      <td><p>A numeric variable from the dataframe <code>data</code>.</p></td>
     </tr>
     <tr>
       <th>binwidth</th>
@@ -314,8 +313,7 @@ parametric test</strong> (Default: <code>TRUE</code>).</p></td>
     <tr>
       <th>effsize.type</th>
       <td><p>Type of effect size needed for <em>parametric</em> tests. The
-argument can be <code>"biased"</code> (<code>"d"</code> for Cohen's <em>d</em>) or <code>"unbiased"</code>
-(<code>"g"</code> Hedge's <em>g</em> for <strong>t-test</strong>). The default is <code>"g"</code>.</p></td>
+argument can be <code>"d"</code> (for Cohen's <em>d</em>) or <code>"g"</code> (for Hedge's <em>g</em>).</p></td>
     </tr>
     <tr>
       <th>conf.level</th>
@@ -430,11 +428,6 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
 <code>bf.message = TRUE</code>, otherwise this will return a <code>NULL</code>. For functions
 <code>ggpiestats</code> and <code>ggbarstats</code>, setting <code>output = "proptest"</code> will return a
 dataframe containing results from proportion tests.</p></td>
-    </tr>
-    <tr>
-      <th>messages</th>
-      <td><p>Decides whether messages references, notes, and warnings are
-to be displayed (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>...</th>

@@ -6,10 +6,10 @@
 | Package                                                                                                                                                         | Status                                                                                                                                                                                       | Usage                                                                                                                                             | GitHub                                                                                                                                                         | References                                                                                                                                                      |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [![CRAN\_Release\_Badge](http://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                  | [![Travis Build Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](https://travis-ci.org/IndrajeetPatil/ggstatsplot)                                               | [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)     | [![GitHub version](https://img.shields.io/badge/GitHub-0.4.0.9000-orange.svg?style=flat-square)](https://github.com/IndrajeetPatil/ggstatsplot/)               | [![Website](https://img.shields.io/badge/website-ggstatsplot-orange.svg?colorB=E91E63)](https://indrajeetpatil.github.io/ggstatsplot/)                          |
-| [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)                      | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Forks](https://img.shields.io/badge/forks-104-blue.svg)](https://github.com/IndrajeetPatil/ggstatsplot/)                                                    | [![Features](https://img.shields.io/badge/features-ggstatsplot-orange.svg?colorB=2196F3)](https://indrajeetpatil.github.io/ggstatsplot/reference/index.html)    |
+| [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)                      | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Forks](https://img.shields.io/badge/forks-105-blue.svg)](https://github.com/IndrajeetPatil/ggstatsplot/)                                                    | [![Features](https://img.shields.io/badge/features-ggstatsplot-orange.svg?colorB=2196F3)](https://indrajeetpatil.github.io/ggstatsplot/reference/index.html)    |
 | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/)                                                      | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                                               | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](https://img.shields.io/badge/issues-24-red.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)                                       | [![vignettes](https://img.shields.io/badge/vignettes-0.3.0-orange.svg?colorB=FF5722)](https://CRAN.R-project.org/package=ggstatsplot/vignettes/)                |
 | [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot) | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2074621.svg)](https://doi.org/10.5281/zenodo.2074621)                                                       |
-| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.com/IndrajeetPatil/ggstatsplot)                               | [![Last-changedate](https://img.shields.io/badge/last%20change-2020--06--02-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
+| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.com/IndrajeetPatil/ggstatsplot)                               | [![Last-changedate](https://img.shields.io/badge/last%20change-2020--06--09-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
 | [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                                    | [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                                            | [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ggstatsplot/community)                                           | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)                                                     | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
 
 # Raison d’être <img src="man/figures/logo.png" align="right" width="360" />
@@ -215,8 +215,7 @@ ggstatsplot::ggbetweenstats(
   data = iris,
   x = Species,
   y = Sepal.Length,
-  title = "Distribution of sepal length across Iris species",
-  messages = FALSE
+  title = "Distribution of sepal length across Iris species"
 )
 ```
 
@@ -261,8 +260,7 @@ ggstatsplot::ggbetweenstats(
   ggtheme = ggthemes::theme_fivethirtyeight(), # choosing a different theme
   ggstatsplot.layer = FALSE, # turn off `ggstatsplot` theme layer
   package = "wesanderson", # package from which color palette is to be taken
-  palette = "Darjeeling1", # choosing a different color palette
-  messages = FALSE
+  palette = "Darjeeling1" # choosing a different color palette
 )
 ```
 
@@ -294,7 +292,6 @@ ggstatsplot::grouped_ggbetweenstats(
   caption = substitute(paste(italic("Source"), ":IMDb (Internet Movie Database)")),
   palette = "default_jama",
   package = "ggsci",
-  messages = FALSE,
   plotgrid.args = list(nrow = 2),
   title.text = "Differences in movie length by mpaa ratings for different genres"
 )
@@ -513,10 +510,14 @@ ggstatsplot::grouped_ggscatterstats(
   ggplot.component = list(
     ggplot2::scale_x_continuous(breaks = seq(2, 9, 1), limits = (c(2, 9)))
   ),
-  messages = FALSE,
   plotgrid.args = list(nrow = 2),
   title.text = "Relationship between movie length by IMDB ratings for different genres"
 )
+#> Warning: This plot can't be further modified with `ggplot2` functions.
+#> In case you want a `ggplot` object, set `marginal = FALSE`.Warning: This plot can't be further modified with `ggplot2` functions.
+#> In case you want a `ggplot` object, set `marginal = FALSE`.Warning: This plot can't be further modified with `ggplot2` functions.
+#> In case you want a `ggplot` object, set `marginal = FALSE`.Warning: This plot can't be further modified with `ggplot2` functions.
+#> In case you want a `ggplot` object, set `marginal = FALSE`.
 ```
 
 <img src="man/figures/README-ggscatterstats3-1.png" width="100%" />
@@ -591,16 +592,6 @@ ggstatsplot::ggpiestats(
   package = "wesanderson",
   palette = "Royal1"
 )
-#> Note: 95% CI for effect size estimate was computed with 100 bootstrap samples.
-#> # A tibble: 2 x 11
-#>   after      counts  perc N         Approve Disapprove statistic   p.value
-#>   <fct>       <int> <dbl> <chr>     <chr>   <chr>          <dbl>     <dbl>
-#> 1 Disapprove    720   45  (n = 720) 20.83%  79.17%          245  3.20e- 55
-#> 2 Approve       880   55. (n = 880) 90.23%  9.77%           570. 6.80e-126
-#>   parameter method                                   significance
-#>       <dbl> <chr>                                    <chr>       
-#> 1         1 Chi-squared test for given probabilities ***         
-#> 2         1 Chi-squared test for given probabilities ***
 ```
 
 <img src="man/figures/README-ggpiestats2-1.png" width="100%" />
@@ -623,7 +614,7 @@ ggstatsplot::grouped_ggpiestats(
   x = mpaa,
   grouping.var = genre, # grouping variable
   title.prefix = "Movie genre", # prefix for the facetted title
-  messages = FALSE,
+
   package = "ggsci", # package from which color palette is to be taken
   palette = "default_jama", # choosing a different color palette
   title.text = "Composition of MPAA ratings for different genres"
@@ -708,7 +699,6 @@ ggstatsplot::grouped_ggbarstats(
   xlab = "Party affiliation",
   ggtheme = ggthemes::theme_tufte(base_size = 12),
   ggstatsplot.layer = FALSE,
-  messages = FALSE,
   title.text = "Race, religion, and political affiliation",
   plotgrid.args = list(nrow = 2)
 )
@@ -742,7 +732,6 @@ ggstatsplot::gghistostats(
   centrality.parameter = "mean", # which measure of central tendency is to be plotted
   centrality.line.args = list(color = "darkred"), # aesthetics for central tendency line
   binwidth = 0.10, # binwidth value (experiment)
-  messages = FALSE, # turn off the messages
   ggtheme = hrbrthemes::theme_ipsum_tw(), # choosing a different theme
   ggstatsplot.layer = FALSE # turn off ggstatsplot theme layer
 )
@@ -778,7 +767,6 @@ ggstatsplot::grouped_gghistostats(
   ggplot.component = list( # modify the defaults from `ggstatsplot` for each plot
     ggplot2::scale_x_continuous(breaks = seq(0, 200, 50), limits = (c(0, 200)))
   ),
-  messages = FALSE,
   plotgrid.args = list(nrow = 2),
   title.text = "Movies budgets for different genres"
 )
@@ -831,7 +819,6 @@ ggdotplotstats(
   centrality.k = 0,
   title = "Distribution of life expectancy in Asian continent",
   xlab = "Life expectancy",
-  messages = FALSE,
   caption = substitute(
     paste(
       italic("Source"),
@@ -864,7 +851,6 @@ ggstatsplot::grouped_ggdotplotstats(
   test.value.line = TRUE,
   title.prefix = "cylinder count",
   point.args = list(color = "red", size = 5, shape = 13),
-  messages = FALSE,
   title.text = "Fuel economy data"
 )
 ```
@@ -936,7 +922,6 @@ ggstatsplot::grouped_ggcorrmat(
   grouping.var = genre, # grouping variable
   k = 3L, # number of digits after decimal point
   title.prefix = "Movie genre",
-  messages = FALSE,
   plotgrid.args = list(nrow = 2)
 )
 ```
@@ -1154,8 +1139,7 @@ stats_results <-
     data = morley,
     x = Expt,
     y = Speed,
-    output = "subtitle",
-    messages = FALSE
+    output = "subtitle"
   )
 
 # using `ggridges` to create plot
@@ -1203,11 +1187,7 @@ much less cognitively demanding and easy to remember/reconstruct.
 
 <img src='man/figures/arguments.png' align="center"/>
 
-<br> `ggstatsplot` is a very chatty package and will by default print
-helpful notes on assumptions about statistical tests, warnings, etc. If
-you don’t want your console to be cluttered with such messages, they can
-be turned off by setting argument `messages = FALSE` in the function
-call.
+<br>
 
 Most functions share a `type` (of test) argument that is helpful to
 specify the type of statistical analysis:

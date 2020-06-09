@@ -107,12 +107,14 @@ display the centrality parameter labels on vertical and horizontal lines.}
     \item{\code{hline.args}}{A list of additional aesthetic arguments to be
 passed to \code{ggplot2::geom_vline} and \code{ggplot2::geom_hline} geoms used to
 display the centrality parameter labels on vertical and horizontal lines.}
+    \item{\code{messages}}{Decides whether messages references, notes, and warnings are
+to be displayed (Default: \code{TRUE}).}
     \item{\code{type}}{Type of association between paired samples required
 ("\code{"parametric"}: Pearson's product moment correlation coefficient" or
 "\code{"nonparametric"}: Spearman's rho" or "\code{"robust"}: percentage bend
 correlation coefficient" or "\code{"bayes"}: Bayes Factor for Pearson's \emph{r}").
 Corresponding abbreviations are also accepted: \code{"p"} (for
-parametric/pearson's), \code{"np"} (nonparametric/spearman), \code{"r"} (robust),
+parametric/pearson), \code{"np"} (nonparametric/spearman), \code{"r"} (robust),
 \code{"bf"} (for bayes factor), resp.}
     \item{\code{conf.level}}{Scalar between 0 and 1. If unspecified, the defaults return
 \verb{95\%} lower and upper confidence intervals (\code{0.95}).}
@@ -168,8 +170,6 @@ variable names for \code{x} and \code{y} will be used.}
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
 of the current function. Default is \code{NULL}. The argument should be entered
 as a function.}
-    \item{\code{messages}}{Decides whether messages references, notes, and warnings are
-to be displayed (Default: \code{TRUE}).}
     \item{\code{margins}}{Along which margins to show the plots. One of: [both, x, y].}
     \item{\code{xparams}}{List of extra parameters to use only for the marginal plot along
 the x axis.}

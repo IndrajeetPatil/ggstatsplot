@@ -132,7 +132,7 @@
 
 \title{ggstatsplot: ggplot2 Based Plots with Statistical Details}
 \author{Indrajeet Patil\footnote{Max Planck Institute for Human Development, \href{mailto:patilindrajeet.science@gmail.com}{\nolinkurl{patilindrajeet.science@gmail.com}}}}
-\date{2020-05-24}
+\date{2020-06-08}
 
 \begin{document}
 \maketitle
@@ -501,8 +501,7 @@ position judgments along a common scale (Figure \ref{fig:fig1}):
   \DataTypeTok{ggtheme =}\NormalTok{ hrbrthemes}\OperatorTok{::}\KeywordTok{theme\_ipsum\_tw}\NormalTok{(),}
   \DataTypeTok{ggstatsplot.layer =} \OtherTok{FALSE}\NormalTok{,}
   \DataTypeTok{outlier.tagging =} \OtherTok{TRUE}\NormalTok{,}
-  \DataTypeTok{outlier.label =}\NormalTok{ title,}
-  \DataTypeTok{messages =} \OtherTok{FALSE}
+  \DataTypeTok{outlier.label =}\NormalTok{ title}
 \NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -542,9 +541,24 @@ in Cleveland's paradigm:
   \DataTypeTok{caption =} \KeywordTok{substitute}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}
     \KeywordTok{italic}\NormalTok{(}\StringTok{"MPAA"}\NormalTok{), }\StringTok{": Motion Picture Association of America"}
 \NormalTok{  )),}
-  \DataTypeTok{palette =} \StringTok{"Paired"}\NormalTok{,}
-  \DataTypeTok{messages =} \OtherTok{FALSE}
+  \DataTypeTok{palette =} \StringTok{"Paired"}
 \NormalTok{)}
+\CommentTok{\#> \# A tibble: 3 x 18}
+\CommentTok{\#>   mpaa  counts  perc N         Action \textasciigrave{}Action Comedy\textasciigrave{} \textasciigrave{}Action Drama\textasciigrave{} Animated}
+\CommentTok{\#>   <fct>  <int> <dbl> <chr>     <chr>  <chr>           <chr>          <chr>   }
+\CommentTok{\#> 1 R        876  55.5 (n = 876) 11.30\% 3.42\%           9.25\%          0.57\%   }
+\CommentTok{\#> 2 PG{-}13    506  32.0 (n = 506) 14.23\% 8.70\%           7.71\%          1.19\%   }
+\CommentTok{\#> 3 PG       197  12.5 (n = 197) 7.61\%  7.11\%           1.02\%          15.23\%  }
+\CommentTok{\#>   Comedy \textasciigrave{}Comedy Drama\textasciigrave{} Drama  \textasciigrave{}Romance Drama\textasciigrave{} RomCom statistic   p.value}
+\CommentTok{\#>   <chr>  <chr>          <chr>  <chr>           <chr>      <dbl>     <dbl>}
+\CommentTok{\#> 1 13.58\% 10.84\%         35.16\% 6.39\%           9.47\%      617.  4.15e{-}128}
+\CommentTok{\#> 2 18.18\% 7.31\%          17.59\% 7.91\%           17.19\%     127.  1.07e{-} 23}
+\CommentTok{\#> 3 24.87\% 10.66\%         15.74\% 5.08\%           12.69\%      70.4 4.10e{-} 12}
+\CommentTok{\#>   parameter method                                   significance}
+\CommentTok{\#>       <dbl> <chr>                                    <chr>       }
+\CommentTok{\#> 1         8 Chi{-}squared test for given probabilities ***         }
+\CommentTok{\#> 2         8 Chi{-}squared test for given probabilities ***         }
+\CommentTok{\#> 3         8 Chi{-}squared test for given probabilities ***}
 \end{Highlighting}
 \end{Shaded}
 
@@ -579,7 +593,7 @@ in Cleveland's paradigm:
 \KeywordTok{library}\NormalTok{(ggplot2)}
 
 \CommentTok{\# creating a smaller dataframe}
-\NormalTok{df \textless{}{-}}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(ggstatsplot}\OperatorTok{::}\NormalTok{movies\_long, genre }\OperatorTok{\%in\%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Comedy"}\NormalTok{, }\StringTok{"Drama"}\NormalTok{))}
+\NormalTok{df <{-}}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(ggstatsplot}\OperatorTok{::}\NormalTok{movies\_long, genre }\OperatorTok{\%in\%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Comedy"}\NormalTok{, }\StringTok{"Drama"}\NormalTok{))}
 
 \CommentTok{\# plot}
 \NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{combine\_plots}\NormalTok{(}
@@ -596,7 +610,6 @@ in Cleveland's paradigm:
     \DataTypeTok{y =}\NormalTok{ rating,}
     \DataTypeTok{grouping.var =}\NormalTok{ genre,}
     \DataTypeTok{marginal =} \OtherTok{FALSE}\NormalTok{,}
-    \DataTypeTok{messages =} \OtherTok{FALSE}\NormalTok{,}
     \DataTypeTok{title.prefix =} \StringTok{"Genre"}\NormalTok{,}
     \DataTypeTok{title.text =} \StringTok{"juxtaposition (\textasciigrave{}ggstatsplot\textasciigrave{} implementation in \textasciigrave{}grouped\_\textasciigrave{} functions)"}\NormalTok{,}
     \DataTypeTok{title.size =} \DecValTok{12}
@@ -723,8 +736,7 @@ which comes in two forms:
   \DataTypeTok{test.value.line =} \OtherTok{TRUE}\NormalTok{,}
   \DataTypeTok{xlab =} \StringTok{"Speed of light (km/sec, with 299000 subtracted)"}\NormalTok{,}
   \DataTypeTok{title =} \StringTok{"Distribution of measured Speed of light"}\NormalTok{,}
-  \DataTypeTok{caption =} \StringTok{"Note: Data collected across 5 experiments (20 measurements each)"}\NormalTok{,}
-  \DataTypeTok{messages =} \OtherTok{FALSE}
+  \DataTypeTok{caption =} \StringTok{"Note: Data collected across 5 experiments (20 measurements each)"}
 \NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -750,7 +762,7 @@ which comes in two forms:
 \KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
 
 \CommentTok{\# creating model object}
-\NormalTok{mod \textless{}{-}}\StringTok{ }\NormalTok{lme4}\OperatorTok{::}\KeywordTok{lmer}\NormalTok{(}
+\NormalTok{mod <{-}}\StringTok{ }\NormalTok{lme4}\OperatorTok{::}\KeywordTok{lmer}\NormalTok{(}
   \DataTypeTok{formula =}\NormalTok{ total.fruits }\OperatorTok{\textasciitilde{}}\StringTok{ }\NormalTok{nutrient }\OperatorTok{+}\StringTok{ }\NormalTok{rack }\OperatorTok{+}\StringTok{ }\NormalTok{(nutrient }\OperatorTok{|}\StringTok{ }\NormalTok{gen),}
   \DataTypeTok{data =}\NormalTok{ lme4}\OperatorTok{::}\NormalTok{Arabidopsis}
 \NormalTok{)}
@@ -799,14 +811,14 @@ structure of the data. More specifically,
 \KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
 
 \CommentTok{\# creating a new dataset without any NAs in variables of interest}
-\NormalTok{msleep\_no\_na \textless{}{-}}
+\NormalTok{msleep\_no\_na <{-}}
 \StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(}
     \DataTypeTok{.data =}\NormalTok{ ggplot2}\OperatorTok{::}\NormalTok{msleep,}
     \OperatorTok{!}\KeywordTok{is.na}\NormalTok{(sleep\_rem), }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(awake), }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(brainwt), }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(bodywt)}
 \NormalTok{  )}
 
 \CommentTok{\# variable names vector}
-\NormalTok{var\_names \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"REM sleep"}\NormalTok{, }\StringTok{"time awake"}\NormalTok{, }\StringTok{"brain weight"}\NormalTok{, }\StringTok{"body weight"}\NormalTok{)}
+\NormalTok{var\_names <{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"REM sleep"}\NormalTok{, }\StringTok{"time awake"}\NormalTok{, }\StringTok{"brain weight"}\NormalTok{, }\StringTok{"body weight"}\NormalTok{)}
 
 \CommentTok{\# combining two plots using helper function in \textasciigrave{}ggstatsplot\textasciigrave{}}
 \NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{combine\_plots}\NormalTok{(}
@@ -819,8 +831,7 @@ structure of the data. More specifically,
     \DataTypeTok{matrix.type =} \StringTok{"upper"}\NormalTok{,}
     \DataTypeTok{colors =} \KeywordTok{c}\NormalTok{(}\StringTok{"\#B2182B"}\NormalTok{, }\StringTok{"white"}\NormalTok{, }\StringTok{"\#4D4D4D"}\NormalTok{),}
     \DataTypeTok{title =} \StringTok{"Correlalogram for mammals sleep dataset"}\NormalTok{,}
-    \DataTypeTok{subtitle =} \StringTok{"sleep units: hours; weight units: kilograms"}\NormalTok{,}
-    \DataTypeTok{messages =} \OtherTok{FALSE}
+    \DataTypeTok{subtitle =} \StringTok{"sleep units: hours; weight units: kilograms"}
 \NormalTok{  ),}
   \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"(a)"}\NormalTok{, }\StringTok{"(b)"}\NormalTok{),}
   \DataTypeTok{nrow =} \DecValTok{1}

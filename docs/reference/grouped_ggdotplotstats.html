@@ -122,7 +122,7 @@ resulting plots using ggstatsplot::combine_plots." />
       <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
-      <a href="../articles/web_only/faq.html">Frequently asked questions about `ggstatsplot`</a>
+      <a href="../articles/web_only/faq.html">Frequently asked questions</a>
     </li>
     <li>
       <a href="../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
@@ -233,7 +233,7 @@ be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
     </tr>
     <tr>
       <th>x</th>
-      <td><p>A numeric variable.</p></td>
+      <td><p>A numeric variable from the dataframe <code>data</code>.</p></td>
     </tr>
     <tr>
       <th>y</th>
@@ -305,8 +305,7 @@ width to use in calculating Bayes factors.</p></dd>
 favor of the <em>null</em> hypothesis. This argument is relevant only <strong>for
 parametric test</strong> (Default: <code>TRUE</code>).</p></dd>
     <dt><code>effsize.type</code></dt><dd><p>Type of effect size needed for <em>parametric</em> tests. The
-argument can be <code>"biased"</code> (<code>"d"</code> for Cohen's <em>d</em>) or <code>"unbiased"</code>
-(<code>"g"</code> Hedge's <em>g</em> for <strong>t-test</strong>). The default is <code>"g"</code>.</p></dd>
+argument can be <code>"d"</code> (for Cohen's <em>d</em>) or <code>"g"</code> (for Hedge's <em>g</em>).</p></dd>
     <dt><code>conf.level</code></dt><dd><p>Scalar between 0 and 1. If unspecified, the defaults return
 <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></dd>
     <dt><code>nboot</code></dt><dd><p>Number of bootstrap samples for computing confidence interval
@@ -328,8 +327,6 @@ extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggtheme
 theme elements are to be displayed along with the selected <code>ggtheme</code>
 (Default: <code>TRUE</code>). <code>theme_ggstatsplot</code> is an opinionated theme layer that
 override some aspects of the selected <code>ggtheme</code>.</p></dd>
-    <dt><code>messages</code></dt><dd><p>Decides whether messages references, notes, and warnings are
-to be displayed (Default: <code>TRUE</code>).</p></dd>
     <dt><code>ylab</code></dt><dd><p>Labels for <code>x</code>- and <code>y</code>- axis variables, respectively
 (Defaults: <code>"regression coefficient"</code> and <code>"term"</code>).</p></dd>
   

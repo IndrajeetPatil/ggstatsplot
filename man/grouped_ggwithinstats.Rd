@@ -176,8 +176,6 @@ or symbol.}
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
 of the current function. Default is \code{NULL}. The argument should be entered
 as a function.}
-    \item{\code{messages}}{Decides whether messages references, notes, and warnings are
-to be displayed (Default: \code{TRUE}).}
     \item{\code{sphericity.correction}}{Logical that decides whether to apply correction
 to account for violation of sphericity in a repeated measures design ANOVA
 (Default: \code{TRUE}).}

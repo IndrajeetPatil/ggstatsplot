@@ -37,7 +37,6 @@ gghistostats(
   normal.curve.args = list(size = 3),
   ggplot.component = NULL,
   output = "plot",
-  messages = TRUE,
   ...
 )
 }
@@ -45,7 +44,7 @@ gghistostats(
 \item{data}{A dataframe (or a tibble) from which variables specified are to
 be taken. A matrix or tables will \strong{not} be accepted.}
 
-\item{x}{A numeric variable.}
+\item{x}{A numeric variable from the dataframe \code{data}.}
 
 \item{binwidth}{The width of the histogram bins. Can be specified as a
 numeric value, or a function that calculates width from \code{x}. The default is
@@ -86,8 +85,7 @@ favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
 parametric test} (Default: \code{TRUE}).}
 
 \item{effsize.type}{Type of effect size needed for \emph{parametric} tests. The
-argument can be \code{"biased"} (\code{"d"} for Cohen's \emph{d}) or \code{"unbiased"}
-(\code{"g"} Hedge's \emph{g} for \strong{t-test}). The default is \code{"g"}.}
+argument can be \code{"d"} (for Cohen's \emph{d}) or \code{"g"} (for Hedge's \emph{g}).}
 
 \item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
 \verb{95\%} lower and upper confidence intervals (\code{0.95}).}
@@ -164,9 +162,6 @@ about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
 \code{bf.message = TRUE}, otherwise this will return a \code{NULL}. For functions
 \code{ggpiestats} and \code{ggbarstats}, setting \code{output = "proptest"} will return a
 dataframe containing results from proportion tests.}
-
-\item{messages}{Decides whether messages references, notes, and warnings are
-to be displayed (Default: \code{TRUE}).}
 
 \item{...}{Currently ignored.}
 }

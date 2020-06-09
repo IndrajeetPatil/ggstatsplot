@@ -185,8 +185,7 @@ ggstatsplot::ggbetweenstats(
   ggtheme = hrbrthemes::theme_ipsum_tw(),
   ggstatsplot.layer = FALSE,
   outlier.tagging = TRUE,
-  outlier.label = title,
-  messages = FALSE
+  outlier.label = title
 )
 ```
 
@@ -216,8 +215,7 @@ ggstatsplot::ggpiestats(
   caption = substitute(paste(
     italic("MPAA"), ": Motion Picture Association of America"
   )),
-  palette = "Paired",
-  messages = FALSE
+  palette = "Paired"
 )
 ```
 
@@ -260,7 +258,6 @@ ggstatsplot::combine_plots(
     y = rating,
     grouping.var = genre,
     marginal = FALSE,
-    messages = FALSE,
     title.prefix = "Genre",
     title.text = "juxtaposition (`ggstatsplot` implementation in `grouped_` functions)",
     title.size = 12
@@ -364,8 +361,7 @@ ggstatsplot::gghistostats(
   test.value.line = TRUE,
   xlab = "Speed of light (km/sec, with 299000 subtracted)",
   title = "Distribution of measured Speed of light",
-  caption = "Note: Data collected across 5 experiments (20 measurements each)",
-  messages = FALSE
+  caption = "Note: Data collected across 5 experiments (20 measurements each)"
 )
 ```
 
@@ -439,8 +435,7 @@ ggstatsplot::combine_plots(
     matrix.type = "upper",
     colors = c("#B2182B", "white", "#4D4D4D"),
     title = "Correlalogram for mammals sleep dataset",
-    subtitle = "sleep units: hours; weight units: kilograms",
-    messages = FALSE
+    subtitle = "sleep units: hours; weight units: kilograms"
   ),
   labels = c("(a)", "(b)"),
   nrow = 1

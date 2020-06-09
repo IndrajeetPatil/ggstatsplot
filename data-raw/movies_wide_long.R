@@ -39,7 +39,8 @@ movies_long <-
       Romance == 1 ~ "Romance Drama" # judgment call there are only 3 of them
     )
   ) %>%
-  stats::na.omit(.) %>% # removing NAs
+  stats::na.omit(.) %>%
+  # removing NAs
   dplyr::mutate(genre = factor(genre)) %>%
   dplyr::select(.data = ., -c(Action:NumGenre)) %>%
   dplyr::arrange(.data = ., desc(rating), title, year)

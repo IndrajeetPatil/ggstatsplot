@@ -1,7 +1,7 @@
 ---
 title: "ggstatsplot: ggplot2 Based Plots with Statistical Details"
 author: Indrajeet Patil^[Max Planck Institute for Human Development, patilindrajeet.science@gmail.com]
-date: "2020-05-24"
+date: "2020-06-08"
 output: 
   bookdown::pdf_document2:
     fig_caption: true
@@ -164,8 +164,7 @@ ggstatsplot::ggbetweenstats(
   ggtheme = hrbrthemes::theme_ipsum_tw(),
   ggstatsplot.layer = FALSE,
   outlier.tagging = TRUE,
-  outlier.label = title,
-  messages = FALSE
+  outlier.label = title
 )
 ```
 
@@ -200,9 +199,24 @@ ggstatsplot::ggpiestats(
   caption = substitute(paste(
     italic("MPAA"), ": Motion Picture Association of America"
   )),
-  palette = "Paired",
-  messages = FALSE
+  palette = "Paired"
 )
+#> # A tibble: 3 x 18
+#>   mpaa  counts  perc N         Action `Action Comedy` `Action Drama` Animated
+#>   <fct>  <int> <dbl> <chr>     <chr>  <chr>           <chr>          <chr>   
+#> 1 R        876  55.5 (n = 876) 11.30% 3.42%           9.25%          0.57%   
+#> 2 PG-13    506  32.0 (n = 506) 14.23% 8.70%           7.71%          1.19%   
+#> 3 PG       197  12.5 (n = 197) 7.61%  7.11%           1.02%          15.23%  
+#>   Comedy `Comedy Drama` Drama  `Romance Drama` RomCom statistic   p.value
+#>   <chr>  <chr>          <chr>  <chr>           <chr>      <dbl>     <dbl>
+#> 1 13.58% 10.84%         35.16% 6.39%           9.47%      617.  4.15e-128
+#> 2 18.18% 7.31%          17.59% 7.91%           17.19%     127.  1.07e- 23
+#> 3 24.87% 10.66%         15.74% 5.08%           12.69%      70.4 4.10e- 12
+#>   parameter method                                   significance
+#>       <dbl> <chr>                                    <chr>       
+#> 1         8 Chi-squared test for given probabilities ***         
+#> 2         8 Chi-squared test for given probabilities ***         
+#> 3         8 Chi-squared test for given probabilities ***
 ```
 
 \begin{figure}[H]
@@ -249,7 +263,6 @@ ggstatsplot::combine_plots(
     y = rating,
     grouping.var = genre,
     marginal = FALSE,
-    messages = FALSE,
     title.prefix = "Genre",
     title.text = "juxtaposition (`ggstatsplot` implementation in `grouped_` functions)",
     title.size = 12
@@ -358,8 +371,7 @@ ggstatsplot::gghistostats(
   test.value.line = TRUE,
   xlab = "Speed of light (km/sec, with 299000 subtracted)",
   title = "Distribution of measured Speed of light",
-  caption = "Note: Data collected across 5 experiments (20 measurements each)",
-  messages = FALSE
+  caption = "Note: Data collected across 5 experiments (20 measurements each)"
 )
 ```
 
@@ -443,8 +455,7 @@ ggstatsplot::combine_plots(
     matrix.type = "upper",
     colors = c("#B2182B", "white", "#4D4D4D"),
     title = "Correlalogram for mammals sleep dataset",
-    subtitle = "sleep units: hours; weight units: kilograms",
-    messages = FALSE
+    subtitle = "sleep units: hours; weight units: kilograms"
   ),
   labels = c("(a)", "(b)"),
   nrow = 1

@@ -36,7 +36,6 @@ ggbarstats(
   palette = "Dark2",
   ggplot.component = NULL,
   output = "plot",
-  messages = TRUE,
   x = NULL,
   y = NULL,
   ...
@@ -158,9 +157,6 @@ about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
 \code{bf.message = TRUE}, otherwise this will return a \code{NULL}. For functions
 \code{ggpiestats} and \code{ggbarstats}, setting \code{output = "proptest"} will return a
 dataframe containing results from proportion tests.}
-
-\item{messages}{Decides whether messages references, notes, and warnings are
-to be displayed (Default: \code{TRUE}).}
 
 \item{x}{The variable to use as the \strong{rows} in the contingency table.}
 
