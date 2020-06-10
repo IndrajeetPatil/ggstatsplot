@@ -381,12 +381,12 @@ argument can be <code>"biased"</code> (equivalent to <code>"d"</code> for Cohen'
     the case of arbitrarily many samples.</p></dd>
     <dt><code>conf.level</code></dt><dd><p>Scalar between 0 and 1. If unspecified, the defaults return
 <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></dd>
+    <dt><code>nboot</code></dt><dd><p>Number of bootstrap samples for computing confidence interval
+for the effect size (Default: <code>100</code>).</p></dd>
     <dt><code>type</code></dt><dd><p>Type of statistic expected (<code>"parametric"</code> or <code>"nonparametric"</code>
 or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations are also accepted:
 <code>"p"</code> (for parametric), <code>"np"</code> (nonparametric), <code>"r"</code> (robust), or
 <code>"bf"</code>resp.</p></dd>
-    <dt><code>nboot</code></dt><dd><p>Number of bootstrap samples for computing confidence interval
-for the effect size (Default: <code>100</code>).</p></dd>
     <dt><code>tr</code></dt><dd><p>Trim level for the mean when carrying out <code>robust</code> tests. If you
 get error stating "Standard error cannot be computed because of Winsorized
 variance of 0 (e.g., due to ties). Try to decrease the trimming level.",

@@ -6,18 +6,18 @@
 \contentsline {subsection}{\numberline {2.2}Summary of types of statistical analyses}{2}{subsection.2.2}% 
 \contentsline {section}{\numberline {3}Graphic design principles}{3}{section.3}% 
 \contentsline {subsection}{\numberline {3.1}Graphical perception}{3}{subsection.3.1}% 
-\contentsline {subsection}{\numberline {3.2}Graphical excellence}{9}{subsection.3.2}% 
-\contentsline {subsection}{\numberline {3.3}Statistical variation}{9}{subsection.3.3}% 
-\contentsline {section}{\numberline {4}Statistical analysis}{11}{section.4}% 
-\contentsline {subsection}{\numberline {4.1}Data requirements}{11}{subsection.4.1}% 
-\contentsline {subsection}{\numberline {4.2}Statistical reporting}{13}{subsection.4.2}% 
-\contentsline {subsection}{\numberline {4.3}Statistical tests:}{14}{subsection.4.3}% 
-\contentsline {subsection}{\numberline {4.4}Dealing with \textbf {null results}:}{15}{subsection.4.4}% 
-\contentsline {subsection}{\numberline {4.5}Avoiding the \textbf {``p-value error''}:}{15}{subsection.4.5}% 
-\contentsline {section}{\numberline {5}Acknowledgments}{16}{section.5}% 
-\contentsline {section}{\numberline {6}Appendix}{17}{section.6}% 
-\contentsline {subsection}{\numberline {6.1}Appendix A: Documentation}{17}{subsection.6.1}% 
-\contentsline {subsection}{\numberline {6.2}Appendix B: Suggestions}{17}{subsection.6.2}% 
-\contentsline {subsection}{\numberline {6.3}Appendix C: Contributing}{17}{subsection.6.3}% 
-\contentsline {subsection}{\numberline {6.4}Appendix D: Session information}{17}{subsection.6.4}% 
-\contentsline {section}{References}{18}{section*.2}% 
+\contentsline {subsection}{\numberline {3.2}Graphical excellence}{8}{subsection.3.2}% 
+\contentsline {subsection}{\numberline {3.3}Statistical variation}{8}{subsection.3.3}% 
+\contentsline {section}{\numberline {4}Statistical analysis}{10}{section.4}% 
+\contentsline {subsection}{\numberline {4.1}Data requirements}{10}{subsection.4.1}% 
+\contentsline {subsection}{\numberline {4.2}Statistical reporting}{12}{subsection.4.2}% 
+\contentsline {subsection}{\numberline {4.3}Statistical tests:}{13}{subsection.4.3}% 
+\contentsline {subsection}{\numberline {4.4}Dealing with \textbf {null results}:}{14}{subsection.4.4}% 
+\contentsline {subsection}{\numberline {4.5}Avoiding the \textbf {``p-value error''}:}{14}{subsection.4.5}% 
+\contentsline {section}{\numberline {5}Acknowledgments}{15}{section.5}% 
+\contentsline {section}{\numberline {6}Appendix}{16}{section.6}% 
+\contentsline {subsection}{\numberline {6.1}Appendix A: Documentation}{16}{subsection.6.1}% 
+\contentsline {subsection}{\numberline {6.2}Appendix B: Suggestions}{16}{subsection.6.2}% 
+\contentsline {subsection}{\numberline {6.3}Appendix C: Contributing}{16}{subsection.6.3}% 
+\contentsline {subsection}{\numberline {6.4}Appendix D: Session information}{16}{subsection.6.4}% 
+\contentsline {section}{References}{17}{section*.2}% 

@@ -18,6 +18,7 @@
 #'   (default), `"counts"`, `"both"`.
 #' @param label.args Additional aesthetic arguments that will be passed to
 #'   `geom_label`.
+#' @param legend.title Title text for the legend.
 #' @inheritParams ggbetweenstats
 #' @inheritParams tidyBF::bf_contingency_tab
 #' @inheritParams statsExpressions::expr_contingency_tab
@@ -88,9 +89,9 @@ ggpiestats <- function(data,
                        subtitle = NULL,
                        caption = NULL,
                        conf.level = 0.95,
-                       nboot = 100,
+                       nboot = 100L,
                        legend.title = NULL,
-                       k = 2,
+                       k = 2L,
                        proportion.test = TRUE,
                        ggtheme = ggplot2::theme_bw(),
                        ggstatsplot.layer = TRUE,

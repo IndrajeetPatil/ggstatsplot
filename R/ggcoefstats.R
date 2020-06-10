@@ -462,7 +462,7 @@ ggcoefstats <- function(x,
   # running meta-analysis
   if (isTRUE(meta.analytic.effect)) {
     # standardizing type of statistics name
-    meta.type <- stats_type_switch(meta.type)
+    meta.type <- ipmisc::stats_type_switch(meta.type)
 
     # results from frequentist random-effects meta-analysis
     subtitle <-
@@ -473,19 +473,20 @@ ggcoefstats <- function(x,
         k = k
       )
 
-    # results from Bayesian random-effects meta-analysis
-    if (isTRUE(bf.message) && meta.type == "parametric") {
-      caption <-
-        statsExpressions::bf_meta(
-          caption = caption,
-          output = "caption",
-          data = tidy_df,
-          k = k
-        )
-    }
-
     # model summary (detailed only for parametric statistics)
     if (meta.type == "parametric") {
+      # results from Bayesian random-effects meta-analysis
+      if (isTRUE(bf.message)) {
+        caption <-
+          statsExpressions::bf_meta(
+            caption = caption,
+            output = "caption",
+            data = tidy_df,
+            k = k
+          )
+      }
+
+      # caption with heterogeneity test results
       caption <-
         statsExpressions::expr_meta_parametric(
           data = tidy_df,

@@ -1,7 +1,7 @@
 ---
 title: "ggstatsplot: ggplot2 Based Plots with Statistical Details"
 author: Indrajeet Patil^[Max Planck Institute for Human Development, patilindrajeet.science@gmail.com]
-date: "2020-06-08"
+date: "2020-06-10"
 output: 
   bookdown::pdf_document2:
     fig_caption: true
@@ -201,22 +201,6 @@ ggstatsplot::ggpiestats(
   )),
   palette = "Paired"
 )
-#> # A tibble: 3 x 18
-#>   mpaa  counts  perc N         Action `Action Comedy` `Action Drama` Animated
-#>   <fct>  <int> <dbl> <chr>     <chr>  <chr>           <chr>          <chr>   
-#> 1 R        876  55.5 (n = 876) 11.30% 3.42%           9.25%          0.57%   
-#> 2 PG-13    506  32.0 (n = 506) 14.23% 8.70%           7.71%          1.19%   
-#> 3 PG       197  12.5 (n = 197) 7.61%  7.11%           1.02%          15.23%  
-#>   Comedy `Comedy Drama` Drama  `Romance Drama` RomCom statistic   p.value
-#>   <chr>  <chr>          <chr>  <chr>           <chr>      <dbl>     <dbl>
-#> 1 13.58% 10.84%         35.16% 6.39%           9.47%      617.  4.15e-128
-#> 2 18.18% 7.31%          17.59% 7.91%           17.19%     127.  1.07e- 23
-#> 3 24.87% 10.66%         15.74% 5.08%           12.69%      70.4 4.10e- 12
-#>   parameter method                                   significance
-#>       <dbl> <chr>                                    <chr>       
-#> 1         8 Chi-squared test for given probabilities ***         
-#> 2         8 Chi-squared test for given probabilities ***         
-#> 3         8 Chi-squared test for given probabilities ***
 ```
 
 \begin{figure}[H]

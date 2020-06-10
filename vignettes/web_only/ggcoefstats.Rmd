@@ -3796,7 +3796,7 @@ Note that a number of regression models will return an object of class `list`,
 in which case this function will fail. But often you can extract the object of
 interest from this list and use it to plot the regression coefficients.
 
-```{r list_gamm4, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 10, eval=FALSE}
+```{r list_gamm4, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 10}
 # setup
 library(gamm4)
 set.seed(123)

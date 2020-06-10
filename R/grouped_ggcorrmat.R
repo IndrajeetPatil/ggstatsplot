@@ -11,7 +11,7 @@
 #'
 #' @importFrom dplyr select bind_rows
 #' @importFrom rlang !! enquo quo_name ensym %||%
-#' @importFrom purrr map
+#' @importFrom purrr map pmap
 #'
 #' @seealso \code{\link{ggcorrmat}}, \code{\link{ggscatterstats}},
 #'   \code{\link{grouped_ggscatterstats}}
@@ -75,7 +75,10 @@ grouped_ggcorrmat <- function(data,
   }
 
   # creating a list for grouped analysis
-  df <- grouped_list(data = data, grouping.var = {{ grouping.var }})
+  df <-
+    data %>%
+    grouped_list(data = ., grouping.var = {{ grouping.var }}) %>%
+    purrr::map(.x = ., .f = ~ dplyr::select(.x, -{{ grouping.var }}))
 
   # ===================== grouped analysis ===================================
 
