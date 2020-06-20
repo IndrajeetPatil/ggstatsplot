@@ -85,14 +85,14 @@ also supported by `ggcoefstats`. For example-
 `fitdistr`, `flexsurvreg`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`,
 `gamlss`, `garch`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`,
 `gmm`, `hurdle`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`,
-`lmerModLmerTest`, `lmodel2`, `lmRob`, `lmrob`, `logitmfx`, `logitor`, `LORgee`,
-`lrm`, `mcmc`, `mcmc.list`, `MCMCglmm`, `mclogit`, `mmclogit`, `mediate`,
-`mixor`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `negbinmfx`,
-`negbinirr`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `plm`, `poissonmfx`,
-`poissonirr`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`, `robmixglm`, `rq`,
-`rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`,
-`svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`, `wbgee`, `wblm`, `zcpglm`,
-`zeroinfl`, etc.
+`lmerModLmerTest`, `lmodel2`, `lmRob`, `lmrob`, `logitmfx`, `logitor`,
+`logitsf`, `LORgee`, `lrm`, `mcmc`, `mcmc.list`, `MCMCglmm`, `mclogit`,
+`mmclogit`, `mediate`, `mixor`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`,
+`negbinmfx`, `negbinirr`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `plm`,
+`poissonmfx`, `poissonirr`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`,
+`robmixglm`, `rq`, `rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`,
+`survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`, `wbgee`,
+`wblm`, `zcpglm`, `zeroinfl`, etc.
 
 # Examples of supported models
 
@@ -1021,7 +1021,7 @@ ggstatsplot::ggcoefstats(
 
 ## beta-binomial mixed-effects model (`BBmm`)
 
-```{r BBmm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6}
+```{r BBmm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6, eval=FALSE}
 # setup
 if (isFALSE("PROreg" %in% installed.packages())) {
   install.packages("https://cran.r-project.org/src/contrib/Archive/PROreg/PROreg_1.0.tar.gz",
@@ -3210,6 +3210,26 @@ ggstatsplot::ggcoefstats(
   x = mod,
   conf.level = 0.99,
   title = "Dose-Response Curves"
+)
+```
+
+## Firth's Bias-Reduced Logistic Regression (`logitsf`)
+
+```{r logitsf, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+# setup
+set.seed(123)
+library(logistf)
+
+# dataframe
+data <- data.frame(time = 1:12, event = c(0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1))
+
+# model
+model <- logistf::logistf(event ~ time, data)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = model,
+  title = "Firth's Bias-Reduced Logistic Regression"
 )
 ```
 

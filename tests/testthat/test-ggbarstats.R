@@ -55,7 +55,10 @@ testthat::test_that(
             "#D95F02FF"
           ),
           y = c(1, 1, 0.915436241610738, 0.516174402250352),
-          x = c(1L, 2L, 1L, 2L),
+          x = structure(c(1L, 2L, 1L, 2L), class = c(
+            "mapped_discrete",
+            "numeric"
+          )),
           PANEL = structure(c(1L, 1L, 1L, 1L), .Label = "1", class = "factor"),
           group = c(1L, 3L, 2L, 4L),
           flipped_aes = c(
@@ -67,11 +70,13 @@ testthat::test_that(
             0, 0
           ),
           ymax = c(1, 1, 0.915436241610738, 0.516174402250352),
-          xmin = c(0.55, 1.55, 0.55, 1.55),
-          xmax = c(
-            1.45, 2.45,
-            1.45, 2.45
-          ),
+          xmin = structure(c(0.55, 1.55, 0.55, 1.55), class = c(
+            "mapped_discrete",
+            "numeric"
+          )), xmax = structure(c(1.45, 2.45, 1.45, 2.45), class = c(
+            "mapped_discrete",
+            "numeric"
+          )),
           colour = c("black", "black", "black", "black"),
           size = c(0.5, 0.5, 0.5, 0.5),
           linetype = c(1, 1, 1, 1),
@@ -92,7 +97,10 @@ testthat::test_that(
             0.457718120805369,
             0.258087201125176
           ),
-          x = c(1L, 2L, 1L, 2L),
+          x = structure(c(1L, 2L, 1L, 2L), class = c(
+            "mapped_discrete",
+            "numeric"
+          )),
           label = c(
             "8.46%",
             "48.38%", "91.54%", "51.62%"
@@ -106,8 +114,14 @@ testthat::test_that(
             1, 1,
             0.915436241610738, 0.516174402250352
           ),
-          xmin = c(1L, 2L, 1L, 2L),
-          xmax = c(1L, 2L, 1L, 2L),
+          xmin = structure(c(1L, 2L, 1L, 2L), class = c(
+            "mapped_discrete",
+            "numeric"
+          )),
+          xmax = structure(c(1L, 2L, 1L, 2L), class = c(
+            "mapped_discrete",
+            "numeric"
+          )),
           ymin = c(
             0.915436241610738, 0.516174402250352,
             0, 0
@@ -145,7 +159,10 @@ testthat::test_that(
       structure(
         list(
           y = c(1.05, 1.05),
-          x = 2:1,
+          x = structure(2:1, class = c(
+            "mapped_discrete",
+            "numeric"
+          )),
           label = c("ns", "***"),
           PANEL = structure(c(1L, 1L), class = "factor", .Label = "1"),
           group = structure(2:1, n = 2L),
@@ -169,7 +186,10 @@ testthat::test_that(
       structure(
         list(
           y = c(-0.05, -0.05),
-          x = 2:1,
+          x = structure(2:1, class = c(
+            "mapped_discrete",
+            "numeric"
+          )),
           label = c("(n = 711)", "(n = 1490)"),
           PANEL = structure(c(1L, 1L), class = "factor", .Label = "1"),
           group = structure(2:1, n = 2L),
@@ -314,40 +334,8 @@ testthat::test_that(
         messages = FALSE
       )
 
-    # caption output
-    set.seed(123)
-    p_cap <-
-      ggstatsplot::ggbarstats(
-        data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
-        main = race,
-        condition = marital,
-        output = "caption",
-        k = 4,
-        messages = FALSE
-      )
-
     # tests
     testthat::expect_identical(p_sub, stats_output)
-
-    testthat::expect_identical(
-      p_cap,
-      ggplot2::expr(atop(
-        displaystyle(NULL),
-        expr = paste(
-          "In favor of null: ",
-          "log"["e"],
-          "(BF"["01"],
-          ") = ",
-          "-36.8983",
-          ", sampling = ",
-          "independent multinomial",
-          ", ",
-          italic("a"),
-          " = ",
-          "1.0000"
-        )
-      ))
-    )
   }
 )
 

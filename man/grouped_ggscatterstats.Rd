@@ -107,8 +107,6 @@ display the centrality parameter labels on vertical and horizontal lines.}
     \item{\code{hline.args}}{A list of additional aesthetic arguments to be
 passed to \code{ggplot2::geom_vline} and \code{ggplot2::geom_hline} geoms used to
 display the centrality parameter labels on vertical and horizontal lines.}
-    \item{\code{messages}}{Decides whether messages references, notes, and warnings are
-to be displayed (Default: \code{TRUE}).}
     \item{\code{type}}{Type of association between paired samples required
 ("\code{"parametric"}: Pearson's product moment correlation coefficient" or
 "\code{"nonparametric"}: Spearman's rho" or "\code{"robust"}: percentage bend

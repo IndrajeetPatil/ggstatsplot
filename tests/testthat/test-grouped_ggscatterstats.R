@@ -178,7 +178,7 @@ testthat::test_that(
       ggstatsplot::grouped_ggscatterstats(
         data = df,
         x = rating,
-        y = length,
+        y = "length",
         k = 3,
         conf.level = 0.99,
         grouping.var = genre,
@@ -190,7 +190,7 @@ testthat::test_that(
     basic_results <-
       statsExpressions::expr_corr_test(
         data = df,
-        x = rating,
+        x = "rating",
         y = length,
         k = 3,
         conf.level = 0.99,

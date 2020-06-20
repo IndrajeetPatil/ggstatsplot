@@ -23,7 +23,7 @@ ggcoefstats_label_maker <- function(tidy_df,
   # formatting the p-values
   tidy_df %<>%
     signif_column(data = ., p = p.value) %>%
-    p_value_formatter(df = ., k = k)
+    ipmisc::p_value_formatter(data = ., k = k)
 
   #--------------------------- t-statistic ------------------------------------
 

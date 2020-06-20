@@ -248,7 +248,6 @@ subtitle.</p>
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
-  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='no'>...</span>
 )</pre>
 
@@ -491,11 +490,6 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
 dataframe containing results from proportion tests.</p></td>
     </tr>
     <tr>
-      <th>messages</th>
-      <td><p>Decides whether messages references, notes, and warnings are
-to be displayed (Default: <code>TRUE</code>).</p></td>
-    </tr>
-    <tr>
       <th>...</th>
       <td><p>Currently ignored.</p></td>
     </tr>
@@ -503,10 +497,18 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>The plot uses <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> to attempt to keep labels
+    
+<ul>
+<li><p>If you set <code>marginal = TRUE</code>, the resulting plot can't be further modified
+with <code>ggplot2</code> functions since it is no longer a <code>ggplot</code> object. In case you
+want a <code>ggplot</code> object, set <code>marginal = FALSE</code>. Also have a look at the
+<code>ggplot.component</code> argument.</p></li>
+<li><p>The plot uses <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> to attempt to keep labels
 from over-lapping to the largest degree possible.  As a consequence plot
 times will slow down massively (and the plot file will grow in size) if you
-have a lot of labels that overlap.</p>
+have a lot of labels that overlap.</p></li>
+</ul>
+
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p><a href='https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html'>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html</a></p>
@@ -533,8 +535,8 @@ have a lot of labels that overlap.</p>
   <span class='kw'>label.var</span> <span class='kw'>=</span> <span class='no'>car</span>,
   <span class='kw'>label.expression</span> <span class='kw'>=</span> <span class='no'>wt</span> <span class='kw'>&lt;</span> <span class='fl'>4</span> <span class='kw'>&amp;</span> <span class='no'>mpg</span> <span class='kw'>&lt;</span> <span class='fl'>20</span>,
   <span class='kw'>centrality.parameter</span> <span class='kw'>=</span> <span class='st'>"median"</span>
-)</div><div class='output co'>#&gt; <span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>This plot can't be further modified with `ggplot2` functions.
-#&gt; In case you want a `ggplot` object, set `marginal = FALSE`.</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggscatterstats-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span></div></span></pre>
+)</div><div class='img'><img src='ggscatterstats-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -550,7 +552,7 @@ have a lot of labels that overlap.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

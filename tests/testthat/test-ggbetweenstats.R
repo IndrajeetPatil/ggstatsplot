@@ -51,7 +51,6 @@ testthat::test_that(
 
     # data from difference layers
     testthat::expect_equal(length(pb$data), 6L)
-    testthat::expect_equal(pb$data[[5]]$x, c(1L, 2L, 3L, 4L))
     testthat::expect_equal(pb$data[[5]]$y,
       c(0.07925556, 0.62159750, 0.02155000, 0.14573118),
       tolerance = 0.001
@@ -62,7 +61,10 @@ testthat::test_that(
       pb$data[[4]],
       structure(
         list(
-          x = c(2L, 2L, 1L, 4L, 2L, 1L, 3L),
+          x = structure(c(2L, 2L, 1L, 4L, 2L, 1L, 3L), class = c(
+            "mapped_discrete",
+            "numeric"
+          )),
           y = c(
             4.603,
             0.655, 0.325, 1.32, 5.712, 0.157, 0.081
@@ -119,69 +121,33 @@ testthat::test_that(
       )
     )
 
+    testthat::expect_identical(pb$plot$labels$subtitle, p_subtitle)
+
     # checking plot labels
     testthat::expect_equal(
-      pb$plot$labels,
-      list(
-        x = "vore",
-        y = "brain weight",
-        colour = "vore",
-        title = "mammalian sleep",
-        subtitle =
-          ggplot2::expr(
-            paste(
-              NULL,
-              italic("F")["Welch"],
-              "(",
-              "3",
-              ",",
-              "24.04746",
-              ") = ",
-              "2.26528",
-              ", ",
-              italic("p"),
-              " = ",
-              "0.10662",
-              ", ",
-              widehat(omega["p"]^2),
-              " = ",
-              "0.00349",
-              ", CI"["99%"],
-              " [",
-              "-0.06250",
-              ", ",
-              "0.20569",
-              "]",
-              ", ",
-              italic("n")["obs"],
-              " = ",
-              51L
-            )
-          ),
-        caption = ggplot2::expr(atop(
-          displaystyle(atop(
-            displaystyle("From ggplot2 package"),
-            expr = paste(
-              "In favor of null: ",
-              "log"["e"],
-              "(BF"["01"],
-              ") = ",
-              "1.54274",
-              ", ",
-              italic("r")["Cauchy"]^"JZS",
-              " = ",
-              "0.70700"
-            )
-          )),
+      pb$plot$labels$caption,
+      ggplot2::expr(atop(
+        displaystyle(atop(
+          displaystyle("From ggplot2 package"),
           expr = paste(
-            "Pairwise comparisons: ",
-            bold("Games-Howell test"),
-            "; Adjustment (p-value): ",
-            bold("Holm")
+            "In favor of null: ",
+            "log"["e"],
+            "(BF"["01"],
+            ") = ",
+            "1.54274",
+            ", ",
+            italic("r")["Cauchy"]^"JZS",
+            " = ",
+            "0.70700"
           )
         )),
-        label = "outlier.label"
-      )
+        expr = paste(
+          "Pairwise comparisons: ",
+          bold("Games-Howell test"),
+          "; Adjustment (p-value): ",
+          bold("Holm")
+        )
+      ))
     )
   }
 )
@@ -377,25 +343,22 @@ testthat::test_that(
             19.9327598420707
           ),
           notchlower = c(19.7576344210822, 13.0672401579293),
-          x = c(1, 2),
+          x = structure(c(1, 2), class = c("mapped_discrete", "numeric")),
           flipped_aes = c(FALSE, FALSE),
-          PANEL = structure(c(
-            1L,
-            1L
-          ), .Label = "1", class = "factor"),
+          PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
           group = 1:2,
           ymin_final = c(
             8.2,
             4.2
           ),
           ymax_final = c(30.9, 33.9),
-          xmin = c(0.85, 1.85),
-          xmax = c(
+          xmin = structure(c(0.85, 1.85), class = c("mapped_discrete", "numeric")),
+          xmax = structure(c(
             1.15,
             2.15
-          ),
+          ), class = c("mapped_discrete", "numeric")),
           xid = c(1, 2),
-          newx = c(1, 2),
+          newx = structure(c(1, 2), .Dim = 2L),
           new_width = c(0.3, 0.3),
           weight = c(1, 1),
           colour = c("grey20", "grey20"),
@@ -420,7 +383,10 @@ testthat::test_that(
       pb1$data[[3]],
       structure(
         list(
-          x = c(2L, 2L),
+          x = structure(c(2L, 2L), class = c(
+            "mapped_discrete",
+            "numeric"
+          )),
           y = c(33.9, 32.5),
           label = c(
             33.9,
@@ -460,7 +426,10 @@ testthat::test_that(
       pb1$data[[4]],
       structure(
         list(
-          x = 1:2,
+          x = structure(1:2, class = c(
+            "mapped_discrete",
+            "numeric"
+          )),
           group = 1:2,
           y = c(
             20.6633333333333,
@@ -495,7 +464,10 @@ testthat::test_that(
       pb1$data[[5]],
       structure(
         list(
-          x = 1:2,
+          x = structure(1:2, class = c(
+            "mapped_discrete",
+            "numeric"
+          )),
           y = c(20.6633333333333, 16.9633333333333),
           label = c(
             "list(~italic(widehat(mu))==20.66)",
@@ -524,7 +496,10 @@ testthat::test_that(
       structure(
         list(
           y = c(33.9, 32.5),
-          x = c(2L, 2L),
+          x = structure(c(2L, 2L), class = c(
+            "mapped_discrete",
+            "numeric"
+          )),
           PANEL = structure(c(1L, 1L), class = "factor", .Label = "1"),
           group = structure(c(1L, 1L), n = 1L),
           shape = c(19, 19),
@@ -544,11 +519,11 @@ testthat::test_that(
       structure(
         list(
           y = c(33.9, 32.5),
-          x = c(2L, 2L),
-          label = c(
-            33.9,
-            32.5
-          ),
+          x = structure(c(2L, 2L), class = c(
+            "mapped_discrete",
+            "numeric"
+          )),
+          label = c(33.9, 32.5),
           PANEL = structure(c(1L, 1L), class = "factor", .Label = "1"),
           group = structure(c(1L, 1L), n = 1L),
           colour = c("black", "black"),

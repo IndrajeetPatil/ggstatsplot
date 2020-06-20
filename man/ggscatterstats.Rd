@@ -46,7 +46,6 @@ ggscatterstats(
   ggstatsplot.layer = TRUE,
   ggplot.component = NULL,
   output = "plot",
-  messages = TRUE,
   ...
 )
 }
@@ -212,9 +211,6 @@ about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
 \code{ggpiestats} and \code{ggbarstats}, setting \code{output = "proptest"} will return a
 dataframe containing results from proportion tests.}
 
-\item{messages}{Decides whether messages references, notes, and warnings are
-to be displayed (Default: \code{TRUE}).}
-
 \item{...}{Currently ignored.}
 }
 \description{
@@ -223,10 +219,16 @@ histograms/boxplots/density plots with statistical details added as a
 subtitle.
 }
 \note{
-The plot uses \code{ggrepel::geom_label_repel} to attempt to keep labels
+\itemize{
+\item If you set \code{marginal = TRUE}, the resulting plot can't be further modified
+with \code{ggplot2} functions since it is no longer a \code{ggplot} object. In case you
+want a \code{ggplot} object, set \code{marginal = FALSE}. Also have a look at the
+\code{ggplot.component} argument.
+\item The plot uses \code{ggrepel::geom_label_repel} to attempt to keep labels
 from over-lapping to the largest degree possible.  As a consequence plot
 times will slow down massively (and the plot file will grow in size) if you
 have a lot of labels that overlap.
+}
 }
 \examples{
 \donttest{

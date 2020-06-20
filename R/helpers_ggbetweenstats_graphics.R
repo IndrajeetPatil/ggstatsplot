@@ -7,10 +7,9 @@
 #'
 #' @importFrom parameters describe_distribution
 #' @importFrom broomExtra easystats_to_tidy_names
-#' @importFrom dplyr select group_by matches mutate mutate_at group_nest group_modify
+#' @importFrom dplyr select group_by matches mutate rowwise group_modify arrange ungroup
 #' @importFrom rlang !! enquo ensym :=
-#' @importFrom purrr map
-#' @importFrom tidyr drop_na unnest
+#' @importFrom tidyr drop_na
 #'
 #' @examples
 #' ggstatsplot:::mean_labeller(
@@ -29,9 +28,8 @@ mean_labeller <- function(data,
                           mean.ci = FALSE,
                           k = 3L,
                           ...) {
-
   # creating the dataframe
-  data %>%
+  data %<>%
     dplyr::select(.data = ., {{ x }}, {{ y }}) %>%
     tidyr::drop_na(.) %>%
     dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }}))) %>%
@@ -43,46 +41,41 @@ mean_labeller <- function(data,
       )
     ) %>%
     dplyr::ungroup(.) %>%
-    dplyr::group_nest(.tbl = ., {{ x }}) %>%
-    dplyr::mutate(
-      .data = .,
-      label = data %>% {
-        if (isTRUE(mean.ci)) {
-          purrr::map(
-            .x = .,
-            .f = ~ paste(
-              "list(~italic(widehat(mu))==",
-              specify_decimal_p(.$mean, k),
-              ",",
-              "CI[95*'%']",
-              "*'['*",
-              specify_decimal_p(.$conf.low, k),
-              ",",
-              specify_decimal_p(.$conf.high, k),
-              "*']')",
-              sep = ""
-            )
-          )
-        } else {
-          purrr::map(
-            .x = .,
-            .f = ~ paste(
-              "list(~italic(widehat(mu))==",
-              specify_decimal_p(.$mean, k),
-              ")",
-              sep = ""
-            )
-          )
-        }
-      }
-    ) %>%
-    tidyr::unnest(data = ., cols = c(data, label)) %>%
-    dplyr::mutate(
-      .data = .,
-      n_label = paste0({{ x }}, "\n(n = ", n, ")", sep = "")
-    ) %>%
-    dplyr::arrange(.data = ., {{ x }}) %>%
-    dplyr::select(.data = ., {{ x }}, !!as.character(rlang::ensym(y)) := mean, dplyr::matches("label"))
+    dplyr::rowwise()
+
+  # prepare label
+  if (isTRUE(mean.ci)) {
+    data %<>%
+      dplyr::mutate(
+        label = paste0(
+          "list(~italic(widehat(mu))==",
+          specify_decimal_p(mean, k),
+          ",",
+          "CI[95*'%']",
+          "*'['*",
+          specify_decimal_p(conf.low, k),
+          ",",
+          specify_decimal_p(conf.high, k),
+          "*']')"
+        )
+      )
+  } else {
+    data %<>%
+      dplyr::mutate(
+        label = paste0(
+          "list(~italic(widehat(mu))==",
+          specify_decimal_p(mean, k),
+          ")"
+        )
+      )
+  }
+
+  # add label about sample size
+  data %>%
+    dplyr::ungroup(.) %>%
+    dplyr::mutate(n_label = paste0({{ x }}, "\n(n = ", n, ")")) %>%
+    dplyr::arrange({{ x }}) %>%
+    dplyr::select({{ x }}, !!as.character(rlang::ensym(y)) := mean, dplyr::matches("label"))
 }
 
 
@@ -211,8 +204,7 @@ ggsignif_adder <- function(plot,
                            pairwise.display = "significant",
                            ...) {
   # creating a column for group combinations
-  df_pairwise %<>%
-    dplyr::mutate(.data = ., groups = purrr::pmap(.l = list(group1, group2), .f = c))
+  df_pairwise %<>% dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c))
 
   # for Bayes Factor, there will be no "significance" column
   if ("significance" %in% names(df_pairwise)) {

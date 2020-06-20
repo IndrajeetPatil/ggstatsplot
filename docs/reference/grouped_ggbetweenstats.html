@@ -272,7 +272,7 @@ dataframe containing results from proportion tests.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Arguments passed on to <code><a href='ggbetweenstats.html'>ggbetweenstats</a></code></p><dl>
+      <td><p>Arguments passed on to <code><a href='ggbetweenstats.html'>ggbetweenstats</a></code></p><dl'>
     <dt><code>plot.type</code></dt><dd><p>Character describing the <em>type</em> of plot. Currently supported
 plots are <code>"box"</code> (for pure boxplots), <code>"violin"</code> (for pure violin plots),
 and <code>"boxviolin"</code> (for a combination of box and violin plots; default).</p></dd>
@@ -381,12 +381,12 @@ argument can be <code>"biased"</code> (equivalent to <code>"d"</code> for Cohen'
     the case of arbitrarily many samples.</p></dd>
     <dt><code>conf.level</code></dt><dd><p>Scalar between 0 and 1. If unspecified, the defaults return
 <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></dd>
-    <dt><code>nboot</code></dt><dd><p>Number of bootstrap samples for computing confidence interval
-for the effect size (Default: <code>100</code>).</p></dd>
     <dt><code>type</code></dt><dd><p>Type of statistic expected (<code>"parametric"</code> or <code>"nonparametric"</code>
 or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations are also accepted:
 <code>"p"</code> (for parametric), <code>"np"</code> (nonparametric), <code>"r"</code> (robust), or
 <code>"bf"</code>resp.</p></dd>
+    <dt><code>nboot</code></dt><dd><p>Number of bootstrap samples for computing confidence interval
+for the effect size (Default: <code>100</code>).</p></dd>
     <dt><code>tr</code></dt><dd><p>Trim level for the mean when carrying out <code>robust</code> tests. If you
 get error stating "Standard error cannot be computed because of Winsorized
 variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
@@ -486,7 +486,8 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
     <span class='kw'>limits</span> <span class='kw'>=</span> (<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>9</span>))
   ),
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</div><div class='img'><img src='grouped_ggbetweenstats-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span></div></pre>
+)</div><div class='img'><img src='grouped_ggbetweenstats-2.png' alt='' width='700' height='433' /></div><div class='input'># }
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -502,7 +503,7 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

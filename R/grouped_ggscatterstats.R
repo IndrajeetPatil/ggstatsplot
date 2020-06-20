@@ -94,8 +94,6 @@ grouped_ggscatterstats <- function(data,
 
   # ensure the grouping variable works quoted or unquoted
   grouping.var <- rlang::ensym(grouping.var)
-  x <- rlang::ensym(x)
-  y <- rlang::ensym(y)
   label.var <- if (!rlang::quo_is_null(rlang::enquo(label.var))) rlang::ensym(label.var)
 
   # ======================== preparing dataframe =============================

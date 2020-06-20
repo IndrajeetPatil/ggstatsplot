@@ -266,7 +266,7 @@ values, <em>p</em>-values, no. of observations, etc.) will be returned.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Arguments passed on to <code><a href='ggcorrmat.html'>ggcorrmat</a></code></p><dl>
+      <td><p>Arguments passed on to <code><a href='ggcorrmat.html'>ggcorrmat</a></code></p><dl'>
     <dt><code>matrix.type</code></dt><dd><p>Character, <code>"full"</code> (default), <code>"upper"</code> or <code>"lower"</code>,
 display full matrix, lower triangular or upper triangular matrix.</p></dd>
     <dt><code>matrix.method</code></dt><dd><p>The visualization method of correlation matrix to be
@@ -293,6 +293,8 @@ will be passed to <code><a href='https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.h
 any of the following arguments since they are already internally being used
 by <code>ggstatsplot</code>: <code>corr</code>, <code>method</code>, <code>p.mat</code>, <code>sig.level</code>, <code>ggtheme</code>,
 <code>colors</code>, <code>matrix.type</code>, <code>lab</code>, <code>pch</code>, <code>legend.title</code>, <code>digits</code>.</p></dd>
+    <dt><code>messages</code></dt><dd><p>Decides whether messages references, notes, and warnings are
+to be displayed (Default: <code>TRUE</code>).</p></dd>
     <dt><code>type</code></dt><dd><p>Type of association between paired samples required
 ("<code>"parametric"</code>: Pearson's product moment correlation coefficient" or
 "<code>"nonparametric"</code>: Spearman's rho" or "<code>"robust"</code>: percentage bend
@@ -325,8 +327,6 @@ as a function.</p></dd>
     <dt><code>subtitle</code></dt><dd><p>The text for the plot subtitle. Will work only if
 <code>results.subtitle = FALSE</code>.</p></dd>
     <dt><code>caption</code></dt><dd><p>The text for the plot caption.</p></dd>
-    <dt><code>messages</code></dt><dd><p>Decides whether messages references, notes, and warnings are
-to be displayed (Default: <code>TRUE</code>).</p></dd>
   
 </dl></td>
     </tr>
@@ -424,7 +424,8 @@ function.</p>
 #&gt; </span><span style='color: #555555;'> 8</span><span> cauchy                          0       0.707   0.848     6
 #&gt; </span><span style='color: #555555;'> 9</span><span> cauchy                          0       0.707   1.03     10
 #&gt; </span><span style='color: #555555;'>10</span><span> cauchy                          0       0.707   0.714     5
-#&gt; </span><span style='color: #555555;'># ... with 50 more rows</span><span></div><div class='input'><span class='co'># }</span></div></span></pre>
+#&gt; </span><span style='color: #555555;'># ... with 50 more rows</span><span></div><div class='input'># }
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -440,7 +441,7 @@ function.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

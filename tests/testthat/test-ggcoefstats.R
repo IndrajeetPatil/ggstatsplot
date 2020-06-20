@@ -38,7 +38,10 @@ testthat::test_that(
             -1.12821621594334,
             -1.57974541364919
           ),
-          y = 1:4,
+          y = structure(1:4, class = c(
+            "mapped_discrete",
+            "numeric"
+          )),
           label = c(
             "list(~widehat(italic(beta))==-1.40, ~italic(z)==-6.05, ~italic(p)<= 0.001)",
             "list(~widehat(italic(beta))==-0.99, ~italic(z)==-3.27, ~italic(p)== 0.001)",
@@ -124,7 +127,7 @@ testthat::test_that(
         list(
           xintercept = 0,
           PANEL = structure(1L, .Label = "1", class = "factor"),
-          group = -1L,
+          group = structure(-1L, n = 1L),
           colour = "black",
           size = 1,
           linetype = "dashed",
@@ -263,7 +266,10 @@ testthat::test_that(
     testthat::expect_equal(pb$data[[2]]$x, tidy_df$estimate, tolerance = 0.001)
     testthat::expect_equal(pb$data[[2]]$xmin, tidy_df$conf.low, tolerance = 0.001)
     testthat::expect_equal(pb$data[[2]]$xmax, tidy_df$conf.high, tolerance = 0.001)
-    testthat::expect_equal(pb$data[[2]]$y, c(3L, 1L, 2L))
+    testthat::expect_equal(
+      pb$data[[2]]$y,
+      structure(c(3L, 1L, 2L), class = c("mapped_discrete", "numeric"))
+    )
 
     testthat::expect_identical(tidy_df$label, pb$data[[4]]$label)
 
@@ -547,7 +553,10 @@ testthat::test_that(
       )
     )
 
-    testthat::expect_equal(pb2$data[[3]]$y, c(2L, 1L, 3L))
+    testthat::expect_equal(
+      pb2$data[[3]]$y,
+      structure(c(2L, 1L, 3L), class = c("mapped_discrete", "numeric"))
+    )
     testthat::expect_identical(
       pb2$data[[4]]$label,
       c(

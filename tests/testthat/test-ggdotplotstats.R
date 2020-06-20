@@ -165,7 +165,7 @@ testthat::test_that(
           y = c(1, 2, 3, 4, 5),
           x = c(820.5, 831.5, 845, 856, 909),
           PANEL = structure(c(1L, 1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
-          group = c(-1L, -1L, -1L, -1L, -1L),
+          group = structure(c(-1L, -1L, -1L, -1L, -1L), n = 1L),
           shape = c(16, 16, 16, 16, 16),
           colour = c("black", "black", "black", "black", "black"),
           size = c(3, 3, 3, 3, 3),
@@ -184,7 +184,7 @@ testthat::test_that(
         list(
           xintercept = 800,
           PANEL = structure(1L, .Label = "1", class = "factor"),
-          group = -1L,
+          group = structure(c(-1L), n = 1L),
           colour = "black",
           size = 1,
           linetype = "dashed",
@@ -209,7 +209,7 @@ testthat::test_that(
             ggplot2::expr("test" == "800")
           ),
           PANEL = structure(c(1L, 1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
-          group = c(-1L, -1L, -1L, -1L, -1L),
+          group = structure(c(-1L, -1L, -1L, -1L, -1L), n = 1L),
           colour = c("black", "black", "black", "black", "black"),
           fill = c("white", "white", "white", "white", "white"),
           size = c(3, 3, 3, 3, 3),
@@ -232,7 +232,7 @@ testthat::test_that(
         list(
           xintercept = 852.4,
           PANEL = structure(1L, .Label = "1", class = "factor"),
-          group = -1L,
+          group = structure(c(-1L), n = 1L),
           colour = "blue",
           size = 1,
           linetype = "dashed",
@@ -257,7 +257,7 @@ testthat::test_that(
             ggplot2::expr("mean" == "852.40")
           ),
           PANEL = structure(c(1L, 1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
-          group = c(-1L, -1L, -1L, -1L, -1L),
+          group = structure(c(-1L, -1L, -1L, -1L, -1L), n = 1L),
           colour = c("blue", "blue", "blue", "blue", "blue"),
           fill = c("white", "white", "white", "white", "white"),
           size = c(3, 3, 3, 3, 3),

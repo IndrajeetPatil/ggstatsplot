@@ -11,9 +11,8 @@ Authors@R:
 Maintainer: Indrajeet Patil <patilindrajeet.science@gmail.com>
 Description: Extension of 'ggplot2', 'ggstatsplot' creates
     graphics with details from statistical tests included in the plots
-    themselves. It is targeted primarily at behavioral sciences community
-    to provide a one-line code to generate information-rich plots for
-    statistical analysis of continuous (violin plots, scatterplots,
+    themselves. It provides easier API to generate information-rich plots
+    for statistical analysis of continuous (violin plots, scatterplots,
     histograms, dot plots, dot-and-whisker plots) or categorical (pie and
     bar charts) data. Currently, it supports only the most common types of
     statistical tests: parametric, nonparametric, robust, and Bayesian
@@ -29,22 +28,22 @@ Imports:
     broomExtra,
     correlation,
     cowplot,
-    dplyr (>= 1.0.0),
+    dplyr,
     ggcorrplot,
     ggExtra,
-    ggplot2,
+    ggplot2 (>= 3.3.2),
     ggrepel,
     ggsignif,
     groupedstats (>= 1.0.1),
     insight,
-    ipmisc,
-    pairwiseComparisons (>= 1.0.0),
+    ipmisc (>= 3.0.1),
+    pairwiseComparisons (>= 1.1.0),
     paletteer,
     parameters,
     purrr,
     rlang,
     stats,
-    statsExpressions,
+    statsExpressions (>= 0.4.2),
     tidyr
 Suggests:
     forcats,
@@ -58,6 +57,10 @@ Suggests:
     WRS2
 VignetteBuilder: 
     knitr
+Remotes:
+    IndrajeetPatil/pairwiseComparisons,
+    IndrajeetPatil/statsExpressions,
+    IndrajeetPatil/ipmisc
 Encoding: UTF-8
 Language: en-US
 LazyData: true

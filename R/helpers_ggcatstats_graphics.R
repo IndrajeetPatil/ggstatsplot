@@ -87,6 +87,9 @@ cat_counter <- function(data, x, y = NULL, ...) {
 }
 
 #' @noRd
+#'
+#' @importFrom ipmisc p_value_formatter
+#'
 #' @keywords internal
 
 # combine info about sample size plus
@@ -103,7 +106,7 @@ df_facet_label <- function(data, x, y, k = 3L) {
         dplyr::filter(.data = ., !is.na(significance)),
       by = rlang::as_name(rlang::ensym(y))
     ) %>%
-      p_value_formatter(df = ., k = k) %>%
+      ipmisc::p_value_formatter(data = ., k = k) %>%
       dplyr::rowwise() %>%
       dplyr::mutate(
         label = paste(
@@ -124,21 +127,4 @@ df_facet_label <- function(data, x, y, k = 3L) {
       dplyr::ungroup() %>%
       dplyr::select(.data = ., -dplyr::matches("p.value.formatted"))
   }
-}
-
-
-#' @noRd
-#' @keywords internal
-
-p_value_formatter <- function(df, k = 3L) {
-  df %>%
-    dplyr::rowwise() %>%
-    dplyr::mutate(p.value.formatted = specify_decimal_p(x = p.value, k = k, p.value = TRUE)) %>%
-    dplyr::ungroup() %>%
-    dplyr::mutate(
-      p.value.formatted = dplyr::case_when(
-        p.value.formatted == "< 0.001" ~ "<= 0.001",
-        TRUE ~ paste("==", p.value.formatted, sep = " ")
-      )
-    )
 }

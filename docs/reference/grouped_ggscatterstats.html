@@ -285,7 +285,7 @@ dataframe containing results from proportion tests.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Arguments passed on to <code><a href='ggscatterstats.html'>ggscatterstats</a></code></p><dl>
+      <td><p>Arguments passed on to <code><a href='ggscatterstats.html'>ggscatterstats</a></code></p><dl'>
     <dt><code>point.label.args</code></dt><dd><p>A list of additional aesthetic arguments to be passed
 to <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geom used to display the labels.</p></dd>
     <dt><code>smooth.line.args</code></dt><dd><p>A list of additional aesthetic arguments to be passed
@@ -329,8 +329,6 @@ display the centrality parameter labels on vertical and horizontal lines.</p></d
     <dt><code>hline.args</code></dt><dd><p>A list of additional aesthetic arguments to be
 passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>ggplot2::geom_vline</a></code> and <code><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>ggplot2::geom_hline</a></code> geoms used to
 display the centrality parameter labels on vertical and horizontal lines.</p></dd>
-    <dt><code>messages</code></dt><dd><p>Decides whether messages references, notes, and warnings are
-to be displayed (Default: <code>TRUE</code>).</p></dd>
     <dt><code>type</code></dt><dd><p>Type of association between paired samples required
 ("<code>"parametric"</code>: Pearson's product moment correlation coefficient" or
 "<code>"nonparametric"</code>: Spearman's rho" or "<code>"robust"</code>: percentage bend
@@ -459,11 +457,9 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>genre</span>
 )</div><div class='output co'>#&gt; <span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>The statistical analysis is available only for linear model
 #&gt; (formula = y ~ x, method = 'lm'). Returning only the plot.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>This plot can't be further modified with `ggplot2` functions.
-#&gt; In case you want a `ggplot` object, set `marginal = FALSE`.</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>The statistical analysis is available only for linear model
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>The statistical analysis is available only for linear model
 #&gt; (formula = y ~ x, method = 'lm'). Returning only the plot.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>This plot can't be further modified with `ggplot2` functions.
-#&gt; In case you want a `ggplot` object, set `marginal = FALSE`.</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggscatterstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggscatterstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># using labeling</span>
 <span class='co'># (also show how to modify basic plot from within function call)</span>
 <span class='fu'>grouped_ggscatterstats</span>(
@@ -494,7 +490,8 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
   <span class='kw'>marginal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Genre"</span>,
   <span class='kw'>caption.text</span> <span class='kw'>=</span> <span class='st'>"All movies have IMDB rating equal to 7."</span>
-)</div><div class='img'><img src='grouped_ggscatterstats-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span></div></span></pre>
+)</div><div class='img'><img src='grouped_ggscatterstats-3.png' alt='' width='700' height='433' /></div><div class='input'># }
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -510,7 +507,7 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

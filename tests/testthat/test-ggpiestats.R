@@ -47,7 +47,10 @@ testthat::test_that(
             1, 0.736842105263158, 0.671052631578947,
             0.25
           ),
-          x = c(1L, 1L, 1L, 1L),
+          x = structure(c(1L, 1L, 1L, 1L), class = c(
+            "mapped_discrete",
+            "numeric"
+          )),
           PANEL = structure(c(
             1L, 1L, 1L,
             1L
@@ -62,8 +65,14 @@ testthat::test_that(
             0.25, 0
           ),
           ymax = c(1, 0.736842105263158, 0.671052631578947, 0.25),
-          xmin = c(0.5, 0.5, 0.5, 0.5),
-          xmax = c(1.5, 1.5, 1.5, 1.5),
+          xmin = structure(c(0.5, 0.5, 0.5, 0.5), class = c(
+            "mapped_discrete",
+            "numeric"
+          )),
+          xmax = structure(c(1.5, 1.5, 1.5, 1.5), class = c(
+            "mapped_discrete",
+            "numeric"
+          )),
           colour = c("black", "black", "black", "black"),
           size = c(
             0.5,
@@ -90,7 +99,10 @@ testthat::test_that(
             0.460526315789474,
             0.125
           ),
-          x = c(1L, 1L, 1L, 1L),
+          x = structure(c(1L, 1L, 1L, 1L), class = c(
+            "mapped_discrete",
+            "numeric"
+          )),
           label = c(
             "n = 20\n(26.32%)",
             "n = 5\n(6.58%)",
@@ -100,8 +112,14 @@ testthat::test_that(
           group = 1:4,
           PANEL = structure(c(1L, 1L, 1L, 1L), .Label = "1", class = "factor"),
           ymax = c(1, 0.736842105263158, 0.671052631578947, 0.25),
-          xmin = c(1L, 1L, 1L, 1L),
-          xmax = c(1L, 1L, 1L, 1L),
+          xmin = structure(c(1L, 1L, 1L, 1L), class = c(
+            "mapped_discrete",
+            "numeric"
+          )),
+          xmax = structure(c(1L, 1L, 1L, 1L), class = c(
+            "mapped_discrete",
+            "numeric"
+          )),
           ymin = c(
             0.736842105263158,
             0.671052631578947, 0.25, 0
@@ -208,6 +226,17 @@ testthat::test_that(
         messages = FALSE
       ))
 
+    # subtitle used
+    set.seed(123)
+    p_cap <-
+      suppressWarnings(statsExpressions::bf_contingency_tab(
+        data = mtcars,
+        x = "am",
+        y = "cyl",
+        output = "caption"
+      ))
+
+
     # with facets
     testthat::expect_equal(length(pb$data), 3L)
     testthat::expect_equal(dim(pb$data[[1]]), c(6L, 14L))
@@ -251,25 +280,7 @@ testthat::test_that(
 
     # checking plot labels
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
-    testthat::expect_identical(
-      pb$plot$labels$caption,
-      ggplot2::expr(atop(
-        displaystyle(NULL),
-        expr = paste(
-          "In favor of null: ",
-          "log"["e"],
-          "(BF"["01"],
-          ") = ",
-          "-2.82",
-          ", sampling = ",
-          "independent multinomial",
-          ", ",
-          italic("a"),
-          " = ",
-          "1.00"
-        )
-      ))
-    )
+    testthat::expect_identical(pb$plot$labels$caption, p_cap)
     testthat::expect_null(p$labels$x, NULL)
     testthat::expect_null(p$labels$y, NULL)
     testthat::expect_null(pb$plot$plot_env$stat.title, NULL)
@@ -521,33 +532,25 @@ testthat::test_that(
     p_cap <-
       ggstatsplot::ggpiestats(
         data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
-        main = race,
-        condition = marital,
+        x = race,
+        y = "marital",
         output = "caption",
-        k = 4,
-        messages = FALSE
+        k = 4
+      )
+
+    # caption output
+    set.seed(123)
+    p_cap_exp <-
+      statsExpressions::bf_contingency_tab(
+        data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
+        x = "race",
+        y = marital,
+        output = "caption",
+        k = 4
       )
 
     # tests
     testthat::expect_identical(p_sub, stats_output)
-    testthat::expect_identical(
-      p_cap,
-      ggplot2::expr(atop(
-        displaystyle(NULL),
-        expr = paste(
-          "In favor of null: ",
-          "log"["e"],
-          "(BF"["01"],
-          ") = ",
-          "-36.8983",
-          ", sampling = ",
-          "independent multinomial",
-          ", ",
-          italic("a"),
-          " = ",
-          "1.0000"
-        )
-      ))
-    )
+    testthat::expect_identical(p_cap, p_cap_exp)
   }
 )

@@ -167,7 +167,7 @@ testthat::test_that(
         list(
           xintercept = 150,
           PANEL = structure(1L, .Label = "1", class = "factor"),
-          group = -1L,
+          group = structure(-1L, n = 1L),
           colour = "black",
           size = 1,
           linetype = "dashed",
@@ -184,7 +184,7 @@ testthat::test_that(
         list(
           xintercept = 174.358024691358,
           PANEL = structure(1L, .Label = "1", class = "factor"),
-          group = -1L,
+          group = structure(-1L, n = 1L),
           colour = "blue",
           size = 1,
           linetype = "dashed",
@@ -232,24 +232,24 @@ testthat::test_that(
         messages = FALSE
       )
 
-    # testing overall call
-    testthat::expect_identical(p$labels$subtitle, p_subtitle)
-    testthat::expect_identical(p$labels$title, "starwars: character heights")
-    testthat::expect_identical(p$labels$x, "character height")
-    testthat::expect_identical(p$labels$caption, ggplot2::expr(atop(
-      displaystyle(NULL),
-      expr = paste(
-        "In favor of null: ",
-        "log"["e"],
-        "(BF"["01"],
-        ") = ",
-        "-13.55",
-        ", ",
-        italic("r")["Cauchy"]^"JZS",
-        " = ",
-        "0.90"
+    # checking caption
+    set.seed(123)
+    p_cap <-
+      statsExpressions::bf_ttest(
+        data = dplyr::starwars,
+        x = height,
+        type = "p",
+        test.value = 150,
+        messages = FALSE,
+        bf.prior = 0.9,
+        output = "caption"
       )
-    )))
+
+    # testing overall call
+    testthat::expect_identical(pb$plot$labels$subtitle, p_subtitle)
+    testthat::expect_identical(pb$plot$labels$title, "starwars: character heights")
+    testthat::expect_identical(pb$plot$labels$x, "character height")
+    testthat::expect_identical(pb$plot$labels$caption, p_cap)
   }
 )
 

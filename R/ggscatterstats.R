@@ -41,8 +41,6 @@
 #' @param vline.args,hline.args A list of additional aesthetic arguments to be
 #'   passed to `ggplot2::geom_vline` and `ggplot2::geom_hline` geoms used to
 #'   display the centrality parameter labels on vertical and horizontal lines.
-#' @param messages Decides whether messages references, notes, and warnings are
-#'   to be displayed (Default: `TRUE`).
 #' @inheritParams statsExpressions::expr_corr_test
 #' @inheritParams ggplot2::geom_smooth
 #' @inheritParams theme_ggstatsplot
@@ -65,7 +63,12 @@
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html}
 #'
 #' @note
-#' The plot uses `ggrepel::geom_label_repel` to attempt to keep labels
+#' - If you set `marginal = TRUE`, the resulting plot can't be further modified
+#' with `ggplot2` functions since it is no longer a `ggplot` object. In case you
+#' want a `ggplot` object, set `marginal = FALSE`. Also have a look at the
+#' `ggplot.component` argument.
+#'
+#' - The plot uses `ggrepel::geom_label_repel` to attempt to keep labels
 #' from over-lapping to the largest degree possible.  As a consequence plot
 #' times will slow down massively (and the plot file will grow in size) if you
 #' have a lot of labels that overlap.
@@ -134,7 +137,6 @@ ggscatterstats <- function(data,
                            ggstatsplot.layer = TRUE,
                            ggplot.component = NULL,
                            output = "plot",
-                           messages = TRUE,
                            ...) {
 
   # convert entered stats type to a standard notation
@@ -414,18 +416,6 @@ ggscatterstats <- function(data,
         xparams = xparams,
         yparams = yparams
       )
-  }
-
-  #------------------------- messages  ------------------------------------
-
-  # display warning that this function doesn't produce a `ggplot2` object
-  if (isTRUE(marginal) && isTRUE(messages)) {
-    message(cat(
-      ipmisc::red("Warning: "),
-      ipmisc::blue("This plot can't be further modified with `ggplot2` functions.\n"),
-      ipmisc::blue("In case you want a `ggplot` object, set `marginal = FALSE`."),
-      sep = ""
-    ))
   }
 
   # return the final plot

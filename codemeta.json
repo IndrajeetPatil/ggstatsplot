@@ -5,7 +5,7 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "ggstatsplot",
-  "description": "Extension of 'ggplot2', 'ggstatsplot' creates\n    graphics with details from statistical tests included in the plots\n    themselves. It is targeted primarily at behavioral sciences community\n    to provide a one-line code to generate information-rich plots for\n    statistical analysis of continuous (violin plots, scatterplots,\n    histograms, dot plots, dot-and-whisker plots) or categorical (pie and\n    bar charts) data. Currently, it supports only the most common types of\n    statistical tests: parametric, nonparametric, robust, and Bayesian\n    versions of t-test/ANOVA, correlation analyses, contingency table\n    analysis, meta-analysis, and regression analyses.",
+  "description": "Extension of 'ggplot2', 'ggstatsplot' creates\n    graphics with details from statistical tests included in the plots\n    themselves. It provides easier API to generate information-rich plots\n    for statistical analysis of continuous (violin plots, scatterplots,\n    histograms, dot plots, dot-and-whisker plots) or categorical (pie and\n    bar charts) data. Currently, it supports only the most common types of\n    statistical tests: parametric, nonparametric, robust, and Bayesian\n    versions of t-test/ANOVA, correlation analyses, contingency table\n    analysis, meta-analysis, and regression analyses.",
   "name": "ggstatsplot: 'ggplot2' Based Plots with Statistical Details",
   "codeRepository": "https://github.com/IndrajeetPatil/ggstatsplot",
   "relatedLink": [
@@ -203,7 +203,6 @@
       "@type": "SoftwareApplication",
       "identifier": "dplyr",
       "name": "dplyr",
-      "version": ">= 1.0.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -240,6 +239,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggplot2",
       "name": "ggplot2",
+      "version": ">= 3.3.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -301,26 +301,27 @@
       "@type": "SoftwareApplication",
       "identifier": "ipmisc",
       "name": "ipmisc",
+      "version": ">= 3.0.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=ipmisc"
+      "sameAs": "https://github.com/IndrajeetPatil/ipmisc"
     },
     {
       "@type": "SoftwareApplication",
       "identifier": "pairwiseComparisons",
       "name": "pairwiseComparisons",
-      "version": ">= 1.0.0",
+      "version": ">= 1.1.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=pairwiseComparisons"
+      "sameAs": "https://github.com/IndrajeetPatil/pairwiseComparisons"
     },
     {
       "@type": "SoftwareApplication",
@@ -379,13 +380,14 @@
       "@type": "SoftwareApplication",
       "identifier": "statsExpressions",
       "name": "statsExpressions",
+      "version": ">= 0.4.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=statsExpressions"
+      "sameAs": "https://github.com/IndrajeetPatil/statsExpressions"
     },
     {
       "@type": "SoftwareApplication",
@@ -465,5 +467,5 @@
   ],
   "funder": {},
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md",
-  "fileSize": "40395.803KB"
+  "fileSize": "40416.829KB"
 }

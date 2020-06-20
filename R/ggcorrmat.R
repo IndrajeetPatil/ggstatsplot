@@ -45,6 +45,8 @@
 #'   any of the following arguments since they are already internally being used
 #'   by `ggstatsplot`: `corr`, `method`, `p.mat`, `sig.level`, `ggtheme`,
 #'   `colors`, `matrix.type`, `lab`, `pch`, `legend.title`, `digits`.
+#' @param messages Decides whether messages references, notes, and warnings are
+#'   to be displayed (Default: `TRUE`).
 #' @inheritParams statsExpressions::expr_corr_test
 #' @inheritParams ggbetweenstats
 #' @inheritParams theme_ggstatsplot
