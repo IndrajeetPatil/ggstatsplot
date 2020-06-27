@@ -1021,7 +1021,7 @@ ggstatsplot::ggcoefstats(
 
 ## beta-binomial mixed-effects model (`BBmm`)
 
-```{r BBmm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6, eval=FALSE}
+```{r BBmm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6}
 # setup
 if (isFALSE("PROreg" %in% installed.packages())) {
   install.packages("https://cran.r-project.org/src/contrib/Archive/PROreg/PROreg_1.0.tar.gz",
@@ -3257,7 +3257,7 @@ ggstatsplot::ggcoefstats(
 
 ## panel regression models fit via multilevel modeling (`wblm`)
 
-```{r wblm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 7, eval=FALSE}
+```{r wblm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 7}
 # setup
 set.seed(123)
 library(panelr)
@@ -3281,7 +3281,7 @@ ggstatsplot::ggcoefstats(
 
 ## panel regression models fit via generalized estimating equations (`wbgee`)
 
-```{r wbgee, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 6, eval=FALSE}
+```{r wbgee, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 6}
 # setup
 set.seed(123)
 library(panelr)

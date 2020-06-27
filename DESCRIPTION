@@ -37,7 +37,7 @@ Imports:
     groupedstats (>= 1.0.1),
     insight,
     ipmisc (>= 3.0.1),
-    pairwiseComparisons (>= 1.1.0),
+    pairwiseComparisons (>= 1.1.1),
     paletteer,
     parameters,
     purrr,
@@ -65,4 +65,4 @@ Encoding: UTF-8
 Language: en-US
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0.9000
+RoxygenNote: 7.1.1

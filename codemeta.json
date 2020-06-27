@@ -20,7 +20,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R Under development (unstable) (2020-06-03 r78637)",
+  "runtimePlatform": "R Under development (unstable) (2020-06-22 r78735)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -314,7 +314,7 @@
       "@type": "SoftwareApplication",
       "identifier": "pairwiseComparisons",
       "name": "pairwiseComparisons",
-      "version": ">= 1.1.0",
+      "version": ">= 1.1.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -467,5 +467,5 @@
   ],
   "funder": {},
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md",
-  "fileSize": "40416.829KB"
+  "fileSize": "40414.767KB"
 }

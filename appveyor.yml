@@ -42,6 +42,10 @@ environment:
   #   R_ARCH: x64
   #   GCC_PATH: mingw_64
 
+  - R_VERSION: oldrel
+    R_ARCH: x64
+    GCC_PATH: mingw_64
+
 matrix:
   fast_finish: true
 

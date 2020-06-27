@@ -149,7 +149,7 @@
       <h1 data-toc-skip>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-06-19</h4>
+            <h4 class="date">2020-06-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -1143,6 +1143,11 @@
     <span class="kw">m</span> <span class="kw">=</span> <span class="no">m</span>,
     <span class="kw">data</span> <span class="kw">=</span> <span class="no">dat</span>
   )
+<span class="co">#&gt; Iteration number: 1 </span>
+<span class="co">#&gt; Iteration number: 2 </span>
+<span class="co">#&gt; Iteration number: 3 </span>
+<span class="co">#&gt; Iteration number: 4 </span>
+<span class="co">#&gt; Iteration number: 5</span>
 
 <span class="co"># plot</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
@@ -1150,6 +1155,7 @@
   <span class="kw">exclude.intercept</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"beta-binomial mixed-effects model"</span>
 )</pre></body></html></div>
+<p><img src="ggcoefstats_files/figure-html/BBmm-1.png" width="576"></p>
 </div>
 <div id="beta-binomial-logistic-regression-model-bbreg" class="section level2">
 <h2 class="hasAnchor">
@@ -3530,10 +3536,10 @@
 
 <span class="co"># data</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"WageData"</span>)
-<span class="no">wages</span> <span class="kw">&lt;-</span> <span class="kw pkg">panelr</span><span class="kw ns">::</span><span class="fu">panel_data</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">WageData</span>, <span class="kw">id</span> <span class="kw">=</span> <span class="no">id</span>, <span class="kw">wave</span> <span class="kw">=</span> <span class="no">t</span>)
+<span class="no">wages</span> <span class="kw">&lt;-</span> <span class="kw pkg">panelr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/panelr/man/panel_data.html">panel_data</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">WageData</span>, <span class="kw">id</span> <span class="kw">=</span> <span class="no">id</span>, <span class="kw">wave</span> <span class="kw">=</span> <span class="no">t</span>)
 
 <span class="co"># model</span>
-<span class="no">mod</span> <span class="kw">&lt;-</span> <span class="fu">wbm</span>(
+<span class="no">mod</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/panelr/man/wbm.html">wbm</a></span>(
   <span class="kw">formula</span> <span class="kw">=</span> <span class="no">lwage</span> ~ <span class="fu"><a href="https://rdrr.io/pkg/plm/man/re-export_functions.html">lag</a></span>(<span class="no">union</span>) + <span class="no">wks</span> <span class="kw">|</span> <span class="no">blk</span> + <span class="no">fem</span> <span class="kw">|</span> <span class="no">blk</span> * <span class="fu"><a href="https://rdrr.io/pkg/plm/man/re-export_functions.html">lag</a></span>(<span class="no">union</span>),
   <span class="kw">data</span> <span class="kw">=</span> <span class="no">wages</span>
 )
@@ -3543,6 +3549,7 @@
   <span class="kw">x</span> <span class="kw">=</span> <span class="no">mod</span>,
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"panel regression models fit via multilevel modeling"</span>
 )</pre></body></html></div>
+<p><img src="ggcoefstats_files/figure-html/wblm-1.png" width="672"></p>
 </div>
 <div id="panel-regression-models-fit-via-generalized-estimating-equations-wbgee" class="section level2">
 <h2 class="hasAnchor">
@@ -3553,11 +3560,11 @@
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"WageData"</span>)
 
 <span class="co"># data</span>
-<span class="no">wages</span> <span class="kw">&lt;-</span> <span class="kw pkg">panelr</span><span class="kw ns">::</span><span class="fu">panel_data</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">WageData</span>, <span class="kw">id</span> <span class="kw">=</span> <span class="no">id</span>, <span class="kw">wave</span> <span class="kw">=</span> <span class="no">t</span>)
+<span class="no">wages</span> <span class="kw">&lt;-</span> <span class="kw pkg">panelr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/panelr/man/panel_data.html">panel_data</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">WageData</span>, <span class="kw">id</span> <span class="kw">=</span> <span class="no">id</span>, <span class="kw">wave</span> <span class="kw">=</span> <span class="no">t</span>)
 
 <span class="co"># model</span>
 <span class="no">model</span> <span class="kw">&lt;-</span>
-  <span class="kw pkg">panelr</span><span class="kw ns">::</span><span class="fu">wbgee</span>(
+  <span class="kw pkg">panelr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/panelr/man/wbgee.html">wbgee</a></span>(
     <span class="kw">formula</span> <span class="kw">=</span> <span class="no">lwage</span> ~ <span class="fu"><a href="https://rdrr.io/pkg/plm/man/re-export_functions.html">lag</a></span>(<span class="no">union</span>) + <span class="no">wks</span> <span class="kw">|</span> <span class="no">blk</span> + <span class="no">fem</span> <span class="kw">|</span> <span class="no">blk</span> * <span class="fu"><a href="https://rdrr.io/pkg/plm/man/re-export_functions.html">lag</a></span>(<span class="no">union</span>),
     <span class="kw">data</span> <span class="kw">=</span> <span class="no">wages</span>
   )
@@ -3569,6 +3576,7 @@
   <span class="kw">conf.level</span> <span class="kw">=</span> <span class="fl">0.99</span>,
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"panel regression models fit via generalized estimating equations"</span>
 )</pre></body></html></div>
+<p><img src="ggcoefstats_files/figure-html/wbgee-1.png" width="576"></p>
 </div>
 <div id="censored-regression-with-conditional-heteroscedasticy-crch" class="section level2">
 <h2 class="hasAnchor">
@@ -3721,34 +3729,9 @@
 <span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.217 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.065 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.282 seconds (Total)</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; SAMPLING FOR MODEL '06638bf6dad6b0252e01ce5a7504d5bc' NOW (CHAIN 1).</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: Gradient evaluation took 0 seconds</span>
-<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span>
-<span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.257 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.198 seconds (Warm-up)</span>
 <span class="co">#&gt; Chain 1:                0.048 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.305 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:                0.246 seconds (Total)</span>
 <span class="co">#&gt; Chain 1: </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; SAMPLING FOR MODEL '06638bf6dad6b0252e01ce5a7504d5bc' NOW (CHAIN 1).</span>
@@ -3771,9 +3754,9 @@
 <span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.177 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.088 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.265 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.155 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.043 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                0.198 seconds (Total)</span>
 <span class="co">#&gt; Chain 1: </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; SAMPLING FOR MODEL '06638bf6dad6b0252e01ce5a7504d5bc' NOW (CHAIN 1).</span>
@@ -3796,9 +3779,9 @@
 <span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.188 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.048 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.236 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.108 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.032 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                0.14 seconds (Total)</span>
 <span class="co">#&gt; Chain 1: </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; SAMPLING FOR MODEL '06638bf6dad6b0252e01ce5a7504d5bc' NOW (CHAIN 1).</span>
@@ -3821,9 +3804,34 @@
 <span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.331 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.111 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.442 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.137 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.032 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                0.169 seconds (Total)</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; SAMPLING FOR MODEL '06638bf6dad6b0252e01ce5a7504d5bc' NOW (CHAIN 1).</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1: Gradient evaluation took 0 seconds</span>
+<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span>
+<span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
+<span class="co">#&gt; Chain 1: </span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.139 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.04 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                0.179 seconds (Total)</span>
 <span class="co">#&gt; Chain 1:</span>
 
 <span class="co"># plot</span>
@@ -3851,8 +3859,8 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; SAMPLING FOR MODEL 'continuous' NOW (CHAIN 1).</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: Gradient evaluation took 0.002 seconds</span>
-<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 20 seconds.</span>
+<span class="co">#&gt; Chain 1: Gradient evaluation took 0 seconds</span>
+<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span>
 <span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span>
 <span class="co">#&gt; Chain 1: </span>
 <span class="co">#&gt; Chain 1: </span>
@@ -3869,9 +3877,9 @@
 <span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.1 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.103 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.203 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.061 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.071 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                0.132 seconds (Total)</span>
 <span class="co">#&gt; Chain 1:</span>
 
 <span class="co"># plot</span>
@@ -3954,9 +3962,9 @@
 <span class="co">#&gt; Chain 1: Iteration: 900 / 1000 [ 90%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: Iteration: 1000 / 1000 [100%]  (Sampling)</span>
 <span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 1.04 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.678 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                1.718 seconds (Total)</span>
+<span class="co">#&gt; Chain 1:  Elapsed Time: 0.783 seconds (Warm-up)</span>
+<span class="co">#&gt; Chain 1:                0.458 seconds (Sampling)</span>
+<span class="co">#&gt; Chain 1:                1.241 seconds (Total)</span>
 <span class="co">#&gt; Chain 1:</span>
 
 <span class="co"># plot</span>
