@@ -143,13 +143,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="purrr_examples_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-06-09</h4>
+            <h4 class="date">2020-06-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -407,10 +407,6 @@
     ),
     <span class="kw">.f</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/ggscatterstats.html">ggscatterstats</a></span>
   )
-<span class="co">#&gt; Warning: This plot can't be further modified with `ggplot2` functions.</span>
-<span class="co">#&gt; In case you want a `ggplot` object, set `marginal = FALSE`.Warning: This plot can't be further modified with `ggplot2` functions.</span>
-<span class="co">#&gt; In case you want a `ggplot` object, set `marginal = FALSE`.Warning: This plot can't be further modified with `ggplot2` functions.</span>
-<span class="co">#&gt; In case you want a `ggplot` object, set `marginal = FALSE`.</span>
 
 <span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span>(
@@ -439,10 +435,6 @@
   <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="no">.</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.05</span>) <span class="kw">%&gt;%</span>
   <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">.data</span> <span class="kw">=</span> <span class="no">.</span>, <span class="no">cut</span> <span class="kw">!=</span> <span class="st">"Fair"</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">.</span>, <span class="kw">f</span> <span class="kw">=</span> <span class="no">.</span>$<span class="no">cut</span>, <span class="kw">drop</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-
-<span class="co"># this created a list with 4 elements, one for each quality of cut</span>
-<span class="co"># you can check the structure of the file for yourself</span>
-<span class="co"># str(cut_list)</span>
 
 <span class="co"># checking the length and names of each element</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">cut_list</span>)
@@ -517,10 +509,6 @@
   <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">.data</span> <span class="kw">=</span> <span class="no">.</span>, <span class="no">year</span> <span class="kw">==</span> <span class="fl">2007</span>, <span class="no">continent</span> <span class="kw">!=</span> <span class="st">"Oceania"</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">.</span>, <span class="kw">f</span> <span class="kw">=</span> <span class="no">.</span>$<span class="no">continent</span>, <span class="kw">drop</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 
-<span class="co"># this created a list with 4 elements, one for each continent</span>
-<span class="co"># you can check the structure of the file for yourself</span>
-<span class="co"># str(continent_list)</span>
-
 <span class="co"># checking the length and names of each element</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">continent_list</span>)
 <span class="co">#&gt; [1] 4</span>
@@ -589,10 +577,6 @@
   <span class="kw pkg">gapminder</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html">gapminder</a></span> <span class="kw">%&gt;%</span>
   <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">.data</span> <span class="kw">=</span> <span class="no">.</span>, <span class="no">continent</span> <span class="kw">!=</span> <span class="st">"Oceania"</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">.</span>, <span class="kw">f</span> <span class="kw">=</span> <span class="no">.</span>$<span class="no">continent</span>, <span class="kw">drop</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-
-<span class="co"># this created a list with 4 elements, one for each continent</span>
-<span class="co"># you can check the structure of the file for yourself</span>
-<span class="co"># str(continent_list)</span>
 
 <span class="co"># checking the length and names of each element</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">continent_list</span>)
@@ -663,10 +647,6 @@
 <span class="co"># let's split the dataframe and create a list by passenger class</span>
 <span class="no">class_list</span> <span class="kw">&lt;-</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/Titanic_full.html">Titanic_full</a></span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">.</span>, <span class="kw">f</span> <span class="kw">=</span> <span class="no">.</span>$<span class="no">Class</span>, <span class="kw">drop</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 
-<span class="co"># this created a list with 4 elements, one for each class</span>
-<span class="co"># you can check the structure of the file for yourself</span>
-<span class="co"># str(class_list)</span>
-
 <span class="co"># checking the length and names of each element</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">class_list</span>)
 <span class="co">#&gt; [1] 4</span>
@@ -727,10 +707,6 @@
 
 <span class="co"># let's split the dataframe and create a list by passenger class</span>
 <span class="no">class_list</span> <span class="kw">&lt;-</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/Titanic_full.html">Titanic_full</a></span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">.</span>, <span class="kw">f</span> <span class="kw">=</span> <span class="no">.</span>$<span class="no">Class</span>, <span class="kw">drop</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-
-<span class="co"># this created a list with 4 elements, one for each class</span>
-<span class="co"># you can check the structure of the file for yourself</span>
-<span class="co"># str(class_list)</span>
 
 <span class="co"># checking the length and names of each element</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">class_list</span>)
@@ -857,7 +833,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

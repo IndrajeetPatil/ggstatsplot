@@ -149,7 +149,7 @@
       <h1 data-toc-skip>Gallery of ggstatsplot examples</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-06-19</h4>
+            <h4 class="date">2020-06-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/gallery.Rmd"><code>vignettes/web_only/gallery.Rmd</code></a></small>
       <div class="hidden name"><code>gallery.Rmd</code></div>
@@ -193,7 +193,9 @@
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 
 <span class="co"># needed library (download from GitHub)</span>
-<span class="co"># devtools::install_github("gadenbuie/ggpomological")</span>
+<span class="kw">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/Logic.html">isFALSE</a></span>(<span class="st">"ggpomological"</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html">installed.packages</a></span>())) {
+<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"gadenbuie/ggpomological"</span>)
+}
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggpomological</span>)
 
 <span class="co"># plot</span>

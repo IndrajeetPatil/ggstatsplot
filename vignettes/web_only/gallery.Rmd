@@ -62,7 +62,9 @@ ggstatsplot::ggscatterstats(
 set.seed(123)
 
 # needed library (download from GitHub)
-# devtools::install_github("gadenbuie/ggpomological")
+if (isFALSE("ggpomological" %in% installed.packages())) {
+devtools::install_github("gadenbuie/ggpomological")
+}
 library(ggpomological)
 
 # plot

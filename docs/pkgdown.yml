@@ -19,7 +19,7 @@ articles:
   purrr_examples: web_only/purrr_examples.html
   session_info: web_only/session_info.html
   theme_ggstatsplot: web_only/theme_ggstatsplot.html
-last_built: 2020-06-19T21:14Z
+last_built: 2020-06-28T14:19Z
 urls:
   reference: https://indrajeetpatil.github.io/ggstatsplot//reference
   article: https://indrajeetpatil.github.io/ggstatsplot//articles

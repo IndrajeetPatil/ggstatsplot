@@ -96,7 +96,7 @@ plots <- iris %>%
   dplyr::mutate(.data = ., Species2 = Species) %>% # just creates a copy of this variable
   dplyr::group_by(.data = ., Species) %>%
   tidyr::nest(.) %>% # a nested dataframe with list column called `data`
-  dplyr::mutate( # creating a new list column of ggstatsplot outputs
+  dplyr::mutate( 
     .data = .,
     plot = data %>%
       purrr::map(
@@ -123,7 +123,7 @@ plots
 
 # creating a grid with cowplot
 ggstatsplot::combine_plots(
-  plotlist = plots$plot, # list column containing all ggstatsplot objects
+  plotlist = plots$plot, 
   nrow = 3,
   ncol = 1,
   title.text = "Relationship between sepal length and width for each Iris species",

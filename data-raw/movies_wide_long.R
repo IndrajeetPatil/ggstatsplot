@@ -7,16 +7,16 @@ dplyr::glimpse(x = ggplot2movies::movies)
 
 # clean data leave it in wide format
 movies_wide <-
-  ggplot2movies::movies %>% # `.` is just a placeholder for the data throughout
-  dplyr::select(.data = ., c(title:votes, mpaa:Short)) %>% # eliminate the decile columns r1 through r10
-  dplyr::filter(.data = ., mpaa != "", mpaa != "NC-17") %>% # removing movies without mpaa ratings & NC-17
-  dplyr::filter(.data = ., Short != 1, Documentary != 1) %>% # removing Shorts and Documentaries
-  dplyr::select(.data = ., -c(Short, Documentary)) %>% # remove the now useless columns
-  stats::na.omit(.) %>% # removing NAs
-  dplyr::mutate(.data = ., budget = budget / 1000000) %>% # convert the budget to millions of dollars
-  dplyr::mutate(.data = ., mpaa = factor(mpaa)) %>% # convert mpaa rating to a factor
-  dplyr::mutate(.data = ., NumGenre = as.integer(rowSums(select(., Action:Romance)))) %>% # calculate number of genres a film appears in
-  dplyr::filter(.data = ., NumGenre > 0) # remove films that are not listed in any genre
+  ggplot2movies::movies %>%
+  dplyr::select(.data = ., c(title:votes, mpaa:Short)) %>%
+  dplyr::filter(.data = ., mpaa != "", mpaa != "NC-17") %>%
+  dplyr::filter(.data = ., Short != 1, Documentary != 1) %>%
+  dplyr::select(.data = ., -c(Short, Documentary)) %>%
+  stats::na.omit(.) %>%
+  dplyr::mutate(.data = ., budget = budget / 1000000) %>%
+  dplyr::mutate(.data = ., mpaa = factor(mpaa)) %>%
+  dplyr::mutate(.data = ., NumGenre = as.integer(rowSums(select(., Action:Romance)))) %>%
+  dplyr::filter(.data = ., NumGenre > 0)
 
 # see the selected data (we have data from 1,579 movies)
 dplyr::glimpse(x = movies_wide)

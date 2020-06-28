@@ -149,7 +149,7 @@
       <h1 data-toc-skip>combine_plots</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-06-19</h4>
+            <h4 class="date">2020-06-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/combine_plots.Rmd"><code>vignettes/web_only/combine_plots.Rmd</code></a></small>
       <div class="hidden name"><code>combine_plots.Rmd</code></div>
@@ -208,7 +208,7 @@
   <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">.data</span> <span class="kw">=</span> <span class="no">.</span>, <span class="kw">Species2</span> <span class="kw">=</span> <span class="no">Species</span>) <span class="kw">%&gt;%</span> <span class="co"># just creates a copy of this variable</span>
   <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="kw">.data</span> <span class="kw">=</span> <span class="no">.</span>, <span class="no">Species</span>) <span class="kw">%&gt;%</span>
   <span class="kw pkg">tidyr</span><span class="kw ns">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">nest</a></span>(<span class="no">.</span>) <span class="kw">%&gt;%</span> <span class="co"># a nested dataframe with list column called `data`</span>
-  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>( <span class="co"># creating a new list column of ggstatsplot outputs</span>
+  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(
     <span class="kw">.data</span> <span class="kw">=</span> <span class="no">.</span>,
     <span class="kw">plot</span> <span class="kw">=</span> <span class="no">data</span> <span class="kw">%&gt;%</span>
       <span class="kw pkg">purrr</span><span class="kw ns">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span>(
@@ -242,7 +242,7 @@
 
 <span class="co"># creating a grid with cowplot</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span>(
-  <span class="kw">plotlist</span> <span class="kw">=</span> <span class="no">plots</span>$<span class="no">plot</span>, <span class="co"># list column containing all ggstatsplot objects</span>
+  <span class="kw">plotlist</span> <span class="kw">=</span> <span class="no">plots</span>$<span class="no">plot</span>,
   <span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">3</span>,
   <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">1</span>,
   <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Relationship between sepal length and width for each Iris species"</span>,

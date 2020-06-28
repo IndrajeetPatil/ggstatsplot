@@ -276,7 +276,6 @@
       "@type": "SoftwareApplication",
       "identifier": "groupedstats",
       "name": "groupedstats",
-      "version": ">= 1.0.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -308,20 +307,20 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/IndrajeetPatil/ipmisc"
+      "sameAs": "https://CRAN.R-project.org/package=ipmisc"
     },
     {
       "@type": "SoftwareApplication",
       "identifier": "pairwiseComparisons",
       "name": "pairwiseComparisons",
-      "version": ">= 1.1.1",
+      "version": ">= 1.1.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/IndrajeetPatil/pairwiseComparisons"
+      "sameAs": "https://CRAN.R-project.org/package=pairwiseComparisons"
     },
     {
       "@type": "SoftwareApplication",
@@ -387,7 +386,7 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/IndrajeetPatil/statsExpressions"
+      "sameAs": "https://CRAN.R-project.org/package=statsExpressions"
     },
     {
       "@type": "SoftwareApplication",
@@ -467,5 +466,5 @@
   ],
   "funder": {},
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md",
-  "fileSize": "40414.767KB"
+  "fileSize": "40409.732KB"
 }

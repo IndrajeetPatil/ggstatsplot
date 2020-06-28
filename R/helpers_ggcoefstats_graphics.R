@@ -141,8 +141,7 @@ ggcoefstats_label_maker <- function(tidy_df,
 #' @name extract_statistic
 #'
 #' @importFrom insight find_statistic
-#' @importFrom purrr pmap_dfc
-#' @importFrom dplyr select_if
+#' @importFrom purrr pmap keep
 #'
 #' @noRd
 
@@ -161,7 +160,7 @@ extract_statistic <- function(x, ...) {
   }
 
   # extracting statistic value
-  purrr::pmap_dfc(
+  purrr::pmap(
     .l =
       list(
         pattern = list("^t", "^f", "^z", "^chi"),
@@ -169,6 +168,6 @@ extract_statistic <- function(x, ...) {
       ),
     .f = grep_stat
   ) %>%
-    dplyr::select_if(.tbl = ., .predicate = ~ sum(!is.na(.)) > 0) %>%
-    unlist(x = ., use.names = FALSE)
+    purrr::keep(.x = ., .p = ~ !is.na(.)) %>%
+    .[[1]]
 }

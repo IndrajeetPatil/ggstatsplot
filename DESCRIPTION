@@ -34,10 +34,10 @@ Imports:
     ggplot2 (>= 3.3.2),
     ggrepel,
     ggsignif,
-    groupedstats (>= 1.0.1),
+    groupedstats,
     insight,
     ipmisc (>= 3.0.1),
-    pairwiseComparisons (>= 1.1.1),
+    pairwiseComparisons (>= 1.1.2),
     paletteer,
     parameters,
     purrr,
@@ -57,10 +57,6 @@ Suggests:
     WRS2
 VignetteBuilder: 
     knitr
-Remotes:
-    IndrajeetPatil/pairwiseComparisons,
-    IndrajeetPatil/statsExpressions,
-    IndrajeetPatil/ipmisc
 Encoding: UTF-8
 Language: en-US
 LazyData: true

@@ -369,10 +369,6 @@ cut_list <-
   dplyr::filter(.data = ., cut != "Fair") %>%
   split(x = ., f = .$cut, drop = TRUE)
 
-# this created a list with 4 elements, one for each quality of cut
-# you can check the structure of the file for yourself
-# str(cut_list)
-
 # checking the length and names of each element
 length(cut_list)
 names(cut_list)
@@ -443,10 +439,6 @@ continent_list <-
   dplyr::filter(.data = ., year == 2007, continent != "Oceania") %>%
   split(x = ., f = .$continent, drop = TRUE)
 
-# this created a list with 4 elements, one for each continent
-# you can check the structure of the file for yourself
-# str(continent_list)
-
 # checking the length and names of each element
 length(continent_list)
 names(continent_list)
@@ -512,10 +504,6 @@ continent_list <-
   gapminder::gapminder %>%
   dplyr::filter(.data = ., continent != "Oceania") %>%
   split(x = ., f = .$continent, drop = TRUE)
-
-# this created a list with 4 elements, one for each continent
-# you can check the structure of the file for yourself
-# str(continent_list)
 
 # checking the length and names of each element
 length(continent_list)
@@ -583,10 +571,6 @@ set.seed(123)
 # let's split the dataframe and create a list by passenger class
 class_list <- ggstatsplot::Titanic_full %>% split(x = ., f = .$Class, drop = TRUE)
 
-# this created a list with 4 elements, one for each class
-# you can check the structure of the file for yourself
-# str(class_list)
-
 # checking the length and names of each element
 length(class_list)
 names(class_list)
@@ -644,10 +628,6 @@ set.seed(123)
 
 # let's split the dataframe and create a list by passenger class
 class_list <- ggstatsplot::Titanic_full %>% split(x = ., f = .$Class, drop = TRUE)
-
-# this created a list with 4 elements, one for each class
-# you can check the structure of the file for yourself
-# str(class_list)
 
 # checking the length and names of each element
 length(class_list)
