@@ -76,29 +76,30 @@ be invariant across models:
 Most of the regression models that are supported in the underlying packages are
 also supported by `ggcoefstats`. For example-
 
-`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `bayesx`, `bayesGARCH`, `BBmm`,
-`BBreg`, `bcplm`, `betamfx`, `betaor`, `bglmerMod`, `bife`, `bigglm`, `biglm`,
-`blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm2`, `brmsfit`, `brmultinom`,
-`btergm`, `cch`, `cgam`, `cgamm`, `cglm`, `clm`, `clm2`, `clmm`, `clmm2`,
-`coeftest`, `complmrob`, `confusionMatrix`, `coxme`, `coxph`, `cpglm`, `cpglmm`,
-`crch`, `DirichReg`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`,
-`fitdistr`, `flexsurvreg`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`,
-`gamlss`, `garch`, `glht`, `glm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`,
-`glmx`, `gmm`, `hurdle`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`,
-`lmerMod`, `lmerModLmerTest`, `lmodel2`, `lmRob`, `lmrob`, `logitmfx`,
-`logitor`, `logitsf`, `LORgee`, `lrm`, `mcmc`, `mcmc.list`, `MCMCglmm`,
-`mclogit`, `mmclogit`, `mediate`, `mixor`, `mjoint`, `mle2`, `mlm`, `multinom`,
-`negbin`, `negbinmfx`, `negbinirr`, `nlmerMod`, `nlrq`, `nlreg`, `nls`,
-`orcutt`, `plm`, `poissonmfx`, `poissonirr`, `polr`, `ridgelm`, `rjags`, `rlm`,
-`rlmerMod`, `robmixglm`, `rq`, `rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`,
-`stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`,
-`wbgee`, `wblm`, `zcpglm`, `zeroinfl`, etc.
+`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `BFBayesFactor`, `bayesx`,
+`bayesGARCH`, `BBmm`, `BBreg`, `bcplm`, `betamfx`, `betaor`, `bglmerMod`,
+`bife`, `bigglm`, `biglm`, `blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm2`,
+`brmsfit`, `brmultinom`, `btergm`, `cch`, `cgam`, `cgamm`, `cglm`, `clm`,
+`clm2`, `clmm`, `clmm2`, `coeftest`, `complmrob`, `confusionMatrix`, `coxme`,
+`coxph`, `cpglm`, `cpglmm`, `crch`, `DirichReg`, `drc`, `emmGrid`, `epi.2by2`,
+`ergm`, `feis`, `felm`, `fitdistr`, `flexsurvreg`, `glmc`, `glmerMod`,
+`glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`, `garch`, `glht`, `glm`, `glmmadmb`,
+`glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`, `hurdle`, `ivreg`, `iv_robust`,
+`lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmerModLmerTest`, `lmodel2`, `lmRob`,
+`lmrob`, `logitmfx`, `logitor`, `logitsf`, `LORgee`, `lrm`, `mcmc`, `mcmc.list`,
+`MCMCglmm`, `mclogit`, `mmclogit`, `mediate`, `mixor`, `mjoint`, `mle2`, `mlm`,
+`multinom`, `negbin`, `negbinmfx`, `negbinirr`, `nlmerMod`, `nlrq`, `nlreg`,
+`nls`, `orcutt`, `plm`, `poissonmfx`, `poissonirr`, `polr`, `ridgelm`, `rjags`,
+`rlm`, `rlmerMod`, `robmixglm`, `rq`, `rqss`, `slm`, `speedglm`, `speedlm`,
+`stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`,
+`truncreg`, `vgam`, `wbgee`, `wblm`, `zcpglm`, `zeroinfl`, etc.
 
 # Examples of supported models
 
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
 itself.
+
 
 ## omnibus ANOVA (`aov`)
 
@@ -2196,7 +2197,7 @@ package - can also be displayed in a dot-whisker plot.
 set.seed(123)
 library(survival)
 
-# create the simplest test data set
+# create the simplest-test data set
 test1 <- list(
   time = c(4, 3, 1, 1, 2, 2, 3),
   status = c(1, 1, 1, 0, 1, 1, 0),
@@ -3124,7 +3125,7 @@ ggstatsplot::ggcoefstats(
 
 ## General Linear Hypotheses (`glht`)
 
-```{r glht, fig.height = 5, fig.width = 4}
+```{r glht, fig.height = 5, fig.width = 6}
 # setup
 set.seed(123)
 library(multcomp)
@@ -3810,6 +3811,7 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
+
 ## Bayesian latent variable model (`blavaan`)
 
 ```{r blavaan, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 6}
@@ -3837,6 +3839,97 @@ fit <-
 ggstatsplot::ggcoefstats(
   x = fit,
   title = "Bayesian latent variable model"
+)
+```
+
+## Bayes Factor (`BFBayesFactor`)
+
+```{r BFBayesFactor, fig.width=10, fig.height=10, eval=FALSE}
+# setup
+set.seed(123)
+library(BayesFactor)
+library(ggstatsplot)
+
+# one sample t-test
+#mod1 <- ttestBF(mtcars$wt, mu = 3)
+
+# independent t-test
+mod2 <- ttestBF(formula = wt ~ am, data = mtcars)
+
+# paired t-test
+mod3 <-
+  ttestBF(
+    x = sleep$extra[sleep$group == 1],
+    y = sleep$extra[sleep$group == 2],
+    paired = TRUE
+  )
+
+# correlation
+mod4 <- correlationBF(y = iris$Sepal.Length, x = iris$Sepal.Width)
+
+# contingency tabs (not supported)
+# data("raceDolls")
+# mod5 <-
+#   contingencyTableBF(
+#     raceDolls,
+#     sampleType = "indepMulti",
+#     fixedMargin = "cols"
+#   )
+
+# anova-1
+mod6 <-
+  anovaBF(
+    formula = extra ~ group + ID,
+    data = sleep,
+    whichRandom = "ID",
+    progress = FALSE
+  )
+
+# anova-2
+data("puzzles")
+mod7 <-
+  anovaBF(
+    formula = RT ~ shape * color + ID,
+    data = puzzles,
+    whichRandom = "ID",
+    whichModels = "top",
+    progress = FALSE
+  )
+
+# regression-1
+mod8 <- regressionBF(rating ~ ., data = attitude, progress = FALSE)
+
+# meta-analysis
+t <- c(-.15, 2.39, 2.42, 2.43, -.15, 2.39, 2.42, 2.43)
+N <- c(100, 150, 97, 99, 99, 97, 100, 150)
+
+# Using rscale=1 and one-sided test to be
+# consistent with Rouder & Morey (2011)
+mod9 <- meta.ttestBF(t, N, rscale = 1, nullInterval = c(0, Inf))
+
+# regression-2
+data("puzzles")
+mod10 <-
+  lmBF(
+    formula = RT ~ shape + color + shape:color + ID,
+    data = puzzles,
+    whichRandom = "ID",
+    posterior = TRUE,
+    iterations = 1000
+  )
+
+# list of plots
+ggstatsplot::combine_plots(
+  ggcoefstats(mod1, title = "one sample t-test"),
+  ggcoefstats(mod2, title = "independent t-test"),
+  ggcoefstats(mod3, title = "paired t-test"),
+  ggcoefstats(mod4, title = "correlation"),
+  ggcoefstats(mod6, title = "anova-1"),
+  ggcoefstats(mod7, title = "anova-2"),
+  ggcoefstats(mod8, title = "regression-1"),
+  ggcoefstats(mod9, title = "meta-analysis"),
+  ggcoefstats(mod10, title = "regression-2"),
+  title.text = "Example from `BayesFactor` package"
 )
 ```
 

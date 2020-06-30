@@ -20,7 +20,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R Under development (unstable) (2020-06-22 r78735)",
+  "runtimePlatform": "R Under development (unstable) (2020-06-27 r78747)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -466,5 +466,5 @@
   ],
   "funder": {},
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md",
-  "fileSize": "40409.732KB"
+  "fileSize": "40438.182KB"
 }

@@ -149,7 +149,7 @@
       <h1 data-toc-skip>ggbetweenstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-06-19</h4>
+            <h4 class="date">2020-06-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggbetweenstats.Rmd"><code>vignettes/web_only/ggbetweenstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggbetweenstats.Rmd</code></div>
@@ -215,6 +215,7 @@
   <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">.data</span> <span class="kw">=</span> <span class="no">gapminder</span>, <span class="no">year</span> <span class="kw">==</span> <span class="fl">2007</span>, <span class="no">continent</span> <span class="kw">!=</span> <span class="st">"Oceania"</span>),
   <span class="kw">x</span> <span class="kw">=</span> <span class="no">continent</span>, <span class="co"># grouping/independent variable</span>
   <span class="kw">y</span> <span class="kw">=</span> <span class="no">lifeExp</span>, <span class="co"># dependent variables</span>
+  <span class="kw">type</span> <span class="kw">=</span> <span class="st">"robust"</span>, <span class="co"># type of statistics</span>
   <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"Continent"</span>, <span class="co"># label for the x-axis</span>
   <span class="kw">ylab</span> <span class="kw">=</span> <span class="st">"Life expectancy"</span>, <span class="co"># label for the y-axis</span>
   <span class="kw">plot.type</span> <span class="kw">=</span> <span class="st">"boxviolin"</span>, <span class="co"># type of plot</span>

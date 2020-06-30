@@ -118,6 +118,7 @@ ggstatsplot::ggbetweenstats(
   data = dplyr::filter(.data = gapminder, year == 2007, continent != "Oceania"),
   x = continent, # grouping/independent variable
   y = lifeExp, # dependent variables
+  type = "robust", # type of statistics
   xlab = "Continent", # label for the x-axis
   ylab = "Life expectancy", # label for the y-axis
   plot.type = "boxviolin", # type of plot

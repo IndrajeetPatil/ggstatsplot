@@ -143,13 +143,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="ggwithinstats_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggwithinstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-06-09</h4>
+            <h4 class="date">2020-06-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggwithinstats.Rmd"><code>vignettes/web_only/ggwithinstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggwithinstats.Rmd</code></div>
@@ -170,37 +170,18 @@
 <a href="#comparisons-between-groups-with-ggwithistats" class="anchor"></a>Comparisons between groups with <code>ggwithistats</code>
 </h2>
 <p>To illustrate how this function can be used, we will use the <code>bugs</code> dataset throughout this vignette. This data set, “Bugs”, provides the extent to which men and women want to kill arthropods that vary in freighteningness (low, high) and disgustingness (low, high). Each participant rates their attitudes towards all anthropods. Subset of the data reported by <a href="https://www.sciencedirect.com/science/article/pii/S0747563213000277">Ryan et al. (2013)</a>. Note that this is a repeated measures design because the same participant gave four different ratings across four different conditions (LDLF, LDHF, HDLF, HDHF).</p>
-<p>Let’s have a look at the data-</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">jmv</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"bugs"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"jmv"</span>)
-
-<span class="co"># getting data in tidy format</span>
-<span class="no">data_bugs</span> <span class="kw">&lt;-</span> <span class="no">bugs</span> <span class="kw">%&gt;%</span>
-  <span class="kw pkg">tibble</span><span class="kw ns">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">.</span>) <span class="kw">%&gt;%</span>
-  <span class="kw pkg">tidyr</span><span class="kw ns">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/gather.html">gather</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">.</span>, <span class="no">key</span>, <span class="no">value</span>, <span class="no">LDLF</span>:<span class="no">HDHF</span>) <span class="kw">%&gt;%</span>
-  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">.data</span> <span class="kw">=</span> <span class="no">.</span>, <span class="no">Region</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Europe"</span>, <span class="st">"North America"</span>))
-
-<span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">data_bugs</span>)
-<span class="co">#&gt; Rows: 344</span>
-<span class="co">#&gt; Columns: 6</span>
-<span class="co">#&gt; $ Subject   &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18...</span>
-<span class="co">#&gt; $ Gender    &lt;fct&gt; Female, Female, Female, Female, Female, Female, Female, F...</span>
-<span class="co">#&gt; $ Region    &lt;fct&gt; North America, North America, Europe, North America, Nort...</span>
-<span class="co">#&gt; $ Education &lt;fct&gt; some, advance, college, college, some, some, some, high, ...</span>
-<span class="co">#&gt; $ key       &lt;chr&gt; "LDLF", "LDLF", "LDLF", "LDLF", "LDLF", "LDLF", "LDLF", "...</span>
-<span class="co">#&gt; $ value     &lt;dbl&gt; 6.0, 10.0, 5.0, 6.0, 3.0, 2.0, 10.0, 10.0, 9.5, 0.0, 9.5,...</span></pre></body></html></div>
 <p>Suppose the first thing we want to inspect is the distribution of desire to kill across all conditions (disregarding the factorial structure of the experiment). We also want to know if the mean differences in this desire across conditions is statistically significant.</p>
 <p>The simplest form of the function call is-</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># since the confidence intervals for the effect sizes are computed using</span>
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="co"># since the confidence intervals for the effect sizes are computed using</span>
 <span class="co"># bootstrapping, important to set a seed for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
 
 <span class="co"># function call</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="no">data_bugs</span>,
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">key</span>,
-  <span class="kw">y</span> <span class="kw">=</span> <span class="no">value</span>
+  <span class="kw">data</span> <span class="kw">=</span> <span class="no">bugs_long</span>,
+  <span class="kw">x</span> <span class="kw">=</span> <span class="no">condition</span>,
+  <span class="kw">y</span> <span class="kw">=</span> <span class="no">desire</span>
 )</pre></body></html></div>
 <p><img src="ggwithinstats_files/figure-html/ggwithinstats1-1.png" width="768"></p>
 <p><strong>Note</strong>:</p>
@@ -211,28 +192,25 @@
 <p>As can be seen from the plot, the function by default returns Bayes Factor for the test. If the null hypothesis can’t be rejected with the null hypothesis significance testing (NHST) approach, the Bayesian approach can help index evidence in favor of the null hypothesis (i.e., <span class="math inline">\(BF_{01}\)</span>).</p>
 <p>By default, natural logarithms are shown because Bayes Factor values can sometimes be pretty large. Having values on logarithmic scale also makes it easy to compare evidence in favor alternative (<span class="math inline">\(BF_{10}\)</span>) versus null (<span class="math inline">\(BF_{01}\)</span>) hypotheses (since <span class="math inline">\(log_{e}(BF_{01}) = - log_{e}(BF_{01})\)</span>).</p>
 <p>We can make the output much more aesthetically pleasing as well as informative by making use of the many optional parameters in <code>ggwithinstats</code>. We’ll add a title and caption, better <code>x</code> and <code>y</code> axis labels, and tag and label the outliers in the data. We can and will change the overall theme as well as the color palette in use.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">firatheme</span>)
-
-<span class="co"># for reproducibility</span>
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">firatheme</span>)
 
 <span class="co"># plot</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="no">data_bugs</span>,
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">key</span>, <span class="co"># grouping/independent variable</span>
-  <span class="kw">y</span> <span class="kw">=</span> <span class="no">value</span>, <span class="co"># dependent variables</span>
+  <span class="kw">data</span> <span class="kw">=</span> <span class="no">bugs_long</span>,
+  <span class="kw">x</span> <span class="kw">=</span> <span class="no">condition</span>,
+  <span class="kw">y</span> <span class="kw">=</span> <span class="no">desire</span>,
+  <span class="kw">type</span> <span class="kw">=</span> <span class="st">"nonparametric"</span>, <span class="co"># type of statistical test</span>
   <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"Condition"</span>, <span class="co"># label for the x-axis</span>
   <span class="kw">ylab</span> <span class="kw">=</span> <span class="st">"Desire to kill an artrhopod"</span>, <span class="co"># label for the y-axis</span>
-  <span class="kw">type</span> <span class="kw">=</span> <span class="st">"parametric"</span>, <span class="co"># type of statistical test</span>
   <span class="kw">effsize.type</span> <span class="kw">=</span> <span class="st">"biased"</span>, <span class="co"># type of effect size</span>
-  <span class="kw">nboot</span> <span class="kw">=</span> <span class="fl">10</span>, <span class="co"># number of bootstrap samples used</span>
-  <span class="kw">bf.message</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="co"># display bayes factor in favor of null hypothesis</span>
   <span class="kw">sphericity.correction</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="co"># don't display sphericity corrected dfs and p-values</span>
   <span class="kw">pairwise.comparisons</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="co"># display pairwise comparisons</span>
   <span class="kw">outlier.tagging</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="co"># whether outliers should be flagged</span>
   <span class="kw">outlier.coef</span> <span class="kw">=</span> <span class="fl">1.5</span>, <span class="co"># coefficient for Tukey's rule</span>
-  <span class="kw">outlier.label</span> <span class="kw">=</span> <span class="no">Region</span>, <span class="co"># label to attach to outlier values</span>
+  <span class="kw">outlier.label</span> <span class="kw">=</span> <span class="no">region</span>, <span class="co"># label to attach to outlier values</span>
   <span class="kw">outlier.label.color</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="co"># outlier point label color</span>
   <span class="kw">mean.plotting</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="co"># whether the mean is to be displayed</span>
   <span class="kw">mean.color</span> <span class="kw">=</span> <span class="st">"darkblue"</span>, <span class="co"># color for mean</span>
@@ -252,19 +230,19 @@
 <p>So far we have only used a classic parametric test, but we can also use other available options: The <code>type</code> (of test) argument also accepts the following abbreviations: <code>"p"</code> (for <em>parametric</em>), <code>"np"</code> (for <em>nonparametric</em>), <code>"r"</code> (for <em>robust</em>), <code>"bf"</code> (for <em>Bayes Factor</em>).</p>
 <p>Let’s use the <code>combine_plots</code> function to make one plot from four separate plots that demonstrates all of these options. Let’s compare desire to kill bugs only for low versus high disgust conditions to see how much of a difference whether a bug is disgusting-looking or not makes to the desire to kill that bug. We will generate the plots one by one and then use <code>combine_plots</code> to merge them into one plot with some common labeling. It is possible, but not necessarily recommended, to make each plot have different colors or themes.</p>
 <p>For example,</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
 
 <span class="co"># selecting subset of the data</span>
-<span class="no">df_disgust</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">.data</span> <span class="kw">=</span> <span class="no">data_bugs</span>, <span class="no">key</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"LDHF"</span>, <span class="st">"HDHF"</span>))
+<span class="no">df_disgust</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">.data</span> <span class="kw">=</span> <span class="no">bugs_long</span>, <span class="no">condition</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"LDHF"</span>, <span class="st">"HDHF"</span>))
 
 <span class="co"># parametric t-test</span>
 <span class="no">p1</span> <span class="kw">&lt;-</span>
   <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span>(
     <span class="kw">data</span> <span class="kw">=</span> <span class="no">df_disgust</span>,
-    <span class="kw">x</span> <span class="kw">=</span> <span class="no">key</span>,
-    <span class="kw">y</span> <span class="kw">=</span> <span class="no">value</span>,
+    <span class="kw">x</span> <span class="kw">=</span> <span class="no">condition</span>,
+    <span class="kw">y</span> <span class="kw">=</span> <span class="no">desire</span>,
     <span class="kw">type</span> <span class="kw">=</span> <span class="st">"p"</span>,
     <span class="kw">effsize.type</span> <span class="kw">=</span> <span class="st">"d"</span>,
     <span class="kw">conf.level</span> <span class="kw">=</span> <span class="fl">0.99</span>,
@@ -278,8 +256,8 @@
 <span class="no">p2</span> <span class="kw">&lt;-</span>
   <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span>(
     <span class="kw">data</span> <span class="kw">=</span> <span class="no">df_disgust</span>,
-    <span class="kw">x</span> <span class="kw">=</span> <span class="no">key</span>,
-    <span class="kw">y</span> <span class="kw">=</span> <span class="no">value</span>,
+    <span class="kw">x</span> <span class="kw">=</span> <span class="no">condition</span>,
+    <span class="kw">y</span> <span class="kw">=</span> <span class="no">desire</span>,
     <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"Condition"</span>,
     <span class="kw">ylab</span> <span class="kw">=</span> <span class="st">"Desire to kill bugs"</span>,
     <span class="kw">type</span> <span class="kw">=</span> <span class="st">"np"</span>,
@@ -295,8 +273,8 @@
 <span class="no">p3</span> <span class="kw">&lt;-</span>
   <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span>(
     <span class="kw">data</span> <span class="kw">=</span> <span class="no">df_disgust</span>,
-    <span class="kw">x</span> <span class="kw">=</span> <span class="no">key</span>,
-    <span class="kw">y</span> <span class="kw">=</span> <span class="no">value</span>,
+    <span class="kw">x</span> <span class="kw">=</span> <span class="no">condition</span>,
+    <span class="kw">y</span> <span class="kw">=</span> <span class="no">desire</span>,
     <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"Condition"</span>,
     <span class="kw">ylab</span> <span class="kw">=</span> <span class="st">"Desire to kill bugs"</span>,
     <span class="kw">type</span> <span class="kw">=</span> <span class="st">"r"</span>,
@@ -312,8 +290,8 @@
 <span class="no">p4</span> <span class="kw">&lt;-</span>
   <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span>(
     <span class="kw">data</span> <span class="kw">=</span> <span class="no">df_disgust</span>,
-    <span class="kw">x</span> <span class="kw">=</span> <span class="no">key</span>,
-    <span class="kw">y</span> <span class="kw">=</span> <span class="no">value</span>,
+    <span class="kw">x</span> <span class="kw">=</span> <span class="no">condition</span>,
+    <span class="kw">y</span> <span class="kw">=</span> <span class="no">desire</span>,
     <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"Condition"</span>,
     <span class="kw">ylab</span> <span class="kw">=</span> <span class="st">"Desire to kill bugs"</span>,
     <span class="kw">type</span> <span class="kw">=</span> <span class="st">"bf"</span>,
@@ -341,16 +319,16 @@
 <p>What if we want to carry out this same analysis but for each region (or gender)?</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggwithinstats</code>. This is merely a wrapper function around <code><a href="../../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggwithinstats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
 <p>Let’s focus on the two regions and for years: 1967, 1987, 2007. Also, let’s carry out pairwise comparisons to see if there differences between every pair of continents.</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
 
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/grouped_ggwithinstats.html">grouped_ggwithinstats</a></span>(
   <span class="co"># arguments relevant for ggstatsplot::ggwithinstats</span>
-  <span class="kw">data</span> <span class="kw">=</span> <span class="no">data_bugs</span>,
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">key</span>,
-  <span class="kw">y</span> <span class="kw">=</span> <span class="no">value</span>,
-  <span class="kw">grouping.var</span> <span class="kw">=</span> <span class="no">Gender</span>,
+  <span class="kw">data</span> <span class="kw">=</span> <span class="no">bugs_long</span>,
+  <span class="kw">x</span> <span class="kw">=</span> <span class="no">condition</span>,
+  <span class="kw">y</span> <span class="kw">=</span> <span class="no">desire</span>,
+  <span class="kw">grouping.var</span> <span class="kw">=</span> <span class="no">gender</span>,
   <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"Continent"</span>,
   <span class="kw">ylab</span> <span class="kw">=</span> <span class="st">"Desire to kill bugs"</span>,
   <span class="kw">type</span> <span class="kw">=</span> <span class="st">"nonparametric"</span>, <span class="co"># type of test</span>
@@ -363,7 +341,7 @@
   <span class="kw">notch</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
   <span class="kw">outlier.tagging</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
   <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-  <span class="kw">outlier.label</span> <span class="kw">=</span> <span class="no">Education</span>,
+  <span class="kw">outlier.label</span> <span class="kw">=</span> <span class="no">education</span>,
   <span class="kw">k</span> <span class="kw">=</span> <span class="fl">3</span>,
   <span class="kw">mean.ci</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
   <span class="kw">title.prefix</span> <span class="kw">=</span> <span class="st">"Year"</span>,
@@ -502,7 +480,7 @@
 <td>Robust</td>
 <td>2</td>
 <td>
-<span class="math inline">\(\xi\)</span> (Explanatory measure of effect size)</td>
+<span class="math inline">\(\delta_{R}\)</span> (robust standardized difference similar to Cohen’s <em>d</em>)</td>
 <td><font color="green">Yes<font></font></font></td>
 </tr>
 <tr class="even">
@@ -577,7 +555,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

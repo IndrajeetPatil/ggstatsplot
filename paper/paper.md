@@ -1,7 +1,7 @@
 ---
 title: "ggstatsplot: ggplot2 Based Plots with Statistical Details"
 author: Indrajeet Patil^[Max Planck Institute for Human Development, patilindrajeet.science@gmail.com]
-date: "2020-06-10"
+date: "2020-06-30"
 output: 
   bookdown::pdf_document2:
     fig_caption: true
@@ -103,12 +103,12 @@ Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
 `ggbetweenstats` | Between group/condition comparisons | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes}
 `ggwithinstats` | Within group/condition comparisons | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes}
 `gghistostats`, `ggdotplotstats` | Distribution of a numeric variable | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes}
-`ggcorrmat` | Correlation matrix | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{red}{No}
+`ggcorrmat` | Correlation matrix | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes}
 `ggscatterstats` | Correlation between two variables | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes}
 `ggpiestats`, `ggbarstats` | Association between categorical variables | \textcolor{ForestGreen}{Yes} | `NA` | `NA` | \textcolor{ForestGreen}{Yes}
 `ggpiestats`, `ggbarstats` | Equal proportions for categorical variable levels | \textcolor{ForestGreen}{Yes} | `NA` | `NA` | \textcolor{ForestGreen}{Yes}
-`ggcoefstats` | Regression model coefficients | \textcolor{ForestGreen}{Yes} | \textcolor{red}{No} | \textcolor{ForestGreen}{Yes} | \textcolor{red}{No}
-`ggcoefstats` | Random-effects meta-analysis | \textcolor{ForestGreen}{Yes} | \textcolor{red}{No} | \textcolor{red}{No} | \textcolor{ForestGreen}{Yes}
+`ggcoefstats` | Regression model coefficients | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes}
+`ggcoefstats` | Random-effects meta-analysis | \textcolor{ForestGreen}{Yes} | \textcolor{red}{No} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes}
 
 In the following sections, we will discuss at depth justification for why the
 plots have been designed in certain ways and what principles were followed to
@@ -493,7 +493,7 @@ Functions | Type | Test | Effect size | 95% CI available?
 `ggwithinstats` (> 2 groups) | Parametric | Fisher's one-way repeated measures ANOVA | $$\eta^2_p, \omega^2$$ |  \textcolor{ForestGreen}{$\checkmark$} 
 `ggwithinstats` (2 groups) | Non-parametric | Wilcoxon signed-rank test | *r* |  \textcolor{ForestGreen}{$\checkmark$} 
 `ggwithinstats` (> 2 groups) | Non-parametric | Friedman rank sum test | $$W_{Kendall}$$ |  \textcolor{ForestGreen}{$\checkmark$}
-`ggwithinstats` (2 groups) | Robust | Yuen's test on trimmed means for dependent samples | $$\xi$$ |  \textcolor{ForestGreen}{$\checkmark$} 
+`ggwithinstats` (2 groups) | Robust | Yuen's test on trimmed means for dependent samples | $$\delta_{R}$$ |  \textcolor{ForestGreen}{$\checkmark$} 
 `ggwithinstats` (> 2 groups) | Robust | Heteroscedastic one-way repeated measures ANOVA for trimmed means |  \textcolor{red}{$\times$} |  \textcolor{red}{$\times$}
 `ggpiestats` and `ggbarstats` (unpaired) | Parametric | $$\text{Pearson's}~ \chi^2 ~\text{test}$$ | Cramér's *V* |  \textcolor{ForestGreen}{$\checkmark$}
 `ggpiestats` and `ggbarstats` (paired) | Parametric | McNemar's test | Cohen's *g* |  \textcolor{ForestGreen}{$\checkmark$}
@@ -572,29 +572,7 @@ If you find any bugs or have any suggestions/remarks, please file an issue on
 `GitHub` repository for this package:
 <https://github.com/IndrajeetPatil/ggstatsplot/issues>
 
-## Appendix C: Contributing
-
-`ggstatsplot` is happy to receive bug reports, suggestions, questions, and (most
-of all) contributions to fix problems and add features. Pull Requests for
-contributions are encouraged.
-
-Here are some simple ways in which one can contribute (in the increasing order
-of commitment):
-
-  - Read and correct any inconsistencies in the
-    [documentation](https://indrajeetpatil.github.io/ggstatsplot/)
-
-  - Raise issues about bugs or wanted features
-
-  - Review code
-
-  - Add new functionality (in the form of new plotting functions or helpers for
-    preparing subtitles)
-
-Please note that this project is released with a 
-[Contributor Code of Conduct](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
-
-## Appendix D: Session information
+## Appendix C: Session information
 
 For reproducibility purposes, the details about the session information in which
 this document was rendered, see-
