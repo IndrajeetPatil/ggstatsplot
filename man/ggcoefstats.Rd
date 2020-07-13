@@ -171,6 +171,11 @@ labels.
 \description{
 Dot-and-whisker plots for regression analyses
 }
+\note{
+All rows of regression estimates where either of the following
+quantities is \code{NA} will be removed if labels are requested: \code{estimate},
+\code{statistic}, \code{p.value}.
+}
 \examples{
 \donttest{
 # for reproducibility

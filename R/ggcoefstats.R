@@ -100,6 +100,10 @@
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}
 #'
+#' @note All rows of regression estimates where either of the following
+#'   quantities is `NA` will be removed if labels are requested: `estimate`,
+#'   `statistic`, `p.value`.
+#'
 #' @examples
 #' \donttest{
 #' # for reproducibility
@@ -323,6 +327,16 @@ ggcoefstats <- function(x,
     )
   }
 
+  # remove NAs
+  if (isTRUE(stats.labels)) {
+  tidy_df %<>%
+    dplyr::filter_at(
+      .tbl = .,
+      .vars = dplyr::vars(dplyr::matches("estimate|statistic|std.error|p.value")),
+      .vars_predicate = dplyr::all_vars(!is.na(.))
+    )
+  }
+
   # create a new term column if it's not present
   if (!"term" %in% names(tidy_df)) {
     tidy_df %<>%
@@ -443,22 +457,6 @@ ggcoefstats <- function(x,
     }
   }
 
-  # check if meta-analysis is to be run
-  if (isTRUE(meta.analytic.effect) && "std.error" %in% names(tidy_df)) {
-    if (dim(dplyr::filter(.data = tidy_df, is.na(std.error)))[[1]] > 0L) {
-      # inform the user that skipping labels for the same reason
-      message(cat(
-        ipmisc::red("Error: "),
-        ipmisc::blue("At least one of the `std.error` column values is `NA`.\n"),
-        ipmisc::blue("No meta-analysis will be carried out.\n"),
-        sep = ""
-      ))
-
-      # turn off meta-analysis
-      meta.analytic.effect <- FALSE
-    }
-  }
-
   # running meta-analysis
   if (isTRUE(meta.analytic.effect)) {
     # standardizing type of statistics name
@@ -566,14 +564,6 @@ ggcoefstats <- function(x,
 
     # adding the labels
     if (isTRUE(stats.labels)) {
-      # removing all rows that have NAs anywhere in the columns of interest
-      tidy_df %<>%
-        dplyr::filter_at(
-          .tbl = .,
-          .vars = dplyr::vars(dplyr::matches("estimate|statistic|std.error|p.value")),
-          .vars_predicate = dplyr::all_vars(!is.na(.))
-        )
-
       # only significant p-value labels are shown
       if (isTRUE(only.significant) && "significance" %in% names(tidy_df)) {
         tidy_df %<>%

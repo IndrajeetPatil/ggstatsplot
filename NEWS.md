@@ -4,7 +4,7 @@ NEW FEATURES
 
   - More models supported in `ggcoefstats`: `BFBayesFactor`, `betamfx`, `glht`,
     `negbinmfx`, `logitmfx`, `logitsf`, `poissonmfx`, `betaor`, `negbinirr`,
-    `logitor`, `poissonirr`.
+    `logitor`, `orm`, `poissonirr`.
 
 MAJOR CHANGES
 
