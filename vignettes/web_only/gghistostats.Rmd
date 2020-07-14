@@ -138,7 +138,7 @@ ggstatsplot::grouped_gghistostats(
   grouping.var = gender, # grouping variable males = 1, females = 2
   title.prefix = "Gender", # prefix for the fixed title
   k = 1, # number of decimal places in results
-  type = "r", # robust test: one-sample percentile bootstrap
+  type = "robust", # robust test: one-sample percentile bootstrap
   test.value = 20, # test value against which sample mean is to be compared
   test.value.line = TRUE, # show a vertical line at `test.value`
   bar.measure = "density", # density

@@ -191,7 +191,7 @@
 <td><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg" alt="minimal R version"></a></td>
 <td><a href="https://www.tidyverse.org/lifecycle/"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue" alt="Monthly downloads badge"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-25-red.svg" alt="Github Issues"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-24-red.svg" alt="Github Issues"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot/vignettes/"><img src="https://img.shields.io/badge/vignettes-0.3.0-orange.svg?colorB=FF5722" alt="vignettes"></a></td>
 </tr>
 <tr class="even">
@@ -205,7 +205,7 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
 <td><a href="http://hits.dwyl.com/IndrajeetPatil/ggstatsplot"><img src="http://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2020--07--11-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2020--07--14-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg" alt="GitHub last commit"></a></td>
 </tr>
 <tr class="even">
@@ -942,16 +942,13 @@
 
 <span class="co"># plot</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="reference/grouped_ggpiestats.html">grouped_ggpiestats</a></span>(
-  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(
-    <span class="kw">.data</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="reference/movies_long.html">movies_long</a></span>,
-    <span class="no">genre</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span>)
-  ),
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">mpaa</span>,
-  <span class="kw">grouping.var</span> <span class="kw">=</span> <span class="no">genre</span>, <span class="co"># grouping variable</span>
-  <span class="kw">title.prefix</span> <span class="kw">=</span> <span class="st">"Movie genre"</span>, <span class="co"># prefix for the facetted title</span>
-
+  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="reference/movies_long.html">movies_long</a></span>,
+  <span class="kw">x</span> <span class="kw">=</span> <span class="no">genre</span>,
+  <span class="kw">grouping.var</span> <span class="kw">=</span> <span class="no">mpaa</span>, <span class="co"># grouping variable</span>
+  <span class="kw">title.prefix</span> <span class="kw">=</span> <span class="st">"Movie genre"</span>, <span class="co"># prefix for the faceted title</span>
+  <span class="kw">label.repel</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="co"># repel labels (helpful for overlapping labels)</span>
   <span class="kw">package</span> <span class="kw">=</span> <span class="st">"ggsci"</span>, <span class="co"># package from which color palette is to be taken</span>
-  <span class="kw">palette</span> <span class="kw">=</span> <span class="st">"default_jama"</span>, <span class="co"># choosing a different color palette</span>
+  <span class="kw">palette</span> <span class="kw">=</span> <span class="st">"default_ucscgb"</span>, <span class="co"># choosing a different color palette</span>
   <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Composition of MPAA ratings for different genres"</span>
 )</pre></div>
 <p><img src="reference/figures/README-ggpiestats3-1.png" width="100%"></p>

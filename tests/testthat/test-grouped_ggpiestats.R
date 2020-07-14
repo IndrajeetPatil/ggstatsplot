@@ -53,6 +53,7 @@ testthat::test_that(
         y = "class",
         results.subtitle = FALSE,
         grouping.var = drv,
+        label.repel = TRUE,
         messages = FALSE
       )
     ),

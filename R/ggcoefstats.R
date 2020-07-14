@@ -329,12 +329,12 @@ ggcoefstats <- function(x,
 
   # remove NAs
   if (isTRUE(stats.labels)) {
-  tidy_df %<>%
-    dplyr::filter_at(
-      .tbl = .,
-      .vars = dplyr::vars(dplyr::matches("estimate|statistic|std.error|p.value")),
-      .vars_predicate = dplyr::all_vars(!is.na(.))
-    )
+    tidy_df %<>%
+      dplyr::filter_at(
+        .tbl = .,
+        .vars = dplyr::vars(dplyr::matches("estimate|statistic|std.error|p.value")),
+        .vars_predicate = dplyr::all_vars(!is.na(.))
+      )
   }
 
   # create a new term column if it's not present

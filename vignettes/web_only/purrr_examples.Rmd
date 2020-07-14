@@ -79,13 +79,13 @@ You can pass:
    `nboot = 25` in which case it will be reused/recycled as many times as
    needed.
 
- * A vector of values such as `mean.label.size = c(3, 4, 5)` in which case it
+ * A vector of values such as `notch = c(TRUE, FALSE, TRUE)` in which case it
    will be coerced to a list and checked for the right class (in this case
    integer) and the right quantity of entries in the vector i.e.,
-   `mean.label.size = c(3, 4)` will fail if we're trying to make three plots.
+   `notch = c(TRUE, FALSE)` will fail if we're trying to make three plots.
 
  * A list; either named `data = year_list` or created as you go
-   `outlier.label.color = list("#56B4E9", "#009E73", "#F0E442")`. Any list will
+   `palette = list("Dark2", "Set1")`. Any list will
    be checked for the right class (in this case character) and the right
    quantity of entries in the list.
 
@@ -106,10 +106,6 @@ year_list <-
   gapminder::gapminder %>%
   dplyr::filter(.data = ., year %in% c(1967, 1987, 2007), continent != "Oceania") %>%
   split(x = ., f = .$year, drop = TRUE)
-
-# this created a list with 3 elements, one for each year we want
-# you can check the structure of the file for yourself
-# str(year_list[1])
 
 # checking the length of the list and the names of each element
 length(year_list)

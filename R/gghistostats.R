@@ -170,104 +170,74 @@ gghistostats <- function(data,
     ))
   }
 
-  # ============================= plot ====================================
+  # ======================= normal curve ===================================
 
-  # preparing the basic layout of the plot based on whether counts or density
-  # information is needed
+  # preparing the arguments needed for displaying a normal curve on the plot
 
   # only counts
   if (bar.measure %in% c("counts", "n", "count", "N")) {
-    plot <-
-      ggplot2::ggplot(data = df, mapping = ggplot2::aes(x = {{ x }})) +
-      ggplot2::stat_bin(
-        col = "black",
-        fill = bar.fill,
-        alpha = 0.7,
-        binwidth = binwidth,
-        na.rm = TRUE,
-        mapping = ggplot2::aes(y = ..count.., fill = ..count..)
-      )
+    .mapping <- ggplot2::aes(y = ..count.., fill = ..count..)
+    ylab_add <- NULL
+    .f_stat <- function(x, mean, sd, n, bw) stats::dnorm(x, mean, sd) * n * bw
+    args <- list(mean = mean(x_vec), sd = sd(x_vec), n = length(x_vec), bw = binwidth)
   }
 
   # only proportion
   if (bar.measure %in% c("percentage", "perc", "proportion", "prop", "%")) {
-    plot <-
-      ggplot2::ggplot(data = df, mapping = ggplot2::aes(x = {{ x }})) +
-      ggplot2::stat_bin(
-        col = "black",
-        fill = bar.fill,
-        alpha = 0.7,
-        binwidth = binwidth,
-        na.rm = TRUE,
-        mapping = ggplot2::aes(
-          y = ..count.. / sum(..count..),
-          fill = ..count.. / sum(..count..)
-        )
-      ) +
-      ggplot2::scale_y_continuous(labels = function(x) paste0(x * 100, "%")) +
-      ggplot2::ylab("proportion")
+    .mapping <- ggplot2::aes(y = ..count.. / sum(..count..), fill = ..count.. / sum(..count..))
+    ylab_add <-
+      list(
+        ggplot2::scale_y_continuous(labels = function(x) paste0(x * 100, "%")),
+        ggplot2::ylab("proportion")
+      )
+    .f_stat <- function(x, mean, sd, n, bw) stats::dnorm(x, mean, sd) * bw
+    args <- list(mean = mean(x_vec), sd = sd(x_vec), n = length(x_vec), bw = binwidth)
   }
 
   # only density
   if (bar.measure == "density") {
-    plot <-
-      ggplot2::ggplot(data = df, mapping = ggplot2::aes(x = {{ x }})) +
-      ggplot2::stat_bin(
-        col = "black",
-        fill = bar.fill,
-        alpha = 0.7,
-        binwidth = binwidth,
-        na.rm = TRUE,
-        mapping = ggplot2::aes(y = ..density.., fill = ..density..)
-      )
+    .mapping <- ggplot2::aes(y = ..density.., fill = ..density..)
+    ylab_add <- NULL
+    .f_stat <- stats::dnorm
+    args <- list(mean = mean(x_vec), sd = sd(x_vec))
   }
 
   # all things combined
   if (bar.measure %in% c("both", "mix", "all", "everything")) {
-    plot <-
-      ggplot2::ggplot(data = df, mapping = ggplot2::aes(x = {{ x }})) +
-      ggplot2::stat_bin(
-        col = "black",
-        fill = bar.fill,
-        alpha = 0.7,
-        binwidth = binwidth,
-        na.rm = TRUE,
-        mapping = ggplot2::aes(y = ..count.., fill = ..count..)
-      ) +
-      ggplot2::scale_y_continuous(
-        sec.axis = ggplot2::sec_axis(
-          trans = ~ . / nrow(df),
-          labels = function(x) paste0(x * 100, "%"),
-          name = "proportion"
-        )
-      ) +
-      ggplot2::ylab("count") +
-      ggplot2::guides(fill = FALSE)
+    .mapping <- ggplot2::aes(y = ..count.., fill = ..count..)
+    ylab_add <-
+      list(
+        ggplot2::scale_y_continuous(
+          sec.axis = ggplot2::sec_axis(
+            trans = ~ . / nrow(df),
+            labels = function(x) paste0(x * 100, "%"),
+            name = "proportion"
+          )
+        ),
+        ggplot2::ylab("count"),
+        ggplot2::guides(fill = FALSE)
+      )
+    .f_stat <- function(x, mean, sd, n, bw) stats::dnorm(x, mean, sd) * n * bw
+    args <- list(mean = mean(x_vec), sd = sd(x_vec), n = length(x_vec), bw = binwidth)
   }
 
-  # ========================== normal curve ==================================
+  # ============================= plot ====================================
+
+  # adding axes info
+  plot <-
+    ggplot2::ggplot(data = df, mapping = ggplot2::aes(x = {{ x }})) +
+    ggplot2::stat_bin(
+      col = "black",
+      fill = bar.fill,
+      alpha = 0.7,
+      binwidth = binwidth,
+      na.rm = TRUE,
+      mapping = .mapping
+    ) +
+    ylab_add
 
   # if normal curve overlay  needs to be displayed
   if (isTRUE(normal.curve)) {
-    # adding normal curve density
-    if (bar.measure == "density") {
-      .f_stat <- stats::dnorm
-      args <- list(mean = mean(x_vec), sd = sd(x_vec))
-    }
-
-    # adding normal curve count & mix
-    if (bar.measure %in% c("both", "mix", "all", "everything", "counts", "n", "count", "N")) {
-      .f_stat <- function(x, mean, sd, n, bw) stats::dnorm(x, mean, sd) * n * bw
-      args <- list(mean = mean(x_vec), sd = sd(x_vec), n = length(x_vec), bw = binwidth)
-    }
-
-    # adding normal curve proportion
-    if (bar.measure %in% c("percentage", "perc", "proportion", "prop", "%")) {
-      .f_stat <- function(x, mean, sd, n, bw) stats::dnorm(x, mean, sd) * bw
-      args <- list(mean = mean(x_vec), sd = sd(x_vec), n = length(x_vec), bw = binwidth)
-    }
-
-    # adding curve to the plot
     plot <- plot +
       rlang::exec(
         .f = ggplot2::stat_function,
@@ -280,10 +250,7 @@ gghistostats <- function(data,
 
   # adding the theme and labels
   plot <- plot +
-    ggstatsplot::theme_ggstatsplot(
-      ggtheme = ggtheme,
-      ggstatsplot.layer = ggstatsplot.layer
-    ) +
+    theme_ggstatsplot(ggtheme = ggtheme, ggstatsplot.layer = ggstatsplot.layer) +
     ggplot2::labs(
       x = xlab,
       title = title,

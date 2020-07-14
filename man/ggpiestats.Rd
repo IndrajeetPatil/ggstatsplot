@@ -13,8 +13,9 @@ ggpiestats(
   paired = FALSE,
   results.subtitle = TRUE,
   label = "percentage",
+  label.args = list(direction = "both"),
+  label.repel = FALSE,
   perc.k = 0,
-  label.args = list(alpha = 1, fill = "white"),
   bf.message = TRUE,
   sampling.plan = "indepMulti",
   fixed.margin = "rows",
@@ -64,11 +65,14 @@ the plot will be returned.}
 on the label in each pie slice. Possible options are \code{"percentage"}
 (default), \code{"counts"}, \code{"both"}.}
 
-\item{perc.k}{Numeric that decides number of decimal places for percentage
-labels (Default: \code{0}).}
-
 \item{label.args}{Additional aesthetic arguments that will be passed to
 \code{geom_label}.}
+
+\item{label.repel}{Whether labels should be repelled using \code{ggrepel} package.
+This can be helpful in case the labels are overlapping.}
+
+\item{perc.k}{Numeric that decides number of decimal places for percentage
+labels (Default: \code{0}).}
 
 \item{bf.message}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
@@ -177,7 +181,6 @@ ggstatsplot::ggpiestats(
   data = mtcars,
   x = vs,
   y = cyl,
-  nboot = 10,
   legend.title = "Engine"
 )
 }

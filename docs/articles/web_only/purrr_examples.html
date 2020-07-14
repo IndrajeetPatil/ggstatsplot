@@ -143,13 +143,13 @@
 
       
 
-      </header><script src="purrr_examples_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="purrr_examples_files/header-attrs-2.3/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-06-28</h4>
+            <h4 class="date">2020-07-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -182,8 +182,8 @@
 <p>You can pass:</p>
 <ul>
 <li><p>A single character string such as <code>xlab = "Continent"</code> or numeric such as <code>nboot = 25</code> in which case it will be reused/recycled as many times as needed.</p></li>
-<li><p>A vector of values such as <code>mean.label.size = c(3, 4, 5)</code> in which case it will be coerced to a list and checked for the right class (in this case integer) and the right quantity of entries in the vector i.e., <code>mean.label.size = c(3, 4)</code> will fail if we’re trying to make three plots.</p></li>
-<li><p>A list; either named <code>data = year_list</code> or created as you go <code>outlier.label.color = list("#56B4E9", "#009E73", "#F0E442")</code>. Any list will be checked for the right class (in this case character) and the right quantity of entries in the list.</p></li>
+<li><p>A vector of values such as <code>notch = c(TRUE, FALSE, TRUE)</code> in which case it will be coerced to a list and checked for the right class (in this case integer) and the right quantity of entries in the vector i.e., <code>notch = c(TRUE, FALSE)</code> will fail if we’re trying to make three plots.</p></li>
+<li><p>A list; either named <code>data = year_list</code> or created as you go <code>palette = list("Dark2", "Set1")</code>. Any list will be checked for the right class (in this case character) and the right quantity of entries in the list.</p></li>
 </ul>
 </div>
 <div id="ggbetweenstats" class="section level1">
@@ -201,10 +201,6 @@
   <span class="kw pkg">gapminder</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html">gapminder</a></span> <span class="kw">%&gt;%</span>
   <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">.data</span> <span class="kw">=</span> <span class="no">.</span>, <span class="no">year</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1967</span>, <span class="fl">1987</span>, <span class="fl">2007</span>), <span class="no">continent</span> <span class="kw">!=</span> <span class="st">"Oceania"</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">.</span>, <span class="kw">f</span> <span class="kw">=</span> <span class="no">.</span>$<span class="no">year</span>, <span class="kw">drop</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-
-<span class="co"># this created a list with 3 elements, one for each year we want</span>
-<span class="co"># you can check the structure of the file for yourself</span>
-<span class="co"># str(year_list[1])</span>
 
 <span class="co"># checking the length of the list and the names of each element</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">year_list</span>)

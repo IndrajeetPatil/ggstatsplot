@@ -132,7 +132,7 @@
 
 \title{ggstatsplot: ggplot2 Based Plots with Statistical Details}
 \author{Indrajeet Patil\footnote{Max Planck Institute for Human Development, \href{mailto:patilindrajeet.science@gmail.com}{\nolinkurl{patilindrajeet.science@gmail.com}}}}
-\date{2020-06-30}
+\date{2020-07-14}
 
 \begin{document}
 \maketitle
@@ -577,7 +577,7 @@ in Cleveland's paradigm:
 \KeywordTok{library}\NormalTok{(ggplot2)}
 
 \CommentTok{\# creating a smaller dataframe}
-\NormalTok{df <{-}}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(ggstatsplot}\OperatorTok{::}\NormalTok{movies\_long, genre }\OperatorTok{\%in\%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Comedy"}\NormalTok{, }\StringTok{"Drama"}\NormalTok{))}
+\NormalTok{df \textless{}{-}}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(ggstatsplot}\OperatorTok{::}\NormalTok{movies\_long, genre }\OperatorTok{\%in\%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Comedy"}\NormalTok{, }\StringTok{"Drama"}\NormalTok{))}
 
 \CommentTok{\# plot}
 \NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{combine\_plots}\NormalTok{(}
@@ -746,7 +746,7 @@ which comes in two forms:
 \KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
 
 \CommentTok{\# creating model object}
-\NormalTok{mod <{-}}\StringTok{ }\NormalTok{lme4}\OperatorTok{::}\KeywordTok{lmer}\NormalTok{(}
+\NormalTok{mod \textless{}{-}}\StringTok{ }\NormalTok{lme4}\OperatorTok{::}\KeywordTok{lmer}\NormalTok{(}
   \DataTypeTok{formula =}\NormalTok{ total.fruits }\OperatorTok{\textasciitilde{}}\StringTok{ }\NormalTok{nutrient }\OperatorTok{+}\StringTok{ }\NormalTok{rack }\OperatorTok{+}\StringTok{ }\NormalTok{(nutrient }\OperatorTok{|}\StringTok{ }\NormalTok{gen),}
   \DataTypeTok{data =}\NormalTok{ lme4}\OperatorTok{::}\NormalTok{Arabidopsis}
 \NormalTok{)}
@@ -795,14 +795,14 @@ structure of the data. More specifically,
 \KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
 
 \CommentTok{\# creating a new dataset without any NAs in variables of interest}
-\NormalTok{msleep\_no\_na <{-}}
+\NormalTok{msleep\_no\_na \textless{}{-}}
 \StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(}
     \DataTypeTok{.data =}\NormalTok{ ggplot2}\OperatorTok{::}\NormalTok{msleep,}
     \OperatorTok{!}\KeywordTok{is.na}\NormalTok{(sleep\_rem), }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(awake), }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(brainwt), }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(bodywt)}
 \NormalTok{  )}
 
 \CommentTok{\# variable names vector}
-\NormalTok{var\_names <{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"REM sleep"}\NormalTok{, }\StringTok{"time awake"}\NormalTok{, }\StringTok{"brain weight"}\NormalTok{, }\StringTok{"body weight"}\NormalTok{)}
+\NormalTok{var\_names \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"REM sleep"}\NormalTok{, }\StringTok{"time awake"}\NormalTok{, }\StringTok{"brain weight"}\NormalTok{, }\StringTok{"body weight"}\NormalTok{)}
 
 \CommentTok{\# combining two plots using helper function in \textasciigrave{}ggstatsplot\textasciigrave{}}
 \NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{combine\_plots}\NormalTok{(}

@@ -18,6 +18,8 @@
 #'   (default), `"counts"`, `"both"`.
 #' @param label.args Additional aesthetic arguments that will be passed to
 #'   `geom_label`.
+#' @param label.repel Whether labels should be repelled using `ggrepel` package.
+#'   This can be helpful in case the labels are overlapping.
 #' @param legend.title Title text for the legend.
 #' @inheritParams ggbetweenstats
 #' @inheritParams tidyBF::bf_contingency_tab
@@ -33,6 +35,7 @@
 #'
 #' @importFrom dplyr select mutate vars pull
 #' @importFrom rlang !! enquo quo_name as_name ensym
+#' @importFrom ggrepel geom_label_repel
 #' @importFrom paletteer scale_fill_paletteer_d
 #' @importFrom groupedstats grouped_proptest
 #' @importFrom tidyr uncount drop_na
@@ -65,7 +68,6 @@
 #'   data = mtcars,
 #'   x = vs,
 #'   y = cyl,
-#'   nboot = 10,
 #'   legend.title = "Engine"
 #' )
 #' @export
@@ -79,8 +81,9 @@ ggpiestats <- function(data,
                        paired = FALSE,
                        results.subtitle = TRUE,
                        label = "percentage",
+                       label.args = list(direction = "both"),
+                       label.repel = FALSE,
                        perc.k = 0,
-                       label.args = list(alpha = 1, fill = "white"),
                        bf.message = TRUE,
                        sampling.plan = "indepMulti",
                        fixed.margin = "rows",
@@ -111,8 +114,6 @@ ggpiestats <- function(data,
   x <- x %||% main
   y <- y %||% condition
   counts <- if (!rlang::quo_is_null(rlang::enquo(counts))) rlang::ensym(counts)
-
-  # ================= extracting column names as labels  =====================
 
   # saving the column label for the 'x' variables
   if (rlang::is_null(legend.title)) legend.title <- rlang::as_name(x)
@@ -233,24 +234,36 @@ ggpiestats <- function(data,
     min_length = nlevels(data %>% dplyr::pull({{ x }}))[[1]]
   )
 
+  # whether labels need to be repelled
+  if (isTRUE(label.repel)) {
+    .fn <- ggrepel::geom_label_repel
+  } else {
+    .fn <- ggplot2::geom_label
+  }
+
   # creating the basic plot
   p <-
-    ggplot2::ggplot(data = df, mapping = ggplot2::aes(x = "", y = counts)) +
+    ggplot2::ggplot(data = df, mapping = ggplot2::aes(x = "", y = perc)) +
     ggplot2::geom_col(
+      mapping = ggplot2::aes(fill = {{ x }}),
       position = "fill",
       color = "black",
       width = 1,
-      ggplot2::aes(fill = {{ x }}),
       na.rm = TRUE
-    ) +
+    )
+
+  # adding label with percentages and/or counts
+  suppressWarnings(suppressMessages(p <- p +
     rlang::exec(
-      .fn = ggplot2::geom_label,
+      .fn = .fn,
       mapping = ggplot2::aes(label = label, group = {{ x }}),
       position = ggplot2::position_fill(vjust = 0.5),
-      show.legend = FALSE,
+      alpha = 1,
+      fill = "white",
       na.rm = TRUE,
+      min.segment.length = 0,
       !!!label.args
-    )
+    )))
 
   # if facet_wrap *is* happening
   if (!rlang::quo_is_null(rlang::enquo(y))) {
@@ -261,39 +274,30 @@ ggpiestats <- function(data,
   p <- p +
     ggplot2::coord_polar(theta = "y") +
     ggplot2::scale_y_continuous(breaks = NULL) +
-    paletteer::scale_fill_paletteer_d(
-      palette = paste0(package, "::", palette),
-      name = ""
-    ) +
-    theme_pie(
-      ggtheme = ggtheme,
-      ggstatsplot.layer = ggstatsplot.layer
-    ) + # remove black diagonal line from legend
+    paletteer::scale_fill_paletteer_d(palette = paste0(package, "::", palette), name = "") +
+    theme_pie(ggtheme = ggtheme, ggstatsplot.layer = ggstatsplot.layer) +
     ggplot2::guides(fill = ggplot2::guide_legend(override.aes = list(color = NA)))
 
-  # ================ sample size and proportion test labels =================
+  # ================ sample size + proportion test labels =================
 
-  # if faceting by y is happening
-  if (!rlang::quo_is_null(rlang::enquo(y))) {
-    # adding significance labels to pie charts for grouped proportion tests
-    if (isTRUE(proportion.test)) {
-      # adding labels
-      p <- p +
-        ggplot2::geom_text(
-          data = df_labels,
-          mapping = ggplot2::aes(label = label, x = 1.65, y = 0.5),
-          position = ggplot2::position_fill(vjust = 1),
-          size = 2.8,
-          na.rm = TRUE,
-          parse = TRUE
-        )
-    }
+  # adding labels with proportion tests
+  if (!rlang::quo_is_null(rlang::enquo(y)) && isTRUE(proportion.test)) {
+    p <- p +
+      rlang::exec(
+        .fn = ggplot2::geom_text,
+        data = df_labels,
+        mapping = ggplot2::aes(label = label, x = 1.65, y = 0.5),
+        position = ggplot2::position_fill(vjust = 1),
+        size = 2.8,
+        na.rm = TRUE,
+        parse = TRUE
+      )
   }
 
   # =========================== putting all together ========================
 
   # preparing the plot
-  p <- p +
+  p +
     ggplot2::labs(
       x = NULL,
       y = NULL,
@@ -303,7 +307,4 @@ ggpiestats <- function(data,
     ) +
     ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title)) +
     ggplot.component
-
-  # return the final plot
-  return(p)
 }

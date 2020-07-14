@@ -2,7 +2,7 @@ language: r
 r:
   - release
   - devel
-  #- oldrel
+  - oldrel
 latex: true
 warnings_are_errors: TRUE
 
@@ -13,6 +13,7 @@ addons:
       - libgdal-dev
       - libproj-dev
       - libmpfr-dev
+      - libnode-dev
 
 env:
   global:

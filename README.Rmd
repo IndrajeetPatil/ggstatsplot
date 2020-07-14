@@ -573,16 +573,13 @@ set.seed(123)
 
 # plot
 ggstatsplot::grouped_ggpiestats(
-  dplyr::filter(
-    .data = ggstatsplot::movies_long,
-    genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
-  ),
-  x = mpaa,
-  grouping.var = genre, # grouping variable
-  title.prefix = "Movie genre", # prefix for the facetted title
-
+  data = ggstatsplot::movies_long,
+  x = genre,
+  grouping.var = mpaa, # grouping variable
+  title.prefix = "Movie genre", # prefix for the faceted title
+  label.repel = TRUE, # repel labels (helpful for overlapping labels)
   package = "ggsci", # package from which color palette is to be taken
-  palette = "default_jama", # choosing a different color palette
+  palette = "default_ucscgb", # choosing a different color palette
   title.text = "Composition of MPAA ratings for different genres"
 )
 ```

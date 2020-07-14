@@ -452,6 +452,111 @@ testthat::test_that(
   }
 )
 
+# repelling labels -------------------------------------------------------------
+
+testthat::test_that(
+  desc = "repelling labels",
+  code = {
+    testthat::skip_on_cran()
+    set.seed(123)
+
+    # data
+    df <-
+      structure(list(
+        epoch = structure(c(1L, 2L, 1L, 2L, 1L, 2L, 1L, 2L),
+          .Label = c("Before", "After"),
+          class = "factor"
+        ),
+        mode = structure(c(1L, 1L, 2L, 2L, 3L, 3L, 4L, 4L),
+          .Label = c("A", "P", "C", "T"), class = "factor"
+        ),
+        counts = c(
+          30916L, 21117L, 7676L, 1962L, 1663L, 462L, 7221L,
+          197L
+        ),
+        perc = c(
+          65.1192181312663,
+          88.9586317297161,
+          16.1681691802174,
+          8.26522874715646,
+          3.50282247872609,
+          1.94624652455978,
+          15.2097902097902,
+          0.829892998567697
+        ),
+        label = c(
+          "65%", "89%", "16%", "8%",
+          "4%", "2%", "15%", "1%"
+        )
+      ),
+      row.names = c(NA, -8L),
+      class = c(
+        "tbl_df",
+        "tbl", "data.frame"
+      )
+      )
+
+    # plot
+    set.seed(123)
+    p <-
+      ggpiestats(
+        df,
+        mode,
+        epoch,
+        counts = counts,
+        label.repel = TRUE,
+        results.subtitle = FALSE,
+        proportion.test = FALSE
+      )
+
+    # build plot
+    pb <- ggplot2::ggplot_build(p)
+
+    # tests
+    testthat::expect_equal(
+      pb$data[[2]]$y,
+      c(
+        0.923951048951049,
+        0.830387985508467,
+        0.73203302721375,
+        0.325596090656332,
+        0.995850535007161,
+        0.981969837391524,
+        0.930912461032943,
+        0.44479315864858
+      )
+    )
+
+    testthat::expect_equal(
+      pb$data[[2]]$ymin,
+      c(
+        0.847902097902098,
+        0.812873873114837,
+        0.651192181312663,
+        0,
+        0.991701070014323,
+        0.972238604768725,
+        0.889586317297161,
+        0
+      )
+    )
+
+    testthat::expect_equal(
+      pb$data[[2]]$ymax,
+      c(
+        1,
+        0.847902097902098,
+        0.812873873114837,
+        0.651192181312663,
+        1,
+        0.991701070014323,
+        0.972238604768725,
+        0.889586317297161
+      )
+    )
+  }
+)
+
 # without enough data ---------------------------------------------------------
 
 testthat::test_that(
