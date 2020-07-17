@@ -304,18 +304,18 @@ This can be helpful in case the labels are overlapping.</p></dd>
     <dt><code>results.subtitle</code></dt><dd><p>Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
 the plot will be returned.</p></dd>
-    <dt><code>bf.message</code></dt><dd><p>Logical that decides whether to display Bayes Factor in
-favor of the <em>null</em> hypothesis. This argument is relevant only <strong>for
-parametric test</strong> (Default: <code>TRUE</code>).</p></dd>
-    <dt><code>subtitle</code></dt><dd><p>The text for the plot subtitle. Will work only if
-<code>results.subtitle = FALSE</code>.</p></dd>
-    <dt><code>caption</code></dt><dd><p>The text for the plot caption.</p></dd>
     <dt><code>conf.level</code></dt><dd><p>Scalar between 0 and 1. If unspecified, the defaults return
 <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></dd>
     <dt><code>nboot</code></dt><dd><p>Number of bootstrap samples for computing confidence interval
 for the effect size (Default: <code>100</code>).</p></dd>
     <dt><code>k</code></dt><dd><p>Number of digits after decimal point (should be an integer)
 (Default: <code>k = 2</code>).</p></dd>
+    <dt><code>bf.message</code></dt><dd><p>Logical that decides whether to display Bayes Factor in
+favor of the <em>null</em> hypothesis. This argument is relevant only <strong>for
+parametric test</strong> (Default: <code>TRUE</code>).</p></dd>
+    <dt><code>subtitle</code></dt><dd><p>The text for the plot subtitle. Will work only if
+<code>results.subtitle = FALSE</code>.</p></dd>
+    <dt><code>caption</code></dt><dd><p>The text for the plot caption.</p></dd>
     <dt><code>ggtheme</code></dt><dd><p>A function, <code>ggplot2</code> theme name. Default value is
 <code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
 extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>,
@@ -416,7 +416,7 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>am</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>cyl</span>
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: min.segment.length, direction</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: min.segment.length, direction</span></div><div class='img'><img src='grouped_ggpiestats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='img'><img src='grouped_ggpiestats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># the following will take slightly more amount of time</span>
 <span class='co'># for reproducibility</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
@@ -439,7 +439,7 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>plotgrid.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>3</span>)
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: min.segment.length, direction</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: min.segment.length, direction</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: min.segment.length, direction</span></div><div class='img'><img src='grouped_ggpiestats-2.png' alt='' width='700' height='433' /></div><div class='input'># }
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='img'><img src='grouped_ggpiestats-2.png' alt='' width='700' height='433' /></div><div class='input'># }
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

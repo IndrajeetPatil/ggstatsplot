@@ -39,12 +39,15 @@ cat_label_df <- function(data,
 
   # only raw counts
   if (label.content %in% c("counts", "n", "count", "N")) {
-    data %<>% dplyr::mutate(label = paste0("n = ", counts))
+    data %<>% dplyr::mutate(label = paste0(prettyNum(counts, big.mark = ",", scientific = FALSE)))
   }
 
   # both raw counts and percentages
   if (label.content %in% c("both", "mix", "all", "everything")) {
-    data %<>% dplyr::mutate(label = paste0("n = ", counts, "\n", "(", round(perc, perc.k), "%)"))
+    data %<>% dplyr::mutate(label = paste0(
+      prettyNum(counts, big.mark = ",", scientific = FALSE),
+      "\n", "(", round(perc, perc.k), "%)"
+    ))
   }
 
   return(data)

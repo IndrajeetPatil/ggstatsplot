@@ -82,18 +82,18 @@ This can be helpful in case the labels are overlapping.}
     \item{\code{results.subtitle}}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}
-    \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
-favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
-parametric test} (Default: \code{TRUE}).}
-    \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
-\code{results.subtitle = FALSE}.}
-    \item{\code{caption}}{The text for the plot caption.}
     \item{\code{conf.level}}{Scalar between 0 and 1. If unspecified, the defaults return
 \verb{95\%} lower and upper confidence intervals (\code{0.95}).}
     \item{\code{nboot}}{Number of bootstrap samples for computing confidence interval
 for the effect size (Default: \code{100}).}
     \item{\code{k}}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
+    \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
+favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
+parametric test} (Default: \code{TRUE}).}
+    \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
+\code{results.subtitle = FALSE}.}
+    \item{\code{caption}}{The text for the plot caption.}
     \item{\code{ggtheme}}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
 extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},

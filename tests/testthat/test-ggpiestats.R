@@ -104,10 +104,10 @@ testthat::test_that(
             "numeric"
           )),
           label = c(
-            "n = 20\n(26.32%)",
-            "n = 5\n(6.58%)",
-            "n = 32\n(42.11%)",
-            "n = 19\n(25%)"
+            "20\n(26.32%)",
+            "5\n(6.58%)",
+            "32\n(42.11%)",
+            "19\n(25%)"
           ),
           group = 1:4,
           PANEL = structure(c(1L, 1L, 1L, 1L), .Label = "1", class = "factor"),
@@ -291,7 +291,7 @@ testthat::test_that(
     # checking labels
     testthat::expect_identical(
       pb$data[[2]]$label,
-      c("n = 8", "n = 3", "n = 3", "n = 4", "n = 2", "n = 12")
+      c("8", "3", "3", "4", "2", "12")
     )
     testthat::expect_identical(
       pb$data[[3]]$label,

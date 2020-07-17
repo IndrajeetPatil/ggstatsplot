@@ -215,6 +215,10 @@ included in the plot as a subtitle.</p>
   <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"percentage"</span>,
   <span class='kw'>label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"both"</span>),
   <span class='kw'>label.repel</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100L</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2L</span>,
+  <span class='kw'>proportion.test</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>sampling.plan</span> <span class='kw'>=</span> <span class='st'>"indepMulti"</span>,
@@ -223,11 +227,7 @@ included in the plot as a subtitle.</p>
   <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100L</span>,
   <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2L</span>,
-  <span class='kw'>proportion.test</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>,
@@ -290,6 +290,26 @@ on the label in each pie slice. Possible options are <code>"percentage"</code>
 This can be helpful in case the labels are overlapping.</p></td>
     </tr>
     <tr>
+      <th>conf.level</th>
+      <td><p>Scalar between 0 and 1. If unspecified, the defaults return
+<code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
+    </tr>
+    <tr>
+      <th>nboot</th>
+      <td><p>Number of bootstrap samples for computing confidence interval
+for the effect size (Default: <code>100</code>).</p></td>
+    </tr>
+    <tr>
+      <th>k</th>
+      <td><p>Number of digits after decimal point (should be an integer)
+(Default: <code>k = 2</code>).</p></td>
+    </tr>
+    <tr>
+      <th>proportion.test</th>
+      <td><p>Decides whether proportion test for <code>main</code> variable is
+to be carried out for each level of <code>condition</code> (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
       <th>perc.k</th>
       <td><p>Numeric that decides number of decimal places for percentage
 labels (Default: <code>0</code>).</p></td>
@@ -333,28 +353,8 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
       <td><p>The text for the plot caption.</p></td>
     </tr>
     <tr>
-      <th>conf.level</th>
-      <td><p>Scalar between 0 and 1. If unspecified, the defaults return
-<code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
-    </tr>
-    <tr>
-      <th>nboot</th>
-      <td><p>Number of bootstrap samples for computing confidence interval
-for the effect size (Default: <code>100</code>).</p></td>
-    </tr>
-    <tr>
       <th>legend.title</th>
       <td><p>Title text for the legend.</p></td>
-    </tr>
-    <tr>
-      <th>k</th>
-      <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 2</code>).</p></td>
-    </tr>
-    <tr>
-      <th>proportion.test</th>
-      <td><p>Decides whether proportion test for <code>main</code> variable is
-to be carried out for each level of <code>condition</code> (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>ggtheme</th>
@@ -441,14 +441,14 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
 
 <span class='co'># one sample goodness of fit proportion test</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggpiestats</span>(<span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>, <span class='no'>vore</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: min.segment.length, direction</span></div><div class='img'><img src='ggpiestats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggpiestats</span>(<span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>, <span class='no'>vore</span>)</div><div class='img'><img src='ggpiestats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># association test (or contingency table analysis)</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggpiestats</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vs</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
   <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='st'>"Engine"</span>
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: min.segment.length, direction</span></div><div class='img'><img src='ggpiestats-2.png' alt='' width='700' height='433' /></div></pre>
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='img'><img src='ggpiestats-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

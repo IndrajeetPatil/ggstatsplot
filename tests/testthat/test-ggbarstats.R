@@ -288,16 +288,16 @@ testthat::test_that(
     testthat::expect_identical(
       pb$data[[2]]$label,
       c(
-        "n = 10\n(91%)",
-        "n = 4\n(57%)",
-        "n = 1\n(9%)",
-        "n = 3\n(43%)",
-        "n = 14\n(100%)"
+        "10\n(91%)",
+        "4\n(57%)",
+        "1\n(9%)",
+        "3\n(43%)",
+        "14\n(100%)"
       )
     )
     testthat::expect_identical(
       pb1$data[[2]]$label,
-      c("n = 10", "n = 4", "n = 1", "n = 3", "n = 14")
+      c("10", "4", "1", "3", "14")
     )
 
     # checking layered data

@@ -214,8 +214,12 @@ included in the plot as a subtitle.</p>
   <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>sample.size.label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"percentage"</span>,
-  <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"white"</span>),
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100L</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2L</span>,
+  <span class='kw'>proportion.test</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>sampling.plan</span> <span class='kw'>=</span> <span class='st'>"indepMulti"</span>,
   <span class='kw'>fixed.margin</span> <span class='kw'>=</span> <span class='st'>"rows"</span>,
@@ -223,13 +227,9 @@ included in the plot as a subtitle.</p>
   <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
   <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>proportion.test</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>,
@@ -300,14 +300,34 @@ displayed on the label in each pie slice. Possible options are
 <code>"percentage"</code> (default), <code>"counts"</code>, <code>"both"</code>.</p></td>
     </tr>
     <tr>
-      <th>perc.k</th>
-      <td><p>Numeric that decides number of decimal places for percentage
-labels (Default: <code>0</code>).</p></td>
-    </tr>
-    <tr>
       <th>label.args</th>
       <td><p>Additional aesthetic arguments that will be passed to
 <code>geom_label</code>.</p></td>
+    </tr>
+    <tr>
+      <th>conf.level</th>
+      <td><p>Scalar between 0 and 1. If unspecified, the defaults return
+<code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
+    </tr>
+    <tr>
+      <th>nboot</th>
+      <td><p>Number of bootstrap samples for computing confidence interval
+for the effect size (Default: <code>100</code>).</p></td>
+    </tr>
+    <tr>
+      <th>k</th>
+      <td><p>Number of digits after decimal point (should be an integer)
+(Default: <code>k = 2</code>).</p></td>
+    </tr>
+    <tr>
+      <th>proportion.test</th>
+      <td><p>Decides whether proportion test for <code>main</code> variable is
+to be carried out for each level of <code>y</code> (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>perc.k</th>
+      <td><p>Numeric that decides number of decimal places for percentage
+labels (Default: <code>0</code>).</p></td>
     </tr>
     <tr>
       <th>bf.message</th>
@@ -348,16 +368,6 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
       <td><p>The text for the plot caption.</p></td>
     </tr>
     <tr>
-      <th>conf.level</th>
-      <td><p>Scalar between 0 and 1. If unspecified, the defaults return
-<code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
-    </tr>
-    <tr>
-      <th>nboot</th>
-      <td><p>Number of bootstrap samples for computing confidence interval
-for the effect size (Default: <code>100</code>).</p></td>
-    </tr>
-    <tr>
       <th>legend.title</th>
       <td><p>Title text for the legend.</p></td>
     </tr>
@@ -369,16 +379,6 @@ will cause the <code>x</code> axis label to be the <code>x</code> variable).</p>
     <tr>
       <th>ylab</th>
       <td><p>Custom text for the <code>y</code> axis label (Default: <code>NULL</code>).</p></td>
-    </tr>
-    <tr>
-      <th>k</th>
-      <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 2</code>).</p></td>
-    </tr>
-    <tr>
-      <th>proportion.test</th>
-      <td><p>Decides whether proportion test for <code>main</code> variable is
-to be carried out for each level of <code>y</code> (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>ggtheme</th>

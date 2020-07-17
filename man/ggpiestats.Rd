@@ -15,6 +15,10 @@ ggpiestats(
   label = "percentage",
   label.args = list(direction = "both"),
   label.repel = FALSE,
+  conf.level = 0.95,
+  nboot = 100L,
+  k = 2L,
+  proportion.test = TRUE,
   perc.k = 0,
   bf.message = TRUE,
   sampling.plan = "indepMulti",
@@ -23,11 +27,7 @@ ggpiestats(
   title = NULL,
   subtitle = NULL,
   caption = NULL,
-  conf.level = 0.95,
-  nboot = 100L,
   legend.title = NULL,
-  k = 2L,
-  proportion.test = TRUE,
   ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE,
   package = "RColorBrewer",
@@ -71,6 +71,18 @@ on the label in each pie slice. Possible options are \code{"percentage"}
 \item{label.repel}{Whether labels should be repelled using \code{ggrepel} package.
 This can be helpful in case the labels are overlapping.}
 
+\item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
+\verb{95\%} lower and upper confidence intervals (\code{0.95}).}
+
+\item{nboot}{Number of bootstrap samples for computing confidence interval
+for the effect size (Default: \code{100}).}
+
+\item{k}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 2}).}
+
+\item{proportion.test}{Decides whether proportion test for \code{main} variable is
+to be carried out for each level of \code{condition} (Default: \code{TRUE}).}
+
 \item{perc.k}{Numeric that decides number of decimal places for percentage
 labels (Default: \code{0}).}
 
@@ -98,19 +110,7 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 
 \item{caption}{The text for the plot caption.}
 
-\item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
-\verb{95\%} lower and upper confidence intervals (\code{0.95}).}
-
-\item{nboot}{Number of bootstrap samples for computing confidence interval
-for the effect size (Default: \code{100}).}
-
 \item{legend.title}{Title text for the legend.}
-
-\item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2}).}
-
-\item{proportion.test}{Decides whether proportion test for \code{main} variable is
-to be carried out for each level of \code{condition} (Default: \code{TRUE}).}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from

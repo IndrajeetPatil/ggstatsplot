@@ -21,6 +21,11 @@ MINOR CHANGES
 
   - The argument `method` for `ggcorrmat` has been renamed to `matrix.method`,
     since it was confusing whether this method referred to correlation method.
+    
+  - For both `ggpiestats` and `ggbarstats`, the count labels no longer include
+    ` n =  ` in them as this was confusing since all labels had ` n =  ` in them
+    with no further explanation about how this `n` differed from `n` in the
+    proportion test.
 
 # ggstatsplot 0.5.0
 
