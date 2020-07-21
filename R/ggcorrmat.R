@@ -182,7 +182,7 @@ ggcorrmat <- function(data,
 
   # creating a dataframe of results
   df_correlation <-
-    correlation::correlation(
+    statsExpressions::correlation(
       data = df,
       method = corr.method,
       p_adjust = p.adjust.method,
