@@ -83,16 +83,17 @@ also supported by `ggcoefstats`. For example-
 `clm2`, `clmm`, `clmm2`, `coeftest`, `complmrob`, `confusionMatrix`, `coxme`,
 `coxph`, `cpglm`, `cpglmm`, `crch`, `DirichReg`, `drc`, `emmGrid`, `epi.2by2`,
 `ergm`, `feis`, `felm`, `fitdistr`, `flexsurvreg`, `glmc`, `glmerMod`,
-`glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`, `garch`, `glht`, `glm`, `glmmadmb`,
-`glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`, `hurdle`, `ivreg`, `iv_robust`,
-`lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmerModLmerTest`, `lmodel2`, `lmRob`,
-`lmrob`, `logitmfx`, `logitor`, `logitsf`, `LORgee`, `lrm`, `mcmc`, `mcmc.list`,
-`MCMCglmm`, `mclogit`, `mmclogit`, `mediate`, `mixor`, `mjoint`, `mle2`, `mlm`,
-`multinom`, `negbin`, `negbinmfx`, `negbinirr`, `nlmerMod`, `nlrq`, `nlreg`,
-`nls`, `orcutt`, `orm`, `plm`, `poissonmfx`, `poissonirr`, `polr`, `ridgelm`,
-`rjags`, `rlm`, `rlmerMod`, `robmixglm`, `rq`, `rqss`, `slm`, `speedglm`,
-`speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`,
-`tobit`, `truncreg`, `vgam`, `wbgee`, `wblm`, `zcpglm`, `zeroinfl`, etc.
+`glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`, `garch`, `glht`, `glm`, `glmm`,
+`glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`, `hurdle`, `ivreg`,
+`iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmerModLmerTest`, `lmodel2`,
+`lmRob`, `lmrob`, `logitmfx`, `logitor`, `logitsf`, `LORgee`, `lrm`, `manova`,
+`maov`, `mcmc`, `mcmc.list`, `MCMCglmm`, `mclogit`, `mmclogit`, `mediate`,
+`mixor`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `negbinmfx`,
+`negbinirr`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `orm`, `plm`,
+`poissonmfx`, `poissonirr`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`,
+`robmixglm`, `rq`, `rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`,
+`survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`, `wbgee`,
+`wblm`, `zcpglm`, `zeroinfl`, etc.
 
 # Examples of supported models
 
@@ -215,6 +216,27 @@ rt_anova <-
 ggstatsplot::ggcoefstats(
   x = rt_anova$aov,
   title = "Anova with `ez` package"
+)
+```
+
+## multivariate analysis of variance (`manova`)
+
+```{r manova, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 8}
+# setup
+set.seed(123)
+library(parameters)
+op <- options(contrasts = c("contr.helmert", "contr.poly"))
+
+# fake a 2nd response variable
+npk2 <- within(npk, foo <- rnorm(24))
+
+# model
+m <- manova(cbind(yield, foo) ~ block + N * P * K, npk2)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = m,
+  title = "multivariate analysis of variance"
 )
 ```
 
@@ -778,6 +800,33 @@ ggstatsplot::ggcoefstats(
   x = mod,
   title = "generalized linear mixed-effects model",
   exponentiate = TRUE
+)
+```
+
+## Fitting Generalized Linear Mixed Models using MCML (`glmm`)
+
+```{r glmm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# setup
+library(glmm)
+data(BoothHobert)
+set.seed(1234)
+
+# model
+mod.mcml1 <-
+  glmm(
+    fixed = y ~ 0 + x1,
+    random = list(y ~ 0 + z1),
+    varcomps.names = c("z1"),
+    data = BoothHobert,
+    family.glmm = bernoulli.glmm,
+    m = 100,
+    doPQL = TRUE
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod.mcml1,
+  title = "Fitting Generalized Linear Mixed Models using MCML"
 )
 ```
 
@@ -1674,28 +1723,30 @@ ggstatsplot::ggcoefstats(
 
 ## Bayesian generalized linear mixed-effects models (`bglmerMod`)
 
-```{r bglmerMod, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6}
+```{r bglmerMod, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
 # for reproducibility
 set.seed(123)
 library(blme)
 
+# data
+y <- c(28, 8, -3, 7, -1, 1, 18, 12)
+sigma <- c(15, 10, 16, 11, 9, 11, 10, 18)
+g <- 1:8
+
 # model
-mod <-
-  blme::bglmer(
-    formula = Survived ~ Sex + Age + (Sex + Age | Class),
-    # select 20% of the sample to reduce the time of execution
-    data = dplyr::sample_frac(tbl = ggstatsplot::Titanic_full, size = 0.2),
-    family = stats::binomial(link = "logit"),
-    control = lme4::glmerControl(
-      optimizer = "Nelder_Mead",
-      calc.derivs = FALSE,
-      boundary.tol = 1e-7
-    )
+schools <-
+  blme::blmer(
+    y ~ 1 + (1 | g),
+    resid.prior = point,
+    cov.prior = NULL,
+    REML = FALSE,
+    weights = 1 / sigma^2
   )
 
 # plot
 ggstatsplot::ggcoefstats(
-  x = mod,
+  x = schools,
+  exclude.intercept = FALSE,
   title = "Bayesian generalized linear mixed-effects models"
 )
 ```
@@ -3523,7 +3574,7 @@ ggstatsplot::ggcoefstats(
 
 ## Bayesian multivariate generalized linear models via Stan (`stanmvreg`)
 
-```{r stanmvreg, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+```{r stanmvreg, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5, eval=FALSE}
 # setup
 set.seed(123)
 library(rstanarm)

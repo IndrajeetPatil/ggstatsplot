@@ -234,13 +234,6 @@ ggpiestats <- function(data,
     min_length = nlevels(data %>% dplyr::pull({{ x }}))[[1]]
   )
 
-  # whether labels need to be repelled
-  if (isTRUE(label.repel)) {
-    .fn <- ggrepel::geom_label_repel
-  } else {
-    .fn <- ggplot2::geom_label
-  }
-
   # creating the basic plot
   p <-
     ggplot2::ggplot(data = df, mapping = ggplot2::aes(x = "", y = perc)) +
@@ -252,16 +245,23 @@ ggpiestats <- function(data,
       na.rm = TRUE
     )
 
+  # whether labels need to be repelled
+  if (isTRUE(label.repel)) {
+    .fn <- ggrepel::geom_label_repel
+  } else {
+    .fn <- ggplot2::geom_label
+  }
+
   # adding label with percentages and/or counts
   suppressWarnings(suppressMessages(p <- p +
     rlang::exec(
       .fn = .fn,
       mapping = ggplot2::aes(label = label, group = {{ x }}),
       position = ggplot2::position_fill(vjust = 0.5),
-      alpha = 1,
-      fill = "white",
-      na.rm = TRUE,
       min.segment.length = 0,
+      fill = "white",
+      alpha = 1,
+      na.rm = TRUE,
       !!!label.args
     )))
 

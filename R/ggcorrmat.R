@@ -61,7 +61,7 @@
 #' @importFrom rlang !! enquo quo_name is_null
 #' @importFrom ipmisc green blue yellow red
 #' @importFrom pairwiseComparisons p_adjust_text
-#' @importFrom correlation correlation
+#' @importFrom statsExpressions correlation
 #'
 #' @seealso \code{\link{grouped_ggcorrmat}} \code{\link{ggscatterstats}}
 #'   \code{\link{grouped_ggscatterstats}}

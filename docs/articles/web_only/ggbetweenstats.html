@@ -149,7 +149,7 @@
       <h1 data-toc-skip>ggbetweenstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-07-14</h4>
+            <h4 class="date">2020-07-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggbetweenstats.Rmd"><code>vignettes/web_only/ggbetweenstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggbetweenstats.Rmd</code></div>
@@ -203,7 +203,7 @@
 <li><p>The output of the function is a <code>ggplot</code> object which means that it can be further modified with <code>ggplot2</code> functions.</p></li>
 </ul>
 <p>As can be seen from the plot, the function by default returns Bayes Factor for the test. If the null hypothesis can’t be rejected with the null hypothesis significance testing (NHST) approach, the Bayesian approach can help index evidence in favor of the null hypothesis (i.e., <span class="math inline">\(BF_{01}\)</span>).</p>
-<p>By default, natural logarithms are shown because Bayes Factor values can sometimes be pretty large. Having values on logarithmic scale also makes it easy to compare evidence in favor alternative (<span class="math inline">\(BF_{10}\)</span>) versus null (<span class="math inline">\(BF_{01}\)</span>) hypotheses (since <span class="math inline">\(log_{e}(BF_{01}) = - log_{e}(BF_{01})\)</span>).</p>
+<p>By default, natural logarithms are shown because Bayes Factor values can sometimes be pretty large. Having values on logarithmic scale also makes it easy to compare evidence in favor alternative (<span class="math inline">\(BF_{10}\)</span>) versus null (<span class="math inline">\(BF_{01}\)</span>) hypotheses (since <span class="math inline">\(log_{e}(BF_{01}) = - log_{e}(BF_{10})\)</span>).</p>
 <p>We can make the output much more aesthetically pleasing as well as informative by making use of the many optional parameters in <code>ggbetweenstats</code>. We’ll add a title and caption, better <code>x</code> and <code>y</code> axis labels, and tag and label the outliers in the data. We can and will change the overall theme as well as the color palette in use.</p>
 <div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
@@ -259,6 +259,8 @@
     <span class="kw">data</span> <span class="kw">=</span> <span class="no">df_year</span>,
     <span class="kw">x</span> <span class="kw">=</span> <span class="no">year</span>,
     <span class="kw">y</span> <span class="kw">=</span> <span class="no">lifeExp</span>,
+    <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"Year"</span>,
+    <span class="kw">ylab</span> <span class="kw">=</span> <span class="st">"Life expectancy"</span>,
     <span class="kw">plot.type</span> <span class="kw">=</span> <span class="st">"box"</span>,
     <span class="kw">type</span> <span class="kw">=</span> <span class="st">"p"</span>,
     <span class="kw">effsize.type</span> <span class="kw">=</span> <span class="st">"d"</span>,

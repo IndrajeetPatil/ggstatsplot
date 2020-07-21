@@ -26,7 +26,6 @@ Depends:
     R (>= 3.6.0)
 Imports:
     broomExtra,
-    correlation,
     cowplot,
     dplyr,
     ggcorrplot,
@@ -43,7 +42,7 @@ Imports:
     purrr,
     rlang,
     stats,
-    statsExpressions (>= 0.4.2),
+    statsExpressions (>= 0.4.2.9000),
     tidyr
 Suggests:
     forcats,
@@ -55,6 +54,8 @@ Suggests:
     testthat,
     tibble,
     WRS2
+Remotes:
+    IndrajeetPatil/statsExpressions
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
