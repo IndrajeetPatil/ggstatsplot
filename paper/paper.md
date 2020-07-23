@@ -1,7 +1,7 @@
 ---
 title: "ggstatsplot: ggplot2 Based Plots with Statistical Details"
 author: Indrajeet Patil^[Max Planck Institute for Human Development, patilindrajeet.science@gmail.com]
-date: "2020-07-14"
+date: "2020-07-22"
 output: 
   bookdown::pdf_document2:
     fig_caption: true
