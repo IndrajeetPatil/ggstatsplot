@@ -41,6 +41,7 @@ This session information was generated on `r Sys.Date()`:
 # setup for the session
 options(width = 200)
 options(tibble.width = Inf)
+
 library(ggstatsplot)
 
 # session information

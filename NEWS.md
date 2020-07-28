@@ -4,7 +4,8 @@ NEW FEATURES
 
   - More models supported in `ggcoefstats`: `BFBayesFactor`, `betamfx`, `crq`,
     `glht`, `glmm`, `manova`, `maov`, `negbinmfx`, `logitmfx`, `logitsf`,
-    `poissonmfx`, `betaor`, `negbinirr`, `logitor`, `orm`, `poissonirr`.
+    `poissonmfx`, `betaor`, `negbinirr`, `logitor`, `metafor`, `metaplus`,
+    `orm`, `poissonirr`.
     
   - `ggpiestats` gains `label.repel` argument to cover contexts in which the
     labels might overlap. Setting it to `TRUE` will minimize such an overlap.

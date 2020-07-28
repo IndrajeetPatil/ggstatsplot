@@ -149,7 +149,7 @@
       <h1 data-toc-skip>Gallery of ggstatsplot examples</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-07-14</h4>
+            <h4 class="date">2020-07-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/gallery.Rmd"><code>vignettes/web_only/gallery.Rmd</code></a></small>
       <div class="hidden name"><code>gallery.Rmd</code></div>
@@ -182,7 +182,16 @@
   <span class="kw">type</span> <span class="kw">=</span> <span class="st">"robust"</span>
 ) + <span class="co"># further modifications with `ggplot2`</span>
   <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_rug.html">geom_rug</a></span>(<span class="kw">sides</span> <span class="kw">=</span> <span class="st">"b"</span>) +
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span>()</pre></body></html></div>
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span>()
+<span class="co">#&gt; Registered S3 method overwritten by 'broom.mixed':</span>
+<span class="co">#&gt;   method      from </span>
+<span class="co">#&gt;   tidy.gamlss broom</span>
+<span class="co">#&gt; Registered S3 methods overwritten by 'lme4':</span>
+<span class="co">#&gt;   method                          from</span>
+<span class="co">#&gt;   cooks.distance.influence.merMod car </span>
+<span class="co">#&gt;   influence.merMod                car </span>
+<span class="co">#&gt;   dfbeta.influence.merMod         car </span>
+<span class="co">#&gt;   dfbetas.influence.merMod        car</span></pre></body></html></div>
 <p><img src="gallery_files/figure-html/gallery1-1.png" width="100%"></p>
 </div>
 <div id="example-2-ggbetweenstats" class="section level2">
@@ -194,28 +203,36 @@
 
 <span class="co"># needed library (download from GitHub)</span>
 <span class="kw">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/Logic.html">isFALSE</a></span>(<span class="st">"ggpomological"</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html">installed.packages</a></span>())) {
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"gadenbuie/ggpomological"</span>)
+  <span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"gadenbuie/ggpomological"</span>)
 }
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggpomological</span>)
 
-<span class="co"># plot</span>
-<span class="kw pkg">ggpomological</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggpomological/man/paint_pomological.html">paint_pomological</a></span>(
-  <span class="kw">pomo_gg</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span>(
-    <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">.data</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/movies_long.html">movies_long</a></span>,
-                         <span class="no">genre</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span>)),
+<span class="co"># setup</span>
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggpomological</span>)
+<span class="co"># extrafont::font_import()</span>
+
+<span class="co"># basic plot</span>
+<span class="no">p</span> <span class="kw">&lt;-</span>
+  <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span>(
+    <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(
+      <span class="kw">.data</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/movies_long.html">movies_long</a></span>,
+      <span class="no">genre</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span>)
+    ),
     <span class="kw">x</span> <span class="kw">=</span> <span class="no">genre</span>,
     <span class="kw">y</span> <span class="kw">=</span> <span class="no">rating</span>,
     <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"movie genre"</span>,
     <span class="kw">ylab</span> <span class="kw">=</span> <span class="st">"IMDB rating"</span>,
     <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Differences in IMDB ratings by genre"</span>
   ) + <span class="co"># further modifications with `ggplot2`</span>
-    <span class="kw pkg">ggpomological</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggpomological/man/theme_pomological.html">theme_pomological_fancy</a></span>() +
-    <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="kw">legend.position</span> <span class="kw">=</span> <span class="st">"none"</span>),
+  <span class="kw pkg">ggpomological</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggpomological/man/theme_pomological.html">theme_pomological_fancy</a></span>() +
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="kw">legend.position</span> <span class="kw">=</span> <span class="st">"none"</span>)
+
+<span class="co"># add `ggpomological`</span>
+<span class="kw pkg">ggpomological</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggpomological/man/paint_pomological.html">paint_pomological</a></span>(
+  <span class="kw">pomo_gg</span> <span class="kw">=</span> <span class="no">p</span>,
   <span class="kw">res</span> <span class="kw">=</span> <span class="fl">110</span>,
   <span class="kw">width</span> <span class="kw">=</span> <span class="fl">1000</span>,
   <span class="kw">height</span> <span class="kw">=</span> <span class="fl">700</span>
 )</pre></body></html></div>
-<p><img src="gallery_files/figure-html/gallery2-1.png" width="100%"></p>
 </div>
 </div>
 <div id="suggestions" class="section level1">

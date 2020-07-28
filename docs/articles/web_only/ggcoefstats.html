@@ -149,7 +149,7 @@
       <h1 data-toc-skip>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-07-22</h4>
+            <h4 class="date">2020-07-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -2769,8 +2769,8 @@
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">gam</span>)
 
 <span class="co"># model</span>
-<span class="no">g</span> <span class="kw">&lt;-</span> <span class="kw pkg">gam</span><span class="kw ns">::</span><span class="fu">gam</span>(
-  <span class="kw">formula</span> <span class="kw">=</span> <span class="no">mpg</span> ~ <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/s.html">s</a></span>(<span class="no">hp</span>, <span class="fl">4</span>) + <span class="no">am</span> + <span class="no">qsec</span>,
+<span class="no">g</span> <span class="kw">&lt;-</span> <span class="kw pkg">gam</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/gam/man/gam.html">gam</a></span>(
+  <span class="kw">formula</span> <span class="kw">=</span> <span class="no">mpg</span> ~ <span class="fu"><a href="https://rdrr.io/pkg/gam/man/s.html">s</a></span>(<span class="no">hp</span>, <span class="fl">4</span>) + <span class="no">am</span> + <span class="no">qsec</span>,
   <span class="kw">data</span> <span class="kw">=</span> <span class="no">mtcars</span>
 )
 
@@ -3725,200 +3725,11 @@
 )</pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/epi.2by2-1.png" width="576"></p>
 </div>
-<div id="bayesian-generalized-non-linear-multivariate-multilevel-models-brmsfit" class="section level2">
-<h2 class="hasAnchor">
-<a href="#bayesian-generalized-non-linear-multivariate-multilevel-models-brmsfit" class="anchor"></a>Bayesian generalized (non-)linear multivariate multilevel models (<code>brmsfit</code>)</h2>
-<div class="sourceCode" id="cb123"><html><body><pre class="r"><span class="co"># setup</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">brms</span>)
-
-<span class="co"># prior</span>
-<span class="no">bprior1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/set_prior.html">prior</a></span>(<span class="fu">student_t</span>(<span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">10</span>), <span class="kw">class</span> <span class="kw">=</span> <span class="no">b</span>) + <span class="fu"><a href="https://rdrr.io/pkg/brms/man/set_prior.html">prior</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/VGAM/man/cauchy.html">cauchy</a></span>(<span class="fl">0</span>, <span class="fl">2</span>), <span class="kw">class</span> <span class="kw">=</span> <span class="no">sd</span>)
-
-<span class="co"># model</span>
-<span class="no">fit1</span> <span class="kw">&lt;-</span>
-  <span class="kw pkg">brms</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/brms/man/brm.html">brm</a></span>(
-    <span class="kw">formula</span> <span class="kw">=</span> <span class="no">count</span> ~ <span class="no">Age</span> + <span class="no">Base</span> * <span class="no">Trt</span> + (<span class="fl">1</span> <span class="kw">|</span> <span class="no">patient</span>),
-    <span class="kw">data</span> <span class="kw">=</span> <span class="no">epilepsy</span>,
-    <span class="kw">family</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html">poisson</a></span>(),
-    <span class="kw">prior</span> <span class="kw">=</span> <span class="no">bprior1</span>,
-    <span class="kw">silent</span> <span class="kw">=</span> <span class="fl">TRUE</span>
-  )
-
-<span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">fit1</span>,
-  <span class="kw">exclude.intercept</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-  <span class="kw">conf.method</span> <span class="kw">=</span> <span class="st">"HPDinterval"</span>,
-  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Bayesian generalized (non-)linear multivariate multilevel models"</span>,
-  <span class="kw">subtitle</span> <span class="kw">=</span> <span class="st">"using `brms` package"</span>
-)</pre></body></html></div>
-<p>Let’s see another example where we use <code>brms</code> to run the same model on multiple datasets-</p>
-<div class="sourceCode" id="cb124"><html><body><pre class="r"><span class="co"># setup</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">brms</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">mice</span>)
-
-<span class="co"># data</span>
-<span class="no">imp</span> <span class="kw">&lt;-</span> <span class="kw pkg">mice</span><span class="kw ns">::</span><span class="fu"><a href="http://stefvanbuuren.github.io/mice/reference/mice.html">mice</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">nhanes2</span>, <span class="kw">print</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
-
-<span class="co"># fit the model using brms</span>
-<span class="no">fit</span> <span class="kw">&lt;-</span>
-  <span class="kw pkg">brms</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/brms/man/brm_multiple.html">brm_multiple</a></span>(
-    <span class="kw">formula</span> <span class="kw">=</span> <span class="no">bmi</span> ~ <span class="no">age</span> + <span class="no">hyp</span> + <span class="no">chl</span>,
-    <span class="kw">data</span> <span class="kw">=</span> <span class="no">imp</span>,
-    <span class="kw">chains</span> <span class="kw">=</span> <span class="fl">1</span>
-  )
-
-<span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">fit</span>,
-  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Same `brms` model with multiple datasets"</span>,
-  <span class="kw">conf.level</span> <span class="kw">=</span> <span class="fl">0.99</span>
-)</pre></body></html></div>
-</div>
-<div id="bayesian-regression-models-via-stan-stanreg" class="section level2">
-<h2 class="hasAnchor">
-<a href="#bayesian-regression-models-via-stan-stanreg" class="anchor"></a>Bayesian regression models via Stan (<code>stanreg</code>)</h2>
-<div class="sourceCode" id="cb125"><html><body><pre class="r"><span class="co"># set up</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">rstanarm</span>)
-
-<span class="co"># model</span>
-<span class="no">fit</span> <span class="kw">&lt;-</span>
-  <span class="kw pkg">rstanarm</span><span class="kw ns">::</span><span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span>(
-    <span class="kw">formula</span> <span class="kw">=</span> <span class="no">mpg</span> ~ <span class="no">wt</span> + <span class="no">am</span>,
-    <span class="kw">data</span> <span class="kw">=</span> <span class="no">mtcars</span>,
-    <span class="kw">chains</span> <span class="kw">=</span> <span class="fl">1</span>
-  )
-<span class="co">#&gt; </span>
-<span class="co">#&gt; SAMPLING FOR MODEL 'continuous' NOW (CHAIN 1).</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: Gradient evaluation took 0 seconds</span>
-<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span>
-<span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 0.104 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.141 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                0.245 seconds (Total)</span>
-<span class="co">#&gt; Chain 1:</span>
-
-<span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">fit</span>,
-  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Bayesian generalized linear models via Stan"</span>
-)
-<span class="co">#&gt; object 'draws' not found</span></pre></body></html></div>
-<p><img src="ggcoefstats_files/figure-html/stanreg-1.png" width="480"></p>
-</div>
-<div id="bayesian-multivariate-generalized-linear-models-via-stan-stanmvreg" class="section level2">
-<h2 class="hasAnchor">
-<a href="#bayesian-multivariate-generalized-linear-models-via-stan-stanmvreg" class="anchor"></a>Bayesian multivariate generalized linear models via Stan (<code>stanmvreg</code>)</h2>
-<div class="sourceCode" id="cb126"><html><body><pre class="r"><span class="co"># setup</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">rstanarm</span>)
-<span class="no">pbcLong</span>$<span class="no">ybern</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span>(<span class="no">pbcLong</span>$<span class="no">logBili</span> <span class="kw">&gt;=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">pbcLong</span>$<span class="no">logBili</span>))
-
-<span class="co"># model</span>
-<span class="no">mod</span> <span class="kw">&lt;-</span>
-  <span class="kw pkg">rstanarm</span><span class="kw ns">::</span><span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_mvmer.html">stan_mvmer</a></span>(
-    <span class="kw">formula</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-      <span class="no">ybern</span> ~ <span class="no">year</span> + (<span class="fl">1</span> <span class="kw">|</span> <span class="no">id</span>),
-      <span class="no">albumin</span> ~ <span class="no">sex</span> + <span class="no">year</span> + (<span class="no">year</span> <span class="kw">|</span> <span class="no">id</span>)
-    ),
-    <span class="kw">data</span> <span class="kw">=</span> <span class="no">pbcLong</span>,
-    <span class="kw">cores</span> <span class="kw">=</span> <span class="fl">4</span>,
-    <span class="kw">seed</span> <span class="kw">=</span> <span class="fl">12345</span>,
-    <span class="kw">iter</span> <span class="kw">=</span> <span class="fl">1000</span>
-  )
-<span class="co">#&gt; Fitting a multivariate glmer model.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Please note the warmup may be much slower than later iterations!</span>
-
-<span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">mod</span>,
-  <span class="kw">exclude.intercept</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Bayesian multivariate generalized linear models via Stan"</span>
-)
-<span class="co">#&gt; argument is of length zero</span></pre></body></html></div>
-<p><img src="ggcoefstats_files/figure-html/stanmvreg-1.png" width="480"></p>
-</div>
-<div id="bayesian-nonlinear-models-via-stan-nlstanreg" class="section level2">
-<h2 class="hasAnchor">
-<a href="#bayesian-nonlinear-models-via-stan-nlstanreg" class="anchor"></a>Bayesian nonlinear models via Stan (<code>nlstanreg</code>)</h2>
-<div class="sourceCode" id="cb127"><html><body><pre class="r"><span class="co"># setup</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">rstanarm</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"Orange"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"datasets"</span>)
-<span class="no">Orange</span>$<span class="no">circumference</span> <span class="kw">&lt;-</span> <span class="no">Orange</span>$<span class="no">circumference</span> / <span class="fl">100</span>
-<span class="no">Orange</span>$<span class="no">age</span> <span class="kw">&lt;-</span> <span class="no">Orange</span>$<span class="no">age</span> / <span class="fl">100</span>
-
-<span class="co"># model</span>
-<span class="no">fit</span> <span class="kw">&lt;-</span>
-  <span class="kw pkg">rstanarm</span><span class="kw ns">::</span><span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_nlmer.html">stan_nlmer</a></span>(
-    <span class="kw">formula</span> <span class="kw">=</span> <span class="no">circumference</span> ~ <span class="fu"><a href="https://rdrr.io/r/stats/SSlogis.html">SSlogis</a></span>(<span class="no">age</span>, <span class="no">Asym</span>, <span class="no">xmid</span>, <span class="no">scal</span>) ~ <span class="no">Asym</span> <span class="kw">|</span> <span class="no">Tree</span>,
-    <span class="kw">data</span> <span class="kw">=</span> <span class="no">Orange</span>,
-    <span class="co"># for speed only</span>
-    <span class="kw">chains</span> <span class="kw">=</span> <span class="fl">1</span>,
-    <span class="kw">iter</span> <span class="kw">=</span> <span class="fl">1000</span>
-  )
-<span class="co">#&gt; </span>
-<span class="co">#&gt; SAMPLING FOR MODEL 'continuous' NOW (CHAIN 1).</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: Gradient evaluation took 0 seconds</span>
-<span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span>
-<span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1: Iteration:   1 / 1000 [  0%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration: 100 / 1000 [ 10%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration: 200 / 1000 [ 20%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration: 300 / 1000 [ 30%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration: 400 / 1000 [ 40%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration: 500 / 1000 [ 50%]  (Warmup)</span>
-<span class="co">#&gt; Chain 1: Iteration: 501 / 1000 [ 50%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 600 / 1000 [ 60%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 700 / 1000 [ 70%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 800 / 1000 [ 80%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 900 / 1000 [ 90%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: Iteration: 1000 / 1000 [100%]  (Sampling)</span>
-<span class="co">#&gt; Chain 1: </span>
-<span class="co">#&gt; Chain 1:  Elapsed Time: 1.438 seconds (Warm-up)</span>
-<span class="co">#&gt; Chain 1:                0.878 seconds (Sampling)</span>
-<span class="co">#&gt; Chain 1:                2.316 seconds (Total)</span>
-<span class="co">#&gt; Chain 1:</span>
-
-<span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">fit</span>,
-  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Bayesian nonlinear models via Stan"</span>
-)
-<span class="co">#&gt; Warning: Following potential variables could not be found in the data: circumference ~ SSlogis(age, Asym, xmid, scal) ,Asym</span>
-<span class="co">#&gt; Warning: Following potential variables could not be found in the data: circumference ~ SSlogis(age, Asym, xmid, scal) ,Asym</span>
-<span class="co">#&gt; object 'draws' not found</span>
-<span class="co">#&gt; Warning: Following potential variables could not be found in the data: circumference ~ SSlogis(age, Asym, xmid, scal) ,Asym</span></pre></body></html></div>
-<p><img src="ggcoefstats_files/figure-html/nlstanreg-1.png" width="480"></p>
-</div>
 <div id="marginal-effects-for-a-beta-regression-betamfx" class="section level2">
 <h2 class="hasAnchor">
 <a href="#marginal-effects-for-a-beta-regression-betamfx" class="anchor"></a>marginal effects for a beta regression (<code>betamfx</code>)</h2>
 <p>Same example can also be used for <code>betaor</code> object.</p>
-<div class="sourceCode" id="cb128"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb123"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">mfx</span>)
 
@@ -3949,7 +3760,7 @@
 <h2 class="hasAnchor">
 <a href="#marginal-effects-for-a-logit-regression-logitmfx" class="anchor"></a>marginal effects for a logit regression (<code>logitmfx</code>)</h2>
 <p>Same example can also be used for <code>logitor</code> object.</p>
-<div class="sourceCode" id="cb129"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb124"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">mfx</span>)
 
@@ -3977,7 +3788,7 @@
 <h2 class="hasAnchor">
 <a href="#marginal-effects-for-a-negative-binomial-regression-negbinmfx" class="anchor"></a>marginal effects for a negative binomial regression (<code>negbinmfx</code>)</h2>
 <p>Same example can also be used for <code>negbinirr</code> object.</p>
-<div class="sourceCode" id="cb130"><html><body><pre class="r"><span class="co"># simulate some data</span>
+<div class="sourceCode" id="cb125"><html><body><pre class="r"><span class="co"># simulate some data</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="no">n</span> <span class="kw">&lt;-</span> <span class="fl">1000</span>
 
@@ -4000,7 +3811,7 @@
 <h2 class="hasAnchor">
 <a href="#marginal-effects-for-a-poisson-regression-poissonmfx" class="anchor"></a>marginal effects for a Poisson regression (<code>poissonmfx</code>)</h2>
 <p>Same example can also be used for <code>poissonirr</code> object.</p>
-<div class="sourceCode" id="cb131"><html><body><pre class="r"><span class="co"># simulate some data</span>
+<div class="sourceCode" id="cb126"><html><body><pre class="r"><span class="co"># simulate some data</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="no">n</span> <span class="kw">&lt;-</span> <span class="fl">1000</span>
 <span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="no">n</span>)
@@ -4016,6 +3827,148 @@
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Marginal effects for a Poisson regression"</span>
 )</pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/poissonmfx-1.png" width="480"></p>
+</div>
+<div id="bayesian-generalized-non-linear-multivariate-multilevel-models-brmsfit" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bayesian-generalized-non-linear-multivariate-multilevel-models-brmsfit" class="anchor"></a>Bayesian generalized (non-)linear multivariate multilevel models (<code>brmsfit</code>)</h2>
+<div class="sourceCode" id="cb127"><html><body><pre class="r"><span class="co"># setup</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">brms</span>)
+
+<span class="co"># prior</span>
+<span class="no">bprior1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/set_prior.html">prior</a></span>(<span class="fu">student_t</span>(<span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">10</span>), <span class="kw">class</span> <span class="kw">=</span> <span class="no">b</span>) + <span class="fu"><a href="https://rdrr.io/pkg/brms/man/set_prior.html">prior</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/VGAM/man/cauchy.html">cauchy</a></span>(<span class="fl">0</span>, <span class="fl">2</span>), <span class="kw">class</span> <span class="kw">=</span> <span class="no">sd</span>)
+
+<span class="co"># model</span>
+<span class="no">fit1</span> <span class="kw">&lt;-</span>
+  <span class="kw pkg">brms</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/brms/man/brm.html">brm</a></span>(
+    <span class="kw">formula</span> <span class="kw">=</span> <span class="no">count</span> ~ <span class="no">Age</span> + <span class="no">Base</span> * <span class="no">Trt</span> + (<span class="fl">1</span> <span class="kw">|</span> <span class="no">patient</span>),
+    <span class="kw">data</span> <span class="kw">=</span> <span class="no">epilepsy</span>,
+    <span class="kw">family</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html">poisson</a></span>(),
+    <span class="kw">prior</span> <span class="kw">=</span> <span class="no">bprior1</span>,
+    <span class="kw">silent</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
+    <span class="kw">refresh</span> <span class="kw">=</span> <span class="fl">0</span>
+  )
+
+<span class="co"># plot</span>
+<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
+  <span class="kw">x</span> <span class="kw">=</span> <span class="no">fit1</span>,
+  <span class="kw">standardize</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
+  <span class="kw">exclude.intercept</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
+  <span class="kw">conf.method</span> <span class="kw">=</span> <span class="st">"HPDinterval"</span>,
+  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Bayesian generalized (non-)linear multivariate multilevel models"</span>,
+  <span class="kw">subtitle</span> <span class="kw">=</span> <span class="st">"using `brms` package"</span>
+)</pre></body></html></div>
+<p>Let’s see another example where we use <code>brms</code> to run the same model on multiple datasets-</p>
+<div class="sourceCode" id="cb128"><html><body><pre class="r"><span class="co"># setup</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">brms</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">mice</span>)
+
+<span class="co"># data</span>
+<span class="no">imp</span> <span class="kw">&lt;-</span> <span class="kw pkg">mice</span><span class="kw ns">::</span><span class="fu"><a href="http://stefvanbuuren.github.io/mice/reference/mice.html">mice</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">nhanes2</span>, <span class="kw">print</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
+
+<span class="co"># fit the model using brms</span>
+<span class="no">fit</span> <span class="kw">&lt;-</span>
+  <span class="kw pkg">brms</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/brms/man/brm_multiple.html">brm_multiple</a></span>(
+    <span class="kw">formula</span> <span class="kw">=</span> <span class="no">bmi</span> ~ <span class="no">age</span> + <span class="no">hyp</span> + <span class="no">chl</span>,
+    <span class="kw">data</span> <span class="kw">=</span> <span class="no">imp</span>,
+    <span class="kw">chains</span> <span class="kw">=</span> <span class="fl">1</span>,
+    <span class="kw">refresh</span> <span class="kw">=</span> <span class="fl">0</span>
+  )
+
+<span class="co"># plot</span>
+<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
+  <span class="kw">x</span> <span class="kw">=</span> <span class="no">fit</span>,
+  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Same `brms` model with multiple datasets"</span>,
+  <span class="kw">conf.level</span> <span class="kw">=</span> <span class="fl">0.99</span>
+)</pre></body></html></div>
+</div>
+<div id="bayesian-regression-models-via-stan-stanreg" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bayesian-regression-models-via-stan-stanreg" class="anchor"></a>Bayesian regression models via Stan (<code>stanreg</code>)</h2>
+<div class="sourceCode" id="cb129"><html><body><pre class="r"><span class="co"># set up</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">rstanarm</span>)
+
+<span class="co"># model</span>
+<span class="no">fit</span> <span class="kw">&lt;-</span>
+  <span class="kw pkg">rstanarm</span><span class="kw ns">::</span><span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span>(
+    <span class="kw">formula</span> <span class="kw">=</span> <span class="no">mpg</span> ~ <span class="no">wt</span> + <span class="no">am</span>,
+    <span class="kw">data</span> <span class="kw">=</span> <span class="no">mtcars</span>,
+    <span class="kw">chains</span> <span class="kw">=</span> <span class="fl">1</span>,
+    <span class="kw">refresh</span> <span class="kw">=</span> <span class="fl">0</span>
+  )
+
+<span class="co"># plot</span>
+<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
+  <span class="kw">x</span> <span class="kw">=</span> <span class="no">fit</span>,
+  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Bayesian generalized linear models via Stan"</span>
+)
+<span class="co">#&gt; object 'draws' not found</span></pre></body></html></div>
+<p><img src="ggcoefstats_files/figure-html/stanreg-1.png" width="480"></p>
+</div>
+<div id="bayesian-multivariate-generalized-linear-models-via-stan-stanmvreg" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bayesian-multivariate-generalized-linear-models-via-stan-stanmvreg" class="anchor"></a>Bayesian multivariate generalized linear models via Stan (<code>stanmvreg</code>)</h2>
+<div class="sourceCode" id="cb130"><html><body><pre class="r"><span class="co"># setup</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">rstanarm</span>)
+<span class="no">pbcLong</span>$<span class="no">ybern</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span>(<span class="no">pbcLong</span>$<span class="no">logBili</span> <span class="kw">&gt;=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">pbcLong</span>$<span class="no">logBili</span>))
+
+<span class="co"># model</span>
+<span class="no">mod</span> <span class="kw">&lt;-</span>
+  <span class="kw pkg">rstanarm</span><span class="kw ns">::</span><span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_mvmer.html">stan_mvmer</a></span>(
+    <span class="kw">formula</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+      <span class="no">ybern</span> ~ <span class="no">year</span> + (<span class="fl">1</span> <span class="kw">|</span> <span class="no">id</span>),
+      <span class="no">albumin</span> ~ <span class="no">sex</span> + <span class="no">year</span> + (<span class="no">year</span> <span class="kw">|</span> <span class="no">id</span>)
+    ),
+    <span class="kw">data</span> <span class="kw">=</span> <span class="no">pbcLong</span>,
+    <span class="kw">cores</span> <span class="kw">=</span> <span class="fl">4</span>,
+    <span class="kw">seed</span> <span class="kw">=</span> <span class="fl">12345</span>,
+    <span class="kw">iter</span> <span class="kw">=</span> <span class="fl">1000</span>,
+    <span class="kw">refresh</span> <span class="kw">=</span> <span class="fl">0</span>
+  )
+<span class="co">#&gt; Fitting a multivariate glmer model.</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Please note the warmup may be much slower than later iterations!</span>
+
+<span class="co"># plot</span>
+<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
+  <span class="kw">x</span> <span class="kw">=</span> <span class="no">mod</span>,
+  <span class="kw">exclude.intercept</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
+  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Bayesian multivariate generalized linear models via Stan"</span>
+)
+<span class="co">#&gt; argument is of length zero</span></pre></body></html></div>
+<p><img src="ggcoefstats_files/figure-html/stanmvreg-1.png" width="480"></p>
+</div>
+<div id="bayesian-nonlinear-models-via-stan-nlstanreg" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bayesian-nonlinear-models-via-stan-nlstanreg" class="anchor"></a>Bayesian nonlinear models via Stan (<code>nlstanreg</code>)</h2>
+<div class="sourceCode" id="cb131"><html><body><pre class="r"><span class="co"># setup</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">rstanarm</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"Orange"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"datasets"</span>)
+<span class="no">Orange</span>$<span class="no">circumference</span> <span class="kw">&lt;-</span> <span class="no">Orange</span>$<span class="no">circumference</span> / <span class="fl">100</span>
+<span class="no">Orange</span>$<span class="no">age</span> <span class="kw">&lt;-</span> <span class="no">Orange</span>$<span class="no">age</span> / <span class="fl">100</span>
+
+<span class="co"># model</span>
+<span class="no">fit</span> <span class="kw">&lt;-</span>
+  <span class="kw pkg">rstanarm</span><span class="kw ns">::</span><span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_nlmer.html">stan_nlmer</a></span>(
+    <span class="kw">formula</span> <span class="kw">=</span> <span class="no">circumference</span> ~ <span class="fu"><a href="https://rdrr.io/r/stats/SSlogis.html">SSlogis</a></span>(<span class="no">age</span>, <span class="no">Asym</span>, <span class="no">xmid</span>, <span class="no">scal</span>) ~ <span class="no">Asym</span> <span class="kw">|</span> <span class="no">Tree</span>,
+    <span class="kw">data</span> <span class="kw">=</span> <span class="no">Orange</span>,
+    <span class="co"># for speed only</span>
+    <span class="kw">chains</span> <span class="kw">=</span> <span class="fl">1</span>,
+    <span class="kw">iter</span> <span class="kw">=</span> <span class="fl">1000</span>,
+    <span class="kw">refresh</span> <span class="kw">=</span> <span class="fl">0</span>
+  )
+
+<span class="co"># plot</span>
+<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
+  <span class="kw">x</span> <span class="kw">=</span> <span class="no">fit</span>,
+  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Bayesian nonlinear models via Stan"</span>
+)
+<span class="co">#&gt; object 'draws' not found</span></pre></body></html></div>
+<p><img src="ggcoefstats_files/figure-html/nlstanreg-1.png" width="480"></p>
 </div>
 <div id="star-models-with-bayesx-bayesx" class="section level2">
 <h2 class="hasAnchor">
@@ -4361,7 +4314,14 @@ speed =~ x7 + x8 + x9 "</span>
 <div id="robust" class="section level3">
 <h3 class="hasAnchor">
 <a href="#robust" class="anchor"></a>robust</h3>
-<div class="sourceCode" id="cb141"><html><body><pre class="r"><span class="co"># plot</span>
+<div class="sourceCode" id="cb141"><html><body><pre class="r"><span class="co"># setup</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">metaplus</span>)
+
+<span class="co"># renaming to what the function expects</span>
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span>(<span class="no">mag</span>, <span class="kw">estimate</span> <span class="kw">=</span> <span class="no">yi</span>, <span class="kw">std.error</span> <span class="kw">=</span> <span class="no">sei</span>, <span class="kw">term</span> <span class="kw">=</span> <span class="no">study</span>)
+
+<span class="co"># plot</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
   <span class="kw">x</span> <span class="kw">=</span> <span class="no">df</span>,
   <span class="kw">meta.analytic.effect</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
@@ -4375,7 +4335,14 @@ speed =~ x7 + x8 + x9 "</span>
 <div id="bayesian" class="section level3">
 <h3 class="hasAnchor">
 <a href="#bayesian" class="anchor"></a>Bayesian</h3>
-<div class="sourceCode" id="cb142"><html><body><pre class="r"><span class="co"># plot</span>
+<div class="sourceCode" id="cb142"><html><body><pre class="r"><span class="co"># setup</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">metaplus</span>)
+
+<span class="co"># renaming to what the function expects</span>
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span>(<span class="no">mag</span>, <span class="kw">estimate</span> <span class="kw">=</span> <span class="no">yi</span>, <span class="kw">std.error</span> <span class="kw">=</span> <span class="no">sei</span>, <span class="kw">term</span> <span class="kw">=</span> <span class="no">study</span>)
+
+<span class="co"># plot</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
   <span class="kw">x</span> <span class="kw">=</span> <span class="no">df</span>,
   <span class="kw">meta.analytic.effect</span> <span class="kw">=</span> <span class="fl">TRUE</span>,

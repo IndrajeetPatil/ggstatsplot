@@ -11,6 +11,7 @@ output:
     toc: true
     warning: FALSE
     message: FALSE
+    error: TRUE
 vignette: >
   %\VignetteIndexEntry{ggcoefstats}
   %\VignetteEngine{knitr::rmarkdown}
@@ -26,7 +27,9 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   message = FALSE,
-  warning = FALSE
+  warning = FALSE,
+  error = TRUE,
+  package.startup.message = FALSE
 )
 
 library(future)
@@ -88,12 +91,12 @@ also supported by `ggcoefstats`. For example-
 `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmerModLmerTest`,
 `lmodel2`, `lmRob`, `lmrob`, `logitmfx`, `logitor`, `logitsf`, `LORgee`, `lrm`,
 `manova`, `maov`, `mcmc`, `mcmc.list`, `MCMCglmm`, `mclogit`, `mmclogit`,
-`mediate`, `mixor`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `negbinmfx`,
-`negbinirr`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `orm`, `plm`,
-`poissonmfx`, `poissonirr`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`,
-`robmixglm`, `rq`, `rqss`, `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`,
-`survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`, `wbgee`,
-`wblm`, `zcpglm`, `zeroinfl`, etc.
+`mediate`, `metafor`, `metaplus`, `mixor`, `mjoint`, `mle2`, `mlm`, `multinom`,
+`negbin`, `negbinmfx`, `negbinirr`, `nlmerMod`, `nlrq`, `nlreg`, `nls`,
+`orcutt`, `orm`, `plm`, `poissonmfx`, `poissonirr`, `polr`, `ridgelm`, `rjags`,
+`rlm`, `rlmerMod`, `robmixglm`, `rq`, `rqss`, `slm`, `speedglm`, `speedlm`,
+`stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`,
+`truncreg`, `vgam`, `wbgee`, `wblm`, `zcpglm`, `zeroinfl`, etc.
 
 # Examples of supported models
 
@@ -3516,142 +3519,6 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
-## Bayesian generalized (non-)linear multivariate multilevel models (`brmsfit`)
-
-```{r brmsfit, fig.height = 5, fig.width = 5, eval=FALSE}
-# setup
-set.seed(123)
-library(brms)
-
-# prior
-bprior1 <- prior(student_t(5, 0, 10), class = b) + prior(cauchy(0, 2), class = sd)
-
-# model
-fit1 <-
-  brms::brm(
-    formula = count ~ Age + Base * Trt + (1 | patient),
-    data = epilepsy,
-    family = poisson(),
-    prior = bprior1,
-    silent = TRUE
-  )
-
-# plot
-ggstatsplot::ggcoefstats(
-  x = fit1,
-  exclude.intercept = FALSE,
-  conf.method = "HPDinterval",
-  title = "Bayesian generalized (non-)linear multivariate multilevel models",
-  subtitle = "using `brms` package"
-)
-```
-
-Let's see another example where we use `brms` to run the same model on multiple
-datasets-
-
-```{r brmsfit_multiple, fig.height = 5, fig.width = 7, eval=FALSE}
-# setup
-set.seed(123)
-library(brms)
-library(mice)
-
-# data
-imp <- mice::mice(data = nhanes2, print = FALSE)
-
-# fit the model using brms
-fit <-
-  brms::brm_multiple(
-    formula = bmi ~ age + hyp + chl,
-    data = imp,
-    chains = 1
-  )
-
-# plot
-ggstatsplot::ggcoefstats(
-  x = fit,
-  title = "Same `brms` model with multiple datasets",
-  conf.level = 0.99
-)
-```
-
-## Bayesian regression models via Stan (`stanreg`)
-
-```{r stanreg, fig.height = 5, fig.width = 5}
-# set up
-set.seed(123)
-library(rstanarm)
-
-# model
-fit <-
-  rstanarm::stan_glm(
-    formula = mpg ~ wt + am,
-    data = mtcars,
-    chains = 1
-  )
-
-# plot
-ggstatsplot::ggcoefstats(
-  x = fit,
-  title = "Bayesian generalized linear models via Stan"
-)
-```
-
-## Bayesian multivariate generalized linear models via Stan (`stanmvreg`)
-
-```{r stanmvreg, fig.height = 5, fig.width = 5}
-# setup
-set.seed(123)
-library(rstanarm)
-pbcLong$ybern <- as.integer(pbcLong$logBili >= mean(pbcLong$logBili))
-
-# model
-mod <-
-  rstanarm::stan_mvmer(
-    formula = list(
-      ybern ~ year + (1 | id),
-      albumin ~ sex + year + (year | id)
-    ),
-    data = pbcLong,
-    cores = 4,
-    seed = 12345,
-    iter = 1000
-  )
-
-# plot
-ggstatsplot::ggcoefstats(
-  x = mod,
-  exclude.intercept = FALSE,
-  title = "Bayesian multivariate generalized linear models via Stan"
-)
-```
-
-## Bayesian nonlinear models via Stan (`nlstanreg`)
-
-```{r nlstanreg, fig.height = 5, fig.width = 5}
-# setup
-set.seed(123)
-library(rstanarm)
-data("Orange", package = "datasets")
-Orange$circumference <- Orange$circumference / 100
-Orange$age <- Orange$age / 100
-
-# model
-fit <-
-  rstanarm::stan_nlmer(
-    formula = circumference ~ SSlogis(age, Asym, xmid, scal) ~ Asym | Tree,
-    data = Orange,
-    # for speed only
-    chains = 1,
-    iter = 1000
-  )
-
-# plot
-ggstatsplot::ggcoefstats(
-  x = fit,
-  title = "Bayesian nonlinear models via Stan"
-)
-```
-
 ## marginal effects for a beta regression (`betamfx`)
 
 Same example can also be used for `betaor` object.
@@ -3756,6 +3623,148 @@ mod_betamfx <- poissonmfx(formula = y ~ x, data = data)
 ggstatsplot::ggcoefstats(
   x = mod_betamfx,
   title = "Marginal effects for a Poisson regression"
+)
+```
+
+## Bayesian generalized (non-)linear multivariate multilevel models (`brmsfit`)
+
+```{r brmsfit, fig.height = 5, fig.width = 5, eval=FALSE}
+# setup
+set.seed(123)
+library(brms)
+
+# prior
+bprior1 <- prior(student_t(5, 0, 10), class = b) + prior(cauchy(0, 2), class = sd)
+
+# model
+fit1 <-
+  brms::brm(
+    formula = count ~ Age + Base * Trt + (1 | patient),
+    data = epilepsy,
+    family = poisson(),
+    prior = bprior1,
+    silent = TRUE,
+    refresh = 0
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = fit1,
+  standardize = TRUE,
+  exclude.intercept = FALSE,
+  conf.method = "HPDinterval",
+  title = "Bayesian generalized (non-)linear multivariate multilevel models",
+  subtitle = "using `brms` package"
+)
+```
+
+Let's see another example where we use `brms` to run the same model on multiple
+datasets-
+
+```{r brmsfit_multiple, fig.height = 5, fig.width = 7, eval=FALSE}
+# setup
+set.seed(123)
+library(brms)
+library(mice)
+
+# data
+imp <- mice::mice(data = nhanes2, print = FALSE)
+
+# fit the model using brms
+fit <-
+  brms::brm_multiple(
+    formula = bmi ~ age + hyp + chl,
+    data = imp,
+    chains = 1,
+    refresh = 0
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = fit,
+  title = "Same `brms` model with multiple datasets",
+  conf.level = 0.99
+)
+```
+
+## Bayesian regression models via Stan (`stanreg`)
+
+```{r stanreg, fig.height = 5, fig.width = 5}
+# set up
+set.seed(123)
+library(rstanarm)
+
+# model
+fit <-
+  rstanarm::stan_glm(
+    formula = mpg ~ wt + am,
+    data = mtcars,
+    chains = 1,
+    refresh = 0
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = fit,
+  title = "Bayesian generalized linear models via Stan"
+)
+```
+
+## Bayesian multivariate generalized linear models via Stan (`stanmvreg`)
+
+```{r stanmvreg, fig.height = 5, fig.width = 5}
+# setup
+set.seed(123)
+library(rstanarm)
+pbcLong$ybern <- as.integer(pbcLong$logBili >= mean(pbcLong$logBili))
+
+# model
+mod <-
+  rstanarm::stan_mvmer(
+    formula = list(
+      ybern ~ year + (1 | id),
+      albumin ~ sex + year + (year | id)
+    ),
+    data = pbcLong,
+    cores = 4,
+    seed = 12345,
+    iter = 1000,
+    refresh = 0
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
+  exclude.intercept = FALSE,
+  title = "Bayesian multivariate generalized linear models via Stan"
+)
+```
+
+## Bayesian nonlinear models via Stan (`nlstanreg`)
+
+```{r nlstanreg, fig.height = 5, fig.width = 5}
+# setup
+set.seed(123)
+library(rstanarm)
+data("Orange", package = "datasets")
+Orange$circumference <- Orange$circumference / 100
+Orange$age <- Orange$age / 100
+
+# model
+fit <-
+  rstanarm::stan_nlmer(
+    formula = circumference ~ SSlogis(age, Asym, xmid, scal) ~ Asym | Tree,
+    data = Orange,
+    # for speed only
+    chains = 1,
+    iter = 1000,
+    refresh = 0
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = fit,
+  title = "Bayesian nonlinear models via Stan"
 )
 ```
 
@@ -4083,6 +4092,13 @@ ggstatsplot::ggcoefstats(
 ### robust
 
 ```{r meta2, fig.height = 7, fig.width = 8}
+# setup
+set.seed(123)
+library(metaplus)
+
+# renaming to what the function expects
+df <- dplyr::rename(mag, estimate = yi, std.error = sei, term = study)
+
 # plot
 ggstatsplot::ggcoefstats(
   x = df,
@@ -4095,6 +4111,13 @@ ggstatsplot::ggcoefstats(
 ### Bayesian
 
 ```{r meta3, fig.height = 7, fig.width = 8}
+# setup
+set.seed(123)
+library(metaplus)
+
+# renaming to what the function expects
+df <- dplyr::rename(mag, estimate = yi, std.error = sei, term = study)
+
 # plot
 ggstatsplot::ggcoefstats(
   x = df,
