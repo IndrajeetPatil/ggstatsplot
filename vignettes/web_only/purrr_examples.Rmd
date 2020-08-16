@@ -13,7 +13,7 @@ output:
     warning: FALSE
     message: FALSE
 vignette: >
-  %\VignetteIndexEntry{using `ggstatsplot` with `purrr` package}
+  %\VignetteIndexEntry{using `ggstatsplot` with the `purrr` package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

@@ -15,11 +15,6 @@ install:
 skip_branch_with_pr: true
 
 # Adapt as necessary starting from here
-
-# cache:
-#   - C:\RLibrary
-
-# Adapt as necessary starting from here
 before_test:
   - cinst pandoc
   - ps: $env:Path += ";C:\Program Files (x86)\Pandoc\"
@@ -38,13 +33,13 @@ environment:
     R_ARCH: x64
     GCC_PATH: mingw_64
 
-  # - R_VERSION: devel
-  #   R_ARCH: x64
-  #   GCC_PATH: mingw_64
-
-  - R_VERSION: oldrel
+  - R_VERSION: devel
     R_ARCH: x64
     GCC_PATH: mingw_64
+
+  # - R_VERSION: oldrel
+  #   R_ARCH: x64
+  #   GCC_PATH: mingw_64
 
 matrix:
   fast_finish: true

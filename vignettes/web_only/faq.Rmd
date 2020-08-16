@@ -87,7 +87,8 @@ library(ggstatsplot)
 
 # creating a list by splitting dataframe by combination of two different
 # grouping variables
-df_list <- mpg %>%
+df_list <-
+  mpg %>%
   dplyr::filter(drv %in% c("4", "f"), fl %in% c("p", "r")) %>%
   split(x = ., f = list(.$drv, .$fl), drop = TRUE)
 
@@ -238,6 +239,36 @@ p <- gginnards::delete_layers(x = p, match_type = "GeomPoint")
 
 # add a new layers for points with a different shape
 p + geom_point(shape = 23, aes(color = condition))
+```
+
+## How can I modify `grouped_` outputs using `ggplot2` functions?
+
+All `ggstatsplot` are `ggplot` objects, which can be further modified, just like
+any other `ggplot` object. But exception to these are all plots returned by
+`grouped_` functions, but there is a way to tackle this.
+
+```{r grouped_modify, fig.width = 10, fig.height = 5}
+# needed libraries
+set.seed(123)
+library(ggstatsplot)
+library(paletteer)
+library(ggplot2)
+library(palmerpenguins)
+
+# plot
+grouped_ggbetweenstats(
+  penguins,
+  species,
+  body_mass_g,
+  grouping.var = sex,
+  type = "np",
+  ggplot.component =
+    # modify further with `ggplot2` functions
+  list(
+    scale_color_manual(values = paletteer::paletteer_c("viridis::viridis", 3)),
+    theme(axis.text.x = element_text(angle = 90))
+  )
+)
 ```
 
 # Suggestions
