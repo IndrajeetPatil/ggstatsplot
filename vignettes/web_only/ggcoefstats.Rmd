@@ -94,9 +94,10 @@ also supported by `ggcoefstats`. For example-
 `mediate`, `metafor`, `metaplus`, `mixor`, `mjoint`, `mle2`, `mlm`, `multinom`,
 `negbin`, `negbinmfx`, `negbinirr`, `nlmerMod`, `nlrq`, `nlreg`, `nls`,
 `orcutt`, `orm`, `plm`, `poissonmfx`, `poissonirr`, `polr`, `ridgelm`, `rjags`,
-`rlm`, `rlmerMod`, `robmixglm`, `rq`, `rqss`, `slm`, `speedglm`, `speedlm`,
-`stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`,
-`truncreg`, `vgam`, `wbgee`, `wblm`, `zcpglm`, `zeroinfl`, etc.
+`rlm`, `rlmerMod`, `robmixglm`, `rq`, `rqss`, `semLm`, `semLme`, `slm`,
+`speedglm`, `speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`,
+`svyglm`, `tobit`, `truncreg`, `vgam`, `wbgee`, `wblm`, `zcpglm`, `zeroinfl`,
+etc.
 
 # Examples of supported models
 
@@ -1526,6 +1527,79 @@ m1 <-
 ggstatsplot::ggcoefstats(
   x = m1,
   title = "older version of cumulative link mixed models"
+)
+```
+
+## marginal effects estimation (`margins`)
+
+```{r margins, fig.height = 6, fig.width = 6, eval=FALSE}
+# setup
+set.seed(123)
+library(margins)
+
+# logit model
+mod_log <- glm(am ~ cyl + hp + wt, data = mtcars, family = binomial)
+
+# convert to marginal effects with margins::margins()
+marg_log <- margins(mod_log)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = marg_log,
+  title = "marginal effects estimation"
+)
+```
+## Linear Regression with Interval-Censored Dependent Variable (`semLm`)
+
+```{r semLm, fig.height = 5, fig.width = 6}
+# setup
+set.seed(123)
+library(smicd)
+
+# Load and prepare data
+data <- Exam
+classes <- c(1, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.7, 8.5, Inf)
+data$examsc.class <- cut(data$examsc, classes)
+
+# run model with random intercept and default settings
+model <-
+  semLme(
+    formula = examsc.class ~ standLRT + schavg,
+    data = data,
+    classes = classes
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = model,
+  title = "Linear Regression with \nInterval-Censored Dependent Variable"
+)
+```
+
+## Linear Mixed Regression with Interval-Censored Dependent Variable (`semLme`)
+
+```{r semLme, fig.height = 5, fig.width = 6}
+# setup
+set.seed(123)
+library(smicd)
+
+# Load and prepare data
+data <- Exam
+classes <- c(1, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.7, 8.5, Inf)
+data$examsc.class <- cut(data$examsc, classes)
+
+# run model with random intercept and default settings
+model1 <-
+  semLme(
+    formula = examsc.class ~ standLRT + schavg + (1 | school),
+    data = data,
+    classes = classes
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = model1,
+  title = "Linear Mixed Regression with \nInterval-Censored Dependent Variable"
 )
 ```
 
@@ -3628,7 +3702,7 @@ ggstatsplot::ggcoefstats(
 
 ## Bayesian generalized (non-)linear multivariate multilevel models (`brmsfit`)
 
-```{r brmsfit, fig.height = 5, fig.width = 5, eval=FALSE}
+```{r brmsfit, fig.height = 5, fig.width = 7}
 # setup
 set.seed(123)
 library(brms)
@@ -3661,7 +3735,7 @@ ggstatsplot::ggcoefstats(
 Let's see another example where we use `brms` to run the same model on multiple
 datasets-
 
-```{r brmsfit_multiple, fig.height = 5, fig.width = 7, eval=FALSE}
+```{r brmsfit_multiple, fig.height = 5, fig.width = 7}
 # setup
 set.seed(123)
 library(brms)
