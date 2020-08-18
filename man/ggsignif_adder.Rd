@@ -11,6 +11,7 @@ ggsignif_adder(
   x,
   y,
   pairwise.display = "significant",
+  ggsignif.args = list(textsize = 3, tip_length = 0.01),
   ...
 )
 }
@@ -35,6 +36,9 @@ Available options are \code{"significant"} (abbreviation accepted: \code{"s"}) o
 argument to make sure that your plot is not uber-cluttered when you have
 multiple groups being compared and scores of pairwise comparisons being
 displayed.}
+
+\item{ggsignif.args}{A list of additional aesthetic
+arguments to be passed to \code{ggsignif::geom_signif}.}
 
 \item{...}{Currently ignored.}
 }

@@ -104,6 +104,7 @@ ggwithinstats <- function(data,
                           outlier.label.args = list(),
                           outlier.point.args = list(),
                           violin.args = list(width = 0.5, alpha = 0.2),
+                          ggsignif.args = list(textsize = 3, tip_length = 0.01),
                           ggtheme = ggplot2::theme_bw(),
                           ggstatsplot.layer = TRUE,
                           package = "RColorBrewer",
@@ -351,7 +352,8 @@ ggwithinstats <- function(data,
         data = data,
         x = {{ x }},
         y = {{ y }},
-        pairwise.display = pairwise.display
+        pairwise.display = pairwise.display,
+        ggsignif.args = ggsignif.args
       )
 
     # preparing the caption for pairwise comparisons test

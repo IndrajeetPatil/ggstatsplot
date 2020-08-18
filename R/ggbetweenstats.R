@@ -98,6 +98,8 @@
 #' @param mean.point.args,mean.label.args A list of additional aesthetic
 #'   arguments to be passed to `ggplot2::geom_point` and
 #'   `ggrepel::geom_label_repel` geoms involved mean value plotting.
+#' @param  ggsignif.args A list of additional aesthetic
+#'   arguments to be passed to `ggsignif::geom_signif`.
 #' @inheritParams statsExpressions::expr_anova_parametric
 #' @inheritParams statsExpressions::expr_t_parametric
 #' @inheritParams statsExpressions::expr_t_onesample
@@ -224,6 +226,7 @@ ggbetweenstats <- function(data,
                              stroke = 0
                            ),
                            violin.args = list(width = 0.5, alpha = 0.2),
+                           ggsignif.args = list(textsize = 3, tip_length = 0.01),
                            ggtheme = ggplot2::theme_bw(),
                            ggstatsplot.layer = TRUE,
                            package = "RColorBrewer",
@@ -493,7 +496,8 @@ ggbetweenstats <- function(data,
         data = data,
         x = {{ x }},
         y = {{ y }},
-        pairwise.display = pairwise.display
+        pairwise.display = pairwise.display,
+        ggsignif.args = ggsignif.args
       )
 
     # preparing the caption for pairwise comparisons test

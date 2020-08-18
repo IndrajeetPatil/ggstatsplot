@@ -45,6 +45,7 @@ ggwithinstats(
   outlier.label.args = list(),
   outlier.point.args = list(),
   violin.args = list(width = 0.5, alpha = 0.2),
+  ggsignif.args = list(textsize = 3, tip_length = 0.01),
   ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE,
   package = "RColorBrewer",
@@ -199,6 +200,9 @@ involved outlier value plotting.}
 
 \item{violin.args}{A list of additional aesthetic arguments to be passed to
 the \code{geom_violin}.}
+
+\item{ggsignif.args}{A list of additional aesthetic
+arguments to be passed to \code{ggsignif::geom_signif}.}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from

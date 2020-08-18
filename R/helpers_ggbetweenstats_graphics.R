@@ -202,6 +202,7 @@ ggsignif_adder <- function(plot,
                            x,
                            y,
                            pairwise.display = "significant",
+                           ggsignif.args = list(textsize = 3, tip_length = 0.01),
                            ...) {
   # creating a column for group combinations
   df_pairwise %<>% dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c))
@@ -230,20 +231,17 @@ ggsignif_adder <- function(plot,
 
   # adding ggsignif comparisons to the plot
   plot +
-    ggsignif::geom_signif(
+    rlang::exec(
+      .f = ggsignif::geom_signif,
       comparisons = df_pairwise$groups,
       map_signif_level = TRUE,
-      textsize = 3,
-      tip_length = 0.01,
-      vjust = 0,
-      y_position = ggsignif_xy(
-        data %>% dplyr::pull({{ x }}),
-        data %>% dplyr::pull({{ y }})
-      ),
+      y_position = ggsignif_xy(data %>% dplyr::pull({{ x }}), data %>% dplyr::pull({{ y }})),
       annotations = df_pairwise$label,
       test = NULL,
       na.rm = TRUE,
-      parse = TRUE
+      parse = TRUE,
+      vjust = 0,
+      !!!ggsignif.args
     )
 }
 

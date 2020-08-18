@@ -25,6 +25,7 @@ testthat::test_that(
         outlier.coef = 1.5,
         bf.message = TRUE,
         pairwise.comparisons = TRUE,
+        ggsignif.args = list(textsize = 6, tip_length = 0.01),
         pairwise.annotation = "asterisk",
         point.path.args = list(color = "red"),
         mean.path.args = list(color = "blue", size = 2, alpha = 0.8),
@@ -390,6 +391,7 @@ testthat::test_that(
         x = condition,
         y = value,
         type = "np",
+        ggsignif.args = list(textsize = 6, tip_length = 0.01),
         pairwise.display = "s",
         pairwise.annotation = "p",
         outlier.tagging = FALSE,
@@ -505,24 +507,30 @@ testthat::test_that(
     testthat::expect_identical(p2$labels$subtitle, p2_subtitle)
     testthat::expect_identical(p3$labels$subtitle, p3_subtitle)
     testthat::expect_identical(p4$labels$subtitle, p4_subtitle)
-    testthat::expect_identical(p1$labels$caption, ggplot2::expr(atop(
-      displaystyle(NULL),
-      expr = paste(
-        "Pairwise comparisons: ",
-        bold("Durbin-Conover test"),
-        "; Adjustment (p-value): ",
-        bold("Holm")
-      )
-    )))
-    testthat::expect_identical(p2$labels$caption, ggplot2::expr(atop(
-      displaystyle(NULL),
-      expr = paste(
-        "Pairwise comparisons: ",
-        bold("Yuen's trimmed means test"),
-        "; Adjustment (p-value): ",
-        bold("Holm")
-      )
-    )))
+    testthat::expect_identical(
+      p1$labels$caption,
+      ggplot2::expr(atop(
+        displaystyle(NULL),
+        expr = paste(
+          "Pairwise comparisons: ",
+          bold("Durbin-Conover test"),
+          "; Adjustment (p-value): ",
+          bold("Holm")
+        )
+      ))
+    )
+    testthat::expect_identical(
+      p2$labels$caption,
+      ggplot2::expr(atop(
+        displaystyle(NULL),
+        expr = paste(
+          "Pairwise comparisons: ",
+          bold("Yuen's trimmed means test"),
+          "; Adjustment (p-value): ",
+          bold("Holm")
+        )
+      ))
+    )
     testthat::expect_null(p3$labels$caption, NULL)
     testthat::expect_null(p4$labels$caption, NULL)
 
@@ -537,6 +545,12 @@ testthat::test_that(
       )
 
     testthat::expect_is(p5, "ggplot")
+
+    # checking changes made to ggsignif geom work
+    testthat::expect_equal(pb1$data[[7]]$textsize[[1]], 6L)
+    testthat::expect_equal(pb1$data[[7]]$shape[[1]], 19L)
+    testthat::expect_identical(pb1$data[[7]]$colour[[1]], "black")
+    testthat::expect_equal(pb1$data[[7]]$size[[1]], 0.5, tolerance = 0.001)
   }
 )
 

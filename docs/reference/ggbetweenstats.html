@@ -250,6 +250,7 @@ the plot as a subtitle.</p>
   <span class='kw'>point.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>position</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/position_jitterdodge.html'>position_jitterdodge</a></span>(<span class='kw'>dodge.width</span> <span class='kw'>=</span> <span class='fl'>0.6</span>), <span class='kw'>alpha</span>
     <span class='kw'>=</span> <span class='fl'>0.4</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>stroke</span> <span class='kw'>=</span> <span class='fl'>0</span>),
   <span class='kw'>violin.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.2</span>),
+  <span class='kw'>ggsignif.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>textsize</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>tip_length</span> <span class='kw'>=</span> <span class='fl'>0.01</span>),
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>,
@@ -473,6 +474,11 @@ the <code>geom_point</code> displaying the raw data.</p></td>
       <th>violin.args</th>
       <td><p>A list of additional aesthetic arguments to be passed to
 the <code>geom_violin</code>.</p></td>
+    </tr>
+    <tr>
+      <th>ggsignif.args</th>
+      <td><p>A list of additional aesthetic
+arguments to be passed to <code><a href='https://rdrr.io/pkg/ggsignif/man/stat_signif.html'>ggsignif::geom_signif</a></code>.</p></td>
     </tr>
     <tr>
       <th>ggtheme</th>

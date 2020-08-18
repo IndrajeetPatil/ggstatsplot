@@ -46,6 +46,7 @@ ggbetweenstats(
   point.args = list(position = ggplot2::position_jitterdodge(dodge.width = 0.6), alpha
     = 0.4, size = 3, stroke = 0),
   violin.args = list(width = 0.5, alpha = 0.2),
+  ggsignif.args = list(textsize = 3, tip_length = 0.01),
   ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE,
   package = "RColorBrewer",
@@ -195,6 +196,9 @@ the \code{geom_point} displaying the raw data.}
 
 \item{violin.args}{A list of additional aesthetic arguments to be passed to
 the \code{geom_violin}.}
+
+\item{ggsignif.args}{A list of additional aesthetic
+arguments to be passed to \code{ggsignif::geom_signif}.}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from

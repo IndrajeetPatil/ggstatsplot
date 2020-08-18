@@ -209,6 +209,7 @@
   <span class='no'>x</span>,
   <span class='no'>y</span>,
   <span class='kw'>pairwise.display</span> <span class='kw'>=</span> <span class='st'>"significant"</span>,
+  <span class='kw'>ggsignif.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>textsize</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>tip_length</span> <span class='kw'>=</span> <span class='fl'>0.01</span>),
   <span class='no'>...</span>
 )</pre>
 
@@ -247,6 +248,11 @@ Available options are <code>"significant"</code> (abbreviation accepted: <code>"
 argument to make sure that your plot is not uber-cluttered when you have
 multiple groups being compared and scores of pairwise comparisons being
 displayed.</p></td>
+    </tr>
+    <tr>
+      <th>ggsignif.args</th>
+      <td><p>A list of additional aesthetic
+arguments to be passed to <code><a href='https://rdrr.io/pkg/ggsignif/man/stat_signif.html'>ggsignif::geom_signif</a></code>.</p></td>
     </tr>
     <tr>
       <th>...</th>

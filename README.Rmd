@@ -276,6 +276,7 @@ ggstatsplot::grouped_ggbetweenstats(
   y = length,
   grouping.var = genre, # grouping variable
   pairwise.comparisons = TRUE, # display significant pairwise comparisons
+  ggsignif.args = list(textsize = 4, tip_length = 0.01),
   p.adjust.method = "bonferroni", # method for adjusting p-values for multiple comparisons
   # adding new components to `ggstatsplot` default
   ggplot.component = list(ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis())),

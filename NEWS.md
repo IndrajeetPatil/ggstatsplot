@@ -3,12 +3,15 @@
 NEW FEATURES
 
   - More models supported in `ggcoefstats`: `BFBayesFactor`, `betamfx`, `crq`,
-    `glht`, `glmm`, `manova`, `maov`, `negbinmfx`, `logitmfx`, `logitsf`, `margins`,
-    `poissonmfx`, `betaor`, `negbinirr`, `logitor`, `metafor`, `metaplus`,
-    `orm`, `poissonirr`, `semLm`, `semLme`.
+    `coxph.penal`, `glht`, `glmm`, `manova`, `maov`, `negbinmfx`, `logitmfx`,
+    `logitsf`, `margins`, `poissonmfx`, `betaor`, `negbinirr`, `logitor`,
+    `metafor`, `metaplus`, `orm`, `poissonirr`, `semLm`, `semLme`.
     
   - `ggpiestats` gains `label.repel` argument to cover contexts in which the
     labels might overlap. Setting it to `TRUE` will minimize such an overlap.
+    
+  - `ggbetweenstats` and `ggwithinstats` gain `ggsignif.args` argument to make
+    it easy to change aesthetics of the pairwise comparison geom.
 
 MAJOR CHANGES
 

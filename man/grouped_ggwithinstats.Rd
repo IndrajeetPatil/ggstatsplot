@@ -161,6 +161,8 @@ passed to \code{ggplot2::geom_point} and \code{ggrepel::geom_label_repel} geoms
 involved outlier value plotting.}
     \item{\code{violin.args}}{A list of additional aesthetic arguments to be passed to
 the \code{geom_violin}.}
+    \item{\code{ggsignif.args}}{A list of additional aesthetic
+arguments to be passed to \code{ggsignif::geom_signif}.}
     \item{\code{ggtheme}}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
 extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},

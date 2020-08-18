@@ -229,22 +229,22 @@ of iris. The species are Iris setosa, versicolor, and virginica.</p>
 <p>This is a modified dataset from <code>datasets</code> package.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='no'>iris_long</span>)</div><div class='output co'>#&gt; [1] 600   6</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>iris_long</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 6</span><span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='no'>iris_long</span>)</div><div class='output co'>#&gt; [1] 600   6</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>iris_long</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 6 x 6</span><span>
 #&gt;      id Species condition    attribute measure value
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>     1 setosa  Sepal.Length Sepal     Length    5.1
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>     2 setosa  Sepal.Length Sepal     Length    4.9
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span>     3 setosa  Sepal.Length Sepal     Length    4.7
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span>     4 setosa  Sepal.Length Sepal     Length    4.6
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span>     5 setosa  Sepal.Length Sepal     Length    5  
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span>     6 setosa  Sepal.Length Sepal     Length    5.4</div><div class='input'><span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>(<span class='no'>iris_long</span>)</div><div class='output co'>#&gt; Rows: 600
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>     1 setosa  Sepal.Length Sepal     Length    5.1
+#&gt; </span><span style='color: #555555;'>2</span><span>     2 setosa  Sepal.Length Sepal     Length    4.9
+#&gt; </span><span style='color: #555555;'>3</span><span>     3 setosa  Sepal.Length Sepal     Length    4.7
+#&gt; </span><span style='color: #555555;'>4</span><span>     4 setosa  Sepal.Length Sepal     Length    4.6
+#&gt; </span><span style='color: #555555;'>5</span><span>     5 setosa  Sepal.Length Sepal     Length    5  
+#&gt; </span><span style='color: #555555;'>6</span><span>     6 setosa  Sepal.Length Sepal     Length    5.4</div><div class='input'><span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>(<span class='no'>iris_long</span>)</div><div class='output co'>#&gt; Rows: 600
 #&gt; Columns: 6
-#&gt; $ id        </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17...
-#&gt; $ Species   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> setosa, setosa, setosa, setosa, setosa, setosa, setosa, s...
-#&gt; $ condition </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Sepal.Length, Sepal.Length, Sepal.Length, Sepal.Length, S...
-#&gt; $ attribute </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, S...
-#&gt; $ measure   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Length, Length, Length, Length, Length, Length, Length, L...
-#&gt; $ value     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4....</div></span></pre>
+#&gt; $ id        </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 3...
+#&gt; $ Species   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, ...
+#&gt; $ condition </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> Sepal.Length, Sepal.Length, Sepal.Length, Sepal.Length, Sepal.Length, Sepal.Length, Sepal.Length, Sepal.Length, ...
+#&gt; $ attribute </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, ...
+#&gt; $ measure   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> Length, Length, Length, Length, Length, Length, Length, Length, Length, Length, Length, Length, Length, Length, ...
+#&gt; $ value     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.8, 4.8, 4.3, 5.8, 5.7, 5.4, 5.1, 5.7, 5.1, 5.4, 5.1, 4....</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
