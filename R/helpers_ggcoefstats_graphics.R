@@ -92,7 +92,7 @@ ggcoefstats_label_maker <- function(tidy_df,
   #--------------------------- chi^2-statistic ---------------------------------
 
   # if the statistic is chi^2-value
-  if (statistic == "c") {
+  if (statistic %in% c("c", "chi")) {
     tidy_df %<>%
       dplyr::rowwise() %>%
       dplyr::mutate(

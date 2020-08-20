@@ -142,7 +142,7 @@ testthat::test_that(
     data_dims <- dim(dat)
 
     # data for geom_signif layer
-    data_signif <- tibble::as_tibble(pb$data[[7]])
+    data_signif <- as_tibble(pb$data[[7]])
 
     # checking comparison groups and labels
     testthat::expect_identical(dat$group1, c("Action", "Action", "Comedy"))
@@ -233,7 +233,7 @@ testthat::test_that(
     data_dims <- dim(dat)
 
     # data for geom_signif layer
-    data_signif <- tibble::as_tibble(pb$data[[7]])
+    data_signif <- as_tibble(pb$data[[7]])
 
     # checking comparison groups and labels
     testthat::expect_identical(dat$group1, c("4", "4", "f"))
@@ -313,7 +313,7 @@ testthat::test_that(
     data_dims <- dim(dat)
 
     # data for geom_signif layer
-    data_signif <- tibble::as_tibble(pb$data[[7]])
+    data_signif <- as_tibble(pb$data[[7]])
 
     # checking comparison groups and labels)
     testthat::expect_identical(dat$group1, c("4", "4", "6"))

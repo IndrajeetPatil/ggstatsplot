@@ -15,6 +15,7 @@
 \alias{\%||\%}
 \alias{\%|\%}
 \alias{tibble}
+\alias{enframe}
 \alias{as_tibble}
 \title{Objects exported from other packages}
 \keyword{internal}
@@ -23,7 +24,7 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{ipmisc}{\code{\link[ipmisc:reexports]{\%$\%}}, \code{\link[ipmisc:reexports]{\%<-\%}}, \code{\link[ipmisc:reexports]{\%<>\%}}, \code{\link[ipmisc:reexports]{\%>\%}}, \code{\link[ipmisc:reexports]{\%|\%}}, \code{\link[ipmisc:reexports]{\%||\%}}, \code{\link[ipmisc:reexports]{as_tibble}}, \code{\link[ipmisc]{set_cwd}}, \code{\link[ipmisc]{signif_column}}, \code{\link[ipmisc]{specify_decimal_p}}, \code{\link[ipmisc:reexports]{tibble}}}
+  \item{ipmisc}{\code{\link[ipmisc:reexports]{\%$\%}}, \code{\link[ipmisc:reexports]{\%<-\%}}, \code{\link[ipmisc:reexports]{\%<>\%}}, \code{\link[ipmisc:reexports]{\%>\%}}, \code{\link[ipmisc:reexports]{\%|\%}}, \code{\link[ipmisc:reexports]{\%||\%}}, \code{\link[ipmisc:reexports]{as_tibble}}, \code{\link[ipmisc:reexports]{enframe}}, \code{\link[ipmisc]{set_cwd}}, \code{\link[ipmisc]{signif_column}}, \code{\link[ipmisc]{specify_decimal_p}}, \code{\link[ipmisc:reexports]{tibble}}}
 
   \item{pairwiseComparisons}{\code{\link[pairwiseComparisons]{pairwise_comparisons}}, \code{\link[pairwiseComparisons:pairwise_comparisons]{pairwise_p}}}
 }}

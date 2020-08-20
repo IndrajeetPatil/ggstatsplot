@@ -364,23 +364,23 @@ testthat::test_that(
 
     testthat::expect_identical(class(p)[[1]], "ggExtraPlot")
     testthat::expect_identical(
-      tibble::enframe(p$grobs[[23]]$children)$value[[1]][[1]],
+      enframe(p$grobs[[23]]$children)$value[[1]][[1]],
       "mammalian sleep dataset"
     )
     testthat::expect_identical(
-      tibble::enframe(p$grobs[[17]]$children)$value[[1]][[1]],
+      enframe(p$grobs[[17]]$children)$value[[1]][[1]],
       "source: ggplot2 package"
     )
     testthat::expect_identical(
-      tibble::enframe(p$grobs[[12]]$children)$value[[1]][[1]],
+      enframe(p$grobs[[12]]$children)$value[[1]][[1]],
       "total sleep"
     )
     testthat::expect_identical(
-      tibble::enframe(p$grobs[[13]]$children)$value[[1]][[1]],
+      enframe(p$grobs[[13]]$children)$value[[1]][[1]],
       "body weight"
     )
     testthat::expect_identical(
-      tibble::enframe(p$grobs[[22]]$children)$value[[1]][[1]],
+      enframe(p$grobs[[22]]$children)$value[[1]][[1]],
       p_subtitle
     )
   }

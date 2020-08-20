@@ -53,7 +53,8 @@ dataframe of results from \code{broom::tidy}) or \code{"glance"} (object from
 \code{broom::glance}) or \code{"augment"} (object from \code{broom::augment}).}
 
 \item{statistic}{Which statistic is to be displayed (either \code{"t"} or \code{"f"}or
-\code{"z"}) in the label. This is relevant if the \code{x} argument is a dataframe.}
+\code{"z"} or \code{"chi"}) in the label. This is relevant if the \code{x} argument is a
+\emph{dataframe}.}
 
 \item{conf.int}{Logical. Decides whether to display confidence intervals as
 error bars (Default: \code{TRUE}).}

@@ -51,7 +51,6 @@ Suggests:
     MASS,
     rmarkdown,
     spelling,
-    survival,
     testthat,
     tibble,
     WRS2

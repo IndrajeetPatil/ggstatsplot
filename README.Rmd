@@ -973,9 +973,9 @@ also supported by `ggcoefstats`. For example-
 `brmsfit`, `brmultinom`, `btergm`, `cch`, `cgam`, `cgamm`, `cglm`, `clm`,
 `clm2`, `clmm`, `clmm2`, `coeftest`, `complmrob`, `confusionMatrix`, `coxme`,
 `coxph`, `coxph.penal`, `cpglm`, `cpglmm`, `crch`, `crq`, `DirichReg`, `drc`,
-`emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`, `flexsurvreg`,
-`glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`, `garch`, `glht`,
-`glm`, `glmm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`,
+`emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`, `flexsurvreg`, `gam`,
+`Gam`, `gamlss`, `garch`, `geeglm`, `glmc`, `glmerMod`, `glmmTMB`, `gls`,
+`glht`, `glm`, `glmm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`,
 `hurdle`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`,
 `lmerModLmerTest`, `lmodel2`, `lmRob`, `lmrob`, `lm_robust`, `logitmfx`,
 `logitor`, `logitsf`, `LORgee`, `lqm`, `lqmm`, `lrm`, `manova`, `maov`, `mcmc`,
@@ -985,7 +985,7 @@ also supported by `ggcoefstats`. For example-
 `poissonmfx`, `poissonirr`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`,
 `robmixglm`, `rq`, `rqss`, `semLm`, `semLme`, `slm`, `speedglm`, `speedlm`,
 `stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`,
-`truncreg`, `vgam`, `wbgee`, `wblm`, `zcpglm`, `zeroinfl`, etc.
+`truncreg`, `vgam`, `vglm`, `wbgee`, `wblm`, `zcpglm`, `zeroinfl`, etc.
 
 Although not shown here, this function can also be used to carry out both
 frequentist and Bayesian random-effects meta-analysis.

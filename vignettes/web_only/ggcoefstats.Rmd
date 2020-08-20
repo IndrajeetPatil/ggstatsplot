@@ -85,9 +85,9 @@ also supported by `ggcoefstats`. For example-
 `brmsfit`, `brmultinom`, `btergm`, `cch`, `cgam`, `cgamm`, `cglm`, `clm`,
 `clm2`, `clmm`, `clmm2`, `coeftest`, `complmrob`, `confusionMatrix`, `coxme`,
 `coxph`, `coxph.penal`, `cpglm`, `cpglmm`, `crch`, `crq`, `DirichReg`, `drc`,
-`emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`, `flexsurvreg`,
-`glmc`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`, `garch`, `glht`,
-`glm`, `glmm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`,
+`emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`, `flexsurvreg`, `gam`,
+`Gam`, `gamlss`, `garch`, `geeglm`, `glmc`, `glmerMod`, `glmmTMB`, `gls`,
+`glht`, `glm`, `glmm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`,
 `hurdle`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`,
 `lmerModLmerTest`, `lmodel2`, `lmRob`, `lmrob`, `lm_robust`, `logitmfx`,
 `logitor`, `logitsf`, `LORgee`, `lqm`, `lqmm`, `lrm`, `manova`, `maov`, `mcmc`,
@@ -97,7 +97,7 @@ also supported by `ggcoefstats`. For example-
 `poissonmfx`, `poissonirr`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`,
 `robmixglm`, `rq`, `rqss`, `semLm`, `semLme`, `slm`, `speedglm`, `speedlm`,
 `stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`,
-`truncreg`, `vgam`, `wbgee`, `wblm`, `zcpglm`, `zeroinfl`, etc.
+`truncreg`, `vgam`, `vglm`, `wbgee`, `wblm`, `zcpglm`, `zeroinfl`, etc.
 
 # Examples of supported models
 
@@ -642,6 +642,35 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
+## Fit Generalized Estimating Equations with `geepack` (`geeglm`)
+
+```{r geeglm, fig.height = 7, fig.width = 7}
+# setup
+set.seed(123)
+library(geepack)
+data(dietox)
+dietox$Cu <- as.factor(dietox$Cu)
+mf <- formula(Weight ~ Cu * (Time + I(Time^2) + I(Time^3)))
+
+# model
+gee1 <-
+  geeglm(
+    mf,
+    data = dietox,
+    id = Pig,
+    family = poisson("identity"),
+    corstr = "ar1"
+  )
+
+# plot
+ggcoefstats(
+  x = gee1,
+  title = "Fit Generalized Estimating Equations",
+  package = "ggsci",
+  palette = "category20c_d3"
+)
+```
+
 ## ordinal regression model (`orm`)
 
 ```{r orm, fig.height = 5, fig.width = 5}
@@ -977,9 +1006,33 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
-## Vector Generalized Linear Models (`vgam`)
+## Vector Generalized Additive Models (`vgam`)
 
-```{r vgam, fig.height = 4, fig.width = 6}
+```{r vgam, fig.height = 4, fig.width = 4}
+# setup
+set.seed(123)
+library(VGAM)
+pneumo <- transform(pneumo, let = log(exposure.time))
+
+# model
+mod <-
+  vgam(
+    cbind(normal, mild, severe) ~ s(let),
+    cumulative(parallel = TRUE),
+    data = pneumo,
+    trace = FALSE
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
+  title = "Vector Generalized Additive Models"
+)
+```
+
+## Vector Generalized Linear Models (`vglm`)
+
+```{r vglm, fig.height = 4, fig.width = 6}
 # setup
 set.seed(123)
 library(VGAM)

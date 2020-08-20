@@ -17,7 +17,8 @@ ggcoefstats_label_maker(
 \item{tidy_df}{A tidy dataframe.}
 
 \item{statistic}{Which statistic is to be displayed (either \code{"t"} or \code{"f"}or
-\code{"z"}) in the label. This is relevant if the \code{x} argument is a dataframe.}
+\code{"z"} or \code{"chi"}) in the label. This is relevant if the \code{x} argument is a
+\emph{dataframe}.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}

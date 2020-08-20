@@ -15,7 +15,8 @@
 #'   dataframe of results from `broom::tidy`) or `"glance"` (object from
 #'   `broom::glance`) or `"augment"` (object from `broom::augment`).
 #' @param statistic Which statistic is to be displayed (either `"t"` or `"f"`or
-#'   `"z"`) in the label. This is relevant if the `x` argument is a dataframe.
+#'   `"z"` or `"chi"`) in the label. This is relevant if the `x` argument is a
+#'   *dataframe*.
 #' @param bf.message Logical that decides whether results from running a
 #'   Bayesian meta-analysis assuming that the effect size *d* varies across
 #'   studies with standard deviation *t* (i.e., a random-effects analysis)

@@ -34,6 +34,7 @@ zeallot::%<-%
 rlang::%|%
 rlang::%||%
 tibble::as_tibble
+tibble::enframe
 pairwiseComparisons::pairwise_comparisons
 pairwiseComparisons::pairwise_p
 ipmisc::set_cwd
