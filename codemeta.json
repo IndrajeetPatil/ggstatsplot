@@ -179,13 +179,14 @@
       "@type": "SoftwareApplication",
       "identifier": "broomExtra",
       "name": "broomExtra",
+      "version": ">= 4.0.4.9000",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=broomExtra"
+      "sameAs": "https://github.com/IndrajeetPatil/broomExtra"
     },
     {
       "@type": "SoftwareApplication",
@@ -463,5 +464,5 @@
   ],
   "funder": {},
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md",
-  "fileSize": "41133.464KB"
+  "fileSize": "41135.562KB"
 }

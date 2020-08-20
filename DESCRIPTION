@@ -25,7 +25,7 @@ BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
 Depends: 
     R (>= 3.6.0)
 Imports:
-    broomExtra,
+    broomExtra (>= 4.0.4.9000),
     cowplot,
     dplyr,
     ggcorrplot,
@@ -55,10 +55,11 @@ Suggests:
     testthat,
     tibble,
     WRS2
-Remotes:
-    IndrajeetPatil/statsExpressions
 VignetteBuilder: 
     knitr
+Remotes:
+    IndrajeetPatil/broomExtra,
+    IndrajeetPatil/statsExpressions
 Encoding: UTF-8
 Language: en-US
 LazyData: true
