@@ -89,6 +89,26 @@ ggcoefstats_label_maker <- function(tidy_df,
       )
   }
 
+  #--------------------------- chi^2-statistic ---------------------------------
+
+  # if the statistic is chi^2-value
+  if (statistic == "c") {
+    tidy_df %<>%
+      dplyr::rowwise() %>%
+      dplyr::mutate(
+        label = paste(
+          "list(~widehat(italic(beta))==",
+          specify_decimal_p(x = estimate, k = k),
+          ", ~italic(chi)^2==",
+          specify_decimal_p(x = statistic, k = k),
+          ", ~italic(p)",
+          p.value.formatted,
+          ")",
+          sep = ""
+        )
+      )
+  }
+
   #--------------------------- f-statistic ---------------------------------
 
   if (statistic == "f") {

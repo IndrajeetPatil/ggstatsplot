@@ -70,6 +70,66 @@ testthat::test_that(
   }
 )
 
+# chi^2-statistic --------------------------------------------------
+
+testthat::test_that(
+  desc = "ggcoefstats with coxph.panel model",
+  code = {
+    testthat::skip_on_cran()
+
+    # model
+    set.seed(123)
+    library(survival)
+    mod <-
+      coxph(Surv(time, status) ~ age + sex + frailty(inst), lung)
+
+    # plot
+    set.seed(123)
+    p <- ggstatsplot::ggcoefstats(mod)
+
+    # plot build
+    pb <- ggplot2::ggplot_build(p)
+
+    # tidy dataframe from the function
+    testthat::expect_equal(
+      pb$data[[4]],
+      structure(
+        list(
+          x = c(0.0170335066199796, -0.511668342705175),
+          y = structure(1:2, class = c("mapped_discrete", "numeric")),
+          label = c(
+            "list(~widehat(italic(beta))==0.02, ~italic(chi)^2==3.40, ~italic(p)== 0.065)",
+            "list(~widehat(italic(beta))==-0.51, ~italic(chi)^2==9.31, ~italic(p)== 0.002)"
+          ),
+          PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
+          group = structure(1:2, n = 2L),
+          colour = structure(c(
+            "#1B9E77FF",
+            "#D95F02FF"
+          ), class = "colors"),
+          fill = c("white", "white"),
+          size = c(3, 3),
+          angle = c(0, 0),
+          alpha = c(NA, NA),
+          family = c(
+            "",
+            ""
+          ),
+          fontface = c(1, 1),
+          lineheight = c(1.2, 1.2),
+          hjust = c(
+            0.5,
+            0.5
+          ),
+          vjust = c(0.5, 0.5)
+        ),
+        row.names = c(NA, -2L),
+        class = "data.frame"
+      )
+    )
+  }
+)
+
 # t-statistic --------------------------------------------------
 
 testthat::test_that(
