@@ -37,7 +37,6 @@ r_packages:
   - LaplacesDemon
   - logspline
   - testthat
-  - devtools
   - remotes
   - knitr
   - rmarkdown

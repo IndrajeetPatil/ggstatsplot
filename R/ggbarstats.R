@@ -24,7 +24,6 @@
 #' @importFrom dplyr select group_by summarize n mutate mutate_at mutate_if
 #' @importFrom rlang !! enquo quo_name as_name ensym
 #' @importFrom paletteer scale_fill_paletteer_d
-#' @importFrom groupedstats grouped_proptest
 #' @importFrom tidyr uncount drop_na
 #' @importFrom statsExpressions expr_contingency_tab bf_contingency_tab
 #'

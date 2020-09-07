@@ -210,20 +210,20 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
     </div>
 
     <pre class="usage"><span class='fu'>grouped_ggcorrmat</span>(
-  <span class='no'>data</span>,
-  <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>cor.vars.names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>grouping.var</span>,
-  <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>plotgrid.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>title.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>title.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>16</span>, <span class='kw'>fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>),
-  <span class='kw'>caption.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>caption.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>10</span>),
-  <span class='kw'>sub.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>sub.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>12</span>)
+  <span class='kw'>data</span>,
+  cor.vars = <span class='kw'>NULL</span>,
+  cor.vars.names = <span class='kw'>NULL</span>,
+  <span class='kw'>grouping.var</span>,
+  title.prefix = <span class='kw'>NULL</span>,
+  output = <span class='st'>"plot"</span>,
+  <span class='kw'>...</span>,
+  plotgrid.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  title.text = <span class='kw'>NULL</span>,
+  title.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(size = <span class='fl'>16</span>, fontface = <span class='st'>"bold"</span>),
+  caption.text = <span class='kw'>NULL</span>,
+  caption.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(size = <span class='fl'>10</span>),
+  sub.text = <span class='kw'>NULL</span>,
+  sub.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(size = <span class='fl'>12</span>)
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -266,7 +266,7 @@ values, <em>p</em>-values, no. of observations, etc.) will be returned.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Arguments passed on to <code><a href='ggcorrmat.html'>ggcorrmat</a></code></p><dl'>
+      <td><p>Arguments passed on to <code><a href='ggcorrmat.html'>ggcorrmat</a></code></p><dl>
     <dt><code>matrix.type</code></dt><dd><p>Character, <code>"full"</code> (default), <code>"upper"</code> or <code>"lower"</code>,
 display full matrix, lower triangular or upper triangular matrix.</p></dd>
     <dt><code>matrix.method</code></dt><dd><p>The visualization method of correlation matrix to be
@@ -387,44 +387,46 @@ function.</p>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
 
 <span class='co'># for plot</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>grouped_ggcorrmat</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
-  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>Species</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"robust"</span>,
-  <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"holm"</span>
-)</div><div class='img'><img src='grouped_ggcorrmat-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='kw'>ggstatsplot</span>::<span class='fu'>grouped_ggcorrmat</span>(
+  data = <span class='kw'>iris</span>,
+  grouping.var = <span class='kw'>Species</span>,
+  type = <span class='st'>"robust"</span>,
+  p.adjust.method = <span class='st'>"holm"</span>
+)
+</div><div class='img'><img src='grouped_ggcorrmat-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># for dataframe</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>grouped_ggcorrmat</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
-  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>vore</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"bayes"</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"dataframe"</span>
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: Series not converged.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Series not converged.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Series not converged.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Series not converged.</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 60 x 13</span><span>
-#&gt;    vore  parameter1  parameter2      rho ci_low ci_high    pd rope_percentage prior_distribution prior_location prior_scale      bf
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> carni sleep_total sleep_rem    0.850   0.641  0.961  1              0      cauchy                          0       0.707 112.   
-#&gt; </span><span style='color: #555555;'> 2</span><span> carni sleep_total sleep_cycle  0.213  -</span><span style='color: #BB0000;'>0.359</span><span>  0.750  0.692          0.176  cauchy                          0       0.707   0.714
-#&gt; </span><span style='color: #555555;'> 3</span><span> carni sleep_total awake       -</span><span style='color: #BB0000;'>1.00</span><span>   -</span><span style='color: #BB0000;'>1.00</span><span>  -</span><span style='color: #BB0000;'>1.00</span><span>   1              0      cauchy                          0       0.707  </span><span style='color: #BB0000;'>NA</span><span>    
-#&gt; </span><span style='color: #555555;'> 4</span><span> carni sleep_total brainwt     -</span><span style='color: #BB0000;'>0.389</span><span>  -</span><span style='color: #BB0000;'>0.787</span><span>  0.020</span><span style='text-decoration: underline;'>5</span><span> 0.897          0.115  cauchy                          0       0.707   1.13 
-#&gt; </span><span style='color: #555555;'> 5</span><span> carni sleep_total bodywt      -</span><span style='color: #BB0000;'>0.371</span><span>  -</span><span style='color: #BB0000;'>0.654</span><span> -</span><span style='color: #BB0000;'>0.070</span><span style='color: #BB0000;text-decoration: underline;'>1</span><span> 0.96           0.087</span><span style='text-decoration: underline;'>5</span><span> cauchy                          0       0.707   1.72 
-#&gt; </span><span style='color: #555555;'> 6</span><span> carni sleep_rem   sleep_cycle  0.072</span><span style='text-decoration: underline;'>7</span><span> -</span><span style='color: #BB0000;'>0.518</span><span>  0.610  0.552          0.192  cauchy                          0       0.707   0.621
-#&gt; </span><span style='color: #555555;'> 7</span><span> carni sleep_rem   awake       -</span><span style='color: #BB0000;'>0.843</span><span>  -</span><span style='color: #BB0000;'>0.958</span><span> -</span><span style='color: #BB0000;'>0.660</span><span>  1              0      cauchy                          0       0.707 112.   
-#&gt; </span><span style='color: #555555;'> 8</span><span> carni sleep_rem   brainwt     -</span><span style='color: #BB0000;'>0.316</span><span>  -</span><span style='color: #BB0000;'>0.763</span><span>  0.244  0.785          0.157  cauchy                          0       0.707   0.848
-#&gt; </span><span style='color: #555555;'> 9</span><span> carni sleep_rem   bodywt      -</span><span style='color: #BB0000;'>0.366</span><span>  -</span><span style='color: #BB0000;'>0.766</span><span>  0.041</span><span style='text-decoration: underline;'>1</span><span> 0.887          0.116  cauchy                          0       0.707   1.03 
-#&gt; </span><span style='color: #555555;'>10</span><span> carni sleep_cycle awake       -</span><span style='color: #BB0000;'>0.214</span><span>  -</span><span style='color: #BB0000;'>0.741</span><span>  0.356  0.692          0.182  cauchy                          0       0.707   0.714
-#&gt;     nobs
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>    10
-#&gt; </span><span style='color: #555555;'> 2</span><span>     5
-#&gt; </span><span style='color: #555555;'> 3</span><span>    19
-#&gt; </span><span style='color: #555555;'> 4</span><span>     9
-#&gt; </span><span style='color: #555555;'> 5</span><span>    19
-#&gt; </span><span style='color: #555555;'> 6</span><span>     5
-#&gt; </span><span style='color: #555555;'> 7</span><span>    10
-#&gt; </span><span style='color: #555555;'> 8</span><span>     6
-#&gt; </span><span style='color: #555555;'> 9</span><span>    10
-#&gt; </span><span style='color: #555555;'>10</span><span>     5
-#&gt; </span><span style='color: #555555;'># ... with 50 more rows</span><span></div><div class='input'># }
+<span class='kw'>ggstatsplot</span>::<span class='fu'>grouped_ggcorrmat</span>(
+  data = <span class='kw'>ggplot2</span>::<span class='kw'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
+  grouping.var = <span class='kw'>vore</span>,
+  type = <span class='st'>"bayes"</span>,
+  output = <span class='st'>"dataframe"</span>
+)
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Series not converged.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Series not converged.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Series not converged.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Series not converged.</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 60 x 13</span><span>
+#&gt;    </span><span style='font-weight: bold;'>vore</span><span>  </span><span style='font-weight: bold;'>parameter1</span><span>  </span><span style='font-weight: bold;'>parameter2</span><span>      </span><span style='font-weight: bold;'>rho</span><span> </span><span style='font-weight: bold;'>ci_low</span><span> </span><span style='font-weight: bold;'>ci_high</span><span>    </span><span style='font-weight: bold;'>pd</span><span> </span><span style='font-weight: bold;'>rope_percentage</span><span>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> carni sleep_total sleep_rem    0.850   0.641  0.961  1              0     
+#&gt; </span><span style='color: #555555;'> 2</span><span> carni sleep_total sleep_cycle  0.213  -</span><span style='color: #BB0000;'>0.359</span><span>  0.750  0.692          0.176 
+#&gt; </span><span style='color: #555555;'> 3</span><span> carni sleep_total awake       -</span><span style='color: #BB0000;'>1.00</span><span>   -</span><span style='color: #BB0000;'>1.00</span><span>  -</span><span style='color: #BB0000;'>1.00</span><span>   1              0     
+#&gt; </span><span style='color: #555555;'> 4</span><span> carni sleep_total brainwt     -</span><span style='color: #BB0000;'>0.389</span><span>  -</span><span style='color: #BB0000;'>0.787</span><span>  0.020</span><span style='text-decoration: underline;'>5</span><span> 0.897          0.115 
+#&gt; </span><span style='color: #555555;'> 5</span><span> carni sleep_total bodywt      -</span><span style='color: #BB0000;'>0.371</span><span>  -</span><span style='color: #BB0000;'>0.654</span><span> -</span><span style='color: #BB0000;'>0.070</span><span style='color: #BB0000;text-decoration: underline;'>1</span><span> 0.96           0.087</span><span style='text-decoration: underline;'>5</span><span>
+#&gt; </span><span style='color: #555555;'> 6</span><span> carni sleep_rem   sleep_cycle  0.072</span><span style='text-decoration: underline;'>7</span><span> -</span><span style='color: #BB0000;'>0.518</span><span>  0.610  0.552          0.192 
+#&gt; </span><span style='color: #555555;'> 7</span><span> carni sleep_rem   awake       -</span><span style='color: #BB0000;'>0.843</span><span>  -</span><span style='color: #BB0000;'>0.958</span><span> -</span><span style='color: #BB0000;'>0.660</span><span>  1              0     
+#&gt; </span><span style='color: #555555;'> 8</span><span> carni sleep_rem   brainwt     -</span><span style='color: #BB0000;'>0.316</span><span>  -</span><span style='color: #BB0000;'>0.763</span><span>  0.244  0.785          0.157 
+#&gt; </span><span style='color: #555555;'> 9</span><span> carni sleep_rem   bodywt      -</span><span style='color: #BB0000;'>0.366</span><span>  -</span><span style='color: #BB0000;'>0.766</span><span>  0.041</span><span style='text-decoration: underline;'>1</span><span> 0.887          0.116 
+#&gt; </span><span style='color: #555555;'>10</span><span> carni sleep_cycle awake       -</span><span style='color: #BB0000;'>0.214</span><span>  -</span><span style='color: #BB0000;'>0.741</span><span>  0.356  0.692          0.182 
+#&gt;    </span><span style='font-weight: bold;'>prior_distribution</span><span> </span><span style='font-weight: bold;'>prior_location</span><span> </span><span style='font-weight: bold;'>prior_scale</span><span>      </span><span style='font-weight: bold;'>bf</span><span>  </span><span style='font-weight: bold;'>nobs</span><span>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> cauchy                          0       0.707 112.       10
+#&gt; </span><span style='color: #555555;'> 2</span><span> cauchy                          0       0.707   0.714     5
+#&gt; </span><span style='color: #555555;'> 3</span><span> cauchy                          0       0.707  </span><span style='color: #BB0000;'>NA</span><span>        19
+#&gt; </span><span style='color: #555555;'> 4</span><span> cauchy                          0       0.707   1.13      9
+#&gt; </span><span style='color: #555555;'> 5</span><span> cauchy                          0       0.707   1.72     19
+#&gt; </span><span style='color: #555555;'> 6</span><span> cauchy                          0       0.707   0.621     5
+#&gt; </span><span style='color: #555555;'> 7</span><span> cauchy                          0       0.707 112.       10
+#&gt; </span><span style='color: #555555;'> 8</span><span> cauchy                          0       0.707   0.848     6
+#&gt; </span><span style='color: #555555;'> 9</span><span> cauchy                          0       0.707   1.03     10
+#&gt; </span><span style='color: #555555;'>10</span><span> cauchy                          0       0.707   0.714     5
+#&gt; </span><span style='color: #555555;'># ... with 50 more rows</span><span></div><div class='input'><span class='co'># }</span>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -441,7 +443,7 @@ function.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>

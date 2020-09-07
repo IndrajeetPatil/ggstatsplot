@@ -149,7 +149,7 @@
       <h1 data-toc-skip>gghistostats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-08-16</h4>
+            <h4 class="date">2020-09-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/gghistostats.Rmd"><code>vignettes/web_only/gghistostats.Rmd</code></a></small>
       <div class="hidden name"><code>gghistostats.Rmd</code></div>
@@ -169,13 +169,14 @@
 <a href="#distribution-of-a-sample-with-gghistostats" class="anchor"></a>Distribution of a sample with <code>gghistostats</code>
 </h2>
 <p>Let’s begin with a very simple example from the <code>psych</code> package (<code><a href="https://rdrr.io/pkg/psych/man/sat.act.html">psych::sat.act</a></code>), a sample of 700 self-reported scores on the SAT Verbal, SAT Quantitative and ACT tests. ACT composite scores may range from 1 - 36. National norms have a mean of 20.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="co"># loading needed libraries</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">psych</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="co"># loading needed libraries</span>
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot">ggstatsplot</a></span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://personality-project.org/r/psych">psych</a></span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://dplyr.tidyverse.org">dplyr</a></span>)
 
 <span class="co"># looking at the structure of the data using glimpse</span>
-<span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="kw pkg">psych</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/psych/man/sat.act.html">sat.act</a></span>)
+<span class="kw">dplyr</span>::<span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span>(x = <span class="kw">psych</span>::<span class="kw"><a href="https://rdrr.io/pkg/psych/man/sat.act.html">sat.act</a></span>)
 <span class="co">#&gt; Rows: 700</span>
 <span class="co">#&gt; Columns: 6</span>
 <span class="co">#&gt; $ gender    &lt;int&gt; 2, 2, 2, 1, 1, 1, 2, 1, 2, 2, 1, 2, 1, 2, 2, 2, 2, 2, 1, ...</span>
@@ -183,18 +184,21 @@
 <span class="co">#&gt; $ age       &lt;int&gt; 19, 23, 20, 27, 33, 26, 30, 19, 23, 40, 23, 34, 32, 41, 2...</span>
 <span class="co">#&gt; $ ACT       &lt;int&gt; 24, 35, 21, 26, 31, 28, 36, 22, 22, 35, 32, 29, 21, 35, 2...</span>
 <span class="co">#&gt; $ SATV      &lt;int&gt; 500, 600, 480, 550, 600, 640, 610, 520, 400, 730, 760, 71...</span>
-<span class="co">#&gt; $ SATQ      &lt;int&gt; 500, 500, 470, 520, 550, 640, 500, 560, 600, 800, 710, 60...</span></pre></body></html></div>
+<span class="co">#&gt; $ SATQ      &lt;int&gt; 500, 500, 470, 520, 550, 640, 500, 560, 600, 800, 710, 60...</span>
+</pre></div>
 <p>To get a simple histogram with no statistics and no special information. <code>gghistostats</code> will by default choose a binwidth <code>max(x) - min(x) / sqrt(N)</code>. You should always check this value and explore multiple widths to find the best to illustrate the stories in your data since histograms are sensitive to binwidth.</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/gghistostats.html">gghistostats</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">psych</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/psych/man/sat.act.html">sat.act</a></span>, <span class="co"># data from which variable is to be taken</span>
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">ACT</span>, <span class="co"># numeric variable</span>
-  <span class="kw">results.subtitle</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="co"># don't run statistical tests</span>
-  <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"ACT Score"</span>, <span class="co"># x-axis label</span>
-  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Distribution of ACT Scores"</span>, <span class="co"># title for the plot</span>
-  <span class="kw">subtitle</span> <span class="kw">=</span> <span class="st">"N = 700"</span>, <span class="co"># subtitle for the plot</span>
-  <span class="kw">caption</span> <span class="kw">=</span> <span class="st">"Data courtesy of: SAPA project (https://sapa-project.org)"</span>, <span class="co"># caption for the plot</span>
-  <span class="kw">centrality.k</span> <span class="kw">=</span> <span class="fl">1</span> <span class="co"># show 1 decimal places for centrality label</span>
-)</pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="kw">ggstatsplot</span>::<span class="fu"><a href="../../reference/gghistostats.html">gghistostats</a></span>(
+  data = <span class="kw">psych</span>::<span class="kw"><a href="https://rdrr.io/pkg/psych/man/sat.act.html">sat.act</a></span>, <span class="co"># data from which variable is to be taken</span>
+  x = <span class="kw">ACT</span>, <span class="co"># numeric variable</span>
+  results.subtitle = <span class="fl">FALSE</span>, <span class="co"># don't run statistical tests</span>
+  xlab = <span class="st">"ACT Score"</span>, <span class="co"># x-axis label</span>
+  title = <span class="st">"Distribution of ACT Scores"</span>, <span class="co"># title for the plot</span>
+  subtitle = <span class="st">"N = 700"</span>, <span class="co"># subtitle for the plot</span>
+  caption = <span class="st">"Data courtesy of: SAPA project (https://sapa-project.org)"</span>, <span class="co"># caption for the plot</span>
+  centrality.k = <span class="fl">1</span> <span class="co"># show 1 decimal places for centrality label</span>
+)
+</pre></div>
 <p><img src="gghistostats_files/figure-html/psychact2-1.png" width="672"></p>
 </div>
 <div id="statistical-analysis-with-gghistostats" class="section level2">
@@ -211,23 +215,25 @@
 </li>
 <li>Compute information about the Bayes Factor (<code>bf.message = TRUE</code>, see below)</li>
 </ol>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/gghistostats.html">gghistostats</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">psych</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/psych/man/sat.act.html">sat.act</a></span>, <span class="co"># data from which variable is to be taken</span>
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">ACT</span>, <span class="co"># numeric variable</span>
-  <span class="kw">results.subtitle</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="co"># run statistical tests</span>
-  <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"ACT Score"</span>, <span class="co"># x-axis label</span>
-  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Distribution of ACT Scores"</span>, <span class="co"># title for the plot</span>
-  <span class="kw">type</span> <span class="kw">=</span> <span class="st">"p"</span>, <span class="co"># one sample t-test</span>
-  <span class="kw">bf.message</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="co"># display Bayes method results</span>
-  <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(), <span class="co"># changing default theme</span>
-  <span class="kw">bar.fill</span> <span class="kw">=</span> <span class="st">"#D55E00"</span>, <span class="co"># change fill color</span>
-  <span class="kw">normal.curve</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="co"># disply a normal distribution curve</span>
-  <span class="kw">normal.curve.color</span> <span class="kw">=</span> <span class="st">"black"</span>,
-  <span class="kw">test.value</span> <span class="kw">=</span> <span class="fl">20</span>, <span class="co"># test value</span>
-  <span class="kw">test.value.line</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="co"># show a vertical line at `test.value`</span>
-  <span class="kw">caption</span> <span class="kw">=</span> <span class="st">"Data courtesy of: SAPA project (https://sapa-project.org)"</span>, <span class="co"># caption for the plot</span>
-  <span class="kw">centrality.k</span> <span class="kw">=</span> <span class="fl">1</span> <span class="co"># show 1 decimal places for centrality label</span>
-)</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="kw">ggstatsplot</span>::<span class="fu"><a href="../../reference/gghistostats.html">gghistostats</a></span>(
+  data = <span class="kw">psych</span>::<span class="kw"><a href="https://rdrr.io/pkg/psych/man/sat.act.html">sat.act</a></span>, <span class="co"># data from which variable is to be taken</span>
+  x = <span class="kw">ACT</span>, <span class="co"># numeric variable</span>
+  results.subtitle = <span class="fl">TRUE</span>, <span class="co"># run statistical tests</span>
+  xlab = <span class="st">"ACT Score"</span>, <span class="co"># x-axis label</span>
+  title = <span class="st">"Distribution of ACT Scores"</span>, <span class="co"># title for the plot</span>
+  type = <span class="st">"p"</span>, <span class="co"># one sample t-test</span>
+  bf.message = <span class="fl">TRUE</span>, <span class="co"># display Bayes method results</span>
+  ggtheme = <span class="kw">ggthemes</span>::<span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(), <span class="co"># changing default theme</span>
+  bar.fill = <span class="st">"#D55E00"</span>, <span class="co"># change fill color</span>
+  normal.curve = <span class="fl">TRUE</span>, <span class="co"># disply a normal distribution curve</span>
+  normal.curve.color = <span class="st">"black"</span>,
+  test.value = <span class="fl">20</span>, <span class="co"># test value</span>
+  test.value.line = <span class="fl">TRUE</span>, <span class="co"># show a vertical line at `test.value`</span>
+  caption = <span class="st">"Data courtesy of: SAPA project (https://sapa-project.org)"</span>, <span class="co"># caption for the plot</span>
+  centrality.k = <span class="fl">1</span> <span class="co"># show 1 decimal places for centrality label</span>
+)
+</pre></div>
 <p><img src="gghistostats_files/figure-html/psychact3-1.png" width="672"></p>
 <p><code>gghistostats</code> computed Bayes Factors to quantify the likelihood of the <strong>research</strong> (BF10) and the <strong>null</strong> hypothesis (BF01). In our current example, the Bayes Factor value provides <strong>very strong evidence</strong> <a href="https://www.stat.washington.edu/raftery/Research/PDF/kass1995.pdf">(Kass and Rafferty, 1995)</a> in favor of the research hypothesis: these ACT scores are much higher than the national average. The log(Bayes factor) of 492.5 means the odds are 7.54e+213:1 that this sample is different.</p>
 </div>
@@ -237,30 +243,32 @@
 </h2>
 <p>What if we want to do the same analysis separately for each gender? <code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_gghistostats</code>. This is merely a wrapper function around <code><a href="../../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>gghistostats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines the individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
 <p>Let’s see how we can use this function to apply <code>gghistostats</code> to accomplish our task.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/grouped_gghistostats.html">grouped_gghistostats</a></span>(
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="kw">ggstatsplot</span>::<span class="fu"><a href="../../reference/grouped_gghistostats.html">grouped_gghistostats</a></span>(
   <span class="co"># arguments relevant for ggstatsplot::gghistostats</span>
-  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">psych</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/psych/man/sat.act.html">sat.act</a></span>, <span class="co"># same dataset</span>
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">ACT</span>, <span class="co"># same outcome variable</span>
-  <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"ACT Score"</span>,
-  <span class="kw">grouping.var</span> <span class="kw">=</span> <span class="no">gender</span>, <span class="co"># grouping variable males = 1, females = 2</span>
-  <span class="kw">title.prefix</span> <span class="kw">=</span> <span class="st">"Gender"</span>, <span class="co"># prefix for the fixed title</span>
-  <span class="kw">k</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="co"># number of decimal places in results</span>
-  <span class="kw">type</span> <span class="kw">=</span> <span class="st">"robust"</span>, <span class="co"># robust test: one-sample percentile bootstrap</span>
-  <span class="kw">test.value</span> <span class="kw">=</span> <span class="fl">20</span>, <span class="co"># test value against which sample mean is to be compared</span>
-  <span class="kw">test.value.line</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="co"># show a vertical line at `test.value`</span>
-  <span class="kw">bar.measure</span> <span class="kw">=</span> <span class="st">"density"</span>, <span class="co"># density</span>
-  <span class="kw">centrality.parameter</span> <span class="kw">=</span> <span class="st">"median"</span>, <span class="co"># plotting centrality parameter</span>
-  <span class="kw">centrality.line.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">color</span> <span class="kw">=</span> <span class="st">"#D55E00"</span>),
-  <span class="kw">centrality.label.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">color</span> <span class="kw">=</span> <span class="st">"#D55E00"</span>),
-  <span class="kw">test.value.line.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">color</span> <span class="kw">=</span> <span class="st">"#009E73"</span>),
-  <span class="kw">test.value.label.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">color</span> <span class="kw">=</span> <span class="st">"#009E73"</span>),
-  <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_stata.html">theme_stata</a></span>(), <span class="co"># changing default theme</span>
-  <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="co"># turn off ggstatsplot theme layer</span>
+  data = <span class="kw">psych</span>::<span class="kw"><a href="https://rdrr.io/pkg/psych/man/sat.act.html">sat.act</a></span>, <span class="co"># same dataset</span>
+  x = <span class="kw">ACT</span>, <span class="co"># same outcome variable</span>
+  xlab = <span class="st">"ACT Score"</span>,
+  grouping.var = <span class="kw">gender</span>, <span class="co"># grouping variable males = 1, females = 2</span>
+  title.prefix = <span class="st">"Gender"</span>, <span class="co"># prefix for the fixed title</span>
+  k = <span class="fl">1</span>, <span class="co"># number of decimal places in results</span>
+  type = <span class="st">"robust"</span>, <span class="co"># robust test: one-sample percentile bootstrap</span>
+  test.value = <span class="fl">20</span>, <span class="co"># test value against which sample mean is to be compared</span>
+  test.value.line = <span class="fl">TRUE</span>, <span class="co"># show a vertical line at `test.value`</span>
+  bar.measure = <span class="st">"density"</span>, <span class="co"># density</span>
+  centrality.parameter = <span class="st">"median"</span>, <span class="co"># plotting centrality parameter</span>
+  centrality.line.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(color = <span class="st">"#D55E00"</span>), 
+  centrality.label.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(color = <span class="st">"#D55E00"</span>),
+  test.value.line.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(color = <span class="st">"#009E73"</span>),
+  test.value.label.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(color = <span class="st">"#009E73"</span>),
+  ggtheme = <span class="kw">ggthemes</span>::<span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_stata.html">theme_stata</a></span>(), <span class="co"># changing default theme</span>
+  ggstatsplot.layer = <span class="fl">FALSE</span>, <span class="co"># turn off ggstatsplot theme layer</span>
   <span class="co"># arguments relevant for ggstatsplot::combine_plots</span>
-  <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Distribution of ACT scores across genders"</span>,
-  <span class="kw">caption.text</span> <span class="kw">=</span> <span class="st">"Data courtesy of: SAPA project (https://sapa-project.org)"</span>,
-  <span class="kw">plotgrid.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">labels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>))
-)</pre></body></html></div>
+  title.text = <span class="st">"Distribution of ACT scores across genders"</span>,
+  caption.text = <span class="st">"Data courtesy of: SAPA project (https://sapa-project.org)"</span>,
+  plotgrid.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(nrow = <span class="fl">2</span>, labels = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>))
+)
+</pre></div>
 <p><img src="gghistostats_files/figure-html/grouped1-1.png" width="672"></p>
 <p>As can be seen from these plots, the mean value is much higher than the national norm. Additionally, we see the benefits of plotting this data separately for each gender. We can <em>see</em> the differences in distributions.</p>
 </div>
@@ -370,7 +378,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>

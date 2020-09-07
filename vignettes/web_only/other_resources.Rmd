@@ -27,6 +27,10 @@ knitr::opts_chunk$set(
 Below is a collection of blogposts or other documents that talk about different
 functions included in `ggstatsplot`.
 
+# Presentation
+
+  - <https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1>
+
 # Blogs
 
   - <https://anevaluator.com.au/2019/12/exploratory-data-analysis-into-machiavellianism/>
@@ -42,6 +46,8 @@ functions included in `ggstatsplot`.
   - <https://medium.com/yulun-ding-ambassador/ggplot-ch1-3-ways-to-present-discrete-vs-discrete-in-graph-7cbcbbfa4803>
  
   - <https://www.r-bloggers.com/how-to-remove-outliers-in-r/>
+  
+  - <https://yury-zablotski.netlify.app/post/boxplot/#fn3>
 
 # Videos
 
@@ -54,6 +60,8 @@ functions included in `ggstatsplot`.
 # RPubs posts
 
   - <https://rpubs.com/adg93/IGNITE_RepeatedMs>
+  
+  - <https://rpubs.com/tskam/SMT483-Step01>
 
 # Publications
 

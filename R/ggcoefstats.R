@@ -94,7 +94,6 @@
 #' @importFrom stats qnorm lm
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom tidyr unite
-#' @importFrom groupedstats lm_effsize_standardizer
 #' @importFrom insight is_model
 #' @importFrom statsExpressions expr_meta_parametric bf_meta
 #'
@@ -280,7 +279,7 @@ ggcoefstats <- function(x,
     if (class(x)[[1]] %in% c("aov", "aovlist", "anova", "Gam", "manova")) {
       # creating dataframe
       tidy_df <-
-        groupedstats::lm_effsize_standardizer(
+        lm_effsize_standardizer(
           object = x,
           effsize = effsize,
           partial = partial,

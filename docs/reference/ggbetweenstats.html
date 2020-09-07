@@ -210,54 +210,54 @@ the plot as a subtitle.</p>
     </div>
 
     <pre class="usage"><span class='fu'>ggbetweenstats</span>(
-  <span class='no'>data</span>,
-  <span class='no'>x</span>,
-  <span class='no'>y</span>,
-  <span class='kw'>plot.type</span> <span class='kw'>=</span> <span class='st'>"boxviolin"</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>,
-  <span class='kw'>pairwise.comparisons</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>pairwise.display</span> <span class='kw'>=</span> <span class='st'>"significant"</span>,
-  <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"holm"</span>,
-  <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"unbiased"</span>,
-  <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
-  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>sample.size.label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
-  <span class='kw'>mean.plotting</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>mean.ci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>mean.point.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>),
-  <span class='kw'>mean.label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>),
-  <span class='kw'>notch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>notchwidth</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>outlier.coef</span> <span class='kw'>=</span> <span class='fl'>1.5</span>,
-  <span class='kw'>outlier.shape</span> <span class='kw'>=</span> <span class='fl'>19</span>,
-  <span class='kw'>outlier.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>outlier.label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>),
-  <span class='kw'>outlier.point.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>point.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>position</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/position_jitterdodge.html'>position_jitterdodge</a></span>(<span class='kw'>dodge.width</span> <span class='kw'>=</span> <span class='fl'>0.6</span>), <span class='kw'>alpha</span>
-    <span class='kw'>=</span> <span class='fl'>0.4</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>stroke</span> <span class='kw'>=</span> <span class='fl'>0</span>),
-  <span class='kw'>violin.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.2</span>),
-  <span class='kw'>ggsignif.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>textsize</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>tip_length</span> <span class='kw'>=</span> <span class='fl'>0.01</span>),
-  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
-  <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>,
-  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>,
-  <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
-  <span class='no'>...</span>
+  <span class='kw'>data</span>,
+  <span class='kw'>x</span>,
+  <span class='kw'>y</span>,
+  plot.type = <span class='st'>"boxviolin"</span>,
+  type = <span class='st'>"parametric"</span>,
+  pairwise.comparisons = <span class='fl'>FALSE</span>,
+  pairwise.display = <span class='st'>"significant"</span>,
+  p.adjust.method = <span class='st'>"holm"</span>,
+  effsize.type = <span class='st'>"unbiased"</span>,
+  partial = <span class='fl'>TRUE</span>,
+  bf.prior = <span class='fl'>0.707</span>,
+  bf.message = <span class='fl'>TRUE</span>,
+  results.subtitle = <span class='fl'>TRUE</span>,
+  xlab = <span class='kw'>NULL</span>,
+  ylab = <span class='kw'>NULL</span>,
+  caption = <span class='kw'>NULL</span>,
+  title = <span class='kw'>NULL</span>,
+  subtitle = <span class='kw'>NULL</span>,
+  sample.size.label = <span class='fl'>TRUE</span>,
+  k = <span class='fl'>2</span>,
+  var.equal = <span class='fl'>FALSE</span>,
+  conf.level = <span class='fl'>0.95</span>,
+  nboot = <span class='fl'>100</span>,
+  tr = <span class='fl'>0.1</span>,
+  mean.plotting = <span class='fl'>TRUE</span>,
+  mean.ci = <span class='fl'>FALSE</span>,
+  mean.point.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(size = <span class='fl'>5</span>, color = <span class='st'>"darkred"</span>),
+  mean.label.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(size = <span class='fl'>3</span>),
+  notch = <span class='fl'>FALSE</span>,
+  notchwidth = <span class='fl'>0.5</span>,
+  outlier.tagging = <span class='fl'>FALSE</span>,
+  outlier.label = <span class='kw'>NULL</span>,
+  outlier.coef = <span class='fl'>1.5</span>,
+  outlier.shape = <span class='fl'>19</span>,
+  outlier.color = <span class='st'>"black"</span>,
+  outlier.label.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(size = <span class='fl'>3</span>),
+  outlier.point.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  point.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(position = <span class='kw'>ggplot2</span>::<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/position_jitterdodge.html'>position_jitterdodge</a></span>(dodge.width = <span class='fl'>0.6</span>), alpha
+    = <span class='fl'>0.4</span>, size = <span class='fl'>3</span>, stroke = <span class='fl'>0</span>),
+  violin.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(width = <span class='fl'>0.5</span>, alpha = <span class='fl'>0.2</span>),
+  ggsignif.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(textsize = <span class='fl'>3</span>, tip_length = <span class='fl'>0.01</span>),
+  ggtheme = <span class='kw'>ggplot2</span>::<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
+  ggstatsplot.layer = <span class='fl'>TRUE</span>,
+  package = <span class='st'>"RColorBrewer"</span>,
+  palette = <span class='st'>"Dark2"</span>,
+  ggplot.component = <span class='kw'>NULL</span>,
+  output = <span class='st'>"plot"</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -558,34 +558,36 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='co'># to get reproducible results from bootstrapping</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggstatsplot</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://indrajeetpatil.github.io/ggstatsplot'>ggstatsplot</a></span>)
 
 <span class='co'># simple function call with the defaults</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggbetweenstats</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>am</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>mpg</span>,
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Fuel efficiency by type of car transmission"</span>,
-  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='st'>"Transmission (0 = automatic, 1 = manual)"</span>
-)</div><div class='img'><img src='ggbetweenstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='kw'>ggstatsplot</span>::<span class='fu'>ggbetweenstats</span>(
+  data = <span class='kw'>mtcars</span>,
+  x = <span class='kw'>am</span>,
+  y = <span class='kw'>mpg</span>,
+  title = <span class='st'>"Fuel efficiency by type of car transmission"</span>,
+  caption = <span class='st'>"Transmission (0 = automatic, 1 = manual)"</span>
+)
+</div><div class='img'><img src='ggbetweenstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># more detailed function call</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggbetweenstats</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/r/datasets/morley.html'>morley</a></span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Expt</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Speed</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"nonparametric"</span>,
-  <span class='kw'>plot.type</span> <span class='kw'>=</span> <span class='st'>"box"</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.99</span>,
-  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"The experiment number"</span>,
-  <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Speed-of-light measurement"</span>,
-  <span class='kw'>pairwise.comparisons</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"fdr"</span>,
-  <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='no'>Run</span>,
-  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_grey</a></span>(),
-  <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: extreme order statistics used as endpoints</span></div><div class='img'><img src='ggbetweenstats-2.png' alt='' width='700' height='433' /></div><div class='input'># }
+<span class='kw'>ggstatsplot</span>::<span class='fu'>ggbetweenstats</span>(
+  data = <span class='kw'>datasets</span>::<span class='kw'><a href='https://rdrr.io/r/datasets/morley.html'>morley</a></span>,
+  x = <span class='kw'>Expt</span>,
+  y = <span class='kw'>Speed</span>,
+  type = <span class='st'>"nonparametric"</span>,
+  plot.type = <span class='st'>"box"</span>,
+  conf.level = <span class='fl'>0.99</span>,
+  xlab = <span class='st'>"The experiment number"</span>,
+  ylab = <span class='st'>"Speed-of-light measurement"</span>,
+  pairwise.comparisons = <span class='fl'>TRUE</span>,
+  p.adjust.method = <span class='st'>"fdr"</span>,
+  outlier.tagging = <span class='fl'>TRUE</span>,
+  outlier.label = <span class='kw'>Run</span>,
+  nboot = <span class='fl'>10</span>,
+  ggtheme = <span class='kw'>ggplot2</span>::<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_grey</a></span>(),
+  ggstatsplot.layer = <span class='fl'>FALSE</span>
+)
+</div><div class='output co'>#&gt; <span class='warning'>Warning: extreme order statistics used as endpoints</span></div><div class='img'><img src='ggbetweenstats-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -602,7 +604,7 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>

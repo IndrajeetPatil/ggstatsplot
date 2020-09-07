@@ -203,14 +203,14 @@
     </div>
 
     <pre class="usage"><span class='fu'>mean_ggrepel</span>(
-  <span class='no'>plot</span>,
-  <span class='no'>x</span>,
-  <span class='no'>y</span>,
-  <span class='no'>mean.data</span>,
-  <span class='kw'>mean.point.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>),
-  <span class='kw'>mean.label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>),
-  <span class='kw'>inherit.aes</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>
+  <span class='kw'>plot</span>,
+  <span class='kw'>x</span>,
+  <span class='kw'>y</span>,
+  <span class='kw'>mean.data</span>,
+  mean.point.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(size = <span class='fl'>5</span>, color = <span class='st'>"darkred"</span>),
+  mean.label.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(size = <span class='fl'>3</span>),
+  inherit.aes = <span class='fl'>TRUE</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -264,29 +264,30 @@ the default plot specification, e.g. <code><a href='https://ggplot2.tidyverse.or
     <pre class="examples"><div class='input'>
 <span class='co'># this internal function may not have much utility outside of the package</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='http://ggplot2.tidyverse.org'>ggplot2</a></span>)
 
 <span class='co'># make a plot</span>
-<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Species</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>)) +
+<span class='kw'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(data = <span class='kw'>iris</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(x = <span class='kw'>Species</span>, y = <span class='kw'>Sepal.Length</span>)) <span class='op'>+</span>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_boxplot.html'>geom_boxplot</a></span>()
 
 <span class='co'># get a dataframe with means</span>
-<span class='no'>mean_dat</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='mean_labeller.html'>mean_labeller</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Species</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>,
-  <span class='kw'>mean.ci</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>
+<span class='kw'>mean_dat</span> <span class='op'>&lt;-</span> <span class='kw'>ggstatsplot</span>:::<span class='fu'><a href='mean_labeller.html'>mean_labeller</a></span>(
+  data = <span class='kw'>iris</span>,
+  x = <span class='kw'>Species</span>,
+  y = <span class='kw'>Sepal.Length</span>,
+  mean.ci = <span class='fl'>TRUE</span>,
+  k = <span class='fl'>3</span>
 )
 
 <span class='co'># add means</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'>mean_ggrepel</span>(
-  <span class='kw'>plot</span> <span class='kw'>=</span> <span class='no'>p</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Species</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>,
-  <span class='kw'>mean.data</span> <span class='kw'>=</span> <span class='no'>mean_dat</span>,
-  <span class='kw'>mean.color</span> <span class='kw'>=</span> <span class='st'>"darkgreen"</span>
-)</div><div class='img'><img src='mean_ggrepel-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='kw'>ggstatsplot</span>:::<span class='fu'>mean_ggrepel</span>(
+  plot = <span class='kw'>p</span>,
+  x = <span class='kw'>Species</span>,
+  y = <span class='kw'>Sepal.Length</span>,
+  mean.data = <span class='kw'>mean_dat</span>,
+  mean.color = <span class='st'>"darkgreen"</span>
+)
+</div><div class='img'><img src='mean_ggrepel-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -302,7 +303,7 @@ the default plot specification, e.g. <code><a href='https://ggplot2.tidyverse.or
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>

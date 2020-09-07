@@ -203,38 +203,38 @@
     </div>
 
     <pre class="usage"><span class='fu'>ggcoefstats</span>(
-  <span class='no'>x</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
-  <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2L</span>,
-  <span class='kw'>exclude.intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>exponentiate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"eta"</span>,
-  <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>meta.analytic.effect</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>meta.type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>,
-  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>sort</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
-  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"regression coefficient"</span>,
-  <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"term"</span>,
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>only.significant</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>point.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>),
-  <span class='kw'>errorbar.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>0</span>),
-  <span class='kw'>vline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>vline.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>),
-  <span class='kw'>stats.labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>stats.label.color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>stats.label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"y"</span>),
-  <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>,
-  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>,
-  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
-  <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>
+  <span class='kw'>x</span>,
+  output = <span class='st'>"plot"</span>,
+  statistic = <span class='kw'>NULL</span>,
+  conf.int = <span class='fl'>TRUE</span>,
+  conf.level = <span class='fl'>0.95</span>,
+  k = <span class='fl'>2L</span>,
+  exclude.intercept = <span class='fl'>TRUE</span>,
+  exponentiate = <span class='fl'>FALSE</span>,
+  effsize = <span class='st'>"eta"</span>,
+  partial = <span class='fl'>TRUE</span>,
+  meta.analytic.effect = <span class='fl'>FALSE</span>,
+  meta.type = <span class='st'>"parametric"</span>,
+  bf.message = <span class='fl'>TRUE</span>,
+  sort = <span class='st'>"none"</span>,
+  xlab = <span class='st'>"regression coefficient"</span>,
+  ylab = <span class='st'>"term"</span>,
+  title = <span class='kw'>NULL</span>,
+  subtitle = <span class='kw'>NULL</span>,
+  caption = <span class='kw'>NULL</span>,
+  only.significant = <span class='fl'>FALSE</span>,
+  point.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(size = <span class='fl'>3</span>, color = <span class='st'>"blue"</span>),
+  errorbar.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(height = <span class='fl'>0</span>),
+  vline = <span class='fl'>TRUE</span>,
+  vline.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(size = <span class='fl'>1</span>, linetype = <span class='st'>"dashed"</span>),
+  stats.labels = <span class='fl'>TRUE</span>,
+  stats.label.color = <span class='kw'>NULL</span>,
+  stats.label.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(size = <span class='fl'>3</span>, direction = <span class='st'>"y"</span>),
+  package = <span class='st'>"RColorBrewer"</span>,
+  palette = <span class='st'>"Dark2"</span>,
+  ggtheme = <span class='kw'>ggplot2</span>::<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
+  ggstatsplot.layer = <span class='fl'>TRUE</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -244,7 +244,7 @@
       <th>x</th>
       <td><p>A model object to be tidied, or a tidy data frame containing results
 from a regression model. Function internally uses
-<code><a href='https://rdrr.io/pkg/parameters/man/model_parameters.html'>parameters::model_parameters</a></code> or <code><a href='https://broom.tidymodels.org/reference/reexports.html'>broom::tidy</a></code> to get a tidy dataframe. If
+<code><a href='https://rdrr.io/pkg/parameters/man/model_parameters.html'>parameters::model_parameters</a></code> or <code><a href='https://rdrr.io/pkg/generics/man/tidy.html'>broom::tidy</a></code> to get a tidy dataframe. If
 a data frame is used, it <em>must</em> contain columns named <code>term</code> (names of
 predictors) and <code>estimate</code> (corresponding estimates of coefficients or
 other quantities of interest).</p></td>
@@ -253,8 +253,8 @@ other quantities of interest).</p></td>
       <th>output</th>
       <td><p>Character describing the expected output from this function:
 <code>"plot"</code> (visualization of regression coefficients) or <code>"tidy"</code> (tidy
-dataframe of results from <code><a href='https://broom.tidymodels.org/reference/reexports.html'>broom::tidy</a></code>) or <code>"glance"</code> (object from
-<code><a href='https://broom.tidymodels.org/reference/reexports.html'>broom::glance</a></code>) or <code>"augment"</code> (object from <code><a href='https://broom.tidymodels.org/reference/reexports.html'>broom::augment</a></code>).</p></td>
+dataframe of results from <code><a href='https://rdrr.io/pkg/generics/man/tidy.html'>broom::tidy</a></code>) or <code>"glance"</code> (object from
+<code><a href='https://rdrr.io/pkg/generics/man/glance.html'>broom::glance</a></code>) or <code>"augment"</code> (object from <code><a href='https://rdrr.io/pkg/generics/man/augment.html'>broom::augment</a></code>).</p></td>
     </tr>
     <tr>
       <th>statistic</th>
@@ -424,7 +424,7 @@ override some aspects of the selected <code>ggtheme</code>.</p></td>
     <tr>
       <th>...</th>
       <td><p>Additional arguments to tidying method. For more, see
-<code><a href='https://rdrr.io/pkg/parameters/man/model_parameters.html'>?parameters::model_parameters</a></code> and <code><a href='https://broom.tidymodels.org/reference/reexports.html'>broom::tidy</a></code>.</p></td>
+<code><a href='https://rdrr.io/pkg/parameters/man/model_parameters.html'>?parameters::model_parameters</a></code> and <code><a href='https://rdrr.io/pkg/generics/man/tidy.html'>broom::tidy</a></code>.</p></td>
     </tr>
     </table>
 
@@ -450,133 +450,162 @@ quantities is <code>NA</code> will be removed if labels are requested: <code>est
 <span class='co'># -------------- with model object --------------------------------------</span>
 
 <span class='co'># model object</span>
-<span class='no'>mod</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span>(<span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>mpg</span> ~ <span class='no'>cyl</span> * <span class='no'>am</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>)
+<span class='kw'>mod</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span>(formula = <span class='kw'>mpg</span> <span class='op'>~</span> <span class='kw'>cyl</span> <span class='op'>*</span> <span class='kw'>am</span>, data = <span class='kw'>mtcars</span>)
 
 <span class='co'># to get a plot</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggcoefstats</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>)</div><div class='img'><img src='ggcoefstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='kw'>ggstatsplot</span>::<span class='fu'>ggcoefstats</span>(x = <span class='kw'>mod</span>, output = <span class='st'>"plot"</span>)
+</div><div class='img'><img src='ggcoefstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># to get a tidy dataframe</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggcoefstats</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"tidy"</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 3 x 11</span><span>
-#&gt;   term  estimate std.error conf.low conf.high statistic df.error p.value
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> cyl      -</span><span style='color: #BB0000;'>1.98</span><span>     0.449    -</span><span style='color: #BB0000;'>2.89</span><span>    -</span><span style='color: #BB0000;'>1.06</span><span>      -</span><span style='color: #BB0000;'>4.40</span><span>       28 1.41</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span> am       10.2      4.30      1.36    19.0        2.36       28 2.53</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span> cyl:~    -</span><span style='color: #BB0000;'>1.31</span><span>     0.707    -</span><span style='color: #BB0000;'>2.75</span><span>     0.143     -</span><span style='color: #BB0000;'>1.85</span><span>       28 7.55</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>
-#&gt; </span><span style='color: #555555;'># ... with 3 more variables: significance </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, p.value.formatted </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   label </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span></div><div class='input'>
+<span class='kw'>ggstatsplot</span>::<span class='fu'>ggcoefstats</span>(x = <span class='kw'>mod</span>, output = <span class='st'>"tidy"</span>)
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 3 x 11</span><span>
+#&gt;   </span><span style='font-weight: bold;'>term</span><span>   </span><span style='font-weight: bold;'>estimate</span><span> </span><span style='font-weight: bold;'>std.error</span><span> </span><span style='font-weight: bold;'>conf.low</span><span> </span><span style='font-weight: bold;'>conf.high</span><span> </span><span style='font-weight: bold;'>statistic</span><span> </span><span style='font-weight: bold;'>df.error</span><span>  </span><span style='font-weight: bold;'>p.value</span><span>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> cyl       -</span><span style='color: #BB0000;'>1.98</span><span>     0.449    -</span><span style='color: #BB0000;'>2.89</span><span>    -</span><span style='color: #BB0000;'>1.06</span><span>      -</span><span style='color: #BB0000;'>4.40</span><span>       28 0.000</span><span style='text-decoration: underline;'>141</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span> am        10.2      4.30      1.36    19.0        2.36       28 0.025</span><span style='text-decoration: underline;'>3</span><span>  
+#&gt; </span><span style='color: #555555;'>3</span><span> cyl:am    -</span><span style='color: #BB0000;'>1.31</span><span>     0.707    -</span><span style='color: #BB0000;'>2.75</span><span>     0.143     -</span><span style='color: #BB0000;'>1.85</span><span>       28 0.075</span><span style='text-decoration: underline;'>5</span><span>  
+#&gt;   </span><span style='font-weight: bold;'>significance</span><span> </span><span style='font-weight: bold;'>p.value.formatted</span><span>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            
+#&gt; </span><span style='color: #555555;'>1</span><span> ***          &lt;= 0.001         
+#&gt; </span><span style='color: #555555;'>2</span><span> *            == 0.025         
+#&gt; </span><span style='color: #555555;'>3</span><span> ns           == 0.076         
+#&gt;   </span><span style='font-weight: bold;'>label</span><span>                                                                         
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                                                         
+#&gt; </span><span style='color: #555555;'>1</span><span> list(~widehat(italic(beta))==-1.98, ~italic(t)(28)==-4.40, ~italic(p)&lt;= 0.001)
+#&gt; </span><span style='color: #555555;'>2</span><span> list(~widehat(italic(beta))==10.18, ~italic(t)(28)==2.36, ~italic(p)== 0.025) 
+#&gt; </span><span style='color: #555555;'>3</span><span> list(~widehat(italic(beta))==-1.31, ~italic(t)(28)==-1.85, ~italic(p)== 0.076)</div><div class='input'>
 <span class='co'># to get a glance summary</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggcoefstats</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"glance"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 13</span><span>
-#&gt;   r.squared adj.r.squared sigma statistic p.value    df loglik   aic   bic
-#&gt;       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>     0.785         0.762  2.94      34.1 1.73</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-9</span><span>     3  -</span><span style='color: #BB0000;'>77.8</span><span>  166.  173.
-#&gt; </span><span style='color: #555555;'># ... with 4 more variables: deviance </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, df.residual </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, nobs </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   rmse </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+<span class='kw'>ggstatsplot</span>::<span class='fu'>ggcoefstats</span>(x = <span class='kw'>mod</span>, output = <span class='st'>"glance"</span>)
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 13</span><span>
+#&gt;   </span><span style='font-weight: bold;'>r.squared</span><span> </span><span style='font-weight: bold;'>adj.r.squared</span><span> </span><span style='font-weight: bold;'>sigma</span><span> </span><span style='font-weight: bold;'>statistic</span><span>       </span><span style='font-weight: bold;'>p.value</span><span>    </span><span style='font-weight: bold;'>df</span><span> </span><span style='font-weight: bold;'>loglik</span><span>   </span><span style='font-weight: bold;'>aic</span><span>   </span><span style='font-weight: bold;'>bic</span><span>
+#&gt;       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>     0.785         0.762  2.94      34.1 0.000</span><span style='text-decoration: underline;'>000</span><span>001</span><span style='text-decoration: underline;'>73</span><span>     3  -</span><span style='color: #BB0000;'>77.8</span><span>  166.  173.
+#&gt;   </span><span style='font-weight: bold;'>deviance</span><span> </span><span style='font-weight: bold;'>df.residual</span><span>  </span><span style='font-weight: bold;'>nobs</span><span>  </span><span style='font-weight: bold;'>rmse</span><span>
+#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>     242.          28    32  2.75</div><div class='input'>
 <span class='co'># to get augmented dataframe</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggcoefstats</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"augment"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 32 x 10</span><span>
-#&gt;    .rownames     mpg   cyl    am .fitted .resid .std.resid   .hat .sigma .cooksd
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> Mazda RX4    21       6     1    21.4 -</span><span style='color: #BB0000;'>0.364</span><span>    -</span><span style='color: #BB0000;'>0.131</span><span>  0.106    2.99 5.10</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span>
-#&gt; </span><span style='color: #555555;'> 2</span><span> Mazda RX4 ~  21       6     1    21.4 -</span><span style='color: #BB0000;'>0.364</span><span>    -</span><span style='color: #BB0000;'>0.131</span><span>  0.106    2.99 5.10</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span>
-#&gt; </span><span style='color: #555555;'> 3</span><span> Datsun 710   22.8     4     1    27.9 -</span><span style='color: #BB0000;'>5.13</span><span>     -</span><span style='color: #BB0000;'>1.86</span><span>   0.117    2.80 1.14</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span>
-#&gt; </span><span style='color: #555555;'> 4</span><span> Hornet 4 D~  21.4     6     0    19.0  2.38      0.842  0.073</span><span style='text-decoration: underline;'>5</span><span>   2.96 1.41</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>
-#&gt; </span><span style='color: #555555;'> 5</span><span> Hornet Spo~  18.7     8     0    15.1  3.63      1.29   0.078</span><span style='text-decoration: underline;'>4</span><span>   2.90 3.53</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>
-#&gt; </span><span style='color: #555555;'> 6</span><span> Valiant      18.1     6     0    19.0 -</span><span style='color: #BB0000;'>0.919</span><span>    -</span><span style='color: #BB0000;'>0.325</span><span>  0.073</span><span style='text-decoration: underline;'>5</span><span>   2.99 2.09</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span>
-#&gt; </span><span style='color: #555555;'> 7</span><span> Duster 360   14.3     8     0    15.1 -</span><span style='color: #BB0000;'>0.768</span><span>    -</span><span style='color: #BB0000;'>0.272</span><span>  0.078</span><span style='text-decoration: underline;'>4</span><span>   2.99 1.57</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span>
-#&gt; </span><span style='color: #555555;'> 8</span><span> Merc 240D    24.4     4     0    23.0  1.43      0.563  0.255    2.98 2.71</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span>
-#&gt; </span><span style='color: #555555;'> 9</span><span> Merc 230     22.8     4     0    23.0 -</span><span style='color: #BB0000;'>0.171</span><span>    -</span><span style='color: #BB0000;'>0.067</span><span style='color: #BB0000;text-decoration: underline;'>2</span><span> 0.255    2.99 3.87</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-4</span><span>
-#&gt; </span><span style='color: #555555;'>10</span><span> Merc 280     19.2     6     0    19.0  0.181     0.063</span><span style='text-decoration: underline;'>9</span><span> 0.073</span><span style='text-decoration: underline;'>5</span><span>   2.99 8.11</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-5</span><span>
+<span class='kw'>ggstatsplot</span>::<span class='fu'>ggcoefstats</span>(x = <span class='kw'>mod</span>, output = <span class='st'>"augment"</span>)
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 32 x 10</span><span>
+#&gt;    </span><span style='font-weight: bold;'>.rownames</span><span>           </span><span style='font-weight: bold;'>mpg</span><span>   </span><span style='font-weight: bold;'>cyl</span><span>    </span><span style='font-weight: bold;'>am</span><span> </span><span style='font-weight: bold;'>.fitted</span><span> </span><span style='font-weight: bold;'>.resid</span><span> </span><span style='font-weight: bold;'>.std.resid</span><span>   </span><span style='font-weight: bold;'>.hat</span><span> </span><span style='font-weight: bold;'>.sigma</span><span>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> Mazda RX4          21       6     1    21.4 -</span><span style='color: #BB0000;'>0.364</span><span>    -</span><span style='color: #BB0000;'>0.131</span><span>  0.106    2.99
+#&gt; </span><span style='color: #555555;'> 2</span><span> Mazda RX4 Wag      21       6     1    21.4 -</span><span style='color: #BB0000;'>0.364</span><span>    -</span><span style='color: #BB0000;'>0.131</span><span>  0.106    2.99
+#&gt; </span><span style='color: #555555;'> 3</span><span> Datsun 710         22.8     4     1    27.9 -</span><span style='color: #BB0000;'>5.13</span><span>     -</span><span style='color: #BB0000;'>1.86</span><span>   0.117    2.80
+#&gt; </span><span style='color: #555555;'> 4</span><span> Hornet 4 Drive     21.4     6     0    19.0  2.38      0.842  0.073</span><span style='text-decoration: underline;'>5</span><span>   2.96
+#&gt; </span><span style='color: #555555;'> 5</span><span> Hornet Sportabout  18.7     8     0    15.1  3.63      1.29   0.078</span><span style='text-decoration: underline;'>4</span><span>   2.90
+#&gt; </span><span style='color: #555555;'> 6</span><span> Valiant            18.1     6     0    19.0 -</span><span style='color: #BB0000;'>0.919</span><span>    -</span><span style='color: #BB0000;'>0.325</span><span>  0.073</span><span style='text-decoration: underline;'>5</span><span>   2.99
+#&gt; </span><span style='color: #555555;'> 7</span><span> Duster 360         14.3     8     0    15.1 -</span><span style='color: #BB0000;'>0.768</span><span>    -</span><span style='color: #BB0000;'>0.272</span><span>  0.078</span><span style='text-decoration: underline;'>4</span><span>   2.99
+#&gt; </span><span style='color: #555555;'> 8</span><span> Merc 240D          24.4     4     0    23.0  1.43      0.563  0.255    2.98
+#&gt; </span><span style='color: #555555;'> 9</span><span> Merc 230           22.8     4     0    23.0 -</span><span style='color: #BB0000;'>0.171</span><span>    -</span><span style='color: #BB0000;'>0.067</span><span style='color: #BB0000;text-decoration: underline;'>2</span><span> 0.255    2.99
+#&gt; </span><span style='color: #555555;'>10</span><span> Merc 280           19.2     6     0    19.0  0.181     0.063</span><span style='text-decoration: underline;'>9</span><span> 0.073</span><span style='text-decoration: underline;'>5</span><span>   2.99
+#&gt;      </span><span style='font-weight: bold;'>.cooksd</span><span>
+#&gt;        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> 0.000</span><span style='text-decoration: underline;'>510</span><span> 
+#&gt; </span><span style='color: #555555;'> 2</span><span> 0.000</span><span style='text-decoration: underline;'>510</span><span> 
+#&gt; </span><span style='color: #555555;'> 3</span><span> 0.114    
+#&gt; </span><span style='color: #555555;'> 4</span><span> 0.014</span><span style='text-decoration: underline;'>1</span><span>   
+#&gt; </span><span style='color: #555555;'> 5</span><span> 0.035</span><span style='text-decoration: underline;'>3</span><span>   
+#&gt; </span><span style='color: #555555;'> 6</span><span> 0.002</span><span style='text-decoration: underline;'>09</span><span>  
+#&gt; </span><span style='color: #555555;'> 7</span><span> 0.001</span><span style='text-decoration: underline;'>57</span><span>  
+#&gt; </span><span style='color: #555555;'> 8</span><span> 0.027</span><span style='text-decoration: underline;'>1</span><span>   
+#&gt; </span><span style='color: #555555;'> 9</span><span> 0.000</span><span style='text-decoration: underline;'>387</span><span> 
+#&gt; </span><span style='color: #555555;'>10</span><span> 0.000</span><span style='text-decoration: underline;'>081</span><span>1
 #&gt; </span><span style='color: #555555;'># ... with 22 more rows</span><span></div><div class='input'>
 <span class='co'># -------------- with custom dataframe -----------------------------------</span>
 
 <span class='co'># creating a dataframe</span>
-<span class='no'>df</span> <span class='kw'>&lt;-</span>
+<span class='kw'>df</span> <span class='op'>&lt;-</span>
   <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span>(
     <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-      <span class='kw'>term</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span>(
+      term = <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span>(
         <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3L</span>, <span class='fl'>4L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>5L</span>),
-        <span class='kw'>.Label</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
+        .Label = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
           <span class='st'>"Africa"</span>,
           <span class='st'>"Americas"</span>, <span class='st'>"Asia"</span>, <span class='st'>"Europe"</span>, <span class='st'>"Oceania"</span>
         ),
-        <span class='kw'>class</span> <span class='kw'>=</span> <span class='st'>"factor"</span>
+        class = <span class='st'>"factor"</span>
       ),
-      <span class='kw'>estimate</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
+      estimate = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
         <span class='fl'>0.382047603321706</span>,
         <span class='fl'>0.780783111514665</span>,
         <span class='fl'>0.425607573765058</span>,
         <span class='fl'>0.558365541235078</span>,
         <span class='fl'>0.956473848429961</span>
       ),
-      <span class='kw'>std.error</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
+      std.error = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
         <span class='fl'>0.0465576338644502</span>,
         <span class='fl'>0.0330218199731529</span>,
         <span class='fl'>0.0362834986178494</span>,
         <span class='fl'>0.0480571500648261</span>,
         <span class='fl'>0.062215818388157</span>
       ),
-      <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
+      statistic = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
         <span class='fl'>8.20590677855356</span>,
         <span class='fl'>23.6444603038067</span>,
         <span class='fl'>11.7300588415607</span>,
         <span class='fl'>11.6187818146078</span>,
         <span class='fl'>15.3734833553524</span>
       ),
-      <span class='kw'>conf.low</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
+      conf.low = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
         <span class='fl'>0.290515146096969</span>,
         <span class='fl'>0.715841986960399</span>,
         <span class='fl'>0.354354575031406</span>,
         <span class='fl'>0.46379116008131</span>,
         <span class='fl'>0.827446138277154</span>
       ),
-      <span class='kw'>conf.high</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
+      conf.high = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
         <span class='fl'>0.473580060546444</span>,
         <span class='fl'>0.845724236068931</span>,
         <span class='fl'>0.496860572498711</span>,
         <span class='fl'>0.652939922388847</span>,
         <span class='fl'>1.08550155858277</span>
       ),
-      <span class='kw'>p.value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
+      p.value = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
         <span class='fl'>3.28679518728519e-15</span>,
         <span class='fl'>4.04778497135963e-75</span>,
         <span class='fl'>7.59757330804449e-29</span>,
         <span class='fl'>5.45155840151592e-26</span>,
         <span class='fl'>2.99171217913312e-13</span>
       ),
-      <span class='kw'>df.error</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
+      df.error = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
         <span class='fl'>394L</span>, <span class='fl'>358L</span>, <span class='fl'>622L</span>,
         <span class='fl'>298L</span>, <span class='fl'>22L</span>
       )
     ),
-    <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, -<span class='fl'>5L</span>),
-    <span class='kw'>class</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
+    row.names = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='op'>-</span><span class='fl'>5L</span>),
+    class = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
       <span class='st'>"tbl_df"</span>,
       <span class='st'>"tbl"</span>, <span class='st'>"data.frame"</span>
     )
   )
 
 <span class='co'># plotting the dataframe</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggcoefstats</span>(
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>df</span>,
-  <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='st'>"t"</span>,
-  <span class='kw'>meta.analytic.effect</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: There were 8 divergent transitions after warmup. See</span>
+<span class='kw'>ggstatsplot</span>::<span class='fu'>ggcoefstats</span>(
+  x = <span class='kw'>df</span>,
+  statistic = <span class='st'>"t"</span>,
+  meta.analytic.effect = <span class='fl'>TRUE</span>,
+  k = <span class='fl'>3</span>
+)
+</div><div class='output co'>#&gt; <span class='warning'>Warning: There were 8 divergent transitions after warmup. See</span>
 #&gt; <span class='warning'>http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup</span>
 #&gt; <span class='warning'>to find out why this is a problem and how to eliminate them.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Examine the pairs() plot to diagnose sampling problems</span></div><div class='img'><img src='ggcoefstats-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># -------------- getting model summary ------------------------------</span>
 
 <span class='co'># model</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>lme4</span>)
-<span class='no'>lmm1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>lme4</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lme4/man/lmer.html'>lmer</a></span>(
-  <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>Reaction</span> ~ <span class='no'>Days</span> + (<span class='no'>Days</span> <span class='kw'>|</span> <span class='no'>Subject</span>),
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>sleepstudy</span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/lme4/lme4'>lme4</a></span>)
+<span class='kw'>lmm1</span> <span class='op'>&lt;-</span> <span class='kw'>lme4</span>::<span class='fu'><a href='https://rdrr.io/pkg/lme4/man/lmer.html'>lmer</a></span>(
+  formula = <span class='kw'>Reaction</span> <span class='op'>~</span> <span class='kw'>Days</span> <span class='op'>+</span> (<span class='kw'>Days</span> <span class='op'>|</span> <span class='kw'>Subject</span>),
+  data = <span class='kw'>sleepstudy</span>
 )
 
 <span class='co'># dataframe with model summary</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggcoefstats</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>lmm1</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"glance"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 10</span><span>
-#&gt;   sigma loglik   aic   bic remlcrit df.residual r2.conditional r2.marginal   icc
+<span class='kw'>ggstatsplot</span>::<span class='fu'>ggcoefstats</span>(x = <span class='kw'>lmm1</span>, output = <span class='st'>"glance"</span>)
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 10</span><span>
+#&gt;   </span><span style='font-weight: bold;'>sigma</span><span> </span><span style='font-weight: bold;'>loglik</span><span>   </span><span style='font-weight: bold;'>aic</span><span>   </span><span style='font-weight: bold;'>bic</span><span> </span><span style='font-weight: bold;'>remlcrit</span><span> </span><span style='font-weight: bold;'>df.residual</span><span> </span><span style='font-weight: bold;'>r2.conditional</span><span> </span><span style='font-weight: bold;'>r2.marginal</span><span>   </span><span style='font-weight: bold;'>icc</span><span>
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span>  25.6  -</span><span style='color: #BB0000;'>872.</span><span> </span><span style='text-decoration: underline;'>1</span><span>756. </span><span style='text-decoration: underline;'>1</span><span>775.    </span><span style='text-decoration: underline;'>1</span><span>744.         174          0.799       0.279 0.722
-#&gt; </span><span style='color: #555555;'># ... with 1 more variable: rmse </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'># }
+#&gt;    </span><span style='font-weight: bold;'>rmse</span><span>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>  23.4</div><div class='input'><span class='co'># }</span>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -593,7 +622,7 @@ quantities is <code>NA</code> will be removed if labels are requested: <code>est
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>

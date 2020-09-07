@@ -191,3 +191,109 @@ extract_statistic <- function(x, ...) {
     purrr::keep(.x = ., .p = ~ !is.na(.)) %>%
     .[[1]]
 }
+
+
+#' @title Confidence intervals for (partial) eta-squared and omega-squared for
+#'   linear models.
+#' @name lm_effsize_standardizer
+#' @description This function will convert a linear model object to a dataframe
+#'   containing statistical details for all effects along with effect size
+#'   measure and its confidence interval. For more details, see
+#'   `effectsize::eta_squared` and `effectsize::omega_squared`.
+#' @return A dataframe with results from `stats::lm()` with partial eta-squared,
+#'   omega-squared, and bootstrapped confidence interval for the same.
+#'
+#' @param object The linear model object (can be of class `lm`, `aov`, `anova`, or
+#'   `aovlist`).
+#' @param effsize Character describing the effect size to be displayed: `"eta"`
+#'   (default) or `"omega"`.
+#' @param partial Logical that decides if partial eta-squared or omega-squared
+#'   are returned (Default: `TRUE`). If `FALSE`, eta-squared or omega-squared
+#'   will be returned. Valid only for objects of class `lm`, `aov`, `anova`, or
+#'   `aovlist`.
+#' @param conf.level Numeric specifying Level of confidence for the confidence
+#'   interval (Default: `0.95`).
+#' @param ... Ignored.
+#'
+#' @importFrom effectsize eta_squared omega_squared
+#' @importFrom broomExtra tidy_parameters
+#' @importFrom stats anova na.omit lm
+#' @importFrom rlang exec
+#' @importFrom dplyr matches everything contains
+#'
+#' @examples
+#' # for reproducibility
+#' set.seed(123)
+#'
+#' # model
+#' mod <-
+#'   stats::aov(
+#'     formula = mpg ~ wt + qsec + Error(disp / am),
+#'     data = mtcars
+#'   )
+#'
+#' # dataframe with effect size and confidence intervals
+#' ggstatsplot:::lm_effsize_standardizer(mod)
+#' @keywords internal
+
+# defining the function body
+lm_effsize_standardizer <- function(object,
+                                    effsize = "eta",
+                                    partial = TRUE,
+                                    conf.level = 0.95,
+                                    ...) {
+  # for `lm` objects, `anova` object should be created
+  if (class(object)[[1]] == "lm") object <- stats::anova(object)
+
+  # stats details
+  stats_df <- broomExtra::tidy_parameters(object, ...)
+
+  # creating numerator and denominator degrees of freedom
+  if (dim(dplyr::filter(stats_df, term == "Residuals"))[[1]] > 0L) {
+    # create a new column for residual degrees of freedom
+    # always going to be the last column
+    stats_df$df2 <- stats_df$df[nrow(stats_df)]
+  }
+
+  # function to compute effect sizes
+  if (effsize == "eta") {
+    .f <- effectsize::eta_squared
+  } else {
+    .f <- effectsize::omega_squared
+  }
+
+  # computing effect size
+  effsize_df <-
+    rlang::exec(
+      .fn = .f,
+      model = object,
+      partial = partial,
+      ci = conf.level
+    ) %>%
+    broomExtra::easystats_to_tidy_names(.) %>%
+    dplyr::filter(.data = ., !grepl(pattern = "Residuals", x = term, ignore.case = TRUE)) %>%
+    dplyr::select(.data = ., -dplyr::matches("group"))
+
+  # combine them in the same place
+  dplyr::right_join(
+    x = dplyr::filter(.data = stats_df, !is.na(statistic)), # for `aovlist` objects
+    y = effsize_df,
+    by = "term"
+  ) %>% # renaming to standard term 'estimate'
+    dplyr::rename(
+      .data = .,
+      "estimate" = dplyr::matches("eta|omega"),
+      "df1" = "df",
+      "conf.level" = "ci",
+      "F.value" = "statistic"
+    ) %>%
+    dplyr::select(
+      .data = .,
+      term,
+      F.value,
+      dplyr::contains("df"),
+      p.value,
+      dplyr::everything(),
+      -dplyr::contains("square")
+    )
+}

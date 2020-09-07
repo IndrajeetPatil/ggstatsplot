@@ -207,23 +207,23 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
     </div>
 
     <pre class="usage"><span class='fu'>grouped_ggpiestats</span>(
-  <span class='no'>data</span>,
-  <span class='no'>main</span>,
-  <span class='kw'>condition</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>counts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>grouping.var</span>,
-  <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>plotgrid.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>title.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>title.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>16</span>, <span class='kw'>fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>),
-  <span class='kw'>caption.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>caption.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>10</span>),
-  <span class='kw'>sub.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>sub.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>12</span>)
+  <span class='kw'>data</span>,
+  <span class='kw'>main</span>,
+  condition = <span class='kw'>NULL</span>,
+  counts = <span class='kw'>NULL</span>,
+  <span class='kw'>grouping.var</span>,
+  title.prefix = <span class='kw'>NULL</span>,
+  output = <span class='st'>"plot"</span>,
+  x = <span class='kw'>NULL</span>,
+  y = <span class='kw'>NULL</span>,
+  <span class='kw'>...</span>,
+  plotgrid.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  title.text = <span class='kw'>NULL</span>,
+  title.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(size = <span class='fl'>16</span>, fontface = <span class='st'>"bold"</span>),
+  caption.text = <span class='kw'>NULL</span>,
+  caption.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(size = <span class='fl'>10</span>),
+  sub.text = <span class='kw'>NULL</span>,
+  sub.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(size = <span class='fl'>12</span>)
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -288,7 +288,7 @@ association test will be run. This argument can not be <code>NULL</code> for
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Arguments passed on to <code><a href='ggpiestats.html'>ggpiestats</a></code></p><dl'>
+      <td><p>Arguments passed on to <code><a href='ggpiestats.html'>ggpiestats</a></code></p><dl>
     <dt><code>proportion.test</code></dt><dd><p>Decides whether proportion test for <code>main</code> variable is
 to be carried out for each level of <code>condition</code> (Default: <code>TRUE</code>).</p></dd>
     <dt><code>perc.k</code></dt><dd><p>Numeric that decides number of decimal places for percentage
@@ -412,34 +412,36 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='co'># grouped one-sample proportion tests</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>grouped_ggpiestats</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
-  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>am</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>cyl</span>
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='img'><img src='grouped_ggpiestats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='kw'>ggstatsplot</span>::<span class='fu'>grouped_ggpiestats</span>(
+  data = <span class='kw'>mtcars</span>,
+  grouping.var = <span class='kw'>am</span>,
+  x = <span class='kw'>cyl</span>
+)
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='img'><img src='grouped_ggpiestats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># the following will take slightly more amount of time</span>
 <span class='co'># for reproducibility</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
 
 <span class='co'># let's create a smaller dataframe</span>
-<span class='no'>diamonds_short</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/diamonds.html'>diamonds</a></span> <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='no'>cut</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Fair"</span>, <span class='st'>"Very Good"</span>, <span class='st'>"Ideal"</span>)) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/sample_n.html'>sample_frac</a></span>(<span class='kw'>tbl</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>0.10</span>)
+<span class='kw'>diamonds_short</span> <span class='op'>&lt;-</span> <span class='kw'>ggplot2</span>::<span class='kw'><a href='https://ggplot2.tidyverse.org/reference/diamonds.html'>diamonds</a></span> <span class='op'>%&gt;%</span>
+  <span class='kw'>dplyr</span>::<span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(.data = <span class='kw'>.</span>, <span class='kw'>cut</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Fair"</span>, <span class='st'>"Very Good"</span>, <span class='st'>"Ideal"</span>)) <span class='op'>%&gt;%</span>
+  <span class='kw'>dplyr</span>::<span class='fu'><a href='https://dplyr.tidyverse.org/reference/sample_n.html'>sample_frac</a></span>(tbl = <span class='kw'>.</span>, size = <span class='fl'>0.10</span>)
 
 <span class='co'># plot</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>grouped_ggpiestats</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>diamonds_short</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>color</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>clarity</span>,
-  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>cut</span>,
-  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>20</span>,
-  <span class='kw'>sampling.plan</span> <span class='kw'>=</span> <span class='st'>"poisson"</span>,
-  <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Quality"</span>,
-  <span class='kw'>slice.label</span> <span class='kw'>=</span> <span class='st'>"both"</span>,
-  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>plotgrid.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>3</span>)
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='img'><img src='grouped_ggpiestats-2.png' alt='' width='700' height='433' /></div><div class='input'># }
+<span class='kw'>ggstatsplot</span>::<span class='fu'>grouped_ggpiestats</span>(
+  data = <span class='kw'>diamonds_short</span>,
+  x = <span class='kw'>color</span>,
+  y = <span class='kw'>clarity</span>,
+  grouping.var = <span class='kw'>cut</span>,
+  nboot = <span class='fl'>20</span>,
+  sampling.plan = <span class='st'>"poisson"</span>,
+  title.prefix = <span class='st'>"Quality"</span>,
+  slice.label = <span class='st'>"both"</span>,
+  messages = <span class='fl'>FALSE</span>,
+  perc.k = <span class='fl'>1</span>,
+  plotgrid.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(nrow = <span class='fl'>3</span>)
+)
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='img'><img src='grouped_ggpiestats-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -456,7 +458,7 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>

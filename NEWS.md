@@ -31,6 +31,8 @@ MINOR CHANGES
     ` n =  ` in them as this was confusing since all labels had ` n =  ` in them
     with no further explanation about how this `n` differed from `n` in the
     proportion test.
+    
+  - No longer relies on `groupedstats` package.
 
 # ggstatsplot 0.5.0
 

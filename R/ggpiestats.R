@@ -37,7 +37,6 @@
 #' @importFrom rlang !! enquo quo_name as_name ensym
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom paletteer scale_fill_paletteer_d
-#' @importFrom groupedstats grouped_proptest
 #' @importFrom tidyr uncount drop_na
 #' @importFrom statsExpressions bf_contingency_tab expr_contingency_tab
 #'
