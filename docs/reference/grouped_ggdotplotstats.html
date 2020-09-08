@@ -207,20 +207,20 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
     </div>
 
     <pre class="usage"><span class='fu'>grouped_ggdotplotstats</span>(
-  <span class='kw'>data</span>,
-  <span class='kw'>x</span>,
-  <span class='kw'>y</span>,
-  <span class='kw'>grouping.var</span>,
-  title.prefix = <span class='kw'>NULL</span>,
-  output = <span class='st'>"plot"</span>,
-  <span class='kw'>...</span>,
-  plotgrid.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  title.text = <span class='kw'>NULL</span>,
-  title.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(size = <span class='fl'>16</span>, fontface = <span class='st'>"bold"</span>),
-  caption.text = <span class='kw'>NULL</span>,
-  caption.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(size = <span class='fl'>10</span>),
-  sub.text = <span class='kw'>NULL</span>,
-  sub.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(size = <span class='fl'>12</span>)
+  <span class='no'>data</span>,
+  <span class='no'>x</span>,
+  <span class='no'>y</span>,
+  <span class='no'>grouping.var</span>,
+  <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
+  <span class='no'>...</span>,
+  <span class='kw'>plotgrid.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  <span class='kw'>title.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>title.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>16</span>, <span class='kw'>fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>),
+  <span class='kw'>caption.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>caption.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>10</span>),
+  <span class='kw'>sub.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>sub.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>12</span>)
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -264,7 +264,7 @@ dataframe containing results from proportion tests.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Arguments passed on to <code><a href='ggdotplotstats.html'>ggdotplotstats</a></code></p><dl>
+      <td><p>Arguments passed on to <code><a href='ggdotplotstats.html'>ggdotplotstats</a></code></p><dl'>
     <dt><code>point.args</code></dt><dd><p>A list of additional aesthetic arguments passed to
 <code>geom_point</code>.</p></dd>
     <dt><code>test.value</code></dt><dd><p>A number specifying the value of the null hypothesis
@@ -375,9 +375,6 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
 
     <div class='dont-index'><p><code><a href='grouped_gghistostats.html'>grouped_gghistostats</a></code>, <code><a href='ggdotplotstats.html'>ggdotplotstats</a></code>,
 <code><a href='gghistostats.html'>gghistostats</a></code></p></div>
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
-
-    <p><a href='https://github.com/IndrajeetPatil'>Indrajeet Patil</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
@@ -385,27 +382,26 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
 
 <span class='co'># removing factor level with very few no. of observations</span>
-<span class='kw'>df</span> <span class='op'>&lt;-</span> <span class='kw'>dplyr</span>::<span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(.data = <span class='kw'>ggplot2</span>::<span class='kw'><a href='https://ggplot2.tidyverse.org/reference/mpg.html'>mpg</a></span>, <span class='kw'>cyl</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"4"</span>, <span class='st'>"6"</span>, <span class='st'>"8"</span>))
+<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/mpg.html'>mpg</a></span>, <span class='no'>cyl</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"4"</span>, <span class='st'>"6"</span>, <span class='st'>"8"</span>))
 
 <span class='co'># plot</span>
-<span class='kw'>ggstatsplot</span>::<span class='fu'>grouped_ggdotplotstats</span>(
-  data = <span class='kw'>df</span>,
-  x = <span class='st'>"cty"</span>,
-  y = <span class='st'>"manufacturer"</span>,
-  grouping.var = <span class='st'>"cyl"</span>,
-  test.value = <span class='fl'>15.5</span>,
-  title.prefix = <span class='st'>"cylinder count"</span>,
-  ggplot.component = <span class='kw'>ggplot2</span>::<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_continuous</a></span>(
-    sec.axis = <span class='kw'>ggplot2</span>::<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/sec_axis.html'>dup_axis</a></span>(),
-    limits = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>12</span>, <span class='fl'>24</span>),
-    breaks = <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>12</span>, <span class='fl'>24</span>, <span class='fl'>2</span>)
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>grouped_ggdotplotstats</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>df</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='st'>"cty"</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='st'>"manufacturer"</span>,
+  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='st'>"cyl"</span>,
+  <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>15.5</span>,
+  <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"cylinder count"</span>,
+  <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_continuous</a></span>(
+    <span class='kw'>sec.axis</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/sec_axis.html'>dup_axis</a></span>(),
+    <span class='kw'>limits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>12</span>, <span class='fl'>24</span>),
+    <span class='kw'>breaks</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>12</span>, <span class='fl'>24</span>, <span class='fl'>2</span>)
   ),
-  messages = <span class='fl'>FALSE</span>
-)
-</div><div class='output co'>#&gt; <span class='message'>Scale for 'x' is already present. Adding another scale for 'x', which will</span>
+  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</div><div class='output co'>#&gt; <span class='message'>Scale for 'x' is already present. Adding another scale for 'x', which will</span>
 #&gt; <span class='message'>replace the existing scale.</span></div><div class='output co'>#&gt; <span class='message'>Scale for 'x' is already present. Adding another scale for 'x', which will</span>
 #&gt; <span class='message'>replace the existing scale.</span></div><div class='output co'>#&gt; <span class='message'>Scale for 'x' is already present. Adding another scale for 'x', which will</span>
-#&gt; <span class='message'>replace the existing scale.</span></div><div class='img'><img src='grouped_ggdotplotstats-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
+#&gt; <span class='message'>replace the existing scale.</span></div><div class='img'><img src='grouped_ggdotplotstats-1.png' alt='' width='700' height='433' /></div><div class='input'># }
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -422,7 +418,7 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

@@ -70,9 +70,6 @@
 #'   and its value to be displayed (Default: `TRUE`).
 #' @param mean.ci Logical that decides whether `95%` confidence interval for
 #'   mean is to be displayed (Default: `FALSE`).
-#' @param palette If a character string (e.g., `"Set1"`), will use that named
-#'   palette. If a number, will index into the list of palettes of appropriate
-#'   type. Default palette is `"Dark2"`.
 #' @param point.args A list of additional aesthetic arguments to be passed to
 #'   the `geom_point` displaying the raw data.
 #' @param violin.args A list of additional aesthetic arguments to be passed to
@@ -81,9 +78,9 @@
 #'   by `ggstatsplot`. This argument is primarily helpful for `grouped_` variant
 #'   of the current function. Default is `NULL`. The argument should be entered
 #'   as a function.
-#' @param package Name of package from which the palette is desired as string
-#' or symbol.
-#' @param palette Name of palette as string or symbol.
+#' @param package,palette Name of the package from which the given palette is to
+#'   be extracted. The available palettes and packages can be checked by running
+#'   `View(paletteer::palettes_d_names)`.
 #' @param output Character that describes what is to be returned: can be
 #'   `"plot"` (default) or `"subtitle"` or `"caption"`. Setting this to
 #'   `"subtitle"` will return the expression containing statistical results. If
@@ -124,12 +121,6 @@
 #' @details
 #' For parametric tests, Welch's ANOVA/*t*-test are used as a default (i.e.,
 #' `var.equal = FALSE`).
-#' References:
-#' \itemize{
-#'  \item ANOVA: Delacre, Leys, Mora, & Lakens, *PsyArXiv*, 2018
-#'  \item *t*-test: Delacre, Lakens, & Leys,
-#'  *International Review of Social Psychology*, 2017
-#'  }
 #'
 #'  If robust tests are selected, following tests are used is .
 #' \itemize{
@@ -167,14 +158,12 @@
 #'   y = Speed,
 #'   type = "nonparametric",
 #'   plot.type = "box",
-#'   conf.level = 0.99,
 #'   xlab = "The experiment number",
 #'   ylab = "Speed-of-light measurement",
 #'   pairwise.comparisons = TRUE,
 #'   p.adjust.method = "fdr",
 #'   outlier.tagging = TRUE,
 #'   outlier.label = Run,
-#'   nboot = 10,
 #'   ggtheme = ggplot2::theme_grey(),
 #'   ggstatsplot.layer = FALSE
 #' )

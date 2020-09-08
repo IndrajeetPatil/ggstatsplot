@@ -207,23 +207,23 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
     </div>
 
     <pre class="usage"><span class='fu'>grouped_ggbarstats</span>(
-  <span class='kw'>data</span>,
-  <span class='kw'>main</span>,
-  <span class='kw'>condition</span>,
-  counts = <span class='kw'>NULL</span>,
-  <span class='kw'>grouping.var</span>,
-  title.prefix = <span class='kw'>NULL</span>,
-  output = <span class='st'>"plot"</span>,
-  x = <span class='kw'>NULL</span>,
-  y = <span class='kw'>NULL</span>,
-  <span class='kw'>...</span>,
-  plotgrid.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  title.text = <span class='kw'>NULL</span>,
-  title.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(size = <span class='fl'>16</span>, fontface = <span class='st'>"bold"</span>),
-  caption.text = <span class='kw'>NULL</span>,
-  caption.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(size = <span class='fl'>10</span>),
-  sub.text = <span class='kw'>NULL</span>,
-  sub.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(size = <span class='fl'>12</span>)
+  <span class='no'>data</span>,
+  <span class='no'>main</span>,
+  <span class='no'>condition</span>,
+  <span class='kw'>counts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>grouping.var</span>,
+  <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>...</span>,
+  <span class='kw'>plotgrid.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  <span class='kw'>title.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>title.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>16</span>, <span class='kw'>fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>),
+  <span class='kw'>caption.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>caption.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>10</span>),
+  <span class='kw'>sub.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>sub.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>12</span>)
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -288,7 +288,7 @@ association test will be run. This argument can not be <code>NULL</code> for
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Arguments passed on to <code><a href='ggbarstats.html'>ggbarstats</a></code></p><dl>
+      <td><p>Arguments passed on to <code><a href='ggbarstats.html'>ggbarstats</a></code></p><dl'>
     <dt><code>xlab</code></dt><dd><p>Custom text for the <code>x</code> axis label (Default: <code>NULL</code>, which
 will cause the <code>x</code> axis label to be the <code>x</code> variable).</p></dd>
     <dt><code>ylab</code></dt><dd><p>Custom text for the <code>y</code> axis label (Default: <code>NULL</code>).</p></dd>
@@ -347,9 +347,12 @@ extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggtheme
 theme elements are to be displayed along with the selected <code>ggtheme</code>
 (Default: <code>TRUE</code>). <code>theme_ggstatsplot</code> is an opinionated theme layer that
 override some aspects of the selected <code>ggtheme</code>.</p></dd>
-    <dt><code>package</code></dt><dd><p>Name of package from which the palette is desired as string
-or symbol.</p></dd>
-    <dt><code>palette</code></dt><dd><p>Name of palette as string or symbol.</p></dd>
+    <dt><code>package</code></dt><dd><p>Name of the package from which the given palette is to
+be extracted. The available palettes and packages can be checked by running
+<code><a href='https://rdrr.io/r/utils/View.html'>View(paletteer::palettes_d_names)</a></code>.</p></dd>
+    <dt><code>palette</code></dt><dd><p>Name of the package from which the given palette is to
+be extracted. The available palettes and packages can be checked by running
+<code><a href='https://rdrr.io/r/utils/View.html'>View(paletteer::palettes_d_names)</a></code>.</p></dd>
     <dt><code>ggplot.component</code></dt><dd><p>A <code>ggplot</code> component to be added to the plot prepared
 by <code>ggstatsplot</code>. This argument is primarily helpful for <code>grouped_</code> variant
 of the current function. Default is <code>NULL</code>. The argument should be entered
@@ -416,22 +419,21 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
 
 <span class='co'># let's create a smaller dataframe</span>
-<span class='kw'>diamonds_short</span> <span class='op'>&lt;-</span> <span class='kw'>ggplot2</span>::<span class='kw'><a href='https://ggplot2.tidyverse.org/reference/diamonds.html'>diamonds</a></span> <span class='op'>%&gt;%</span>
-  <span class='kw'>dplyr</span>::<span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(.data = <span class='kw'>.</span>, <span class='kw'>cut</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Very Good"</span>, <span class='st'>"Ideal"</span>)) <span class='op'>%&gt;%</span>
-  <span class='kw'>dplyr</span>::<span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(.data = <span class='kw'>.</span>, <span class='kw'>clarity</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"SI1"</span>, <span class='st'>"SI2"</span>, <span class='st'>"VS1"</span>, <span class='st'>"VS2"</span>)) <span class='op'>%&gt;%</span>
-  <span class='kw'>dplyr</span>::<span class='fu'><a href='https://dplyr.tidyverse.org/reference/sample_n.html'>sample_frac</a></span>(tbl = <span class='kw'>.</span>, size = <span class='fl'>0.05</span>)
+<span class='no'>diamonds_short</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/diamonds.html'>diamonds</a></span> <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='no'>cut</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Very Good"</span>, <span class='st'>"Ideal"</span>)) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='no'>clarity</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"SI1"</span>, <span class='st'>"SI2"</span>, <span class='st'>"VS1"</span>, <span class='st'>"VS2"</span>)) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/sample_n.html'>sample_frac</a></span>(<span class='kw'>tbl</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>0.05</span>)
 
 <span class='co'># plot</span>
-<span class='kw'>ggstatsplot</span>::<span class='fu'>grouped_ggbarstats</span>(
-  data = <span class='kw'>diamonds_short</span>,
-  x = <span class='kw'>color</span>,
-  y = <span class='kw'>clarity</span>,
-  grouping.var = <span class='kw'>cut</span>,
-  title.prefix = <span class='st'>"Quality"</span>,
-  bar.label = <span class='st'>"both"</span>,
-  plotgrid.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(nrow = <span class='fl'>2</span>)
-)
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='img'><img src='grouped_ggbarstats-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>grouped_ggbarstats</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>diamonds_short</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>color</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>clarity</span>,
+  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>cut</span>,
+  <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Quality"</span>,
+  <span class='kw'>bar.label</span> <span class='kw'>=</span> <span class='st'>"both"</span>,
+  <span class='kw'>plotgrid.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='img'><img src='grouped_ggbarstats-1.png' alt='' width='700' height='433' /></div><div class='input'># }
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -448,7 +450,7 @@ are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/cohenG.html'
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

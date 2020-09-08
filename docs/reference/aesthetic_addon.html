@@ -203,19 +203,19 @@
     </div>
 
     <pre class="usage"><span class='fu'>aesthetic_addon</span>(
-  <span class='kw'>plot</span>,
-  <span class='kw'>x</span>,
-  xlab = <span class='kw'>NULL</span>,
-  ylab = <span class='kw'>NULL</span>,
-  title = <span class='kw'>NULL</span>,
-  subtitle = <span class='kw'>NULL</span>,
-  caption = <span class='kw'>NULL</span>,
-  ggtheme = <span class='kw'>ggplot2</span>::<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
-  ggstatsplot.layer = <span class='fl'>TRUE</span>,
-  package = <span class='st'>"RColorBrewer"</span>,
-  palette = <span class='st'>"Dark2"</span>,
-  ggplot.component = <span class='kw'>NULL</span>,
-  <span class='kw'>...</span>
+  <span class='no'>plot</span>,
+  <span class='no'>x</span>,
+  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
+  <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>,
+  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>,
+  <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -268,12 +268,15 @@ override some aspects of the selected <code>ggtheme</code>.</p></td>
     </tr>
     <tr>
       <th>package</th>
-      <td><p>Name of package from which the palette is desired as string
-or symbol.</p></td>
+      <td><p>Name of the package from which the given palette is to
+be extracted. The available palettes and packages can be checked by running
+<code><a href='https://rdrr.io/r/utils/View.html'>View(paletteer::palettes_d_names)</a></code>.</p></td>
     </tr>
     <tr>
       <th>palette</th>
-      <td><p>Name of palette as string or symbol.</p></td>
+      <td><p>Name of the package from which the given palette is to
+be extracted. The available palettes and packages can be checked by running
+<code><a href='https://rdrr.io/r/utils/View.html'>View(paletteer::palettes_d_names)</a></code>.</p></td>
     </tr>
     <tr>
       <th>ggplot.component</th>
@@ -304,7 +307,7 @@ as a function.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

@@ -149,7 +149,7 @@
       <h1 data-toc-skip>ggstatsplot theme</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-09-07</h4>
+            <h4 class="date">2020-09-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/theme_ggstatsplot.Rmd"><code>vignettes/web_only/theme_ggstatsplot.Rmd</code></a></small>
       <div class="hidden name"><code>theme_ggstatsplot.Rmd</code></div>
@@ -164,32 +164,28 @@
 </h2>
 <p><code>ggstatsplot</code> uses a default theme <code><a href="../../reference/theme_ggstatsplot.html">theme_ggstatsplot()</a></code>, which is a selected <code>ggplot2</code> theme with few aesthetic modifications overlaid on top, that can be used with any <code>ggplot2</code> object.</p>
 <p>Here is a simple example:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span>)
+<div class="sourceCode" id="cb1"><html><body><pre class="r">library(ggplot2)
 
-<span class="kw">ggstatsplot</span>::<span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span>(
-  <span class="co"># basic scatter plot with `theme_ggstatsplot()` added</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">wt</span>, y = <span class="kw">mpg</span>)) <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>() <span class="op">+</span>
-    <span class="kw">ggstatsplot</span>::<span class="fu"><a href="../../reference/theme_ggstatsplot.html">theme_ggstatsplot</a></span>(),
-  <span class="co"># basic scatter plot without the default theme</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">wt</span>, y = <span class="kw">mpg</span>)) <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(),
-  nrow = <span class="fl">1</span>,
-  title.text = <span class="st">"Plot with and without the default `theme_ggstatsplot` overlaid"</span>
-)
-</pre></div>
+ggstatsplot::combine_plots(
+  # basic scatter plot with `theme_ggstatsplot()` added
+  ggplot(mtcars, aes(x = wt, y = mpg)) +
+    geom_point() +
+    ggstatsplot::theme_ggstatsplot(),
+  # basic scatter plot without the default theme
+  ggplot(mtcars, aes(x = wt, y = mpg)) +
+    geom_point(),
+  nrow = 1,
+  title.text = "Plot with and without the default `theme_ggstatsplot` overlaid"
+)</pre></body></html></div>
 <p><img src="theme_ggstatsplot_files/figure-html/theme_ggstatsplot-1.png" width="100%"></p>
-<p>All plots in this package have <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw()</a></code> by default as the base on which <code><a href="../../reference/theme_ggstatsplot.html">theme_ggstatsplot()</a></code> is built, but this can be modified using the <code>ggtheme</code> argument. Let’s see an example with <code>ggcorrmat</code> function.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw">ggstatsplot</span>::<span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span>(
-  data = <span class="kw">datasets</span>::<span class="kw"><a href="https://rdrr.io/r/datasets/iris.html">iris</a></span>,
-  cor.vars = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">Sepal.Length</span><span class="op">:</span><span class="kw">Petal.Width</span>),
-  matrix.type = <span class="st">"upper"</span>,
-  ggtheme = <span class="kw">ggthemes</span>::<span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>(), <span class="co"># selected ggplot2 theme</span>
-  ggstatsplot.layer = <span class="fl">FALSE</span> <span class="co"># turn of default theme layer</span>
-)
-</pre></div>
+<p>All plots in this package have <code>theme_bw()</code> by default as the base on which <code><a href="../../reference/theme_ggstatsplot.html">theme_ggstatsplot()</a></code> is built, but this can be modified using the <code>ggtheme</code> argument. Let’s see an example with <code>ggcorrmat</code> function.</p>
+<div class="sourceCode" id="cb2"><html><body><pre class="r">ggstatsplot::ggcorrmat(
+  data = datasets::iris,
+  cor.vars = c(Sepal.Length:Petal.Width),
+  matrix.type = "upper",
+  ggtheme = ggthemes::theme_fivethirtyeight(), # selected ggplot2 theme
+  ggstatsplot.layer = FALSE # turn of default theme layer
+)</pre></body></html></div>
 <p><img src="theme_ggstatsplot_files/figure-html/theme1-1.png" width="100%"></p>
 <p>Try modifying the theme for other functions (use themes from <code>ggplot2</code>, <code>ggthemes</code>, <code>hrbrthemes</code>, etc.).</p>
 </div>
@@ -220,7 +216,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
 </div>
 
       </footer>

@@ -1,8 +1,25 @@
 pandoc: 2.10.1
-pkgdown: 1.5.1.9000
-pkgdown_sha: c6b35532515a7ae433eff4b547d77eeae4278664
-articles: []
-last_built: 2020-09-07T14:41Z
+pkgdown: 1.5.1
+pkgdown_sha: ~
+articles:
+  additional: additional.html
+  combine_plots: web_only/combine_plots.html
+  effsize_interpretation: web_only/effsize_interpretation.html
+  faq: web_only/faq.html
+  gallery: web_only/gallery.html
+  ggbetweenstats: web_only/ggbetweenstats.html
+  ggcoefstats: web_only/ggcoefstats.html
+  ggcorrmat: web_only/ggcorrmat.html
+  ggdotplotstats: web_only/ggdotplotstats.html
+  gghistostats: web_only/gghistostats.html
+  ggpiestats: web_only/ggpiestats.html
+  ggscatterstats: web_only/ggscatterstats.html
+  ggwithinstats: web_only/ggwithinstats.html
+  other_resources: web_only/other_resources.html
+  purrr_examples: web_only/purrr_examples.html
+  session_info: web_only/session_info.html
+  theme_ggstatsplot: web_only/theme_ggstatsplot.html
+last_built: 2020-09-08T13:02Z
 urls:
   reference: https://indrajeetpatil.github.io/ggstatsplot//reference
   article: https://indrajeetpatil.github.io/ggstatsplot//articles

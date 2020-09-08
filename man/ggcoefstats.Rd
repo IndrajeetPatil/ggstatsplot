@@ -146,10 +146,13 @@ be chosen from the specified \code{package} (Default: \code{"RColorBrewer"}) and
 \code{ggrepel::geom_label_repel} geom. Please see documentation for that
 function to know more about these arguments.}
 
-\item{package}{Name of package from which the palette is desired as string
-or symbol.}
+\item{package}{Name of the package from which the given palette is to
+be extracted. The available palettes and packages can be checked by running
+\code{View(paletteer::palettes_d_names)}.}
 
-\item{palette}{Name of palette as string or symbol.}
+\item{palette}{Name of the package from which the given palette is to
+be extracted. The available palettes and packages can be checked by running
+\code{View(paletteer::palettes_d_names)}.}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from

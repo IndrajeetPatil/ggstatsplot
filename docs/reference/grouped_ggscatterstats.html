@@ -210,22 +210,22 @@ subtitle.</p>
     </div>
 
     <pre class="usage"><span class='fu'>grouped_ggscatterstats</span>(
-  <span class='kw'>data</span>,
-  <span class='kw'>x</span>,
-  <span class='kw'>y</span>,
-  <span class='kw'>grouping.var</span>,
-  label.var = <span class='kw'>NULL</span>,
-  label.expression = <span class='kw'>NULL</span>,
-  title.prefix = <span class='kw'>NULL</span>,
-  output = <span class='st'>"plot"</span>,
-  <span class='kw'>...</span>,
-  plotgrid.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  title.text = <span class='kw'>NULL</span>,
-  title.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(size = <span class='fl'>16</span>, fontface = <span class='st'>"bold"</span>),
-  caption.text = <span class='kw'>NULL</span>,
-  caption.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(size = <span class='fl'>10</span>),
-  sub.text = <span class='kw'>NULL</span>,
-  sub.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(size = <span class='fl'>12</span>)
+  <span class='no'>data</span>,
+  <span class='no'>x</span>,
+  <span class='no'>y</span>,
+  <span class='no'>grouping.var</span>,
+  <span class='kw'>label.var</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>label.expression</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
+  <span class='no'>...</span>,
+  <span class='kw'>plotgrid.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  <span class='kw'>title.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>title.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>16</span>, <span class='kw'>fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>),
+  <span class='kw'>caption.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>caption.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>10</span>),
+  <span class='kw'>sub.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>sub.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>12</span>)
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -285,7 +285,7 @@ dataframe containing results from proportion tests.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Arguments passed on to <code><a href='ggscatterstats.html'>ggscatterstats</a></code></p><dl>
+      <td><p>Arguments passed on to <code><a href='ggscatterstats.html'>ggscatterstats</a></code></p><dl'>
     <dt><code>point.label.args</code></dt><dd><p>A list of additional aesthetic arguments to be passed
 to <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geom used to display the labels.</p></dd>
     <dt><code>smooth.line.args</code></dt><dd><p>A list of additional aesthetic arguments to be passed
@@ -445,18 +445,17 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='co'># to ensure reproducibility</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://indrajeetpatil.github.io/ggstatsplot'>ggstatsplot</a></span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggstatsplot</span>)
 
 <span class='co'># basic function call</span>
-<span class='kw'>ggstatsplot</span>::<span class='fu'>grouped_ggscatterstats</span>(
-  data = <span class='kw'>dplyr</span>::<span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw'>movies_long</span>, <span class='kw'>genre</span> <span class='op'>==</span> <span class='st'>"Comedy"</span> <span class='op'>|</span> <span class='kw'>genre</span> <span class='op'>==</span> <span class='st'>"Drama"</span>),
-  x = <span class='kw'>length</span>,
-  y = <span class='kw'>rating</span>,
-  method = <span class='st'>"lm"</span>,
-  formula = <span class='kw'>y</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span>(<span class='kw'>x</span><span class='op'>^</span><span class='fl'>3</span>),
-  grouping.var = <span class='kw'>genre</span>
-)
-</div><div class='output co'>#&gt; <span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>The statistical analysis is available only for linear model
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>grouped_ggscatterstats</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>movies_long</span>, <span class='no'>genre</span> <span class='kw'>==</span> <span class='st'>"Comedy"</span> <span class='kw'>|</span> <span class='no'>genre</span> <span class='kw'>==</span> <span class='st'>"Drama"</span>),
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>length</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>rating</span>,
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"lm"</span>,
+  <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>x</span> + <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span>(<span class='no'>x</span>^<span class='fl'>3</span>),
+  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>genre</span>
+)</div><div class='output co'>#&gt; <span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>The statistical analysis is available only for linear model
 #&gt; (formula = y ~ x, method = 'lm'). Returning only the plot.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>The statistical analysis is available only for linear model
 #&gt; (formula = y ~ x, method = 'lm'). Returning only the plot.
@@ -464,36 +463,34 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
 <span class='co'># using labeling</span>
 <span class='co'># (also show how to modify basic plot from within function call)</span>
 <span class='fu'>grouped_ggscatterstats</span>(
-  data = <span class='kw'>dplyr</span>::<span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw'>ggplot2</span>::<span class='kw'><a href='https://ggplot2.tidyverse.org/reference/mpg.html'>mpg</a></span>, <span class='kw'>cyl</span> != <span class='fl'>5</span>),
-  x = <span class='kw'>displ</span>,
-  y = <span class='kw'>hwy</span>,
-  grouping.var = <span class='kw'>cyl</span>,
-  title.prefix = <span class='st'>"Cylinder count"</span>,
-  type = <span class='st'>"robust"</span>,
-  label.var = <span class='kw'>manufacturer</span>,
-  label.expression = <span class='kw'>hwy</span> <span class='op'>&gt;</span> <span class='fl'>25</span> <span class='op'>&amp;</span> <span class='kw'>displ</span> <span class='op'>&gt;</span> <span class='fl'>2.5</span>,
-  ggplot.component = <span class='kw'>ggplot2</span>::<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span>(sec.axis = <span class='kw'>ggplot2</span>::<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/sec_axis.html'>dup_axis</a></span>()),
-  messages = <span class='fl'>FALSE</span>
-)
-</div><div class='img'><img src='grouped_ggscatterstats-2.png' alt='' width='700' height='433' /></div><div class='input'>
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/mpg.html'>mpg</a></span>, <span class='no'>cyl</span> <span class='kw'>!=</span> <span class='fl'>5</span>),
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>displ</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>hwy</span>,
+  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
+  <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Cylinder count"</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"robust"</span>,
+  <span class='kw'>label.var</span> <span class='kw'>=</span> <span class='no'>manufacturer</span>,
+  <span class='kw'>label.expression</span> <span class='kw'>=</span> <span class='no'>hwy</span> <span class='kw'>&gt;</span> <span class='fl'>25</span> <span class='kw'>&amp;</span> <span class='no'>displ</span> <span class='kw'>&gt;</span> <span class='fl'>2.5</span>,
+  <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span>(<span class='kw'>sec.axis</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/sec_axis.html'>dup_axis</a></span>()),
+  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</div><div class='img'><img src='grouped_ggscatterstats-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># labeling without expression</span>
 
-<span class='kw'>ggstatsplot</span>::<span class='fu'>grouped_ggscatterstats</span>(
-  data = <span class='kw'>dplyr</span>::<span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
-    .data = <span class='kw'>movies_long</span>,
-    <span class='kw'>rating</span> <span class='op'>==</span> <span class='fl'>7</span>,
-    <span class='kw'>genre</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Drama"</span>, <span class='st'>"Comedy"</span>)
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>grouped_ggscatterstats</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
+    <span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>movies_long</span>,
+    <span class='no'>rating</span> <span class='kw'>==</span> <span class='fl'>7</span>,
+    <span class='no'>genre</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Drama"</span>, <span class='st'>"Comedy"</span>)
   ),
-  x = <span class='kw'>budget</span>,
-  y = <span class='kw'>length</span>,
-  grouping.var = <span class='kw'>genre</span>,
-  bf.message = <span class='fl'>FALSE</span>,
-  label.var = <span class='st'>"title"</span>,
-  marginal = <span class='fl'>FALSE</span>,
-  title.prefix = <span class='st'>"Genre"</span>,
-  caption.text = <span class='st'>"All movies have IMDB rating equal to 7."</span>
-)
-</div><div class='img'><img src='grouped_ggscatterstats-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>budget</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>length</span>,
+  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>genre</span>,
+  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>label.var</span> <span class='kw'>=</span> <span class='st'>"title"</span>,
+  <span class='kw'>marginal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Genre"</span>,
+  <span class='kw'>caption.text</span> <span class='kw'>=</span> <span class='st'>"All movies have IMDB rating equal to 7."</span>
+)</div><div class='img'><img src='grouped_ggscatterstats-3.png' alt='' width='700' height='433' /></div><div class='input'># }
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -510,7 +507,7 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

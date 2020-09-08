@@ -1,8 +1,8 @@
 language: r
 r:
   - release
-  - devel
-  - oldrel
+  #- devel
+  #- oldrel
 latex: true
 warnings_are_errors: TRUE
 

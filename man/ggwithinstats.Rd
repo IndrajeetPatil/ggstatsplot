@@ -214,10 +214,13 @@ theme elements are to be displayed along with the selected \code{ggtheme}
 (Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
 override some aspects of the selected \code{ggtheme}.}
 
-\item{package}{Name of package from which the palette is desired as string
-or symbol.}
+\item{package}{Name of the package from which the given palette is to
+be extracted. The available palettes and packages can be checked by running
+\code{View(paletteer::palettes_d_names)}.}
 
-\item{palette}{Name of palette as string or symbol.}
+\item{palette}{Name of the package from which the given palette is to
+be extracted. The available palettes and packages can be checked by running
+\code{View(paletteer::palettes_d_names)}.}
 
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant

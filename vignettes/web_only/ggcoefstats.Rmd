@@ -214,26 +214,6 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
-## multivariate analysis of variance (`manova`)
-
-```{r manova, fig.height = 8, fig.width = 8}
-# setup
-set.seed(123)
-op <- options(contrasts = c("contr.helmert", "contr.poly"))
-
-# fake a 2nd response variable
-npk2 <- within(npk, foo <- rnorm(24))
-
-# model
-m <- manova(cbind(yield, foo) ~ block + N * P * K, npk2)
-
-# plot
-ggstatsplot::ggcoefstats(
-  x = m,
-  title = "multivariate analysis of variance"
-)
-```
-
 ## linear model (`lm`)
 
 ```{r lm, fig.height = 8, fig.width = 8}
@@ -285,11 +265,22 @@ library(lme4)
 library(ggstatsplot)
 set.seed(123)
 
+# lm model
+mod1 <- stats::lm(formula = scale(rating) ~ scale(budget), data = movies_long)
+
+# merMod model
+mod2 <-
+  lme4::lmer(
+    formula = scale(rating) ~ scale(budget) + (budget | genre),
+    data = movies_long,
+    control = lme4::lmerControl(calc.derivs = FALSE)
+  )
+
 # combining the two different plots
 ggstatsplot::combine_plots(
   # model 1: simple linear model
   ggstatsplot::ggcoefstats(
-    x = stats::lm(formula = scale(rating) ~ scale(budget), data = movies_long),
+    x = mod1,
     title = "linear model",
     stats.label.color = "black",
     exclude.intercept = FALSE # show the intercept
@@ -297,11 +288,7 @@ ggstatsplot::combine_plots(
     ggplot2::labs(x = parse(text = "'standardized regression coefficient' ~italic(beta)")),
   # model 2: linear mixed-effects model
   ggstatsplot::ggcoefstats(
-    x = lme4::lmer(
-      formula = scale(rating) ~ scale(budget) + (budget | genre),
-      data = movies_10,
-      control = lme4::lmerControl(calc.derivs = FALSE)
-    ),
+    x = mod2,
     title = "linear mixed-effects model",
     stats.label.color = "black",
     exclude.intercept = FALSE
@@ -441,6 +428,74 @@ ggstatsplot::ggcoefstats(
 This analysis shows that there is indeed a possible non-linear association
 between rating and budget (non-linear regression term `k` is significant), at
 least with the particular non-linear function we used.
+
+## conditional generalized linear models for clustered data (`cglm`)
+
+```{r cglm, fig.height = 6, fig.width = 6}
+# setup
+set.seed(123)
+library(cglm)
+data(teenpov)
+
+# model
+fit.ide <-
+  cglm::cglm(
+    method = "ts",
+    formula = hours ~ nonpov + inschool + spouse + age + mother,
+    data = teenpov,
+    id = "ID",
+    link = "identity"
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = fit.ide,
+  title = "conditional generalized linear models for clustered data"
+)
+```
+
+## joint model to time-to-event data and multivariate longitudinal data (`mjoint`)
+
+```{r mjoint, fig.height = 8, fig.width = 8}
+# setup
+set.seed(123)
+library(joineRML)
+data(heart.valve)
+
+# data
+hvd <- heart.valve[!is.na(heart.valve$log.grad) &
+  !is.na(heart.valve$log.lvmi) &
+  heart.valve$num <= 50, ]
+
+# model
+fit <-
+  joineRML::mjoint(
+    formLongFixed = list(
+      "grad" = log.grad ~ time + sex + hs,
+      "lvmi" = log.lvmi ~ time + sex
+    ),
+    formLongRandom = list(
+      "grad" = ~ 1 | num,
+      "lvmi" = ~ time | num
+    ),
+    formSurv = Surv(fuyrs, status) ~ age,
+    data = hvd,
+    inits = list("gamma" = c(0.11, 1.51, 0.80)),
+    timeVar = "time"
+  )
+
+# extract the survival fixed effects and plot them
+ggstatsplot::ggcoefstats(
+  x = fit,
+  conf.level = 0.99,
+  exclude.intercept = FALSE,
+  component = "longitudinal",
+  package = "yarrr",
+  palette = "basel",
+  title = "joint model to time-to-event data and multivariate longitudinal data"
+)
+```
+
 
 ## stationary linear model (`slm`)
 
@@ -1614,7 +1669,7 @@ data$examsc.class <- cut(data$examsc, classes)
 
 # run model with random intercept and default settings
 model <-
-  semLme(
+  semLm(
     formula = examsc.class ~ standLRT + schavg,
     data = data,
     classes = classes
@@ -2261,44 +2316,37 @@ ggstatsplot::ggcoefstats(
 
 ## analysis of factorial experiments (`mixed`)
 
-```{r mixed, fig.height = 4, fig.width = 8}
+```{r mixed, fig.height = 4, fig.width = 8, eval=FALSE}
 # setup
 set.seed(123)
 library(afex)
-data(sleepstudy)
+library(MEMSS)
+data("Machines", package = "MEMSS")
 
-# data
-sleepstudy$mygrp <- sample(1:5, size = 180, replace = TRUE)
-sleepstudy$mysubgrp <- NA
-for (i in 1:5) {
-  filter_group <- sleepstudy$mygrp == i
-  sleepstudy$mysubgrp[filter_group] <-
-    sample(1:30, size = sum(filter_group), replace = TRUE)
-}
-
-# linear model
+# simple model with random-slopes for repeated-measures factor
 m1 <- afex::mixed(
-  formula = Reaction ~ Days + (1 + Days | Subject),
-  data = sleepstudy
+  formula = score ~ Machine + (Machine | Worker),
+  data = Machines
 )
 
-# linear mixed-effects model
+# suppress correlations among random effect parameters with || and expand_re = TRUE
 m2 <- afex::mixed(
-  formula = Reaction ~ Days + (1 | mygrp / mysubgrp) + (1 | Subject),
-  data = sleepstudy
+  formula = score ~ Machine + (Machine || Worker),
+  data = Machines,
+  expand_re = TRUE
 )
 
 # plot
 ggstatsplot::combine_plots(
-  ggstatsplot::ggcoefstats(m1, title = "linear model (`afex` package)"),
-  ggstatsplot::ggcoefstats(m2, title = "linear mixed-effects model (`afex` package)")
+  ggstatsplot::ggcoefstats(m1, title = "example-1"),
+  ggstatsplot::ggcoefstats(m2, title = "example-2"),
+  title.text = "analysis of factorial experiments (using `afex`)"
 )
 ```
 
 ## multinomial logit model (`mlogit`)
 
 ```{r mlogit, fig.height = 8, fig.width = 7}
-
 # setup
 set.seed(123)
 library(mlogit)
@@ -2359,31 +2407,6 @@ mod <-
 ggstatsplot::ggcoefstats(
   x = mod,
   title = "Mixed Conditional Logit Models"
-)
-```
-
-## conditional generalized linear models for clustered data (`cglm`)
-
-```{r cglm, fig.height = 8, fig.width = 6}
-# setup
-set.seed(123)
-library(cglm)
-data(teenpov)
-
-# model
-fit.ide <-
-  cglm::cglm(
-    method = "ts",
-    formula = hours ~ nonpov + inschool + spouse + age + mother,
-    data = teenpov,
-    id = "ID",
-    link = "identity"
-  )
-
-# plot
-ggstatsplot::ggcoefstats(
-  x = fit.ide,
-  title = "conditional generalized linear models for clustered data"
 )
 ```
 
@@ -2773,8 +2796,7 @@ ccoh.data$subcohort <- subcoh[selccoh]
 ccoh.data$histol <- factor(ccoh.data$histol, labels = c("FH", "UH"))
 
 ## tumour stage
-ccoh.data$stage <-
-  factor(ccoh.data$stage, labels = c("I", "II", "III", "IV"))
+ccoh.data$stage <- factor(ccoh.data$stage, labels = c("I", "II", "III", "IV"))
 ccoh.data$age <- ccoh.data$age / 12 # Age in years
 
 # model
@@ -3215,48 +3237,6 @@ fit1 <- glmnet::glmnet(x, y)
 
 # displaying only a certain step
 ggstatsplot::ggcoefstats(x = dplyr::filter(df, step == 4))
-```
-
-## joint model to time-to-event data and multivariate longitudinal data (`mjoint`)
-
-```{r mjoint, fig.height = 8, fig.width = 8}
-# setup
-set.seed(123)
-library(joineRML)
-data(heart.valve)
-
-# data
-hvd <- heart.valve[!is.na(heart.valve$log.grad) &
-  !is.na(heart.valve$log.lvmi) &
-  heart.valve$num <= 50, ]
-
-# model
-fit <-
-  joineRML::mjoint(
-    formLongFixed = list(
-      "grad" = log.grad ~ time + sex + hs,
-      "lvmi" = log.lvmi ~ time + sex
-    ),
-    formLongRandom = list(
-      "grad" = ~ 1 | num,
-      "lvmi" = ~ time | num
-    ),
-    formSurv = Surv(fuyrs, status) ~ age,
-    data = hvd,
-    inits = list("gamma" = c(0.11, 1.51, 0.80)),
-    timeVar = "time"
-  )
-
-# extract the survival fixed effects and plot them
-ggstatsplot::ggcoefstats(
-  x = fit,
-  conf.level = 0.99,
-  exclude.intercept = FALSE,
-  component = "longitudinal",
-  package = "yarrr",
-  palette = "basel",
-  title = "joint model to time-to-event data and multivariate longitudinal data"
-)
 ```
 
 ## exponential-family random graph models (`ergm`)
@@ -3926,7 +3906,7 @@ ggstatsplot::ggcoefstats(
 
 ## Bayesian nonlinear models via Stan (`nlstanreg`)
 
-```{r nlstanreg, fig.height = 5, fig.width = 5}
+```{r nlstanreg, fig.height = 5, fig.width = 5, error=TRUE}
 # setup
 set.seed(123)
 library(rstanarm)
@@ -4240,6 +4220,26 @@ ggstatsplot::combine_plots(
     k = 3
   ),
   nrow = 1
+)
+```
+
+## multivariate analysis of variance (`manova`)
+
+```{r manova, fig.height = 8, fig.width = 8}
+# setup
+set.seed(123)
+op <- options(contrasts = c("contr.helmert", "contr.poly"))
+
+# fake a 2nd response variable
+npk2 <- within(npk, foo <- rnorm(24))
+
+# model
+m <- manova(cbind(yield, foo) ~ block + N * P * K, npk2)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = m,
+  title = "multivariate analysis of variance"
 )
 ```
 

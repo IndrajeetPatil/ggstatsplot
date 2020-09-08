@@ -163,24 +163,18 @@ df_facet_label <- function(data, x, y, k = 3L) {
 
 # function body
 grouped_proptest <- function(data, grouping.vars, measure, ...) {
-  # creating a grouped dataframe
-  df_grouped <- dplyr::group_by_at(data, rlang::enquos(grouping.vars))
-
-  # extracting grouping variables as a character
-  grouping_vars <- dplyr::group_vars(df_grouped)
-
   # calculating percentages and running chi-squared test
-  df_grouped %>%
+    dplyr::group_by_at(data, rlang::enquos(grouping.vars)) %>%
     {
       dplyr::left_join(
         x = (.) %>%
           dplyr::count({{ measure }}) %>%
-          dplyr::mutate(perc = paste(specify_decimal_p((n / sum(n)) * 100, k = 2), "%", sep = "")) %>%
+          dplyr::mutate(perc = paste0(specify_decimal_p((n / sum(n)) * 100, k = 2), "%")) %>%
           dplyr::select(-n) %>%
           tidyr::spread(data = ., key = {{ measure }}, value = perc),
         y = (.) %>%
           dplyr::group_modify(.f = ~ chisq_test_safe(., {{ measure }})),
-        by = grouping_vars
+        by = dplyr::group_vars(.)
       )
     } %>%
     dplyr::ungroup(.) %>%

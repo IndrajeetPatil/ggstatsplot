@@ -149,7 +149,7 @@
       <h1 data-toc-skip>ggscatterstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-09-07</h4>
+            <h4 class="date">2020-09-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggscatterstats.Rmd"><code>vignettes/web_only/ggscatterstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggscatterstats.Rmd</code></div>
@@ -170,60 +170,46 @@
 <a href="#correlation-plot-with-ggscatterstats" class="anchor"></a>Correlation plot with <code>ggscatterstats</code>
 </h2>
 <p>To illustrate how this function can be used, we will rely on the <code>ggplot2movies</code> dataset. This dataset provides information about movies scraped from <a href="https://www.imdb.com/">IMDB</a>. Specifically, we will be using cleaned version of this dataset included in the <code>ggstatsplot</code> package itself.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot">ggstatsplot</a></span>)
+<div class="sourceCode" id="cb1"><html><body><pre class="r">library(ggstatsplot)
 
-<span class="co"># see the selected data (we have data from 1813 movies)</span>
-<span class="kw">dplyr</span>::<span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span>(x = <span class="kw">ggstatsplot</span>::<span class="kw"><a href="../../reference/movies_wide.html">movies_wide</a></span>)
-<span class="co">#&gt; Rows: 1,579</span>
-<span class="co">#&gt; Columns: 13</span>
-<span class="co">#&gt; $ title     &lt;chr&gt; "'Til There Was You", "10 Things I Hate About You", "100 ...</span>
-<span class="co">#&gt; $ year      &lt;int&gt; 1997, 1999, 2002, 2004, 1999, 2001, 1972, 2003, 1999, 200...</span>
-<span class="co">#&gt; $ length    &lt;int&gt; 113, 97, 98, 98, 102, 120, 180, 107, 101, 99, 129, 124, 9...</span>
-<span class="co">#&gt; $ budget    &lt;dbl&gt; 23.0, 16.0, 1.1, 37.0, 85.0, 42.0, 4.0, 76.0, 6.0, 26.0, ...</span>
-<span class="co">#&gt; $ rating    &lt;dbl&gt; 4.8, 6.7, 5.6, 6.4, 6.1, 6.1, 7.3, 5.1, 5.4, 2.5, 7.6, 8....</span>
-<span class="co">#&gt; $ votes     &lt;int&gt; 799, 19095, 181, 7859, 14344, 10866, 1754, 9556, 4514, 20...</span>
-<span class="co">#&gt; $ mpaa      &lt;fct&gt; PG-13, PG-13, R, PG-13, R, R, PG, PG-13, R, R, R, R, R, R...</span>
-<span class="co">#&gt; $ Action    &lt;int&gt; 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, ...</span>
-<span class="co">#&gt; $ Animation &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ...</span>
-<span class="co">#&gt; $ Comedy    &lt;int&gt; 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, ...</span>
-<span class="co">#&gt; $ Drama     &lt;int&gt; 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, ...</span>
-<span class="co">#&gt; $ Romance   &lt;int&gt; 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, ...</span>
-<span class="co">#&gt; $ NumGenre  &lt;int&gt; 2, 2, 1, 3, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 2, 3, 2, 2, ...</span>
-</pre></div>
+# see the selected data (we have data from 1813 movies)
+dplyr::glimpse(x = ggstatsplot::movies_wide)
+#&gt; Rows: 1,579
+#&gt; Columns: 13
+#&gt; $ title     <chr> "'Til There Was You", "10 Things I Hate About You", "100 ...
+#&gt; $ year      <int> 1997, 1999, 2002, 2004, 1999, 2001, 1972, 2003, 1999, 200...
+#&gt; $ length    <int> 113, 97, 98, 98, 102, 120, 180, 107, 101, 99, 129, 124, 9...
+#&gt; $ budget    <dbl> 23.0, 16.0, 1.1, 37.0, 85.0, 42.0, 4.0, 76.0, 6.0, 26.0, ...
+#&gt; $ rating    <dbl> 4.8, 6.7, 5.6, 6.4, 6.1, 6.1, 7.3, 5.1, 5.4, 2.5, 7.6, 8....
+#&gt; $ votes     <int> 799, 19095, 181, 7859, 14344, 10866, 1754, 9556, 4514, 20...
+#&gt; $ mpaa      <fct> PG-13, PG-13, R, PG-13, R, R, PG, PG-13, R, R, R, R, R, R...
+#&gt; $ Action    <int> 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, ...
+#&gt; $ Animation <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ...
+#&gt; $ Comedy    <int> 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, ...
+#&gt; $ Drama     <int> 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, ...
+#&gt; $ Romance   <int> 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, ...
+#&gt; $ NumGenre  <int> 2, 2, 1, 3, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 2, 3, 2, 2, ...</int></int></int></int></int></int></fct></int></dbl></dbl></int></int></chr></pre></body></html></div>
 <p>Now that we have a clean dataset, we can start asking some interesting questions. For example, let’s see if the average IMDB rating for a movie has any relationship to its budget. Additionally, let’s also see which movies had a high budget but low IMDB rating by labeling those data points.</p>
 <p>To reduce the processing time, let’s only work with 30% of the dataset.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<div class="sourceCode" id="cb2"><html><body><pre class="r"># for reproducibility
+set.seed(123)
 
-<span class="co"># to speed up the calculation, let's use only 10% of the data</span>
-<span class="kw">movies_10</span> <span class="op">&lt;-</span> <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span>(tbl = <span class="kw">ggstatsplot</span>::<span class="kw"><a href="../../reference/movies_long.html">movies_long</a></span>, size = <span class="fl">0.1</span>)
-
-<span class="co"># plot</span>
-<span class="kw">ggstatsplot</span>::<span class="fu"><a href="../../reference/ggscatterstats.html">ggscatterstats</a></span>(
-  data = <span class="kw">movies_10</span>, <span class="co"># dataframe from which variables are taken</span>
-  x = <span class="kw">budget</span>, <span class="co"># predictor/independent variable</span>
-  y = <span class="kw">rating</span>, <span class="co"># dependent variable</span>
-  xlab = <span class="st">"Budget (in millions of US dollars)"</span>, <span class="co"># label for the x-axis</span>
-  ylab = <span class="st">"Rating on IMDB"</span>, <span class="co"># label for the y-axis</span>
-  label.var = <span class="st">"title"</span>, <span class="co"># variable to use for labeling data points</span>
-  label.expression = <span class="st">"rating &lt; 5 &amp; budget &gt; 100"</span>, <span class="co"># expression for deciding which points to label</span>
-  point.alpha = <span class="fl">0.7</span>,
-  point.size = <span class="fl">4</span>,
-  point.color = <span class="st">"grey50"</span>,
-  marginal = <span class="fl">TRUE</span>, <span class="co"># show marginal distribution</span>
-  marginal.type = <span class="st">"density"</span>, <span class="co"># type of plot for marginal distribution</span>
-  centrality.parameter = <span class="st">"mean"</span>, <span class="co"># centrality parameter to be plotted</span>
-  margins = <span class="st">"both"</span>, <span class="co"># marginal distribution on both axes</span>
-  xfill = <span class="st">"#CC79A7"</span>, <span class="co"># fill for marginals on the x-axis</span>
-  yfill = <span class="st">"#009E73"</span>, <span class="co"># fill for marginals on the y-axis</span>
-  type = <span class="st">"pearson"</span>, <span class="co"># type of linear association</span>
-  title = <span class="st">"Relationship between movie budget and IMDB rating"</span>,
-  caption = <span class="st">"Source: www.imdb.com"</span>,
-  messages = <span class="fl">FALSE</span>
-)
-</pre></div>
+# to speed up the calculation, let's use only 10% of the data
+movies_10  100", # expression for deciding which points to label
+  point.alpha = 0.7,
+  point.size = 4,
+  point.color = "grey50",
+  marginal = TRUE, # show marginal distribution
+  marginal.type = "density", # type of plot for marginal distribution
+  centrality.parameter = "mean", # centrality parameter to be plotted
+  margins = "both", # marginal distribution on both axes
+  xfill = "#CC79A7", # fill for marginals on the x-axis
+  yfill = "#009E73", # fill for marginals on the y-axis
+  type = "pearson", # type of linear association
+  title = "Relationship between movie budget and IMDB rating",
+  caption = "Source: www.imdb.com",
+  messages = FALSE
+)</pre></body></html></div>
 <p><img src="ggscatterstats_files/figure-html/ggscatterstats1-1.png" width="768"></p>
 <p>There is indeed a small, but significant, positive correlation between the amount of money studio invests in a movie and the ratings given by the audiences.</p>
 <p>The <code>type</code> (of test) argument also accepts the following abbreviations: <code>"p"</code> (for <em>parametric</em>/pearson’s), <code>"np"</code> (for <em>nonparametric</em>/spearman), <code>"r"</code> (for <em>robust</em>).</p>
@@ -237,38 +223,35 @@
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggstatsplot</code>. This is merely a wrapper function around <code><a href="../../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggstatsplot</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
 <p>Let’s see how we can use this function to apply <code>ggscatterstats</code> for all MPAA ratings. We will be running parametric tests (Pearson’s <em>r</em>, i.e.).<br>
 (If you set <code>type = "np"</code> or <code>type = "r"</code>, results from non-parametric or robust test will be displayed.)</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<div class="sourceCode" id="cb3"><html><body><pre class="r"># for reproducibility
+set.seed(123)
 
-<span class="co"># to speed up the calculation, let's use only 20% of the data</span>
-<span class="co"># also since there are only 7 movies with NC-17 ratings, leave them out</span>
-<span class="kw">movies_20</span> <span class="op">&lt;-</span>
-  <span class="kw">ggstatsplot</span>::<span class="kw"><a href="../../reference/movies_wide.html">movies_wide</a></span> <span class="op">%&gt;%</span>
-  <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(.data = <span class="kw">.</span>, <span class="kw">mpaa</span> != <span class="st">"NC-17"</span>) <span class="op">%&gt;%</span>
-  <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span>(tbl = <span class="kw">.</span>, size = <span class="fl">0.2</span>)
+# to speed up the calculation, let's use only 20% of the data
+# also since there are only 7 movies with NC-17 ratings, leave them out
+movies_20 %
+  dplyr::filter(.data = ., mpaa != "NC-17") %&gt;%
+  dplyr::sample_frac(tbl = ., size = 0.2)
 
-<span class="co"># plot</span>
-<span class="kw">ggstatsplot</span>::<span class="fu"><a href="../../reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span>(
-  <span class="co"># arguments relevant for ggstatsplot::ggscatterstats</span>
-  data = <span class="kw">movies_10</span>,
-  title.prefix = <span class="st">"MPAA Rating"</span>,
-  x = <span class="kw">budget</span>,
-  y = <span class="kw">rating</span>,
-  grouping.var = <span class="kw">mpaa</span>,
-  label.var = <span class="st">"title"</span>,
-  label.expression = <span class="st">"rating &lt; 5 &amp; budget &gt; 75"</span>,
-  marginal.type = <span class="st">"boxplot"</span>,
-  ggtheme = <span class="kw">ggthemes</span>::<span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),
-  ggstatsplot.layer = <span class="fl">FALSE</span>,
-  messages = <span class="fl">FALSE</span>,
-  k = <span class="fl">2</span>,
-  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span>
-  title.text = <span class="st">"Relationship between movie budget and IMDB rating"</span>,
-  caption.text = <span class="st">"Source: www.imdb.com"</span>,
-  plotgrid.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(nrow = <span class="fl">3</span>, ncol = <span class="fl">1</span>)
-)
-</pre></div>
+# plot
+ggstatsplot::grouped_ggscatterstats(
+  # arguments relevant for ggstatsplot::ggscatterstats
+  data = movies_10,
+  title.prefix = "MPAA Rating",
+  x = budget,
+  y = rating,
+  grouping.var = mpaa,
+  label.var = "title",
+  label.expression = "rating &lt; 5 &amp; budget &gt; 75",
+  marginal.type = "boxplot",
+  ggtheme = ggthemes::theme_tufte(),
+  ggstatsplot.layer = FALSE,
+  messages = FALSE,
+  k = 2,
+  # arguments relevant for ggstatsplot::combine_plots
+  title.text = "Relationship between movie budget and IMDB rating",
+  caption.text = "Source: www.imdb.com",
+  plotgrid.args = list(nrow = 3, ncol = 1)
+)</pre></body></html></div>
 <p><img src="ggscatterstats_files/figure-html/grouped1-1.png" width="672"></p>
 <p>As seen from the plot, this analysis has revealed something interesting: The relationship we found between budget and IMDB rating holds only for PG-13 and R-rated movies.</p>
 </div>
@@ -322,60 +305,28 @@
 <h2 class="hasAnchor">
 <a href="#different-smoothing-methods" class="anchor"></a>Different smoothing methods</h2>
 <p>Additionally, different smoothing methods can be specified. For example, if a robust correlation (percentage bend correlation coefficient) is used, we can use a robust smoothing function (<code><a href="https://rdrr.io/pkg/MASS/man/rlm.html">MASS::rlm</a></code>). Additionally, we can also specify different formulas to use for smoothing function. It is <strong>important</strong> that you set <code>results.subtitle = FALSE</code> since the results will no longer be relevant for the smoothing function used. Below, four different examples are given for how to use different smoothing functions.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw">mgcv</span>)
+<div class="sourceCode" id="cb4"><html><body><pre class="r">library(mgcv)
 
-<span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+# for reproducibility
+set.seed(123)
 
-<span class="co"># creating a list of plots with different smoothing functions</span>
-<span class="kw">plot_list2</span> <span class="op">&lt;-</span> <span class="kw">purrr</span>::<span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(
-  .l = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-    <span class="co"># let's use only 5% of the data to speed up the calculations</span>
-    data = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span>(tbl = <span class="kw">ggstatsplot</span>::<span class="kw"><a href="../../reference/movies_wide.html">movies_wide</a></span>, size = <span class="fl">0.05</span>)),
-    x = <span class="st">"budget"</span>,
-    y = <span class="st">"rating"</span>,
-    title = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-      <span class="st">"Robust linear model using an M estimator (rlm)"</span>,
-      <span class="st">"Generalized additive model (GAM) with a penalized smoother"</span>,
-      <span class="st">"Local Polynomial Regression Fitting"</span>,
-      <span class="st">"Quadratic fit"</span>
-    ),
-    method = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-      <span class="kw">MASS</span>::<span class="kw"><a href="https://rdrr.io/pkg/MASS/man/rlm.html">rlm</a></span>,
-      <span class="st">"gam"</span>,
-      <span class="st">"loess"</span>,
-      <span class="st">"lm"</span>
-    ),
-    formula = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-      <span class="kw">y</span> <span class="op">~</span> <span class="kw">x</span>,
-      <span class="kw">y</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/s.html">s</a></span>(<span class="kw">x</span>, k = <span class="fl">3</span>),
-      <span class="kw">y</span> <span class="op">~</span> <span class="kw">x</span>,
-      <span class="kw">y</span> <span class="op">~</span> <span class="kw">x</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span>(<span class="kw">x</span><span class="op">^</span><span class="fl">2</span>)
-    ),
-    line.color = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"#009E73"</span>, <span class="st">"#F0E442"</span>, <span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>),
-    marginal = <span class="fl">FALSE</span>,
-    messages = <span class="fl">FALSE</span>
-  ),
-  .f = <span class="kw">ggstatsplot</span>::<span class="kw"><a href="../../reference/ggscatterstats.html">ggscatterstats</a></span>
-)
-<span class="co">#&gt; Warning: The statistical analysis is available only for linear model</span>
-<span class="co">#&gt; (formula = y ~ x, method = 'lm'). Returning only the plot.</span>
-<span class="co">#&gt; Warning: The statistical analysis is available only for linear model</span>
-<span class="co">#&gt; (formula = y ~ x, method = 'lm'). Returning only the plot.</span>
-<span class="co">#&gt; Warning: The statistical analysis is available only for linear model</span>
-<span class="co">#&gt; (formula = y ~ x, method = 'lm'). Returning only the plot.</span>
-<span class="co">#&gt; Warning: The statistical analysis is available only for linear model</span>
-<span class="co">#&gt; (formula = y ~ x, method = 'lm'). Returning only the plot.</span>
+# creating a list of plots with different smoothing functions
+plot_list2  Warning: The statistical analysis is available only for linear model
+#&gt; (formula = y ~ x, method = 'lm'). Returning only the plot.
+#&gt; Warning: The statistical analysis is available only for linear model
+#&gt; (formula = y ~ x, method = 'lm'). Returning only the plot.
+#&gt; Warning: The statistical analysis is available only for linear model
+#&gt; (formula = y ~ x, method = 'lm'). Returning only the plot.
+#&gt; Warning: The statistical analysis is available only for linear model
+#&gt; (formula = y ~ x, method = 'lm'). Returning only the plot.
 
-<span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span>
-<span class="kw">ggstatsplot</span>::<span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span>(
-  plotlist = <span class="kw">plot_list2</span>,
-  title.text = <span class="st">"Trying out different smoothing functions with ggscatterstats"</span>,
-  caption.text = <span class="st">"Source: www.imdb.com"</span>,
-  nrow = <span class="fl">2</span>
-)
-</pre></div>
+# combining all individual plots from the list into a single plot using combine_plots function
+ggstatsplot::combine_plots(
+  plotlist = plot_list2,
+  title.text = "Trying out different smoothing functions with ggscatterstats",
+  caption.text = "Source: www.imdb.com",
+  nrow = 2
+)</pre></body></html></div>
 <p><img src="ggscatterstats_files/figure-html/grouped3-1.png" width="1152"></p>
 </div>
 <div id="suggestions" class="section level1">
@@ -405,7 +356,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
 </div>
 
       </footer>

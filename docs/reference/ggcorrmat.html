@@ -203,32 +203,32 @@
     </div>
 
     <pre class="usage"><span class='fu'>ggcorrmat</span>(
-  <span class='kw'>data</span>,
-  cor.vars = <span class='kw'>NULL</span>,
-  cor.vars.names = <span class='kw'>NULL</span>,
-  output = <span class='st'>"plot"</span>,
-  matrix.type = <span class='st'>"full"</span>,
-  matrix.method = <span class='st'>"square"</span>,
-  type = <span class='st'>"parametric"</span>,
-  beta = <span class='fl'>0.1</span>,
-  k = <span class='fl'>2L</span>,
-  sig.level = <span class='fl'>0.05</span>,
-  conf.level = <span class='fl'>0.95</span>,
-  bf.prior = <span class='fl'>0.707</span>,
-  p.adjust.method = <span class='st'>"none"</span>,
-  pch = <span class='st'>"cross"</span>,
-  ggcorrplot.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(outline.color = <span class='st'>"black"</span>),
-  package = <span class='st'>"RColorBrewer"</span>,
-  palette = <span class='st'>"Dark2"</span>,
-  colors = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"#E69F00"</span>, <span class='st'>"white"</span>, <span class='st'>"#009E73"</span>),
-  ggtheme = <span class='kw'>ggplot2</span>::<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
-  ggstatsplot.layer = <span class='fl'>TRUE</span>,
-  ggplot.component = <span class='kw'>NULL</span>,
-  title = <span class='kw'>NULL</span>,
-  subtitle = <span class='kw'>NULL</span>,
-  caption = <span class='kw'>NULL</span>,
-  messages = <span class='fl'>TRUE</span>,
-  <span class='kw'>...</span>
+  <span class='no'>data</span>,
+  <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>cor.vars.names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
+  <span class='kw'>matrix.type</span> <span class='kw'>=</span> <span class='st'>"full"</span>,
+  <span class='kw'>matrix.method</span> <span class='kw'>=</span> <span class='st'>"square"</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>,
+  <span class='kw'>beta</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2L</span>,
+  <span class='kw'>sig.level</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
+  <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
+  <span class='kw'>pch</span> <span class='kw'>=</span> <span class='st'>"cross"</span>,
+  <span class='kw'>ggcorrplot.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>outline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>),
+  <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>,
+  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>,
+  <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"#E69F00"</span>, <span class='st'>"white"</span>, <span class='st'>"#009E73"</span>),
+  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
+  <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='no'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -330,12 +330,15 @@ by <code>ggstatsplot</code>: <code>corr</code>, <code>method</code>, <code>p.mat
     </tr>
     <tr>
       <th>package</th>
-      <td><p>Name of package from which the palette is desired as string
-or symbol.</p></td>
+      <td><p>Name of the package from which the given palette is to
+be extracted. The available palettes and packages can be checked by running
+<code><a href='https://rdrr.io/r/utils/View.html'>View(paletteer::palettes_d_names)</a></code>.</p></td>
     </tr>
     <tr>
       <th>palette</th>
-      <td><p>Name of palette as string or symbol.</p></td>
+      <td><p>Name of the package from which the given palette is to
+be extracted. The available palettes and packages can be checked by running
+<code><a href='https://rdrr.io/r/utils/View.html'>View(paletteer::palettes_d_names)</a></code>.</p></td>
     </tr>
     <tr>
       <th>colors</th>
@@ -409,60 +412,57 @@ function.</p>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
 
 <span class='co'># if `cor.vars` not specified, all numeric variables used</span>
-<span class='kw'>ggstatsplot</span>::<span class='fu'>ggcorrmat</span>(<span class='kw'>iris</span>)
-</div><div class='img'><img src='ggcorrmat-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggcorrmat</span>(<span class='no'>iris</span>)</div><div class='img'><img src='ggcorrmat-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># to get the correlalogram</span>
 <span class='co'># note that the function will run even if the vector with variable names is</span>
 <span class='co'># not of same length as the number of variables</span>
-<span class='kw'>ggstatsplot</span>::<span class='fu'>ggcorrmat</span>(
-  data = <span class='kw'>ggplot2</span>::<span class='kw'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
-  type = <span class='st'>"robust"</span>,
-  cor.vars = <span class='kw'>sleep_total</span><span class='op'>:</span><span class='kw'>bodywt</span>,
-  cor.vars.names = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"total sleep"</span>, <span class='st'>"REM sleep"</span>),
-  matrix.type = <span class='st'>"lower"</span>
-)
-</div><div class='output co'>#&gt; <span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>No. of variable names doesn't equal no. of variables.</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggcorrmat-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggcorrmat</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"robust"</span>,
+  <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>sleep_total</span>:<span class='no'>bodywt</span>,
+  <span class='kw'>cor.vars.names</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"total sleep"</span>, <span class='st'>"REM sleep"</span>),
+  <span class='kw'>matrix.type</span> <span class='kw'>=</span> <span class='st'>"lower"</span>
+)</div><div class='output co'>#&gt; <span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>No. of variable names doesn't equal no. of variables.</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggcorrmat-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># to get the correlation analyses results in a dataframe</span>
-<span class='kw'>ggstatsplot</span>::<span class='fu'>ggcorrmat</span>(
-  data = <span class='kw'>ggplot2</span>::<span class='kw'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
-  cor.vars = <span class='kw'>sleep_total</span><span class='op'>:</span><span class='kw'>bodywt</span>,
-  output = <span class='st'>"dataframe"</span>
-)
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 15 x 10</span><span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggcorrmat</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
+  <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>sleep_total</span>:<span class='no'>bodywt</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"dataframe"</span>
+)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 15 x 10</span><span>
 #&gt;    </span><span style='font-weight: bold;'>parameter1</span><span>  </span><span style='font-weight: bold;'>parameter2</span><span>       </span><span style='font-weight: bold;'>r</span><span>  </span><span style='font-weight: bold;'>ci_low</span><span> </span><span style='font-weight: bold;'>ci_high</span><span>        </span><span style='font-weight: bold;'>t</span><span>    </span><span style='font-weight: bold;'>df</span><span>         </span><span style='font-weight: bold;'>p</span><span>
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> sleep_total sleep_rem    0.752  0.617   0.844      8.76    59 2.92</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 12</span><span>
-#&gt; </span><span style='color: #555555;'> 2</span><span> sleep_total sleep_cycle -</span><span style='color: #BB0000;'>0.474</span><span> -</span><span style='color: #BB0000;'>0.706</span><span>  -</span><span style='color: #BB0000;'>0.150</span><span>     -</span><span style='color: #BB0000;'>2.95</span><span>    30 6.17</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-  3</span><span>
-#&gt; </span><span style='color: #555555;'> 3</span><span> sleep_total awake       -</span><span style='color: #BB0000;'>1.00</span><span>  -</span><span style='color: #BB0000;'>1.00</span><span>   -</span><span style='color: #BB0000;'>1.00</span><span>   -</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span style='color: #BB0000;'>329.</span><span>      81 2.42</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-226</span><span>
-#&gt; </span><span style='color: #555555;'> 4</span><span> sleep_total brainwt     -</span><span style='color: #BB0000;'>0.360</span><span> -</span><span style='color: #BB0000;'>0.569</span><span>  -</span><span style='color: #BB0000;'>0.108</span><span>     -</span><span style='color: #BB0000;'>2.84</span><span>    54 6.35</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-  3</span><span>
-#&gt; </span><span style='color: #555555;'> 5</span><span> sleep_total bodywt      -</span><span style='color: #BB0000;'>0.312</span><span> -</span><span style='color: #BB0000;'>0.494</span><span>  -</span><span style='color: #BB0000;'>0.103</span><span>     -</span><span style='color: #BB0000;'>2.96</span><span>    81 4.09</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-  3</span><span>
-#&gt; </span><span style='color: #555555;'> 6</span><span> sleep_rem   sleep_cycle -</span><span style='color: #BB0000;'>0.338</span><span> -</span><span style='color: #BB0000;'>0.614</span><span>   0.012</span><span style='text-decoration: underline;'>0</span><span>    -</span><span style='color: #BB0000;'>1.97</span><span>    30 5.84</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-  2</span><span>
-#&gt; </span><span style='color: #555555;'> 7</span><span> sleep_rem   awake       -</span><span style='color: #BB0000;'>0.752</span><span> -</span><span style='color: #BB0000;'>0.844</span><span>  -</span><span style='color: #BB0000;'>0.617</span><span>     -</span><span style='color: #BB0000;'>8.76</span><span>    59 2.91</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 12</span><span>
-#&gt; </span><span style='color: #555555;'> 8</span><span> sleep_rem   brainwt     -</span><span style='color: #BB0000;'>0.221</span><span> -</span><span style='color: #BB0000;'>0.476</span><span>   0.067</span><span style='text-decoration: underline;'>0</span><span>    -</span><span style='color: #BB0000;'>1.54</span><span>    46 1.31</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-  1</span><span>
-#&gt; </span><span style='color: #555555;'> 9</span><span> sleep_rem   bodywt      -</span><span style='color: #BB0000;'>0.328</span><span> -</span><span style='color: #BB0000;'>0.535</span><span>  -</span><span style='color: #BB0000;'>0.082</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>    -</span><span style='color: #BB0000;'>2.66</span><span>    59 9.95</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-  3</span><span>
-#&gt; </span><span style='color: #555555;'>10</span><span> sleep_cycle awake        0.474  0.150   0.706      2.95    30 6.17</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-  3</span><span>
-#&gt; </span><span style='color: #555555;'>11</span><span> sleep_cycle brainwt      0.852  0.709   0.927      8.60    28 2.42</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-  9</span><span>
-#&gt; </span><span style='color: #555555;'>12</span><span> sleep_cycle bodywt       0.418  0.080</span><span style='text-decoration: underline;'>9</span><span>  0.669      2.52    30 1.73</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-  2</span><span>
-#&gt; </span><span style='color: #555555;'>13</span><span> awake       brainwt      0.360  0.108   0.569      2.84    54 6.35</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-  3</span><span>
-#&gt; </span><span style='color: #555555;'>14</span><span> awake       bodywt       0.312  0.103   0.494      2.96    81 4.09</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-  3</span><span>
-#&gt; </span><span style='color: #555555;'>15</span><span> brainwt     bodywt       0.934  0.889   0.961     19.2     54 9.16</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 26</span><span>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> sleep_total sleep_rem    0.752  0.617   0.844      8.76    59 2.92</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 12</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> sleep_total sleep_cycle -</span><span style='color: #BB0000;'>0.474</span><span> -</span><span style='color: #BB0000;'>0.706</span><span>  -</span><span style='color: #BB0000;'>0.150</span><span>     -</span><span style='color: #BB0000;'>2.95</span><span>    30 6.17</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  3</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> sleep_total awake       -</span><span style='color: #BB0000;'>1.00</span><span>  -</span><span style='color: #BB0000;'>1.00</span><span>   -</span><span style='color: #BB0000;'>1.00</span><span>   -</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span style='color: #BB0000;'>329.</span><span>      81 2.42</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-226</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> sleep_total brainwt     -</span><span style='color: #BB0000;'>0.360</span><span> -</span><span style='color: #BB0000;'>0.569</span><span>  -</span><span style='color: #BB0000;'>0.108</span><span>     -</span><span style='color: #BB0000;'>2.84</span><span>    54 6.35</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  3</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> sleep_total bodywt      -</span><span style='color: #BB0000;'>0.312</span><span> -</span><span style='color: #BB0000;'>0.494</span><span>  -</span><span style='color: #BB0000;'>0.103</span><span>     -</span><span style='color: #BB0000;'>2.96</span><span>    81 4.09</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  3</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> sleep_rem   sleep_cycle -</span><span style='color: #BB0000;'>0.338</span><span> -</span><span style='color: #BB0000;'>0.614</span><span>   0.012</span><span style='text-decoration: underline;'>0</span><span>    -</span><span style='color: #BB0000;'>1.97</span><span>    30 5.84</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  2</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> sleep_rem   awake       -</span><span style='color: #BB0000;'>0.752</span><span> -</span><span style='color: #BB0000;'>0.844</span><span>  -</span><span style='color: #BB0000;'>0.617</span><span>     -</span><span style='color: #BB0000;'>8.76</span><span>    59 2.91</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 12</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> sleep_rem   brainwt     -</span><span style='color: #BB0000;'>0.221</span><span> -</span><span style='color: #BB0000;'>0.476</span><span>   0.067</span><span style='text-decoration: underline;'>0</span><span>    -</span><span style='color: #BB0000;'>1.54</span><span>    46 1.31</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> sleep_rem   bodywt      -</span><span style='color: #BB0000;'>0.328</span><span> -</span><span style='color: #BB0000;'>0.535</span><span>  -</span><span style='color: #BB0000;'>0.082</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>    -</span><span style='color: #BB0000;'>2.66</span><span>    59 9.95</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  3</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> sleep_cycle awake        0.474  0.150   0.706      2.95    30 6.17</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  3</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> sleep_cycle brainwt      0.852  0.709   0.927      8.60    28 2.42</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  9</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> sleep_cycle bodywt       0.418  0.080</span><span style='text-decoration: underline;'>9</span><span>  0.669      2.52    30 1.73</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  2</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> awake       brainwt      0.360  0.108   0.569      2.84    54 6.35</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  3</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>14</span><span> awake       bodywt       0.312  0.103   0.494      2.96    81 4.09</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  3</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>15</span><span> brainwt     bodywt       0.934  0.889   0.961     19.2     54 9.16</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 26</span><span>
 #&gt;    </span><span style='font-weight: bold;'>method</span><span>   </span><span style='font-weight: bold;'>nobs</span><span>
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> Pearson    61
-#&gt; </span><span style='color: #555555;'> 2</span><span> Pearson    32
-#&gt; </span><span style='color: #555555;'> 3</span><span> Pearson    83
-#&gt; </span><span style='color: #555555;'> 4</span><span> Pearson    56
-#&gt; </span><span style='color: #555555;'> 5</span><span> Pearson    83
-#&gt; </span><span style='color: #555555;'> 6</span><span> Pearson    32
-#&gt; </span><span style='color: #555555;'> 7</span><span> Pearson    61
-#&gt; </span><span style='color: #555555;'> 8</span><span> Pearson    48
-#&gt; </span><span style='color: #555555;'> 9</span><span> Pearson    61
-#&gt; </span><span style='color: #555555;'>10</span><span> Pearson    32
-#&gt; </span><span style='color: #555555;'>11</span><span> Pearson    30
-#&gt; </span><span style='color: #555555;'>12</span><span> Pearson    32
-#&gt; </span><span style='color: #555555;'>13</span><span> Pearson    56
-#&gt; </span><span style='color: #555555;'>14</span><span> Pearson    83
-#&gt; </span><span style='color: #555555;'>15</span><span> Pearson    56</div><div class='input'><span class='co'># }</span>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Pearson    61
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Pearson    32
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Pearson    83
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Pearson    56
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Pearson    83
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Pearson    32
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Pearson    61
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Pearson    48
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Pearson    61
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Pearson    32
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> Pearson    30
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> Pearson    32
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> Pearson    56
+#&gt; </span><span style='color: #BCBCBC;'>14</span><span> Pearson    83
+#&gt; </span><span style='color: #BCBCBC;'>15</span><span> Pearson    56</div><div class='input'># }
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -479,7 +479,7 @@ function.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
