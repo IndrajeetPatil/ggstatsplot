@@ -2,7 +2,7 @@ language: r
 r:
   - release
   #- devel
-  #- oldrel
+  - oldrel
 latex: true
 warnings_are_errors: TRUE
 

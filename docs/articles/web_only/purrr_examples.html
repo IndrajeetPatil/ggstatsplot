@@ -149,7 +149,7 @@
       <h1 data-toc-skip>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-09-08</h4>
+            <h4 class="date">2020-09-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -191,35 +191,80 @@
 <a href="#ggbetweenstats" class="anchor"></a><code>ggbetweenstats</code>
 </h1>
 <p>Following our methodology above let’s start with <code>ggebtweenstats</code>. We’ll use the <code>gapminder</code> dataset. We’ll make a 3 item named <code>list</code> called <code>data_list</code> using <code><a href="https://dplyr.tidyverse.org/reference/filter.html">dplyr::filter</a></code> and <code>split</code>.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r">library(ggstatsplot)
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
 
-# for reproducibility
-set.seed(123)
+<span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 
-# let's split the dataframe and create a list by years of interest
-year_list %
-  dplyr::filter(.data = ., year %in% c(1967, 1987, 2007), continent != "Oceania") %&gt;%
-  split(x = ., f = .$year, drop = TRUE)
+<span class="co"># let's split the dataframe and create a list by years of interest</span>
+<span class="no">year_list</span> <span class="kw">&lt;-</span>
+  <span class="kw pkg">gapminder</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html">gapminder</a></span> <span class="kw">%&gt;%</span>
+  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">.data</span> <span class="kw">=</span> <span class="no">.</span>, <span class="no">year</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1967</span>, <span class="fl">1987</span>, <span class="fl">2007</span>), <span class="no">continent</span> <span class="kw">!=</span> <span class="st">"Oceania"</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">.</span>, <span class="kw">f</span> <span class="kw">=</span> <span class="no">.</span>$<span class="no">year</span>, <span class="kw">drop</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 
-# checking the length of the list and the names of each element
-length(year_list)
-#&gt; [1] 3
-names(year_list)
-#&gt; [1] "1967" "1987" "2007"</pre></body></html></div>
+<span class="co"># checking the length of the list and the names of each element</span>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">year_list</span>)
+<span class="co">#&gt; [1] 3</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">year_list</span>)
+<span class="co">#&gt; [1] "1967" "1987" "2007"</span></pre></body></html></div>
 <p>Now that we have the data divided into the three relevant years in a list we’ll turn to <code><a href="https://purrr.tidyverse.org/reference/map2.html">purrr::pmap</a></code> to create a list of <code>ggplot</code> objects that we’ll make use of stored in <code>plot_list</code>. When you look at the documentation for <code>?pmap</code> it will accept <code>.l</code> which is a list of lists. The length of <code>.l</code> determines the number of arguments that <code>.f</code> will be called with. List names will be used if present. <code>.f</code> is the function we want to apply (here, <code>.f = ggstatsplot::ggbetweenstats</code>).</p>
 <p>So let’s keep building <code>.l</code>. First is <code>data = year_list</code>, the <code>x</code> &amp; <code>y</code> axes are constant in all three plots so we pass the variable name as a string <code>x = "continent"</code>. Same with the label we’ll use for outliers where needed. For demonstration purposes let’s assume we want the outliers on each plot to be a different color. Not actually recommending it just demonstrating what’s possible. The rest of the code shows you a wide variety of possibilities and we won’t catalog them here.</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"># for reproducibility
-set.seed(123)
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 
-# creating a list of plots
-plot_list </pre></body></html></div>
+<span class="co"># creating a list of plots</span>
+<span class="no">plot_list</span> <span class="kw">&lt;-</span>
+  <span class="kw pkg">purrr</span><span class="kw ns">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(
+    <span class="kw">.l</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+      <span class="kw">data</span> <span class="kw">=</span> <span class="no">year_list</span>,
+      <span class="kw">x</span> <span class="kw">=</span> <span class="st">"continent"</span>,
+      <span class="kw">y</span> <span class="kw">=</span> <span class="st">"lifeExp"</span>,
+      <span class="kw">outlier.tagging</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
+      <span class="kw">outlier.label</span> <span class="kw">=</span> <span class="st">"country"</span>,
+      <span class="kw">outlier.label.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"#56B4E9"</span>),
+        <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">2.5</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"#009E73"</span>),
+        <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"#F0E442"</span>)
+      ),
+      <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"Continent"</span>,
+      <span class="kw">ylab</span> <span class="kw">=</span> <span class="st">"Life expectancy"</span>,
+      <span class="kw">title</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="st">"Year: 1967"</span>,
+        <span class="st">"Year: 1987"</span>,
+        <span class="st">"Year: 2007"</span>
+      ),
+      <span class="kw">type</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"r"</span>, <span class="st">"bf"</span>, <span class="st">"np"</span>),
+      <span class="kw">pairwise.comparisons</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
+      <span class="kw">pairwise.display</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"s"</span>, <span class="st">"ns"</span>, <span class="st">"all"</span>),
+      <span class="kw">p.adjust.method</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"hommel"</span>, <span class="st">"bonferroni"</span>, <span class="st">"BH"</span>),
+      <span class="kw">nboot</span> <span class="kw">=</span> <span class="fl">25</span>,
+      <span class="kw">conf.level</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">0.99</span>, <span class="fl">0.95</span>, <span class="fl">0.90</span>),
+      <span class="kw">k</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>),
+      <span class="kw">effsize.type</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="kw">NULL</span>,
+        <span class="st">"partial_omega"</span>,
+        <span class="st">"partial_eta"</span>
+      ),
+      <span class="kw">plot.type</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"box"</span>, <span class="st">"boxviolin"</span>, <span class="st">"violin"</span>),
+      <span class="kw">mean.ci</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">TRUE</span>, <span class="fl">FALSE</span>, <span class="fl">FALSE</span>),
+      <span class="kw">package</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"nord"</span>, <span class="st">"ochRe"</span>, <span class="st">"awtools"</span>),
+      <span class="kw">palette</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"aurora"</span>, <span class="st">"parliament"</span>, <span class="st">"bpalette"</span>),
+      <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_stata.html">theme_stata</a></span>(),
+        <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),
+        <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>()
+      ),
+      <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">FALSE</span>, <span class="fl">FALSE</span>, <span class="fl">FALSE</span>)
+    ),
+    <span class="kw">.f</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span>
+  )</pre></body></html></div>
 <p>The final step is to pass the <code>plot_list</code> object we just created to the <code>combine_plots</code> function. While each of the 3 plots already has labeling information <code>combine_plots</code> gives us an opportunity to add additional details to the merged plots and specify the layout in rows and columns.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"># combining all individual plots from the list into a single plot using combine_plots function
-ggstatsplot::combine_plots(
-  plotlist = plot_list,
-  title.text = "Changes in life expectancy across continents (1967-2007)",
-  title.color = "red",
-  ncol = 1
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span>
+<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span>(
+  <span class="kw">plotlist</span> <span class="kw">=</span> <span class="no">plot_list</span>,
+  <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Changes in life expectancy across continents (1967-2007)"</span>,
+  <span class="kw">title.color</span> <span class="kw">=</span> <span class="st">"red"</span>,
+  <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">1</span>
 )</pre></body></html></div>
 <p><img src="purrr_examples_files/figure-html/purrr_ggbetweenstats3-1.png" width="672"></p>
 </div>
@@ -228,23 +273,79 @@ ggstatsplot::combine_plots(
 <a href="#ggwithinstats" class="anchor"></a><code>ggwithinstats</code>
 </h1>
 <p>We will be using simulated data from then Attention Network Test provided in ANT dataset in <code>ez</code> package.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r">library(ggstatsplot)
-library(ez)
-data("ANT") # loading data from `ez` package
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ez</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"ANT"</span>) <span class="co"># loading data from `ez` package</span>
 
-# for reproducibility
-set.seed(123)
+<span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 
-# let's split the dataframe and create a list by years of interest
-cue_list %
-  split(x = ., f = .$cue, drop = TRUE)
+<span class="co"># let's split the dataframe and create a list by years of interest</span>
+<span class="no">cue_list</span> <span class="kw">&lt;-</span> <span class="no">ANT</span> <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">.</span>, <span class="kw">f</span> <span class="kw">=</span> <span class="no">.</span>$<span class="no">cue</span>, <span class="kw">drop</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 
-# checking the length of the list and the names of each element
-length(cue_list)
-#&gt; [1] 4
+<span class="co"># checking the length of the list and the names of each element</span>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">cue_list</span>)
+<span class="co">#&gt; [1] 4</span>
 
-# creating a list of plots by applying the same function for elements of the list
-plot_list </pre></body></html></div>
+<span class="co"># creating a list of plots by applying the same function for elements of the list</span>
+<span class="no">plot_list</span> <span class="kw">&lt;-</span>
+  <span class="kw pkg">purrr</span><span class="kw ns">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(
+    <span class="kw">.l</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+      <span class="kw">data</span> <span class="kw">=</span> <span class="no">cue_list</span>,
+      <span class="kw">x</span> <span class="kw">=</span> <span class="st">"flank"</span>,
+      <span class="kw">y</span> <span class="kw">=</span> <span class="st">"rt"</span>,
+      <span class="kw">outlier.tagging</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
+      <span class="kw">outlier.label</span> <span class="kw">=</span> <span class="st">"group"</span>,
+      <span class="kw">outlier.coef</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2.5</span>, <span class="fl">3</span>),
+      <span class="kw">outlier.label.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"#56B4E9"</span>),
+        <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">2.5</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"#009E73"</span>),
+        <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"#F0E442"</span>),
+        <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"red"</span>)
+      ),
+      <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"Flank"</span>,
+      <span class="kw">ylab</span> <span class="kw">=</span> <span class="st">"Response time"</span>,
+      <span class="kw">title</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="st">"Cue: None"</span>,
+        <span class="st">"Cue: Center"</span>,
+        <span class="st">"Cue: Double"</span>,
+        <span class="st">"Cue: Spatial"</span>
+      ),
+      <span class="kw">type</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"p"</span>, <span class="st">"r"</span>, <span class="st">"bf"</span>, <span class="st">"np"</span>),
+      <span class="kw">pairwise.comparisons</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
+      <span class="kw">pairwise.display</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"ns"</span>, <span class="st">"s"</span>, <span class="st">"ns"</span>, <span class="st">"all"</span>),
+      <span class="kw">p.adjust.method</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"fdr"</span>, <span class="st">"hommel"</span>, <span class="st">"bonferroni"</span>, <span class="st">"BH"</span>),
+      <span class="kw">nboot</span> <span class="kw">=</span> <span class="fl">25</span>,
+      <span class="kw">conf.level</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">0.99</span>, <span class="fl">0.99</span>, <span class="fl">0.95</span>, <span class="fl">0.90</span>),
+      <span class="kw">k</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span>),
+      <span class="kw">effsize.type</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="st">"omega"</span>,
+        <span class="st">"eta"</span>,
+        <span class="st">"partial_omega"</span>,
+        <span class="st">"partial_eta"</span>
+      ),
+      <span class="kw">mean.ci</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">FALSE</span>, <span class="fl">TRUE</span>, <span class="fl">FALSE</span>, <span class="fl">FALSE</span>),
+      <span class="kw">package</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"ggsci"</span>, <span class="st">"palettetown"</span>, <span class="st">"palettetown"</span>, <span class="st">"wesanderson"</span>),
+      <span class="kw">palette</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"lanonc_lancet"</span>, <span class="st">"venomoth"</span>, <span class="st">"blastoise"</span>, <span class="st">"GrandBudapest1"</span>),
+      <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_linedraw</a></span>(),
+        <span class="kw pkg">hrbrthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_rc.html">theme_ft_rc</a></span>(),
+        <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_solarized.html">theme_solarized</a></span>(),
+        <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_gdocs.html">theme_gdocs</a></span>()
+      ),
+      <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+    ),
+    <span class="kw">.f</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span>
+  )
+
+<span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span>
+<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span>(
+  <span class="kw">plotlist</span> <span class="kw">=</span> <span class="no">plot_list</span>,
+  <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Response times across flank conditions for each type of cue"</span>,
+  <span class="kw">title.color</span> <span class="kw">=</span> <span class="st">"blue"</span>,
+  <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">1</span>
+)</pre></body></html></div>
 <p><img src="purrr_examples_files/figure-html/purrr_ggwithinstats-1.png" width="768"></p>
 </div>
 <div id="ggscatterstats" class="section level1">
@@ -253,44 +354,60 @@ plot_list </pre></body></html></div>
 </h1>
 <p>For the next example lets use the same methodology on different data and using <code>ggscatterstats</code> to produce scatterplots combined with marginal histograms/boxplots/density plots with statistical details added as a subtitle. For data we’ll use <code>movies_wide</code> which is from IMDB and part of the <code>ggstatsplot</code> package. Since it’s a large dataset with some relatively small categories like <strong>NC-17</strong> we’ll sample only one quarter of the data and completely drop NC-17 using <code>dplyr</code>.</p>
 <p>This time we’ll put all the code in one block-</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"># for reproducibility
-set.seed(123)
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 
-mpaa_list %
-  dplyr::filter(.data = ., mpaa != "NC-17") %&gt;%
-  dplyr::sample_frac(tbl = ., size = 0.25) %&gt;%
-  split(x = ., f = .$mpaa, drop = TRUE)
+<span class="no">mpaa_list</span> <span class="kw">&lt;-</span>
+  <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/movies_wide.html">movies_wide</a></span> <span class="kw">%&gt;%</span>
+  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">.data</span> <span class="kw">=</span> <span class="no">.</span>, <span class="no">mpaa</span> <span class="kw">!=</span> <span class="st">"NC-17"</span>) <span class="kw">%&gt;%</span>
+  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="no">.</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.25</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">.</span>, <span class="kw">f</span> <span class="kw">=</span> <span class="no">.</span>$<span class="no">mpaa</span>, <span class="kw">drop</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 
-# creating a list of plots
-plot_list  7.5 &amp;
-         budget &lt; 100",
-        "rating &gt; 8 &amp; budget &lt; 50",
-        "rating &gt; 8 &amp; budget &lt; 10"
+<span class="co"># creating a list of plots</span>
+<span class="no">plot_list</span> <span class="kw">&lt;-</span>
+  <span class="kw pkg">purrr</span><span class="kw ns">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(
+    <span class="kw">.l</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+      <span class="kw">data</span> <span class="kw">=</span> <span class="no">mpaa_list</span>,
+      <span class="kw">x</span> <span class="kw">=</span> <span class="st">"budget"</span>,
+      <span class="kw">y</span> <span class="kw">=</span> <span class="st">"rating"</span>,
+      <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"Budget (in millions of US dollars)"</span>,
+      <span class="kw">ylab</span> <span class="kw">=</span> <span class="st">"Rating on IMDB"</span>,
+      <span class="kw">title</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="st">"MPAA Rating: PG"</span>,
+        <span class="st">"MPAA Rating: PG-13"</span>,
+        <span class="st">"MPAA Rating: R"</span>
       ),
-      type = list("r", "np", "bf"),
-      nboot = 25,
-      marginal.type = list("boxplot", "density", "violin"),
-      centrality.parameter = list("mean", "median", "mean"),
-      xfill = list("#009E73", "#999999", "#0072B2"),
-      yfill = list("#CC79A7", "#F0E442", "#D55E00"),
-      ggtheme = list(
-        ggthemes::theme_tufte(),
-        ggplot2::theme_classic(),
-        ggplot2::theme_light()
+      <span class="kw">label.var</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"title"</span>),
+      <span class="kw">label.expression</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="st">"rating &gt; 7.5 &amp;
+         budget &lt; 100"</span>,
+        <span class="st">"rating &gt; 8 &amp; budget &lt; 50"</span>,
+        <span class="st">"rating &gt; 8 &amp; budget &lt; 10"</span>
       ),
-      ggstatsplot.layer = list(FALSE, TRUE, TRUE)
+      <span class="kw">type</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"r"</span>, <span class="st">"np"</span>, <span class="st">"bf"</span>),
+      <span class="kw">nboot</span> <span class="kw">=</span> <span class="fl">25</span>,
+      <span class="kw">marginal.type</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"boxplot"</span>, <span class="st">"density"</span>, <span class="st">"violin"</span>),
+      <span class="kw">centrality.parameter</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"mean"</span>, <span class="st">"median"</span>, <span class="st">"mean"</span>),
+      <span class="kw">xfill</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"#009E73"</span>, <span class="st">"#999999"</span>, <span class="st">"#0072B2"</span>),
+      <span class="kw">yfill</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"#CC79A7"</span>, <span class="st">"#F0E442"</span>, <span class="st">"#D55E00"</span>),
+      <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),
+        <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),
+        <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span>()
+      ),
+      <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">FALSE</span>, <span class="fl">TRUE</span>, <span class="fl">TRUE</span>)
     ),
-    .f = ggstatsplot::ggscatterstats
+    <span class="kw">.f</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/ggscatterstats.html">ggscatterstats</a></span>
   )
 
-# combining all individual plots from the list into a single plot using combine_plots function
-ggstatsplot::combine_plots(
-  plotlist = plot_list,
-  title.text = "Relationship between movie budget and IMDB rating",
-  caption.text = "Source: www.imdb.com",
-  title.color = "red",
-  caption.color = "blue",
-  ncol = 1
+<span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span>
+<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span>(
+  <span class="kw">plotlist</span> <span class="kw">=</span> <span class="no">plot_list</span>,
+  <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Relationship between movie budget and IMDB rating"</span>,
+  <span class="kw">caption.text</span> <span class="kw">=</span> <span class="st">"Source: www.imdb.com"</span>,
+  <span class="kw">title.color</span> <span class="kw">=</span> <span class="st">"red"</span>,
+  <span class="kw">caption.color</span> <span class="kw">=</span> <span class="st">"blue"</span>,
+  <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">1</span>
 )</pre></body></html></div>
 <p><img src="purrr_examples_files/figure-html/purrr_ggscatterstats-1.png" width="672"></p>
 <p>The remainder of the examples vary in content but follow the exact same methodology as the earlier examples.</p>
@@ -299,123 +416,339 @@ ggstatsplot::combine_plots(
 <h1 class="hasAnchor">
 <a href="#ggcorrmat" class="anchor"></a><code>ggcorrmat</code>
 </h1>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"># for reproducibility
-set.seed(123)
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 
-# splitting the dataframe by cut and creting a list
-# let's leave out "fair" cut
-# also, to make this fast, let's only use 5% of the sample
-cut_list %
-  dplyr::sample_frac(tbl = ., size = 0.05) %&gt;%
-  dplyr::filter(.data = ., cut != "Fair") %&gt;%
-  split(x = ., f = .$cut, drop = TRUE)
+<span class="co"># splitting the dataframe by cut and creting a list</span>
+<span class="co"># let's leave out "fair" cut</span>
+<span class="co"># also, to make this fast, let's only use 5% of the sample</span>
+<span class="no">cut_list</span> <span class="kw">&lt;-</span>
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="no"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html">diamonds</a></span> <span class="kw">%&gt;%</span>
+  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="no">.</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.05</span>) <span class="kw">%&gt;%</span>
+  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">.data</span> <span class="kw">=</span> <span class="no">.</span>, <span class="no">cut</span> <span class="kw">!=</span> <span class="st">"Fair"</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">.</span>, <span class="kw">f</span> <span class="kw">=</span> <span class="no">.</span>$<span class="no">cut</span>, <span class="kw">drop</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 
-# checking the length and names of each element
-length(cut_list)
-#&gt; [1] 4
-names(cut_list)
-#&gt; [1] "Good"      "Very Good" "Premium"   "Ideal"
+<span class="co"># checking the length and names of each element</span>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">cut_list</span>)
+<span class="co">#&gt; [1] 4</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">cut_list</span>)
+<span class="co">#&gt; [1] "Good"      "Very Good" "Premium"   "Ideal"</span>
 
-# running function on every element of this list note that if you want the same
-# value for a given argument across all elements of the list, you need to
-# specify it just once
-plot_list </pre></body></html></div>
+<span class="co"># running function on every element of this list note that if you want the same</span>
+<span class="co"># value for a given argument across all elements of the list, you need to</span>
+<span class="co"># specify it just once</span>
+<span class="no">plot_list</span> <span class="kw">&lt;-</span>
+  <span class="kw pkg">purrr</span><span class="kw ns">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(
+    <span class="kw">.l</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+      <span class="kw">data</span> <span class="kw">=</span> <span class="no">cut_list</span>,
+      <span class="kw">cor.vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"carat"</span>, <span class="st">"depth"</span>, <span class="st">"table"</span>, <span class="st">"price"</span>)),
+      <span class="kw">cor.vars.names</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+        <span class="st">"carat"</span>,
+        <span class="st">"total depth"</span>,
+        <span class="st">"table"</span>,
+        <span class="st">"price"</span>
+      )),
+      <span class="kw">corr.method</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"pearson"</span>, <span class="st">"np"</span>, <span class="st">"robust"</span>, <span class="st">"robust"</span>),
+      <span class="kw">title</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"Cut: Good"</span>, <span class="st">"Cut: Very Good"</span>, <span class="st">"Cut: Premium"</span>, <span class="st">"Cut: Ideal"</span>),
+      <span class="co"># note that we are changing both p-value adjustment method *and*</span>
+      <span class="co"># significance level to display the significant correlations in the</span>
+      <span class="co"># visualization matrix</span>
+      <span class="kw">p.adjust.method</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"hommel"</span>, <span class="st">"fdr"</span>, <span class="st">"BY"</span>, <span class="st">"hochberg"</span>),
+      <span class="kw">sig.level</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span>, <span class="fl">0.003</span>),
+      <span class="kw">lab.size</span> <span class="kw">=</span> <span class="fl">3.5</span>,
+      <span class="kw">colors</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#56B4E9"</span>, <span class="st">"white"</span>, <span class="st">"#999999"</span>),
+        <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#CC79A7"</span>, <span class="st">"white"</span>, <span class="st">"#F0E442"</span>),
+        <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#56B4E9"</span>, <span class="st">"white"</span>, <span class="st">"#D55E00"</span>),
+        <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#999999"</span>, <span class="st">"white"</span>, <span class="st">"#0072B2"</span>)
+      ),
+      <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
+      <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),
+        <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),
+        <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>(),
+        <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>()
+      )
+    ),
+    <span class="kw">.f</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span>
+  )
+
+<span class="co"># combining all individual plots from the list into a single plot using</span>
+<span class="co"># `combine_plots` function</span>
+<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span>(
+  <span class="kw">plotlist</span> <span class="kw">=</span> <span class="no">plot_list</span>,
+  <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Relationship between diamond attributes and price across cut"</span>,
+  <span class="kw">title.size</span> <span class="kw">=</span> <span class="fl">14</span>,
+  <span class="kw">title.color</span> <span class="kw">=</span> <span class="st">"red"</span>,
+  <span class="kw">caption.text</span> <span class="kw">=</span> <span class="st">"Dataset: Diamonds from ggplot2 package"</span>,
+  <span class="kw">caption.size</span> <span class="kw">=</span> <span class="fl">12</span>,
+  <span class="kw">caption.color</span> <span class="kw">=</span> <span class="st">"blue"</span>,
+  <span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">2</span>
+)</pre></body></html></div>
 <p><img src="purrr_examples_files/figure-html/purrr_ggcorrmat-1.png" width="960"></p>
 </div>
 <div id="gghistostats" class="section level1">
 <h1 class="hasAnchor">
 <a href="#gghistostats" class="anchor"></a><code>gghistostats</code>
 </h1>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"># for reproducibility
-set.seed(123)
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 
-# let's split the dataframe and create a list by continent
-# let's leave out Oceania because it has just two data points
-continent_list %
-  dplyr::filter(.data = ., year == 2007, continent != "Oceania") %&gt;%
-  split(x = ., f = .$continent, drop = TRUE)
+<span class="co"># let's split the dataframe and create a list by continent</span>
+<span class="co"># let's leave out Oceania because it has just two data points</span>
+<span class="no">continent_list</span> <span class="kw">&lt;-</span>
+  <span class="kw pkg">gapminder</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html">gapminder</a></span> <span class="kw">%&gt;%</span>
+  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">.data</span> <span class="kw">=</span> <span class="no">.</span>, <span class="no">year</span> <span class="kw">==</span> <span class="fl">2007</span>, <span class="no">continent</span> <span class="kw">!=</span> <span class="st">"Oceania"</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">.</span>, <span class="kw">f</span> <span class="kw">=</span> <span class="no">.</span>$<span class="no">continent</span>, <span class="kw">drop</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 
-# checking the length and names of each element
-length(continent_list)
-#&gt; [1] 4
-names(continent_list)
-#&gt; [1] "Africa"   "Americas" "Asia"     "Europe"
+<span class="co"># checking the length and names of each element</span>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">continent_list</span>)
+<span class="co">#&gt; [1] 4</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">continent_list</span>)
+<span class="co">#&gt; [1] "Africa"   "Americas" "Asia"     "Europe"</span>
 
-# running function on every element of this list note that if you want the same
-# value for a given argument across all elements of the list, you need to
-# specify it just once
-plot_list </pre></body></html></div>
+<span class="co"># running function on every element of this list note that if you want the same</span>
+<span class="co"># value for a given argument across all elements of the list, you need to</span>
+<span class="co"># specify it just once</span>
+<span class="no">plot_list</span> <span class="kw">&lt;-</span>
+  <span class="kw pkg">purrr</span><span class="kw ns">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(
+    <span class="kw">.l</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+      <span class="kw">data</span> <span class="kw">=</span> <span class="no">continent_list</span>,
+      <span class="kw">x</span> <span class="kw">=</span> <span class="st">"lifeExp"</span>,
+      <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"Life expectancy"</span>,
+      <span class="kw">test.value</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">35.6</span>, <span class="fl">58.4</span>, <span class="fl">41.6</span>, <span class="fl">64.7</span>),
+      <span class="kw">type</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"p"</span>, <span class="st">"np"</span>, <span class="st">"r"</span>, <span class="st">"bf"</span>),
+      <span class="kw">bf.message</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">TRUE</span>, <span class="fl">FALSE</span>, <span class="fl">FALSE</span>, <span class="fl">FALSE</span>),
+      <span class="kw">title</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="st">"Continent: Africa"</span>,
+        <span class="st">"Continent: Americas"</span>,
+        <span class="st">"Continent: Asia"</span>,
+        <span class="st">"Continent: Europe"</span>
+      ),
+      <span class="kw">bar.measure</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"proportion"</span>, <span class="st">"count"</span>, <span class="st">"mix"</span>, <span class="st">"density"</span>),
+      <span class="kw">bar.fill</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"white"</span>, <span class="st">"red"</span>, <span class="st">"orange"</span>, <span class="st">"blue"</span>),
+      <span class="kw">effsize.type</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"d"</span>, <span class="st">"d"</span>, <span class="st">"g"</span>, <span class="st">"g"</span>),
+      <span class="kw">normal.curve</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
+      <span class="kw">normal.curve.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="kw">color</span> <span class="kw">=</span> <span class="st">"darkred"</span>,
+        <span class="kw">linetype</span> <span class="kw">=</span> <span class="st">"dashed"</span>,
+        <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.8</span>
+      )),
+      <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),
+        <span class="kw pkg">hrbrthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_tw.html">theme_ipsum_tw</a></span>(),
+        <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>(),
+        <span class="kw pkg">hrbrthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_rc.html">theme_modern_rc</a></span>()
+      ),
+      <span class="kw">ggstatsplot.layes</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+    ),
+    <span class="kw">.f</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/gghistostats.html">gghistostats</a></span>
+  )
+
+<span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span>
+<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span>(
+  <span class="kw">plotlist</span> <span class="kw">=</span> <span class="no">plot_list</span>,
+  <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Improvement in life expectancy worldwide since 1950"</span>,
+  <span class="kw">caption.text</span> <span class="kw">=</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>,
+  <span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">4</span>
+)</pre></body></html></div>
 <p><img src="purrr_examples_files/figure-html/purrr_gghistostats-1.png" width="576"></p>
 </div>
 <div id="ggdotplotstats" class="section level1">
 <h1 class="hasAnchor">
 <a href="#ggdotplotstats" class="anchor"></a><code>ggdotplotstats</code>
 </h1>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"># for reproducibility
-set.seed(123)
-library(ggthemes)
-library(hrbrthemes)
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggthemes</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">hrbrthemes</span>)
 
-# let's split the dataframe and create a list by continent
-# let's leave out Oceania because it has just two data points
-continent_list %
-  dplyr::filter(.data = ., continent != "Oceania") %&gt;%
-  split(x = ., f = .$continent, drop = TRUE)
+<span class="co"># let's split the dataframe and create a list by continent</span>
+<span class="co"># let's leave out Oceania because it has just two data points</span>
+<span class="no">continent_list</span> <span class="kw">&lt;-</span>
+  <span class="kw pkg">gapminder</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html">gapminder</a></span> <span class="kw">%&gt;%</span>
+  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">.data</span> <span class="kw">=</span> <span class="no">.</span>, <span class="no">continent</span> <span class="kw">!=</span> <span class="st">"Oceania"</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">.</span>, <span class="kw">f</span> <span class="kw">=</span> <span class="no">.</span>$<span class="no">continent</span>, <span class="kw">drop</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 
-# checking the length and names of each element
-length(continent_list)
-#&gt; [1] 4
-names(continent_list)
-#&gt; [1] "Africa"   "Americas" "Asia"     "Europe"
+<span class="co"># checking the length and names of each element</span>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">continent_list</span>)
+<span class="co">#&gt; [1] 4</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">continent_list</span>)
+<span class="co">#&gt; [1] "Africa"   "Americas" "Asia"     "Europe"</span>
 
-# running function on every element of this list note that if you want the same
-# value for a given argument across all elements of the list, you need to
-# specify it just once
-plot_list </pre></body></html></div>
+<span class="co"># running function on every element of this list note that if you want the same</span>
+<span class="co"># value for a given argument across all elements of the list, you need to</span>
+<span class="co"># specify it just once</span>
+<span class="no">plot_list</span> <span class="kw">&lt;-</span>
+  <span class="kw pkg">purrr</span><span class="kw ns">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(
+    <span class="kw">.l</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+      <span class="kw">data</span> <span class="kw">=</span> <span class="no">continent_list</span>,
+      <span class="kw">x</span> <span class="kw">=</span> <span class="st">"gdpPercap"</span>,
+      <span class="kw">y</span> <span class="kw">=</span> <span class="st">"year"</span>,
+      <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"GDP per capita (US$, inflation-adjusted)"</span>,
+      <span class="kw">test.value</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">2500</span>, <span class="fl">9000</span>, <span class="fl">9500</span>, <span class="fl">10000</span>),
+      <span class="kw">type</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"p"</span>, <span class="st">"np"</span>, <span class="st">"r"</span>, <span class="st">"bf"</span>),
+      <span class="kw">bf.message</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">TRUE</span>, <span class="fl">FALSE</span>, <span class="fl">TRUE</span>, <span class="fl">FALSE</span>),
+      <span class="kw">title</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="st">"Continent: Africa"</span>,
+        <span class="st">"Continent: Americas"</span>,
+        <span class="st">"Continent: Asia"</span>,
+        <span class="st">"Continent: Europe"</span>
+      ),
+      <span class="kw">effsize.type</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"d"</span>, <span class="st">"d"</span>, <span class="st">"g"</span>, <span class="st">"g"</span>),
+      <span class="kw">effsize.noncentral</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">TRUE</span>, <span class="fl">FALSE</span>, <span class="fl">TRUE</span>, <span class="fl">FALSE</span>),
+      <span class="kw">centrality.line.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">color</span> <span class="kw">=</span> <span class="st">"red"</span>),
+        <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">color</span> <span class="kw">=</span> <span class="st">"#0072B2"</span>),
+        <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">color</span> <span class="kw">=</span> <span class="st">"#D55E00"</span>),
+        <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">color</span> <span class="kw">=</span> <span class="st">"#CC79A7"</span>)
+      ),
+      <span class="kw">test.value.line</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
+      <span class="kw">test.value.line.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">color</span> <span class="kw">=</span> <span class="st">"#E69F00"</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">1</span>),
+        <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">color</span> <span class="kw">=</span> <span class="st">"#56B4E9"</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.8</span>),
+        <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">color</span> <span class="kw">=</span> <span class="st">"#009E73"</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">1.5</span>),
+        <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">color</span> <span class="kw">=</span> <span class="st">"blue"</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.4</span>)
+      ),
+      <span class="kw">centrality.parameter</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"median"</span>, <span class="st">"mean"</span>, <span class="st">"mean"</span>, <span class="st">"none"</span>),
+      <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>(<span class="kw">base_family</span> <span class="kw">=</span> <span class="st">"serif"</span>),
+        <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),
+        <span class="kw pkg">hrbrthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_rc.html">theme_ipsum_rc</a></span>(<span class="kw">axis_title_size</span> <span class="kw">=</span> <span class="fl">10</span>),
+        <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_hc.html">theme_hc</a></span>(<span class="kw">bgcolor</span> <span class="kw">=</span> <span class="st">"darkunica"</span>)
+      )
+    ),
+    <span class="kw">.f</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/ggdotplotstats.html">ggdotplotstats</a></span>
+  )
+
+<span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span>
+<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span>(
+  <span class="kw">plotlist</span> <span class="kw">=</span> <span class="no">plot_list</span>,
+  <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Improvement in GDP per capita from 1952-2007"</span>,
+  <span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">4</span>
+)</pre></body></html></div>
 <p><img src="purrr_examples_files/figure-html/purrr_ggdotplotstats-1.png" width="576"></p>
 </div>
 <div id="ggpiestats" class="section level1">
 <h1 class="hasAnchor">
 <a href="#ggpiestats" class="anchor"></a><code>ggpiestats</code>
 </h1>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"># for reproducibility
-set.seed(123)
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 
-# let's split the dataframe and create a list by passenger class
-class_list % split(x = ., f = .$Class, drop = TRUE)
+<span class="co"># let's split the dataframe and create a list by passenger class</span>
+<span class="no">class_list</span> <span class="kw">&lt;-</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/Titanic_full.html">Titanic_full</a></span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">.</span>, <span class="kw">f</span> <span class="kw">=</span> <span class="no">.</span>$<span class="no">Class</span>, <span class="kw">drop</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 
-# checking the length and names of each element
-length(class_list)
-#&gt; [1] 4
-names(class_list)
-#&gt; [1] "1st"  "2nd"  "3rd"  "Crew"
+<span class="co"># checking the length and names of each element</span>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">class_list</span>)
+<span class="co">#&gt; [1] 4</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">class_list</span>)
+<span class="co">#&gt; [1] "1st"  "2nd"  "3rd"  "Crew"</span>
 
-# running function on every element of this list note that if you want the same
-# value for a given argument across all elements of the list, you need to
-# specify it just once
-plot_list </pre></body></html></div>
+<span class="co"># running function on every element of this list note that if you want the same</span>
+<span class="co"># value for a given argument across all elements of the list, you need to</span>
+<span class="co"># specify it just once</span>
+<span class="no">plot_list</span> <span class="kw">&lt;-</span>
+  <span class="kw pkg">purrr</span><span class="kw ns">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(
+    <span class="kw">.l</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+      <span class="kw">data</span> <span class="kw">=</span> <span class="no">class_list</span>,
+      <span class="kw">x</span> <span class="kw">=</span> <span class="st">"Survived"</span>,
+      <span class="kw">y</span> <span class="kw">=</span> <span class="st">"Sex"</span>,
+      <span class="kw">label</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"both"</span>, <span class="st">"count"</span>, <span class="st">"percentage"</span>, <span class="st">"both"</span>),
+      <span class="kw">nboot</span> <span class="kw">=</span> <span class="fl">10</span>,
+      <span class="kw">title</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="st">"Passenger class: 1st"</span>,
+        <span class="st">"Passenger class: 2nd"</span>,
+        <span class="st">"Passenger class: 3rd"</span>,
+        <span class="st">"Passenger class: Crew"</span>
+      ),
+      <span class="kw">caption</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="st">"Total: 319, Died: 120, Survived: 199, % Survived: 62%"</span>,
+        <span class="st">"Total: 272, Died: 155, Survived: 117, % Survived: 43%"</span>,
+        <span class="st">"Total: 709, Died: 537, Survived: 172, % Survived: 25%"</span>,
+        <span class="st">"Data not available for crew passengers"</span>
+      ),
+      <span class="kw">package</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"RColorBrewer"</span>, <span class="st">"ghibli"</span>, <span class="st">"palettetown"</span>, <span class="st">"yarrr"</span>),
+      <span class="kw">palette</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"Accent"</span>, <span class="st">"MarnieMedium1"</span>, <span class="st">"pikachu"</span>, <span class="st">"nemo"</span>),
+      <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),
+        <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>(),
+        <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),
+        <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_economist.html">theme_economist</a></span>()
+      ),
+      <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">TRUE</span>, <span class="fl">TRUE</span>, <span class="fl">FALSE</span>, <span class="fl">FALSE</span>),
+      <span class="kw">proportion.test</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">TRUE</span>, <span class="fl">FALSE</span>, <span class="fl">TRUE</span>, <span class="fl">FALSE</span>)
+    ),
+    <span class="kw">.f</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/ggpiestats.html">ggpiestats</a></span>
+  )
+
+<span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span>
+<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span>(
+  <span class="kw">plotlist</span> <span class="kw">=</span> <span class="no">plot_list</span>,
+  <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Survival in Titanic disaster by gender for all passenger classes"</span>,
+  <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">1</span>
+)</pre></body></html></div>
 <p><img src="purrr_examples_files/figure-html/purrr_ggpiestats-1.png" width="864"></p>
 </div>
 <div id="ggbarstats" class="section level1">
 <h1 class="hasAnchor">
 <a href="#ggbarstats" class="anchor"></a><code>ggbarstats</code>
 </h1>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"># for reproducibility
-set.seed(123)
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 
-# let's split the dataframe and create a list by passenger class
-class_list % split(x = ., f = .$Class, drop = TRUE)
+<span class="co"># let's split the dataframe and create a list by passenger class</span>
+<span class="no">class_list</span> <span class="kw">&lt;-</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/Titanic_full.html">Titanic_full</a></span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">.</span>, <span class="kw">f</span> <span class="kw">=</span> <span class="no">.</span>$<span class="no">Class</span>, <span class="kw">drop</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 
-# checking the length and names of each element
-length(class_list)
-#&gt; [1] 4
-names(class_list)
-#&gt; [1] "1st"  "2nd"  "3rd"  "Crew"
+<span class="co"># checking the length and names of each element</span>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">class_list</span>)
+<span class="co">#&gt; [1] 4</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">class_list</span>)
+<span class="co">#&gt; [1] "1st"  "2nd"  "3rd"  "Crew"</span>
 
-# running function on every element of this list note that if you want the same
-# value for a given argument across all elements of the list, you need to
-# specify it just once
-plot_list </pre></body></html></div>
+<span class="co"># running function on every element of this list note that if you want the same</span>
+<span class="co"># value for a given argument across all elements of the list, you need to</span>
+<span class="co"># specify it just once</span>
+<span class="no">plot_list</span> <span class="kw">&lt;-</span>
+  <span class="kw pkg">purrr</span><span class="kw ns">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(
+    <span class="kw">.l</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+      <span class="kw">data</span> <span class="kw">=</span> <span class="no">class_list</span>,
+      <span class="kw">x</span> <span class="kw">=</span> <span class="st">"Survived"</span>,
+      <span class="kw">y</span> <span class="kw">=</span> <span class="st">"Sex"</span>,
+      <span class="kw">nboot</span> <span class="kw">=</span> <span class="fl">10</span>,
+      <span class="kw">label</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"both"</span>, <span class="st">"count"</span>, <span class="st">"percentage"</span>, <span class="st">"both"</span>),
+      <span class="kw">title</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="st">"Passenger class: 1st"</span>,
+        <span class="st">"Passenger class: 2nd"</span>,
+        <span class="st">"Passenger class: 3rd"</span>,
+        <span class="st">"Passenger class: Crew"</span>
+      ),
+      <span class="kw">caption</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="st">"Total: 319, Died: 120, Survived: 199, % Survived: 62%"</span>,
+        <span class="st">"Total: 272, Died: 155, Survived: 117, % Survived: 43%"</span>,
+        <span class="st">"Total: 709, Died: 537, Survived: 172, % Survived: 25%"</span>,
+        <span class="st">"Data not available for crew passengers"</span>
+      ),
+      <span class="kw">package</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"RColorBrewer"</span>, <span class="st">"ghibli"</span>, <span class="st">"palettetown"</span>, <span class="st">"yarrr"</span>),
+      <span class="kw">palette</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"Accent"</span>, <span class="st">"MarnieMedium1"</span>, <span class="st">"pikachu"</span>, <span class="st">"nemo"</span>),
+      <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+        <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),
+        <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>(),
+        <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),
+        <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_economist.html">theme_economist</a></span>()
+      ),
+      <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">TRUE</span>, <span class="fl">TRUE</span>, <span class="fl">FALSE</span>, <span class="fl">FALSE</span>)
+    ),
+    <span class="kw">.f</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/ggbarstats.html">ggbarstats</a></span>
+  )
+
+<span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span>
+<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span>(
+  <span class="kw">plotlist</span> <span class="kw">=</span> <span class="no">plot_list</span>,
+  <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Survival in Titanic disaster by gender for all passenger classes"</span>,
+  <span class="kw">caption.text</span> <span class="kw">=</span> <span class="st">"Asterisks denote results from proportion tests: \n***: p &lt; 0.001, ns: non-significant"</span>,
+  <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">1</span>
+)</pre></body></html></div>
 <p><img src="purrr_examples_files/figure-html/purrr_ggbarstats-1.png" width="576"></p>
 </div>
 <div id="grouped_-variants" class="section level1">
@@ -423,19 +756,46 @@ plot_list </pre></body></html></div>
 <a href="#grouped_-variants" class="anchor"></a><code>grouped_</code> variants</h1>
 <p>Note that although all the above examples were written with the non-grouped variants of functions, the same rule holds true for the <code>grouped_</code> variants of all the above functions.</p>
 <p>For example, if we want to use the <code>grouped_gghistostats</code> across three different datasets, you can use <code><a href="https://purrr.tidyverse.org/reference/map2.html">purrr::pmap()</a></code> function. For the sake of brevity, the plots are not displayed here, but you can run the following code and check the individual <code>grouped_</code> plots (e.g., <code>plotlist[[1]]</code>).</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"># create a list of plots
-plotlist  [1] 3</pre></body></html></div>
+<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="co"># create a list of plots</span>
+<span class="no">plotlist</span> <span class="kw">&lt;-</span>
+  <span class="kw pkg">purrr</span><span class="kw ns">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(
+    <span class="kw">.l</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+      <span class="kw">data</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">mtcars</span>, <span class="no">iris</span>, <span class="no">ToothGrowth</span>),
+      <span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">alist</a></span>(<span class="no">wt</span>, <span class="no">Sepal.Length</span>, <span class="no">len</span>),
+      <span class="kw">results.subtitle</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">FALSE</span>),
+      <span class="kw">grouping.var</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">alist</a></span>(<span class="no">am</span>, <span class="no">Species</span>, <span class="no">supp</span>),
+      <span class="kw">title.text</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"Dataset: mtcars"</span>, <span class="st">"Dataset: iris"</span>, <span class="st">"Dataset: ToothGrowth"</span>)
+    ),
+    <span class="kw">.f</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/grouped_gghistostats.html">grouped_gghistostats</a></span>
+  )
+
+<span class="co"># given that we had three different datasets, we expect a list of length 3</span>
+<span class="co"># (each of which contains a `grouped_` plot)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">plotlist</span>)
+<span class="co">#&gt; [1] 3</span></pre></body></html></div>
 </div>
 <div id="repeating-function-execution-across-multiple-columns-in-a-dataframe" class="section level1">
 <h1 class="hasAnchor">
 <a href="#repeating-function-execution-across-multiple-columns-in-a-dataframe" class="anchor"></a>Repeating function execution across multiple columns in a dataframe</h1>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"># setup
-set.seed(123)
-library(ggstatsplot)
-library(patchwork)
+<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="co"># setup</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">patchwork</span>)
 
-# running the same analysis on two different columns (creates a list of plots)
-plotlist </pre></body></html></div>
+<span class="co"># running the same analysis on two different columns (creates a list of plots)</span>
+<span class="no">plotlist</span> <span class="kw">&lt;-</span>
+  <span class="kw pkg">purrr</span><span class="kw ns">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(
+    <span class="kw">.l</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+      <span class="kw">data</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">movies_long</span>),
+      <span class="kw">x</span> <span class="kw">=</span> <span class="st">"mpaa"</span>,
+      <span class="kw">y</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"rating"</span>, <span class="st">"length"</span>),
+      <span class="kw">title</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"IMDB score by MPAA rating"</span>, <span class="st">"Movie length by MPAA rating"</span>)
+    ),
+    <span class="kw">.f</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span>
+  )
+
+<span class="co"># combine plots using `patchwork`</span>
+<span class="no">plotlist</span><span class="kw">[[</span><span class="fl">1</span>]] + <span class="no">plotlist</span><span class="kw">[[</span><span class="fl">2</span>]]</pre></body></html></div>
 <p><img src="purrr_examples_files/figure-html/purrr_columns-1.png" width="1152"></p>
 </div>
 <div id="suggestions" class="section level1">
@@ -465,7 +825,7 @@ plotlist </pre></body></html></div>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

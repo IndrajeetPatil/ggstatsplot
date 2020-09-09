@@ -29,6 +29,7 @@ knitr::opts_chunk$set(
   message = FALSE,
   warning = FALSE,
   error = TRUE,
+  cache = TRUE,
   package.startup.message = FALSE
 )
 
@@ -2123,15 +2124,34 @@ ggstatsplot::ggcoefstats(
   ggplot2::theme(plot.subtitle = ggplot2::element_text(size = 11, face = "plain"))
 ```
 
-As revealed by this analysis, all effects of this model are significant. But
-most of the variance is explained by the `attribute`, with the next important
-explanatory factor being the `measure` used. A very little amount of variation
-in measurement is accounted for by the interaction between these two factors.
+## STAR Models with BayesX (`bayesx`)
+
+```{r bayesx, fig.height = 4, fig.width = 5}
+# setup
+set.seed(111)
+library(R2BayesX)
+
+## generate some data
+n <- 200
+
+## regressor
+dat <- data.frame(x = runif(n, -3, 3))
+
+## response
+dat$y <- with(dat, 1.5 + sin(x) + rnorm(n, sd = 0.6))
+
+## estimate models with bayesx REML and MCMC
+b1 <- R2BayesX::bayesx(y ~ sx(x), method = "REML", data = dat)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = b1,
+  title = "STAR Models with BayesX",
+  exclude.intercept = FALSE
+)
+```
 
 ## robust regression with `robust` package (`lmRob`, `glmRob`)
-
-The robust regression models, as implemented in the `robust` package are also
-supported.
 
 ```{r robust, fig.height = 10, fig.width = 6}
 ggstatsplot::combine_plots(
@@ -2139,7 +2159,7 @@ ggstatsplot::combine_plots(
   ggstatsplot::ggcoefstats(
     x = robust::glmRob(
       formula = Survived ~ Sex,
-      data = dplyr::sample_frac(tbl = ggstatsplot::Titanic_full, size = 0.20),
+      data = ggstatsplot::Titanic_full,
       family = stats::binomial(link = "logit")
     ),
     title = "generalized robust linear model",
@@ -2252,13 +2272,37 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
-## fit a linear model with multiple group fixed effects (`felm`)
+## multivariate generalized linear mixed models (`MCMCglmm`)
 
-Models of class `felm` from `lfe` package are also supported. This method is
-used to fit linear models with multiple group fixed effects, similarly to `lm`.
-It uses the Method of Alternating projections to sweep out multiple group
-effects from the normal equations before estimating the remaining coefficients
-with OLS.
+```{r MCMCglmm, fig.height = 4, fig.width = 4}
+# setup
+set.seed(123)
+library(lme4)
+library(MCMCglmm)
+data(sleepstudy)
+
+# model
+mm0 <-
+  MCMCglmm::MCMCglmm(
+    fixed = scale(Reaction) ~ scale(Days),
+    random = ~Subject,
+    data = lme4::sleepstudy,
+    nitt = 4000,
+    pr = TRUE,
+    verbose = FALSE
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mm0,
+  title = "multivariate generalized linear mixed model",
+  conf.method = "HPDinterval",
+  exclude.intercept = FALSE,
+  robust = TRUE
+)
+```
+
+## fit a linear model with multiple group fixed effects (`felm`)
 
 ```{r felm, fig.height = 5, fig.width = 5}
 # setup
@@ -3932,64 +3976,6 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
-## STAR Models with BayesX (`bayesx`)
-
-```{r bayesx, fig.height = 6, fig.width = 6}
-# setup
-set.seed(111)
-library(R2BayesX)
-
-## generate some data
-n <- 200
-
-## regressor
-dat <- data.frame(x = runif(n, -3, 3))
-
-## response
-dat$y <- with(dat, 1.5 + sin(x) + rnorm(n, sd = 0.6))
-
-## estimate models with
-## bayesx REML and MCMC
-b1 <- R2BayesX::bayesx(y ~ sx(x), method = "REML", data = dat)
-
-# plot
-ggstatsplot::ggcoefstats(
-  x = b1,
-  title = "STAR Models with BayesX",
-  exclude.intercept = FALSE
-)
-```
-
-## multivariate generalized linear mixed models (`MCMCglmm`)
-
-```{r MCMCglmm, fig.height = 6, fig.width = 6}
-# setup
-set.seed(123)
-library(lme4)
-library(MCMCglmm)
-data(sleepstudy)
-
-# model
-mm0 <-
-  MCMCglmm::MCMCglmm(
-    fixed = scale(Reaction) ~ scale(Days),
-    random = ~Subject,
-    data = sleepstudy,
-    nitt = 4000,
-    pr = TRUE,
-    verbose = FALSE
-  )
-
-# plot
-ggstatsplot::ggcoefstats(
-  x = mm0,
-  title = "multivariate generalized linear mixed model",
-  conf.method = "HPDinterval",
-  exclude.intercept = FALSE,
-  robust = TRUE
-)
-```
-
 ## Markov Chain Monte Carlo objects (`mcmc`)
 
 ```{r mcmc, fig.height = 5, fig.width = 5}
@@ -4051,7 +4037,7 @@ ggstatsplot::ggcoefstats(
 
 ## latent variable model (`lavaan`)
 
-```{r lavaan, fig.height = 10, fig.width = 6}
+```{r lavaan, fig.height = 10, fig.width = 6, error=TRUE}
 # setup
 set.seed(123)
 library(lavaan)
@@ -4082,7 +4068,7 @@ ggstatsplot::ggcoefstats(
 
 ## Bayesian latent variable model (`blavaan`)
 
-```{r blavaan, fig.height = 10, fig.width = 6}
+```{r blavaan, fig.height = 10, fig.width = 6, error=TRUE}
 # setup
 set.seed(123)
 library(blavaan)
@@ -4345,8 +4331,8 @@ contain columns named `term` (names of predictors), and `estimate`
 (corresponding estimates of coefficients or other quantities of interest). Other
 optional columns are `conf.low` and `conf.high` (for confidence intervals), and
 `p.value`. You will also have to specify the type of statistic relevant for
-regression models (`"t"`, `"z"`, `"f"`) in case you want to display statistical
-labels.
+regression models (`"t"`, `"z"`, `"f"`, `"chi"`) in case you want to display
+statistical labels.
 
 ```{r dataframe, fig.height = 6, fig.width = 6}
 # set up
