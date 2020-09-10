@@ -47,7 +47,6 @@ Imports:
 Suggests:
     forcats,
     knitr,
-    lme4,
     MASS,
     rmarkdown,
     spelling,

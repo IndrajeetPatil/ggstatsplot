@@ -2,13 +2,9 @@
 #' @name movies_wide
 #' @details Modified dataset from `ggplot2movies` package.
 #'
-#' The internet movie database, \url{http://imdb.com/}, is a website devoted
-#' to collecting movie data supplied by studios and fans.  It claims to be the
-#' biggest movie database on the web and is run by amazon.  More information
-#' about imdb.com can be found online,
-#' \url{http://imdb.com/help/show_leaf?about}, including information about
-#' the data collection process,
-#' \url{http://imdb.com/help/show_leaf?infosource}.
+#' The internet movie database, \url{https://imdb.com/}, is a website devoted
+#' to collecting movie data supplied by studios and fans. It claims to be the
+#' biggest movie database on the web and is run by amazon.
 #'
 #' Movies were selected for inclusion if they had a known length and had been
 #' rated by at least one imdb user.  Small categories such as documentaries
@@ -41,13 +37,9 @@
 #' @name movies_long
 #' @details Modified dataset from `ggplot2movies` package.
 #'
-#' The internet movie database, \url{http://imdb.com/}, is a website devoted
-#' to collecting movie data supplied by studios and fans.  It claims to be the
-#' biggest movie database on the web and is run by amazon.  More about
-#' information imdb.com can be found online,
-#' \url{http://imdb.com/help/show_leaf?about}, including information about
-#' the data collection process,
-#' \url{http://imdb.com/help/show_leaf?infosource}.
+#' The internet movie database, \url{https://imdb.com/}, is a website devoted
+#' to collecting movie data supplied by studios and fans. It claims to be the
+#' biggest movie database on the web and is run by amazon.
 #'
 #' Movies were are identical to those selected for inclusion in movies_wide but this
 #' dataset has been constructed such that every movie appears in one and only one

@@ -201,18 +201,6 @@
 #'   meta.analytic.effect = TRUE,
 #'   k = 3
 #' )
-#'
-#' # -------------- getting model summary ------------------------------
-#'
-#' # model
-#' library(lme4)
-#' lmm1 <- lme4::lmer(
-#'   formula = Reaction ~ Days + (Days | Subject),
-#'   data = sleepstudy
-#' )
-#'
-#' # dataframe with model summary
-#' ggstatsplot::ggcoefstats(x = lmm1, output = "glance")
 #' }
 #' @export
 

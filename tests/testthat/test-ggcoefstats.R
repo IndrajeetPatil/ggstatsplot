@@ -1,18 +1,21 @@
 # z-statistic --------------------------------------------------
 
 testthat::test_that(
-  desc = "ggcoefstats with glmer model",
+  desc = "ggcoefstats with glm with z",
   code = {
     testthat::skip_on_cran()
-    library(lme4)
+    set.seed(123)
+
+    # having a look at the Titanic dataset
+    df <- as.data.frame(Titanic)
 
     # model
-    set.seed(123)
     mod <-
-      lme4::glmer(
-        formula = cbind(incidence, size - incidence) ~ period + (1 | herd),
-        data = lme4::cbpp,
-        family = binomial
+      stats::glm(
+        formula = Survived ~ Sex + Age,
+        data = df,
+        weights = df$Freq,
+        family = stats::binomial(link = "logit")
       )
 
     # plot
@@ -32,39 +35,39 @@ testthat::test_that(
       pb$data[[4]],
       structure(
         list(
-          x = c(
-            -1.39834286447115,
-            -0.991924974975739,
-            -1.12821621594334,
-            -1.57974541364919
-          ),
-          y = structure(1:4, class = c(
-            "mapped_discrete",
-            "numeric"
-          )),
+          x = c(-0.780044678205957, 2.29400668890043, -0.556439259603544),
+          y = structure(1:3, class = c("mapped_discrete", "numeric")),
           label = c(
-            "list(~widehat(italic(beta))==-1.40, ~italic(z)==-6.05, ~italic(p)<= 0.001)",
-            "list(~widehat(italic(beta))==-0.99, ~italic(z)==-3.27, ~italic(p)== 0.001)",
-            "list(~widehat(italic(beta))==-1.13, ~italic(z)==-3.49, ~italic(p)<= 0.001)",
-            "list(~widehat(italic(beta))==-1.58, ~italic(z)==-3.74, ~italic(p)<= 0.001)"
+            "list(~widehat(italic(beta))==-0.78, ~italic(z)==-3.47, ~italic(p)== 0.001)",
+            "list(~widehat(italic(beta))==2.29, ~italic(z)==19.13, ~italic(p)<= 0.001)",
+            "list(~widehat(italic(beta))==-0.56, ~italic(z)==-2.44, ~italic(p)== 0.014)"
           ),
-          PANEL = structure(c(1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
-          group = structure(1:4, n = 4L),
-          colour = structure(
-            c("#1B9E77FF", "#D95F02FF", "#7570B3FF", "#E7298AFF"),
-            class = "colors"
+          PANEL = structure(c(1L, 1L, 1L), .Label = "1", class = "factor"),
+          group = structure(1:3, n = 3L),
+          colour = structure(c(
+            "#1B9E77FF",
+            "#D95F02FF", "#7570B3FF"
+          ), class = "colors"),
+          fill = c(
+            "white",
+            "white", "white"
           ),
-          fill = c("white", "white", "white", "white"),
-          size = c(3, 3, 3, 3),
-          angle = c(0, 0, 0, 0),
-          alpha = c(NA, NA, NA, NA),
-          family = c("", "", "", ""),
-          fontface = c(1, 1, 1, 1),
-          lineheight = c(1.2, 1.2, 1.2, 1.2),
-          hjust = c(0.5, 0.5, 0.5, 0.5),
-          vjust = c(0.5, 0.5, 0.5, 0.5)
+          size = c(3, 3, 3),
+          angle = c(0, 0, 0),
+          alpha = c(NA, NA, NA),
+          family = c("", "", ""),
+          fontface = c(
+            1,
+            1, 1
+          ),
+          lineheight = c(1.2, 1.2, 1.2),
+          hjust = c(
+            0.5, 0.5,
+            0.5
+          ),
+          vjust = c(0.5, 0.5, 0.5)
         ),
-        row.names = c(NA, -4L),
+        row.names = c(NA, -3L),
         class = "data.frame"
       )
     )
@@ -460,88 +463,6 @@ testthat::test_that(
   }
 )
 
-# check merMod output ----------------------------------------------
-
-testthat::test_that(
-  desc = "check merMod output",
-  code = {
-    testthat::skip_on_cran()
-
-    # setup
-    set.seed(123)
-    library(lme4)
-
-    # model
-    mod1 <-
-      lme4::glmer(
-        cbind(incidence, size - incidence) ~ period + (1 | herd),
-        data = cbpp,
-        family = binomial()
-      )
-
-    set.seed(123)
-    d <- data.frame(
-      y = rpois(1000, lambda = 3),
-      x = runif(1000),
-      f = factor(sample(
-        1:10,
-        size = 1000, replace = TRUE
-      ))
-    )
-
-    set.seed(123)
-    mod2 <- lme4::glmer(y ~ x + (1 | f), data = d, family = poisson)
-
-    # broom output
-    set.seed(123)
-    broom_df1 <- broomExtra::tidy(
-      x = mod1,
-      conf.int = TRUE,
-      conf.level = 0.99,
-      effects = "fixed"
-    )
-
-    set.seed(123)
-    broom_df2 <- broomExtra::tidy(
-      x = mod2,
-      conf.int = TRUE,
-      conf.level = 0.50,
-      effects = "fixed"
-    )
-
-    # ggstatsplot output
-    set.seed(123)
-    tidy_df1 <- ggstatsplot::ggcoefstats(
-      x = mod1,
-      conf.int = TRUE,
-      conf.level = 0.99,
-      output = "tidy",
-      exclude.intercept = FALSE
-    )
-
-    set.seed(123)
-    tidy_df2 <- ggstatsplot::ggcoefstats(
-      x = mod2,
-      conf.int = TRUE,
-      conf.level = 0.50,
-      output = "tidy",
-      exclude.intercept = FALSE
-    )
-
-    # testing glmer
-    testthat::expect_equal(broom_df1$conf.low, tidy_df1$conf.low, tolerance = 0.001)
-    testthat::expect_equal(broom_df2$conf.low, tidy_df2$conf.low, tolerance = 0.001)
-    testthat::expect_equal(broom_df1$conf.high, tidy_df1$conf.high, tolerance = 0.001)
-    testthat::expect_equal(broom_df2$conf.high, tidy_df2$conf.high, tolerance = 0.001)
-    testthat::expect_equal(broom_df1$estimate, tidy_df1$estimate, tolerance = 0.001)
-    testthat::expect_equal(broom_df2$estimate, tidy_df2$estimate, tolerance = 0.001)
-    testthat::expect_equal(broom_df1$std.error, tidy_df1$std.error, tolerance = 0.001)
-    testthat::expect_equal(broom_df2$std.error, tidy_df2$std.error, tolerance = 0.001)
-    testthat::expect_equal(broom_df1$p.value, tidy_df1$p.value, tolerance = 0.001)
-    testthat::expect_equal(broom_df2$p.value, tidy_df2$p.value, tolerance = 0.001)
-  }
-)
-
 # dataframe as input ----------------------------------------------------
 
 testthat::test_that(
@@ -857,28 +778,15 @@ testthat::test_that(
   desc = "check if glance works",
   code = {
     testthat::skip_on_cran()
-    library(lme4)
 
     # creating broom and ggstatsplot output
     # lm
     set.seed(123)
     mod1 <- stats::lm(data = iris, formula = Sepal.Length ~ Species)
-    glance_df1 <-
-      ggstatsplot::ggcoefstats(x = mod1, output = "glance")
-
-    # lmer
-    set.seed(123)
-    mod2 <-
-      lme4::lmer(
-        formula = Reaction ~ Days + (Days | Subject),
-        data = sleepstudy
-      )
-    glance_df2 <-
-      ggstatsplot::ggcoefstats(x = mod2, output = "glance")
+    glance_df1 <- ggstatsplot::ggcoefstats(x = mod1, output = "glance")
 
     # checking if they are equal
     testthat::expect_true(all(c("aic", "bic") %in% names(glance_df1)))
-    testthat::expect_true(all(c("aic", "bic") %in% names(glance_df2)))
   }
 )
 
@@ -889,9 +797,6 @@ testthat::test_that(
   desc = "check if augment works",
   code = {
     testthat::skip_on_cran()
-
-    # set up
-    library(lme4)
 
     # linear model
     set.seed(123)

@@ -164,7 +164,7 @@ df_facet_label <- function(data, x, y, k = 3L) {
 # function body
 grouped_proptest <- function(data, grouping.vars, measure, ...) {
   # calculating percentages and running chi-squared test
-    dplyr::group_by_at(data, rlang::enquos(grouping.vars)) %>%
+  dplyr::group_by_at(data, rlang::enquos(grouping.vars)) %>%
     {
       dplyr::left_join(
         x = (.) %>%

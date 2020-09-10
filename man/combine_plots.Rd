@@ -72,6 +72,7 @@ down on the plot canvas. Can be a single value (applied to all labels) or a vect
 select plots. Usually it's preferable to set margins instead of using \code{scale}, but \code{scale} can
 sometimes be more powerful.}
     \item{\code{greedy}}{(optional) How should margins be adjusted during alignment. See \code{\link[cowplot:align_plots]{align_plots()}} for details.}
+    \item{\code{byrow}}{Logical value indicating if the plots should be arrange by row (default) or by column.}
     \item{\code{cols}}{Deprecated. Use \code{ncol}.}
     \item{\code{rows}}{Deprecated. Use \code{nrow}.}
   }}

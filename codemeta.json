@@ -73,18 +73,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "lme4",
-      "name": "lme4",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=lme4"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "MASS",
       "name": "MASS",
       "provider": {
@@ -453,5 +441,5 @@
   ],
   "funder": {},
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md",
-  "fileSize": "41236.658KB"
+  "fileSize": "41404.542KB"
 }
