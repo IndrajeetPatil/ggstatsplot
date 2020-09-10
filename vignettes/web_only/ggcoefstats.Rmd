@@ -29,7 +29,6 @@ knitr::opts_chunk$set(
   message = FALSE,
   warning = FALSE,
   error = TRUE,
-  cache = TRUE,
   package.startup.message = FALSE
 )
 
@@ -321,6 +320,87 @@ broomExtra::tidy_parameters(
     data = movies_long,
     control = lme4::lmerControl(calc.derivs = FALSE)
   )
+)
+```
+
+## Aalen's additive regression model for censored data (`aareg`)
+
+```{r aareg, fig.height = 5, fig.width = 5}
+# setup
+library(survival)
+set.seed(123)
+
+# model
+afit <-
+  survival::aareg(
+    formula = Surv(time, status) ~ age + sex + ph.ecog,
+    data = lung,
+    dfbeta = TRUE
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = afit,
+  title = "Aalen's additive regression model",
+  subtitle = "(for censored data)",
+  k = 3
+)
+```
+
+## multivariate generalized linear mixed models (`MCMCglmm`)
+
+```{r MCMCglmm, fig.height = 4, fig.width = 6}
+# setup
+set.seed(123)
+library(lme4)
+library(MCMCglmm)
+data(sleepstudy)
+
+# model
+mm0 <-
+  MCMCglmm::MCMCglmm(
+    fixed = scale(Reaction) ~ scale(Days),
+    random = ~Subject,
+    data = lme4::sleepstudy,
+    nitt = 4000,
+    pr = TRUE,
+    verbose = FALSE
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mm0,
+  title = "multivariate generalized linear mixed model",
+  conf.method = "HPDinterval",
+  exclude.intercept = FALSE,
+  robust = TRUE
+)
+```
+
+## STAR Models with BayesX (`bayesx`)
+
+```{r bayesx, fig.height = 4, fig.width = 5}
+# setup
+set.seed(111)
+library(R2BayesX)
+
+## generate some data
+n <- 200
+
+## regressor
+dat <- data.frame(x = runif(n, -3, 3))
+
+## response
+dat$y <- with(dat, 1.5 + sin(x) + rnorm(n, sd = 0.6))
+
+## estimate models with bayesx REML and MCMC
+b1 <- R2BayesX::bayesx(y ~ sx(x), method = "REML", data = dat)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = b1,
+  title = "STAR Models with BayesX",
+  exclude.intercept = FALSE
 )
 ```
 
@@ -1527,11 +1607,6 @@ ggstatsplot::ggcoefstats(
 
 ## cumulative link models (`clm`)
 
-So far we have dealt either with continuous or nominal/factor responses (or
-output variables), but sometimes we will encounter **ordinal** data (e.g.,
-Likert scale measurement in behavioral sciences). In these cases, ordinal
-regression models are more suitable. 
-
 ```{r clm, fig.height = 6, fig.width = 8}
 # for reproducibility
 set.seed(123)
@@ -1549,9 +1624,6 @@ ggstatsplot::ggcoefstats(
 ) +
   ggplot2::labs(x = "logit regression coefficient", y = NULL)
 ```
-
-As can be seen from this plot, both factors (intentionality and consequences)
-were significant, and so was their interaction.
 
 ## cumulative link models - older version (`clm2`)
 
@@ -2124,33 +2196,6 @@ ggstatsplot::ggcoefstats(
   ggplot2::theme(plot.subtitle = ggplot2::element_text(size = 11, face = "plain"))
 ```
 
-## STAR Models with BayesX (`bayesx`)
-
-```{r bayesx, fig.height = 4, fig.width = 5}
-# setup
-set.seed(111)
-library(R2BayesX)
-
-## generate some data
-n <- 200
-
-## regressor
-dat <- data.frame(x = runif(n, -3, 3))
-
-## response
-dat$y <- with(dat, 1.5 + sin(x) + rnorm(n, sd = 0.6))
-
-## estimate models with bayesx REML and MCMC
-b1 <- R2BayesX::bayesx(y ~ sx(x), method = "REML", data = dat)
-
-# plot
-ggstatsplot::ggcoefstats(
-  x = b1,
-  title = "STAR Models with BayesX",
-  exclude.intercept = FALSE
-)
-```
-
 ## robust regression with `robust` package (`lmRob`, `glmRob`)
 
 ```{r robust, fig.height = 10, fig.width = 6}
@@ -2269,36 +2314,6 @@ ggstatsplot::ggcoefstats(
   x = calcium.nl,
   conf.int = FALSE,
   title = "fit a nonlinear heteroscedastic model via maximum likelihood"
-)
-```
-
-## multivariate generalized linear mixed models (`MCMCglmm`)
-
-```{r MCMCglmm, fig.height = 4, fig.width = 4}
-# setup
-set.seed(123)
-library(lme4)
-library(MCMCglmm)
-data(sleepstudy)
-
-# model
-mm0 <-
-  MCMCglmm::MCMCglmm(
-    fixed = scale(Reaction) ~ scale(Days),
-    random = ~Subject,
-    data = lme4::sleepstudy,
-    nitt = 4000,
-    pr = TRUE,
-    verbose = FALSE
-  )
-
-# plot
-ggstatsplot::ggcoefstats(
-  x = mm0,
-  title = "multivariate generalized linear mixed model",
-  conf.method = "HPDinterval",
-  exclude.intercept = FALSE,
-  robust = TRUE
 )
 ```
 
@@ -2796,30 +2811,6 @@ m1 <-
 ggstatsplot::ggcoefstats(
   x = m1,
   title = "tobit regression"
-)
-```
-
-## Aalen's additive regression model for censored data (`aareg`)
-
-```{r aareg, fig.height = 5, fig.width = 5}
-# setup
-library(survival)
-set.seed(123)
-
-# model
-afit <-
-  survival::aareg(
-    formula = Surv(time, status) ~ age + sex + ph.ecog,
-    data = lung,
-    dfbeta = TRUE
-  )
-
-# plot
-ggstatsplot::ggcoefstats(
-  x = afit,
-  title = "Aalen's additive regression model",
-  subtitle = "(for censored data)",
-  k = 3
 )
 ```
 

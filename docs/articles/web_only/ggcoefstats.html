@@ -149,7 +149,7 @@
       <h1 data-toc-skip>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-09-09</h4>
+            <h4 class="date">2020-09-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -160,7 +160,7 @@
     
 <p>The function <code><a href="../../reference/ggcoefstats.html">ggstatsplot::ggcoefstats</a></code> generates <strong>dot-and-whisker plots</strong> for regression models saved in a tidy data frame. The tidy dataframes are prepared using the following packages: <code>broom</code>, <code>broom.mixed</code>, and <code>parameters</code>. Additionally, if available, the model summary indices are also extracted from the following packages: <code>broom</code>, <code>broom.mixed</code>, and <code>performance</code>.</p>
 <p>In this vignette, we will see examples of how to use this function. We will try to cover as many classes of objects as possible. Unfortunately, there is no single dataset that will be helpful for carrying out all types of regression analyses and, therefore, we will use various datasets to explore data-specific hypotheses using regression models.</p>
-<p><strong>Note before</strong>: The following demo uses the pipe operator (<code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code>), so in case you are not familiar with this operator, here is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="uri">http://r4ds.had.co.nz/pipes.html</a></p>
+<p><strong>Note before</strong>: The following demo uses the pipe operator (<code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code>), so in case you are not familiar with this operator, here is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="uri">http://r4ds.had.co.nz/pipes.html</a></p>
 <div id="general-structure-of-the-plots" class="section level1">
 <h1 class="hasAnchor">
 <a href="#general-structure-of-the-plots" class="anchor"></a>General structure of the plots</h1>
@@ -204,8 +204,8 @@
 ) +
   <span class="co"># further modification with the ggplot2 commands</span>
   <span class="co"># note the order in which the labels are entered</span>
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="kw">labels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"MPAA"</span>, <span class="st">"Genre"</span>, <span class="st">"Interaction term"</span>)) +
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="st">"effect size estimate (eta-squared)"</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="kw">NULL</span>)</pre></body></html></div>
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_discrete.html">scale_y_discrete</a></span>(<span class="kw">labels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"MPAA"</span>, <span class="st">"Genre"</span>, <span class="st">"Interaction term"</span>)) +
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="st">"effect size estimate (eta-squared)"</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="kw">NULL</span>)</pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/aov1-1.png" width="768"></p>
 <p>Note that we can also use this function for model selection. You can try out different models with the code below and see how the AIC and BIC values change.</p>
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># setup</span>
@@ -293,7 +293,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 
 <span class="co"># data</span>
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(
   <span class="kw">.data</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/movies_long.html">movies_long</a></span>,
   <span class="no">genre</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
     <span class="st">"Action"</span>,
@@ -311,22 +311,22 @@
   <span class="kw">standardize</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
   <span class="kw">conf.level</span> <span class="kw">=</span> <span class="fl">0.99</span>, <span class="co"># changing the confidence levels for confidence intervals</span>
   <span class="kw">sort</span> <span class="kw">=</span> <span class="st">"ascending"</span>, <span class="co"># sorting the terms of the model based on estimate values</span>
-  <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_gray</a></span>(), <span class="co"># changing the default theme</span>
+  <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_gray</a></span>(), <span class="co"># changing the default theme</span>
   <span class="kw">stats.label.color</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#CC79A7"</span>, <span class="st">"darkgreen"</span>, <span class="st">"#0072B2"</span>, <span class="st">"black"</span>, <span class="st">"red"</span>),
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Movie ratings by their genre"</span>,
   <span class="kw">subtitle</span> <span class="kw">=</span> <span class="st">"Source: www.imdb.com"</span>
 ) +
   <span class="co"># further modification with the ggplot2 commands</span>
   <span class="co"># note the order in which the labels are entered</span>
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="kw">labels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_discrete.html">scale_y_discrete</a></span>(<span class="kw">labels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
     <span class="st">"Comedy"</span>,
     <span class="st">"Action Comedy"</span>,
     <span class="st">"Action Drama"</span>,
     <span class="st">"Comedy Drama"</span>,
     <span class="st">"Drama"</span>
   )) +
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="kw">y</span> <span class="kw">=</span> <span class="st">"Genre compared to Action movies)"</span>) +
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="kw">axis.title.y</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">14</span>, <span class="kw">face</span> <span class="kw">=</span> <span class="st">"bold"</span>))</pre></body></html></div>
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span>(<span class="kw">y</span> <span class="kw">=</span> <span class="st">"Genre compared to Action movies)"</span>) +
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/theme.html">theme</a></span>(<span class="kw">axis.title.y</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">element_text</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">14</span>, <span class="kw">face</span> <span class="kw">=</span> <span class="st">"bold"</span>))</pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/lm-1.png" width="768"></p>
 </div>
 <div id="linear-mixed-effects-model-lmerlmermod" class="section level2">
@@ -357,7 +357,7 @@
     <span class="kw">stats.label.color</span> <span class="kw">=</span> <span class="st">"black"</span>,
     <span class="kw">exclude.intercept</span> <span class="kw">=</span> <span class="fl">FALSE</span> <span class="co"># show the intercept</span>
   ) +
-    <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/parse.html">parse</a></span>(<span class="kw">text</span> <span class="kw">=</span> <span class="st">"'standardized regression coefficient' ~italic(beta)"</span>)),
+    <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/parse.html">parse</a></span>(<span class="kw">text</span> <span class="kw">=</span> <span class="st">"'standardized regression coefficient' ~italic(beta)"</span>)),
   <span class="co"># model 2: linear mixed-effects model</span>
   <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
     <span class="kw">x</span> <span class="kw">=</span> <span class="no">mod2</span>,
@@ -365,7 +365,7 @@
     <span class="kw">stats.label.color</span> <span class="kw">=</span> <span class="st">"black"</span>,
     <span class="kw">exclude.intercept</span> <span class="kw">=</span> <span class="fl">FALSE</span>
   ) +
-    <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(
+    <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span>(
       <span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/parse.html">parse</a></span>(<span class="kw">text</span> <span class="kw">=</span> <span class="st">"'standardized regression coefficient' ~italic(beta)"</span>),
       <span class="kw">y</span> <span class="kw">=</span> <span class="st">"fixed effects"</span>
     ),
@@ -380,7 +380,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">broomExtra</span>)
 
 <span class="co"># tidy output</span>
-<span class="kw pkg">broomExtra</span><span class="kw ns">::</span><span class="fu"><a href="https://indrajeetpatil.github.io/broomExtra//reference/tidy_parameters.html">tidy_parameters</a></span>(
+<span class="kw pkg">broomExtra</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/broomExtra/man/tidy_parameters.html">tidy_parameters</a></span>(
   <span class="kw pkg">lme4</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span>(
     <span class="kw">formula</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span>(<span class="no">rating</span>) ~ <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span>(<span class="no">budget</span>) + (<span class="no">budget</span> <span class="kw">|</span> <span class="no">genre</span>),
     <span class="kw">data</span> <span class="kw">=</span> <span class="no">movies_long</span>,
@@ -393,11 +393,92 @@
 <span class="co">#&gt; 1 (Intercept)    -0.0617    0.135   -0.327      0.204    -0.456     1573  0.649 </span>
 <span class="co">#&gt; 2 scale(budget)   0.105     0.0420   0.0227     0.187     2.50      1573  0.0124</span></pre></body></html></div>
 </div>
+<div id="aalens-additive-regression-model-for-censored-data-aareg" class="section level2">
+<h2 class="hasAnchor">
+<a href="#aalens-additive-regression-model-for-censored-data-aareg" class="anchor"></a>Aalen’s additive regression model for censored data (<code>aareg</code>)</h2>
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="co"># setup</span>
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">survival</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+
+<span class="co"># model</span>
+<span class="no">afit</span> <span class="kw">&lt;-</span>
+  <span class="kw pkg">survival</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/aareg.html">aareg</a></span>(
+    <span class="kw">formula</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span>(<span class="no">time</span>, <span class="no">status</span>) ~ <span class="no">age</span> + <span class="no">sex</span> + <span class="no">ph.ecog</span>,
+    <span class="kw">data</span> <span class="kw">=</span> <span class="no">lung</span>,
+    <span class="kw">dfbeta</span> <span class="kw">=</span> <span class="fl">TRUE</span>
+  )
+
+<span class="co"># plot</span>
+<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
+  <span class="kw">x</span> <span class="kw">=</span> <span class="no">afit</span>,
+  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Aalen's additive regression model"</span>,
+  <span class="kw">subtitle</span> <span class="kw">=</span> <span class="st">"(for censored data)"</span>,
+  <span class="kw">k</span> <span class="kw">=</span> <span class="fl">3</span>
+)</pre></body></html></div>
+<p><img src="ggcoefstats_files/figure-html/aareg-1.png" width="480"></p>
+</div>
+<div id="multivariate-generalized-linear-mixed-models-mcmcglmm" class="section level2">
+<h2 class="hasAnchor">
+<a href="#multivariate-generalized-linear-mixed-models-mcmcglmm" class="anchor"></a>multivariate generalized linear mixed models (<code>MCMCglmm</code>)</h2>
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="co"># setup</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">lme4</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">MCMCglmm</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">sleepstudy</span>)
+
+<span class="co"># model</span>
+<span class="no">mm0</span> <span class="kw">&lt;-</span>
+  <span class="kw pkg">MCMCglmm</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/MCMCglmm/man/MCMCglmm.html">MCMCglmm</a></span>(
+    <span class="kw">fixed</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span>(<span class="no">Reaction</span>) ~ <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span>(<span class="no">Days</span>),
+    <span class="kw">random</span> <span class="kw">=</span> ~<span class="no">Subject</span>,
+    <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">lme4</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/lme4/man/sleepstudy.html">sleepstudy</a></span>,
+    <span class="kw">nitt</span> <span class="kw">=</span> <span class="fl">4000</span>,
+    <span class="kw">pr</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
+    <span class="kw">verbose</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+  )
+
+<span class="co"># plot</span>
+<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
+  <span class="kw">x</span> <span class="kw">=</span> <span class="no">mm0</span>,
+  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"multivariate generalized linear mixed model"</span>,
+  <span class="kw">conf.method</span> <span class="kw">=</span> <span class="st">"HPDinterval"</span>,
+  <span class="kw">exclude.intercept</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
+  <span class="kw">robust</span> <span class="kw">=</span> <span class="fl">TRUE</span>
+)</pre></body></html></div>
+<p><img src="ggcoefstats_files/figure-html/MCMCglmm-1.png" width="576"></p>
+</div>
+<div id="star-models-with-bayesx-bayesx" class="section level2">
+<h2 class="hasAnchor">
+<a href="#star-models-with-bayesx-bayesx" class="anchor"></a>STAR Models with BayesX (<code>bayesx</code>)</h2>
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="co"># setup</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">111</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">R2BayesX</span>)
+
+<span class="co">## generate some data</span>
+<span class="no">n</span> <span class="kw">&lt;-</span> <span class="fl">200</span>
+
+<span class="co">## regressor</span>
+<span class="no">dat</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="no">n</span>, -<span class="fl">3</span>, <span class="fl">3</span>))
+
+<span class="co">## response</span>
+<span class="no">dat</span>$<span class="no">y</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span>(<span class="no">dat</span>, <span class="fl">1.5</span> + <span class="fu"><a href="https://rdrr.io/r/base/Trig.html">sin</a></span>(<span class="no">x</span>) + <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="no">n</span>, <span class="kw">sd</span> <span class="kw">=</span> <span class="fl">0.6</span>))
+
+<span class="co">## estimate models with bayesx REML and MCMC</span>
+<span class="no">b1</span> <span class="kw">&lt;-</span> <span class="kw pkg">R2BayesX</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/R2BayesX/man/bayesx.html">bayesx</a></span>(<span class="no">y</span> ~ <span class="fu"><a href="https://rdrr.io/pkg/R2BayesX/man/sx.html">sx</a></span>(<span class="no">x</span>), <span class="kw">method</span> <span class="kw">=</span> <span class="st">"REML"</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">dat</span>)
+
+<span class="co"># plot</span>
+<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
+  <span class="kw">x</span> <span class="kw">=</span> <span class="no">b1</span>,
+  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"STAR Models with BayesX"</span>,
+  <span class="kw">exclude.intercept</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+)</pre></body></html></div>
+<p><img src="ggcoefstats_files/figure-html/bayesx-1.png" width="480"></p>
+</div>
 <div id="robust-linear-mixed-effects-models-rlmer" class="section level2">
 <h2 class="hasAnchor">
 <a href="#robust-linear-mixed-effects-models-rlmer" class="anchor"></a>robust linear mixed-effects models (<code>rlmer</code>)</h2>
 <p>Robust version of <code>lmer</code> (as implemented in <code>robustlmm</code> package) is also supported-</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="co"># setups</span>
+<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="co"># setups</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">robustlmm</span>)
 
@@ -421,7 +502,7 @@
 <div id="linear-mixed-effects-models-with-lmertest-lmermodlmertest" class="section level2">
 <h2 class="hasAnchor">
 <a href="#linear-mixed-effects-models-with-lmertest-lmermodlmertest" class="anchor"></a>linear mixed-effects models with <code>lmerTest</code> (<code>lmerModLmerTest</code>)</h2>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">lmerTest</span>)
 
@@ -443,7 +524,7 @@
 <div id="non-linear-mixed-effects-model-nlmernlmermod" class="section level2">
 <h2 class="hasAnchor">
 <a href="#non-linear-mixed-effects-model-nlmernlmermod" class="anchor"></a>non-linear mixed-effects model (<code>nlmer</code>/<code>nlmerMod</code>)</h2>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="co"># data</span>
+<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="co"># data</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">lme4</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="no">startvec</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">Asym</span> <span class="kw">=</span> <span class="fl">200</span>, <span class="kw">xmid</span> <span class="kw">=</span> <span class="fl">725</span>, <span class="kw">scal</span> <span class="kw">=</span> <span class="fl">350</span>)
@@ -467,7 +548,7 @@
 <h2 class="hasAnchor">
 <a href="#non-linear-least-squares-model-nls" class="anchor"></a>non-linear least-squares model (<code>nls</code>)</h2>
 <p>So far we have been assuming a linear relationship between movie budget and rating. But what if we want to also explore the possibility of a non-linear relationship? In that case, we can run a non-linear least squares regression. Note that you need to choose some non-linear function, which will be based on prior exploratory data analysis (<code>y ~ k/x + c</code> implemented here, but you can try out other non-linear functions, e.g. <code>Y ~ k * exp(-b*c)</code>).</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
 
@@ -491,7 +572,7 @@
 <div id="conditional-generalized-linear-models-for-clustered-data-cglm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#conditional-generalized-linear-models-for-clustered-data-cglm" class="anchor"></a>conditional generalized linear models for clustered data (<code>cglm</code>)</h2>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">cglm</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">teenpov</span>)
@@ -516,7 +597,7 @@
 <div id="joint-model-to-time-to-event-data-and-multivariate-longitudinal-data-mjoint" class="section level2">
 <h2 class="hasAnchor">
 <a href="#joint-model-to-time-to-event-data-and-multivariate-longitudinal-data-mjoint" class="anchor"></a>joint model to time-to-event data and multivariate longitudinal data (<code>mjoint</code>)</h2>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">joineRML</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">heart.valve</span>)
@@ -537,7 +618,7 @@
       <span class="st">"grad"</span> <span class="kw">=</span> ~ <span class="fl">1</span> <span class="kw">|</span> <span class="no">num</span>,
       <span class="st">"lvmi"</span> <span class="kw">=</span> ~ <span class="no">time</span> <span class="kw">|</span> <span class="no">num</span>
     ),
-    <span class="kw">formSurv</span> <span class="kw">=</span> <span class="fu">Surv</span>(<span class="no">fuyrs</span>, <span class="no">status</span>) ~ <span class="no">age</span>,
+    <span class="kw">formSurv</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span>(<span class="no">fuyrs</span>, <span class="no">status</span>) ~ <span class="no">age</span>,
     <span class="kw">data</span> <span class="kw">=</span> <span class="no">hvd</span>,
     <span class="kw">inits</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"gamma"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.11</span>, <span class="fl">1.51</span>, <span class="fl">0.80</span>)),
     <span class="kw">timeVar</span> <span class="kw">=</span> <span class="st">"time"</span>
@@ -560,7 +641,7 @@
 <div id="stationary-linear-model-slm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#stationary-linear-model-slm" class="anchor"></a>stationary linear model (<code>slm</code>)</h2>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">slm</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"shan"</span>)
@@ -588,7 +669,7 @@
 <h2 class="hasAnchor">
 <a href="#generalized-linear-model-glm" class="anchor"></a>generalized linear model (<code>glm</code>)</h2>
 <p>In all the analyses carried out thus far, the outcome variable (<code>y</code> in <code>y ~ x</code>) has been continuous. In case the outcome variable is nominal/categorical/factor, we can use the <strong>generalized</strong> form of linear model that works even if the response is a numeric vector or a factor vector, etc.</p>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 
@@ -620,7 +701,7 @@
 <li><p>The exact statistic will depend on the family used. Below we will see a host of different function calls to <code>glm</code> with a variety of different families.</p></li>
 <li><p>Some families will have a <code>t</code> statistic associated with them, while others a <code>z</code> statistic. The function will figure this out for you.</p></li>
 </ul>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="co"># creating dataframes to use for regression analyses</span>
+<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="co"># creating dataframes to use for regression analyses</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
 
 <span class="co"># dataframe #1</span>
@@ -630,7 +711,7 @@
     <span class="kw">outcome</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/gl.html">gl</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">length</span> <span class="kw">=</span> <span class="fl">9</span>),
     <span class="kw">counts</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">18</span>, <span class="fl">17</span>, <span class="fl">15</span>, <span class="fl">20</span>, <span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">25</span>, <span class="fl">13</span>, <span class="fl">12</span>)
   ) <span class="kw">%&gt;%</span>
-  <span class="kw pkg">tibble</span><span class="kw ns">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(<span class="no">.</span>)
+  <span class="kw pkg">tibble</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/tibble/man/as_tibble.html">as_tibble</a></span>(<span class="no">.</span>)
 
 <span class="co"># dataframe #2</span>
 <span class="no">df.clotting</span> <span class="kw">&lt;-</span>
@@ -639,13 +720,13 @@
     <span class="kw">lot1</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">118</span>, <span class="fl">58</span>, <span class="fl">42</span>, <span class="fl">35</span>, <span class="fl">27</span>, <span class="fl">25</span>, <span class="fl">21</span>, <span class="fl">19</span>, <span class="fl">18</span>),
     <span class="kw">lot2</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">69</span>, <span class="fl">35</span>, <span class="fl">26</span>, <span class="fl">21</span>, <span class="fl">18</span>, <span class="fl">16</span>, <span class="fl">13</span>, <span class="fl">12</span>, <span class="fl">12</span>)
   ) <span class="kw">%&gt;%</span>
-  <span class="kw pkg">tibble</span><span class="kw ns">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(<span class="no">.</span>)
+  <span class="kw pkg">tibble</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/tibble/man/as_tibble.html">as_tibble</a></span>(<span class="no">.</span>)
 
 <span class="co"># dataframe #3</span>
 <span class="no">x1</span> <span class="kw">&lt;-</span> <span class="kw pkg">stats</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">50</span>)
 <span class="no">y1</span> <span class="kw">&lt;-</span> <span class="kw pkg">stats</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">rpois</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="fl">50</span>, <span class="kw">lambda</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span>(<span class="fl">1</span> + <span class="no">x1</span>))
 <span class="no">df.3</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">x1</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">y1</span>) <span class="kw">%&gt;%</span>
-  <span class="kw pkg">tibble</span><span class="kw ns">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(<span class="no">.</span>)
+  <span class="kw pkg">tibble</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/tibble/man/as_tibble.html">as_tibble</a></span>(<span class="no">.</span>)
 
 <span class="co"># dataframe #4</span>
 <span class="no">x2</span> <span class="kw">&lt;-</span> <span class="kw pkg">stats</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">50</span>)
@@ -656,7 +737,7 @@
 )
 
 <span class="no">df.4</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">x2</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">y2</span>) <span class="kw">%&gt;%</span>
-  <span class="kw pkg">tibble</span><span class="kw ns">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(<span class="no">.</span>)
+  <span class="kw pkg">tibble</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/tibble/man/as_tibble.html">as_tibble</a></span>(<span class="no">.</span>)
 
 <span class="co"># combining all plots in a single plot</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span>(
@@ -729,7 +810,7 @@
 <div id="modified-fitting-for-generalized-linear-models-glm2" class="section level2">
 <h2 class="hasAnchor">
 <a href="#modified-fitting-for-generalized-linear-models-glm2" class="anchor"></a>modified fitting for generalized linear models (<code>glm2</code>)</h2>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">glm2</span>)
 <span class="no">y</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>)
 
@@ -752,7 +833,7 @@
 <div id="fit-generalized-estimating-equations-with-geepack-geeglm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#fit-generalized-estimating-equations-with-geepack-geeglm" class="anchor"></a>Fit Generalized Estimating Equations with <code>geepack</code> (<code>geeglm</code>)</h2>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">geepack</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">dietox</span>)
@@ -781,7 +862,7 @@
 <div id="ordinal-regression-model-orm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#ordinal-regression-model-orm" class="anchor"></a>ordinal regression model (<code>orm</code>)</h2>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">rms</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 
@@ -804,7 +885,7 @@
 <div id="logistic-regression-model-lrm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#logistic-regression-model-lrm" class="anchor"></a>logistic regression model (<code>lrm</code>)</h2>
-<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">rms</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 
@@ -835,7 +916,7 @@
 <div id="two-stage-least-squares-instrumental-variables-regression-iv_robust" class="section level2">
 <h2 class="hasAnchor">
 <a href="#two-stage-least-squares-instrumental-variables-regression-iv_robust" class="anchor"></a>Two-Stage Least Squares Instrumental Variables Regression (<code>iv_robust</code>)</h2>
-<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">fabricatr</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">estimatr</span>)
@@ -865,7 +946,7 @@
 <div id="ordinary-least-squares-with-robust-standard-errors-lm_robust" class="section level2">
 <h2 class="hasAnchor">
 <a href="#ordinary-least-squares-with-robust-standard-errors-lm_robust" class="anchor"></a>ordinary least squares with robust standard errors (<code>lm_robust</code>)</h2>
-<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">estimatr</span>)
 
@@ -883,7 +964,7 @@
 <h2 class="hasAnchor">
 <a href="#fitting-negative-binomial-glm-negbin" class="anchor"></a>fitting negative binomial GLM (<code>negbin</code>)</h2>
 <p>Just to demonstrate that this can be done, let’s also flip the axes:</p>
-<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">MASS</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">lme4</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">101</span>)
@@ -911,13 +992,13 @@
   <span class="kw">only.significant</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
   <span class="kw">stats.label.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">2.5</span>, <span class="kw">direction</span> <span class="kw">=</span> <span class="st">"both"</span>)
 ) +
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span>()</pre></body></html></div>
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/coord_flip.html">coord_flip</a></span>()</pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/negbin-1.png" width="768"></p>
 </div>
 <div id="generalized-linear-mixed-effects-model-glmerglmermod" class="section level2">
 <h2 class="hasAnchor">
 <a href="#generalized-linear-mixed-effects-model-glmerglmermod" class="anchor"></a>generalized linear mixed-effects model (<code>glmer</code>/<code>glmerMod</code>)</h2>
-<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">lme4</span>)
 
@@ -946,7 +1027,7 @@
 <div id="fitting-generalized-linear-mixed-models-using-mcml-glmm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#fitting-generalized-linear-mixed-models-using-mcml-glmm" class="anchor"></a>Fitting Generalized Linear Mixed Models using MCML (<code>glmm</code>)</h2>
-<div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">glmm</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">BoothHobert</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">1234</span>)
@@ -973,7 +1054,7 @@
 <div id="fitting-negative-binomial-glmm-glmer-nb" class="section level2">
 <h2 class="hasAnchor">
 <a href="#fitting-negative-binomial-glmm-glmer-nb" class="anchor"></a>fitting negative binomial GLMM (<code>glmer.nb</code>)</h2>
-<div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb29"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">MASS</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">lme4</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">101</span>)
@@ -1005,7 +1086,7 @@
 <div id="compound-poisson-generalized-linear-models-cpglm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#compound-poisson-generalized-linear-models-cpglm" class="anchor"></a>Compound Poisson Generalized Linear Models (<code>cpglm</code>)</h2>
-<div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="co"># set up</span>
+<div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="co"># set up</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">cplm</span>)
 
@@ -1025,7 +1106,7 @@
 <div id="compound-poisson-generalized-linear-mixed-models-cpglmm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#compound-poisson-generalized-linear-mixed-models-cpglmm" class="anchor"></a>Compound Poisson Generalized Linear Mixed Models (<code>cpglmm</code>)</h2>
-<div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="co"># set up</span>
+<div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="co"># set up</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">cplm</span>)
 
@@ -1045,7 +1126,7 @@
 <div id="bayesian-compound-poisson-linear-models-bcplm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bayesian-compound-poisson-linear-models-bcplm" class="anchor"></a>Bayesian Compound Poisson Linear Models (<code>bcplm</code>)</h2>
-<div class="sourceCode" id="cb29"><html><body><pre class="r"><span class="co"># set up</span>
+<div class="sourceCode" id="cb32"><html><body><pre class="r"><span class="co"># set up</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">cplm</span>)
 
@@ -1092,7 +1173,7 @@
 <div id="zero-inflated-compound-poisson-generalized-linear-models-zcpglm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#zero-inflated-compound-poisson-generalized-linear-models-zcpglm" class="anchor"></a>Zero-inflated Compound Poisson Generalized Linear Models (<code>zcpglm</code>)</h2>
-<div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="co"># set up</span>
+<div class="sourceCode" id="cb33"><html><body><pre class="r"><span class="co"># set up</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">cplm</span>)
 <span class="no">da</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(<span class="no">AutoClaim</span>, <span class="no">IN_YY</span> <span class="kw">==</span> <span class="fl">1</span>) <span class="co"># use data in the Yip and Yau paper</span>
@@ -1115,7 +1196,7 @@
 <div id="zero-inflated-count-data-regression-zeroinfl" class="section level2">
 <h2 class="hasAnchor">
 <a href="#zero-inflated-count-data-regression-zeroinfl" class="anchor"></a>Zero-Inflated Count Data Regression (<code>zeroinfl</code>)</h2>
-<div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb34"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">pscl</span>)
 
@@ -1141,7 +1222,7 @@
 <div id="vector-generalized-additive-models-vgam" class="section level2">
 <h2 class="hasAnchor">
 <a href="#vector-generalized-additive-models-vgam" class="anchor"></a>Vector Generalized Additive Models (<code>vgam</code>)</h2>
-<div class="sourceCode" id="cb32"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">VGAM</span>)
 <span class="no">pneumo</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/transform.html">transform</a></span>(<span class="no">pneumo</span>, <span class="kw">let</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(<span class="no">exposure.time</span>))
@@ -1165,7 +1246,7 @@
 <div id="vector-generalized-linear-models-vglm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#vector-generalized-linear-models-vglm" class="anchor"></a>Vector Generalized Linear Models (<code>vglm</code>)</h2>
-<div class="sourceCode" id="cb33"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb36"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">VGAM</span>)
 <span class="no">pneumo</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/transform.html">transform</a></span>(<span class="no">pneumo</span>, <span class="kw">let</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(<span class="no">exposure.time</span>))
@@ -1189,7 +1270,7 @@
 <div id="constrained-generalized-additive-model-fitting-cgam" class="section level2">
 <h2 class="hasAnchor">
 <a href="#constrained-generalized-additive-model-fitting-cgam" class="anchor"></a>Constrained Generalized Additive Model Fitting (<code>cgam</code>)</h2>
-<div class="sourceCode" id="cb34"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb37"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">cgam</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">cubic</span>)
@@ -1208,7 +1289,7 @@
 <div id="constrained-generalized-additive-mixed-effects-model-fitting-cgamm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#constrained-generalized-additive-mixed-effects-model-fitting-cgamm" class="anchor"></a>Constrained Generalized Additive Mixed-Effects Model Fitting (<code>cgamm</code>)</h2>
-<div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb38"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">cgam</span>)
 
@@ -1256,7 +1337,7 @@
 <div id="hurdle-models-for-count-data-regression-hurdle" class="section level2">
 <h2 class="hasAnchor">
 <a href="#hurdle-models-for-count-data-regression-hurdle" class="anchor"></a>Hurdle Models for Count Data Regression (<code>hurdle</code>)</h2>
-<div class="sourceCode" id="cb36"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb39"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">pscl</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"bioChemists"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"pscl"</span>)
@@ -1284,7 +1365,7 @@
 <div id="beta-binomial-mixed-effects-model-bbmm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#beta-binomial-mixed-effects-model-bbmm" class="anchor"></a>beta-binomial mixed-effects model (<code>BBmm</code>)</h2>
-<div class="sourceCode" id="cb37"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb40"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="kw">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/Logic.html">isFALSE</a></span>(<span class="st">"PROreg"</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html">installed.packages</a></span>())) {
   <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"https://cran.r-project.org/src/contrib/Archive/PROreg/PROreg_1.0.tar.gz"</span>,
     <span class="kw">repos</span> <span class="kw">=</span> <span class="kw">NULL</span>,
@@ -1340,7 +1421,7 @@
 <div id="beta-binomial-logistic-regression-model-bbreg" class="section level2">
 <h2 class="hasAnchor">
 <a href="#beta-binomial-logistic-regression-model-bbreg" class="anchor"></a>beta-binomial logistic regression model (<code>BBreg</code>)</h2>
-<div class="sourceCode" id="cb38"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb41"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">18</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">PROreg</span>)
 
@@ -1369,7 +1450,7 @@
 <div id="binary-choice-models-with-fixed-effects-bife" class="section level2">
 <h2 class="hasAnchor">
 <a href="#binary-choice-models-with-fixed-effects-bife" class="anchor"></a>binary choice models with fixed effects (<code>bife</code>)</h2>
-<div class="sourceCode" id="cb39"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb42"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">bife</span>)
 <span class="no">dataset</span> <span class="kw">&lt;-</span> <span class="no">psid</span>
@@ -1393,7 +1474,7 @@
 <div id="dirichlet-regression-model-dirichreg" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dirichlet-regression-model-dirichreg" class="anchor"></a>Dirichlet regression model (<code>DirichReg</code>)</h2>
-<div class="sourceCode" id="cb40"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb43"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">DirichletReg</span>)
 
@@ -1414,7 +1495,7 @@
 <div id="robust-generalized-linear-models-robmixglm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#robust-generalized-linear-models-robmixglm" class="anchor"></a>robust generalized linear models (<code>robmixglm</code>)</h2>
-<div class="sourceCode" id="cb41"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb44"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">robmixglm</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">MASS</span>)
@@ -1433,7 +1514,7 @@
 <div id="generalized-linear-models-with-extra-parameters-glmx" class="section level2">
 <h2 class="hasAnchor">
 <a href="#generalized-linear-models-with-extra-parameters-glmx" class="anchor"></a>generalized linear models with extra parameters (<code>glmx</code>)</h2>
-<div class="sourceCode" id="cb42"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb45"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">glmx</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">MASS</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">1</span>)
@@ -1459,7 +1540,7 @@
 <div id="generalized-linear-mixed-model-trees-glmertree" class="section level2">
 <h2 class="hasAnchor">
 <a href="#generalized-linear-mixed-model-trees-glmertree" class="anchor"></a>generalized linear mixed model trees (<code>glmertree</code>)</h2>
-<div class="sourceCode" id="cb43"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb46"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">glmertree</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"DepressionDemo"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"glmertree"</span>)
@@ -1492,7 +1573,7 @@
 <div id="generalized-linear-mixed-models-using-penalized-quasi-likelihood-glmmpql" class="section level2">
 <h2 class="hasAnchor">
 <a href="#generalized-linear-mixed-models-using-penalized-quasi-likelihood-glmmpql" class="anchor"></a>generalized linear mixed models using Penalized Quasi-Likelihood (<code>glmmPQL</code>)</h2>
-<div class="sourceCode" id="cb44"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb47"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">MASS</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">nlme</span>)
@@ -1520,7 +1601,7 @@
 <h2 class="hasAnchor">
 <a href="#generalized-linear-mixed-models-using-template-model-builder-glmmtmb" class="anchor"></a>generalized linear mixed models using Template Model Builder (<code>glmmTMB</code>)</h2>
 <p><code>glmmTMB</code> package allows for flexibly fitting generalized linear mixed models (GLMMs) and extensions. Model objects from this package are also supported.</p>
-<div class="sourceCode" id="cb45"><html><body><pre class="r"><span class="co"># set up</span>
+<div class="sourceCode" id="cb48"><html><body><pre class="r"><span class="co"># set up</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">glmmTMB</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">lme4</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
@@ -1541,7 +1622,7 @@
 )</pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/glmmTMB-1.png" width="576"></p>
 <p>Another example (given the number of terms, let’s only display labels for significant effects):</p>
-<div class="sourceCode" id="cb46"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb49"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">glmmTMB</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">Salamanders</span>)
@@ -1567,7 +1648,7 @@
 <h2 class="hasAnchor">
 <a href="#generalized-linear-mixed-models-using-ad-model-builder-glmmadmb" class="anchor"></a>generalized linear mixed models using AD Model Builder (<code>glmmadmb</code>)</h2>
 <p>Another option is to use <code>glmmadmb</code> package.</p>
-<div class="sourceCode" id="cb47"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb50"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="kw">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/Logic.html">isFALSE</a></span>(<span class="st">"glmmADMB"</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html">installed.packages</a></span>())) {
   <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"glmmADMB"</span>,
     <span class="kw">repos</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
@@ -1607,8 +1688,7 @@
 <div id="cumulative-link-models-clm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cumulative-link-models-clm" class="anchor"></a>cumulative link models (<code>clm</code>)</h2>
-<p>So far we have dealt either with continuous or nominal/factor responses (or output variables), but sometimes we will encounter <strong>ordinal</strong> data (e.g., Likert scale measurement in behavioral sciences). In these cases, ordinal regression models are more suitable.</p>
-<div class="sourceCode" id="cb48"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<div class="sourceCode" id="cb51"><html><body><pre class="r"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ordinal</span>)
 
@@ -1622,17 +1702,16 @@
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"cumulative link model (clm)"</span>,
   <span class="kw">subtitle</span> <span class="kw">=</span> <span class="st">"(using `ordinal` package)"</span>
 ) +
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="st">"logit regression coefficient"</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="kw">NULL</span>)
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="st">"logit regression coefficient"</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="kw">NULL</span>)
 <span class="co">#&gt; Can't extract residuals from model.</span>
 <span class="co">#&gt; Can't calculate log-loss.</span>
 <span class="co">#&gt; Can't calculate proper scoring rules for ordinal, multinomial or cumulative link models.</span></pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/clm-1.png" width="768"></p>
-<p>As can be seen from this plot, both factors (intentionality and consequences) were significant, and so was their interaction.</p>
 </div>
 <div id="cumulative-link-models---older-version-clm2" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cumulative-link-models---older-version-clm2" class="anchor"></a>cumulative link models - older version (<code>clm2</code>)</h2>
-<div class="sourceCode" id="cb49"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<div class="sourceCode" id="cb52"><html><body><pre class="r"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ordinal</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">MASS</span>)
@@ -1667,7 +1746,7 @@
 <div id="cumulative-link-mixed-models-clmm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cumulative-link-mixed-models-clmm" class="anchor"></a>cumulative link mixed models (<code>clmm</code>)</h2>
-<div class="sourceCode" id="cb50"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<div class="sourceCode" id="cb53"><html><body><pre class="r"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ordinal</span>)
 
@@ -1680,7 +1759,7 @@
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"cumulative link mixed model (clmm)"</span>,
   <span class="kw">subtitle</span> <span class="kw">=</span> <span class="st">"(using `ordinal` package)"</span>
 ) +
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span>(
     <span class="kw">x</span> <span class="kw">=</span> <span class="st">"coefficient from ordinal mixed-effects regression"</span>,
     <span class="kw">y</span> <span class="kw">=</span> <span class="st">"fixed effects"</span>
   )</pre></body></html></div>
@@ -1689,7 +1768,7 @@
 <div id="cumulative-link-mixed-models---older-version-clmm2" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cumulative-link-mixed-models---older-version-clmm2" class="anchor"></a>cumulative link mixed models - older version (<code>clmm2</code>)</h2>
-<div class="sourceCode" id="cb51"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<div class="sourceCode" id="cb54"><html><body><pre class="r"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ordinal</span>)
 
@@ -1722,7 +1801,7 @@
 <div id="marginal-effects-estimation-margins" class="section level2">
 <h2 class="hasAnchor">
 <a href="#marginal-effects-estimation-margins" class="anchor"></a>marginal effects estimation (<code>margins</code>)</h2>
-<div class="sourceCode" id="cb52"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb55"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">margins</span>)
 
@@ -1741,7 +1820,7 @@
 <div id="linear-regression-with-interval-censored-dependent-variable-semlm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#linear-regression-with-interval-censored-dependent-variable-semlm" class="anchor"></a>Linear Regression with Interval-Censored Dependent Variable (<code>semLm</code>)</h2>
-<div class="sourceCode" id="cb53"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb56"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">smicd</span>)
 
@@ -1769,7 +1848,7 @@
 <div id="linear-mixed-regression-with-interval-censored-dependent-variable-semlme" class="section level2">
 <h2 class="hasAnchor">
 <a href="#linear-mixed-regression-with-interval-censored-dependent-variable-semlme" class="anchor"></a>Linear Mixed Regression with Interval-Censored Dependent Variable (<code>semLme</code>)</h2>
-<div class="sourceCode" id="cb54"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb57"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">smicd</span>)
 
@@ -1797,7 +1876,7 @@
 <div id="mixed-effects-ordinal-regression-analysis-mixor" class="section level2">
 <h2 class="hasAnchor">
 <a href="#mixed-effects-ordinal-regression-analysis-mixor" class="anchor"></a>Mixed-Effects Ordinal Regression Analysis (<code>mixor</code>)</h2>
-<div class="sourceCode" id="cb55"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb58"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">mixor</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"SmokingPrevention"</span>)
@@ -1826,7 +1905,7 @@
 <h2 class="hasAnchor">
 <a href="#bias-reduction-in-generalized-linear-models-brglm2" class="anchor"></a>bias reduction in generalized linear models (<code>brglm2</code>)</h2>
 <p>Note that we can also choose to display labels only for the significant effects. This can be helpful when a large number of regression coefficients are to be displayed in a single plot and we would like to focus only on the significant ones.</p>
-<div class="sourceCode" id="cb56"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb59"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">brglm2</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"lizards"</span>)
@@ -1854,7 +1933,7 @@
 <div id="bias-reduction-for-multinomial-response-models-using-the-poisson-trick-brmultinom" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bias-reduction-for-multinomial-response-models-using-the-poisson-trick-brmultinom" class="anchor"></a>Bias Reduction For Multinomial Response Models Using The Poisson Trick (<code>brmultinom</code>)</h2>
-<div class="sourceCode" id="cb57"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb60"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">MASS</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">brglm2</span>)
@@ -1883,7 +1962,7 @@
 <div id="bias-reduction-for-adjacent-category-logit-models-bracl" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bias-reduction-for-adjacent-category-logit-models-bracl" class="anchor"></a>bias reduction for adjacent category logit models (<code>bracl</code>)</h2>
-<div class="sourceCode" id="cb58"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb61"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">brglm2</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"stemcell"</span>)
@@ -1910,7 +1989,7 @@
 <div id="generalized-linear-models-subject-to-population-constraints" class="section level2">
 <h2 class="hasAnchor">
 <a href="#generalized-linear-models-subject-to-population-constraints" class="anchor"></a>generalized linear models subject to population constraints</h2>
-<div class="sourceCode" id="cb59"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb62"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">glmc</span>)
 
@@ -1966,7 +2045,7 @@
 <div id="bayesian-linear-linear-mixed-effects-models-blmermod" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bayesian-linear-linear-mixed-effects-models-blmermod" class="anchor"></a>Bayesian linear linear mixed-effects models (<code>blmerMod</code>)</h2>
-<div class="sourceCode" id="cb60"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<div class="sourceCode" id="cb63"><html><body><pre class="r"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">blme</span>)
 
@@ -2000,7 +2079,7 @@
 <div id="bayesian-generalized-linear-mixed-effects-models-bglmermod" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bayesian-generalized-linear-mixed-effects-models-bglmermod" class="anchor"></a>Bayesian generalized linear mixed-effects models (<code>bglmerMod</code>)</h2>
-<div class="sourceCode" id="cb61"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<div class="sourceCode" id="cb64"><html><body><pre class="r"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">blme</span>)
 
@@ -2031,7 +2110,7 @@
 <div id="ordered-logistic-or-probit-regression-polr" class="section level2">
 <h2 class="hasAnchor">
 <a href="#ordered-logistic-or-probit-regression-polr" class="anchor"></a>ordered logistic or probit regression (<code>polr</code>)</h2>
-<div class="sourceCode" id="cb62"><html><body><pre class="r"><span class="co"># polr model</span>
+<div class="sourceCode" id="cb65"><html><body><pre class="r"><span class="co"># polr model</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">MASS</span>)
 <span class="no">polr.mod</span> <span class="kw">&lt;-</span>
@@ -2056,11 +2135,11 @@
 <div id="multiple-linear-regression-models-mlm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#multiple-linear-regression-models-mlm" class="anchor"></a>multiple linear regression models (<code>mlm</code>)</h2>
-<div class="sourceCode" id="cb63"><html><body><pre class="r"><span class="co"># model (converting all numeric columns in data to z-scores)</span>
+<div class="sourceCode" id="cb66"><html><body><pre class="r"><span class="co"># model (converting all numeric columns in data to z-scores)</span>
 <span class="no">mod</span> <span class="kw">&lt;-</span>
   <span class="kw pkg">stats</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(
     <span class="kw">formula</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="no">mpg</span>, <span class="no">disp</span>) ~ <span class="no">wt</span>,
-    <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">purrr</span><span class="kw ns">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/modify.html">modify_if</a></span>(<span class="kw">.x</span> <span class="kw">=</span> <span class="no">mtcars</span>, <span class="kw">.p</span> <span class="kw">=</span> <span class="no">is.numeric</span>, ~ {
+    <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">purrr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/purrr/man/modify.html">modify_if</a></span>(<span class="kw">.x</span> <span class="kw">=</span> <span class="no">mtcars</span>, <span class="kw">.p</span> <span class="kw">=</span> <span class="no">is.numeric</span>, ~ {
       <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span>(<span class="no">.x</span>))
     })
   )
@@ -2076,7 +2155,7 @@
 <div id="multinomial-logistic-regression-models-multinom" class="section level2">
 <h2 class="hasAnchor">
 <a href="#multinomial-logistic-regression-models-multinom" class="anchor"></a>multinomial logistic regression models (<code>multinom</code>)</h2>
-<div class="sourceCode" id="cb64"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb67"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">nnet</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">MASS</span>)
@@ -2103,7 +2182,7 @@
 <div id="multilevel-mediation-model-bmlm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#multilevel-mediation-model-bmlm" class="anchor"></a>multilevel mediation model (<code>bmlm</code>)</h2>
-<div class="sourceCode" id="cb65"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb68"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">bmlm</span>)
 
@@ -2113,7 +2192,7 @@
 <span class="co"># exctrating summary</span>
 <span class="no">df_summary</span> <span class="kw">&lt;-</span>
   <span class="kw pkg">bmlm</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/bmlm/man/mlm_summary.html">mlm_summary</a></span>(<span class="no">fit</span>) <span class="kw">%&gt;%</span>
-  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span>(
+  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/rename.html">rename</a></span>(
     <span class="kw">.data</span> <span class="kw">=</span> <span class="no">.</span>,
     <span class="kw">estimate</span> <span class="kw">=</span> <span class="no">Mean</span>,
     <span class="kw">term</span> <span class="kw">=</span> <span class="no">Parameter</span>,
@@ -2134,7 +2213,7 @@
 <div id="proportional-odds-and-related-models-svyolr" class="section level2">
 <h2 class="hasAnchor">
 <a href="#proportional-odds-and-related-models-svyolr" class="anchor"></a>proportional odds and related models (<code>svyolr</code>)</h2>
-<div class="sourceCode" id="cb66"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb69"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">survey</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">api</span>)
@@ -2165,7 +2244,7 @@
 <div id="survey-weighted-generalized-linear-models-svyglm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#survey-weighted-generalized-linear-models-svyglm" class="anchor"></a>survey-weighted generalized linear models (<code>svyglm</code>)</h2>
-<div class="sourceCode" id="cb67"><html><body><pre class="r"><span class="co"># data</span>
+<div class="sourceCode" id="cb70"><html><body><pre class="r"><span class="co"># data</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">survey</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">api</span>)
@@ -2198,7 +2277,7 @@
 <h2 class="hasAnchor">
 <a href="#repeated-measures-anova-aovlist" class="anchor"></a>repeated measures ANOVA (<code>aovlist</code>)</h2>
 <p>Let’s now consider an example of a repeated measures design.</p>
-<div class="sourceCode" id="cb68"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<div class="sourceCode" id="cb71"><html><body><pre class="r"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
 
@@ -2220,20 +2299,18 @@
   <span class="kw">subtitle</span> <span class="kw">=</span> <span class="st">"Source: Iris data set (by Fisher or Anderson)"</span>,
   <span class="kw">caption</span> <span class="kw">=</span> <span class="st">"Results from 2 by 2 RM ANOVA"</span>
 ) +
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="kw">plot.subtitle</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">11</span>, <span class="kw">face</span> <span class="kw">=</span> <span class="st">"plain"</span>))</pre></body></html></div>
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/theme.html">theme</a></span>(<span class="kw">plot.subtitle</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">element_text</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">11</span>, <span class="kw">face</span> <span class="kw">=</span> <span class="st">"plain"</span>))</pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/aovlist1-1.png" width="768"></p>
-<p>As revealed by this analysis, all effects of this model are significant. But most of the variance is explained by the <code>attribute</code>, with the next important explanatory factor being the <code>measure</code> used. A very little amount of variation in measurement is accounted for by the interaction between these two factors.</p>
 </div>
 <div id="robust-regression-with-robust-package-lmrob-glmrob" class="section level2">
 <h2 class="hasAnchor">
 <a href="#robust-regression-with-robust-package-lmrob-glmrob" class="anchor"></a>robust regression with <code>robust</code> package (<code>lmRob</code>, <code>glmRob</code>)</h2>
-<p>The robust regression models, as implemented in the <code>robust</code> package are also supported.</p>
-<div class="sourceCode" id="cb69"><html><body><pre class="r"><span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span>(
+<div class="sourceCode" id="cb72"><html><body><pre class="r"><span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span>(
   <span class="co"># plot 1: glmRob</span>
   <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
     <span class="kw">x</span> <span class="kw">=</span> <span class="kw pkg">robust</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/robust/man/glmRob.html">glmRob</a></span>(
       <span class="kw">formula</span> <span class="kw">=</span> <span class="no">Survived</span> ~ <span class="no">Sex</span>,
-      <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span>(<span class="kw">tbl</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/Titanic_full.html">Titanic_full</a></span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">0.20</span>),
+      <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/Titanic_full.html">Titanic_full</a></span>,
       <span class="kw">family</span> <span class="kw">=</span> <span class="kw pkg">stats</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span>(<span class="kw">link</span> <span class="kw">=</span> <span class="st">"logit"</span>)
     ),
     <span class="kw">title</span> <span class="kw">=</span> <span class="st">"generalized robust linear model"</span>,
@@ -2262,7 +2339,7 @@
 <h2 class="hasAnchor">
 <a href="#robust-regression-with-robustbase-package-lmrob-glmrob" class="anchor"></a>robust regression with <code>robustbase</code> package (<code>lmrob</code>, <code>glmrob</code>)</h2>
 <p>Another alternative is to use robust models, as implemented in the <code>robustbase</code> package.</p>
-<div class="sourceCode" id="cb70"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb73"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">robustbase</span>)
 
@@ -2300,7 +2377,7 @@
 <div id="mm-type-estimators-for-linear-regression-on-compositional-data-complmrob" class="section level2">
 <h2 class="hasAnchor">
 <a href="#mm-type-estimators-for-linear-regression-on-compositional-data-complmrob" class="anchor"></a>MM-type estimators for linear regression on compositional data (<code>complmrob</code>)</h2>
-<div class="sourceCode" id="cb71"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb74"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">complmrob</span>)
 
@@ -2323,7 +2400,7 @@
 <div id="fit-a-nonlinear-heteroscedastic-model-via-maximum-likelihood-nlreg" class="section level2">
 <h2 class="hasAnchor">
 <a href="#fit-a-nonlinear-heteroscedastic-model-via-maximum-likelihood-nlreg" class="anchor"></a>fit a nonlinear heteroscedastic model via maximum likelihood (<code>nlreg</code>)</h2>
-<div class="sourceCode" id="cb72"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<div class="sourceCode" id="cb75"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">nlreg</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">boot</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">calcium</span>)
@@ -2362,69 +2439,10 @@
 <span class="co">#&gt; differentiating variance function -- may take a while</span></pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/nlreg-1.png" width="480"></p>
 </div>
-<div id="star-models-with-bayesx-bayesx" class="section level2">
-<h2 class="hasAnchor">
-<a href="#star-models-with-bayesx-bayesx" class="anchor"></a>STAR Models with BayesX (<code>bayesx</code>)</h2>
-<div class="sourceCode" id="cb73"><html><body><pre class="r"><span class="co"># setup</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">111</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">R2BayesX</span>)
-
-<span class="co">## generate some data</span>
-<span class="no">n</span> <span class="kw">&lt;-</span> <span class="fl">200</span>
-
-<span class="co">## regressor</span>
-<span class="no">dat</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="no">n</span>, -<span class="fl">3</span>, <span class="fl">3</span>))
-
-<span class="co">## response</span>
-<span class="no">dat</span>$<span class="no">y</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span>(<span class="no">dat</span>, <span class="fl">1.5</span> + <span class="fu"><a href="https://rdrr.io/r/base/Trig.html">sin</a></span>(<span class="no">x</span>) + <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="no">n</span>, <span class="kw">sd</span> <span class="kw">=</span> <span class="fl">0.6</span>))
-
-<span class="co">## estimate models with bayesx REML and MCMC</span>
-<span class="no">b1</span> <span class="kw">&lt;-</span> <span class="kw pkg">R2BayesX</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/R2BayesX/man/bayesx.html">bayesx</a></span>(<span class="no">y</span> ~ <span class="fu"><a href="https://rdrr.io/pkg/R2BayesX/man/sx.html">sx</a></span>(<span class="no">x</span>), <span class="kw">method</span> <span class="kw">=</span> <span class="st">"REML"</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">dat</span>)
-<span class="co">#&gt; Error in if (grepl(tf[2L], tf[3L], fixed = TRUE)) {: missing value where TRUE/FALSE needed</span>
-
-<span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">b1</span>,
-  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"STAR Models with BayesX"</span>,
-  <span class="kw">exclude.intercept</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)
-<span class="co">#&gt; Error in insight::is_model(x): object 'b1' not found</span></pre></body></html></div>
-</div>
-<div id="multivariate-generalized-linear-mixed-models-mcmcglmm" class="section level2">
-<h2 class="hasAnchor">
-<a href="#multivariate-generalized-linear-mixed-models-mcmcglmm" class="anchor"></a>multivariate generalized linear mixed models (<code>MCMCglmm</code>)</h2>
-<div class="sourceCode" id="cb74"><html><body><pre class="r"><span class="co"># setup</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">lme4</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">MCMCglmm</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">sleepstudy</span>)
-
-<span class="co"># model</span>
-<span class="no">mm0</span> <span class="kw">&lt;-</span>
-  <span class="kw pkg">MCMCglmm</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/MCMCglmm/man/MCMCglmm.html">MCMCglmm</a></span>(
-    <span class="kw">fixed</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span>(<span class="no">Reaction</span>) ~ <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span>(<span class="no">Days</span>),
-    <span class="kw">random</span> <span class="kw">=</span> ~<span class="no">Subject</span>,
-    <span class="kw">data</span> <span class="kw">=</span> <span class="no">sleepstudy</span>,
-    <span class="kw">nitt</span> <span class="kw">=</span> <span class="fl">4000</span>,
-    <span class="kw">pr</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-    <span class="kw">verbose</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-  )
-<span class="co">#&gt; Error in terms.formula(formula, data = data): invalid term in model formula</span>
-
-<span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">mm0</span>,
-  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"multivariate generalized linear mixed model"</span>,
-  <span class="kw">conf.method</span> <span class="kw">=</span> <span class="st">"HPDinterval"</span>,
-  <span class="kw">exclude.intercept</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-  <span class="kw">robust</span> <span class="kw">=</span> <span class="fl">TRUE</span>
-)
-<span class="co">#&gt; Error in insight::is_model(x): object 'mm0' not found</span></pre></body></html></div>
-</div>
 <div id="fit-a-linear-model-with-multiple-group-fixed-effects-felm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#fit-a-linear-model-with-multiple-group-fixed-effects-felm" class="anchor"></a>fit a linear model with multiple group fixed effects (<code>felm</code>)</h2>
-<div class="sourceCode" id="cb75"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb76"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">lfe</span>)
 
@@ -2457,7 +2475,7 @@
 <div id="linear-models-for-panel-data-plm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#linear-models-for-panel-data-plm" class="anchor"></a>linear models for panel data (<code>plm</code>)</h2>
-<div class="sourceCode" id="cb76"><html><body><pre class="r"><span class="co"># data</span>
+<div class="sourceCode" id="cb77"><html><body><pre class="r"><span class="co"># data</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">plm</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"Produc"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"plm"</span>)
@@ -2480,7 +2498,7 @@
 <div id="analysis-of-factorial-experiments-mixed" class="section level2">
 <h2 class="hasAnchor">
 <a href="#analysis-of-factorial-experiments-mixed" class="anchor"></a>analysis of factorial experiments (<code>mixed</code>)</h2>
-<div class="sourceCode" id="cb77"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb78"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">afex</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">MEMSS</span>)
@@ -2509,7 +2527,7 @@
 <div id="multinomial-logit-model-mlogit" class="section level2">
 <h2 class="hasAnchor">
 <a href="#multinomial-logit-model-mlogit" class="anchor"></a>multinomial logit model (<code>mlogit</code>)</h2>
-<div class="sourceCode" id="cb78"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb79"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">mlogit</span>)
 
@@ -2531,7 +2549,7 @@
 <div id="conditional-logit-models-mclogit" class="section level2">
 <h2 class="hasAnchor">
 <a href="#conditional-logit-models-mclogit" class="anchor"></a>conditional logit models (<code>mclogit</code>)</h2>
-<div class="sourceCode" id="cb79"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb80"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">mclogit</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">Transport</span>)
@@ -2560,7 +2578,7 @@
 <div id="mixed-conditional-logit-models-mmclogit" class="section level2">
 <h2 class="hasAnchor">
 <a href="#mixed-conditional-logit-models-mmclogit" class="anchor"></a>mixed conditional logit models (<code>mmclogit</code>)</h2>
-<div class="sourceCode" id="cb80"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb81"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">mclogit</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">electors</span>)
@@ -2594,7 +2612,7 @@
 <h2 class="hasAnchor">
 <a href="#cox-proportional-hazards-regression-model-coxph" class="anchor"></a>Cox proportional hazards regression model (<code>coxph</code>)</h2>
 <p>Fitted proportional hazards regression model - as implemented in the <code>survival</code> package - can also be displayed in a dot-whisker plot.</p>
-<div class="sourceCode" id="cb81"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<div class="sourceCode" id="cb82"><html><body><pre class="r"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">survival</span>)
 
@@ -2621,26 +2639,24 @@
 )</pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/coxph-1.png" width="384"></p>
 <p>Another example with <code>frailty</code> term.</p>
-<div class="sourceCode" id="cb82"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb83"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">survival</span>)
 
 <span class="co"># model</span>
 <span class="no">model</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/coxph.html">coxph</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span>(<span class="no">time</span>, <span class="no">status</span>) ~ <span class="no">age</span> + <span class="no">sex</span> + <span class="fu"><a href="https://rdrr.io/pkg/survival/man/frailty.html">frailty</a></span>(<span class="no">inst</span>), <span class="no">lung</span>)
-<span class="co">#&gt; Error in coxph(Surv(time, status) ~ age + sex + frailty(inst), lung): data contains an infinite predictor</span>
 
 <span class="co"># plot</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
   <span class="kw">x</span> <span class="kw">=</span> <span class="no">model</span>,
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Proportional Hazards Regression Model\nwith Frailty penalty function"</span>
-)
-<span class="co">#&gt; Note: No confidence intervals available for regression coefficients,so whiskers in the plot will be skipped.</span></pre></body></html></div>
+)</pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/coxph.penal-1.png" width="384"></p>
 </div>
 <div id="mixed-effects-cox-model-coxme" class="section level2">
 <h2 class="hasAnchor">
 <a href="#mixed-effects-cox-model-coxme" class="anchor"></a>mixed effects Cox model (<code>coxme</code>)</h2>
-<div class="sourceCode" id="cb83"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb84"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">survival</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">coxme</span>)
@@ -2659,7 +2675,7 @@
 <div id="truncated-gaussian-regression-models-truncreg" class="section level2">
 <h2 class="hasAnchor">
 <a href="#truncated-gaussian-regression-models-truncreg" class="anchor"></a>truncated Gaussian Regression Models (<code>truncreg</code>)</h2>
-<div class="sourceCode" id="cb84"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb85"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">truncreg</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">survival</span>)
@@ -2685,7 +2701,7 @@
 <div id="fitting-linear-quantile-models" class="section level2">
 <h2 class="hasAnchor">
 <a href="#fitting-linear-quantile-models" class="anchor"></a>Fitting Linear Quantile Models</h2>
-<div class="sourceCode" id="cb85"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb86"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">lqmm</span>)
 
@@ -2714,7 +2730,7 @@
 <div id="fitting-linear-quantile-mixed-models" class="section level2">
 <h2 class="hasAnchor">
 <a href="#fitting-linear-quantile-mixed-models" class="anchor"></a>Fitting Linear Quantile Mixed Models</h2>
-<div class="sourceCode" id="cb86"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb87"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">lqmm</span>)
 
@@ -2746,7 +2762,7 @@
 <div id="autoregressive-integrated-moving-average-arima" class="section level2">
 <h2 class="hasAnchor">
 <a href="#autoregressive-integrated-moving-average-arima" class="anchor"></a>autoregressive integrated moving average (<code>Arima</code>)</h2>
-<div class="sourceCode" id="cb87"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<div class="sourceCode" id="cb88"><html><body><pre class="r"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 
 <span class="co"># model</span>
@@ -2763,7 +2779,7 @@
 <h2 class="hasAnchor">
 <a href="#high-performance-linear-model-speedlmspeedglm" class="anchor"></a>high performance linear model (<code>speedlm</code>/<code>speedglm</code>)</h2>
 <p>Example of high performance linear model-</p>
-<div class="sourceCode" id="cb88"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb89"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">speedglm</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 
@@ -2783,7 +2799,7 @@
 )</pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/speedlm-1.png" width="480"></p>
 <p>Example of high performance generalized linear model-</p>
-<div class="sourceCode" id="cb89"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb90"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">speedglm</span>)
 
@@ -2814,7 +2830,7 @@
 <div id="bounded-memory-linear-regression-biglm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bounded-memory-linear-regression-biglm" class="anchor"></a>bounded memory linear regression (<code>biglm</code>)</h2>
-<div class="sourceCode" id="cb90"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb91"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">biglm</span>)
 
@@ -2835,7 +2851,7 @@
 <div id="bounded-memory-general-linear-regression-bigglm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bounded-memory-general-linear-regression-bigglm" class="anchor"></a>bounded memory general linear regression (<code>bigglm</code>)</h2>
-<div class="sourceCode" id="cb91"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb92"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">biglm</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">trees</span>)
@@ -2858,7 +2874,7 @@
 <div id="parametric-survival-regression-model-survreg" class="section level2">
 <h2 class="hasAnchor">
 <a href="#parametric-survival-regression-model-survreg" class="anchor"></a>parametric survival regression model (<code>survreg</code>)</h2>
-<div class="sourceCode" id="cb92"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb93"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">survival</span>)
 
@@ -2887,7 +2903,7 @@
 <div id="fixed-effects-individual-slope-estimator-feis" class="section level2">
 <h2 class="hasAnchor">
 <a href="#fixed-effects-individual-slope-estimator-feis" class="anchor"></a>Fixed Effects Individual Slope Estimator (<code>feis</code>)</h2>
-<div class="sourceCode" id="cb93"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb94"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">feisr</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"mwp"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"feisr"</span>)
@@ -2911,7 +2927,7 @@
 <div id="tobit-regression-tobit" class="section level2">
 <h2 class="hasAnchor">
 <a href="#tobit-regression-tobit" class="anchor"></a>tobit regression (<code>tobit</code>)</h2>
-<div class="sourceCode" id="cb94"><html><body><pre class="r"><span class="co"># setup</span>
+<div class="sourceCode" id="cb95"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">AER</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"Affairs"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"AER"</span>)
@@ -2929,31 +2945,6 @@
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"tobit regression"</span>
 )</pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/tobit-1.png" width="480"></p>
-</div>
-<div id="aalens-additive-regression-model-for-censored-data-aareg" class="section level2">
-<h2 class="hasAnchor">
-<a href="#aalens-additive-regression-model-for-censored-data-aareg" class="anchor"></a>Aalen’s additive regression model for censored data (<code>aareg</code>)</h2>
-<div class="sourceCode" id="cb95"><html><body><pre class="r"><span class="co"># setup</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">survival</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
-
-<span class="co"># model</span>
-<span class="no">afit</span> <span class="kw">&lt;-</span>
-  <span class="kw pkg">survival</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/aareg.html">aareg</a></span>(
-    <span class="kw">formula</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span>(<span class="no">time</span>, <span class="no">status</span>) ~ <span class="no">age</span> + <span class="no">sex</span> + <span class="no">ph.ecog</span>,
-    <span class="kw">data</span> <span class="kw">=</span> <span class="no">lung</span>,
-    <span class="kw">dfbeta</span> <span class="kw">=</span> <span class="fl">TRUE</span>
-  )
-<span class="co">#&gt; Error in survival::aareg(formula = Surv(time, status) ~ age + sex + ph.ecog, : NA/NaN/Inf in foreign function call (arg 5)</span>
-
-<span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">afit</span>,
-  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Aalen's additive regression model"</span>,
-  <span class="kw">subtitle</span> <span class="kw">=</span> <span class="st">"(for censored data)"</span>,
-  <span class="kw">k</span> <span class="kw">=</span> <span class="fl">3</span>
-)
-<span class="co">#&gt; Error in insight::is_model(x): object 'afit' not found</span></pre></body></html></div>
 </div>
 <div id="relative-risk-regression-model-for-case-cohort-studies-cch" class="section level2">
 <h2 class="hasAnchor">
@@ -3459,7 +3450,7 @@
 <span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">100</span> * <span class="fl">20</span>), <span class="fl">100</span>, <span class="fl">20</span>)
 <span class="no">y</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">100</span>)
 <span class="no">fit1</span> <span class="kw">&lt;-</span> <span class="kw pkg">glmnet</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/glmnet/man/glmnet.html">glmnet</a></span>(<span class="no">x</span>, <span class="no">y</span>)
-(<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">broom</span><span class="kw ns">::</span><span class="fu"><a href="https://broom.tidymodels.org/reference/reexports.html">tidy</a></span>(<span class="no">fit1</span>))
+(<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">broom</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/broom/man/reexports.html">tidy</a></span>(<span class="no">fit1</span>))
 <span class="co">#&gt; # A tibble: 1,086 x 5</span>
 <span class="co">#&gt;    term         step estimate lambda dev.ratio</span>
 <span class="co">#&gt;    &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;</span>
@@ -3476,7 +3467,7 @@
 <span class="co">#&gt; # ... with 1,076 more rows</span>
 
 <span class="co"># displaying only a certain step</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">df</span>, <span class="no">step</span> <span class="kw">==</span> <span class="fl">4</span>))
+<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(<span class="no">df</span>, <span class="no">step</span> <span class="kw">==</span> <span class="fl">4</span>))
 <span class="co">#&gt; Note: The argument `statistic` must be specified.</span>
 <span class="co">#&gt; Skipping labels with statistical details.</span>
 <span class="co">#&gt; Note: No confidence intervals available for regression coefficients,so whiskers in the plot will be skipped.</span></pre></body></html></div>
@@ -4105,7 +4096,7 @@
 
 <span class="co"># model</span>
 <span class="no">fit</span> <span class="kw">&lt;-</span>
-  <span class="kw pkg">rstanarm</span><span class="kw ns">::</span><span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span>(
+  <span class="kw pkg">rstanarm</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/rstanarm/man/stan_glm.html">stan_glm</a></span>(
     <span class="kw">formula</span> <span class="kw">=</span> <span class="no">mpg</span> ~ <span class="no">wt</span> + <span class="no">am</span>,
     <span class="kw">data</span> <span class="kw">=</span> <span class="no">mtcars</span>,
     <span class="kw">chains</span> <span class="kw">=</span> <span class="fl">1</span>,
@@ -4130,7 +4121,7 @@
 
 <span class="co"># model</span>
 <span class="no">mod</span> <span class="kw">&lt;-</span>
-  <span class="kw pkg">rstanarm</span><span class="kw ns">::</span><span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_mvmer.html">stan_mvmer</a></span>(
+  <span class="kw pkg">rstanarm</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/rstanarm/man/stan_mvmer.html">stan_mvmer</a></span>(
     <span class="kw">formula</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
       <span class="no">ybern</span> ~ <span class="no">year</span> + (<span class="fl">1</span> <span class="kw">|</span> <span class="no">id</span>),
       <span class="no">albumin</span> ~ <span class="no">sex</span> + <span class="no">year</span> + (<span class="no">year</span> <span class="kw">|</span> <span class="no">id</span>)
@@ -4166,7 +4157,7 @@
 
 <span class="co"># model</span>
 <span class="no">fit</span> <span class="kw">&lt;-</span>
-  <span class="kw pkg">rstanarm</span><span class="kw ns">::</span><span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_nlmer.html">stan_nlmer</a></span>(
+  <span class="kw pkg">rstanarm</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/rstanarm/man/stan_nlmer.html">stan_nlmer</a></span>(
     <span class="kw">formula</span> <span class="kw">=</span> <span class="no">circumference</span> ~ <span class="fu"><a href="https://rdrr.io/r/stats/SSlogis.html">SSlogis</a></span>(<span class="no">age</span>, <span class="no">Asym</span>, <span class="no">xmid</span>, <span class="no">scal</span>) ~ <span class="no">Asym</span> <span class="kw">|</span> <span class="no">Tree</span>,
     <span class="kw">data</span> <span class="kw">=</span> <span class="no">Orange</span>,
     <span class="co"># for speed only</span>
@@ -4404,7 +4395,7 @@ speed =~ x7 + x8 + x9 "</span>
   )
 
 <span class="co"># looking at the classes of the objects contained in the list</span>
-<span class="kw pkg">purrr</span><span class="kw ns">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span>(<span class="no">br</span>, <span class="no">class</span>)
+<span class="kw pkg">purrr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/purrr/man/map.html">map</a></span>(<span class="no">br</span>, <span class="no">class</span>)
 <span class="co">#&gt; $mer</span>
 <span class="co">#&gt; [1] "lmerMod"</span>
 <span class="co">#&gt; attr(,"package")</span>
@@ -4473,7 +4464,7 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">metaplus</span>)
 
 <span class="co"># renaming to what the function expects</span>
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span>(<span class="no">mag</span>, <span class="kw">estimate</span> <span class="kw">=</span> <span class="no">yi</span>, <span class="kw">std.error</span> <span class="kw">=</span> <span class="no">sei</span>, <span class="kw">term</span> <span class="kw">=</span> <span class="no">study</span>)
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/rename.html">rename</a></span>(<span class="no">mag</span>, <span class="kw">estimate</span> <span class="kw">=</span> <span class="no">yi</span>, <span class="kw">std.error</span> <span class="kw">=</span> <span class="no">sei</span>, <span class="kw">term</span> <span class="kw">=</span> <span class="no">study</span>)
 
 <span class="co"># plot</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
@@ -4495,7 +4486,7 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">metaplus</span>)
 
 <span class="co"># renaming to what the function expects</span>
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span>(<span class="no">mag</span>, <span class="kw">estimate</span> <span class="kw">=</span> <span class="no">yi</span>, <span class="kw">std.error</span> <span class="kw">=</span> <span class="no">sei</span>, <span class="kw">term</span> <span class="kw">=</span> <span class="no">study</span>)
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/rename.html">rename</a></span>(<span class="no">mag</span>, <span class="kw">estimate</span> <span class="kw">=</span> <span class="no">yi</span>, <span class="kw">std.error</span> <span class="kw">=</span> <span class="no">sei</span>, <span class="kw">term</span> <span class="kw">=</span> <span class="no">study</span>)
 
 <span class="co"># plot</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
@@ -4516,7 +4507,7 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">metaplus</span>)
 
 <span class="co"># renaming to what the function expects</span>
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span>(<span class="no">mag</span>, <span class="kw">estimate</span> <span class="kw">=</span> <span class="no">yi</span>, <span class="kw">std.error</span> <span class="kw">=</span> <span class="no">sei</span>, <span class="kw">term</span> <span class="kw">=</span> <span class="no">study</span>)
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/rename.html">rename</a></span>(<span class="no">mag</span>, <span class="kw">estimate</span> <span class="kw">=</span> <span class="no">yi</span>, <span class="kw">std.error</span> <span class="kw">=</span> <span class="no">sei</span>, <span class="kw">term</span> <span class="kw">=</span> <span class="no">study</span>)
 
 <span class="co"># plot</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
@@ -4531,7 +4522,7 @@ speed =~ x7 + x8 + x9 "</span>
 <p>You can also provide a dataframe containing all the other relevant information for additionally displaying labels with statistical information.</p>
 <div class="sourceCode" id="cb151"><html><body><pre class="r"><span class="co"># let's make up a dataframe (with all available details)</span>
 <span class="no">df_full</span> <span class="kw">&lt;-</span>
-  <span class="kw pkg">tibble</span><span class="kw ns">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span>(
+  <span class="kw pkg">tibble</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tribble.html">tribble</a></span>(
     ~<span class="no">term</span>, ~<span class="no">statistic</span>, ~<span class="no">estimate</span>, ~<span class="no">std.error</span>, ~<span class="no">p.value</span>, ~<span class="no">df.residual</span>,
     <span class="st">"study1"</span>, <span class="fl">0.158</span>, <span class="fl">0.0665</span>, <span class="fl">0.778</span>, <span class="fl">0.875</span>, <span class="fl">5L</span>,
     <span class="st">"study2"</span>, <span class="fl">1.33</span>, <span class="fl">0.542</span>, <span class="fl">0.280</span>, <span class="fl">0.191</span>, <span class="fl">10L</span>,
@@ -4624,7 +4615,7 @@ speed =~ x7 + x8 + x9 "</span>
 <div id="other-types-of-outputs" class="section level1">
 <h1 class="hasAnchor">
 <a href="#other-types-of-outputs" class="anchor"></a>Other types of outputs</h1>
-<p>This function can also be used to extract outputs other than a plot, although it is much more preferable to use the underlying functions instead (e.g., <code><a href="https://broom.tidymodels.org/reference/reexports.html">broom::tidy</a></code> or <code><a href="https://rdrr.io/pkg/parameters/man/model_parameters.html">parameters::model_parameters</a></code>).</p>
+<p>This function can also be used to extract outputs other than a plot, although it is much more preferable to use the underlying functions instead (e.g., <code><a href="https://rdrr.io/pkg/broom/man/reexports.html">broom::tidy</a></code> or <code><a href="https://rdrr.io/pkg/parameters/man/model_parameters.html">parameters::model_parameters</a></code>).</p>
 <div class="sourceCode" id="cb153"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
