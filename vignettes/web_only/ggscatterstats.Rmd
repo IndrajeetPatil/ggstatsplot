@@ -189,7 +189,7 @@ Type | Test | CI?
 Parametric | Pearson's correlation coefficient | <font color="green">Yes<font>
 Non-parametric | Spearman's rank correlation coefficient | <font color="green">Yes<font>
 Robust | Percentage bend correlation coefficient | <font color="green">Yes<font>
-Bayes Factor | Pearson's correlation coefficient | <font color="red">No<font>
+Bayes Factor | Pearson's correlation coefficient | <font color="green">Yes</font>
 
 ## Effect size interpretation
 

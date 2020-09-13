@@ -92,7 +92,7 @@ subtitle." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.5.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.0</span>
       </span>
     </div>
 
@@ -233,8 +233,8 @@ subtitle.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>for use with <code>formula</code>, a data frame containing all the
-data</p></td>
+      <td><p>A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
     </tr>
     <tr>
       <th>x</th>
@@ -342,7 +342,7 @@ parametric/pearson), <code>"np"</code> (nonparametric/spearman), <code>"r"</code
 width to use in calculating Bayes factors.</p></dd>
     <dt><code>beta</code></dt><dd><p>bending constant (Default: <code>0.1</code>). For more, see <code><a href='https://rdrr.io/pkg/WRS2/man/pbcor.html'>?WRS2::pbcor</a></code>.</p></dd>
     <dt><code>k</code></dt><dd><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 2</code>).</p></dd>
+(Default: <code>k = 2L</code>).</p></dd>
     <dt><code>formula</code></dt><dd><p>Formula to use in smoothing function, eg. <code>y ~ x</code>,
 <code>y ~ poly(x, 2)</code>, <code>y ~ log(x)</code>. <code>NULL</code> by default, in which case
 <code>method = NULL</code> implies <code>formula = y ~ x</code> when there are fewer than 1,000

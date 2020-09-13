@@ -332,7 +332,7 @@ Bayes Factor | > 2 | <font color="red">No<font> | <font color="red">No<font>
 Parametric | 2 | Cohen's *d*, Hedge's *g* (central-and noncentral-*t* distribution based) | <font color="green">Yes<font>
 Non-parametric | 2 | *r* (computed as $Z/\sqrt{N}$) | <font color="green">Yes<font>
 Robust | 2 |  $\delta_{R}$ (robust standardized difference similar to Cohen's *d*) | <font color="green">Yes<font>
-Bayes Factor | 2 | <font color="red">No<font> | <font color="red">No<font>
+Bayes Factor | 2 | <font color="green">Yes</font> | <font color="green">Yes</font>
 
 Here is a summary of *multiple pairwise comparison* tests supported in
 *ggwithinstats*-

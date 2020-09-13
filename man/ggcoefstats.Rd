@@ -64,7 +64,7 @@ error bars (Default: \code{TRUE}).}
 probability level for CI.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2}).}
+(Default: \code{k = 2L}).}
 
 \item{exclude.intercept}{Logical that decides whether the intercept should be
 excluded from the plot (Default: \code{TRUE}).}

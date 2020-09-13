@@ -25,8 +25,8 @@ grouped_ggscatterstats(
 )
 }
 \arguments{
-\item{data}{for use with \code{formula}, a data frame containing all the
-data}
+\item{data}{A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will \strong{not} be accepted.}
 
 \item{x}{The column in \code{data} containing the explanatory variable to be
 plotted on the \code{x}-axis. Can be entered either as a character string (e.g.,
@@ -120,7 +120,7 @@ parametric/pearson), \code{"np"} (nonparametric/spearman), \code{"r"} (robust),
 width to use in calculating Bayes factors.}
     \item{\code{beta}}{bending constant (Default: \code{0.1}). For more, see \code{?WRS2::pbcor}.}
     \item{\code{k}}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2}).}
+(Default: \code{k = 2L}).}
     \item{\code{formula}}{Formula to use in smoothing function, eg. \code{y ~ x},
 \code{y ~ poly(x, 2)}, \code{y ~ log(x)}. \code{NULL} by default, in which case
 \code{method = NULL} implies \code{formula = y ~ x} when there are fewer than 1,000

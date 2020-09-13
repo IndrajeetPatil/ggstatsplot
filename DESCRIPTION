@@ -1,7 +1,7 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.5.0.9000
+Version: 0.6.0
 Authors@R: 
     person(given = "Indrajeet",
            family = "Patil",
@@ -36,14 +36,14 @@ Imports:
     ggsignif,
     insight,
     ipmisc,
-    pairwiseComparisons (>= 2.0.0),
+    pairwiseComparisons (>= 2.0.1),
     paletteer,
     parameters,
     purrr,
     rlang,
     stats,
-    statsExpressions (>= 0.4.3),
-    tidyr
+    statsExpressions (>= 0.5.0),
+    tidyr (>= 0.3.0)
 Suggests:
     forcats,
     knitr,
@@ -55,8 +55,6 @@ Suggests:
     WRS2
 VignetteBuilder: 
     knitr
-Remotes:
-    IndrajeetPatil/statsExpressions
 Encoding: UTF-8
 Language: en-US
 LazyData: true

@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.5.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.0</span>
       </span>
     </div>
 
@@ -149,7 +149,7 @@
       <h1 data-toc-skip>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-09-10</h4>
+            <h4 class="date">2020-09-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -160,7 +160,7 @@
     
 <p>The function <code><a href="../../reference/ggcoefstats.html">ggstatsplot::ggcoefstats</a></code> generates <strong>dot-and-whisker plots</strong> for regression models saved in a tidy data frame. The tidy dataframes are prepared using the following packages: <code>broom</code>, <code>broom.mixed</code>, and <code>parameters</code>. Additionally, if available, the model summary indices are also extracted from the following packages: <code>broom</code>, <code>broom.mixed</code>, and <code>performance</code>.</p>
 <p>In this vignette, we will see examples of how to use this function. We will try to cover as many classes of objects as possible. Unfortunately, there is no single dataset that will be helpful for carrying out all types of regression analyses and, therefore, we will use various datasets to explore data-specific hypotheses using regression models.</p>
-<p><strong>Note before</strong>: The following demo uses the pipe operator (<code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code>), so in case you are not familiar with this operator, here is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="uri">http://r4ds.had.co.nz/pipes.html</a></p>
+<p><strong>Note before</strong>: The following demo uses the pipe operator (<code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code>), so in case you are not familiar with this operator, here is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="uri">http://r4ds.had.co.nz/pipes.html</a></p>
 <div id="general-structure-of-the-plots" class="section level1">
 <h1 class="hasAnchor">
 <a href="#general-structure-of-the-plots" class="anchor"></a>General structure of the plots</h1>
@@ -204,8 +204,8 @@
 ) +
   <span class="co"># further modification with the ggplot2 commands</span>
   <span class="co"># note the order in which the labels are entered</span>
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_discrete.html">scale_y_discrete</a></span>(<span class="kw">labels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"MPAA"</span>, <span class="st">"Genre"</span>, <span class="st">"Interaction term"</span>)) +
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="st">"effect size estimate (eta-squared)"</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="kw">NULL</span>)</pre></body></html></div>
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="kw">labels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"MPAA"</span>, <span class="st">"Genre"</span>, <span class="st">"Interaction term"</span>)) +
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="st">"effect size estimate (eta-squared)"</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="kw">NULL</span>)</pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/aov1-1.png" width="768"></p>
 <p>Note that we can also use this function for model selection. You can try out different models with the code below and see how the AIC and BIC values change.</p>
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># setup</span>
@@ -293,7 +293,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 
 <span class="co"># data</span>
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(
   <span class="kw">.data</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="../../reference/movies_long.html">movies_long</a></span>,
   <span class="no">genre</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
     <span class="st">"Action"</span>,
@@ -311,22 +311,22 @@
   <span class="kw">standardize</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
   <span class="kw">conf.level</span> <span class="kw">=</span> <span class="fl">0.99</span>, <span class="co"># changing the confidence levels for confidence intervals</span>
   <span class="kw">sort</span> <span class="kw">=</span> <span class="st">"ascending"</span>, <span class="co"># sorting the terms of the model based on estimate values</span>
-  <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_gray</a></span>(), <span class="co"># changing the default theme</span>
+  <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_gray</a></span>(), <span class="co"># changing the default theme</span>
   <span class="kw">stats.label.color</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#CC79A7"</span>, <span class="st">"darkgreen"</span>, <span class="st">"#0072B2"</span>, <span class="st">"black"</span>, <span class="st">"red"</span>),
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Movie ratings by their genre"</span>,
   <span class="kw">subtitle</span> <span class="kw">=</span> <span class="st">"Source: www.imdb.com"</span>
 ) +
   <span class="co"># further modification with the ggplot2 commands</span>
   <span class="co"># note the order in which the labels are entered</span>
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_discrete.html">scale_y_discrete</a></span>(<span class="kw">labels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="kw">labels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
     <span class="st">"Comedy"</span>,
     <span class="st">"Action Comedy"</span>,
     <span class="st">"Action Drama"</span>,
     <span class="st">"Comedy Drama"</span>,
     <span class="st">"Drama"</span>
   )) +
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span>(<span class="kw">y</span> <span class="kw">=</span> <span class="st">"Genre compared to Action movies)"</span>) +
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/theme.html">theme</a></span>(<span class="kw">axis.title.y</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">element_text</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">14</span>, <span class="kw">face</span> <span class="kw">=</span> <span class="st">"bold"</span>))</pre></body></html></div>
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="kw">y</span> <span class="kw">=</span> <span class="st">"Genre compared to Action movies)"</span>) +
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="kw">axis.title.y</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">14</span>, <span class="kw">face</span> <span class="kw">=</span> <span class="st">"bold"</span>))</pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/lm-1.png" width="768"></p>
 </div>
 <div id="linear-mixed-effects-model-lmerlmermod" class="section level2">
@@ -357,7 +357,7 @@
     <span class="kw">stats.label.color</span> <span class="kw">=</span> <span class="st">"black"</span>,
     <span class="kw">exclude.intercept</span> <span class="kw">=</span> <span class="fl">FALSE</span> <span class="co"># show the intercept</span>
   ) +
-    <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/parse.html">parse</a></span>(<span class="kw">text</span> <span class="kw">=</span> <span class="st">"'standardized regression coefficient' ~italic(beta)"</span>)),
+    <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/parse.html">parse</a></span>(<span class="kw">text</span> <span class="kw">=</span> <span class="st">"'standardized regression coefficient' ~italic(beta)"</span>)),
   <span class="co"># model 2: linear mixed-effects model</span>
   <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
     <span class="kw">x</span> <span class="kw">=</span> <span class="no">mod2</span>,
@@ -365,7 +365,7 @@
     <span class="kw">stats.label.color</span> <span class="kw">=</span> <span class="st">"black"</span>,
     <span class="kw">exclude.intercept</span> <span class="kw">=</span> <span class="fl">FALSE</span>
   ) +
-    <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span>(
+    <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(
       <span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/parse.html">parse</a></span>(<span class="kw">text</span> <span class="kw">=</span> <span class="st">"'standardized regression coefficient' ~italic(beta)"</span>),
       <span class="kw">y</span> <span class="kw">=</span> <span class="st">"fixed effects"</span>
     ),
@@ -380,7 +380,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">broomExtra</span>)
 
 <span class="co"># tidy output</span>
-<span class="kw pkg">broomExtra</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/broomExtra/man/tidy_parameters.html">tidy_parameters</a></span>(
+<span class="kw pkg">broomExtra</span><span class="kw ns">::</span><span class="fu"><a href="https://indrajeetpatil.github.io/broomExtra//reference/tidy_parameters.html">tidy_parameters</a></span>(
   <span class="kw pkg">lme4</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span>(
     <span class="kw">formula</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span>(<span class="no">rating</span>) ~ <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span>(<span class="no">budget</span>) + (<span class="no">budget</span> <span class="kw">|</span> <span class="no">genre</span>),
     <span class="kw">data</span> <span class="kw">=</span> <span class="no">movies_long</span>,
@@ -696,12 +696,9 @@
 )
 <span class="co">#&gt; Can't calculate log-loss.</span></pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/glm1-1.png" width="576"></p>
-<p><strong>Note</strong>: Few things to keep in mind for <code>glm</code> models,</p>
-<ul>
-<li><p>The exact statistic will depend on the family used. Below we will see a host of different function calls to <code>glm</code> with a variety of different families.</p></li>
-<li><p>Some families will have a <code>t</code> statistic associated with them, while others a <code>z</code> statistic. The function will figure this out for you.</p></li>
-</ul>
+<p><strong>Note</strong>: The exact statistic will depend on the family used for <code>glm</code> models: Some families will have a <code>t</code> statistic associated with them, while others a <code>z</code> statistic. The function will figure this out for you.</p>
 <div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="co"># creating dataframes to use for regression analyses</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
 
 <span class="co"># dataframe #1</span>
@@ -711,7 +708,7 @@
     <span class="kw">outcome</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/gl.html">gl</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">length</span> <span class="kw">=</span> <span class="fl">9</span>),
     <span class="kw">counts</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">18</span>, <span class="fl">17</span>, <span class="fl">15</span>, <span class="fl">20</span>, <span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">25</span>, <span class="fl">13</span>, <span class="fl">12</span>)
   ) <span class="kw">%&gt;%</span>
-  <span class="kw pkg">tibble</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/tibble/man/as_tibble.html">as_tibble</a></span>(<span class="no">.</span>)
+  <span class="kw pkg">tibble</span><span class="kw ns">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(<span class="no">.</span>)
 
 <span class="co"># dataframe #2</span>
 <span class="no">df.clotting</span> <span class="kw">&lt;-</span>
@@ -720,13 +717,13 @@
     <span class="kw">lot1</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">118</span>, <span class="fl">58</span>, <span class="fl">42</span>, <span class="fl">35</span>, <span class="fl">27</span>, <span class="fl">25</span>, <span class="fl">21</span>, <span class="fl">19</span>, <span class="fl">18</span>),
     <span class="kw">lot2</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">69</span>, <span class="fl">35</span>, <span class="fl">26</span>, <span class="fl">21</span>, <span class="fl">18</span>, <span class="fl">16</span>, <span class="fl">13</span>, <span class="fl">12</span>, <span class="fl">12</span>)
   ) <span class="kw">%&gt;%</span>
-  <span class="kw pkg">tibble</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/tibble/man/as_tibble.html">as_tibble</a></span>(<span class="no">.</span>)
+  <span class="kw pkg">tibble</span><span class="kw ns">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(<span class="no">.</span>)
 
 <span class="co"># dataframe #3</span>
 <span class="no">x1</span> <span class="kw">&lt;-</span> <span class="kw pkg">stats</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">50</span>)
 <span class="no">y1</span> <span class="kw">&lt;-</span> <span class="kw pkg">stats</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">rpois</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="fl">50</span>, <span class="kw">lambda</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span>(<span class="fl">1</span> + <span class="no">x1</span>))
 <span class="no">df.3</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">x1</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">y1</span>) <span class="kw">%&gt;%</span>
-  <span class="kw pkg">tibble</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/tibble/man/as_tibble.html">as_tibble</a></span>(<span class="no">.</span>)
+  <span class="kw pkg">tibble</span><span class="kw ns">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(<span class="no">.</span>)
 
 <span class="co"># dataframe #4</span>
 <span class="no">x2</span> <span class="kw">&lt;-</span> <span class="kw pkg">stats</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">50</span>)
@@ -737,7 +734,7 @@
 )
 
 <span class="no">df.4</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">x2</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">y2</span>) <span class="kw">%&gt;%</span>
-  <span class="kw pkg">tibble</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/tibble/man/as_tibble.html">as_tibble</a></span>(<span class="no">.</span>)
+  <span class="kw pkg">tibble</span><span class="kw ns">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(<span class="no">.</span>)
 
 <span class="co"># combining all plots in a single plot</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span>(
@@ -811,6 +808,7 @@
 <h2 class="hasAnchor">
 <a href="#modified-fitting-for-generalized-linear-models-glm2" class="anchor"></a>modified fitting for generalized linear models (<code>glm2</code>)</h2>
 <div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="co"># setup</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">glm2</span>)
 <span class="no">y</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>)
 
@@ -992,7 +990,7 @@
   <span class="kw">only.significant</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
   <span class="kw">stats.label.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">2.5</span>, <span class="kw">direction</span> <span class="kw">=</span> <span class="st">"both"</span>)
 ) +
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/coord_flip.html">coord_flip</a></span>()</pre></body></html></div>
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span>()</pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/negbin-1.png" width="768"></p>
 </div>
 <div id="generalized-linear-mixed-effects-model-glmerglmermod" class="section level2">
@@ -1702,7 +1700,7 @@
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"cumulative link model (clm)"</span>,
   <span class="kw">subtitle</span> <span class="kw">=</span> <span class="st">"(using `ordinal` package)"</span>
 ) +
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="st">"logit regression coefficient"</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="kw">NULL</span>)
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="st">"logit regression coefficient"</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="kw">NULL</span>)
 <span class="co">#&gt; Can't extract residuals from model.</span>
 <span class="co">#&gt; Can't calculate log-loss.</span>
 <span class="co">#&gt; Can't calculate proper scoring rules for ordinal, multinomial or cumulative link models.</span></pre></body></html></div>
@@ -1759,7 +1757,7 @@
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"cumulative link mixed model (clmm)"</span>,
   <span class="kw">subtitle</span> <span class="kw">=</span> <span class="st">"(using `ordinal` package)"</span>
 ) +
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span>(
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(
     <span class="kw">x</span> <span class="kw">=</span> <span class="st">"coefficient from ordinal mixed-effects regression"</span>,
     <span class="kw">y</span> <span class="kw">=</span> <span class="st">"fixed effects"</span>
   )</pre></body></html></div>
@@ -2139,7 +2137,7 @@
 <span class="no">mod</span> <span class="kw">&lt;-</span>
   <span class="kw pkg">stats</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(
     <span class="kw">formula</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="no">mpg</span>, <span class="no">disp</span>) ~ <span class="no">wt</span>,
-    <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">purrr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/purrr/man/modify.html">modify_if</a></span>(<span class="kw">.x</span> <span class="kw">=</span> <span class="no">mtcars</span>, <span class="kw">.p</span> <span class="kw">=</span> <span class="no">is.numeric</span>, ~ {
+    <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">purrr</span><span class="kw ns">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/modify.html">modify_if</a></span>(<span class="kw">.x</span> <span class="kw">=</span> <span class="no">mtcars</span>, <span class="kw">.p</span> <span class="kw">=</span> <span class="no">is.numeric</span>, ~ {
       <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span>(<span class="no">.x</span>))
     })
   )
@@ -2192,7 +2190,7 @@
 <span class="co"># exctrating summary</span>
 <span class="no">df_summary</span> <span class="kw">&lt;-</span>
   <span class="kw pkg">bmlm</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/bmlm/man/mlm_summary.html">mlm_summary</a></span>(<span class="no">fit</span>) <span class="kw">%&gt;%</span>
-  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/rename.html">rename</a></span>(
+  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span>(
     <span class="kw">.data</span> <span class="kw">=</span> <span class="no">.</span>,
     <span class="kw">estimate</span> <span class="kw">=</span> <span class="no">Mean</span>,
     <span class="kw">term</span> <span class="kw">=</span> <span class="no">Parameter</span>,
@@ -2299,7 +2297,7 @@
   <span class="kw">subtitle</span> <span class="kw">=</span> <span class="st">"Source: Iris data set (by Fisher or Anderson)"</span>,
   <span class="kw">caption</span> <span class="kw">=</span> <span class="st">"Results from 2 by 2 RM ANOVA"</span>
 ) +
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/theme.html">theme</a></span>(<span class="kw">plot.subtitle</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">element_text</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">11</span>, <span class="kw">face</span> <span class="kw">=</span> <span class="st">"plain"</span>))</pre></body></html></div>
+  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="kw">plot.subtitle</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">11</span>, <span class="kw">face</span> <span class="kw">=</span> <span class="st">"plain"</span>))</pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/aovlist1-1.png" width="768"></p>
 </div>
 <div id="robust-regression-with-robust-package-lmrob-glmrob" class="section level2">
@@ -3119,9 +3117,7 @@
   <span class="kw">x</span> <span class="kw">=</span> <span class="no">ct</span>,
   <span class="kw">plot</span> <span class="kw">=</span> <span class="st">"inference for estimated coefficients"</span>,
   <span class="kw">conf.level</span> <span class="kw">=</span> <span class="fl">0.99</span>
-)
-<span class="co">#&gt; Parameters can't be retrieved for objects of class 'simpleError'.</span>
-<span class="co">#&gt; Parameters can't be retrieved for objects of class 'simpleError'.</span></pre></body></html></div>
+)</pre></body></html></div>
 <p><img src="ggcoefstats_files/figure-html/coeftest-1.png" width="384"></p>
 </div>
 <div id="robust-regression-using-an-m-estimator-rlm" class="section level2">
@@ -3450,7 +3446,7 @@
 <span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">100</span> * <span class="fl">20</span>), <span class="fl">100</span>, <span class="fl">20</span>)
 <span class="no">y</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">100</span>)
 <span class="no">fit1</span> <span class="kw">&lt;-</span> <span class="kw pkg">glmnet</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/glmnet/man/glmnet.html">glmnet</a></span>(<span class="no">x</span>, <span class="no">y</span>)
-(<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">broom</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/broom/man/reexports.html">tidy</a></span>(<span class="no">fit1</span>))
+(<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">broom</span><span class="kw ns">::</span><span class="fu"><a href="https://broom.tidymodels.org/reference/reexports.html">tidy</a></span>(<span class="no">fit1</span>))
 <span class="co">#&gt; # A tibble: 1,086 x 5</span>
 <span class="co">#&gt;    term         step estimate lambda dev.ratio</span>
 <span class="co">#&gt;    &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;</span>
@@ -3467,7 +3463,7 @@
 <span class="co">#&gt; # ... with 1,076 more rows</span>
 
 <span class="co"># displaying only a certain step</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(<span class="no">df</span>, <span class="no">step</span> <span class="kw">==</span> <span class="fl">4</span>))
+<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">df</span>, <span class="no">step</span> <span class="kw">==</span> <span class="fl">4</span>))
 <span class="co">#&gt; Note: The argument `statistic` must be specified.</span>
 <span class="co">#&gt; Skipping labels with statistical details.</span>
 <span class="co">#&gt; Note: No confidence intervals available for regression coefficients,so whiskers in the plot will be skipped.</span></pre></body></html></div>
@@ -4096,7 +4092,7 @@
 
 <span class="co"># model</span>
 <span class="no">fit</span> <span class="kw">&lt;-</span>
-  <span class="kw pkg">rstanarm</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/rstanarm/man/stan_glm.html">stan_glm</a></span>(
+  <span class="kw pkg">rstanarm</span><span class="kw ns">::</span><span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span>(
     <span class="kw">formula</span> <span class="kw">=</span> <span class="no">mpg</span> ~ <span class="no">wt</span> + <span class="no">am</span>,
     <span class="kw">data</span> <span class="kw">=</span> <span class="no">mtcars</span>,
     <span class="kw">chains</span> <span class="kw">=</span> <span class="fl">1</span>,
@@ -4121,7 +4117,7 @@
 
 <span class="co"># model</span>
 <span class="no">mod</span> <span class="kw">&lt;-</span>
-  <span class="kw pkg">rstanarm</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/rstanarm/man/stan_mvmer.html">stan_mvmer</a></span>(
+  <span class="kw pkg">rstanarm</span><span class="kw ns">::</span><span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_mvmer.html">stan_mvmer</a></span>(
     <span class="kw">formula</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
       <span class="no">ybern</span> ~ <span class="no">year</span> + (<span class="fl">1</span> <span class="kw">|</span> <span class="no">id</span>),
       <span class="no">albumin</span> ~ <span class="no">sex</span> + <span class="no">year</span> + (<span class="no">year</span> <span class="kw">|</span> <span class="no">id</span>)
@@ -4157,7 +4153,7 @@
 
 <span class="co"># model</span>
 <span class="no">fit</span> <span class="kw">&lt;-</span>
-  <span class="kw pkg">rstanarm</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/rstanarm/man/stan_nlmer.html">stan_nlmer</a></span>(
+  <span class="kw pkg">rstanarm</span><span class="kw ns">::</span><span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_nlmer.html">stan_nlmer</a></span>(
     <span class="kw">formula</span> <span class="kw">=</span> <span class="no">circumference</span> ~ <span class="fu"><a href="https://rdrr.io/r/stats/SSlogis.html">SSlogis</a></span>(<span class="no">age</span>, <span class="no">Asym</span>, <span class="no">xmid</span>, <span class="no">scal</span>) ~ <span class="no">Asym</span> <span class="kw">|</span> <span class="no">Tree</span>,
     <span class="kw">data</span> <span class="kw">=</span> <span class="no">Orange</span>,
     <span class="co"># for speed only</span>
@@ -4395,7 +4391,7 @@ speed =~ x7 + x8 + x9 "</span>
   )
 
 <span class="co"># looking at the classes of the objects contained in the list</span>
-<span class="kw pkg">purrr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/purrr/man/map.html">map</a></span>(<span class="no">br</span>, <span class="no">class</span>)
+<span class="kw pkg">purrr</span><span class="kw ns">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span>(<span class="no">br</span>, <span class="no">class</span>)
 <span class="co">#&gt; $mer</span>
 <span class="co">#&gt; [1] "lmerMod"</span>
 <span class="co">#&gt; attr(,"package")</span>
@@ -4464,7 +4460,7 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">metaplus</span>)
 
 <span class="co"># renaming to what the function expects</span>
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/rename.html">rename</a></span>(<span class="no">mag</span>, <span class="kw">estimate</span> <span class="kw">=</span> <span class="no">yi</span>, <span class="kw">std.error</span> <span class="kw">=</span> <span class="no">sei</span>, <span class="kw">term</span> <span class="kw">=</span> <span class="no">study</span>)
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span>(<span class="no">mag</span>, <span class="kw">estimate</span> <span class="kw">=</span> <span class="no">yi</span>, <span class="kw">std.error</span> <span class="kw">=</span> <span class="no">sei</span>, <span class="kw">term</span> <span class="kw">=</span> <span class="no">study</span>)
 
 <span class="co"># plot</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
@@ -4486,7 +4482,7 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">metaplus</span>)
 
 <span class="co"># renaming to what the function expects</span>
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/rename.html">rename</a></span>(<span class="no">mag</span>, <span class="kw">estimate</span> <span class="kw">=</span> <span class="no">yi</span>, <span class="kw">std.error</span> <span class="kw">=</span> <span class="no">sei</span>, <span class="kw">term</span> <span class="kw">=</span> <span class="no">study</span>)
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span>(<span class="no">mag</span>, <span class="kw">estimate</span> <span class="kw">=</span> <span class="no">yi</span>, <span class="kw">std.error</span> <span class="kw">=</span> <span class="no">sei</span>, <span class="kw">term</span> <span class="kw">=</span> <span class="no">study</span>)
 
 <span class="co"># plot</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
@@ -4507,7 +4503,7 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">metaplus</span>)
 
 <span class="co"># renaming to what the function expects</span>
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/rename.html">rename</a></span>(<span class="no">mag</span>, <span class="kw">estimate</span> <span class="kw">=</span> <span class="no">yi</span>, <span class="kw">std.error</span> <span class="kw">=</span> <span class="no">sei</span>, <span class="kw">term</span> <span class="kw">=</span> <span class="no">study</span>)
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span>(<span class="no">mag</span>, <span class="kw">estimate</span> <span class="kw">=</span> <span class="no">yi</span>, <span class="kw">std.error</span> <span class="kw">=</span> <span class="no">sei</span>, <span class="kw">term</span> <span class="kw">=</span> <span class="no">study</span>)
 
 <span class="co"># plot</span>
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
@@ -4522,7 +4518,7 @@ speed =~ x7 + x8 + x9 "</span>
 <p>You can also provide a dataframe containing all the other relevant information for additionally displaying labels with statistical information.</p>
 <div class="sourceCode" id="cb151"><html><body><pre class="r"><span class="co"># let's make up a dataframe (with all available details)</span>
 <span class="no">df_full</span> <span class="kw">&lt;-</span>
-  <span class="kw pkg">tibble</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tribble.html">tribble</a></span>(
+  <span class="kw pkg">tibble</span><span class="kw ns">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span>(
     ~<span class="no">term</span>, ~<span class="no">statistic</span>, ~<span class="no">estimate</span>, ~<span class="no">std.error</span>, ~<span class="no">p.value</span>, ~<span class="no">df.residual</span>,
     <span class="st">"study1"</span>, <span class="fl">0.158</span>, <span class="fl">0.0665</span>, <span class="fl">0.778</span>, <span class="fl">0.875</span>, <span class="fl">5L</span>,
     <span class="st">"study2"</span>, <span class="fl">1.33</span>, <span class="fl">0.542</span>, <span class="fl">0.280</span>, <span class="fl">0.191</span>, <span class="fl">10L</span>,
@@ -4615,7 +4611,7 @@ speed =~ x7 + x8 + x9 "</span>
 <div id="other-types-of-outputs" class="section level1">
 <h1 class="hasAnchor">
 <a href="#other-types-of-outputs" class="anchor"></a>Other types of outputs</h1>
-<p>This function can also be used to extract outputs other than a plot, although it is much more preferable to use the underlying functions instead (e.g., <code><a href="https://rdrr.io/pkg/broom/man/reexports.html">broom::tidy</a></code> or <code><a href="https://rdrr.io/pkg/parameters/man/model_parameters.html">parameters::model_parameters</a></code>).</p>
+<p>This function can also be used to extract outputs other than a plot, although it is much more preferable to use the underlying functions instead (e.g., <code><a href="https://broom.tidymodels.org/reference/reexports.html">broom::tidy</a></code> or <code><a href="https://rdrr.io/pkg/parameters/man/model_parameters.html">parameters::model_parameters</a></code>).</p>
 <div class="sourceCode" id="cb153"><html><body><pre class="r"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)

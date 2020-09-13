@@ -154,7 +154,6 @@ testthat::test_that(
       ggplot2::expr(atop(
         displaystyle("From ggplot2 package"),
         expr = paste(
-          "In favor of null: ",
           "log"["e"],
           "(BF"["01"],
           ") = ",

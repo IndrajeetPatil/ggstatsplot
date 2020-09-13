@@ -67,7 +67,7 @@ parametric/pearson), \code{"np"} (nonparametric/spearman), \code{"r"} (robust),
 \item{beta}{bending constant (Default: \code{0.1}). For more, see \code{?WRS2::pbcor}.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2}).}
+(Default: \code{k = 2L}).}
 
 \item{sig.level}{Significance level (Default: \code{0.05}). If the \emph{p}-value in
 \emph{p}-value matrix is bigger than \code{sig.level}, then the corresponding

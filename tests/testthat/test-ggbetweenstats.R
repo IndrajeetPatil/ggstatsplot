@@ -131,15 +131,10 @@ testthat::test_that(
         displaystyle(atop(
           displaystyle("From ggplot2 package"),
           expr = paste(
-            "In favor of null: ",
             "log"["e"],
             "(BF"["01"],
             ") = ",
-            "1.54274",
-            ", ",
-            italic("r")["Cauchy"]^"JZS",
-            " = ",
-            "0.70700"
+            "1.54274"
           )
         )),
         expr = paste(

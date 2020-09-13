@@ -207,8 +207,7 @@ data("ANT") # loading data from `ez` package
 set.seed(123)
 
 # let's split the dataframe and create a list by years of interest
-cue_list <- ANT %>%
-  split(x = ., f = .$cue, drop = TRUE)
+cue_list <- ANT %>% split(x = ., f = .$cue, drop = TRUE)
 
 # checking the length of the list and the names of each element
 length(cue_list)

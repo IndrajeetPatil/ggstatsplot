@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.5.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.0</span>
       </span>
     </div>
 
@@ -149,7 +149,7 @@
       <h1 data-toc-skip>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-09-09</h4>
+            <h4 class="date">2020-09-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -281,8 +281,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 
 <span class="co"># let's split the dataframe and create a list by years of interest</span>
-<span class="no">cue_list</span> <span class="kw">&lt;-</span> <span class="no">ANT</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">.</span>, <span class="kw">f</span> <span class="kw">=</span> <span class="no">.</span>$<span class="no">cue</span>, <span class="kw">drop</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<span class="no">cue_list</span> <span class="kw">&lt;-</span> <span class="no">ANT</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">.</span>, <span class="kw">f</span> <span class="kw">=</span> <span class="no">.</span>$<span class="no">cue</span>, <span class="kw">drop</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 
 <span class="co"># checking the length of the list and the names of each element</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">cue_list</span>)

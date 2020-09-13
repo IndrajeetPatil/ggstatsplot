@@ -1,4 +1,4 @@
-# ggstatsplot 0.5.0.9000
+# ggstatsplot 0.6.0
 
 NEW FEATURES
 
@@ -13,6 +13,9 @@ NEW FEATURES
     
   - `ggbetweenstats` and `ggwithinstats` gain `ggsignif.args` argument to make
     it easy to change aesthetics of the pairwise comparison geom.
+    
+  - The subtitle and caption for Bayes Factor tests now also provide information
+    about posterior estimates, when relevant.
 
 MAJOR CHANGES
 

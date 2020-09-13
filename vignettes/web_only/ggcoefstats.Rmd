@@ -640,16 +640,14 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
-**Note**: Few things to keep in mind for `glm` models,
-
-  - The exact statistic will depend on the family used. Below we will see a host
-    of different function calls to `glm` with a variety of different families.
-
-  - Some families will have a `t` statistic associated with them, while others a
-    `z` statistic. The function will figure this out for you.
+**Note**:
+The exact statistic will depend on the family used for `glm` models: Some
+families will have a `t` statistic associated with them, while others a `z`
+statistic. The function will figure this out for you.
 
 ```{r glm_full, fig.height = 13, fig.width = 10}
 # creating dataframes to use for regression analyses
+set.seed(123)
 library(ggstatsplot)
 
 # dataframe #1
@@ -759,6 +757,7 @@ ggstatsplot::combine_plots(
 
 ```{r glm2, fig.height = 5, fig.width = 5}
 # setup
+set.seed(123)
 library(glm2)
 y <- c(1, 1, 1, 0)
 

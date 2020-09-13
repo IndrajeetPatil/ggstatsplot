@@ -353,15 +353,10 @@ testthat::test_that(
         displaystyle(atop(
           displaystyle("From `WRS2` package"),
           expr = paste(
-            "In favor of null: ",
             "log"["e"],
             "(BF"["01"],
             ") = ",
-            "-2.1154",
-            ", ",
-            italic("r")["Cauchy"]^"JZS",
-            " = ",
-            "0.7070"
+            "-2.1154"
           )
         )),
         expr = paste(

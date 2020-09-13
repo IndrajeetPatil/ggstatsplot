@@ -77,11 +77,21 @@ testthat::test_that(
       ggplot2::expr(atop(
         displaystyle("Studies carried out in 1887"),
         expr = paste(
-          "In favor of null: ",
           "log"["e"],
           "(BF"["01"],
           ") = ",
           "-1.2779",
+          ", ",
+          widehat(italic(d))["median"]^
+            "posterior",
+          " = ",
+          "2067.9739",
+          ", CI"["95%"]^"HDI",
+          " [",
+          "228.0673",
+          ", ",
+          "13002.3127",
+          "]",
           ", ",
           italic("r")["Cauchy"]^"JZS",
           " = ",

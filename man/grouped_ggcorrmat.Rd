@@ -86,7 +86,7 @@ parametric/pearson), \code{"np"} (nonparametric/spearman), \code{"r"} (robust),
 \code{"bf"} (for bayes factor), resp.}
     \item{\code{beta}}{bending constant (Default: \code{0.1}). For more, see \code{?WRS2::pbcor}.}
     \item{\code{k}}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2}).}
+(Default: \code{k = 2L}).}
     \item{\code{conf.level}}{Scalar between 0 and 1. If unspecified, the defaults return
 \verb{95\%} lower and upper confidence intervals (\code{0.95}).}
     \item{\code{bf.prior}}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
