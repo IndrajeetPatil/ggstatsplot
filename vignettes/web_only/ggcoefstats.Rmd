@@ -11,7 +11,6 @@ output:
     toc: true
     warning: FALSE
     message: FALSE
-    error: TRUE
 vignette: >
   %\VignetteIndexEntry{ggcoefstats}
   %\VignetteEngine{knitr::rmarkdown}
@@ -28,7 +27,6 @@ knitr::opts_chunk$set(
   comment = "#>",
   message = FALSE,
   warning = FALSE,
-  error = TRUE,
   package.startup.message = FALSE
 )
 
@@ -320,6 +318,36 @@ broomExtra::tidy_parameters(
     data = movies_long,
     control = lme4::lmerControl(calc.derivs = FALSE)
   )
+)
+```
+
+## analysis of factorial experiments (`mixed`)
+
+```{r mixed, fig.height = 4, fig.width = 8}
+# setup
+set.seed(123)
+library(afex)
+library(MEMSS)
+data("Machines", package = "MEMSS")
+
+# simple model with random-slopes for repeated-measures factor
+m1 <- afex::mixed(
+  formula = score ~ Machine + (Machine | Worker),
+  data = Machines
+)
+
+# suppress correlations among random effect parameters with || and expand_re = TRUE
+m2 <- afex::mixed(
+  formula = score ~ Machine + (Machine || Worker),
+  data = Machines,
+  expand_re = TRUE
+)
+
+# plot
+ggstatsplot::combine_plots(
+  ggstatsplot::ggcoefstats(m1, title = "example-1"),
+  ggstatsplot::ggcoefstats(m2, title = "example-2"),
+  title.text = "analysis of factorial experiments (using `afex`)"
 )
 ```
 
@@ -1426,7 +1454,7 @@ ggstatsplot::ggcoefstats(
 
 ## generalized linear models with extra parameters (`glmx`)
 
-```{r glmx, fig.height = 6, fig.width = 10}
+```{r glmx, fig.height = 6, fig.width = 8}
 # setup
 library(glmx)
 library(MASS)
@@ -1446,13 +1474,14 @@ m_nb1 <-
 
 ggstatsplot::ggcoefstats(
   x = m_nb1,
+  exclude.intercept = FALSE,
   title = "Generalized Linear Models with Extra Parameters"
 )
 ```
 
 ## generalized linear mixed model trees (`glmertree`)
 
-```{r glmertree, fig.height = 6, fig.width = 10}
+```{r glmertree, fig.height = 6, fig.width = 12}
 # setup
 set.seed(123)
 library(glmertree)
@@ -1504,7 +1533,7 @@ mod <-
 # plot
 ggstatsplot::ggcoefstats(
   x = mod,
-  title = "generalized linear mixed models  using Penalized Quasi-Likelihood",
+  title = "generalized linear mixed models \nusing Penalized Quasi-Likelihood",
   exclude.intercept = FALSE
 )
 ```
@@ -1710,7 +1739,7 @@ ggstatsplot::ggcoefstats(
 
 ## marginal effects estimation (`margins`)
 
-```{r margins, fig.height = 6, fig.width = 6, eval=FALSE}
+```{r margins, fig.height = 6, fig.width = 6}
 # setup
 set.seed(123)
 library(margins)
@@ -2372,36 +2401,6 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
-## analysis of factorial experiments (`mixed`)
-
-```{r mixed, fig.height = 4, fig.width = 8, eval=FALSE}
-# setup
-set.seed(123)
-library(afex)
-library(MEMSS)
-data("Machines", package = "MEMSS")
-
-# simple model with random-slopes for repeated-measures factor
-m1 <- afex::mixed(
-  formula = score ~ Machine + (Machine | Worker),
-  data = Machines
-)
-
-# suppress correlations among random effect parameters with || and expand_re = TRUE
-m2 <- afex::mixed(
-  formula = score ~ Machine + (Machine || Worker),
-  data = Machines,
-  expand_re = TRUE
-)
-
-# plot
-ggstatsplot::combine_plots(
-  ggstatsplot::ggcoefstats(m1, title = "example-1"),
-  ggstatsplot::ggcoefstats(m2, title = "example-2"),
-  title.text = "analysis of factorial experiments (using `afex`)"
-)
-```
-
 ## multinomial logit model (`mlogit`)
 
 ```{r mlogit, fig.height = 8, fig.width = 7}
@@ -2539,7 +2538,7 @@ ggstatsplot::ggcoefstats(
 
 ## truncated Gaussian Regression Models (`truncreg`)
 
-```{r truncreg, fig.height = 7, fig.width = 5}
+```{r truncreg, fig.height = 5, fig.width = 5}
 # setup
 set.seed(123)
 library(truncreg)
@@ -3176,7 +3175,7 @@ ggstatsplot::ggcoefstats(
 
 ## Model II regression (`lmodel2`)
 
-```{r lmodel2, fig.height = 8, fig.width = 6}
+```{r lmodel2, fig.height = 6, fig.width = 6}
 # setup
 set.seed(123)
 library(lmodel2)

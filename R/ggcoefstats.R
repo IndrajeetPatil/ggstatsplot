@@ -237,7 +237,6 @@ ggcoefstats <- function(x,
                         ggtheme = ggplot2::theme_bw(),
                         ggstatsplot.layer = TRUE,
                         ...) {
-
   # ============================= dataframe ===============================
 
   if (isFALSE(insight::is_model(x))) {
@@ -261,7 +260,7 @@ ggcoefstats <- function(x,
     }
   }
 
-  # =========================== broom.mixed tidiers =======================
+  # =========================== tidy it ====================================
 
   if (isTRUE(insight::is_model(x))) {
     if (class(x)[[1]] %in% c("aov", "aovlist", "anova", "Gam", "manova")) {
@@ -272,8 +271,7 @@ ggcoefstats <- function(x,
           effsize = effsize,
           partial = partial,
           conf.level = conf.level
-        ) %>%
-        dplyr::rename(.data = ., statistic = F.value)
+        )
 
       # prefix for effect size
       if (isTRUE(partial)) {
@@ -284,8 +282,6 @@ ggcoefstats <- function(x,
 
       # renaming the `xlab` according to the estimate chosen
       xlab <- paste(effsize.prefix, " ", effsize, "-squared", sep = "")
-
-      # ==================== tidying everything else ===========================
     } else {
       tidy_df <-
         broomExtra::tidy_parameters(

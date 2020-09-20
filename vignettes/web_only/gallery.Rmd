@@ -68,7 +68,6 @@ if (isFALSE("ggpomological" %in% installed.packages())) {
 
 # setup
 library(ggpomological)
-# extrafont::font_import()
 
 # basic plot
 p <-

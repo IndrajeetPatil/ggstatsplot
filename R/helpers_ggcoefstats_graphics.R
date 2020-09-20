@@ -181,11 +181,7 @@ extract_statistic <- function(x, ...) {
 
   # extracting statistic value
   purrr::pmap(
-    .l =
-      list(
-        pattern = list("^t", "^f", "^z", "^chi"),
-        x = list(statistic)
-      ),
+    .l = list(pattern = list("^t", "^f", "^z", "^chi"), x = list(statistic)),
     .f = grep_stat
   ) %>%
     purrr::keep(.x = ., .p = ~ !is.na(.)) %>%
@@ -217,9 +213,8 @@ extract_statistic <- function(x, ...) {
 #'
 #' @importFrom effectsize eta_squared omega_squared
 #' @importFrom broomExtra tidy_parameters
-#' @importFrom stats anova na.omit lm
 #' @importFrom rlang exec
-#' @importFrom dplyr matches everything contains
+#' @importFrom dplyr matches
 #'
 #' @examples
 #' # for reproducibility
@@ -242,9 +237,6 @@ lm_effsize_standardizer <- function(object,
                                     partial = TRUE,
                                     conf.level = 0.95,
                                     ...) {
-  # for `lm` objects, `anova` object should be created
-  if (class(object)[[1]] == "lm") object <- stats::anova(object)
-
   # stats details
   stats_df <- broomExtra::tidy_parameters(object, ...)
 
@@ -280,20 +272,5 @@ lm_effsize_standardizer <- function(object,
     y = effsize_df,
     by = "term"
   ) %>% # renaming to standard term 'estimate'
-    dplyr::rename(
-      .data = .,
-      "estimate" = dplyr::matches("eta|omega"),
-      "df1" = "df",
-      "conf.level" = "ci",
-      "F.value" = "statistic"
-    ) %>%
-    dplyr::select(
-      .data = .,
-      term,
-      F.value,
-      dplyr::contains("df"),
-      p.value,
-      dplyr::everything(),
-      -dplyr::contains("square")
-    )
+    dplyr::rename(.data = ., "estimate" = dplyr::matches("eta|omega"), "df1" = "df")
 }

@@ -1,3 +1,5 @@
+# ggstatsplot 0.6.0.9000
+
 # ggstatsplot 0.6.0
 
 NEW FEATURES

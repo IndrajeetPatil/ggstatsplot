@@ -188,11 +188,7 @@ ggstatsplot::ggcorrmat(
     tl.srt = 90,
     pch.col = "white",
     pch.cex = 14
-  ),
-  caption =
-    substitute(
-      paste(italic("Note"), ": Point shape denotes correlation non-significant at p < 0.008; adjusted for 6 comparisons")
-    )
+  )
 ) + # modification outside ggstatsplot using ggplot functions
   ggplot2::theme(
     axis.text.x = ggplot2::element_text(

@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.0.9000</span>
       </span>
     </div>
 
@@ -149,7 +149,7 @@
       <h1 data-toc-skip>ggcorrmat</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-09-12</h4>
+            <h4 class="date">2020-09-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcorrmat.Rmd"><code>vignettes/web_only/ggcorrmat.Rmd</code></a></small>
       <div class="hidden name"><code>ggcorrmat.Rmd</code></div>
@@ -288,11 +288,7 @@
     <span class="kw">tl.srt</span> <span class="kw">=</span> <span class="fl">90</span>,
     <span class="kw">pch.col</span> <span class="kw">=</span> <span class="st">"white"</span>,
     <span class="kw">pch.cex</span> <span class="kw">=</span> <span class="fl">14</span>
-  ),
-  <span class="kw">caption</span> <span class="kw">=</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/substitute.html">substitute</a></span>(
-      <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span>(<span class="st">"Note"</span>), <span class="st">": Point shape denotes correlation non-significant at p &lt; 0.008; adjusted for 6 comparisons"</span>)
-    )
+  )
 ) + <span class="co"># modification outside ggstatsplot using ggplot functions</span>
   <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(
     <span class="kw">axis.text.x</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(
