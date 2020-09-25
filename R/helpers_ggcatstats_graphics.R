@@ -100,7 +100,7 @@ df_facet_label <- function(data, x, y, k = 3L) {
   data %>% {
     dplyr::full_join(
       x = cat_counter(data = ., x = {{ y }}) %>%
-        dplyr::mutate(.data = ., N = paste0("(n = ", counts, ")", sep = "")),
+        dplyr::mutate(N = paste0("(n = ", prettyNum(counts, big.mark = ",", scientific = FALSE), ")")),
       y = grouped_proptest(
         data = .,
         grouping.vars = {{ y }},

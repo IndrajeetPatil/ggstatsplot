@@ -72,33 +72,6 @@ testthat::test_that(
     )
     testthat::expect_identical(pb$plot$labels$y, "Experimental run")
     testthat::expect_identical(pb$plot$labels$title, "Michelson-Morley experiment")
-    testthat::expect_identical(
-      pb$plot$labels$caption,
-      ggplot2::expr(atop(
-        displaystyle("Studies carried out in 1887"),
-        expr = paste(
-          "log"["e"],
-          "(BF"["01"],
-          ") = ",
-          "-1.2779",
-          ", ",
-          widehat(italic(d))["median"]^
-            "posterior",
-          " = ",
-          "2067.9739",
-          ", CI"["95%"]^"HDI",
-          " [",
-          "228.0673",
-          ", ",
-          "13002.3127",
-          "]",
-          ", ",
-          italic("r")["Cauchy"]^"JZS",
-          " = ",
-          "0.8800"
-        )
-      ))
-    )
 
     # checking panel parameters
     testthat::expect_equal(

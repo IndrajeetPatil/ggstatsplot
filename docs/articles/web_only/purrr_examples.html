@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.0.9000</span>
       </span>
     </div>
 
@@ -149,7 +149,7 @@
       <h1 data-toc-skip>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-09-13</h4>
+            <h4 class="date">2020-09-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -167,7 +167,7 @@
 <li><p>Only one grouping variable can be used to repeat the analysis when in reality there can be a combination of grouping variables and the operation needs to be repeated for all resulting combinations.</p></li>
 </ul>
 <p>We will see how to overcome this limitation by combining <code>ggstatsplot</code> with the <code>purrr</code> package.</p>
-<p><strong>Note: </strong></p>
+<p><strong>Note:</strong></p>
 <ul>
 <li><p>Unlike the typical function call for <code>ggstatsplot</code> functions where arguments can be a string (<code>"x"</code>) or a symbol (<code>x</code>), while using <code><a href="https://purrr.tidyverse.org/reference/map2.html">purrr::pmap</a></code>, we <strong>must</strong> input the arguments as strings.</p></li>
 <li><p>You can use <code>ggplot2</code> themes from extension packages (like <code>ggthemes</code>).</p></li>
@@ -178,7 +178,7 @@
 <h1 class="hasAnchor">
 <a href="#introduction-and-methodology" class="anchor"></a>Introduction and methodology</h1>
 <p>For all the examples in this vignette we are going to build <code>list</code>s of things that we will pass along to <code>purrr</code> which will in turn return a list of plots that will be passed to <code>combine_plots</code>. As the name implies <code>combine_plots</code> merges the individual plots into one bigger plot with common labeling and aesthetics.</p>
-<p>What are these <code>lists</code> that we are building? The lists correspond to the parameters in our <code>ggstatsplot</code> function like <code>ggbetweenstats</code>. If you look at the help file for <code><a href="../../reference/ggbetweenstats.html">?ggbetweenstats</a></code> for example the very first parameter it wants is the <code>data</code> file we’ll be using. We can also pass it different <code>titles</code> of even <code>ggtheme</code>s.</p>
+<p>What are these <code>lists</code> that we are building? The lists correspond to the parameters in our <code>ggstatsplot</code> function like <code>ggbetweenstats</code>. If you look at the help file for <code><a href="../../reference/ggbetweenstats.html">?ggbetweenstats</a></code> for example the very first parameter it wants is the <code>data</code> file we’ll be using. We can also pass it different <code>titles</code> of even <code>ggtheme</code> themes.</p>
 <p>You can pass:</p>
 <ul>
 <li><p>A single character string such as <code>xlab = "Continent"</code> or numeric such as <code>nboot = 25</code> in which case it will be reused/recycled as many times as needed.</p></li>
@@ -191,9 +191,8 @@
 <a href="#ggbetweenstats" class="anchor"></a><code>ggbetweenstats</code>
 </h1>
 <p>Following our methodology above let’s start with <code>ggebtweenstats</code>. We’ll use the <code>gapminder</code> dataset. We’ll make a 3 item named <code>list</code> called <code>data_list</code> using <code><a href="https://dplyr.tidyverse.org/reference/filter.html">dplyr::filter</a></code> and <code>split</code>.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
-
-<span class="co"># for reproducibility</span>
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 
 <span class="co"># let's split the dataframe and create a list by years of interest</span>
@@ -211,6 +210,7 @@
 <p>So let’s keep building <code>.l</code>. First is <code>data = year_list</code>, the <code>x</code> &amp; <code>y</code> axes are constant in all three plots so we pass the variable name as a string <code>x = "continent"</code>. Same with the label we’ll use for outliers where needed. For demonstration purposes let’s assume we want the outliers on each plot to be a different color. Not actually recommending it just demonstrating what’s possible. The rest of the code shows you a wide variety of possibilities and we won’t catalog them here.</p>
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
 
 <span class="co"># creating a list of plots</span>
 <span class="no">plot_list</span> <span class="kw">&lt;-</span>
@@ -237,7 +237,6 @@
       <span class="kw">pairwise.comparisons</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
       <span class="kw">pairwise.display</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"s"</span>, <span class="st">"ns"</span>, <span class="st">"all"</span>),
       <span class="kw">p.adjust.method</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"hommel"</span>, <span class="st">"bonferroni"</span>, <span class="st">"BH"</span>),
-      <span class="kw">nboot</span> <span class="kw">=</span> <span class="fl">25</span>,
       <span class="kw">conf.level</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">0.99</span>, <span class="fl">0.95</span>, <span class="fl">0.90</span>),
       <span class="kw">k</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>),
       <span class="kw">effsize.type</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
@@ -273,12 +272,11 @@
 <a href="#ggwithinstats" class="anchor"></a><code>ggwithinstats</code>
 </h1>
 <p>We will be using simulated data from then Attention Network Test provided in ANT dataset in <code>ez</code> package.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ez</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"ANT"</span>) <span class="co"># loading data from `ez` package</span>
-
-<span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
 
 <span class="co"># let's split the dataframe and create a list by years of interest</span>
 <span class="no">cue_list</span> <span class="kw">&lt;-</span> <span class="no">ANT</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">.</span>, <span class="kw">f</span> <span class="kw">=</span> <span class="no">.</span>$<span class="no">cue</span>, <span class="kw">drop</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
@@ -315,7 +313,6 @@
       <span class="kw">pairwise.comparisons</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
       <span class="kw">pairwise.display</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"ns"</span>, <span class="st">"s"</span>, <span class="st">"ns"</span>, <span class="st">"all"</span>),
       <span class="kw">p.adjust.method</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"fdr"</span>, <span class="st">"hommel"</span>, <span class="st">"bonferroni"</span>, <span class="st">"BH"</span>),
-      <span class="kw">nboot</span> <span class="kw">=</span> <span class="fl">25</span>,
       <span class="kw">conf.level</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">0.99</span>, <span class="fl">0.99</span>, <span class="fl">0.95</span>, <span class="fl">0.90</span>),
       <span class="kw">k</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span>),
       <span class="kw">effsize.type</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
@@ -654,7 +651,6 @@
       <span class="kw">x</span> <span class="kw">=</span> <span class="st">"Survived"</span>,
       <span class="kw">y</span> <span class="kw">=</span> <span class="st">"Sex"</span>,
       <span class="kw">label</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"both"</span>, <span class="st">"count"</span>, <span class="st">"percentage"</span>, <span class="st">"both"</span>),
-      <span class="kw">nboot</span> <span class="kw">=</span> <span class="fl">10</span>,
       <span class="kw">title</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
         <span class="st">"Passenger class: 1st"</span>,
         <span class="st">"Passenger class: 2nd"</span>,
@@ -714,7 +710,6 @@
       <span class="kw">data</span> <span class="kw">=</span> <span class="no">class_list</span>,
       <span class="kw">x</span> <span class="kw">=</span> <span class="st">"Survived"</span>,
       <span class="kw">y</span> <span class="kw">=</span> <span class="st">"Sex"</span>,
-      <span class="kw">nboot</span> <span class="kw">=</span> <span class="fl">10</span>,
       <span class="kw">label</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"both"</span>, <span class="st">"count"</span>, <span class="st">"percentage"</span>, <span class="st">"both"</span>),
       <span class="kw">title</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
         <span class="st">"Passenger class: 1st"</span>,

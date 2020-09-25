@@ -102,8 +102,7 @@ testthat::test_that(
             "numeric"
           )),
           label = c(
-            "8.46%",
-            "48.38%", "91.54%", "51.62%"
+            "8.46%", "48.38%", "91.54%", "51.62%"
           ),
           group = c(1L, 1L, 2L, 2L),
           PANEL = structure(c(
@@ -190,7 +189,7 @@ testthat::test_that(
             "mapped_discrete",
             "numeric"
           )),
-          label = c("(n = 711)", "(n = 1490)"),
+          label = c("(n = 711)", "(n = 1,490)"),
           PANEL = structure(c(1L, 1L), class = "factor", .Label = "1"),
           group = structure(2:1, n = 2L),
           colour = c("black", "black"),
@@ -216,14 +215,6 @@ testthat::test_that(
 
     # checking data layers
     testthat::expect_equal(length(pb$data), 4L)
-    testthat::expect_equal(unique(pb$data[[3]]$y), 1.05, tolerance = 0.01)
-    testthat::expect_equal(unique(pb$data[[4]]$y), -0.05, tolerance = 0.01)
-    testthat::expect_identical(
-      pb$data[[2]]$label,
-      c("8.46%", "48.38%", "91.54%", "51.62%")
-    )
-    testthat::expect_identical(pb$data[[3]]$label, c("ns", "***"))
-    testthat::expect_identical(pb$data[[4]]$label, c("(n = 711)", "(n = 1490)"))
 
     # checking geoms data
     testthat::expect_equal(

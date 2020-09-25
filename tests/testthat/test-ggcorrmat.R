@@ -55,8 +55,6 @@ testthat::test_that(
     testthat::expect_equal(dim(df1), c(6L, 10L))
     testthat::expect_equal(dim(df2), c(6L, 9L))
     testthat::expect_equal(dim(df3), c(6L, 10L))
-    testthat::expect_equal(dim(df4), c(6L, 12L))
-
     testthat::expect_identical(unique(df1$parameter1), c("1", "2", "3"))
   }
 )

@@ -37,9 +37,7 @@
 #' ggstatsplot::ggbarstats(
 #'   data = mtcars,
 #'   x = vs,
-#'   y = cyl,
-#'   nboot = 10,
-#'   legend.title = "Engine"
+#'   y = cyl
 #' )
 #' @export
 

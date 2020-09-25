@@ -119,7 +119,7 @@ ggstatsplot::combine_plots(
 
 ## How can I include statistical expressions in facet labels?
 
-```{r facet_expr, fig.width = 6, fig.height = 10}
+```{r facet_expr, fig.width = 6, fig.height = 8}
 set.seed(123)
 library(ggplot2)
 library(ggstatsplot)
@@ -134,8 +134,7 @@ statistics <-
     grouping.var = am,
     output = "subtitle"
   )
-mtcars1$am <-
-  factor(mtcars1$am, levels = c(0, 1), labels = statistics)
+mtcars1$am <- factor(mtcars1$am, levels = c(0, 1), labels = statistics)
 
 # plot
 mtcars1 %>%
@@ -196,7 +195,7 @@ remove them using `gginnards`.
 For example, let's say we want to remove the `geom_point()` from
 `ggbetweenstats` default plot.
 
-```{r gginnards, message = FALSE, warning = FALSE, fig.width = 5, fig.height = 5}
+```{r gginnards, message = FALSE, warning = FALSE, fig.width = 7, fig.height = 5}
 # needed libraries
 library(ggstatsplot)
 library(gginnards)
@@ -247,7 +246,7 @@ All `ggstatsplot` are `ggplot` objects, which can be further modified, just like
 any other `ggplot` object. But exception to these are all plots returned by
 `grouped_` functions, but there is a way to tackle this.
 
-```{r grouped_modify, fig.width = 10, fig.height = 5}
+```{r grouped_modify, fig.width = 12, fig.height = 6}
 # needed libraries
 set.seed(123)
 library(ggstatsplot)

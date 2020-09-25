@@ -48,7 +48,7 @@ exploration, it has two strong weaknesses-
 We will see how to overcome this limitation by combining `ggstatsplot` with the
 `purrr` package.
 
-**Note: **
+**Note:**
 
  * Unlike the typical function call for `ggstatsplot` functions where arguments
    can be a string (`"x"`) or a symbol (`x`), while using `purrr::pmap`, we
@@ -71,7 +71,7 @@ What are these `lists` that we are building? The lists correspond to the
 parameters in our `ggstatsplot` function like `ggbetweenstats`. If you look at
 the help file for `?ggbetweenstats` for example the very first parameter it
 wants is the `data` file we'll be using. We can also pass it different `titles`
-of even `ggtheme`s.
+of even `ggtheme` themes.
 
 You can pass:
 
@@ -96,9 +96,8 @@ Following our methodology above let's start with `ggebtweenstats`. We'll use the
 `dplyr::filter` and `split`.
 
 ```{r purrr_ggbetweenstats1, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 7}
-library(ggstatsplot)
-
 # for reproducibility
+library(ggstatsplot)
 set.seed(123)
 
 # let's split the dataframe and create a list by years of interest
@@ -129,6 +128,7 @@ code shows you a wide variety of possibilities and we won't catalog them here.
 ```{r purrr_ggbetweenstats2, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 7}
 # for reproducibility
 set.seed(123)
+library(ggstatsplot)
 
 # creating a list of plots
 plot_list <-
@@ -155,7 +155,6 @@ plot_list <-
       pairwise.comparisons = TRUE,
       pairwise.display = list("s", "ns", "all"),
       p.adjust.method = list("hommel", "bonferroni", "BH"),
-      nboot = 25,
       conf.level = list(0.99, 0.95, 0.90),
       k = list(1, 2, 3),
       effsize.type = list(
@@ -199,12 +198,11 @@ We will be using simulated data from then Attention Network Test provided in ANT
 dataset in `ez` package.
 
 ```{r purrr_ggwithinstats, warning = FALSE, message = FALSE, fig.height = 20, fig.width = 8}
+# for reproducibility
+set.seed(123)
 library(ggstatsplot)
 library(ez)
 data("ANT") # loading data from `ez` package
-
-# for reproducibility
-set.seed(123)
 
 # let's split the dataframe and create a list by years of interest
 cue_list <- ANT %>% split(x = ., f = .$cue, drop = TRUE)
@@ -240,7 +238,6 @@ plot_list <-
       pairwise.comparisons = TRUE,
       pairwise.display = list("ns", "s", "ns", "all"),
       p.adjust.method = list("fdr", "hommel", "bonferroni", "BH"),
-      nboot = 25,
       conf.level = list(0.99, 0.99, 0.95, 0.90),
       k = list(3, 2, 2, 3),
       effsize.type = list(
@@ -576,7 +573,6 @@ plot_list <-
       x = "Survived",
       y = "Sex",
       label = list("both", "count", "percentage", "both"),
-      nboot = 10,
       title = list(
         "Passenger class: 1st",
         "Passenger class: 2nd",
@@ -633,7 +629,6 @@ plot_list <-
       data = class_list,
       x = "Survived",
       y = "Sex",
-      nboot = 10,
       label = list("both", "count", "percentage", "both"),
       title = list(
         "Passenger class: 1st",

@@ -6,7 +6,7 @@ NEW FEATURES
 
   - More models supported in `ggcoefstats`: `BFBayesFactor`, `betamfx`, `crq`,
     `coxph.penal`, `geeglm`, `glht`, `glmm`, `lm_robust`, `lqm`, `lqmm`,
-    `manova`, `maov`, `negbinmfx`, `logitmfx`, `logitsf`, `margins`,
+    `manova`, `maov`, `margins`, `negbinmfx`, `logitmfx`, `logitsf`, `margins`,
     `poissonmfx`, `betaor`, `negbinirr`, `logitor`, `metafor`, `metaplus`,
     `orm`, `poissonirr`, `semLm`, `semLme`, `vgam`.
     
