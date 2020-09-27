@@ -258,10 +258,11 @@ testthat::test_that(
   desc = "basic plotting works - more than two groups",
   code = {
     testthat::skip_on_cran()
-    set.seed(123)
+
     library(WRS2)
 
     # plot
+    set.seed(123)
     p1 <-
       ggstatsplot::ggwithinstats(
         data = WineTasting,
@@ -348,22 +349,20 @@ testthat::test_that(
     testthat::expect_identical(p1$labels$title, "wine tasting data")
     testthat::expect_identical(p1$labels$subtitle, p1_subtitle)
     testthat::expect_identical(
-      p1$labels$caption,
+      pb1$plot$labels$caption,
       ggplot2::expr(atop(
         displaystyle(atop(
           displaystyle("From `WRS2` package"),
           expr = paste(
-            "log"["e"],
-            "(BF"["01"],
-            ") = ",
-            "-2.1154"
+            "log"["e"], "(BF"["01"],
+            ") = ", "-2.1154"
           )
         )),
         expr = paste(
-          "Pairwise comparisons: ",
+          "Pairwise test: ",
           bold("Student's t-test"),
-          "; Adjustment (p-value): ",
-          bold("Holm")
+          "; Comparisons shown: ",
+          bold("only significant")
         )
       ))
     )
@@ -502,27 +501,29 @@ testthat::test_that(
     testthat::expect_identical(p2$labels$subtitle, p2_subtitle)
     testthat::expect_identical(p3$labels$subtitle, p3_subtitle)
     testthat::expect_identical(p4$labels$subtitle, p4_subtitle)
+
+    # testing captions
     testthat::expect_identical(
-      p1$labels$caption,
+      pb1$plot$labels$caption,
       ggplot2::expr(atop(
         displaystyle(NULL),
         expr = paste(
-          "Pairwise comparisons: ",
+          "Pairwise test: ",
           bold("Durbin-Conover test"),
-          "; Adjustment (p-value): ",
-          bold("Holm")
+          "; Comparisons shown: ",
+          bold("only significant")
         )
       ))
     )
     testthat::expect_identical(
-      p2$labels$caption,
+      pb2$plot$labels$caption,
       ggplot2::expr(atop(
         displaystyle(NULL),
         expr = paste(
-          "Pairwise comparisons: ",
+          "Pairwise test: ",
           bold("Yuen's trimmed means test"),
-          "; Adjustment (p-value): ",
-          bold("Holm")
+          "; Comparisons shown: ",
+          bold("only non-significant")
         )
       ))
     )
@@ -567,6 +568,7 @@ testthat::test_that(
         x = Wine,
         y = Taste,
         results.subtitle = FALSE,
+        pairwise.comparisons = FALSE,
         messages = FALSE,
         ggplot.component = ggplot2::labs(y = "Taste rating")
       )

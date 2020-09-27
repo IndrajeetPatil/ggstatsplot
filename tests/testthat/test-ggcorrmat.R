@@ -169,7 +169,7 @@ testthat::test_that(
           " < ",
           0.001,
           " (Adjustment: ",
-          "Benjamini & Hochberg",
+          "FDR",
           ")"
         )
       ))

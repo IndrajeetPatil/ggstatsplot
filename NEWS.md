@@ -1,5 +1,18 @@
 # ggstatsplot 0.6.0.9000
 
+MAJOR CHANGES
+
+  - `ggbetweenstats` and `ggwithinstats` functions now default to
+    `pairwise.comparisons = TRUE`.
+
+MINOR CHANGES
+
+  - Plot borders are now removed from the default theme.
+  
+BREAKING CHANGES
+
+  - `pairwiseComparisons` re-exports are deprecated.
+
 # ggstatsplot 0.6.0
 
 NEW FEATURES

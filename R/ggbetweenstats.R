@@ -176,7 +176,7 @@ ggbetweenstats <- function(data,
                            y,
                            plot.type = "boxviolin",
                            type = "parametric",
-                           pairwise.comparisons = FALSE,
+                           pairwise.comparisons = TRUE,
                            pairwise.display = "significant",
                            p.adjust.method = "holm",
                            effsize.type = "unbiased",
@@ -190,7 +190,7 @@ ggbetweenstats <- function(data,
                            title = NULL,
                            subtitle = NULL,
                            sample.size.label = TRUE,
-                           k = 2,
+                           k = 2L,
                            var.equal = FALSE,
                            conf.level = 0.95,
                            nboot = 100,
@@ -495,7 +495,7 @@ ggbetweenstats <- function(data,
         pairwiseComparisons::pairwise_caption(
           caption,
           unique(df_pairwise$test.details),
-          p.adjust.method
+          pairwise.display
         )
     }
   }

@@ -1,7 +1,7 @@
 # significant display works -------------------------------------------------
 
 testthat::test_that(
-  desc = "check comparison significant displays - adjusted",
+  desc = "check comparison significant displays - FDR-corrected",
   code = {
     testthat::skip_on_cran()
 
@@ -29,14 +29,14 @@ testthat::test_that(
 
     # checking caption
     testthat::expect_identical(
-      p$labels$caption,
+      pb$plot$labels$caption,
       ggplot2::expr(atop(
         displaystyle("mammalian sleep"),
         expr = paste(
-          "Pairwise comparisons: ",
+          "Pairwise test: ",
           bold("Games-Howell test"),
-          "; Adjustment (p-value): ",
-          bold("Holm")
+          "; Comparisons shown: ",
+          bold("only significant")
         )
       ))
     )
@@ -75,9 +75,9 @@ testthat::test_that(
     testthat::expect_equal(
       unique(as.character(pb$data[[7]]$annotation)),
       c(
-        "list(~italic(p)[unadjusted]==0.139)",
-        "list(~italic(p)[unadjusted]==0.825)",
-        "list(~italic(p)[unadjusted]==0.079)"
+        "list(~italic(p)[uncorrected]==0.139)",
+        "list(~italic(p)[uncorrected]==0.825)",
+        "list(~italic(p)[uncorrected]==0.079)"
       )
     )
 
@@ -92,10 +92,10 @@ testthat::test_that(
       ggplot2::expr(atop(
         displaystyle(NULL),
         expr = paste(
-          "Pairwise comparisons: ",
+          "Pairwise test: ",
           bold("Games-Howell test"),
-          "; Adjustment (p-value): ",
-          bold("None")
+          "; Comparisons shown: ",
+          bold("only non-significant")
         )
       ))
     )
@@ -105,29 +105,30 @@ testthat::test_that(
 # mixed display works -------------------------------------------------
 
 testthat::test_that(
-  desc = "check mixed comparison displays - adjusted",
+  desc = "check mixed comparison displays - FDR-corrected",
   code = {
     testthat::skip_on_cran()
 
     # creating the plot
     set.seed(123)
-    p <- ggstatsplot::ggbetweenstats(
-      data = dplyr::filter(
-        ggstatsplot::movies_long,
-        genre %in% c("Action", "Comedy", "RomCom")
-      ),
-      x = genre,
-      y = rating,
-      results.subtitle = FALSE,
-      type = "np",
-      messages = FALSE,
-      bf.message = FALSE,
-      pairwise.comparisons = TRUE,
-      p.adjust.method = "fdr",
-      pairwise.display = "all",
-      k = 3,
-      palette = "Set3"
-    )
+    p <-
+      ggstatsplot::ggbetweenstats(
+        data = dplyr::filter(
+          ggstatsplot::movies_long,
+          genre %in% c("Action", "Comedy", "RomCom")
+        ),
+        x = genre,
+        y = rating,
+        results.subtitle = FALSE,
+        type = "np",
+        messages = FALSE,
+        bf.message = FALSE,
+        pairwise.comparisons = TRUE,
+        p.adjust.method = "fdr",
+        pairwise.display = "all",
+        k = 3,
+        palette = "Set3"
+      )
 
     # build the plot
     pb <- ggplot2::ggplot_build(p)
@@ -151,21 +152,18 @@ testthat::test_that(
     testthat::expect_identical(
       dat$label,
       c(
-        "list(~italic(p)[adjusted]==0.812)",
-        "list(~italic(p)[adjusted]<=0.001)",
-        "list(~italic(p)[adjusted]<=0.001)"
+        "list(~italic(p)[FDR-corrected]==0.812)",
+        "list(~italic(p)[FDR-corrected]<=0.001)",
+        "list(~italic(p)[FDR-corrected]<=0.001)"
       )
     )
     testthat::expect_identical(
-      p$labels$caption,
-      ggplot2::expr(atop(
-        displaystyle(NULL),
-        expr = paste(
-          "Pairwise comparisons: ",
-          bold("Dunn test"),
-          "; Adjustment (p-value): ",
-          bold("Benjamini & Hochberg")
-        )
+      pb$plot$labels$caption$expr,
+      ggplot2::expr(paste(
+        "Pairwise test: ",
+        bold("Dunn test"),
+        "; Comparisons shown: ",
+        bold("all")
       ))
     )
     testthat::expect_identical(
@@ -199,26 +197,27 @@ testthat::test_that(
 # robust test works -------------------------------------------------
 
 testthat::test_that(
-  desc = "check robust test display - adjusted",
+  desc = "check robust test display - FDR-corrected",
   code = {
     testthat::skip_on_cran()
 
     # creating the plot
     set.seed(123)
-    p <- ggstatsplot::ggbetweenstats(
-      data = ggplot2::mpg,
-      x = drv,
-      y = cty,
-      results.subtitle = FALSE,
-      bf.message = FALSE,
-      messages = FALSE,
-      k = 3,
-      type = "r",
-      nboot = 20,
-      pairwise.comparisons = TRUE,
-      pairwise.display = "s",
-      pairwise.annotation = "p.value"
-    )
+    p <-
+      ggstatsplot::ggbetweenstats(
+        data = ggplot2::mpg,
+        x = drv,
+        y = cty,
+        results.subtitle = FALSE,
+        bf.message = FALSE,
+        messages = FALSE,
+        k = 3,
+        type = "r",
+        nboot = 20,
+        pairwise.comparisons = TRUE,
+        pairwise.display = "s",
+        pairwise.annotation = "p.value"
+      )
 
     # build the plot
     pb <- ggplot2::ggplot_build(p)
@@ -240,14 +239,14 @@ testthat::test_that(
     testthat::expect_identical(dat$group2, c("f", "r", "r"))
     testthat::expect_identical(dat$significance, c("***", "ns", "***"))
     testthat::expect_identical(
-      p$labels$caption,
+      pb$plot$labels$caption,
       ggplot2::expr(atop(
         displaystyle(NULL),
         expr = paste(
-          "Pairwise comparisons: ",
+          "Pairwise test: ",
           bold("Yuen's trimmed means test"),
-          "; Adjustment (p-value): ",
-          bold("Holm")
+          "; Comparisons shown: ",
+          bold("only significant")
         )
       ))
     )
@@ -268,8 +267,8 @@ testthat::test_that(
     testthat::expect_equal(
       ggsignif_stat$annotations,
       c(
-        "list(~italic(p)[adjusted]<=0.001)",
-        "list(~italic(p)[adjusted]<=0.001)"
+        "list(~italic(p)[Holm-corrected]<=0.001)",
+        "list(~italic(p)[Holm-corrected]<=0.001)"
       )
     )
   }
@@ -278,27 +277,28 @@ testthat::test_that(
 # student's t test works -------------------------------------------------
 
 testthat::test_that(
-  desc = "check student's t test display - adjusted",
+  desc = "check student's t test display - FDR-corrected",
   code = {
     testthat::skip_on_cran()
 
     # creating the plot
     set.seed(123)
-    p <- ggstatsplot::ggbetweenstats(
-      data = mtcars,
-      x = cyl,
-      y = wt,
-      bf.message = FALSE,
-      messages = FALSE,
-      k = 3,
-      type = "p",
-      p.adjust.method = "bonferroni",
-      nboot = 50,
-      var.equal = TRUE,
-      pairwise.comparisons = TRUE,
-      pairwise.display = "everything",
-      pairwise.annotation = "p"
-    )
+    p <-
+      ggstatsplot::ggbetweenstats(
+        data = mtcars,
+        x = cyl,
+        y = wt,
+        bf.message = FALSE,
+        messages = FALSE,
+        k = 3,
+        type = "p",
+        p.adjust.method = "bonferroni",
+        nboot = 50,
+        var.equal = TRUE,
+        pairwise.comparisons = TRUE,
+        pairwise.display = "everything",
+        pairwise.annotation = "p"
+      )
 
     # build the plot
     pb <- ggplot2::ggplot_build(p)
@@ -320,14 +320,14 @@ testthat::test_that(
     testthat::expect_identical(dat$group2, c("6", "8", "8"))
     testthat::expect_identical(dat$significance, c("*", "***", "*"))
     testthat::expect_identical(
-      p$labels$caption,
+      pb$plot$labels$caption,
       ggplot2::expr(atop(
         displaystyle(NULL),
         expr = paste(
-          "Pairwise comparisons: ",
+          "Pairwise test: ",
           bold("Student's t-test"),
-          "; Adjustment (p-value): ",
-          bold("Bonferroni")
+          "; Comparisons shown: ",
+          bold("all")
         )
       ))
     )
@@ -347,9 +347,9 @@ testthat::test_that(
     testthat::expect_equal(
       ggsignif_stat$annotations,
       c(
-        "list(~italic(p)[adjusted]==0.032)",
-        "list(~italic(p)[adjusted]<=0.001)",
-        "list(~italic(p)[adjusted]==0.015)"
+        "list(~italic(p)[Bonferroni-corrected]==0.032)",
+        "list(~italic(p)[Bonferroni-corrected]<=0.001)",
+        "list(~italic(p)[Bonferroni-corrected]==0.015)"
       )
     )
 

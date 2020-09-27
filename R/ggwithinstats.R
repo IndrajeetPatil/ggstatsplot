@@ -69,7 +69,7 @@ ggwithinstats <- function(data,
                           x,
                           y,
                           type = "parametric",
-                          pairwise.comparisons = FALSE,
+                          pairwise.comparisons = TRUE,
                           pairwise.display = "significant",
                           p.adjust.method = "holm",
                           effsize.type = "unbiased",
@@ -362,7 +362,7 @@ ggwithinstats <- function(data,
         pairwiseComparisons::pairwise_caption(
           caption,
           unique(df_pairwise$test.details),
-          p.adjust.method
+          pairwise.display
         )
     }
   }

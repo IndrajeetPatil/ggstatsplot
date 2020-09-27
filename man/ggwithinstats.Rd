@@ -10,7 +10,7 @@ ggwithinstats(
   x,
   y,
   type = "parametric",
-  pairwise.comparisons = FALSE,
+  pairwise.comparisons = TRUE,
   pairwise.display = "significant",
   p.adjust.method = "holm",
   effsize.type = "unbiased",

@@ -11,6 +11,7 @@ output:
     toc: true
     warning: FALSE
     message: FALSE
+    error: TRUE
 vignette: >
   %\VignetteIndexEntry{ggcoefstats}
   %\VignetteEngine{knitr::rmarkdown}
@@ -27,6 +28,7 @@ knitr::opts_chunk$set(
   comment = "#>",
   message = FALSE,
   warning = FALSE,
+  error = TRUE,
   package.startup.message = FALSE
 )
 
@@ -3470,6 +3472,25 @@ ggstatsplot::ggcoefstats(
   x = marginal,
   point.args = list(color = "darkgreen", shape = 9),
   title = "summary grid from `emmeans` package"
+)
+```
+
+Another example with output containing effect sizes
+
+```{r emmGrid2, fig.height = 5, fig.width = 5}
+# setup
+set.seed(123)
+library(emmeans)
+
+# model and effect sizes 
+fiber.lm <- lm(strength ~ diameter + machine, data = fiber)
+emm <- emmeans(fiber.lm, "machine")
+es <- eff_size(emm, sigma = sigma(fiber.lm), edf = df.residual(fiber.lm))
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = es,
+  title = "summary grid with effect sizes\nfrom `emmeans` package"
 )
 ```
 

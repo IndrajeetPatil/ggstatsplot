@@ -6,8 +6,6 @@
 \alias{specify_decimal_p}
 \alias{signif_column}
 \alias{set_cwd}
-\alias{pairwise_p}
-\alias{pairwise_comparisons}
 \alias{\%>\%}
 \alias{\%<>\%}
 \alias{\%$\%}
@@ -25,7 +23,5 @@ below to see their documentation.
 
 \describe{
   \item{ipmisc}{\code{\link[ipmisc:reexports]{\%$\%}}, \code{\link[ipmisc:reexports]{\%<-\%}}, \code{\link[ipmisc:reexports]{\%<>\%}}, \code{\link[ipmisc:reexports]{\%>\%}}, \code{\link[ipmisc:reexports]{\%|\%}}, \code{\link[ipmisc:reexports]{\%||\%}}, \code{\link[ipmisc:reexports]{as_tibble}}, \code{\link[ipmisc:reexports]{enframe}}, \code{\link[ipmisc]{set_cwd}}, \code{\link[ipmisc]{signif_column}}, \code{\link[ipmisc]{specify_decimal_p}}, \code{\link[ipmisc:reexports]{tibble}}}
-
-  \item{pairwiseComparisons}{\code{\link[pairwiseComparisons]{pairwise_comparisons}}, \code{\link[pairwiseComparisons:pairwise_comparisons]{pairwise_p}}}
 }}
 

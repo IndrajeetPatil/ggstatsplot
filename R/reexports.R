@@ -13,16 +13,6 @@ ipmisc::signif_column
 #' @importFrom ipmisc set_cwd
 ipmisc::set_cwd
 
-# ----------------------- pairwiseComparisons --------------------------------
-
-#' @export
-#' @importFrom pairwiseComparisons pairwise_p
-pairwiseComparisons::pairwise_p
-
-#' @export
-#' @importFrom pairwiseComparisons pairwise_comparisons
-pairwiseComparisons::pairwise_comparisons
-
 # ----------------------- tidyverse -------------------------------------
 
 #' @export

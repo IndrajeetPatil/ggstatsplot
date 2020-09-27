@@ -114,9 +114,15 @@ To get the latest, stable `CRAN` release:
 install.packages("ggstatsplot")
 ```
 
-*Note*: If you are on a linux machine, you will need to have OpenGL libraries
-installed (specifically, `libx11`, `mesa` and Mesa OpenGL Utility library -
-`glu`) for the dependency package `rgl` to work.
+*Note*:
+
+  - If you are on a linux machine, you will need to have OpenGL libraries
+    installed (specifically, `libx11`, `mesa` and Mesa OpenGL Utility library -
+    `glu`) for the dependency package `rgl` to work.
+
+  - Additionally, `ggstatsplot` depends on `Rrmpfr`, which requires an OS
+    library that might not be installed by default on TSD mpfr-devel:
+    <https://rmpfr.r-forge.r-project.org/>
 
 You can get the **development** version of the package from `GitHub`. To see what
 new changes (and bug fixes) have been made to the package since the last release
@@ -167,8 +173,10 @@ version of the package, see:
 
   - README:
     <https://CRAN.R-project.org/package=ggstatsplot/readme/README.html>
+    
   - Presentation:
     <https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1>
+    
   - Vignettes: <https://CRAN.R-project.org/package=ggstatsplot/vignettes/additional.html>
 
 To see the documentation relevant for the **development** version of the package,
@@ -191,12 +199,10 @@ This function creates either a violin plot, a box plot, or a mix of two for
 **between**-group or **between**-condition comparisons with results from
 statistical tests in the subtitle. The simplest function call looks like this-
 
-```{r ggbetweenstats1, message = FALSE, warning = FALSE}
-# loading needed libraries
-library(ggstatsplot)
-
+```{r ggbetweenstats1}
 # for reproducibility
 set.seed(123)
+library(ggstatsplot)
 
 # plot
 ggstatsplot::ggbetweenstats(
@@ -224,7 +230,7 @@ Additionally, the type of plot to be displayed can also be modified (`"box"`,
 A number of other arguments can be specified to make this plot even more
 informative or change some of the default options. 
 
-```{r ggbetweenstats2, message = FALSE, warning = FALSE}
+```{r ggbetweenstats2}
 # for reproducibility
 set.seed(123)
 library(ggplot2)
@@ -252,7 +258,7 @@ ggstatsplot::ggbetweenstats(
 Additionally, there is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable:
 
-```{r ggbetweenstats3, message = FALSE, warning = FALSE, fig.height = 14, fig.width = 12}
+```{r ggbetweenstats3, fig.height = 14, fig.width = 12}
 # for reproducibility
 set.seed(123)
 
@@ -265,14 +271,13 @@ ggstatsplot::grouped_ggbetweenstats(
   x = mpaa,
   y = length,
   grouping.var = genre, # grouping variable
-  pairwise.comparisons = TRUE, # display significant pairwise comparisons
   ggsignif.args = list(textsize = 4, tip_length = 0.01),
   p.adjust.method = "bonferroni", # method for adjusting p-values for multiple comparisons
   # adding new components to `ggstatsplot` default
   ggplot.component = list(ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis())),
   k = 3,
   title.prefix = "Movie genre",
-  caption = substitute(paste(italic("Source"), ":IMDb (Internet Movie Database)")),
+  caption = substitute(paste(italic("Source"), ": IMDb (Internet Movie Database)")),
   palette = "default_jama",
   package = "ggsci",
   plotgrid.args = list(nrow = 2),
@@ -319,7 +324,7 @@ seen from an example below, the only difference between the plot structure is
 that now the group means are connected by paths to highlight the fact that these
 data are paired with each other.
 
-```{r ggwithinstats1, message = FALSE, warning = FALSE, fig.width = 8, fig.height = 6}
+```{r ggwithinstats1, fig.width = 8, fig.height = 6}
 # for reproducibility and data
 set.seed(123)
 library(WRS2)
@@ -329,7 +334,6 @@ ggstatsplot::ggwithinstats(
   data = WineTasting,
   x = Wine,
   y = Taste,
-  pairwise.comparisons = TRUE, # show pairwise comparison test results
   title = "Wine tasting",
   caption = "Data source: `WRS2` R package",
   ggtheme = ggthemes::theme_fivethirtyeight(),
@@ -342,7 +346,7 @@ As with the `ggbetweenstats`, this function also has a `grouped_` variant that
 makes repeating the same analysis across a single grouping variable quicker. We
 will see an example with only repeated measurements-
 
-```{r ggwithinstats2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 14}
+```{r ggwithinstats2, fig.height = 6, fig.width = 14}
 # common setup
 set.seed(123)
 
@@ -401,7 +405,7 @@ This function creates a scatterplot with marginal distributions overlaid on the
 axes (from `ggExtra::ggMarginal`) and results from statistical tests in the
 subtitle:
 
-```{r ggscatterstats1, message = FALSE, warning = FALSE}
+```{r ggscatterstats1}
 ggstatsplot::ggscatterstats(
   data = ggplot2::msleep,
   x = sleep_rem,
@@ -423,7 +427,7 @@ The available marginal distributions are-
 
 Number of other arguments can be specified to modify this basic plot-
 
-```{r ggscatterstats2, message = FALSE, warning = FALSE}
+```{r ggscatterstats2, fig.width=8}
 # for reproducibility
 set.seed(123)
 
@@ -456,7 +460,7 @@ note that, as opposed to the other functions, this function does not return a
 using `ggplot.component` argument (available for all functions, but especially
 useful for this particular function):
 
-```{r ggscatterstats3, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 14}
+```{r ggscatterstats3, fig.height = 12, fig.width = 14}
 # for reproducibility
 set.seed(123)
 
@@ -511,7 +515,7 @@ goodness of fit test) will be displayed as a subtitle.
 
 To study an interaction between two categorical variables:
 
-```{r ggpiestats1, message = FALSE, warning = FALSE, fig.height=4, fig.width=8}
+```{r ggpiestats1, fig.height=4, fig.width=8}
 # for reproducibility
 set.seed(123)
 
@@ -530,7 +534,7 @@ ggstatsplot::ggpiestats(
 In case of repeated measures designs, setting `paired = TRUE` will produce
 results from McNemar's chi-squared test-
 
-```{r ggpiestats2, message = FALSE, warning = FALSE, fig.height=4}
+```{r ggpiestats2, fig.height=4}
 # for reproducibility
 set.seed(123)
 
@@ -558,7 +562,7 @@ easy to repeat the same operation across a **single** grouping variable.
 Following example is a case where the theoretical question is about proportions
 for different levels of a single nominal variable:
 
-```{r ggpiestats3, message = FALSE, warning = FALSE, fig.height = 10, fig.width = 10}
+```{r ggpiestats3, fig.height = 10, fig.width = 10}
 # for reproducibility
 set.seed(123)
 
@@ -602,7 +606,7 @@ For more, see the `ggpiestats` vignette:
 In case you are not a fan of pie charts (for very good reasons), you can
 alternatively use `ggbarstats` function which has a similar syntax-
 
-```{r ggbarstats1, message = FALSE, warning = FALSE, fig.height = 8, fig.width = 10}
+```{r ggbarstats1, fig.height = 8, fig.width = 10}
 # for reproducibility
 set.seed(123)
 library(ggplot2)
@@ -625,7 +629,7 @@ ggstatsplot::ggbarstats(
 
 And, needless to say, there is also a `grouped_` variant of this function-
 
-```{r ggbarstats2, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 10}
+```{r ggbarstats2, fig.height = 12, fig.width = 10}
 # setup
 set.seed(123)
 
@@ -665,7 +669,7 @@ To visualize the distribution of a single variable and check if its mean is
 significantly different from a specified value with a one-sample test,
 `gghistostats` can be used.
 
-```{r gghistostats1, message = FALSE, warning = FALSE}
+```{r gghistostats1}
 # for reproducibility
 set.seed(123)
 
@@ -692,7 +696,7 @@ to assess evidence in favor of the null hypothesis.
 Additionally, there is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable:
 
-```{r gghistostats2, message = FALSE, warning = FALSE, fig.height = 10, fig.width = 10}
+```{r gghistostats2, fig.height = 10, fig.width = 10}
 # for reproducibility
 set.seed(123)
 
@@ -748,7 +752,7 @@ For more, including information about the variant of this function
 This function is similar to `gghistostats`, but is intended to be used when the
 numeric variable also has a label.
 
-```{r ggdotplotstats1, message = FALSE, warning = FALSE, fig.height = 10, fig.width = 8}
+```{r ggdotplotstats1, fig.height = 10, fig.width = 8}
 # for reproducibility
 set.seed(123)
 
@@ -776,7 +780,7 @@ As with the rest of the functions in this package, there is also a `grouped_`
 variant of this function to facilitate looping the same operation for all levels
 of a single grouping variable.
 
-```{r ggdotplotstats2, message = FALSE, warning = FALSE, fig.height = 8, fig.width = 12}
+```{r ggdotplotstats2, fig.height = 8, fig.width = 12}
 # for reproducibility
 set.seed(123)
 
@@ -810,7 +814,7 @@ available options, let's change some of the defaults. For example, multiple
 aesthetics-related arguments can be modified to change the appearance of the
 correlation matrix.
 
-```{r ggcorrmat1, message = FALSE, warning = FALSE}
+```{r ggcorrmat1}
 # for reproducibility
 set.seed(123)
 
@@ -845,7 +849,7 @@ Two things to note:
 There is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable:
 
-```{r ggcorrmat2, message = FALSE, warning = FALSE, fig.height = 10, fig.width = 10}
+```{r ggcorrmat2, fig.height = 10, fig.width = 10}
 # for reproducibility
 set.seed(123)
 
@@ -923,7 +927,7 @@ be invariant across models:
   - The output of this function will be a `ggplot2` object and, thus, it can be
     further modified (e.g., change themes, etc.) with `ggplot2` functions.
 
-```{r ggcoefstats1, message = FALSE, warning = FALSE, fig.height = 5, fig.width = 6}
+```{r ggcoefstats1, fig.height = 5, fig.width = 6}
 # for reproducibility
 set.seed(123)
 
@@ -937,7 +941,7 @@ ggstatsplot::ggcoefstats(mod)
 This default plot can be further modified to one's liking with additional
 arguments (also, let's use a different model now):
 
-```{r ggcoefstats2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
+```{r ggcoefstats2, fig.height = 6, fig.width = 8}
 # for reproducibility
 set.seed(123)
 
@@ -1012,7 +1016,7 @@ statistical test.
 For example, in the following chunk, we will create plot (*ridgeplot*) using
 `ggridges` package and use `ggstatsplot` function for extracting results.
 
-```{r ridgeplot, message = FALSE, warning = FALSE, fig.height = 10, fig.width = 7}
+```{r ridgeplot, fig.height = 10, fig.width = 7}
 set.seed(123)
 
 # loading the needed libraries

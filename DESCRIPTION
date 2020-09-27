@@ -36,7 +36,7 @@ Imports:
     ggsignif,
     insight,
     ipmisc,
-    pairwiseComparisons (>= 2.0.1),
+    pairwiseComparisons (>= 3.0.0),
     paletteer,
     parameters,
     purrr,
@@ -53,6 +53,8 @@ Suggests:
     testthat,
     tibble,
     WRS2
+Remotes:
+    IndrajeetPatil/pairwiseComparisons
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

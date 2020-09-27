@@ -39,7 +39,8 @@ common_theme_element <-
     legend.text = ggplot2::element_text(size = 10),
     legend.title = ggplot2::element_text(size = 10, face = "bold"),
     plot.title = ggplot2::element_text(size = 12, face = "bold"),
-    plot.subtitle = ggplot2::element_text(size = 10)
+    plot.subtitle = ggplot2::element_text(size = 10),
+    panel.border = ggplot2::element_blank()
   )
 
 #' @rdname theme_ggstatsplot

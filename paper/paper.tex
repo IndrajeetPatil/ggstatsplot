@@ -123,6 +123,9 @@
 \usepackage{float}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{fontawesome}
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
 \newenvironment{cslreferences}%
@@ -132,7 +135,7 @@
 
 \title{ggstatsplot: ggplot2 Based Plots with Statistical Details}
 \author{Indrajeet Patil\footnote{Max Planck Institute for Human Development, \href{mailto:patilindrajeet.science@gmail.com}{\nolinkurl{patilindrajeet.science@gmail.com}}}}
-\date{2020-07-22}
+\date{2020-09-27}
 
 \begin{document}
 \maketitle

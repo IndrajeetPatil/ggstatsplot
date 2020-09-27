@@ -336,7 +336,7 @@ ggcoefstats <- function(x,
       tidyr::unite(
         data = .,
         col = "term",
-        dplyr::matches("term|variable|parameter|method|curve|response|component"),
+        dplyr::matches("term|variable|parameter|method|curve|response|component|contrast"),
         remove = TRUE,
         sep = "_"
       )
