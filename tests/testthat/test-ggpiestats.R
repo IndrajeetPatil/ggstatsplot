@@ -198,7 +198,7 @@ testthat::test_that(
       )
 
     # dropped level dataset
-    mtcars_small <- dplyr::filter(.data = mtcars, am == "0")
+    mtcars_small <- dplyr::filter(.data = mtcars, am=="0")
 
     # plot
     p1 <-
@@ -295,9 +295,9 @@ testthat::test_that(
     testthat::expect_identical(
       pb$data[[3]]$label,
       c(
-        "list(~chi['gof']^2~ ( 1 )== 2.27 , ~italic(p) == 0.132 , ~italic(n) == 11 )",
-        "list(~chi['gof']^2~ ( 1 )== 0.14 , ~italic(p) == 0.705 , ~italic(n) == 7 )",
-        "list(~chi['gof']^2~ ( 1 )== 7.14 , ~italic(p) == 0.008 , ~italic(n) == 14 )"
+        "list(~chi['gof']^2~(1)==2.27, ~italic(p)==0.132, ~italic(n)==11)",
+        "list(~chi['gof']^2~(1)==0.14, ~italic(p)==0.705, ~italic(n)==7)",
+        "list(~chi['gof']^2~(1)==7.14, ~italic(p)==0.008, ~italic(n)==14)"
       )
     )
 
@@ -444,8 +444,8 @@ testthat::test_that(
     testthat::expect_identical(
       pb$data[[3]]$label,
       c(
-        "list(~chi['gof']^2~ ( 1 )== 569.62 , ~italic(p) <= 0.001 , ~italic(n) == 880 )",
-        "list(~chi['gof']^2~ ( 1 )== 245.00 , ~italic(p) <= 0.001 , ~italic(n) == 720 )"
+        "list(~chi['gof']^2~(1)==569.62, ~italic(p)==6.8e-126, ~italic(n)==880)",
+        "list(~chi['gof']^2~(1)==245.00, ~italic(p)==3.2e-55, ~italic(n)==720)"
       )
     )
   }

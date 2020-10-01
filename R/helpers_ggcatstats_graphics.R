@@ -90,9 +90,6 @@ cat_counter <- function(data, x, y = NULL, ...) {
 }
 
 #' @noRd
-#'
-#' @importFrom ipmisc p_value_formatter
-#'
 #' @keywords internal
 
 # combine info about sample size plus
@@ -109,26 +106,22 @@ df_facet_label <- function(data, x, y, k = 3L) {
         dplyr::filter(.data = ., !is.na(significance)),
       by = rlang::as_name(rlang::ensym(y))
     ) %>%
-      ipmisc::p_value_formatter(data = ., k = k) %>%
       dplyr::rowwise() %>%
       dplyr::mutate(
-        label = paste(
+        label = paste0(
           "list(~chi['gof']^2~",
           "(",
           parameter,
           ")==",
           specify_decimal_p(x = statistic, k = k),
-          ", ~italic(p)",
-          p.value.formatted,
-          ", ~italic(n)",
-          "==",
+          ", ~italic(p)==",
+          specify_decimal_p(x = p.value, k = k, p.value = TRUE),
+          ", ~italic(n)==",
           counts,
-          ")",
-          sep = " "
+          ")"
         )
       ) %>%
-      dplyr::ungroup() %>%
-      dplyr::select(.data = ., -dplyr::matches("p.value.formatted"))
+      dplyr::ungroup()
   }
 }
 

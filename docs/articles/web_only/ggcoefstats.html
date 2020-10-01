@@ -143,13 +143,13 @@
 
       
 
-      </header><script src="ggcoefstats_files/header-attrs-2.3/header-attrs.js"></script><div class="row">
+      </header><script src="ggcoefstats_files/header-attrs-2.4/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-09-27</h4>
+            <h4 class="date">2020-10-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -3694,8 +3694,8 @@
 <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(
   <span class="kw">x</span> <span class="kw">=</span> <span class="no">es</span>,
   <span class="kw">title</span> <span class="kw">=</span> <span class="st">"summary grid with effect sizes\nfrom `emmeans` package"</span>
-)
-<span class="co">#&gt; Error: All elements in the column `term` should be unique.</span></pre></body></html></div>
+)</pre></body></html></div>
+<p><img src="ggcoefstats_files/figure-html/emmGrid2-1.png" width="480"></p>
 </div>
 <div id="cochrane-orcutt-estimation-orcutt" class="section level2">
 <h2 class="hasAnchor">
@@ -4646,22 +4646,22 @@ speed =~ x7 + x8 + x9 "</span>
 
 <span class="co"># tidy dataframe</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="no">nlmod</span>, <span class="kw">output</span> <span class="kw">=</span> <span class="st">"tidy"</span>)
-<span class="co">#&gt; # A tibble: 3 x 11</span>
+<span class="co">#&gt; # A tibble: 3 x 10</span>
 <span class="co">#&gt;   term  estimate std.error conf.low conf.high statistic df.error  p.value</span>
 <span class="co">#&gt;   &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 Asym      2.35    0.0782    2.19       2.50      30.0       13 2.17e-13</span>
 <span class="co">#&gt; 2 xmid      1.48    0.0814    1.32       1.64      18.2       13 1.22e-10</span>
 <span class="co">#&gt; 3 scal      1.04    0.0323    0.978      1.10      32.3       13 8.51e-14</span>
-<span class="co">#&gt;   significance p.value.formatted</span>
-<span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;            </span>
-<span class="co">#&gt; 1 ***          &lt;= 0.001         </span>
-<span class="co">#&gt; 2 ***          &lt;= 0.001         </span>
-<span class="co">#&gt; 3 ***          &lt;= 0.001         </span>
-<span class="co">#&gt;   label                                                                        </span>
-<span class="co">#&gt;   &lt;chr&gt;                                                                        </span>
-<span class="co">#&gt; 1 list(~widehat(italic(beta))==2.35, ~italic(t)(13)==30.01, ~italic(p)&lt;= 0.001)</span>
-<span class="co">#&gt; 2 list(~widehat(italic(beta))==1.48, ~italic(t)(13)==18.23, ~italic(p)&lt;= 0.001)</span>
-<span class="co">#&gt; 3 list(~widehat(italic(beta))==1.04, ~italic(t)(13)==32.27, ~italic(p)&lt;= 0.001)</span>
+<span class="co">#&gt;   significance</span>
+<span class="co">#&gt;   &lt;chr&gt;       </span>
+<span class="co">#&gt; 1 ***         </span>
+<span class="co">#&gt; 2 ***         </span>
+<span class="co">#&gt; 3 ***         </span>
+<span class="co">#&gt;   label                                                                         </span>
+<span class="co">#&gt;   &lt;chr&gt;                                                                         </span>
+<span class="co">#&gt; 1 list(~widehat(italic(beta))==2.35, ~italic(t)(13)==30.01, ~italic(p)==2.17e-1~</span>
+<span class="co">#&gt; 2 list(~widehat(italic(beta))==1.48, ~italic(t)(13)==18.23, ~italic(p)==1.22e-1~</span>
+<span class="co">#&gt; 3 list(~widehat(italic(beta))==1.04, ~italic(t)(13)==32.27, ~italic(p)==8.51e-1~</span>
 
 <span class="co"># glance summary</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="no">nlmod</span>, <span class="kw">output</span> <span class="kw">=</span> <span class="st">"glance"</span>)

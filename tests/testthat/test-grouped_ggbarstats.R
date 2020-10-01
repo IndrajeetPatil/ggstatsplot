@@ -184,7 +184,7 @@ testthat::test_that(
           ", ",
           italic("p"),
           " = ",
-          "< 0.001",
+          "5.33e-06",
           ", ",
           widehat(italic("V"))["Cramer"],
           " = ",

@@ -21,9 +21,7 @@ ggcoefstats_label_maker <- function(tidy_df,
   #----------------------- p-value cleanup ------------------------------------
 
   # formatting the p-values
-  tidy_df %<>%
-    signif_column(data = ., p = p.value) %>%
-    ipmisc::p_value_formatter(data = ., k = k)
+  tidy_df %<>% signif_column(data = ., p = p.value)
 
   #--------------------------- t-statistic ------------------------------------
 
@@ -35,7 +33,7 @@ ggcoefstats_label_maker <- function(tidy_df,
       tidy_df %<>%
         dplyr::rowwise() %>%
         dplyr::mutate(
-          label = paste(
+          label = paste0(
             "list(~widehat(italic(beta))==",
             specify_decimal_p(x = estimate, k = k),
             ", ~italic(t)",
@@ -43,10 +41,9 @@ ggcoefstats_label_maker <- function(tidy_df,
             specify_decimal_p(x = df.error, k = 0L),
             ")==",
             specify_decimal_p(x = statistic, k = k),
-            ", ~italic(p)",
-            p.value.formatted,
-            ")",
-            sep = ""
+            ", ~italic(p)==",
+            specify_decimal_p(x = p.value, k = k, p.value = TRUE),
+            ")"
           )
         )
     } else {
@@ -54,16 +51,14 @@ ggcoefstats_label_maker <- function(tidy_df,
       tidy_df %<>%
         dplyr::rowwise() %>%
         dplyr::mutate(
-          label = paste(
+          label = paste0(
             "list(~widehat(italic(beta))==",
             specify_decimal_p(x = estimate, k = k),
-            ", ~italic(t)",
-            "==",
+            ", ~italic(t)==",
             specify_decimal_p(x = statistic, k = k),
-            ", ~italic(p)",
-            p.value.formatted,
-            ")",
-            sep = ""
+            ", ~italic(p)==",
+            specify_decimal_p(x = p.value, k = k, p.value = TRUE),
+            ")"
           )
         )
     }
@@ -76,15 +71,14 @@ ggcoefstats_label_maker <- function(tidy_df,
     tidy_df %<>%
       dplyr::rowwise() %>%
       dplyr::mutate(
-        label = paste(
+        label = paste0(
           "list(~widehat(italic(beta))==",
           specify_decimal_p(x = estimate, k = k),
           ", ~italic(z)==",
           specify_decimal_p(x = statistic, k = k),
-          ", ~italic(p)",
-          p.value.formatted,
-          ")",
-          sep = ""
+          ", ~italic(p)==",
+          specify_decimal_p(x = p.value, k = k, p.value = TRUE),
+          ")"
         )
       )
   }
@@ -96,15 +90,14 @@ ggcoefstats_label_maker <- function(tidy_df,
     tidy_df %<>%
       dplyr::rowwise() %>%
       dplyr::mutate(
-        label = paste(
+        label = paste0(
           "list(~widehat(italic(beta))==",
           specify_decimal_p(x = estimate, k = k),
           ", ~italic(chi)^2==",
           specify_decimal_p(x = statistic, k = k),
-          ", ~italic(p)",
-          p.value.formatted,
-          ")",
-          sep = ""
+          ", ~italic(p)==",
+          specify_decimal_p(x = p.value, k = k, p.value = TRUE),
+          ")"
         )
       )
   }
@@ -133,7 +126,7 @@ ggcoefstats_label_maker <- function(tidy_df,
     tidy_df %<>%
       dplyr::rowwise() %>%
       dplyr::mutate(
-        label = paste(
+        label = paste0(
           "list(~italic(F)",
           "(",
           df1,
@@ -141,14 +134,13 @@ ggcoefstats_label_maker <- function(tidy_df,
           df2,
           ")==",
           specify_decimal_p(x = statistic, k = k),
-          ", ~italic(p)",
-          p.value.formatted,
+          ", ~italic(p)==",
+          specify_decimal_p(x = p.value, k = k, p.value = TRUE),
           ", ~",
           effsize.text,
           "==",
           specify_decimal_p(x = estimate, k = k),
-          ")",
-          sep = ""
+          ")"
         )
       )
   }

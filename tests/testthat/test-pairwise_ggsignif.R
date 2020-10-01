@@ -153,8 +153,8 @@ testthat::test_that(
       dat$label,
       c(
         "list(~italic(p)[FDR-corrected]==0.812)",
-        "list(~italic(p)[FDR-corrected]<=0.001)",
-        "list(~italic(p)[FDR-corrected]<=0.001)"
+        "list(~italic(p)[FDR-corrected]==4.18e-04)",
+        "list(~italic(p)[FDR-corrected]==4.18e-04)"
       )
     )
     testthat::expect_identical(
@@ -176,7 +176,7 @@ testthat::test_that(
     )
 
     # checking values
-    testthat::expect_equal(dat$z.value,
+    testthat::expect_equal(dat$statistic,
       c(0.238306686320387, 3.63442246865882, 3.69050171235682),
       tolerance = 0.001
     )
@@ -252,7 +252,7 @@ testthat::test_that(
     )
 
     # checking values
-    testthat::expect_equal(dat$psihat,
+    testthat::expect_equal(dat$estimate,
       c(-5.3769964, 0.1927711, 5.5697674),
       tolerance = 0.001
     )
@@ -267,8 +267,8 @@ testthat::test_that(
     testthat::expect_equal(
       ggsignif_stat$annotations,
       c(
-        "list(~italic(p)[Holm-corrected]<=0.001)",
-        "list(~italic(p)[Holm-corrected]<=0.001)"
+        "list(~italic(p)[Holm-corrected]==0e+00)",
+        "list(~italic(p)[Holm-corrected]==7.1e-11)"
       )
     )
   }
@@ -333,11 +333,6 @@ testthat::test_that(
     )
 
     # checking values
-    testthat::expect_equal(dat$mean.difference,
-      c(0.8314156, 1.7134870, 0.8820714),
-      tolerance = 0.001
-    )
-
     # checking ggsignif layers
     testthat::expect_equal(ggsignif_stat$y_position,
       c(5.559600, 5.852925, 6.146250),
@@ -348,7 +343,7 @@ testthat::test_that(
       ggsignif_stat$annotations,
       c(
         "list(~italic(p)[Bonferroni-corrected]==0.032)",
-        "list(~italic(p)[Bonferroni-corrected]<=0.001)",
+        "list(~italic(p)[Bonferroni-corrected]==6.21e-07)",
         "list(~italic(p)[Bonferroni-corrected]==0.015)"
       )
     )

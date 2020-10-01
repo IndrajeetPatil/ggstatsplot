@@ -9,6 +9,8 @@ MINOR CHANGES
 
   - Plot borders are now removed from the default theme.
   
+  - Small *p*-values (< 0.001) are now displayed in scientific notation.
+  
 BREAKING CHANGES
 
   - `pairwiseComparisons` re-exports are deprecated.
