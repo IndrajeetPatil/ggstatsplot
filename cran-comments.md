@@ -7,4 +7,4 @@
 
 0 errors | 0 warnings | 0 notes
 
-  - Minor internal refactoring and maintenance.
+  - Fixes breakages happened due to `ipmisc` and `pairwiseComparisons` updates.
