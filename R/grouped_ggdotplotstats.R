@@ -79,7 +79,7 @@ grouped_ggdotplotstats <- function(data,
   # creating a list of plots
   plotlist_purrr <-
     purrr::pmap(
-      .l = list(data = df, title = paste(title.prefix, ": ", names(df), sep = "")),
+      .l = list(data = df, title = paste0(title.prefix, ": ", names(df))),
       .f = ggstatsplot::ggdotplotstats,
       x = {{ x }},
       y = {{ y }},

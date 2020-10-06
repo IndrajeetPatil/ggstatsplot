@@ -90,7 +90,7 @@ subtitle." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.1</span>
       </span>
     </div>
 
@@ -206,50 +206,50 @@ histograms/boxplots/density plots with statistical details added as a
 subtitle.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ggscatterstats</span>(
-  <span class='no'>data</span>,
-  <span class='no'>x</span>,
-  <span class='no'>y</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
-  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>label.var</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>label.expression</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>point.label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>),
-  <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>x</span>,
-  <span class='kw'>smooth.line.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>),
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"lm"</span>,
-  <span class='kw'>method.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>point.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.4</span>),
-  <span class='kw'>point.width.jitter</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>point.height.jitter</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>marginal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>marginal.type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>,
-  <span class='kw'>margins</span> <span class='kw'>=</span> <span class='st'>"both"</span>,
-  <span class='kw'>marginal.size</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>xfill</span> <span class='kw'>=</span> <span class='st'>"#009E73"</span>,
-  <span class='kw'>yfill</span> <span class='kw'>=</span> <span class='st'>"#D55E00"</span>,
-  <span class='kw'>xparams</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>fill</span> <span class='kw'>=</span> <span class='no'>xfill</span>),
-  <span class='kw'>yparams</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>fill</span> <span class='kw'>=</span> <span class='no'>yfill</span>),
-  <span class='kw'>centrality.parameter</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
-  <span class='kw'>centrality.label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>),
-  <span class='kw'>vline.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>xfill</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>),
-  <span class='kw'>hline.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>yfill</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>),
-  <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>beta</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2L</span>,
-  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
-  <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>ggscatterstats</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  <span class='va'>x</span>,
+  <span class='va'>y</span>,
+  type <span class='op'>=</span> <span class='st'>"parametric"</span>,
+  conf.level <span class='op'>=</span> <span class='fl'>0.95</span>,
+  bf.prior <span class='op'>=</span> <span class='fl'>0.707</span>,
+  bf.message <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  label.var <span class='op'>=</span> <span class='cn'>NULL</span>,
+  label.expression <span class='op'>=</span> <span class='cn'>NULL</span>,
+  point.label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>,
+  formula <span class='op'>=</span> <span class='va'>y</span> <span class='op'>~</span> <span class='va'>x</span>,
+  smooth.line.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>1.5</span>, color <span class='op'>=</span> <span class='st'>"blue"</span><span class='op'>)</span>,
+  method <span class='op'>=</span> <span class='st'>"lm"</span>,
+  method.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  point.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span>, alpha <span class='op'>=</span> <span class='fl'>0.4</span><span class='op'>)</span>,
+  point.width.jitter <span class='op'>=</span> <span class='fl'>0</span>,
+  point.height.jitter <span class='op'>=</span> <span class='fl'>0</span>,
+  marginal <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  marginal.type <span class='op'>=</span> <span class='st'>"histogram"</span>,
+  margins <span class='op'>=</span> <span class='st'>"both"</span>,
+  marginal.size <span class='op'>=</span> <span class='fl'>5</span>,
+  xfill <span class='op'>=</span> <span class='st'>"#009E73"</span>,
+  yfill <span class='op'>=</span> <span class='st'>"#D55E00"</span>,
+  xparams <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='va'>xfill</span><span class='op'>)</span>,
+  yparams <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='va'>yfill</span><span class='op'>)</span>,
+  centrality.parameter <span class='op'>=</span> <span class='st'>"none"</span>,
+  centrality.label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>,
+  vline.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='va'>xfill</span>, size <span class='op'>=</span> <span class='fl'>1</span>, linetype <span class='op'>=</span> <span class='st'>"dashed"</span><span class='op'>)</span>,
+  hline.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='va'>yfill</span>, size <span class='op'>=</span> <span class='fl'>1</span>, linetype <span class='op'>=</span> <span class='st'>"dashed"</span><span class='op'>)</span>,
+  results.subtitle <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  xlab <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ylab <span class='op'>=</span> <span class='cn'>NULL</span>,
+  title <span class='op'>=</span> <span class='cn'>NULL</span>,
+  subtitle <span class='op'>=</span> <span class='cn'>NULL</span>,
+  caption <span class='op'>=</span> <span class='cn'>NULL</span>,
+  beta <span class='op'>=</span> <span class='fl'>0.1</span>,
+  k <span class='op'>=</span> <span class='fl'>2L</span>,
+  ggtheme <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span>,
+  ggstatsplot.layer <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  ggplot.component <span class='op'>=</span> <span class='cn'>NULL</span>,
+  output <span class='op'>=</span> <span class='st'>"plot"</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -520,22 +520,23 @@ have a lot of labels that overlap.</p></li>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='co'># to get reproducible results from bootstrapping</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggstatsplot</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://indrajeetpatil.github.io/ggstatsplot/'>ggstatsplot</a></span><span class='op'>)</span>
 
 <span class='co'># creating dataframe with rownames converted to a new column</span>
-<span class='no'>mtcars_new</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span>(<span class='no'>mtcars</span>, <span class='kw'>rownames</span> <span class='kw'>=</span> <span class='st'>"car"</span>)
+<span class='va'>mtcars_new</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span><span class='op'>(</span><span class='va'>mtcars</span>, rownames <span class='op'>=</span> <span class='st'>"car"</span><span class='op'>)</span>
 
 <span class='co'># simple function call with the defaults</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggscatterstats</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars_new</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>wt</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>mpg</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"np"</span>,
-  <span class='kw'>label.var</span> <span class='kw'>=</span> <span class='no'>car</span>,
-  <span class='kw'>label.expression</span> <span class='kw'>=</span> <span class='no'>wt</span> <span class='kw'>&lt;</span> <span class='fl'>4</span> <span class='kw'>&amp;</span> <span class='no'>mpg</span> <span class='kw'>&lt;</span> <span class='fl'>20</span>,
-  <span class='kw'>centrality.parameter</span> <span class='kw'>=</span> <span class='st'>"median"</span>
-)</div><div class='img'><img src='ggscatterstats-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+<span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>ggscatterstats</span><span class='op'>(</span>
+  data <span class='op'>=</span> <span class='va'>mtcars_new</span>,
+  x <span class='op'>=</span> <span class='va'>wt</span>,
+  y <span class='op'>=</span> <span class='va'>mpg</span>,
+  type <span class='op'>=</span> <span class='st'>"np"</span>,
+  label.var <span class='op'>=</span> <span class='va'>car</span>,
+  label.expression <span class='op'>=</span> <span class='va'>wt</span> <span class='op'>&lt;</span> <span class='fl'>4</span> <span class='op'>&amp;</span> <span class='va'>mpg</span> <span class='op'>&lt;</span> <span class='fl'>20</span>,
+  centrality.parameter <span class='op'>=</span> <span class='st'>"median"</span>
+<span class='op'>)</span>
+</div><div class='img'><img src='ggscatterstats-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -552,7 +553,7 @@ have a lot of labels that overlap.</p></li>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

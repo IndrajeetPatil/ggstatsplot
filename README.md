@@ -6,10 +6,10 @@
 | Package                                                                                                                                                         | Status                                                                                                                                                                                       | Usage                                                                                                                                             | GitHub                                                                                                                                                         | References                                                                                                                                                      |
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [![CRAN_Release_Badge](https://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                   | [![Travis Build Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](https://travis-ci.org/IndrajeetPatil/ggstatsplot)                                               | [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)     | [![GitHub version](https://img.shields.io/badge/GitHub-0.6.0.9000-orange.svg?style=flat-square)](https://github.com/IndrajeetPatil/ggstatsplot/)               | [![Website](https://img.shields.io/badge/website-ggstatsplot-orange.svg?colorB=E91E63)](https://indrajeetpatil.github.io/ggstatsplot/)                          |
-| [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)                      | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Forks](https://img.shields.io/badge/forks-113-blue.svg)](https://github.com/IndrajeetPatil/ggstatsplot/)                                                    | [![Features](https://img.shields.io/badge/features-ggstatsplot-orange.svg?colorB=2196F3)](https://indrajeetpatil.github.io/ggstatsplot/reference/index.html)    |
-| [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/)                                                      | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                                               | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](https://img.shields.io/badge/issues-26-red.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)                                       | [![vignettes](https://img.shields.io/badge/vignettes-0.6.0-orange.svg?colorB=FF5722)](https://CRAN.R-project.org/package=ggstatsplot/vignettes/)                |
+| [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)                      | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Forks](https://img.shields.io/badge/forks-114-blue.svg)](https://github.com/IndrajeetPatil/ggstatsplot/)                                                    | [![Features](https://img.shields.io/badge/features-ggstatsplot-orange.svg?colorB=2196F3)](https://indrajeetpatil.github.io/ggstatsplot/reference/index.html)    |
+| [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/)                                                      | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                                               | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](https://img.shields.io/badge/issues-25-red.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)                                       | [![vignettes](https://img.shields.io/badge/vignettes-0.6.0-orange.svg?colorB=FF5722)](https://CRAN.R-project.org/package=ggstatsplot/vignettes/)                |
 | [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot) | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2074621.svg)](https://doi.org/10.5281/zenodo.2074621)                                                       |
-| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg)](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot)                             | [![Last-changedate](https://img.shields.io/badge/last%20change-2020--10--01-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
+| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg)](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot)                             | [![Last-changedate](https://img.shields.io/badge/last%20change-2020--10--05-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
 | [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                                    | [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                                            | [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ggstatsplot/community)                                           | [![Project Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)                                                   | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
 
 Raison d’être <img src="man/figures/logo.png" align="right" width="360" />
@@ -950,21 +950,21 @@ ggcorrmat(
 #> # A tibble: 15 x 13
 #>    parameter1  parameter2     rho ci_low ci_high    pd rope_percentage prior_distribution prior_location prior_scale        bf
 #>    <chr>       <chr>        <dbl>  <dbl>   <dbl> <dbl>           <dbl> <chr>                       <dbl>       <dbl>     <dbl>
-#>  1 sleep_total sleep_rem    0.735  0.617  0.810  1              0      cauchy                          0       0.707  3.00e+ 9
-#>  2 sleep_total sleep_cycle -0.436 -0.645 -0.194  0.998          0.0225 cauchy                          0       0.707  8.85e+ 0
+#>  1 sleep_total sleep_rem    0.735  0.643  0.824  1              0      cauchy                          0       0.707  3.00e+ 9
+#>  2 sleep_total sleep_cycle -0.434 -0.649 -0.205  0.996          0.0192 cauchy                          0       0.707  8.85e+ 0
 #>  3 sleep_total awake       -1.00  -1.00  -1.00   1              0      cauchy                          0       0.707 NA       
-#>  4 sleep_total brainwt     -0.344 -0.525 -0.157  0.997          0.0222 cauchy                          0       0.707  7.29e+ 0
-#>  5 sleep_total bodywt      -0.295 -0.456 -0.142  0.997          0.0318 cauchy                          0       0.707  9.28e+ 0
-#>  6 sleep_rem   sleep_cycle -0.308 -0.539 -0.0463 0.969          0.0985 cauchy                          0       0.707  1.42e+ 0
-#>  7 sleep_rem   awake       -0.733 -0.827 -0.640  1              0      cauchy                          0       0.707  3.01e+ 9
-#>  8 sleep_rem   brainwt     -0.206 -0.413  0.0106 0.924          0.208  cauchy                          0       0.707  6.54e- 1
-#>  9 sleep_rem   bodywt      -0.313 -0.492 -0.132  0.994          0.0368 cauchy                          0       0.707  4.80e+ 0
-#> 10 sleep_cycle awake        0.440  0.213  0.659  0.992          0.0205 cauchy                          0       0.707  8.85e+ 0
-#> 11 sleep_cycle brainwt      0.823  0.716  0.910  1              0      cauchy                          0       0.707  3.80e+ 6
-#> 12 sleep_cycle bodywt       0.379  0.133  0.607  0.988          0.0385 cauchy                          0       0.707  3.76e+ 0
-#> 13 awake       brainwt      0.341  0.160  0.520  0.996          0.03   cauchy                          0       0.707  7.29e+ 0
-#> 14 awake       bodywt       0.302  0.144  0.463  0.998          0.0295 cauchy                          0       0.707  9.27e+ 0
-#> 15 brainwt     bodywt       0.925  0.892  0.955  1              0      cauchy                          0       0.707  1.58e+22
+#>  4 sleep_total brainwt     -0.341 -0.539 -0.162  0.995          0.0318 cauchy                          0       0.707  7.29e+ 0
+#>  5 sleep_total bodywt      -0.302 -0.452 -0.137  0.998          0.0275 cauchy                          0       0.707  9.28e+ 0
+#>  6 sleep_rem   sleep_cycle -0.300 -0.568 -0.0729 0.962          0.101  cauchy                          0       0.707  1.42e+ 0
+#>  7 sleep_rem   awake       -0.733 -0.821 -0.639  1              0      cauchy                          0       0.707  3.01e+ 9
+#>  8 sleep_rem   brainwt     -0.205 -0.402  0.0248 0.928          0.212  cauchy                          0       0.707  6.54e- 1
+#>  9 sleep_rem   bodywt      -0.314 -0.485 -0.123  0.994          0.0398 cauchy                          0       0.707  4.80e+ 0
+#> 10 sleep_cycle awake        0.436  0.201  0.644  0.995          0.02   cauchy                          0       0.707  8.85e+ 0
+#> 11 sleep_cycle brainwt      0.824  0.718  0.911  1              0      cauchy                          0       0.707  3.80e+ 6
+#> 12 sleep_cycle bodywt       0.385  0.152  0.612  0.991          0.039  cauchy                          0       0.707  3.76e+ 0
+#> 13 awake       brainwt      0.344  0.151  0.513  0.994          0.025  cauchy                          0       0.707  7.29e+ 0
+#> 14 awake       bodywt       0.303  0.144  0.457  0.997          0.0275 cauchy                          0       0.707  9.27e+ 0
+#> 15 brainwt     bodywt       0.926  0.893  0.956  1              0      cauchy                          0       0.707  1.58e+22
 #>    method            nobs
 #>    <chr>            <int>
 #>  1 Bayesian Pearson    61
@@ -1136,9 +1136,8 @@ using `ggridges` package and use `ggstatsplot` function for extracting
 results.
 
 ``` r
-set.seed(123)
-
 # loading the needed libraries
+set.seed(123)
 library(ggridges)
 library(ggplot2)
 library(ggstatsplot)
@@ -1187,7 +1186,9 @@ principles-
 
 -   When a given function depends on variables in a dataframe, `data`
     argument must always be specified.
+
 -   The `$` operator cannot be used to specify variables in a dataframe.
+
 -   All functions accept both string (`x = "var1"`) and symbol
     (`x = var1`) arguments.
 

@@ -204,7 +204,6 @@ histograms/boxplots/density plots with statistical details added as a
 subtitle.
 }
 \examples{
-\donttest{
 # to ensure reproducibility
 set.seed(123)
 library(ggstatsplot)
@@ -251,7 +250,6 @@ ggstatsplot::grouped_ggscatterstats(
   title.prefix = "Genre",
   caption.text = "All movies have IMDB rating equal to 7."
 )
-}
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html}

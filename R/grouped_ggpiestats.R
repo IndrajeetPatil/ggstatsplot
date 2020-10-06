@@ -100,7 +100,7 @@ grouped_ggpiestats <- function(data,
   # creating a list of plots using `pmap`
   plotlist_purrr <-
     purrr::pmap(
-      .l = list(data = df, title = paste(title.prefix, ": ", names(df), sep = "")),
+      .l = list(data = df, title = paste0(title.prefix, ": ", names(df))),
       .f = ggstatsplot::ggpiestats,
       # put common parameters here
       x = {{ x }},

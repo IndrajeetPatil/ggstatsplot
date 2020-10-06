@@ -91,7 +91,7 @@ grouping variable." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.1</span>
       </span>
     </div>
 
@@ -207,23 +207,23 @@ designs repeated across all levels of a grouping variable.</h1>
 grouping variable.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>grouped_ggwithinstats</span>(
-  <span class='no'>data</span>,
-  <span class='no'>x</span>,
-  <span class='no'>y</span>,
-  <span class='no'>grouping.var</span>,
-  <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>plotgrid.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>title.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>title.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>16</span>, <span class='kw'>fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>),
-  <span class='kw'>caption.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>caption.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>10</span>),
-  <span class='kw'>sub.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>sub.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>12</span>)
-)</pre>
+    <pre class="usage"><span class='fu'>grouped_ggwithinstats</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  <span class='va'>x</span>,
+  <span class='va'>y</span>,
+  <span class='va'>grouping.var</span>,
+  outlier.label <span class='op'>=</span> <span class='cn'>NULL</span>,
+  title.prefix <span class='op'>=</span> <span class='cn'>NULL</span>,
+  output <span class='op'>=</span> <span class='st'>"plot"</span>,
+  <span class='va'>...</span>,
+  plotgrid.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  title.text <span class='op'>=</span> <span class='cn'>NULL</span>,
+  title.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>16</span>, fontface <span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span>,
+  caption.text <span class='op'>=</span> <span class='cn'>NULL</span>,
+  caption.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>,
+  sub.text <span class='op'>=</span> <span class='cn'>NULL</span>,
+  sub.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>12</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -272,7 +272,7 @@ dataframe containing results from proportion tests.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Arguments passed on to <code><a href='ggwithinstats.html'>ggwithinstats</a></code></p><dl'>
+      <td><p>Arguments passed on to <code><a href='ggwithinstats.html'>ggwithinstats</a></code></p><dl>
     <dt><code>point.path</code></dt><dd><p>Logical that decides whether individual data
 points and means, respectively, should be connected using <code>geom_path</code>. Both
 default to <code>TRUE</code>. Note that <code>point.path</code> argument is relevant only when
@@ -407,7 +407,7 @@ to account for violation of sphericity in a repeated measures design ANOVA
     </tr>
     <tr>
       <th>plotgrid.args</th>
-      <td><p>A list of additional arguments to <code><a href='https://rdrr.io/pkg/cowplot/man/plot_grid.html'>cowplot::plot_grid</a></code>.</p></td>
+      <td><p>A list of additional arguments to <code><a href='https://wilkelab.org/cowplot/reference/plot_grid.html'>cowplot::plot_grid</a></code>.</p></td>
     </tr>
     <tr>
       <th>title.text</th>
@@ -454,21 +454,22 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='co'># to get reproducible results from bootstrapping</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggstatsplot</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://indrajeetpatil.github.io/ggstatsplot/'>ggstatsplot</a></span><span class='op'>)</span>
 
 <span class='co'># the most basic function call</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>grouped_ggwithinstats</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>VR_dilemma</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>modality</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>score</span>,
-  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>order</span>,
-  <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span>(
-    <span class='kw'>breaks</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>0.1</span>),
-    <span class='kw'>limits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>)
-  ),
-  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='img'><img src='grouped_ggwithinstats-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+<span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>grouped_ggwithinstats</span><span class='op'>(</span>
+  data <span class='op'>=</span> <span class='va'>VR_dilemma</span>,
+  x <span class='op'>=</span> <span class='va'>modality</span>,
+  y <span class='op'>=</span> <span class='va'>score</span>,
+  grouping.var <span class='op'>=</span> <span class='va'>order</span>,
+  ggplot.component <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span><span class='op'>(</span>
+    breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>0.1</span><span class='op'>)</span>,
+    limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span>
+  <span class='op'>)</span>,
+  messages <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
+</div><div class='img'><img src='grouped_ggwithinstats-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -485,7 +486,7 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

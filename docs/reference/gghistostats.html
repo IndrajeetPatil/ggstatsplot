@@ -89,7 +89,7 @@ in the plot as a subtitle." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.1</span>
       </span>
     </div>
 
@@ -204,41 +204,41 @@ in the plot as a subtitle." />
 in the plot as a subtitle.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gghistostats</span>(
-  <span class='no'>data</span>,
-  <span class='no'>x</span>,
-  <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>bar.measure</span> <span class='kw'>=</span> <span class='st'>"count"</span>,
-  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>,
-  <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
-  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"g"</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2L</span>,
-  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
-  <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>bar.fill</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>,
-  <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>test.k</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>test.value.line.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1</span>),
-  <span class='kw'>test.value.label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>),
-  <span class='kw'>centrality.parameter</span> <span class='kw'>=</span> <span class='st'>"mean"</span>,
-  <span class='kw'>centrality.k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>centrality.line.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>),
-  <span class='kw'>centrality.label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>),
-  <span class='kw'>normal.curve</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>normal.curve.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>),
-  <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>gghistostats</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  <span class='va'>x</span>,
+  binwidth <span class='op'>=</span> <span class='cn'>NULL</span>,
+  bar.measure <span class='op'>=</span> <span class='st'>"count"</span>,
+  xlab <span class='op'>=</span> <span class='cn'>NULL</span>,
+  title <span class='op'>=</span> <span class='cn'>NULL</span>,
+  subtitle <span class='op'>=</span> <span class='cn'>NULL</span>,
+  caption <span class='op'>=</span> <span class='cn'>NULL</span>,
+  type <span class='op'>=</span> <span class='st'>"parametric"</span>,
+  test.value <span class='op'>=</span> <span class='fl'>0</span>,
+  bf.prior <span class='op'>=</span> <span class='fl'>0.707</span>,
+  bf.message <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  effsize.type <span class='op'>=</span> <span class='st'>"g"</span>,
+  conf.level <span class='op'>=</span> <span class='fl'>0.95</span>,
+  nboot <span class='op'>=</span> <span class='fl'>100</span>,
+  k <span class='op'>=</span> <span class='fl'>2L</span>,
+  ggtheme <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span>,
+  ggstatsplot.layer <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  bar.fill <span class='op'>=</span> <span class='st'>"grey50"</span>,
+  results.subtitle <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  test.k <span class='op'>=</span> <span class='fl'>0</span>,
+  test.value.line <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  test.value.line.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>,
+  test.value.label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>,
+  centrality.parameter <span class='op'>=</span> <span class='st'>"mean"</span>,
+  centrality.k <span class='op'>=</span> <span class='fl'>2</span>,
+  centrality.line.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>1</span>, color <span class='op'>=</span> <span class='st'>"blue"</span><span class='op'>)</span>,
+  centrality.label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"blue"</span>, size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>,
+  normal.curve <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  normal.curve.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>,
+  ggplot.component <span class='op'>=</span> <span class='cn'>NULL</span>,
+  output <span class='op'>=</span> <span class='st'>"plot"</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -447,25 +447,27 @@ dataframe containing results from proportion tests.</p></td>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='co'># most basic function call with the defaults</span>
 <span class='co'># this is the **only** function where data argument can be `NULL`</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>gghistostats</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>ToothGrowth</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>len</span>,
-  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Tooth length"</span>,
-  <span class='kw'>centrality.parameter</span> <span class='kw'>=</span> <span class='st'>"median"</span>
-)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='img'><img src='gghistostats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>gghistostats</span><span class='op'>(</span>
+  data <span class='op'>=</span> <span class='va'>ToothGrowth</span>,
+  x <span class='op'>=</span> <span class='va'>len</span>,
+  xlab <span class='op'>=</span> <span class='st'>"Tooth length"</span>,
+  centrality.parameter <span class='op'>=</span> <span class='st'>"median"</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='img'><img src='gghistostats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># a detailed function call</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>gghistostats</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>,
-  <span class='kw'>bar.measure</span> <span class='kw'>=</span> <span class='st'>"mix"</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>substitute</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='fu'><a href='https://rdrr.io/r/grDevices/plotmath.html'>italic</a></span>(<span class='st'>"Note"</span>), <span class='st'>": Iris dataset by Fisher."</span>)),
-  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.8</span>,
-  <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>0.10</span>,
-  <span class='kw'>bar.fill</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>
-)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='img'><img src='gghistostats-2.png' alt='' width='700' height='433' /></div><div class='input'># }
+<span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>gghistostats</span><span class='op'>(</span>
+  data <span class='op'>=</span> <span class='va'>iris</span>,
+  x <span class='op'>=</span> <span class='va'>Sepal.Length</span>,
+  bar.measure <span class='op'>=</span> <span class='st'>"mix"</span>,
+  type <span class='op'>=</span> <span class='st'>"p"</span>,
+  caption <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>substitute</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/grDevices/plotmath.html'>italic</a></span><span class='op'>(</span><span class='st'>"Note"</span><span class='op'>)</span>, <span class='st'>": Iris dataset by Fisher."</span><span class='op'>)</span><span class='op'>)</span>,
+  bf.prior <span class='op'>=</span> <span class='fl'>0.8</span>,
+  test.value <span class='op'>=</span> <span class='fl'>3</span>,
+  test.value.line <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  binwidth <span class='op'>=</span> <span class='fl'>0.10</span>,
+  bar.fill <span class='op'>=</span> <span class='st'>"grey50"</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='img'><img src='gghistostats-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -482,7 +484,7 @@ dataframe containing results from proportion tests.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

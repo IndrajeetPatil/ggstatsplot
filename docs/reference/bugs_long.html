@@ -88,7 +88,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.1</span>
       </span>
     </div>
 
@@ -202,7 +202,7 @@
     <p>Tidy version of the "Bugs" dataset.</p>
     </div>
 
-    <pre class="usage"><span class='no'>bugs_long</span></pre>
+    <pre class="usage"><span class='va'>bugs_long</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
@@ -232,7 +232,9 @@ disgustingness (low, high). Each participant rates their attitudes towards
 all anthropods. Subset of the data reported by Ryan et al. (2013).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='no'>bugs_long</span>)</div><div class='output co'>#&gt; [1] 372   6</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>bugs_long</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 6</span><span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>bugs_long</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 372   6</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>bugs_long</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 6</span><span>
 #&gt;   </span><span style='font-weight: bold;'>subject</span><span> </span><span style='font-weight: bold;'>gender</span><span> </span><span style='font-weight: bold;'>region</span><span>        </span><span style='font-weight: bold;'>education</span><span> </span><span style='font-weight: bold;'>condition</span><span> </span><span style='font-weight: bold;'>desire</span><span>
 #&gt;     </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span>       1 Female North America some      LDLF           6
@@ -240,7 +242,8 @@ all anthropods. Subset of the data reported by Ryan et al. (2013).</p>
 #&gt; </span><span style='color: #BCBCBC;'>3</span><span>       3 Female Europe        college   LDLF           5
 #&gt; </span><span style='color: #BCBCBC;'>4</span><span>       4 Female North America college   LDLF           6
 #&gt; </span><span style='color: #BCBCBC;'>5</span><span>       5 Female North America some      LDLF           3
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span>       6 Female Europe        some      LDLF           2</div><div class='input'><span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>(<span class='no'>bugs_long</span>)</div><div class='output co'>#&gt; Rows: 372
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span>       6 Female Europe        some      LDLF           2</div><div class='input'><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>bugs_long</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Rows: 372
 #&gt; Columns: 6
 #&gt; $ </span><span style='font-weight: bold;'>subject  </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17...
 #&gt; $ </span><span style='font-weight: bold;'>gender   </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Female, Female, Female, Female, Female, Female, Female, F...
@@ -263,7 +266,7 @@ all anthropods. Subset of the data reported by Ryan et al. (2013).</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

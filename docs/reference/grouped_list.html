@@ -90,7 +90,7 @@ element of the list will be a tibble." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.1</span>
       </span>
     </div>
 
@@ -206,7 +206,7 @@ of the list equal to the factor levels of the grouping variable. Each
 element of the list will be a tibble.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>grouped_list</span>(<span class='no'>data</span>, <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>grouped_list</span><span class='op'>(</span><span class='va'>data</span>, grouping.var <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -225,7 +225,8 @@ bare name <code>x</code> or as a string <code>"x"</code>).</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'>grouped_list</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>, <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>vore</span>)</div><div class='output co'>#&gt; $carni
+    <pre class="examples"><div class='input'><span class='fu'>ggstatsplot</span><span class='fu'>:::</span><span class='fu'>grouped_list</span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='va'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>, grouping.var <span class='op'>=</span> <span class='va'>vore</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $carni
 #&gt; <span style='color: #949494;'># A tibble: 19 x 11</span><span>
 #&gt;    </span><span style='font-weight: bold;'>name</span><span>                       </span><span style='font-weight: bold;'>genus</span><span>         </span><span style='font-weight: bold;'>vore</span><span>  </span><span style='font-weight: bold;'>order</span><span>           </span><span style='font-weight: bold;'>conservation</span><span>
 #&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
@@ -377,7 +378,7 @@ bare name <code>x</code> or as a string <code>"x"</code>).</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

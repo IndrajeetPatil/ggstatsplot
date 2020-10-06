@@ -88,7 +88,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.1</span>
       </span>
     </div>
 
@@ -202,7 +202,7 @@
     <p>Edgar Anderson's Iris Data in long format.</p>
     </div>
 
-    <pre class="usage"><span class='no'>iris_long</span></pre>
+    <pre class="usage"><span class='va'>iris_long</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
@@ -229,7 +229,9 @@ of iris. The species are Iris setosa, versicolor, and virginica.</p>
 <p>This is a modified dataset from <code>datasets</code> package.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='no'>iris_long</span>)</div><div class='output co'>#&gt; [1] 600   6</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>iris_long</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 6</span><span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>iris_long</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 600   6</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>iris_long</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 6</span><span>
 #&gt;      </span><span style='font-weight: bold;'>id</span><span> </span><span style='font-weight: bold;'>Species</span><span> </span><span style='font-weight: bold;'>condition</span><span>    </span><span style='font-weight: bold;'>attribute</span><span> </span><span style='font-weight: bold;'>measure</span><span> </span><span style='font-weight: bold;'>value</span><span>
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span>     1 setosa  Sepal.Length Sepal     Length    5.1
@@ -237,7 +239,8 @@ of iris. The species are Iris setosa, versicolor, and virginica.</p>
 #&gt; </span><span style='color: #BCBCBC;'>3</span><span>     3 setosa  Sepal.Length Sepal     Length    4.7
 #&gt; </span><span style='color: #BCBCBC;'>4</span><span>     4 setosa  Sepal.Length Sepal     Length    4.6
 #&gt; </span><span style='color: #BCBCBC;'>5</span><span>     5 setosa  Sepal.Length Sepal     Length    5  
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span>     6 setosa  Sepal.Length Sepal     Length    5.4</div><div class='input'><span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>(<span class='no'>iris_long</span>)</div><div class='output co'>#&gt; Rows: 600
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span>     6 setosa  Sepal.Length Sepal     Length    5.4</div><div class='input'><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>iris_long</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Rows: 600
 #&gt; Columns: 6
 #&gt; $ </span><span style='font-weight: bold;'>id       </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17...
 #&gt; $ </span><span style='font-weight: bold;'>Species  </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> setosa, setosa, setosa, setosa, setosa, setosa, setosa, s...
@@ -260,7 +263,7 @@ of iris. The species are Iris setosa, versicolor, and virginica.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

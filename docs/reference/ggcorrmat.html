@@ -88,7 +88,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.1</span>
       </span>
     </div>
 
@@ -202,34 +202,34 @@
     <p>Visualization of a correlation matrix</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ggcorrmat</span>(
-  <span class='no'>data</span>,
-  <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>cor.vars.names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
-  <span class='kw'>matrix.type</span> <span class='kw'>=</span> <span class='st'>"full"</span>,
-  <span class='kw'>matrix.method</span> <span class='kw'>=</span> <span class='st'>"square"</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>,
-  <span class='kw'>beta</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2L</span>,
-  <span class='kw'>sig.level</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
-  <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
-  <span class='kw'>pch</span> <span class='kw'>=</span> <span class='st'>"cross"</span>,
-  <span class='kw'>ggcorrplot.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>outline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>),
-  <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>,
-  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>,
-  <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"#E69F00"</span>, <span class='st'>"white"</span>, <span class='st'>"#009E73"</span>),
-  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
-  <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>ggcorrmat</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  cor.vars <span class='op'>=</span> <span class='cn'>NULL</span>,
+  cor.vars.names <span class='op'>=</span> <span class='cn'>NULL</span>,
+  output <span class='op'>=</span> <span class='st'>"plot"</span>,
+  matrix.type <span class='op'>=</span> <span class='st'>"full"</span>,
+  matrix.method <span class='op'>=</span> <span class='st'>"square"</span>,
+  type <span class='op'>=</span> <span class='st'>"parametric"</span>,
+  beta <span class='op'>=</span> <span class='fl'>0.1</span>,
+  k <span class='op'>=</span> <span class='fl'>2L</span>,
+  sig.level <span class='op'>=</span> <span class='fl'>0.05</span>,
+  conf.level <span class='op'>=</span> <span class='fl'>0.95</span>,
+  bf.prior <span class='op'>=</span> <span class='fl'>0.707</span>,
+  p.adjust.method <span class='op'>=</span> <span class='st'>"none"</span>,
+  pch <span class='op'>=</span> <span class='st'>"cross"</span>,
+  ggcorrplot.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>outline.color <span class='op'>=</span> <span class='st'>"black"</span><span class='op'>)</span>,
+  package <span class='op'>=</span> <span class='st'>"RColorBrewer"</span>,
+  palette <span class='op'>=</span> <span class='st'>"Dark2"</span>,
+  colors <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"#E69F00"</span>, <span class='st'>"white"</span>, <span class='st'>"#009E73"</span><span class='op'>)</span>,
+  ggtheme <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span>,
+  ggstatsplot.layer <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  ggplot.component <span class='op'>=</span> <span class='cn'>NULL</span>,
+  title <span class='op'>=</span> <span class='cn'>NULL</span>,
+  subtitle <span class='op'>=</span> <span class='cn'>NULL</span>,
+  caption <span class='op'>=</span> <span class='cn'>NULL</span>,
+  messages <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -396,7 +396,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     <p>Correlation matrix plot or a dataframe containing results from
 pairwise correlation tests. The package internally uses
 <code><a href='https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html'>ggcorrplot::ggcorrplot</a></code> for creating the visualization matrix, while the
-correlation analysis is carried out using the <code><a href='https://rdrr.io/pkg/correlation/man/correlation.html'>correlation::correlation</a></code>
+correlation analysis is carried out using the <code><a href='https://easystats.github.io/correlation/reference/correlation.html'>correlation::correlation</a></code>
 function.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -409,26 +409,29 @@ function.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='co'># for reproducibility</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
 
 <span class='co'># if `cor.vars` not specified, all numeric variables used</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggcorrmat</span>(<span class='no'>iris</span>)</div><div class='img'><img src='ggcorrmat-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>ggcorrmat</span><span class='op'>(</span><span class='va'>iris</span><span class='op'>)</span>
+</div><div class='img'><img src='ggcorrmat-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># to get the correlalogram</span>
 <span class='co'># note that the function will run even if the vector with variable names is</span>
 <span class='co'># not of same length as the number of variables</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggcorrmat</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"robust"</span>,
-  <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>sleep_total</span>:<span class='no'>bodywt</span>,
-  <span class='kw'>cor.vars.names</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"total sleep"</span>, <span class='st'>"REM sleep"</span>),
-  <span class='kw'>matrix.type</span> <span class='kw'>=</span> <span class='st'>"lower"</span>
-)</div><div class='output co'>#&gt; <span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>No. of variable names doesn't equal no. of variables.</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggcorrmat-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>ggcorrmat</span><span class='op'>(</span>
+  data <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='va'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
+  type <span class='op'>=</span> <span class='st'>"robust"</span>,
+  cor.vars <span class='op'>=</span> <span class='va'>sleep_total</span><span class='op'>:</span><span class='va'>bodywt</span>,
+  cor.vars.names <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"total sleep"</span>, <span class='st'>"REM sleep"</span><span class='op'>)</span>,
+  matrix.type <span class='op'>=</span> <span class='st'>"lower"</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>No. of variable names doesn't equal no. of variables.</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggcorrmat-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># to get the correlation analyses results in a dataframe</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'>ggcorrmat</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
-  <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>sleep_total</span>:<span class='no'>bodywt</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"dataframe"</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 15 x 10</span><span>
+<span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>ggcorrmat</span><span class='op'>(</span>
+  data <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='va'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
+  cor.vars <span class='op'>=</span> <span class='va'>sleep_total</span><span class='op'>:</span><span class='va'>bodywt</span>,
+  output <span class='op'>=</span> <span class='st'>"dataframe"</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 15 x 10</span><span>
 #&gt;    </span><span style='font-weight: bold;'>parameter1</span><span>  </span><span style='font-weight: bold;'>parameter2</span><span>       </span><span style='font-weight: bold;'>r</span><span>  </span><span style='font-weight: bold;'>ci_low</span><span> </span><span style='font-weight: bold;'>ci_high</span><span>        </span><span style='font-weight: bold;'>t</span><span>    </span><span style='font-weight: bold;'>df</span><span>         </span><span style='font-weight: bold;'>p</span><span>
 #&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'> 1</span><span> sleep_total sleep_rem    0.752  0.617   0.844      8.76    59 2.92</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 12</span><span>
@@ -462,7 +465,7 @@ function.</p>
 #&gt; </span><span style='color: #BCBCBC;'>12</span><span> Pearson    32
 #&gt; </span><span style='color: #BCBCBC;'>13</span><span> Pearson    56
 #&gt; </span><span style='color: #BCBCBC;'>14</span><span> Pearson    83
-#&gt; </span><span style='color: #BCBCBC;'>15</span><span> Pearson    56</div><div class='input'># }
+#&gt; </span><span style='color: #BCBCBC;'>15</span><span> Pearson    56</div><div class='input'><span class='co'># }</span>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -479,7 +482,7 @@ function.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

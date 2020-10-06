@@ -23,7 +23,7 @@
 <meta property="og:title" content="ggplot2 Based Plots with Statistical Details">
 <meta property="og:description" content="Extension of ggplot2, ggstatsplot creates
     graphics with details from statistical tests included in the plots
-    themselves. It provides easier API to generate information-rich plots
+    themselves. It provides an easier API to generate information-rich plots
     for statistical analysis of continuous (violin plots, scatterplots,
     histograms, dot plots, dot-and-whisker plots) or categorical (pie and
     bar charts) data. Currently, it supports only the most common types of
@@ -49,7 +49,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.1</span>
       </span>
     </div>
 
@@ -184,14 +184,14 @@
 <td><a href="https://cran.r-project.org/web/checks/check_results_ggstatsplot.html"><img src="https://cranchecks.info/badges/summary/ggstatsplot" alt="CRAN Checks"></a></td>
 <td><a href="https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot"><img src="https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue" alt="Weekly downloads badge"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/"><img src="https://img.shields.io/badge/forks-113-blue.svg" alt="Forks"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/"><img src="https://img.shields.io/badge/forks-114-blue.svg" alt="Forks"></a></td>
 <td><a href="https://indrajeetpatil.github.io/ggstatsplot/reference/index.html"><img src="https://img.shields.io/badge/features-ggstatsplot-orange.svg?colorB=2196F3" alt="Features"></a></td>
 </tr>
 <tr class="odd">
 <td><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg" alt="minimal R version"></a></td>
 <td><a href="https://www.tidyverse.org/lifecycle/"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue" alt="Monthly downloads badge"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-26-red.svg" alt="Github Issues"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-25-red.svg" alt="Github Issues"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot/vignettes/"><img src="https://img.shields.io/badge/vignettes-0.6.0-orange.svg?colorB=FF5722" alt="vignettes"></a></td>
 </tr>
 <tr class="even">
@@ -205,7 +205,7 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
 <td><a href="https://hits.dwyl.com/IndrajeetPatil/ggstatsplot"><img src="https://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2020--10--01-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2020--10--05-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg" alt="GitHub last commit"></a></td>
 </tr>
 <tr class="even">
@@ -414,7 +414,8 @@
 <h1 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h1>
 <p>To get the latest, stable <code>CRAN</code> release:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"ggstatsplot"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"ggstatsplot"</span><span class="op">)</span></pre></div>
 <p><em>Note</em>:</p>
 <ul>
 <li><p>If you are on a linux machine, you will need to have OpenGL libraries installed (specifically, <code>libx11</code>, <code>mesa</code> and Mesa OpenGL Utility library - <code>glu</code>) for the dependency package <code>rgl</code> to work.</p></li>
@@ -422,27 +423,30 @@
 </ul>
 <p>You can get the <strong>development</strong> version of the package from <code>GitHub</code>. To see what new changes (and bug fixes) have been made to the package since the last release on <code>CRAN</code>, you can check the detailed log of changes here: <a href="https://indrajeetpatil.github.io/ggstatsplot/news/index.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/news/index.html</a></p>
 <p>If you are in hurry and want to reduce the time of installation, prefer-</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="co"># needed package to download from GitHub repo</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"remotes"</span>)
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="co"># needed package to download from GitHub repo</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
 
 <span class="co"># downloading the package from GitHub (needs `remotes` package to be installed)</span>
-<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(
-  <span class="kw">repo</span> <span class="kw">=</span> <span class="st">"IndrajeetPatil/ggstatsplot"</span>, <span class="co"># package path on GitHub</span>
-  <span class="kw">dependencies</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="co"># assumes you have already installed needed packages</span>
-  <span class="kw">quick</span> <span class="kw">=</span> <span class="fl">TRUE</span> <span class="co"># skips docs, demos, and vignettes</span>
-)</pre></div>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span>
+  repo <span class="op">=</span> <span class="st">"IndrajeetPatil/ggstatsplot"</span>, <span class="co"># package path on GitHub</span>
+  dependencies <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># assumes you have already installed needed packages</span>
+  quick <span class="op">=</span> <span class="cn">TRUE</span> <span class="co"># skips docs, demos, and vignettes</span>
+<span class="op">)</span></pre></div>
 <p>If time is not a constraint-</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(
-  <span class="kw">repo</span> <span class="kw">=</span> <span class="st">"IndrajeetPatil/ggstatsplot"</span>, <span class="co"># package path on GitHub</span>
-  <span class="kw">dependencies</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="co"># installs packages which ggstatsplot depends on</span>
-  <span class="kw">upgrade_dependencies</span> <span class="kw">=</span> <span class="fl">TRUE</span> <span class="co"># updates any out of date dependencies</span>
-)</pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span>
+  repo <span class="op">=</span> <span class="st">"IndrajeetPatil/ggstatsplot"</span>, <span class="co"># package path on GitHub</span>
+  dependencies <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># installs packages which ggstatsplot depends on</span>
+  upgrade_dependencies <span class="op">=</span> <span class="cn">TRUE</span> <span class="co"># updates any out of date dependencies</span>
+<span class="op">)</span></pre></div>
 </div>
 <div id="citation" class="section level1">
 <h1 class="hasAnchor">
 <a href="#citation" class="anchor"></a>Citation</h1>
 <p>If you want to cite this package in a scientific journal or in any other context, run the following code in your <code>R</code> console:</p>
-<div class="sourceCode" id="cb4"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span>(<span class="st">"ggstatsplot"</span>)
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span><span class="op">(</span><span class="st">"ggstatsplot"</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;   Patil, I. (2018). ggstatsplot: 'ggplot2' Based Plots with Statistical Details. CRAN. Retrieved from</span>
 <span class="co">#&gt;   https://cran.r-project.org/web/packages/ggstatsplot/index.html</span>
@@ -480,70 +484,73 @@
 <a href="#ggbetweenstats" class="anchor"></a><code>ggbetweenstats</code>
 </h2>
 <p>This function creates either a violin plot, a box plot, or a mix of two for <strong>between</strong>-group or <strong>between</strong>-condition comparisons with results from statistical tests in the subtitle. The simplest function call looks like this-</p>
-<div class="sourceCode" id="cb5"><pre class="r"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="reference/ggbetweenstats.html">ggbetweenstats</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="no">iris</span>,
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">Species</span>,
-  <span class="kw">y</span> <span class="kw">=</span> <span class="no">Sepal.Length</span>,
-  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Distribution of sepal length across Iris species"</span>
-)</pre></div>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="va">iris</span>,
+  x <span class="op">=</span> <span class="va">Species</span>,
+  y <span class="op">=</span> <span class="va">Sepal.Length</span>,
+  title <span class="op">=</span> <span class="st">"Distribution of sepal length across Iris species"</span>
+<span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats1-1.png" width="100%"></p>
 <p>Note that this function returns object of class <code>ggplot</code> and thus can be further modified using <code>ggplot2</code> functions.</p>
 <p>A number of other arguments can be specified to make this plot even more informative or change some of the default options. Additionally, this time we will use a grouping variable that has only two levels. The function will automatically switch from carrying out an ANOVA analysis to a <em>t</em>-test.</p>
 <p>The <code>type</code> (of test) argument also accepts the following abbreviations: <code>"p"</code> (for <em>parametric</em>) or <code>"np"</code> (for <em>nonparametric</em>) or <code>"r"</code> (for <em>robust</em>) or <code>"bf"</code> (for <em>Bayes Factor</em>). Additionally, the type of plot to be displayed can also be modified (<code>"box"</code>, <code>"violin"</code>, or <code>"boxviolin"</code>).</p>
 <p>A number of other arguments can be specified to make this plot even more informative or change some of the default options.</p>
-<div class="sourceCode" id="cb6"><pre class="r"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="reference/ggbetweenstats.html">ggbetweenstats</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="no">ToothGrowth</span>,
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">supp</span>,
-  <span class="kw">y</span> <span class="kw">=</span> <span class="no">len</span>,
-  <span class="kw">notch</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="co"># show notched box plot</span>
-  <span class="kw">mean.ci</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="co"># whether to display confidence interval for means</span>
-  <span class="kw">k</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="co"># number of decimal places for statistical results</span>
-  <span class="kw">outlier.tagging</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="co"># whether outliers need to be tagged</span>
-  <span class="kw">outlier.label</span> <span class="kw">=</span> <span class="no">dose</span>, <span class="co"># variable to be used for the outlier tag</span>
-  <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"Supplement type"</span>, <span class="co"># label for the x-axis variable</span>
-  <span class="kw">ylab</span> <span class="kw">=</span> <span class="st">"Tooth length"</span>, <span class="co"># label for the y-axis variable</span>
-  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"The Effect of Vitamin C on Tooth Growth"</span>, <span class="co"># title text for the plot</span>
-  <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>(), <span class="co"># choosing a different theme</span>
-  <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="co"># turn off `ggstatsplot` theme layer</span>
-  <span class="kw">package</span> <span class="kw">=</span> <span class="st">"wesanderson"</span>, <span class="co"># package from which color palette is to be taken</span>
-  <span class="kw">palette</span> <span class="kw">=</span> <span class="st">"Darjeeling1"</span> <span class="co"># choosing a different color palette</span>
-)</pre></div>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="va">ToothGrowth</span>,
+  x <span class="op">=</span> <span class="va">supp</span>,
+  y <span class="op">=</span> <span class="va">len</span>,
+  notch <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># show notched box plot</span>
+  mean.ci <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># whether to display confidence interval for means</span>
+  k <span class="op">=</span> <span class="fl">3</span>, <span class="co"># number of decimal places for statistical results</span>
+  outlier.tagging <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># whether outliers need to be tagged</span>
+  outlier.label <span class="op">=</span> <span class="va">dose</span>, <span class="co"># variable to be used for the outlier tag</span>
+  xlab <span class="op">=</span> <span class="st">"Supplement type"</span>, <span class="co"># label for the x-axis variable</span>
+  ylab <span class="op">=</span> <span class="st">"Tooth length"</span>, <span class="co"># label for the y-axis variable</span>
+  title <span class="op">=</span> <span class="st">"The Effect of Vitamin C on Tooth Growth"</span>, <span class="co"># title text for the plot</span>
+  ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span><span class="op">(</span><span class="op">)</span>, <span class="co"># choosing a different theme</span>
+  ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># turn off `ggstatsplot` theme layer</span>
+  package <span class="op">=</span> <span class="st">"wesanderson"</span>, <span class="co"># package from which color palette is to be taken</span>
+  palette <span class="op">=</span> <span class="st">"Darjeeling1"</span> <span class="co"># choosing a different color palette</span>
+<span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats2-1.png" width="100%"></p>
 <p>Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
-<div class="sourceCode" id="cb7"><pre class="r"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="reference/grouped_ggbetweenstats.html">grouped_ggbetweenstats</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(
-    <span class="kw">.data</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="reference/movies_long.html">movies_long</a></span>,
-    <span class="no">genre</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span>)
-  ),
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">mpaa</span>,
-  <span class="kw">y</span> <span class="kw">=</span> <span class="no">length</span>,
-  <span class="kw">grouping.var</span> <span class="kw">=</span> <span class="no">genre</span>, <span class="co"># grouping variable</span>
-  <span class="kw">ggsignif.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">textsize</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">tip_length</span> <span class="kw">=</span> <span class="fl">0.01</span>),
-  <span class="kw">p.adjust.method</span> <span class="kw">=</span> <span class="st">"bonferroni"</span>, <span class="co"># method for adjusting p-values for multiple comparisons</span>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/grouped_ggbetweenstats.html">grouped_ggbetweenstats</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>
+    .data <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="reference/movies_long.html">movies_long</a></span>,
+    <span class="va">genre</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span><span class="op">)</span>
+  <span class="op">)</span>,
+  x <span class="op">=</span> <span class="va">mpaa</span>,
+  y <span class="op">=</span> <span class="va">length</span>,
+  grouping.var <span class="op">=</span> <span class="va">genre</span>, <span class="co"># grouping variable</span>
+  ggsignif.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>textsize <span class="op">=</span> <span class="fl">4</span>, tip_length <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span>,
+  p.adjust.method <span class="op">=</span> <span class="st">"bonferroni"</span>, <span class="co"># method for adjusting p-values for multiple comparisons</span>
   <span class="co"># adding new components to `ggstatsplot` default</span>
-  <span class="kw">ggplot.component</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span>(<span class="kw">sec.axis</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/sec_axis.html">dup_axis</a></span>())),
-  <span class="kw">k</span> <span class="kw">=</span> <span class="fl">3</span>,
-  <span class="kw">title.prefix</span> <span class="kw">=</span> <span class="st">"Movie genre"</span>,
-  <span class="kw">caption</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html">substitute</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span>(<span class="st">"Source"</span>), <span class="st">": IMDb (Internet Movie Database)"</span>)),
-  <span class="kw">palette</span> <span class="kw">=</span> <span class="st">"default_jama"</span>,
-  <span class="kw">package</span> <span class="kw">=</span> <span class="st">"ggsci"</span>,
-  <span class="kw">plotgrid.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">2</span>),
-  <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Differences in movie length by mpaa ratings for different genres"</span>
-)</pre></div>
+  ggplot.component <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>sec.axis <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/sec_axis.html">dup_axis</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
+  k <span class="op">=</span> <span class="fl">3</span>,
+  title.prefix <span class="op">=</span> <span class="st">"Movie genre"</span>,
+  caption <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html">substitute</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span><span class="op">(</span><span class="st">"Source"</span><span class="op">)</span>, <span class="st">": IMDb (Internet Movie Database)"</span><span class="op">)</span><span class="op">)</span>,
+  palette <span class="op">=</span> <span class="st">"default_jama"</span>,
+  package <span class="op">=</span> <span class="st">"ggsci"</span>,
+  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,
+  title.text <span class="op">=</span> <span class="st">"Differences in movie length by mpaa ratings for different genres"</span>
+<span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats3-1.png" width="100%"></p>
 <div id="summary-of-tests" class="section level3">
 <h3 class="hasAnchor">
@@ -648,44 +655,46 @@
 <a href="#ggwithinstats" class="anchor"></a><code>ggwithinstats</code>
 </h2>
 <p><code>ggbetweenstats</code> function has an identical twin function <code>ggwithinstats</code> for repeated measures designs that behaves in the same fashion with a few minor tweaks introduced to properly visualize the repeated measures design. As can be seen from an example below, the only difference between the plot structure is that now the group means are connected by paths to highlight the fact that these data are paired with each other.</p>
-<div class="sourceCode" id="cb8"><pre class="r"><span class="co"># for reproducibility and data</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">WRS2</span>)
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="co"># for reproducibility and data</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/psychor/">WRS2</a></span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="reference/ggwithinstats.html">ggwithinstats</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="no">WineTasting</span>,
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">Wine</span>,
-  <span class="kw">y</span> <span class="kw">=</span> <span class="no">Taste</span>,
-  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Wine tasting"</span>,
-  <span class="kw">caption</span> <span class="kw">=</span> <span class="st">"Data source: `WRS2` R package"</span>,
-  <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span>(),
-  <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-  <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)</pre></div>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="va">WineTasting</span>,
+  x <span class="op">=</span> <span class="va">Wine</span>,
+  y <span class="op">=</span> <span class="va">Taste</span>,
+  title <span class="op">=</span> <span class="st">"Wine tasting"</span>,
+  caption <span class="op">=</span> <span class="st">"Data source: `WRS2` R package"</span>,
+  ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span><span class="op">(</span><span class="op">)</span>,
+  ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>,
+  messages <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-ggwithinstats1-1.png" width="100%"></p>
 <p>As with the <code>ggbetweenstats</code>, this function also has a <code>grouped_</code> variant that makes repeating the same analysis across a single grouping variable quicker. We will see an example with only repeated measurements-</p>
-<div class="sourceCode" id="cb9"><pre class="r"><span class="co"># common setup</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="co"># common setup</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="reference/grouped_ggwithinstats.html">grouped_ggwithinstats</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(
-    <span class="kw">.data</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="reference/bugs_long.html">bugs_long</a></span>,
-    <span class="no">region</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Europe"</span>, <span class="st">"North America"</span>),
-    <span class="no">condition</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"LDLF"</span>, <span class="st">"LDHF"</span>)
-  ),
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">condition</span>,
-  <span class="kw">y</span> <span class="kw">=</span> <span class="no">desire</span>,
-  <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"Condition"</span>,
-  <span class="kw">ylab</span> <span class="kw">=</span> <span class="st">"Desire to kill an artrhopod"</span>,
-  <span class="kw">grouping.var</span> <span class="kw">=</span> <span class="no">region</span>,
-  <span class="kw">outlier.tagging</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-  <span class="kw">outlier.label</span> <span class="kw">=</span> <span class="no">education</span>,
-  <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">hrbrthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_tw.html">theme_ipsum_tw</a></span>(),
-  <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-  <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)</pre></div>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/grouped_ggwithinstats.html">grouped_ggwithinstats</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>
+    .data <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="reference/bugs_long.html">bugs_long</a></span>,
+    <span class="va">region</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Europe"</span>, <span class="st">"North America"</span><span class="op">)</span>,
+    <span class="va">condition</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"LDLF"</span>, <span class="st">"LDHF"</span><span class="op">)</span>
+  <span class="op">)</span>,
+  x <span class="op">=</span> <span class="va">condition</span>,
+  y <span class="op">=</span> <span class="va">desire</span>,
+  xlab <span class="op">=</span> <span class="st">"Condition"</span>,
+  ylab <span class="op">=</span> <span class="st">"Desire to kill an artrhopod"</span>,
+  grouping.var <span class="op">=</span> <span class="va">region</span>,
+  outlier.tagging <span class="op">=</span> <span class="cn">TRUE</span>,
+  outlier.label <span class="op">=</span> <span class="va">education</span>,
+  ggtheme <span class="op">=</span> <span class="fu">hrbrthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_tw.html">theme_ipsum_tw</a></span><span class="op">(</span><span class="op">)</span>,
+  ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>,
+  messages <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-ggwithinstats2-1.png" width="100%"></p>
 <div id="summary-of-tests-1" class="section level3">
 <h3 class="hasAnchor">
@@ -784,15 +793,16 @@
 <a href="#ggscatterstats" class="anchor"></a><code>ggscatterstats</code>
 </h2>
 <p>This function creates a scatterplot with marginal distributions overlaid on the axes (from <code><a href="https://rdrr.io/pkg/ggExtra/man/ggMarginal.html">ggExtra::ggMarginal</a></code>) and results from statistical tests in the subtitle:</p>
-<div class="sourceCode" id="cb10"><pre class="r"><span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="reference/ggscatterstats.html">ggscatterstats</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="no"><a href="https://ggplot2.tidyverse.org/reference/msleep.html">msleep</a></span>,
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">sleep_rem</span>,
-  <span class="kw">y</span> <span class="kw">=</span> <span class="no">awake</span>,
-  <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"REM sleep (in hours)"</span>,
-  <span class="kw">ylab</span> <span class="kw">=</span> <span class="st">"Amount of time spent awake (in hours)"</span>,
-  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Understanding mammalian sleep"</span>,
-  <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)</pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/ggscatterstats.html">ggscatterstats</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html">msleep</a></span>,
+  x <span class="op">=</span> <span class="va">sleep_rem</span>,
+  y <span class="op">=</span> <span class="va">awake</span>,
+  xlab <span class="op">=</span> <span class="st">"REM sleep (in hours)"</span>,
+  ylab <span class="op">=</span> <span class="st">"Amount of time spent awake (in hours)"</span>,
+  title <span class="op">=</span> <span class="st">"Understanding mammalian sleep"</span>,
+  messages <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-ggscatterstats1-1.png" width="100%"></p>
 <p>The available marginal distributions are-</p>
 <ul>
@@ -803,56 +813,58 @@
 <li>densigram (density + histogram)</li>
 </ul>
 <p>Number of other arguments can be specified to modify this basic plot-</p>
-<div class="sourceCode" id="cb11"><pre class="r"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="reference/ggscatterstats.html">ggscatterstats</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">.data</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="reference/movies_long.html">movies_long</a></span>, <span class="no">genre</span> <span class="kw">==</span> <span class="st">"Action"</span>),
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">budget</span>,
-  <span class="kw">y</span> <span class="kw">=</span> <span class="no">rating</span>,
-  <span class="kw">type</span> <span class="kw">=</span> <span class="st">"robust"</span>, <span class="co"># type of test that needs to be run</span>
-  <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"Movie budget (in million/ US$)"</span>, <span class="co"># label for x axis</span>
-  <span class="kw">ylab</span> <span class="kw">=</span> <span class="st">"IMDB rating"</span>, <span class="co"># label for y axis</span>
-  <span class="kw">label.var</span> <span class="kw">=</span> <span class="st">"title"</span>, <span class="co"># variable for labeling data points</span>
-  <span class="kw">label.expression</span> <span class="kw">=</span> <span class="st">"rating &lt; 5 &amp; budget &gt; 100"</span>, <span class="co"># expression that decides which points to label</span>
-  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Movie budget and IMDB rating (action)"</span>, <span class="co"># title text for the plot</span>
-  <span class="kw">caption</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span>(<span class="st">"Note"</span>), <span class="st">": IMDB stands for Internet Movie DataBase"</span>)),
-  <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">hrbrthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html">theme_ipsum_ps</a></span>(), <span class="co"># choosing a different theme</span>
-  <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="co"># turn off `ggstatsplot` theme layer</span>
-  <span class="kw">marginal.type</span> <span class="kw">=</span> <span class="st">"density"</span>, <span class="co"># type of marginal distribution to be displayed</span>
-  <span class="kw">xfill</span> <span class="kw">=</span> <span class="st">"pink"</span>, <span class="co"># color fill for x-axis marginal distribution</span>
-  <span class="kw">yfill</span> <span class="kw">=</span> <span class="st">"#009E73"</span>, <span class="co"># color fill for y-axis marginal distribution</span>
-  <span class="kw">centrality.parameter</span> <span class="kw">=</span> <span class="st">"median"</span>, <span class="co"># central tendency lines to be displayed</span>
-  <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span> <span class="co"># turn off messages and notes</span>
-)</pre></div>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/ggscatterstats.html">ggscatterstats</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="reference/movies_long.html">movies_long</a></span>, <span class="va">genre</span> <span class="op">==</span> <span class="st">"Action"</span><span class="op">)</span>,
+  x <span class="op">=</span> <span class="va">budget</span>,
+  y <span class="op">=</span> <span class="va">rating</span>,
+  type <span class="op">=</span> <span class="st">"robust"</span>, <span class="co"># type of test that needs to be run</span>
+  xlab <span class="op">=</span> <span class="st">"Movie budget (in million/ US$)"</span>, <span class="co"># label for x axis</span>
+  ylab <span class="op">=</span> <span class="st">"IMDB rating"</span>, <span class="co"># label for y axis</span>
+  label.var <span class="op">=</span> <span class="st">"title"</span>, <span class="co"># variable for labeling data points</span>
+  label.expression <span class="op">=</span> <span class="st">"rating &lt; 5 &amp; budget &gt; 100"</span>, <span class="co"># expression that decides which points to label</span>
+  title <span class="op">=</span> <span class="st">"Movie budget and IMDB rating (action)"</span>, <span class="co"># title text for the plot</span>
+  caption <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span><span class="op">(</span><span class="st">"Note"</span><span class="op">)</span>, <span class="st">": IMDB stands for Internet Movie DataBase"</span><span class="op">)</span><span class="op">)</span>,
+  ggtheme <span class="op">=</span> <span class="fu">hrbrthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html">theme_ipsum_ps</a></span><span class="op">(</span><span class="op">)</span>, <span class="co"># choosing a different theme</span>
+  ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># turn off `ggstatsplot` theme layer</span>
+  marginal.type <span class="op">=</span> <span class="st">"density"</span>, <span class="co"># type of marginal distribution to be displayed</span>
+  xfill <span class="op">=</span> <span class="st">"pink"</span>, <span class="co"># color fill for x-axis marginal distribution</span>
+  yfill <span class="op">=</span> <span class="st">"#009E73"</span>, <span class="co"># color fill for y-axis marginal distribution</span>
+  centrality.parameter <span class="op">=</span> <span class="st">"median"</span>, <span class="co"># central tendency lines to be displayed</span>
+  messages <span class="op">=</span> <span class="cn">FALSE</span> <span class="co"># turn off messages and notes</span>
+<span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-ggscatterstats2-1.png" width="100%"></p>
 <p>Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable. Also, note that, as opposed to the other functions, this function does not return a <code>ggplot</code> object and any modification you want to make can be made in advance using <code>ggplot.component</code> argument (available for all functions, but especially useful for this particular function):</p>
-<div class="sourceCode" id="cb12"><pre class="r"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(
-    <span class="kw">.data</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="reference/movies_long.html">movies_long</a></span>,
-    <span class="no">genre</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span>)
-  ),
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">rating</span>,
-  <span class="kw">y</span> <span class="kw">=</span> <span class="no">length</span>,
-  <span class="kw">grouping.var</span> <span class="kw">=</span> <span class="no">genre</span>, <span class="co"># grouping variable</span>
-  <span class="kw">label.var</span> <span class="kw">=</span> <span class="no">title</span>,
-  <span class="kw">label.expression</span> <span class="kw">=</span> <span class="no">length</span> <span class="kw">&gt;</span> <span class="fl">200</span>,
-  <span class="kw">xfill</span> <span class="kw">=</span> <span class="st">"#E69F00"</span>,
-  <span class="kw">yfill</span> <span class="kw">=</span> <span class="st">"#8b3058"</span>,
-  <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"IMDB rating"</span>,
-  <span class="kw">title.prefix</span> <span class="kw">=</span> <span class="st">"Movie genre"</span>,
-  <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),
-  <span class="kw">ggplot.component</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-    <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span>(<span class="kw">breaks</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">2</span>, <span class="fl">9</span>, <span class="fl">1</span>), <span class="kw">limits</span> <span class="kw">=</span> (<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2</span>, <span class="fl">9</span>)))
-  ),
-  <span class="kw">plotgrid.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">2</span>),
-  <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Relationship between movie length by IMDB ratings for different genres"</span>
-)</pre></div>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>
+    .data <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="reference/movies_long.html">movies_long</a></span>,
+    <span class="va">genre</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span><span class="op">)</span>
+  <span class="op">)</span>,
+  x <span class="op">=</span> <span class="va">rating</span>,
+  y <span class="op">=</span> <span class="va">length</span>,
+  grouping.var <span class="op">=</span> <span class="va">genre</span>, <span class="co"># grouping variable</span>
+  label.var <span class="op">=</span> <span class="va">title</span>,
+  label.expression <span class="op">=</span> <span class="va">length</span> <span class="op">&gt;</span> <span class="fl">200</span>,
+  xfill <span class="op">=</span> <span class="st">"#E69F00"</span>,
+  yfill <span class="op">=</span> <span class="st">"#8b3058"</span>,
+  xlab <span class="op">=</span> <span class="st">"IMDB rating"</span>,
+  title.prefix <span class="op">=</span> <span class="st">"Movie genre"</span>,
+  ggtheme <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span><span class="op">(</span><span class="op">)</span>,
+  ggplot.component <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">9</span>, <span class="fl">1</span><span class="op">)</span>, limits <span class="op">=</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">9</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+  <span class="op">)</span>,
+  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,
+  title.text <span class="op">=</span> <span class="st">"Relationship between movie length by IMDB ratings for different genres"</span>
+<span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-ggscatterstats3-1.png" width="100%"></p>
 <div id="summary-of-tests-2" class="section level3">
 <h3 class="hasAnchor">
@@ -896,57 +908,60 @@
 </h2>
 <p>This function creates a pie chart for categorical or nominal variables with results from contingency table analysis (Pearson’s chi-squared test for between-subjects design and McNemar’s chi-squared test for within-subjects design) included in the subtitle of the plot. If only one categorical variable is entered, results from one-sample proportion test (i.e., a chi-squared goodness of fit test) will be displayed as a subtitle.</p>
 <p>To study an interaction between two categorical variables:</p>
-<div class="sourceCode" id="cb13"><pre class="r"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<div class="sourceCode" id="cb13"><pre class="downlit">
+<span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="reference/ggpiestats.html">ggpiestats</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="no">mtcars</span>,
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">am</span>,
-  <span class="kw">y</span> <span class="kw">=</span> <span class="no">cyl</span>,
-  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Dataset: Motor Trend Car Road Tests"</span>, <span class="co"># title for the plot</span>
-  <span class="kw">legend.title</span> <span class="kw">=</span> <span class="st">"Transmission"</span>, <span class="co"># title for the legend</span>
-  <span class="kw">caption</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html">substitute</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span>(<span class="st">"Source"</span>), <span class="st">": 1974 Motor Trend US magazine"</span>)),
-  <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)</pre></div>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="va">mtcars</span>,
+  x <span class="op">=</span> <span class="va">am</span>,
+  y <span class="op">=</span> <span class="va">cyl</span>,
+  title <span class="op">=</span> <span class="st">"Dataset: Motor Trend Car Road Tests"</span>, <span class="co"># title for the plot</span>
+  legend.title <span class="op">=</span> <span class="st">"Transmission"</span>, <span class="co"># title for the legend</span>
+  caption <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html">substitute</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span><span class="op">(</span><span class="st">"Source"</span><span class="op">)</span>, <span class="st">": 1974 Motor Trend US magazine"</span><span class="op">)</span><span class="op">)</span>,
+  messages <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-ggpiestats1-1.png" width="100%"></p>
 <p>In case of repeated measures designs, setting <code>paired = TRUE</code> will produce results from McNemar’s chi-squared test-</p>
-<div class="sourceCode" id="cb14"><pre class="r"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<div class="sourceCode" id="cb14"><pre class="downlit">
+<span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="reference/ggpiestats.html">ggpiestats</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-    <span class="st">"before"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Approve"</span>, <span class="st">"Approve"</span>, <span class="st">"Disapprove"</span>, <span class="st">"Disapprove"</span>),
-    <span class="st">"after"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Approve"</span>, <span class="st">"Disapprove"</span>, <span class="st">"Approve"</span>, <span class="st">"Disapprove"</span>),
-    <span class="kw">counts</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">794</span>, <span class="fl">150</span>, <span class="fl">86</span>, <span class="fl">570</span>),
-    <span class="kw">check.names</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-  ),
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">before</span>,
-  <span class="kw">y</span> <span class="kw">=</span> <span class="no">after</span>,
-  <span class="kw">counts</span> <span class="kw">=</span> <span class="no">counts</span>,
-  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Survey results before and after the intervention"</span>,
-  <span class="kw">label</span> <span class="kw">=</span> <span class="st">"both"</span>,
-  <span class="kw">paired</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="co"># within-subjects design</span>
-  <span class="kw">package</span> <span class="kw">=</span> <span class="st">"wesanderson"</span>,
-  <span class="kw">palette</span> <span class="kw">=</span> <span class="st">"Royal1"</span>
-)</pre></div>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+    <span class="st">"before"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Approve"</span>, <span class="st">"Approve"</span>, <span class="st">"Disapprove"</span>, <span class="st">"Disapprove"</span><span class="op">)</span>,
+    <span class="st">"after"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Approve"</span>, <span class="st">"Disapprove"</span>, <span class="st">"Approve"</span>, <span class="st">"Disapprove"</span><span class="op">)</span>,
+    counts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">794</span>, <span class="fl">150</span>, <span class="fl">86</span>, <span class="fl">570</span><span class="op">)</span>,
+    check.names <span class="op">=</span> <span class="cn">FALSE</span>
+  <span class="op">)</span>,
+  x <span class="op">=</span> <span class="va">before</span>,
+  y <span class="op">=</span> <span class="va">after</span>,
+  counts <span class="op">=</span> <span class="va">counts</span>,
+  title <span class="op">=</span> <span class="st">"Survey results before and after the intervention"</span>,
+  label <span class="op">=</span> <span class="st">"both"</span>,
+  paired <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># within-subjects design</span>
+  package <span class="op">=</span> <span class="st">"wesanderson"</span>,
+  palette <span class="op">=</span> <span class="st">"Royal1"</span>
+<span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-ggpiestats2-1.png" width="100%"></p>
 <p>Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable. Following example is a case where the theoretical question is about proportions for different levels of a single nominal variable:</p>
-<div class="sourceCode" id="cb15"><pre class="r"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<div class="sourceCode" id="cb15"><pre class="downlit">
+<span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="reference/grouped_ggpiestats.html">grouped_ggpiestats</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="reference/movies_long.html">movies_long</a></span>,
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">genre</span>,
-  <span class="kw">grouping.var</span> <span class="kw">=</span> <span class="no">mpaa</span>, <span class="co"># grouping variable</span>
-  <span class="kw">title.prefix</span> <span class="kw">=</span> <span class="st">"Movie genre"</span>, <span class="co"># prefix for the faceted title</span>
-  <span class="kw">label.repel</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="co"># repel labels (helpful for overlapping labels)</span>
-  <span class="kw">package</span> <span class="kw">=</span> <span class="st">"ggsci"</span>, <span class="co"># package from which color palette is to be taken</span>
-  <span class="kw">palette</span> <span class="kw">=</span> <span class="st">"default_ucscgb"</span>, <span class="co"># choosing a different color palette</span>
-  <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Composition of MPAA ratings for different genres"</span>
-)</pre></div>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/grouped_ggpiestats.html">grouped_ggpiestats</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="reference/movies_long.html">movies_long</a></span>,
+  x <span class="op">=</span> <span class="va">genre</span>,
+  grouping.var <span class="op">=</span> <span class="va">mpaa</span>, <span class="co"># grouping variable</span>
+  title.prefix <span class="op">=</span> <span class="st">"Movie genre"</span>, <span class="co"># prefix for the faceted title</span>
+  label.repel <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># repel labels (helpful for overlapping labels)</span>
+  package <span class="op">=</span> <span class="st">"ggsci"</span>, <span class="co"># package from which color palette is to be taken</span>
+  palette <span class="op">=</span> <span class="st">"default_ucscgb"</span>, <span class="co"># choosing a different color palette</span>
+  title.text <span class="op">=</span> <span class="st">"Composition of MPAA ratings for different genres"</span>
+<span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-ggpiestats3-1.png" width="100%"></p>
 <div id="summary-of-tests-3" class="section level3">
 <h3 class="hasAnchor">
@@ -1015,53 +1030,55 @@
 <a href="#ggbarstats" class="anchor"></a><code>ggbarstats</code>
 </h2>
 <p>In case you are not a fan of pie charts (for very good reasons), you can alternatively use <code>ggbarstats</code> function which has a similar syntax-</p>
-<div class="sourceCode" id="cb16"><pre class="r"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
+<div class="sourceCode" id="cb16"><pre class="downlit">
+<span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="reference/ggbarstats.html">ggbarstats</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="reference/movies_long.html">movies_long</a></span>,
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">mpaa</span>,
-  <span class="kw">y</span> <span class="kw">=</span> <span class="no">genre</span>,
-  <span class="kw">sampling.plan</span> <span class="kw">=</span> <span class="st">"jointMulti"</span>,
-  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"MPAA Ratings by Genre"</span>,
-  <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"movie genre"</span>,
-  <span class="kw">legend.title</span> <span class="kw">=</span> <span class="st">"MPAA rating"</span>,
-  <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">hrbrthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_pub.html">theme_ipsum_pub</a></span>(),
-  <span class="kw">ggplot.component</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_x_discrete</a></span>(<span class="kw">guide</span> <span class="kw">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_axis.html">guide_axis</a></span>(<span class="kw">n.dodge</span> <span class="kw">=</span> <span class="fl">2</span>))),
-  <span class="kw">palette</span> <span class="kw">=</span> <span class="st">"Set2"</span>,
-  <span class="kw">messages</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)</pre></div>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/ggbarstats.html">ggbarstats</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="reference/movies_long.html">movies_long</a></span>,
+  x <span class="op">=</span> <span class="va">mpaa</span>,
+  y <span class="op">=</span> <span class="va">genre</span>,
+  sampling.plan <span class="op">=</span> <span class="st">"jointMulti"</span>,
+  title <span class="op">=</span> <span class="st">"MPAA Ratings by Genre"</span>,
+  xlab <span class="op">=</span> <span class="st">"movie genre"</span>,
+  legend.title <span class="op">=</span> <span class="st">"MPAA rating"</span>,
+  ggtheme <span class="op">=</span> <span class="fu">hrbrthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_pub.html">theme_ipsum_pub</a></span><span class="op">(</span><span class="op">)</span>,
+  ggplot.component <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_x_discrete</a></span><span class="op">(</span>guide <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_axis.html">guide_axis</a></span><span class="op">(</span>n.dodge <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
+  palette <span class="op">=</span> <span class="st">"Set2"</span>,
+  messages <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-ggbarstats1-1.png" width="100%"></p>
 <p>And, needless to say, there is also a <code>grouped_</code> variant of this function-</p>
-<div class="sourceCode" id="cb17"><pre class="r"><span class="co"># setup</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<div class="sourceCode" id="cb17"><pre class="downlit">
+<span class="co"># setup</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># smaller dataset</span>
-<span class="no">df</span> <span class="kw">&lt;-</span>
-  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(
-    <span class="kw">.data</span> <span class="kw">=</span> <span class="kw pkg">forcats</span><span class="kw ns">::</span><span class="no"><a href="https://forcats.tidyverse.org/reference/gss_cat.html">gss_cat</a></span>,
-    <span class="no">race</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Black"</span>, <span class="st">"White"</span>),
-    <span class="no">relig</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Protestant"</span>, <span class="st">"Catholic"</span>, <span class="st">"None"</span>),
-    !<span class="no">partyid</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"No answer"</span>, <span class="st">"Don't know"</span>, <span class="st">"Other party"</span>)
-  )
+<span class="va">df</span> <span class="op">&lt;-</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>
+    .data <span class="op">=</span> <span class="fu">forcats</span><span class="fu">::</span><span class="va"><a href="https://forcats.tidyverse.org/reference/gss_cat.html">gss_cat</a></span>,
+    <span class="va">race</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Black"</span>, <span class="st">"White"</span><span class="op">)</span>,
+    <span class="va">relig</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Protestant"</span>, <span class="st">"Catholic"</span>, <span class="st">"None"</span><span class="op">)</span>,
+    <span class="op">!</span><span class="va">partyid</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"No answer"</span>, <span class="st">"Don't know"</span>, <span class="st">"Other party"</span><span class="op">)</span>
+  <span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="reference/grouped_ggbarstats.html">grouped_ggbarstats</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="no">df</span>,
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">relig</span>,
-  <span class="kw">y</span> <span class="kw">=</span> <span class="no">partyid</span>,
-  <span class="kw">grouping.var</span> <span class="kw">=</span> <span class="no">race</span>,
-  <span class="kw">title.prefix</span> <span class="kw">=</span> <span class="st">"Race"</span>,
-  <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"Party affiliation"</span>,
-  <span class="kw">package</span> <span class="kw">=</span> <span class="st">"wesanderson"</span>,
-  <span class="kw">palette</span> <span class="kw">=</span> <span class="st">"Darjeeling2"</span>,
-  <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(<span class="kw">base_size</span> <span class="kw">=</span> <span class="fl">12</span>),
-  <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-  <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Race, religion, and political affiliation"</span>,
-  <span class="kw">plotgrid.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">2</span>)
-)</pre></div>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/grouped_ggbarstats.html">grouped_ggbarstats</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="va">df</span>,
+  x <span class="op">=</span> <span class="va">relig</span>,
+  y <span class="op">=</span> <span class="va">partyid</span>,
+  grouping.var <span class="op">=</span> <span class="va">race</span>,
+  title.prefix <span class="op">=</span> <span class="st">"Race"</span>,
+  xlab <span class="op">=</span> <span class="st">"Party affiliation"</span>,
+  package <span class="op">=</span> <span class="st">"wesanderson"</span>,
+  palette <span class="op">=</span> <span class="st">"Darjeeling2"</span>,
+  ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span>,
+  ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>,
+  title.text <span class="op">=</span> <span class="st">"Race, religion, and political affiliation"</span>,
+  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-ggbarstats2-1.png" width="100%"></p>
 <div id="summary-of-tests-4" class="section level3">
 <h3 class="hasAnchor">
@@ -1074,50 +1091,52 @@
 <a href="#gghistostats" class="anchor"></a><code>gghistostats</code>
 </h2>
 <p>To visualize the distribution of a single variable and check if its mean is significantly different from a specified value with a one-sample test, <code>gghistostats</code> can be used.</p>
-<div class="sourceCode" id="cb18"><pre class="r"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<div class="sourceCode" id="cb18"><pre class="downlit">
+<span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="reference/gghistostats.html">gghistostats</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="no">iris</span>, <span class="co"># dataframe from which variable is to be taken</span>
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">Sepal.Length</span>, <span class="co"># numeric variable whose distribution is of interest</span>
-  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Distribution of Iris sepal length"</span>, <span class="co"># title for the plot</span>
-  <span class="kw">caption</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html">substitute</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span>(<span class="st">"Source:"</span>), <span class="st">"Ronald Fisher's Iris data set"</span>)),
-  <span class="kw">bar.measure</span> <span class="kw">=</span> <span class="st">"both"</span>,
-  <span class="kw">test.value</span> <span class="kw">=</span> <span class="fl">5</span>, <span class="co"># default value is 0</span>
-  <span class="kw">test.value.line</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="co"># display a vertical line at test value</span>
-  <span class="kw">centrality.parameter</span> <span class="kw">=</span> <span class="st">"mean"</span>, <span class="co"># which measure of central tendency is to be plotted</span>
-  <span class="kw">centrality.line.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">color</span> <span class="kw">=</span> <span class="st">"darkred"</span>), <span class="co"># aesthetics for central tendency line</span>
-  <span class="kw">binwidth</span> <span class="kw">=</span> <span class="fl">0.10</span>, <span class="co"># binwidth value (experiment)</span>
-  <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">hrbrthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_tw.html">theme_ipsum_tw</a></span>(), <span class="co"># choosing a different theme</span>
-  <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fl">FALSE</span> <span class="co"># turn off ggstatsplot theme layer</span>
-)</pre></div>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/gghistostats.html">gghistostats</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="va">iris</span>, <span class="co"># dataframe from which variable is to be taken</span>
+  x <span class="op">=</span> <span class="va">Sepal.Length</span>, <span class="co"># numeric variable whose distribution is of interest</span>
+  title <span class="op">=</span> <span class="st">"Distribution of Iris sepal length"</span>, <span class="co"># title for the plot</span>
+  caption <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html">substitute</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span><span class="op">(</span><span class="st">"Source:"</span><span class="op">)</span>, <span class="st">"Ronald Fisher's Iris data set"</span><span class="op">)</span><span class="op">)</span>,
+  bar.measure <span class="op">=</span> <span class="st">"both"</span>,
+  test.value <span class="op">=</span> <span class="fl">5</span>, <span class="co"># default value is 0</span>
+  test.value.line <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># display a vertical line at test value</span>
+  centrality.parameter <span class="op">=</span> <span class="st">"mean"</span>, <span class="co"># which measure of central tendency is to be plotted</span>
+  centrality.line.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"darkred"</span><span class="op">)</span>, <span class="co"># aesthetics for central tendency line</span>
+  binwidth <span class="op">=</span> <span class="fl">0.10</span>, <span class="co"># binwidth value (experiment)</span>
+  ggtheme <span class="op">=</span> <span class="fu">hrbrthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_tw.html">theme_ipsum_tw</a></span><span class="op">(</span><span class="op">)</span>, <span class="co"># choosing a different theme</span>
+  ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span> <span class="co"># turn off ggstatsplot theme layer</span>
+<span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-gghistostats1-1.png" width="100%"></p>
 <p>As can be seen from the plot, Bayes Factor can be attached (<code>bf.message = TRUE</code>) to assess evidence in favor of the null hypothesis.</p>
 <p>Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
-<div class="sourceCode" id="cb19"><pre class="r"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<div class="sourceCode" id="cb19"><pre class="downlit">
+<span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="reference/grouped_gghistostats.html">grouped_gghistostats</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(
-    <span class="kw">.data</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="reference/movies_long.html">movies_long</a></span>,
-    <span class="no">genre</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span>)
-  ),
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">budget</span>,
-  <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"Movies budget (in million US$)"</span>,
-  <span class="kw">type</span> <span class="kw">=</span> <span class="st">"robust"</span>, <span class="co"># use robust location measure</span>
-  <span class="kw">grouping.var</span> <span class="kw">=</span> <span class="no">genre</span>, <span class="co"># grouping variable</span>
-  <span class="kw">normal.curve</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="co"># superimpose a normal distribution curve</span>
-  <span class="kw">normal.curve.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">color</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">1</span>),
-  <span class="kw">title.prefix</span> <span class="kw">=</span> <span class="st">"Movie genre"</span>,
-  <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">ggthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span>(),
-  <span class="kw">ggplot.component</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>( <span class="co"># modify the defaults from `ggstatsplot` for each plot</span>
-    <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span>(<span class="kw">breaks</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">0</span>, <span class="fl">200</span>, <span class="fl">50</span>), <span class="kw">limits</span> <span class="kw">=</span> (<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">200</span>)))
-  ),
-  <span class="kw">plotgrid.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">2</span>),
-  <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Movies budgets for different genres"</span>
-)</pre></div>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/grouped_gghistostats.html">grouped_gghistostats</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>
+    .data <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="reference/movies_long.html">movies_long</a></span>,
+    <span class="va">genre</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span><span class="op">)</span>
+  <span class="op">)</span>,
+  x <span class="op">=</span> <span class="va">budget</span>,
+  xlab <span class="op">=</span> <span class="st">"Movies budget (in million US$)"</span>,
+  type <span class="op">=</span> <span class="st">"robust"</span>, <span class="co"># use robust location measure</span>
+  grouping.var <span class="op">=</span> <span class="va">genre</span>, <span class="co"># grouping variable</span>
+  normal.curve <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># superimpose a normal distribution curve</span>
+  normal.curve.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
+  title.prefix <span class="op">=</span> <span class="st">"Movie genre"</span>,
+  ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span><span class="op">)</span>,
+  ggplot.component <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span> <span class="co"># modify the defaults from `ggstatsplot` for each plot</span>
+    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">200</span>, <span class="fl">50</span><span class="op">)</span>, limits <span class="op">=</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">200</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+  <span class="op">)</span>,
+  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,
+  title.text <span class="op">=</span> <span class="st">"Movies budgets for different genres"</span>
+<span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-gghistostats2-1.png" width="100%"></p>
 <div id="summary-of-tests-5" class="section level3">
 <h3 class="hasAnchor">
@@ -1185,47 +1204,49 @@
 <a href="#ggdotplotstats" class="anchor"></a><code>ggdotplotstats</code>
 </h2>
 <p>This function is similar to <code>gghistostats</code>, but is intended to be used when the numeric variable also has a label.</p>
-<div class="sourceCode" id="cb20"><pre class="r"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<div class="sourceCode" id="cb20"><pre class="downlit">
+<span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="fu"><a href="reference/ggdotplotstats.html">ggdotplotstats</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">.data</span> <span class="kw">=</span> <span class="kw pkg">gapminder</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html">gapminder</a></span>, <span class="no">continent</span> <span class="kw">==</span> <span class="st">"Asia"</span>),
-  <span class="kw">y</span> <span class="kw">=</span> <span class="no">country</span>,
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">lifeExp</span>,
-  <span class="kw">test.value</span> <span class="kw">=</span> <span class="fl">55</span>,
-  <span class="kw">test.value.line</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-  <span class="kw">centrality.parameter</span> <span class="kw">=</span> <span class="st">"median"</span>,
-  <span class="kw">centrality.k</span> <span class="kw">=</span> <span class="fl">0</span>,
-  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Distribution of life expectancy in Asian continent"</span>,
-  <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"Life expectancy"</span>,
-  <span class="kw">caption</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html">substitute</a></span>(
-    <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(
-      <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span>(<span class="st">"Source"</span>),
+<span class="fu"><a href="reference/ggdotplotstats.html">ggdotplotstats</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html">gapminder</a></span>, <span class="va">continent</span> <span class="op">==</span> <span class="st">"Asia"</span><span class="op">)</span>,
+  y <span class="op">=</span> <span class="va">country</span>,
+  x <span class="op">=</span> <span class="va">lifeExp</span>,
+  test.value <span class="op">=</span> <span class="fl">55</span>,
+  test.value.line <span class="op">=</span> <span class="cn">TRUE</span>,
+  centrality.parameter <span class="op">=</span> <span class="st">"median"</span>,
+  centrality.k <span class="op">=</span> <span class="fl">0</span>,
+  title <span class="op">=</span> <span class="st">"Distribution of life expectancy in Asian continent"</span>,
+  xlab <span class="op">=</span> <span class="st">"Life expectancy"</span>,
+  caption <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html">substitute</a></span><span class="op">(</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span>
+      <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span><span class="op">(</span><span class="st">"Source"</span><span class="op">)</span>,
       <span class="st">": Gapminder dataset from https://www.gapminder.org/"</span>
-    )
-  )
-)</pre></div>
+    <span class="op">)</span>
+  <span class="op">)</span>
+<span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-ggdotplotstats1-1.png" width="100%"></p>
 <p>As with the rest of the functions in this package, there is also a <code>grouped_</code> variant of this function to facilitate looping the same operation for all levels of a single grouping variable.</p>
-<div class="sourceCode" id="cb21"><pre class="r"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<div class="sourceCode" id="cb21"><pre class="downlit">
+<span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="reference/grouped_ggdotplotstats.html">grouped_ggdotplotstats</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">.data</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="no"><a href="https://ggplot2.tidyverse.org/reference/mpg.html">mpg</a></span>, <span class="no">cyl</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"4"</span>, <span class="st">"6"</span>)),
-  <span class="kw">x</span> <span class="kw">=</span> <span class="no">cty</span>,
-  <span class="kw">y</span> <span class="kw">=</span> <span class="no">manufacturer</span>,
-  <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"city miles per gallon"</span>,
-  <span class="kw">ylab</span> <span class="kw">=</span> <span class="st">"car manufacturer"</span>,
-  <span class="kw">type</span> <span class="kw">=</span> <span class="st">"nonparametric"</span>, <span class="co"># non-parametric test</span>
-  <span class="kw">grouping.var</span> <span class="kw">=</span> <span class="no">cyl</span>, <span class="co"># grouping variable</span>
-  <span class="kw">test.value</span> <span class="kw">=</span> <span class="fl">15.5</span>,
-  <span class="kw">test.value.line</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-  <span class="kw">title.prefix</span> <span class="kw">=</span> <span class="st">"cylinder count"</span>,
-  <span class="kw">point.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">color</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">5</span>, <span class="kw">shape</span> <span class="kw">=</span> <span class="fl">13</span>),
-  <span class="kw">title.text</span> <span class="kw">=</span> <span class="st">"Fuel economy data"</span>
-)</pre></div>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/grouped_ggdotplotstats.html">grouped_ggdotplotstats</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html">mpg</a></span>, <span class="va">cyl</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"4"</span>, <span class="st">"6"</span><span class="op">)</span><span class="op">)</span>,
+  x <span class="op">=</span> <span class="va">cty</span>,
+  y <span class="op">=</span> <span class="va">manufacturer</span>,
+  xlab <span class="op">=</span> <span class="st">"city miles per gallon"</span>,
+  ylab <span class="op">=</span> <span class="st">"car manufacturer"</span>,
+  type <span class="op">=</span> <span class="st">"nonparametric"</span>, <span class="co"># non-parametric test</span>
+  grouping.var <span class="op">=</span> <span class="va">cyl</span>, <span class="co"># grouping variable</span>
+  test.value <span class="op">=</span> <span class="fl">15.5</span>,
+  test.value.line <span class="op">=</span> <span class="cn">TRUE</span>,
+  title.prefix <span class="op">=</span> <span class="st">"cylinder count"</span>,
+  point.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">5</span>, shape <span class="op">=</span> <span class="fl">13</span><span class="op">)</span>,
+  title.text <span class="op">=</span> <span class="st">"Fuel economy data"</span>
+<span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-ggdotplotstats2-1.png" width="100%"></p>
 <div id="summary-of-tests-6" class="section level3">
 <h3 class="hasAnchor">
@@ -1238,27 +1259,28 @@
 <a href="#ggcorrmat" class="anchor"></a><code>ggcorrmat</code>
 </h2>
 <p><code>ggcorrmat</code> makes a correlalogram (a matrix of correlation coefficients) with minimal amount of code. Just sticking to the defaults itself produces publication-ready correlation matrices. But, for the sake of exploring the available options, let’s change some of the defaults. For example, multiple aesthetics-related arguments can be modified to change the appearance of the correlation matrix.</p>
-<div class="sourceCode" id="cb22"><pre class="r"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<div class="sourceCode" id="cb22"><pre class="downlit">
+<span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># as a default this function outputs a correlation matrix plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="reference/ggcorrmat.html">ggcorrmat</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="no"><a href="https://ggplot2.tidyverse.org/reference/msleep.html">msleep</a></span>,
-  <span class="kw">type</span> <span class="kw">=</span> <span class="st">"robust"</span>, <span class="co"># correlation method</span>
-  <span class="kw">p.adjust.method</span> <span class="kw">=</span> <span class="st">"holm"</span>, <span class="co"># p-value adjustment method for multiple comparisons</span>
-  <span class="kw">cor.vars</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">sleep_rem</span>, <span class="no">awake</span>:<span class="no">bodywt</span>), <span class="co"># a range of variables can be selected</span>
-  <span class="kw">cor.vars.names</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html">msleep</a></span>,
+  type <span class="op">=</span> <span class="st">"robust"</span>, <span class="co"># correlation method</span>
+  p.adjust.method <span class="op">=</span> <span class="st">"holm"</span>, <span class="co"># p-value adjustment method for multiple comparisons</span>
+  cor.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">sleep_rem</span>, <span class="va">awake</span><span class="op">:</span><span class="va">bodywt</span><span class="op">)</span>, <span class="co"># a range of variables can be selected</span>
+  cor.vars.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
     <span class="st">"REM sleep"</span>, <span class="co"># variable names</span>
     <span class="st">"time awake"</span>,
     <span class="st">"brain weight"</span>,
     <span class="st">"body weight"</span>
-  ),
-  <span class="kw">matrix.type</span> <span class="kw">=</span> <span class="st">"upper"</span>, <span class="co"># type of visualization matrix</span>
-  <span class="kw">colors</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#B2182B"</span>, <span class="st">"white"</span>, <span class="st">"#4D4D4D"</span>),
-  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Correlalogram for mammals sleep dataset"</span>,
-  <span class="kw">subtitle</span> <span class="kw">=</span> <span class="st">"sleep units: hours; weight units: kilograms"</span>,
-  <span class="kw">caption</span> <span class="kw">=</span> <span class="st">"Source: `ggplot2` R package"</span>
-)</pre></div>
+  <span class="op">)</span>,
+  matrix.type <span class="op">=</span> <span class="st">"upper"</span>, <span class="co"># type of visualization matrix</span>
+  colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#B2182B"</span>, <span class="st">"white"</span>, <span class="st">"#4D4D4D"</span><span class="op">)</span>,
+  title <span class="op">=</span> <span class="st">"Correlalogram for mammals sleep dataset"</span>,
+  subtitle <span class="op">=</span> <span class="st">"sleep units: hours; weight units: kilograms"</span>,
+  caption <span class="op">=</span> <span class="st">"Source: `ggplot2` R package"</span>
+<span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-ggcorrmat1-1.png" width="100%"></p>
 <p>Two things to note:</p>
 <ul>
@@ -1266,51 +1288,53 @@
 <li><p>If <code>cor.vars</code> are not specified, all numeric variables will be used.</p></li>
 </ul>
 <p>There is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
-<div class="sourceCode" id="cb23"><pre class="r"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<div class="sourceCode" id="cb23"><pre class="downlit">
+<span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(
-    <span class="kw">.data</span> <span class="kw">=</span> <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="no"><a href="reference/movies_long.html">movies_long</a></span>,
-    <span class="no">genre</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span>)
-  ),
-  <span class="kw">cor.vars</span> <span class="kw">=</span> <span class="no">length</span>:<span class="no">votes</span>,
-  <span class="kw">colors</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#cbac43"</span>, <span class="st">"white"</span>, <span class="st">"#550000"</span>),
-  <span class="kw">grouping.var</span> <span class="kw">=</span> <span class="no">genre</span>, <span class="co"># grouping variable</span>
-  <span class="kw">k</span> <span class="kw">=</span> <span class="fl">3L</span>, <span class="co"># number of digits after decimal point</span>
-  <span class="kw">title.prefix</span> <span class="kw">=</span> <span class="st">"Movie genre"</span>,
-  <span class="kw">plotgrid.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">nrow</span> <span class="kw">=</span> <span class="fl">2</span>)
-)</pre></div>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>
+    .data <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="reference/movies_long.html">movies_long</a></span>,
+    <span class="va">genre</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span><span class="op">)</span>
+  <span class="op">)</span>,
+  cor.vars <span class="op">=</span> <span class="va">length</span><span class="op">:</span><span class="va">votes</span>,
+  colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#cbac43"</span>, <span class="st">"white"</span>, <span class="st">"#550000"</span><span class="op">)</span>,
+  grouping.var <span class="op">=</span> <span class="va">genre</span>, <span class="co"># grouping variable</span>
+  k <span class="op">=</span> <span class="fl">3L</span>, <span class="co"># number of digits after decimal point</span>
+  title.prefix <span class="op">=</span> <span class="st">"Movie genre"</span>,
+  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-ggcorrmat2-1.png" width="100%"></p>
 <p>You can also get a dataframe containing all relevant details from the statistical tests:</p>
-<div class="sourceCode" id="cb24"><pre class="r"><span class="co"># setup</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<div class="sourceCode" id="cb24"><pre class="downlit">
+<span class="co"># setup</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># dataframe in long format</span>
-<span class="fu"><a href="reference/ggcorrmat.html">ggcorrmat</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="no"><a href="https://ggplot2.tidyverse.org/reference/msleep.html">msleep</a></span>,
-  <span class="kw">type</span> <span class="kw">=</span> <span class="st">"bayes"</span>,
-  <span class="kw">output</span> <span class="kw">=</span> <span class="st">"dataframe"</span>
-)
+<span class="fu"><a href="reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html">msleep</a></span>,
+  type <span class="op">=</span> <span class="st">"bayes"</span>,
+  output <span class="op">=</span> <span class="st">"dataframe"</span>
+<span class="op">)</span>
 <span class="co">#&gt; # A tibble: 15 x 13</span>
 <span class="co">#&gt;    parameter1  parameter2     rho ci_low ci_high    pd rope_percentage prior_distribution prior_location prior_scale        bf</span>
 <span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;           &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 sleep_total sleep_rem    0.735  0.617  0.810  1              0      cauchy                          0       0.707  3.00e+ 9</span>
-<span class="co">#&gt;  2 sleep_total sleep_cycle -0.436 -0.645 -0.194  0.998          0.0225 cauchy                          0       0.707  8.85e+ 0</span>
+<span class="co">#&gt;  1 sleep_total sleep_rem    0.735  0.643  0.824  1              0      cauchy                          0       0.707  3.00e+ 9</span>
+<span class="co">#&gt;  2 sleep_total sleep_cycle -0.434 -0.649 -0.205  0.996          0.0192 cauchy                          0       0.707  8.85e+ 0</span>
 <span class="co">#&gt;  3 sleep_total awake       -1.00  -1.00  -1.00   1              0      cauchy                          0       0.707 NA       </span>
-<span class="co">#&gt;  4 sleep_total brainwt     -0.344 -0.525 -0.157  0.997          0.0222 cauchy                          0       0.707  7.29e+ 0</span>
-<span class="co">#&gt;  5 sleep_total bodywt      -0.295 -0.456 -0.142  0.997          0.0318 cauchy                          0       0.707  9.28e+ 0</span>
-<span class="co">#&gt;  6 sleep_rem   sleep_cycle -0.308 -0.539 -0.0463 0.969          0.0985 cauchy                          0       0.707  1.42e+ 0</span>
-<span class="co">#&gt;  7 sleep_rem   awake       -0.733 -0.827 -0.640  1              0      cauchy                          0       0.707  3.01e+ 9</span>
-<span class="co">#&gt;  8 sleep_rem   brainwt     -0.206 -0.413  0.0106 0.924          0.208  cauchy                          0       0.707  6.54e- 1</span>
-<span class="co">#&gt;  9 sleep_rem   bodywt      -0.313 -0.492 -0.132  0.994          0.0368 cauchy                          0       0.707  4.80e+ 0</span>
-<span class="co">#&gt; 10 sleep_cycle awake        0.440  0.213  0.659  0.992          0.0205 cauchy                          0       0.707  8.85e+ 0</span>
-<span class="co">#&gt; 11 sleep_cycle brainwt      0.823  0.716  0.910  1              0      cauchy                          0       0.707  3.80e+ 6</span>
-<span class="co">#&gt; 12 sleep_cycle bodywt       0.379  0.133  0.607  0.988          0.0385 cauchy                          0       0.707  3.76e+ 0</span>
-<span class="co">#&gt; 13 awake       brainwt      0.341  0.160  0.520  0.996          0.03   cauchy                          0       0.707  7.29e+ 0</span>
-<span class="co">#&gt; 14 awake       bodywt       0.302  0.144  0.463  0.998          0.0295 cauchy                          0       0.707  9.27e+ 0</span>
-<span class="co">#&gt; 15 brainwt     bodywt       0.925  0.892  0.955  1              0      cauchy                          0       0.707  1.58e+22</span>
+<span class="co">#&gt;  4 sleep_total brainwt     -0.341 -0.539 -0.162  0.995          0.0318 cauchy                          0       0.707  7.29e+ 0</span>
+<span class="co">#&gt;  5 sleep_total bodywt      -0.302 -0.452 -0.137  0.998          0.0275 cauchy                          0       0.707  9.28e+ 0</span>
+<span class="co">#&gt;  6 sleep_rem   sleep_cycle -0.300 -0.568 -0.0729 0.962          0.101  cauchy                          0       0.707  1.42e+ 0</span>
+<span class="co">#&gt;  7 sleep_rem   awake       -0.733 -0.821 -0.639  1              0      cauchy                          0       0.707  3.01e+ 9</span>
+<span class="co">#&gt;  8 sleep_rem   brainwt     -0.205 -0.402  0.0248 0.928          0.212  cauchy                          0       0.707  6.54e- 1</span>
+<span class="co">#&gt;  9 sleep_rem   bodywt      -0.314 -0.485 -0.123  0.994          0.0398 cauchy                          0       0.707  4.80e+ 0</span>
+<span class="co">#&gt; 10 sleep_cycle awake        0.436  0.201  0.644  0.995          0.02   cauchy                          0       0.707  8.85e+ 0</span>
+<span class="co">#&gt; 11 sleep_cycle brainwt      0.824  0.718  0.911  1              0      cauchy                          0       0.707  3.80e+ 6</span>
+<span class="co">#&gt; 12 sleep_cycle bodywt       0.385  0.152  0.612  0.991          0.039  cauchy                          0       0.707  3.76e+ 0</span>
+<span class="co">#&gt; 13 awake       brainwt      0.344  0.151  0.513  0.994          0.025  cauchy                          0       0.707  7.29e+ 0</span>
+<span class="co">#&gt; 14 awake       bodywt       0.303  0.144  0.457  0.997          0.0275 cauchy                          0       0.707  9.27e+ 0</span>
+<span class="co">#&gt; 15 brainwt     bodywt       0.926  0.893  0.956  1              0      cauchy                          0       0.707  1.58e+22</span>
 <span class="co">#&gt;    method            nobs</span>
 <span class="co">#&gt;    &lt;chr&gt;            &lt;int&gt;</span>
 <span class="co">#&gt;  1 Bayesian Pearson    61</span>
@@ -1375,32 +1399,34 @@
 <li><p>The caption will always contain diagnostic information, if available, about models that can be useful for model selection: The smaller the Akaike’s Information Criterion (<strong>AIC</strong>) and the Bayesian Information Criterion (<strong>BIC</strong>) values, the “better” the model is.</p></li>
 <li><p>The output of this function will be a <code>ggplot2</code> object and, thus, it can be further modified (e.g., change themes, etc.) with <code>ggplot2</code> functions.</p></li>
 </ul>
-<div class="sourceCode" id="cb25"><pre class="r"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<div class="sourceCode" id="cb25"><pre class="downlit">
+<span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># model</span>
-<span class="no">mod</span> <span class="kw">&lt;-</span> <span class="kw pkg">stats</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="kw">formula</span> <span class="kw">=</span> <span class="no">mpg</span> ~ <span class="no">am</span> * <span class="no">cyl</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">mtcars</span>)
+<span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">*</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="no">mod</span>)</pre></div>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-ggcoefstats1-1.png" width="100%"></p>
 <p>This default plot can be further modified to one’s liking with additional arguments (also, let’s use a different model now):</p>
-<div class="sourceCode" id="cb26"><pre class="r"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<div class="sourceCode" id="cb26"><pre class="downlit">
+<span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="reference/ggcoefstats.html">ggcoefstats</a></span>(
-  <span class="kw">x</span> <span class="kw">=</span> <span class="kw pkg">MASS</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/rlm.html">rlm</a></span>(<span class="kw">formula</span> <span class="kw">=</span> <span class="no">mpg</span> ~ <span class="no">am</span> * <span class="no">cyl</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">mtcars</span>),
-  <span class="kw">point.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">color</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="kw">shape</span> <span class="kw">=</span> <span class="fl">15</span>),
-  <span class="kw">vline.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"#CC79A7"</span>, <span class="kw">linetype</span> <span class="kw">=</span> <span class="st">"dotdash"</span>),
-  <span class="kw">stats.label.color</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>, <span class="st">"darkgreen"</span>),
-  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Car performance predicted by transmission &amp; cylinder count"</span>,
-  <span class="kw">subtitle</span> <span class="kw">=</span> <span class="st">"Source: 1974 Motor Trend US magazine"</span>,
-  <span class="kw">ggtheme</span> <span class="kw">=</span> <span class="kw pkg">hrbrthemes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html">theme_ipsum_ps</a></span>(),
-  <span class="kw">ggstatsplot.layer</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-) + <span class="co"># note the order in which the labels are entered</span>
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="kw">labels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"transmission"</span>, <span class="st">"cylinders"</span>, <span class="st">"interaction"</span>)) +
-  <span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="st">"regression coefficient"</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="kw">NULL</span>)</pre></div>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
+  x <span class="op">=</span> <span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/rlm.html">rlm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">*</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span>,
+  point.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">3</span>, shape <span class="op">=</span> <span class="fl">15</span><span class="op">)</span>,
+  vline.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span>, color <span class="op">=</span> <span class="st">"#CC79A7"</span>, linetype <span class="op">=</span> <span class="st">"dotdash"</span><span class="op">)</span>,
+  stats.label.color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>, <span class="st">"darkgreen"</span><span class="op">)</span>,
+  title <span class="op">=</span> <span class="st">"Car performance predicted by transmission &amp; cylinder count"</span>,
+  subtitle <span class="op">=</span> <span class="st">"Source: 1974 Motor Trend US magazine"</span>,
+  ggtheme <span class="op">=</span> <span class="fu">hrbrthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html">theme_ipsum_ps</a></span><span class="op">(</span><span class="op">)</span>,
+  ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span> <span class="op">+</span> <span class="co"># note the order in which the labels are entered</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"transmission"</span>, <span class="st">"cylinders"</span>, <span class="st">"interaction"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"regression coefficient"</span>, y <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-ggcoefstats2-1.png" width="100%"></p>
 <p>Most of the regression models that are supported in the underlying packages are also supported by <code>ggcoefstats</code>. For example-</p>
 <p><code>aareg</code>, <code>anova</code>, <code>aov</code>, <code>aovlist</code>, <code>Arima</code>, <code>BFBayesFactor</code>, <code>bayesx</code>, <code>bayesGARCH</code>, <code>BBmm</code>, <code>BBreg</code>, <code>bcplm</code>, <code>betamfx</code>, <code>betaor</code>, <code>bglmerMod</code>, <code>bife</code>, <code>bigglm</code>, <code>biglm</code>, <code>blavaan</code>, <code>bmlm</code>, <code>blmerMod</code>, <code>bracl</code>, <code>brglm2</code>, <code>brmsfit</code>, <code>brmultinom</code>, <code>btergm</code>, <code>cch</code>, <code>cgam</code>, <code>cgamm</code>, <code>cglm</code>, <code>clm</code>, <code>clm2</code>, <code>clmm</code>, <code>clmm2</code>, <code>coeftest</code>, <code>complmrob</code>, <code>confusionMatrix</code>, <code>coxme</code>, <code>coxph</code>, <code>coxph.penal</code>, <code>cpglm</code>, <code>cpglmm</code>, <code>crch</code>, <code>crq</code>, <code>DirichReg</code>, <code>drc</code>, <code>emmGrid</code>, <code>epi.2by2</code>, <code>ergm</code>, <code>feis</code>, <code>felm</code>, <code>fitdistr</code>, <code>flexsurvreg</code>, <code>gam</code>, <code>Gam</code>, <code>gamlss</code>, <code>garch</code>, <code>geeglm</code>, <code>glmc</code>, <code>glmerMod</code>, <code>glmmTMB</code>, <code>gls</code>, <code>glht</code>, <code>glm</code>, <code>glmm</code>, <code>glmmadmb</code>, <code>glmmPQL</code>, <code>glmRob</code>, <code>glmrob</code>, <code>glmx</code>, <code>gmm</code>, <code>hurdle</code>, <code>ivreg</code>, <code>iv_robust</code>, <code>lavaan</code>, <code>lm</code>, <code>lm.beta</code>, <code>lmerMod</code>, <code>lmerModLmerTest</code>, <code>lmodel2</code>, <code>lmRob</code>, <code>lmrob</code>, <code>lm_robust</code>, <code>logitmfx</code>, <code>logitor</code>, <code>logitsf</code>, <code>LORgee</code>, <code>lqm</code>, <code>lqmm</code>, <code>lrm</code>, <code>manova</code>, <code>maov</code>, <code>margins</code>, <code>mcmc</code>, <code>mcmc.list</code>, <code>MCMCglmm</code>, <code>mclogit</code>, <code>mmclogit</code>, <code>mediate</code>, <code>metafor</code>, <code>metaplus</code>, <code>mixor</code>, <code>mjoint</code>, <code>mle2</code>, <code>mlm</code>, <code>multinom</code>, <code>negbin</code>, <code>negbinmfx</code>, <code>negbinirr</code>, <code>nlmerMod</code>, <code>nlrq</code>, <code>nlreg</code>, <code>nls</code>, <code>orcutt</code>, <code>orm</code>, <code>plm</code>, <code>poissonmfx</code>, <code>poissonirr</code>, <code>polr</code>, <code>ridgelm</code>, <code>rjags</code>, <code>rlm</code>, <code>rlmerMod</code>, <code>robmixglm</code>, <code>rq</code>, <code>rqss</code>, <code>semLm</code>, <code>semLme</code>, <code>slm</code>, <code>speedglm</code>, <code>speedlm</code>, <code>stanfit</code>, <code>stanreg</code>, <code>survreg</code>, <code>svyglm</code>, <code>svyolr</code>, <code>svyglm</code>, <code>tobit</code>, <code>truncreg</code>, <code>vgam</code>, <code>vglm</code>, <code>wbgee</code>, <code>wblm</code>, <code>zcpglm</code>, <code>zeroinfl</code>, etc.</p>
@@ -1412,7 +1438,7 @@
 <a href="#combine_plots" class="anchor"></a><code>combine_plots</code>
 </h2>
 <p>The full power of <code>ggstatsplot</code> can be leveraged with a functional programming package like <a href="https://purrr.tidyverse.org/"><code>purrr</code></a> that replaces <code>for</code> loops with code that is both more succinct and easier to read and, therefore, <code>purrr</code> should be preferrred 😻. (Another old school option to do this effectively is using the <code>plyr</code> package.)</p>
-<p>In such cases, <code>ggstatsplot</code> contains a helper function <code>combine_plots</code> to combine multiple plots, which can be useful for combining a list of plots produced with <code>purrr</code>. This is a wrapper around <code><a href="https://rdrr.io/pkg/cowplot/man/plot_grid.html">cowplot::plot_grid</a></code> and lets you combine multiple plots and add a combination of title, caption, and annotation texts with suitable defaults.</p>
+<p>In such cases, <code>ggstatsplot</code> contains a helper function <code>combine_plots</code> to combine multiple plots, which can be useful for combining a list of plots produced with <code>purrr</code>. This is a wrapper around <code><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">cowplot::plot_grid</a></code> and lets you combine multiple plots and add a combination of title, caption, and annotation texts with suitable defaults.</p>
 <p>For examples (both with <code>plyr</code> and <code>purrr</code>), see the associated vignette- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html</a></p>
 </div>
 <div id="using-ggstatsplot-statistical-details-with-custom-plots" class="section level2">
@@ -1420,42 +1446,42 @@
 <a href="#using-ggstatsplot-statistical-details-with-custom-plots" class="anchor"></a>Using <code>ggstatsplot</code> statistical details with custom plots</h2>
 <p>Sometimes you may not like the default plots produced by <code>ggstatsplot</code>. In such cases, you can use other <strong>custom</strong> plots (from <code>ggplot2</code> or other plotting packages) and still use <code>ggstatsplot</code> functions to display results from relevant statistical test.</p>
 <p>For example, in the following chunk, we will create plot (<em>ridgeplot</em>) using <code>ggridges</code> package and use <code>ggstatsplot</code> function for extracting results.</p>
-<div class="sourceCode" id="cb27"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
-
+<div class="sourceCode" id="cb27"><pre class="downlit">
 <span class="co"># loading the needed libraries</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggridges</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggstatsplot</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/ggridges">ggridges</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
 <span class="co"># using `ggstatsplot` to get call with statistical results</span>
-<span class="no">stats_results</span> <span class="kw">&lt;-</span>
-  <span class="kw pkg">ggstatsplot</span><span class="kw ns">::</span><span class="fu"><a href="reference/ggbetweenstats.html">ggbetweenstats</a></span>(
-    <span class="kw">data</span> <span class="kw">=</span> <span class="no">morley</span>,
-    <span class="kw">x</span> <span class="kw">=</span> <span class="no">Expt</span>,
-    <span class="kw">y</span> <span class="kw">=</span> <span class="no">Speed</span>,
-    <span class="kw">output</span> <span class="kw">=</span> <span class="st">"subtitle"</span>
-  )
+<span class="va">stats_results</span> <span class="op">&lt;-</span>
+  <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
+    data <span class="op">=</span> <span class="va">morley</span>,
+    x <span class="op">=</span> <span class="va">Expt</span>,
+    y <span class="op">=</span> <span class="va">Speed</span>,
+    output <span class="op">=</span> <span class="st">"subtitle"</span>
+  <span class="op">)</span>
 
 <span class="co"># using `ggridges` to create plot</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">morley</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">Speed</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="no">Expt</span>), <span class="kw">fill</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="no">Expt</span>))) +
-  <span class="fu"><a href="https://rdrr.io/pkg/ggridges/man/geom_density_ridges.html">geom_density_ridges</a></span>(
-    <span class="kw">jittered_points</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-    <span class="kw">quantile_lines</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-    <span class="kw">scale</span> <span class="kw">=</span> <span class="fl">0.9</span>,
-    <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.7</span>,
-    <span class="kw">vline_size</span> <span class="kw">=</span> <span class="fl">1</span>,
-    <span class="kw">vline_color</span> <span class="kw">=</span> <span class="st">"red"</span>,
-    <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">0.4</span>,
-    <span class="kw">point_alpha</span> <span class="kw">=</span> <span class="fl">1</span>,
-    <span class="kw">position</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggridges/man/position_raincloud.html">position_raincloud</a></span>(<span class="kw">adjust_vlines</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-  ) + <span class="co"># adding annotations</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(
-    <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Michelson-Morley experiments"</span>,
-    <span class="kw">subtitle</span> <span class="kw">=</span> <span class="no">stats_results</span>,
-    <span class="kw">x</span> <span class="kw">=</span> <span class="st">"Speed of light"</span>,
-    <span class="kw">y</span> <span class="kw">=</span> <span class="st">"Experiment number"</span>
-  ) + <span class="co"># remove the legend</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="kw">legend.position</span> <span class="kw">=</span> <span class="st">"none"</span>)</pre></div>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">morley</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Speed</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">Expt</span><span class="op">)</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">Expt</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://wilkelab.org/ggridges/reference/geom_density_ridges.html">geom_density_ridges</a></span><span class="op">(</span>
+    jittered_points <span class="op">=</span> <span class="cn">TRUE</span>,
+    quantile_lines <span class="op">=</span> <span class="cn">TRUE</span>,
+    scale <span class="op">=</span> <span class="fl">0.9</span>,
+    alpha <span class="op">=</span> <span class="fl">0.7</span>,
+    vline_size <span class="op">=</span> <span class="fl">1</span>,
+    vline_color <span class="op">=</span> <span class="st">"red"</span>,
+    point_size <span class="op">=</span> <span class="fl">0.4</span>,
+    point_alpha <span class="op">=</span> <span class="fl">1</span>,
+    position <span class="op">=</span> <span class="fu"><a href="https://wilkelab.org/ggridges/reference/position_raincloud.html">position_raincloud</a></span><span class="op">(</span>adjust_vlines <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+  <span class="op">)</span> <span class="op">+</span> <span class="co"># adding annotations</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>
+    title <span class="op">=</span> <span class="st">"Michelson-Morley experiments"</span>,
+    subtitle <span class="op">=</span> <span class="va">stats_results</span>,
+    x <span class="op">=</span> <span class="st">"Speed of light"</span>,
+    y <span class="op">=</span> <span class="st">"Experiment number"</span>
+  <span class="op">)</span> <span class="op">+</span> <span class="co"># remove the legend</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-ridgeplot-1.png" width="100%"></p>
 </div>
 </div>
@@ -1464,9 +1490,9 @@
 <a href="#usage-and-syntax-simplicity" class="anchor"></a>Usage and syntax simplicity</h1>
 <p>As seen from these examples, <code>ggstatsplot</code> relies on non-standard evaluation (NSE) - implemented via <code>rlang</code> - i.e., rather than looking at the values of arguments (<code>x</code>, <code>y</code>), it instead looks at their expressions. Therefore, the syntax is simpler and follows the following principles-</p>
 <ul>
-<li>When a given function depends on variables in a dataframe, <code>data</code> argument must always be specified.</li>
-<li>The <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> operator cannot be used to specify variables in a dataframe.</li>
-<li>All functions accept both string (<code>x = "var1"</code>) and symbol (<code>x = var1</code>) arguments.</li>
+<li><p>When a given function depends on variables in a dataframe, <code>data</code> argument must always be specified.</p></li>
+<li><p>The <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> operator cannot be used to specify variables in a dataframe.</p></li>
+<li><p>All functions accept both string (<code>x = "var1"</code>) and symbol (<code>x = var1</code>) arguments.</p></li>
 </ul>
 <p>These set principles combined with the fact that almost all functions produce publication-ready plots that require very few arguments if one finds the aesthetic and statistical defaults satisfying make the syntax much less cognitively demanding and easy to remember/reconstruct.</p>
 <p><img src="reference/figures/arguments.png" align="center"></p>
@@ -1602,7 +1628,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

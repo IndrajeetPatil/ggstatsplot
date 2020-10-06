@@ -78,15 +78,13 @@ cat_counter <- function(data, x, y = NULL, ...) {
   purrr::discard(.x = dots, .p = rlang::quo_is_null)
 
   # creating a dataframe with counts
-  return(
-    data %>%
-      dplyr::group_by_at(.tbl = ., .vars = dots, .drop = TRUE) %>%
-      dplyr::summarize(.data = ., counts = dplyr::n()) %>%
-      dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
-      dplyr::ungroup(x = .) %>%
-      dplyr::arrange(.data = ., dplyr::desc(!!rlang::ensym(x))) %>%
-      dplyr::filter(.data = ., counts != 0L)
-  )
+  data %>%
+    dplyr::group_by_at(.tbl = ., .vars = dots, .drop = TRUE) %>%
+    dplyr::summarize(.data = ., counts = dplyr::n()) %>%
+    dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
+    dplyr::ungroup(x = .) %>%
+    dplyr::arrange(.data = ., dplyr::desc(!!rlang::ensym(x))) %>%
+    dplyr::filter(.data = ., counts != 0L)
 }
 
 #' @noRd

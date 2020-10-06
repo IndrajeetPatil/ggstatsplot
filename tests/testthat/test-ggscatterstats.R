@@ -137,35 +137,20 @@ testthat::test_that(
         messages = FALSE
       )
 
+    # subtitle
+    set.seed(123)
+    p_cap <-
+      statsExpressions::bf_corr_test(
+        data = ggplot2::msleep,
+        x = "sleep_total",
+        y = bodywt,
+        caption = "ggplot2 dataset",
+        messages = FALSE,
+        output = "caption"
+      )
+
     # checking plot labels
-    testthat::expect_identical(
-      pb$plot$labels$caption,
-      ggplot2::expr(atop(
-        displaystyle("ggplot2 dataset"),
-        expr = paste(
-          "log"["e"],
-          "(BF"["01"],
-          ") = ",
-          "-2.23",
-          ", ",
-          widehat(italic(rho))["median"]^
-            "posterior",
-          " = ",
-          "-0.30",
-          ", CI"["95%"]^"HDI",
-          " [",
-          "-0.49",
-          ", ",
-          "-0.11",
-          "]",
-          ", ",
-          italic("r")["Cauchy"]^
-            "JZS",
-          " = ",
-          "0.71"
-        )
-      ))
-    )
+    testthat::expect_identical(pb$plot$labels$caption, p_cap)
     testthat::expect_identical(p$plot_env$title, "Mammalian sleep")
     testthat::expect_identical(p$plot_env$subtitle, p_subtitle)
     testthat::expect_identical(pb$plot$labels$x, "sleep (total)")

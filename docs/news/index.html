@@ -87,7 +87,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.1</span>
       </span>
     </div>
 
@@ -196,9 +196,9 @@
       <small>Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="ggstatsplot-0609000" class="section level1">
-<h1 class="page-header" data-toc-text="0.6.0.9000">
-<a href="#ggstatsplot-0609000" class="anchor"></a>ggstatsplot 0.6.0.9000<small> Unreleased </small>
+    <div id="ggstatsplot-061" class="section level1">
+<h1 class="page-header" data-toc-text="0.6.1">
+<a href="#ggstatsplot-061" class="anchor"></a>ggstatsplot 0.6.1<small> Unreleased </small>
 </h1>
 <p>MAJOR CHANGES</p>
 <ul>
@@ -406,7 +406,7 @@
 </ul>
 <p>MINOR</p>
 <ul>
-<li><p><code>ggcoefstats</code> now uses <code><a href="https://rdrr.io/pkg/parameters/man/p_value.html">parameters::p_value</a></code> instead of <code>sjstats::p_value</code>, as requested by the maintainer of that package. This might lead to differences in <em>p</em>-values for <code>lmer</code> models.</p></li>
+<li><p><code>ggcoefstats</code> now uses <code><a href="https://easystats.github.io/parameters/reference/p_value.html">parameters::p_value</a></code> instead of <code>sjstats::p_value</code>, as requested by the maintainer of that package. This might lead to differences in <em>p</em>-values for <code>lmer</code> models.</p></li>
 <li><p>More models supported in <code>ggcoefstats</code>: <code>blavaan</code>, <code>bracl</code>, <code>brglm2</code>, <code>glmc</code>, <code>lavaan</code>, <code>nlreg</code>, <code>slm</code>, <code>wbgee</code>.</p></li>
 <li><p><code>ggcoefstats</code> gains <code>only.significant</code> argument to only display display stats labels for significant effects. This can be helpful when a large number of regression coefficients are to be displayed in a single plot.</p></li>
 </ul>
@@ -454,7 +454,7 @@
 <li><p>New dataset included: <code>bugs_long</code>, for repeated measures designs with <code>NA</code>s present in the data.</p></li>
 <li><p><code>ggstatsplot</code> now uses <code>rcompanion</code> to compute Spearman’s <em>rho</em> and Kendall’s <em>W</em>. Therefore, <code>DescTools</code> is removed from dependencies.</p></li>
 <li><p><code>ggcoefstats</code> supports following objects: <code>bglmerMod</code>, <code>blmerMod</code>, <code>lme</code>, <code>mclogit</code>, <code>mmclogit</code>, <code>tobit</code>, <code>wblm</code>.</p></li>
-<li><p><code>ggcoefstats</code> now respects <code>conf.int</code>. It internally always defaulted to <code>conf.int = TRUE</code> in <code><a href="https://broom.tidymodels.org/reference/reexports.html">broom::tidy</a></code> irrespective of what was specified by the user.</p></li>
+<li><p><code>ggcoefstats</code> now respects <code>conf.int</code>. It internally always defaulted to <code>conf.int = TRUE</code> in <code><a href="https://rdrr.io/pkg/generics/man/tidy.html">broom::tidy</a></code> irrespective of what was specified by the user.</p></li>
 <li><p>It was painfully confusing for a lot of users what exactly the asterisks in each facet of <code>ggpiestats</code> signified. So instead now <code>ggpiestats</code> displays more detailed results from a goodness of fit (gof) test. No such change is made for <code>ggbarstats</code> because there is no space to include more details above the bar.</p></li>
 <li><p>Removed <code>conf.method</code> and <code>conf.type</code> arguments for <code>ggcoefstats</code>. Also, <code>p.kr</code> argument removed because <code>ggcoefstats</code> will begin to rely on <code>parameters</code> instead of <code>sjstats</code> package to compute <em>p</em>-values for some regression models.</p></li>
 </ul>
@@ -716,7 +716,7 @@
 <p>MAJOR CHANGES</p>
 <ul>
 <li><p>New function: <code>ggcoefstats</code> for displaying model coefficients.</p></li>
-<li><p>All functions now have <code>ggtheme</code> argument that can be used to change the default theme, which has now been changed from <code>theme_grey()</code> to <code>theme_bw()</code>.</p></li>
+<li><p>All functions now have <code>ggtheme</code> argument that can be used to change the default theme, which has now been changed from <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey()</a></code> to <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw()</a></code>.</p></li>
 <li><p>The robust correlation is no longer <code><a href="https://rdrr.io/pkg/MASS/man/rlm.html">MASS::rlm</a></code>, but percentage bend correlation, as implemented in <code><a href="https://rdrr.io/pkg/WRS2/man/pbcor.html">WRS2::pbcor</a></code>. This was done to be consistent across different functions. <code>ggcorrmat</code> also uses percentage bend correlation as the robust correlation measure. This also means that <code>ggstatsplot</code> no longer imports <code>MASS</code> and <code>sfsmisc</code>.</p></li>
 <li><p>The <code>data</code> argument is no longer <code>NULL</code> for all functions, except <code>gghistostats</code>. In other words, the user <strong>must</strong> provide a dataframe from which variables or formulas should be selected.</p></li>
 <li><p>All subtitles containing results now also show sample size information (<em>n</em>). To adjust for the inflated length of the subtitle, the default subtitle text size has been changed from <code>12</code> to <code>11</code>.</p></li>
@@ -815,7 +815,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

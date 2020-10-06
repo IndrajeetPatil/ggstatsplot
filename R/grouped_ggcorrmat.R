@@ -76,8 +76,7 @@ grouped_ggcorrmat <- function(data,
 
   # creating a list for grouped analysis
   df <-
-    data %>%
-    grouped_list(data = ., grouping.var = {{ grouping.var }}) %>%
+    grouped_list(data = data, grouping.var = {{ grouping.var }}) %>%
     purrr::map(.x = ., .f = ~ dplyr::select(.x, -{{ grouping.var }}))
 
   # ===================== grouped analysis ===================================
@@ -85,7 +84,7 @@ grouped_ggcorrmat <- function(data,
   # creating a list of results
   plotlist_purrr <-
     purrr::pmap(
-      .l = list(data = df, title = paste(title.prefix, ": ", names(df), sep = "")),
+      .l = list(data = df, title = paste0(title.prefix, ": ", names(df))),
       .f = ggstatsplot::ggcorrmat,
       cor.vars.names = cor.vars.names,
       output = output,

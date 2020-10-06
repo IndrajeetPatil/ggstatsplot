@@ -22,7 +22,6 @@
 #' @inherit ggscatterstats return details
 #'
 #' @examples
-#' \donttest{
 #' # to ensure reproducibility
 #' set.seed(123)
 #' library(ggstatsplot)
@@ -69,7 +68,6 @@
 #'   title.prefix = "Genre",
 #'   caption.text = "All movies have IMDB rating equal to 7."
 #' )
-#' }
 #' @export
 
 # defining the function
@@ -109,7 +107,7 @@ grouped_ggscatterstats <- function(data,
   # creating a list of plots using `pmap`
   plotlist_purrr <-
     purrr::pmap(
-      .l = list(data = df, title = paste(title.prefix, ": ", names(df), sep = "")),
+      .l = list(data = df, title = paste0(title.prefix, ": ", names(df))),
       .f = ggstatsplot::ggscatterstats,
       # put common parameters here
       x = {{ x }},

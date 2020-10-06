@@ -1017,9 +1017,8 @@ For example, in the following chunk, we will create plot (*ridgeplot*) using
 `ggridges` package and use `ggstatsplot` function for extracting results.
 
 ```{r ridgeplot, fig.height = 10, fig.width = 7}
-set.seed(123)
-
 # loading the needed libraries
+set.seed(123)
 library(ggridges)
 library(ggplot2)
 library(ggstatsplot)
@@ -1064,7 +1063,9 @@ syntax is simpler and follows the following principles-
 
   - When a given function depends on variables in a dataframe, `data` argument
     must always be specified.
+    
   - The `$` operator cannot be used to specify variables in a dataframe.
+  
   - All functions accept both string (`x = "var1"`) and symbol (`x = var1`)
     arguments.
 

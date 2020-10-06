@@ -90,7 +90,7 @@ subtitle." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.1</span>
       </span>
     </div>
 
@@ -206,39 +206,39 @@ statistical details from one-sample test included in the plot as a
 subtitle.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ggdotplotstats</span>(
-  <span class='no'>data</span>,
-  <span class='no'>x</span>,
-  <span class='no'>y</span>,
-  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>,
-  <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
-  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"g"</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>point.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>shape</span> <span class='kw'>=</span> <span class='fl'>16</span>),
-  <span class='kw'>test.k</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>test.value.line.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1</span>),
-  <span class='kw'>test.value.label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>),
-  <span class='kw'>centrality.parameter</span> <span class='kw'>=</span> <span class='st'>"mean"</span>,
-  <span class='kw'>centrality.k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>centrality.line.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1</span>),
-  <span class='kw'>centrality.label.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>),
-  <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
-  <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>ggdotplotstats</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  <span class='va'>x</span>,
+  <span class='va'>y</span>,
+  xlab <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ylab <span class='op'>=</span> <span class='cn'>NULL</span>,
+  title <span class='op'>=</span> <span class='cn'>NULL</span>,
+  subtitle <span class='op'>=</span> <span class='cn'>NULL</span>,
+  caption <span class='op'>=</span> <span class='cn'>NULL</span>,
+  type <span class='op'>=</span> <span class='st'>"parametric"</span>,
+  test.value <span class='op'>=</span> <span class='fl'>0</span>,
+  bf.prior <span class='op'>=</span> <span class='fl'>0.707</span>,
+  bf.message <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  effsize.type <span class='op'>=</span> <span class='st'>"g"</span>,
+  conf.level <span class='op'>=</span> <span class='fl'>0.95</span>,
+  nboot <span class='op'>=</span> <span class='fl'>100</span>,
+  k <span class='op'>=</span> <span class='fl'>2</span>,
+  results.subtitle <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  point.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"black"</span>, size <span class='op'>=</span> <span class='fl'>3</span>, shape <span class='op'>=</span> <span class='fl'>16</span><span class='op'>)</span>,
+  test.k <span class='op'>=</span> <span class='fl'>0</span>,
+  test.value.line <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  test.value.line.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>,
+  test.value.label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>,
+  centrality.parameter <span class='op'>=</span> <span class='st'>"mean"</span>,
+  centrality.k <span class='op'>=</span> <span class='fl'>2</span>,
+  centrality.line.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"blue"</span>, size <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>,
+  centrality.label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"blue"</span>, size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>,
+  ggplot.component <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ggtheme <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span>,
+  ggstatsplot.layer <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  output <span class='op'>=</span> <span class='st'>"plot"</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -428,25 +428,26 @@ dataframe containing results from proportion tests.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='co'># for reproducibility</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
 
 <span class='co'># plot</span>
-<span class='fu'>ggdotplotstats</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/mpg.html'>mpg</a></span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>cty</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>manufacturer</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.99</span>,
-  <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>15</span>,
-  <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>test.line.labeller</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>centrality.parameter</span> <span class='kw'>=</span> <span class='st'>"median"</span>,
-  <span class='kw'>centrality.k</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Fuel economy data"</span>,
-  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"city miles per gallon"</span>,
-  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>substitute</a></span>(
-    <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='fu'><a href='https://rdrr.io/r/grDevices/plotmath.html'>italic</a></span>(<span class='st'>"Source"</span>), <span class='st'>": EPA dataset on http://fueleconomy.gov"</span>)
-  )
-)</div><div class='img'><img src='ggdotplotstats-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+<span class='fu'>ggdotplotstats</span><span class='op'>(</span>
+  data <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='va'><a href='https://ggplot2.tidyverse.org/reference/mpg.html'>mpg</a></span>,
+  x <span class='op'>=</span> <span class='va'>cty</span>,
+  y <span class='op'>=</span> <span class='va'>manufacturer</span>,
+  conf.level <span class='op'>=</span> <span class='fl'>0.99</span>,
+  test.value <span class='op'>=</span> <span class='fl'>15</span>,
+  test.value.line <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  test.line.labeller <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  centrality.parameter <span class='op'>=</span> <span class='st'>"median"</span>,
+  centrality.k <span class='op'>=</span> <span class='fl'>0</span>,
+  title <span class='op'>=</span> <span class='st'>"Fuel economy data"</span>,
+  xlab <span class='op'>=</span> <span class='st'>"city miles per gallon"</span>,
+  caption <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>substitute</a></span><span class='op'>(</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/grDevices/plotmath.html'>italic</a></span><span class='op'>(</span><span class='st'>"Source"</span><span class='op'>)</span>, <span class='st'>": EPA dataset on http://fueleconomy.gov"</span><span class='op'>)</span>
+  <span class='op'>)</span>
+<span class='op'>)</span>
+</div><div class='img'><img src='ggdotplotstats-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -463,7 +464,7 @@ dataframe containing results from proportion tests.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

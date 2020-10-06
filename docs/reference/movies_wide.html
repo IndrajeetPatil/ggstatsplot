@@ -88,7 +88,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.1</span>
       </span>
     </div>
 
@@ -202,7 +202,7 @@
     <p>Movie information and user ratings from IMDB.com (wide format).</p>
     </div>
 
-    <pre class="usage"><span class='no'>movies_wide</span></pre>
+    <pre class="usage"><span class='va'>movies_wide</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
@@ -235,7 +235,9 @@ rated by at least one imdb user.  Small categories such as documentaries
 and NC-17 movies were removed.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='no'>movies_wide</span>)</div><div class='output co'>#&gt; [1] 1579   13</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>movies_wide</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 13</span><span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>movies_wide</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 1579   13</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>movies_wide</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 13</span><span>
 #&gt;   </span><span style='font-weight: bold;'>title</span><span>                       </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>length</span><span> </span><span style='font-weight: bold;'>budget</span><span> </span><span style='font-weight: bold;'>rating</span><span> </span><span style='font-weight: bold;'>votes</span><span> </span><span style='font-weight: bold;'>mpaa</span><span>  </span><span style='font-weight: bold;'>Action</span><span>
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span> 'Til There Was You          </span><span style='text-decoration: underline;'>1</span><span>997    113   23      4.8   799 PG-13      0
@@ -251,7 +253,8 @@ and NC-17 movies were removed.</p>
 #&gt; </span><span style='color: #BCBCBC;'>3</span><span>         0      1     0       0        1
 #&gt; </span><span style='color: #BCBCBC;'>4</span><span>         0      1     1       1        3
 #&gt; </span><span style='color: #BCBCBC;'>5</span><span>         0      0     0       0        1
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span>         0      0     1       0        1</div><div class='input'><span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>(<span class='no'>movies_wide</span>)</div><div class='output co'>#&gt; Rows: 1,579
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span>         0      0     1       0        1</div><div class='input'><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>movies_wide</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Rows: 1,579
 #&gt; Columns: 13
 #&gt; $ </span><span style='font-weight: bold;'>title    </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "'Til There Was You", "10 Things I Hate About You", "100 ...
 #&gt; $ </span><span style='font-weight: bold;'>year     </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> 1997, 1999, 2002, 2004, 1999, 2001, 1972, 2003, 1999, 200...
@@ -281,7 +284,7 @@ and NC-17 movies were removed.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -21,7 +21,9 @@ ggcoefstats_label_maker <- function(tidy_df,
   #----------------------- p-value cleanup ------------------------------------
 
   # formatting the p-values
-  tidy_df %<>% signif_column(data = ., p = p.value)
+  tidy_df %<>%
+    signif_column(data = ., p = p.value) %>%
+    dplyr::rowwise()
 
   #--------------------------- t-statistic ------------------------------------
 
@@ -31,7 +33,6 @@ ggcoefstats_label_maker <- function(tidy_df,
     if ("df.error" %in% names(tidy_df)) {
       # adding a new column with residual `df`
       tidy_df %<>%
-        dplyr::rowwise() %>%
         dplyr::mutate(
           label = paste0(
             "list(~widehat(italic(beta))==",
@@ -49,7 +50,6 @@ ggcoefstats_label_maker <- function(tidy_df,
     } else {
       # for objects like `rlm` there will be no parameter
       tidy_df %<>%
-        dplyr::rowwise() %>%
         dplyr::mutate(
           label = paste0(
             "list(~widehat(italic(beta))==",
@@ -69,7 +69,6 @@ ggcoefstats_label_maker <- function(tidy_df,
   # if the statistic is z-value
   if (statistic == "z") {
     tidy_df %<>%
-      dplyr::rowwise() %>%
       dplyr::mutate(
         label = paste0(
           "list(~widehat(italic(beta))==",
@@ -88,7 +87,7 @@ ggcoefstats_label_maker <- function(tidy_df,
   # if the statistic is chi^2-value
   if (statistic %in% c("c", "chi")) {
     tidy_df %<>%
-      dplyr::rowwise() %>%
+
       dplyr::mutate(
         label = paste0(
           "list(~widehat(italic(beta))==",
@@ -124,7 +123,6 @@ ggcoefstats_label_maker <- function(tidy_df,
 
     # which effect size is needed?
     tidy_df %<>%
-      dplyr::rowwise() %>%
       dplyr::mutate(
         label = paste0(
           "list(~italic(F)",
