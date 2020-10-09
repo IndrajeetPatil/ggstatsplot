@@ -28,7 +28,7 @@ testthat::test_that(
     # subtitle used
     set.seed(123)
     p_subtitle <-
-      statsExpressions::expr_onesample_proptest(
+      statsExpressions::expr_contingency_tab(
         data = ggplot2::msleep,
         x = "vore",
         nboot = 25
