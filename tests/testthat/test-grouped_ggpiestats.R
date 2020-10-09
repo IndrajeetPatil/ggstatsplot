@@ -99,91 +99,18 @@ testthat::test_that(
         messages = FALSE
       ))
 
-    # tests
-    testthat::expect_equal(
-      ls_results,
-      list(
-        Other = ggplot2::expr(paste(
-          NULL,
-          chi["Pearson"]^2,
-          "(",
-          "40",
-          ") = ",
-          "40.27",
-          ", ",
-          italic("p"),
-          " = ",
-          "0.458",
-          ", ",
-          widehat(italic("V"))["Cramer"],
-          " = ",
-          "0.01",
-          ", CI"["95%"],
-          " [",
-          "-0.30",
-          ", ",
-          "-0.02",
-          "]",
-          ", ",
-          italic("n")["obs"],
-          " = ",
-          182L
-        )),
-        Black = ggplot2::expr(paste(
-          NULL,
-          chi["Pearson"]^
-            2,
-          "(",
-          "32",
-          ") = ",
-          "25.11",
-          ", ",
-          italic("p"),
-          " = ",
-          "0.801",
-          ", ",
-          widehat(italic("V"))["Cramer"],
-          " = ",
-          "0.00",
-          ", CI"["95%"],
-          " [",
-          "-0.17",
-          ", ",
-          "0.01",
-          "]",
-          ", ",
-          italic("n")["obs"],
-          " = ",
-          317L
-        )),
-        White = ggplot2::expr(paste(
-          NULL,
-          chi["Pearson"]^
-            2,
-          "(",
-          "52",
-          ") = ",
-          "109.65",
-          ", ",
-          italic("p"),
-          " = ",
-          "5.33e-06",
-          ", ",
-          widehat(italic("V"))["Cramer"],
-          " = ",
-          "0.09",
-          ", CI"["95%"],
-          " [",
-          "0.03",
-          ", ",
-          "0.10",
-          "]",
-          ", ",
-          italic("n")["obs"],
-          " = ",
-          1649L
-        ))
-      )
-    )
+    set.seed(123)
+    sexpr_results <-
+      suppressWarnings(statsExpressions::expr_contingency_tab(
+        data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1) %>%
+          dplyr::filter(race == "Other"),
+        x = relig,
+        y = marital,
+        output = "subtitle",
+        messages = FALSE
+      ))
+
+    # checking subtitle
+    testthat::expect_equal(ls_results$Other, sexpr_results)
   }
 )
