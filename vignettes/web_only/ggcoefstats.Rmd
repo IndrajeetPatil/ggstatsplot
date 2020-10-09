@@ -461,7 +461,7 @@ ggstatsplot::ggcoefstats(
 
 ## linear mixed-effects models with `lmerTest` (`lmerModLmerTest`)
 
-```{r lmerModLmerTest, width = 6, height = 12}
+```{r lmerModLmerTest, width = 6, height = 16}
 # setup
 set.seed(123)
 library(lmerTest)
@@ -513,7 +513,7 @@ Note that you need to choose some non-linear function, which will be based on
 prior exploratory data analysis (`y ~ k/x + c` implemented here, but you can try
 out other non-linear functions, e.g. `Y ~ k * exp(-b*c)`).
 
-```{r nls, fig.height = 6, fig.width = 6}
+```{r nls, fig.height = 5, fig.width = 5}
 # setup
 set.seed(123)
 library(ggstatsplot)
@@ -521,7 +521,7 @@ library(ggstatsplot)
 # model
 mod <-
   stats::nls(
-    formula = rating ~ k / budget + c, # try toying around with the form of non-linear function
+    formula = rating ~ k / budget + c,
     data = movies_long,
     start = list(k = 1, c = 0)
   )
@@ -778,6 +778,27 @@ ggstatsplot::combine_plots(
   ncol = 2,
   title.text = "Exploring models with different `glm` families",
   title.color = "blue"
+)
+```
+
+The version of `glm` implemented in `rms` is also supported.
+
+```{r rms_Glm, fig.height = 5, fig.width = 5}
+# setup
+set.seed(123)
+library(ggstatsplot)
+library(rms)
+
+# Dobson (1990) Page 93: Randomized Controlled Trial :
+counts <- c(18, 17, 15, 20, 10, 20, 25, 13, 12)
+outcome <- gl(3, 1, 9)
+treatment <- gl(3, 3)
+f <- glm(counts ~ outcome + treatment, family = poisson())
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = f,
+  title = "rms' implementation of glm"
 )
 ```
 
@@ -1110,7 +1131,8 @@ mod <-
     tune.iter = 2000,
     n.iter = 6000,
     n.burnin = 1000,
-    n.thin = 5
+    n.thin = 5,
+    n.report = 0
   )
 
 # plot
@@ -1756,6 +1778,7 @@ ggstatsplot::ggcoefstats(
   title = "marginal effects estimation"
 )
 ```
+
 ## Linear Regression with Interval-Censored Dependent Variable (`semLm`)
 
 ```{r semLm, fig.height = 5, fig.width = 6}
@@ -2434,7 +2457,8 @@ data(Transport)
 mod <-
   mclogit::mclogit(
     formula = cbind(resp, suburb) ~ distance + cost,
-    data = Transport
+    data = Transport,
+    control = mclogit::mclogit.control(trace = FALSE)
   )
 
 # plot
@@ -2457,7 +2481,8 @@ mod <-
   mclogit::mclogit(
     formula = cbind(Freq, interaction(time, class)) ~ econ.left / class + welfare / class + auth / class,
     random = ~ 1 | party.time,
-    data = within(electors, party.time <- interaction(party, time))
+    data = within(electors, party.time <- interaction(party, time)),
+    control = mclogit::mclogit.control(trace = FALSE)
   )
 
 # plot
@@ -3482,7 +3507,7 @@ Another example with output containing effect sizes
 set.seed(123)
 library(emmeans)
 
-# model and effect sizes 
+# model and effect sizes
 fiber.lm <- lm(strength ~ diameter + machine, data = fiber)
 emm <- emmeans(fiber.lm, "machine")
 es <- eff_size(emm, sigma = sigma(fiber.lm), edf = df.residual(fiber.lm))

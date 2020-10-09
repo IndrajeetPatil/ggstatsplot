@@ -190,7 +190,7 @@ library(ggstatsplot)
 library(ggsignif)
 
 # displaying only one comparison
-ggbetweenstats(mtcars, cyl, wt) +
+ggbetweenstats(mtcars, cyl, wt, pairwise.comparisons = FALSE) +
   geom_signif(comparisons = list(c("4", "6")))
 ```
 
@@ -202,7 +202,7 @@ library(ggplot2)
 
 # way-1
 
-p <- ggbetweenstats(mtcars, cyl, wt, pairwise.comparisons = TRUE)
+p <- ggbetweenstats(mtcars, cyl, wt)
 
 pb <- ggplot_build(p)
 
@@ -245,9 +245,8 @@ This can be helpful to add a new layer with aesthetic specifications of your
 liking.
 
 ```{r gginnards2, fig.width = 7, fig.height = 5}
-set.seed(123)
-
 # needed libraries
+set.seed(123)
 library(ggstatsplot)
 library(gginnards)
 library(ggplot2)
@@ -266,6 +265,21 @@ p <- gginnards::delete_layers(x = p, match_type = "GeomPoint")
 
 # add a new layers for points with a different shape
 p + geom_point(shape = 23, aes(color = condition))
+```
+
+## How can I modify the fill colors with custom values?
+
+Sometimes you may not be satisfied with the available color palette values. In
+this case, you can also change the colors by manually specifying these values.
+
+```{r ggbar_colors, fig.width = 6, fig.height = 6}
+# needed libraries
+set.seed(123)
+library(ggstatsplot)
+library(ggplot2)
+
+ggbarstats(mtcars, am, cyl, results.subtitle = FALSE) +
+  scale_fill_manual(values = c("#E7298A", "#66A61E"))
 ```
 
 ## How can I modify `grouped_` outputs using `ggplot2` functions?
