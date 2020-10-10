@@ -42,7 +42,7 @@ Imports:
     purrr,
     rlang,
     stats,
-    statsExpressions (>= 0.5.1.9000),
+    statsExpressions,
     tidyr
 Suggests:
     forcats,
@@ -55,8 +55,6 @@ Suggests:
     WRS2
 VignetteBuilder: 
     knitr
-Remotes:
-    IndrajeetPatil/statsExpressions
 Encoding: UTF-8
 Language: en-US
 LazyData: true
