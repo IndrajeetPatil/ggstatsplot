@@ -94,7 +94,7 @@
 #' @importFrom stats qnorm lm
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom tidyr unite
-#' @importFrom insight is_model
+#' @importFrom insight is_model find_statistic
 #' @importFrom statsExpressions expr_meta_parametric bf_meta
 #'
 #' @references
@@ -402,7 +402,11 @@ ggcoefstats <- function(x,
   # adding a column with labels to be used with `ggrepel`
   if (isTRUE(stats.labels)) {
     # in case a dataframe was entered, `x` and `tidy_df` are going to be same
-    if (isTRUE(insight::is_model(x))) statistic <- extract_statistic(x)
+    if (isTRUE(insight::is_model(x))) {
+      statistic <- substring(tolower(insight::find_statistic(x)), 1, 1)
+    } else {
+      statistic <- substring(tolower(statistic), 1, 1)
+    }
 
     # adding a column with labels using custom function
     tidy_df %<>%

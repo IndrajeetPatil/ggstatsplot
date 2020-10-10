@@ -783,7 +783,7 @@ ggstatsplot::combine_plots(
 
 The version of `glm` implemented in `rms` is also supported.
 
-```{r rms_Glm, fig.height = 5, fig.width = 5}
+```{r rms_Glm, fig.height = 5, fig.width = 5, eval = FALSE}
 # setup
 set.seed(123)
 library(ggstatsplot)
@@ -793,7 +793,7 @@ library(rms)
 counts <- c(18, 17, 15, 20, 10, 20, 25, 13, 12)
 outcome <- gl(3, 1, 9)
 treatment <- gl(3, 3)
-f <- glm(counts ~ outcome + treatment, family = poisson())
+f <- rms::Glm(counts ~ outcome + treatment, family = poisson())
 
 # plot
 ggstatsplot::ggcoefstats(

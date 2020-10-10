@@ -591,10 +591,10 @@ testthat::test_that(
         sort = "descending"
       )
     p3 <- ggstatsplot::ggcoefstats(x = df2, statistic = "t")
-    p4 <- ggstatsplot::ggcoefstats(x = df3, statistic = "t") +
+    p4 <- ggstatsplot::ggcoefstats(x = df3, statistic = "T") +
       ggplot2::scale_y_discrete(labels = c("x1", "x2", "x3")) +
       ggplot2::labs(x = "location", y = NULL)
-    p5 <- ggstatsplot::ggcoefstats(x = df4, statistic = "t")
+    p5 <- ggstatsplot::ggcoefstats(x = df4, statistic = "T-value")
     set.seed(123)
     p6 <-
       suppressWarnings(
@@ -611,7 +611,7 @@ testthat::test_that(
       suppressWarnings(
         ggstatsplot::ggcoefstats(
           x = df5,
-          statistic = "t",
+          statistic = "T",
           k = 3,
           meta.analytic.effect = TRUE,
           meta.type = "bf",

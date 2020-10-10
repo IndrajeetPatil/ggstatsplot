@@ -85,9 +85,8 @@ ggcoefstats_label_maker <- function(tidy_df,
   #--------------------------- chi^2-statistic ---------------------------------
 
   # if the statistic is chi^2-value
-  if (statistic %in% c("c", "chi")) {
+  if (statistic == "c") {
     tidy_df %<>%
-
       dplyr::mutate(
         label = paste0(
           "list(~widehat(italic(beta))==",
@@ -145,37 +144,6 @@ ggcoefstats_label_maker <- function(tidy_df,
 
   # return the final dataframe
   return(dplyr::ungroup(tidy_df))
-}
-
-
-#' @name extract_statistic
-#'
-#' @importFrom insight find_statistic
-#' @importFrom purrr pmap keep
-#'
-#' @noRd
-
-extract_statistic <- function(x, ...) {
-  # if not a dataframe, figure out what's the relevant statistic
-  statistic <- insight::find_statistic(x)
-
-  # standardize statistic type symbol for regression models
-  # checking entered strings to extract the statistic
-  grep_stat <- function(x, pattern) {
-    if (isTRUE(grepl(pattern, x, ignore.case = TRUE))) {
-      return(tolower(substring(x, 1, 1)))
-    } else {
-      return(NA_character_)
-    }
-  }
-
-  # extracting statistic value
-  purrr::pmap(
-    .l = list(pattern = list("^t", "^f", "^z", "^chi"), x = list(statistic)),
-    .f = grep_stat
-  ) %>%
-    purrr::keep(.x = ., .p = ~ !is.na(.)) %>%
-    .[[1]]
 }
 
 
@@ -252,7 +220,7 @@ lm_effsize_standardizer <- function(object,
       partial = partial,
       ci = conf.level
     ) %>%
-    broomExtra::easystats_to_tidy_names(.) %>%
+    ipmisc::easystats_to_tidy_names(.) %>%
     dplyr::filter(.data = ., !grepl(pattern = "Residuals", x = term, ignore.case = TRUE)) %>%
     dplyr::select(.data = ., -dplyr::matches("group"))
 
