@@ -214,6 +214,8 @@ subtitle.</p>
   conf.level <span class='op'>=</span> <span class='fl'>0.95</span>,
   bf.prior <span class='op'>=</span> <span class='fl'>0.707</span>,
   bf.message <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  beta <span class='op'>=</span> <span class='fl'>0.1</span>,
+  k <span class='op'>=</span> <span class='fl'>2L</span>,
   label.var <span class='op'>=</span> <span class='cn'>NULL</span>,
   label.expression <span class='op'>=</span> <span class='cn'>NULL</span>,
   point.label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>,
@@ -242,8 +244,6 @@ subtitle.</p>
   title <span class='op'>=</span> <span class='cn'>NULL</span>,
   subtitle <span class='op'>=</span> <span class='cn'>NULL</span>,
   caption <span class='op'>=</span> <span class='cn'>NULL</span>,
-  beta <span class='op'>=</span> <span class='fl'>0.1</span>,
-  k <span class='op'>=</span> <span class='fl'>2L</span>,
   ggtheme <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span>,
   ggstatsplot.layer <span class='op'>=</span> <span class='cn'>TRUE</span>,
   ggplot.component <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -298,6 +298,15 @@ favor of the <em>null</em> hypothesis. This argument is relevant only <strong>fo
 parametric test</strong> (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
+      <th>beta</th>
+      <td><p>bending constant (Default: <code>0.1</code>). For more, see <code><a href='https://rdrr.io/pkg/WRS2/man/pbcor.html'>WRS2::pbcor()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>k</th>
+      <td><p>Number of digits after decimal point (should be an integer)
+(Default: <code>k = 2L</code>).</p></td>
+    </tr>
+    <tr>
       <th>label.var</th>
       <td><p>Variable to use for points labels. Can be entered either as
 a character string (e.g., <code>"var1"</code>) or as a bare expression (e.g, <code>var1</code>).</p></td>
@@ -339,7 +348,7 @@ used for less than 1,000 observations; otherwise <code><a href='https://rdrr.io/
 used with <code>formula = y ~ s(x, bs = "cs")</code> with <code>method = "REML"</code>. Somewhat anecdotally,
 <code>loess</code> gives a better appearance, but is \(O(N^{2})\) in memory,
 so does not work for larger datasets.</p>
-<p>If you have fewer than 1,000 observations but want to use the same <code><a href='https://rdrr.io/pkg/mgcv/man/gam.html'>gam()</a></code>
+<p>If you have fewer than 1,000 observations but want to use the same <code>gam()</code>
 model that <code>method = NULL</code> would use, then set
 <code>method = "gam", formula = y ~ s(x, bs = "cs")</code>.</p></td>
     </tr>
@@ -446,15 +455,6 @@ variable names for <code>x</code> and <code>y</code> will be used.</p></td>
     <tr>
       <th>caption</th>
       <td><p>The text for the plot caption.</p></td>
-    </tr>
-    <tr>
-      <th>beta</th>
-      <td><p>bending constant (Default: <code>0.1</code>). For more, see <code><a href='https://rdrr.io/pkg/WRS2/man/pbcor.html'>WRS2::pbcor()</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>k</th>
-      <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 2L</code>).</p></td>
     </tr>
     <tr>
       <th>ggtheme</th>

@@ -12,6 +12,8 @@ ggscatterstats(
   conf.level = 0.95,
   bf.prior = 0.707,
   bf.message = TRUE,
+  beta = 0.1,
+  k = 2L,
   label.var = NULL,
   label.expression = NULL,
   point.label.args = list(size = 3),
@@ -40,8 +42,6 @@ ggscatterstats(
   title = NULL,
   subtitle = NULL,
   caption = NULL,
-  beta = 0.1,
-  k = 2L,
   ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE,
   ggplot.component = NULL,
@@ -78,6 +78,11 @@ width to use in calculating Bayes factors.}
 \item{bf.message}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
 parametric test} (Default: \code{TRUE}).}
+
+\item{beta}{bending constant (Default: \code{0.1}). For more, see \code{\link[WRS2:pbcor]{WRS2::pbcor()}}.}
+
+\item{k}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 2L}).}
 
 \item{label.var}{Variable to use for points labels. Can be entered either as
 a character string (e.g., \code{"var1"}) or as a bare expression (e.g, \code{var1}).}
@@ -180,11 +185,6 @@ variable names for \code{x} and \code{y} will be used.}
 \code{results.subtitle = FALSE}.}
 
 \item{caption}{The text for the plot caption.}
-
-\item{beta}{bending constant (Default: \code{0.1}). For more, see \code{\link[WRS2:pbcor]{WRS2::pbcor()}}.}
-
-\item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2L}).}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
