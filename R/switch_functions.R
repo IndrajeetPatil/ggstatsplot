@@ -35,7 +35,7 @@ subtitle_function_switch <- function(test, type, ...) {
 #'
 #' @inheritParams subtitle_function_switch
 #'
-#' @importFrom statsExpressions bf_ttest bf_oneway_anova
+#' @importFrom tidyBF bf_ttest bf_oneway_anova
 #' @importFrom rlang exec
 #'
 #' @keywords internal
@@ -44,9 +44,9 @@ subtitle_function_switch <- function(test, type, ...) {
 caption_function_switch <- function(test, ...) {
   # choosing the appropriate test
   if (test == "t") {
-    .f <- statsExpressions::bf_ttest
+    .f <- tidyBF::bf_ttest
   } else {
-    .f <- statsExpressions::bf_oneway_anova
+    .f <- tidyBF::bf_oneway_anova
   }
 
   # preparing the BF message for null

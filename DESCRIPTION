@@ -43,6 +43,7 @@ Imports:
     rlang,
     stats,
     statsExpressions (>= 0.6.0.9000),
+    tidyBF (>= 0.3.0.9000),
     tidyr
 Suggests:
     forcats,
@@ -58,7 +59,8 @@ VignetteBuilder:
 Remotes:
     easystats/effectsize,
     easystats/insight,
-    IndrajeetPatil/statsExpressions
+    IndrajeetPatil/statsExpressions,
+    IndrajeetPatil/tidyBF
 Encoding: UTF-8
 Language: en-US
 LazyData: true
