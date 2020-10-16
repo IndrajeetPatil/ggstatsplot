@@ -104,10 +104,6 @@ width to use in calculating Bayes factors.}
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
 parametric test} (Default: \code{TRUE}).}
 
-\item{sphericity.correction}{Logical that decides whether to apply correction
-to account for violation of sphericity in a repeated measures design ANOVA
-(Default: \code{TRUE}).}
-
 \item{results.subtitle}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}

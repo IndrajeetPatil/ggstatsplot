@@ -22,12 +22,7 @@
 #' @keywords internal
 
 # function body
-mean_labeller <- function(data,
-                          x,
-                          y,
-                          mean.ci = FALSE,
-                          k = 3L,
-                          ...) {
+mean_labeller <- function(data, x, y, mean.ci = FALSE, k = 3L, ...) {
   # creating the dataframe
   data %<>%
     dplyr::select(.data = ., {{ x }}, {{ y }}) %>%
@@ -62,11 +57,7 @@ mean_labeller <- function(data,
   } else {
     data %<>%
       dplyr::mutate(
-        label = paste0(
-          "list(~italic(widehat(mu))==",
-          specify_decimal_p(mean, k),
-          ")"
-        )
+        label = paste0("list(~italic(widehat(mu))==", specify_decimal_p(mean, k), ")")
       )
   }
 

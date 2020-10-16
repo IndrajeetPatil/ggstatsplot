@@ -171,6 +171,7 @@ ggcoefstats_label_maker <- function(tidy_df,
 #'
 #' @importFrom effectsize eta_squared omega_squared
 #' @importFrom broomExtra tidy_parameters
+#' @importFrom insight standardize_names
 #' @importFrom rlang exec
 #' @importFrom dplyr matches
 #'
@@ -220,9 +221,7 @@ lm_effsize_standardizer <- function(object,
       partial = partial,
       ci = conf.level
     ) %>%
-    ipmisc::easystats_to_tidy_names(.) %>%
-    dplyr::filter(.data = ., !grepl(pattern = "Residuals", x = term, ignore.case = TRUE)) %>%
-    dplyr::select(.data = ., -dplyr::matches("group"))
+    insight::standardize_names(data = ., style = "broom")
 
   # combine them in the same place
   dplyr::right_join(
@@ -230,5 +229,5 @@ lm_effsize_standardizer <- function(object,
     y = effsize_df,
     by = "term"
   ) %>% # renaming to standard term 'estimate'
-    dplyr::rename(.data = ., "estimate" = dplyr::matches("eta|omega"), "df1" = "df")
+    dplyr::rename(.data = ., "df1" = "df")
 }

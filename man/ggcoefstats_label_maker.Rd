@@ -21,7 +21,7 @@ ggcoefstats_label_maker(
 \emph{dataframe}.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2L}).}
+(Default: \code{k = 2}).}
 
 \item{effsize}{Character describing the effect size to be displayed: \code{"eta"}
 (default) or \code{"omega"}. This argument is relevant only for models objects

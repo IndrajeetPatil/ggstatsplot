@@ -57,7 +57,7 @@ ggstatsplot::ggscatterstats(
 
 ## Example-2: `ggbetweenstats`
 
-```{r gallery2, fig.height = 10, fig.width = 10, eval=FALSE}
+```{r gallery2, fig.height = 12, fig.width = 10}
 # for reproducibility
 set.seed(123)
 

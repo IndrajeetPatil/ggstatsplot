@@ -282,6 +282,17 @@ ggbarstats(mtcars, am, cyl, results.subtitle = FALSE) +
   scale_fill_manual(values = c("#E7298A", "#66A61E"))
 ```
 
+The same can also be done for `grouped_` functions:
+
+```{r ggpie_colors, fig.width = 12, fig.height = 6}
+ggstatsplot::grouped_ggpiestats(
+  data = mtcars,
+  grouping.var = am,
+  x = cyl,
+  ggplot.component = ggplot2::scale_fill_grey()
+)
+```
+
 ## How can I modify `grouped_` outputs using `ggplot2` functions?
 
 All `ggstatsplot` are `ggplot` objects, which can be further modified, just like
@@ -311,6 +322,15 @@ grouped_ggbetweenstats(
   )
 )
 ```
+
+## How can I extract dataframe containing results from `ggstatsplot`?
+
+`ggstatsplot` can return expressions in the subtitle and caption, but what if
+you want to actually get back dataframe containing the results?
+
+This is possible via `statsExpressions`:
+<https://indrajeetpatil.github.io/statsExpressions/articles/dataframe_outputs.html>
+
 
 # Suggestions
 

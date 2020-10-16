@@ -81,12 +81,12 @@ also supported by `ggcoefstats`. For example-
 
 `aareg`, `anova`, `aov`, `aovlist`, `Arima`, `BFBayesFactor`, `bayesx`,
 `bayesGARCH`, `BBmm`, `BBreg`, `bcplm`, `betamfx`, `betaor`, `bglmerMod`,
-`bife`, `bigglm`, `biglm`, `blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm2`,
-`brmsfit`, `brmultinom`, `btergm`, `cch`, `cgam`, `cgamm`, `cglm`, `clm`,
-`clm2`, `clmm`, `clmm2`, `coeftest`, `complmrob`, `confusionMatrix`, `coxme`,
-`coxph`, `coxph.penal`, `cpglm`, `cpglmm`, `crch`, `crq`, `DirichReg`, `drc`,
-`emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`, `flexsurvreg`, `gam`,
-`Gam`, `gamlss`, `garch`, `geeglm`, `glmc`, `glmerMod`, `glmmTMB`, `gls`,
+`bife`, `bigglm`, `biglm`, `blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm`,
+`brglm2`, `brmsfit`, `brmultinom`, `btergm`, `cch`, `cgam`, `cgamm`, `cglm`,
+`clm`, `clm2`, `clmm`, `clmm2`, `coeftest`, `complmrob`, `confusionMatrix`,
+`coxme`, `coxph`, `coxph.penal`, `cpglm`, `cpglmm`, `crch`, `crq`, `DirichReg`,
+`drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`, `flexsurvreg`,
+`gam`, `Gam`, `gamlss`, `garch`, `geeglm`, `glmc`, `glmerMod`, `glmmTMB`, `gls`,
 `glht`, `glm`, `glmm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`,
 `hurdle`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`,
 `lmerModLmerTest`, `lmodel2`, `lmRob`, `lmrob`, `lm_robust`, `logitmfx`,
@@ -1861,14 +1861,34 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
-## bias reduction in generalized linear models (`brglm2`)
-
-Note that we can also choose to display labels only for the significant effects.
-This can be helpful when a large number of regression coefficients are to be
-displayed in a single plot and we would like to focus only on the significant
-ones.
+## bias reduction in Binomial-response GLMs (`brglm``)
 
 ```{r brglm, fig.height = 6, fig.width = 5}
+# setup
+set.seed(123)
+library(brglm)
+data("lizards")
+
+# fit the model using maximum likelihood mean bias-reduced fit:
+lizards.brglm <- 
+  brglm::brglm(
+  cbind(grahami, opalinus) ~ height + diameter + light + time,
+  family = binomial(logit),
+  data = lizards,
+  method = "brglm.fit"
+)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = lizards.brglm,
+  only.significant = TRUE,
+  title = "bias reduction in Binomial-response GLMs"
+)
+```
+
+## bias reduction in generalized linear models (`brglm2`)
+
+```{r brglm2, fig.height = 6, fig.width = 5}
 # setup
 set.seed(123)
 library(brglm2)

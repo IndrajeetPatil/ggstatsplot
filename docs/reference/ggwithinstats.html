@@ -92,7 +92,7 @@ details included in the plot as a subtitle." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.1</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.1.9000</span>
       </span>
     </div>
 
@@ -333,12 +333,6 @@ favor of the <em>null</em> hypothesis. This argument is relevant only <strong>fo
 parametric test</strong> (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
-      <th>sphericity.correction</th>
-      <td><p>Logical that decides whether to apply correction
-to account for violation of sphericity in a repeated measures design ANOVA
-(Default: <code>TRUE</code>).</p></td>
-    </tr>
-    <tr>
       <th>results.subtitle</th>
       <td><p>Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
@@ -561,7 +555,8 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
   xlab <span class='op'>=</span> <span class='st'>"Presentation modality"</span>,
   ylab <span class='op'>=</span> <span class='st'>"Proportion of utilitarian decisions"</span>
 <span class='op'>)</span>
-</div><div class='img'><img src='ggwithinstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='output co'>#&gt; <span style='color: #BB0000;'>Objects of class 'parameters_distribution' are currently not supported.
+#&gt; </span><span></div><div class='output co'>#&gt; <span class='error'>Error: The result of .f should be a data frame.</span></div><div class='input'>
 <span class='co'># more than two groups (anova)</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-forge.r-project.org/projects/psychor/'>WRS2</a></span><span class='op'>)</span>
 
@@ -575,8 +570,9 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
   outlier.tagging <span class='op'>=</span> <span class='cn'>TRUE</span>,
   outlier.label <span class='op'>=</span> <span class='va'>Taster</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: extreme order statistics used as endpoints</span></div><div class='img'><img src='ggwithinstats-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
-</div></pre>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: extreme order statistics used as endpoints</span></div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Objects of class 'parameters_distribution' are currently not supported.
+#&gt; </span><span></div><div class='output co'>#&gt; <span class='error'>Error: The result of .f should be a data frame.</span></div><div class='input'><span class='co'># }</span>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

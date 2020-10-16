@@ -10,7 +10,7 @@ testthat::test_that(
     p <-
       ggstatsplot::ggpiestats(
         data = ggplot2::msleep,
-        main = vore,
+        x = vore,
         bf.message = TRUE,
         title = "mammalian sleep",
         legend.title = "vore",
@@ -30,8 +30,16 @@ testthat::test_that(
     p_subtitle <-
       statsExpressions::expr_contingency_tab(
         data = ggplot2::msleep,
+        x = "vore"
+      )
+
+    # caption
+    set.seed(123)
+    p_cap <-
+      statsExpressions::bf_contingency_tab(
+        data = ggplot2::msleep,
         x = "vore",
-        nboot = 25
+        output = "caption"
       )
 
     # checking geom data
@@ -147,26 +155,11 @@ testthat::test_that(
     )
 
     # checking plot labels
-    testthat::expect_identical(p$labels$subtitle, p_subtitle)
-    testthat::expect_identical(p$labels$title, "mammalian sleep")
-    testthat::expect_identical(
-      p$labels$caption,
-      ggplot2::expr(atop(
-        displaystyle("From ggplot2 package"),
-        expr = paste(
-          "log"["e"],
-          "(BF"["01"],
-          ") = ",
-          "-3.65",
-          ", ",
-          italic("a"),
-          " = ",
-          "1.00"
-        )
-      ))
-    )
-    testthat::expect_null(p$labels$x, NULL)
-    testthat::expect_null(p$labels$y, NULL)
+    testthat::expect_identical(pb$plot$labels$subtitle, p_subtitle)
+    testthat::expect_identical(pb$plot$labels$title, "mammalian sleep")
+    testthat::expect_identical(pb$plot$labels$caption$expr, p_cap$expr)
+    testthat::expect_null(pb$plot$labels$x, NULL)
+    testthat::expect_null(pb$plot$labels$y, NULL)
     testthat::expect_identical(pb$plot$plot_env$legend.title, "vore")
   }
 )
@@ -184,8 +177,8 @@ testthat::test_that(
       suppressWarnings(
         ggstatsplot::ggpiestats(
           data = mtcars,
-          main = "am",
-          condition = "cyl",
+          x = "am",
+          y = "cyl",
           perc.k = 2,
           nboot = 25,
           package = "wesanderson",
@@ -204,10 +197,8 @@ testthat::test_that(
     p1 <-
       ggstatsplot::ggpiestats(
         data = mtcars_small,
-        main = cyl,
-        condition = am,
-        nboot = 25,
-        messages = FALSE
+        x = cyl,
+        y = am
       )
 
     # build plot
@@ -220,9 +211,7 @@ testthat::test_that(
       suppressWarnings(statsExpressions::expr_contingency_tab(
         data = mtcars,
         x = "am",
-        y = "cyl",
-        nboot = 25,
-        messages = FALSE
+        y = "cyl"
       ))
 
     # subtitle used
@@ -243,10 +232,9 @@ testthat::test_that(
     testthat::expect_equal(dim(pb$data[[3]]), c(3L, 18L))
 
     # without facets
-    testthat::expect_equal(length(pb1$data), 3L)
+    testthat::expect_equal(length(pb1$data), 2L)
     testthat::expect_equal(dim(pb1$data[[1]]), c(3L, 14L))
     testthat::expect_equal(dim(pb1$data[[2]]), c(3L, 19L))
-    testthat::expect_equal(dim(pb1$data[[3]]), c(1L, 18L))
 
     # check geoms
     testthat::expect_equal(
@@ -266,26 +254,14 @@ testthat::test_that(
       c(0.684210526315789, 0.263157894736842, 0.0789473684210526),
       tolerance = 0.001
     )
-    testthat::expect_equal(
-      unique(pb$data[[3]]$x),
-      unique(pb1$data[[3]]$x),
-      tolerance = 0.001
-    )
-    testthat::expect_equal(
-      unique(pb$data[[3]]$y),
-      unique(pb1$data[[3]]$y),
-      tolerance = 0.001
-    )
 
     # checking plot labels
-    testthat::expect_identical(p$labels$subtitle, p_subtitle)
+    testthat::expect_identical(pb$plot$labels$subtitle, p_subtitle)
     testthat::expect_identical(pb$plot$labels$caption, p_cap)
-    testthat::expect_null(p$labels$x, NULL)
-    testthat::expect_null(p$labels$y, NULL)
-    testthat::expect_null(pb$plot$plot_env$stat.title, NULL)
+    testthat::expect_null(pb$plot$labels$x, NULL)
+    testthat::expect_null(pb$plot$labels$y, NULL)
     testthat::expect_identical(pb$plot$guides$fill$title[1], "transmission")
-    testthat::expect_null(pb1$plot$labels$subtitle, NULL)
-    testthat::expect_null(pb1$plot$labels$caption, NULL)
+    testthat::expect_is(pb1$plot$labels$subtitle, "call")
 
     # checking labels
     testthat::expect_identical(
@@ -331,8 +307,8 @@ testthat::test_that(
     set.seed(123)
     p <- ggstatsplot::ggpiestats(
       data = as.data.frame(Titanic),
-      main = Sex,
-      condition = Survived,
+      x = Sex,
+      y = Survived,
       nboot = 25,
       bf.message = FALSE,
       counts = "Freq",
@@ -379,8 +355,8 @@ testthat::test_that(
     testthat::expect_identical(dat$counts, c(126L, 344L, 1364L, 367L))
 
     # checking plot labels
-    testthat::expect_identical(p$labels$subtitle, p_subtitle)
-    testthat::expect_null(p$labels$caption, NULL)
+    testthat::expect_identical(pb$plot$labels$subtitle, p_subtitle)
+    testthat::expect_null(pb$plot$labels$caption, NULL)
     testthat::expect_identical(pb$plot$plot_env$legend.title, "Sex")
   }
 )
@@ -405,8 +381,8 @@ testthat::test_that(
     set.seed(123)
     p <- ggstatsplot::ggpiestats(
       data = survey.data,
-      main = `1st survey`,
-      condition = `2nd survey`,
+      x = `1st survey`,
+      y = `2nd survey`,
       counts = Counts,
       nboot = 25,
       paired = TRUE,
@@ -432,7 +408,7 @@ testthat::test_that(
       )
 
     # checking plot labels
-    testthat::expect_identical(p$labels$subtitle, p_subtitle)
+    testthat::expect_identical(pb$plot$labels$subtitle, p_subtitle)
     testthat::expect_identical(pb$plot$labels$group, "1st survey")
     testthat::expect_identical(pb$plot$labels$fill, "1st survey")
     testthat::expect_identical(pb$plot$labels$label, "label")
@@ -565,15 +541,16 @@ testthat::test_that(
     set.seed(123)
 
     # creating a dataframe
-    df <- tibble::tribble(
-      ~x, ~y,
-      "one", "one"
-    )
+    df <-
+      tibble::tribble(
+        ~x, ~y,
+        "one", "one"
+      )
 
     # subtitle
     testthat::expect_null(ggstatsplot::ggpiestats(
       data = df,
-      main = x,
+      x = x,
       output = "subtitle"
     ))
   }
@@ -614,8 +591,8 @@ testthat::test_that(
     p_sub <-
       ggstatsplot::ggpiestats(
         data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
-        main = race,
-        condition = marital,
+        x = race,
+        y = marital,
         output = "subtitle",
         k = 4,
         messages = FALSE

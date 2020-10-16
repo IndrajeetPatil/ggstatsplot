@@ -30,9 +30,8 @@
 #'   know more about these arguments.
 #' @param conf.int Logical. Decides whether to display confidence intervals as
 #'   error bars (Default: `TRUE`).
-#' @param conf.level Numeric deciding level of confidence intervals (Default:
-#'   `0.95`). For `MCMC` model objects (`Stan`, `JAGS`, etc.), this will be
-#'   probability level for CI.
+#' @param conf.level Numeric deciding level of confidence or credible intervals
+#'   (Default: `0.95`).
 #' @param effsize Character describing the effect size to be displayed: `"eta"`
 #'   (default) or `"omega"`. This argument is relevant only for models objects
 #'   of class `aov`, `anova`, `aovlist`, `"Gam"`, and `"manova"`.
@@ -80,11 +79,11 @@
 #'   regression coefficients are to be displayed in a single plot. Relevant only
 #'   when the `output` is a plot.
 #' @param ... Additional arguments to tidying method. For more, see
-#'   `?parameters::model_parameters` and `broom::tidy`.
+#'   `parameters::model_parameters` and `broom::tidy`.
 #' @inheritParams statsExpressions::bf_meta
 #' @inheritParams parameters::model_parameters
 #' @inheritParams theme_ggstatsplot
-#' @inheritParams statsExpressions::expr_meta_parametric
+#' @inheritParams statsExpressions::expr_meta_random
 #' @inheritParams ggbetweenstats
 #'
 #' @import ggplot2
@@ -95,7 +94,7 @@
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom tidyr unite
 #' @importFrom insight is_model find_statistic
-#' @importFrom statsExpressions expr_meta_parametric bf_meta
+#' @importFrom statsExpressions expr_meta_random bf_meta
 #'
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}
@@ -291,6 +290,7 @@ ggcoefstats <- function(x,
           ci = conf.level,
           exponentiate = exponentiate,
           effects = "fixed",
+          verbose = FALSE,
           parametric = TRUE, # for `gam` objects
           ...
         )
@@ -424,7 +424,7 @@ ggcoefstats <- function(x,
   # for non-dataframe objects
   if (isTRUE(insight::is_model(x))) {
     # creating glance dataframe
-    glance_df <- broomExtra::glance_performance(x)
+    glance_df <- broomExtra::glance_performance(x, verbose = FALSE)
     meta.analytic.effect <- FALSE
 
     # if glance is not available, inform the user
@@ -452,10 +452,9 @@ ggcoefstats <- function(x,
 
     # results from frequentist random-effects meta-analysis
     subtitle <-
-      subtitle_function_switch(
-        test = "meta",
-        type = meta.type,
+      expr_meta_random(
         data = tidy_df,
+        type = meta.type,
         k = k
       )
 
@@ -474,7 +473,7 @@ ggcoefstats <- function(x,
 
       # caption with heterogeneity test results
       caption <-
-        statsExpressions::expr_meta_parametric(
+        statsExpressions::expr_meta_random(
           data = tidy_df,
           k = k,
           caption = caption,

@@ -47,14 +47,14 @@
 
 # defining the function
 grouped_ggbarstats <- function(data,
-                               main,
-                               condition,
+                               x = NULL,
+                               y = NULL,
                                counts = NULL,
                                grouping.var,
                                title.prefix = NULL,
                                output = "plot",
-                               x = NULL,
-                               y = NULL,
+                               main,
+                               condition,
                                ...,
                                plotgrid.args = list(),
                                title.text = NULL,

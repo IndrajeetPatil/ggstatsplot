@@ -6,14 +6,14 @@
 \usage{
 grouped_ggbarstats(
   data,
-  main,
-  condition,
+  x = NULL,
+  y = NULL,
   counts = NULL,
   grouping.var,
   title.prefix = NULL,
   output = "plot",
-  x = NULL,
-  y = NULL,
+  main,
+  condition,
   ...,
   plotgrid.args = list(),
   title.text = NULL,
@@ -28,9 +28,9 @@ grouped_ggbarstats(
 \item{data}{A dataframe (or a tibble) from which variables specified are to
 be taken. A matrix or tables will \strong{not} be accepted.}
 
-\item{main}{The variable to use as the \strong{rows} in the contingency table.}
+\item{x}{The variable to use as the \strong{rows} in the contingency table.}
 
-\item{condition}{The variable to use as the \strong{columns} in the contingency
+\item{y}{The variable to use as the \strong{columns} in the contingency
 table. Default is \code{NULL}. If \code{NULL}, one-sample proportion test (a goodness
 of fit test) will be run for the \code{x} variable. Otherwise an appropriate
 association test will be run. This argument can not be \code{NULL} for
@@ -56,9 +56,9 @@ about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
 \code{ggpiestats} and \code{ggbarstats}, setting \code{output = "proptest"} will return a
 dataframe containing results from proportion tests.}
 
-\item{x}{The variable to use as the \strong{rows} in the contingency table.}
+\item{main}{The variable to use as the \strong{rows} in the contingency table.}
 
-\item{y}{The variable to use as the \strong{columns} in the contingency
+\item{condition}{The variable to use as the \strong{columns} in the contingency
 table. Default is \code{NULL}. If \code{NULL}, one-sample proportion test (a goodness
 of fit test) will be run for the \code{x} variable. Otherwise an appropriate
 association test will be run. This argument can not be \code{NULL} for
@@ -94,8 +94,6 @@ the plot will be returned.}
 \code{geom_label}.}
     \item{\code{conf.level}}{Scalar between 0 and 1. If unspecified, the defaults return
 \verb{95\%} lower and upper confidence intervals (\code{0.95}).}
-    \item{\code{nboot}}{Number of bootstrap samples for computing confidence interval
-for the effect size (Default: \code{100}).}
     \item{\code{k}}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
     \item{\code{perc.k}}{Numeric that decides number of decimal places for percentage

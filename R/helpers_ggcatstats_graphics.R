@@ -91,7 +91,7 @@ cat_counter <- function(data, x, y = NULL, ...) {
 #' @keywords internal
 
 # combine info about sample size plus
-df_facet_label <- function(data, x, y, k = 3L) {
+df_facet_label <- function(data, x, y, k = 3L, ...) {
   data %>% {
     dplyr::full_join(
       x = cat_counter(data = ., x = {{ y }}) %>%

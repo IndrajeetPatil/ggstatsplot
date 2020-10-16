@@ -181,9 +181,6 @@ be extracted. The available palettes and packages can be checked by running
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
 of the current function. Default is \code{NULL}. The argument should be entered
 as a function.}
-    \item{\code{sphericity.correction}}{Logical that decides whether to apply correction
-to account for violation of sphericity in a repeated measures design ANOVA
-(Default: \code{TRUE}).}
   }}
 
 \item{plotgrid.args}{A list of additional arguments to \code{cowplot::plot_grid}.}

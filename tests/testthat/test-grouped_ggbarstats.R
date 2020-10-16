@@ -22,14 +22,15 @@ testthat::test_that(
       messages = FALSE
     ))
 
-    testthat::expect_output(
+    testthat::expect_is(
       ggstatsplot::grouped_ggbarstats(
         data = mpg_short,
         main = cyl,
         condition = class,
         grouping.var = class,
         messages = FALSE
-      )
+      ),
+      "ggplot"
     )
 
     # when arguments are entered as bare expressions

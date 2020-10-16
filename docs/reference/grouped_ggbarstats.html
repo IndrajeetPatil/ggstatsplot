@@ -90,7 +90,7 @@ resulting plots using ggstatsplot::combine_plots." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.1</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.1.9000</span>
       </span>
     </div>
 
@@ -208,14 +208,14 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
 
     <pre class="usage"><span class='fu'>grouped_ggbarstats</span><span class='op'>(</span>
   <span class='va'>data</span>,
-  <span class='va'>main</span>,
-  <span class='va'>condition</span>,
+  x <span class='op'>=</span> <span class='cn'>NULL</span>,
+  y <span class='op'>=</span> <span class='cn'>NULL</span>,
   counts <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>grouping.var</span>,
   title.prefix <span class='op'>=</span> <span class='cn'>NULL</span>,
   output <span class='op'>=</span> <span class='st'>"plot"</span>,
-  x <span class='op'>=</span> <span class='cn'>NULL</span>,
-  y <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>main</span>,
+  <span class='va'>condition</span>,
   <span class='va'>...</span>,
   plotgrid.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
   title.text <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -235,11 +235,11 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
 be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
     </tr>
     <tr>
-      <th>main</th>
+      <th>x</th>
       <td><p>The variable to use as the <strong>rows</strong> in the contingency table.</p></td>
     </tr>
     <tr>
-      <th>condition</th>
+      <th>y</th>
       <td><p>The variable to use as the <strong>columns</strong> in the contingency
 table. Default is <code>NULL</code>. If <code>NULL</code>, one-sample proportion test (a goodness
 of fit test) will be run for the <code>x</code> variable. Otherwise an appropriate
@@ -275,11 +275,11 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
 dataframe containing results from proportion tests.</p></td>
     </tr>
     <tr>
-      <th>x</th>
+      <th>main</th>
       <td><p>The variable to use as the <strong>rows</strong> in the contingency table.</p></td>
     </tr>
     <tr>
-      <th>y</th>
+      <th>condition</th>
       <td><p>The variable to use as the <strong>columns</strong> in the contingency
 table. Default is <code>NULL</code>. If <code>NULL</code>, one-sample proportion test (a goodness
 of fit test) will be run for the <code>x</code> variable. Otherwise an appropriate
@@ -316,8 +316,6 @@ the plot will be returned.</p></dd>
 <code>geom_label</code>.</p></dd>
     <dt><code>conf.level</code></dt><dd><p>Scalar between 0 and 1. If unspecified, the defaults return
 <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></dd>
-    <dt><code>nboot</code></dt><dd><p>Number of bootstrap samples for computing confidence interval
-for the effect size (Default: <code>100</code>).</p></dd>
     <dt><code>k</code></dt><dd><p>Number of digits after decimal point (should be an integer)
 (Default: <code>k = 2</code>).</p></dd>
     <dt><code>perc.k</code></dt><dd><p>Numeric that decides number of decimal places for percentage

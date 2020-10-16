@@ -89,7 +89,7 @@ included in the plot as a subtitle." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.1</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.1.9000</span>
       </span>
     </div>
 
@@ -206,8 +206,8 @@ included in the plot as a subtitle.</p>
 
     <pre class="usage"><span class='fu'>ggbarstats</span><span class='op'>(</span>
   <span class='va'>data</span>,
-  <span class='va'>main</span>,
-  <span class='va'>condition</span>,
+  x <span class='op'>=</span> <span class='cn'>NULL</span>,
+  y <span class='op'>=</span> <span class='cn'>NULL</span>,
   counts <span class='op'>=</span> <span class='cn'>NULL</span>,
   ratio <span class='op'>=</span> <span class='cn'>NULL</span>,
   paired <span class='op'>=</span> <span class='cn'>FALSE</span>,
@@ -216,7 +216,6 @@ included in the plot as a subtitle.</p>
   label <span class='op'>=</span> <span class='st'>"percentage"</span>,
   label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>alpha <span class='op'>=</span> <span class='fl'>1</span>, fill <span class='op'>=</span> <span class='st'>"white"</span><span class='op'>)</span>,
   conf.level <span class='op'>=</span> <span class='fl'>0.95</span>,
-  nboot <span class='op'>=</span> <span class='fl'>100L</span>,
   k <span class='op'>=</span> <span class='fl'>2L</span>,
   proportion.test <span class='op'>=</span> <span class='cn'>TRUE</span>,
   perc.k <span class='op'>=</span> <span class='fl'>0</span>,
@@ -236,8 +235,8 @@ included in the plot as a subtitle.</p>
   palette <span class='op'>=</span> <span class='st'>"Dark2"</span>,
   ggplot.component <span class='op'>=</span> <span class='cn'>NULL</span>,
   output <span class='op'>=</span> <span class='st'>"plot"</span>,
-  x <span class='op'>=</span> <span class='cn'>NULL</span>,
-  y <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>main</span>,
+  <span class='va'>condition</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -250,11 +249,11 @@ included in the plot as a subtitle.</p>
 be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
     </tr>
     <tr>
-      <th>main</th>
+      <th>x</th>
       <td><p>The variable to use as the <strong>rows</strong> in the contingency table.</p></td>
     </tr>
     <tr>
-      <th>condition</th>
+      <th>y</th>
       <td><p>The variable to use as the <strong>columns</strong> in the contingency
 table. Default is <code>NULL</code>. If <code>NULL</code>, one-sample proportion test (a goodness
 of fit test) will be run for the <code>x</code> variable. Otherwise an appropriate
@@ -308,11 +307,6 @@ displayed on the label in each pie slice. Possible options are
       <th>conf.level</th>
       <td><p>Scalar between 0 and 1. If unspecified, the defaults return
 <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
-    </tr>
-    <tr>
-      <th>nboot</th>
-      <td><p>Number of bootstrap samples for computing confidence interval
-for the effect size (Default: <code>100</code>).</p></td>
     </tr>
     <tr>
       <th>k</th>
@@ -426,11 +420,11 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
 dataframe containing results from proportion tests.</p></td>
     </tr>
     <tr>
-      <th>x</th>
+      <th>main</th>
       <td><p>The variable to use as the <strong>rows</strong> in the contingency table.</p></td>
     </tr>
     <tr>
-      <th>y</th>
+      <th>condition</th>
       <td><p>The variable to use as the <strong>columns</strong> in the contingency
 table. Default is <code>NULL</code>. If <code>NULL</code>, one-sample proportion test (a goodness
 of fit test) will be run for the <code>x</code> variable. Otherwise an appropriate

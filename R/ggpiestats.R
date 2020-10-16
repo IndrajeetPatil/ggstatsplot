@@ -73,8 +73,8 @@
 
 # defining the function
 ggpiestats <- function(data,
-                       main,
-                       condition = NULL,
+                       x = NULL,
+                       y = NULL,
                        counts = NULL,
                        ratio = NULL,
                        paired = FALSE,
@@ -83,7 +83,6 @@ ggpiestats <- function(data,
                        label.args = list(direction = "both"),
                        label.repel = FALSE,
                        conf.level = 0.95,
-                       nboot = 100L,
                        k = 2L,
                        proportion.test = TRUE,
                        perc.k = 0,
@@ -101,8 +100,8 @@ ggpiestats <- function(data,
                        palette = "Dark2",
                        ggplot.component = NULL,
                        output = "plot",
-                       x = NULL,
-                       y = NULL,
+                       main,
+                       condition = NULL,
                        ...) {
 
   # ensure the variables work quoted or unquoted
@@ -125,8 +124,6 @@ ggpiestats <- function(data,
     tidyr::drop_na(data = .) %>%
     as_tibble(.)
 
-  # =========================== converting counts ============================
-
   # untable the dataframe based on the count for each observation
   if (!rlang::quo_is_null(rlang::enquo(counts))) {
     data %<>%
@@ -138,18 +135,27 @@ ggpiestats <- function(data,
       )
   }
 
-  # ============================ percentage dataframe ========================
-
   # x and y need to be a factor for this analysis
   # also drop the unused levels of the factors
 
   # x
   data %<>% dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }})))
+  x_levels <- nlevels(data %>% dplyr::pull({{ x }}))[[1]]
 
   # y
   if (!rlang::quo_is_null(rlang::enquo(y))) {
     data %<>% dplyr::mutate(.data = ., {{ y }} := droplevels(as.factor({{ y }})))
+    y_levels <- nlevels(data %>% dplyr::pull({{ y }}))[[1]]
+
+    # TO DO: until one-way table is supported by `BayesFactor`
+    if (y_levels == 1L) bf.message <- FALSE
+  } else {
+    y_levels <- 0L
   }
+
+  # facting is happening only if both vars have more than one levels
+  facet <- ifelse(y_levels > 1L, TRUE, FALSE)
+  if (x_levels == 1L && isTRUE(facet)) proportion.test <- FALSE
 
   # ========================= statistical analysis ==========================
 
@@ -162,12 +168,8 @@ ggpiestats <- function(data,
           x = {{ x }},
           y = {{ y }},
           ratio = ratio,
-          nboot = nboot,
           paired = paired,
-          legend.title = legend.title,
           conf.level = conf.level,
-          conf.type = "norm",
-          bias.correct = TRUE,
           k = k
         ),
         error = function(e) NULL
@@ -176,16 +178,19 @@ ggpiestats <- function(data,
     # preparing Bayes Factor caption
     if (isTRUE(bf.message) && !is.null(subtitle)) {
       caption <-
-        bf_contingency_tab(
-          data = data,
-          x = {{ x }},
-          y = {{ y }},
-          sampling.plan = sampling.plan,
-          fixed.margin = fixed.margin,
-          prior.concentration = prior.concentration,
-          caption = caption,
-          output = "caption",
-          k = k
+        tryCatch(
+          expr = bf_contingency_tab(
+            data = data,
+            x = {{ x }},
+            y = {{ y }},
+            sampling.plan = sampling.plan,
+            fixed.margin = fixed.margin,
+            prior.concentration = prior.concentration,
+            caption = caption,
+            output = "caption",
+            k = k
+          ),
+          error = function(e) NULL
         )
     }
   }
@@ -230,7 +235,7 @@ ggpiestats <- function(data,
   palette_message(
     package = package,
     palette = palette,
-    min_length = nlevels(data %>% dplyr::pull({{ x }}))[[1]]
+    min_length = x_levels
   )
 
   # creating the basic plot
@@ -265,7 +270,7 @@ ggpiestats <- function(data,
     )))
 
   # if facet_wrap *is* happening
-  if (!rlang::quo_is_null(rlang::enquo(y))) {
+  if (isTRUE(facet)) {
     p <- p + ggplot2::facet_wrap(facets = dplyr::vars({{ y }}))
   }
 
@@ -280,7 +285,7 @@ ggpiestats <- function(data,
   # ================ sample size + proportion test labels =================
 
   # adding labels with proportion tests
-  if (!rlang::quo_is_null(rlang::enquo(y)) && isTRUE(proportion.test)) {
+  if (isTRUE(facet) && isTRUE(proportion.test)) {
     p <- p +
       rlang::exec(
         .fn = ggplot2::geom_text,

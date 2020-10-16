@@ -59,12 +59,11 @@ dataframe of results from \code{broom::tidy}) or \code{"glance"} (object from
 \item{conf.int}{Logical. Decides whether to display confidence intervals as
 error bars (Default: \code{TRUE}).}
 
-\item{conf.level}{Numeric deciding level of confidence intervals (Default:
-\code{0.95}). For \code{MCMC} model objects (\code{Stan}, \code{JAGS}, etc.), this will be
-probability level for CI.}
+\item{conf.level}{Numeric deciding level of confidence or credible intervals
+(Default: \code{0.95}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2L}).}
+(Default: \code{k = 2}).}
 
 \item{exclude.intercept}{Logical that decides whether the intercept should be
 excluded from the plot (Default: \code{TRUE}).}
@@ -165,7 +164,7 @@ theme elements are to be displayed along with the selected \code{ggtheme}
 override some aspects of the selected \code{ggtheme}.}
 
 \item{...}{Additional arguments to tidying method. For more, see
-\code{?parameters::model_parameters} and \code{broom::tidy}.}
+\code{parameters::model_parameters} and \code{broom::tidy}.}
 }
 \value{
 Plot with the regression coefficients' point estimates as dots with

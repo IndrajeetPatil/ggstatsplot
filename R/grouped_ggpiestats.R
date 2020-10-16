@@ -56,14 +56,14 @@
 
 # defining the function
 grouped_ggpiestats <- function(data,
-                               main,
-                               condition = NULL,
+                               x = NULL,
+                               y = NULL,
                                counts = NULL,
                                grouping.var,
                                title.prefix = NULL,
                                output = "plot",
-                               x = NULL,
-                               y = NULL,
+                               main,
+                               condition = NULL,
                                ...,
                                plotgrid.args = list(),
                                title.text = NULL,
