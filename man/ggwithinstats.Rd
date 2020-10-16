@@ -17,7 +17,6 @@ ggwithinstats(
   partial = TRUE,
   bf.prior = 0.707,
   bf.message = TRUE,
-  sphericity.correction = TRUE,
   results.subtitle = TRUE,
   xlab = NULL,
   ylab = NULL,
