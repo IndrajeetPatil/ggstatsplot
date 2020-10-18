@@ -186,7 +186,7 @@ ggpiestats <- function(data,
             sampling.plan = sampling.plan,
             fixed.margin = fixed.margin,
             prior.concentration = prior.concentration,
-            caption = caption,
+            top.text = caption,
             output = "caption",
             k = k
           ),

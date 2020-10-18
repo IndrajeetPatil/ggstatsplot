@@ -201,11 +201,9 @@ by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} va
 of the current function. Default is \code{NULL}. The argument should be entered
 as a function.}
 
-\item{output}{Can either be \code{"null"} (or \code{"caption"} or \code{"H0"} or \code{"h0"}),
-which will return expression with evidence in favor of the null hypothesis,
-or \code{"alternative"} (or \code{"title"} or \code{"H1"} or \code{"h1"}), which will return
-expression with evidence in favor of the alternative hypothesis, or
-\code{"dataframe"}, which will return a dataframe with results all the details).}
+\item{output}{If \code{"expression"}, will return expression with statistical
+details, while \code{"dataframe"} (default) will return a dataframe containing the
+results.}
 
 \item{...}{Currently ignored.}
 }

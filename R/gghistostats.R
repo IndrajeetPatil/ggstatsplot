@@ -151,7 +151,7 @@ gghistostats <- function(data,
           x = {{ x }},
           test.value = test.value,
           bf.prior = bf.prior,
-          caption = caption,
+          top.text = caption,
           output = "caption",
           k = k
         )

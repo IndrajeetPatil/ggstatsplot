@@ -280,7 +280,7 @@ ggbetweenstats <- function(data,
           x = rlang::as_string(x),
           y = rlang::as_string(y),
           bf.prior = bf.prior,
-          caption = caption,
+          top.text = caption,
           paired = FALSE,
           output = "caption",
           k = k

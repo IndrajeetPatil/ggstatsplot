@@ -5,6 +5,9 @@
 #'   (unjittered) data points for within-subjects designs with statistical
 #'   details included in the plot as a subtitle.
 #'
+#' @noRd **Important**: Please note that the function expects that the data is
+#'   already sorted by subject/repeated measures ID.
+#'
 #' @inheritParams ggbetweenstats
 #' @param point.path,mean.path Logical that decides whether individual data
 #'   points and means, respectively, should be connected using `geom_path`. Both
@@ -175,7 +178,7 @@ ggwithinstats <- function(data,
           x = rlang::as_string(x),
           y = rlang::as_string(y),
           bf.prior = bf.prior,
-          caption = caption,
+          top.text = caption,
           paired = TRUE,
           output = "caption",
           k = k

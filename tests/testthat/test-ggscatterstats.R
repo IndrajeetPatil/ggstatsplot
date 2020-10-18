@@ -144,7 +144,7 @@ testthat::test_that(
         data = ggplot2::msleep,
         x = "sleep_total",
         y = bodywt,
-        caption = "ggplot2 dataset",
+        top.text = "ggplot2 dataset",
         messages = FALSE,
         output = "caption"
       )

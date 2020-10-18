@@ -1,4 +1,4 @@
-pandoc: '2.11'
+pandoc: 2.11.0.2
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
@@ -19,7 +19,7 @@ articles:
   web_only/purrr_examples: purrr_examples.html
   web_only/session_info: session_info.html
   web_only/theme_ggstatsplot: theme_ggstatsplot.html
-last_built: 2020-10-16T10:57Z
+last_built: 2020-10-18T16:34Z
 urls:
   reference: https://indrajeetpatil.github.io/ggstatsplot//reference
   article: https://indrajeetpatil.github.io/ggstatsplot//articles

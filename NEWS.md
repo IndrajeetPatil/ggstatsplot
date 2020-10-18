@@ -1,5 +1,11 @@
 # ggstatsplot 0.6.1.9000
 
+MAJOR CHANGES
+
+  - For consistency and to reduce confusion, all Bayes Factor (irrespective of
+    whether in the subtitle or caption) are always in favor of null over
+    alternative (`BF01`).
+
 # ggstatsplot 0.6.1
 
 MAJOR CHANGES

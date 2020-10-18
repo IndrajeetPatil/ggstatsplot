@@ -200,7 +200,7 @@ ggscatterstats <- function(data,
           x = {{ x }},
           y = {{ y }},
           bf.prior = bf.prior,
-          caption = caption,
+          top.text = caption,
           output = "caption",
           k = k
         )

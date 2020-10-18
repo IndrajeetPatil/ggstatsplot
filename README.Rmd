@@ -91,6 +91,17 @@ Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
 `ggcoefstats` | Regression model coefficients | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
 `ggcoefstats` | Random-effects meta-analysis | <font color="green">Yes</font> | <font color="red">No</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
 
+Summary of Bayesian analysis
+
+Analysis | Hypothesis testing | Estimation
+------------------ | ---------- | ---------
+(one/two-sample) t-test | <font color="green">Yes</font> | <font color="green">Yes</font>
+one-way ANOVA | <font color="green">Yes</font> | <font color="red">No</font>
+correlation | <font color="green">Yes</font> | <font color="green">Yes</font>
+(one/two-way) contingency table | <font color="green">Yes</font> | <font color="red">No</font>
+random-effects meta-analysis | <font color="green">Yes</font> | <font color="green">Yes</font>
+
+
 # Statistical reporting
 
 For **all** statistical tests reported in the plots, the default template abides

@@ -128,14 +128,28 @@
 \fi
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
-\newenvironment{cslreferences}%
-  {\setlength{\parindent}{0pt}%
-  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces}%
-  {\par}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[3] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
+  % set entry spacing
+  \ifnum #2 > 0
+  \setlength{\parskip}{#2\baselineskip}
+  \fi
+ }%
+ {}
+\usepackage{calc} % for \widthof, \maxof
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\maxof{\widthof{#1}}{\csllabelwidth}}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth}{#1}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 \title{ggstatsplot: ggplot2 Based Plots with Statistical Details}
 \author{Indrajeet Patil\footnote{Max Planck Institute for Human Development, \href{mailto:patilindrajeet.science@gmail.com}{\nolinkurl{patilindrajeet.science@gmail.com}}}}
-\date{2020-10-06}
+\date{2020-10-18}
 
 \begin{document}
 \maketitle
@@ -179,7 +193,7 @@ We list few reasons below-
 \begin{itemize}
 \tightlist
 \item
-  A recent survey (Nuijten, Hartgerink, van Assen, Epskamp, \& Wicherts, \protect\hyperlink{ref-nuijtenPrevalenceStatisticalReporting2016}{2016}) revealed that
+  A recent survey (\protect\hyperlink{ref-nuijtenPrevalenceStatisticalReporting2016}{Nuijten, Hartgerink, van Assen, Epskamp, \& Wicherts, 2016}) revealed that
   one in eight papers in major psychology journals contained a grossly
   inconsistent \emph{p}-value that may have affected the statistical conclusion.
   \texttt{ggstatsplot} helps avoid such reporting errors: Since the plot and the
@@ -448,12 +462,12 @@ report statistical details on the plots.
 
 Graphical perception involves visual decoding of the encoded information in
 graphs. \texttt{ggstatsplot} incorporates the paradigm proposed in
-((Cleveland, \protect\hyperlink{ref-clevelandElementsGraphingData1985}{1985}), Chapter 4) to facilitate making visual
+((\protect\hyperlink{ref-clevelandElementsGraphingData1985}{Cleveland, 1985}), Chapter 4) to facilitate making visual
 judgments about quantitative information effortless and almost instantaneous.
 Based on experiments, Cleveland proposes that there are ten elementary
 graphical-perception tasks that we perform to visually decode quantitative
 information in graphs (organized from most to least accurate;
-(Cleveland, \protect\hyperlink{ref-clevelandElementsGraphingData1985}{1985}), p.254)-
+(\protect\hyperlink{ref-clevelandElementsGraphingData1985}{Cleveland, 1985}), p.254)-
 
 \begin{itemize}
 \tightlist
@@ -486,25 +500,25 @@ position judgments along a common scale (Figure \ref{fig:fig1}):
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# for reproducibility}
-\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
 
 \CommentTok{\# plot}
-\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{ggbetweenstats}\NormalTok{(}
-  \DataTypeTok{data =}\NormalTok{ dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(}
-    \DataTypeTok{.data =}\NormalTok{ ggstatsplot}\OperatorTok{::}\NormalTok{movies\_long,}
-\NormalTok{    genre }\OperatorTok{\%in\%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Action"}\NormalTok{, }\StringTok{"Action Comedy"}\NormalTok{, }\StringTok{"Action Drama"}\NormalTok{, }\StringTok{"Comedy"}\NormalTok{)}
+\NormalTok{ggstatsplot}\SpecialCharTok{::}\FunctionTok{ggbetweenstats}\NormalTok{(}
+  \AttributeTok{data =}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(}
+    \AttributeTok{.data =}\NormalTok{ ggstatsplot}\SpecialCharTok{::}\NormalTok{movies\_long,}
+\NormalTok{    genre }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"Action"}\NormalTok{, }\StringTok{"Action Comedy"}\NormalTok{, }\StringTok{"Action Drama"}\NormalTok{, }\StringTok{"Comedy"}\NormalTok{)}
 \NormalTok{  ),}
-  \DataTypeTok{x =}\NormalTok{ genre,}
-  \DataTypeTok{y =}\NormalTok{ rating,}
-  \DataTypeTok{title =} \StringTok{"IMDB rating by film genre"}\NormalTok{,}
-  \DataTypeTok{xlab =} \StringTok{"Genre"}\NormalTok{,}
-  \DataTypeTok{ylab =} \StringTok{"IMDB rating (average)"}\NormalTok{,}
-  \DataTypeTok{pairwise.comparisons =} \OtherTok{TRUE}\NormalTok{,}
-  \DataTypeTok{p.adjust.method =} \StringTok{"bonferroni"}\NormalTok{,}
-  \DataTypeTok{ggtheme =}\NormalTok{ hrbrthemes}\OperatorTok{::}\KeywordTok{theme\_ipsum\_tw}\NormalTok{(),}
-  \DataTypeTok{ggstatsplot.layer =} \OtherTok{FALSE}\NormalTok{,}
-  \DataTypeTok{outlier.tagging =} \OtherTok{TRUE}\NormalTok{,}
-  \DataTypeTok{outlier.label =}\NormalTok{ title}
+  \AttributeTok{x =}\NormalTok{ genre,}
+  \AttributeTok{y =}\NormalTok{ rating,}
+  \AttributeTok{title =} \StringTok{"IMDB rating by film genre"}\NormalTok{,}
+  \AttributeTok{xlab =} \StringTok{"Genre"}\NormalTok{,}
+  \AttributeTok{ylab =} \StringTok{"IMDB rating (average)"}\NormalTok{,}
+  \AttributeTok{pairwise.comparisons =} \ConstantTok{TRUE}\NormalTok{,}
+  \AttributeTok{p.adjust.method =} \StringTok{"bonferroni"}\NormalTok{,}
+  \AttributeTok{ggtheme =}\NormalTok{ hrbrthemes}\SpecialCharTok{::}\FunctionTok{theme\_ipsum\_tw}\NormalTok{(),}
+  \AttributeTok{ggstatsplot.layer =} \ConstantTok{FALSE}\NormalTok{,}
+  \AttributeTok{outlier.tagging =} \ConstantTok{TRUE}\NormalTok{,}
+  \AttributeTok{outlier.label =}\NormalTok{ title}
 \NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -532,19 +546,19 @@ in Cleveland's paradigm:
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# for reproducibility}
-\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
 
 \CommentTok{\# plot}
-\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{ggpiestats}\NormalTok{(}
-  \DataTypeTok{data =}\NormalTok{ ggstatsplot}\OperatorTok{::}\NormalTok{movies\_long,}
-  \DataTypeTok{x =}\NormalTok{ genre,}
-  \DataTypeTok{y =}\NormalTok{ mpaa,}
-  \DataTypeTok{title =} \StringTok{"Distribution of MPAA ratings by film genre"}\NormalTok{,}
-  \DataTypeTok{legend.title =} \StringTok{"layout"}\NormalTok{,}
-  \DataTypeTok{caption =} \KeywordTok{substitute}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}
-    \KeywordTok{italic}\NormalTok{(}\StringTok{"MPAA"}\NormalTok{), }\StringTok{": Motion Picture Association of America"}
+\NormalTok{ggstatsplot}\SpecialCharTok{::}\FunctionTok{ggpiestats}\NormalTok{(}
+  \AttributeTok{data =}\NormalTok{ ggstatsplot}\SpecialCharTok{::}\NormalTok{movies\_long,}
+  \AttributeTok{x =}\NormalTok{ genre,}
+  \AttributeTok{y =}\NormalTok{ mpaa,}
+  \AttributeTok{title =} \StringTok{"Distribution of MPAA ratings by film genre"}\NormalTok{,}
+  \AttributeTok{legend.title =} \StringTok{"layout"}\NormalTok{,}
+  \AttributeTok{caption =} \FunctionTok{substitute}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}
+    \FunctionTok{italic}\NormalTok{(}\StringTok{"MPAA"}\NormalTok{), }\StringTok{": Motion Picture Association of America"}
 \NormalTok{  )),}
-  \DataTypeTok{palette =} \StringTok{"Paired"}
+  \AttributeTok{palette =} \StringTok{"Paired"}
 \NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -557,7 +571,7 @@ in Cleveland's paradigm:
 \tightlist
 \item
   Cleveland's paradigm also emphasizes that \emph{superposition} of data is better
-  than \emph{juxtaposition} ((Cleveland, \protect\hyperlink{ref-clevelandElementsGraphingData1985}{1985}), p.201) because
+  than \emph{juxtaposition} ((\protect\hyperlink{ref-clevelandElementsGraphingData1985}{Cleveland, 1985}), p.201) because
   this allows for a more incisive comparison of the values from different
   parts of the dataset. This recommendation is violated in all \texttt{grouped\_}
   variants of the function (see Figure \ref{fig:fig3}). Note that the range
@@ -576,35 +590,35 @@ in Cleveland's paradigm:
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# for reproducibility}
-\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
-\KeywordTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
 
 \CommentTok{\# creating a smaller dataframe}
-\NormalTok{df \textless{}{-}}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(ggstatsplot}\OperatorTok{::}\NormalTok{movies\_long, genre }\OperatorTok{\%in\%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Comedy"}\NormalTok{, }\StringTok{"Drama"}\NormalTok{))}
+\NormalTok{df }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(ggstatsplot}\SpecialCharTok{::}\NormalTok{movies\_long, genre }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"Comedy"}\NormalTok{, }\StringTok{"Drama"}\NormalTok{))}
 
 \CommentTok{\# plot}
-\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{combine\_plots}\NormalTok{(}
+\NormalTok{ggstatsplot}\SpecialCharTok{::}\FunctionTok{combine\_plots}\NormalTok{(}
   \CommentTok{\# plot 1: superposition}
-  \KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ df, }\DataTypeTok{mapping =}\NormalTok{ ggplot2}\OperatorTok{::}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ length, }\DataTypeTok{y =}\NormalTok{ rating, }\DataTypeTok{color =}\NormalTok{ genre)) }\OperatorTok{+}
-\StringTok{    }\KeywordTok{geom\_jitter}\NormalTok{(}\DataTypeTok{size =} \DecValTok{3}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\OperatorTok{+}
-\StringTok{    }\KeywordTok{geom\_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{) }\OperatorTok{+}
-\StringTok{    }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"superposition (recommended in Cleveland\textquotesingle{}s paradigm)"}\NormalTok{) }\OperatorTok{+}
-\StringTok{    }\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{theme\_ggstatsplot}\NormalTok{(),}
+  \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ df, }\AttributeTok{mapping =}\NormalTok{ ggplot2}\SpecialCharTok{::}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ length, }\AttributeTok{y =}\NormalTok{ rating, }\AttributeTok{color =}\NormalTok{ genre)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_jitter}\NormalTok{(}\AttributeTok{size =} \DecValTok{3}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"superposition (recommended in Cleveland\textquotesingle{}s paradigm)"}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{    ggstatsplot}\SpecialCharTok{::}\FunctionTok{theme\_ggstatsplot}\NormalTok{(),}
   \CommentTok{\# plot 2: juxtaposition}
-\NormalTok{  ggstatsplot}\OperatorTok{::}\KeywordTok{grouped\_ggscatterstats}\NormalTok{(}
-    \DataTypeTok{data =}\NormalTok{ df,}
-    \DataTypeTok{x =}\NormalTok{ length,}
-    \DataTypeTok{y =}\NormalTok{ rating,}
-    \DataTypeTok{grouping.var =}\NormalTok{ genre,}
-    \DataTypeTok{marginal =} \OtherTok{FALSE}\NormalTok{,}
-    \DataTypeTok{title.prefix =} \StringTok{"Genre"}\NormalTok{,}
-    \DataTypeTok{title.text =} \StringTok{"juxtaposition (\textasciigrave{}ggstatsplot\textasciigrave{} implementation in \textasciigrave{}grouped\_\textasciigrave{} functions)"}\NormalTok{,}
-    \DataTypeTok{title.size =} \DecValTok{12}
+\NormalTok{  ggstatsplot}\SpecialCharTok{::}\FunctionTok{grouped\_ggscatterstats}\NormalTok{(}
+    \AttributeTok{data =}\NormalTok{ df,}
+    \AttributeTok{x =}\NormalTok{ length,}
+    \AttributeTok{y =}\NormalTok{ rating,}
+    \AttributeTok{grouping.var =}\NormalTok{ genre,}
+    \AttributeTok{marginal =} \ConstantTok{FALSE}\NormalTok{,}
+    \AttributeTok{title.prefix =} \StringTok{"Genre"}\NormalTok{,}
+    \AttributeTok{title.text =} \StringTok{"juxtaposition (\textasciigrave{}ggstatsplot\textasciigrave{} implementation in \textasciigrave{}grouped\_\textasciigrave{} functions)"}\NormalTok{,}
+    \AttributeTok{title.size =} \DecValTok{12}
 \NormalTok{  ),}
   \CommentTok{\# combine for comparison}
-  \DataTypeTok{title.text =} \StringTok{"Two ways to compare different aspects of data"}\NormalTok{,}
-  \DataTypeTok{nrow =} \DecValTok{2}\NormalTok{,}
-  \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"(a)"}\NormalTok{, }\StringTok{"(b)"}\NormalTok{)}
+  \AttributeTok{title.text =} \StringTok{"Two ways to compare different aspects of data"}\NormalTok{,}
+  \AttributeTok{nrow =} \DecValTok{2}\NormalTok{,}
+  \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"(a)"}\NormalTok{, }\StringTok{"(b)"}\NormalTok{)}
 \NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -614,7 +628,7 @@ in Cleveland's paradigm:
 \end{figure}
 
 The \texttt{grouped\_} plots follow the \emph{Shrink Principle}
-((Tufte, \protect\hyperlink{ref-tufteVisualDisplayQuantitative2001}{2001}), p.166-7) for high-information graphics,
+((\protect\hyperlink{ref-tufteVisualDisplayQuantitative2001}{Tufte, 2001}), p.166-7) for high-information graphics,
 which dictates that the data density and the size of the data matrix can be
 maximized to exploit maximum resolution of the available data-display
 technology. Given the large maximum resolution afforded by most computer
@@ -627,7 +641,7 @@ loss in legibility with reduced graphics area.
 Graphical excellence consists of communicating complex ideas with clarity and in
 a way that the viewer understands the greatest number of ideas in a short amount
 of time all the while not quoting the data out of context. The package follows
-the principles for \emph{graphical integrity} (Tufte, \protect\hyperlink{ref-tufteVisualDisplayQuantitative2001}{2001}):
+the principles for \emph{graphical integrity} (\protect\hyperlink{ref-tufteVisualDisplayQuantitative2001}{Tufte, 2001}):
 
 \begin{itemize}
 \item
@@ -643,7 +657,7 @@ the principles for \emph{graphical integrity} (Tufte, \protect\hyperlink{ref-tuf
   appreciated for \texttt{ggpiestats} in Figure \ref{fig:fig2} and \texttt{gghistostats} in
   Figure \ref{fig:fig5}). Note that data labels in the data region are
   designed in a way that they don't interfere with our ability to assess the
-  overall pattern of the data ((Cleveland, \protect\hyperlink{ref-clevelandElementsGraphingData1985}{1985});
+  overall pattern of the data ((\protect\hyperlink{ref-clevelandElementsGraphingData1985}{Cleveland, 1985});
   p.44-45). This is achieved by using \texttt{ggrepel} package to place labels in a
   way that reduces their visual prominence.
 \item
@@ -656,12 +670,12 @@ the principles for \emph{graphical integrity} (Tufte, \protect\hyperlink{ref-tuf
 \item
   All plots are designed to have no \textbf{chartjunk} (like moiré vibrations, fake
   perspective, dark grid lines, etc.)
-  ((Tufte, \protect\hyperlink{ref-tufteVisualDisplayQuantitative2001}{2001}), Chapter 5).
+  ((\protect\hyperlink{ref-tufteVisualDisplayQuantitative2001}{Tufte, 2001}), Chapter 5).
 \end{itemize}
 
 There are some instances where \texttt{ggstatsplot} graphs don't follow principles of
 clean graphics, as formulated in the Tufte theory of data graphics
-((Tufte, \protect\hyperlink{ref-tufteVisualDisplayQuantitative2001}{2001}), Chapter 4). The theory has four key
+((\protect\hyperlink{ref-tufteVisualDisplayQuantitative2001}{Tufte, 2001}), Chapter 4). The theory has four key
 principles:
 
 \begin{enumerate}
@@ -686,7 +700,7 @@ can see that both the box and violin plots are mirrored, which consumes twice
 the space in the graphic without adding any new information. But this redundancy
 is tolerated for the sake of beauty that such symmetrical shapes can bring to
 the graphic. Even Tufte admits that efficiency is but one consideration in the
-design of statistical graphics ((Tufte, \protect\hyperlink{ref-tufteVisualDisplayQuantitative2001}{2001}),
+design of statistical graphics ((\protect\hyperlink{ref-tufteVisualDisplayQuantitative2001}{Tufte, 2001}),
 p.~137). Additionally, these principles were formulated in an era in which
 computer graphics had yet to revolutionize the ease with which graphics could be
 produced and thus some of the concerns about minimizing data-ink for easier
@@ -707,23 +721,23 @@ which comes in two forms:
   (Figure \ref{fig:fig5}). None of the plots, where empirical distribution of
   the data is concerned, show the sample standard deviation because they are
   poor at conveying information about limits of the sample and presence of
-  outliers ((Cleveland, \protect\hyperlink{ref-clevelandElementsGraphingData1985}{1985}), p.220).
+  outliers ((\protect\hyperlink{ref-clevelandElementsGraphingData1985}{Cleveland, 1985}), p.220).
 \end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# for reproducibility}
-\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
 
 \CommentTok{\# plot}
-\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{gghistostats}\NormalTok{(}
-  \DataTypeTok{data =}\NormalTok{ morley,}
-  \DataTypeTok{x =}\NormalTok{ Speed,}
-  \DataTypeTok{test.value =} \DecValTok{792}\NormalTok{,}
-  \DataTypeTok{test.value.line =} \OtherTok{TRUE}\NormalTok{,}
-  \DataTypeTok{xlab =} \StringTok{"Speed of light (km/sec, with 299000 subtracted)"}\NormalTok{,}
-  \DataTypeTok{title =} \StringTok{"Distribution of measured Speed of light"}\NormalTok{,}
-  \DataTypeTok{caption =} \StringTok{"Note: Data collected across 5 experiments (20 measurements each)"}
+\NormalTok{ggstatsplot}\SpecialCharTok{::}\FunctionTok{gghistostats}\NormalTok{(}
+  \AttributeTok{data =}\NormalTok{ morley,}
+  \AttributeTok{x =}\NormalTok{ Speed,}
+  \AttributeTok{test.value =} \DecValTok{792}\NormalTok{,}
+  \AttributeTok{test.value.line =} \ConstantTok{TRUE}\NormalTok{,}
+  \AttributeTok{xlab =} \StringTok{"Speed of light (km/sec, with 299000 subtracted)"}\NormalTok{,}
+  \AttributeTok{title =} \StringTok{"Distribution of measured Speed of light"}\NormalTok{,}
+  \AttributeTok{caption =} \StringTok{"Note: Data collected across 5 experiments (20 measurements each)"}
 \NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -740,22 +754,22 @@ which comes in two forms:
   statistic, \texttt{ggstatsplot} plots instead use 95\% confidence intervals (e.g.,
   Figure \ref{fig:fig6}). This is because the interval formed by error bars
   correspond to a 68\% confidence interval, which is not a particularly
-  interesting interval ((Cleveland, \protect\hyperlink{ref-clevelandElementsGraphingData1985}{1985}), p.222-225).
+  interesting interval ((\protect\hyperlink{ref-clevelandElementsGraphingData1985}{Cleveland, 1985}), p.222-225).
 \end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# for reproducibility}
-\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
 
 \CommentTok{\# creating model object}
-\NormalTok{mod \textless{}{-}}\StringTok{ }\NormalTok{lme4}\OperatorTok{::}\KeywordTok{lmer}\NormalTok{(}
-  \DataTypeTok{formula =}\NormalTok{ total.fruits }\OperatorTok{\textasciitilde{}}\StringTok{ }\NormalTok{nutrient }\OperatorTok{+}\StringTok{ }\NormalTok{rack }\OperatorTok{+}\StringTok{ }\NormalTok{(nutrient }\OperatorTok{|}\StringTok{ }\NormalTok{gen),}
-  \DataTypeTok{data =}\NormalTok{ lme4}\OperatorTok{::}\NormalTok{Arabidopsis}
+\NormalTok{mod }\OtherTok{\textless{}{-}}\NormalTok{ lme4}\SpecialCharTok{::}\FunctionTok{lmer}\NormalTok{(}
+  \AttributeTok{formula =}\NormalTok{ total.fruits }\SpecialCharTok{\textasciitilde{}}\NormalTok{ nutrient }\SpecialCharTok{+}\NormalTok{ rack }\SpecialCharTok{+}\NormalTok{ (nutrient }\SpecialCharTok{|}\NormalTok{ gen),}
+  \AttributeTok{data =}\NormalTok{ lme4}\SpecialCharTok{::}\NormalTok{Arabidopsis}
 \NormalTok{)}
 
 \CommentTok{\# plot}
-\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{ggcoefstats}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ mod)}
+\NormalTok{ggstatsplot}\SpecialCharTok{::}\FunctionTok{ggcoefstats}\NormalTok{(}\AttributeTok{x =}\NormalTok{ mod)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -778,10 +792,10 @@ structure of the data. More specifically,
   specify how statistical structure of a data frame (variables and
   observations) should be mapped to physical structure (columns and rows).
   More specifically, tidy data means all variables have their own columns and
-  each row corresponds to a unique observation ((Wickham, \protect\hyperlink{ref-wickhamTidyData2014}{2014})).
+  each row corresponds to a unique observation ((\protect\hyperlink{ref-wickhamTidyData2014}{Wickham, 2014})).
 \item
   All \texttt{ggstatsplot} functions remove \texttt{NA}s from variables of interest (similar
-  to \texttt{ggplot2}; (Wickham, \protect\hyperlink{ref-wickhamGgplot2ElegantGraphics2016}{2016}), p.207) in the data and
+  to \texttt{ggplot2}; (\protect\hyperlink{ref-wickhamGgplot2ElegantGraphics2016}{Wickham, 2016}), p.207) in the data and
   display total sample size (\emph{n}, either observations for between-subjects or
   pairs for within-subjects designs) in the subtitle to inform the user/reader
   about the number of observations included for both the statistical analysis
@@ -795,33 +809,33 @@ structure of the data. More specifically,
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# for reproducibility}
-\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
 
 \CommentTok{\# creating a new dataset without any NAs in variables of interest}
-\NormalTok{msleep\_no\_na \textless{}{-}}
-\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(}
-    \DataTypeTok{.data =}\NormalTok{ ggplot2}\OperatorTok{::}\NormalTok{msleep,}
-    \OperatorTok{!}\KeywordTok{is.na}\NormalTok{(sleep\_rem), }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(awake), }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(brainwt), }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(bodywt)}
+\NormalTok{msleep\_no\_na }\OtherTok{\textless{}{-}}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(}
+    \AttributeTok{.data =}\NormalTok{ ggplot2}\SpecialCharTok{::}\NormalTok{msleep,}
+    \SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(sleep\_rem), }\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(awake), }\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(brainwt), }\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(bodywt)}
 \NormalTok{  )}
 
 \CommentTok{\# variable names vector}
-\NormalTok{var\_names \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"REM sleep"}\NormalTok{, }\StringTok{"time awake"}\NormalTok{, }\StringTok{"brain weight"}\NormalTok{, }\StringTok{"body weight"}\NormalTok{)}
+\NormalTok{var\_names }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"REM sleep"}\NormalTok{, }\StringTok{"time awake"}\NormalTok{, }\StringTok{"brain weight"}\NormalTok{, }\StringTok{"body weight"}\NormalTok{)}
 
 \CommentTok{\# combining two plots using helper function in \textasciigrave{}ggstatsplot\textasciigrave{}}
-\NormalTok{ggstatsplot}\OperatorTok{::}\KeywordTok{combine\_plots}\NormalTok{(}
-  \DataTypeTok{plotlist =}\NormalTok{ purrr}\OperatorTok{::}\KeywordTok{pmap}\NormalTok{(}
-    \DataTypeTok{.l =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{list}\NormalTok{(msleep\_no\_na, ggplot2}\OperatorTok{::}\NormalTok{msleep)),}
-    \DataTypeTok{.f =}\NormalTok{ ggstatsplot}\OperatorTok{::}\NormalTok{ggcorrmat,}
-    \DataTypeTok{p.adjust.method =} \StringTok{"holm"}\NormalTok{,}
-    \DataTypeTok{cor.vars =} \KeywordTok{c}\NormalTok{(sleep\_rem, awake}\OperatorTok{:}\NormalTok{bodywt),}
-    \DataTypeTok{cor.vars.names =}\NormalTok{ var\_names,}
-    \DataTypeTok{matrix.type =} \StringTok{"upper"}\NormalTok{,}
-    \DataTypeTok{colors =} \KeywordTok{c}\NormalTok{(}\StringTok{"\#B2182B"}\NormalTok{, }\StringTok{"white"}\NormalTok{, }\StringTok{"\#4D4D4D"}\NormalTok{),}
-    \DataTypeTok{title =} \StringTok{"Correlalogram for mammals sleep dataset"}\NormalTok{,}
-    \DataTypeTok{subtitle =} \StringTok{"sleep units: hours; weight units: kilograms"}
+\NormalTok{ggstatsplot}\SpecialCharTok{::}\FunctionTok{combine\_plots}\NormalTok{(}
+  \AttributeTok{plotlist =}\NormalTok{ purrr}\SpecialCharTok{::}\FunctionTok{pmap}\NormalTok{(}
+    \AttributeTok{.l =} \FunctionTok{list}\NormalTok{(}\AttributeTok{data =} \FunctionTok{list}\NormalTok{(msleep\_no\_na, ggplot2}\SpecialCharTok{::}\NormalTok{msleep)),}
+    \AttributeTok{.f =}\NormalTok{ ggstatsplot}\SpecialCharTok{::}\NormalTok{ggcorrmat,}
+    \AttributeTok{p.adjust.method =} \StringTok{"holm"}\NormalTok{,}
+    \AttributeTok{cor.vars =} \FunctionTok{c}\NormalTok{(sleep\_rem, awake}\SpecialCharTok{:}\NormalTok{bodywt),}
+    \AttributeTok{cor.vars.names =}\NormalTok{ var\_names,}
+    \AttributeTok{matrix.type =} \StringTok{"upper"}\NormalTok{,}
+    \AttributeTok{colors =} \FunctionTok{c}\NormalTok{(}\StringTok{"\#B2182B"}\NormalTok{, }\StringTok{"white"}\NormalTok{, }\StringTok{"\#4D4D4D"}\NormalTok{),}
+    \AttributeTok{title =} \StringTok{"Correlalogram for mammals sleep dataset"}\NormalTok{,}
+    \AttributeTok{subtitle =} \StringTok{"sleep units: hours; weight units: kilograms"}
 \NormalTok{  ),}
-  \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"(a)"}\NormalTok{, }\StringTok{"(b)"}\NormalTok{),}
-  \DataTypeTok{nrow =} \DecValTok{1}
+  \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"(a)"}\NormalTok{, }\StringTok{"(b)"}\NormalTok{),}
+  \AttributeTok{nrow =} \DecValTok{1}
 \NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -845,7 +859,7 @@ results from Yuen's test for trimmed means (robust \emph{t}-test):
 \caption{Template for reporting statistical details}
 \end{figure}
 
-APA guidelines (Association, \protect\hyperlink{ref-associationPublicationManualAmerican2009}{2009}) are followed by
+APA guidelines (\protect\hyperlink{ref-associationPublicationManualAmerican2009}{Association, 2009}) are followed by
 default while reporting statistical details:
 
 \begin{itemize}
@@ -1154,7 +1168,7 @@ The \emph{p}-value indexes the probability that the researchers have falsely rej
 a true null hypothesis (Type I error, i.e.) and can rarely be \emph{exactly} 0. And
 yet over 97,000 manuscripts on Google Scholar report the \emph{p}-value to be \texttt{p\ =0.000},
 putatively due to relying on default computer software outputs
-(Lilienfeld et al., \protect\hyperlink{ref-lilienfeldFiftyPsychologicalPsychiatric2015}{2015}). All \emph{p}-values displayed in
+(\protect\hyperlink{ref-lilienfeldFiftyPsychologicalPsychiatric2015}{Lilienfeld et al., 2015}). All \emph{p}-values displayed in
 \texttt{ggstatsplot} plots avoid this mistake. Anything less than \texttt{p\ \textless{}\ 0.001} is
 displayed as such (e.g, Figure \ref{fig:fig1}). The package deems it unimportant how
 infinitesimally small the \emph{p}-values are and, instead, puts emphasis on the
@@ -1224,27 +1238,28 @@ this document was rendered, see-
 \addcontentsline{toc}{section}{References}
 
 \hypertarget{refs}{}
-\begin{cslreferences}
+\begin{CSLReferences}{1}{0}
 \leavevmode\hypertarget{ref-associationPublicationManualAmerican2009}{}%
-Association, A. P. (2009). \emph{Publication Manual of the American Psychological Association, 6th Edition}. Washington, DC: American Psychological Association.
+Association, A. P. (2009). \emph{Publication {Manual} of the {American Psychological Association}, 6th {Edition}}. {Washington, DC}: {American Psychological Association}.
 
 \leavevmode\hypertarget{ref-clevelandElementsGraphingData1985}{}%
-Cleveland, W. S. (1985). \emph{The Elements of Graphing Data} (1st edition). Monterey, Cal: Wadsworth, Inc.
+Cleveland, W. S. (1985). \emph{The {Elements} of {Graphing Data}} (1st edition). {Monterey, Cal}: {Wadsworth, Inc.}
 
 \leavevmode\hypertarget{ref-lilienfeldFiftyPsychologicalPsychiatric2015}{}%
-Lilienfeld, S. O., Sauvign\a'e, K. C., Lynn, S. J., Cautin, R. L., Latzman, R. D., \& Waldman, I. D. (2015). Fifty psychological and psychiatric terms to avoid: A list of inaccurate, misleading, misused, ambiguous, and logically confused words and phrases. \emph{Frontiers in Psychology}, \emph{6}. \url{https://doi.org/10.3389/fpsyg.2015.01100}
+Lilienfeld, S. O., Sauvign'e, K. C., Lynn, S. J., Cautin, R. L., Latzman, R. D., \& Waldman, I. D. (2015). Fifty psychological and psychiatric terms to avoid: A list of inaccurate, misleading, misused, ambiguous, and logically confused words and phrases. \emph{Frontiers in Psychology}, \emph{6}. \url{https://doi.org/10.3389/fpsyg.2015.01100}
 
 \leavevmode\hypertarget{ref-nuijtenPrevalenceStatisticalReporting2016}{}%
-Nuijten, M. B., Hartgerink, C. H. J., van Assen, M. A. L. M., Epskamp, S., \& Wicherts, J. M. (2016). The prevalence of statistical reporting errors in psychology (19852013). \emph{Behavior Research Methods}, \emph{48}(4), 1205--1226. \url{https://doi.org/10.3758/s13428-015-0664-2}
+Nuijten, M. B., Hartgerink, C. H. J., van Assen, M. A. L. M., Epskamp, S., \& Wicherts, J. M. (2016). The prevalence of statistical reporting errors in psychology (1985{}2013). \emph{Behavior Research Methods}, \emph{48}(4), 1205--1226. \url{https://doi.org/10.3758/s13428-015-0664-2}
 
 \leavevmode\hypertarget{ref-tufteVisualDisplayQuantitative2001}{}%
-Tufte, E. R. (2001). \emph{The Visual Display of Quantitative Information} (2nd edition edition). Cheshire, Conn: Graphics Press.
+Tufte, E. R. (2001). \emph{The {Visual Display} of {Quantitative Information}} (2nd edition edition). {Cheshire, Conn}: {Graphics Press}.
 
 \leavevmode\hypertarget{ref-wickhamTidyData2014}{}%
-Wickham, H. (2014). Tidy Data. \emph{Journal of Statistical Software}, \emph{59}(1), 1--23. \url{https://doi.org/10.18637/jss.v059.i10}
+Wickham, H. (2014). Tidy {Data}. \emph{Journal of Statistical Software}, \emph{59}(1), 1--23. \url{https://doi.org/10.18637/jss.v059.i10}
 
 \leavevmode\hypertarget{ref-wickhamGgplot2ElegantGraphics2016}{}%
-Wickham, H. (2016). \emph{Ggplot2: Elegant Graphics for Data Analysis} (2nd ed. 2016 edition). New York, NY: Springer.
-\end{cslreferences}
+Wickham, H. (2016). \emph{Ggplot2: {Elegant Graphics} for {Data Analysis}} (2nd ed. 2016 edition). {New York, NY}: {Springer}.
+
+\end{CSLReferences}
 
 \end{document}

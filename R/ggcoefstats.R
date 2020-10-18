@@ -464,7 +464,7 @@ ggcoefstats <- function(x,
       if (isTRUE(bf.message)) {
         caption <-
           statsExpressions::bf_meta(
-            caption = caption,
+            top.text = caption,
             output = "caption",
             data = tidy_df,
             k = k

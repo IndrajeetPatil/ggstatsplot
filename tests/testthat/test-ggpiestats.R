@@ -39,6 +39,7 @@ testthat::test_that(
       statsExpressions::bf_contingency_tab(
         data = ggplot2::msleep,
         x = "vore",
+        top.text = "From ggplot2 package",
         output = "caption"
       )
 
@@ -157,7 +158,7 @@ testthat::test_that(
     # checking plot labels
     testthat::expect_identical(pb$plot$labels$subtitle, p_subtitle)
     testthat::expect_identical(pb$plot$labels$title, "mammalian sleep")
-    testthat::expect_identical(pb$plot$labels$caption$expr, p_cap$expr)
+    testthat::expect_identical(pb$plot$labels$caption, p_cap)
     testthat::expect_null(pb$plot$labels$x, NULL)
     testthat::expect_null(pb$plot$labels$y, NULL)
     testthat::expect_identical(pb$plot$plot_env$legend.title, "vore")
@@ -200,6 +201,15 @@ testthat::test_that(
         x = cyl,
         y = am
       )
+
+    testthat::expect_is(
+      suppressWarnings(ggstatsplot::ggpiestats(
+        data = mtcars_small,
+        y = cyl,
+        x = am
+      )),
+      "ggplot"
+    )
 
     # build plot
     pb <- ggplot2::ggplot_build(p)
