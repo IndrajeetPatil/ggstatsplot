@@ -7,7 +7,7 @@ Authors@R:
            family = "Patil",
            role = c("cre", "aut", "cph"),
            email = "patilindrajeet.science@gmail.com",
-           comment = c(ORCID = "0000-0003-1995-6531"))
+           comment = c(ORCID = "0000-0003-1995-6531", Twitter = "@patilindrajeets"))
 Maintainer: Indrajeet Patil <patilindrajeet.science@gmail.com>
 Description: Extension of 'ggplot2', 'ggstatsplot' creates
     graphics with details from statistical tests included in the plots
@@ -36,7 +36,7 @@ Imports:
     ggsignif,
     insight (>= 0.9.6.1),
     ipmisc (>= 4.0.0),
-    pairwiseComparisons (>= 3.0.0),
+    pairwiseComparisons (>= 3.0.0.9000),
     paletteer,
     parameters,
     purrr,
@@ -59,6 +59,7 @@ VignetteBuilder:
 Remotes:
     easystats/effectsize,
     easystats/insight,
+    IndrajeetPatil/pairwiseComparisons,
     IndrajeetPatil/statsExpressions,
     IndrajeetPatil/tidyBF
 Encoding: UTF-8

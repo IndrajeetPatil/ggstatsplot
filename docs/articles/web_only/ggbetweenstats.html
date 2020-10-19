@@ -143,14 +143,14 @@
 
       
 
-      </header><script src="ggbetweenstats_files/header-attrs-2.4.5/header-attrs.js"></script><link href="ggbetweenstats_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+      </header><script src="ggbetweenstats_files/header-attrs-2.4.6/header-attrs.js"></script><link href="ggbetweenstats_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
 <script src="ggbetweenstats_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggbetweenstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-10-18</h4>
+            <h4 class="date">2020-10-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggbetweenstats.Rmd"><code>vignettes/web_only/ggbetweenstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggbetweenstats.Rmd</code></div>
@@ -400,63 +400,74 @@
 <th>Type</th>
 <th>No. of groups</th>
 <th>Test</th>
+<th>Function</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td>Parametric</td>
 <td>&gt; 2</td>
 <td>Fisher’s or Welch’s one-way ANOVA</td>
+<td><code><a href="https://rdrr.io/r/stats/oneway.test.html">stats::oneway.test</a></code></td>
 </tr>
 <tr class="even">
 <td>Non-parametric</td>
 <td>&gt; 2</td>
 <td>Kruskal–Wallis one-way ANOVA</td>
+<td><code><a href="https://rdrr.io/r/stats/kruskal.test.html">stats::kruskal.test</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
 <td>&gt; 2</td>
 <td>Heteroscedastic one-way ANOVA for trimmed means</td>
+<td><code><a href="https://rdrr.io/pkg/WRS2/man/t1way.html">WRS2::t1way</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayes Factor</td>
 <td>&gt; 2</td>
 <td>Fisher’s ANOVA</td>
+<td><code><a href="https://rdrr.io/pkg/BayesFactor/man/anovaBF.html">BayesFactor::anovaBF</a></code></td>
 </tr>
 <tr class="odd">
 <td>Parametric</td>
 <td>2</td>
 <td>Student’s or Welch’s <em>t</em>-test</td>
+<td><code><a href="https://rdrr.io/r/stats/t.test.html">stats::t.test</a></code></td>
 </tr>
 <tr class="even">
 <td>Non-parametric</td>
 <td>2</td>
 <td>Mann–Whitney <em>U</em> test</td>
+<td><code><a href="https://rdrr.io/r/stats/wilcox.test.html">stats::wilcox.test</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
 <td>2</td>
 <td>Yuen’s test for trimmed means</td>
+<td><code><a href="https://rdrr.io/pkg/WRS2/man/yuen.html">WRS2::yuen</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayes Factor</td>
 <td>2</td>
 <td>Student’s <em>t</em>-test</td>
+<td><code><a href="https://rdrr.io/pkg/BayesFactor/man/ttestBF.html">BayesFactor::ttestBF</a></code></td>
 </tr>
 </tbody>
 </table>
 <p>Following effect sizes (and confidence intervals/CI) are available for each type of test-</p>
 <table class="table">
 <colgroup>
-<col width="26%">
-<col width="7%">
-<col width="59%">
-<col width="7%">
+<col width="23%">
+<col width="6%">
+<col width="53%">
+<col width="6%">
+<col width="10%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
 <th>No. of groups</th>
 <th>Effect size</th>
 <th>CI?</th>
+<th>Function</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -466,6 +477,9 @@
 <span class="math inline">\(\eta_{p}^2\)</span>, <span class="math inline">\(\eta^2\)</span>, <span class="math inline">\(\omega_{p}^2\)</span>, <span class="math inline">\(\omega^2\)</span>
 </td>
 <td><font color="green">Yes<font></font></font></td>
+<td>
+<code><a href="https://easystats.github.io/effectsize/reference/eta_squared.html">effectsize::omega_squared</a></code>, <code><a href="https://easystats.github.io/effectsize/reference/eta_squared.html">effectsize::eta_squared</a></code>
+</td>
 </tr>
 <tr class="even">
 <td>Non-parametric</td>
@@ -473,6 +487,7 @@
 <td>
 <span class="math inline">\(\eta_{H}^2\)</span> (<em>H</em>-statistic based eta-squared)</td>
 <td><font color="green">Yes<font></font></font></td>
+<td><code><a href="https://rdrr.io/pkg/rcompanion/man/epsilonSquared.html">rcompanion::epsilonSquared</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
@@ -480,18 +495,24 @@
 <td>
 <span class="math inline">\(\xi\)</span> (Explanatory measure of effect size)</td>
 <td><font color="green">Yes<font></font></font></td>
+<td><code><a href="https://rdrr.io/pkg/WRS2/man/t1way.html">WRS2::t1way</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayes Factor</td>
 <td>&gt; 2</td>
 <td><font color="red">No<font></font></font></td>
 <td><font color="red">No<font></font></font></td>
+<td><code>NA</code></td>
 </tr>
 <tr class="odd">
 <td>Parametric</td>
 <td>2</td>
-<td>Cohen’s <em>d</em>, Hedge’s <em>g</em> (central-and noncentral-<em>t</em> distribution based)</td>
+<td>Cohen’s <em>d</em>, Hedge’s <em>g</em>
+</td>
 <td><font color="green">Yes<font></font></font></td>
+<td>
+<code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html">effectsize::cohens_d</a></code>, <code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html">effectsize::hedges_g</a></code>
+</td>
 </tr>
 <tr class="even">
 <td>Non-parametric</td>
@@ -499,6 +520,7 @@
 <td>
 <em>r</em> (computed as <span class="math inline">\(Z/\sqrt{N}\)</span>)</td>
 <td><font color="green">Yes<font></font></font></td>
+<td><code><a href="https://rdrr.io/pkg/rcompanion/man/wilcoxonR.html">rcompanion::wilcoxonR</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
@@ -506,12 +528,14 @@
 <td>
 <span class="math inline">\(\xi\)</span> (Explanatory measure of effect size)</td>
 <td><font color="green">Yes<font></font></font></td>
+<td><code><a href="https://rdrr.io/pkg/WRS2/man/yuen.html">WRS2::yuen.effect.ci</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayes Factor</td>
 <td>2</td>
-<td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
+<td><span class="math inline">\(\delta_{posterior}\)</span></td>
+<td><font color="green">Yes<font></font></font></td>
+<td><code><a href="https://easystats.github.io/bayestestR/reference/describe_posterior.html">bayestestR::describe_posterior</a></code></td>
 </tr>
 </tbody>
 </table>
@@ -523,6 +547,7 @@
 <th>Test</th>
 <th>
 <em>p</em>-value adjustment?</th>
+<th>Function</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -530,30 +555,35 @@
 <td>No</td>
 <td>Games-Howell test</td>
 <td><font color="green">Yes</font></td>
+<td><code><a href="https://rdrr.io/r/stats/pairwise.t.test.html">stats::pairwise.t.test</a></code></td>
 </tr>
 <tr class="even">
 <td>Parametric</td>
 <td>Yes</td>
 <td>Student’s <em>t</em>-test</td>
 <td><font color="green">Yes</font></td>
+<td><code><a href="https://rdrr.io/pkg/PMCMRplus/man/gamesHowellTest.html">PMCMRplus::gamesHowellTest</a></code></td>
 </tr>
 <tr class="odd">
 <td>Non-parametric</td>
 <td>No</td>
 <td>Dunn test</td>
 <td><font color="green">Yes</font></td>
+<td><code><a href="https://rdrr.io/pkg/PMCMRplus/man/kwAllPairsDunnTest.html">PMCMRplus::kwAllPairsDunnTest</a></code></td>
 </tr>
 <tr class="even">
 <td>Robust</td>
 <td>No</td>
 <td>Yuen’s trimmed means test</td>
 <td><font color="green">Yes</font></td>
+<td><code><a href="https://rdrr.io/pkg/WRS2/man/t1way.html">WRS2::lincon</a></code></td>
 </tr>
 <tr class="odd">
 <td>Bayes Factor</td>
 <td><code>NA</code></td>
 <td>Student’s <em>t</em>-test</td>
 <td><code>NA</code></td>
+<td><code><a href="https://rdrr.io/pkg/BayesFactor/man/ttestBF.html">BayesFactor::ttestBF</a></code></td>
 </tr>
 </tbody>
 </table>

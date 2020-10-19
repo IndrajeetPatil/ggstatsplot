@@ -143,14 +143,14 @@
 
       
 
-      </header><script src="gghistostats_files/header-attrs-2.4.5/header-attrs.js"></script><link href="gghistostats_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+      </header><script src="gghistostats_files/header-attrs-2.4.6/header-attrs.js"></script><link href="gghistostats_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
 <script src="gghistostats_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>gghistostats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-10-18</h4>
+            <h4 class="date">2020-10-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/gghistostats.Rmd"><code>vignettes/web_only/gghistostats.Rmd</code></a></small>
       <div class="hidden name"><code>gghistostats.Rmd</code></div>
@@ -285,60 +285,72 @@
 <thead><tr class="header">
 <th>Type</th>
 <th>Test</th>
+<th>Function</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td>Parametric</td>
 <td>One-sample Student’s <em>t</em>-test</td>
+<td><code><a href="https://rdrr.io/r/stats/t.test.html">stats::t.test</a></code></td>
 </tr>
 <tr class="even">
 <td>Non-parametric</td>
 <td>One-sample Wilcoxon test</td>
+<td><code><a href="https://rdrr.io/r/stats/wilcox.test.html">stats::wilcox.test</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
 <td>One-sample percentile bootstrap</td>
+<td><code><a href="https://rdrr.io/pkg/WRS2/man/onesampb.html">WRS2::onesampb</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayes Factor</td>
 <td>One-sample Student’s <em>t</em>-test</td>
+<td><code><a href="https://rdrr.io/pkg/BayesFactor/man/ttestBF.html">BayesFactor::ttestBF</a></code></td>
 </tr>
 </tbody>
 </table>
 <p>Following effect sizes (and confidence intervals/CI) are available for each type of test-</p>
 <table class="table">
 <colgroup>
-<col width="28%">
-<col width="64%">
-<col width="7%">
+<col width="27%">
+<col width="53%">
+<col width="6%">
+<col width="11%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
 <th>Effect size</th>
 <th>CI?</th>
+<th>Function</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td>Parametric</td>
-<td>Cohen’s <em>d</em>, Hedge’s <em>g</em> (central-and noncentral-<em>t</em> distribution based)</td>
+<td>Cohen’s <em>d</em>, Hedge’s <em>g</em>
+</td>
 <td><font color="green">Yes<font></font></font></td>
+<td>
+<code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html">effectsize::cohens_d</a></code>, <code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html">effectsize::hedges_g</a></code>
+</td>
 </tr>
 <tr class="even">
 <td>Non-parametric</td>
-<td>
-<em>r</em> (computed as <span class="math inline">\(Z/\sqrt{N_{obs}}\)</span>)</td>
+<td><em>r</em></td>
 <td><font color="green">Yes<font></font></font></td>
+<td><code><a href="https://rdrr.io/pkg/rcompanion/man/wilcoxonOneSampleR.html">rcompanion::wilcoxonOneSampleR</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
-<td>
-<span class="math inline">\(M_{robust}\)</span> (Robust location measure)</td>
+<td>robust location measure</td>
 <td><font color="green">Yes<font></font></font></td>
+<td><code><a href="https://rdrr.io/pkg/WRS2/man/onesampb.html">WRS2::onesampb</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayes Factor</td>
-<td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
+<td><span class="math inline">\(\delta_{posterior}\)</span></td>
+<td><font color="green">Yes<font></font></font></td>
+<td><code><a href="https://easystats.github.io/bayestestR/reference/describe_posterior.html">bayestestR::describe_posterior</a></code></td>
 </tr>
 </tbody>
 </table>

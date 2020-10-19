@@ -143,14 +143,14 @@
 
       
 
-      </header><script src="ggcorrmat_files/header-attrs-2.4.5/header-attrs.js"></script><link href="ggcorrmat_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+      </header><script src="ggcorrmat_files/header-attrs-2.4.6/header-attrs.js"></script><link href="ggcorrmat_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
 <script src="ggcorrmat_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggcorrmat</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-10-18</h4>
+            <h4 class="date">2020-10-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcorrmat.Rmd"><code>vignettes/web_only/ggcorrmat.Rmd</code></a></small>
       <div class="hidden name"><code>ggcorrmat.Rmd</code></div>
@@ -441,31 +441,42 @@
 <a href="#summary-of-tests" class="anchor"></a>Summary of tests</h2>
 <p>Following tests are carried out for each type of analyses-</p>
 <table class="table">
+<colgroup>
+<col width="25%">
+<col width="56%">
+<col width="6%">
+<col width="11%">
+</colgroup>
 <thead><tr class="header">
 <th>Type</th>
 <th>Test</th>
 <th>CI?</th>
+<th>Function</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td>Parametric</td>
 <td>Pearson’s correlation coefficient</td>
 <td><font color="green">Yes<font></font></font></td>
+<td><code><a href="https://easystats.github.io/correlation/reference/correlation.html">correlation::correlation</a></code></td>
 </tr>
 <tr class="even">
 <td>Non-parametric</td>
 <td>Spearman’s rank correlation coefficient</td>
 <td><font color="green">Yes<font></font></font></td>
+<td><code><a href="https://easystats.github.io/correlation/reference/correlation.html">correlation::correlation</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
 <td>Percentage bend correlation coefficient</td>
 <td><font color="green">Yes<font></font></font></td>
+<td><code><a href="https://easystats.github.io/correlation/reference/correlation.html">correlation::correlation</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayes Factor</td>
 <td>Pearson’s correlation coefficient</td>
-<td><font color="green">Yes<font></font></font></td>
+<td><font color="green">Yes</font></td>
+<td><code><a href="https://easystats.github.io/correlation/reference/correlation.html">correlation::correlation</a></code></td>
 </tr>
 </tbody>
 </table>

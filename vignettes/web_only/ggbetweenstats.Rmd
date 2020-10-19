@@ -334,41 +334,41 @@ For repeated measures designs, `ggwithinstats` function can be used:
 
 Following (between-subjects) tests are carried out for each type of analyses-
 
-Type | No. of groups | Test
------------ | --- | -------------------------
-Parametric | > 2 | Fisher's or Welch's one-way ANOVA
-Non-parametric | > 2 | Kruskal–Wallis one-way ANOVA
-Robust | > 2 | Heteroscedastic one-way ANOVA for trimmed means
-Bayes Factor | > 2 | Fisher's ANOVA
-Parametric | 2 | Student's or Welch's *t*-test
-Non-parametric | 2 | Mann–Whitney *U* test
-Robust | 2 |  Yuen's test for trimmed means
-Bayes Factor | 2 | Student's *t*-test
+Type | No. of groups | Test | Function
+----------- | --- | ------------------------- | -----
+Parametric | > 2 | Fisher's or Welch's one-way ANOVA | `stats::oneway.test`
+Non-parametric | > 2 | Kruskal–Wallis one-way ANOVA | `stats::kruskal.test`
+Robust | > 2 | Heteroscedastic one-way ANOVA for trimmed means | `WRS2::t1way`
+Bayes Factor | > 2 | Fisher's ANOVA | `BayesFactor::anovaBF`
+Parametric | 2 | Student's or Welch's *t*-test | `stats::t.test`
+Non-parametric | 2 | Mann–Whitney *U* test | `stats::wilcox.test`
+Robust | 2 |  Yuen's test for trimmed means | `WRS2::yuen`
+Bayes Factor | 2 | Student's *t*-test | `BayesFactor::ttestBF`
 
 Following effect sizes (and confidence intervals/CI) are available for each type
 of test-
 
-Type | No. of groups | Effect size | CI?
------------ | --- | ------------------------- | --- 
-Parametric | > 2 | $\eta_{p}^2$, $\eta^2$, $\omega_{p}^2$, $\omega^2$ | <font color="green">Yes<font>
-Non-parametric | > 2 | $\eta_{H}^2$ (*H*-statistic based eta-squared) | <font color="green">Yes<font>
-Robust | > 2 | $\xi$ (Explanatory measure of effect size) | <font color="green">Yes<font>
-Bayes Factor | > 2 | <font color="red">No<font> | <font color="red">No<font>
-Parametric | 2 | Cohen's *d*, Hedge's *g* (central-and noncentral-*t* distribution based) | <font color="green">Yes<font>
-Non-parametric | 2 | *r* (computed as $Z/\sqrt{N}$) | <font color="green">Yes<font>
-Robust | 2 |  $\xi$ (Explanatory measure of effect size) | <font color="green">Yes<font>
-Bayes Factor | 2 | <font color="green">Yes</font> | <font color="green">Yes</font>
+Type | No. of groups | Effect size | CI? | Function
+----------- | --- | ------------------------- | --- | -----
+Parametric | > 2 | $\eta_{p}^2$, $\eta^2$, $\omega_{p}^2$, $\omega^2$ | <font color="green">Yes<font> | `effectsize::omega_squared`, `effectsize::eta_squared`
+Non-parametric | > 2 | $\eta_{H}^2$ (*H*-statistic based eta-squared) | <font color="green">Yes<font> | `rcompanion::epsilonSquared`
+Robust | > 2 | $\xi$ (Explanatory measure of effect size) | <font color="green">Yes<font> | `WRS2::t1way`
+Bayes Factor | > 2 | <font color="red">No<font> | <font color="red">No<font> | `NA`
+Parametric | 2 | Cohen's *d*, Hedge's *g* | <font color="green">Yes<font> | `effectsize::cohens_d`, `effectsize::hedges_g`
+Non-parametric | 2 | *r* (computed as $Z/\sqrt{N}$) | <font color="green">Yes<font> | `rcompanion::wilcoxonR`
+Robust | 2 |  $\xi$ (Explanatory measure of effect size) | <font color="green">Yes<font> | `WRS2::yuen.effect.ci`
+Bayes Factor | 2 | $\delta_{posterior}$ | <font color="green">Yes<font> | `bayestestR::describe_posterior`
 
 Here is a summary of *multiple pairwise comparison* tests supported in
 *ggbetweenstats*-
 
-Type | Equal variance? | Test | *p*-value adjustment? 
------------ | --- | ------------------------- | ---
-Parametric | No | Games-Howell test | <font color="green">Yes</font>  
-Parametric | Yes | Student's *t*-test | <font color="green">Yes</font>  
-Non-parametric | No | Dunn test | <font color="green">Yes</font>  
-Robust | No | Yuen's trimmed means test | <font color="green">Yes</font>  
-Bayes Factor | `NA` | Student's *t*-test | `NA`
+Type | Equal variance? | Test | *p*-value adjustment? | Function
+----------- | --- | ------------------------- | --- | -----
+Parametric | No | Games-Howell test | <font color="green">Yes</font> | `stats::pairwise.t.test`
+Parametric | Yes | Student's *t*-test | <font color="green">Yes</font> | `PMCMRplus::gamesHowellTest`
+Non-parametric | No | Dunn test | <font color="green">Yes</font> | `PMCMRplus::kwAllPairsDunnTest`
+Robust | No | Yuen's trimmed means test | <font color="green">Yes</font> | `WRS2::lincon`
+Bayes Factor | `NA` | Student's *t*-test | `NA` | `BayesFactor::ttestBF`
 
 ## Effect size interpretation
 

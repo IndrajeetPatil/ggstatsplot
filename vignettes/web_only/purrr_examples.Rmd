@@ -509,7 +509,6 @@ plot_list <-
       xlab = "GDP per capita (US$, inflation-adjusted)",
       test.value = list(2500, 9000, 9500, 10000),
       type = list("p", "np", "r", "bf"),
-      bf.message = list(TRUE, FALSE, TRUE, FALSE),
       title = list(
         "Continent: Africa",
         "Continent: Americas",
@@ -517,7 +516,6 @@ plot_list <-
         "Continent: Europe"
       ),
       effsize.type = list("d", "d", "g", "g"),
-      effsize.noncentral = list(TRUE, FALSE, TRUE, FALSE),
       centrality.line.args = list(
         list(color = "red"),
         list(color = "#0072B2"),

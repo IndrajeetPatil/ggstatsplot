@@ -16,7 +16,6 @@ testthat::test_that(
         legend.title = "vore",
         caption = "From ggplot2 package",
         perc.k = 2,
-        nboot = 25,
         ggstatsplot.layer = FALSE,
         label = "both",
         messages = FALSE
@@ -181,7 +180,6 @@ testthat::test_that(
           x = "am",
           y = "cyl",
           perc.k = 2,
-          nboot = 25,
           package = "wesanderson",
           palette = "Royal2",
           ggtheme = ggplot2::theme_bw(),
@@ -319,7 +317,6 @@ testthat::test_that(
       data = as.data.frame(Titanic),
       x = Sex,
       y = Survived,
-      nboot = 25,
       bf.message = FALSE,
       counts = "Freq",
       perc.k = 2,
@@ -336,7 +333,6 @@ testthat::test_that(
       x = Sex,
       y = Survived,
       counts = Freq,
-      nboot = 25,
       conf.level = 0.95,
       messages = FALSE
     )
@@ -394,7 +390,6 @@ testthat::test_that(
       x = `1st survey`,
       y = `2nd survey`,
       counts = Counts,
-      nboot = 25,
       paired = TRUE,
       conf.level = 0.90,
       messages = FALSE
@@ -411,7 +406,6 @@ testthat::test_that(
         x = `1st survey`,
         y = `2nd survey`,
         counts = Counts,
-        nboot = 25,
         paired = TRUE,
         conf.level = 0.90,
         messages = FALSE

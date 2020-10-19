@@ -240,7 +240,6 @@ testthat::test_that(
         x = vs,
         y = "cyl",
         bf.message = TRUE,
-        nboot = 10,
         label = "both",
         package = "wesanderson",
         palette = "Royal2",
@@ -255,7 +254,6 @@ testthat::test_that(
         y = cyl,
         label = "counts",
         bf.message = FALSE,
-        nboot = 10,
         messages = FALSE
       ))
 

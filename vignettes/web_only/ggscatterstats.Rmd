@@ -184,12 +184,12 @@ Following tests are carried out for each type of analyses. Additionally, the
 correlation coefficients (and their confidence intervals) are used as effect
 sizes-
 
-Type | Test | CI?
------------ | ------------------------- | ---
-Parametric | Pearson's correlation coefficient | <font color="green">Yes<font>
-Non-parametric | Spearman's rank correlation coefficient | <font color="green">Yes<font>
-Robust | Percentage bend correlation coefficient | <font color="green">Yes<font>
-Bayes Factor | Pearson's correlation coefficient | <font color="green">Yes</font>
+Type | Test | CI? | Function
+----------- | ------------------------- | --- | -----
+Parametric | Pearson's correlation coefficient | <font color="green">Yes<font> | `correlation::correlation`
+Non-parametric | Spearman's rank correlation coefficient | <font color="green">Yes<font> | `correlation::correlation`
+Robust | Percentage bend correlation coefficient | <font color="green">Yes<font> | `correlation::correlation`
+Bayes Factor | Pearson's correlation coefficient | <font color="green">Yes</font> | `correlation::correlation`
 
 ## Effect size interpretation
 

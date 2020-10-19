@@ -143,14 +143,14 @@
 
       
 
-      </header><script src="ggpiestats_files/header-attrs-2.4.5/header-attrs.js"></script><link href="ggpiestats_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+      </header><script src="ggpiestats_files/header-attrs-2.4.6/header-attrs.js"></script><link href="ggpiestats_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
 <script src="ggpiestats_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggpiestats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-10-18</h4>
+            <h4 class="date">2020-10-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggpiestats.Rmd"><code>vignettes/web_only/ggpiestats.Rmd</code></a></small>
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
@@ -439,10 +439,17 @@
 <a href="#summary-of-tests" class="anchor"></a>Summary of tests</h2>
 <p>Following tests are carried out for each type of analyses-</p>
 <table class="table">
+<colgroup>
+<col width="20%">
+<col width="22%">
+<col width="47%">
+<col width="9%">
+</colgroup>
 <thead><tr class="header">
 <th>Type of data</th>
 <th>Design</th>
 <th>Test</th>
+<th>Function</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -450,27 +457,31 @@
 <td>
 <span class="math inline">\(n \times p\)</span> contingency table</td>
 <td>Pearson’s <span class="math inline">\(\chi^2\)</span> test</td>
+<td><code><a href="https://rdrr.io/r/stats/chisq.test.html">stats::chisq.test</a></code></td>
 </tr>
 <tr class="even">
 <td>Paired</td>
 <td>
 <span class="math inline">\(n \times p\)</span> contingency table</td>
 <td>McNemar’s <span class="math inline">\(\chi^2\)</span> test</td>
+<td><code>stats::mcnemar.tests</code></td>
 </tr>
 <tr class="odd">
 <td>Frequency</td>
 <td>
 <span class="math inline">\(n \times 1\)</span> contingency table</td>
 <td>Goodness of fit (<span class="math inline">\(\chi^2\)</span> test)</td>
+<td><code><a href="https://rdrr.io/r/stats/chisq.test.html">stats::chisq.test</a></code></td>
 </tr>
 </tbody>
 </table>
 <p>Following effect sizes (and confidence intervals/CI) are available for each type of test-</p>
 <table class="table">
 <thead><tr class="header">
-<th>Type</th>
+<th>Test</th>
 <th>Effect size</th>
 <th>CI?</th>
+<th>Function</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -478,18 +489,21 @@
 <td>Cramer’s <span class="math inline">\(V\)</span>
 </td>
 <td><font color="green">Yes<font></font></font></td>
+<td><code><a href="https://easystats.github.io/effectsize/reference/phi.html">effectsize::cramers_v</a></code></td>
 </tr>
 <tr class="even">
 <td>McNemar’s test</td>
 <td>Cohen’s <span class="math inline">\(g\)</span>
 </td>
 <td><font color="green">Yes<font></font></font></td>
+<td><code><a href="https://easystats.github.io/effectsize/reference/phi.html">effectsize::cohens_g</a></code></td>
 </tr>
 <tr class="odd">
 <td>Goodness of fit</td>
 <td>Cramer’s <span class="math inline">\(V\)</span>
 </td>
 <td><font color="green">Yes<font></font></font></td>
+<td><code><a href="https://easystats.github.io/effectsize/reference/phi.html">effectsize::cramers_v</a></code></td>
 </tr>
 </tbody>
 </table>

@@ -143,14 +143,14 @@
 
       
 
-      </header><script src="ggcoefstats_files/header-attrs-2.4.5/header-attrs.js"></script><link href="ggcoefstats_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+      </header><script src="ggcoefstats_files/header-attrs-2.4.6/header-attrs.js"></script><link href="ggcoefstats_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
 <script src="ggcoefstats_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-10-18</h4>
+            <h4 class="date">2020-10-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -177,6 +177,49 @@
 <a href="#supported-models" class="anchor"></a>Supported models</h1>
 <p>Most of the regression models that are supported in the underlying packages are also supported by <code>ggcoefstats</code>. For example-</p>
 <p><code>aareg</code>, <code>anova</code>, <code>aov</code>, <code>aovlist</code>, <code>Arima</code>, <code>BFBayesFactor</code>, <code>bayesx</code>, <code>bayesGARCH</code>, <code>BBmm</code>, <code>BBreg</code>, <code>bcplm</code>, <code>betamfx</code>, <code>betaor</code>, <code>bglmerMod</code>, <code>bife</code>, <code>bigglm</code>, <code>biglm</code>, <code>blavaan</code>, <code>bmlm</code>, <code>blmerMod</code>, <code>bracl</code>, <code>brglm</code>, <code>brglm2</code>, <code>brmsfit</code>, <code>brmultinom</code>, <code>btergm</code>, <code>cch</code>, <code>cgam</code>, <code>cgamm</code>, <code>cglm</code>, <code>clm</code>, <code>clm2</code>, <code>clmm</code>, <code>clmm2</code>, <code>coeftest</code>, <code>complmrob</code>, <code>confusionMatrix</code>, <code>coxme</code>, <code>coxph</code>, <code>coxph.penal</code>, <code>cpglm</code>, <code>cpglmm</code>, <code>crch</code>, <code>crq</code>, <code>DirichReg</code>, <code>drc</code>, <code>emmGrid</code>, <code>epi.2by2</code>, <code>ergm</code>, <code>feis</code>, <code>felm</code>, <code>fitdistr</code>, <code>flexsurvreg</code>, <code>gam</code>, <code>Gam</code>, <code>gamlss</code>, <code>garch</code>, <code>geeglm</code>, <code>glmc</code>, <code>glmerMod</code>, <code>glmmTMB</code>, <code>gls</code>, <code>glht</code>, <code>glm</code>, <code>glmm</code>, <code>glmmadmb</code>, <code>glmmPQL</code>, <code>glmRob</code>, <code>glmrob</code>, <code>glmx</code>, <code>gmm</code>, <code>hurdle</code>, <code>ivreg</code>, <code>iv_robust</code>, <code>lavaan</code>, <code>lm</code>, <code>lm.beta</code>, <code>lmerMod</code>, <code>lmerModLmerTest</code>, <code>lmodel2</code>, <code>lmRob</code>, <code>lmrob</code>, <code>lm_robust</code>, <code>logitmfx</code>, <code>logitor</code>, <code>logitsf</code>, <code>LORgee</code>, <code>lqm</code>, <code>lqmm</code>, <code>lrm</code>, <code>manova</code>, <code>maov</code>, <code>margins</code>, <code>mcmc</code>, <code>mcmc.list</code>, <code>MCMCglmm</code>, <code>mclogit</code>, <code>mmclogit</code>, <code>mediate</code>, <code>metafor</code>, <code>metaplus</code>, <code>mixor</code>, <code>mjoint</code>, <code>mle2</code>, <code>mlm</code>, <code>multinom</code>, <code>negbin</code>, <code>negbinmfx</code>, <code>negbinirr</code>, <code>nlmerMod</code>, <code>nlrq</code>, <code>nlreg</code>, <code>nls</code>, <code>orcutt</code>, <code>orm</code>, <code>plm</code>, <code>poissonmfx</code>, <code>poissonirr</code>, <code>polr</code>, <code>ridgelm</code>, <code>rjags</code>, <code>rlm</code>, <code>rlmerMod</code>, <code>robmixglm</code>, <code>rq</code>, <code>rqss</code>, <code>semLm</code>, <code>semLme</code>, <code>slm</code>, <code>speedglm</code>, <code>speedlm</code>, <code>stanfit</code>, <code>stanreg</code>, <code>survreg</code>, <code>svyglm</code>, <code>svyolr</code>, <code>svyglm</code>, <code>tobit</code>, <code>truncreg</code>, <code>vgam</code>, <code>vglm</code>, <code>wbgee</code>, <code>wblm</code>, <code>zcpglm</code>, <code>zeroinfl</code>, etc.</p>
+</div>
+<div id="summary-of-meta-analyis-tests" class="section level1">
+<h1 class="hasAnchor">
+<a href="#summary-of-meta-analyis-tests" class="anchor"></a>Summary of meta-analyis tests</h1>
+<table class="table">
+<colgroup>
+<col width="23%">
+<col width="42%">
+<col width="17%">
+<col width="6%">
+<col width="10%">
+</colgroup>
+<thead><tr class="header">
+<th>Type</th>
+<th>Test</th>
+<th>Effect size</th>
+<th>95% CI available?</th>
+<th>Function</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Parametric</td>
+<td>Meta-analysis via random-effects models</td>
+<td><span class="math inline">\(\beta\)</span></td>
+<td><font color="green"><span class="math inline">\(\checkmark\)</span></font></td>
+<td><code><a href="https://wviechtb.github.io/metafor/reference/metafor-package.html">metafor::metafor</a></code></td>
+</tr>
+<tr class="even">
+<td>Robust</td>
+<td>Meta-analysis via robust random-effects models</td>
+<td><span class="math inline">\(\beta\)</span></td>
+<td><font color="green"><span class="math inline">\(\checkmark\)</span></font></td>
+<td><code><a href="https://rdrr.io/pkg/metaplus/man/metaplus.html">metaplus::metaplus</a></code></td>
+</tr>
+<tr class="odd">
+<td>Bayes</td>
+<td>Meta-analysis via robust random-effects models</td>
+<td><span class="math inline">\(\beta\)</span></td>
+<td><font color="green"><span class="math inline">\(\checkmark\)</span></font></td>
+<td><code><a href="https://rdrr.io/pkg/metaBMA/man/meta_random.html">metaBMA::meta_random</a></code></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="examples-of-supported-models" class="section level1">
 <h1 class="hasAnchor">

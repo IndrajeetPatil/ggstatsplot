@@ -6,7 +6,7 @@
 #' @param ... Currently ignored.
 #'
 #' @importFrom parameters describe_distribution
-#' @importFrom broomExtra easystats_to_tidy_names
+#' @importFrom insight standardize_names
 #' @importFrom dplyr select group_by matches mutate rowwise group_modify arrange ungroup
 #' @importFrom rlang !! enquo ensym :=
 #' @importFrom tidyr drop_na
@@ -31,10 +31,16 @@ mean_labeller <- function(data, x, y, mean.ci = FALSE, k = 3L, ...) {
     as_tibble(.) %>%
     dplyr::group_by(.data = ., {{ x }}) %>%
     dplyr::group_modify(
-      .f = ~ broomExtra::easystats_to_tidy_names(
-        parameters::describe_distribution(x = ., centrality = "mean", ci = 0.95)
+      .f = ~ insight::standardize_names(
+        data = as.data.frame(parameters::describe_distribution(
+          x = .,
+          centrality = "mean",
+          ci = 0.95
+        )),
+        style = "broom"
       )
     ) %>%
+    dplyr::rename(mean = estimate) %>%
     dplyr::ungroup(.) %>%
     dplyr::rowwise()
 

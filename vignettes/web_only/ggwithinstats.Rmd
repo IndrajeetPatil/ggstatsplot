@@ -309,40 +309,40 @@ For independent measures designs, `ggbetweenstats` function can be used:
 
 Following (within-subjects) tests are carried out for each type of analyses-
 
-Type | No. of groups | Test
+Type | No. of groups | Test | Function
 ----------- | --- | -------------------------
-Parametric | > 2 | One-way repeated measures ANOVA
-Non-parametric | > 2 | Friedman test
-Robust | > 2 | Heteroscedastic one-way repeated measures ANOVA for trimmed means
-Bayes Factor | > 2 | One-way repeated measures ANOVA
-Parametric | 2 | Student's *t*-test
-Non-parametric | 2 | Wilcoxon signed-rank test
-Robust | 2 | Yuen's test on trimmed means for dependent samples
-Bayes Factor | 2 | Student's *t*-test
+Parametric | > 2 | One-way repeated measures ANOVA | `ez::ezANOVA`
+Non-parametric | > 2 | Friedman rank sum test | `stats::friedman.test`
+Robust | > 2 | Heteroscedastic one-way repeated measures ANOVA for trimmed means | `WRS2::rmanova`
+Bayes Factor | > 2 | One-way repeated measures ANOVA | `BayesFactor::anovaBF`
+Parametric | 2 | Student's *t*-test | `stats::t.test`
+Non-parametric | 2 | Wilcoxon signed-rank test | `stats::wilcox.test`
+Robust | 2 | Yuen's test on trimmed means for dependent samples | `WRS2::yuend`
+Bayes Factor | 2 | Student's *t*-test | `BayesFactor::ttestBF`
 
 Following effect sizes (and confidence intervals/CI) are available for each type
 of test-
 
-Type | No. of groups | Effect size | CI?
------------ | --- | ------------------------- | --- 
-Parametric | > 2 | $\eta_{p}^2$, $\omega^2$ | <font color="green">Yes<font>
-Non-parametric | > 2 | $W_{Kendall}$ (Kendall's coefficient of concordance) | <font color="green">Yes<font>
-Robust | > 2 | <font color="red">No<font> | <font color="red">No<font>
-Bayes Factor | > 2 | <font color="red">No<font> | <font color="red">No<font>
-Parametric | 2 | Cohen's *d*, Hedge's *g* (central-and noncentral-*t* distribution based) | <font color="green">Yes<font>
-Non-parametric | 2 | *r* (computed as $Z/\sqrt{N}$) | <font color="green">Yes<font>
-Robust | 2 |  $\delta_{R}$ (robust standardized difference similar to Cohen's *d*) | <font color="green">Yes<font>
-Bayes Factor | 2 | <font color="green">Yes</font> | <font color="green">Yes</font>
+Type | No. of groups | Effect size | CI? | Function
+----------- | --- | ------------------------- | --- | -----
+Parametric | > 2 | $\eta_{p}^2$, $\eta^2$, $\omega_{p}^2$, $\omega^2$ | <font color="green">Yes<font> | `effectsize::omega_squared`, `effectsize::eta_squared`
+Non-parametric | > 2 | $W_{Kendall}$ (Kendall's coefficient of concordance) | <font color="green">Yes<font> | `rcompanion::kendallW`
+Robust | > 2 | <font color="red">No<font> | <font color="red">No<font> | `NA`
+Bayes Factor | > 2 | <font color="red">No<font> | <font color="red">No<font> | `NA`
+Parametric | 2 | Cohen's *d*, Hedge's *g* | <font color="green">Yes<font> | `effectsize::cohens_d`, `effectsize::hedges_g`
+Non-parametric | 2 | *r* (computed as $Z/\sqrt{N}$) | <font color="green">Yes<font> | `rcompanion::wilcoxonR`
+Robust | 2 |  $\delta_{R}$ (robust standardized difference) | <font color="green">Yes<font> | `WRS2::dep.effect`
+Bayes Factor | 2 | $\delta_{posterior}$ | <font color="green">Yes<font> | `bayestestR::describe_posterior`
 
 Here is a summary of *multiple pairwise comparison* tests supported in
 *ggwithinstats*-
 
-Type | Test | *p*-value adjustment? 
------------ | ---------------------------- | ---
-Parametric | Student's *t*-test | <font color="green">Yes</font>  
-Non-parametric | Durbin-Conover test | <font color="green">Yes</font>  
-Robust | Yuen's trimmed means test | <font color="green">Yes</font>  
-Bayes Factor | Student's *t*-test | `NA`
+Type | Test | *p*-value adjustment? | Function
+----------- | ---------------------------- | --- | -----
+Parametric | Student's *t*-test | <font color="green">Yes</font> | `stats::pairwise.t.test`
+Non-parametric | Durbin-Conover test | <font color="green">Yes</font> | `PMCMRplus::durbinAllPairsTest` 
+Robust | Yuen's trimmed means test | <font color="green">Yes</font> | `WRS2::rmmcp`
+Bayes Factor | Student's *t*-test | `NA` | `BayesFactor::ttestBF`
 
 ## Effect size interpretation
 
