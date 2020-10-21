@@ -395,66 +395,6 @@ testthat::test_that(
   }
 )
 
-# f-statistic and eta- and omega-squared -------------------------------------
-
-testthat::test_that(
-  desc = "ggcoefstats with non-partial variants of effect size for f-statistic",
-  code = {
-    testthat::skip_on_cran()
-
-    # model
-    set.seed(123)
-    mod <- stats::aov(
-      data = ggplot2::msleep,
-      formula = sleep_rem ~ brainwt * vore
-    )
-
-    # plot
-    p1 <-
-      ggstatsplot::ggcoefstats(
-        x = mod,
-        exclude.intercept = FALSE,
-        k = 2,
-        ylab = "effect",
-        effsize = "eta",
-        partial = FALSE
-      )
-
-    p2 <-
-      ggstatsplot::ggcoefstats(
-        x = mod,
-        exclude.intercept = FALSE,
-        k = 2,
-        ylab = "effect",
-        effsize = "omega",
-        partial = FALSE
-      )
-
-    # plot build
-    pb1 <- ggplot2::ggplot_build(p1)
-    pb2 <- ggplot2::ggplot_build(p2)
-
-    # checking label
-    testthat::expect_identical(
-      pb1$data[[4]]$label,
-      c(
-        "list(~italic(F)(1*\",\"*35)==3.72, ~italic(p)==0.062, ~widehat(italic(eta)^2)==0.05)",
-        "list(~italic(F)(3*\",\"*35)==6.83, ~italic(p)==0.001, ~widehat(italic(eta)^2)==0.29)",
-        "list(~italic(F)(3*\",\"*35)==4.01, ~italic(p)==0.015, ~widehat(italic(eta)^2)==0.17)"
-      )
-    )
-
-    testthat::expect_identical(
-      pb2$data[[4]]$label,
-      c(
-        "list(~italic(F)(1*\",\"*35)==3.72, ~italic(p)==0.062, ~widehat(italic(omega)^2)==0.04)",
-        "list(~italic(F)(3*\",\"*35)==6.83, ~italic(p)==0.001, ~widehat(italic(omega)^2)==0.24)",
-        "list(~italic(F)(3*\",\"*35)==4.01, ~italic(p)==0.015, ~widehat(italic(omega)^2)==0.13)"
-      )
-    )
-  }
-)
-
 # dataframe as input ----------------------------------------------------
 
 testthat::test_that(

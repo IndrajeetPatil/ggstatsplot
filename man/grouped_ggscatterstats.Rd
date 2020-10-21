@@ -52,7 +52,7 @@ plot title (name of each factor level) (Default: \code{NULL}). If \code{NULL}, t
 variable name entered for \code{grouping.var} will be used.}
 
 \item{output}{If \code{"expression"}, will return expression with statistical
-details, while \code{"dataframe"} (default) will return a dataframe containing the
+details, while \code{"dataframe"} will return a dataframe containing the
 results.}
 
 \item{...}{

@@ -218,7 +218,6 @@ details included in the plot as a subtitle.</p>
   pairwise.display <span class='op'>=</span> <span class='st'>"significant"</span>,
   p.adjust.method <span class='op'>=</span> <span class='st'>"holm"</span>,
   effsize.type <span class='op'>=</span> <span class='st'>"unbiased"</span>,
-  partial <span class='op'>=</span> <span class='cn'>TRUE</span>,
   bf.prior <span class='op'>=</span> <span class='fl'>0.707</span>,
   bf.message <span class='op'>=</span> <span class='cn'>TRUE</span>,
   results.subtitle <span class='op'>=</span> <span class='cn'>TRUE</span>,
@@ -228,9 +227,9 @@ details included in the plot as a subtitle.</p>
   title <span class='op'>=</span> <span class='cn'>NULL</span>,
   subtitle <span class='op'>=</span> <span class='cn'>NULL</span>,
   sample.size.label <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  k <span class='op'>=</span> <span class='fl'>2</span>,
+  k <span class='op'>=</span> <span class='fl'>2L</span>,
   conf.level <span class='op'>=</span> <span class='fl'>0.95</span>,
-  nboot <span class='op'>=</span> <span class='fl'>100</span>,
+  nboot <span class='op'>=</span> <span class='fl'>100L</span>,
   tr <span class='op'>=</span> <span class='fl'>0.1</span>,
   mean.plotting <span class='op'>=</span> <span class='cn'>TRUE</span>,
   mean.ci <span class='op'>=</span> <span class='cn'>FALSE</span>,
@@ -285,7 +284,7 @@ or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations ar
     <tr>
       <th>pairwise.comparisons</th>
       <td><p>Logical that decides whether pairwise comparisons
-are to be displayed (default: <code>FALSE</code>). Please note that only
+are to be displayed (default: <code>TRUE</code>). Please note that only
 <strong>significant</strong> comparisons will be shown by default. To change this
 behavior, select appropriate option with <code>pairwise.display</code> argument. The
 pairwise comparison dataframes are prepared using the
@@ -312,13 +311,9 @@ comparisons. Possible methods are: <code>"holm"</code> (default), <code>"hochber
       <th>effsize.type</th>
       <td><p>Type of effect size needed for <em>parametric</em> tests. The
 argument can be <code>"biased"</code> (equivalent to <code>"d"</code> for Cohen's <em>d</em> for
-<strong>t-test</strong>; <code>"partial_eta"</code> for partial eta-squared for <strong>anova</strong>) or
+<strong>t-test</strong>; <code>"eta"</code> for partial eta-squared for <strong>anova</strong>) or
 <code>"unbiased"</code> (equivalent to <code>"g"</code> Hedge's <em>g</em> for <strong>t-test</strong>;
-<code>"partial_omega"</code> for partial omega-squared for <strong>anova</strong>)).</p></td>
-    </tr>
-    <tr>
-      <th>partial</th>
-      <td><p>If <code>TRUE</code>, return partial indices.</p></td>
+<code>"omega"</code> for partial omega-squared for <strong>anova</strong>)).</p></td>
     </tr>
     <tr>
       <th>bf.prior</th>
@@ -369,7 +364,7 @@ should be displayed for each level of the grouping variable <code>x</code> (Defa
     <tr>
       <th>k</th>
       <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 2</code>).</p></td>
+(Default: <code>k = 2L</code>).</p></td>
     </tr>
     <tr>
       <th>conf.level</th>
@@ -535,6 +530,10 @@ dataframe containing results from proportion tests.</p></td>
     <p>For more about how the effect size measures (for nonparametric tests) and
 their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/wilcoxonPairedR.html'>?rcompanion::wilcoxonPairedR</a></code>.</p>
 <p>For independent measures designs, use <code>ggbetweenstats</code>.</p>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p><strong>Important</strong>: Please note that the function expects that the data is
+already sorted by subject/repeated measures ID.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='grouped_ggbetweenstats.html'>grouped_ggbetweenstats</a></code>, <code><a href='ggbetweenstats.html'>ggbetweenstats</a></code>,
@@ -559,7 +558,7 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-forge.r-project.org/projects/psychor/'>WRS2</a></span><span class='op'>)</span>
 
 <span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>ggwithinstats</span><span class='op'>(</span>
-  data <span class='op'>=</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span><span class='op'>(</span><span class='va'>WineTasting</span><span class='op'>)</span>,
+  data <span class='op'>=</span> <span class='va'>WineTasting</span>,
   x <span class='op'>=</span> <span class='va'>Wine</span>,
   y <span class='op'>=</span> <span class='va'>Taste</span>,
   type <span class='op'>=</span> <span class='st'>"np"</span>,

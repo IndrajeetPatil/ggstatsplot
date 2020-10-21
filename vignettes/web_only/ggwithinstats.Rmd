@@ -325,7 +325,7 @@ of test-
 
 Type | No. of groups | Effect size | CI? | Function
 ----------- | --- | ------------------------- | --- | -----
-Parametric | > 2 | $\eta_{p}^2$, $\eta^2$, $\omega_{p}^2$, $\omega^2$ | <font color="green">Yes<font> | `effectsize::omega_squared`, `effectsize::eta_squared`
+Parametric | > 2 | $\eta_{p}^2$, $\omega_{p}^2$ | <font color="green">Yes<font> | `effectsize::omega_squared`, `effectsize::eta_squared`
 Non-parametric | > 2 | $W_{Kendall}$ (Kendall's coefficient of concordance) | <font color="green">Yes<font> | `rcompanion::kendallW`
 Robust | > 2 | <font color="red">No<font> | <font color="red">No<font> | `NA`
 Bayes Factor | > 2 | <font color="red">No<font> | <font color="red">No<font> | `NA`

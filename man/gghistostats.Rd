@@ -94,7 +94,7 @@ argument can be \code{"d"} (for Cohen's \emph{d}) or \code{"g"} (for Hedge's \em
 for the effect size (Default: \code{100}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2}).}
+(Default: \code{k = 2L}).}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
@@ -154,7 +154,7 @@ of the current function. Default is \code{NULL}. The argument should be entered
 as a function.}
 
 \item{output}{If \code{"expression"}, will return expression with statistical
-details, while \code{"dataframe"} (default) will return a dataframe containing the
+details, while \code{"dataframe"} will return a dataframe containing the
 results.}
 
 \item{...}{Currently ignored.}

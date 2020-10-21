@@ -253,7 +253,7 @@ variable name entered for <code>grouping.var</code> will be used.</p></td>
     <tr>
       <th>output</th>
       <td><p>If <code>"expression"</code>, will return expression with statistical
-details, while <code>"dataframe"</code> (default) will return a dataframe containing the
+details, while <code>"dataframe"</code> will return a dataframe containing the
 results.</p></td>
     </tr>
     <tr>
@@ -305,7 +305,7 @@ argument can be <code>"d"</code> (for Cohen's <em>d</em>) or <code>"g"</code> (f
     <dt><code>nboot</code></dt><dd><p>Number of bootstrap samples for computing confidence interval
 for the effect size (Default: <code>100</code>).</p></dd>
     <dt><code>k</code></dt><dd><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 2</code>).</p></dd>
+(Default: <code>k = 2L</code>).</p></dd>
     <dt><code>results.subtitle</code></dt><dd><p>Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
 the plot will be returned.</p></dd>
@@ -396,10 +396,7 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
   <span class='op'>)</span>,
   messages <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Scale for 'x' is already present. Adding another scale for 'x', which will</span>
-#&gt; <span class='message'>replace the existing scale.</span></div><div class='output co'>#&gt; <span class='message'>Scale for 'x' is already present. Adding another scale for 'x', which will</span>
-#&gt; <span class='message'>replace the existing scale.</span></div><div class='output co'>#&gt; <span class='message'>Scale for 'x' is already present. Adding another scale for 'x', which will</span>
-#&gt; <span class='message'>replace the existing scale.</span></div><div class='img'><img src='grouped_ggdotplotstats-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
+</div><div class='output co'>#&gt; <span class='message'>Scale for 'x' is already present. Adding another scale for 'x', which will replace the existing scale.</span></div><div class='output co'>#&gt; <span class='message'>Scale for 'x' is already present. Adding another scale for 'x', which will replace the existing scale.</span></div><div class='output co'>#&gt; <span class='message'>Scale for 'x' is already present. Adding another scale for 'x', which will replace the existing scale.</span></div><div class='img'><img src='grouped_ggdotplotstats-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

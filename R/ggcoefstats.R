@@ -35,9 +35,6 @@
 #' @param effsize Character describing the effect size to be displayed: `"eta"`
 #'   (default) or `"omega"`. This argument is relevant only for models objects
 #'   of class `aov`, `anova`, `aovlist`, `"Gam"`, and `"manova"`.
-#' @param partial Logical that decides if partial eta-squared or partial
-#'   omega-squared are returned (Default: `TRUE`). If `FALSE`, eta-squared or
-#'   omega-squared will be returned.
 #' @param meta.analytic.effect Logical that decides whether subtitle for
 #'   meta-analysis via linear (mixed-effects) models (default: `FALSE`). If
 #'   `TRUE`, input to argument `subtitle` will be ignored. This will be mostly
@@ -213,7 +210,6 @@ ggcoefstats <- function(x,
                         exclude.intercept = TRUE,
                         exponentiate = FALSE,
                         effsize = "eta",
-                        partial = TRUE,
                         meta.analytic.effect = FALSE,
                         meta.type = "parametric",
                         bf.message = TRUE,
@@ -262,31 +258,23 @@ ggcoefstats <- function(x,
   # =========================== tidy it ====================================
 
   if (isTRUE(insight::is_model(x))) {
-    if (class(x)[[1]] %in% c("aov", "aovlist", "anova", "Gam", "manova")) {
+    if (class(x)[[1]] %in% c("aov", "aovlist", "anova", "Gam", "manova", "maov")) {
       # creating dataframe
       tidy_df <-
         lm_effsize_standardizer(
           object = x,
           effsize = effsize,
-          partial = partial,
           conf.level = conf.level
         )
 
-      # prefix for effect size
-      if (isTRUE(partial)) {
-        effsize.prefix <- "partial"
-      } else {
-        effsize.prefix <- NULL
-      }
-
       # renaming the `xlab` according to the estimate chosen
-      xlab <- paste(effsize.prefix, " ", effsize, "-squared", sep = "")
+      xlab <- paste("partial", " ", effsize, "-squared", sep = "")
     } else {
       tidy_df <-
         broomExtra::tidy_parameters(
           x = x,
-          conf.int = conf.int,
-          conf.level = conf.level,
+          conf.int = conf.int, # remove when only `parameters`
+          conf.level = conf.level, # remove when only `parameters`
           ci = conf.level,
           exponentiate = exponentiate,
           effects = "fixed",
@@ -414,8 +402,7 @@ ggcoefstats <- function(x,
         tidy_df = .,
         statistic = statistic,
         k = k,
-        effsize = effsize,
-        partial = partial
+        effsize = effsize
       )
   }
 

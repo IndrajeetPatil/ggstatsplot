@@ -296,7 +296,7 @@ or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations ar
 <code>"p"</code> (for parametric), <code>"np"</code> (nonparametric), <code>"r"</code> (robust), or
 <code>"bf"</code>resp.</p></dd>
     <dt><code>pairwise.comparisons</code></dt><dd><p>Logical that decides whether pairwise comparisons
-are to be displayed (default: <code>FALSE</code>). Please note that only
+are to be displayed (default: <code>TRUE</code>). Please note that only
 <strong>significant</strong> comparisons will be shown by default. To change this
 behavior, select appropriate option with <code>pairwise.display</code> argument. The
 pairwise comparison dataframes are prepared using the
@@ -314,10 +314,9 @@ comparisons. Possible methods are: <code>"holm"</code> (default), <code>"hochber
 <code>"hommel"</code>, <code>"bonferroni"</code>, <code>"BH"</code>, <code>"BY"</code>, <code>"fdr"</code>, <code>"none"</code>.</p></dd>
     <dt><code>effsize.type</code></dt><dd><p>Type of effect size needed for <em>parametric</em> tests. The
 argument can be <code>"biased"</code> (equivalent to <code>"d"</code> for Cohen's <em>d</em> for
-<strong>t-test</strong>; <code>"partial_eta"</code> for partial eta-squared for <strong>anova</strong>) or
+<strong>t-test</strong>; <code>"eta"</code> for partial eta-squared for <strong>anova</strong>) or
 <code>"unbiased"</code> (equivalent to <code>"g"</code> Hedge's <em>g</em> for <strong>t-test</strong>;
-<code>"partial_omega"</code> for partial omega-squared for <strong>anova</strong>)).</p></dd>
-    <dt><code>partial</code></dt><dd><p>If <code>TRUE</code>, return partial indices.</p></dd>
+<code>"omega"</code> for partial omega-squared for <strong>anova</strong>)).</p></dd>
     <dt><code>bf.prior</code></dt><dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
 width to use in calculating Bayes factors.</p></dd>
     <dt><code>bf.message</code></dt><dd><p>Logical that decides whether to display Bayes Factor in
@@ -337,7 +336,7 @@ variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
 should be displayed for each level of the grouping variable <code>x</code> (Default:
 <code>TRUE</code>).</p></dd>
     <dt><code>k</code></dt><dd><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 2</code>).</p></dd>
+(Default: <code>k = 2L</code>).</p></dd>
     <dt><code>conf.level</code></dt><dd><p>Scalar between 0 and 1. If unspecified, the defaults return
 <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></dd>
     <dt><code>nboot</code></dt><dd><p>Number of bootstrap samples for computing confidence interval

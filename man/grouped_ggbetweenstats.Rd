@@ -63,7 +63,7 @@ variable names for \code{x} and \code{y} will be used.}
     \item{\code{ylab}}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
 variable names for \code{x} and \code{y} will be used.}
     \item{\code{pairwise.comparisons}}{Logical that decides whether pairwise comparisons
-are to be displayed (default: \code{FALSE}). Please note that only
+are to be displayed (default: \code{TRUE}). Please note that only
 \strong{significant} comparisons will be shown by default. To change this
 behavior, select appropriate option with \code{pairwise.display} argument. The
 pairwise comparison dataframes are prepared using the
@@ -154,12 +154,11 @@ theme elements are to be displayed along with the selected \code{ggtheme}
 override some aspects of the selected \code{ggtheme}.}
     \item{\code{effsize.type}}{Type of effect size needed for \emph{parametric} tests. The
 argument can be \code{"biased"} (equivalent to \code{"d"} for Cohen's \emph{d} for
-\strong{t-test}; \code{"partial_eta"} for partial eta-squared for \strong{anova}) or
+\strong{t-test}; \code{"eta"} for partial eta-squared for \strong{anova}) or
 \code{"unbiased"} (equivalent to \code{"g"} Hedge's \emph{g} for \strong{t-test};
-\code{"partial_omega"} for partial omega-squared for \strong{anova})).}
-    \item{\code{partial}}{If \code{TRUE}, return partial indices.}
+\code{"omega"} for partial omega-squared for \strong{anova})).}
     \item{\code{k}}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2}).}
+(Default: \code{k = 2L}).}
     \item{\code{var.equal}}{a logical variable indicating whether to treat the
     variances in the samples as equal.  If \code{TRUE}, then a simple F
     test for the equality of means in a one-way analysis of variance is

@@ -212,7 +212,6 @@
   exclude.intercept <span class='op'>=</span> <span class='cn'>TRUE</span>,
   exponentiate <span class='op'>=</span> <span class='cn'>FALSE</span>,
   effsize <span class='op'>=</span> <span class='st'>"eta"</span>,
-  partial <span class='op'>=</span> <span class='cn'>TRUE</span>,
   meta.analytic.effect <span class='op'>=</span> <span class='cn'>FALSE</span>,
   meta.type <span class='op'>=</span> <span class='st'>"parametric"</span>,
   bf.message <span class='op'>=</span> <span class='cn'>TRUE</span>,
@@ -275,7 +274,7 @@ error bars (Default: <code>TRUE</code>).</p></td>
     <tr>
       <th>k</th>
       <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 2</code>).</p></td>
+(Default: <code>k = 2L</code>).</p></td>
     </tr>
     <tr>
       <th>exclude.intercept</th>
@@ -296,12 +295,6 @@ exponentiation.</p></td>
       <td><p>Character describing the effect size to be displayed: <code>"eta"</code>
 (default) or <code>"omega"</code>. This argument is relevant only for models objects
 of class <code>aov</code>, <code>anova</code>, <code>aovlist</code>, <code>"Gam"</code>, and <code>"manova"</code>.</p></td>
-    </tr>
-    <tr>
-      <th>partial</th>
-      <td><p>Logical that decides if partial eta-squared or partial
-omega-squared are returned (Default: <code>TRUE</code>). If <code>FALSE</code>, eta-squared or
-omega-squared will be returned.</p></td>
     </tr>
     <tr>
       <th>meta.analytic.effect</th>

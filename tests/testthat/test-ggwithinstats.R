@@ -381,7 +381,7 @@ testthat::test_that(
 
     p1 <-
       ggstatsplot::ggwithinstats(
-        data = ggstatsplot::iris_long,
+        data = iris_long,
         x = condition,
         y = value,
         type = "np",
@@ -390,46 +390,41 @@ testthat::test_that(
         pairwise.annotation = "p",
         outlier.tagging = FALSE,
         pairwise.comparisons = TRUE,
-        conf.level = 0.90,
-        messages = FALSE
+        conf.level = 0.90
       )
 
     set.seed(123)
     p1_subtitle <-
       statsExpressions::expr_anova_nonparametric(
-        data = ggstatsplot::iris_long,
+        data = iris_long,
         x = condition,
         y = value,
         type = "np",
         paired = TRUE,
-        conf.level = 0.90,
-        messages = FALSE
+        conf.level = 0.90
       )
 
     set.seed(123)
     p2 <-
       suppressWarnings(ggstatsplot::ggwithinstats(
-        data = ggstatsplot::iris_long,
+        data = iris_long,
         x = condition,
         y = value,
         type = "r",
         pairwise.display = "ns",
         outlier.tagging = FALSE,
-        pairwise.comparisons = TRUE,
         pairwise.annotation = "p-value",
-        conf.level = 0.90,
-        messages = FALSE
+        conf.level = 0.90
       ))
 
     set.seed(123)
     p2_subtitle <-
       statsExpressions::expr_anova_robust(
-        data = ggstatsplot::iris_long,
+        data = iris_long,
         x = condition,
         y = value,
         paired = TRUE,
-        conf.level = 0.90,
-        messages = FALSE
+        conf.level = 0.90
       )
 
     set.seed(123)
@@ -533,7 +528,7 @@ testthat::test_that(
 
     p5 <-
       ggstatsplot::ggwithinstats(
-        data = ggstatsplot::iris_long,
+        data = iris_long,
         x = condition,
         y = value,
         type = "bf",

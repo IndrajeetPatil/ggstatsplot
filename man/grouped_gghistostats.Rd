@@ -41,7 +41,7 @@ plot title (name of each factor level) (Default: \code{NULL}). If \code{NULL}, t
 variable name entered for \code{grouping.var} will be used.}
 
 \item{output}{If \code{"expression"}, will return expression with statistical
-details, while \code{"dataframe"} (default) will return a dataframe containing the
+details, while \code{"dataframe"} will return a dataframe containing the
 results.}
 
 \item{...}{
@@ -74,7 +74,7 @@ argument can be \code{"d"} (for Cohen's \emph{d}) or \code{"g"} (for Hedge's \em
     \item{\code{nboot}}{Number of bootstrap samples for computing confidence interval
 for the effect size (Default: \code{100}).}
     \item{\code{k}}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2}).}
+(Default: \code{k = 2L}).}
     \item{\code{test.k}}{Integer denoting the number of decimal places expected for
 \code{test.value} label. (Default: \code{0} ).}
     \item{\code{test.value.line}}{Logical that decides whether a line corresponding to

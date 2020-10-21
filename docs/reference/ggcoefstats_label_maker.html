@@ -207,7 +207,6 @@
   statistic <span class='op'>=</span> <span class='cn'>NULL</span>,
   k <span class='op'>=</span> <span class='fl'>2L</span>,
   effsize <span class='op'>=</span> <span class='st'>"eta"</span>,
-  partial <span class='op'>=</span> <span class='cn'>TRUE</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -227,19 +226,13 @@
     <tr>
       <th>k</th>
       <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 2</code>).</p></td>
+(Default: <code>k = 2L</code>).</p></td>
     </tr>
     <tr>
       <th>effsize</th>
       <td><p>Character describing the effect size to be displayed: <code>"eta"</code>
 (default) or <code>"omega"</code>. This argument is relevant only for models objects
 of class <code>aov</code>, <code>anova</code>, <code>aovlist</code>, <code>"Gam"</code>, and <code>"manova"</code>.</p></td>
-    </tr>
-    <tr>
-      <th>partial</th>
-      <td><p>Logical that decides if partial eta-squared or partial
-omega-squared are returned (Default: <code>TRUE</code>). If <code>FALSE</code>, eta-squared or
-omega-squared will be returned.</p></td>
     </tr>
     <tr>
       <th>...</th>

@@ -85,7 +85,7 @@ displayed on the label in each pie slice. Possible options are
 \verb{95\%} lower and upper confidence intervals (\code{0.95}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2}).}
+(Default: \code{k = 2L}).}
 
 \item{proportion.test}{Decides whether proportion test for \code{main} variable is
 to be carried out for each level of \code{y} (Default: \code{TRUE}).}

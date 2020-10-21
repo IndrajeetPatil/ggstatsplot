@@ -20,7 +20,7 @@ dataframe \code{data}.}
 mean is to be displayed (Default: \code{FALSE}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2}).}
+(Default: \code{k = 2L}).}
 
 \item{...}{Currently ignored.}
 }

@@ -11,7 +11,7 @@
 #' @param xlab,ylab Labels for `x` and `y` axis variables. If `NULL` (default),
 #'   variable names for `x` and `y` will be used.
 #' @param pairwise.comparisons Logical that decides whether pairwise comparisons
-#'   are to be displayed (default: `FALSE`). Please note that only
+#'   are to be displayed (default: `TRUE`). Please note that only
 #'   **significant** comparisons will be shown by default. To change this
 #'   behavior, select appropriate option with `pairwise.display` argument. The
 #'   pairwise comparison dataframes are prepared using the
@@ -180,7 +180,6 @@ ggbetweenstats <- function(data,
                            pairwise.display = "significant",
                            p.adjust.method = "holm",
                            effsize.type = "unbiased",
-                           partial = TRUE,
                            bf.prior = 0.707,
                            bf.message = TRUE,
                            results.subtitle = TRUE,
@@ -193,7 +192,7 @@ ggbetweenstats <- function(data,
                            k = 2L,
                            var.equal = FALSE,
                            conf.level = 0.95,
-                           nboot = 100,
+                           nboot = 100L,
                            tr = 0.1,
                            mean.plotting = TRUE,
                            mean.ci = FALSE,
@@ -299,7 +298,6 @@ ggbetweenstats <- function(data,
         y = {{ y }},
         paired = FALSE,
         effsize.type = effsize.type,
-        partial = partial,
         var.equal = var.equal,
         bf.prior = bf.prior,
         tr = tr,

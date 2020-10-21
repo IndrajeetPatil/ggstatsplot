@@ -14,7 +14,6 @@ ggcoefstats(
   exclude.intercept = TRUE,
   exponentiate = FALSE,
   effsize = "eta",
-  partial = TRUE,
   meta.analytic.effect = FALSE,
   meta.type = "parametric",
   bf.message = TRUE,
@@ -63,7 +62,7 @@ error bars (Default: \code{TRUE}).}
 (Default: \code{0.95}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2}).}
+(Default: \code{k = 2L}).}
 
 \item{exclude.intercept}{Logical that decides whether the intercept should be
 excluded from the plot (Default: \code{TRUE}).}
@@ -78,10 +77,6 @@ exponentiation.}
 \item{effsize}{Character describing the effect size to be displayed: \code{"eta"}
 (default) or \code{"omega"}. This argument is relevant only for models objects
 of class \code{aov}, \code{anova}, \code{aovlist}, \code{"Gam"}, and \code{"manova"}.}
-
-\item{partial}{Logical that decides if partial eta-squared or partial
-omega-squared are returned (Default: \code{TRUE}). If \code{FALSE}, eta-squared or
-omega-squared will be returned.}
 
 \item{meta.analytic.effect}{Logical that decides whether subtitle for
 meta-analysis via linear (mixed-effects) models (default: \code{FALSE}). If

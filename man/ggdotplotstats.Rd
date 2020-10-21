@@ -84,7 +84,7 @@ argument can be \code{"d"} (for Cohen's \emph{d}) or \code{"g"} (for Hedge's \em
 for the effect size (Default: \code{100}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2}).}
+(Default: \code{k = 2L}).}
 
 \item{results.subtitle}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
@@ -138,7 +138,7 @@ theme elements are to be displayed along with the selected \code{ggtheme}
 override some aspects of the selected \code{ggtheme}.}
 
 \item{output}{If \code{"expression"}, will return expression with statistical
-details, while \code{"dataframe"} (default) will return a dataframe containing the
+details, while \code{"dataframe"} will return a dataframe containing the
 results.}
 
 \item{...}{Currently ignored.}

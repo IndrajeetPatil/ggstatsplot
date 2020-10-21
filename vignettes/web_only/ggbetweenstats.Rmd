@@ -350,7 +350,7 @@ of test-
 
 Type | No. of groups | Effect size | CI? | Function
 ----------- | --- | ------------------------- | --- | -----
-Parametric | > 2 | $\eta_{p}^2$, $\eta^2$, $\omega_{p}^2$, $\omega^2$ | <font color="green">Yes<font> | `effectsize::omega_squared`, `effectsize::eta_squared`
+Parametric | > 2 | $\eta_{p}^2$, $\omega_{p}^2$ | <font color="green">Yes<font> | `effectsize::omega_squared`, `effectsize::eta_squared`
 Non-parametric | > 2 | $\eta_{H}^2$ (*H*-statistic based eta-squared) | <font color="green">Yes<font> | `rcompanion::epsilonSquared`
 Robust | > 2 | $\xi$ (Explanatory measure of effect size) | <font color="green">Yes<font> | `WRS2::t1way`
 Bayes Factor | > 2 | <font color="red">No<font> | <font color="red">No<font> | `NA`

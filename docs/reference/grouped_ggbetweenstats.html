@@ -281,7 +281,7 @@ variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
     <dt><code>ylab</code></dt><dd><p>Labels for <code>x</code> and <code>y</code> axis variables. If <code>NULL</code> (default),
 variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
     <dt><code>pairwise.comparisons</code></dt><dd><p>Logical that decides whether pairwise comparisons
-are to be displayed (default: <code>FALSE</code>). Please note that only
+are to be displayed (default: <code>TRUE</code>). Please note that only
 <strong>significant</strong> comparisons will be shown by default. To change this
 behavior, select appropriate option with <code>pairwise.display</code> argument. The
 pairwise comparison dataframes are prepared using the
@@ -372,12 +372,11 @@ theme elements are to be displayed along with the selected <code>ggtheme</code>
 override some aspects of the selected <code>ggtheme</code>.</p></dd>
     <dt><code>effsize.type</code></dt><dd><p>Type of effect size needed for <em>parametric</em> tests. The
 argument can be <code>"biased"</code> (equivalent to <code>"d"</code> for Cohen's <em>d</em> for
-<strong>t-test</strong>; <code>"partial_eta"</code> for partial eta-squared for <strong>anova</strong>) or
+<strong>t-test</strong>; <code>"eta"</code> for partial eta-squared for <strong>anova</strong>) or
 <code>"unbiased"</code> (equivalent to <code>"g"</code> Hedge's <em>g</em> for <strong>t-test</strong>;
-<code>"partial_omega"</code> for partial omega-squared for <strong>anova</strong>)).</p></dd>
-    <dt><code>partial</code></dt><dd><p>If <code>TRUE</code>, return partial indices.</p></dd>
+<code>"omega"</code> for partial omega-squared for <strong>anova</strong>)).</p></dd>
     <dt><code>k</code></dt><dd><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 2</code>).</p></dd>
+(Default: <code>k = 2L</code>).</p></dd>
     <dt><code>var.equal</code></dt><dd><p>a logical variable indicating whether to treat the
     variances in the samples as equal.  If <code>TRUE</code>, then a simple F
     test for the equality of means in a one-way analysis of variance is

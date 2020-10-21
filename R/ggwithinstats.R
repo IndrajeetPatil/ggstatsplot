@@ -5,7 +5,7 @@
 #'   (unjittered) data points for within-subjects designs with statistical
 #'   details included in the plot as a subtitle.
 #'
-#' @noRd **Important**: Please note that the function expects that the data is
+#' @note **Important**: Please note that the function expects that the data is
 #'   already sorted by subject/repeated measures ID.
 #'
 #' @inheritParams ggbetweenstats
@@ -55,7 +55,7 @@
 #' library(WRS2)
 #'
 #' ggstatsplot::ggwithinstats(
-#'   data = as_tibble(WineTasting),
+#'   data = WineTasting,
 #'   x = Wine,
 #'   y = Taste,
 #'   type = "np",
@@ -76,7 +76,6 @@ ggwithinstats <- function(data,
                           pairwise.display = "significant",
                           p.adjust.method = "holm",
                           effsize.type = "unbiased",
-                          partial = TRUE,
                           bf.prior = 0.707,
                           bf.message = TRUE,
                           results.subtitle = TRUE,
@@ -86,9 +85,9 @@ ggwithinstats <- function(data,
                           title = NULL,
                           subtitle = NULL,
                           sample.size.label = TRUE,
-                          k = 2,
+                          k = 2L,
                           conf.level = 0.95,
-                          nboot = 100,
+                          nboot = 100L,
                           tr = 0.1,
                           mean.plotting = TRUE,
                           mean.ci = FALSE,
@@ -197,7 +196,6 @@ ggwithinstats <- function(data,
         y = {{ y }},
         paired = TRUE,
         effsize.type = effsize.type,
-        partial = partial,
         var.equal = TRUE, ,
         bf.prior = bf.prior,
         tr = tr,

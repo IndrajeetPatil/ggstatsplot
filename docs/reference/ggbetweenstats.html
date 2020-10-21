@@ -219,7 +219,6 @@ the plot as a subtitle.</p>
   pairwise.display <span class='op'>=</span> <span class='st'>"significant"</span>,
   p.adjust.method <span class='op'>=</span> <span class='st'>"holm"</span>,
   effsize.type <span class='op'>=</span> <span class='st'>"unbiased"</span>,
-  partial <span class='op'>=</span> <span class='cn'>TRUE</span>,
   bf.prior <span class='op'>=</span> <span class='fl'>0.707</span>,
   bf.message <span class='op'>=</span> <span class='cn'>TRUE</span>,
   results.subtitle <span class='op'>=</span> <span class='cn'>TRUE</span>,
@@ -232,7 +231,7 @@ the plot as a subtitle.</p>
   k <span class='op'>=</span> <span class='fl'>2L</span>,
   var.equal <span class='op'>=</span> <span class='cn'>FALSE</span>,
   conf.level <span class='op'>=</span> <span class='fl'>0.95</span>,
-  nboot <span class='op'>=</span> <span class='fl'>100</span>,
+  nboot <span class='op'>=</span> <span class='fl'>100L</span>,
   tr <span class='op'>=</span> <span class='fl'>0.1</span>,
   mean.plotting <span class='op'>=</span> <span class='cn'>TRUE</span>,
   mean.ci <span class='op'>=</span> <span class='cn'>FALSE</span>,
@@ -293,7 +292,7 @@ or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations ar
     <tr>
       <th>pairwise.comparisons</th>
       <td><p>Logical that decides whether pairwise comparisons
-are to be displayed (default: <code>FALSE</code>). Please note that only
+are to be displayed (default: <code>TRUE</code>). Please note that only
 <strong>significant</strong> comparisons will be shown by default. To change this
 behavior, select appropriate option with <code>pairwise.display</code> argument. The
 pairwise comparison dataframes are prepared using the
@@ -320,13 +319,9 @@ comparisons. Possible methods are: <code>"holm"</code> (default), <code>"hochber
       <th>effsize.type</th>
       <td><p>Type of effect size needed for <em>parametric</em> tests. The
 argument can be <code>"biased"</code> (equivalent to <code>"d"</code> for Cohen's <em>d</em> for
-<strong>t-test</strong>; <code>"partial_eta"</code> for partial eta-squared for <strong>anova</strong>) or
+<strong>t-test</strong>; <code>"eta"</code> for partial eta-squared for <strong>anova</strong>) or
 <code>"unbiased"</code> (equivalent to <code>"g"</code> Hedge's <em>g</em> for <strong>t-test</strong>;
-<code>"partial_omega"</code> for partial omega-squared for <strong>anova</strong>)).</p></td>
-    </tr>
-    <tr>
-      <th>partial</th>
-      <td><p>If <code>TRUE</code>, return partial indices.</p></td>
+<code>"omega"</code> for partial omega-squared for <strong>anova</strong>)).</p></td>
     </tr>
     <tr>
       <th>bf.prior</th>
@@ -372,7 +367,7 @@ should be displayed for each level of the grouping variable <code>x</code> (Defa
     <tr>
       <th>k</th>
       <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 2</code>).</p></td>
+(Default: <code>k = 2L</code>).</p></td>
     </tr>
     <tr>
       <th>var.equal</th>

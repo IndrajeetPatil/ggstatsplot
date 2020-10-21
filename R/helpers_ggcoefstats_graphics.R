@@ -3,7 +3,6 @@
 #'
 #' @param ... Currently ignored.
 #' @param tidy_df A tidy dataframe.
-#' @param ... Currently ignored.
 #' @inheritParams ggcoefstats
 #'
 #' @importFrom dplyr mutate rowwise
@@ -15,7 +14,6 @@ ggcoefstats_label_maker <- function(tidy_df,
                                     statistic = NULL,
                                     k = 2L,
                                     effsize = "eta",
-                                    partial = TRUE,
                                     ...) {
 
   #----------------------- p-value cleanup ------------------------------------
@@ -104,21 +102,8 @@ ggcoefstats_label_maker <- function(tidy_df,
 
   if (statistic == "f") {
     # which effect size is needed?
-    if (effsize == "eta") {
-      if (isTRUE(partial)) {
-        effsize.text <- list(quote(widehat(italic(eta)[p]^2)))
-      } else {
-        effsize.text <- list(quote(widehat(italic(eta)^2)))
-      }
-    }
-
-    if (effsize == "omega") {
-      if (isTRUE(partial)) {
-        effsize.text <- list(quote(widehat(italic(omega)[p]^2)))
-      } else {
-        effsize.text <- list(quote(widehat(italic(omega)^2)))
-      }
-    }
+    if (effsize == "eta") effsize.text <- list(quote(widehat(italic(eta)[p]^2)))
+    if (effsize == "omega") effsize.text <- list(quote(widehat(italic(omega)[p]^2)))
 
     # which effect size is needed?
     tidy_df %<>%

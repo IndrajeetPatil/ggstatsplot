@@ -16,16 +16,13 @@ testthat::test_that(
         caption = "From ggplot2 package",
         xlab = "vore",
         ylab = "brain weight",
-        pairwise.comparisons = TRUE,
         ggsignif.args = list(textsize = 6, tip_length = 0.01),
         ggstatsplot.layer = FALSE,
         outlier.tagging = TRUE,
         outlier.label = name,
         outlier.label.args = list(color = "darkgreen"),
         conf.level = 0.99,
-        k = 5,
-        bf.message = TRUE,
-        messages = TRUE
+        k = 5
       )
 
     # subtitle
@@ -36,7 +33,6 @@ testthat::test_that(
         x = vore,
         y = brainwt,
         k = 5,
-        messages = FALSE,
         conf.level = 0.99
       )
 
@@ -545,25 +541,26 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
 
+    df <- mtcars
+    df$wt[3] <- NA
+
     # plot
     set.seed(123)
     subtitle_exp <-
       ggstatsplot::ggbetweenstats(
-        data = mtcars,
+        data = df,
         x = am,
         y = wt,
-        output = "subtitle",
-        messages = FALSE
+        output = "subtitle"
       )
 
     set.seed(123)
     sub <-
       statsExpressions::expr_t_parametric(
-        data = mtcars,
+        data = df,
         x = am,
         y = wt,
-        output = "subtitle",
-        messages = FALSE
+        output = "subtitle"
       )
 
     # test

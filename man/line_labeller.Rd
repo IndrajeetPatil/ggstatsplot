@@ -22,7 +22,7 @@ line_labeller(
 \item{x, y}{The \code{x}- and \code{y}-axes coordinates for the label.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2}).}
+(Default: \code{k = 2L}).}
 
 \item{label.text}{The text to include in the label (e.g., \code{"mean"}).}
 
