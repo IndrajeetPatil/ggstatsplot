@@ -35,7 +35,7 @@ Imports:
     ggrepel,
     ggsignif,
     insight (>= 0.9.6.1),
-    ipmisc (>= 4.0.0),
+    ipmisc (>= 4.1.0),
     pairwiseComparisons (>= 3.0.0.9000),
     paletteer,
     parameters,
@@ -61,7 +61,8 @@ Remotes:
     easystats/insight,
     IndrajeetPatil/pairwiseComparisons,
     IndrajeetPatil/statsExpressions,
-    IndrajeetPatil/tidyBF
+    IndrajeetPatil/tidyBF,
+    IndrajeetPatil/ipmisc
 Encoding: UTF-8
 Language: en-US
 LazyData: true
