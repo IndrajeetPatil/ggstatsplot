@@ -89,16 +89,16 @@ Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
 `ggpiestats`, `ggbarstats` | Association between categorical variables | <font color="green">Yes</font> | `NA` | `NA` | <font color="green">Yes</font>
 `ggpiestats`, `ggbarstats` | Equal proportions for categorical variable levels | <font color="green">Yes</font> | `NA` | `NA` | <font color="green">Yes</font>
 `ggcoefstats` | Regression model coefficients | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
-`ggcoefstats` | Random-effects meta-analysis | <font color="green">Yes</font> | <font color="red">No</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
+`ggcoefstats` | Random-effects meta-analysis | <font color="green">Yes</font> | `NA` | <font color="green">Yes</font> | <font color="green">Yes</font>
 
 Summary of Bayesian analysis
 
 Analysis | Hypothesis testing | Estimation
 ------------------ | ---------- | ---------
 (one/two-sample) t-test | <font color="green">Yes</font> | <font color="green">Yes</font>
-one-way ANOVA | <font color="green">Yes</font> | <font color="red">No</font>
+one-way ANOVA | <font color="green">Yes</font> |<font color="green">Yes</font>
 correlation | <font color="green">Yes</font> | <font color="green">Yes</font>
-(one/two-way) contingency table | <font color="green">Yes</font> | <font color="red">No</font>
+(one/two-way) contingency table | <font color="green">Yes</font> | <font color="green">Yes</font>
 random-effects meta-analysis | <font color="green">Yes</font> | <font color="green">Yes</font>
 
 # Statistical reporting
@@ -320,7 +320,7 @@ Type | No. of groups | Effect size | CI? | Function
 Parametric | > 2 | $\eta_{p}^2$, $\omega_{p}^2$ | <font color="green">Yes<font> | `effectsize::omega_squared`, `effectsize::eta_squared`
 Non-parametric | > 2 | $\eta_{H}^2$ (*H*-statistic based eta-squared) | <font color="green">Yes<font> | `rcompanion::epsilonSquared`
 Robust | > 2 | $\xi$ (Explanatory measure of effect size) | <font color="green">Yes<font> | `WRS2::t1way`
-Bayes Factor | > 2 | <font color="red">No<font> | <font color="red">No<font> | `NA`
+Bayes Factor | > 2 | $\R_{posterior}^2$ | <font color="green">Yes<font> | `performance::r2_bayes`
 Parametric | 2 | Cohen's *d*, Hedge's *g* | <font color="green">Yes<font> | `effectsize::cohens_d`, `effectsize::hedges_g`
 Non-parametric | 2 | *r* (computed as $Z/\sqrt{N}$) | <font color="green">Yes<font> | `rcompanion::wilcoxonR`
 Robust | 2 |  $\xi$ (Explanatory measure of effect size) | <font color="green">Yes<font> | `WRS2::yuen.effect.ci`
@@ -418,7 +418,7 @@ Type | No. of groups | Effect size | CI? | Function
 Parametric | > 2 | $\eta_{p}^2$, $\omega_{p}^2$ | <font color="green">Yes<font> | `effectsize::omega_squared`, `effectsize::eta_squared`
 Non-parametric | > 2 | $W_{Kendall}$ (Kendall's coefficient of concordance) | <font color="green">Yes<font> | `rcompanion::kendallW`
 Robust | > 2 | <font color="red">No<font> | <font color="red">No<font> | `NA`
-Bayes Factor | > 2 | <font color="red">No<font> | <font color="red">No<font> | `NA`
+Bayes Factor | > 2 | $\R_{posterior}^2$ | <font color="green">Yes<font> | `performance::r2_bayes`
 Parametric | 2 | Cohen's *d*, Hedge's *g* | <font color="green">Yes<font> | `effectsize::cohens_d`, `effectsize::hedges_g`
 Non-parametric | 2 | *r* (computed as $Z/\sqrt{N}$) | <font color="green">Yes<font> | `rcompanion::wilcoxonR`
 Robust | 2 |  $\delta_{R}$ (robust standardized difference) | <font color="green">Yes<font> | `WRS2::dep.effect`
@@ -1010,10 +1010,10 @@ also supported by `ggcoefstats`. For example-
 `metafor`, `merMod`, `merModList`, `metaplus`, `mixor`, `mjoint`, `mle2`, `mlm`,
 `multinom`, `negbin`, `negbinmfx`, `negbinirr`, `nlmerMod`, `nlrq`, `nlreg`,
 `nls`, `orcutt`, `orm`, `plm`, `poissonmfx`, `poissonirr`, `polr`, `ridgelm`,
-`rjags`, `rlm`, `rlmerMod`, `robmixglm`, `rq`, `rqss`, `rrvglm`, `semLm`,
+`rjags`, `rlm`, `rlmerMod`, `robmixglm`, `rq`, `rqss`, `rrvglm`, `scam`, `semLm`,
 `semLme`, `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`, `survreg`,
 `svyglm`, `svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`, `vglm`, `wbgee`,
-`wblm`, `zcpglm`, `zeroinfl`, etc.
+`wblm`, `zeroinfl`, etc.
 
 Although not shown here, this function can also be used to carry out both
 frequentist, robust, and Bayesian random-effects meta-analysis.

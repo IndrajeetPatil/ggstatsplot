@@ -130,7 +130,7 @@ Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
 `ggpiestats`, `ggbarstats` | Association between categorical variables | \textcolor{ForestGreen}{Yes} | `NA` | `NA` | \textcolor{ForestGreen}{Yes}
 `ggpiestats`, `ggbarstats` | Equal proportions for categorical variable levels | \textcolor{ForestGreen}{Yes} | `NA` | `NA` | \textcolor{ForestGreen}{Yes}
 `ggcoefstats` | Regression model coefficients | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes}
-`ggcoefstats` | Random-effects meta-analysis | \textcolor{ForestGreen}{Yes} | \textcolor{red}{No} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes}
+`ggcoefstats` | Random-effects meta-analysis | \textcolor{ForestGreen}{Yes} | `NA` | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes}
 
 In the following sections, we will discuss at depth justification for why the
 plots have been designed in certain ways and what principles were followed to
@@ -456,15 +456,19 @@ APA guidelines [@associationPublicationManualAmerican2009] are followed by
 default while reporting statistical details:
 
   - Percentages are displayed with no decimal places (Figure \@ref(fig:fig2)).
+  
   - Correlations, *t*-tests, and $\chi^2$-tests are reported with the degrees
     of freedom in parentheses and the significance level (Figure \@ref(fig:fig4),
     Figure \@ref(fig:fig3), Figure \@ref(fig:fig5)).
+    
   - ANOVAs are reported with two degrees of freedom and the significance level
     (Figure \@ref(fig:fig1)).
+    
   - Regression results are presented with the unstandardized or standardized
     estimate (beta), whichever was specified by the user, along with the
     statistic (depending on the model, this can be a *t*, *F*, or *z* statistic)
     and the corresponding significance level (Figure \@ref(fig:fig6)).
+    
   - With the exception of *p*-values, most statistics are rounded to two decimal
     places by default.
 

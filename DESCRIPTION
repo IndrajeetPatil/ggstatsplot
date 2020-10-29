@@ -28,22 +28,22 @@ Imports:
     broomExtra,
     cowplot,
     dplyr,
-    effectsize (>= 0.3.9.001),
+    effectsize (>= 0.4.0),
     ggcorrplot,
     ggExtra,
     ggplot2,
     ggrepel,
     ggsignif,
-    insight (>= 0.9.6.1),
+    insight (>= 0.10.0),
     ipmisc (>= 4.1.0),
-    pairwiseComparisons (>= 3.0.0.9000),
+    pairwiseComparisons (>= 3.1.0),
     paletteer,
-    parameters,
+    parameters (>= 0.9.0),
     purrr,
     rlang,
     stats,
-    statsExpressions (>= 0.6.0.9000),
-    tidyBF (>= 0.3.0.9000),
+    statsExpressions (>= 0.6.0),
+    tidyBF (>= 0.4.0),
     tidyr
 Suggests:
     forcats,
@@ -57,12 +57,10 @@ Suggests:
 VignetteBuilder: 
     knitr
 Remotes:
-    easystats/effectsize,
-    easystats/insight,
     IndrajeetPatil/pairwiseComparisons,
     IndrajeetPatil/statsExpressions,
     IndrajeetPatil/tidyBF,
-    IndrajeetPatil/ipmisc
+    easystats/parameters
 Encoding: UTF-8
 Language: en-US
 LazyData: true

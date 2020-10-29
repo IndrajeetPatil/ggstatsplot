@@ -77,7 +77,7 @@
 #'   when the `output` is a plot.
 #' @param ... Additional arguments to tidying method. For more, see
 #'   `parameters::model_parameters` and `broom::tidy`.
-#' @inheritParams statsExpressions::bf_meta
+#' @inheritParams statsExpressions::bf_meta_random
 #' @inheritParams parameters::model_parameters
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams statsExpressions::expr_meta_random
@@ -91,7 +91,7 @@
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom tidyr unite
 #' @importFrom insight is_model find_statistic
-#' @importFrom statsExpressions expr_meta_random bf_meta
+#' @importFrom statsExpressions expr_meta_random bf_meta_random
 #'
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}
@@ -450,7 +450,7 @@ ggcoefstats <- function(x,
       # results from Bayesian random-effects meta-analysis
       if (isTRUE(bf.message)) {
         caption <-
-          statsExpressions::bf_meta(
+          statsExpressions::bf_meta_random(
             top.text = caption,
             output = "caption",
             data = tidy_df,

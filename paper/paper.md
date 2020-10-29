@@ -1,7 +1,7 @@
 ---
 title: "ggstatsplot: ggplot2 Based Plots with Statistical Details"
 author: Indrajeet Patil^[Max Planck Institute for Human Development, patilindrajeet.science@gmail.com]
-date: "2020-10-22"
+date: "2020-10-29"
 output: 
   bookdown::pdf_document2:
     fig_caption: true
@@ -108,7 +108,7 @@ Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
 `ggpiestats`, `ggbarstats` | Association between categorical variables | \textcolor{ForestGreen}{Yes} | `NA` | `NA` | \textcolor{ForestGreen}{Yes}
 `ggpiestats`, `ggbarstats` | Equal proportions for categorical variable levels | \textcolor{ForestGreen}{Yes} | `NA` | `NA` | \textcolor{ForestGreen}{Yes}
 `ggcoefstats` | Regression model coefficients | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes}
-`ggcoefstats` | Random-effects meta-analysis | \textcolor{ForestGreen}{Yes} | \textcolor{red}{No} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes}
+`ggcoefstats` | Random-effects meta-analysis | \textcolor{ForestGreen}{Yes} | `NA` | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes}
 
 In the following sections, we will discuss at depth justification for why the
 plots have been designed in certain ways and what principles were followed to

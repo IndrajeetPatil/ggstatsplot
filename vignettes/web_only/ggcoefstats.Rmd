@@ -95,10 +95,10 @@ also supported by `ggcoefstats`. For example-
 `metafor`, `merMod`, `merModList`, `metaplus`, `mixor`, `mjoint`, `mle2`, `mlm`,
 `multinom`, `negbin`, `negbinmfx`, `negbinirr`, `nlmerMod`, `nlrq`, `nlreg`,
 `nls`, `orcutt`, `orm`, `plm`, `poissonmfx`, `poissonirr`, `polr`, `ridgelm`,
-`rjags`, `rlm`, `rlmerMod`, `robmixglm`, `rq`, `rqss`, `rrvglm`, `semLm`,
+`rjags`, `rlm`, `rlmerMod`, `robmixglm`, `rq`, `rqss`, `rrvglm`, `scam`, `semLm`,
 `semLme`, `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`, `survreg`,
 `svyglm`, `svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`, `vglm`, `wbgee`,
-`wblm`, `zcpglm`, `zeroinfl`, etc.
+`wblm`, `zeroinfl`, etc.
 
 # Summary of meta-analyis tests
 
@@ -263,9 +263,31 @@ ggstatsplot::ggcoefstats(
   ggplot2::theme(axis.title.y = ggplot2::element_text(size = 14, face = "bold"))
 ```
 
+## standardized regression coefficients with `lm` (`lm.beta`)
+
+```{r lm.beta, fig.width=10, fig.height=6}
+# setup
+set.seed(123)
+library(MASS)
+library(lm.beta)
+
+# model
+mod <- stats::lm(formula = mpg ~ wt, data = mtcars)
+mod.robust <- MASS::rlm(formula = mpg ~ wt, data = mtcars)
+mod.beta <- lm.beta::lm.beta(mod)
+mod.robust.beta <- lm.beta::lm.beta(mod.robust)
+
+# plot
+ggstatsplot::combine_plots(
+  ggstatsplot::ggcoefstats(mod.beta),
+  ggstatsplot::ggcoefstats(mod.robust.beta, stats.labels = FALSE),
+  title.text = "standardized regression coefficients with `lm`"
+)
+```
+
 ## Bayes Factor (`BFBayesFactor`)
 
-```{r BFBayesFactor, fig.width=10, fig.height=10, error=TRUE}
+```{r BFBayesFactor, fig.width=10, fig.height=10}
 # setup
 set.seed(123)
 library(BayesFactor)
@@ -1239,29 +1261,6 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
-## Zero-inflated Compound Poisson Generalized Linear Models (`zcpglm`)
-
-```{r zcpglm, fig.height = 6, fig.width = 10}
-# set up
-set.seed(123)
-library(cplm)
-da <- subset(AutoClaim, IN_YY == 1) # use data in the Yip and Yau paper
-da <- transform(da, CLM_AMT5 = CLM_AMT5 / 1000, INCOME = INCOME / 10000)
-
-# model
-mod <- zcpglm(
-  formula = CLM_AMT5 ~ CAR_USE + MARRIED + AREA + MVR_PTS || MVR_PTS + INCOME,
-  data = da
-)
-
-# plot
-ggstatsplot::ggcoefstats(
-  x = mod,
-  title = "Zero-inflated Compound Poisson Generalized Linear Models",
-  standardize = TRUE
-)
-```
-
 ## Zero-Inflated Count Data Regression (`zeroinfl`)
 
 ```{r zeroinfl, fig.height = 6, fig.width = 6}
@@ -1435,6 +1434,41 @@ ggstatsplot::ggcoefstats(
   x = ans,
   title = "Constrained Generalized Additive Mixed-Effects Model Fitting",
   exclude.intercept = FALSE
+)
+```
+
+## shape constrained additive models (`scam`)
+
+```{r scam, eval=FALSE}
+# setup
+set.seed(123)
+library(scam)
+
+# data
+n <- 200
+x1 <- runif(n) * 6 - 3
+f1 <- 3 * exp(-x1^2) # unconstrained term
+f1 <- (f1 - min(f1)) / (max(f1) - min(f1)) # function scaled to have range [0,1]
+x2 <- runif(n) * 4 - 1
+f2 <- exp(4 * x2) / (1 + exp(4 * x2)) # monotone increasing smooth
+f2 <- (f2 - min(f2)) / (max(f2) - min(f2)) # function scaled to have range [0,1]
+f <- f1 + f2
+y <- f + rnorm(n) * 0.1
+dat <- data.frame(x1 = x1, x2 = x2, y = y)
+
+# model
+b <-
+  scam(
+    y ~ s(x1, k = 15, bs = "cr", m = 2) + s(x2, k = 25, bs = "mpi", m = 2),
+    family = gaussian(link = "identity"),
+    data = dat,
+    not.exp = FALSE
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = b,
+  title = "Shape constrained additive models"
 )
 ```
 

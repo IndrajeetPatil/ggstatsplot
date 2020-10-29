@@ -150,7 +150,7 @@
       <h1 data-toc-skip>ggpiestats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-10-21</h4>
+            <h4 class="date">2020-10-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggpiestats.Rmd"><code>vignettes/web_only/ggpiestats.Rmd</code></a></small>
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
@@ -174,8 +174,8 @@
 <p><code>ggpiestats</code> works <strong>only</strong> with data organized in dataframes or tibbles. It will not work with other data structures like base-R tables or matrices. It can operate on dataframes that are organized with one row per observation or dataframes that have one column containing counts. This vignette provides examples of both (see examples below).</p>
 <p>To help demonstrate how <code>ggpiestats</code> can be used with categorical (also known as nominal) data, a modified version of the original <code>Titanic</code> dataset (from the <code>datasets</code> library) has been provided in the <code>ggstatsplot</code> package with the name <code>Titanic_full</code>. The Titanic Passenger Survival Dataset provides information “on the fate of passengers on the fatal maiden voyage of the ocean liner <em>Titanic</em>, including economic status (class), sex, age, and survival.”</p>
 <p>Let’s have a look at the structure of both.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">datasets</span><span class="op">)</span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">datasets</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
@@ -196,15 +196,15 @@
 <span class="co">#&gt; $ Class    &lt;fct&gt; 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd...</span>
 <span class="co">#&gt; $ Sex      &lt;fct&gt; Male, Male, Male, Male, Male, Male, Male, Male, Male, Male...</span>
 <span class="co">#&gt; $ Age      &lt;fct&gt; Child, Child, Child, Child, Child, Child, Child, Child, Ch...</span>
-<span class="co">#&gt; $ Survived &lt;fct&gt; No, No, No, No, No, No, No, No, No, No, No, No, No, No, No...</span></pre></div>
+<span class="co">#&gt; $ Survived &lt;fct&gt; No, No, No, No, No, No, No, No, No, No, No, No, No, No, No...</span></code></pre></div>
 </div>
 <div id="goodness-of-fit-with-ggpiestats" class="section level2">
 <h2 class="hasAnchor">
 <a href="#goodness-of-fit-with-ggpiestats" class="anchor"></a>Goodness of Fit with <code>ggpiestats</code>
 </h2>
 <p>The simplest use case for <code>ggpiestats</code> is that we want to display information about <strong>one</strong> categorical or nominal variable. As part of that display or plot, we may also choose to execute a chi-squared goodness of fit test to see whether the proportions (or percentages) in categories of the single variable appear to line up with our hypothesis or model. To start simple and then expand, let’s say that we’d like to display a piechart with the percentages of passengers who did or did not survive. Our initial hypothesis is that it was no different than flipping a coin. People had a 50/50 chance of surviving.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="co"># since effect size confidence intervals are computed using bootstrapping, let's</span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># since effect size confidence intervals are computed using bootstrapping, let's</span>
 <span class="co"># set seed for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -218,7 +218,7 @@
   title <span class="op">=</span> <span class="st">"Passenger survival on the Titanic"</span>, <span class="co"># title for the entire plot</span>
   caption <span class="op">=</span> <span class="st">"Source: Titanic survival dataset"</span>, <span class="co"># caption for the entire plot</span>
   legend.title <span class="op">=</span> <span class="st">"Survived?"</span>
-<span class="op">)</span></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats3-1.png" width="576"></p>
 <p><strong>Note:</strong> equal proportions per category are the default, e.g. 50/50, but you can specify any hypothesized ratio you like with <code>ratio</code> so if our hypothesis was that 80% died and 20% survived we would add <code>ratio = c(.80,.20)</code> when we entered the code.</p>
 </div>
@@ -234,8 +234,8 @@
 <li><p>We’ll customize the subtitle by being more precise about which chi squared test this is <code>stat.title = "chi squared test of independence: "</code></p></li>
 <li><p>Finally, we’ll make a call to <code>ggplot2</code> to modify the size of our plot title and to make it right justified</p></li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="co"># since effect size confidence intervals are computed using bootstrapping, let's</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># since effect size confidence intervals are computed using bootstrapping, let's</span>
 <span class="co"># set seed for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -262,12 +262,12 @@
       size <span class="op">=</span> <span class="fl">14</span>,
       hjust <span class="op">=</span> <span class="fl">0</span>
     <span class="op">)</span>
-  <span class="op">)</span></pre></div>
+  <span class="op">)</span></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats1-1.png" width="768"></p>
 <p>The plot clearly shows that survival rates were very different between males and females. The Pearson’s <span class="math inline">\(\chi^2\)</span>-test of independence is significant given our large sample size. Additionally, for both females and males, the survival rates were significantly different than 50% as indicated by a goodness of fit test for each gender.</p>
 <p>In case you need to extract the results from proportion tests in a separate dataframe, <code>ggpiestats</code>’s <code>output</code> argument can be used:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">am</span>, <span class="va">cyl</span>, output <span class="op">=</span> <span class="st">"proptest"</span>, results.subtitle <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="co">#&gt; Warning in stats::chisq.test(xtab): Chi-squared approximation may be incorrect</span>
@@ -286,7 +286,7 @@
 <span class="co">#&gt;   &lt;chr&gt;                                                           </span>
 <span class="co">#&gt; 1 list(~chi['gof']^2~(1)==7.14, ~italic(p)==0.008, ~italic(n)==14)</span>
 <span class="co">#&gt; 2 list(~chi['gof']^2~(1)==0.14, ~italic(p)==0.705, ~italic(n)==7) </span>
-<span class="co">#&gt; 3 list(~chi['gof']^2~(1)==2.27, ~italic(p)==0.132, ~italic(n)==11)</span></pre></div>
+<span class="co">#&gt; 3 list(~chi['gof']^2~(1)==2.27, ~italic(p)==0.132, ~italic(n)==11)</span></code></pre></div>
 </div>
 <div id="grouped-analysis-with-grouped_ggpiestats" class="section level2">
 <h2 class="hasAnchor">
@@ -294,8 +294,8 @@
 </h2>
 <p>What if we want to do the same analysis of gender but also factor in the passenger’s age (Age)? We have information that classifies the passengers as Child or Adult, perhaps that makes a difference to their survival rate?</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggpiestats</code>. It is a convenient wrapper function around <code><a href="../../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggpiestats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines the list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="co"># since effect size confidence intervals are computed using bootstrapping, let's</span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># since effect size confidence intervals are computed using bootstrapping, let's</span>
 <span class="co"># set seed for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -315,7 +315,7 @@
   title.text <span class="op">=</span> <span class="st">"Passenger survival on the Titanic by gender and age"</span>,
   caption.text <span class="op">=</span> <span class="st">"Asterisks denote results from proportion tests; \n***: p &lt; 0.001, ns: non-significant"</span>,
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="op">)</span></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats4-1.png" width="768"></p>
 <p>The resulting pie charts and statistics make the story clear. For adults gender very much matters. Women survived at much higher rates than men. For children gender is not significantly associated with survival and both male and female children have a survival rate that is not significantly different from 50/50.</p>
 </div>
@@ -331,8 +331,8 @@
 <a href="#working-with-data-organized-by-counts" class="anchor"></a>Working with data organized by <code>counts</code>
 </h2>
 <p><code>ggpiestats</code> can also work with dataframe containing counts (aka tabled data), i.e., when each row doesn’t correspond to a unique observation. For example, consider the following notional <code>fishing</code> dataframe containing data from two boats (<code>A</code> and <code>B</code>) about the number of different types fish they caught in the months of <code>February</code> and <code>March</code>. In this dataframe, each row corresponds to a unique combination of <code>Boat</code> and <code>Month</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="co"># for reproducibility</span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># creating a dataframe</span>
@@ -381,10 +381,10 @@
 <span class="co">#&gt; 13 B     February Cod             100</span>
 <span class="co">#&gt; 14 B     February Haddock          30</span>
 <span class="co">#&gt; 15 B     March    Bass             20</span>
-<span class="co">#&gt; 16 B     March    Catfish          20</span></pre></div>
+<span class="co">#&gt; 16 B     March    Catfish          20</span></code></pre></div>
 <p>When the data is organized this way, we make a slightly different call to the <code>ggpiestats</code> function: we use the <code>counts</code> argument. If we want to investigate the relationship of type of fish by month (a test of independence), our command would be:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="co"># running `ggpiestats` with counts information</span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># running `ggpiestats` with counts information</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">fishing</span>,
   x <span class="op">=</span> <span class="va">Fish</span>,
@@ -396,7 +396,7 @@
   title <span class="op">=</span> <span class="st">"Type fish caught by month"</span>,
   caption <span class="op">=</span> <span class="st">"Source: completely made up"</span>,
   legend.title <span class="op">=</span> <span class="st">"Type fish caught: "</span>
-<span class="op">)</span></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats8-1.png" width="768"></p>
 <p>The results support our hypothesis that the type of fish caught is related to the month in which we’re fishing. The <span class="math inline">\(\chi^2\)</span> independence test results at the top of the plot. In February we catch significantly more Haddock than we would hypothesize for an equal distribution. Whereas in March our results indicate there’s no strong evidence that the distribution isn’t equal.</p>
 </div>
@@ -405,8 +405,8 @@
 <a href="#within-subjects-designs" class="anchor"></a>Within-subjects designs</h2>
 <p>For our final example let’s imagine we’re conducting clinical trials for some new imaginary wonder drug. We have 134 subjects entering the trial. Some of them enter healthy (<em>n</em> = 96), some of them enter the trial already being sick (<em>n</em> = 38). All of them receive our treatment or intervention. Then we check back in a month to see if they are healthy or sick. A classic pre/post experimental design. We’re interested in seeing the change in both groupings. In the case of within-subjects designs, you can set <code>paired = TRUE</code>, which will display results from <strong>McNemar test</strong> in the subtitle.</p>
 <p>(<strong>Note:</strong> If you forget to set <code>paired = TRUE</code>, the results you get will be inaccurate.)</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="co"># seed for reproducibility</span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># seed for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># create our imaginary data</span>
@@ -430,7 +430,7 @@
   title <span class="op">=</span> <span class="st">"Results from imaginary clinical trial"</span>,
   package <span class="op">=</span> <span class="st">"ggsci"</span>,
   palette <span class="op">=</span> <span class="st">"default_ucscgb"</span>
-<span class="op">)</span></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats9-1.png" width="768"></p>
 <p>The results bode well for our experimental wonder drug. Of the 96 who started out healthy only 4% were sick after a month. Ideally, we would have hoped for zero but reality is seldom perfect. On the other side of the 38 who started out sick that number has reduced to just 13 or 34% which is a marked improvement.</p>
 </div>

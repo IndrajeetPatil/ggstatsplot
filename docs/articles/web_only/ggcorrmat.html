@@ -150,7 +150,7 @@
       <h1 data-toc-skip>ggcorrmat</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-10-21</h4>
+            <h4 class="date">2020-10-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcorrmat.Rmd"><code>vignettes/web_only/ggcorrmat.Rmd</code></a></small>
       <div class="hidden name"><code>ggcorrmat.Rmd</code></div>
@@ -173,8 +173,8 @@
 <a href="#correlation-matrix-plot-with-ggcorrmat" class="anchor"></a>Correlation matrix plot with <code>ggcorrmat</code>
 </h2>
 <p>For the first example, we will use the <code>gapminder</code> dataset (available in eponymous <a href="https://CRAN.R-project.org/package=gapminder">package</a> on CRAN) provides values for life expectancy, Gross Domestic Product (GDP) per capita, and population, every five years, from 1952 to 2007, for each of 142 countries and was collected by the Gapminder Foundation. Let’s have a look at the data-</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">)</span>
@@ -185,11 +185,11 @@
 <span class="co">#&gt; $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 199...</span>
 <span class="co">#&gt; $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 4...</span>
 <span class="co">#&gt; $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372,...</span>
-<span class="co">#&gt; $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.113...</span></pre></div>
+<span class="co">#&gt; $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.113...</span></code></pre></div>
 <p>Let’s say we are interested in studying correlation between population of a country, average life expectancy, and GDP per capita across countries only for the year 2007.</p>
 <p>The simplest way to get a correlation matrix is to stick to the defaults-</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="co"># setup</span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
@@ -200,11 +200,11 @@
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">gapminder_2007</span>, <span class="co"># data from which variable is to be taken</span>
   cor.vars <span class="op">=</span> <span class="va">lifeExp</span><span class="op">:</span><span class="va">gdpPercap</span> <span class="co"># specifying correlation matrix variables</span>
-<span class="op">)</span></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat1-1.png" width="576"></p>
 <p>This plot can be further modified with additional arguments-</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">gapminder_2007</span>, <span class="co"># data from which variable is to be taken</span>
   cor.vars <span class="op">=</span> <span class="va">lifeExp</span><span class="op">:</span><span class="va">gdpPercap</span>, <span class="co"># specifying correlation matrix variables</span>
   cor.vars.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
@@ -222,13 +222,13 @@
   package <span class="op">=</span> <span class="st">"ggsci"</span>, <span class="co"># package to which color palette belongs</span>
   title <span class="op">=</span> <span class="st">"Gapminder correlation matrix"</span>, <span class="co"># custom title</span>
   subtitle <span class="op">=</span> <span class="st">"Source: Gapminder Foundation"</span> <span class="co"># custom subtitle</span>
-<span class="op">)</span></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat2-1.png" width="576"></p>
 <p>As seen from this correlation matrix, although there is no relationship between population and life expectancy worldwide, at least in 2007, there is a strong positive relationship between GDP, a well-established indicator of a country’s economic performance.</p>
 <p>Given that there were only three variables, this doesn’t look that impressive. So let’s work with another example from <code>ggplot2</code> package: the <code>diamonds</code> <a href="http://ggplot2.tidyverse.org/reference/diamonds.html">dataset</a>. This dataset contains the prices and other attributes of almost 54,000 diamonds.</p>
 <p>Let’s have a look at the data-</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html">diamonds</a></span><span class="op">)</span>
 <span class="co">#&gt; Rows: 53,940</span>
@@ -242,10 +242,10 @@
 <span class="co">#&gt; $ price   &lt;int&gt; 326, 326, 327, 334, 335, 336, 336, 337, 337, 338, 339, 340,...</span>
 <span class="co">#&gt; $ x       &lt;dbl&gt; 3.95, 3.89, 4.05, 4.20, 4.34, 3.94, 3.95, 4.07, 3.87, 4.00,...</span>
 <span class="co">#&gt; $ y       &lt;dbl&gt; 3.98, 3.84, 4.07, 4.23, 4.35, 3.96, 3.98, 4.11, 3.78, 4.05,...</span>
-<span class="co">#&gt; $ z       &lt;dbl&gt; 2.43, 2.31, 2.31, 2.63, 2.75, 2.48, 2.47, 2.53, 2.49, 2.39,...</span></pre></div>
+<span class="co">#&gt; $ z       &lt;dbl&gt; 2.43, 2.31, 2.31, 2.63, 2.75, 2.48, 2.47, 2.53, 2.49, 2.39,...</span></code></pre></div>
 <p>Let’s see the correlation matrix between different attributes of the diamond and the price.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="co"># for reproducibility</span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># let's use just 5% of the data to speed it up</span>
@@ -262,11 +262,11 @@
     <span class="st">"depth (in mm)"</span>
   <span class="op">)</span>,
   ggcorrplot.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>outline.color <span class="op">=</span> <span class="st">"black"</span>, hc.order <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="op">)</span></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat3-1.png" width="672"></p>
 <p>We can make a number of changes to this basic correlation matrix. For example, since we were interested in relationship between price and other attributes, let’s make the <code>price</code> column to the the first column. Additionally, since we are running 6 correlations that are of <em>a priori</em> interest to us, we can adjust our threshold of significance to (0.05/6 ~ 0.008). Additionally, let’s use a non-parametric correlation coefficient. Please note that it is <strong>important</strong> to always make sure that the order in which <code>cor.vars</code> and <code>cor.vars.names</code> are entered is in sync. Otherwise, wrong column labels will be displayed.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="co"># for reproducibility</span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># let's use just 5% of the data to speed it up</span>
@@ -301,7 +301,7 @@
     axis.text.x <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>
       margin <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">0.15</span>, r <span class="op">=</span> <span class="fl">0.15</span>, b <span class="op">=</span> <span class="fl">0.15</span>, l <span class="op">=</span> <span class="fl">0.15</span>, unit <span class="op">=</span> <span class="st">"cm"</span><span class="op">)</span>
     <span class="op">)</span>
-  <span class="op">)</span></pre></div>
+  <span class="op">)</span></code></pre></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat4-1.png" width="672"></p>
 <p>As seen here, and unsurprisingly, the strongest predictor of the diamond price is its carat value, which a unit of mass equal to 200 mg. In other words, the heavier the diamond, the more expensive it is going to be.</p>
 </div>
@@ -310,8 +310,8 @@
 <a href="#dataframe-containing-statistics-with-ggcorrmat" class="anchor"></a>Dataframe containing statistics with <code>ggcorrmat</code>
 </h2>
 <p>Another utility of <code>ggcorrmat</code> is in obtaining a dataframe containing all details from statistical analyses. Such dataframes can be easily embedded in manuscripts as tables.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="co"># for reproducibility</span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># to get correlations</span>
@@ -335,10 +335,10 @@
 <span class="co">#&gt;  8 median     listings    0.403  0.352   0.451  14.5   1083 1.64e-43 Perce~</span>
 <span class="co">#&gt;  9 median     inventory  -0.203 -0.259  -0.145  -6.80  1080 1.74e-11 Perce~</span>
 <span class="co">#&gt; 10 listings   inventory  -0.163 -0.220  -0.104  -5.42  1080 7.35e- 8 Perce~</span>
-<span class="co">#&gt; # ... with 1 more variable: nobs &lt;int&gt;</span></pre></div>
+<span class="co">#&gt; # ... with 1 more variable: nobs &lt;int&gt;</span></code></pre></div>
 <p>Note that if <code>cor.vars</code> are not specified, all numeric variables will be used. Moreover, you can also use abbreviations to specify what output you want in return.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="co"># for reproducibility</span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># show four digits in a tibble</span>
@@ -358,7 +358,7 @@
 <span class="co">#&gt; 3 Sepal.Len~ Petal.Wid~  0.8343  0.7781  0.8773    93208. 4.189e-40 Spear~   150</span>
 <span class="co">#&gt; 4 Sepal.Wid~ Petal.Len~ -0.3096 -0.4477 -0.1572   736637. 1.154e- 4 Spear~   150</span>
 <span class="co">#&gt; 5 Sepal.Wid~ Petal.Wid~ -0.2890 -0.4294 -0.1350   725048. 3.343e- 4 Spear~   150</span>
-<span class="co">#&gt; 6 Petal.Len~ Petal.Wid~  0.9377  0.9149  0.9545    35061. 8.157e-70 Spear~   150</span></pre></div>
+<span class="co">#&gt; 6 Petal.Len~ Petal.Wid~  0.9377  0.9149  0.9545    35061. 8.157e-70 Spear~   150</span></code></pre></div>
 </div>
 <div id="grouped-analysis-with-grouped_ggcorrmat" class="section level2">
 <h2 class="hasAnchor">
@@ -366,8 +366,8 @@
 </h2>
 <p>What if we want to do the same analysis separately for each quality of the diamond <code>cut</code> (Fair, Good, Very Good, Premium, Ideal)?</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggcorrmat</code>. This is merely a wrapper function around <code><a href="../../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggcorrmat</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="co"># for reproducibility</span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># let's use just 5% of the data to speed it up</span>
@@ -400,11 +400,11 @@
     nrow <span class="op">=</span> <span class="fl">3</span>,
     ncol <span class="op">=</span> <span class="fl">2</span>
   <span class="op">)</span>
-<span class="op">)</span></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat7-1.png" width="960"></p>
 <p>Note that this function also makes it easy to run the same correlation matrix across different levels of a factor/grouping variable.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="co"># for reproducibility</span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># let's obtain correlation coefficients with their CIs</span>
@@ -427,7 +427,7 @@
 <span class="co">#&gt;  9 carni sleep_rem  bodywt     -0.4786 -0.8516  0.2162  -1.542e+0     8</span>
 <span class="co">#&gt; 10 carni sleep_cyc~ awake      -0.3764 -0.9449  0.7574  -7.038e-1     3</span>
 <span class="co">#&gt; # ... with 50 more rows, and 3 more variables: p &lt;dbl&gt;, method &lt;chr&gt;,</span>
-<span class="co">#&gt; #   nobs &lt;int&gt;</span></pre></div>
+<span class="co">#&gt; #   nobs &lt;int&gt;</span></code></pre></div>
 </div>
 <div id="grouped-analysis-with-ggcorrmat-purrr" class="section level2">
 <h2 class="hasAnchor">

@@ -354,8 +354,24 @@ testthat::test_that(
         displaystyle(atop(
           displaystyle("From `WRS2` package"),
           expr = paste(
-            "log"["e"], "(BF"["01"],
-            ") = ", "-2.1154"
+            "log"["e"],
+            "(BF"["01"],
+            ") = ",
+            "-2.1154",
+            ", ",
+            widehat(italic(R^"2"))["median"]^"posterior",
+            " = ",
+            "0.8930",
+            ", CI"["95%"]^"HDI",
+            " [",
+            "0.8499",
+            ", ",
+            "0.9228",
+            "]",
+            ", ",
+            italic("r")["Cauchy"]^"JZS",
+            " = ",
+            "0.7070"
           )
         )),
         expr = paste(

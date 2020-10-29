@@ -6,12 +6,13 @@
 \documentclass[
 ]{article}
 \usepackage{lmodern}
-\usepackage{amssymb,amsmath}
+\usepackage{amsmath}
 \usepackage{ifxetex,ifluatex}
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
+  \usepackage{amssymb}
 \else % if luatex or xetex
   \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
@@ -149,7 +150,7 @@
 
 \title{ggstatsplot: ggplot2 Based Plots with Statistical Details}
 \author{Indrajeet Patil\footnote{Max Planck Institute for Human Development, \href{mailto:patilindrajeet.science@gmail.com}{\nolinkurl{patilindrajeet.science@gmail.com}}}}
-\date{2020-10-22}
+\date{2020-10-29}
 
 \begin{document}
 \maketitle
@@ -441,7 +442,7 @@ Random-effects meta-analysis\strut
 \end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
 \end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
-\textcolor{red}{No}\strut
+\texttt{NA}\strut
 \end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
 \end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright

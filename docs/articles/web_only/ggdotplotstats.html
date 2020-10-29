@@ -150,7 +150,7 @@
       <h1 data-toc-skip>ggdotplotstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-10-21</h4>
+            <h4 class="date">2020-10-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggdotplotstats.Rmd"><code>vignettes/web_only/ggdotplotstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggdotplotstats.Rmd</code></div>
@@ -166,8 +166,8 @@
 <a href="#distribution-of-a-sample-with-ggdotplotstats" class="anchor"></a>Distribution of a sample with <code>ggdotplotstats</code>
 </h2>
 <p>Let’s begin with a very simple example from the <code>ggplot2</code> package (<code><a href="https://ggplot2.tidyverse.org/reference/mpg.html">ggplot2::mpg</a></code>), a subset of the fuel economy data that the EPA makes available on <a href="http://fueleconomy.gov" class="uri">http://fueleconomy.gov</a>.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="co"># looking at the structure of the data using glimpse</span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># looking at the structure of the data using glimpse</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html">mpg</a></span><span class="op">)</span>
 <span class="co">#&gt; Rows: 234</span>
 <span class="co">#&gt; Columns: 11</span>
@@ -181,10 +181,10 @@
 <span class="co">#&gt; $ cty          &lt;int&gt; 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 17...</span>
 <span class="co">#&gt; $ hwy          &lt;int&gt; 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 25, 25...</span>
 <span class="co">#&gt; $ fl           &lt;chr&gt; "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p",...</span>
-<span class="co">#&gt; $ class        &lt;chr&gt; "compact", "compact", "compact", "compact", "compact",...</span></pre></div>
+<span class="co">#&gt; $ class        &lt;chr&gt; "compact", "compact", "compact", "compact", "compact",...</span></code></pre></div>
 <p>Let’s say we want to visualize the distribution of mileage by car manufacturer.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="co"># for reproducibility</span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># removing factor level with very few no. of observations</span>
@@ -215,7 +215,7 @@
   title <span class="op">=</span> <span class="st">"Distribution of mileage of cars"</span>,
   ggtheme <span class="op">=</span> <span class="fu">hrbrthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html">theme_ipsum_ps</a></span><span class="op">(</span><span class="op">)</span>,
   ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggdotplotstats_files/figure-html/mpg2-1.png" width="864"></p>
 </div>
 <div id="grouped-analysis-with-grouped_ggdotplotstats" class="section level2">
@@ -225,8 +225,8 @@
 <p>What if we want to do the same analysis separately for different engines with different numbers of cylinders?</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggdotplotstats</code>. This is merely a wrapper function around <code><a href="../../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggdotplotstats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines the individual plots into a single plot.</p>
 <p>Let’s see how we can use this function to apply <code>ggdotplotstats</code> to accomplish our task.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="co"># for reproducibility</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># removing factor level with very few no. of observations</span>
@@ -254,7 +254,7 @@
   <span class="co"># arguments relevant for ggstatsplot::combine_plots</span>
   title.text <span class="op">=</span> <span class="st">"Fuel economy data"</span>,
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="op">)</span></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggdotplotstats_files/figure-html/grouped1-1.png" width="672"></p>
 </div>
 <div id="grouped-analysis-with-purrr" class="section level2">
