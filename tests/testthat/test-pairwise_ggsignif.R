@@ -166,14 +166,6 @@ testthat::test_that(
         bold("all")
       ))
     )
-    testthat::expect_identical(
-      ggstatsplot::specify_decimal_p(
-        x = dat$p.value[1],
-        p.value = TRUE,
-        k = 4
-      ),
-      "0.8116"
-    )
 
     # checking values
     testthat::expect_equal(dat$statistic,

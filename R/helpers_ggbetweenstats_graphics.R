@@ -1,10 +1,14 @@
-#' @name mean_labeller
-#' @title Dataframe with mean per group and a formatted label for display in
-#'   `ggbetweenstats` plot.
+#' @title Adding labels for mean values.
+#' @name mean_ggrepel
 #'
+#' @param plot A `ggplot` object for which means are to be displayed.
+#' @param ... Additional arguments.
 #' @inheritParams ggbetweenstats
-#' @param ... Currently ignored.
+#' @inheritParams ggwithinstats
+#' @inheritParams ggrepel::geom_label_repel
 #'
+#' @importFrom ggrepel geom_label_repel
+#' @importFrom rlang !! enquo ensym exec
 #' @importFrom parameters describe_distribution
 #' @importFrom insight standardize_names
 #' @importFrom dplyr select group_by matches mutate rowwise group_modify arrange ungroup
@@ -13,19 +17,44 @@
 #' @importFrom ipmisc specify_decimal_p signif_column
 #'
 #' @examples
-#' ggstatsplot:::mean_labeller(
-#'   data = ggplot2::msleep,
-#'   x = vore,
-#'   y = brainwt,
-#'   mean.ci = TRUE,
-#'   k = 3
+#' # this internal function may not have much utility outside of the package
+#' set.seed(123)
+#' library(ggplot2)
+#'
+#' # make a plot
+#' p <- ggplot(data = iris, aes(x = Species, y = Sepal.Length)) +
+#'   geom_boxplot()
+#'
+#' # add means
+#' ggstatsplot:::mean_ggrepel(
+#'   data = iris,
+#'   plot = p,
+#'   x = Species,
+#'   y = Sepal.Length
 #' )
 #' @keywords internal
 
 # function body
-mean_labeller <- function(data, x, y, mean.ci = FALSE, k = 3L, ...) {
+mean_ggrepel <- function(plot,
+                         data,
+                         x,
+                         y,
+                         mean.ci = FALSE,
+                         k = 3L,
+                         sample.size.label = TRUE,
+                         mean.path = FALSE,
+                         mean.path.args = list(color = "red", size = 1, alpha = 0.5),
+                         mean.point.args = list(size = 5, color = "darkred"),
+                         mean.label.args = list(size = 3),
+                         ...) {
+  # are the means to be connected?
+  inherit.aes <- !mean.path
+
+  # ------------------------ dataframe -------------------------------------
+
   # creating the dataframe
-  data %<>%
+  mean_df <-
+    data %>%
     dplyr::select(.data = ., {{ x }}, {{ y }}) %>%
     tidyr::drop_na(.) %>%
     dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }}))) %>%
@@ -47,7 +76,7 @@ mean_labeller <- function(data, x, y, mean.ci = FALSE, k = 3L, ...) {
 
   # prepare label
   if (isTRUE(mean.ci)) {
-    data %<>%
+    mean_df %<>%
       dplyr::mutate(
         label = paste0(
           "list(~italic(widehat(mu))==",
@@ -62,72 +91,33 @@ mean_labeller <- function(data, x, y, mean.ci = FALSE, k = 3L, ...) {
         )
       )
   } else {
-    data %<>%
+    mean_df %<>%
       dplyr::mutate(
         label = paste0("list(~italic(widehat(mu))==", specify_decimal_p(mean, k), ")")
       )
   }
 
   # add label about sample size
-  data %>%
+  mean_df %<>%
     dplyr::ungroup(.) %>%
     dplyr::mutate(n_label = paste0({{ x }}, "\n(n = ", n, ")")) %>%
     dplyr::arrange({{ x }}) %>%
     dplyr::select({{ x }}, !!as.character(rlang::ensym(y)) := mean, dplyr::matches("label"))
-}
 
+  # if there should be lines connecting mean values across groups
+  if (isTRUE(mean.path)) {
+    plot <- plot +
+      rlang::exec(
+        .fn = ggplot2::geom_path,
+        data = mean_df,
+        mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, group = 1),
+        inherit.aes = FALSE,
+        !!!mean.path.args
+      )
+  }
 
-#' @title Adding labels for mean values.
-#' @name mean_ggrepel
-#'
-#' @param mean.data A dataframe containing means for each level of the factor.
-#'   The columns should be titled `x`, `y`, and `label`.
-#' @param plot A `ggplot` object for which means are to be displayed.
-#' @param ... Additional arguments.
-#' @inheritParams ggbetweenstats
-#' @inheritParams ggrepel::geom_label_repel
-#'
-#' @importFrom ggrepel geom_label_repel
-#' @importFrom rlang !! enquo ensym exec
-#'
-#' @examples
-#'
-#' # this internal function may not have much utility outside of the package
-#' set.seed(123)
-#' library(ggplot2)
-#'
-#' # make a plot
-#' p <- ggplot(data = iris, aes(x = Species, y = Sepal.Length)) +
-#'   geom_boxplot()
-#'
-#' # get a dataframe with means
-#' mean_dat <- ggstatsplot:::mean_labeller(
-#'   data = iris,
-#'   x = Species,
-#'   y = Sepal.Length,
-#'   mean.ci = TRUE,
-#'   k = 3
-#' )
-#'
-#' # add means
-#' ggstatsplot:::mean_ggrepel(
-#'   plot = p,
-#'   x = Species,
-#'   y = Sepal.Length,
-#'   mean.data = mean_dat,
-#'   mean.color = "darkgreen"
-#' )
-#' @keywords internal
+  # ------------------------ plot -------------------------------------
 
-# function body
-mean_ggrepel <- function(plot,
-                         x,
-                         y,
-                         mean.data,
-                         mean.point.args = list(size = 5, color = "darkred"),
-                         mean.label.args = list(size = 3),
-                         inherit.aes = TRUE,
-                         ...) {
   # highlight the mean of each group
   plot <- plot +
     rlang::exec(
@@ -141,10 +131,10 @@ mean_ggrepel <- function(plot,
     )
 
   # attach the labels with means to the plot
-  plot +
+  plot <- plot +
     rlang::exec(
       .fn = ggrepel::geom_label_repel,
-      data = mean.data,
+      data = mean_df,
       mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, label = label),
       show.legend = FALSE,
       min.segment.length = 0,
@@ -153,6 +143,14 @@ mean_ggrepel <- function(plot,
       na.rm = TRUE,
       !!!mean.label.args
     )
+
+  # adding sample size labels to the x axes
+  if (isTRUE(sample.size.label)) {
+    plot <- plot + ggplot2::scale_x_discrete(labels = c(unique(mean_df$n_label)))
+  }
+
+  # return the plot
+  return(plot)
 }
 
 #' @title Adding `geom_signif` to `ggplot`

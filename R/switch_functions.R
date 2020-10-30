@@ -19,9 +19,6 @@
 #' @noRd
 
 subtitle_function_switch <- function(test, type, ...) {
-  # figuring out type of test needed to run
-  type <- ipmisc::stats_type_switch(type)
-
   # make a function character string
   .f_string <- paste0("statsExpressions::expr_", test, "_", type, "(...)")
 
@@ -35,8 +32,7 @@ subtitle_function_switch <- function(test, type, ...) {
 #'
 #' @inheritParams subtitle_function_switch
 #'
-#' @importFrom tidyBF bf_ttest bf_oneway_anova
-#' @importFrom performance model_performance
+#' @importFrom statsExpressions bf_ttest bf_oneway_anova
 #' @importFrom rlang exec
 #'
 #' @keywords internal
@@ -44,12 +40,9 @@ subtitle_function_switch <- function(test, type, ...) {
 
 caption_function_switch <- function(test, ...) {
   # choosing the appropriate test
-  if (test == "t") {
-    .f <- tidyBF::bf_ttest
-  } else {
-    .f <- tidyBF::bf_oneway_anova
-  }
+  if (test == "t") .f <- statsExpressions::bf_ttest
+  if (test == "anova") .f <- statsExpressions::bf_oneway_anova
 
-  # preparing the BF message for null
+  # preparing the BF message
   rlang::exec(.fn = .f, ...)
 }

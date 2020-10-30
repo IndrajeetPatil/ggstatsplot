@@ -6,11 +6,6 @@
 #' @param xlab Custom text for the `x` axis label (Default: `NULL`, which
 #'   will cause the `x` axis label to be the `x` variable).
 #' @param ylab Custom text for the `y` axis label (Default: `NULL`).
-#' @param proportion.test Decides whether proportion test for `main` variable is
-#'   to be carried out for each level of `y` (Default: `TRUE`).
-#' @param label Character decides what information needs to be
-#'   displayed on the label in each pie slice. Possible options are
-#'   `"percentage"` (default), `"counts"`, `"both"`.
 #' @param sample.size.label Logical that decides whether sample size information
 #'   should be displayed for each level of the grouping variable `y`
 #'   (Default: `TRUE`).

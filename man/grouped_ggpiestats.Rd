@@ -57,8 +57,8 @@ dataframe containing results from proportion tests.}
 \item{...}{
   Arguments passed on to \code{\link[=ggpiestats]{ggpiestats}}
   \describe{
-    \item{\code{proportion.test}}{Decides whether proportion test for \code{main} variable is
-to be carried out for each level of \code{condition} (Default: \code{TRUE}).}
+    \item{\code{proportion.test}}{Decides whether proportion test for \code{x} variable is
+to be carried out for each level of \code{y} (Default: \code{TRUE}).}
     \item{\code{perc.k}}{Numeric that decides number of decimal places for percentage
 labels (Default: \code{0}).}
     \item{\code{label}}{Character decides what information needs to be displayed
@@ -147,36 +147,12 @@ function across multiple levels of a given factor and combining the
 resulting plots using \code{ggstatsplot::combine_plots}.
 }
 \examples{
-\donttest{
-# grouped one-sample proportion tests
+# grouped one-sample proportion test
 ggstatsplot::grouped_ggpiestats(
   data = mtcars,
   grouping.var = am,
   x = cyl
 )
-
-# the following will take slightly more amount of time
-# for reproducibility
-set.seed(123)
-
-# let's create a smaller dataframe
-diamonds_short <- ggplot2::diamonds \%>\%
-  dplyr::filter(.data = ., cut \%in\% c("Fair", "Very Good", "Ideal")) \%>\%
-  dplyr::sample_frac(tbl = ., size = 0.10)
-
-# plot
-ggstatsplot::grouped_ggpiestats(
-  data = diamonds_short,
-  x = color,
-  y = clarity,
-  grouping.var = cut,
-  sampling.plan = "poisson",
-  title.prefix = "Quality",
-  slice.label = "both",
-  perc.k = 1,
-  plotgrid.args = list(nrow = 3)
-)
-}
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}

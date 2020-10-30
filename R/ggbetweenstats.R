@@ -409,37 +409,20 @@ ggbetweenstats <- function(data,
 
   # ---------------- mean value tagging -------------------------------------
 
-  # computing mean and confidence interval for mean using helper function
-  # creating label column based on whether just mean is to be displayed or
-  # mean plus its CI
-  mean_dat <-
-    mean_labeller(
-      data = data,
-      x = {{ x }},
-      y = {{ y }},
-      mean.ci = mean.ci,
-      k = k
-    )
-
   # add labels for mean values
   if (isTRUE(mean.plotting)) {
     plot <-
       mean_ggrepel(
-        mean.data = mean_dat,
+        plot = plot,
+        data = data,
         x = {{ x }},
         y = {{ y }},
-        plot = plot,
+        mean.ci = mean.ci,
+        k = k,
+        sample.size.label = sample.size.label,
         mean.point.args = mean.point.args,
-        mean.label.args = mean.label.args,
-        inherit.aes = TRUE
+        mean.label.args = mean.label.args
       )
-  }
-
-  # ----------------- sample size labels --------------------------------------
-
-  # adding sample size labels to the x axes
-  if (isTRUE(sample.size.label)) {
-    plot <- plot + ggplot2::scale_x_discrete(labels = c(unique(mean_dat$n_label)))
   }
 
   # ggsignif labels -----------------------------------------------------------

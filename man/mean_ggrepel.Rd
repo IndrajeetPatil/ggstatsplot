@@ -6,25 +6,50 @@
 \usage{
 mean_ggrepel(
   plot,
+  data,
   x,
   y,
-  mean.data,
+  mean.ci = FALSE,
+  k = 3L,
+  sample.size.label = TRUE,
+  mean.path = FALSE,
+  mean.path.args = list(color = "red", size = 1, alpha = 0.5),
   mean.point.args = list(size = 5, color = "darkred"),
   mean.label.args = list(size = 3),
-  inherit.aes = TRUE,
   ...
 )
 }
 \arguments{
 \item{plot}{A \code{ggplot} object for which means are to be displayed.}
 
+\item{data}{A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will \strong{not} be accepted.}
+
 \item{x}{The grouping variable from the dataframe \code{data}.}
 
 \item{y}{The response (a.k.a. outcome or dependent) variable from the
 dataframe \code{data}.}
 
-\item{mean.data}{A dataframe containing means for each level of the factor.
-The columns should be titled \code{x}, \code{y}, and \code{label}.}
+\item{mean.ci}{Logical that decides whether \verb{95\%} confidence interval for
+mean is to be displayed (Default: \code{FALSE}).}
+
+\item{k}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 2L}).}
+
+\item{sample.size.label}{Logical that decides whether sample size information
+should be displayed for each level of the grouping variable \code{x} (Default:
+\code{TRUE}).}
+
+\item{mean.path}{Logical that decides whether individual data
+points and means, respectively, should be connected using \code{geom_path}. Both
+default to \code{TRUE}. Note that \code{point.path} argument is relevant only when
+there are two groups (i.e., in case of a \emph{t}-test). In case of large number
+of data points, it is advisable to set \code{point.path = FALSE} as these lines
+can overwhelm the plot.}
+
+\item{mean.path.args}{A list of additional aesthetic
+arguments passed on to \code{geom_path} connecting raw data points and mean
+points.}
 
 \item{mean.point.args}{A list of additional aesthetic
 arguments to be passed to \code{ggplot2::geom_point} and
@@ -34,18 +59,12 @@ arguments to be passed to \code{ggplot2::geom_point} and
 arguments to be passed to \code{ggplot2::geom_point} and
 \code{ggrepel::geom_label_repel} geoms involved mean value plotting.}
 
-\item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
-rather than combining with them. This is most useful for helper functions
-that define both data and aesthetics and shouldn't inherit behaviour from
-the default plot specification, e.g. \code{\link[ggplot2]{borders}}.}
-
 \item{...}{Additional arguments.}
 }
 \description{
 Adding labels for mean values.
 }
 \examples{
-
 # this internal function may not have much utility outside of the package
 set.seed(123)
 library(ggplot2)
@@ -54,22 +73,12 @@ library(ggplot2)
 p <- ggplot(data = iris, aes(x = Species, y = Sepal.Length)) +
   geom_boxplot()
 
-# get a dataframe with means
-mean_dat <- ggstatsplot:::mean_labeller(
-  data = iris,
-  x = Species,
-  y = Sepal.Length,
-  mean.ci = TRUE,
-  k = 3
-)
-
 # add means
 ggstatsplot:::mean_ggrepel(
+  data = iris,
   plot = p,
   x = Species,
-  y = Sepal.Length,
-  mean.data = mean_dat,
-  mean.color = "darkgreen"
+  y = Sepal.Length
 )
 }
 \keyword{internal}

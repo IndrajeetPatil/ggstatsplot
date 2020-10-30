@@ -60,11 +60,6 @@ dataframe containing results from proportion tests.}
     \item{\code{xlab}}{Custom text for the \code{x} axis label (Default: \code{NULL}, which
 will cause the \code{x} axis label to be the \code{x} variable).}
     \item{\code{ylab}}{Custom text for the \code{y} axis label (Default: \code{NULL}).}
-    \item{\code{proportion.test}}{Decides whether proportion test for \code{main} variable is
-to be carried out for each level of \code{y} (Default: \code{TRUE}).}
-    \item{\code{label}}{Character decides what information needs to be
-displayed on the label in each pie slice. Possible options are
-\code{"percentage"} (default), \code{"counts"}, \code{"both"}.}
     \item{\code{sample.size.label}}{Logical that decides whether sample size information
 should be displayed for each level of the grouping variable \code{y}
 (Default: \code{TRUE}).}
@@ -80,12 +75,17 @@ be returned.}
     \item{\code{results.subtitle}}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}
+    \item{\code{label}}{Character decides what information needs to be displayed
+on the label in each pie slice. Possible options are \code{"percentage"}
+(default), \code{"counts"}, \code{"both"}.}
     \item{\code{label.args}}{Additional aesthetic arguments that will be passed to
 \code{geom_label}.}
     \item{\code{conf.level}}{Scalar between 0 and 1. If unspecified, the defaults return
 \verb{95\%} confidence/credible intervals (\code{0.95}).}
     \item{\code{k}}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2L}).}
+    \item{\code{proportion.test}}{Decides whether proportion test for \code{x} variable is
+to be carried out for each level of \code{y} (Default: \code{TRUE}).}
     \item{\code{perc.k}}{Numeric that decides number of decimal places for percentage
 labels (Default: \code{0}).}
     \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
@@ -151,7 +151,6 @@ function across multiple levels of a given factor and combining the
 resulting plots using \code{ggstatsplot::combine_plots}.
 }
 \examples{
-\donttest{
 # for reproducibility
 set.seed(123)
 
@@ -171,7 +170,6 @@ ggstatsplot::grouped_ggbarstats(
   bar.label = "both",
   plotgrid.args = list(nrow = 2)
 )
-}
 }
 \seealso{
 \code{\link{ggbarstats}}, \code{\link{ggpiestats}},

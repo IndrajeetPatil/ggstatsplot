@@ -14,7 +14,7 @@
   ],
   "issueTracker": "https://github.com/IndrajeetPatil/ggstatsplot/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.6.5.9000",
+  "version": "0.6.5",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -155,6 +155,7 @@
       "@type": "SoftwareApplication",
       "identifier": "broomExtra",
       "name": "broomExtra",
+      "version": ">= 4.1.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -297,7 +298,7 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/IndrajeetPatil/pairwiseComparisons"
+      "sameAs": "https://CRAN.R-project.org/package=pairwiseComparisons"
     },
     {
       "@type": "SoftwareApplication",
@@ -322,20 +323,7 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/easystats/parameters"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "performance",
-      "name": "performance",
-      "version": ">= 0.5.0",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://github.com/easystats/performance"
+      "sameAs": "https://CRAN.R-project.org/package=parameters"
     },
     {
       "@type": "SoftwareApplication",
@@ -378,19 +366,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://github.com/IndrajeetPatil/statsExpressions"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "tidyBF",
-      "name": "tidyBF",
-      "version": ">= 0.4.0",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://github.com/IndrajeetPatil/tidyBF"
     },
     {
       "@type": "SoftwareApplication",
@@ -470,5 +445,5 @@
   ],
   "funder": {},
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md",
-  "fileSize": "58994.773KB"
+  "fileSize": "58751.826KB"
 }

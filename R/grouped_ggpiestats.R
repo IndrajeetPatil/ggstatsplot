@@ -20,36 +20,12 @@
 #' @inherit ggpiestats return return
 #'
 #' @examples
-#' \donttest{
-#' # grouped one-sample proportion tests
+#' # grouped one-sample proportion test
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = mtcars,
 #'   grouping.var = am,
 #'   x = cyl
 #' )
-#'
-#' # the following will take slightly more amount of time
-#' # for reproducibility
-#' set.seed(123)
-#'
-#' # let's create a smaller dataframe
-#' diamonds_short <- ggplot2::diamonds %>%
-#'   dplyr::filter(.data = ., cut %in% c("Fair", "Very Good", "Ideal")) %>%
-#'   dplyr::sample_frac(tbl = ., size = 0.10)
-#'
-#' # plot
-#' ggstatsplot::grouped_ggpiestats(
-#'   data = diamonds_short,
-#'   x = color,
-#'   y = clarity,
-#'   grouping.var = cut,
-#'   sampling.plan = "poisson",
-#'   title.prefix = "Quality",
-#'   slice.label = "both",
-#'   perc.k = 1,
-#'   plotgrid.args = list(nrow = 3)
-#' )
-#' }
 #' @export
 
 # defining the function

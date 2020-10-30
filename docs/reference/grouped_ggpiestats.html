@@ -90,7 +90,7 @@ resulting plots using ggstatsplot::combine_plots." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.5.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.5</span>
       </span>
     </div>
 
@@ -275,8 +275,8 @@ dataframe containing results from proportion tests.</p></td>
     <tr>
       <th>...</th>
       <td><p>Arguments passed on to <code><a href='ggpiestats.html'>ggpiestats</a></code></p><dl>
-    <dt><code>proportion.test</code></dt><dd><p>Decides whether proportion test for <code>main</code> variable is
-to be carried out for each level of <code>condition</code> (Default: <code>TRUE</code>).</p></dd>
+    <dt><code>proportion.test</code></dt><dd><p>Decides whether proportion test for <code>x</code> variable is
+to be carried out for each level of <code>y</code> (Default: <code>TRUE</code>).</p></dd>
     <dt><code>perc.k</code></dt><dd><p>Numeric that decides number of decimal places for percentage
 labels (Default: <code>0</code>).</p></dd>
     <dt><code>label</code></dt><dd><p>Character decides what information needs to be displayed
@@ -385,37 +385,13 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
 <code><a href='grouped_ggbarstats.html'>grouped_ggbarstats</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='co'># grouped one-sample proportion tests</span>
+    <pre class="examples"><div class='input'><span class='co'># grouped one-sample proportion test</span>
 <span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>grouped_ggpiestats</span><span class='op'>(</span>
   data <span class='op'>=</span> <span class='va'>mtcars</span>,
   grouping.var <span class='op'>=</span> <span class='va'>am</span>,
   x <span class='op'>=</span> <span class='va'>cyl</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='img'><img src='grouped_ggpiestats-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># the following will take slightly more amount of time</span>
-<span class='co'># for reproducibility</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
-
-<span class='co'># let's create a smaller dataframe</span>
-<span class='va'>diamonds_short</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='va'><a href='https://ggplot2.tidyverse.org/reference/diamonds.html'>diamonds</a></span> <span class='op'>%&gt;%</span>
-  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span>.data <span class='op'>=</span> <span class='va'>.</span>, <span class='va'>cut</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Fair"</span>, <span class='st'>"Very Good"</span>, <span class='st'>"Ideal"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/sample_n.html'>sample_frac</a></span><span class='op'>(</span>tbl <span class='op'>=</span> <span class='va'>.</span>, size <span class='op'>=</span> <span class='fl'>0.10</span><span class='op'>)</span>
-
-<span class='co'># plot</span>
-<span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>grouped_ggpiestats</span><span class='op'>(</span>
-  data <span class='op'>=</span> <span class='va'>diamonds_short</span>,
-  x <span class='op'>=</span> <span class='va'>color</span>,
-  y <span class='op'>=</span> <span class='va'>clarity</span>,
-  grouping.var <span class='op'>=</span> <span class='va'>cut</span>,
-  sampling.plan <span class='op'>=</span> <span class='st'>"poisson"</span>,
-  title.prefix <span class='op'>=</span> <span class='st'>"Quality"</span>,
-  slice.label <span class='op'>=</span> <span class='st'>"both"</span>,
-  perc.k <span class='op'>=</span> <span class='fl'>1</span>,
-  plotgrid.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>nrow <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
-<span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='img'><img src='grouped_ggpiestats-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
-</div></pre>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='img'><img src='grouped_ggpiestats-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

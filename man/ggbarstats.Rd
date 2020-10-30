@@ -72,9 +72,9 @@ the plot will be returned.}
 should be displayed for each level of the grouping variable \code{y}
 (Default: \code{TRUE}).}
 
-\item{label}{Character decides what information needs to be
-displayed on the label in each pie slice. Possible options are
-\code{"percentage"} (default), \code{"counts"}, \code{"both"}.}
+\item{label}{Character decides what information needs to be displayed
+on the label in each pie slice. Possible options are \code{"percentage"}
+(default), \code{"counts"}, \code{"both"}.}
 
 \item{label.args}{Additional aesthetic arguments that will be passed to
 \code{geom_label}.}
@@ -85,7 +85,7 @@ displayed on the label in each pie slice. Possible options are
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2L}).}
 
-\item{proportion.test}{Decides whether proportion test for \code{main} variable is
+\item{proportion.test}{Decides whether proportion test for \code{x} variable is
 to be carried out for each level of \code{y} (Default: \code{TRUE}).}
 
 \item{perc.k}{Numeric that decides number of decimal places for percentage
