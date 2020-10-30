@@ -36,6 +36,7 @@ subtitle_function_switch <- function(test, type, ...) {
 #' @inheritParams subtitle_function_switch
 #'
 #' @importFrom tidyBF bf_ttest bf_oneway_anova
+#' @importFrom performance model_performance
 #' @importFrom rlang exec
 #'
 #' @keywords internal

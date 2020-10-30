@@ -90,7 +90,7 @@ subtitle." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.1.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.5.9000</span>
       </span>
     </div>
 
@@ -234,10 +234,6 @@ subtitle.</p>
   yfill <span class='op'>=</span> <span class='st'>"#D55E00"</span>,
   xparams <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='va'>xfill</span><span class='op'>)</span>,
   yparams <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='va'>yfill</span><span class='op'>)</span>,
-  centrality.parameter <span class='op'>=</span> <span class='st'>"none"</span>,
-  centrality.label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>,
-  vline.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='va'>xfill</span>, size <span class='op'>=</span> <span class='fl'>1</span>, linetype <span class='op'>=</span> <span class='st'>"dashed"</span><span class='op'>)</span>,
-  hline.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='va'>yfill</span>, size <span class='op'>=</span> <span class='fl'>1</span>, linetype <span class='op'>=</span> <span class='st'>"dashed"</span><span class='op'>)</span>,
   results.subtitle <span class='op'>=</span> <span class='cn'>TRUE</span>,
   xlab <span class='op'>=</span> <span class='cn'>NULL</span>,
   ylab <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -394,9 +390,7 @@ plots compared to the main plot. A size of <code>5</code> means that the main pl
       <th>xfill, yfill</th>
       <td><p>Character describing color fill for <code>x</code> and <code>y</code> axes
 marginal distributions (default: <code>"#009E73"</code> (for <code>x</code>) and <code>"#D55E00"</code> (for
-<code>y</code>)). The same colors will also be used for the lines denoting centrality
-parameters if <code>centrality.parameter</code> argument is set to <code>TRUE</code>. Note that
-the defaults are colorblind-friendly.</p></td>
+<code>y</code>)). Note that the defaults are colorblind-friendly.</p></td>
     </tr>
     <tr>
       <th>xparams</th>
@@ -407,25 +401,6 @@ the x axis.</p></td>
       <th>yparams</th>
       <td><p>List of extra parameters to use only for the marginal plot along
 the y axis.</p></td>
-    </tr>
-    <tr>
-      <th>centrality.parameter</th>
-      <td><p>Decides <em>which</em> measure of central tendency (<code>"mean"</code>
-or <code>"median"</code>) is to be displayed as vertical (for <code>x</code>) and horizontal (for
-<code>y</code>) lines. Note that mean values corresponds to arithmetic mean and not
-geometric mean.</p></td>
-    </tr>
-    <tr>
-      <th>centrality.label.args</th>
-      <td><p>A list of additional
-aesthetic arguments to be passed to the <code>geom_label</code> used to display the
-label corresponding to the centrality parameter and test value.</p></td>
-    </tr>
-    <tr>
-      <th>vline.args, hline.args</th>
-      <td><p>A list of additional aesthetic arguments to be
-passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>ggplot2::geom_vline</a></code> and <code><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>ggplot2::geom_hline</a></code> geoms used to
-display the centrality parameter labels on vertical and horizontal lines.</p></td>
     </tr>
     <tr>
       <th>results.subtitle</th>
@@ -501,6 +476,8 @@ want a <code>ggplot</code> object, set <code>marginal = FALSE</code>. Also have 
 from over-lapping to the largest degree possible.  As a consequence plot
 times will slow down massively (and the plot file will grow in size) if you
 have a lot of labels that overlap.</p></li>
+<li><p>The statistical analysis is available only for linear model (<code>formula = y ~ x</code>
+and <code>method = 'lm'</code>. If these arguments are different, only plot will be returned.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
@@ -512,8 +489,7 @@ have a lot of labels that overlap.</p></li>
 <code><a href='grouped_ggcorrmat.html'>grouped_ggcorrmat</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='co'># to get reproducible results from bootstrapping</span>
+    <pre class="examples"><div class='input'><span class='co'># to get reproducible results from bootstrapping</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://indrajeetpatil.github.io/ggstatsplot/'>ggstatsplot</a></span><span class='op'>)</span>
 
@@ -525,13 +501,10 @@ have a lot of labels that overlap.</p></li>
   data <span class='op'>=</span> <span class='va'>mtcars_new</span>,
   x <span class='op'>=</span> <span class='va'>wt</span>,
   y <span class='op'>=</span> <span class='va'>mpg</span>,
-  type <span class='op'>=</span> <span class='st'>"np"</span>,
   label.var <span class='op'>=</span> <span class='va'>car</span>,
-  label.expression <span class='op'>=</span> <span class='va'>wt</span> <span class='op'>&lt;</span> <span class='fl'>4</span> <span class='op'>&amp;</span> <span class='va'>mpg</span> <span class='op'>&lt;</span> <span class='fl'>20</span>,
-  centrality.parameter <span class='op'>=</span> <span class='st'>"median"</span>
+  label.expression <span class='op'>=</span> <span class='va'>wt</span> <span class='op'>&lt;</span> <span class='fl'>4</span> <span class='op'>&amp;</span> <span class='va'>mpg</span> <span class='op'>&lt;</span> <span class='fl'>20</span>
 <span class='op'>)</span>
-</div><div class='img'><img src='ggscatterstats-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
-</div></pre>
+</div><div class='img'><img src='ggscatterstats-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

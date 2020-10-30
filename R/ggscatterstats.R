@@ -31,16 +31,7 @@
 #'   5x wider and 5x taller than the marginal plots.
 #' @param xfill,yfill Character describing color fill for `x` and `y` axes
 #'  marginal distributions (default: `"#009E73"` (for `x`) and `"#D55E00"` (for
-#'  `y`)). The same colors will also be used for the lines denoting centrality
-#'  parameters if `centrality.parameter` argument is set to `TRUE`. Note that
-#'  the defaults are colorblind-friendly.
-#' @param centrality.parameter Decides *which* measure of central tendency (`"mean"`
-#'   or `"median"`) is to be displayed as vertical (for `x`) and horizontal (for
-#'   `y`) lines. Note that mean values corresponds to arithmetic mean and not
-#'   geometric mean.
-#' @param vline.args,hline.args A list of additional aesthetic arguments to be
-#'   passed to `ggplot2::geom_vline` and `ggplot2::geom_hline` geoms used to
-#'   display the centrality parameter labels on vertical and horizontal lines.
+#'  `y`)). Note that the defaults are colorblind-friendly.
 #' @inheritParams statsExpressions::expr_corr_test
 #' @inheritParams ggplot2::geom_smooth
 #' @inheritParams theme_ggstatsplot
@@ -73,8 +64,10 @@
 #' times will slow down massively (and the plot file will grow in size) if you
 #' have a lot of labels that overlap.
 #'
+#' - The statistical analysis is available only for linear model (`formula = y ~ x`
+#' and `method = 'lm'`. If these arguments are different, only plot will be returned.
+#'
 #' @examples
-#' \donttest{
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
 #' library(ggstatsplot)
@@ -87,12 +80,9 @@
 #'   data = mtcars_new,
 #'   x = wt,
 #'   y = mpg,
-#'   type = "np",
 #'   label.var = car,
-#'   label.expression = wt < 4 & mpg < 20,
-#'   centrality.parameter = "median"
+#'   label.expression = wt < 4 & mpg < 20
 #' )
-#' }
 #' @export
 
 # defining the function
@@ -123,10 +113,6 @@ ggscatterstats <- function(data,
                            yfill = "#D55E00",
                            xparams = list(fill = xfill),
                            yparams = list(fill = yfill),
-                           centrality.parameter = "none",
-                           centrality.label.args = list(size = 3),
-                           vline.args = list(color = xfill, size = 1, linetype = "dashed"),
-                           hline.args = list(color = yfill, size = 1, linetype = "dashed"),
                            results.subtitle = TRUE,
                            xlab = NULL,
                            ylab = NULL,
@@ -155,30 +141,20 @@ ggscatterstats <- function(data,
 
   #----------------------- linear model check ----------------------------
 
-  if (isTRUE(results.subtitle)) {
-    # subtitle statistics is valid only for linear models, so turn off the
-    # analysis if the model is not linear
-    # `method` argument can be a string (`"gam"`) or function (`MASS::rlm`)
-    method_ch <- paste(deparse(method), collapse = "")
+  # subtitle statistics is valid only for linear models, so turn off the
+  # analysis if the model is not linear
+  # `method` argument can be a string (`"gam"`) or function (`MASS::rlm`)
+  method_ch <- paste(deparse(method), collapse = "")
 
-    # check the formula and the method
-    if (as.character(deparse(formula)) != "y ~ x" ||
-      if (class(method) == "function") {
-        method_ch != paste(deparse(lm), collapse = "")
-      } else {
-        method != "lm"
-      }) {
-      # tell the user
-      message(cat(
-        ipmisc::red("Warning: "),
-        ipmisc::blue("The statistical analysis is available only for linear model\n"),
-        ipmisc::blue("(formula = y ~ x, method = 'lm'). Returning only the plot.\n"),
-        sep = ""
-      ))
-
-      # turn off the analysis
-      results.subtitle <- FALSE
-    }
+  # check the formula and the method
+  if (as.character(deparse(formula)) != "y ~ x" ||
+    if (class(method) == "function") {
+      method_ch != paste(deparse(lm), collapse = "")
+    } else {
+      method != "lm"
+    }) {
+    # turn off the analysis
+    results.subtitle <- FALSE
   }
 
   #----------------------- dataframe ---------------------------------------
@@ -201,7 +177,7 @@ ggscatterstats <- function(data,
           y = {{ y }},
           bf.prior = bf.prior,
           top.text = caption,
-          output = "caption",
+          output = "expression",
           k = k
         )
     }
@@ -227,7 +203,6 @@ ggscatterstats <- function(data,
       "caption" = caption
     ))
   }
-
 
   #---------------------------- user expression -------------------------
 
@@ -290,83 +265,6 @@ ggscatterstats <- function(data,
       na.rm = TRUE,
       !!!smooth.line.args
     )
-
-  #----------------------- adding centrality parameters --------------------
-
-  # computing summary statistics needed for displaying labels
-  x_mean <- mean(data %>% dplyr::pull({{ x }}), na.rm = TRUE)
-  x_median <- median(data %>% dplyr::pull({{ x }}), na.rm = TRUE)
-  y_mean <- mean(data %>% dplyr::pull({{ y }}), na.rm = TRUE)
-  y_median <- median(data %>% dplyr::pull({{ y }}), na.rm = TRUE)
-  x_label_pos <- median(ggplot2::layer_scales(plot)$x$range$range, na.rm = TRUE)
-  y_label_pos <- median(ggplot2::layer_scales(plot)$y$range$range, na.rm = TRUE)
-
-  # adding vertical and horizontal lines and attaching labels
-  if (centrality.parameter != "none") {
-    # choosing the appropriate intercepts for the lines
-    if (centrality.parameter == "mean") {
-      x.intercept <- x_mean
-      y.intercept <- y_mean
-      x.vline <- x_mean
-      y.vline <- y_label_pos
-      x.hline <- x_label_pos
-      y.hline <- y_mean
-      label.text <- "mean"
-    } else {
-      x.intercept <- x_median
-      y.intercept <- y_median
-      x.vline <- x_median
-      y.vline <- y_label_pos
-      x.hline <- x_label_pos
-      y.hline <- y_median
-      label.text <- "median"
-    }
-
-    # adding lines
-    plot <- plot +
-      # vertical line
-      rlang::exec(
-        .fn = ggplot2::geom_vline,
-        xintercept = x.intercept,
-        na.rm = TRUE,
-        !!!vline.args
-      ) +
-      # horizontal line
-      rlang::exec(
-        .fn = ggplot2::geom_hline,
-        yintercept = y.intercept,
-        na.rm = TRUE,
-        !!!hline.args
-      )
-
-    # adding labels for *vertical* line
-    plot <-
-      line_labeller(
-        plot = plot,
-        x = x.vline,
-        y = y.vline,
-        k = 2,
-        color = xfill,
-        label.args = centrality.label.args,
-        label.text = label.text,
-        line.direction = "vline",
-        jitter = 0.25
-      )
-
-    # adding labels for *horizontal* line
-    plot <-
-      line_labeller(
-        plot = plot,
-        x = x.hline,
-        y = y.hline,
-        k = 2,
-        line.direction = "hline",
-        color = yfill,
-        label.args = centrality.label.args,
-        label.text = label.text,
-        jitter = 0.25
-      )
-  }
 
   #-------------------- adding point labels --------------------------------
 

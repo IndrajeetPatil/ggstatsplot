@@ -35,22 +35,3 @@ palette_message <- function(package, palette, min_length) {
     )
   }
 }
-
-
-#' @title Message to display when adjusted p-values are displayed in correlation
-#'   matrix.
-#' @name ggcorrmat_matrix_message
-#' @noRd
-
-# function body
-ggcorrmat_matrix_message <- function() {
-  message(
-    cat(
-      ipmisc::green("Note: "),
-      ipmisc::blue("In the correlation matrix,\n"),
-      ipmisc::blue("the upper triangle: p-values adjusted for multiple comparisons\n"),
-      ipmisc::blue("the lower triangle: unadjusted p-values.\n"),
-      sep = ""
-    )
-  )
-}

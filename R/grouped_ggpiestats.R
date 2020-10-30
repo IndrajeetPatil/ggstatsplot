@@ -43,11 +43,9 @@
 #'   x = color,
 #'   y = clarity,
 #'   grouping.var = cut,
-#'   nboot = 20,
 #'   sampling.plan = "poisson",
 #'   title.prefix = "Quality",
 #'   slice.label = "both",
-#'   messages = FALSE,
 #'   perc.k = 1,
 #'   plotgrid.args = list(nrow = 3)
 #' )
@@ -56,14 +54,12 @@
 
 # defining the function
 grouped_ggpiestats <- function(data,
-                               x = NULL,
+                               x,
                                y = NULL,
                                counts = NULL,
                                grouping.var,
                                title.prefix = NULL,
                                output = "plot",
-                               main,
-                               condition = NULL,
                                ...,
                                plotgrid.args = list(),
                                title.text = NULL,
@@ -77,12 +73,8 @@ grouped_ggpiestats <- function(data,
 
   # ensure the grouping variable works quoted or unquoted
   grouping.var <- rlang::ensym(grouping.var)
-  main <- rlang::ensym(main)
-  condition <- if (!rlang::quo_is_null(rlang::enquo(condition))) rlang::ensym(condition)
-  x <- if (!rlang::quo_is_null(rlang::enquo(x))) rlang::ensym(x)
+  x <- rlang::ensym(x)
   y <- if (!rlang::quo_is_null(rlang::enquo(y))) rlang::ensym(y)
-  x <- x %||% main
-  y <- y %||% condition
   counts <- if (!rlang::quo_is_null(rlang::enquo(counts))) rlang::ensym(counts)
 
   # if `title.prefix` is not provided, use the variable `grouping.var` name

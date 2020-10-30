@@ -233,21 +233,6 @@ A combination of box and violin plots along with jittered data
 points for between-subjects designs with statistical details included in
 the plot as a subtitle.
 }
-\details{
-For parametric tests, Welch's ANOVA/\emph{t}-test are used as a default (i.e.,
-\code{var.equal = FALSE}).
-
-If robust tests are selected, following tests are used is .
-\itemize{
-\item ANOVA: one-way ANOVA on trimmed means (see \code{?WRS2::t1way})
-\item \emph{t}-test: Yuen's test for trimmed means (see \code{?WRS2::yuen})
-}
-
-For more about how the effect size measures (for nonparametric tests) and
-their confidence intervals are computed, see \code{?rcompanion::wilcoxonR}.
-
-For repeated measures designs, use \code{ggwithinstats}.
-}
 \examples{
 \donttest{
 # to get reproducible results from bootstrapping

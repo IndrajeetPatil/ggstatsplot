@@ -43,8 +43,8 @@
 
 # defining the function
 ggbarstats <- function(data,
-                       x = NULL,
-                       y = NULL,
+                       x,
+                       y,
                        counts = NULL,
                        ratio = NULL,
                        paired = FALSE,
@@ -72,17 +72,11 @@ ggbarstats <- function(data,
                        palette = "Dark2",
                        ggplot.component = NULL,
                        output = "plot",
-                       main,
-                       condition,
                        ...) {
 
   # ensure the variables work quoted or unquoted
-  main <- rlang::ensym(main)
-  condition <- rlang::ensym(condition)
-  x <- if (!rlang::quo_is_null(rlang::enquo(x))) rlang::ensym(x)
-  y <- if (!rlang::quo_is_null(rlang::enquo(y))) rlang::ensym(y)
-  x <- x %||% main
-  y <- y %||% condition
+  x <- rlang::ensym(x)
+  y <- rlang::ensym(y)
   counts <- if (!rlang::quo_is_null(rlang::enquo(counts))) rlang::ensym(counts)
 
   # ================= extracting column names as labels  =====================

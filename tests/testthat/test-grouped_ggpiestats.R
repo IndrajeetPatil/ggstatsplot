@@ -3,13 +3,13 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
 
-    #--------------------- only main variable -------------------------------
+    #--------------------- only x variable -------------------------------
 
     ## expecting error
     testthat::expect_error(
       ggstatsplot::grouped_ggpiestats(
         data = mtcars,
-        main = cyl,
+        x = cyl,
         messages = FALSE
       )
     )
@@ -22,7 +22,7 @@ testthat::test_that(
       ggstatsplot::grouped_ggpiestats(
         data = mtcars,
         grouping.var = am,
-        main = "cyl",
+        x = "cyl",
         results.subtitle = FALSE,
         messages = FALSE
       )
@@ -30,7 +30,7 @@ testthat::test_that(
     what = "gg"
     ))
 
-    #------------------ both main and condition variables ------------------
+    #------------------ both x and y variables ------------------
 
     ## without counts
 
@@ -68,9 +68,9 @@ testthat::test_that(
       ggstatsplot::grouped_ggpiestats(
         data = as.data.frame(Titanic),
         grouping.var = Class,
-        main = Sex,
+        x = Sex,
         results.subtitle = FALSE,
-        condition = Survived,
+        y = Survived,
         counts = "Freq",
         messages = FALSE
       )
@@ -92,8 +92,8 @@ testthat::test_that(
     ls_results <-
       suppressWarnings(ggstatsplot::grouped_ggpiestats(
         data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
-        main = relig,
-        condition = marital,
+        x = relig,
+        y = marital,
         grouping.var = race,
         output = "subtitle",
         messages = FALSE

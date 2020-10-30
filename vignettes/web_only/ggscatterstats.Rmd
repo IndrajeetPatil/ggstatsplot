@@ -207,42 +207,41 @@ the smoothing function used. Below, four different examples are given for how to
 use different smoothing functions.
 
 ```{r grouped3, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 12}
-library(mgcv)
-
 # for reproducibility
 set.seed(123)
+library(mgcv)
 
 # creating a list of plots with different smoothing functions
-plot_list2 <- purrr::pmap(
-  .l = list(
-    # let's use only 5% of the data to speed up the calculations
-    data = list(dplyr::sample_frac(tbl = ggstatsplot::movies_wide, size = 0.05)),
-    x = "budget",
-    y = "rating",
-    title = list(
-      "Robust linear model using an M estimator (rlm)",
-      "Generalized additive model (GAM) with a penalized smoother",
-      "Local Polynomial Regression Fitting",
-      "Quadratic fit"
+plot_list2 <-
+  purrr::pmap(
+    .l = list(
+      # let's use only 5% of the data to speed up the calculations
+      data = list(dplyr::sample_frac(tbl = ggstatsplot::movies_wide, size = 0.05)),
+      x = "budget",
+      y = "rating",
+      title = list(
+        "Robust linear model using an M estimator (rlm)",
+        "Generalized additive model (GAM) with a penalized smoother",
+        "Local Polynomial Regression Fitting",
+        "Quadratic fit"
+      ),
+      method = list(
+        MASS::rlm,
+        "gam",
+        "loess",
+        "lm"
+      ),
+      formula = list(
+        y ~ x,
+        y ~ s(x, k = 3),
+        y ~ x,
+        y ~ x + I(x^2)
+      ),
+      line.color = list("#009E73", "#F0E442", "#0072B2", "#D55E00"),
+      marginal = FALSE
     ),
-    method = list(
-      MASS::rlm,
-      "gam",
-      "loess",
-      "lm"
-    ),
-    formula = list(
-      y ~ x,
-      y ~ s(x, k = 3),
-      y ~ x,
-      y ~ x + I(x^2)
-    ),
-    line.color = list("#009E73", "#F0E442", "#0072B2", "#D55E00"),
-    marginal = FALSE,
-    messages = FALSE
-  ),
-  .f = ggstatsplot::ggscatterstats
-)
+    .f = ggstatsplot::ggscatterstats
+  )
 
 # combining all individual plots from the list into a single plot using combine_plots function
 ggstatsplot::combine_plots(

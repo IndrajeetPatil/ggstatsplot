@@ -1,10 +1,19 @@
-# ggstatsplot 0.6.1.9000
+# ggstatsplot 0.6.5
+
+BREAKING CHANGES
+
+  - `ggpiestats` and `ggbarstats` no longer have the vestigial arguments `main`
+    and `condition`, which are superseded by `x` and `y`, respectively.
 
 MAJOR CHANGES
 
   - For consistency and to reduce confusion, all Bayes Factor (irrespective of
     whether in the subtitle or caption) are always in favor of null over
     alternative (`BF01`).
+    
+  - Retires centrality parameter tagging functionality of `ggscatterstats`.
+    Although it was not the default, when turned on, it definitely created a
+    cluttered plot.
 
 # ggstatsplot 0.6.1
 

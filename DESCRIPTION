@@ -1,7 +1,7 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.6.1.9000
+Version: 0.6.5.9000
 Authors@R: 
     person(given = "Indrajeet",
            family = "Patil",
@@ -39,6 +39,7 @@ Imports:
     pairwiseComparisons (>= 3.1.0),
     paletteer,
     parameters (>= 0.9.0),
+    performance (>= 0.5.0),
     purrr,
     rlang,
     stats,
@@ -60,7 +61,8 @@ Remotes:
     IndrajeetPatil/pairwiseComparisons,
     IndrajeetPatil/statsExpressions,
     IndrajeetPatil/tidyBF,
-    easystats/parameters
+    easystats/parameters,
+    easystats/performance
 Encoding: UTF-8
 Language: en-US
 LazyData: true

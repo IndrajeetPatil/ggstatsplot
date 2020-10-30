@@ -47,8 +47,7 @@
 #'   type = "robust",
 #'   label.var = manufacturer,
 #'   label.expression = hwy > 25 & displ > 2.5,
-#'   ggplot.component = ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis()),
-#'   messages = FALSE
+#'   ggplot.component = ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis())
 #' )
 #'
 #' # labeling without expression

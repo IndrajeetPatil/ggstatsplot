@@ -236,12 +236,6 @@ A combination of box and violin plots along with raw
 (unjittered) data points for within-subjects designs with statistical
 details included in the plot as a subtitle.
 }
-\details{
-For more about how the effect size measures (for nonparametric tests) and
-their confidence intervals are computed, see \code{?rcompanion::wilcoxonPairedR}.
-
-For independent measures designs, use \code{ggbetweenstats}.
-}
 \note{
 \strong{Important}: Please note that the function expects that the data is
 already sorted by subject/repeated measures ID.
@@ -269,12 +263,14 @@ ggstatsplot::ggwithinstats(
   x = Wine,
   y = Taste,
   type = "np",
-  conf.level = 0.99,
   pairwise.comparisons = TRUE,
   outlier.tagging = TRUE,
   outlier.label = Taster
 )
 }
+}
+\references{
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html}
 }
 \seealso{
 \code{\link{grouped_ggbetweenstats}}, \code{\link{ggbetweenstats}},

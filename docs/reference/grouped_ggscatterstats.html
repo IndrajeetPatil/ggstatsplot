@@ -92,7 +92,7 @@ subtitle." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.1.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.5.9000</span>
       </span>
     </div>
 
@@ -305,24 +305,10 @@ plots compared to the main plot. A size of <code>5</code> means that the main pl
 5x wider and 5x taller than the marginal plots.</p></dd>
     <dt><code>xfill</code></dt><dd><p>Character describing color fill for <code>x</code> and <code>y</code> axes
 marginal distributions (default: <code>"#009E73"</code> (for <code>x</code>) and <code>"#D55E00"</code> (for
-<code>y</code>)). The same colors will also be used for the lines denoting centrality
-parameters if <code>centrality.parameter</code> argument is set to <code>TRUE</code>. Note that
-the defaults are colorblind-friendly.</p></dd>
+<code>y</code>)). Note that the defaults are colorblind-friendly.</p></dd>
     <dt><code>yfill</code></dt><dd><p>Character describing color fill for <code>x</code> and <code>y</code> axes
 marginal distributions (default: <code>"#009E73"</code> (for <code>x</code>) and <code>"#D55E00"</code> (for
-<code>y</code>)). The same colors will also be used for the lines denoting centrality
-parameters if <code>centrality.parameter</code> argument is set to <code>TRUE</code>. Note that
-the defaults are colorblind-friendly.</p></dd>
-    <dt><code>centrality.parameter</code></dt><dd><p>Decides <em>which</em> measure of central tendency (<code>"mean"</code>
-or <code>"median"</code>) is to be displayed as vertical (for <code>x</code>) and horizontal (for
-<code>y</code>) lines. Note that mean values corresponds to arithmetic mean and not
-geometric mean.</p></dd>
-    <dt><code>vline.args</code></dt><dd><p>A list of additional aesthetic arguments to be
-passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>ggplot2::geom_vline</a></code> and <code><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>ggplot2::geom_hline</a></code> geoms used to
-display the centrality parameter labels on vertical and horizontal lines.</p></dd>
-    <dt><code>hline.args</code></dt><dd><p>A list of additional aesthetic arguments to be
-passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>ggplot2::geom_vline</a></code> and <code><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>ggplot2::geom_hline</a></code> geoms used to
-display the centrality parameter labels on vertical and horizontal lines.</p></dd>
+<code>y</code>)). Note that the defaults are colorblind-friendly.</p></dd>
     <dt><code>type</code></dt><dd><p>Type of association between paired samples required
 ("<code>"parametric"</code>: Pearson's product moment correlation coefficient" or
 "<code>"nonparametric"</code>: Spearman's rho" or "<code>"robust"</code>: percentage bend
@@ -385,9 +371,6 @@ as a function.</p></dd>
 the x axis.</p></dd>
     <dt><code>yparams</code></dt><dd><p>List of extra parameters to use only for the marginal plot along
 the y axis.</p></dd>
-    <dt><code>centrality.label.args</code></dt><dd><p>A list of additional
-aesthetic arguments to be passed to the <code>geom_label</code> used to display the
-label corresponding to the centrality parameter and test value.</p></dd>
   
 </dl></td>
     </tr>
@@ -449,11 +432,7 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
   formula <span class='op'>=</span> <span class='va'>y</span> <span class='op'>~</span> <span class='va'>x</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>^</span><span class='fl'>3</span><span class='op'>)</span>,
   grouping.var <span class='op'>=</span> <span class='va'>genre</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>The statistical analysis is available only for linear model
-#&gt; (formula = y ~ x, method = 'lm'). Returning only the plot.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>The statistical analysis is available only for linear model
-#&gt; (formula = y ~ x, method = 'lm'). Returning only the plot.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggscatterstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='img'><img src='grouped_ggscatterstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># using labeling</span>
 <span class='co'># (also show how to modify basic plot from within function call)</span>
 <span class='fu'>grouped_ggscatterstats</span><span class='op'>(</span>
@@ -465,8 +444,7 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
   type <span class='op'>=</span> <span class='st'>"robust"</span>,
   label.var <span class='op'>=</span> <span class='va'>manufacturer</span>,
   label.expression <span class='op'>=</span> <span class='va'>hwy</span> <span class='op'>&gt;</span> <span class='fl'>25</span> <span class='op'>&amp;</span> <span class='va'>displ</span> <span class='op'>&gt;</span> <span class='fl'>2.5</span>,
-  ggplot.component <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span><span class='op'>(</span>sec.axis <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/sec_axis.html'>dup_axis</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>,
-  messages <span class='op'>=</span> <span class='cn'>FALSE</span>
+  ggplot.component <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span><span class='op'>(</span>sec.axis <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/sec_axis.html'>dup_axis</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 <span class='op'>)</span>
 </div><div class='img'><img src='grouped_ggscatterstats-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># labeling without expression</span>
@@ -486,7 +464,7 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
   title.prefix <span class='op'>=</span> <span class='st'>"Genre"</span>,
   caption.text <span class='op'>=</span> <span class='st'>"All movies have IMDB rating equal to 7."</span>
 <span class='op'>)</span>
-</div><div class='img'><img src='grouped_ggscatterstats-3.png' alt='' width='700' height='433' /></div></span></pre>
+</div><div class='img'><img src='grouped_ggscatterstats-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

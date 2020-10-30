@@ -51,6 +51,8 @@ functions included in `ggstatsplot`.
 
 # Videos
 
+  - <https://www.youtube.com/watch?v=cNJIMwtLWv0&feature=youtu.be&ab_channel=YuryZablotski>
+
   - <https://www.youtube.com/watch?v=aw6HDz9zA1Q>
   
   - <https://www.youtube.com/watch?v=m3uInetiC8w>

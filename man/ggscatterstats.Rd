@@ -32,10 +32,6 @@ ggscatterstats(
   yfill = "#D55E00",
   xparams = list(fill = xfill),
   yparams = list(fill = yfill),
-  centrality.parameter = "none",
-  centrality.label.args = list(size = 3),
-  vline.args = list(color = xfill, size = 1, linetype = "dashed"),
-  hline.args = list(color = yfill, size = 1, linetype = "dashed"),
   results.subtitle = TRUE,
   xlab = NULL,
   ylab = NULL,
@@ -146,28 +142,13 @@ plots compared to the main plot. A size of \code{5} means that the main plot is
 
 \item{xfill, yfill}{Character describing color fill for \code{x} and \code{y} axes
 marginal distributions (default: \code{"#009E73"} (for \code{x}) and \code{"#D55E00"} (for
-\code{y})). The same colors will also be used for the lines denoting centrality
-parameters if \code{centrality.parameter} argument is set to \code{TRUE}. Note that
-the defaults are colorblind-friendly.}
+\code{y})). Note that the defaults are colorblind-friendly.}
 
 \item{xparams}{List of extra parameters to use only for the marginal plot along
 the x axis.}
 
 \item{yparams}{List of extra parameters to use only for the marginal plot along
 the y axis.}
-
-\item{centrality.parameter}{Decides \emph{which} measure of central tendency (\code{"mean"}
-or \code{"median"}) is to be displayed as vertical (for \code{x}) and horizontal (for
-\code{y}) lines. Note that mean values corresponds to arithmetic mean and not
-geometric mean.}
-
-\item{centrality.label.args}{A list of additional
-aesthetic arguments to be passed to the \code{geom_label} used to display the
-label corresponding to the centrality parameter and test value.}
-
-\item{vline.args, hline.args}{A list of additional aesthetic arguments to be
-passed to \code{ggplot2::geom_vline} and \code{ggplot2::geom_hline} geoms used to
-display the centrality parameter labels on vertical and horizontal lines.}
 
 \item{results.subtitle}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
@@ -222,10 +203,11 @@ want a \code{ggplot} object, set \code{marginal = FALSE}. Also have a look at th
 from over-lapping to the largest degree possible.  As a consequence plot
 times will slow down massively (and the plot file will grow in size) if you
 have a lot of labels that overlap.
+\item The statistical analysis is available only for linear model (\code{formula = y ~ x}
+and \code{method = 'lm'}. If these arguments are different, only plot will be returned.
 }
 }
 \examples{
-\donttest{
 # to get reproducible results from bootstrapping
 set.seed(123)
 library(ggstatsplot)
@@ -238,12 +220,9 @@ ggstatsplot::ggscatterstats(
   data = mtcars_new,
   x = wt,
   y = mpg,
-  type = "np",
   label.var = car,
-  label.expression = wt < 4 & mpg < 20,
-  centrality.parameter = "median"
+  label.expression = wt < 4 & mpg < 20
 )
-}
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html}

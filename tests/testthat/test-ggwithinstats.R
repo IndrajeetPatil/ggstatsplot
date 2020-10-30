@@ -258,132 +258,133 @@ testthat::test_that(
   desc = "basic plotting works - more than two groups",
   code = {
     testthat::skip_on_cran()
+    if (utils::packageVersion("BayesFactor") >= package_version("0.9.12-4.3")) {
+      library(WRS2)
 
-    library(WRS2)
-
-    # plot
-    set.seed(123)
-    p1 <-
-      ggstatsplot::ggwithinstats(
-        data = WineTasting,
-        x = Wine,
-        y = "Taste",
-        type = "p",
-        sort = "ascending",
-        sort.fun = median,
-        bf.message = TRUE,
-        k = 4,
-        conf.level = 0.99,
-        outlier.tagging = TRUE,
-        outlier.coef = 2.5,
-        pairwise.comparisons = TRUE,
-        pairwise.annotation = "asterisk",
-        title = "wine tasting data",
-        caption = "From `WRS2` package",
-        messages = TRUE
-      )
-
-    # build the plot
-    pb1 <- ggplot2::ggplot_build(p1)
-
-    # subtitle
-    set.seed(123)
-    p1_subtitle <-
-      statsExpressions::expr_anova_parametric(
-        data = WineTasting,
-        x = "Wine",
-        y = Taste,
-        type = "p",
-        k = 4,
-        paired = TRUE,
-        conf.level = 0.99,
-        messages = FALSE
-      )
-
-    # dataframe used for visualization
-    testthat::expect_equal(length(pb1$data), 8L)
-    testthat::expect_equal(dim(pb1$data[[1]]), c(66L, 10L))
-    testthat::expect_equal(dim(pb1$data[[2]]), c(3L, 26L))
-    testthat::expect_equal(dim(pb1$data[[3]]), c(1536L, 21L))
-    testthat::expect_equal(dim(pb1$data[[4]]), c(4L, 15L))
-    testthat::expect_equal(dim(pb1$data[[5]]), c(3L, 8L))
-    testthat::expect_equal(dim(pb1$data[[6]]), c(3L, 13L))
-    testthat::expect_equal(dim(pb1$data[[7]]), c(3L, 15L))
-    testthat::expect_equal(dim(pb1$data[[8]]), c(6L, 19L))
-
-    # data from difference layers
-    testthat::expect_equal(
-      pb1$data[[5]]$x,
-      structure(c(1L, 2L, 3L), class = c(
-        "mapped_discrete",
-        "numeric"
-      ))
-    )
-    testthat::expect_equal(
-      pb1$data[[5]]$y,
-      c(5.54318181818182, 5.53409090909091, 5.45909090909091),
-      tolerance = 0.001
-    )
-
-    # checking displayed outlier labels
-    testthat::expect_equal(
-      ggplot2::layer_grob(p1, i = 4L)$`1`$lab,
-      c(5.00, 6.30, 6.30, 6.25),
-      tolerance = 0.01
-    )
-
-    # range of y variable
-    testthat::expect_equal(
-      ggplot2::layer_scales(p1)$y$range$range,
-      c(4.95000, 6.55875),
-      tolerance = 1e-5
-    )
-
-    # checking x-axis sample size labels
-    testthat::expect_identical(
-      ggplot2::layer_scales(p1)$x$labels,
-      c("Wine A\n(n = 22)", "Wine B\n(n = 22)", "Wine C\n(n = 22)")
-    )
-
-    # checking plot labels
-    testthat::expect_identical(p1$labels$title, "wine tasting data")
-    testthat::expect_identical(p1$labels$subtitle, p1_subtitle)
-    testthat::expect_identical(
-      pb1$plot$labels$caption,
-      ggplot2::expr(atop(
-        displaystyle(atop(
-          displaystyle("From `WRS2` package"),
-          expr = paste(
-            "log"["e"],
-            "(BF"["01"],
-            ") = ",
-            "-2.1154",
-            ", ",
-            widehat(italic(R^"2"))["median"]^"posterior",
-            " = ",
-            "0.8930",
-            ", CI"["95%"]^"HDI",
-            " [",
-            "0.8499",
-            ", ",
-            "0.9228",
-            "]",
-            ", ",
-            italic("r")["Cauchy"]^"JZS",
-            " = ",
-            "0.7070"
-          )
-        )),
-        expr = paste(
-          "Pairwise test: ",
-          bold("Student's t-test"),
-          "; Comparisons shown: ",
-          bold("only significant")
+      # plot
+      set.seed(123)
+      p1 <-
+        ggstatsplot::ggwithinstats(
+          data = WineTasting,
+          x = Wine,
+          y = "Taste",
+          type = "p",
+          sort = "ascending",
+          sort.fun = median,
+          bf.message = TRUE,
+          k = 4,
+          conf.level = 0.99,
+          outlier.tagging = TRUE,
+          outlier.coef = 2.5,
+          pairwise.comparisons = TRUE,
+          pairwise.annotation = "asterisk",
+          title = "wine tasting data",
+          caption = "From `WRS2` package",
+          messages = TRUE
         )
-      ))
-    )
-    testthat::expect_identical(p1$labels$x, "Wine")
-    testthat::expect_identical(p1$labels$y, "Taste")
+
+      # build the plot
+      pb1 <- ggplot2::ggplot_build(p1)
+
+      # subtitle
+      set.seed(123)
+      p1_subtitle <-
+        statsExpressions::expr_anova_parametric(
+          data = WineTasting,
+          x = "Wine",
+          y = Taste,
+          type = "p",
+          k = 4,
+          paired = TRUE,
+          conf.level = 0.99,
+          messages = FALSE
+        )
+
+      # dataframe used for visualization
+      testthat::expect_equal(length(pb1$data), 8L)
+      testthat::expect_equal(dim(pb1$data[[1]]), c(66L, 10L))
+      testthat::expect_equal(dim(pb1$data[[2]]), c(3L, 26L))
+      testthat::expect_equal(dim(pb1$data[[3]]), c(1536L, 21L))
+      testthat::expect_equal(dim(pb1$data[[4]]), c(4L, 15L))
+      testthat::expect_equal(dim(pb1$data[[5]]), c(3L, 8L))
+      testthat::expect_equal(dim(pb1$data[[6]]), c(3L, 13L))
+      testthat::expect_equal(dim(pb1$data[[7]]), c(3L, 15L))
+      testthat::expect_equal(dim(pb1$data[[8]]), c(6L, 19L))
+
+      # data from difference layers
+      testthat::expect_equal(
+        pb1$data[[5]]$x,
+        structure(c(1L, 2L, 3L), class = c(
+          "mapped_discrete",
+          "numeric"
+        ))
+      )
+      testthat::expect_equal(
+        pb1$data[[5]]$y,
+        c(5.54318181818182, 5.53409090909091, 5.45909090909091),
+        tolerance = 0.001
+      )
+
+      # checking displayed outlier labels
+      testthat::expect_equal(
+        ggplot2::layer_grob(p1, i = 4L)$`1`$lab,
+        c(5.00, 6.30, 6.30, 6.25),
+        tolerance = 0.01
+      )
+
+      # range of y variable
+      testthat::expect_equal(
+        ggplot2::layer_scales(p1)$y$range$range,
+        c(4.95000, 6.55875),
+        tolerance = 1e-5
+      )
+
+      # checking x-axis sample size labels
+      testthat::expect_identical(
+        ggplot2::layer_scales(p1)$x$labels,
+        c("Wine A\n(n = 22)", "Wine B\n(n = 22)", "Wine C\n(n = 22)")
+      )
+
+      # checking plot labels
+      testthat::expect_identical(p1$labels$title, "wine tasting data")
+      testthat::expect_identical(p1$labels$subtitle, p1_subtitle)
+      testthat::expect_identical(
+        pb1$plot$labels$caption,
+        ggplot2::expr(atop(
+          displaystyle(atop(
+            displaystyle("From `WRS2` package"),
+            expr = paste(
+              "log"["e"],
+              "(BF"["01"],
+              ") = ",
+              "-2.1154",
+              ", ",
+              widehat(italic(R^"2"))["median"]^"posterior",
+              " = ",
+              "0.8930",
+              ", CI"["95%"]^"HDI",
+              " [",
+              "0.8499",
+              ", ",
+              "0.9228",
+              "]",
+              ", ",
+              italic("r")["Cauchy"]^"JZS",
+              " = ",
+              "0.7070"
+            )
+          )),
+          expr = paste(
+            "Pairwise test: ",
+            bold("Student's t-test"),
+            "; Comparisons shown: ",
+            bold("only significant")
+          )
+        ))
+      )
+      testthat::expect_identical(p1$labels$x, "Wine")
+      testthat::expect_identical(p1$labels$y, "Taste")
+    }
   }
 )
 
@@ -393,171 +394,173 @@ testthat::test_that(
   desc = "checking subtitle outputs - without NAs",
   code = {
     testthat::skip_on_cran()
-    set.seed(123)
 
-    p1 <-
-      ggstatsplot::ggwithinstats(
-        data = iris_long,
-        x = condition,
-        y = value,
-        type = "np",
-        ggsignif.args = list(textsize = 6, tip_length = 0.01),
-        pairwise.display = "s",
-        pairwise.annotation = "p",
-        outlier.tagging = FALSE,
-        pairwise.comparisons = TRUE,
-        conf.level = 0.90
-      )
-
-    set.seed(123)
-    p1_subtitle <-
-      statsExpressions::expr_anova_nonparametric(
-        data = iris_long,
-        x = condition,
-        y = value,
-        type = "np",
-        paired = TRUE,
-        conf.level = 0.90
-      )
-
-    set.seed(123)
-    p2 <-
-      suppressWarnings(ggstatsplot::ggwithinstats(
-        data = iris_long,
-        x = condition,
-        y = value,
-        type = "r",
-        pairwise.display = "ns",
-        outlier.tagging = FALSE,
-        pairwise.annotation = "p-value",
-        conf.level = 0.90
-      ))
-
-    set.seed(123)
-    p2_subtitle <-
-      statsExpressions::expr_anova_robust(
-        data = iris_long,
-        x = condition,
-        y = value,
-        paired = TRUE,
-        conf.level = 0.90
-      )
-
-    set.seed(123)
-    p3 <-
-      suppressWarnings(ggstatsplot::ggwithinstats(
-        data = ggstatsplot::VR_dilemma,
-        x = modality,
-        y = score,
-        type = "r",
-        k = 3,
-        nboot = 25,
-        pairwise.comparisons = TRUE,
-        pairwise.display = "all",
-        pairwise.annotation = "p",
-        messages = FALSE,
-        bf.message = TRUE
-      ))
-
-    set.seed(123)
-    p3_subtitle <-
-      suppressWarnings(statsExpressions::expr_t_robust(
-        data = ggstatsplot::VR_dilemma,
-        x = modality,
-        y = score,
-        paired = TRUE,
-        k = 3,
-        nboot = 25,
-        messages = FALSE
-      ))
-
-    set.seed(123)
-    p4 <-
-      ggstatsplot::ggwithinstats(
-        data = ggstatsplot::VR_dilemma,
-        x = modality,
-        y = score,
-        type = "np",
-        k = 4,
-        nboot = 15,
-        conf.level = 0.50,
-        pairwise.comparisons = TRUE,
-        pairwise.display = "all",
-        pairwise.annotation = "p",
-        messages = FALSE,
-        bf.message = TRUE
-      )
-
-    set.seed(123)
-    p4_subtitle <-
-      statsExpressions::expr_t_nonparametric(
-        data = ggstatsplot::VR_dilemma,
-        x = modality,
-        y = score,
-        conf.level = 0.50,
-        paired = TRUE,
-        k = 4,
-        nboot = 15,
-        messages = FALSE
-      )
-
-    # built plots
-    pb1 <- ggplot2::ggplot_build(p1)
-    pb2 <- ggplot2::ggplot_build(p2)
-    pb3 <- ggplot2::ggplot_build(p3)
-    pb4 <- ggplot2::ggplot_build(p4)
-
-    # checking subtitle outputs
-    testthat::expect_identical(p1$labels$subtitle, p1_subtitle)
-    testthat::expect_identical(p2$labels$subtitle, p2_subtitle)
-    testthat::expect_identical(p3$labels$subtitle, p3_subtitle)
-    testthat::expect_identical(p4$labels$subtitle, p4_subtitle)
-
-    # testing captions
-    testthat::expect_identical(
-      pb1$plot$labels$caption,
-      ggplot2::expr(atop(
-        displaystyle(NULL),
-        expr = paste(
-          "Pairwise test: ",
-          bold("Durbin-Conover test"),
-          "; Comparisons shown: ",
-          bold("only significant")
+    if (utils::packageVersion("BayesFactor") >= package_version("0.9.12-4.3")) {
+      set.seed(123)
+      p1 <-
+        ggstatsplot::ggwithinstats(
+          data = iris_long,
+          x = condition,
+          y = value,
+          type = "np",
+          ggsignif.args = list(textsize = 6, tip_length = 0.01),
+          pairwise.display = "s",
+          pairwise.annotation = "p",
+          outlier.tagging = FALSE,
+          pairwise.comparisons = TRUE,
+          conf.level = 0.90
         )
-      ))
-    )
-    testthat::expect_identical(
-      pb2$plot$labels$caption,
-      ggplot2::expr(atop(
-        displaystyle(NULL),
-        expr = paste(
-          "Pairwise test: ",
-          bold("Yuen's trimmed means test"),
-          "; Comparisons shown: ",
-          bold("only non-significant")
+
+      set.seed(123)
+      p1_subtitle <-
+        statsExpressions::expr_anova_nonparametric(
+          data = iris_long,
+          x = condition,
+          y = value,
+          type = "np",
+          paired = TRUE,
+          conf.level = 0.90
         )
-      ))
-    )
-    testthat::expect_null(p3$labels$caption, NULL)
-    testthat::expect_null(p4$labels$caption, NULL)
 
+      set.seed(123)
+      p2 <-
+        suppressWarnings(ggstatsplot::ggwithinstats(
+          data = iris_long,
+          x = condition,
+          y = value,
+          type = "r",
+          pairwise.display = "ns",
+          outlier.tagging = FALSE,
+          pairwise.annotation = "p-value",
+          conf.level = 0.90
+        ))
 
-    p5 <-
-      ggstatsplot::ggwithinstats(
-        data = iris_long,
-        x = condition,
-        y = value,
-        type = "bf",
-        pairwise.comparisons = TRUE
+      set.seed(123)
+      p2_subtitle <-
+        statsExpressions::expr_anova_robust(
+          data = iris_long,
+          x = condition,
+          y = value,
+          paired = TRUE,
+          conf.level = 0.90
+        )
+
+      set.seed(123)
+      p3 <-
+        suppressWarnings(ggstatsplot::ggwithinstats(
+          data = ggstatsplot::VR_dilemma,
+          x = modality,
+          y = score,
+          type = "r",
+          k = 3,
+          nboot = 25,
+          pairwise.comparisons = TRUE,
+          pairwise.display = "all",
+          pairwise.annotation = "p",
+          messages = FALSE,
+          bf.message = TRUE
+        ))
+
+      set.seed(123)
+      p3_subtitle <-
+        suppressWarnings(statsExpressions::expr_t_robust(
+          data = ggstatsplot::VR_dilemma,
+          x = modality,
+          y = score,
+          paired = TRUE,
+          k = 3,
+          nboot = 25,
+          messages = FALSE
+        ))
+
+      set.seed(123)
+      p4 <-
+        ggstatsplot::ggwithinstats(
+          data = ggstatsplot::VR_dilemma,
+          x = modality,
+          y = score,
+          type = "np",
+          k = 4,
+          nboot = 15,
+          conf.level = 0.50,
+          pairwise.comparisons = TRUE,
+          pairwise.display = "all",
+          pairwise.annotation = "p",
+          messages = FALSE,
+          bf.message = TRUE
+        )
+
+      set.seed(123)
+      p4_subtitle <-
+        statsExpressions::expr_t_nonparametric(
+          data = ggstatsplot::VR_dilemma,
+          x = modality,
+          y = score,
+          conf.level = 0.50,
+          paired = TRUE,
+          k = 4,
+          nboot = 15,
+          messages = FALSE
+        )
+
+      # built plots
+      pb1 <- ggplot2::ggplot_build(p1)
+      pb2 <- ggplot2::ggplot_build(p2)
+      pb3 <- ggplot2::ggplot_build(p3)
+      pb4 <- ggplot2::ggplot_build(p4)
+
+      # checking subtitle outputs
+      testthat::expect_identical(p1$labels$subtitle, p1_subtitle)
+      testthat::expect_identical(p2$labels$subtitle, p2_subtitle)
+      testthat::expect_identical(p3$labels$subtitle, p3_subtitle)
+      testthat::expect_identical(p4$labels$subtitle, p4_subtitle)
+
+      # testing captions
+      testthat::expect_identical(
+        pb1$plot$labels$caption,
+        ggplot2::expr(atop(
+          displaystyle(NULL),
+          expr = paste(
+            "Pairwise test: ",
+            bold("Durbin-Conover test"),
+            "; Comparisons shown: ",
+            bold("only significant")
+          )
+        ))
       )
+      testthat::expect_identical(
+        pb2$plot$labels$caption,
+        ggplot2::expr(atop(
+          displaystyle(NULL),
+          expr = paste(
+            "Pairwise test: ",
+            bold("Yuen's trimmed means test"),
+            "; Comparisons shown: ",
+            bold("only non-significant")
+          )
+        ))
+      )
+      testthat::expect_null(p3$labels$caption, NULL)
+      testthat::expect_null(p4$labels$caption, NULL)
 
-    testthat::expect_is(p5, "ggplot")
 
-    # checking changes made to ggsignif geom work
-    testthat::expect_equal(pb1$data[[7]]$textsize[[1]], 6L)
-    testthat::expect_equal(pb1$data[[7]]$shape[[1]], 19L)
-    testthat::expect_identical(pb1$data[[7]]$colour[[1]], "black")
-    testthat::expect_equal(pb1$data[[7]]$size[[1]], 0.5, tolerance = 0.001)
+      p5 <-
+        ggstatsplot::ggwithinstats(
+          data = iris_long,
+          x = condition,
+          y = value,
+          type = "bf",
+          pairwise.comparisons = TRUE
+        )
+
+      testthat::expect_is(p5, "ggplot")
+
+      # checking changes made to ggsignif geom work
+      testthat::expect_equal(pb1$data[[7]]$textsize[[1]], 6L)
+      testthat::expect_equal(pb1$data[[7]]$shape[[1]], 19L)
+      testthat::expect_identical(pb1$data[[7]]$colour[[1]], "black")
+      testthat::expect_equal(pb1$data[[7]]$size[[1]], 0.5, tolerance = 0.001)
+    }
   }
 )
 

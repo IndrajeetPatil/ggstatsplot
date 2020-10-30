@@ -83,24 +83,10 @@ plots compared to the main plot. A size of \code{5} means that the main plot is
 5x wider and 5x taller than the marginal plots.}
     \item{\code{xfill}}{Character describing color fill for \code{x} and \code{y} axes
 marginal distributions (default: \code{"#009E73"} (for \code{x}) and \code{"#D55E00"} (for
-\code{y})). The same colors will also be used for the lines denoting centrality
-parameters if \code{centrality.parameter} argument is set to \code{TRUE}. Note that
-the defaults are colorblind-friendly.}
+\code{y})). Note that the defaults are colorblind-friendly.}
     \item{\code{yfill}}{Character describing color fill for \code{x} and \code{y} axes
 marginal distributions (default: \code{"#009E73"} (for \code{x}) and \code{"#D55E00"} (for
-\code{y})). The same colors will also be used for the lines denoting centrality
-parameters if \code{centrality.parameter} argument is set to \code{TRUE}. Note that
-the defaults are colorblind-friendly.}
-    \item{\code{centrality.parameter}}{Decides \emph{which} measure of central tendency (\code{"mean"}
-or \code{"median"}) is to be displayed as vertical (for \code{x}) and horizontal (for
-\code{y}) lines. Note that mean values corresponds to arithmetic mean and not
-geometric mean.}
-    \item{\code{vline.args}}{A list of additional aesthetic arguments to be
-passed to \code{ggplot2::geom_vline} and \code{ggplot2::geom_hline} geoms used to
-display the centrality parameter labels on vertical and horizontal lines.}
-    \item{\code{hline.args}}{A list of additional aesthetic arguments to be
-passed to \code{ggplot2::geom_vline} and \code{ggplot2::geom_hline} geoms used to
-display the centrality parameter labels on vertical and horizontal lines.}
+\code{y})). Note that the defaults are colorblind-friendly.}
     \item{\code{type}}{Type of association between paired samples required
 ("\code{"parametric"}: Pearson's product moment correlation coefficient" or
 "\code{"nonparametric"}: Spearman's rho" or "\code{"robust"}: percentage bend
@@ -167,9 +153,6 @@ as a function.}
 the x axis.}
     \item{\code{yparams}}{List of extra parameters to use only for the marginal plot along
 the y axis.}
-    \item{\code{centrality.label.args}}{A list of additional
-aesthetic arguments to be passed to the \code{geom_label} used to display the
-label corresponding to the centrality parameter and test value.}
   }}
 
 \item{plotgrid.args}{A list of additional arguments to \code{cowplot::plot_grid}.}
@@ -223,8 +206,7 @@ grouped_ggscatterstats(
   type = "robust",
   label.var = manufacturer,
   label.expression = hwy > 25 & displ > 2.5,
-  ggplot.component = ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis()),
-  messages = FALSE
+  ggplot.component = ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis())
 )
 
 # labeling without expression

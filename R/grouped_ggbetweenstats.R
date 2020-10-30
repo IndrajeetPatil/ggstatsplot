@@ -23,7 +23,6 @@
 #'  \code{\link{grouped_ggwithinstats}}
 #'
 #' @inherit ggbetweenstats return references
-#' @inherit ggbetweenstats return details
 #'
 #' @examples
 #' \donttest{
@@ -53,8 +52,7 @@
 #'   ggplot.component = ggplot2::scale_y_continuous(
 #'     breaks = seq(1, 9, 1),
 #'     limits = (c(1, 9))
-#'   ),
-#'   messages = FALSE
+#'   )
 #' )
 #' }
 #' @export

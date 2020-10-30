@@ -29,7 +29,6 @@ ggcorrmat(
   title = NULL,
   subtitle = NULL,
   caption = NULL,
-  messages = TRUE,
   ...
 )
 }
@@ -131,9 +130,6 @@ as a function.}
 \code{results.subtitle = FALSE}.}
 
 \item{caption}{The text for the plot caption.}
-
-\item{messages}{Decides whether messages references, notes, and warnings are
-to be displayed (Default: \code{TRUE}).}
 
 \item{...}{Currently ignored.}
 }

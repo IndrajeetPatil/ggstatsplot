@@ -18,7 +18,6 @@
 #' \code{\link{grouped_ggbetweenstats}}
 #'
 #' @inherit ggwithinstats return references
-#' @inherit ggwithinstats return details
 #'
 #' @examples
 #' \donttest{
@@ -35,8 +34,7 @@
 #'   ggplot.component = ggplot2::scale_y_continuous(
 #'     breaks = seq(0, 1, 0.1),
 #'     limits = c(0, 1)
-#'   ),
-#'   messages = TRUE
+#'   )
 #' )
 #' }
 #' @export

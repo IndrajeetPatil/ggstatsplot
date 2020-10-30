@@ -450,8 +450,7 @@ ggstatsplot::ggscatterstats(
   y = awake,
   xlab = "REM sleep (in hours)",
   ylab = "Amount of time spent awake (in hours)",
-  title = "Understanding mammalian sleep",
-  messages = FALSE
+  title = "Understanding mammalian sleep"
 )
 ```
 
@@ -485,9 +484,7 @@ ggstatsplot::ggscatterstats(
   ggstatsplot.layer = FALSE, # turn off `ggstatsplot` theme layer
   marginal.type = "density", # type of marginal distribution to be displayed
   xfill = "pink", # color fill for x-axis marginal distribution
-  yfill = "#009E73", # color fill for y-axis marginal distribution
-  centrality.parameter = "median", # central tendency lines to be displayed
-  messages = FALSE # turn off messages and notes
+  yfill = "#009E73" # color fill for y-axis marginal distribution
 )
 ```
 
@@ -1177,6 +1174,12 @@ a few other miscellaneous functions.
 
 For more exhaustive documentation for this package, see:
 <https://indrajeetpatil.github.io/ipmisc/>
+
+# Extensions
+
+In case you use the GUI software [`jamovi`](https://www.jamovi.org/), you can
+install a module called [`jjstatsplot`](https://github.com/sbalci/jjstatsplot),
+which is a wrapper around `ggstatsplot`.
 
 # Acknowledgments
 

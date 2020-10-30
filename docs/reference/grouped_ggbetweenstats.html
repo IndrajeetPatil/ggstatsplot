@@ -91,7 +91,7 @@ grouping variable." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.1.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.5.9000</span>
       </span>
     </div>
 
@@ -435,18 +435,6 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>For parametric tests, Welch's ANOVA/<em>t</em>-test are used as a default (i.e.,
-<code>var.equal = FALSE</code>).</p>
-<p>If robust tests are selected, following tests are used is .</p><ul>
-<li><p>ANOVA: one-way ANOVA on trimmed means (see <code><a href='https://rdrr.io/pkg/WRS2/man/t1way.html'>?WRS2::t1way</a></code>)</p></li>
-<li><p><em>t</em>-test: Yuen's test for trimmed means (see <code><a href='https://rdrr.io/pkg/WRS2/man/yuen.html'>?WRS2::yuen</a></code>)</p></li>
-</ul>
-
-<p>For more about how the effect size measures (for nonparametric tests) and
-their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/wilcoxonR.html'>?rcompanion::wilcoxonR</a></code>.</p>
-<p>For repeated measures designs, use <code>ggwithinstats</code>.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p><a href='https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html'>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html</a></p>
@@ -483,8 +471,7 @@ their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/
   ggplot.component <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span><span class='op'>(</span>
     breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>9</span>, <span class='fl'>1</span><span class='op'>)</span>,
     limits <span class='op'>=</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>9</span><span class='op'>)</span><span class='op'>)</span>
-  <span class='op'>)</span>,
-  messages <span class='op'>=</span> <span class='cn'>FALSE</span>
+  <span class='op'>)</span>
 <span class='op'>)</span>
 </div><div class='img'><img src='grouped_ggbetweenstats-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>

@@ -206,12 +206,6 @@ provided to \code{title}, \code{caption} and \code{sub}, resp.}
 A combined plot of comparison plot created for levels of a
 grouping variable.
 }
-\details{
-For more about how the effect size measures (for nonparametric tests) and
-their confidence intervals are computed, see \code{?rcompanion::wilcoxonPairedR}.
-
-For independent measures designs, use \code{ggbetweenstats}.
-}
 \examples{
 \donttest{
 # to get reproducible results from bootstrapping
@@ -227,10 +221,12 @@ ggstatsplot::grouped_ggwithinstats(
   ggplot.component = ggplot2::scale_y_continuous(
     breaks = seq(0, 1, 0.1),
     limits = c(0, 1)
-  ),
-  messages = TRUE
+  )
 )
 }
+}
+\references{
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html}
 }
 \seealso{
 \code{\link{ggwithinstats}}, \code{\link{ggbetweenstats}},

@@ -6,14 +6,12 @@
 \usage{
 grouped_ggpiestats(
   data,
-  x = NULL,
+  x,
   y = NULL,
   counts = NULL,
   grouping.var,
   title.prefix = NULL,
   output = "plot",
-  main,
-  condition = NULL,
   ...,
   plotgrid.args = list(),
   title.text = NULL,
@@ -55,14 +53,6 @@ about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
 \code{bf.message = TRUE}, otherwise this will return a \code{NULL}. For functions
 \code{ggpiestats} and \code{ggbarstats}, setting \code{output = "proptest"} will return a
 dataframe containing results from proportion tests.}
-
-\item{main}{The variable to use as the \strong{rows} in the contingency table.}
-
-\item{condition}{The variable to use as the \strong{columns} in the contingency
-table. Default is \code{NULL}. If \code{NULL}, one-sample proportion test (a goodness
-of fit test) will be run for the \code{x} variable. Otherwise an appropriate
-association test will be run. This argument can not be \code{NULL} for
-\code{ggbarstats} function.}
 
 \item{...}{
   Arguments passed on to \code{\link[=ggpiestats]{ggpiestats}}
@@ -151,19 +141,6 @@ Can be a plotmath expression.}
 \item{sub.args}{A list of additional arguments
 provided to \code{title}, \code{caption} and \code{sub}, resp.}
 }
-\value{
-Unlike a number of statistical softwares, \code{ggstatsplot} doesn't
-provide the option for Yates' correction for the Pearson's chi-squared
-statistic. This is due to compelling amount of Monte-Carlo simulation
-research which suggests that the Yates' correction is overly conservative,
-even in small sample sizes. As such it is recommended that it should not
-ever be applied in practice (Camilli & Hopkins, 1978, 1979; Feinberg, 1980;
-Larntz, 1978; Thompson, 1988).
-
-For more about how the effect size measures and their confidence intervals
-are computed, see \code{?rcompanion::cohenG}, \code{?rcompanion::cramerV}, and
-\code{?rcompanion::cramerVFit}.
-}
 \description{
 Helper function for \code{ggstatsplot::ggpiestats} to apply this
 function across multiple levels of a given factor and combining the
@@ -193,11 +170,9 @@ ggstatsplot::grouped_ggpiestats(
   x = color,
   y = clarity,
   grouping.var = cut,
-  nboot = 20,
   sampling.plan = "poisson",
   title.prefix = "Quality",
   slice.label = "both",
-  messages = FALSE,
   perc.k = 1,
   plotgrid.args = list(nrow = 3)
 )

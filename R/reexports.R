@@ -1,13 +1,4 @@
-
 # ----------------------- ipmisc -----------------------------------
-
-#' @export
-#' @importFrom ipmisc specify_decimal_p
-ipmisc::specify_decimal_p
-
-#' @export
-#' @importFrom ipmisc signif_column
-ipmisc::signif_column
 
 #' @export
 #' @importFrom ipmisc set_cwd
@@ -30,7 +21,6 @@ ipmisc::`%$%`
 #' @export
 #' @importFrom ipmisc "%<-%"
 ipmisc::`%<-%`
-
 
 #' @export
 #' @importFrom ipmisc "%||%"

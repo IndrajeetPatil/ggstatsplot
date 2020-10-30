@@ -92,7 +92,7 @@ details included in the plot as a subtitle." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.1.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.5.9000</span>
       </span>
     </div>
 
@@ -525,15 +525,13 @@ dataframe containing results from proportion tests.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>For more about how the effect size measures (for nonparametric tests) and
-their confidence intervals are computed, see <code><a href='https://rdrr.io/pkg/rcompanion/man/wilcoxonPairedR.html'>?rcompanion::wilcoxonPairedR</a></code>.</p>
-<p>For independent measures designs, use <code>ggbetweenstats</code>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p><strong>Important</strong>: Please note that the function expects that the data is
 already sorted by subject/repeated measures ID.</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p><a href='https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html'>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='grouped_ggbetweenstats.html'>grouped_ggbetweenstats</a></code>, <code><a href='ggbetweenstats.html'>ggbetweenstats</a></code>,
@@ -562,12 +560,11 @@ already sorted by subject/repeated measures ID.</p>
   x <span class='op'>=</span> <span class='va'>Wine</span>,
   y <span class='op'>=</span> <span class='va'>Taste</span>,
   type <span class='op'>=</span> <span class='st'>"np"</span>,
-  conf.level <span class='op'>=</span> <span class='fl'>0.99</span>,
   pairwise.comparisons <span class='op'>=</span> <span class='cn'>TRUE</span>,
   outlier.tagging <span class='op'>=</span> <span class='cn'>TRUE</span>,
   outlier.label <span class='op'>=</span> <span class='va'>Taster</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: extreme order statistics used as endpoints</span></div><div class='img'><img src='ggwithinstats-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
+</div><div class='img'><img src='ggwithinstats-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

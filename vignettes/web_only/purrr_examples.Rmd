@@ -313,9 +313,7 @@ plot_list <-
         "rating > 8 & budget < 10"
       ),
       type = list("r", "np", "bf"),
-      nboot = 25,
       marginal.type = list("boxplot", "density", "violin"),
-      centrality.parameter = list("mean", "median", "mean"),
       xfill = list("#009E73", "#999999", "#0072B2"),
       yfill = list("#CC79A7", "#F0E442", "#D55E00"),
       ggtheme = list(
@@ -369,12 +367,6 @@ plot_list <-
     .l = list(
       data = cut_list,
       cor.vars = list(c("carat", "depth", "table", "price")),
-      cor.vars.names = list(c(
-        "carat",
-        "total depth",
-        "table",
-        "price"
-      )),
       corr.method = list("pearson", "np", "robust", "robust"),
       title = list("Cut: Good", "Cut: Very Good", "Cut: Premium", "Cut: Ideal"),
       # note that we are changing both p-value adjustment method *and*

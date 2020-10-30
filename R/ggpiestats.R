@@ -3,8 +3,8 @@
 #' @description Pie charts for categorical data with statistical details
 #'   included in the plot as a subtitle.
 #'
-#' @param x,main The variable to use as the **rows** in the contingency table.
-#' @param y,condition The variable to use as the **columns** in the contingency
+#' @param x The variable to use as the **rows** in the contingency table.
+#' @param y The variable to use as the **columns** in the contingency
 #'   table. Default is `NULL`. If `NULL`, one-sample proportion test (a goodness
 #'   of fit test) will be run for the `x` variable. Otherwise an appropriate
 #'   association test will be run. This argument can not be `NULL` for
@@ -43,18 +43,6 @@
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
 #'
-#' @return Unlike a number of statistical softwares, `ggstatsplot` doesn't
-#'   provide the option for Yates' correction for the Pearson's chi-squared
-#'   statistic. This is due to compelling amount of Monte-Carlo simulation
-#'   research which suggests that the Yates' correction is overly conservative,
-#'   even in small sample sizes. As such it is recommended that it should not
-#'   ever be applied in practice (Camilli & Hopkins, 1978, 1979; Feinberg, 1980;
-#'   Larntz, 1978; Thompson, 1988).
-#'
-#'   For more about how the effect size measures and their confidence intervals
-#'   are computed, see `?rcompanion::cohenG`, `?rcompanion::cramerV`, and
-#'   `?rcompanion::cramerVFit`.
-#'
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
@@ -73,7 +61,7 @@
 
 # defining the function
 ggpiestats <- function(data,
-                       x = NULL,
+                       x,
                        y = NULL,
                        counts = NULL,
                        ratio = NULL,
@@ -100,17 +88,11 @@ ggpiestats <- function(data,
                        palette = "Dark2",
                        ggplot.component = NULL,
                        output = "plot",
-                       main,
-                       condition = NULL,
                        ...) {
 
   # ensure the variables work quoted or unquoted
-  main <- rlang::ensym(main)
-  condition <- if (!rlang::quo_is_null(rlang::enquo(condition))) rlang::ensym(condition)
-  x <- if (!rlang::quo_is_null(rlang::enquo(x))) rlang::ensym(x)
+  x <- rlang::ensym(x)
   y <- if (!rlang::quo_is_null(rlang::enquo(y))) rlang::ensym(y)
-  x <- x %||% main
-  y <- y %||% condition
   counts <- if (!rlang::quo_is_null(rlang::enquo(counts))) rlang::ensym(counts)
 
   # saving the column label for the 'x' variables

@@ -10,6 +10,7 @@
 #' @importFrom dplyr select group_by matches mutate rowwise group_modify arrange ungroup
 #' @importFrom rlang !! enquo ensym :=
 #' @importFrom tidyr drop_na
+#' @importFrom ipmisc specify_decimal_p signif_column
 #'
 #' @examples
 #' ggstatsplot:::mean_labeller(

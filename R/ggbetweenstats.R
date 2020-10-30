@@ -118,21 +118,6 @@
 #' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggwithinstats}},
 #'  \code{\link{grouped_ggwithinstats}}
 #'
-#' @details
-#' For parametric tests, Welch's ANOVA/*t*-test are used as a default (i.e.,
-#' `var.equal = FALSE`).
-#'
-#'  If robust tests are selected, following tests are used is .
-#' \itemize{
-#'  \item ANOVA: one-way ANOVA on trimmed means (see `?WRS2::t1way`)
-#'  \item *t*-test: Yuen's test for trimmed means (see `?WRS2::yuen`)
-#'  }
-#'
-#'  For more about how the effect size measures (for nonparametric tests) and
-#'  their confidence intervals are computed, see `?rcompanion::wilcoxonR`.
-#'
-#'  For repeated measures designs, use `ggwithinstats`.
-#'
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}
 #'

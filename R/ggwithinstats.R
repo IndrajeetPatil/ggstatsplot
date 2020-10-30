@@ -29,12 +29,8 @@
 #' @importFrom ipmisc outlier_df
 #' @importFrom dplyr select mutate row_number group_by ungroup anti_join
 #'
-#' @details
-#'
-#'  For more about how the effect size measures (for nonparametric tests) and
-#'  their confidence intervals are computed, see `?rcompanion::wilcoxonPairedR`.
-#'
-#'  For independent measures designs, use `ggbetweenstats`.
+#' @references
+#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html}
 #'
 #' @examples
 #' \donttest{
@@ -59,7 +55,6 @@
 #'   x = Wine,
 #'   y = Taste,
 #'   type = "np",
-#'   conf.level = 0.99,
 #'   pairwise.comparisons = TRUE,
 #'   outlier.tagging = TRUE,
 #'   outlier.label = Taster

@@ -45,8 +45,6 @@
 #'   any of the following arguments since they are already internally being used
 #'   by `ggstatsplot`: `corr`, `method`, `p.mat`, `sig.level`, `ggtheme`,
 #'   `colors`, `matrix.type`, `lab`, `pch`, `legend.title`, `digits`.
-#' @param messages Decides whether messages references, notes, and warnings are
-#'   to be displayed (Default: `TRUE`).
 #' @inheritParams statsExpressions::expr_corr_test
 #' @inheritParams ggbetweenstats
 #' @inheritParams theme_ggstatsplot
@@ -122,7 +120,6 @@ ggcorrmat <- function(data,
                       title = NULL,
                       subtitle = NULL,
                       caption = NULL,
-                      messages = TRUE,
                       ...) {
 
   # ======================= dataframe ========================================
@@ -175,9 +172,6 @@ ggcorrmat <- function(data,
       "bayes" = "Pearson"
     )
 
-  # compute confidence intervals only when requested by the user
-  bayesian <- ifelse(stats_type == "bayes", yes = TRUE, no = FALSE)
-
   # ===================== statistics ========================================
 
   # creating a dataframe of results
@@ -187,7 +181,7 @@ ggcorrmat <- function(data,
       method = corr.method,
       p_adjust = p.adjust.method,
       ci = conf.level,
-      bayesian = bayesian,
+      bayesian = ifelse(stats_type == "bayes", yes = TRUE, no = FALSE),
       bayesian_prior = bf.prior,
       bayesian_test = c("pd", "rope", "bf"),
       beta = beta

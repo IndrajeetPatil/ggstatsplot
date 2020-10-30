@@ -1,4 +1,3 @@
-
 # grouped_list works -----------------------------------------------------
 
 testthat::test_that(
@@ -22,5 +21,23 @@ testthat::test_that(
     testthat::expect_identical(class(df1), "list")
     testthat::expect_identical(df1$carni, df5$carni)
     testthat::expect_identical(ggplot2::msleep, df6)
+  }
+)
+
+
+# palette_message is working ------------------------------------
+
+testthat::test_that(
+  desc = "palette_message is working",
+  code = {
+    testthat::expect_output(
+      ggstatsplot:::palette_message(
+        package = "RColorBrewer",
+        palette = "Dark2",
+        min_length = 20
+      ),
+      "Number of labels",
+      fixed = TRUE
+    )
   }
 )

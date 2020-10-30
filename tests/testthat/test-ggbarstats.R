@@ -308,8 +308,8 @@ testthat::test_that(
     p <-
       ggstatsplot::ggbarstats(
         data = mtcars_small,
-        main = cyl,
-        condition = am
+        x = cyl,
+        y = am
       )
 
     pb <- ggplot2::ggplot_build(p)

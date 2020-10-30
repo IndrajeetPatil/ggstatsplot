@@ -83,8 +83,7 @@ testthat::test_that(
           lab_col = "white",
           pch.col = "white",
           pch.cex = 14
-        ),
-        messages = TRUE
+        )
       )
 
     # checking legend title
@@ -214,8 +213,7 @@ testthat::test_that(
         type = "r",
         sig.level = 0.01,
         p.adjust.method = "hommel",
-        matrix.type = "upper",
-        messages = FALSE
+        matrix.type = "upper"
       ) +
       labs(caption = NULL)
 
@@ -314,7 +312,6 @@ testthat::test_that(
         sig.level = 0.01,
         p.adjust.method = "hommel",
         caption.default = FALSE,
-        messages = FALSE,
         colors = NULL,
         package = "wesanderson",
         palette = "Rushmore1"
