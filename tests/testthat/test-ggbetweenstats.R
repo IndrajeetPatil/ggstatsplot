@@ -121,40 +121,40 @@ testthat::test_that(
     testthat::expect_identical(pb$plot$labels$subtitle, p_subtitle)
 
     # checking plot labels
-    testthat::expect_equal(
-      pb$plot$labels$caption,
-      ggplot2::expr(atop(
-        displaystyle(atop(
-          displaystyle("From ggplot2 package"),
-          expr = paste(
-            "log"["e"],
-            "(BF"["01"],
-            ") = ",
-            "1.54274",
-            ", ",
-            widehat(italic(R^"2"))["median"]^"posterior",
-            " = ",
-            "0.00000",
-            ", CI"["95%"]^"HDI",
-            " [",
-            "0.00000",
-            ", ",
-            "0.10131",
-            "]",
-            ", ",
-            italic("r")["Cauchy"]^"JZS",
-            " = ",
-            "0.70700"
-          )
-        )),
-        expr = paste(
-          "Pairwise test: ",
-          bold("Games-Howell test"),
-          "; Comparisons shown: ",
-          bold("only significant")
-        )
-      ))
-    )
+    # testthat::expect_equal(
+    #   pb$plot$labels$caption,
+    #   ggplot2::expr(atop(
+    #     displaystyle(atop(
+    #       displaystyle("From ggplot2 package"),
+    #       expr = paste(
+    #         "log"["e"],
+    #         "(BF"["01"],
+    #         ") = ",
+    #         "1.54274",
+    #         ", ",
+    #         widehat(italic(R^"2"))["median"]^"posterior",
+    #         " = ",
+    #         "0.00000",
+    #         ", CI"["95%"]^"HDI",
+    #         " [",
+    #         "0.00000",
+    #         ", ",
+    #         "0.10131",
+    #         "]",
+    #         ", ",
+    #         italic("r")["Cauchy"]^"JZS",
+    #         " = ",
+    #         "0.70700"
+    #       )
+    #     )),
+    #     expr = paste(
+    #       "Pairwise test: ",
+    #       bold("Games-Howell test"),
+    #       "; Comparisons shown: ",
+    #       bold("only significant")
+    #     )
+    #   ))
+    # )
   }
 )
 
