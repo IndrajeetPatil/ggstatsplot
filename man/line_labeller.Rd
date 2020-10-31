@@ -8,10 +8,9 @@ line_labeller(
   plot,
   x,
   y,
-  k = 2,
+  k = 2L,
   label.text,
   label.args = list(),
-  line.direction = "vline",
   jitter = 0.25,
   ...
 )
@@ -28,10 +27,6 @@ line_labeller(
 
 \item{label.args}{A list of additional aesthetic arguments to be
 passed to \code{geom_label}.}
-
-\item{line.direction}{Character that specifies whether the line on which
-label is to be attached is vertical (\code{"vline"}, default) or horizontal
-(\code{"hline"}) line.}
 
 \item{jitter}{Numeric that specifies how much the label should be jittered in
 the vertical direction (default:  \code{0.25}). The sign will determine the

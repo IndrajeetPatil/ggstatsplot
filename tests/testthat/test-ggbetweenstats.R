@@ -192,8 +192,6 @@ testthat::test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # checking dimensions of data for `geom_point`
-    # since there are outliers, there should be 3 less no. of points than sample
-    # size (which is 32L here)
     testthat::expect_equal(dim(pb$data[[1]]), c(29L, 13L))
 
     # checking displayed mean labels

@@ -154,6 +154,7 @@ Pie charts for categorical data with statistical details
 included in the plot as a subtitle.
 }
 \examples{
+\donttest{
 # for reproducibility
 set.seed(123)
 
@@ -164,9 +165,9 @@ ggstatsplot::ggpiestats(ggplot2::msleep, vore)
 ggstatsplot::ggpiestats(
   data = mtcars,
   x = vs,
-  y = cyl,
-  legend.title = "Engine"
+  y = cyl
 )
+}
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}

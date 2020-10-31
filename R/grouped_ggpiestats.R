@@ -21,10 +21,12 @@
 #'
 #' @examples
 #' # grouped one-sample proportion test
+#' # let's skip statistical analysis
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = mtcars,
 #'   grouping.var = am,
-#'   x = cyl
+#'   x = cyl,
+#'   results.subtitle = FALSE
 #' )
 #' @export
 

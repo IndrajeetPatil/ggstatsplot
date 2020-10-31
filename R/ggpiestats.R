@@ -44,6 +44,7 @@
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
 #'
 #' @examples
+#' \donttest{
 #' # for reproducibility
 #' set.seed(123)
 #'
@@ -54,9 +55,9 @@
 #' ggstatsplot::ggpiestats(
 #'   data = mtcars,
 #'   x = vs,
-#'   y = cyl,
-#'   legend.title = "Engine"
+#'   y = cyl
 #' )
+#' }
 #' @export
 
 # defining the function

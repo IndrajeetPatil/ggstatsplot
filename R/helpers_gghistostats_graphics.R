@@ -119,19 +119,15 @@ histo_labeller <- function(plot,
     )
 
   # adding a text label with mean value
-  plot <-
-    line_labeller(
-      plot = plot,
-      x = x.intercept,
-      y = y.label.position,
-      label.text = label.text,
-      k = centrality.k,
-      jitter = 0.25,
-      label.args = centrality.label.args
-    )
-
-  # return the plot with labels
-  return(plot)
+  line_labeller(
+    plot = plot,
+    x = x.intercept,
+    y = y.label.position,
+    label.text = label.text,
+    k = centrality.k,
+    jitter = 0.25,
+    label.args = centrality.label.args
+  )
 }
 
 
@@ -147,9 +143,6 @@ histo_labeller <- function(plot,
 #' @param jitter Numeric that specifies how much the label should be jittered in
 #'   the vertical direction (default:  `0.25`). The sign will determine the
 #'   direction (upwards or downwards).
-#' @param line.direction Character that specifies whether the line on which
-#'   label is to be attached is vertical (`"vline"`, default) or horizontal
-#'   (`"hline"`) line.
 #' @inheritParams gghistostats
 #'
 #' @import ggplot2
@@ -176,22 +169,15 @@ histo_labeller <- function(plot,
 line_labeller <- function(plot,
                           x,
                           y,
-                          k = 2,
+                          k = 2L,
                           label.text,
                           label.args = list(),
-                          line.direction = "vline",
                           jitter = 0.25,
                           ...) {
   # assigning `x` and `y` values to new position variables to avoid confusion
-  if (line.direction == "vline") {
-    x_pos <- x
-    y_pos <- y * (1 + jitter)
-    label.value <- x_pos
-  } else {
-    x_pos <- x * (1 + jitter)
-    y_pos <- y
-    label.value <- y_pos
-  }
+  x_pos <- x
+  y_pos <- y * (1 + jitter)
+  label.value <- x_pos
 
   # adding label to the plot
   plot +

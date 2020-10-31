@@ -16,9 +16,7 @@ testthat::test_that(
         data = data_bugs_2,
         x = condition,
         y = desire,
-        type = "bayes",
         k = 4,
-        # mean.ci = TRUE,
         conf.level = 0.99,
         outlier.tagging = TRUE,
         outlier.label = "region",
@@ -41,7 +39,7 @@ testthat::test_that(
     # subtitle
     set.seed(123)
     p1_subtitle <-
-      statsExpressions::expr_t_bayes(
+      statsExpressions::expr_t_parametric(
         data = data_bugs_2,
         x = condition,
         y = desire,
@@ -582,8 +580,7 @@ testthat::test_that(
         x = Wine,
         y = Taste,
         results.subtitle = FALSE,
-        pairwise.comparisons = FALSE,
-        messages = FALSE,
+        pairwise.comparisons = TRUE,
         ggplot.component = ggplot2::labs(y = "Taste rating")
       )
 

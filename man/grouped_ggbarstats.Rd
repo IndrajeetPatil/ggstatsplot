@@ -161,11 +161,13 @@ diamonds_short <- ggplot2::diamonds \%>\%
   dplyr::sample_frac(tbl = ., size = 0.05)
 
 # plot
+# let's skip statistical analysis
 ggstatsplot::grouped_ggbarstats(
   data = diamonds_short,
   x = color,
   y = clarity,
   grouping.var = cut,
+  results.subtitle = FALSE,
   title.prefix = "Quality",
   bar.label = "both",
   plotgrid.args = list(nrow = 2)
