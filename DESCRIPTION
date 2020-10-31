@@ -53,8 +53,6 @@ Suggests:
     testthat,
     tibble,
     WRS2
-Remotes:
-    IndrajeetPatil/statsExpressions    
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

@@ -7,4 +7,4 @@
 
 0 errors | 0 warnings | 0 notes
 
-  - Fixes breakages happened due to `ipmisc` and `pairwiseComparisons` updates.
+  - Fixes breakages happened due to `tidyBF` and `statsExpressions` updates.
