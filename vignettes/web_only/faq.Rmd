@@ -47,6 +47,7 @@ include. For example, here only statistic and *p*-values are included:
 ```{r custom_expr}
 # setup
 set.seed(123)
+library(ggstatsplot)
 library(ggplot2)
 library(statsExpressions)
 
@@ -72,6 +73,39 @@ associated vignette.
 
 Summary table: 
 <https://indrajeetpatil.github.io/statsExpressions/articles/stats_details.html>
+
+## How can I have uniform Y-axes ranges in `grouped_` functions?
+
+```{r grouped_y_axes, fig.height=10, fig.width=8}
+# setup
+set.seed(123)
+library(ggstatsplot)
+
+combine_plots2(
+  list(
+  # with unequal Y-axes ranges
+  grouped_ggscatterstats(
+    mtcars,
+    disp,
+    hp,
+    grouping.var = am,
+    results.subtitle = FALSE,
+    title.text = "before"
+  ),
+  # with equal Y-axes ranges
+  grouped_ggscatterstats(
+    mtcars,
+    disp,
+    hp,
+    grouping.var = am,
+    results.subtitle = FALSE,
+    ggplot.component =
+      list(ggplot2::scale_y_continuous(breaks = seq(50, 350, 50), limits = (c(50, 350)))),
+    title.text = "after"
+  )),
+  plotgrid.args = list(nrow = 2)
+)
+```
 
 ## Does `ggstatsplot` work with `plotly`?
 
