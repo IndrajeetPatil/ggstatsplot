@@ -551,7 +551,7 @@ testthat::test_that(
           pairwise.comparisons = TRUE
         )
 
-      testthat::expect_is(p5, "ggplot")
+      testthat::expect_s3_class(p5, "ggplot")
 
       # checking changes made to ggsignif geom work
       testthat::expect_equal(pb1$data[[7]]$textsize[[1]], 6L)

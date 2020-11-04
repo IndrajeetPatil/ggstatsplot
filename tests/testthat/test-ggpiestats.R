@@ -200,7 +200,7 @@ testthat::test_that(
         y = am
       )
 
-    testthat::expect_is(
+    testthat::expect_s3_class(
       suppressWarnings(ggstatsplot::ggpiestats(
         data = mtcars_small,
         y = cyl,
@@ -269,7 +269,7 @@ testthat::test_that(
     testthat::expect_null(pb$plot$labels$x, NULL)
     testthat::expect_null(pb$plot$labels$y, NULL)
     testthat::expect_identical(pb$plot$guides$fill$title[1], "transmission")
-    testthat::expect_is(pb1$plot$labels$subtitle, "call")
+    testthat::expect_type(pb1$plot$labels$subtitle, "language")
 
     # checking labels
     testthat::expect_identical(

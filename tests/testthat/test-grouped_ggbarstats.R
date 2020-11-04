@@ -22,7 +22,7 @@ testthat::test_that(
       messages = FALSE
     ))
 
-    testthat::expect_is(
+    testthat::expect_s3_class(
       ggstatsplot::grouped_ggbarstats(
         data = mpg_short,
         x = cyl,

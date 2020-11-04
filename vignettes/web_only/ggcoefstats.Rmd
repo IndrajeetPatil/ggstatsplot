@@ -3159,7 +3159,7 @@ ggstatsplot::ggcoefstats(
 
 ## generalized additive model (`Gam`)
 
-```{r Gam, fig.height = 5, fig.width = 5, eval=FALSE}
+```{r Gam, fig.height = 5, fig.width = 5}
 # setup
 set.seed(123)
 library(gam)

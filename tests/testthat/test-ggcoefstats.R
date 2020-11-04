@@ -699,8 +699,8 @@ testthat::test_that(
     testthat::expect_equal(df2$conf.high, tidy_df2$conf.high, tolerance = 0.001)
     testthat::expect_identical(tidy_df3$conf.low[1], NA_character_)
     testthat::expect_identical(tidy_df3$conf.high[1], NA_character_)
-    testthat::expect_is(tidy_df1, "tbl_df")
-    testthat::expect_is(tidy_df2, "tbl_df")
+    testthat::expect_s3_class(tidy_df1, "tbl_df")
+    testthat::expect_s3_class(tidy_df2, "tbl_df")
   }
 )
 

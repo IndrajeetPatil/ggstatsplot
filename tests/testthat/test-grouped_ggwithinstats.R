@@ -16,7 +16,7 @@ testthat::test_that(
     )
 
     # outlier tagging is not required
-    testthat::expect_is(
+    testthat::expect_s3_class(
       ggstatsplot::grouped_ggwithinstats(
         VR_dilemma,
         x = modality,

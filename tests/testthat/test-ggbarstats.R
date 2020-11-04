@@ -558,7 +558,7 @@ testthat::test_that(
     )
 
     # should not work
-    testthat::expect_is(
+    testthat::expect_s3_class(
       suppressWarnings(ggstatsplot::ggbarstats(
         data = df,
         x = x,

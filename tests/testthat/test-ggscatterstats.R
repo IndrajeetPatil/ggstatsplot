@@ -292,7 +292,7 @@ testthat::test_that(
     )
 
     # both quoted
-    testthat::expect_is(p, "gg")
+    testthat::expect_s3_class(p, "gg")
   }
 )
 
@@ -419,7 +419,7 @@ testthat::test_that(
 
     # checking subtitle - lack thereof
     testthat::expect_null(pb1$plot$labels$subtitle, NULL)
-    testthat::expect_is(pb1$plot$layers[[2]]$stat_params$method, "function")
+    testthat::expect_identical(class(pb1$plot$layers[[2]]$stat_params$method), "function")
     testthat::expect_identical(
       as.character(deparse(pb1$plot$layers[[2]]$stat_params$formula)),
       "y ~ log(x)"
@@ -436,7 +436,7 @@ testthat::test_that(
       "y ~ x"
     )
     testthat::expect_null(pb3$plot$labels$subtitle, NULL)
-    testthat::expect_is(pb3$plot$layers[[2]]$stat_params$method, "function")
+    testthat::expect_identical(class(pb3$plot$layers[[2]]$stat_params$method), "function")
   }
 )
 
