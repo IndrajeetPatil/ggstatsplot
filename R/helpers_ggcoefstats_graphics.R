@@ -132,24 +132,13 @@ ggcoefstats_label_maker <- function(tidy_df,
 }
 
 
-#' @title Confidence intervals for (partial) eta-squared and omega-squared for
-#'   linear models.
+#' @title Tidying anova-like objects
 #' @name lm_effsize_standardizer
-#' @description This function will convert a linear model object to a dataframe
-#'   containing statistical details for all effects along with effect size
-#'   measure and its confidence interval. For more details, see
-#'   `effectsize::eta_squared` and `effectsize::omega_squared`.
-#' @return A dataframe with results from `stats::lm()` with partial eta-squared,
-#'   omega-squared, and bootstrapped confidence interval for the same.
 #'
-#' @param object The linear model object (can be of class `lm`, `aov`, `anova`, or
-#'   `aovlist`).
+#' @param object The object of the following class: `aov`, `aovlist`, `anova`,
+#'   `Gam`, `manova`, `maov`.
 #' @param effsize Character describing the effect size to be displayed: `"eta"`
 #'   (default) or `"omega"`.
-#' @param partial Logical that decides if partial eta-squared or omega-squared
-#'   are returned (Default: `TRUE`). If `FALSE`, eta-squared or omega-squared
-#'   will be returned. Valid only for objects of class `lm`, `aov`, `anova`, or
-#'   `aovlist`.
 #' @param conf.level Numeric specifying Level of confidence for the confidence
 #'   interval (Default: `0.95`).
 #' @param ... Ignored.
@@ -158,7 +147,7 @@ ggcoefstats_label_maker <- function(tidy_df,
 #' @importFrom broomExtra tidy_parameters
 #' @importFrom insight standardize_names
 #' @importFrom rlang exec
-#' @importFrom dplyr matches
+#' @importFrom dplyr filter right_join rename
 #'
 #' @examples
 #' # for reproducibility
@@ -178,7 +167,6 @@ ggcoefstats_label_maker <- function(tidy_df,
 # defining the function body
 lm_effsize_standardizer <- function(object,
                                     effsize = "eta",
-                                    partial = TRUE,
                                     conf.level = 0.95,
                                     ...) {
   # stats details
@@ -186,8 +174,6 @@ lm_effsize_standardizer <- function(object,
 
   # creating numerator and denominator degrees of freedom
   if (dim(dplyr::filter(stats_df, term == "Residuals"))[[1]] > 0L) {
-    # create a new column for residual degrees of freedom
-    # always going to be the last column
     stats_df$df2 <- stats_df$df[nrow(stats_df)]
   }
 
@@ -203,7 +189,7 @@ lm_effsize_standardizer <- function(object,
     rlang::exec(
       .fn = .f,
       model = object,
-      partial = partial,
+      partial = TRUE,
       ci = conf.level
     ) %>%
     insight::standardize_names(data = ., style = "broom")

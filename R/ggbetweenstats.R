@@ -419,6 +419,7 @@ ggbetweenstats <- function(data,
         y = {{ y }},
         mean.ci = mean.ci,
         k = k,
+        inherit.aes = TRUE,
         sample.size.label = sample.size.label,
         mean.point.args = mean.point.args,
         mean.label.args = mean.label.args

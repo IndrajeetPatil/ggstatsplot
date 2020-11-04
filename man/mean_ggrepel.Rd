@@ -11,6 +11,7 @@ mean_ggrepel(
   y,
   mean.ci = FALSE,
   k = 3L,
+  inherit.aes = TRUE,
   sample.size.label = TRUE,
   mean.path = FALSE,
   mean.path.args = list(color = "red", size = 1, alpha = 0.5),
@@ -35,6 +36,11 @@ mean is to be displayed (Default: \code{FALSE}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2L}).}
+
+\item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
+rather than combining with them. This is most useful for helper functions
+that define both data and aesthetics and shouldn't inherit behaviour from
+the default plot specification, e.g. \code{\link[ggplot2]{borders}}.}
 
 \item{sample.size.label}{Logical that decides whether sample size information
 should be displayed for each level of the grouping variable \code{x} (Default:

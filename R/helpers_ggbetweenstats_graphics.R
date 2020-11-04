@@ -41,14 +41,13 @@ mean_ggrepel <- function(plot,
                          y,
                          mean.ci = FALSE,
                          k = 3L,
+                         inherit.aes = TRUE,
                          sample.size.label = TRUE,
                          mean.path = FALSE,
                          mean.path.args = list(color = "red", size = 1, alpha = 0.5),
                          mean.point.args = list(size = 5, color = "darkred"),
                          mean.label.args = list(size = 3),
                          ...) {
-  # are the means to be connected?
-  inherit.aes <- !mean.path
 
   # ------------------------ dataframe -------------------------------------
 

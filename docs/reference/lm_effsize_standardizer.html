@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Confidence intervals for (partial) eta-squared and omega-squared for
-linear models. — lm_effsize_standardizer • ggstatsplot</title>
+<title>Tidying anova-like objects — lm_effsize_standardizer • ggstatsplot</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -55,12 +54,8 @@ linear models. — lm_effsize_standardizer • ggstatsplot</title>
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Confidence intervals for (partial) eta-squared and omega-squared for
-linear models. — lm_effsize_standardizer" />
-<meta property="og:description" content="This function will convert a linear model object to a dataframe
-containing statistical details for all effects along with effect size
-measure and its confidence interval. For more details, see
-effectsize::eta_squared and effectsize::omega_squared." />
+<meta property="og:title" content="Tidying anova-like objects — lm_effsize_standardizer" />
+<meta property="og:description" content="Tidying anova-like objects" />
 <meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/logo.png" />
 
 
@@ -93,19 +88,13 @@ effectsize::eta_squared and effectsize::omega_squared." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.1.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.5.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -198,46 +187,29 @@ effectsize::eta_squared and effectsize::omega_squared." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Confidence intervals for (partial) eta-squared and omega-squared for
-linear models.</h1>
+    <h1>Tidying anova-like objects</h1>
     <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggcoefstats_graphics.R'><code>R/helpers_ggcoefstats_graphics.R</code></a></small>
     <div class="hidden name"><code>lm_effsize_standardizer.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function will convert a linear model object to a dataframe
-containing statistical details for all effects along with effect size
-measure and its confidence interval. For more details, see
-<code><a href='https://easystats.github.io/effectsize/reference/eta_squared.html'>effectsize::eta_squared</a></code> and <code><a href='https://easystats.github.io/effectsize/reference/eta_squared.html'>effectsize::omega_squared</a></code>.</p>
+    <p>Tidying anova-like objects</p>
     </div>
 
-    <pre class="usage"><span class='fu'>lm_effsize_standardizer</span><span class='op'>(</span>
-  <span class='va'>object</span>,
-  effsize <span class='op'>=</span> <span class='st'>"eta"</span>,
-  partial <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  conf.level <span class='op'>=</span> <span class='fl'>0.95</span>,
-  <span class='va'>...</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>lm_effsize_standardizer</span><span class='op'>(</span><span class='va'>object</span>, effsize <span class='op'>=</span> <span class='st'>"eta"</span>, conf.level <span class='op'>=</span> <span class='fl'>0.95</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>object</th>
-      <td><p>The linear model object (can be of class <code>lm</code>, <code>aov</code>, <code>anova</code>, or
-<code>aovlist</code>).</p></td>
+      <td><p>The object of the following class: <code>aov</code>, <code>aovlist</code>, <code>anova</code>,
+<code>Gam</code>, <code>manova</code>, <code>maov</code>.</p></td>
     </tr>
     <tr>
       <th>effsize</th>
       <td><p>Character describing the effect size to be displayed: <code>"eta"</code>
 (default) or <code>"omega"</code>.</p></td>
-    </tr>
-    <tr>
-      <th>partial</th>
-      <td><p>Logical that decides if partial eta-squared or omega-squared
-are returned (Default: <code>TRUE</code>). If <code>FALSE</code>, eta-squared or omega-squared
-will be returned. Valid only for objects of class <code>lm</code>, <code>aov</code>, <code>anova</code>, or
-<code>aovlist</code>.</p></td>
     </tr>
     <tr>
       <th>conf.level</th>
@@ -250,10 +222,6 @@ interval (Default: <code>0.95</code>).</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A dataframe with results from <code><a href='https://rdrr.io/r/stats/lm.html'>stats::lm()</a></code> with partial eta-squared,
-omega-squared, and bootstrapped confidence interval for the same.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># for reproducibility</span>
@@ -292,7 +260,7 @@ omega-squared, and bootstrapped confidence interval for the same.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

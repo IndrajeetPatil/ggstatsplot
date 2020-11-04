@@ -2,43 +2,24 @@
 % Please edit documentation in R/helpers_ggcoefstats_graphics.R
 \name{lm_effsize_standardizer}
 \alias{lm_effsize_standardizer}
-\title{Confidence intervals for (partial) eta-squared and omega-squared for
-linear models.}
+\title{Tidying anova-like objects}
 \usage{
-lm_effsize_standardizer(
-  object,
-  effsize = "eta",
-  partial = TRUE,
-  conf.level = 0.95,
-  ...
-)
+lm_effsize_standardizer(object, effsize = "eta", conf.level = 0.95, ...)
 }
 \arguments{
-\item{object}{The linear model object (can be of class \code{lm}, \code{aov}, \code{anova}, or
-\code{aovlist}).}
+\item{object}{The object of the following class: \code{aov}, \code{aovlist}, \code{anova},
+\code{Gam}, \code{manova}, \code{maov}.}
 
 \item{effsize}{Character describing the effect size to be displayed: \code{"eta"}
 (default) or \code{"omega"}.}
-
-\item{partial}{Logical that decides if partial eta-squared or omega-squared
-are returned (Default: \code{TRUE}). If \code{FALSE}, eta-squared or omega-squared
-will be returned. Valid only for objects of class \code{lm}, \code{aov}, \code{anova}, or
-\code{aovlist}.}
 
 \item{conf.level}{Numeric specifying Level of confidence for the confidence
 interval (Default: \code{0.95}).}
 
 \item{...}{Ignored.}
 }
-\value{
-A dataframe with results from \code{stats::lm()} with partial eta-squared,
-omega-squared, and bootstrapped confidence interval for the same.
-}
 \description{
-This function will convert a linear model object to a dataframe
-containing statistical details for all effects along with effect size
-measure and its confidence interval. For more details, see
-\code{effectsize::eta_squared} and \code{effectsize::omega_squared}.
+Tidying anova-like objects
 }
 \examples{
 # for reproducibility

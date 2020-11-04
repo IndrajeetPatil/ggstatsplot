@@ -1,7 +1,7 @@
 ---
 title: "ggstatsplot: ggplot2 Based Plots with Statistical Details"
 author: Indrajeet Patil^[Max Planck Institute for Human Development, patilindrajeet.science@gmail.com]
-date: "2020-10-29"
+date: "2020-11-04"
 output: 
   bookdown::pdf_document2:
     fig_caption: true
@@ -464,15 +464,19 @@ APA guidelines [@associationPublicationManualAmerican2009] are followed by
 default while reporting statistical details:
 
   - Percentages are displayed with no decimal places (Figure \@ref(fig:fig2)).
+  
   - Correlations, *t*-tests, and $\chi^2$-tests are reported with the degrees
     of freedom in parentheses and the significance level (Figure \@ref(fig:fig4),
     Figure \@ref(fig:fig3), Figure \@ref(fig:fig5)).
+    
   - ANOVAs are reported with two degrees of freedom and the significance level
     (Figure \@ref(fig:fig1)).
+    
   - Regression results are presented with the unstandardized or standardized
     estimate (beta), whichever was specified by the user, along with the
     statistic (depending on the model, this can be a *t*, *F*, or *z* statistic)
     and the corresponding significance level (Figure \@ref(fig:fig6)).
+    
   - With the exception of *p*-values, most statistics are rounded to two decimal
     places by default.
 

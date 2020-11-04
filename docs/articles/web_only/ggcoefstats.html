@@ -41,18 +41,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.1.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.5.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../../reference/index.html">Reference</a>
 </li>
@@ -143,14 +137,13 @@
 
       
 
-      </header><script src="ggcoefstats_files/header-attrs-2.5/header-attrs.js"></script><link href="ggcoefstats_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="ggcoefstats_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="ggcoefstats_files/header-attrs-2.5/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-10-29</h4>
+            <h4 class="date">2020-11-04</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -3393,6 +3386,7 @@
   title <span class="op">=</span> <span class="st">"generalized additive model"</span>,
   subtite <span class="op">=</span> <span class="st">"(using `gam` package)"</span>
 <span class="op">)</span></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/Gam-1.png" width="480"></p>
 </div>
 <div id="linear-mixed-effects-models-lme" class="section level2">
 <h2 class="hasAnchor">
@@ -3807,7 +3801,7 @@
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span> <span class="op">*</span> <span class="fl">20</span><span class="op">)</span>, <span class="fl">100</span>, <span class="fl">20</span><span class="op">)</span>
 <span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>
 <span class="va">fit1</span> <span class="op">&lt;-</span> <span class="fu">glmnet</span><span class="fu">::</span><span class="fu"><a href="https://glmnet.stanford.edu/reference/glmnet.html">glmnet</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>
-<span class="op">(</span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/generics/man/tidy.html">tidy</a></span><span class="op">(</span><span class="va">fit1</span><span class="op">)</span><span class="op">)</span>
+<span class="op">(</span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">fit1</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1,086 x 5</span>
 <span class="co">#&gt;    term         step estimate lambda dev.ratio</span>
 <span class="co">#&gt;    &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;</span>
@@ -4969,7 +4963,7 @@ speed =~ x7 + x8 + x9 "</span>
 <div id="other-types-of-outputs" class="section level1">
 <h1 class="hasAnchor">
 <a href="#other-types-of-outputs" class="anchor"></a>Other types of outputs</h1>
-<p>This function can also be used to extract outputs other than a plot, although it is much more preferable to use the underlying functions instead (e.g., <code><a href="https://rdrr.io/pkg/generics/man/tidy.html">broom::tidy</a></code> or <code><a href="https://easystats.github.io/parameters/reference/model_parameters.html">parameters::model_parameters</a></code>).</p>
+<p>This function can also be used to extract outputs other than a plot, although it is much more preferable to use the underlying functions instead (e.g., <code><a href="https://generics.r-lib.org/reference/tidy.html">broom::tidy</a></code> or <code><a href="https://easystats.github.io/parameters/reference/model_parameters.html">parameters::model_parameters</a></code>).</p>
 <div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -5040,7 +5034,7 @@ speed =~ x7 + x8 + x9 "</span>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

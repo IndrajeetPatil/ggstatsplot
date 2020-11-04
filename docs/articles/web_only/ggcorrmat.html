@@ -41,18 +41,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.1.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.5.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../../reference/index.html">Reference</a>
 </li>
@@ -143,14 +137,13 @@
 
       
 
-      </header><script src="ggcorrmat_files/header-attrs-2.5/header-attrs.js"></script><link href="ggcorrmat_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="ggcorrmat_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="ggcorrmat_files/header-attrs-2.5/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggcorrmat</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-10-29</h4>
+            <h4 class="date">2020-11-04</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcorrmat.Rmd"><code>vignettes/web_only/ggcorrmat.Rmd</code></a></small>
       <div class="hidden name"><code>ggcorrmat.Rmd</code></div>
@@ -326,15 +319,15 @@
 <span class="co">#&gt;    parameter1 parameter2      r ci_low ci_high      t    df        p method</span>
 <span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; </span>
 <span class="co">#&gt;  1 sales      volume      0.980  0.978   0.982 172.    1202 0.       Perce~</span>
-<span class="co">#&gt;  2 sales      median      0.469  0.423   0.512  18.3   1195 2.15e-66 Perce~</span>
+<span class="co">#&gt;  2 sales      median      0.469  0.423   0.512  18.3   1195 1.93e-66 Perce~</span>
 <span class="co">#&gt;  3 sales      listings    0.930  0.921   0.937  83.0   1083 0.       Perce~</span>
-<span class="co">#&gt;  4 sales      inventory  -0.385 -0.434  -0.333 -13.7   1080 1.94e-39 Perce~</span>
-<span class="co">#&gt;  5 volume     median      0.550  0.509   0.588  22.7   1195 2.50e-95 Perce~</span>
+<span class="co">#&gt;  4 sales      inventory  -0.385 -0.434  -0.333 -13.7   1080 1.80e-39 Perce~</span>
+<span class="co">#&gt;  5 volume     median      0.550  0.509   0.588  22.7   1195 2.15e-95 Perce~</span>
 <span class="co">#&gt;  6 volume     listings    0.898  0.886   0.909  67.1   1083 0.       Perce~</span>
-<span class="co">#&gt;  7 volume     inventory  -0.368 -0.419  -0.316 -13.0   1080 4.23e-36 Perce~</span>
-<span class="co">#&gt;  8 median     listings    0.403  0.352   0.451  14.5   1083 1.64e-43 Perce~</span>
-<span class="co">#&gt;  9 median     inventory  -0.203 -0.259  -0.145  -6.80  1080 1.74e-11 Perce~</span>
-<span class="co">#&gt; 10 listings   inventory  -0.163 -0.220  -0.104  -5.42  1080 7.35e- 8 Perce~</span>
+<span class="co">#&gt;  7 volume     inventory  -0.368 -0.419  -0.316 -13.0   1080 3.95e-36 Perce~</span>
+<span class="co">#&gt;  8 median     listings    0.403  0.352   0.451  14.5   1083 1.51e-43 Perce~</span>
+<span class="co">#&gt;  9 median     inventory  -0.203 -0.259  -0.145  -6.80  1080 1.70e-11 Perce~</span>
+<span class="co">#&gt; 10 listings   inventory  -0.163 -0.220  -0.104  -5.42  1080 7.25e- 8 Perce~</span>
 <span class="co">#&gt; # ... with 1 more variable: nobs &lt;int&gt;</span></code></pre></div>
 <p>Note that if <code>cor.vars</code> are not specified, all numeric variables will be used. Moreover, you can also use abbreviations to specify what output you want in return.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
@@ -353,12 +346,12 @@
 <span class="co">#&gt; # A tibble: 6 x 9</span>
 <span class="co">#&gt;   parameter1 parameter2     rho  ci_low   ci_high       s         p method  nobs</span>
 <span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;int&gt;</span>
-<span class="co">#&gt; 1 Sepal.Len~ Sepal.Wid~ -0.1668 -0.3185 -0.006695 656283. 4.137e- 2 Spear~   150</span>
-<span class="co">#&gt; 2 Sepal.Len~ Petal.Len~  0.8819  0.8404  0.9131    66429. 3.443e-50 Spear~   150</span>
-<span class="co">#&gt; 3 Sepal.Len~ Petal.Wid~  0.8343  0.7781  0.8773    93208. 4.189e-40 Spear~   150</span>
-<span class="co">#&gt; 4 Sepal.Wid~ Petal.Len~ -0.3096 -0.4477 -0.1572   736637. 1.154e- 4 Spear~   150</span>
-<span class="co">#&gt; 5 Sepal.Wid~ Petal.Wid~ -0.2890 -0.4294 -0.1350   725048. 3.343e- 4 Spear~   150</span>
-<span class="co">#&gt; 6 Petal.Len~ Petal.Wid~  0.9377  0.9149  0.9545    35061. 8.157e-70 Spear~   150</span></code></pre></div>
+<span class="co">#&gt; 1 Sepal.Len~ Sepal.Wid~ -0.1668 -0.3228 -0.001916 656283. 4.137e- 2 Spear~   150</span>
+<span class="co">#&gt; 2 Sepal.Len~ Petal.Len~  0.8819  0.8390  0.9139    66429. 3.443e-50 Spear~   150</span>
+<span class="co">#&gt; 3 Sepal.Len~ Petal.Wid~  0.8343  0.7762  0.8784    93208. 4.189e-40 Spear~   150</span>
+<span class="co">#&gt; 4 Sepal.Wid~ Petal.Len~ -0.3096 -0.4515 -0.1525   736637. 1.154e- 4 Spear~   150</span>
+<span class="co">#&gt; 5 Sepal.Wid~ Petal.Wid~ -0.2890 -0.4333 -0.1303   725048. 3.343e- 4 Spear~   150</span>
+<span class="co">#&gt; 6 Petal.Len~ Petal.Wid~  0.9377  0.9141  0.9549    35061. 8.157e-70 Spear~   150</span></code></pre></div>
 </div>
 <div id="grouped-analysis-with-grouped_ggcorrmat" class="section level2">
 <h2 class="hasAnchor">
@@ -508,7 +501,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

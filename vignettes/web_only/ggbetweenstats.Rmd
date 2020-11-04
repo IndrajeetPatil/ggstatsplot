@@ -353,7 +353,7 @@ Type | No. of groups | Effect size | CI? | Function
 Parametric | > 2 | $\eta_{p}^2$, $\omega_{p}^2$ | <font color="green">Yes<font> | `effectsize::omega_squared`, `effectsize::eta_squared`
 Non-parametric | > 2 | $\eta_{H}^2$ (*H*-statistic based eta-squared) | <font color="green">Yes<font> | `rcompanion::epsilonSquared`
 Robust | > 2 | $\xi$ (Explanatory measure of effect size) | <font color="green">Yes<font> | `WRS2::t1way`
-Bayes Factor | > 2 | $\R_{posterior}^2$ | <font color="green">Yes<font> | `performance::r2_bayes`
+Bayes Factor | > 2 | $R_{posterior}^2$ | <font color="green">Yes<font> | `performance::r2_bayes`
 Parametric | 2 | Cohen's *d*, Hedge's *g* | <font color="green">Yes<font> | `effectsize::cohens_d`, `effectsize::hedges_g`
 Non-parametric | 2 | *r* (computed as $Z/\sqrt{N}$) | <font color="green">Yes<font> | `rcompanion::wilcoxonR`
 Robust | 2 |  $\xi$ (Explanatory measure of effect size) | <font color="green">Yes<font> | `WRS2::yuen.effect.ci`

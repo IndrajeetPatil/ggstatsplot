@@ -135,9 +135,7 @@ gghistostats <- function(data,
         type = type,
         test.value = test.value,
         bf.prior = bf.prior,
-        robust.estimator = "onestep",
         effsize.type = effsize.type,
-        conf.type = "norm",
         conf.level = conf.level,
         nboot = nboot,
         k = k
@@ -152,7 +150,7 @@ gghistostats <- function(data,
           test.value = test.value,
           bf.prior = bf.prior,
           top.text = caption,
-          output = "caption",
+          output = "expression",
           k = k
         )
 

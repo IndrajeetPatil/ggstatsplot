@@ -1,5 +1,9 @@
 # ggstatsplot 0.6.5.9000
 
+BUG FIXES
+
+  - Setting `mean.path = FALSE` in `ggwithinstats` produced incorrect colors for
+    points (#470). This bug was introduced in `0.6.5` and is now fixed.
 
 # ggstatsplot 0.6.5
 

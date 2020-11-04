@@ -328,7 +328,7 @@ Type | No. of groups | Effect size | CI? | Function
 Parametric | > 2 | $\eta_{p}^2$, $\omega_{p}^2$ | <font color="green">Yes<font> | `effectsize::omega_squared`, `effectsize::eta_squared`
 Non-parametric | > 2 | $W_{Kendall}$ (Kendall's coefficient of concordance) | <font color="green">Yes<font> | `rcompanion::kendallW`
 Robust | > 2 | <font color="red">No<font> | <font color="red">No<font> | `NA`
-Bayes Factor | > 2 | $\R_{posterior}^2$ | <font color="green">Yes<font> | `performance::r2_bayes`
+Bayes Factor | > 2 | $R_{posterior}^2$ | <font color="green">Yes<font> | `performance::r2_bayes`
 Parametric | 2 | Cohen's *d*, Hedge's *g* | <font color="green">Yes<font> | `effectsize::cohens_d`, `effectsize::hedges_g`
 Non-parametric | 2 | *r* (computed as $Z/\sqrt{N}$) | <font color="green">Yes<font> | `rcompanion::wilcoxonR`
 Robust | 2 |  $\delta_{R}$ (robust standardized difference) | <font color="green">Yes<font> | `WRS2::dep.effect`

@@ -18,14 +18,14 @@ testthat::test_that(
     # combined plot with everything
     p <-
       ggstatsplot::combine_plots(p1, p2,
-      title.text = "combined plot",
-      title.color = "blue",
-      sub.text = "additional text",
-      sub.color = "darkgreen",
-      caption.text = "combined caption",
-      caption.color = "red",
-      labels = c("(a)", "(b)")
-    )
+        title.text = "combined plot",
+        title.color = "blue",
+        sub.text = "additional text",
+        sub.color = "darkgreen",
+        caption.text = "combined caption",
+        caption.color = "red",
+        labels = c("(a)", "(b)")
+      )
 
     # only title
     p1 <- ggstatsplot::combine_plots(p1, p2,
