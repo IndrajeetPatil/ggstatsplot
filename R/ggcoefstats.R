@@ -92,7 +92,6 @@
 #' @importFrom tidyr unite
 #' @importFrom insight is_model find_statistic
 #' @importFrom statsExpressions expr_meta_random bf_meta_random
-#' @importFrom performance model_performance
 #' @importFrom parameters model_parameters standardize_names
 #'
 #' @references
