@@ -20,7 +20,7 @@ vignette: >
 
 ```{r setup, include = FALSE}
 # show me all columns
-options(tibble.width = Inf)
+options(tibble.width = Inf, pillar.bold = TRUE, pillar.subtle_num = TRUE)
 options(mc.cores = parallel::detectCores()) # use max # CPUs
 
 knitr::opts_chunk$set(
@@ -902,7 +902,7 @@ ggstatsplot::combine_plots(
 
 The version of `glm` implemented in `rms` is also supported.
 
-```{r rms_Glm, fig.height = 5, fig.width = 5, eval = FALSE}
+```{r rms_Glm, fig.height = 5, fig.width = 5}
 # setup
 set.seed(123)
 library(ggstatsplot)
@@ -1064,7 +1064,11 @@ set.seed(123)
 library(estimatr)
 
 # model
-mod <- lm_robust(formula = mpg ~ gear + wt + cyl, data = mtcars)
+mod <-
+  estimatr::lm_robust(
+    formula = mpg ~ gear + wt + cyl,
+    data = mtcars
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -2052,7 +2056,7 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
-## bias reduction in Binomial-response GLMs (`brglm``)
+## bias reduction in Binomial-response GLMs (`brglm`)
 
 ```{r brglm, fig.height = 6, fig.width = 5}
 # setup

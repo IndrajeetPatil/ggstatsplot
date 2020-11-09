@@ -143,7 +143,7 @@
       <h1 data-toc-skip>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-11-04</h4>
+            <h4 class="date">2020-11-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -1024,6 +1024,7 @@
   x <span class="op">=</span> <span class="va">f</span>,
   title <span class="op">=</span> <span class="st">"rms' implementation of glm"</span>
 <span class="op">)</span></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/rms_Glm-1.png" width="480"></p>
 </div>
 <div id="modified-fitting-for-generalized-linear-models-glm2" class="section level2">
 <h2 class="hasAnchor">
@@ -1175,7 +1176,11 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://declaredesign.org/r/estimatr/">estimatr</a></span><span class="op">)</span>
 
 <span class="co"># model</span>
-<span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/estimatr/man/lm_robust.html">lm_robust</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">mpg</span> <span class="op">~</span> <span class="va">gear</span> <span class="op">+</span> <span class="va">wt</span> <span class="op">+</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span>
+<span class="va">mod</span> <span class="op">&lt;-</span>
+  <span class="fu">estimatr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/estimatr/man/lm_robust.html">lm_robust</a></span><span class="op">(</span>
+    formula <span class="op">=</span> <span class="va">mpg</span> <span class="op">~</span> <span class="va">gear</span> <span class="op">+</span> <span class="va">wt</span> <span class="op">+</span> <span class="va">cyl</span>,
+    data <span class="op">=</span> <span class="va">mtcars</span>
+  <span class="op">)</span>
 
 <span class="co"># plot</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
@@ -1418,7 +1423,7 @@
 <span class="co"># model</span>
 <span class="va">mod</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="https://rdrr.io/pkg/VGAM/man/vgam.html">vgam</a></span><span class="op">(</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">normal</span>, <span class="va">mild</span>, <span class="va">severe</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/VGAM/man/s.html">s</a></span><span class="op">(</span><span class="va">let</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/pkg/mice/man/cbind.html">cbind</a></span><span class="op">(</span><span class="va">normal</span>, <span class="va">mild</span>, <span class="va">severe</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/VGAM/man/s.html">s</a></span><span class="op">(</span><span class="va">let</span><span class="op">)</span>,
     <span class="fu"><a href="https://rdrr.io/pkg/VGAM/man/cumulative.html">cumulative</a></span><span class="op">(</span>parallel <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
     data <span class="op">=</span> <span class="va">pneumo</span>,
     trace <span class="op">=</span> <span class="cn">FALSE</span>
@@ -1443,7 +1448,7 @@
 <span class="co"># model</span>
 <span class="va">mod</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="https://rdrr.io/pkg/VGAM/man/vglm.html">vglm</a></span><span class="op">(</span>
-    formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">normal</span>, <span class="va">mild</span>, <span class="va">severe</span><span class="op">)</span> <span class="op">~</span> <span class="va">let</span>,
+    formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/mice/man/cbind.html">cbind</a></span><span class="op">(</span><span class="va">normal</span>, <span class="va">mild</span>, <span class="va">severe</span><span class="op">)</span> <span class="op">~</span> <span class="va">let</span>,
     family <span class="op">=</span> <span class="va">multinomial</span>,
     data <span class="op">=</span> <span class="va">pneumo</span>
   <span class="op">)</span>
@@ -1585,7 +1590,7 @@
 <span class="va">b</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="https://rdrr.io/pkg/scam/man/scam.html">scam</a></span><span class="op">(</span>
     <span class="va">y</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/cgam/man/s.html">s</a></span><span class="op">(</span><span class="va">x1</span>, k <span class="op">=</span> <span class="fl">15</span>, bs <span class="op">=</span> <span class="st">"cr"</span>, m <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/cgam/man/s.html">s</a></span><span class="op">(</span><span class="va">x2</span>, k <span class="op">=</span> <span class="fl">25</span>, bs <span class="op">=</span> <span class="st">"mpi"</span>, m <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,
-    family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html">gaussian</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span>,
+    family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/drc/man/gaussian.html">gaussian</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span>,
     data <span class="op">=</span> <span class="va">dat</span>,
     not.exp <span class="op">=</span> <span class="cn">FALSE</span>
   <span class="op">)</span>
@@ -1657,7 +1662,7 @@
 <span class="va">eta</span> <span class="op">&lt;-</span> <span class="va">beta</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">+</span> <span class="va">beta</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">*</span> <span class="va">x</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/crossprod.html">crossprod</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">Z</span><span class="op">)</span>, <span class="va">u</span><span class="op">)</span>
 <span class="va">p</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">/</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="op">-</span><span class="va">eta</span><span class="op">)</span><span class="op">)</span>
 <span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/PROreg/man/BB.html">rBB</a></span><span class="op">(</span><span class="va">k</span>, <span class="va">m</span>, <span class="va">p</span>, <span class="va">phi</span><span class="op">)</span>
-<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">y</span>, <span class="va">x</span>, <span class="va">z</span><span class="op">)</span><span class="op">)</span>
+<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/mice/man/cbind.html">cbind</a></span><span class="op">(</span><span class="va">y</span>, <span class="va">x</span>, <span class="va">z</span><span class="op">)</span><span class="op">)</span>
 <span class="va">dat</span><span class="op">$</span><span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">z</span><span class="op">)</span>
 
 <span class="co"># apply the model</span>
@@ -2207,7 +2212,7 @@
 </div>
 <div id="bias-reduction-in-binomial-response-glms-brglm" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bias-reduction-in-binomial-response-glms-brglm" class="anchor"></a>bias reduction in Binomial-response GLMs (`brglm``)</h2>
+<a href="#bias-reduction-in-binomial-response-glms-brglm" class="anchor"></a>bias reduction in Binomial-response GLMs (<code>brglm</code>)</h2>
 <div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -2217,7 +2222,7 @@
 <span class="co"># fit the model using maximum likelihood mean bias-reduced fit:</span>
 <span class="va">lizards.brglm</span> <span class="op">&lt;-</span>
   <span class="fu">brglm</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/brglm/man/brglm.html">brglm</a></span><span class="op">(</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">grahami</span>, <span class="va">opalinus</span><span class="op">)</span> <span class="op">~</span> <span class="va">height</span> <span class="op">+</span> <span class="va">diameter</span> <span class="op">+</span> <span class="va">light</span> <span class="op">+</span> <span class="va">time</span>,
+    <span class="fu"><a href="https://rdrr.io/pkg/mice/man/cbind.html">cbind</a></span><span class="op">(</span><span class="va">grahami</span>, <span class="va">opalinus</span><span class="op">)</span> <span class="op">~</span> <span class="va">height</span> <span class="op">+</span> <span class="va">diameter</span> <span class="op">+</span> <span class="va">light</span> <span class="op">+</span> <span class="va">time</span>,
     family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span><span class="va">logit</span><span class="op">)</span>,
     data <span class="op">=</span> <span class="va">lizards</span>,
     method <span class="op">=</span> <span class="st">"brglm.fit"</span>
@@ -2244,7 +2249,7 @@
 <span class="co"># fit the model using maximum likelihood mean bias-reduced fit:</span>
 <span class="va">lizardsBR_mean</span> <span class="op">&lt;-</span>
   <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span>
-    formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">grahami</span>, <span class="va">opalinus</span><span class="op">)</span> <span class="op">~</span> <span class="va">height</span> <span class="op">+</span> <span class="va">diameter</span> <span class="op">+</span> <span class="va">light</span> <span class="op">+</span> <span class="va">time</span>,
+    formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/mice/man/cbind.html">cbind</a></span><span class="op">(</span><span class="va">grahami</span>, <span class="va">opalinus</span><span class="op">)</span> <span class="op">~</span> <span class="va">height</span> <span class="op">+</span> <span class="va">diameter</span> <span class="op">+</span> <span class="va">light</span> <span class="op">+</span> <span class="va">time</span>,
     family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span><span class="va">logit</span><span class="op">)</span>,
     data <span class="op">=</span> <span class="va">lizards</span>,
     method <span class="op">=</span> <span class="st">"brglmFit"</span>
@@ -2323,10 +2328,10 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">glmc</span><span class="op">)</span>
 
 <span class="co"># data</span>
-<span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5903</span>, <span class="fl">230</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5157</span>, <span class="fl">350</span><span class="op">)</span><span class="op">)</span>
-<span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">0</span>, nrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mice/man/cbind.html">rbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5903</span>, <span class="fl">230</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5157</span>, <span class="fl">350</span><span class="op">)</span><span class="op">)</span>
+<span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">0</span>, nrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ergm/man/ergm-terms.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="va">mat</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/mice/man/cbind.html">rbind</a></span><span class="op">(</span>
     <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span>, nrow <span class="op">=</span> <span class="va">n</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">]</span>, ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">%*%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,
     <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span>, nrow <span class="op">=</span> <span class="va">n</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">]</span>, ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">%*%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,
     <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span>, nrow <span class="op">=</span> <span class="va">n</span><span class="op">[</span><span class="fl">2</span>, <span class="fl">1</span><span class="op">]</span>, ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">%*%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,
@@ -2386,7 +2391,7 @@
 <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">filter_group</span> <span class="op">&lt;-</span> <span class="va">sleepstudy</span><span class="op">$</span><span class="va">mygrp</span> <span class="op">==</span> <span class="va">i</span>
   <span class="va">sleepstudy</span><span class="op">$</span><span class="va">mysubgrp</span><span class="op">[</span><span class="va">filter_group</span><span class="op">]</span> <span class="op">&lt;-</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">30</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">filter_group</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">30</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ergm/man/ergm-terms.html">sum</a></span><span class="op">(</span><span class="va">filter_group</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="op">}</span>
 
 <span class="co"># model</span>
@@ -2472,7 +2477,7 @@
 <span class="co"># model (converting all numeric columns in data to z-scores)</span>
 <span class="va">mod</span> <span class="op">&lt;-</span>
   <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span>
-    formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">disp</span><span class="op">)</span> <span class="op">~</span> <span class="va">wt</span>,
+    formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/mice/man/cbind.html">cbind</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">disp</span><span class="op">)</span> <span class="op">~</span> <span class="va">wt</span>,
     data <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/modify.html">modify_if</a></span><span class="op">(</span>.x <span class="op">=</span> <span class="va">mtcars</span>, .p <span class="op">=</span> <span class="va">is.numeric</span>, <span class="op">~</span> <span class="op">{</span>
       <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span>
     <span class="op">}</span><span class="op">)</span>
@@ -2494,7 +2499,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># model</span>
-<span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/VGAM/man/notdocumentedyet.html">lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">disp</span>, <span class="va">hp</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span>
+<span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/VGAM/man/notdocumentedyet.html">lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/mice/man/cbind.html">cbind</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">disp</span>, <span class="va">hp</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span>
 <span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span>
 
 <span class="co"># plot</span>
@@ -2893,7 +2898,7 @@
 <span class="co"># model</span>
 <span class="va">mod</span> <span class="op">&lt;-</span>
   <span class="fu">mclogit</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mclogit/man/mclogit.html">mclogit</a></span><span class="op">(</span>
-    formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">resp</span>, <span class="va">suburb</span><span class="op">)</span> <span class="op">~</span> <span class="va">distance</span> <span class="op">+</span> <span class="va">cost</span>,
+    formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/mice/man/cbind.html">cbind</a></span><span class="op">(</span><span class="va">resp</span>, <span class="va">suburb</span><span class="op">)</span> <span class="op">~</span> <span class="va">distance</span> <span class="op">+</span> <span class="va">cost</span>,
     data <span class="op">=</span> <span class="va">Transport</span>,
     control <span class="op">=</span> <span class="fu">mclogit</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mclogit/man/mclogit_control.html">mclogit.control</a></span><span class="op">(</span>trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
   <span class="op">)</span>
@@ -2917,7 +2922,7 @@
 <span class="co"># model</span>
 <span class="va">mod</span> <span class="op">&lt;-</span>
   <span class="fu">mclogit</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mclogit/man/mclogit.html">mclogit</a></span><span class="op">(</span>
-    formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">Freq</span>, <span class="fu"><a href="https://rdrr.io/r/base/interaction.html">interaction</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">class</span><span class="op">)</span><span class="op">)</span> <span class="op">~</span> <span class="va">econ.left</span> <span class="op">/</span> <span class="va">class</span> <span class="op">+</span> <span class="va">welfare</span> <span class="op">/</span> <span class="va">class</span> <span class="op">+</span> <span class="va">auth</span> <span class="op">/</span> <span class="va">class</span>,
+    formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/mice/man/cbind.html">cbind</a></span><span class="op">(</span><span class="va">Freq</span>, <span class="fu"><a href="https://rdrr.io/r/base/interaction.html">interaction</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">class</span><span class="op">)</span><span class="op">)</span> <span class="op">~</span> <span class="va">econ.left</span> <span class="op">/</span> <span class="va">class</span> <span class="op">+</span> <span class="va">welfare</span> <span class="op">/</span> <span class="va">class</span> <span class="op">+</span> <span class="va">auth</span> <span class="op">/</span> <span class="va">class</span>,
     random <span class="op">=</span> <span class="op">~</span> <span class="fl">1</span> <span class="op">|</span> <span class="va">party.time</span>,
     data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">within</a></span><span class="op">(</span><span class="va">electors</span>, <span class="va">party.time</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/interaction.html">interaction</a></span><span class="op">(</span><span class="va">party</span>, <span class="va">time</span><span class="op">)</span><span class="op">)</span>,
     control <span class="op">=</span> <span class="fu">mclogit</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mclogit/man/mclogit_control.html">mclogit.control</a></span><span class="op">(</span>trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
@@ -3550,7 +3555,7 @@
 
 <span class="co"># model</span>
 <span class="va">fCO</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/quantreg/man/rqss.html">rqss</a></span><span class="op">(</span>
-  formula <span class="op">=</span> <span class="va">z</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/quantreg/man/qss.html">qss</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>, lambda <span class="op">=</span> <span class="fl">.08</span><span class="op">)</span>,
+  formula <span class="op">=</span> <span class="va">z</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/quantreg/man/qss.html">qss</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/mice/man/cbind.html">cbind</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>, lambda <span class="op">=</span> <span class="fl">.08</span><span class="op">)</span>,
   data <span class="op">=</span> <span class="va">CobarOre</span>
 <span class="op">)</span>
 
@@ -4429,7 +4434,7 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/paul-buerkner/brms">brms</a></span><span class="op">)</span>
 
 <span class="co"># prior</span>
-<span class="va">bprior1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/set_prior.html">prior</a></span><span class="op">(</span><span class="fu">student_t</span><span class="op">(</span><span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span>, class <span class="op">=</span> <span class="va">b</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/set_prior.html">prior</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/VGAM/man/cauchy.html">cauchy</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span><span class="op">)</span>, class <span class="op">=</span> <span class="va">sd</span><span class="op">)</span>
+<span class="va">bprior1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/set_prior.html">prior</a></span><span class="op">(</span><span class="fu"><a href="https://mc-stan.org/rstanarm/reference/priors.html">student_t</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span>, class <span class="op">=</span> <span class="va">b</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/set_prior.html">prior</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/VGAM/man/cauchy.html">cauchy</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span><span class="op">)</span>, class <span class="op">=</span> <span class="va">sd</span><span class="op">)</span>
 
 <span class="co"># model</span>
 <span class="va">fit1</span> <span class="op">&lt;-</span>
@@ -4611,10 +4616,8 @@ speed =~ x7 + x8 + x9 "</span>
   x <span class="op">=</span> <span class="va">fit</span>,
   title <span class="op">=</span> <span class="st">"latent variable model"</span>,
   conf.level <span class="op">=</span> <span class="fl">0.99</span>
-<span class="op">)</span>
-<span class="co">#&gt; Error: Names must be unique.</span>
-<span class="co">#&gt; [31mx[39m These names are duplicated:</span>
-<span class="co">#&gt;   * "rmsea.conf.low" at locations 10 and 11.</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/lavaan-1.png" width="576"></p>
 </div>
 <div id="bayesian-latent-variable-model-blavaan" class="section level2">
 <h2 class="hasAnchor">
@@ -4781,9 +4784,7 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">m</span>,
   title <span class="op">=</span> <span class="st">"multivariate analysis of variance"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Warning:  Number of labels is greater than default palette color count.</span>
-<span class="co">#&gt;  Try using another color `palette` (and/or `package`).</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/manova-1.png" width="768"></p>
 </div>
 </div>
