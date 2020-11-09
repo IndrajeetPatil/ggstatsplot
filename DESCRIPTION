@@ -25,24 +25,24 @@ BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
 Depends: 
     R (>= 3.6.0)
 Imports:
-    broomExtra (>= 4.1.0),
+    broomExtra,
     cowplot,
     dplyr,
-    effectsize (>= 0.4.0),
     ggcorrplot,
     ggExtra,
     ggplot2,
     ggrepel,
     ggsignif,
-    insight (>= 0.10.0),
+    insight (>= 0.10.0.1),
     ipmisc (>= 4.1.0),
-    pairwiseComparisons (>= 3.1.0),
+    pairwiseComparisons,
     paletteer,
-    parameters (>= 0.9.0),
+    parameters (>= 0.9.0.1),
+    performance,
     purrr,
     rlang,
     stats,
-    statsExpressions (>= 0.6.0),
+    statsExpressions,
     tidyr
 Suggests:
     forcats,
@@ -53,6 +53,9 @@ Suggests:
     testthat,
     tibble,
     WRS2
+Remotes:
+    easystats/parameters,
+    easystats/insight
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

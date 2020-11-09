@@ -85,13 +85,15 @@
 #'
 #' @import ggplot2
 #' @importFrom rlang exec !!!
-#' @importFrom broomExtra tidy glance augment
+#' @importFrom broomExtra augment tidy_parameters glance_performance
 #' @importFrom dplyr select mutate matches vars all_vars filter_at row_number
 #' @importFrom stats qnorm lm
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom tidyr unite
 #' @importFrom insight is_model find_statistic
 #' @importFrom statsExpressions expr_meta_random bf_meta_random
+#' @importFrom performance model_performance
+#' @importFrom parameters model_parameters standardize_names
 #'
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}
@@ -259,13 +261,33 @@ ggcoefstats <- function(x,
 
   if (isTRUE(insight::is_model(x))) {
     if (class(x)[[1]] %in% c("aov", "aovlist", "anova", "Gam", "manova", "maov")) {
-      # creating dataframe
+      # which effect size?
+      eta_squared <- omega_squared <- NULL
+      if (effsize == "eta") eta_squared <- "partial"
+      if (effsize == "omega") omega_squared <- "partial"
+
+      # stats details
       tidy_df <-
-        lm_effsize_standardizer(
-          object = x,
-          effsize = effsize,
-          conf.level = conf.level
-        )
+        parameters::model_parameters(
+          model = x,
+          eta_squared = eta_squared,
+          omega_squared = omega_squared,
+          ci = conf.level,
+          verbose = FALSE,
+          ...
+        ) %>%
+        parameters::standardize_names(data = ., style = "broom") %>%
+        dplyr::rename_all(., ~ gsub("omega2.|eta2.", "", .x))
+
+      # creating numerator and denominator degrees of freedom
+      if (dim(dplyr::filter(tidy_df, term == "Residuals"))[[1]] > 0L) {
+        tidy_df$df2 <- tidy_df$df[nrow(tidy_df)]
+      }
+
+      # fina cleanup
+      tidy_df %<>%
+        dplyr::filter(.data = ., !is.na(statistic)) %>% # for `aovlist` objects
+        dplyr::rename(.data = ., "df1" = "df")
 
       # renaming the `xlab` according to the estimate chosen
       xlab <- paste("partial", " ", effsize, "-squared", sep = "")
@@ -452,7 +474,7 @@ ggcoefstats <- function(x,
         caption <-
           statsExpressions::bf_meta_random(
             top.text = caption,
-            output = "caption",
+            output = "caption", # don't change to "expression"
             data = tidy_df,
             k = k
           )
@@ -464,7 +486,7 @@ ggcoefstats <- function(x,
           data = tidy_df,
           k = k,
           caption = caption,
-          output = "caption"
+          output = "caption" # don't change to "expression"
         )
     }
   }
