@@ -85,7 +85,7 @@
 #'
 #' @import ggplot2
 #' @importFrom rlang exec !!!
-#' @importFrom broomExtra augment tidy_parameters glance_performance
+#' @importFrom broomExtra augment tidy_parameters
 #' @importFrom dplyr select mutate matches vars all_vars filter_at row_number
 #' @importFrom stats qnorm lm
 #' @importFrom ggrepel geom_label_repel
@@ -93,6 +93,7 @@
 #' @importFrom insight is_model find_statistic
 #' @importFrom statsExpressions expr_meta_random bf_meta_random
 #' @importFrom parameters model_parameters standardize_names
+#' @importFrom performance model_performance
 #'
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}
@@ -432,7 +433,12 @@ ggcoefstats <- function(x,
   # for non-dataframe objects
   if (isTRUE(insight::is_model(x))) {
     # creating glance dataframe
-    glance_df <- broomExtra::glance_performance(x, verbose = FALSE)
+    glance_df <-
+      suppressWarnings(performance::model_performance(x, verbose = FALSE)) %>%
+      parameters::standardize_names(data = ., style = "broom") %>%
+      as_tibble(.)
+
+    # no meta-analysis in this context
     meta.analytic.effect <- FALSE
 
     # if glance is not available, inform the user

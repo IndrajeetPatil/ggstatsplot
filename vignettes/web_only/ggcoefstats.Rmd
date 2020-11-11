@@ -38,9 +38,10 @@ plan("multicore")
 
 The function `ggstatsplot::ggcoefstats` generates **dot-and-whisker plots** for
 regression models saved in a tidy data frame. The tidy dataframes are prepared
-using the following packages: `broom`, `broom.mixed`, and `parameters`.
+using the following packages: `parameters`, `broom`, `broom.mixed`.
+
 Additionally, if available, the model summary indices are also extracted from
-the following packages: `broom`, `broom.mixed`, and `performance`.
+the following packages: `performance`, `broom`, `broom.mixed`.
 
 In this vignette, we will see examples of how to use this function. We will try
 to cover as many classes of objects as possible. Unfortunately, there is no
@@ -113,6 +114,70 @@ Bayes | Meta-analysis via robust random-effects models | $\beta$ | <font color="
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
 itself.
+
+## Bayes Factor (`BFBayesFactor`)
+
+```{r BFBayesFactor, fig.width=10, fig.height=10}
+# setup
+set.seed(123)
+library(BayesFactor)
+library(ggstatsplot)
+
+# one sample t-test
+mod1 <- ttestBF(mtcars$wt, mu = 3)
+
+# independent t-test
+mod2 <- ttestBF(formula = wt ~ am, data = mtcars)
+
+# paired t-test
+mod3 <- ttestBF(x = sleep$extra[1:10], y = sleep$extra[11:20], paired = TRUE)
+
+# correlation
+mod4 <- correlationBF(y = iris$Sepal.Length, x = iris$Sepal.Width)
+
+# contingency tabs (not supported)
+# data("raceDolls")
+# mod5 <-
+#   contingencyTableBF(
+#     raceDolls,
+#     sampleType = "indepMulti",
+#     fixedMargin = "cols"
+#   )
+
+# anova
+data("puzzles")
+mod6 <-
+  anovaBF(
+    formula = RT ~ shape * color + ID,
+    data = puzzles,
+    whichRandom = "ID",
+    whichModels = "top",
+    progress = FALSE
+  )
+
+# regression-1
+mod7 <- regressionBF(rating ~ ., data = attitude, progress = FALSE)
+
+# meta-analysis
+t <- c(-.15, 2.39, 2.42, 2.43, -.15, 2.39, 2.42, 2.43)
+N <- c(100, 150, 97, 99, 99, 97, 100, 150)
+
+# Using `rscale = 1` and one-sided test to be
+# consistent with Rouder & Morey (2011)
+mod8 <- meta.ttestBF(t, N, rscale = 1, nullInterval = c(0, Inf))
+
+# list of plots
+ggstatsplot::combine_plots(
+  ggcoefstats(mod1, title = "one sample t-test"),
+  ggcoefstats(mod2, title = "independent t-test"),
+  ggcoefstats(mod3, title = "paired t-test"),
+  ggcoefstats(mod4, title = "correlation"),
+  ggcoefstats(mod6, title = "anova"),
+  ggcoefstats(mod7, title = "regression-1"),
+  ggcoefstats(mod8, title = "meta-analysis"),
+  title.text = "Example from `BayesFactor` package"
+)
+```
 
 ## omnibus ANOVA (`aov`)
 
@@ -285,67 +350,48 @@ ggstatsplot::combine_plots(
 )
 ```
 
-## Bayes Factor (`BFBayesFactor`)
+## bounded memory linear regression (`biglm`)
 
-```{r BFBayesFactor, fig.width=10, fig.height=10}
+```{r biglm, fig.height = 4, fig.width = 6}
 # setup
 set.seed(123)
-library(BayesFactor)
-library(ggstatsplot)
+library(biglm)
 
-# one sample t-test
-mod1 <- ttestBF(mtcars$wt, mu = 3)
-
-# independent t-test
-mod2 <- ttestBF(formula = wt ~ am, data = mtcars)
-
-# paired t-test
-mod3 <- ttestBF(x = sleep$extra[1:10], y = sleep$extra[11:20], paired = TRUE)
-
-# correlation
-mod4 <- correlationBF(y = iris$Sepal.Length, x = iris$Sepal.Width)
-
-# contingency tabs (not supported)
-# data("raceDolls")
-# mod5 <-
-#   contingencyTableBF(
-#     raceDolls,
-#     sampleType = "indepMulti",
-#     fixedMargin = "cols"
-#   )
-
-# anova
-data("puzzles")
-mod6 <-
-  anovaBF(
-    formula = RT ~ shape * color + ID,
-    data = puzzles,
-    whichRandom = "ID",
-    whichModels = "top",
-    progress = FALSE
+# model
+bfit1 <-
+  biglm(
+    formula = scale(mpg) ~ scale(wt) + scale(disp),
+    data = mtcars
   )
 
-# regression-1
-mod7 <- regressionBF(rating ~ ., data = attitude, progress = FALSE)
+# plot
+ggstatsplot::ggcoefstats(
+  x = bfit1,
+  title = "bounded memory simple linear regression",
+  exclude.intercept = FALSE
+)
+```
 
-# meta-analysis
-t <- c(-.15, 2.39, 2.42, 2.43, -.15, 2.39, 2.42, 2.43)
-N <- c(100, 150, 97, 99, 99, 97, 100, 150)
+## bounded memory general linear regression (`bigglm`)
 
-# Using rscale=1 and one-sided test to be
-# consistent with Rouder & Morey (2011)
-mod8 <- meta.ttestBF(t, N, rscale = 1, nullInterval = c(0, Inf))
+```{r bigglm, fig.height = 4, fig.width = 6}
+# setup
+set.seed(123)
+library(biglm)
+data(trees)
 
-# list of plots
-ggstatsplot::combine_plots(
-  ggcoefstats(mod1, title = "one sample t-test"),
-  ggcoefstats(mod2, title = "independent t-test"),
-  ggcoefstats(mod3, title = "paired t-test"),
-  ggcoefstats(mod4, title = "correlation"),
-  ggcoefstats(mod6, title = "anova"),
-  ggcoefstats(mod7, title = "regression-1"),
-  ggcoefstats(mod8, title = "meta-analysis"),
-  title.text = "Example from `BayesFactor` package"
+# model
+mod <-
+  biglm::bigglm(
+    formula = log(Volume) ~ log(Girth) + log(Height),
+    data = trees,
+    chunksize = 10,
+    sandwich = TRUE
+  )
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
+  title = "bounded memory general linear regression"
 )
 ```
 
@@ -1443,7 +1489,7 @@ ggstatsplot::ggcoefstats(
 
 ## shape constrained additive models (`scam`)
 
-```{r scam, eval=FALSE}
+```{r scam}
 # setup
 set.seed(123)
 library(scam)
@@ -2064,7 +2110,7 @@ set.seed(123)
 library(brglm)
 data("lizards")
 
-# fit the model using maximum likelihood mean bias-reduced fit:
+# fit the model using maximum likelihood mean bias-reduced fit
 lizards.brglm <-
   brglm::brglm(
     cbind(grahami, opalinus) ~ height + diameter + light + time,
@@ -2827,7 +2873,7 @@ ggstatsplot::ggcoefstats(
 
 ## Fitting Linear Quantile Models
 
-```{r lqm, fig.height = 5, fig.width = 5, eval=FALSE}
+```{r lqm, fig.height = 5, fig.width = 5}
 # setup
 set.seed(123)
 library(lqmm)
@@ -2956,50 +3002,6 @@ mod <-
 ggstatsplot::ggcoefstats(
   x = mod,
   title = "high performance generalized linear model"
-)
-```
-
-## bounded memory linear regression (`biglm`)
-
-```{r biglm, fig.height = 4, fig.width = 6}
-# setup
-set.seed(123)
-library(biglm)
-
-# model
-bfit1 <- biglm(
-  formula = scale(mpg) ~ scale(wt) + scale(disp),
-  data = mtcars
-)
-
-# plot
-ggstatsplot::ggcoefstats(
-  x = bfit1,
-  title = "bounded memory simple linear regression",
-  exclude.intercept = FALSE
-)
-```
-
-## bounded memory general linear regression (`bigglm`)
-
-```{r bigglm, fig.height = 4, fig.width = 6}
-# setup
-set.seed(123)
-library(biglm)
-data(trees)
-
-# model
-mod <-
-  biglm::bigglm(
-    formula = log(Volume) ~ log(Girth) + log(Height),
-    data = trees,
-    chunksize = 10,
-    sandwich = TRUE
-  )
-# plot
-ggstatsplot::ggcoefstats(
-  x = mod,
-  title = "bounded memory general linear regression"
 )
 ```
 
@@ -3247,7 +3249,7 @@ library(lmtest)
 data("Mandible", package = "lmtest")
 fm <- stats::lm(formula = length ~ age, data = Mandible, subset = (age <= 28))
 
-# the following commands lead to the same tests:
+# the following commands lead to the same tests
 ct <- lmtest::coeftest(fm)
 
 # plot
@@ -4285,7 +4287,7 @@ ggstatsplot::ggcoefstats(
 
 ## Bayesian latent variable model (`blavaan`)
 
-```{r blavaan, fig.height = 10, fig.width = 6, error=TRUE}
+```{r blavaan, fig.height = 10, fig.width = 6}
 # setup
 set.seed(123)
 library(blavaan)

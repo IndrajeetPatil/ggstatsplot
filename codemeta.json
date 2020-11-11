@@ -312,6 +312,19 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "performance",
+      "name": "performance",
+      "version": ">= 0.5.1.1",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://github.com/easystats/performance"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
       "provider": {
@@ -429,5 +442,5 @@
   ],
   "funder": {},
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md",
-  "fileSize": "58858.673KB"
+  "fileSize": "58647.373KB"
 }
