@@ -25,7 +25,6 @@ BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
 Depends: 
     R (>= 3.6.0)
 Imports:
-    broomExtra,
     cowplot,
     dplyr,
     ggcorrplot,

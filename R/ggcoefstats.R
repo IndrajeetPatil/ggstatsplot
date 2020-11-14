@@ -6,14 +6,14 @@
 #'
 #' @param x A model object to be tidied, or a tidy data frame containing results
 #'   from a regression model. Function internally uses
-#'   `parameters::model_parameters` or `broom::tidy` to get a tidy dataframe. If
+#'   `parameters::model_parameters` to get a tidy dataframe. If
 #'   a data frame is used, it *must* contain columns named `term` (names of
 #'   predictors) and `estimate` (corresponding estimates of coefficients or
 #'   other quantities of interest).
 #' @param output Character describing the expected output from this function:
 #'   `"plot"` (visualization of regression coefficients) or `"tidy"` (tidy
-#'   dataframe of results from `broom::tidy`) or `"glance"` (object from
-#'   `broom::glance`) or `"augment"` (object from `broom::augment`).
+#'   dataframe of results `parameters::model_parameters`) or `"glance"` (object
+#'   from `performance::model_performance`).
 #' @param statistic Which statistic is to be displayed (either `"t"` or `"f"`or
 #'   `"z"` or `"chi"`) in the label. This is relevant if the `x` argument is a
 #'   *dataframe*.
@@ -46,12 +46,6 @@
 #'   `"bayes"`, `metaBMA::meta_random` function will be used.
 #' @param exclude.intercept Logical that decides whether the intercept should be
 #'   excluded from the plot (Default: `TRUE`).
-#' @param exponentiate If `TRUE`, the `x`-axis will be logarithmic (Default:
-#'   `FALSE`). Note that exponents for the coefficient estimates and associated
-#'   standard errors plus confidence intervals are computed by the underlying
-#'   tidying packages (`broom`/`parameters`) and not done by `ggcoefstats`. So
-#'   this might not work if the underlying packages don't support
-#'   exponentiation.
 #' @param errorbar.args Additional arguments that will be passed to
 #'   `ggplot2::geom_errorbarh` geom. Please see documentation for that function
 #'   to know more about these arguments.
@@ -76,7 +70,7 @@
 #'   regression coefficients are to be displayed in a single plot. Relevant only
 #'   when the `output` is a plot.
 #' @param ... Additional arguments to tidying method. For more, see
-#'   `parameters::model_parameters` and `broom::tidy`.
+#'   `parameters::model_parameters`.
 #' @inheritParams statsExpressions::bf_meta_random
 #' @inheritParams parameters::model_parameters
 #' @inheritParams theme_ggstatsplot
@@ -85,7 +79,6 @@
 #'
 #' @import ggplot2
 #' @importFrom rlang exec !!!
-#' @importFrom broomExtra augment tidy_parameters
 #' @importFrom dplyr select mutate matches vars all_vars filter_at row_number
 #' @importFrom stats qnorm lm
 #' @importFrom ggrepel geom_label_repel
@@ -120,9 +113,6 @@
 #'
 #' # to get a glance summary
 #' ggstatsplot::ggcoefstats(x = mod, output = "glance")
-#'
-#' # to get augmented dataframe
-#' ggstatsplot::ggcoefstats(x = mod, output = "augment")
 #'
 #' # -------------- with custom dataframe -----------------------------------
 #'
@@ -210,7 +200,6 @@ ggcoefstats <- function(x,
                         conf.level = 0.95,
                         k = 2L,
                         exclude.intercept = TRUE,
-                        exponentiate = FALSE,
                         effsize = "eta",
                         meta.analytic.effect = FALSE,
                         meta.type = "parametric",
@@ -284,7 +273,7 @@ ggcoefstats <- function(x,
         tidy_df$df2 <- tidy_df$df[nrow(tidy_df)]
       }
 
-      # fina cleanup
+      # final cleanup
       tidy_df %<>%
         dplyr::filter(.data = ., !is.na(statistic)) %>% # for `aovlist` objects
         dplyr::rename(.data = ., "df1" = "df")
@@ -293,17 +282,13 @@ ggcoefstats <- function(x,
       xlab <- paste("partial", " ", effsize, "-squared", sep = "")
     } else {
       tidy_df <-
-        broomExtra::tidy_parameters(
-          x = x,
-          conf.int = conf.int, # remove when only `parameters`
-          conf.level = conf.level, # remove when only `parameters`
+        parameters::model_parameters(
+          model = x,
           ci = conf.level,
-          exponentiate = exponentiate,
-          effects = "fixed",
-          verbose = FALSE,
-          parametric = TRUE, # for `gam` objects
+          # verbose = FALSE,
           ...
-        )
+        ) %>%
+        parameters::standardize_names(data = ., style = "broom")
     }
   }
 
@@ -362,12 +347,12 @@ ggcoefstats <- function(x,
     return(invisible(tidy_df))
   }
 
-  # if broom output doesn't contain p-value or statistic column
+  # if `parameters` output doesn't contain p-value or statistic column
   if (sum(c("p.value", "statistic") %in% names(tidy_df)) != 2L) stats.labels <- FALSE
 
   # ==================== confidence intervals check ===========================
 
-  # if broom output doesn't contain CI
+  # if `parameters` output doesn't contain CI
   if (!"conf.low" %in% names(tidy_df)) {
 
     # if standard error is present, create confidence intervals
@@ -399,7 +384,7 @@ ggcoefstats <- function(x,
     }
   }
 
-  # ============= intercept, exponentiation, and final tidy dataframe =========
+  # ================================ intercept ================================
 
   # whether to show model intercept
   # if not, remove the corresponding terms from the dataframe
@@ -532,13 +517,10 @@ ggcoefstats <- function(x,
       plot <- plot +
         rlang::exec(
           .fn = ggplot2::geom_vline,
-          xintercept = ifelse(exponentiate, 1, 0),
+          xintercept = 0,
           na.rm = TRUE,
           !!!vline.args
         )
-
-      # logarithmic scale for exponent of coefficients
-      if (isTRUE(exponentiate)) plot <- plot + ggplot2::scale_x_log10()
     }
 
     # if the confidence intervals are to be displayed on the plot
@@ -644,7 +626,6 @@ ggcoefstats <- function(x,
     "caption" = caption,
     "tidy" = tidy_df,
     "glance" = glance_df,
-    "augment" = as_tibble(broomExtra::augment(x, ...)),
     "plot"
   ))
 }

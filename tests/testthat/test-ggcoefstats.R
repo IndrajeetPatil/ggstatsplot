@@ -646,61 +646,27 @@ testthat::test_that(
   }
 )
 
-# check confidence intervals ----------------------------------------------
+# check tidy output ----------------------------------------------
 
 testthat::test_that(
-  desc = "check computing confidence intervals",
+  desc = "check tidy output",
   code = {
     testthat::skip_on_cran()
 
-    # creating broom dataframes
     set.seed(123)
     mod <- stats::lm(data = iris, formula = Sepal.Length ~ Species)
-    df1 <-
-      broomExtra::tidy(
-        x = mod,
-        conf.int = TRUE,
-        conf.level = 0.95
-      )
-    df2 <-
-      broomExtra::tidy(
-        x = mod,
-        conf.int = TRUE,
-        conf.level = 0.50
-      )
 
     # computed dataframes
-    tidy_df1 <-
+    tidy_df <-
       ggstatsplot::ggcoefstats(
-        x = dplyr::select(df1, -conf.low, -conf.high),
+        x = mod,
         exclude.intercept = FALSE,
         statistic = "t",
         output = "tidy"
       )
-    tidy_df2 <-
-      ggstatsplot::ggcoefstats(
-        x = dplyr::select(df2, -conf.low, -conf.high),
-        exclude.intercept = FALSE,
-        statistic = "t",
-        output = "tidy",
-        conf.level = 0.50
-      )
-    tidy_df3 <-
-      ggstatsplot::ggcoefstats(
-        x = dplyr::select(df2, -conf.low, -conf.high, -std.error),
-        exclude.intercept = FALSE,
-        statistic = "t",
-        output = "tidy",
-        conf.level = 0.50
-      )
 
     # checking confidence intervals
-    testthat::expect_equal(df1$conf.low, tidy_df1$conf.low, tolerance = 0.001)
-    testthat::expect_equal(df2$conf.high, tidy_df2$conf.high, tolerance = 0.001)
-    testthat::expect_identical(tidy_df3$conf.low[1], NA_character_)
-    testthat::expect_identical(tidy_df3$conf.high[1], NA_character_)
-    testthat::expect_s3_class(tidy_df1, "tbl_df")
-    testthat::expect_s3_class(tidy_df2, "tbl_df")
+    testthat::expect_s3_class(tidy_df, "tbl_df")
   }
 )
 
@@ -711,92 +677,13 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
 
-    # creating broom and ggstatsplot output
     # lm
     set.seed(123)
     mod1 <- stats::lm(data = iris, formula = Sepal.Length ~ Species)
     glance_df1 <- ggstatsplot::ggcoefstats(x = mod1, output = "glance")
 
-    # checking if they are equal
+    # checking if they are present
     testthat::expect_true(all(c("aic", "bic") %in% names(glance_df1)))
-  }
-)
-
-
-# check if augment works ----------------------------------------------
-
-testthat::test_that(
-  desc = "check if augment works",
-  code = {
-    testthat::skip_on_cran()
-
-    # linear model
-    set.seed(123)
-    mod1 <- stats::lm(
-      formula = mpg ~ wt + qsec,
-      data = mtcars
-    )
-    df1.broom <- broomExtra::augment(mod1)
-    df1.ggstats <-
-      ggstatsplot::ggcoefstats(x = mod1, output = "augment")
-
-    # model with F-statistic
-    set.seed(123)
-    mod3 <- stats::aov(
-      data = ggplot2::msleep,
-      formula = sleep_rem ~ brainwt * vore
-    )
-    df3.broom <- tibble::as_tibble(broomExtra::augment(mod3))
-    df3.ggstats <-
-      ggstatsplot::ggcoefstats(x = mod3, output = "augment")
-
-    # checking if they are equal
-    testthat::expect_identical(df1.broom, df1.ggstats)
-    testthat::expect_identical(df3.broom, df3.ggstats)
-    testthat::expect_true(inherits(df1.ggstats, what = "tbl_df"))
-    testthat::expect_true(inherits(df3.ggstats, what = "tbl_df"))
-  }
-)
-
-# testing aesthetic modifications --------------------------------------------
-
-testthat::test_that(
-  desc = "testing aesthetic modifications",
-  code = {
-    testthat::skip_on_cran()
-
-    # model
-    set.seed(123)
-    mod <-
-      stats::lm(
-        formula = wt ~ am * cyl * vs,
-        data = mtcars
-      )
-
-    # plot
-    suppressWarnings(suppressMessages(
-      p <-
-        ggstatsplot::ggcoefstats(
-          x = mod,
-          exclude.intercept = FALSE,
-          exponentiate = TRUE,
-          point.args = list(
-            size = 6,
-            shape = 5,
-            color = "red"
-          ),
-          package = "ggsci",
-          palette = "alternating_igv"
-        )
-    ))
-
-    # plot build
-    pb <- ggplot2::ggplot_build(p)
-
-    # checking layered data
-    testthat::expect_identical(unique(pb$data[[3]]$colour), "red")
-    testthat::expect_equal(unique(pb$data[[3]]$shape), 5L)
-    testthat::expect_equal(unique(pb$data[[3]]$size), 6L)
   }
 )
 

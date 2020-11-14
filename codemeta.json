@@ -153,18 +153,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "broomExtra",
-      "name": "broomExtra",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=broomExtra"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "cowplot",
       "name": "cowplot",
       "provider": {
@@ -442,5 +430,5 @@
   ],
   "funder": {},
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md",
-  "fileSize": "58647.373KB"
+  "fileSize": "58060.894KB"
 }
