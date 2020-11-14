@@ -2440,8 +2440,8 @@
   x <span class="op">=</span> <span class="va">mod</span>,
   title <span class="op">=</span> <span class="st">"Bayesian linear mixed-effects models"</span>,
   exclude.intercept <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span>
-<span class="co">#&gt; Error: $ operator not defined for this S4 class</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/blmerMod-1.png" width="480"></p>
 </div>
 <div id="bayesian-generalized-linear-mixed-effects-models-bglmermod" class="section level2">
 <h2 class="hasAnchor">
@@ -2472,7 +2472,8 @@
   exclude.intercept <span class="op">=</span> <span class="cn">FALSE</span>,
   title <span class="op">=</span> <span class="st">"Bayesian generalized linear mixed-effects models"</span>
 <span class="op">)</span>
-<span class="co">#&gt; Error: $ operator not defined for this S4 class</span></code></pre></div>
+<span class="co">#&gt; Random effect variances not available. Returned R2 does not account for random effects.</span></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/bglmerMod-1.png" width="384"></p>
 </div>
 <div id="ordered-logistic-or-probit-regression-polr" class="section level2">
 <h2 class="hasAnchor">
@@ -3137,8 +3138,8 @@
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">fit</span>,
   title <span class="op">=</span> <span class="st">"autoregressive integrated moving average"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Error in data[[cleaned_ordered_name]]: subscript out of bounds</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/arima-1.png" width="480"></p>
 </div>
 <div id="high-performance-linear-model-speedlmspeedglm" class="section level2">
 <h2 class="hasAnchor">
@@ -3328,7 +3329,7 @@
   x <span class="op">=</span> <span class="va">mod</span>,
   title <span class="op">=</span> <span class="st">"ridge regression"</span>
 <span class="op">)</span>
-<span class="co">#&gt; Error: $ operator is invalid for atomic vectors</span></code></pre></div>
+<span class="co">#&gt; Error in `$&lt;-.data.frame`(`*tmp*`, "Scale", value = c(96.2387346946181, : replacement has 6 rows, data has 7</span></code></pre></div>
 </div>
 <div id="generalized-additive-models-with-integrated-smoothness-estimation-gam" class="section level2">
 <h2 class="hasAnchor">
@@ -4827,7 +4828,8 @@ speed =~ x7 + x8 + x9 "</span>
   title <span class="op">=</span> <span class="st">"parametric random-effects meta-analysis"</span>
 <span class="op">)</span>
 <span class="co">#&gt; Note: The argument `statistic` must be specified.</span>
-<span class="co">#&gt; Skipping labels with statistical details.</span></code></pre></div>
+<span class="co">#&gt; Skipping labels with statistical details.</span>
+<span class="co">#&gt; Note: No confidence intervals available for regression coefficients,so whiskers in the plot will be skipped.</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/meta1-1.png" width="768"></p>
 </div>
 <div id="robust" class="section level3">
@@ -4849,7 +4851,8 @@ speed =~ x7 + x8 + x9 "</span>
   title <span class="op">=</span> <span class="st">"robust random-effects meta-analysis"</span>
 <span class="op">)</span>
 <span class="co">#&gt; Note: The argument `statistic` must be specified.</span>
-<span class="co">#&gt; Skipping labels with statistical details.</span></code></pre></div>
+<span class="co">#&gt; Skipping labels with statistical details.</span>
+<span class="co">#&gt; Note: No confidence intervals available for regression coefficients,so whiskers in the plot will be skipped.</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/meta2-1.png" width="768"></p>
 </div>
 <div id="bayesian" class="section level3">
@@ -4871,7 +4874,8 @@ speed =~ x7 + x8 + x9 "</span>
   title <span class="op">=</span> <span class="st">"Bayesian random-effects meta-analysis"</span>
 <span class="op">)</span>
 <span class="co">#&gt; Note: The argument `statistic` must be specified.</span>
-<span class="co">#&gt; Skipping labels with statistical details.</span></code></pre></div>
+<span class="co">#&gt; Skipping labels with statistical details.</span>
+<span class="co">#&gt; Note: No confidence intervals available for regression coefficients,so whiskers in the plot will be skipped.</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/meta3-1.png" width="768"></p>
 <p>You can also provide a dataframe containing all the other relevant information for additionally displaying labels with statistical information.</p>
 <div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
@@ -4894,7 +4898,8 @@ speed =~ x7 + x8 + x9 "</span>
   statistic <span class="op">=</span> <span class="st">"t"</span>,
   package <span class="op">=</span> <span class="st">"LaCroixColoR"</span>,
   palette <span class="op">=</span> <span class="st">"paired"</span>
-<span class="op">)</span></code></pre></div>
+<span class="op">)</span>
+<span class="co">#&gt; Note: No confidence intervals available for regression coefficients,so whiskers in the plot will be skipped.</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/meta4-1.png" width="672"></p>
 </div>
 </div>
