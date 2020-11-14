@@ -80,7 +80,6 @@
 #' @import ggplot2
 #' @importFrom rlang exec !!!
 #' @importFrom dplyr select mutate matches vars all_vars filter_at row_number
-#' @importFrom stats qnorm lm
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom tidyr unite
 #' @importFrom insight is_model find_statistic
@@ -231,11 +230,8 @@ ggcoefstats <- function(x,
 
     # check that `statistic` is specified
     if (rlang::is_null(statistic)) {
-      # skip labels
-      stats.labels <- FALSE
-
       # inform the user
-      if (output == "plot") {
+      if (output == "plot" && isTRUE(stats.labels)) {
         message(cat(
           ipmisc::red("Note: "),
           ipmisc::blue("The argument `statistic` must be specified.\n"),
@@ -243,6 +239,9 @@ ggcoefstats <- function(x,
           sep = ""
         ))
       }
+
+      # skip labels
+      stats.labels <- FALSE
     }
   }
 
@@ -355,33 +354,19 @@ ggcoefstats <- function(x,
   # if `parameters` output doesn't contain CI
   if (!"conf.low" %in% names(tidy_df)) {
 
-    # if standard error is present, create confidence intervals
-    if ("std.error" %in% names(tidy_df)) {
-      # probability for computing confidence intervals
-      prob <- 1 - ((1 - conf.level) / 2)
+    # add NAs so that only dots will be shown
+    tidy_df %<>% dplyr::mutate(conf.low = NA_character_, conf.high = NA_character_)
 
-      # computing confidence intervals
-      tidy_df %<>%
-        dplyr::mutate(
-          .data = .,
-          conf.low = estimate - stats::qnorm(prob) * std.error,
-          conf.high = estimate + stats::qnorm(prob) * std.error
-        )
-    } else {
-      # add NAs so that only dots will be shown
-      tidy_df %<>% dplyr::mutate(conf.low = NA_character_, conf.high = NA_character_)
+    # stop displaying whiskers
+    conf.int <- FALSE
 
-      # stop displaying whiskers
-      conf.int <- FALSE
-
-      # inform the user that skipping labels for the same reason
-      message(cat(
-        ipmisc::green("Note: "),
-        ipmisc::blue("No confidence intervals available for regression coefficients,"),
-        ipmisc::blue("so whiskers in the plot will be skipped.\n"),
-        sep = ""
-      ))
-    }
+    # inform the user that skipping labels for the same reason
+    message(cat(
+      ipmisc::green("Note: "),
+      ipmisc::blue("No confidence intervals available for regression coefficients,"),
+      ipmisc::blue("so whiskers in the plot will be skipped.\n"),
+      sep = ""
+    ))
   }
 
   # ================================ intercept ================================

@@ -208,15 +208,15 @@ testthat::test_that(
     testthat::expect_equal(dim(pb$data[[3]]), c(4L, 10L))
 
     # checking ggrepel label layer
-    # testthat::expect_identical(
-    #   pb$data[[4]]$label,
-    #   c(
-    #     "list(~widehat(italic(beta))==6.438, ~italic(t)(28)==13.765, ~italic(p)==5.48e-14)",
-    #     "list(~widehat(italic(beta))==-0.156, ~italic(t)(28)==-5.840, ~italic(p)==2.81e-06)",
-    #     "list(~widehat(italic(beta))==-1.809, ~italic(t)(28)==-2.615, ~italic(p)==0.014)",
-    #     NA_character_
-    #   )
-    # )
+    testthat::expect_identical(
+      pb$data[[4]]$label,
+      c(
+        "list(~widehat(italic(beta))==6.438, ~italic(t)(28)==13.765, ~italic(p)==5.48e-14)",
+        "list(~widehat(italic(beta))==-0.156, ~italic(t)(28)==-5.840, ~italic(p)==2.81e-06)",
+        "list(~widehat(italic(beta))==-1.809, ~italic(t)(28)==-2.615, ~italic(p)==0.014)",
+        NA_character_
+      )
+    )
     testthat::expect_identical(
       unclass(pb$data[[4]]$colour),
       c("#1B9E77FF", "#D95F02FF", "#7570B3FF", "#E7298AFF")
@@ -692,6 +692,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "unsupported model objects",
   code = {
+    testthat::skip_on_cran()
+
     # mod-1
     testthat::expect_error(ggstatsplot::ggcoefstats(x = list(x = "1", y = 2L)))
 
@@ -709,5 +711,80 @@ testthat::test_that(
     testthat::expect_error(ggstatsplot::ggcoefstats(stats::acf(lh, plot = FALSE)))
     testthat::expect_null(pb$plot$labels$subtitle, NULL)
     testthat::expect_null(pb$plot$labels$caption, NULL)
+  }
+)
+
+
+# CIs missing -----------------------------------------------
+
+testthat::test_that(
+  desc = "unsupported model objects",
+  code = {
+    testthat::skip_on_cran()
+
+    # creating a dataframe
+    df <-
+      structure(
+        list(
+          term = structure(
+            c(3L, 4L, 1L, 2L, 5L),
+            .Label = c(
+              "Africa",
+              "Americas", "Asia", "Europe", "Oceania"
+            ),
+            class = "factor"
+          ),
+          estimate = c(
+            0.382047603321706,
+            0.780783111514665,
+            0.425607573765058,
+            0.558365541235078,
+            0.956473848429961
+          ),
+          std.error = c(
+            0.0465576338644502,
+            0.0330218199731529,
+            0.0362834986178494,
+            0.0480571500648261,
+            0.062215818388157
+          ),
+          statistic = c(
+            8.20590677855356,
+            23.6444603038067,
+            11.7300588415607,
+            11.6187818146078,
+            15.3734833553524
+          ),
+          p.value = c(
+            3.28679518728519e-15,
+            4.04778497135963e-75,
+            7.59757330804449e-29,
+            5.45155840151592e-26,
+            2.99171217913312e-13
+          ),
+          df.error = c(
+            394L, 358L, 622L,
+            298L, 22L
+          )
+        ),
+        row.names = c(NA, -5L),
+        class = c(
+          "tbl_df",
+          "tbl", "data.frame"
+        )
+      )
+
+    # plotting the dataframe
+    p <-
+      ggstatsplot::ggcoefstats(
+        x = df,
+        stats.labels = FALSE,
+        meta.analytic.effect = FALSE
+      )
+
+    # build it
+    pb <- ggplot2::ggplot_build(p)
+
+    testthat::expect_equal(length(pb$data), 2L)
   }
 )
