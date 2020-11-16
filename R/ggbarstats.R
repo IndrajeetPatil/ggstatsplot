@@ -168,13 +168,7 @@ ggbarstats <- function(data,
     )
 
   # dataframe containing all details needed for sample size and prop test
-  df_labels <-
-    df_facet_label(
-      data = data,
-      x = {{ x }},
-      y = {{ y }},
-      k = k
-    )
+  df_labels <- df_facet_label(data, {{ x }}, {{ y }}, k)
 
   # reorder the category factor levels to order the legend
   df %<>% dplyr::mutate(.data = ., {{ x }} := factor({{ x }}, unique({{ x }})))

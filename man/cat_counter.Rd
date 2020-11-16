@@ -18,12 +18,12 @@ of fit test) will be run for the \code{x} variable. Otherwise an appropriate
 association test will be run. This argument can not be \code{NULL} for
 \code{ggbarstats} function.}
 
-\item{...}{Additional grouping variables.}
+\item{...}{Currently ignored.}
 }
 \description{
 Counts and percentages across grouping variables.
 }
 \examples{
-ggstatsplot:::cat_counter(data = ggplot2::mpg, "drv", cyl, "fl")
+ggstatsplot:::cat_counter(data = ggplot2::mpg, drv, cyl)
 }
 \keyword{internal}

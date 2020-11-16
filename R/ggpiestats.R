@@ -188,13 +188,7 @@ ggpiestats <- function(data,
 
   # dataframe containing all details needed for sample size and prop test
   if (!rlang::quo_is_null(rlang::enquo(y))) {
-    df_labels <-
-      df_facet_label(
-        data = data,
-        x = {{ x }},
-        y = {{ y }},
-        k = k
-      )
+    df_labels <- df_facet_label(data, {{ x }}, {{ y }}, k)
   } else {
     df_labels <- NULL
   }
@@ -253,9 +247,7 @@ ggpiestats <- function(data,
     )))
 
   # if facet_wrap *is* happening
-  if (isTRUE(facet)) {
-    p <- p + ggplot2::facet_wrap(facets = dplyr::vars({{ y }}))
-  }
+  if (isTRUE(facet)) p <- p + ggplot2::facet_wrap(facets = dplyr::vars({{ y }}))
 
   # polar coordinates plus formatting
   p <- p +
