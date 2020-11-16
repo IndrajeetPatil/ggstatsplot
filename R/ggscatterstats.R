@@ -42,6 +42,7 @@
 #' @import ggplot2
 #'
 #' @importFrom dplyr filter pull
+#' @importFrom stats lm
 #' @importFrom rlang !! enquo quo_name parse_expr ensym as_name enexpr exec !!!
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom ggExtra ggMarginal
