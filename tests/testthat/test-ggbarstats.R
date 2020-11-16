@@ -539,7 +539,7 @@ testthat::test_that(
       ))
 
     # tests
-    testthat::expect_equal(dim(df), c(3L, 12L))
+    testthat::expect_s3_class(df, "tbl_df")
   }
 )
 

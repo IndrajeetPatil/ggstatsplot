@@ -573,12 +573,10 @@ testthat::test_that(
         am,
         cyl,
         results.subtitle = FALSE,
-        output = "proptest",
-        messages = FALSE
+        output = "proptest"
       ))
 
     # tests
-    testthat::expect_equal(dim(df), c(3L, 12L))
     testthat::expect_null(ggpiestats(mtcars, am, results.subtitle = FALSE, output = "proptest"))
   }
 )
