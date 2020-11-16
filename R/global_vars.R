@@ -27,7 +27,8 @@ utils::globalVariables(
     "significance",
     "statistic",
     "std.error",
-    "term"
+    "term",
+    "df"
   ),
   package = "ggstatsplot",
   add = FALSE

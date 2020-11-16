@@ -194,9 +194,22 @@
 <h1 class="page-header" data-toc-text="0.6.5.9000">
 <a href="#ggstatsplot-0659000" class="anchor"></a>ggstatsplot 0.6.5.9000<small> Unreleased </small>
 </h1>
+<p>BREAKING CHANGES</p>
+<ul>
+<li>
+<code>ggcoefstats</code> no longer supports <code>exponentiate</code> argument. If it is specified, the user will have to themselves adjust the scales appropriately.</li>
+</ul>
 <p>BUG FIXES</p>
 <ul>
 <li>Setting <code>mean.path = FALSE</code> in <code>ggwithinstats</code> produced incorrect colors for points (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/470'>#470</a>). This bug was introduced in <code>0.6.5</code> and is now fixed.</li>
+</ul>
+<p>MAJOR CHANGES</p>
+<ul>
+<li>Drops <code>broomExtra</code> from dependencies. All regression modeling-related analysis now relies on <code>easystats</code> ecosystem.</li>
+</ul>
+<p>NEW FEATURES</p>
+<ul>
+<li>More models supported in <code>ggcoefstats</code>: <code>Glm</code>.</li>
 </ul>
 </div>
     <div id="ggstatsplot-065" class="section level1">
@@ -266,8 +279,8 @@
 <li>
 <p>The <code>pairwise.annotation</code> argument for <code>ggbetweenstats</code> and <code>ggwithinstats</code> is deprecated. This was done because-</p>
 <ol>
-<li>Different fields have different schema for what significance levels asterisks represent.</li>
-<li>The <em>p</em>-value labels also contain information about whether they are adjusted for multiple comparisons.</li>
+<li><p>Different fields have different schema for what significance levels asterisks represent.</p></li>
+<li><p>The <em>p</em>-value labels also contain information about whether they are adjusted for multiple comparisons.</p></li>
 </ol>
 </li>
 <li><p>The <code>normality_message</code> and <code>bartlett_message</code> helper functions have been removed. This is because model assumption checks don’t really fall under the purview of this package. There are excellent visualization tools out there for model assumption checks (<code>ggResidpanel</code>, <code>performance</code>, <code>DHARMa</code>, <code>olsrr</code>, etc.), which should be preferred over unhelpful messages with only <em>p</em>-values that these functions were printing. For what it’s worth, the functions where these messages were displayed (<code>ggbetweenstats</code> or <code>ggwithinstats</code>) feature visualizations rich enough and defaults sensible enough that most of the time one can either assess these assumptions from the plots or need not worry about them.</p></li>
@@ -317,12 +330,8 @@
 <li>
 <p>The following vestigial arguments are retired:</p>
 <ul>
-<li>
-<code>caption.default</code> in <code>ggcorrmat</code>
-</li>
-<li>
-<code>k.caption.summary</code> in <code>ggcoefstats</code>
-</li>
+<li><p><code>caption.default</code> in <code>ggcorrmat</code></p></li>
+<li><p><code>k.caption.summary</code> in <code>ggcoefstats</code></p></li>
 </ul>
 </li>
 </ul>

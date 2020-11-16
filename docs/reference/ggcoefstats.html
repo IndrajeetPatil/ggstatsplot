@@ -204,7 +204,6 @@
   conf.level <span class='op'>=</span> <span class='fl'>0.95</span>,
   k <span class='op'>=</span> <span class='fl'>2L</span>,
   exclude.intercept <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  exponentiate <span class='op'>=</span> <span class='cn'>FALSE</span>,
   effsize <span class='op'>=</span> <span class='st'>"eta"</span>,
   meta.analytic.effect <span class='op'>=</span> <span class='cn'>FALSE</span>,
   meta.type <span class='op'>=</span> <span class='st'>"parametric"</span>,
@@ -237,7 +236,7 @@
       <th>x</th>
       <td><p>A model object to be tidied, or a tidy data frame containing results
 from a regression model. Function internally uses
-<code><a href='https://easystats.github.io/parameters/reference/model_parameters.html'>parameters::model_parameters</a></code> or <code><a href='https://generics.r-lib.org/reference/tidy.html'>broom::tidy</a></code> to get a tidy dataframe. If
+<code><a href='https://easystats.github.io/parameters/reference/model_parameters.html'>parameters::model_parameters</a></code> to get a tidy dataframe. If
 a data frame is used, it <em>must</em> contain columns named <code>term</code> (names of
 predictors) and <code>estimate</code> (corresponding estimates of coefficients or
 other quantities of interest).</p></td>
@@ -246,8 +245,8 @@ other quantities of interest).</p></td>
       <th>output</th>
       <td><p>Character describing the expected output from this function:
 <code>"plot"</code> (visualization of regression coefficients) or <code>"tidy"</code> (tidy
-dataframe of results from <code><a href='https://generics.r-lib.org/reference/tidy.html'>broom::tidy</a></code>) or <code>"glance"</code> (object from
-<code><a href='https://generics.r-lib.org/reference/glance.html'>broom::glance</a></code>) or <code>"augment"</code> (object from <code><a href='https://generics.r-lib.org/reference/augment.html'>broom::augment</a></code>).</p></td>
+dataframe of results <code><a href='https://easystats.github.io/parameters/reference/model_parameters.html'>parameters::model_parameters</a></code>) or <code>"glance"</code> (object
+from <code><a href='https://easystats.github.io/performance/reference/model_performance.html'>performance::model_performance</a></code>).</p></td>
     </tr>
     <tr>
       <th>statistic</th>
@@ -274,15 +273,6 @@ error bars (Default: <code>TRUE</code>).</p></td>
       <th>exclude.intercept</th>
       <td><p>Logical that decides whether the intercept should be
 excluded from the plot (Default: <code>TRUE</code>).</p></td>
-    </tr>
-    <tr>
-      <th>exponentiate</th>
-      <td><p>If <code>TRUE</code>, the <code>x</code>-axis will be logarithmic (Default:
-<code>FALSE</code>). Note that exponents for the coefficient estimates and associated
-standard errors plus confidence intervals are computed by the underlying
-tidying packages (<code>broom</code>/<code>parameters</code>) and not done by <code>ggcoefstats</code>. So
-this might not work if the underlying packages don't support
-exponentiation.</p></td>
     </tr>
     <tr>
       <th>effsize</th>
@@ -413,7 +403,7 @@ override some aspects of the selected <code>ggtheme</code>.</p></td>
     <tr>
       <th>...</th>
       <td><p>Additional arguments to tidying method. For more, see
-<code><a href='https://easystats.github.io/parameters/reference/model_parameters.html'>parameters::model_parameters</a></code> and <code><a href='https://generics.r-lib.org/reference/tidy.html'>broom::tidy</a></code>.</p></td>
+<code><a href='https://easystats.github.io/parameters/reference/model_parameters.html'>parameters::model_parameters</a></code>.</p></td>
     </tr>
     </table>
 
@@ -464,41 +454,10 @@ quantities is <code>NA</code> will be removed if labels are requested: <code>est
 #&gt; </span><span style='color: #BCBCBC;'>3</span><span> list(~widehat(italic(beta))==-1.31, ~italic(t)(28)==-1.85, ~italic(p)==0.076) </div><div class='input'>
 <span class='co'># to get a glance summary</span>
 <span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>ggcoefstats</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>mod</span>, output <span class='op'>=</span> <span class='st'>"glance"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 15</span><span>
-#&gt;   </span><span style='font-weight: bold;'>r.squared</span><span> </span><span style='font-weight: bold;'>adj.r.squared</span><span> </span><span style='font-weight: bold;'>sigma</span><span> </span><span style='font-weight: bold;'>statistic</span><span>       </span><span style='font-weight: bold;'>p.value</span><span>    </span><span style='font-weight: bold;'>df</span><span> </span><span style='font-weight: bold;'>loglik</span><span>   </span><span style='font-weight: bold;'>aic</span><span>   </span><span style='font-weight: bold;'>bic</span><span>
-#&gt;       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>     </span><span style='color: #949494;'>0.</span><span>785         </span><span style='color: #949494;'>0.</span><span>762  2.94      34.1 </span><span style='color: #949494;'>0.000</span><span style='color: #949494;text-decoration: underline;'>000</span><span style='color: #949494;'>00</span><span>1</span><span style='text-decoration: underline;'>73</span><span>     3  -</span><span style='color: #BB0000;'>77.8</span><span>  166.  173.
-#&gt;   </span><span style='font-weight: bold;'>deviance</span><span> </span><span style='font-weight: bold;'>df.residual</span><span>  </span><span style='font-weight: bold;'>nobs</span><span>    </span><span style='font-weight: bold;'>r2</span><span> </span><span style='font-weight: bold;'>r2.adjusted</span><span>  </span><span style='font-weight: bold;'>rmse</span><span>
-#&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>     242.          28    32 </span><span style='color: #949494;'>0.</span><span>785       </span><span style='color: #949494;'>0.</span><span>762  2.75</div><div class='input'>
-<span class='co'># to get augmented dataframe</span>
-<span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>ggcoefstats</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>mod</span>, output <span class='op'>=</span> <span class='st'>"augment"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 32 x 10</span><span>
-#&gt;    </span><span style='font-weight: bold;'>.rownames</span><span>           </span><span style='font-weight: bold;'>mpg</span><span>   </span><span style='font-weight: bold;'>cyl</span><span>    </span><span style='font-weight: bold;'>am</span><span> </span><span style='font-weight: bold;'>.fitted</span><span> </span><span style='font-weight: bold;'>.resid</span><span> </span><span style='font-weight: bold;'>.std.resid</span><span>   </span><span style='font-weight: bold;'>.hat</span><span> </span><span style='font-weight: bold;'>.sigma</span><span>
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Mazda RX4          21       6     1    21.4 -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>364</span><span>    -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>131</span><span>  </span><span style='color: #949494;'>0.</span><span>106    2.99
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Mazda RX4 Wag      21       6     1    21.4 -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>364</span><span>    -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>131</span><span>  </span><span style='color: #949494;'>0.</span><span>106    2.99
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Datsun 710         22.8     4     1    27.9 -</span><span style='color: #BB0000;'>5.13</span><span>     -</span><span style='color: #BB0000;'>1.86</span><span>   </span><span style='color: #949494;'>0.</span><span>117    2.80
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Hornet 4 Drive     21.4     6     </span><span style='color: #949494;'>0</span><span>    19.0  2.38      </span><span style='color: #949494;'>0.</span><span>842  </span><span style='color: #949494;'>0.0</span><span>73</span><span style='text-decoration: underline;'>5</span><span>   2.96
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Hornet Sportabout  18.7     8     </span><span style='color: #949494;'>0</span><span>    15.1  3.63      1.29   </span><span style='color: #949494;'>0.0</span><span>78</span><span style='text-decoration: underline;'>4</span><span>   2.90
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Valiant            18.1     6     </span><span style='color: #949494;'>0</span><span>    19.0 -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>919</span><span>    -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>325</span><span>  </span><span style='color: #949494;'>0.0</span><span>73</span><span style='text-decoration: underline;'>5</span><span>   2.99
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Duster 360         14.3     8     </span><span style='color: #949494;'>0</span><span>    15.1 -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>768</span><span>    -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>272</span><span>  </span><span style='color: #949494;'>0.0</span><span>78</span><span style='text-decoration: underline;'>4</span><span>   2.99
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Merc 240D          24.4     4     </span><span style='color: #949494;'>0</span><span>    23.0  1.43      </span><span style='color: #949494;'>0.</span><span>563  </span><span style='color: #949494;'>0.</span><span>255    2.98
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Merc 230           22.8     4     </span><span style='color: #949494;'>0</span><span>    23.0 -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>171</span><span>    -</span><span style='color: #949494;'>0.0</span><span style='color: #BB0000;'>67</span><span style='color: #BB0000;text-decoration: underline;'>2</span><span> </span><span style='color: #949494;'>0.</span><span>255    2.99
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Merc 280           19.2     6     </span><span style='color: #949494;'>0</span><span>    19.0  </span><span style='color: #949494;'>0.</span><span>181     </span><span style='color: #949494;'>0.0</span><span>63</span><span style='text-decoration: underline;'>9</span><span> </span><span style='color: #949494;'>0.0</span><span>73</span><span style='text-decoration: underline;'>5</span><span>   2.99
-#&gt;      </span><span style='font-weight: bold;'>.cooksd</span><span>
-#&gt;        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> </span><span style='color: #949494;'>0.000</span><span style='text-decoration: underline;'>510</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> </span><span style='color: #949494;'>0.000</span><span style='text-decoration: underline;'>510</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> </span><span style='color: #949494;'>0.</span><span>114    
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> </span><span style='color: #949494;'>0.0</span><span>14</span><span style='text-decoration: underline;'>1</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> </span><span style='color: #949494;'>0.0</span><span>35</span><span style='text-decoration: underline;'>3</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> </span><span style='color: #949494;'>0.00</span><span>2</span><span style='text-decoration: underline;'>09</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> </span><span style='color: #949494;'>0.00</span><span>1</span><span style='text-decoration: underline;'>57</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> </span><span style='color: #949494;'>0.0</span><span>27</span><span style='text-decoration: underline;'>1</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> </span><span style='color: #949494;'>0.000</span><span style='text-decoration: underline;'>387</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> </span><span style='color: #949494;'>0.000</span><span style='color: #949494;text-decoration: underline;'>0</span><span style='text-decoration: underline;'>81</span><span>1
-#&gt; </span><span style='color: #949494;'># ... with 22 more rows</span><span></div><div class='input'>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 6</span><span>
+#&gt;     </span><span style='font-weight: bold;'>aic</span><span>   </span><span style='font-weight: bold;'>bic</span><span>    </span><span style='font-weight: bold;'>r2</span><span> </span><span style='font-weight: bold;'>r2.adjusted</span><span>  </span><span style='font-weight: bold;'>rmse</span><span> </span><span style='font-weight: bold;'>sigma</span><span>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>  166.  173. </span><span style='color: #949494;'>0.</span><span>785       </span><span style='color: #949494;'>0.</span><span>762  2.75  2.94</div><div class='input'>
 <span class='co'># -------------- with custom dataframe -----------------------------------</span>
 
 <span class='co'># creating a dataframe</span>

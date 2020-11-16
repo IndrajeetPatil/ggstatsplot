@@ -32,16 +32,16 @@ knitr::opts_chunk$set(
   package.startup.message = FALSE
 )
 
-library(future)
-plan("multicore")
+# for faster post-MCMC computations
+future::plan("multicore")
 ```
 
 The function `ggstatsplot::ggcoefstats` generates **dot-and-whisker plots** for
 regression models saved in a tidy data frame. The tidy dataframes are prepared
-using the following packages: `parameters`, `broom`, `broom.mixed`.
+using the following packages: `parameters`.
 
 Additionally, if available, the model summary indices are also extracted from
-the following packages: `performance`, `broom`, `broom.mixed`.
+the following packages: `performance`.
 
 In this vignette, we will see examples of how to use this function. We will try
 to cover as many classes of objects as possible. Unfortunately, there is no
@@ -111,9 +111,52 @@ Bayes | Meta-analysis via robust random-effects models | $\beta$ | <font color="
 
 # Examples of supported models
 
-In the following examples, we will try out a number of regression models and,
-additionally, we will also see how we can change different aspects of the plot
-itself.
+The following are in no particular order.
+
+## summary grid from `emmeans` package (`emmGrid`)
+
+```{r emmGrid, fig.height = 5, fig.width = 5}
+# setup
+set.seed(123)
+library(emmeans)
+
+# linear model for sales of oranges per day
+oranges_lm1 <-
+  stats::lm(
+    formula = sales1 ~ price1 + price2 + day + store,
+    data = oranges
+  )
+
+# reference grid; see vignette("basics", package = "emmeans")
+oranges_rg1 <- emmeans::ref_grid(oranges_lm1)
+marginal <- emmeans::emmeans(oranges_rg1, "day")
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = marginal,
+  point.args = list(color = "darkgreen", shape = 9),
+  title = "summary grid from `emmeans` package"
+)
+```
+
+Another example with output containing effect sizes
+
+```{r emmGrid2, fig.height = 5, fig.width = 5}
+# setup
+set.seed(123)
+library(emmeans)
+
+# model and effect sizes
+fiber.lm <- lm(strength ~ diameter + machine, data = fiber)
+emm <- emmeans(fiber.lm, "machine")
+es <- eff_size(emm, sigma = sigma(fiber.lm), edf = df.residual(fiber.lm))
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = es,
+  title = "summary grid with effect sizes\nfrom `emmeans` package"
+)
+```
 
 ## Bayes Factor (`BFBayesFactor`)
 
@@ -162,8 +205,7 @@ mod7 <- regressionBF(rating ~ ., data = attitude, progress = FALSE)
 t <- c(-.15, 2.39, 2.42, 2.43, -.15, 2.39, 2.42, 2.43)
 N <- c(100, 150, 97, 99, 99, 97, 100, 150)
 
-# Using `rscale = 1` and one-sided test to be
-# consistent with Rouder & Morey (2011)
+# using `rscale = 1` and one-sided test to be consistent with Rouder & Morey (2011)
 mod8 <- meta.ttestBF(t, N, rscale = 1, nullInterval = c(0, Inf))
 
 # list of plots
@@ -443,16 +485,16 @@ ggstatsplot::combine_plots(
 Note that for mixed-effects models, only the *fixed* effects are shown because
 there are no confidence intervals for *random* effects terms. In case, you would
 like to see these terms, you can enter the same object you entered as `x`
-argument to `broomExtra::tidy_parameters`:
+argument to `parameters::model_parameters`:
 
 ```{r lmer2}
 # setup
 set.seed(123)
 library(lme4)
-library(broomExtra)
+library(parameters)
 
 # tidy output
-broomExtra::tidy_parameters(
+parameters::model_parameters(
   lme4::lmer(
     formula = scale(rating) ~ scale(budget) + (budget | genre),
     data = movies_long,
@@ -1182,8 +1224,7 @@ mod <-
 # plot
 ggstatsplot::ggcoefstats(
   x = mod,
-  title = "generalized linear mixed-effects model",
-  exponentiate = TRUE
+  title = "generalized linear mixed-effects model"
 )
 ```
 
@@ -1242,72 +1283,6 @@ ggstatsplot::ggcoefstats(
   x = m.nb,
   title = "generalized linear mixed-effects model (GLMM) for the negative binomial family",
   exclude.intercept = FALSE
-)
-```
-
-## Compound Poisson Generalized Linear Models (`cpglm`)
-
-```{r cpglm, fig.height = 6, fig.width = 10}
-# set up
-set.seed(123)
-library(cplm)
-
-# model
-mod <- cplm::cpglm(
-  formula = RLD ~ factor(Zone) * factor(Stock),
-  data = FineRoot
-)
-
-# plot
-ggstatsplot::ggcoefstats(
-  x = mod,
-  title = "Compound Poisson Generalized Linear Models"
-)
-```
-
-## Compound Poisson Generalized Linear Mixed Models (`cpglmm`)
-
-```{r cpglmm, fig.height = 6, fig.width = 10}
-# set up
-set.seed(123)
-library(cplm)
-
-# model
-mod <- cpglmm(
-  formula = RLD ~ Stock + Spacing + (1 | Plant),
-  data = FineRoot
-)
-
-# plot
-ggstatsplot::ggcoefstats(
-  x = mod,
-  title = "Compound Poisson Generalized Linear Mixed Models"
-)
-```
-
-## Bayesian Compound Poisson Linear Models (`bcplm`)
-
-```{r bcplm, fig.height = 6, fig.width = 10}
-# set up
-set.seed(123)
-library(cplm)
-
-# model
-mod <-
-  bcplm(
-    formula = RLD ~ factor(Zone) * factor(Stock),
-    data = FineRoot,
-    tune.iter = 2000,
-    n.iter = 6000,
-    n.burnin = 1000,
-    n.thin = 5,
-    n.report = 0
-  )
-
-# plot
-ggstatsplot::ggcoefstats(
-  x = mod,
-  title = "Bayesian Compound Poisson Linear Models"
 )
 ```
 
@@ -2460,7 +2435,11 @@ dclus1 <-
 dclus1 <- update(dclus1, mealcat = cut(meals, c(0, 25, 50, 75, 100)))
 
 # model
-m <- survey::svyolr(formula = mealcat ~ avg.ed + mobility + stype, design = dclus1)
+m <-
+  survey::svyolr(
+    formula = mealcat ~ avg.ed + mobility + stype,
+    design = dclus1
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -2804,7 +2783,6 @@ mod <-
 # plot
 ggstatsplot::ggcoefstats(
   x = mod,
-  exponentiate = TRUE,
   title = "Cox proportional hazards regression model"
 )
 ```
@@ -3041,7 +3019,7 @@ data("mwp", package = "feisr")
 
 # model
 feis.mod <-
-  feis(
+  feisr::feis(
     formula = lnw ~ marry + enrol + as.factor(yeargr) | exp + I(exp^2),
     data = mwp,
     id = "id",
@@ -3714,51 +3692,6 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
-## summary grid from `emmeans` package (`emmGrid`)
-
-```{r emmGrid, fig.height = 5, fig.width = 5}
-# setup
-set.seed(123)
-library(emmeans)
-
-# linear model for sales of oranges per day
-oranges_lm1 <-
-  stats::lm(
-    formula = sales1 ~ price1 + price2 + day + store,
-    data = oranges
-  )
-
-# reference grid; see vignette("basics", package = "emmeans")
-oranges_rg1 <- emmeans::ref_grid(oranges_lm1)
-marginal <- emmeans::emmeans(oranges_rg1, "day")
-
-# plot
-ggstatsplot::ggcoefstats(
-  x = marginal,
-  point.args = list(color = "darkgreen", shape = 9),
-  title = "summary grid from `emmeans` package"
-)
-```
-
-Another example with output containing effect sizes
-
-```{r emmGrid2, fig.height = 5, fig.width = 5}
-# setup
-set.seed(123)
-library(emmeans)
-
-# model and effect sizes
-fiber.lm <- lm(strength ~ diameter + machine, data = fiber)
-emm <- emmeans(fiber.lm, "machine")
-es <- eff_size(emm, sigma = sigma(fiber.lm), edf = df.residual(fiber.lm))
-
-# plot
-ggstatsplot::ggcoefstats(
-  x = es,
-  title = "summary grid with effect sizes\nfrom `emmeans` package"
-)
-```
-
 ## Cochrane-Orcutt estimation (`orcutt`)
 
 ```{r orcutt, fig.height = 5, fig.width = 5}
@@ -4257,7 +4190,7 @@ ggstatsplot::ggcoefstats(
 
 ## latent variable model (`lavaan`)
 
-```{r lavaan, fig.height = 10, fig.width = 6, error=TRUE}
+```{r lavaan, fig.height = 10, fig.width = 6}
 # setup
 set.seed(123)
 library(lavaan)
@@ -4287,7 +4220,7 @@ ggstatsplot::ggcoefstats(
 
 ## Bayesian latent variable model (`blavaan`)
 
-```{r blavaan, fig.height = 10, fig.width = 6}
+```{r blavaan, fig.height = 10, fig.width = 6, eval=FALSE}
 # setup
 set.seed(123)
 library(blavaan)
@@ -4365,6 +4298,73 @@ ggstatsplot::ggcoefstats(
   x = mod,
   exclude.intercept = FALSE,
   title = "Bayesian multivariate generalized linear models \nvia Stan"
+)
+```
+
+
+## Compound Poisson Generalized Linear Models (`cpglm`)
+
+```{r cpglm, fig.height = 6, fig.width = 10}
+# set up
+set.seed(123)
+library(cplm)
+
+# model
+mod <- cplm::cpglm(
+  formula = RLD ~ factor(Zone) * factor(Stock),
+  data = FineRoot
+)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
+  title = "Compound Poisson Generalized Linear Models"
+)
+```
+
+## Compound Poisson Generalized Linear Mixed Models (`cpglmm`)
+
+```{r cpglmm, fig.height = 6, fig.width = 10}
+# set up
+set.seed(123)
+library(cplm)
+
+# model
+mod <- cpglmm(
+  formula = RLD ~ Stock + Spacing + (1 | Plant),
+  data = FineRoot
+)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
+  title = "Compound Poisson Generalized Linear Mixed Models"
+)
+```
+
+## Bayesian Compound Poisson Linear Models (`bcplm`)
+
+```{r bcplm, fig.height = 6, fig.width = 10}
+# set up
+set.seed(123)
+library(cplm)
+
+# model
+mod <-
+  bcplm(
+    formula = RLD ~ factor(Zone) * factor(Stock),
+    data = FineRoot,
+    tune.iter = 2000,
+    n.iter = 6000,
+    n.burnin = 1000,
+    n.thin = 5,
+    n.report = 0
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
+  title = "Bayesian Compound Poisson Linear Models"
 )
 ```
 
@@ -4611,8 +4611,7 @@ ggstatsplot::ggcoefstats(
 # Other types of outputs
 
 This function can also be used to extract outputs other than a plot, although it
-is much more preferable to use the underlying functions instead (e.g.,
-`broom::tidy` or `parameters::model_parameters`).
+is much more preferable to use the underlying functions instead (`parameters::model_parameters`).
 
 ```{r other_output, error=TRUE}
 # setup
@@ -4636,8 +4635,7 @@ ggcoefstats(nlmod, output = "glance")
 
 This vignette was supposed to give a comprehensive account of regression models
 supported by `ggcoefstats`. The list of supported models will keep expanding as
-additional tidiers are added to the `broom`, `broom.mixed`, `parameters`, and
-`performance` packages.
+additional tidiers are added to the `parameters` and `performance` packages.
 
 Note that not **all** models supported in these packages will be supported by
 `ggcoefstats`. In particular, classes of objects for which there is no column

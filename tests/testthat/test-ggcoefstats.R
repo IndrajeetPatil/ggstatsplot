@@ -208,15 +208,15 @@ testthat::test_that(
     testthat::expect_equal(dim(pb$data[[3]]), c(4L, 10L))
 
     # checking ggrepel label layer
-    # testthat::expect_identical(
-    #   pb$data[[4]]$label,
-    #   c(
-    #     "list(~widehat(italic(beta))==6.438, ~italic(t)(28)==13.765, ~italic(p)==5.48e-14)",
-    #     "list(~widehat(italic(beta))==-0.156, ~italic(t)(28)==-5.840, ~italic(p)==2.81e-06)",
-    #     "list(~widehat(italic(beta))==-1.809, ~italic(t)(28)==-2.615, ~italic(p)==0.014)",
-    #     NA_character_
-    #   )
-    # )
+    testthat::expect_identical(
+      pb$data[[4]]$label,
+      c(
+        "list(~widehat(italic(beta))==6.438, ~italic(t)(28)==13.765, ~italic(p)==5.48e-14)",
+        "list(~widehat(italic(beta))==-0.156, ~italic(t)(28)==-5.840, ~italic(p)==2.81e-06)",
+        "list(~widehat(italic(beta))==-1.809, ~italic(t)(28)==-2.615, ~italic(p)==0.014)",
+        NA_character_
+      )
+    )
     testthat::expect_identical(
       unclass(pb$data[[4]]$colour),
       c("#1B9E77FF", "#D95F02FF", "#7570B3FF", "#E7298AFF")
@@ -646,61 +646,27 @@ testthat::test_that(
   }
 )
 
-# check confidence intervals ----------------------------------------------
+# check tidy output ----------------------------------------------
 
 testthat::test_that(
-  desc = "check computing confidence intervals",
+  desc = "check tidy output",
   code = {
     testthat::skip_on_cran()
 
-    # creating broom dataframes
     set.seed(123)
     mod <- stats::lm(data = iris, formula = Sepal.Length ~ Species)
-    df1 <-
-      broomExtra::tidy(
-        x = mod,
-        conf.int = TRUE,
-        conf.level = 0.95
-      )
-    df2 <-
-      broomExtra::tidy(
-        x = mod,
-        conf.int = TRUE,
-        conf.level = 0.50
-      )
 
     # computed dataframes
-    tidy_df1 <-
+    tidy_df <-
       ggstatsplot::ggcoefstats(
-        x = dplyr::select(df1, -conf.low, -conf.high),
+        x = mod,
         exclude.intercept = FALSE,
         statistic = "t",
         output = "tidy"
       )
-    tidy_df2 <-
-      ggstatsplot::ggcoefstats(
-        x = dplyr::select(df2, -conf.low, -conf.high),
-        exclude.intercept = FALSE,
-        statistic = "t",
-        output = "tidy",
-        conf.level = 0.50
-      )
-    tidy_df3 <-
-      ggstatsplot::ggcoefstats(
-        x = dplyr::select(df2, -conf.low, -conf.high, -std.error),
-        exclude.intercept = FALSE,
-        statistic = "t",
-        output = "tidy",
-        conf.level = 0.50
-      )
 
     # checking confidence intervals
-    testthat::expect_equal(df1$conf.low, tidy_df1$conf.low, tolerance = 0.001)
-    testthat::expect_equal(df2$conf.high, tidy_df2$conf.high, tolerance = 0.001)
-    testthat::expect_identical(tidy_df3$conf.low[1], NA_character_)
-    testthat::expect_identical(tidy_df3$conf.high[1], NA_character_)
-    testthat::expect_s3_class(tidy_df1, "tbl_df")
-    testthat::expect_s3_class(tidy_df2, "tbl_df")
+    testthat::expect_s3_class(tidy_df, "tbl_df")
   }
 )
 
@@ -711,92 +677,13 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
 
-    # creating broom and ggstatsplot output
     # lm
     set.seed(123)
     mod1 <- stats::lm(data = iris, formula = Sepal.Length ~ Species)
     glance_df1 <- ggstatsplot::ggcoefstats(x = mod1, output = "glance")
 
-    # checking if they are equal
+    # checking if they are present
     testthat::expect_true(all(c("aic", "bic") %in% names(glance_df1)))
-  }
-)
-
-
-# check if augment works ----------------------------------------------
-
-testthat::test_that(
-  desc = "check if augment works",
-  code = {
-    testthat::skip_on_cran()
-
-    # linear model
-    set.seed(123)
-    mod1 <- stats::lm(
-      formula = mpg ~ wt + qsec,
-      data = mtcars
-    )
-    df1.broom <- broomExtra::augment(mod1)
-    df1.ggstats <-
-      ggstatsplot::ggcoefstats(x = mod1, output = "augment")
-
-    # model with F-statistic
-    set.seed(123)
-    mod3 <- stats::aov(
-      data = ggplot2::msleep,
-      formula = sleep_rem ~ brainwt * vore
-    )
-    df3.broom <- tibble::as_tibble(broomExtra::augment(mod3))
-    df3.ggstats <-
-      ggstatsplot::ggcoefstats(x = mod3, output = "augment")
-
-    # checking if they are equal
-    testthat::expect_identical(df1.broom, df1.ggstats)
-    testthat::expect_identical(df3.broom, df3.ggstats)
-    testthat::expect_true(inherits(df1.ggstats, what = "tbl_df"))
-    testthat::expect_true(inherits(df3.ggstats, what = "tbl_df"))
-  }
-)
-
-# testing aesthetic modifications --------------------------------------------
-
-testthat::test_that(
-  desc = "testing aesthetic modifications",
-  code = {
-    testthat::skip_on_cran()
-
-    # model
-    set.seed(123)
-    mod <-
-      stats::lm(
-        formula = wt ~ am * cyl * vs,
-        data = mtcars
-      )
-
-    # plot
-    suppressWarnings(suppressMessages(
-      p <-
-        ggstatsplot::ggcoefstats(
-          x = mod,
-          exclude.intercept = FALSE,
-          exponentiate = TRUE,
-          point.args = list(
-            size = 6,
-            shape = 5,
-            color = "red"
-          ),
-          package = "ggsci",
-          palette = "alternating_igv"
-        )
-    ))
-
-    # plot build
-    pb <- ggplot2::ggplot_build(p)
-
-    # checking layered data
-    testthat::expect_identical(unique(pb$data[[3]]$colour), "red")
-    testthat::expect_equal(unique(pb$data[[3]]$shape), 5L)
-    testthat::expect_equal(unique(pb$data[[3]]$size), 6L)
   }
 )
 
@@ -805,6 +692,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "unsupported model objects",
   code = {
+    testthat::skip_on_cran()
+
     # mod-1
     testthat::expect_error(ggstatsplot::ggcoefstats(x = list(x = "1", y = 2L)))
 
@@ -822,5 +711,80 @@ testthat::test_that(
     testthat::expect_error(ggstatsplot::ggcoefstats(stats::acf(lh, plot = FALSE)))
     testthat::expect_null(pb$plot$labels$subtitle, NULL)
     testthat::expect_null(pb$plot$labels$caption, NULL)
+  }
+)
+
+
+# CIs missing -----------------------------------------------
+
+testthat::test_that(
+  desc = "unsupported model objects",
+  code = {
+    testthat::skip_on_cran()
+
+    # creating a dataframe
+    df <-
+      structure(
+        list(
+          term = structure(
+            c(3L, 4L, 1L, 2L, 5L),
+            .Label = c(
+              "Africa",
+              "Americas", "Asia", "Europe", "Oceania"
+            ),
+            class = "factor"
+          ),
+          estimate = c(
+            0.382047603321706,
+            0.780783111514665,
+            0.425607573765058,
+            0.558365541235078,
+            0.956473848429961
+          ),
+          std.error = c(
+            0.0465576338644502,
+            0.0330218199731529,
+            0.0362834986178494,
+            0.0480571500648261,
+            0.062215818388157
+          ),
+          statistic = c(
+            8.20590677855356,
+            23.6444603038067,
+            11.7300588415607,
+            11.6187818146078,
+            15.3734833553524
+          ),
+          p.value = c(
+            3.28679518728519e-15,
+            4.04778497135963e-75,
+            7.59757330804449e-29,
+            5.45155840151592e-26,
+            2.99171217913312e-13
+          ),
+          df.error = c(
+            394L, 358L, 622L,
+            298L, 22L
+          )
+        ),
+        row.names = c(NA, -5L),
+        class = c(
+          "tbl_df",
+          "tbl", "data.frame"
+        )
+      )
+
+    # plotting the dataframe
+    p <-
+      ggstatsplot::ggcoefstats(
+        x = df,
+        stats.labels = FALSE,
+        meta.analytic.effect = FALSE
+      )
+
+    # build it
+    pb <- ggplot2::ggplot_build(p)
+
+    testthat::expect_equal(length(pb$data), 2L)
   }
 )

@@ -109,7 +109,7 @@ df_facet_label <- function(data, x, y, k = 3L, ...) {
         label = paste0(
           "list(~chi['gof']^2~",
           "(",
-          parameter,
+          df,
           ")==",
           specify_decimal_p(x = statistic, k = k),
           ", ~italic(p)==",
@@ -129,28 +129,13 @@ df_facet_label <- function(data, x, y, k = 3L, ...) {
 #' @return Dataframe with percentages and statistical details from a proportion
 #'  test.
 #'
-#' @param ... Currently ignored.
-#' @inheritParams broomExtra::grouped_tidy
-#' @param measure A variable for which proportion test needs to be carried out
-#'  for each combination of levels of factors entered in `grouping.vars`.
-#'
 #' @importFrom tidyr nest unnest spread
-#' @importFrom broomExtra tidy
 #' @importFrom stats chisq.test
 #' @importFrom rlang enquos
 #' @importFrom dplyr group_by_at group_modify ungroup group_vars select
 #' @importFrom dplyr count left_join
 #'
-#' @examples
-#' # for reproducibility
-#' set.seed(123)
-#'
-#' ggstatsplot:::grouped_proptest(
-#'   data = mtcars,
-#'   grouping.vars = cyl,
-#'   measure = am
-#' )
-#' @keywords internal
+#' @noRd
 
 # function body
 grouped_proptest <- function(data, grouping.vars, measure, ...) {
@@ -174,7 +159,6 @@ grouped_proptest <- function(data, grouping.vars, measure, ...) {
 
 # safer version of chi-squared test that returns NAs
 # needed to work with `group_modify` since it will not work when NULL is returned
-# by `broomExtra::tidy`
 #' @noRd
 
 chisq_test_safe <- function(data, x, ...) {
@@ -182,16 +166,20 @@ chisq_test_safe <- function(data, x, ...) {
   xtab <- table(data %>% dplyr::pull({{ x }}))
 
   # run chi-square test
-  chi_result <- broomExtra::tidy(stats::chisq.test(xtab))
+  chi_result <-
+    tryCatch(
+      expr = parameters::model_parameters(stats::chisq.test(xtab)),
+      error = function(e) NULL
+    )
 
   # if not null, return tidy output, otherwise return NAs
   if (!is.null(chi_result)) {
-    chi_result
+    as_tibble(parameters::standardize_names(data = chi_result, style = "broom"))
   } else {
     tibble(
       statistic = NA_real_,
       p.value = NA_real_,
-      parameter = NA_real_,
+      df = NA_real_,
       method = "Chi-squared test for given probabilities"
     )
   }

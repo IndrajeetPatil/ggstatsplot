@@ -22,7 +22,7 @@ jobs:
         config:
           - {os: windows-latest, r: 'release', args: "--no-manual"}
           - {os: windows-latest, r: 'devel', args: "--no-manual"}
-          - {os: windows-latest, r: 'oldrel', args: "--no-manual"}
+          #- {os: windows-latest, r: 'oldrel', args: "--no-manual"}
           - {os: macOS-latest, r: 'release', args: "--no-manual"}
           #- {os: macOS-latest, r: 'devel', args: "--no-manual"}
           - {os: macOS-latest, r: 'oldrel', args: "--no-manual"}
