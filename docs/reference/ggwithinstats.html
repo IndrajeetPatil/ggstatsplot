@@ -238,8 +238,7 @@ details included in the plot as a subtitle.</p>
   outlier.tagging <span class='op'>=</span> <span class='cn'>FALSE</span>,
   outlier.label <span class='op'>=</span> <span class='cn'>NULL</span>,
   outlier.coef <span class='op'>=</span> <span class='fl'>1.5</span>,
-  outlier.label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
-  outlier.point.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  outlier.label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>,
   violin.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>width <span class='op'>=</span> <span class='fl'>0.5</span>, alpha <span class='op'>=</span> <span class='fl'>0.2</span><span class='op'>)</span>,
   ggsignif.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>textsize <span class='op'>=</span> <span class='fl'>3</span>, tip_length <span class='op'>=</span> <span class='fl'>0.01</span><span class='op'>)</span>,
   ggtheme <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span>,
@@ -447,14 +446,7 @@ Quartile) <code>outlier.coef</code> times the Inter-Quartile Range (IQR) (Defaul
     <tr>
       <th>outlier.label.args</th>
       <td><p>A list of additional aesthetic arguments to be
-passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point</a></code> and <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geoms
-involved outlier value plotting.</p></td>
-    </tr>
-    <tr>
-      <th>outlier.point.args</th>
-      <td><p>A list of additional aesthetic arguments to be
-passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point</a></code> and <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geoms
-involved outlier value plotting.</p></td>
+passed to <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> for outlier label plotting.</p></td>
     </tr>
     <tr>
       <th>violin.args</th>

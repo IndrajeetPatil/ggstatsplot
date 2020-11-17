@@ -220,27 +220,25 @@ association test will be run. This argument can not be <code>NULL</code> for
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional grouping variables.</p></td>
+      <td><p>Currently ignored.</p></td>
     </tr>
     </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>ggstatsplot</span><span class='fu'>:::</span><span class='fu'>cat_counter</span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='va'><a href='https://ggplot2.tidyverse.org/reference/mpg.html'>mpg</a></span>, <span class='st'>"drv"</span>, <span class='va'>cyl</span>, <span class='st'>"fl"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 22 x 5</span><span>
-#&gt;      </span><span style='font-weight: bold;'>cyl</span><span> </span><span style='font-weight: bold;'>drv</span><span>   </span><span style='font-weight: bold;'>fl</span><span>    </span><span style='font-weight: bold;'>counts</span><span>   </span><span style='font-weight: bold;'>perc</span><span>
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>     6 r     r          4 100   
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>     8 r     e          1   4.76
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>     8 r     p          7  33.3 
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>     8 r     r         13  61.9 
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>     4 f     c          1   1.72
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>     4 f     d          3   5.17
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>     4 f     p         14  24.1 
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>     4 f     r         40  69.0 
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>     5 f     r          4 100   
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span>     6 f     e          1   2.33
-#&gt; </span><span style='color: #949494;'># ... with 12 more rows</span><span></div></span></pre>
+    <pre class="examples"><div class='input'><span class='fu'>ggstatsplot</span><span class='fu'>:::</span><span class='fu'>cat_counter</span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='va'><a href='https://ggplot2.tidyverse.org/reference/mpg.html'>mpg</a></span>, <span class='va'>drv</span>, <span class='va'>cyl</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 9 x 4</span><span>
+#&gt;     cyl drv   counts   perc
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>     6 r          4   5.06
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span>     8 r         21  30   
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span>     4 f         58  71.6 
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span>     5 f          4 100   
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span>     6 f         43  54.4 
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span>     8 f          1   1.43
+#&gt; </span><span style='color: #BCBCBC;'>7</span><span>     4 4         23  28.4 
+#&gt; </span><span style='color: #BCBCBC;'>8</span><span>     6 4         32  40.5 
+#&gt; </span><span style='color: #BCBCBC;'>9</span><span>     8 4         48  68.6 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

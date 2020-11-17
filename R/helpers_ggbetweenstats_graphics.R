@@ -60,7 +60,7 @@ mean_ggrepel <- function(plot,
     as_tibble(.) %>%
     dplyr::group_by(.data = ., {{ x }}) %>%
     dplyr::group_modify(
-      .f = ~ insight::standardize_names(
+      .f = ~ parameters::standardize_names(
         data = as.data.frame(parameters::describe_distribution(
           x = .,
           centrality = "mean",

@@ -108,12 +108,8 @@ body (default \code{0.5}).}
 \code{outlier.shape = NA}. Importantly, this does not remove the outliers,
 it only hides them, so the range calculated for the \code{y}-axis will be
 the same with outliers shown and outliers hidden.}
-    \item{\code{outlier.point.args}}{A list of additional aesthetic arguments to be
-passed to \code{ggplot2::geom_point} and \code{ggrepel::geom_label_repel} geoms
-involved outlier value plotting.}
     \item{\code{outlier.label.args}}{A list of additional aesthetic arguments to be
-passed to \code{ggplot2::geom_point} and \code{ggrepel::geom_label_repel} geoms
-involved outlier value plotting.}
+passed to \code{ggrepel::geom_label_repel} for outlier label plotting.}
     \item{\code{outlier.coef}}{Coefficient for outlier detection using Tukey's method.
 With Tukey's method, outliers are below (1st Quartile) or above (3rd
 Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:

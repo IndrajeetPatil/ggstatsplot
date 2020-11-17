@@ -79,10 +79,10 @@ You can pass:
    `nboot = 25` in which case it will be reused/recycled as many times as
    needed.
 
- * A vector of values such as `notch = c(TRUE, FALSE, TRUE)` in which case it
+ * A vector of values such as `mean.ci = c(TRUE, FALSE, TRUE)` in which case it
    will be coerced to a list and checked for the right class (in this case
    integer) and the right quantity of entries in the vector i.e.,
-   `notch = c(TRUE, FALSE)` will fail if we're trying to make three plots.
+   `mean.ci = c(TRUE, FALSE)` will fail if we're trying to make three plots.
 
  * A list; either named `data = year_list` or created as you go
    `palette = list("Dark2", "Set1")`. Any list will

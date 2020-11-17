@@ -41,7 +41,6 @@ ggbetweenstats(
   outlier.shape = 19,
   outlier.color = "black",
   outlier.label.args = list(size = 3),
-  outlier.point.args = list(),
   point.args = list(position = ggplot2::position_jitterdodge(dodge.width = 0.6), alpha
     = 0.4, size = 3, stroke = 0),
   violin.args = list(width = 0.5, alpha = 0.2),
@@ -182,9 +181,8 @@ the same with outliers shown and outliers hidden.}
 
 \item{outlier.color}{Default aesthetics for outliers (Default: \code{"black"}).}
 
-\item{outlier.point.args, outlier.label.args}{A list of additional aesthetic arguments to be
-passed to \code{ggplot2::geom_point} and \code{ggrepel::geom_label_repel} geoms
-involved outlier value plotting.}
+\item{outlier.label.args}{A list of additional aesthetic arguments to be
+passed to \code{ggrepel::geom_label_repel} for outlier label plotting.}
 
 \item{point.args}{A list of additional aesthetic arguments to be passed to
 the \code{geom_point} displaying the raw data.}

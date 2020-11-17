@@ -151,11 +151,7 @@ With Tukey's method, outliers are below (1st Quartile) or above (3rd
 Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
 \code{1.5}).}
     \item{\code{outlier.label.args}}{A list of additional aesthetic arguments to be
-passed to \code{ggplot2::geom_point} and \code{ggrepel::geom_label_repel} geoms
-involved outlier value plotting.}
-    \item{\code{outlier.point.args}}{A list of additional aesthetic arguments to be
-passed to \code{ggplot2::geom_point} and \code{ggrepel::geom_label_repel} geoms
-involved outlier value plotting.}
+passed to \code{ggrepel::geom_label_repel} for outlier label plotting.}
     \item{\code{violin.args}}{A list of additional aesthetic arguments to be passed to
 the \code{geom_violin}.}
     \item{\code{ggsignif.args}}{A list of additional aesthetic

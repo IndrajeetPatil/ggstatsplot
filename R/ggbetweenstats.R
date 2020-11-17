@@ -59,9 +59,8 @@
 #'   `outlier.shape = NA`. Importantly, this does not remove the outliers,
 #'   it only hides them, so the range calculated for the `y`-axis will be
 #'   the same with outliers shown and outliers hidden.
-#' @param outlier.point.args,outlier.label.args A list of additional aesthetic arguments to be
-#'   passed to `ggplot2::geom_point` and `ggrepel::geom_label_repel` geoms
-#'   involved outlier value plotting.
+#' @param outlier.label.args A list of additional aesthetic arguments to be
+#'   passed to `ggrepel::geom_label_repel` for outlier label plotting.
 #' @param outlier.coef Coefficient for outlier detection using Tukey's method.
 #'   With Tukey's method, outliers are below (1st Quartile) or above (3rd
 #'   Quartile) `outlier.coef` times the Inter-Quartile Range (IQR) (Default:
@@ -191,7 +190,6 @@ ggbetweenstats <- function(data,
                            outlier.shape = 19,
                            outlier.color = "black",
                            outlier.label.args = list(size = 3),
-                           outlier.point.args = list(),
                            point.args = list(
                              position = ggplot2::position_jitterdodge(dodge.width = 0.60),
                              alpha = 0.4,
@@ -277,7 +275,7 @@ ggbetweenstats <- function(data,
         # switch based on
         type = type,
         test = test,
-        # arguments relevant for subtitle helper functions
+        # arguments relevant for expression helper functions
         data = data,
         x = {{ x }},
         y = {{ y }},
@@ -303,8 +301,7 @@ ggbetweenstats <- function(data,
 
   # -------------------------- basic plot -----------------------------------
 
-  # create the basic plot
-  # add only the points which are *not* outliers
+  # first add only the points which are *not* outliers
   plot <-
     ggplot2::ggplot(data = data, mapping = ggplot2::aes(x = {{ x }}, y = {{ y }})) +
     rlang::exec(
@@ -315,7 +312,7 @@ ggbetweenstats <- function(data,
       !!!point.args
     )
 
-  # if outliers are not being tagged, then add the points that were left out
+  # if outliers are not being tagged, then add the points that were previously left out
   if (isFALSE(outlier.tagging)) {
     plot <- plot +
       rlang::exec(
@@ -345,34 +342,35 @@ ggbetweenstats <- function(data,
   # adding a boxplot
   if (plot.type %in% c("box", "boxviolin")) {
     if (isTRUE(outlier.tagging)) {
-      plot <- plot +
-        ggplot2::stat_boxplot(
-          notch = notch,
-          notchwidth = notchwidth,
-          geom = "boxplot",
-          width = 0.3,
-          alpha = 0.2,
-          fill = "white",
-          outlier.shape = outlier.shape,
-          outlier.size = 3,
-          outlier.alpha = 0.7,
-          outlier.color = outlier.color,
-          coef = outlier.coef,
-          na.rm = TRUE
-        )
+      .f <- ggplot2::stat_boxplot
+      outlier_list <- list(
+        outlier.shape = outlier.shape,
+        outlier.size = 3,
+        outlier.alpha = 0.7,
+        outlier.color = outlier.color
+      )
     } else {
-      plot <- plot +
-        ggplot2::geom_boxplot(
-          notch = notch,
-          notchwidth = notchwidth,
-          width = 0.3,
-          alpha = 0.2,
-          fill = "white",
-          outlier.shape = NA,
-          position = ggplot2::position_dodge(width = NULL),
-          na.rm = TRUE
-        )
+      .f <- ggplot2::geom_boxplot
+      outlier_list <- list(
+        outlier.shape = NA,
+        position = ggplot2::position_dodge(width = NULL)
+      )
     }
+
+    # add a boxplot
+    suppressWarnings(plot <- plot +
+      rlang::exec(
+        .fn = .f,
+        notch = notch,
+        notchwidth = notchwidth,
+        width = 0.3,
+        alpha = 0.2,
+        fill = "white",
+        na.rm = TRUE,
+        geom = "boxplot",
+        coef = outlier.coef,
+        !!!outlier_list
+      ))
   }
 
   # add violin geom
@@ -386,14 +384,14 @@ ggbetweenstats <- function(data,
       )
   }
 
-  # ---------------------------- outlier tagging -----------------------------
+  # ---------------------------- outlier labeling -----------------------------
 
   # If `outlier.label` is not provided, outlier labels will just be values of
   # the `y` vector. If the outlier tag has been provided, just use the dataframe
   # already created.
 
+  # applying the labels to tagged outliers with `ggrepel`
   if (isTRUE(outlier.tagging)) {
-    # applying the labels to tagged outliers with `ggrepel`
     plot <- plot +
       rlang::exec(
         .fn = ggrepel::geom_label_repel,
@@ -440,8 +438,7 @@ ggbetweenstats <- function(data,
         paired = FALSE,
         var.equal = var.equal,
         p.adjust.method = p.adjust.method,
-        k = k,
-        messages = FALSE
+        k = k
       )
 
     # adding the layer for pairwise comparisons

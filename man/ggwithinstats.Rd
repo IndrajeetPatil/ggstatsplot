@@ -40,8 +40,7 @@ ggwithinstats(
   outlier.tagging = FALSE,
   outlier.label = NULL,
   outlier.coef = 1.5,
-  outlier.label.args = list(),
-  outlier.point.args = list(),
+  outlier.label.args = list(size = 3),
   violin.args = list(width = 0.5, alpha = 0.2),
   ggsignif.args = list(textsize = 3, tip_length = 0.01),
   ggtheme = ggplot2::theme_bw(),
@@ -181,12 +180,7 @@ Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
 \code{1.5}).}
 
 \item{outlier.label.args}{A list of additional aesthetic arguments to be
-passed to \code{ggplot2::geom_point} and \code{ggrepel::geom_label_repel} geoms
-involved outlier value plotting.}
-
-\item{outlier.point.args}{A list of additional aesthetic arguments to be
-passed to \code{ggplot2::geom_point} and \code{ggrepel::geom_label_repel} geoms
-involved outlier value plotting.}
+passed to \code{ggrepel::geom_label_repel} for outlier label plotting.}
 
 \item{violin.args}{A list of additional aesthetic arguments to be passed to
 the \code{geom_violin}.}

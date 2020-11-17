@@ -97,8 +97,7 @@ ggwithinstats <- function(data,
                           outlier.tagging = FALSE,
                           outlier.label = NULL,
                           outlier.coef = 1.5,
-                          outlier.label.args = list(),
-                          outlier.point.args = list(),
+                          outlier.label.args = list(size = 3),
                           violin.args = list(width = 0.5, alpha = 0.2),
                           ggsignif.args = list(textsize = 3, tip_length = 0.01),
                           ggtheme = ggplot2::theme_bw(),
@@ -185,7 +184,7 @@ ggwithinstats <- function(data,
         # switch based on
         type = type,
         test = test,
-        # arguments relevant for subtitle helper functions
+        # arguments relevant for expression helper functions
         data = data,
         x = {{ x }},
         y = {{ y }},
@@ -251,14 +250,14 @@ ggwithinstats <- function(data,
       )
   }
 
-  # ---------------------------- outlier tagging -----------------------------
+  # ---------------------------- outlier labeling -----------------------------
 
   # If `outlier.label` is not provided, outlier labels will just be values of
   # the `y` vector. If the outlier tag has been provided, just use the dataframe
   # already created.
 
   if (isTRUE(outlier.tagging)) {
-    # applying the labels to tagged outliers with ggrepel
+    # applying the labels to tagged outliers with `ggrepel`
     plot <- plot +
       rlang::exec(
         .fn = ggrepel::geom_label_repel,
@@ -305,10 +304,8 @@ ggwithinstats <- function(data,
         type = type,
         tr = tr,
         paired = TRUE,
-        var.equal = TRUE,
         p.adjust.method = p.adjust.method,
-        k = k,
-        messages = FALSE
+        k = k
       )
 
     # adding the layer for pairwise comparisons

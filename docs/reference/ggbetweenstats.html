@@ -239,7 +239,6 @@ the plot as a subtitle.</p>
   outlier.shape <span class='op'>=</span> <span class='fl'>19</span>,
   outlier.color <span class='op'>=</span> <span class='st'>"black"</span>,
   outlier.label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>,
-  outlier.point.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
   point.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>position <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/position_jitterdodge.html'>position_jitterdodge</a></span><span class='op'>(</span>dodge.width <span class='op'>=</span> <span class='fl'>0.6</span><span class='op'>)</span>, alpha
     <span class='op'>=</span> <span class='fl'>0.4</span>, size <span class='op'>=</span> <span class='fl'>3</span>, stroke <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>,
   violin.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>width <span class='op'>=</span> <span class='fl'>0.5</span>, alpha <span class='op'>=</span> <span class='fl'>0.2</span><span class='op'>)</span>,
@@ -447,10 +446,9 @@ the same with outliers shown and outliers hidden.</p></td>
       <td><p>Default aesthetics for outliers (Default: <code>"black"</code>).</p></td>
     </tr>
     <tr>
-      <th>outlier.point.args, outlier.label.args</th>
+      <th>outlier.label.args</th>
       <td><p>A list of additional aesthetic arguments to be
-passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point</a></code> and <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geoms
-involved outlier value plotting.</p></td>
+passed to <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> for outlier label plotting.</p></td>
     </tr>
     <tr>
       <th>point.args</th>

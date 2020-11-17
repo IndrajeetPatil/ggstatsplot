@@ -252,7 +252,6 @@ ggstatsplot::ggbetweenstats(
   data = ToothGrowth,
   x = supp,
   y = len,
-  notch = TRUE, # show notched box plot
   mean.ci = TRUE, # whether to display confidence interval for means
   k = 3, # number of decimal places for statistical results
   outlier.tagging = TRUE, # whether outliers need to be tagged

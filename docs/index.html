@@ -178,14 +178,14 @@
 <td><a href="https://cran.r-project.org/web/checks/check_results_ggstatsplot.html"><img src="https://cranchecks.info/badges/summary/ggstatsplot" alt="CRAN Checks"></a></td>
 <td><a href="https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot"><img src="https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue" alt="Weekly downloads badge"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/"><img src="https://img.shields.io/badge/forks-120-blue.svg" alt="Forks"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/"><img src="https://img.shields.io/badge/forks-121-blue.svg" alt="Forks"></a></td>
 <td><a href="https://indrajeetpatil.github.io/ggstatsplot/reference/index.html"><img src="https://img.shields.io/badge/features-ggstatsplot-orange.svg?colorB=2196F3" alt="Features"></a></td>
 </tr>
 <tr class="odd">
 <td><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.6.0-6666ff.svg" alt="minimal R version"></a></td>
 <td><a href="https://www.tidyverse.org/lifecycle/"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue" alt="Monthly downloads badge"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-26-red.svg" alt="Github Issues"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-24-red.svg" alt="Github Issues"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot/vignettes/"><img src="https://img.shields.io/badge/vignettes-0.6.5-orange.svg?colorB=FF5722" alt="vignettes"></a></td>
 </tr>
 <tr class="even">
@@ -199,7 +199,7 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
 <td><a href="https://hits.dwyl.com/IndrajeetPatil/ggstatsplot"><img src="https://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2020--11--04-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2020--11--17-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg" alt="GitHub last commit"></a></td>
 </tr>
 <tr class="even">
@@ -521,7 +521,7 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">iris</span>,
   x <span class="op">=</span> <span class="va">Species</span>,
   y <span class="op">=</span> <span class="va">Sepal.Length</span>,
@@ -538,11 +538,10 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">ToothGrowth</span>,
   x <span class="op">=</span> <span class="va">supp</span>,
   y <span class="op">=</span> <span class="va">len</span>,
-  notch <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># show notched box plot</span>
   mean.ci <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># whether to display confidence interval for means</span>
   k <span class="op">=</span> <span class="fl">3</span>, <span class="co"># number of decimal places for statistical results</span>
   outlier.tagging <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># whether outliers need to be tagged</span>
@@ -562,9 +561,9 @@
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/grouped_ggbetweenstats.html">grouped_ggbetweenstats</a></span><span class="op">(</span>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu">grouped_ggbetweenstats</span><span class="op">(</span>
   data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>
-    .data <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="reference/movies_long.html">movies_long</a></span>,
+    .data <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="movies_long.html">movies_long</a></span>,
     <span class="va">genre</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span><span class="op">)</span>
   <span class="op">)</span>,
   x <span class="op">=</span> <span class="va">mpaa</span>,
@@ -793,7 +792,7 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/psychor/">WRS2</a></span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">WineTasting</span>,
   x <span class="op">=</span> <span class="va">Wine</span>,
   y <span class="op">=</span> <span class="va">Taste</span>,
@@ -809,9 +808,9 @@
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/grouped_ggwithinstats.html">grouped_ggwithinstats</a></span><span class="op">(</span>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="grouped_ggwithinstats.html">grouped_ggwithinstats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>
-    .data <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="reference/bugs_long.html">bugs_long</a></span>,
+    .data <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="bugs_long.html">bugs_long</a></span>,
     <span class="va">region</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Europe"</span>, <span class="st">"North America"</span><span class="op">)</span>,
     <span class="va">condition</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"LDLF"</span>, <span class="st">"LDHF"</span><span class="op">)</span>
   <span class="op">)</span>,
@@ -1014,7 +1013,7 @@
 </h2>
 <p>This function creates a scatterplot with marginal distributions overlaid on the axes (from <code><a href="https://rdrr.io/pkg/ggExtra/man/ggMarginal.html">ggExtra::ggMarginal</a></code>) and results from statistical tests in the subtitle:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/ggscatterstats.html">ggscatterstats</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="ggscatterstats.html">ggscatterstats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html">msleep</a></span>,
   x <span class="op">=</span> <span class="va">sleep_rem</span>,
   y <span class="op">=</span> <span class="va">awake</span>,
@@ -1037,8 +1036,8 @@
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/ggscatterstats.html">ggscatterstats</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="reference/movies_long.html">movies_long</a></span>, <span class="va">genre</span> <span class="op">==</span> <span class="st">"Action"</span><span class="op">)</span>,
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="ggscatterstats.html">ggscatterstats</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="movies_long.html">movies_long</a></span>, <span class="va">genre</span> <span class="op">==</span> <span class="st">"Action"</span><span class="op">)</span>,
   x <span class="op">=</span> <span class="va">budget</span>,
   y <span class="op">=</span> <span class="va">rating</span>,
   type <span class="op">=</span> <span class="st">"robust"</span>, <span class="co"># type of test that needs to be run</span>
@@ -1061,9 +1060,9 @@
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span><span class="op">(</span>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="grouped_ggscatterstats.html">grouped_ggscatterstats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>
-    .data <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="reference/movies_long.html">movies_long</a></span>,
+    .data <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="movies_long.html">movies_long</a></span>,
     <span class="va">genre</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span><span class="op">)</span>
   <span class="op">)</span>,
   x <span class="op">=</span> <span class="va">rating</span>,
@@ -1140,7 +1139,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># as a default this function outputs a correlation matrix plot</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html">msleep</a></span>,
   type <span class="op">=</span> <span class="st">"robust"</span>, <span class="co"># correlation method</span>
   p.adjust.method <span class="op">=</span> <span class="st">"holm"</span>, <span class="co"># p-value adjustment method for multiple comparisons</span>
@@ -1169,9 +1168,9 @@
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span><span class="op">(</span>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="grouped_ggcorrmat.html">grouped_ggcorrmat</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>
-    .data <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="reference/movies_long.html">movies_long</a></span>,
+    .data <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="movies_long.html">movies_long</a></span>,
     <span class="va">genre</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span><span class="op">)</span>
   <span class="op">)</span>,
   cor.vars <span class="op">=</span> <span class="va">length</span><span class="op">:</span><span class="va">votes</span>,
@@ -1188,7 +1187,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># dataframe in long format</span>
-<span class="fu"><a href="reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
+<span class="fu"><a href="ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html">msleep</a></span>,
   type <span class="op">=</span> <span class="st">"bayes"</span>,
   output <span class="op">=</span> <span class="st">"dataframe"</span>
@@ -1263,7 +1262,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="ggpiestats.html">ggpiestats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">mtcars</span>,
   x <span class="op">=</span> <span class="va">am</span>,
   y <span class="op">=</span> <span class="va">cyl</span>,
@@ -1279,7 +1278,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="ggpiestats.html">ggpiestats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
     <span class="st">"before"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Approve"</span>, <span class="st">"Approve"</span>, <span class="st">"Disapprove"</span>, <span class="st">"Disapprove"</span><span class="op">)</span>,
     <span class="st">"after"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Approve"</span>, <span class="st">"Disapprove"</span>, <span class="st">"Approve"</span>, <span class="st">"Disapprove"</span><span class="op">)</span>,
@@ -1302,8 +1301,8 @@
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/grouped_ggpiestats.html">grouped_ggpiestats</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="reference/movies_long.html">movies_long</a></span>,
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="grouped_ggpiestats.html">grouped_ggpiestats</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="movies_long.html">movies_long</a></span>,
   x <span class="op">=</span> <span class="va">genre</span>,
   grouping.var <span class="op">=</span> <span class="va">mpaa</span>, <span class="co"># grouping variable</span>
   title.prefix <span class="op">=</span> <span class="st">"Movie genre"</span>, <span class="co"># prefix for the faceted title</span>
@@ -1400,8 +1399,8 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/ggbarstats.html">ggbarstats</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="reference/movies_long.html">movies_long</a></span>,
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="ggbarstats.html">ggbarstats</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="movies_long.html">movies_long</a></span>,
   x <span class="op">=</span> <span class="va">mpaa</span>,
   y <span class="op">=</span> <span class="va">genre</span>,
   sampling.plan <span class="op">=</span> <span class="st">"jointMulti"</span>,
@@ -1429,7 +1428,7 @@
   <span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/grouped_ggbarstats.html">grouped_ggbarstats</a></span><span class="op">(</span>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="grouped_ggbarstats.html">grouped_ggbarstats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">df</span>,
   x <span class="op">=</span> <span class="va">relig</span>,
   y <span class="op">=</span> <span class="va">partyid</span>,
@@ -1460,7 +1459,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/gghistostats.html">gghistostats</a></span><span class="op">(</span>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="gghistostats.html">gghistostats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">iris</span>, <span class="co"># dataframe from which variable is to be taken</span>
   x <span class="op">=</span> <span class="va">Sepal.Length</span>, <span class="co"># numeric variable whose distribution is of interest</span>
   title <span class="op">=</span> <span class="st">"Distribution of Iris sepal length"</span>, <span class="co"># title for the plot</span>
@@ -1482,9 +1481,9 @@
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/grouped_gghistostats.html">grouped_gghistostats</a></span><span class="op">(</span>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="grouped_gghistostats.html">grouped_gghistostats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>
-    .data <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="reference/movies_long.html">movies_long</a></span>,
+    .data <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="movies_long.html">movies_long</a></span>,
     <span class="va">genre</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span><span class="op">)</span>
   <span class="op">)</span>,
   x <span class="op">=</span> <span class="va">budget</span>,
@@ -1592,7 +1591,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="fu"><a href="reference/ggdotplotstats.html">ggdotplotstats</a></span><span class="op">(</span>
+<span class="fu"><a href="ggdotplotstats.html">ggdotplotstats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html">gapminder</a></span>, <span class="va">continent</span> <span class="op">==</span> <span class="st">"Asia"</span><span class="op">)</span>,
   y <span class="op">=</span> <span class="va">country</span>,
   x <span class="op">=</span> <span class="va">lifeExp</span>,
@@ -1616,7 +1615,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/grouped_ggdotplotstats.html">grouped_ggdotplotstats</a></span><span class="op">(</span>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="grouped_ggdotplotstats.html">grouped_ggdotplotstats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html">mpg</a></span>, <span class="va">cyl</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"4"</span>, <span class="st">"6"</span><span class="op">)</span><span class="op">)</span>,
   x <span class="op">=</span> <span class="va">cty</span>,
   y <span class="op">=</span> <span class="va">manufacturer</span>,
@@ -1641,7 +1640,7 @@
 <h2 class="hasAnchor">
 <a href="#ggcoefstats" class="anchor"></a><code>ggcoefstats</code>
 </h2>
-<p>The function <code><a href="reference/ggcoefstats.html">ggstatsplot::ggcoefstats</a></code> generates <strong>dot-and-whisker plots</strong> for regression models saved in a tidy data frame. The tidy dataframes are prepared using the following packages: <code>broom</code>, <code>broom.mixed</code>, and <code>parameters</code>. Additionally, if available, the model summary indices are also extracted from the following packages: <code>broom</code>, <code>broom.mixed</code>, and <code>performance</code>.</p>
+<p>The function <code><a href="ggcoefstats.html">ggstatsplot::ggcoefstats</a></code> generates <strong>dot-and-whisker plots</strong> for regression models saved in a tidy data frame. The tidy dataframes are prepared using the following packages: <code>broom</code>, <code>broom.mixed</code>, and <code>parameters</code>. Additionally, if available, the model summary indices are also extracted from the following packages: <code>broom</code>, <code>broom.mixed</code>, and <code>performance</code>.</p>
 <p>Although the statistical models displayed in the plot may differ based on the class of models being investigated, there are few aspects of the plot that will be invariant across models:</p>
 <ul>
 <li><p>The dot-whisker plot contains a dot representing the <strong>estimate</strong> and their <strong>confidence intervals</strong> (<code>95%</code> is the default). The estimate can either be effect sizes (for tests that depend on the <code>F</code> statistic) or regression coefficients (for tests with <code>t</code> and <code>z</code> statistic), etc. The function will, by default, display a helpful <code>x</code>-axis label that should clear up what estimates are being displayed. The confidence intervals can sometimes be asymmetric if bootstrapping was used.</p></li>
@@ -1656,7 +1655,7 @@
 <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">*</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></code></pre></div>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggcoefstats1-1.png" width="100%"></p>
 <p>This default plot can be further modified to one’s liking with additional arguments (also, let’s use a different model now):</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
@@ -1664,7 +1663,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/rlm.html">rlm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">*</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span>,
   point.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">3</span>, shape <span class="op">=</span> <span class="fl">15</span><span class="op">)</span>,
   vline.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span>, color <span class="op">=</span> <span class="st">"#CC79A7"</span>, linetype <span class="op">=</span> <span class="st">"dotdash"</span><span class="op">)</span>,
@@ -1751,7 +1750,7 @@
 
 <span class="co"># using `ggstatsplot` to get call with statistical results</span>
 <span class="va">stats_results</span> <span class="op">&lt;-</span>
-  <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
+  <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
     data <span class="op">=</span> <span class="va">morley</span>,
     x <span class="op">=</span> <span class="va">Expt</span>,
     y <span class="op">=</span> <span class="va">Speed</span>,
