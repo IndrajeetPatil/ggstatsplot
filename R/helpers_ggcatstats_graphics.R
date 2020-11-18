@@ -1,4 +1,4 @@
-#'  @title A dataframe with descriptive labels and chi-squared test results
+#'  @title A dataframe with descriptive labels
 #'
 #' @importFrom dplyr mutate
 #' @importFrom rlang !! :=
@@ -13,13 +13,7 @@ cat_label_df <- function(data,
                          perc.k = 1,
                          ...) {
   # creating a dataframe with counts
-  data %<>%
-    dplyr::group_by(.data = ., {{ y }}, {{ x }}, .drop = TRUE) %>%
-    dplyr::tally(x = ., name = "counts") %>%
-    dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
-    dplyr::ungroup(.) %>%
-    dplyr::arrange(.data = ., dplyr::desc({{ x }})) %>%
-    dplyr::filter(.data = ., counts != 0L)
+  data %<>% cat_counter(., {{ x }}, {{ y }})
 
   # checking what needs to be displayed in a label
   # only percentage
@@ -29,22 +23,21 @@ cat_label_df <- function(data,
 
   # only raw counts
   if (label.content %in% c("counts", "n", "count", "N")) {
-    data %<>% dplyr::mutate(label = paste0(prettyNum(counts, big.mark = ",", scientific = FALSE)))
+    data %<>% dplyr::mutate(label = paste0(.prettyNum(counts)))
   }
 
   # both raw counts and percentages
   if (label.content %in% c("both", "mix", "all", "everything")) {
-    data %<>% dplyr::mutate(label = paste0(
-      prettyNum(counts, big.mark = ",", scientific = FALSE),
-      "\n", "(", round(perc, perc.k), "%)"
-    ))
+    data %<>% dplyr::mutate(label = paste0(.prettyNum(counts), "\n", "(", round(perc, perc.k), "%)"))
   }
 
-  return(data)
+  # reorder the category factor levels to order the legend
+  return(data %<>% dplyr::mutate(.data = ., {{ x }} := factor({{ x }}, unique({{ x }}))))
 }
 
 
-#' @title Counts and percentages across grouping variables.
+#' @title Counts and percentages across grouping variables
+#'
 #' @importFrom dplyr select group_by ungroup tally n arrange desc mutate
 #'
 #' @noRd
@@ -60,6 +53,8 @@ cat_counter <- function(data, x, y = NULL, ...) {
     dplyr::filter(.data = ., counts != 0L)
 }
 
+#' @title A dataframe with chi-squared test results
+#'
 #' @importFrom dplyr group_modify rowwise ungroup
 #' @importFrom rlang as_name ensym
 #'
@@ -70,7 +65,7 @@ df_facet_label <- function(data, x, y, k = 3L, ...) {
   dplyr::full_join(
     # descriptives
     x = cat_counter(data = data, x = {{ y }}) %>%
-      dplyr::mutate(N = paste0("(n = ", prettyNum(counts, big.mark = ",", scientific = FALSE), ")")),
+      dplyr::mutate(N = paste0("(n = ", .prettyNum(counts), ")")),
     # proportion tests
     y = dplyr::group_by(data, {{ y }}) %>%
       dplyr::group_modify(.f = ~ chisq_test_safe(., {{ x }})) %>%
@@ -129,3 +124,8 @@ chisq_test_safe <- function(data, x, ...) {
     )
   }
 }
+
+
+#' @noRd
+
+.prettyNum <- function(x) prettyNum(x, big.mark = ",", scientific = FALSE)

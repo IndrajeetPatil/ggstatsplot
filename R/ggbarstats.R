@@ -156,25 +156,6 @@ ggbarstats <- function(data,
     }
   }
 
-  # ============================ percentage dataframe ========================
-
-  # convert the data into percentages; group by yal variable
-  # dataframe with summary labels
-  df <-
-    cat_label_df(
-      data = data,
-      x = {{ x }},
-      y = {{ y }},
-      label.content = label,
-      perc.k = perc.k
-    )
-
-  # dataframe containing all details needed for sample size and prop test
-  df_labels <- df_facet_label(data, {{ x }}, {{ y }}, k)
-
-  # reorder the category factor levels to order the legend
-  df %<>% dplyr::mutate(.data = ., {{ x }} := factor({{ x }}, unique({{ x }})))
-
   # return early if anything other than plot
   if (output != "plot") {
     return(switch(
@@ -185,6 +166,12 @@ ggbarstats <- function(data,
   }
 
   # =================================== plot =================================
+
+  # dataframe with summary labels
+  df <- cat_label_df(data, {{ x }}, {{ y }}, label.content = label, perc.k = perc.k)
+
+  # dataframe containing all details needed for prop test
+  df_labels <- df_facet_label(data, {{ x }}, {{ y }}, k)
 
   # if no. of factor levels is greater than the default palette color count
   palette_message(
