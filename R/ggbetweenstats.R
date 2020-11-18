@@ -86,9 +86,7 @@
 #'   you have set `results.subtitle = FALSE`, then this will return a `NULL`.
 #'   Setting this to `"caption"` will return the expression containing details
 #'   about Bayes Factor analysis, but valid only when `type = "parametric"` and
-#'   `bf.message = TRUE`, otherwise this will return a `NULL`. For functions
-#'   `ggpiestats` and `ggbarstats`, setting `output = "proptest"` will return a
-#'   dataframe containing results from proportion tests.
+#'   `bf.message = TRUE`, otherwise this will return a `NULL`.
 #' @param ... Currently ignored.
 #' @inheritParams theme_ggstatsplot
 #' @param mean.point.args,mean.label.args A list of additional aesthetic

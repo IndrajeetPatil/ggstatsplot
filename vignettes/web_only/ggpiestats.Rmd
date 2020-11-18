@@ -168,12 +168,16 @@ were significantly different than 50% as indicated by a goodness of fit test for
 each gender.
 
 In case you need to extract the results from proportion tests in a separate
-dataframe, `ggpiestats`'s `output` argument can be used:
+dataframe, you can build the plot and extract the dataframe:
 
 ```{r proptest_df}
 set.seed(123)
+library(ggplot2)
 
-ggpiestats(mtcars, am, cyl, output = "proptest", results.subtitle = FALSE)
+p <- ggpiestats(mtcars, am, cyl)
+pb <- ggplot2::ggplot_build(p)
+
+pb$plot$plot_env$df_labels
 ```
 
 ## Grouped analysis with `grouped_ggpiestats`
