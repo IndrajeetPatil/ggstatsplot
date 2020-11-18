@@ -26,7 +26,6 @@
 #' @inheritParams statsExpressions::expr_contingency_tab
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams gghistostats
-#' @inheritParams cat_label_df
 #'
 #' @seealso \code{\link{grouped_ggpiestats}}, \code{\link{ggbarstats}},
 #'  \code{\link{grouped_ggbarstats}}
@@ -181,7 +180,9 @@ ggpiestats <- function(data,
   # convert the data into percentages and add labels
   df <-
     cat_label_df(
-      data = cat_counter(data = data, x = {{ x }}, y = {{ y }}),
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
       label.content = label,
       perc.k = perc.k
     )
@@ -189,8 +190,6 @@ ggpiestats <- function(data,
   # dataframe containing all details needed for sample size and prop test
   if (!rlang::quo_is_null(rlang::enquo(y))) {
     df_labels <- df_facet_label(data, {{ x }}, {{ y }}, k)
-  } else {
-    df_labels <- NULL
   }
 
   # reorder the category factor levels to order the legend
@@ -201,8 +200,7 @@ ggpiestats <- function(data,
     return(switch(
       EXPR = output,
       "subtitle" = subtitle,
-      "caption" = caption,
-      "proptest" = df_labels
+      "caption" = caption
     ))
   }
 

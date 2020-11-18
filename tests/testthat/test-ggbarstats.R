@@ -521,28 +521,6 @@ testthat::test_that(
   }
 )
 
-# proptest output ---------------------------------------------------------
-
-testthat::test_that(
-  desc = "proptest output",
-  code = {
-    testthat::skip_on_cran()
-
-    df <-
-      suppressWarnings(ggbarstats(
-        mtcars,
-        am,
-        cyl,
-        results.subtitle = FALSE,
-        output = "proptest",
-        messages = FALSE
-      ))
-
-    # tests
-    testthat::expect_s3_class(df, "tbl_df")
-  }
-)
-
 # without enough data ---------------------------------------------------------
 
 testthat::test_that(

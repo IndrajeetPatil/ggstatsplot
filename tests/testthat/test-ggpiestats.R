@@ -560,27 +560,6 @@ testthat::test_that(
   }
 )
 
-# proptest output ---------------------------------------------------------
-
-testthat::test_that(
-  desc = "proptest output",
-  code = {
-    testthat::skip_on_cran()
-
-    df <-
-      suppressWarnings(ggpiestats(
-        mtcars,
-        am,
-        cyl,
-        results.subtitle = FALSE,
-        output = "proptest"
-      ))
-
-    # tests
-    testthat::expect_null(ggpiestats(mtcars, am, results.subtitle = FALSE, output = "proptest"))
-  }
-)
-
 # subtitle output --------------------------------------------------
 
 testthat::test_that(

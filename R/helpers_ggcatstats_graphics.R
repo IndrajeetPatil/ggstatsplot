@@ -1,35 +1,25 @@
-#' @title Summary dataframe for categorical variables.
-#' @name cat_label_df
-#' @description Creating a dataframe with an added column corresponding to
-#'   summary for categorical variables.
-#'
-#' @param data A dataframe containing summaries for categorical variables.
-#'   Should contain columns named either `"perc"` or `"counts"` or both.
-#' @param label.content Character decides what information needs to be displayed
-#'   on the label in each pie or bar slice. Possible options are `"percentage"`
-#'   (default), `"counts"`, `"both"`.
-#' @param ... Ignored.
-#' @inheritParams ggpiestats
+#'  @title A dataframe with descriptive labels and chi-squared test results
 #'
 #' @importFrom dplyr mutate
 #' @importFrom rlang !! :=
 #'
-#' @examples
-#' \donttest{
-#' # dataframe with label column
-#' ggstatsplot:::cat_label_df(
-#'   data = ggstatsplot:::cat_counter(mtcars, am, cyl),
-#'   label.content = "both",
-#'   perc.k = 1
-#' )
-#' }
-#' @keywords internal
+#' @noRd
 
 # function body
 cat_label_df <- function(data,
+                         x,
+                         y = NULL,
                          label.content = "percentage",
                          perc.k = 1,
                          ...) {
+  # creating a dataframe with counts
+  data %<>%
+    dplyr::group_by(.data = ., {{ y }}, {{ x }}, .drop = TRUE) %>%
+    dplyr::tally(x = ., name = "counts") %>%
+    dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
+    dplyr::ungroup(.) %>%
+    dplyr::arrange(.data = ., dplyr::desc({{ x }})) %>%
+    dplyr::filter(.data = ., counts != 0L)
 
   # checking what needs to be displayed in a label
   # only percentage
@@ -55,24 +45,17 @@ cat_label_df <- function(data,
 
 
 #' @title Counts and percentages across grouping variables.
-#' @name cat_counter
+#' @importFrom dplyr select group_by ungroup tally n arrange desc mutate
 #'
-#' @inheritParams ggpiestats
-#'
-#' @importFrom dplyr select group_by ungroup summarize n arrange desc mutate
-#'
-#' @examples
-#' ggstatsplot:::cat_counter(data = ggplot2::mpg, drv, cyl)
-#' @keywords internal
+#' @noRd
 
-# function body
+# creating a dataframe with counts
 cat_counter <- function(data, x, y = NULL, ...) {
-  # creating a dataframe with counts
   data %>%
-    dplyr::group_by(., {{ y }}, {{ x }}, .drop = TRUE) %>%
-    dplyr::summarize(.data = ., counts = dplyr::n(), .groups = "drop_last") %>%
+    dplyr::group_by(.data = ., {{ y }}, {{ x }}, .drop = TRUE) %>%
+    dplyr::tally(x = ., name = "counts") %>%
     dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
-    dplyr::ungroup(x = .) %>%
+    dplyr::ungroup(.) %>%
     dplyr::arrange(.data = ., dplyr::desc({{ x }})) %>%
     dplyr::filter(.data = ., counts != 0L)
 }
@@ -81,7 +64,6 @@ cat_counter <- function(data, x, y = NULL, ...) {
 #' @importFrom rlang as_name ensym
 #'
 #' @noRd
-#' @keywords internal
 
 # combine info about sample size plus
 df_facet_label <- function(data, x, y, k = 3L, ...) {
@@ -126,19 +108,18 @@ df_facet_label <- function(data, x, y, k = 3L, ...) {
 #' @noRd
 
 chisq_test_safe <- function(data, x, ...) {
-  # create a table
   xtab <- table(data %>% dplyr::pull({{ x }}))
 
   # run chi-square test
-  chi_result <-
+  result <-
     tryCatch(
-      expr = parameters::model_parameters(stats::chisq.test(xtab)),
+      expr = parameters::model_parameters(suppressWarnings(stats::chisq.test(xtab))),
       error = function(e) NULL
     )
 
   # if not null, return tidy output, otherwise return NAs
-  if (!is.null(chi_result)) {
-    as_tibble(parameters::standardize_names(data = chi_result, style = "broom"))
+  if (!is.null(result)) {
+    as_tibble(parameters::standardize_names(data = result, style = "broom"))
   } else {
     tibble(
       statistic = NA_real_,

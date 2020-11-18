@@ -162,7 +162,9 @@ ggbarstats <- function(data,
   # dataframe with summary labels
   df <-
     cat_label_df(
-      data = cat_counter(data = data, x = {{ x }}, y = {{ y }}),
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
       label.content = label,
       perc.k = perc.k
     )
@@ -178,8 +180,7 @@ ggbarstats <- function(data,
     return(switch(
       EXPR = output,
       "subtitle" = subtitle,
-      "caption" = caption,
-      "proptest" = df_labels
+      "caption" = caption
     ))
   }
 
