@@ -53,8 +53,8 @@ Suggests:
     tibble,
     WRS2
 Remotes:
-    easystats/parameters,
     easystats/insight,
+    easystats/parameters,
     easystats/performance
 VignetteBuilder: 
     knitr
