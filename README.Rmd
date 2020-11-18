@@ -643,8 +643,7 @@ ggstatsplot::ggpiestats(
   y = cyl,
   title = "Dataset: Motor Trend Car Road Tests", # title for the plot
   legend.title = "Transmission", # title for the legend
-  caption = substitute(paste(italic("Source"), ": 1974 Motor Trend US magazine")),
-  messages = FALSE
+  caption = substitute(paste(italic("Source"), ": 1974 Motor Trend US magazine"))
 )
 ```
 
@@ -733,14 +732,12 @@ ggstatsplot::ggbarstats(
   data = ggstatsplot::movies_long,
   x = mpaa,
   y = genre,
-  sampling.plan = "jointMulti",
   title = "MPAA Ratings by Genre",
   xlab = "movie genre",
   legend.title = "MPAA rating",
   ggtheme = hrbrthemes::theme_ipsum_pub(),
-  ggplot.component = list(scale_x_discrete(guide = guide_axis(n.dodge = 2))),
-  palette = "Set2",
-  messages = FALSE
+  ggplot.component = list(ggplot2::scale_x_discrete(guide = ggplot2::guide_axis(n.dodge = 2))),
+  palette = "Set2"
 )
 ```
 
@@ -766,6 +763,7 @@ ggstatsplot::grouped_ggbarstats(
   y = partyid,
   grouping.var = race,
   title.prefix = "Race",
+  label = "both",
   xlab = "Party affiliation",
   package = "wesanderson",
   palette = "Darjeeling2",

@@ -6,12 +6,12 @@
 #' @noRd
 
 # function body
-cat_label_df <- function(data,
-                         x,
-                         y = NULL,
-                         label.content = "percentage",
-                         perc.k = 1,
-                         ...) {
+df_descriptive <- function(data,
+                           x,
+                           y = NULL,
+                           label.content = "percentage",
+                           perc.k = 1,
+                           ...) {
   # creating a dataframe with counts
   data %<>% cat_counter(., {{ x }}, {{ y }})
 
@@ -61,7 +61,7 @@ cat_counter <- function(data, x, y = NULL, ...) {
 #' @noRd
 
 # combine info about sample size plus
-df_facet_label <- function(data, x, y, k = 3L, ...) {
+df_proptest <- function(data, x, y, k = 3L, ...) {
   dplyr::full_join(
     # descriptives
     x = cat_counter(data = data, x = {{ y }}) %>%

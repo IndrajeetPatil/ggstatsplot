@@ -18,8 +18,7 @@ vignette: >
 ---
 
 ```{r setup, include = FALSE}
-# show me all columns
-options(tibble.width = Inf)
+options(tibble.width = Inf, pillar.bold = TRUE, pillar.subtle_num = TRUE)
 
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -166,19 +165,6 @@ females. The Pearson's $\chi^2$-test of independence is significant given our
 large sample size. Additionally, for both females and males, the survival rates
 were significantly different than 50% as indicated by a goodness of fit test for
 each gender.
-
-In case you need to extract the results from proportion tests in a separate
-dataframe, you can build the plot and extract the dataframe:
-
-```{r proptest_df}
-set.seed(123)
-library(ggplot2)
-
-p <- ggpiestats(mtcars, am, cyl)
-pb <- ggplot2::ggplot_build(p)
-
-pb$plot$plot_env$df_labels
-```
 
 ## Grouped analysis with `grouped_ggpiestats`
 

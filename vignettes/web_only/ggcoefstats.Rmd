@@ -1583,17 +1583,17 @@ library(PROreg)
 
 # we simulate a covariate, fix the paramters of the beta-binomial
 # distribution and simulate a response variable.
-# Then we apply the model, and try to get the same values.
+# then we apply the model, and try to get the same values.
 k <- 1000
 m <- 10
 x <- rnorm(k, 5, 3)
 beta <- c(-10, 2)
-p <- 1 / (1 + exp(-(beta[1] + beta[2] * x)))
+p <- 1 / (1 + exp(-1 * (beta[1] + beta[2] * x)))
 phi <- 1.2
-y <- rBB(k, m, p, phi)
+y <- PROreg::rBB(k, m, p, phi)
 
 # model
-model <- BBreg(y ~ x, m)
+model <- PROreg::BBreg(y ~ x, m)
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -1609,13 +1609,12 @@ ggstatsplot::ggcoefstats(
 # setup
 set.seed(123)
 library(bife)
-dataset <- psid
 
 # binary choice models with fixed effects
 mod <-
-  bife(
-    LFP ~ I(AGE^2) + log(INCH) + KID1 + KID2 + KID3 + factor(TIME) | ID,
-    dataset
+  bife::bife(
+    formula = LFP ~ I(AGE^2) + log(INCH) + KID1 + KID2 + KID3 + factor(TIME) | ID,
+    data = psid
   )
 
 # plot
@@ -2174,7 +2173,6 @@ fit_bracl <-
 # plot
 ggstatsplot::ggcoefstats(
   x = fit_bracl,
-  conf.int = FALSE,
   title = "bias reduction for adjacent category logit models"
 )
 ```
@@ -2217,8 +2215,7 @@ gfit <-
       trace.glm = FALSE,
       maxit.glm = 10,
       maxit.weights = 200,
-      itertrace.weights = TRUE,
-      gradtol.weights = 10^(-6)
+      itertrace.weights = FALSE
     )
   )
 
@@ -3064,15 +3061,15 @@ library(censReg)
 data("Affairs", package = "AER")
 
 # model
-estResult <- 
+estResult <-
   censReg(
-  formula = affairs ~ age + yearsmarried + religiousness + occupation + rating,
-  data = Affairs
-)
+    formula = affairs ~ age + yearsmarried + religiousness + occupation + rating,
+    data = Affairs
+  )
 
 # plot
 ggstatsplot::ggcoefstats(
-  x = estResult ,
+  x = estResult,
   title = "censored regression (tobit) regression"
 )
 ```

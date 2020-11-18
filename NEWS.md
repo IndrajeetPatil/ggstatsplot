@@ -14,6 +14,10 @@ MAJOR CHANGES
 
   - Drops `broomExtra` from dependencies. All regression modeling-related
     analysis now relies on `easystats` ecosystem.
+    
+  - `ggpiestats` and `ggbarstats` don't support returning dataframes. See FAQ
+    vignette on how to get these dataframes:
+    <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/faq.html#faq-1>
 
 NEW FEATURES
 

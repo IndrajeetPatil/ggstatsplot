@@ -143,7 +143,7 @@
       <h1 data-toc-skip>ggpiestats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-11-14</h4>
+            <h4 class="date">2020-11-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggpiestats.Rmd"><code>vignettes/web_only/ggpiestats.Rmd</code></a></small>
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
@@ -258,28 +258,6 @@
   <span class="op">)</span></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats1-1.png" width="768"></p>
 <p>The plot clearly shows that survival rates were very different between males and females. The Pearson’s <span class="math inline">\(\chi^2\)</span>-test of independence is significant given our large sample size. Additionally, for both females and males, the survival rates were significantly different than 50% as indicated by a goodness of fit test for each gender.</p>
-<p>In case you need to extract the results from proportion tests in a separate dataframe, <code>ggpiestats</code>’s <code>output</code> argument can be used:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-
-<span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">am</span>, <span class="va">cyl</span>, output <span class="op">=</span> <span class="st">"proptest"</span>, results.subtitle <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="co">#&gt; Warning in stats::chisq.test(xtab): Chi-squared approximation may be incorrect</span>
-<span class="co">#&gt; # A tibble: 3 x 16</span>
-<span class="co">#&gt;   cyl   counts  perc N        `0`    `1`    statistic    df estimate</span>
-<span class="co">#&gt;   &lt;fct&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 8         14  43.8 (n = 14) 85.71% 14.29%     7.14      1    0.714</span>
-<span class="co">#&gt; 2 6          7  21.9 (n = 7)  57.14% 42.86%     0.143     1    0.143</span>
-<span class="co">#&gt; 3 4         11  34.4 (n = 11) 27.27% 72.73%     2.27      1    0.455</span>
-<span class="co">#&gt;   cramers.conf.low cramers.conf.high phi.conf.low phi.conf.high p.value</span>
-<span class="co">#&gt;              &lt;dbl&gt;             &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;</span>
-<span class="co">#&gt; 1            0.189             1.24         0.189         1.24  0.00753</span>
-<span class="co">#&gt; 2            0                 0.854        0             0.854 0.705  </span>
-<span class="co">#&gt; 3            0                 1.05         0             1.05  0.132  </span>
-<span class="co">#&gt;   significance label                                                           </span>
-<span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;                                                           </span>
-<span class="co">#&gt; 1 **           list(~chi['gof']^2~(1)==7.14, ~italic(p)==0.008, ~italic(n)==14)</span>
-<span class="co">#&gt; 2 ns           list(~chi['gof']^2~(1)==0.14, ~italic(p)==0.705, ~italic(n)==7) </span>
-<span class="co">#&gt; 3 ns           list(~chi['gof']^2~(1)==2.27, ~italic(p)==0.132, ~italic(n)==11)</span></code></pre></div>
 </div>
 <div id="grouped-analysis-with-grouped_ggpiestats" class="section level2">
 <h2 class="hasAnchor">
@@ -287,7 +265,7 @@
 </h2>
 <p>What if we want to do the same analysis of gender but also factor in the passenger’s age (Age)? We have information that classifies the passengers as Child or Adult, perhaps that makes a difference to their survival rate?</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggpiestats</code>. It is a convenient wrapper function around <code><a href="../../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggpiestats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines the list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># since effect size confidence intervals are computed using bootstrapping, let's</span>
 <span class="co"># set seed for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -324,7 +302,7 @@
 <a href="#working-with-data-organized-by-counts" class="anchor"></a>Working with data organized by <code>counts</code>
 </h2>
 <p><code>ggpiestats</code> can also work with dataframe containing counts (aka tabled data), i.e., when each row doesn’t correspond to a unique observation. For example, consider the following notional <code>fishing</code> dataframe containing data from two boats (<code>A</code> and <code>B</code>) about the number of different types fish they caught in the months of <code>February</code> and <code>March</code>. In this dataframe, each row corresponds to a unique combination of <code>Boat</code> and <code>Month</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -376,7 +354,7 @@
 <span class="co">#&gt; 15 B     March    Bass             20</span>
 <span class="co">#&gt; 16 B     March    Catfish          20</span></code></pre></div>
 <p>When the data is organized this way, we make a slightly different call to the <code>ggpiestats</code> function: we use the <code>counts</code> argument. If we want to investigate the relationship of type of fish by month (a test of independence), our command would be:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># running `ggpiestats` with counts information</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">fishing</span>,
@@ -398,7 +376,7 @@
 <a href="#within-subjects-designs" class="anchor"></a>Within-subjects designs</h2>
 <p>For our final example let’s imagine we’re conducting clinical trials for some new imaginary wonder drug. We have 134 subjects entering the trial. Some of them enter healthy (<em>n</em> = 96), some of them enter the trial already being sick (<em>n</em> = 38). All of them receive our treatment or intervention. Then we check back in a month to see if they are healthy or sick. A classic pre/post experimental design. We’re interested in seeing the change in both groupings. In the case of within-subjects designs, you can set <code>paired = TRUE</code>, which will display results from <strong>McNemar test</strong> in the subtitle.</p>
 <p>(<strong>Note:</strong> If you forget to set <code>paired = TRUE</code>, the results you get will be inaccurate.)</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># seed for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 

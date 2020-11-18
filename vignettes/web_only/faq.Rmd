@@ -249,6 +249,26 @@ library(pairwiseComparisons)
 pairwise_comparisons(mtcars, cyl, wt)
 ```
 
+## How to access dataframe with results from `ggpiestats` and `ggbarstats`?
+
+```{r proptest_df}
+# setup
+set.seed(123)
+library(ggplot2)
+
+# plot
+p <- ggpiestats(mtcars, am, cyl)
+
+# build ggplot object
+pb <- ggplot2::ggplot_build(p)
+
+# dataframe with proportion test results
+pb$plot$plot_env$df_proptest
+
+# dataframe with counts and proportions details
+pb$plot$plot_env$df_descriptive
+```
+
 ## How can I remove a a particular `geom` layer from the plot?
 
 Sometimes you may not want a particular `geom` layer to be displayed. You can

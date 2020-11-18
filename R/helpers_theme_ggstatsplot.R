@@ -48,9 +48,12 @@ common_theme_element <-
 #' @export
 
 theme_corrmat <- function() {
-  ggplot2::theme() + common_theme_element
+  ggplot2::theme(
+    panel.grid.major = ggplot2::element_blank(),
+    panel.grid.minor = ggplot2::element_blank()
+  ) +
+    common_theme_element
 }
-
 
 #' @rdname theme_ggstatsplot
 #' @aliases theme_ggstatsplot

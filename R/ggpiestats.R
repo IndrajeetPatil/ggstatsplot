@@ -189,11 +189,11 @@ ggpiestats <- function(data,
   # =================================== plot =================================
 
   # dataframe with summary labels
-  df <- cat_label_df(data, {{ x }}, {{ y }}, label.content = label, perc.k = perc.k)
+  df_descriptive <- df_descriptive(data, {{ x }}, {{ y }}, label, perc.k)
 
   # dataframe containing all details needed for prop test
   if (!rlang::quo_is_null(rlang::enquo(y))) {
-    df_labels <- df_facet_label(data, {{ x }}, {{ y }}, k)
+    df_proptest <- df_proptest(data, {{ x }}, {{ y }}, k)
   }
 
   # if no. of factor levels is greater than the default palette color count
@@ -205,7 +205,7 @@ ggpiestats <- function(data,
 
   # creating the basic plot
   p <-
-    ggplot2::ggplot(data = df, mapping = ggplot2::aes(x = "", y = perc)) +
+    ggplot2::ggplot(data = df_descriptive, mapping = ggplot2::aes(x = "", y = perc)) +
     ggplot2::geom_col(
       mapping = ggplot2::aes(fill = {{ x }}),
       position = "fill",
@@ -252,7 +252,7 @@ ggpiestats <- function(data,
     p <- p +
       rlang::exec(
         .fn = ggplot2::geom_text,
-        data = df_labels,
+        data = df_proptest,
         mapping = ggplot2::aes(label = label, x = 1.65, y = 0.5),
         position = ggplot2::position_fill(vjust = 1),
         size = 2.8,

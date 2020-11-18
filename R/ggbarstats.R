@@ -168,10 +168,10 @@ ggbarstats <- function(data,
   # =================================== plot =================================
 
   # dataframe with summary labels
-  df <- cat_label_df(data, {{ x }}, {{ y }}, label.content = label, perc.k = perc.k)
+  df_descriptive <- df_descriptive(data, {{ x }}, {{ y }}, label, perc.k)
 
   # dataframe containing all details needed for prop test
-  df_labels <- df_facet_label(data, {{ x }}, {{ y }}, k)
+  df_proptest <- df_proptest(data, {{ x }}, {{ y }}, k)
 
   # if no. of factor levels is greater than the default palette color count
   palette_message(
@@ -183,7 +183,7 @@ ggbarstats <- function(data,
   # plot
   p <-
     ggplot2::ggplot(
-      data = df,
+      data = df_descriptive,
       mapping = ggplot2::aes(x = {{ y }}, y = perc, fill = {{ x }})
     ) +
     ggplot2::geom_bar(
@@ -217,7 +217,7 @@ ggbarstats <- function(data,
     # modify plot
     p <- p +
       ggplot2::geom_text(
-        data = df_labels,
+        data = df_proptest,
         mapping = ggplot2::aes(
           x = {{ y }},
           y = 1.05,
@@ -233,7 +233,7 @@ ggbarstats <- function(data,
   if (isTRUE(sample.size.label)) {
     p <- p +
       ggplot2::geom_text(
-        data = df_labels,
+        data = df_proptest,
         mapping = ggplot2::aes(
           x = {{ y }},
           y = -0.05,
