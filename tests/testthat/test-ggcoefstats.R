@@ -687,34 +687,6 @@ testthat::test_that(
   }
 )
 
-# unsupported model objects -----------------------------------------------
-
-testthat::test_that(
-  desc = "unsupported model objects",
-  code = {
-    testthat::skip_on_cran()
-
-    # mod-1
-    testthat::expect_error(ggstatsplot::ggcoefstats(x = list(x = "1", y = 2L)))
-
-    # mod-2
-    mod2 <- stats::aov(
-      formula = value ~ attribute * measure + Error(id / (attribute * measure)),
-      data = ggstatsplot::iris_long
-    )
-
-    # plot
-    p <- ggstatsplot::ggcoefstats(mod2)
-    pb <- ggplot2::ggplot_build(p)
-
-    # test failures
-    testthat::expect_error(ggstatsplot::ggcoefstats(stats::acf(lh, plot = FALSE)))
-    testthat::expect_null(pb$plot$labels$subtitle, NULL)
-    testthat::expect_null(pb$plot$labels$caption, NULL)
-  }
-)
-
-
 # CIs missing and palette change message -------------------------------------
 
 testthat::test_that(
