@@ -88,7 +88,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.5.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.6</span>
       </span>
     </div>
 
@@ -201,17 +201,16 @@
   cor.vars <span class='op'>=</span> <span class='cn'>NULL</span>,
   cor.vars.names <span class='op'>=</span> <span class='cn'>NULL</span>,
   output <span class='op'>=</span> <span class='st'>"plot"</span>,
-  matrix.type <span class='op'>=</span> <span class='st'>"full"</span>,
-  matrix.method <span class='op'>=</span> <span class='st'>"square"</span>,
+  matrix.type <span class='op'>=</span> <span class='st'>"lower"</span>,
   type <span class='op'>=</span> <span class='st'>"parametric"</span>,
   beta <span class='op'>=</span> <span class='fl'>0.1</span>,
   k <span class='op'>=</span> <span class='fl'>2L</span>,
   sig.level <span class='op'>=</span> <span class='fl'>0.05</span>,
   conf.level <span class='op'>=</span> <span class='fl'>0.95</span>,
   bf.prior <span class='op'>=</span> <span class='fl'>0.707</span>,
-  p.adjust.method <span class='op'>=</span> <span class='st'>"none"</span>,
+  p.adjust.method <span class='op'>=</span> <span class='st'>"holm"</span>,
   pch <span class='op'>=</span> <span class='st'>"cross"</span>,
-  ggcorrplot.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>outline.color <span class='op'>=</span> <span class='st'>"black"</span><span class='op'>)</span>,
+  ggcorrplot.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"square"</span>, outline.color <span class='op'>=</span> <span class='st'>"black"</span><span class='op'>)</span>,
   package <span class='op'>=</span> <span class='st'>"RColorBrewer"</span>,
   palette <span class='op'>=</span> <span class='st'>"Dark2"</span>,
   colors <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"#E69F00"</span>, <span class='st'>"white"</span>, <span class='st'>"#009E73"</span><span class='op'>)</span>,
@@ -253,13 +252,8 @@ values, <em>p</em>-values, no. of observations, etc.) will be returned.</p></td>
     </tr>
     <tr>
       <th>matrix.type</th>
-      <td><p>Character, <code>"full"</code> (default), <code>"upper"</code> or <code>"lower"</code>,
+      <td><p>Character, <code>"lower"</code> (default), <code>"full"</code>, or <code>"upper"</code>,
 display full matrix, lower triangular or upper triangular matrix.</p></td>
-    </tr>
-    <tr>
-      <th>matrix.method</th>
-      <td><p>The visualization method of correlation matrix to be
-used. Allowed values are <code>"square"</code> (default) or <code>"circle"</code>.</p></td>
     </tr>
     <tr>
       <th>type</th>
@@ -299,14 +293,9 @@ width to use in calculating Bayes factors.</p></td>
     </tr>
     <tr>
       <th>p.adjust.method</th>
-      <td><p>What adjustment for multiple tests should be used?
-(<code>"holm"</code>, <code>"hochberg"</code>, <code>"hommel"</code>, <code>"bonferroni"</code>, <code>"BH"</code>, <code>"BY"</code>,
-<code>"fdr"</code>, <code>"none"</code>). See <code><a href='https://rdrr.io/r/stats/p.adjust.html'>stats::p.adjust</a></code> for details about why to use
-<code>"holm"</code> rather than <code>"bonferroni"</code>). Default is <code>"none"</code>. If adjusted
-<em>p</em>-values are displayed in the visualization of correlation matrix, the
-<strong>adjusted</strong> <em>p</em>-values will be used for the <strong>upper</strong> triangle, while
-<strong>unadjusted</strong> <em>p</em>-values will be used for the <strong>lower</strong> triangle of the
-matrix.</p></td>
+      <td><p>Adjustment method for <em>p</em>-values for multiple
+comparisons. Possible methods are: <code>"holm"</code> (default), <code>"hochberg"</code>,
+<code>"hommel"</code>, <code>"bonferroni"</code>, <code>"BH"</code>, <code>"BY"</code>, <code>"fdr"</code>, <code>"none"</code>.</p></td>
     </tr>
     <tr>
       <th>pch</th>
@@ -317,9 +306,9 @@ coefficients (only valid when <code>insig = "pch"</code>). Default: <code>pch = 
       <th>ggcorrplot.args</th>
       <td><p>A list of additional (mostly aesthetic) arguments that
 will be passed to <code><a href='https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html'>ggcorrplot::ggcorrplot</a></code> function. The list should avoid
-any of the following arguments since they are already internally being used
-by <code>ggstatsplot</code>: <code>corr</code>, <code>method</code>, <code>p.mat</code>, <code>sig.level</code>, <code>ggtheme</code>,
-<code>colors</code>, <code>matrix.type</code>, <code>lab</code>, <code>pch</code>, <code>legend.title</code>, <code>digits</code>.</p></td>
+any of the following arguments since they are already internally being
+used: <code>corr</code>, <code>method</code>, <code>p.mat</code>, <code>sig.level</code>, <code>ggtheme</code>, <code>colors</code>, <code>lab</code>,
+<code>pch</code>, <code>legend.title</code>, <code>digits</code>.</p></td>
     </tr>
     <tr>
       <th>package</th>
@@ -422,21 +411,21 @@ function.</p>
 </div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 15 x 10</span><span>
 #&gt;    </span><span style='font-weight: bold;'>parameter1</span><span>  </span><span style='font-weight: bold;'>parameter2</span><span>       </span><span style='font-weight: bold;'>r</span><span>  </span><span style='font-weight: bold;'>ci_low</span><span> </span><span style='font-weight: bold;'>ci_high</span><span>        </span><span style='font-weight: bold;'>t</span><span>    </span><span style='font-weight: bold;'>df</span><span>         </span><span style='font-weight: bold;'>p</span><span>
 #&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> sleep_total sleep_rem    </span><span style='color: #949494;'>0.</span><span>752  </span><span style='color: #949494;'>0.</span><span>617   </span><span style='color: #949494;'>0.</span><span>844      8.76    59 2.92</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 12</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> sleep_total sleep_cycle -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>474</span><span> -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>706</span><span>  -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>150</span><span>     -</span><span style='color: #BB0000;'>2.95</span><span>    30 6.17</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  3</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> sleep_total awake       -</span><span style='color: #BB0000;'>1.00</span><span>  -</span><span style='color: #BB0000;'>1.00</span><span>   -</span><span style='color: #BB0000;'>1.00</span><span>   -</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span style='color: #BB0000;'>32</span><span style='color: #949494;'>9</span><span style='color: #BB0000;'>.</span><span>      81 2.42</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-226</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> sleep_total brainwt     -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>360</span><span> -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>569</span><span>  -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>108</span><span>     -</span><span style='color: #BB0000;'>2.84</span><span>    54 6.35</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  3</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> sleep_total bodywt      -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>312</span><span> -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>494</span><span>  -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>103</span><span>     -</span><span style='color: #BB0000;'>2.96</span><span>    81 4.09</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  3</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> sleep_rem   sleep_cycle -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>338</span><span> -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>614</span><span>   </span><span style='color: #949494;'>0.0</span><span>12</span><span style='text-decoration: underline;'>0</span><span>    -</span><span style='color: #BB0000;'>1.97</span><span>    30 5.84</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  2</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> sleep_rem   awake       -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>752</span><span> -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>844</span><span>  -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>617</span><span>     -</span><span style='color: #BB0000;'>8.76</span><span>    59 2.91</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 12</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> sleep_total sleep_rem    </span><span style='color: #949494;'>0.</span><span>752  </span><span style='color: #949494;'>0.</span><span>617   </span><span style='color: #949494;'>0.</span><span>844      8.76    59 3.78</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 11</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> sleep_total sleep_cycle -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>474</span><span> -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>706</span><span>  -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>150</span><span>     -</span><span style='color: #BB0000;'>2.95</span><span>    30 4.93</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  2</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> sleep_total awake       -</span><span style='color: #BB0000;'>1.00</span><span>  -</span><span style='color: #BB0000;'>1.00</span><span>   -</span><span style='color: #BB0000;'>1.00</span><span>   -</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span style='color: #BB0000;'>32</span><span style='color: #949494;'>9</span><span style='color: #BB0000;'>.</span><span>      81 3.63</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-225</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> sleep_total brainwt     -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>360</span><span> -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>569</span><span>  -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>108</span><span>     -</span><span style='color: #BB0000;'>2.84</span><span>    54 4.93</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  2</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> sleep_total bodywt      -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>312</span><span> -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>494</span><span>  -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>103</span><span>     -</span><span style='color: #BB0000;'>2.96</span><span>    81 4.09</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  2</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> sleep_rem   sleep_cycle -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>338</span><span> -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>614</span><span>   </span><span style='color: #949494;'>0.0</span><span>12</span><span style='text-decoration: underline;'>0</span><span>    -</span><span style='color: #BB0000;'>1.97</span><span>    30 1.17</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> sleep_rem   awake       -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>752</span><span> -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>844</span><span>  -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>617</span><span>     -</span><span style='color: #BB0000;'>8.76</span><span>    59 3.78</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 11</span><span>
 #&gt; </span><span style='color: #BCBCBC;'> 8</span><span> sleep_rem   brainwt     -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>221</span><span> -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>476</span><span>   </span><span style='color: #949494;'>0.0</span><span>67</span><span style='text-decoration: underline;'>0</span><span>    -</span><span style='color: #BB0000;'>1.54</span><span>    46 1.31</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> sleep_rem   bodywt      -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>328</span><span> -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>535</span><span>  -</span><span style='color: #949494;'>0.0</span><span style='color: #BB0000;'>82</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>    -</span><span style='color: #BB0000;'>2.66</span><span>    59 9.95</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  3</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> sleep_cycle awake        </span><span style='color: #949494;'>0.</span><span>474  </span><span style='color: #949494;'>0.</span><span>150   </span><span style='color: #949494;'>0.</span><span>706      2.95    30 6.17</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  3</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> sleep_cycle brainwt      </span><span style='color: #949494;'>0.</span><span>852  </span><span style='color: #949494;'>0.</span><span>709   </span><span style='color: #949494;'>0.</span><span>927      8.60    28 2.42</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  9</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>12</span><span> sleep_cycle bodywt       </span><span style='color: #949494;'>0.</span><span>418  </span><span style='color: #949494;'>0.0</span><span>80</span><span style='text-decoration: underline;'>9</span><span>  </span><span style='color: #949494;'>0.</span><span>669      2.52    30 1.73</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  2</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>13</span><span> awake       brainwt      </span><span style='color: #949494;'>0.</span><span>360  </span><span style='color: #949494;'>0.</span><span>108   </span><span style='color: #949494;'>0.</span><span>569      2.84    54 6.35</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  3</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>14</span><span> awake       bodywt       </span><span style='color: #949494;'>0.</span><span>312  </span><span style='color: #949494;'>0.</span><span>103   </span><span style='color: #949494;'>0.</span><span>494      2.96    81 4.09</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  3</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>15</span><span> brainwt     bodywt       </span><span style='color: #949494;'>0.</span><span>934  </span><span style='color: #949494;'>0.</span><span>889   </span><span style='color: #949494;'>0.</span><span>961     19.2     54 9.16</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 26</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> sleep_rem   bodywt      -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>328</span><span> -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>535</span><span>  -</span><span style='color: #949494;'>0.0</span><span style='color: #BB0000;'>82</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>    -</span><span style='color: #BB0000;'>2.66</span><span>    59 4.93</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  2</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> sleep_cycle awake        </span><span style='color: #949494;'>0.</span><span>474  </span><span style='color: #949494;'>0.</span><span>150   </span><span style='color: #949494;'>0.</span><span>706      2.95    30 4.93</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  2</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> sleep_cycle brainwt      </span><span style='color: #949494;'>0.</span><span>852  </span><span style='color: #949494;'>0.</span><span>709   </span><span style='color: #949494;'>0.</span><span>927      8.60    28 2.66</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  8</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> sleep_cycle bodywt       </span><span style='color: #949494;'>0.</span><span>418  </span><span style='color: #949494;'>0.0</span><span>80</span><span style='text-decoration: underline;'>9</span><span>  </span><span style='color: #949494;'>0.</span><span>669      2.52    30 5.20</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  2</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> awake       brainwt      </span><span style='color: #949494;'>0.</span><span>360  </span><span style='color: #949494;'>0.</span><span>108   </span><span style='color: #949494;'>0.</span><span>569      2.84    54 4.93</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  2</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>14</span><span> awake       bodywt       </span><span style='color: #949494;'>0.</span><span>312  </span><span style='color: #949494;'>0.</span><span>103   </span><span style='color: #949494;'>0.</span><span>494      2.96    81 4.09</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-  2</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>15</span><span> brainwt     bodywt       </span><span style='color: #949494;'>0.</span><span>934  </span><span style='color: #949494;'>0.</span><span>889   </span><span style='color: #949494;'>0.</span><span>961     19.2     54 1.28</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 24</span><span>
 #&gt;    </span><span style='font-weight: bold;'>method</span><span>   </span><span style='font-weight: bold;'>nobs</span><span>
 #&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Pearson    61

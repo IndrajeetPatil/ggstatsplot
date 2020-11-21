@@ -383,7 +383,7 @@ plot_list <-
       ),
       ggstatsplot.layer = FALSE,
       ggtheme = list(
-        ggplot2::theme_grey(),
+        sjPlot::theme_sjplot(),
         ggplot2::theme_classic(),
         ggthemes::theme_fivethirtyeight(),
         ggthemes::theme_tufte()

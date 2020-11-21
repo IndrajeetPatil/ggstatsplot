@@ -90,9 +90,14 @@
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}
 #'
-#' @note All rows of regression estimates where either of the following
+#' @note
+#' 1. All rows of regression estimates where either of the following
 #'   quantities is `NA` will be removed if labels are requested: `estimate`,
 #'   `statistic`, `p.value`.
+#'
+#' 2. Given the rapid pace at which new methods are added to these packages, it
+#'   is recommended that you install the GitHub versions of `parameters` and
+#'   `performance` in order to make most of this function.
 #'
 #' @examples
 #' \donttest{

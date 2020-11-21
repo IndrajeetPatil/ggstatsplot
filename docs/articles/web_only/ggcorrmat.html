@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.5.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.6</span>
       </span>
     </div>
 
@@ -143,7 +143,7 @@
       <h1 data-toc-skip>ggcorrmat</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-11-14</h4>
+            <h4 class="date">2020-11-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcorrmat.Rmd"><code>vignettes/web_only/ggcorrmat.Rmd</code></a></small>
       <div class="hidden name"><code>ggcorrmat.Rmd</code></div>
@@ -319,14 +319,14 @@
 <span class="co">#&gt;    parameter1 parameter2      r ci_low ci_high      t    df        p method</span>
 <span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; </span>
 <span class="co">#&gt;  1 sales      volume      0.980  0.978   0.982 172.    1202 0.       Perce~</span>
-<span class="co">#&gt;  2 sales      median      0.469  0.423   0.512  18.3   1195 1.93e-66 Perce~</span>
+<span class="co">#&gt;  2 sales      median      0.469  0.423   0.512  18.3   1195 1.16e-65 Perce~</span>
 <span class="co">#&gt;  3 sales      listings    0.930  0.921   0.937  83.0   1083 0.       Perce~</span>
-<span class="co">#&gt;  4 sales      inventory  -0.385 -0.434  -0.333 -13.7   1080 1.80e-39 Perce~</span>
-<span class="co">#&gt;  5 volume     median      0.550  0.509   0.588  22.7   1195 2.15e-95 Perce~</span>
+<span class="co">#&gt;  4 sales      inventory  -0.385 -0.434  -0.333 -13.7   1080 7.21e-39 Perce~</span>
+<span class="co">#&gt;  5 volume     median      0.550  0.509   0.588  22.7   1195 1.50e-94 Perce~</span>
 <span class="co">#&gt;  6 volume     listings    0.898  0.886   0.909  67.1   1083 0.       Perce~</span>
-<span class="co">#&gt;  7 volume     inventory  -0.368 -0.419  -0.316 -13.0   1080 3.95e-36 Perce~</span>
-<span class="co">#&gt;  8 median     listings    0.403  0.352   0.451  14.5   1083 1.51e-43 Perce~</span>
-<span class="co">#&gt;  9 median     inventory  -0.203 -0.259  -0.145  -6.80  1080 1.70e-11 Perce~</span>
+<span class="co">#&gt;  7 volume     inventory  -0.368 -0.419  -0.316 -13.0   1080 1.19e-35 Perce~</span>
+<span class="co">#&gt;  8 median     listings    0.403  0.352   0.451  14.5   1083 7.57e-43 Perce~</span>
+<span class="co">#&gt;  9 median     inventory  -0.203 -0.259  -0.145  -6.80  1080 3.40e-11 Perce~</span>
 <span class="co">#&gt; 10 listings   inventory  -0.163 -0.220  -0.104  -5.42  1080 7.25e- 8 Perce~</span>
 <span class="co">#&gt; # ... with 1 more variable: nobs &lt;int&gt;</span></code></pre></div>
 <p>Note that if <code>cor.vars</code> are not specified, all numeric variables will be used. Moreover, you can also use abbreviations to specify what output you want in return.</p>
@@ -347,11 +347,11 @@
 <span class="co">#&gt;   parameter1 parameter2     rho  ci_low   ci_high       s         p method  nobs</span>
 <span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;int&gt;</span>
 <span class="co">#&gt; 1 Sepal.Len~ Sepal.Wid~ -0.1668 -0.3228 -0.001916 656283. 4.137e- 2 Spear~   150</span>
-<span class="co">#&gt; 2 Sepal.Len~ Petal.Len~  0.8819  0.8390  0.9139    66429. 3.443e-50 Spear~   150</span>
-<span class="co">#&gt; 3 Sepal.Len~ Petal.Wid~  0.8343  0.7762  0.8784    93208. 4.189e-40 Spear~   150</span>
-<span class="co">#&gt; 4 Sepal.Wid~ Petal.Len~ -0.3096 -0.4515 -0.1525   736637. 1.154e- 4 Spear~   150</span>
-<span class="co">#&gt; 5 Sepal.Wid~ Petal.Wid~ -0.2890 -0.4333 -0.1303   725048. 3.343e- 4 Spear~   150</span>
-<span class="co">#&gt; 6 Petal.Len~ Petal.Wid~  0.9377  0.9141  0.9549    35061. 8.157e-70 Spear~   150</span></code></pre></div>
+<span class="co">#&gt; 2 Sepal.Len~ Petal.Len~  0.8819  0.8390  0.9139    66429. 1.722e-49 Spear~   150</span>
+<span class="co">#&gt; 3 Sepal.Len~ Petal.Wid~  0.8343  0.7762  0.8784    93208. 1.676e-39 Spear~   150</span>
+<span class="co">#&gt; 4 Sepal.Wid~ Petal.Len~ -0.3096 -0.4515 -0.1525   736637. 3.462e- 4 Spear~   150</span>
+<span class="co">#&gt; 5 Sepal.Wid~ Petal.Wid~ -0.2890 -0.4333 -0.1303   725048. 6.686e- 4 Spear~   150</span>
+<span class="co">#&gt; 6 Petal.Len~ Petal.Wid~  0.9377  0.9141  0.9549    35061. 4.894e-69 Spear~   150</span></code></pre></div>
 </div>
 <div id="grouped-analysis-with-grouped_ggcorrmat" class="section level2">
 <h2 class="hasAnchor">
@@ -369,7 +369,6 @@
   data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span><span class="op">(</span>tbl <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html">diamonds</a></span>, size <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span>,
   type <span class="op">=</span> <span class="st">"robust"</span>, <span class="co"># percentage bend correlation coefficient</span>
   beta <span class="op">=</span> <span class="fl">0.2</span>, <span class="co"># bending constant</span>
-  p.adjust.method <span class="op">=</span> <span class="st">"holm"</span>, <span class="co"># method to adjust p-values for multiple comparisons</span>
   grouping.var <span class="op">=</span> <span class="va">cut</span>,
   title.prefix <span class="op">=</span> <span class="st">"Quality of cut"</span>,
   cor.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">carat</span>, <span class="va">depth</span><span class="op">:</span><span class="va">z</span><span class="op">)</span>,
@@ -383,15 +382,14 @@
     <span class="st">"depth (in mm)"</span>
   <span class="op">)</span>,
   lab.size <span class="op">=</span> <span class="fl">3.5</span>,
-  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span>
+  <span class="co"># arguments relevant for `ggstatsplot::combine_plots`</span>
   title.text <span class="op">=</span> <span class="st">"Relationship between diamond attributes and price across cut"</span>,
   title.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">16</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,
   caption.text <span class="op">=</span> <span class="st">"Dataset: Diamonds from ggplot2 package"</span>,
   caption.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">14</span>, color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span>,
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
     labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>, <span class="st">"(e)"</span><span class="op">)</span>,
-    nrow <span class="op">=</span> <span class="fl">3</span>,
-    ncol <span class="op">=</span> <span class="fl">2</span>
+    nrow <span class="op">=</span> <span class="fl">3</span>
   <span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat7-1.png" width="960"></p>

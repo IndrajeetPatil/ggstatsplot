@@ -15,6 +15,7 @@ testthat::test_that(
         cor.vars = "sleep_total":"awake",
         cor.vars.names = c("1", "2", "3", "4"),
         p.adjust.method = "BH",
+        matrix.type = "full",
         output = "aaa"
       )
 
@@ -26,6 +27,7 @@ testthat::test_that(
         type = "np",
         cor.vars = c("sleep_total":"awake"),
         p.adjust.method = "none",
+        matrix.type = "full",
         output = "bbbb"
       ))
 
@@ -37,6 +39,7 @@ testthat::test_that(
         type = "r",
         cor.vars = sleep_total:awake,
         p.adjust.method = "holm",
+        matrix.type = "full",
         output = "ci"
       )
 
@@ -48,6 +51,7 @@ testthat::test_that(
         type = "bf",
         cor.vars = c(sleep_total:awake),
         p.adjust.method = "fdr",
+        matrix.type = "full",
         output = "hdhfhfh"
       ))
 
@@ -76,6 +80,7 @@ testthat::test_that(
         subtitle = "By Edgar Anderson",
         ggstatsplot.layer = FALSE,
         sig.level = 0.001,
+        matrix.type = "full",
         p.adjust.method = "fdr",
         colors = NULL,
         k = 4,
@@ -310,6 +315,7 @@ testthat::test_that(
         cor.vars.names = "sleep_total",
         type = "np",
         sig.level = 0.01,
+        matrix.type = "full",
         p.adjust.method = "hommel",
         caption.default = FALSE,
         colors = NULL,

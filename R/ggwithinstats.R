@@ -5,8 +5,14 @@
 #'   (unjittered) data points for within-subjects designs with statistical
 #'   details included in the plot as a subtitle.
 #'
-#' @note **Important**: Please note that the function expects that the data is
+#' @note
+#' 1. Please note that the function expects that the data is
 #'   already sorted by subject/repeated measures ID.
+#'
+#' 2. To get the Bayes Factor message, you are going to need to install
+#'   the development version of `BayesFactor` (`0.9.12-4.3`).
+#'   You can download it by running:
+#' `remotes::install_github("richarddmorey/BayesFactor/pkg/BayesFactor")`.
 #'
 #' @inheritParams ggbetweenstats
 #' @param point.path,mean.path Logical that decides whether individual data
@@ -134,11 +140,7 @@ ggwithinstats <- function(data,
     dplyr::group_by(.data = ., {{ x }}) %>%
     dplyr::mutate(.data = ., rowid = dplyr::row_number()) %>%
     dplyr::ungroup(.) %>%
-    dplyr::anti_join(
-      x = .,
-      y = dplyr::filter(., is.na({{ y }})),
-      by = "rowid"
-    )
+    dplyr::anti_join(x = ., y = dplyr::filter(., is.na({{ y }})), by = "rowid")
 
   # if `outlier.label` column is not present, just use the values from `y` column
   if (rlang::quo_is_null(rlang::enquo(outlier.label))) {
@@ -158,6 +160,12 @@ ggwithinstats <- function(data,
   # figure out which test to run based on the number of levels of the
   # independent variables
   test <- ifelse(nlevels(data %>% dplyr::pull({{ x }}))[[1]] < 3, "t", "anova")
+
+  if (type == "parametric" && test == "anova" &&
+    utils::packageVersion("BayesFactor") < package_version("0.9.12-4.3")) {
+    message('To get Bayes Factor, you need to install GitHub version of `BayesFactor` (`0.9.12-4.3`) by running:\n remotes::install_github("richarddmorey/BayesFactor/pkg/BayesFactor")')
+    bf.message <- FALSE
+  }
 
   # --------------------- subtitle/caption preparation ------------------------
 

@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.5.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.6</span>
       </span>
     </div>
 
@@ -143,7 +143,7 @@
       <h1 data-toc-skip>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-11-14</h4>
+            <h4 class="date">2020-11-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -176,7 +176,7 @@
 <p>You can pass:</p>
 <ul>
 <li><p>A single character string such as <code>xlab = "Continent"</code> or numeric such as <code>nboot = 25</code> in which case it will be reused/recycled as many times as needed.</p></li>
-<li><p>A vector of values such as <code>notch = c(TRUE, FALSE, TRUE)</code> in which case it will be coerced to a list and checked for the right class (in this case integer) and the right quantity of entries in the vector i.e., <code>notch = c(TRUE, FALSE)</code> will fail if we’re trying to make three plots.</p></li>
+<li><p>A vector of values such as <code>mean.ci = c(TRUE, FALSE, TRUE)</code> in which case it will be coerced to a list and checked for the right class (in this case integer) and the right quantity of entries in the vector i.e., <code>mean.ci = c(TRUE, FALSE)</code> will fail if we’re trying to make three plots.</p></li>
 <li><p>A list; either named <code>data = year_list</code> or created as you go <code>palette = list("Dark2", "Set1")</code>. Any list will be checked for the right class (in this case character) and the right quantity of entries in the list.</p></li>
 </ul>
 </div>
@@ -452,7 +452,7 @@
       <span class="op">)</span>,
       ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>,
       ggtheme <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-        <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span><span class="op">(</span><span class="op">)</span>,
+        <span class="fu">sjPlot</span><span class="fu">::</span><span class="fu"><a href="https://strengejacke.github.io/sjPlot/reference/sjPlot-themes.html">theme_sjplot</a></span><span class="op">(</span><span class="op">)</span>,
         <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span>,
         <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span><span class="op">(</span><span class="op">)</span>,
         <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span><span class="op">)</span>

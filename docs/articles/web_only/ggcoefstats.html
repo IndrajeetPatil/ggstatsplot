@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.5.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.6</span>
       </span>
     </div>
 
@@ -143,7 +143,7 @@
       <h1 data-toc-skip>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-11-18</h4>
+            <h4 class="date">2020-11-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -152,8 +152,7 @@
 
     
     
-<p>The function <code><a href="../../reference/ggcoefstats.html">ggstatsplot::ggcoefstats</a></code> generates <strong>dot-and-whisker plots</strong> for regression models saved in a tidy data frame. The tidy dataframes are prepared using the following packages: <code>parameters</code>.</p>
-<p>Additionally, if available, the model summary indices are also extracted from the following packages: <code>performance</code>.</p>
+<p>The function <code><a href="../../reference/ggcoefstats.html">ggstatsplot::ggcoefstats</a></code> generates <strong>dot-and-whisker plots</strong> for regression models saved in a tidy data frame. The tidy dataframes are prepared using <code><a href="https://easystats.github.io/parameters/reference/model_parameters.html">parameters::model_parameters</a></code>. Additionally, if available, the model summary indices are also extracted from <code><a href="https://easystats.github.io/performance/reference/model_performance.html">performance::model_performance</a></code>.</p>
 <p>In this vignette, we will see examples of how to use this function. We will try to cover as many classes of objects as possible. Unfortunately, there is no single dataset that will be helpful for carrying out all types of regression analyses and, therefore, we will use various datasets to explore data-specific hypotheses using regression models.</p>
 <p><strong>Note before</strong>: The following demo uses the pipe operator (<code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code>), so in case you are not familiar with this operator, here is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="uri">http://r4ds.had.co.nz/pipes.html</a></p>
 <div id="general-structure-of-the-plots" class="section level1">

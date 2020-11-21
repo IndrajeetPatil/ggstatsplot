@@ -9,17 +9,16 @@ ggcorrmat(
   cor.vars = NULL,
   cor.vars.names = NULL,
   output = "plot",
-  matrix.type = "full",
-  matrix.method = "square",
+  matrix.type = "lower",
   type = "parametric",
   beta = 0.1,
   k = 2L,
   sig.level = 0.05,
   conf.level = 0.95,
   bf.prior = 0.707,
-  p.adjust.method = "none",
+  p.adjust.method = "holm",
   pch = "cross",
-  ggcorrplot.args = list(outline.color = "black"),
+  ggcorrplot.args = list(method = "square", outline.color = "black"),
   package = "RColorBrewer",
   palette = "Dark2",
   colors = c("#E69F00", "white", "#009E73"),
@@ -49,11 +48,8 @@ literally anything other than \code{"plot"}), a dataframe containing all details
 from statistical analyses (e.g., correlation coefficients, statistic
 values, \emph{p}-values, no. of observations, etc.) will be returned.}
 
-\item{matrix.type}{Character, \code{"full"} (default), \code{"upper"} or \code{"lower"},
+\item{matrix.type}{Character, \code{"lower"} (default), \code{"full"}, or \code{"upper"},
 display full matrix, lower triangular or upper triangular matrix.}
-
-\item{matrix.method}{The visualization method of correlation matrix to be
-used. Allowed values are \code{"square"} (default) or \code{"circle"}.}
 
 \item{type}{Type of association between paired samples required
 ("\code{"parametric"}: Pearson's product moment correlation coefficient" or
@@ -79,23 +75,18 @@ the plot. Relevant only when \code{output = "plot"}.}
 \item{bf.prior}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
 width to use in calculating Bayes factors.}
 
-\item{p.adjust.method}{What adjustment for multiple tests should be used?
-(\code{"holm"}, \code{"hochberg"}, \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"},
-\code{"fdr"}, \code{"none"}). See \code{stats::p.adjust} for details about why to use
-\code{"holm"} rather than \code{"bonferroni"}). Default is \code{"none"}. If adjusted
-\emph{p}-values are displayed in the visualization of correlation matrix, the
-\strong{adjusted} \emph{p}-values will be used for the \strong{upper} triangle, while
-\strong{unadjusted} \emph{p}-values will be used for the \strong{lower} triangle of the
-matrix.}
+\item{p.adjust.method}{Adjustment method for \emph{p}-values for multiple
+comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
+\code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
 
 \item{pch}{Decides the point shape to be used for insignificant correlation
 coefficients (only valid when \code{insig = "pch"}). Default: \code{pch = "cross"}.}
 
 \item{ggcorrplot.args}{A list of additional (mostly aesthetic) arguments that
 will be passed to \code{ggcorrplot::ggcorrplot} function. The list should avoid
-any of the following arguments since they are already internally being used
-by \code{ggstatsplot}: \code{corr}, \code{method}, \code{p.mat}, \code{sig.level}, \code{ggtheme},
-\code{colors}, \code{matrix.type}, \code{lab}, \code{pch}, \code{legend.title}, \code{digits}.}
+any of the following arguments since they are already internally being
+used: \code{corr}, \code{method}, \code{p.mat}, \code{sig.level}, \code{ggtheme}, \code{colors}, \code{lab},
+\code{pch}, \code{legend.title}, \code{digits}.}
 
 \item{package}{Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running

@@ -70,7 +70,7 @@ df_proptest <- function(data, x, y, k = 3L, ...) {
     y = dplyr::group_by(data, {{ y }}) %>%
       dplyr::group_modify(.f = ~ chisq_test_safe(., {{ x }})) %>%
       dplyr::ungroup(.) %>%
-      signif_column(data = ., p = p.value) %>%
+      ipmisc::signif_column(data = ., p = p.value) %>%
       dplyr::filter(.data = ., !is.na(significance)),
     by = rlang::as_name(rlang::ensym(y))
   ) %>%

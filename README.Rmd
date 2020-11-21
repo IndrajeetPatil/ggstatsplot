@@ -126,18 +126,12 @@ install.packages("ggstatsplot")
 
 *Note*:
 
-  - If you are on a linux machine, you will need to have OpenGL libraries
-    installed (specifically, `libx11`, `mesa` and Mesa OpenGL Utility library -
-    `glu`) for the dependency package `rgl` to work.
+Linux users may encounter some installation problems, as several R packages
+require external libraries on the system, especially for `PMCMRplus` package.
+The following `README` file briefly describes the installation procedure:
+<https://CRAN.R-project.org/package=PMCMRplus/readme/README.html>
 
-  - Additionally, `ggstatsplot` depends on `Rrmpfr`, which requires an OS
-    library that might not be installed by default on TSD mpfr-devel:
-    <https://rmpfr.r-forge.r-project.org/>
-
-You can get the **development** version of the package from `GitHub`. To see what
-new changes (and bug fixes) have been made to the package since the last release
-on `CRAN`, you can check the detailed log of changes here:
-<https://indrajeetpatil.github.io/ggstatsplot/news/index.html>
+You can get the **development** version of the package from `GitHub`.
 
 If you are in hurry and want to reduce the time of installation,
 prefer-
@@ -163,6 +157,10 @@ remotes::install_github(
   upgrade_dependencies = TRUE # updates any out of date dependencies
 )
 ```
+
+To see what new changes (and bug fixes) have been made to the package since the
+last release on `CRAN`, you can check the detailed log of changes here:
+<https://indrajeetpatil.github.io/ggstatsplot/news/index.html>
 
 # Citation
 
@@ -507,8 +505,6 @@ ggstatsplot::grouped_ggscatterstats(
   grouping.var = genre, # grouping variable
   label.var = title,
   label.expression = length > 200,
-  xfill = "#E69F00",
-  yfill = "#8b3058",
   xlab = "IMDB rating",
   title.prefix = "Movie genre",
   ggtheme = ggplot2::theme_grey(),
@@ -553,7 +549,6 @@ set.seed(123)
 ggstatsplot::ggcorrmat(
   data = ggplot2::msleep,
   type = "robust", # correlation method
-  p.adjust.method = "holm", # p-value adjustment method for multiple comparisons
   cor.vars = c(sleep_rem, awake:bodywt), # a range of variables can be selected
   cor.vars.names = c(
     "REM sleep", # variable names
@@ -561,7 +556,6 @@ ggstatsplot::ggcorrmat(
     "brain weight",
     "body weight"
   ),
-  matrix.type = "upper", # type of visualization matrix
   colors = c("#B2182B", "white", "#4D4D4D"),
   title = "Correlalogram for mammals sleep dataset",
   subtitle = "sleep units: hours; weight units: kilograms",
@@ -593,6 +587,7 @@ ggstatsplot::grouped_ggcorrmat(
   cor.vars = length:votes,
   colors = c("#cbac43", "white", "#550000"),
   grouping.var = genre, # grouping variable
+  matrix.type = "upper", # type of visualization matrix
   k = 3L, # number of digits after decimal point
   title.prefix = "Movie genre",
   plotgrid.args = list(nrow = 2)
@@ -924,9 +919,8 @@ This is identical to summary of tests for `gghistostats`.
 
 The function `ggstatsplot::ggcoefstats` generates **dot-and-whisker plots** for
 regression models saved in a tidy data frame. The tidy dataframes are prepared
-using the following packages: `broom`, `broom.mixed`, and `parameters`.
-Additionally, if available, the model summary indices are also extracted from
-the following packages: `broom`, `broom.mixed`, and `performance`.
+using `parameters::model_parameters`. Additionally, if available, the model
+summary indices are also extracted from `performance::model_performance`.
 
 Although the statistical models displayed in the plot may differ based on the
 class of models being investigated, there are few aspects of the plot that will

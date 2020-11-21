@@ -87,7 +87,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.5.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.6</span>
       </span>
     </div>
 
@@ -190,18 +190,26 @@
       <small>Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="ggstatsplot-0659000" class="section level1">
-<h1 class="page-header" data-toc-text="0.6.5.9000">
-<a href="#ggstatsplot-0659000" class="anchor"></a>ggstatsplot 0.6.5.9000<small> Unreleased </small>
+    <div id="ggstatsplot-066" class="section level1">
+<h1 class="page-header" data-toc-text="0.6.6">
+<a href="#ggstatsplot-066" class="anchor"></a>ggstatsplot 0.6.6<small> Unreleased </small>
 </h1>
 <p>BREAKING CHANGES</p>
 <ul>
+<li><p><code>ggcoefstats</code> no longer supports <code>exponentiate</code> argument. If it is specified, the user will have to themselves adjust the scales appropriately.</p></li>
 <li>
-<code>ggcoefstats</code> no longer supports <code>exponentiate</code> argument. If it is specified, the user will have to themselves adjust the scales appropriately.</li>
+<p><code>ggcorrmat</code> defaults have changed significantly:</p>
+<ol>
+<li><p>As a matter of good practice, the <em>p</em>-values are adjusted by default for multiple comparisons.</p></li>
+<li><p>The default matrix is lower type, and not the full matrix, which features many redundant comparisons and self-correlations diagonally.</p></li>
+<li><p>Default text size for legend has been increased to 15 and background grid has been removed.</p></li>
+</ol>
+</li>
 </ul>
 <p>BUG FIXES</p>
 <ul>
-<li>Setting <code>mean.path = FALSE</code> in <code>ggwithinstats</code> produced incorrect colors for points (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/470'>#470</a>). This bug was introduced in <code>0.6.5</code> and is now fixed.</li>
+<li><p>In the prior release, when the GitHub version of <code>BayesFactor</code> wasn’t present, <code>ggwithinstats</code> just outright failed to run for ANOVA designs. This has been fixed.</p></li>
+<li><p>Setting <code>mean.path = FALSE</code> in <code>ggwithinstats</code> produced incorrect colors for points (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/470'>#470</a>). This bug was introduced in <code>0.6.5</code> and is now fixed.</p></li>
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>
@@ -434,7 +442,7 @@
 </ul>
 <p>MINOR</p>
 <ul>
-<li><p><code>ggcoefstats</code> now uses <code><a href="https://easystats.github.io/parameters/reference/p_value.html">parameters::p_value</a></code> instead of <code>sjstats::p_value</code>, as requested by the maintainer of that package. This might lead to differences in <em>p</em>-values for <code>lmer</code> models.</p></li>
+<li><p><code>ggcoefstats</code> now uses <code><a href="https://easystats.github.io/parameters/reference/p_value.html">parameters::p_value</a></code> instead of <code><a href="https://strengejacke.github.io/sjstats/reference/r2.html">sjstats::p_value</a></code>, as requested by the maintainer of that package. This might lead to differences in <em>p</em>-values for <code>lmer</code> models.</p></li>
 <li><p>More models supported in <code>ggcoefstats</code>: <code>blavaan</code>, <code>bracl</code>, <code>brglm2</code>, <code>glmc</code>, <code>lavaan</code>, <code>nlreg</code>, <code>slm</code>, <code>wbgee</code>.</p></li>
 <li><p><code>ggcoefstats</code> gains <code>only.significant</code> argument to only display display stats labels for significant effects. This can be helpful when a large number of regression coefficients are to be displayed in a single plot.</p></li>
 </ul>
@@ -732,7 +740,7 @@
 <li><p>Removed the trailing comma from the robust correlation analyses.</p></li>
 <li><p><code>gghistostats</code> has a new argument to remove color fill gradient.</p></li>
 <li><p><code>ggbetweenstats</code> takes new argument <code>mean.ci</code> to show confidence intervals for the mean values.</p></li>
-<li><p>For <code>lmer</code> models, <em>p</em>-values are now computed using <code>sjstats::p_value</code>. This removes <code>lmerTest</code> package from dependencies.</p></li>
+<li><p>For <code>lmer</code> models, <em>p</em>-values are now computed using <code><a href="https://strengejacke.github.io/sjstats/reference/r2.html">sjstats::p_value</a></code>. This removes <code>lmerTest</code> package from dependencies.</p></li>
 <li><p><code>sjstats</code> no longer suggests <code>apaTables</code> package to compute confidence intervals for partial eta- and omega-squared. Therefore, <code>apaTables</code> and <code>MBESS</code> are removed from dependencies.</p></li>
 <li><p><code>ggscatterstats</code> supports <code>densigram</code> with the development version of <code>ggExtra</code>. It additionally gains few extra arguments to change aesthetics of marginals (alpha, size, etc.).</p></li>
 </ul>
@@ -744,7 +752,7 @@
 <p>MAJOR CHANGES</p>
 <ul>
 <li><p>New function: <code>ggcoefstats</code> for displaying model coefficients.</p></li>
-<li><p>All functions now have <code>ggtheme</code> argument that can be used to change the default theme, which has now been changed from <code>theme_grey()</code> to <code>theme_bw()</code>.</p></li>
+<li><p>All functions now have <code>ggtheme</code> argument that can be used to change the default theme, which has now been changed from <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey()</a></code> to <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw()</a></code>.</p></li>
 <li><p>The robust correlation is no longer <code><a href="https://rdrr.io/pkg/MASS/man/rlm.html">MASS::rlm</a></code>, but percentage bend correlation, as implemented in <code><a href="https://rdrr.io/pkg/WRS2/man/pbcor.html">WRS2::pbcor</a></code>. This was done to be consistent across different functions. <code>ggcorrmat</code> also uses percentage bend correlation as the robust correlation measure. This also means that <code>ggstatsplot</code> no longer imports <code>MASS</code> and <code>sfsmisc</code>.</p></li>
 <li><p>The <code>data</code> argument is no longer <code>NULL</code> for all functions, except <code>gghistostats</code>. In other words, the user <strong>must</strong> provide a dataframe from which variables or formulas should be selected.</p></li>
 <li><p>All subtitles containing results now also show sample size information (<em>n</em>). To adjust for the inflated length of the subtitle, the default subtitle text size has been changed from <code>12</code> to <code>11</code>.</p></li>

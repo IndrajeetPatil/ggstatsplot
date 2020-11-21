@@ -49,22 +49,12 @@ values, \emph{p}-values, no. of observations, etc.) will be returned.}
 \item{...}{
   Arguments passed on to \code{\link[=ggcorrmat]{ggcorrmat}}
   \describe{
-    \item{\code{matrix.type}}{Character, \code{"full"} (default), \code{"upper"} or \code{"lower"},
+    \item{\code{matrix.type}}{Character, \code{"lower"} (default), \code{"full"}, or \code{"upper"},
 display full matrix, lower triangular or upper triangular matrix.}
-    \item{\code{matrix.method}}{The visualization method of correlation matrix to be
-used. Allowed values are \code{"square"} (default) or \code{"circle"}.}
     \item{\code{sig.level}}{Significance level (Default: \code{0.05}). If the \emph{p}-value in
 \emph{p}-value matrix is bigger than \code{sig.level}, then the corresponding
 correlation coefficient is regarded as insignificant and flagged as such in
 the plot. Relevant only when \code{output = "plot"}.}
-    \item{\code{p.adjust.method}}{What adjustment for multiple tests should be used?
-(\code{"holm"}, \code{"hochberg"}, \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"},
-\code{"fdr"}, \code{"none"}). See \code{stats::p.adjust} for details about why to use
-\code{"holm"} rather than \code{"bonferroni"}). Default is \code{"none"}. If adjusted
-\emph{p}-values are displayed in the visualization of correlation matrix, the
-\strong{adjusted} \emph{p}-values will be used for the \strong{upper} triangle, while
-\strong{unadjusted} \emph{p}-values will be used for the \strong{lower} triangle of the
-matrix.}
     \item{\code{colors}}{A vector of 3 colors for low, mid, and high correlation values.
 If set to \code{NULL}, manual specification of colors will be turned off and 3
 colors from the specified \code{palette} from \code{package} will be selected.}
@@ -72,9 +62,9 @@ colors from the specified \code{palette} from \code{package} will be selected.}
 coefficients (only valid when \code{insig = "pch"}). Default: \code{pch = "cross"}.}
     \item{\code{ggcorrplot.args}}{A list of additional (mostly aesthetic) arguments that
 will be passed to \code{ggcorrplot::ggcorrplot} function. The list should avoid
-any of the following arguments since they are already internally being used
-by \code{ggstatsplot}: \code{corr}, \code{method}, \code{p.mat}, \code{sig.level}, \code{ggtheme},
-\code{colors}, \code{matrix.type}, \code{lab}, \code{pch}, \code{legend.title}, \code{digits}.}
+any of the following arguments since they are already internally being
+used: \code{corr}, \code{method}, \code{p.mat}, \code{sig.level}, \code{ggtheme}, \code{colors}, \code{lab},
+\code{pch}, \code{legend.title}, \code{digits}.}
     \item{\code{type}}{Type of association between paired samples required
 ("\code{"parametric"}: Pearson's product moment correlation coefficient" or
 "\code{"nonparametric"}: Spearman's rho" or "\code{"robust"}: percentage bend
@@ -89,6 +79,9 @@ parametric/pearson), \code{"np"} (nonparametric/spearman), \code{"r"} (robust),
 \verb{95\%} confidence/credible intervals (\code{0.95}).}
     \item{\code{bf.prior}}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
 width to use in calculating Bayes factors.}
+    \item{\code{p.adjust.method}}{Adjustment method for \emph{p}-values for multiple
+comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
+\code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
     \item{\code{package}}{Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
 \code{View(paletteer::palettes_d_names)}.}

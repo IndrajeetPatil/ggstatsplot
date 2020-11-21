@@ -38,10 +38,8 @@ future::plan("multicore")
 
 The function `ggstatsplot::ggcoefstats` generates **dot-and-whisker plots** for
 regression models saved in a tidy data frame. The tidy dataframes are prepared
-using the following packages: `parameters`.
-
-Additionally, if available, the model summary indices are also extracted from
-the following packages: `performance`.
+using `parameters::model_parameters`. Additionally, if available, the model
+summary indices are also extracted from `performance::model_performance`.
 
 In this vignette, we will see examples of how to use this function. We will try
 to cover as many classes of objects as possible. Unfortunately, there is no

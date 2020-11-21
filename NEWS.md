@@ -1,11 +1,27 @@
-# ggstatsplot 0.6.5.9000
+# ggstatsplot 0.6.6
 
 BREAKING CHANGES
 
   - `ggcoefstats` no longer supports `exponentiate` argument. If it is
-    specified, the user will have to themselves adjust the scales appropriately.
+    specified, the user will have to themselves adjust the scales
+    appropriately.
+
+  - `ggcorrmat` defaults have changed significantly:
+
+    1. As a matter of good practice, the *p*-values are adjusted by default for
+       multiple comparisons.
+
+    2. The default matrix is lower type, and not the full matrix, which features
+       many redundant comparisons and self-correlations diagonally.
+
+    3. Default text size for legend has been increased to 15 and background grid
+       has been removed.
 
 BUG FIXES
+
+  - In the prior release, when the GitHub version of `BayesFactor` wasn't
+    present, `ggwithinstats` just outright failed to run for ANOVA designs. This
+    has been fixed.
 
   - Setting `mean.path = FALSE` in `ggwithinstats` produced incorrect colors for
     points (#470). This bug was introduced in `0.6.5` and is now fixed.
@@ -14,7 +30,7 @@ MAJOR CHANGES
 
   - Drops `broomExtra` from dependencies. All regression modeling-related
     analysis now relies on `easystats` ecosystem.
-    
+
   - `ggpiestats` and `ggbarstats` don't support returning dataframes. See FAQ
     vignette on how to get these dataframes:
     <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/faq.html#faq-1>

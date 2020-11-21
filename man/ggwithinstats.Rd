@@ -227,8 +227,14 @@ A combination of box and violin plots along with raw
 details included in the plot as a subtitle.
 }
 \note{
-\strong{Important}: Please note that the function expects that the data is
+\enumerate{
+\item Please note that the function expects that the data is
 already sorted by subject/repeated measures ID.
+\item To get the Bayes Factor message, you are going to need to install
+the development version of \code{BayesFactor} (\verb{0.9.12-4.3}).
+You can download it by running:
+\code{remotes::install_github("richarddmorey/BayesFactor/pkg/BayesFactor")}.
+}
 }
 \examples{
 \donttest{

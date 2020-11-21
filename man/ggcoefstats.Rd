@@ -162,9 +162,14 @@ labels.
 Dot-and-whisker plots for regression analyses
 }
 \note{
-All rows of regression estimates where either of the following
+\enumerate{
+\item All rows of regression estimates where either of the following
 quantities is \code{NA} will be removed if labels are requested: \code{estimate},
 \code{statistic}, \code{p.value}.
+\item Given the rapid pace at which new methods are added to these packages, it
+is recommended that you install the GitHub versions of \code{parameters} and
+\code{performance} in order to make most of this function.
+}
 }
 \examples{
 \donttest{

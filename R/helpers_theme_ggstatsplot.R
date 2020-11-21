@@ -52,7 +52,8 @@ theme_corrmat <- function() {
     panel.grid.major = ggplot2::element_blank(),
     panel.grid.minor = ggplot2::element_blank()
   ) +
-    common_theme_element
+    common_theme_element +
+    ggplot2::theme(legend.title = ggplot2::element_text(size = 15))
 }
 
 #' @rdname theme_ggstatsplot

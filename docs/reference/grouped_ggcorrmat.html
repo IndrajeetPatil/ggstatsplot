@@ -92,7 +92,7 @@ resulting plots using ggstatsplot::combine_plots." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.5.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.6</span>
       </span>
     </div>
 
@@ -261,22 +261,12 @@ values, <em>p</em>-values, no. of observations, etc.) will be returned.</p></td>
     <tr>
       <th>...</th>
       <td><p>Arguments passed on to <code><a href='ggcorrmat.html'>ggcorrmat</a></code></p><dl>
-    <dt><code>matrix.type</code></dt><dd><p>Character, <code>"full"</code> (default), <code>"upper"</code> or <code>"lower"</code>,
+    <dt><code>matrix.type</code></dt><dd><p>Character, <code>"lower"</code> (default), <code>"full"</code>, or <code>"upper"</code>,
 display full matrix, lower triangular or upper triangular matrix.</p></dd>
-    <dt><code>matrix.method</code></dt><dd><p>The visualization method of correlation matrix to be
-used. Allowed values are <code>"square"</code> (default) or <code>"circle"</code>.</p></dd>
     <dt><code>sig.level</code></dt><dd><p>Significance level (Default: <code>0.05</code>). If the <em>p</em>-value in
 <em>p</em>-value matrix is bigger than <code>sig.level</code>, then the corresponding
 correlation coefficient is regarded as insignificant and flagged as such in
 the plot. Relevant only when <code>output = "plot"</code>.</p></dd>
-    <dt><code>p.adjust.method</code></dt><dd><p>What adjustment for multiple tests should be used?
-(<code>"holm"</code>, <code>"hochberg"</code>, <code>"hommel"</code>, <code>"bonferroni"</code>, <code>"BH"</code>, <code>"BY"</code>,
-<code>"fdr"</code>, <code>"none"</code>). See <code><a href='https://rdrr.io/r/stats/p.adjust.html'>stats::p.adjust</a></code> for details about why to use
-<code>"holm"</code> rather than <code>"bonferroni"</code>). Default is <code>"none"</code>. If adjusted
-<em>p</em>-values are displayed in the visualization of correlation matrix, the
-<strong>adjusted</strong> <em>p</em>-values will be used for the <strong>upper</strong> triangle, while
-<strong>unadjusted</strong> <em>p</em>-values will be used for the <strong>lower</strong> triangle of the
-matrix.</p></dd>
     <dt><code>colors</code></dt><dd><p>A vector of 3 colors for low, mid, and high correlation values.
 If set to <code>NULL</code>, manual specification of colors will be turned off and 3
 colors from the specified <code>palette</code> from <code>package</code> will be selected.</p></dd>
@@ -284,9 +274,9 @@ colors from the specified <code>palette</code> from <code>package</code> will be
 coefficients (only valid when <code>insig = "pch"</code>). Default: <code>pch = "cross"</code>.</p></dd>
     <dt><code>ggcorrplot.args</code></dt><dd><p>A list of additional (mostly aesthetic) arguments that
 will be passed to <code><a href='https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html'>ggcorrplot::ggcorrplot</a></code> function. The list should avoid
-any of the following arguments since they are already internally being used
-by <code>ggstatsplot</code>: <code>corr</code>, <code>method</code>, <code>p.mat</code>, <code>sig.level</code>, <code>ggtheme</code>,
-<code>colors</code>, <code>matrix.type</code>, <code>lab</code>, <code>pch</code>, <code>legend.title</code>, <code>digits</code>.</p></dd>
+any of the following arguments since they are already internally being
+used: <code>corr</code>, <code>method</code>, <code>p.mat</code>, <code>sig.level</code>, <code>ggtheme</code>, <code>colors</code>, <code>lab</code>,
+<code>pch</code>, <code>legend.title</code>, <code>digits</code>.</p></dd>
     <dt><code>type</code></dt><dd><p>Type of association between paired samples required
 ("<code>"parametric"</code>: Pearson's product moment correlation coefficient" or
 "<code>"nonparametric"</code>: Spearman's rho" or "<code>"robust"</code>: percentage bend
@@ -301,6 +291,9 @@ parametric/pearson), <code>"np"</code> (nonparametric/spearman), <code>"r"</code
 <code>95%</code> confidence/credible intervals (<code>0.95</code>).</p></dd>
     <dt><code>bf.prior</code></dt><dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
 width to use in calculating Bayes factors.</p></dd>
+    <dt><code>p.adjust.method</code></dt><dd><p>Adjustment method for <em>p</em>-values for multiple
+comparisons. Possible methods are: <code>"holm"</code> (default), <code>"hochberg"</code>,
+<code>"hommel"</code>, <code>"bonferroni"</code>, <code>"BH"</code>, <code>"BY"</code>, <code>"fdr"</code>, <code>"none"</code>.</p></dd>
     <dt><code>package</code></dt><dd><p>Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
 <code><a href='https://rdrr.io/r/utils/View.html'>View(paletteer::palettes_d_names)</a></code>.</p></dd>
