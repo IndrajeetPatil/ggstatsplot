@@ -37,7 +37,7 @@ Imports:
     pairwiseComparisons,
     paletteer,
     parameters (>= 0.9.0.1),
-    performance (>= 0.5.1.1),
+    performance,
     purrr,
     rlang,
     stats,
@@ -55,8 +55,7 @@ Suggests:
     WRS2
 Remotes:
     easystats/insight,
-    easystats/parameters,
-    easystats/performance
+    easystats/parameters
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
