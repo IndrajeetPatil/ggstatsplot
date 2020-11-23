@@ -74,6 +74,9 @@ ggbarstats <- function(data,
   y <- rlang::ensym(y)
   counts <- if (!rlang::quo_is_null(rlang::enquo(counts))) rlang::ensym(counts)
 
+  # this is currently not supported in `BayesFactor`
+  if (isTRUE(paired)) bf.message <- FALSE
+
   # ================= extracting column names as labels  =====================
 
   # if legend title is not provided, use the 'x' variable name

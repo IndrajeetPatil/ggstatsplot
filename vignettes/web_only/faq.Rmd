@@ -64,6 +64,21 @@ ggplot(iris, aes(x = Species, y = Sepal.Length)) +
   )))
 ```
 
+## I am getting `Error in grid.Call` error
+
+Sometimes, if you are working in `RStudio`, you might see the following error-
+
+```r
+Error in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+polygon edge not found
+```
+
+There is no unique solution for this. Just Google this error and see if any of
+those solutions solve your problem.
+
+If not, pray to the old and the new gods, and try again. It might just solve
+your problem. `r emo::ji("shrug")`
+
 ## What statistical test was carried out?
 
 In case you are not sure what was the statistical test that produced the results
@@ -71,8 +86,8 @@ shown in the subtitle of the plot, the best way to get that information is to
 either look at the documentation for the function used or check out the
 associated vignette. 
 
-Summary table: 
-<https://indrajeetpatil.github.io/statsExpressions/articles/stats_details.html>
+Summary of all analysis is handily available in `README`: 
+<https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md>
 
 ## How can I have uniform Y-axes ranges in `grouped_` functions?
 
@@ -144,7 +159,6 @@ Here is an example-
 ```{r grouped_2, fig.width = 6, fig.height = 6}
 # setup
 set.seed(123)
-library(tidyverse, warn.conflicts = FALSE)
 library(ggstatsplot)
 
 # creating a list by splitting dataframe by combination of two different

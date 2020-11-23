@@ -38,6 +38,10 @@ MAJOR CHANGES
   - `ggpiestats` and `ggbarstats` don't support returning dataframes. See FAQ
     vignette on how to get these dataframes:
     <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/faq.html#faq-1>
+    
+  - `ggpiestats` and `ggbarstats` were not supposed to support returning Bayes
+    Factor for paired contingency table analysis, which is not supported in
+    `BayesFactor` itself.
 
 NEW FEATURES
 

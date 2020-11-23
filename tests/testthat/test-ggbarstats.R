@@ -26,8 +26,7 @@ testthat::test_that(
         xlab = "Passenger sex",
         ylab = "proportion",
         label.separator = "\n",
-        bf.message = FALSE,
-        messages = TRUE
+        bf.message = FALSE
       )
 
     # build plot
@@ -40,9 +39,7 @@ testthat::test_that(
         data = as.data.frame(Titanic),
         x = "Sex",
         y = "Survived",
-        counts = Freq,
-        conf.level = 0.95,
-        messages = FALSE
+        counts = Freq
       )
 
     # checking geom data
@@ -243,8 +240,7 @@ testthat::test_that(
         label = "both",
         package = "wesanderson",
         palette = "Royal2",
-        legend.title = "Engine",
-        messages = FALSE
+        legend.title = "Engine"
       ))
 
     p1 <-
@@ -253,8 +249,7 @@ testthat::test_that(
         x = vs,
         y = cyl,
         label = "counts",
-        bf.message = FALSE,
-        messages = FALSE
+        bf.message = FALSE
       ))
 
     # build plot
@@ -269,11 +264,8 @@ testthat::test_that(
         .funs = ~ as.character(.)
       )
 
-    # checking dimensions of data
-    data_dims <- dim(dat)
-
     # testing everything is okay with data
-    testthat::expect_equal(data_dims, c(5L, 5L))
+    testthat::expect_equal(dim(dat), c(5L, 5L))
     testthat::expect_identical(
       pb$data[[2]]$label,
       c(

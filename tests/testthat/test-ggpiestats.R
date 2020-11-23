@@ -313,29 +313,27 @@ testthat::test_that(
 
     # plot
     set.seed(123)
-    p <- ggstatsplot::ggpiestats(
-      data = as.data.frame(Titanic),
-      x = Sex,
-      y = Survived,
-      bf.message = FALSE,
-      counts = "Freq",
-      perc.k = 2,
-      legend.title = NULL,
-      ggtheme = ggplot2::theme_minimal(),
-      conf.level = 0.95,
-      messages = TRUE
-    )
+    p <-
+      ggstatsplot::ggpiestats(
+        data = as.data.frame(Titanic),
+        x = Sex,
+        y = Survived,
+        bf.message = FALSE,
+        counts = "Freq",
+        perc.k = 2,
+        legend.title = NULL,
+        ggtheme = ggplot2::theme_minimal()
+      )
 
     # subtitle
     set.seed(123)
-    p_subtitle <- statsExpressions::expr_contingency_tab(
-      data = as.data.frame(Titanic),
-      x = Sex,
-      y = Survived,
-      counts = Freq,
-      conf.level = 0.95,
-      messages = FALSE
-    )
+    p_subtitle <-
+      statsExpressions::expr_contingency_tab(
+        data = as.data.frame(Titanic),
+        x = Sex,
+        y = Survived,
+        counts = Freq
+      )
 
     # build the plot
     pb <- ggplot2::ggplot_build(p)
@@ -348,11 +346,8 @@ testthat::test_that(
         .funs = ~ as.character(.)
       )
 
-    # checking dimensions of data
-    data_dims <- dim(dat)
-
     # testing everything is okay with data
-    testthat::expect_equal(data_dims, c(4L, 5L))
+    testthat::expect_equal(dim(dat), c(4L, 5L))
     testthat::expect_equal(dat$perc, c(8.46, 48.38, 91.54, 51.62), tolerance = 1e-3)
     testthat::expect_equal(dat$Survived[1], "No")
     testthat::expect_equal(dat$Survived[4], "Yes")
@@ -385,15 +380,15 @@ testthat::test_that(
 
     # plot
     set.seed(123)
-    p <- ggstatsplot::ggpiestats(
-      data = survey.data,
-      x = `1st survey`,
-      y = `2nd survey`,
-      counts = Counts,
-      paired = TRUE,
-      conf.level = 0.90,
-      messages = FALSE
-    )
+    p <-
+      ggstatsplot::ggpiestats(
+        data = survey.data,
+        x = `1st survey`,
+        y = `2nd survey`,
+        counts = Counts,
+        paired = TRUE,
+        conf.level = 0.90
+      )
 
     # build the plot
     pb <- ggplot2::ggplot_build(p)
@@ -407,18 +402,23 @@ testthat::test_that(
         y = `2nd survey`,
         counts = Counts,
         paired = TRUE,
-        conf.level = 0.90,
-        messages = FALSE
+        conf.level = 0.90
       )
 
     # checking plot labels
-    testthat::expect_identical(pb$plot$labels$subtitle, p_subtitle)
-    testthat::expect_identical(pb$plot$labels$group, "1st survey")
-    testthat::expect_identical(pb$plot$labels$fill, "1st survey")
-    testthat::expect_identical(pb$plot$labels$label, "label")
-    testthat::expect_null(pb$plot$labels$x, NULL)
-    testthat::expect_null(pb$plot$labels$y, NULL)
-    testthat::expect_null(pb$plot$labels$title, NULL)
+    testthat::expect_identical(
+      pb$plot$labels,
+      list(
+        x = NULL,
+        y = NULL,
+        title = NULL,
+        subtitle = p_subtitle,
+        caption = NULL,
+        fill = "1st survey",
+        label = "label",
+        group = "1st survey"
+      )
+    )
 
     # labels
     testthat::expect_identical(

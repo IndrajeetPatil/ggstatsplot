@@ -95,6 +95,9 @@ ggpiestats <- function(data,
   y <- if (!rlang::quo_is_null(rlang::enquo(y))) rlang::ensym(y)
   counts <- if (!rlang::quo_is_null(rlang::enquo(counts))) rlang::ensym(counts)
 
+  # this is currently not supported in `BayesFactor`
+  if (isTRUE(paired)) bf.message <- FALSE
+
   # saving the column label for the 'x' variables
   if (rlang::is_null(legend.title)) legend.title <- rlang::as_name(x)
 
