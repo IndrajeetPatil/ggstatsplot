@@ -252,7 +252,6 @@
       "@type": "SoftwareApplication",
       "identifier": "ipmisc",
       "name": "ipmisc",
-      "version": ">= 4.1.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -302,13 +301,14 @@
       "@type": "SoftwareApplication",
       "identifier": "performance",
       "name": "performance",
+      "version": ">= 0.5.1.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=performance"
+      "sameAs": "https://github.com/easystats/performance"
     },
     {
       "@type": "SoftwareApplication",
@@ -434,5 +434,5 @@
   ],
   "funder": {},
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md",
-  "fileSize": "57918.482KB"
+  "fileSize": "57918.225KB"
 }

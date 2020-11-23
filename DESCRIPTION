@@ -33,11 +33,11 @@ Imports:
     ggrepel,
     ggsignif,
     insight (>= 0.10.0.1),
-    ipmisc (>= 4.1.0),
+    ipmisc,
     pairwiseComparisons,
     paletteer,
     parameters (>= 0.9.0.1),
-    performance,
+    performance (>= 0.5.1.1),
     purrr,
     rlang,
     stats,
@@ -55,6 +55,7 @@ Suggests:
     WRS2
 Remotes:
     easystats/insight,
+    easystats/performance,
     easystats/parameters
 VignetteBuilder: 
     knitr

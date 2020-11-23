@@ -82,9 +82,9 @@ df_proptest <- function(data, x, y, k = 3L, ...) {
         df,
         ")==",
         specify_decimal_p(x = statistic, k = k),
-        ", ~italic(p)==",
+        ", ~italic(p)=='",
         specify_decimal_p(x = p.value, k = k, p.value = TRUE),
-        ", ~italic(n)==",
+        "', ~italic(n)==",
         counts,
         ")"
       )

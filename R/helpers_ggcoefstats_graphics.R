@@ -40,9 +40,9 @@ ggcoefstats_label_maker <- function(tidy_df,
             specify_decimal_p(x = df.error, k = 0L),
             ")==",
             specify_decimal_p(x = statistic, k = k),
-            ", ~italic(p)==",
+            ", ~italic(p)=='",
             specify_decimal_p(x = p.value, k = k, p.value = TRUE),
-            ")"
+            "')"
           )
         )
     } else {
@@ -54,9 +54,9 @@ ggcoefstats_label_maker <- function(tidy_df,
             specify_decimal_p(x = estimate, k = k),
             ", ~italic(t)==",
             specify_decimal_p(x = statistic, k = k),
-            ", ~italic(p)==",
+            ", ~italic(p)=='",
             specify_decimal_p(x = p.value, k = k, p.value = TRUE),
-            ")"
+            "')"
           )
         )
     }
@@ -73,9 +73,9 @@ ggcoefstats_label_maker <- function(tidy_df,
           specify_decimal_p(x = estimate, k = k),
           ", ~italic(z)==",
           specify_decimal_p(x = statistic, k = k),
-          ", ~italic(p)==",
+          ", ~italic(p)=='",
           specify_decimal_p(x = p.value, k = k, p.value = TRUE),
-          ")"
+          "')"
         )
       )
   }
@@ -91,9 +91,9 @@ ggcoefstats_label_maker <- function(tidy_df,
           specify_decimal_p(x = estimate, k = k),
           ", ~italic(chi)^2==",
           specify_decimal_p(x = statistic, k = k),
-          ", ~italic(p)==",
+          ", ~italic(p)=='",
           specify_decimal_p(x = p.value, k = k, p.value = TRUE),
-          ")"
+          "')"
         )
       )
   }
@@ -116,9 +116,9 @@ ggcoefstats_label_maker <- function(tidy_df,
           df2,
           ")==",
           specify_decimal_p(x = statistic, k = k),
-          ", ~italic(p)==",
+          ", ~italic(p)=='",
           specify_decimal_p(x = p.value, k = k, p.value = TRUE),
-          ", ~",
+          "', ~",
           effsize.text,
           "==",
           specify_decimal_p(x = estimate, k = k),
