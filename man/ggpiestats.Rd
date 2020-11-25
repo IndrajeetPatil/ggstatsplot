@@ -40,13 +40,16 @@ ggpiestats(
 \item{data}{A dataframe (or a tibble) from which variables specified are to
 be taken. A matrix or tables will \strong{not} be accepted.}
 
-\item{x}{The variable to use as the \strong{rows} in the contingency table.}
+\item{x}{The variable to use as the \strong{rows} in the contingency table. Please
+note that if there are empty factor levels in your variable, they will be
+dropped.}
 
-\item{y}{The variable to use as the \strong{columns} in the contingency
-table. Default is \code{NULL}. If \code{NULL}, one-sample proportion test (a goodness
-of fit test) will be run for the \code{x} variable. Otherwise an appropriate
-association test will be run. This argument can not be \code{NULL} for
-\code{ggbarstats} function.}
+\item{y}{The variable to use as the \strong{columns} in the contingency table.
+Please note that if there are empty factor levels in your variable, they
+will be dropped. Default is \code{NULL}. If \code{NULL}, one-sample proportion test
+(a goodness of fit test) will be run for the \code{x} variable. Otherwise an
+appropriate association test will be run. This argument can not be \code{NULL}
+for \code{ggbarstats} function.}
 
 \item{counts}{A string naming a variable in data containing counts, or \code{NULL}
 if each row represents a single observation.}

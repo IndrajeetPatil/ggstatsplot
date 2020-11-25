@@ -17,12 +17,15 @@ vignette: >
 ---
 
 ```{r setup, include = FALSE}
+# show me all columns
+options(tibble.width = Inf, pillar.bold = TRUE, pillar.subtle_num = TRUE)
+
 knitr::opts_chunk$set(
-  dpi = 300,
-  out.width = "100%",
   collapse = TRUE,
-  message = FALSE,
+  dpi = 300,
   warning = FALSE,
+  message = FALSE,
+  out.width = "100%",
   comment = "#>"
 )
 ```
@@ -89,6 +92,33 @@ associated vignette.
 Summary of all analysis is handily available in `README`: 
 <https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md>
 
+## How can I use `ggstatsplot` functions in a `for` loop?
+
+Given that all functions in `ggstatsplot` use tidy evaluation, running these
+functions in a `for` loop requires minor adjustment to how inputs are entered:
+
+```{r loop, eval=FALSE}
+# setup
+data(mtcars)
+library(ggstatsplot)
+col.name <- colnames(mtcars)
+
+# executing the function in a `for` loop
+for (i in 3:length(col.name)) {
+  ggbetweenstats(
+    data = mtcars,
+    x = cyl,
+    y = !!col.name[i]
+  )
+}
+```
+
+That said, if repeating function execution across multiple columns in a
+dataframe in what you want to do, I will recommend you to have a look at
+`purrr`-based solution:
+
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html#repeating-function-execution-across-multiple-columns-in-a-dataframe-1>
+
 ## How can I have uniform Y-axes ranges in `grouped_` functions?
 
 ```{r grouped_y_axes, fig.height=10, fig.width=8}
@@ -129,7 +159,7 @@ graphics via `plotly.js`.
 
 The `ggstatsplot` functions are compatible with `plotly`.
  
-```{r plotly, fig.width = 4, fig.height = 4}
+```{r plotly, fig.width = 4, fig.height = 4, eval=FALSE}
 # for reproducibility
 set.seed(123)
 library(ggstatsplot)
@@ -289,7 +319,7 @@ Sometimes you may not want a particular `geom` layer to be displayed. You can
 remove them using `gginnards`. 
 
 For example, let's say we want to remove the `geom_point()` from
-`ggbetweenstats` default plot.
+`ggwithinstats` default plot.
 
 ```{r gginnards, fig.width = 7, fig.height = 5}
 # needed libraries
@@ -298,15 +328,16 @@ library(gginnards)
 
 # plot with all geoms
 p <-
-  ggbetweenstats(
-    data = iris,
-    x = Species,
-    y = Sepal.Length,
-    mean.plotting = FALSE
+  ggwithinstats(
+    data = bugs_long,
+    x = condition,
+    y = desire,
+    results.subtitle = FALSE,
+    pairwise.comparisons = FALSE
   )
 
-# delete geom corresponding to points
-gginnards::delete_layers(x = p, match_type = "GeomPoint")
+# delete `geom` corresponding to violin
+gginnards::delete_layers(x = p, match_type = "GeomViolin")
 ```
 
 This can be helpful to add a new layer with aesthetic specifications of your

@@ -3,12 +3,15 @@
 #' @description Pie charts for categorical data with statistical details
 #'   included in the plot as a subtitle.
 #'
-#' @param x The variable to use as the **rows** in the contingency table.
-#' @param y The variable to use as the **columns** in the contingency
-#'   table. Default is `NULL`. If `NULL`, one-sample proportion test (a goodness
-#'   of fit test) will be run for the `x` variable. Otherwise an appropriate
-#'   association test will be run. This argument can not be `NULL` for
-#'   `ggbarstats` function.
+#' @param x The variable to use as the **rows** in the contingency table. Please
+#'   note that if there are empty factor levels in your variable, they will be
+#'   dropped.
+#' @param y The variable to use as the **columns** in the contingency table.
+#'   Please note that if there are empty factor levels in your variable, they
+#'   will be dropped. Default is `NULL`. If `NULL`, one-sample proportion test
+#'   (a goodness of fit test) will be run for the `x` variable. Otherwise an
+#'   appropriate association test will be run. This argument can not be `NULL`
+#'   for `ggbarstats` function.
 #' @param proportion.test Decides whether proportion test for `x` variable is
 #'   to be carried out for each level of `y` (Default: `TRUE`).
 #' @param perc.k Numeric that decides number of decimal places for percentage

@@ -20,14 +20,15 @@ vignette: >
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
+  dpi = 300,
+  out.width = "100%",
   collapse = TRUE,
-  comment = "#>",
   message = FALSE,
-  warning = FALSE
+  warning = FALSE,
+  comment = "#>"
 )
 
-library(future)
-plan("multicore")
+future::plan("multicore")
 ```
 
 # Why use `purrr`?
@@ -95,7 +96,7 @@ Following our methodology above let's start with `ggebtweenstats`. We'll use the
 `gapminder` dataset. We'll make a 3 item named `list` called `data_list` using
 `dplyr::filter` and `split`.
 
-```{r purrr_ggbetweenstats1, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 7}
+```{r purrr_ggbetweenstats1, fig.height = 12, fig.width = 7}
 # for reproducibility
 library(ggstatsplot)
 set.seed(123)
@@ -125,7 +126,7 @@ purposes let's assume we want the outliers on each plot to be a different color.
 Not actually recommending it just demonstrating what's possible. The rest of the
 code shows you a wide variety of possibilities and we won't catalog them here.
 
-```{r purrr_ggbetweenstats2, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 7}
+```{r purrr_ggbetweenstats2, fig.height = 10, fig.width = 7}
 # for reproducibility
 set.seed(123)
 library(ggstatsplot)
@@ -182,7 +183,7 @@ The final step is to pass the `plot_list` object we just created to the
 information `combine_plots` gives us an opportunity to add additional details to
 the merged plots and specify the layout in rows and columns.
 
-```{r purrr_ggbetweenstats3, warning = FALSE, message = FALSE, fig.height = 18, fig.width = 7}
+```{r purrr_ggbetweenstats3, fig.height = 18, fig.width = 7}
 # combining all individual plots from the list into a single plot using combine_plots function
 ggstatsplot::combine_plots(
   plotlist = plot_list,
@@ -197,7 +198,7 @@ ggstatsplot::combine_plots(
 We will be using simulated data from then Attention Network Test provided in ANT
 dataset in `ez` package.
 
-```{r purrr_ggwithinstats, warning = FALSE, message = FALSE, fig.height = 20, fig.width = 8}
+```{r purrr_ggwithinstats, fig.height = 20, fig.width = 8}
 # for reproducibility
 set.seed(123)
 library(ggstatsplot)
@@ -281,7 +282,7 @@ completely drop NC-17 using `dplyr`.
 
 This time we'll put all the code in one block-
 
-```{r purrr_ggscatterstats, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 7}
+```{r purrr_ggscatterstats, fig.height = 14, fig.width = 7}
 # for reproducibility
 set.seed(123)
 
@@ -342,7 +343,7 @@ methodology as the earlier examples.
 
 # `ggcorrmat`
 
-```{r purrr_ggcorrmat, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 10}
+```{r purrr_ggcorrmat, fig.height = 10, fig.width = 10}
 # for reproducibility
 set.seed(123)
 
@@ -408,7 +409,7 @@ ggstatsplot::combine_plots(
 
 # `gghistostats`
 
-```{r purrr_gghistostats, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 6}
+```{r purrr_gghistostats, fig.height = 14, fig.width = 6}
 # for reproducibility
 set.seed(123)
 
@@ -472,7 +473,7 @@ ggstatsplot::combine_plots(
 
 # `ggdotplotstats`
 
-```{r purrr_ggdotplotstats, warning = FALSE, message = FALSE, fig.height = 16, fig.width = 6}
+```{r purrr_ggdotplotstats, fig.height = 16, fig.width = 6}
 # for reproducibility
 set.seed(123)
 library(ggthemes)
@@ -542,7 +543,7 @@ ggstatsplot::combine_plots(
 
 # `ggpiestats`
 
-```{r purrr_ggpiestats, warning = FALSE, message = FALSE, fig.height = 22, fig.width = 9}
+```{r purrr_ggpiestats, fig.height = 22, fig.width = 9}
 # for reproducibility
 set.seed(123)
 
@@ -599,7 +600,7 @@ ggstatsplot::combine_plots(
 
 # `ggbarstats`
 
-```{r purrr_ggbarstats, warning = FALSE, message = FALSE, fig.height = 24, fig.width = 6}
+```{r purrr_ggbarstats, fig.height = 24, fig.width = 6}
 # for reproducibility
 set.seed(123)
 
@@ -665,7 +666,7 @@ datasets, you can use `purrr::pmap()` function. For the sake of brevity, the
 plots are not displayed here, but you can run the following code and check the
 individual `grouped_` plots (e.g., `plotlist[[1]]`).
 
-```{r purrr_grouped, warning = FALSE, message = FALSE}
+```{r purrr_grouped}
 # create a list of plots
 plotlist <-
   purrr::pmap(
@@ -686,7 +687,7 @@ length(plotlist)
 
 # Repeating function execution across multiple columns in a dataframe
 
-```{r purrr_columns, warning = FALSE, message = FALSE, fig.width=12}
+```{r purrr_columns, fig.width=12}
 # setup
 set.seed(123)
 library(ggstatsplot)

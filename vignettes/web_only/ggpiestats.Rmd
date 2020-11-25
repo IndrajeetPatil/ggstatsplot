@@ -21,7 +21,11 @@ vignette: >
 options(tibble.width = Inf, pillar.bold = TRUE, pillar.subtle_num = TRUE)
 
 knitr::opts_chunk$set(
+  dpi = 300,
+  out.width = "100%",
   collapse = TRUE,
+  message = FALSE,
+  warning = FALSE,
   comment = "#>"
 )
 ```
@@ -64,7 +68,7 @@ including economic status (class), sex, age, and survival."
 
 Let's have a look at the structure of both.
 
-```{r titanic1, warning = FALSE, message = FALSE}
+```{r titanic1}
 library(datasets)
 library(dplyr)
 library(ggstatsplot)
@@ -87,7 +91,7 @@ that we'd like to display a piechart with the percentages of passengers who did
 or did not survive. Our initial hypothesis is that it was no different than
 flipping a coin. People had a 50/50 chance of surviving.
 
-```{r ggpiestats3, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6}
+```{r ggpiestats3, fig.height = 5, fig.width = 6}
 # since effect size confidence intervals are computed using bootstrapping, let's
 # set seed for reproducibility
 set.seed(123)
@@ -129,7 +133,7 @@ showcase the flexibility of `ggpiestats`. We will:
 4.  Finally, we'll make a call to `ggplot2` to modify the size of our plot title
     and to make it right justified
 
-```{r ggpiestats1, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 8}
+```{r ggpiestats1, fig.height = 5, fig.width = 8}
 # since effect size confidence intervals are computed using bootstrapping, let's
 # set seed for reproducibility
 set.seed(123)
@@ -179,7 +183,7 @@ specified **grouping variable** and then combines the list of individual plots
 into a single plot. Note that the grouping variable can be anything: conditions
 in a given study, groups in a study sample, different studies, etc.
 
-```{r ggpiestats4, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 8}
+```{r ggpiestats4, fig.height = 10, fig.width = 8}
 # since effect size confidence intervals are computed using bootstrapping, let's
 # set seed for reproducibility
 set.seed(123)
@@ -302,7 +306,7 @@ from **McNemar test** in the subtitle.
 (**Note:** If you forget to set `paired = TRUE`, the results you get will be
 inaccurate.)
 
-```{r ggpiestats9, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 8}
+```{r ggpiestats9, fig.height = 5, fig.width = 8}
 # seed for reproducibility
 set.seed(123)
 

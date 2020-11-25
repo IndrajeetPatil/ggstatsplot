@@ -242,10 +242,7 @@ ggscatterstats <- function(data,
   # --------------------------------- basic plot ---------------------------
 
   # creating jittered positions
-  pos <- ggplot2::position_jitter(
-    width = point.width.jitter,
-    height = point.height.jitter
-  )
+  pos <- ggplot2::position_jitter(width = point.width.jitter, height = point.height.jitter)
 
   # preparing the scatterplot
   plot <-
@@ -318,5 +315,5 @@ ggscatterstats <- function(data,
   }
 
   # return the final plot
-  return(plot)
+  plot
 }

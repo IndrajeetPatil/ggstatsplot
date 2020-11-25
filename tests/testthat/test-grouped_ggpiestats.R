@@ -9,8 +9,7 @@ testthat::test_that(
     testthat::expect_error(
       ggstatsplot::grouped_ggpiestats(
         data = mtcars,
-        x = cyl,
-        messages = FALSE
+        x = cyl
       )
     )
 
@@ -23,8 +22,7 @@ testthat::test_that(
         data = mtcars,
         grouping.var = am,
         x = "cyl",
-        results.subtitle = FALSE,
-        messages = FALSE
+        results.subtitle = FALSE
       )
     ),
     what = "gg"
@@ -53,8 +51,7 @@ testthat::test_that(
         y = "class",
         results.subtitle = FALSE,
         grouping.var = drv,
-        label.repel = TRUE,
-        messages = FALSE
+        label.repel = TRUE
       )
     ),
     what = "gg"
@@ -71,8 +68,7 @@ testthat::test_that(
         x = Sex,
         results.subtitle = FALSE,
         y = Survived,
-        counts = "Freq",
-        messages = FALSE
+        counts = "Freq"
       )
     ),
     what = "gg"
@@ -87,27 +83,30 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
 
+    set.seed(123)
+    df <- dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1) %>%
+      dplyr::mutate_if(., is.factor, droplevels)
+
+
     # should output a list of length 3
     set.seed(123)
     ls_results <-
       suppressWarnings(ggstatsplot::grouped_ggpiestats(
-        data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
+        data = df,
         x = relig,
         y = marital,
         grouping.var = race,
-        output = "subtitle",
-        messages = FALSE
+        output = "subtitle"
       ))
 
     set.seed(123)
     sexpr_results <-
       suppressWarnings(statsExpressions::expr_contingency_tab(
-        data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1) %>%
-          dplyr::filter(race == "Other"),
+        data = dplyr::filter(df, race == "Other") %>%
+          dplyr::mutate_if(., is.factor, droplevels),
         x = relig,
         y = marital,
-        output = "subtitle",
-        messages = FALSE
+        output = "subtitle"
       ))
 
     # checking subtitle

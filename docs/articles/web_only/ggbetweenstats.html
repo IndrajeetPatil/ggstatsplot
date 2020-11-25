@@ -137,13 +137,13 @@
 
       
 
-      </header><script src="ggbetweenstats_files/header-attrs-2.5/header-attrs.js"></script><div class="row">
+      </header><script src="ggbetweenstats_files/header-attrs-2.5.3/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggbetweenstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-11-21</h4>
+            <h4 class="date">2020-11-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggbetweenstats.Rmd"><code>vignettes/web_only/ggbetweenstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggbetweenstats.Rmd</code></div>
@@ -188,11 +188,9 @@
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html">gapminder</a></span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span>, <span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span>,
   x <span class="op">=</span> <span class="va">continent</span>,
-  y <span class="op">=</span> <span class="va">lifeExp</span>,
-  nboot <span class="op">=</span> <span class="fl">10</span>,
-  messages <span class="op">=</span> <span class="cn">FALSE</span>
+  y <span class="op">=</span> <span class="va">lifeExp</span>
 <span class="op">)</span></code></pre></div>
-<p><img src="ggbetweenstats_files/figure-html/ggbetweenstats1-1.png" width="768"></p>
+<p><img src="ggbetweenstats_files/figure-html/ggbetweenstats1-1.png" width="100%"></p>
 <p><strong>Note</strong>:</p>
 <ul>
 <li><p>The function automatically decides whether an independent samples <em>t</em>-test is preferred (for 2 groups) or a Oneway ANOVA (3 or more groups). based on the number of levels in the grouping variable.</p></li>
@@ -231,7 +229,7 @@
     limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">35</span>, <span class="fl">85</span><span class="op">)</span>,
     breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">35</span>, to <span class="op">=</span> <span class="fl">85</span>, by <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<p><img src="ggbetweenstats_files/figure-html/ggbetweenstats2-1.png" width="768"></p>
+<p><img src="ggbetweenstats_files/figure-html/ggbetweenstats2-1.png" width="100%"></p>
 <p>As can be appreciated from the effect size (partial eta squared) of 0.635, there are large differences in the mean life expectancy across continents. Importantly, this plot also helps us appreciate the distributions within any given continent. For example, although Asian countries are doing much better than African countries, on average, Afghanistan has a particularly grim average for the Asian continent, possibly reflecting the war and the political turmoil.</p>
 <p>So far we have only used a classic parametric test and a boxviolin plot, but we can also use other available options:</p>
 <ul>
@@ -242,14 +240,13 @@
 <p>Let’s use the <code>combine_plots</code> function to make one plot from four separate plots that demonstrates all of these options. Let’s compare life expectancy for all countries for the first and last year of available data 1957 and 2007. We will generate the plots one by one and then use <code>combine_plots</code> to merge them into one plot with some common labeling. It is possible, but not necessarily recommended, to make each plot have different colors or themes.</p>
 <p>For example,</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="co"># for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
 
 <span class="co"># selecting subset of the data</span>
 <span class="va">df_year</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html">gapminder</a></span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span> <span class="op">|</span> <span class="va">year</span> <span class="op">==</span> <span class="fl">1957</span><span class="op">)</span>
-
-<span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># parametric t-test and box plot</span>
 <span class="va">p1</span> <span class="op">&lt;-</span>
@@ -265,8 +262,7 @@
     conf.level <span class="op">=</span> <span class="fl">0.99</span>,
     title <span class="op">=</span> <span class="st">"Parametric test"</span>,
     package <span class="op">=</span> <span class="st">"ggsci"</span>,
-    palette <span class="op">=</span> <span class="st">"nrc_npg"</span>,
-    messages <span class="op">=</span> <span class="cn">FALSE</span>
+    palette <span class="op">=</span> <span class="st">"nrc_npg"</span>
   <span class="op">)</span>
 
 <span class="co"># Mann-Whitney U test (nonparametric t) and violin plot</span>
@@ -282,8 +278,7 @@
     conf.level <span class="op">=</span> <span class="fl">0.99</span>,
     title <span class="op">=</span> <span class="st">"Non-parametric Test (violin plot)"</span>,
     package <span class="op">=</span> <span class="st">"ggsci"</span>,
-    palette <span class="op">=</span> <span class="st">"uniform_startrek"</span>,
-    messages <span class="op">=</span> <span class="cn">FALSE</span>
+    palette <span class="op">=</span> <span class="st">"uniform_startrek"</span>
   <span class="op">)</span>
 
 <span class="co"># robust t-test and boxviolin plot</span>
@@ -301,9 +296,7 @@
     tr <span class="op">=</span> <span class="fl">0.005</span>,
     package <span class="op">=</span> <span class="st">"wesanderson"</span>,
     palette <span class="op">=</span> <span class="st">"Royal2"</span>,
-    nboot <span class="op">=</span> <span class="fl">15</span>,
-    k <span class="op">=</span> <span class="fl">3</span>,
-    messages <span class="op">=</span> <span class="cn">FALSE</span>
+    k <span class="op">=</span> <span class="fl">3</span>
   <span class="op">)</span>
 
 <span class="co"># Bayes Factor for parametric t-test and boxviolin plot</span>
@@ -318,8 +311,7 @@
     plot.type <span class="op">=</span> <span class="st">"box"</span>,
     title <span class="op">=</span> <span class="st">"Bayesian Test (box plot)"</span>,
     package <span class="op">=</span> <span class="st">"ggsci"</span>,
-    palette <span class="op">=</span> <span class="st">"nrc_npg"</span>,
-    messages <span class="op">=</span> <span class="cn">FALSE</span>
+    palette <span class="op">=</span> <span class="st">"nrc_npg"</span>
   <span class="op">)</span>
 
 <span class="co"># combining the individual plots into a single plot</span>
@@ -331,7 +323,7 @@
   title.size <span class="op">=</span> <span class="fl">14</span>,
   caption.size <span class="op">=</span> <span class="fl">12</span>
 <span class="op">)</span></code></pre></div>
-<p><img src="ggbetweenstats_files/figure-html/ggbetweenstats3-1.png" width="1152"></p>
+<p><img src="ggbetweenstats_files/figure-html/ggbetweenstats3-1.png" width="100%"></p>
 </div>
 <div id="grouped-analysis-with-grouped_ggbetweenstats" class="section level2">
 <h2 class="hasAnchor">
@@ -369,7 +361,7 @@
     title.text <span class="op">=</span> <span class="st">"Changes in life expectancy across continents (1967-2007)"</span>,
     plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<p><img src="ggbetweenstats_files/figure-html/grouped1-1.png" width="768"></p>
+<p><img src="ggbetweenstats_files/figure-html/grouped1-1.png" width="100%"></p>
 <p>As seen from the plot, although the life expectancy has been improving steadily across all continents as we go from 1967 to 2007, this improvement has not been happening at the same rate for all continents. Additionally, irrespective of which year we look at, we still find significant differences in life expectancy across continents which have been surprisingly consistent across five decades (based on the observed effect sizes).</p>
 </div>
 <div id="grouped-analysis-with-ggbetweenstats-purrr" class="section level2">

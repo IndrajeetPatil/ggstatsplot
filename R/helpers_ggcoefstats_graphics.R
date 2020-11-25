@@ -27,39 +27,24 @@ ggcoefstats_label_maker <- function(tidy_df,
 
   # if the statistic is t-value
   if (statistic == "t") {
-    # check if df info is available somewhere
-    if ("df.error" %in% names(tidy_df)) {
-      # adding a new column with residual `df`
-      tidy_df %<>%
-        dplyr::mutate(
-          label = paste0(
-            "list(~widehat(italic(beta))==",
-            specify_decimal_p(x = estimate, k = k),
-            ", ~italic(t)",
-            "(",
-            specify_decimal_p(x = df.error, k = 0L),
-            ")==",
-            specify_decimal_p(x = statistic, k = k),
-            ", ~italic(p)=='",
-            specify_decimal_p(x = p.value, k = k, p.value = TRUE),
-            "')"
-          )
+    # if not present, add NA column for dfs
+    if (!"df.error" %in% names(tidy_df)) tidy_df %<>% dplyr::mutate(df.error = NA)
+
+    tidy_df %<>%
+      dplyr::mutate(
+        label = paste0(
+          "list(~widehat(italic(beta))==",
+          specify_decimal_p(x = estimate, k = k),
+          ", ~italic(t)",
+          "(",
+          specify_decimal_p(x = df.error, k = 0L),
+          ")==",
+          specify_decimal_p(x = statistic, k = k),
+          ", ~italic(p)=='",
+          specify_decimal_p(x = p.value, k = k, p.value = TRUE),
+          "')"
         )
-    } else {
-      # for objects like `rlm` there will be no parameter
-      tidy_df %<>%
-        dplyr::mutate(
-          label = paste0(
-            "list(~widehat(italic(beta))==",
-            specify_decimal_p(x = estimate, k = k),
-            ", ~italic(t)==",
-            specify_decimal_p(x = statistic, k = k),
-            ", ~italic(p)=='",
-            specify_decimal_p(x = p.value, k = k, p.value = TRUE),
-            "')"
-          )
-        )
-    }
+      )
   }
 
   #--------------------------- z-statistic ---------------------------------
@@ -127,6 +112,6 @@ ggcoefstats_label_maker <- function(tidy_df,
       )
   }
 
-  # return the final dataframe
-  return(dplyr::ungroup(tidy_df))
+  # return the ungrouped dataframe
+  dplyr::ungroup(tidy_df)
 }

@@ -19,10 +19,12 @@ vignette: >
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
+  dpi = 300,
+  out.width = "100%",
   collapse = TRUE,
-  comment = "#>",
   message = FALSE,
-  warning = FALSE
+  warning = FALSE,
+  comment = "#>"
 )
 ```
 

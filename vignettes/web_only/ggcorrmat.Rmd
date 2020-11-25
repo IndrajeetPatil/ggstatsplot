@@ -68,7 +68,7 @@ the year 2007.
 
 The simplest way to get a correlation matrix is to stick to the defaults-
 
-```{r ggcorrmat1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+```{r ggcorrmat1,  fig.height = 6, fig.width = 6}
 # setup
 set.seed(123)
 library(ggstatsplot)
@@ -85,7 +85,7 @@ ggstatsplot::ggcorrmat(
 
 This plot can be further modified with additional arguments-
 
-```{r ggcorrmat2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 6}
+```{r ggcorrmat2, fig.height = 6, fig.width = 6}
 ggstatsplot::ggcorrmat(
   data = gapminder_2007, # data from which variable is to be taken
   cor.vars = lifeExp:gdpPercap, # specifying correlation matrix variables
@@ -128,7 +128,7 @@ dplyr::glimpse(ggplot2::diamonds)
 Let's see the correlation matrix between different attributes of the diamond and
 the price.
 
-```{r ggcorrmat3, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 7}
+```{r ggcorrmat3,  fig.height = 7, fig.width = 7}
 # for reproducibility
 set.seed(123)
 
@@ -158,7 +158,7 @@ non-parametric correlation coefficient. Please note that it is **important** to
 always make sure that the order in which `cor.vars` and `cor.vars.names` are
 entered is in sync. Otherwise, wrong column labels will be displayed.
 
-```{r ggcorrmat4, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 7}
+```{r ggcorrmat4,  fig.height = 7, fig.width = 7}
 # for reproducibility
 set.seed(123)
 
@@ -252,7 +252,7 @@ a specified **grouping variable** and then combines list of individual plots
 into a single plot. Note that the grouping variable can be anything: conditions
 in a given study, groups in a study sample, different studies, etc. 
 
-```{r ggcorrmat7, warning = FALSE, message = FALSE, fig.height = 16, fig.width = 10}
+```{r ggcorrmat7,  fig.height = 16, fig.width = 10}
 # for reproducibility
 set.seed(123)
 

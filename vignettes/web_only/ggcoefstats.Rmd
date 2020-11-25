@@ -813,7 +813,7 @@ ggstatsplot::ggcoefstats(
 
 ## stationary linear model (`slm`)
 
-```{r slm, fig.height = 6, fig.width = 6}
+```{r slm, fig.height = 6, fig.width = 6, eval=FALSE}
 # setup
 set.seed(123)
 library(slm)
@@ -2225,7 +2225,7 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
-## Bayesian linear linear mixed-effects models (`blmerMod`)
+## Bayesian linear mixed-effects models (`blmerMod`)
 
 ```{r blmerMod, fig.height = 5, fig.width = 5}
 # for reproducibility

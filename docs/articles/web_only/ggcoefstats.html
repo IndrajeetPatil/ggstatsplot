@@ -137,13 +137,13 @@
 
       
 
-      </header><script src="ggcoefstats_files/header-attrs-2.5/header-attrs.js"></script><div class="row">
+      </header><script src="ggcoefstats_files/header-attrs-2.5.3/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-11-21</h4>
+            <h4 class="date">2020-11-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -160,7 +160,7 @@
 <a href="#general-structure-of-the-plots" class="anchor"></a>General structure of the plots</h1>
 <p>Although the statistical models displayed in the plot may differ based on the class of models being investigated, there are few aspects of the plot that will be invariant across models:</p>
 <ul>
-<li><p>The dot-whisker plot contains a dot representing the <strong>estimate</strong> and their <strong>confidence intervals</strong> (<code>95%</code> is the default). The estimate can either be effect sizes (for tests that depend on the <code>F</code> statistic) or regression coefficients (for tests with <code>t</code>, <span class="math inline">\(\chi^{2}\)</span>, and <code>z</code> statistic), etc. The function will, by default, display a helpful <code>x</code>-axis label that should clear up what estimates are being displayed. The confidence intervals can sometimes be asymmetric if bootstrapping was used.</p></li>
+<li><p>The dot-whisker plot contains a dot representing the <strong>estimate</strong> and their <strong>confidence intervals</strong> (<code>95%</code> is the default). The estimate can either be effect sizes (for tests that depend on the <code>F</code>-statistic) or regression coefficients (for tests with <code>t</code>-, <span class="math inline">\(\chi^{2}\)</span>-, and <code>z</code>-statistic), etc. The function will, by default, display a helpful <code>x</code>-axis label that should clear up what estimates are being displayed. The confidence intervals can sometimes be asymmetric if bootstrapping was used.</p></li>
 <li><p>The caption will contain diagnostic information, if available, about models that can be useful for model selection: The smaller the Akaike’s Information Criterion (<strong>AIC</strong>) and the Bayesian Information Criterion (<strong>BIC</strong>) values, the “better” the model is.</p></li>
 <li><p>The output of this function will be a <code>ggplot2</code> object and, thus, it can be further modified (e.g., change themes, etc.) with <code>ggplot2</code> functions.</p></li>
 </ul>
@@ -709,8 +709,7 @@
   conf.method <span class="op">=</span> <span class="st">"HPDinterval"</span>,
   exclude.intercept <span class="op">=</span> <span class="cn">FALSE</span>,
   robust <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span>
-<span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/MCMCglmm-1.png" width="576"></p>
 </div>
 <div id="star-models-with-bayesx-bayesx" class="section level2">
@@ -964,7 +963,6 @@
   package <span class="op">=</span> <span class="st">"rcartocolor"</span>,
   palette <span class="op">=</span> <span class="st">"Vivid"</span>
 <span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/slm-1.png" width="576"></p>
 </div>
 <div id="generalized-linear-model-glm" class="section level2">
 <h2 class="hasAnchor">
@@ -2399,9 +2397,9 @@
 <span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/glmc-1.png" width="576"></p>
 </div>
-<div id="bayesian-linear-linear-mixed-effects-models-blmermod" class="section level2">
+<div id="bayesian-linear-mixed-effects-models-blmermod" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bayesian-linear-linear-mixed-effects-models-blmermod" class="anchor"></a>Bayesian linear linear mixed-effects models (<code>blmerMod</code>)</h2>
+<a href="#bayesian-linear-mixed-effects-models-blmermod" class="anchor"></a>Bayesian linear mixed-effects models (<code>blmerMod</code>)</h2>
 <div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -3940,7 +3938,8 @@
   x <span class="op">=</span> <span class="va">mod</span>,
   title <span class="op">=</span> <span class="st">"Bayesian Estimation of the GARCH(1,1) Model \nwith Student-t Innovations"</span>
 <span class="op">)</span>
-<span class="co">#&gt; Error in `$&lt;-.data.frame`(`*tmp*`, ".id", value = 1:0): replacement has 2 rows, data has 0</span></code></pre></div>
+<span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/bayesGARCH-1.png" width="480"></p>
 </div>
 <div id="maximum-likelihood-fitting-of-univariate-distributions-fitdistr" class="section level2">
 <h2 class="hasAnchor">
@@ -5021,9 +5020,9 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="co">#&gt; 3 ***         </span>
 <span class="co">#&gt;   label                                                                         </span>
 <span class="co">#&gt;   &lt;chr&gt;                                                                         </span>
-<span class="co">#&gt; 1 list(~widehat(italic(beta))==2.35, ~italic(t)(13)==30.01, ~italic(p)==2.17e-1~</span>
-<span class="co">#&gt; 2 list(~widehat(italic(beta))==1.48, ~italic(t)(13)==18.23, ~italic(p)==1.22e-1~</span>
-<span class="co">#&gt; 3 list(~widehat(italic(beta))==1.04, ~italic(t)(13)==32.27, ~italic(p)==8.51e-1~</span>
+<span class="co">#&gt; 1 list(~widehat(italic(beta))==2.35, ~italic(t)(13)==30.01, ~italic(p)=='2.17e-~</span>
+<span class="co">#&gt; 2 list(~widehat(italic(beta))==1.48, ~italic(t)(13)==18.23, ~italic(p)=='1.22e-~</span>
+<span class="co">#&gt; 3 list(~widehat(italic(beta))==1.04, ~italic(t)(13)==32.27, ~italic(p)=='8.51e-~</span>
 
 <span class="co"># glance summary</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="va">nlmod</span>, output <span class="op">=</span> <span class="st">"glance"</span><span class="op">)</span>

@@ -163,7 +163,7 @@ ggwithinstats <- function(data,
 
   if (type == "parametric" && test == "anova" &&
     utils::packageVersion("BayesFactor") < package_version("0.9.12-4.3")) {
-    message('To get Bayes Factor, you need to install GitHub version of `BayesFactor` (`0.9.12-4.3`) by running:\n remotes::install_github("richarddmorey/BayesFactor/pkg/BayesFactor")')
+    message('To get Bayes Factor, install GitHub version of `BayesFactor`:\n remotes::install_github("richarddmorey/BayesFactor/pkg/BayesFactor")')
     bf.message <- FALSE
   }
 

@@ -137,13 +137,13 @@
 
       
 
-      </header><script src="ggcorrmat_files/header-attrs-2.5/header-attrs.js"></script><div class="row">
+      </header><script src="ggcorrmat_files/header-attrs-2.5.3/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggcorrmat</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-11-21</h4>
+            <h4 class="date">2020-11-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcorrmat.Rmd"><code>vignettes/web_only/ggcorrmat.Rmd</code></a></small>
       <div class="hidden name"><code>ggcorrmat.Rmd</code></div>
@@ -185,6 +185,15 @@
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
+<span class="co">#&gt; Registered S3 methods overwritten by 'lme4':</span>
+<span class="co">#&gt;   method                          from</span>
+<span class="co">#&gt;   cooks.distance.influence.merMod car </span>
+<span class="co">#&gt;   influence.merMod                car </span>
+<span class="co">#&gt;   dfbeta.influence.merMod         car </span>
+<span class="co">#&gt;   dfbetas.influence.merMod        car</span>
+<span class="co">#&gt; In case you would like cite this package, cite it as:</span>
+<span class="co">#&gt;      Patil, I. (2018). ggstatsplot: "ggplot2" Based Plots with Statistical Details. CRAN.</span>
+<span class="co">#&gt;      Retrieved from https://cran.r-project.org/web/packages/ggstatsplot/index.html</span>
 
 <span class="co"># select data only from the year 2007</span>
 <span class="va">gapminder_2007</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html">gapminder</a></span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span><span class="op">)</span>

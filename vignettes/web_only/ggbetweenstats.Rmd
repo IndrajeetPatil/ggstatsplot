@@ -19,10 +19,14 @@ vignette: >
 
 ```{r setup, include = FALSE}
 # show me all columns
-options(tibble.width = Inf)
+options(tibble.width = Inf, pillar.bold = TRUE, pillar.subtle_num = TRUE)
 
 knitr::opts_chunk$set(
   collapse = TRUE,
+  dpi = 300,
+  warning = FALSE,
+  message = FALSE,
+  out.width = "100%",
   comment = "#>"
 )
 ```
@@ -51,7 +55,7 @@ per capita, and population, at 5 year intervals, from 1952 to 2007, for each of
 142 countries (courtesy [Gapminder Foundation](https://www.gapminder.org/)).
 Let's have a look at the data-
 
-```{r gapminder, warning = FALSE, message = FALSE}
+```{r gapminder}
 library(gapminder)
 
 dplyr::glimpse(x = gapminder::gapminder)
@@ -67,7 +71,7 @@ significant.
 
 The simplest form of the function call is-
 
-```{r ggbetweenstats1, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
+```{r ggbetweenstats1, fig.height = 6, fig.width = 8}
 # since the confidence intervals for the effect sizes are computed using
 # bootstrapping, important to set a seed for reproducibility
 set.seed(123)
@@ -76,9 +80,7 @@ set.seed(123)
 ggstatsplot::ggbetweenstats(
   data = dplyr::filter(gapminder::gapminder, year == 2007, continent != "Oceania"),
   x = continent,
-  y = lifeExp,
-  nboot = 10,
-  messages = FALSE
+  y = lifeExp
 )
 ```
 
@@ -107,7 +109,7 @@ title and caption, better `x` and `y` axis labels, and tag and label the
 outliers in the data. We can and will change the overall theme as well as the
 color palette in use.
 
-```{r ggbetweenstats2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
+```{r ggbetweenstats2, fig.height = 6, fig.width = 8}
 # for reproducibility
 set.seed(123)
 library(ggstatsplot)
@@ -166,15 +168,14 @@ into one plot with some common labeling. It is possible, but not necessarily
 recommended, to make each plot have different colors or themes.
 
 For example,
-```{r ggbetweenstats3, message = FALSE, warning = FALSE, fig.height = 10, fig.width = 12}
+```{r ggbetweenstats3, fig.height = 10, fig.width = 12}
+# for reproducibility
+set.seed(123)
 library(ggstatsplot)
 library(gapminder)
 
 # selecting subset of the data
 df_year <- dplyr::filter(.data = gapminder::gapminder, year == 2007 | year == 1957)
-
-# for reproducibility
-set.seed(123)
 
 # parametric t-test and box plot
 p1 <-
@@ -190,8 +191,7 @@ p1 <-
     conf.level = 0.99,
     title = "Parametric test",
     package = "ggsci",
-    palette = "nrc_npg",
-    messages = FALSE
+    palette = "nrc_npg"
   )
 
 # Mann-Whitney U test (nonparametric t) and violin plot
@@ -207,8 +207,7 @@ p2 <-
     conf.level = 0.99,
     title = "Non-parametric Test (violin plot)",
     package = "ggsci",
-    palette = "uniform_startrek",
-    messages = FALSE
+    palette = "uniform_startrek"
   )
 
 # robust t-test and boxviolin plot
@@ -226,9 +225,7 @@ p3 <-
     tr = 0.005,
     package = "wesanderson",
     palette = "Royal2",
-    nboot = 15,
-    k = 3,
-    messages = FALSE
+    k = 3
   )
 
 # Bayes Factor for parametric t-test and boxviolin plot
@@ -243,8 +240,7 @@ p4 <-
     plot.type = "box",
     title = "Bayesian Test (box plot)",
     package = "ggsci",
-    palette = "nrc_npg",
-    messages = FALSE
+    palette = "nrc_npg"
   )
 
 # combining the individual plots into a single plot

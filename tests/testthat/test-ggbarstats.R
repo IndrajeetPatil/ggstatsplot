@@ -479,37 +479,49 @@ testthat::test_that(
     )
   }
 )
-# subtitle output --------------------------------------------------
+
+# other outputs --------------------------------------------------
 
 testthat::test_that(
-  desc = "subtitle output",
+  desc = "other outputs",
   code = {
     testthat::skip_on_cran()
+
+    set.seed(123)
+    df <- dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1) %>%
+      dplyr::mutate_if(., is.factor, droplevels)
+
 
     # subtitle output
     set.seed(123)
     p_sub <-
       ggstatsplot::ggbarstats(
-        data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
+        data = df,
         x = race,
         y = marital,
         output = "subtitle",
-        k = 4,
-        messages = FALSE
+        k = 4
       )
 
     set.seed(123)
     stats_output <-
       statsExpressions::expr_contingency_tab(
-        data = dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1),
+        data = df,
         x = race,
         y = marital,
-        k = 4,
-        messages = FALSE
+        k = 4
       )
 
     # tests
     testthat::expect_identical(p_sub, stats_output)
+
+    testthat::expect_null(ggstatsplot::ggbarstats(
+      data = mtcars,
+      x = cyl,
+      y = am,
+      paired = TRUE,
+      output = "caption"
+    ))
   }
 )
 
