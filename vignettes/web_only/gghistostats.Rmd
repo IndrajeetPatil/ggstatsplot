@@ -17,12 +17,16 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include = FALSE, warning = FALSE, message = FALSE}
+```{r setup, include = FALSE}
 # show me all columns
-options(tibble.width = Inf)
+options(tibble.width = Inf, pillar.bold = TRUE, pillar.subtle_num = TRUE)
 
 knitr::opts_chunk$set(
   collapse = TRUE,
+  dpi = 300,
+  warning = FALSE,
+  message = FALSE,
+  out.width = "100%",
   comment = "#>"
 )
 ```
@@ -45,7 +49,7 @@ Let's begin with a very simple example from the `psych` package
 Quantitative and ACT tests. ACT composite scores may range from 1 - 36. National
 norms have a mean of 20.
 
-```{r psychact, warning = FALSE, message = FALSE}
+```{r psychact}
 # loading needed libraries
 library(ggstatsplot)
 library(psych)
@@ -61,7 +65,7 @@ You should always check this value and explore multiple widths to find the best
 to illustrate the stories in your data since histograms are sensitive to
 binwidth.
 
-```{r psychact2, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 7}
+```{r psychact2, fig.height = 6, fig.width = 7}
 ggstatsplot::gghistostats(
   data = psych::sat.act, # data from which variable is to be taken
   x = ACT, # numeric variable
@@ -89,7 +93,7 @@ we'll also:
   3.  Plot proportions on the `y` axes with `bar.measure = "proportion"`
   4.  Compute information about the Bayes Factor (`bf.message = TRUE`, see below)
 
-```{r psychact3, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 7}
+```{r psychact3, fig.height = 6, fig.width = 7}
 ggstatsplot::gghistostats(
   data = psych::sat.act, # data from which variable is to be taken
   x = ACT, # numeric variable
@@ -129,7 +133,7 @@ given study, groups in a study sample, different studies, etc.
 Let's see how we can use this function to apply `gghistostats` to accomplish our
 task. 
 
-```{r grouped1, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 7}
+```{r grouped1, fig.height = 10, fig.width = 7}
 ggstatsplot::grouped_gghistostats(
   # arguments relevant for ggstatsplot::gghistostats
   data = psych::sat.act, # same dataset

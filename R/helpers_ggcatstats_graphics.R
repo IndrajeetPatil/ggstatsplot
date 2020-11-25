@@ -18,17 +18,17 @@ df_descriptive <- function(data,
   # checking what needs to be displayed in a label
   # only percentage
   if (label.content %in% c("percentage", "perc", "proportion", "prop", "%")) {
-    data %<>% dplyr::mutate(label = paste0(round(perc, perc.k), "%"))
+    data %<>% dplyr::mutate(.label = paste0(round(perc, perc.k), "%"))
   }
 
   # only raw counts
   if (label.content %in% c("counts", "n", "count", "N")) {
-    data %<>% dplyr::mutate(label = paste0(.prettyNum(counts)))
+    data %<>% dplyr::mutate(.label = paste0(.prettyNum(counts)))
   }
 
   # both raw counts and percentages
   if (label.content %in% c("both", "mix", "all", "everything")) {
-    data %<>% dplyr::mutate(label = paste0(.prettyNum(counts), "\n", "(", round(perc, perc.k), "%)"))
+    data %<>% dplyr::mutate(.label = paste0(.prettyNum(counts), "\n", "(", round(perc, perc.k), "%)"))
   }
 
   # reorder the category factor levels to order the legend
@@ -76,7 +76,7 @@ df_proptest <- function(data, x, y, k = 3L, ...) {
   ) %>%
     dplyr::rowwise() %>%
     dplyr::mutate(
-      label = paste0(
+      .label = paste0(
         "list(~chi['gof']^2~",
         "(",
         df,

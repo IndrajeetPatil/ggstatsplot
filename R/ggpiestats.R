@@ -231,7 +231,7 @@ ggpiestats <- function(data,
   suppressWarnings(suppressMessages(p <- p +
     rlang::exec(
       .fn = .fn,
-      mapping = ggplot2::aes(label = label, group = {{ x }}),
+      mapping = ggplot2::aes(label = .label, group = {{ x }}),
       position = ggplot2::position_fill(vjust = 0.5),
       min.segment.length = 0,
       fill = "white",
@@ -259,7 +259,7 @@ ggpiestats <- function(data,
       rlang::exec(
         .fn = ggplot2::geom_text,
         data = df_proptest,
-        mapping = ggplot2::aes(label = label, x = 1.65, y = 0.5),
+        mapping = ggplot2::aes(label = .label, x = 1.65, y = 0.5),
         position = ggplot2::position_fill(vjust = 1),
         size = 2.8,
         na.rm = TRUE,

@@ -18,8 +18,15 @@ vignette: >
 ---
 
 ```{r setup, include = FALSE}
+# show me all columns
+options(tibble.width = Inf, pillar.bold = TRUE, pillar.subtle_num = TRUE)
+
 knitr::opts_chunk$set(
   collapse = TRUE,
+  dpi = 300,
+  warning = FALSE,
+  message = FALSE,
+  out.width = "100%",
   comment = "#>"
 )
 ```
@@ -68,7 +75,7 @@ the year 2007.
 
 The simplest way to get a correlation matrix is to stick to the defaults-
 
-```{r ggcorrmat1,  fig.height = 6, fig.width = 6}
+```{r ggcorrmat1, fig.height = 6, fig.width = 6}
 # setup
 set.seed(123)
 library(ggstatsplot)
@@ -119,7 +126,7 @@ contains the prices and other attributes of almost 54,000 diamonds.
 
 Let's have a look at the data-
 
-```{r diamonds, warning = FALSE, message = FALSE}
+```{r diamonds}
 library(ggplot2)
 
 dplyr::glimpse(ggplot2::diamonds)
@@ -128,7 +135,7 @@ dplyr::glimpse(ggplot2::diamonds)
 Let's see the correlation matrix between different attributes of the diamond and
 the price.
 
-```{r ggcorrmat3,  fig.height = 7, fig.width = 7}
+```{r ggcorrmat3, fig.height = 7, fig.width = 7}
 # for reproducibility
 set.seed(123)
 
@@ -151,14 +158,9 @@ ggstatsplot::ggcorrmat(
 
 We can make a number of changes to this basic correlation matrix. For example,
 since we were interested in relationship between price and other attributes,
-let's make the `price` column to the the first column. Additionally, since we are
-running 6 correlations that are of *a priori* interest to us, we can adjust our
-threshold of significance to (0.05/6 ~ 0.008). Additionally, let's use a
-non-parametric correlation coefficient. Please note that it is **important** to
-always make sure that the order in which `cor.vars` and `cor.vars.names` are
-entered is in sync. Otherwise, wrong column labels will be displayed.
+let's make the `price` column to the the first column.
 
-```{r ggcorrmat4,  fig.height = 7, fig.width = 7}
+```{r ggcorrmat4, fig.height = 7, fig.width = 7}
 # for reproducibility
 set.seed(123)
 
@@ -176,7 +178,6 @@ ggstatsplot::ggcorrmat(
     "depth (in mm)"
   ),
   type = "spearman",
-  matrix.type = "lower",
   title = "Relationship between diamond attributes and price",
   subtitle = "Dataset: Diamonds from ggplot2 package",
   colors = c("#0072B2", "#D55E00", "#CC79A7"),
@@ -225,7 +226,7 @@ Note that if `cor.vars` are not specified, all numeric variables will be used.
 Moreover, you can also use abbreviations to specify what output you want in
 return.
 
-```{r ggcorrmat6, message = FALSE, warning = FALSE}
+```{r ggcorrmat6}
 # for reproducibility
 set.seed(123)
 
@@ -252,7 +253,7 @@ a specified **grouping variable** and then combines list of individual plots
 into a single plot. Note that the grouping variable can be anything: conditions
 in a given study, groups in a study sample, different studies, etc. 
 
-```{r ggcorrmat7,  fig.height = 16, fig.width = 10}
+```{r ggcorrmat7, fig.height = 16, fig.width = 10}
 # for reproducibility
 set.seed(123)
 
@@ -274,7 +275,6 @@ ggstatsplot::grouped_ggcorrmat(
     "width (in mm)",
     "depth (in mm)"
   ),
-  lab.size = 3.5,
   # arguments relevant for `ggstatsplot::combine_plots`
   title.text = "Relationship between diamond attributes and price across cut",
   title.args = list(size = 16, color = "red"),
@@ -290,7 +290,7 @@ ggstatsplot::grouped_ggcorrmat(
 Note that this function also makes it easy to run the same correlation matrix
 across different levels of a factor/grouping variable.
 
-```{r ggcorrmat8, warning = FALSE, message = FALSE}
+```{r ggcorrmat8}
 # for reproducibility
 set.seed(123)
 

@@ -473,7 +473,7 @@ testthat::test_that(
         )),
         caption = NULL,
         fill = "cyl",
-        label = "label",
+        label = ".label",
         group = "cyl"
       )
     )

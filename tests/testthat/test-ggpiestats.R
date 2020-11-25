@@ -415,7 +415,7 @@ testthat::test_that(
         subtitle = p_subtitle,
         caption = NULL,
         fill = "1st survey",
-        label = "label",
+        label = ".label",
         group = "1st survey"
       )
     )

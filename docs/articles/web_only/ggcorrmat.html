@@ -185,15 +185,6 @@
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
-<span class="co">#&gt; Registered S3 methods overwritten by 'lme4':</span>
-<span class="co">#&gt;   method                          from</span>
-<span class="co">#&gt;   cooks.distance.influence.merMod car </span>
-<span class="co">#&gt;   influence.merMod                car </span>
-<span class="co">#&gt;   dfbeta.influence.merMod         car </span>
-<span class="co">#&gt;   dfbetas.influence.merMod        car</span>
-<span class="co">#&gt; In case you would like cite this package, cite it as:</span>
-<span class="co">#&gt;      Patil, I. (2018). ggstatsplot: "ggplot2" Based Plots with Statistical Details. CRAN.</span>
-<span class="co">#&gt;      Retrieved from https://cran.r-project.org/web/packages/ggstatsplot/index.html</span>
 
 <span class="co"># select data only from the year 2007</span>
 <span class="va">gapminder_2007</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html">gapminder</a></span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span><span class="op">)</span>
@@ -203,7 +194,7 @@
   data <span class="op">=</span> <span class="va">gapminder_2007</span>, <span class="co"># data from which variable is to be taken</span>
   cor.vars <span class="op">=</span> <span class="va">lifeExp</span><span class="op">:</span><span class="va">gdpPercap</span> <span class="co"># specifying correlation matrix variables</span>
 <span class="op">)</span></code></pre></div>
-<p><img src="ggcorrmat_files/figure-html/ggcorrmat1-1.png" width="576"></p>
+<p><img src="ggcorrmat_files/figure-html/ggcorrmat1-1.png" width="100%"></p>
 <p>This plot can be further modified with additional arguments-</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
@@ -225,7 +216,7 @@
   title <span class="op">=</span> <span class="st">"Gapminder correlation matrix"</span>, <span class="co"># custom title</span>
   subtitle <span class="op">=</span> <span class="st">"Source: Gapminder Foundation"</span> <span class="co"># custom subtitle</span>
 <span class="op">)</span></code></pre></div>
-<p><img src="ggcorrmat_files/figure-html/ggcorrmat2-1.png" width="576"></p>
+<p><img src="ggcorrmat_files/figure-html/ggcorrmat2-1.png" width="100%"></p>
 <p>As seen from this correlation matrix, although there is no relationship between population and life expectancy worldwide, at least in 2007, there is a strong positive relationship between GDP, a well-established indicator of a country’s economic performance.</p>
 <p>Given that there were only three variables, this doesn’t look that impressive. So let’s work with another example from <code>ggplot2</code> package: the <code>diamonds</code> <a href="http://ggplot2.tidyverse.org/reference/diamonds.html">dataset</a>. This dataset contains the prices and other attributes of almost 54,000 diamonds.</p>
 <p>Let’s have a look at the data-</p>
@@ -265,8 +256,8 @@
   <span class="op">)</span>,
   ggcorrplot.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>outline.color <span class="op">=</span> <span class="st">"black"</span>, hc.order <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
-<p><img src="ggcorrmat_files/figure-html/ggcorrmat3-1.png" width="672"></p>
-<p>We can make a number of changes to this basic correlation matrix. For example, since we were interested in relationship between price and other attributes, let’s make the <code>price</code> column to the the first column. Additionally, since we are running 6 correlations that are of <em>a priori</em> interest to us, we can adjust our threshold of significance to (0.05/6 ~ 0.008). Additionally, let’s use a non-parametric correlation coefficient. Please note that it is <strong>important</strong> to always make sure that the order in which <code>cor.vars</code> and <code>cor.vars.names</code> are entered is in sync. Otherwise, wrong column labels will be displayed.</p>
+<p><img src="ggcorrmat_files/figure-html/ggcorrmat3-1.png" width="100%"></p>
+<p>We can make a number of changes to this basic correlation matrix. For example, since we were interested in relationship between price and other attributes, let’s make the <code>price</code> column to the the first column.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -285,7 +276,6 @@
     <span class="st">"depth (in mm)"</span>
   <span class="op">)</span>,
   type <span class="op">=</span> <span class="st">"spearman"</span>,
-  matrix.type <span class="op">=</span> <span class="st">"lower"</span>,
   title <span class="op">=</span> <span class="st">"Relationship between diamond attributes and price"</span>,
   subtitle <span class="op">=</span> <span class="st">"Dataset: Diamonds from ggplot2 package"</span>,
   colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>, <span class="st">"#CC79A7"</span><span class="op">)</span>,
@@ -304,7 +294,7 @@
       margin <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">0.15</span>, r <span class="op">=</span> <span class="fl">0.15</span>, b <span class="op">=</span> <span class="fl">0.15</span>, l <span class="op">=</span> <span class="fl">0.15</span>, unit <span class="op">=</span> <span class="st">"cm"</span><span class="op">)</span>
     <span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<p><img src="ggcorrmat_files/figure-html/ggcorrmat4-1.png" width="672"></p>
+<p><img src="ggcorrmat_files/figure-html/ggcorrmat4-1.png" width="100%"></p>
 <p>As seen here, and unsurprisingly, the strongest predictor of the diamond price is its carat value, which a unit of mass equal to 200 mg. In other words, the heavier the diamond, the more expensive it is going to be.</p>
 </div>
 <div id="dataframe-containing-statistics-with-ggcorrmat" class="section level2">
@@ -325,19 +315,30 @@
   digits <span class="op">=</span> <span class="fl">3</span>
 <span class="op">)</span>
 <span class="co">#&gt; # A tibble: 10 x 10</span>
-<span class="co">#&gt;    parameter1 parameter2      r ci_low ci_high      t    df        p method</span>
-<span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; </span>
-<span class="co">#&gt;  1 sales      volume      0.980  0.978   0.982 172.    1202 0.       Perce~</span>
-<span class="co">#&gt;  2 sales      median      0.469  0.423   0.512  18.3   1195 1.16e-65 Perce~</span>
-<span class="co">#&gt;  3 sales      listings    0.930  0.921   0.937  83.0   1083 0.       Perce~</span>
-<span class="co">#&gt;  4 sales      inventory  -0.385 -0.434  -0.333 -13.7   1080 7.21e-39 Perce~</span>
-<span class="co">#&gt;  5 volume     median      0.550  0.509   0.588  22.7   1195 1.50e-94 Perce~</span>
-<span class="co">#&gt;  6 volume     listings    0.898  0.886   0.909  67.1   1083 0.       Perce~</span>
-<span class="co">#&gt;  7 volume     inventory  -0.368 -0.419  -0.316 -13.0   1080 1.19e-35 Perce~</span>
-<span class="co">#&gt;  8 median     listings    0.403  0.352   0.451  14.5   1083 7.57e-43 Perce~</span>
-<span class="co">#&gt;  9 median     inventory  -0.203 -0.259  -0.145  -6.80  1080 3.40e-11 Perce~</span>
-<span class="co">#&gt; 10 listings   inventory  -0.163 -0.220  -0.104  -5.42  1080 7.25e- 8 Perce~</span>
-<span class="co">#&gt; # ... with 1 more variable: nobs &lt;int&gt;</span></code></pre></div>
+<span class="co">#&gt;    parameter1 parameter2      r ci_low ci_high      t    df        p</span>
+<span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 sales      volume      0.980  0.978   0.982 172.    1202 0.      </span>
+<span class="co">#&gt;  2 sales      median      0.469  0.423   0.512  18.3   1195 1.16e-65</span>
+<span class="co">#&gt;  3 sales      listings    0.930  0.921   0.937  83.0   1083 0.      </span>
+<span class="co">#&gt;  4 sales      inventory  -0.385 -0.434  -0.333 -13.7   1080 7.21e-39</span>
+<span class="co">#&gt;  5 volume     median      0.550  0.509   0.588  22.7   1195 1.50e-94</span>
+<span class="co">#&gt;  6 volume     listings    0.898  0.886   0.909  67.1   1083 0.      </span>
+<span class="co">#&gt;  7 volume     inventory  -0.368 -0.419  -0.316 -13.0   1080 1.19e-35</span>
+<span class="co">#&gt;  8 median     listings    0.403  0.352   0.451  14.5   1083 7.57e-43</span>
+<span class="co">#&gt;  9 median     inventory  -0.203 -0.259  -0.145  -6.80  1080 3.40e-11</span>
+<span class="co">#&gt; 10 listings   inventory  -0.163 -0.220  -0.104  -5.42  1080 7.25e- 8</span>
+<span class="co">#&gt;    method           nobs</span>
+<span class="co">#&gt;    &lt;chr&gt;           &lt;int&gt;</span>
+<span class="co">#&gt;  1 Percentage Bend  1204</span>
+<span class="co">#&gt;  2 Percentage Bend  1197</span>
+<span class="co">#&gt;  3 Percentage Bend  1085</span>
+<span class="co">#&gt;  4 Percentage Bend  1082</span>
+<span class="co">#&gt;  5 Percentage Bend  1197</span>
+<span class="co">#&gt;  6 Percentage Bend  1085</span>
+<span class="co">#&gt;  7 Percentage Bend  1082</span>
+<span class="co">#&gt;  8 Percentage Bend  1085</span>
+<span class="co">#&gt;  9 Percentage Bend  1082</span>
+<span class="co">#&gt; 10 Percentage Bend  1082</span></code></pre></div>
 <p>Note that if <code>cor.vars</code> are not specified, all numeric variables will be used. Moreover, you can also use abbreviations to specify what output you want in return.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
@@ -353,14 +354,22 @@
   output <span class="op">=</span> <span class="st">"dataframe"</span>
 <span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 9</span>
-<span class="co">#&gt;   parameter1 parameter2     rho  ci_low   ci_high       s         p method  nobs</span>
-<span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;int&gt;</span>
-<span class="co">#&gt; 1 Sepal.Len~ Sepal.Wid~ -0.1668 -0.3228 -0.001916 656283. 4.137e- 2 Spear~   150</span>
-<span class="co">#&gt; 2 Sepal.Len~ Petal.Len~  0.8819  0.8390  0.9139    66429. 1.722e-49 Spear~   150</span>
-<span class="co">#&gt; 3 Sepal.Len~ Petal.Wid~  0.8343  0.7762  0.8784    93208. 1.676e-39 Spear~   150</span>
-<span class="co">#&gt; 4 Sepal.Wid~ Petal.Len~ -0.3096 -0.4515 -0.1525   736637. 3.462e- 4 Spear~   150</span>
-<span class="co">#&gt; 5 Sepal.Wid~ Petal.Wid~ -0.2890 -0.4333 -0.1303   725048. 6.686e- 4 Spear~   150</span>
-<span class="co">#&gt; 6 Petal.Len~ Petal.Wid~  0.9377  0.9141  0.9549    35061. 4.894e-69 Spear~   150</span></code></pre></div>
+<span class="co">#&gt;   parameter1   parameter2       rho  ci_low   ci_high       s         p method  </span>
+<span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   </span>
+<span class="co">#&gt; 1 Sepal.Length Sepal.Width  -0.1668 -0.3228 -0.001916 656283. 4.137e- 2 Spearman</span>
+<span class="co">#&gt; 2 Sepal.Length Petal.Length  0.8819  0.8390  0.9139    66429. 1.722e-49 Spearman</span>
+<span class="co">#&gt; 3 Sepal.Length Petal.Width   0.8343  0.7762  0.8784    93208. 1.676e-39 Spearman</span>
+<span class="co">#&gt; 4 Sepal.Width  Petal.Length -0.3096 -0.4515 -0.1525   736637. 3.462e- 4 Spearman</span>
+<span class="co">#&gt; 5 Sepal.Width  Petal.Width  -0.2890 -0.4333 -0.1303   725048. 6.686e- 4 Spearman</span>
+<span class="co">#&gt; 6 Petal.Length Petal.Width   0.9377  0.9141  0.9549    35061. 4.894e-69 Spearman</span>
+<span class="co">#&gt;    nobs</span>
+<span class="co">#&gt;   &lt;int&gt;</span>
+<span class="co">#&gt; 1   150</span>
+<span class="co">#&gt; 2   150</span>
+<span class="co">#&gt; 3   150</span>
+<span class="co">#&gt; 4   150</span>
+<span class="co">#&gt; 5   150</span>
+<span class="co">#&gt; 6   150</span></code></pre></div>
 </div>
 <div id="grouped-analysis-with-grouped_ggcorrmat" class="section level2">
 <h2 class="hasAnchor">
@@ -390,7 +399,6 @@
     <span class="st">"width (in mm)"</span>,
     <span class="st">"depth (in mm)"</span>
   <span class="op">)</span>,
-  lab.size <span class="op">=</span> <span class="fl">3.5</span>,
   <span class="co"># arguments relevant for `ggstatsplot::combine_plots`</span>
   title.text <span class="op">=</span> <span class="st">"Relationship between diamond attributes and price across cut"</span>,
   title.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">16</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,
@@ -401,7 +409,7 @@
     nrow <span class="op">=</span> <span class="fl">3</span>
   <span class="op">)</span>
 <span class="op">)</span></code></pre></div>
-<p><img src="ggcorrmat_files/figure-html/ggcorrmat7-1.png" width="960"></p>
+<p><img src="ggcorrmat_files/figure-html/ggcorrmat7-1.png" width="100%"></p>
 <p>Note that this function also makes it easy to run the same correlation matrix across different levels of a factor/grouping variable.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
@@ -414,20 +422,31 @@
   output <span class="op">=</span> <span class="st">"dataframe"</span>
 <span class="op">)</span>
 <span class="co">#&gt; # A tibble: 60 x 11</span>
-<span class="co">#&gt;    vore  parameter1 parameter2       r  ci_low  ci_high         t    df</span>
-<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt;</span>
-<span class="co">#&gt;  1 carni sleep_tot~ sleep_rem   0.9189  0.6864  0.9810   6.589e+0     8</span>
-<span class="co">#&gt;  2 carni sleep_tot~ sleep_cyc~  0.3764 -0.7574  0.9449   7.038e-1     3</span>
-<span class="co">#&gt;  3 carni sleep_tot~ awake      -1.000  -1.000  -1.000   -1.386e+3    17</span>
-<span class="co">#&gt;  4 carni sleep_tot~ brainwt    -0.5244 -0.8815  0.2144  -1.629e+0     7</span>
-<span class="co">#&gt;  5 carni sleep_tot~ bodywt     -0.4427 -0.7468  0.01441 -2.036e+0    17</span>
-<span class="co">#&gt;  6 carni sleep_rem  sleep_cyc~  0.1216 -0.8521  0.9066   2.122e-1     3</span>
-<span class="co">#&gt;  7 carni sleep_rem  awake      -0.9189 -0.9810 -0.6865  -6.589e+0     8</span>
-<span class="co">#&gt;  8 carni sleep_rem  brainwt    -0.5006 -0.9331  0.5237  -1.157e+0     4</span>
-<span class="co">#&gt;  9 carni sleep_rem  bodywt     -0.4786 -0.8516  0.2162  -1.542e+0     8</span>
-<span class="co">#&gt; 10 carni sleep_cyc~ awake      -0.3764 -0.9449  0.7574  -7.038e-1     3</span>
-<span class="co">#&gt; # ... with 50 more rows, and 3 more variables: p &lt;dbl&gt;, method &lt;chr&gt;,</span>
-<span class="co">#&gt; #   nobs &lt;int&gt;</span></code></pre></div>
+<span class="co">#&gt;    vore  parameter1  parameter2        r  ci_low  ci_high          t    df</span>
+<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;         &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt; &lt;int&gt;</span>
+<span class="co">#&gt;  1 carni sleep_total sleep_rem    0.9189  0.6864  0.9810      6.589      8</span>
+<span class="co">#&gt;  2 carni sleep_total sleep_cycle  0.3764 -0.7574  0.9449      0.7038     3</span>
+<span class="co">#&gt;  3 carni sleep_total awake       -1.000  -1.000  -1.000   -1386.        17</span>
+<span class="co">#&gt;  4 carni sleep_total brainwt     -0.5244 -0.8815  0.2144     -1.629      7</span>
+<span class="co">#&gt;  5 carni sleep_total bodywt      -0.4427 -0.7468  0.01441    -2.036     17</span>
+<span class="co">#&gt;  6 carni sleep_rem   sleep_cycle  0.1216 -0.8521  0.9066      0.2122     3</span>
+<span class="co">#&gt;  7 carni sleep_rem   awake       -0.9189 -0.9810 -0.6865     -6.589      8</span>
+<span class="co">#&gt;  8 carni sleep_rem   brainwt     -0.5006 -0.9331  0.5237     -1.157      4</span>
+<span class="co">#&gt;  9 carni sleep_rem   bodywt      -0.4786 -0.8516  0.2162     -1.542      8</span>
+<span class="co">#&gt; 10 carni sleep_cycle awake       -0.3764 -0.9449  0.7574     -0.7038     3</span>
+<span class="co">#&gt;            p method   nobs</span>
+<span class="co">#&gt;        &lt;dbl&gt; &lt;chr&gt;   &lt;int&gt;</span>
+<span class="co">#&gt;  1 2.398e- 3 Pearson    10</span>
+<span class="co">#&gt;  2 1.000e+ 0 Pearson     5</span>
+<span class="co">#&gt;  3 3.210e-43 Pearson    19</span>
+<span class="co">#&gt;  4 1.000e+ 0 Pearson     9</span>
+<span class="co">#&gt;  5 6.242e- 1 Pearson    19</span>
+<span class="co">#&gt;  6 1.000e+ 0 Pearson     5</span>
+<span class="co">#&gt;  7 2.398e- 3 Pearson    10</span>
+<span class="co">#&gt;  8 1.000e+ 0 Pearson     6</span>
+<span class="co">#&gt;  9 1.000e+ 0 Pearson    10</span>
+<span class="co">#&gt; 10 1.000e+ 0 Pearson     5</span>
+<span class="co">#&gt; # ... with 50 more rows</span></code></pre></div>
 </div>
 <div id="grouped-analysis-with-ggcorrmat-purrr" class="section level2">
 <h2 class="hasAnchor">

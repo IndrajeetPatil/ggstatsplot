@@ -17,12 +17,16 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include = FALSE, warning = FALSE, message = FALSE}
+```{r setup, include = FALSE}
 # show me all columns
-options(tibble.width = Inf)
+options(tibble.width = Inf, pillar.bold = TRUE, pillar.subtle_num = TRUE)
 
 knitr::opts_chunk$set(
   collapse = TRUE,
+  dpi = 300,
+  warning = FALSE,
+  message = FALSE,
+  out.width = "100%",
   comment = "#>"
 )
 ```
@@ -41,14 +45,14 @@ Let's begin with a very simple example from the `ggplot2` package
 (`ggplot2::mpg`), a subset of the fuel economy data that the EPA makes available
 on <http://fueleconomy.gov>.
 
-```{r mpg, warning = FALSE, message = FALSE}
+```{r mpg}
 # looking at the structure of the data using glimpse
 dplyr::glimpse(x = ggplot2::mpg)
 ```
 
 Let's say we want to visualize the distribution of mileage by car manufacturer. 
 
-```{r mpg2, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 9}
+```{r mpg2, fig.height = 7, fig.width = 9}
 # for reproducibility
 set.seed(123)
 
@@ -97,7 +101,7 @@ single plot.
 Let's see how we can use this function to apply `ggdotplotstats` to accomplish our
 task. 
 
-```{r grouped1, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 7}
+```{r grouped1, fig.height = 12, fig.width = 7}
 # for reproducibility
 set.seed(123)
 

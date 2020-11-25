@@ -159,7 +159,7 @@ graphics via `plotly.js`.
 
 The `ggstatsplot` functions are compatible with `plotly`.
  
-```{r plotly, fig.width = 4, fig.height = 4, eval=FALSE}
+```{r plotly, fig.width = 4, fig.height = 4}
 # for reproducibility
 set.seed(123)
 library(ggstatsplot)

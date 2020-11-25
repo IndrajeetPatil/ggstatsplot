@@ -202,7 +202,7 @@ ggbarstats <- function(data,
     ) +
     rlang::exec(
       .fn = ggplot2::geom_label,
-      mapping = ggplot2::aes(label = label, group = {{ x }}),
+      mapping = ggplot2::aes(label = .label, group = {{ x }}),
       show.legend = FALSE,
       position = ggplot2::position_fill(vjust = 0.5),
       na.rm = TRUE,
