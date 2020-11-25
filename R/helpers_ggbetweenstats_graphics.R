@@ -78,21 +78,21 @@ mean_ggrepel <- function(plot,
     mean_df %<>%
       dplyr::mutate(
         label = paste0(
-          "list(~italic(widehat(mu))==",
+          "list(~italic(widehat(mu))=='",
           specify_decimal_p(mean, k),
-          ",",
+          "',",
           "CI[95*'%']",
-          "*'['*",
+          "*'['*'",
           specify_decimal_p(conf.low, k),
-          ",",
+          "','",
           specify_decimal_p(conf.high, k),
-          "*']')"
+          "'*']')"
         )
       )
   } else {
     mean_df %<>%
       dplyr::mutate(
-        label = paste0("list(~italic(widehat(mu))==", specify_decimal_p(mean, k), ")")
+        label = paste0("list(~italic(widehat(mu))=='", specify_decimal_p(mean, k), "')")
       )
   }
 
@@ -149,7 +149,7 @@ mean_ggrepel <- function(plot,
   }
 
   # return the plot
-  return(plot)
+  plot
 }
 
 #' @title Adding `geom_signif` to `ggplot`

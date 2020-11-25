@@ -137,13 +137,13 @@
 
       
 
-      </header><script src="ggwithinstats_files/header-attrs-2.5/header-attrs.js"></script><div class="row">
+      </header><script src="ggwithinstats_files/header-attrs-2.5.3/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggwithinstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-11-21</h4>
+            <h4 class="date">2020-11-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggwithinstats.Rmd"><code>vignettes/web_only/ggwithinstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggwithinstats.Rmd</code></div>
@@ -178,7 +178,7 @@
   x <span class="op">=</span> <span class="va">condition</span>,
   y <span class="op">=</span> <span class="va">desire</span>
 <span class="op">)</span></code></pre></div>
-<p><img src="ggwithinstats_files/figure-html/ggwithinstats1-1.png" width="768"></p>
+<p><img src="ggwithinstats_files/figure-html/ggwithinstats1-1.png" width="100%"></p>
 <p><strong>Note</strong>:</p>
 <ul>
 <li><p>The function automatically decides whether a dependent samples test is preferred (for 2 groups) or an ANOVA (3 or more groups). based on the number of levels in the grouping variable.</p></li>
@@ -221,7 +221,7 @@
     limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span>,
     breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">0</span>, to <span class="op">=</span> <span class="fl">10</span>, by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<p><img src="ggwithinstats_files/figure-html/ggwithinstats2-1.png" width="768"></p>
+<p><img src="ggwithinstats_files/figure-html/ggwithinstats2-1.png" width="100%"></p>
 <p>As can be appreciated from the effect size (partial eta squared) of 0.18, there are small differences in the mean desire to kill across conditions. Importantly, this plot also helps us appreciate the distributions within any given condition.</p>
 <p>So far we have only used a classic parametric test, but we can also use other available options: The <code>type</code> (of test) argument also accepts the following abbreviations: <code>"p"</code> (for <em>parametric</em>), <code>"np"</code> (for <em>nonparametric</em>), <code>"r"</code> (for <em>robust</em>), <code>"bf"</code> (for <em>Bayes Factor</em>).</p>
 <p>Let’s use the <code>combine_plots</code> function to make one plot from four separate plots that demonstrates all of these options. Let’s compare desire to kill bugs only for low versus high disgust conditions to see how much of a difference whether a bug is disgusting-looking or not makes to the desire to kill that bug. We will generate the plots one by one and then use <code>combine_plots</code> to merge them into one plot with some common labeling. It is possible, but not necessarily recommended, to make each plot have different colors or themes.</p>
@@ -307,7 +307,7 @@
   title.size <span class="op">=</span> <span class="fl">14</span>,
   caption.size <span class="op">=</span> <span class="fl">12</span>
 <span class="op">)</span></code></pre></div>
-<p><img src="ggwithinstats_files/figure-html/ggwithinstats3-1.png" width="1344"></p>
+<p><img src="ggwithinstats_files/figure-html/ggwithinstats3-1.png" width="100%"></p>
 </div>
 <div id="grouped-analysis-with-grouped_ggwithinstats" class="section level2">
 <h2 class="hasAnchor">
@@ -336,7 +336,6 @@
   ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span><span class="op">)</span>,
   package <span class="op">=</span> <span class="st">"ggsci"</span>,
   palette <span class="op">=</span> <span class="st">"default_jco"</span>,
-  notch <span class="op">=</span> <span class="cn">TRUE</span>,
   outlier.tagging <span class="op">=</span> <span class="cn">TRUE</span>,
   ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>,
   outlier.label <span class="op">=</span> <span class="va">education</span>,
@@ -347,7 +346,7 @@
   title.text <span class="op">=</span> <span class="st">"Desire to kill bugs across genders"</span>,
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
-<p><img src="ggwithinstats_files/figure-html/grouped1-1.png" width="768"></p>
+<p><img src="ggwithinstats_files/figure-html/grouped1-1.png" width="100%"></p>
 </div>
 <div id="grouped-analysis-with-ggwithinstats-purrr" class="section level2">
 <h2 class="hasAnchor">

@@ -26,7 +26,7 @@ BUG FIXES
   - Setting `mean.path = FALSE` in `ggwithinstats` produced incorrect colors for
     points (#470). This bug was introduced in `0.6.5` and is now fixed.
     
-  - If user had set `options(scipen = 999)` in their session, the p-value
+  - If user had set `options(scipen = 999)` in their session, the *p*-value
     formatting for `ggpiestats` and `ggcoefstats` looked super-ugly (#478).
     This has been fixed.
 

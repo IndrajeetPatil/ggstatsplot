@@ -19,10 +19,14 @@ vignette: >
 
 ```{r setup, include = FALSE}
 # show me all columns
-options(tibble.width = Inf)
+options(tibble.width = Inf, pillar.bold = TRUE, pillar.subtle_num = TRUE)
 
 knitr::opts_chunk$set(
   collapse = TRUE,
+  dpi = 300,
+  warning = FALSE,
+  message = FALSE,
+  out.width = "100%",
   comment = "#>"
 )
 ```
@@ -61,7 +65,7 @@ statistically significant.
 
 The simplest form of the function call is-
 
-```{r ggwithinstats1, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
+```{r ggwithinstats1, fig.height = 6, fig.width = 8}
 # since the confidence intervals for the effect sizes are computed using
 # bootstrapping, important to set a seed for reproducibility
 set.seed(123)
@@ -100,7 +104,7 @@ title and caption, better `x` and `y` axis labels, and tag and label the
 outliers in the data. We can and will change the overall theme as well as the
 color palette in use.
 
-```{r ggwithinstats2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
+```{r ggwithinstats2, fig.height = 6, fig.width = 8}
 # for reproducibility
 set.seed(123)
 library(ggstatsplot)
@@ -156,7 +160,7 @@ recommended, to make each plot have different colors or themes.
 
 For example,
 
-```{r ggwithinstats3, message = FALSE, warning = FALSE, fig.height = 14, fig.width = 14}
+```{r ggwithinstats3, fig.height = 14, fig.width = 14}
 # for reproducibility
 set.seed(123)
 library(ggstatsplot)
@@ -254,7 +258,7 @@ Let's focus on the two regions and for years: 1967, 1987, 2007. Also,
 let's carry out pairwise comparisons to see if there differences between every
 pair of continents. 
 
-```{r grouped1, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 8}
+```{r grouped1, fig.height = 14, fig.width = 8}
 # for reproducibility
 set.seed(123)
 library(ggstatsplot)
@@ -274,7 +278,6 @@ ggstatsplot::grouped_ggwithinstats(
   ggtheme = ggthemes::theme_tufte(),
   package = "ggsci",
   palette = "default_jco",
-  notch = TRUE,
   outlier.tagging = TRUE,
   ggstatsplot.layer = FALSE,
   outlier.label = education,

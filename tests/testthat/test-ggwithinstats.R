@@ -45,8 +45,7 @@ testthat::test_that(
         y = desire,
         k = 4,
         paired = TRUE,
-        conf.level = 0.99,
-        messages = FALSE
+        conf.level = 0.99
       )
 
     # dataframe used for visualization
@@ -173,8 +172,8 @@ testthat::test_that(
           )),
           y = c(7.86666666666667, 6.73888888888889),
           label = c(
-            "list(~italic(widehat(mu))==7.8667)",
-            "list(~italic(widehat(mu))==6.7389)"
+            "list(~italic(widehat(mu))=='7.8667')",
+            "list(~italic(widehat(mu))=='6.7389')"
           ),
           PANEL = structure(c(1L, 1L), class = "factor", .Label = "1"),
           group = structure(1:2, n = 2L),

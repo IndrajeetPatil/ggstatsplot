@@ -218,9 +218,9 @@ testthat::test_that(
     testthat::expect_identical(
       pb$data[[6]]$label,
       c(
-        "list(~italic(widehat(mu))==2.29,CI[95*'%']*'['*1.89,2.56*']')",
-        "list(~italic(widehat(mu))==3.12,CI[95*'%']*'['*2.88,3.32*']')",
-        "list(~italic(widehat(mu))==4.00,CI[95*'%']*'['*3.60,4.41*']')"
+        "list(~italic(widehat(mu))=='2.29',CI[95*'%']*'['*'1.89','2.56'*']')",
+        "list(~italic(widehat(mu))=='3.12',CI[95*'%']*'['*'2.88','3.32'*']')",
+        "list(~italic(widehat(mu))=='4.00',CI[95*'%']*'['*'3.60','4.41'*']')"
       )
     )
 
@@ -245,7 +245,10 @@ testthat::test_that(
 
     testthat::expect_identical(
       pb1$data[[6]]$label,
-      c("list(~italic(widehat(mu))==0.98)", "list(~italic(widehat(mu))==1.39)")
+      c(
+        "list(~italic(widehat(mu))=='0.98')",
+        "list(~italic(widehat(mu))=='1.39')"
+      )
     )
   }
 )
@@ -474,8 +477,8 @@ testthat::test_that(
           )),
           y = c(20.6633333333333, 16.9633333333333),
           label = c(
-            "list(~italic(widehat(mu))==20.66)",
-            "list(~italic(widehat(mu))==16.96)"
+            "list(~italic(widehat(mu))=='20.66')",
+            "list(~italic(widehat(mu))=='16.96')"
           ),
           PANEL = structure(c(1L, 1L), class = "factor", .Label = "1"),
           group = structure(1:2, n = 2L),

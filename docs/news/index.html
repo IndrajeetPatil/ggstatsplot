@@ -210,7 +210,7 @@
 <ul>
 <li><p>In the prior release, when the GitHub version of <code>BayesFactor</code> wasn’t present, <code>ggwithinstats</code> just outright failed to run for ANOVA designs. This has been fixed.</p></li>
 <li><p>Setting <code>mean.path = FALSE</code> in <code>ggwithinstats</code> produced incorrect colors for points (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/470'>#470</a>). This bug was introduced in <code>0.6.5</code> and is now fixed.</p></li>
-<li><p>If user had set <code><a href="https://rdrr.io/r/base/options.html">options(scipen = 999)</a></code> in their session, the p-value formatting for <code>ggpiestats</code> and <code>ggcoefstats</code> looked super-ugly (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/478'>#478</a>). This has been fixed.</p></li>
+<li><p>If user had set <code><a href="https://rdrr.io/r/base/options.html">options(scipen = 999)</a></code> in their session, the <em>p</em>-value formatting for <code>ggpiestats</code> and <code>ggcoefstats</code> looked super-ugly (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/478'>#478</a>). This has been fixed.</p></li>
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>
@@ -754,7 +754,7 @@
 <p>MAJOR CHANGES</p>
 <ul>
 <li><p>New function: <code>ggcoefstats</code> for displaying model coefficients.</p></li>
-<li><p>All functions now have <code>ggtheme</code> argument that can be used to change the default theme, which has now been changed from <code>theme_grey()</code> to <code>theme_bw()</code>.</p></li>
+<li><p>All functions now have <code>ggtheme</code> argument that can be used to change the default theme, which has now been changed from <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey()</a></code> to <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw()</a></code>.</p></li>
 <li><p>The robust correlation is no longer <code><a href="https://rdrr.io/pkg/MASS/man/rlm.html">MASS::rlm</a></code>, but percentage bend correlation, as implemented in <code><a href="https://rdrr.io/pkg/WRS2/man/pbcor.html">WRS2::pbcor</a></code>. This was done to be consistent across different functions. <code>ggcorrmat</code> also uses percentage bend correlation as the robust correlation measure. This also means that <code>ggstatsplot</code> no longer imports <code>MASS</code> and <code>sfsmisc</code>.</p></li>
 <li><p>The <code>data</code> argument is no longer <code>NULL</code> for all functions, except <code>gghistostats</code>. In other words, the user <strong>must</strong> provide a dataframe from which variables or formulas should be selected.</p></li>
 <li><p>All subtitles containing results now also show sample size information (<em>n</em>). To adjust for the inflated length of the subtitle, the default subtitle text size has been changed from <code>12</code> to <code>11</code>.</p></li>

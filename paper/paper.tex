@@ -89,6 +89,7 @@
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs}
+\usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
 \makeatletter
@@ -131,7 +132,7 @@
 \setlength{\cslhangindent}{1.5em}
 \newlength{\csllabelwidth}
 \setlength{\csllabelwidth}{3em}
-\newenvironment{CSLReferences}[3] % #1 hanging-ident, #2 entry spacing
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
  {% don't indent paragraphs
   \setlength{\parindent}{0pt}
   % turn on hanging indent if param 1 is 1
@@ -142,15 +143,15 @@
   \fi
  }%
  {}
-\usepackage{calc} % for \widthof, \maxof
+\usepackage{calc}
 \newcommand{\CSLBlock}[1]{#1\hfill\break}
-\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\maxof{\widthof{#1}}{\csllabelwidth}}{#1}}
-\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth}{#1}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 \title{ggstatsplot: ggplot2 Based Plots with Statistical Details}
 \author{Indrajeet Patil\footnote{Max Planck Institute for Human Development, \href{mailto:patilindrajeet.science@gmail.com}{\nolinkurl{patilindrajeet.science@gmail.com}}}}
-\date{2020-11-04}
+\date{2020-11-25}
 
 \begin{document}
 \maketitle
@@ -214,76 +215,76 @@ It produces a limited kinds of ready-made plots for the supported analyses:
 
 \begin{longtable}[]{@{}lll@{}}
 \toprule
-\begin{minipage}[b]{0.17\columnwidth}\raggedright
+\begin{minipage}[b]{(\columnwidth - 2\tabcolsep) * \real{0.19}}\raggedright
 Function\strut
-\end{minipage} & \begin{minipage}[b]{0.25\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{(\columnwidth - 2\tabcolsep) * \real{0.27}}\raggedright
 Plot\strut
-\end{minipage} & \begin{minipage}[b]{0.49\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{(\columnwidth - 2\tabcolsep) * \real{0.54}}\raggedright
 Description\strut
 \end{minipage}\tabularnewline
 \midrule
 \endhead
-\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.19}}\raggedright
 \texttt{ggbetweenstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.27}}\raggedright
 \textbf{violin plots}\strut
-\end{minipage} & \begin{minipage}[t]{0.49\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.54}}\raggedright
 for comparisons \emph{between} groups/conditions\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.19}}\raggedright
 \texttt{ggwithinstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.27}}\raggedright
 \textbf{violin plots}\strut
-\end{minipage} & \begin{minipage}[t]{0.49\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.54}}\raggedright
 for comparisons \emph{within} groups/conditions\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.19}}\raggedright
 \texttt{gghistostats}\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.27}}\raggedright
 \textbf{histograms}\strut
-\end{minipage} & \begin{minipage}[t]{0.49\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.54}}\raggedright
 for distribution about numeric variable\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.19}}\raggedright
 \texttt{ggdotplotstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.27}}\raggedright
 \textbf{dot plots/charts}\strut
-\end{minipage} & \begin{minipage}[t]{0.49\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.54}}\raggedright
 for distribution about labeled numeric variable\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.19}}\raggedright
 \texttt{ggpiestats}\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.27}}\raggedright
 \textbf{pie charts}\strut
-\end{minipage} & \begin{minipage}[t]{0.49\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.54}}\raggedright
 for categorical data\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.19}}\raggedright
 \texttt{ggbarstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.27}}\raggedright
 \textbf{bar charts}\strut
-\end{minipage} & \begin{minipage}[t]{0.49\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.54}}\raggedright
 for categorical data\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.19}}\raggedright
 \texttt{ggscatterstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.27}}\raggedright
 \textbf{scatterplots}\strut
-\end{minipage} & \begin{minipage}[t]{0.49\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.54}}\raggedright
 for correlations between two variables\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.19}}\raggedright
 \texttt{ggcorrmat}\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.27}}\raggedright
 \textbf{correlation matrices}\strut
-\end{minipage} & \begin{minipage}[t]{0.49\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.54}}\raggedright
 for correlations between multiple variables\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.19}}\raggedright
 \texttt{ggcoefstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.27}}\raggedright
 \textbf{dot-and-whisker plots}\strut
-\end{minipage} & \begin{minipage}[t]{0.49\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.54}}\raggedright
 for regression models\strut
 \end{minipage}\tabularnewline
 \bottomrule
@@ -316,136 +317,136 @@ currently supported in this package-
 
 \begin{longtable}[]{@{}llllll@{}}
 \toprule
-\begin{minipage}[b]{0.14\columnwidth}\raggedright
+\begin{minipage}[b]{(\columnwidth - 5\tabcolsep) * \real{0.16}}\raggedright
 Functions\strut
-\end{minipage} & \begin{minipage}[b]{0.35\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{(\columnwidth - 5\tabcolsep) * \real{0.42}}\raggedright
 Description\strut
-\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{(\columnwidth - 5\tabcolsep) * \real{0.09}}\raggedright
 Parametric\strut
-\end{minipage} & \begin{minipage}[b]{0.10\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{(\columnwidth - 5\tabcolsep) * \real{0.12}}\raggedright
 Non-parametric\strut
-\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{(\columnwidth - 5\tabcolsep) * \real{0.09}}\raggedright
 Robust\strut
-\end{minipage} & \begin{minipage}[b]{0.10\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{(\columnwidth - 5\tabcolsep) * \real{0.12}}\raggedright
 Bayes Factor\strut
 \end{minipage}\tabularnewline
 \midrule
 \endhead
-\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.16}}\raggedright
 \texttt{ggbetweenstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.42}}\raggedright
 Between group/condition comparisons\strut
-\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.09}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
-\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.12}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
-\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.09}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
-\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.12}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.16}}\raggedright
 \texttt{ggwithinstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.42}}\raggedright
 Within group/condition comparisons\strut
-\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.09}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
-\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.12}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
-\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.09}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
-\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.12}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.16}}\raggedright
 \texttt{gghistostats}, \texttt{ggdotplotstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.42}}\raggedright
 Distribution of a numeric variable\strut
-\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.09}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
-\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.12}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
-\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.09}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
-\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.12}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.16}}\raggedright
 \texttt{ggcorrmat}\strut
-\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.42}}\raggedright
 Correlation matrix\strut
-\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.09}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
-\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.12}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
-\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.09}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
-\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.12}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.16}}\raggedright
 \texttt{ggscatterstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.42}}\raggedright
 Correlation between two variables\strut
-\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.09}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
-\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.12}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
-\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.09}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
-\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.12}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.16}}\raggedright
 \texttt{ggpiestats}, \texttt{ggbarstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.42}}\raggedright
 Association between categorical variables\strut
-\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.09}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
-\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.12}}\raggedright
 \texttt{NA}\strut
-\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.09}}\raggedright
 \texttt{NA}\strut
-\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.12}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.16}}\raggedright
 \texttt{ggpiestats}, \texttt{ggbarstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.42}}\raggedright
 Equal proportions for categorical variable levels\strut
-\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.09}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
-\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.12}}\raggedright
 \texttt{NA}\strut
-\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.09}}\raggedright
 \texttt{NA}\strut
-\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.12}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.16}}\raggedright
 \texttt{ggcoefstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.42}}\raggedright
 Regression model coefficients\strut
-\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.09}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
-\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.12}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
-\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.09}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
-\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.12}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.16}}\raggedright
 \texttt{ggcoefstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.42}}\raggedright
 Random-effects meta-analysis\strut
-\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.09}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
-\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.12}}\raggedright
 \texttt{NA}\strut
-\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.09}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
-\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 5\tabcolsep) * \real{0.12}}\raggedright
 \textcolor{ForestGreen}{Yes}\strut
 \end{minipage}\tabularnewline
 \bottomrule
@@ -891,259 +892,259 @@ various functions:
 
 \begin{longtable}[]{@{}lllll@{}}
 \toprule
-\begin{minipage}[b]{0.20\columnwidth}\raggedright
+\begin{minipage}[b]{(\columnwidth - 4\tabcolsep) * \real{0.24}}\raggedright
 Functions\strut
-\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{(\columnwidth - 4\tabcolsep) * \real{0.19}}\raggedright
 Type\strut
-\end{minipage} & \begin{minipage}[b]{0.31\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{(\columnwidth - 4\tabcolsep) * \real{0.36}}\raggedright
 Test\strut
-\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\raggedright
 Effect size\strut
-\end{minipage} & \begin{minipage}[b]{0.07\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{(\columnwidth - 4\tabcolsep) * \real{0.08}}\raggedright
 95\% CI available?\strut
 \end{minipage}\tabularnewline
 \midrule
 \endhead
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.24}}\raggedright
 \texttt{ggbetweenstats} (2 groups)\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.19}}\raggedright
 Parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.36}}\raggedright
 Student's and Welch's \emph{t}-test\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\raggedright
 Cohen's \emph{d}, Hedge's \emph{g}\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.08}}\raggedright
 \textcolor{ForestGreen}{$\checkmark$}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.24}}\raggedright
 \texttt{ggbetweenstats} (\textgreater{} 2 groups)\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.19}}\raggedright
 Parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.36}}\raggedright
 Fisher's and Welch's one-way ANOVA\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\raggedright
 \[\eta^2, \eta^2_p, \omega^2, \omega^2_p\]\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.08}}\raggedright
 \textcolor{ForestGreen}{$\checkmark$}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.24}}\raggedright
 \texttt{ggbetweenstats} (2 groups)\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.19}}\raggedright
 Non-parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.36}}\raggedright
 Mann-Whitney \emph{U}-test\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\raggedright
 \emph{r}\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.08}}\raggedright
 \textcolor{ForestGreen}{$\checkmark$}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.24}}\raggedright
 \texttt{ggbetweenstats} (\textgreater{} 2 groups)\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.19}}\raggedright
 Non-parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.36}}\raggedright
 Kruskal-Wallis Rank Sum Test\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\raggedright
 \[\epsilon^2\]\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.08}}\raggedright
 \textcolor{ForestGreen}{$\checkmark$}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.24}}\raggedright
 \texttt{ggbetweenstats} (2 groups)\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.19}}\raggedright
 Robust\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.36}}\raggedright
 Yuen's test for trimmed means\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\raggedright
 \[\xi\]\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.08}}\raggedright
 \textcolor{ForestGreen}{$\checkmark$}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.24}}\raggedright
 \texttt{ggbetweenstats} (\textgreater{} 2 groups)\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.19}}\raggedright
 Robust\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.36}}\raggedright
 Heteroscedastic one-way ANOVA for trimmed means\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\raggedright
 \[\xi\]\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.08}}\raggedright
 \textcolor{ForestGreen}{$\checkmark$}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.24}}\raggedright
 \texttt{ggwithinstats} (2 groups)\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.19}}\raggedright
 Parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.36}}\raggedright
 Student's \emph{t}-test\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\raggedright
 Cohen's \emph{d}, Hedge's \emph{g}\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.08}}\raggedright
 \textcolor{ForestGreen}{$\checkmark$}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.24}}\raggedright
 \texttt{ggwithinstats} (\textgreater{} 2 groups)\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.19}}\raggedright
 Parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.36}}\raggedright
 Fisher's one-way repeated measures ANOVA\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\raggedright
 \[\eta^2_p, \omega^2\]\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.08}}\raggedright
 \textcolor{ForestGreen}{$\checkmark$}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.24}}\raggedright
 \texttt{ggwithinstats} (2 groups)\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.19}}\raggedright
 Non-parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.36}}\raggedright
 Wilcoxon signed-rank test\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\raggedright
 \emph{r}\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.08}}\raggedright
 \textcolor{ForestGreen}{$\checkmark$}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.24}}\raggedright
 \texttt{ggwithinstats} (\textgreater{} 2 groups)\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.19}}\raggedright
 Non-parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.36}}\raggedright
 Friedman rank sum test\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\raggedright
 \[W_{Kendall}\]\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.08}}\raggedright
 \textcolor{ForestGreen}{$\checkmark$}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.24}}\raggedright
 \texttt{ggwithinstats} (2 groups)\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.19}}\raggedright
 Robust\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.36}}\raggedright
 Yuen's test on trimmed means for dependent samples\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\raggedright
 \[\delta_{R}\]\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.08}}\raggedright
 \textcolor{ForestGreen}{$\checkmark$}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.24}}\raggedright
 \texttt{ggwithinstats} (\textgreater{} 2 groups)\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.19}}\raggedright
 Robust\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.36}}\raggedright
 Heteroscedastic one-way repeated measures ANOVA for trimmed means\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\raggedright
 \textcolor{red}{$\times$}\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.08}}\raggedright
 \textcolor{red}{$\times$}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.24}}\raggedright
 \texttt{ggpiestats} and \texttt{ggbarstats} (unpaired)\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.19}}\raggedright
 Parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.36}}\raggedright
 \[\text{Pearson's}~ \chi^2 ~\text{test}\]\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\raggedright
 Cramér's \emph{V}\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.08}}\raggedright
 \textcolor{ForestGreen}{$\checkmark$}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.24}}\raggedright
 \texttt{ggpiestats} and \texttt{ggbarstats} (paired)\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.19}}\raggedright
 Parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.36}}\raggedright
 McNemar's test\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\raggedright
 Cohen's \emph{g}\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.08}}\raggedright
 \textcolor{ForestGreen}{$\checkmark$}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.24}}\raggedright
 \texttt{ggpiestats}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.19}}\raggedright
 Parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.36}}\raggedright
 One-sample proportion test\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\raggedright
 Cramér's \emph{V}\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.08}}\raggedright
 \textcolor{ForestGreen}{$\checkmark$}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.24}}\raggedright
 \texttt{ggscatterstats} and \texttt{ggcorrmat}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.19}}\raggedright
 Parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.36}}\raggedright
 Pearson's \emph{r}\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\raggedright
 \emph{r}\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.08}}\raggedright
 \textcolor{ForestGreen}{$\checkmark$}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.24}}\raggedright
 \texttt{ggscatterstats} and \texttt{ggcorrmat}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.19}}\raggedright
 Non-parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.36}}\raggedright
 \[\text{Spearman's}~ \rho\]\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\raggedright
 \[\rho\]\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.08}}\raggedright
 \textcolor{ForestGreen}{$\checkmark$}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.24}}\raggedright
 \texttt{ggscatterstats}and \texttt{ggcorrmat}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.19}}\raggedright
 Robust\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.36}}\raggedright
 Percentage bend correlation\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\raggedright
 \emph{r}\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.08}}\raggedright
 \textcolor{ForestGreen}{$\checkmark$}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.24}}\raggedright
 \texttt{gghistostats} and \texttt{ggdotplotstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.19}}\raggedright
 Parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.36}}\raggedright
 One-sample \emph{t}-test\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\raggedright
 Cohen's \emph{d}, Hedge's \emph{g}\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.08}}\raggedright
 \textcolor{ForestGreen}{$\checkmark$}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.24}}\raggedright
 \texttt{gghistostats}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.19}}\raggedright
 Non-parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.36}}\raggedright
 One-sample Wilcoxon signed rank test\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\raggedright
 \emph{r}\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.08}}\raggedright
 \textcolor{ForestGreen}{$\checkmark$}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.24}}\raggedright
 \texttt{gghistostats} and \texttt{ggdotplotstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.19}}\raggedright
 Robust\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.36}}\raggedright
 One-sample percentile bootstrap\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\raggedright
 robust estimator\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.08}}\raggedright
 \textcolor{ForestGreen}{$\checkmark$}\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.20\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.24}}\raggedright
 \texttt{ggcoefstats}\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.19}}\raggedright
 Parametric\strut
-\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.36}}\raggedright
 Regression models\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.14}}\raggedright
 \[\beta\]\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 4\tabcolsep) * \real{0.08}}\raggedright
 \textcolor{ForestGreen}{$\checkmark$}\strut
 \end{minipage}\tabularnewline
 \bottomrule

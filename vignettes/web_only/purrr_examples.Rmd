@@ -19,12 +19,15 @@ vignette: >
 ---
 
 ```{r setup, include = FALSE}
+# show me all columns
+options(tibble.width = Inf, pillar.bold = TRUE, pillar.subtle_num = TRUE)
+
 knitr::opts_chunk$set(
-  dpi = 300,
-  out.width = "100%",
   collapse = TRUE,
-  message = FALSE,
+  dpi = 300,
   warning = FALSE,
+  message = FALSE,
+  out.width = "100%",
   comment = "#>"
 )
 
