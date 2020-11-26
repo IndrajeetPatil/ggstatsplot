@@ -1,4 +1,3 @@
-
 #' @title Message if palette doesn't have enough number of colors.
 #' @name palette_message
 #' @description A note to the user about not using the default color palette
@@ -10,8 +9,7 @@
 #' @param min_length Minimum number of colors needed.
 #'
 #' @importFrom dplyr filter select
-#' @importFrom ipmisc green blue yellow red
-#' @importFrom rlang !! enquo
+#' @importFrom rlang !!
 #'
 #' @noRd
 
@@ -27,11 +25,8 @@ palette_message <- function(package, palette, min_length) {
   if (palette_df$length[[1]] < min_length) {
     # message to display
     message(cat(
-      ipmisc::red("Warning: "),
-      ipmisc::blue("Number of labels is greater than default palette color count.\n"),
-      ipmisc::blue("Try using another color `palette` (and/or `package`).\n")
-    ),
-    sep = ""
-    )
+      "Warning: Number of labels is greater than default palette color count.\n",
+      "Try using another color `palette` (and/or `package`).\n"
+    ))
   }
 }

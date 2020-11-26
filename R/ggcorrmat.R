@@ -47,7 +47,6 @@
 #' @importFrom dplyr select matches
 #' @importFrom purrr is_bare_numeric keep
 #' @importFrom rlang !! enquo quo_name is_null
-#' @importFrom ipmisc green blue yellow red
 #' @importFrom pairwiseComparisons p_adjust_text
 #' @importFrom statsExpressions correlation
 #'
@@ -124,14 +123,8 @@ ggcorrmat <- function(data,
   if (!is.null(cor.vars.names)) {
     # check if number of cor.vars is equal to the number of names entered
     if (length(df) != length(cor.vars.names)) {
-      # display a warning message if not
-      message(cat(
-        ipmisc::red("Warning: "),
-        ipmisc::blue("No. of variable names doesn't equal no. of variables."),
-        sep = ""
-      ))
+      message("Warning: Mismatch between number of variable and entered names.")
     } else {
-      # otherwise rename the columns with the new names
       colnames(df) <- cor.vars.names
     }
   }

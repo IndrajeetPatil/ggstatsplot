@@ -238,10 +238,8 @@ ggcoefstats <- function(x,
       # inform the user
       if (output == "plot" && isTRUE(stats.labels)) {
         message(cat(
-          ipmisc::red("Note: "),
-          ipmisc::blue("The argument `statistic` must be specified.\n"),
-          ipmisc::blue("Skipping labels with statistical details.\n"),
-          sep = ""
+          "Note: The argument `statistic` must be specified.\n",
+          "Skipping labels with statistical details.\n"
         ))
       }
 
@@ -301,10 +299,8 @@ ggcoefstats <- function(x,
   # check for the one necessary column
   if (rlang::is_null(tidy_df) || !"estimate" %in% names(tidy_df)) {
     stop(message(cat(
-      ipmisc::red("Error: "),
-      ipmisc::blue("The tidy dataframe *must* contain column called 'estimate'.\n"),
-      ipmisc::blue("Check the tidy output using argument `output = 'tidy'`."),
-      sep = ""
+      "Error: The tidy dataframe *must* contain column called 'estimate'.\n",
+      "Check the tidy output using argument `output = 'tidy'`."
     )),
     call. = FALSE
     )
@@ -343,11 +339,7 @@ ggcoefstats <- function(x,
 
   # halt if there are still repeated terms
   if (any(duplicated(dplyr::select(tidy_df, term)))) {
-    message(cat(
-      ipmisc::red("Error: "),
-      ipmisc::blue("All elements in the column `term` should be unique."),
-      sep = ""
-    ))
+    message("Error: All elements in the column `term` should be unique.")
     return(invisible(tidy_df))
   }
 
@@ -367,10 +359,8 @@ ggcoefstats <- function(x,
 
     # inform the user that skipping labels for the same reason
     message(cat(
-      ipmisc::green("Note: "),
-      ipmisc::blue("No confidence intervals available for regression coefficients,"),
-      ipmisc::blue("so whiskers in the plot will be skipped.\n"),
-      sep = ""
+      "Note: No confidence intervals available for regression coefficients,\n",
+      "so whiskers in the plot will be skipped.\n"
     ))
   }
 

@@ -32,7 +32,6 @@
 #' @importFrom rlang exec !! enquo := !!! exec
 #' @importFrom statsExpressions bf_ttest bf_oneway_anova
 #' @importFrom pairwiseComparisons pairwise_comparisons pairwise_caption
-#' @importFrom ipmisc outlier_df
 #' @importFrom dplyr select mutate row_number group_by ungroup anti_join
 #'
 #' @references
@@ -149,7 +148,7 @@ ggwithinstats <- function(data,
 
   # add a logical column indicating whether a point is or is not an outlier
   data %<>%
-    ipmisc::outlier_df(
+    outlier_df(
       data = .,
       x = {{ x }},
       y = {{ y }},
