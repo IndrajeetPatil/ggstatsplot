@@ -45,7 +45,7 @@
 #'   used. If `"robust"`, `metaplus::metaplus` function will be used. If
 #'   `"bayes"`, `metaBMA::meta_random` function will be used.
 #' @param exclude.intercept Logical that decides whether the intercept should be
-#'   excluded from the plot (Default: `TRUE`).
+#'   excluded from the plot (Default: `FALSE`).
 #' @param errorbar.args Additional arguments that will be passed to
 #'   `ggplot2::geom_errorbarh` geom. Please see documentation for that function
 #'   to know more about these arguments.
@@ -82,9 +82,9 @@
 #' @importFrom dplyr select mutate matches vars all_vars filter_at row_number
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom tidyr unite
-#' @importFrom insight is_model find_statistic
+#' @importFrom insight is_model find_statistic standardize_names
 #' @importFrom statsExpressions expr_meta_random bf_meta_random
-#' @importFrom parameters model_parameters standardize_names
+#' @importFrom parameters model_parameters
 #' @importFrom performance model_performance
 #'
 #' @references
@@ -203,7 +203,7 @@ ggcoefstats <- function(x,
                         conf.int = TRUE,
                         conf.level = 0.95,
                         k = 2L,
-                        exclude.intercept = TRUE,
+                        exclude.intercept = FALSE,
                         effsize = "eta",
                         meta.analytic.effect = FALSE,
                         meta.type = "parametric",
@@ -267,7 +267,7 @@ ggcoefstats <- function(x,
           verbose = FALSE,
           ...
         ) %>%
-        parameters::standardize_names(data = ., style = "broom") %>%
+        insight::standardize_names(data = ., style = "broom") %>%
         dplyr::rename_all(., ~ gsub("omega2.|eta2.", "", .x))
 
       # creating numerator and denominator degrees of freedom
@@ -290,7 +290,7 @@ ggcoefstats <- function(x,
           # verbose = FALSE,
           ...
         ) %>%
-        parameters::standardize_names(data = ., style = "broom")
+        insight::standardize_names(data = ., style = "broom")
     }
   }
 
@@ -350,7 +350,6 @@ ggcoefstats <- function(x,
 
   # if `parameters` output doesn't contain CI
   if (!"conf.low" %in% names(tidy_df)) {
-
     # add NAs so that only dots will be shown
     tidy_df %<>% dplyr::mutate(conf.low = NA_character_, conf.high = NA_character_)
 
@@ -411,7 +410,7 @@ ggcoefstats <- function(x,
       # preparing caption with model diagnostics
       caption <-
         substitute(
-          atop(
+          expr = atop(
             displaystyle(top.text),
             expr = paste("AIC = ", AIC, ", BIC = ", BIC)
           ),
@@ -430,12 +429,7 @@ ggcoefstats <- function(x,
     meta.type <- ipmisc::stats_type_switch(meta.type)
 
     # results from frequentist random-effects meta-analysis
-    subtitle <-
-      expr_meta_random(
-        data = tidy_df,
-        type = meta.type,
-        k = k
-      )
+    subtitle <- expr_meta_random(tidy_df, type = meta.type, k = k)
 
     # model summary (detailed only for parametric statistics)
     if (meta.type == "parametric") {
@@ -528,12 +522,11 @@ ggcoefstats <- function(x,
     # adding the labels
     if (isTRUE(stats.labels)) {
       # only significant p-value labels are shown
-      if (isTRUE(only.significant) && "significance" %in% names(tidy_df)) {
+      if (isTRUE(only.significant) && "p.value" %in% names(tidy_df)) {
         tidy_df %<>%
           dplyr::mutate(
-            .data = .,
             label = dplyr::case_when(
-              significance == "ns" ~ NA_character_,
+              p.value >= 0.05 ~ NA_character_,
               TRUE ~ label
             )
           )

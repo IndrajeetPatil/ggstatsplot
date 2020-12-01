@@ -11,7 +11,7 @@ ggcoefstats(
   conf.int = TRUE,
   conf.level = 0.95,
   k = 2L,
-  exclude.intercept = TRUE,
+  exclude.intercept = FALSE,
   effsize = "eta",
   meta.analytic.effect = FALSE,
   meta.type = "parametric",
@@ -64,7 +64,7 @@ error bars (Default: \code{TRUE}).}
 (Default: \code{k = 2L}).}
 
 \item{exclude.intercept}{Logical that decides whether the intercept should be
-excluded from the plot (Default: \code{TRUE}).}
+excluded from the plot (Default: \code{FALSE}).}
 
 \item{effsize}{Character describing the effect size to be displayed: \code{"eta"}
 (default) or \code{"omega"}. This argument is relevant only for models objects

@@ -301,8 +301,6 @@ testthat::test_that(
     )
     testthat::expect_null(p$labels$title, NULL)
     testthat::expect_null(p$labels$subtitle, NULL)
-
-    testthat::expect_identical(tidy_df$significance, c("***", "*", "ns"))
     testthat::expect_identical(
       tidy_df$label,
       c(
@@ -353,10 +351,7 @@ testthat::test_that(
       p$labels$caption,
       ggplot2::expr(atop(
         displaystyle(paste(italic("Note"), ": From `tidyverse`")),
-        expr = paste(
-          "AIC = ", "126", ", BIC = ",
-          "142"
-        )
+        expr = paste("AIC = ", "126", ", BIC = ", "142")
       ))
     )
     testthat::expect_identical(p$labels$title, "mammalian sleep")
@@ -391,7 +386,6 @@ testthat::test_that(
         "list(~italic(F)(3*\",\"*35)==4.012, ~italic(p)=='0.015', ~widehat(italic(omega)[p]^2)==0.174)"
       )
     )
-    testthat::expect_identical(tidy_df$significance, c("***", "ns", "*"))
   }
 )
 

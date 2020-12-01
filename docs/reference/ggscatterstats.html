@@ -338,7 +338,7 @@ used for less than 1,000 observations; otherwise <code><a href='https://rdrr.io/
 used with <code>formula = y ~ s(x, bs = "cs")</code> with <code>method = "REML"</code>. Somewhat anecdotally,
 <code>loess</code> gives a better appearance, but is \(O(N^{2})\) in memory,
 so does not work for larger datasets.</p>
-<p>If you have fewer than 1,000 observations but want to use the same <code>gam()</code>
+<p>If you have fewer than 1,000 observations but want to use the same <code><a href='https://rdrr.io/pkg/gam/man/gam.html'>gam()</a></code>
 model that <code>method = NULL</code> would use, then set
 <code>method = "gam", formula = y ~ s(x, bs = "cs")</code>.</p></td>
     </tr>

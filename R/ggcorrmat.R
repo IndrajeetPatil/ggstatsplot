@@ -19,7 +19,7 @@
 #'   literally anything other than `"plot"`), a dataframe containing all details
 #'   from statistical analyses (e.g., correlation coefficients, statistic
 #'   values, *p*-values, no. of observations, etc.) will be returned.
-#' @param matrix.type Character, `"lower"` (default), `"full"`, or `"upper"`,
+#' @param matrix.type Character, `"upper"` (default), `"lower"`, or `"full"`,
 #'   display full matrix, lower triangular or upper triangular matrix.
 #' @param sig.level Significance level (Default: `0.05`). If the *p*-value in
 #'   *p*-value matrix is bigger than `sig.level`, then the corresponding
@@ -89,7 +89,7 @@ ggcorrmat <- function(data,
                       cor.vars = NULL,
                       cor.vars.names = NULL,
                       output = "plot",
-                      matrix.type = "lower",
+                      matrix.type = "upper",
                       type = "parametric",
                       beta = 0.1,
                       k = 2L,

@@ -3,7 +3,6 @@
 \docType{import}
 \name{reexports}
 \alias{reexports}
-\alias{set_cwd}
 \alias{\%>\%}
 \alias{\%<>\%}
 \alias{\%$\%}
@@ -20,6 +19,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{ipmisc}{\code{\link[ipmisc:reexports]{\%$\%}}, \code{\link[ipmisc:reexports]{\%<-\%}}, \code{\link[ipmisc:reexports]{\%<>\%}}, \code{\link[ipmisc:reexports]{\%>\%}}, \code{\link[ipmisc:reexports]{\%|\%}}, \code{\link[ipmisc:reexports]{\%||\%}}, \code{\link[ipmisc:reexports]{as_tibble}}, \code{\link[ipmisc:reexports]{enframe}}, \code{\link[ipmisc]{set_cwd}}, \code{\link[ipmisc:reexports]{tibble}}}
+  \item{ipmisc}{\code{\link[ipmisc:reexports]{\%$\%}}, \code{\link[ipmisc:reexports]{\%<-\%}}, \code{\link[ipmisc:reexports]{\%<>\%}}, \code{\link[ipmisc:reexports]{\%>\%}}, \code{\link[ipmisc:reexports]{\%|\%}}, \code{\link[ipmisc:reexports]{\%||\%}}, \code{\link[ipmisc:reexports]{as_tibble}}, \code{\link[ipmisc:reexports]{enframe}}, \code{\link[ipmisc:reexports]{tibble}}}
 }}
 

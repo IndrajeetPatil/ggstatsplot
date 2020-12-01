@@ -36,12 +36,12 @@ Imports:
     ipmisc,
     pairwiseComparisons,
     paletteer,
-    parameters (>= 0.9.0.1),
-    performance (>= 0.5.1.1),
+    parameters (>= 0.10.0),
+    performance (>= 0.6.0),
     purrr,
     rlang,
     stats,
-    statsExpressions,
+    statsExpressions (>= 0.6.1),
     tidyr,
     utils
 Suggests:
@@ -53,10 +53,6 @@ Suggests:
     testthat,
     tibble,
     WRS2
-Remotes:
-    easystats/insight,
-    easystats/performance,
-    easystats/parameters
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

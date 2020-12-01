@@ -202,17 +202,17 @@ ggsignif_adder <- function(plot,
   # creating a column for group combinations
   df_pairwise %<>% dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c))
 
-  # for Bayes Factor, there will be no "significance" column
-  if ("significance" %in% names(df_pairwise)) {
+  # for Bayes Factor, there will be no "p.value" column
+  if ("p.value" %in% names(df_pairwise)) {
     # decide what needs to be displayed:
     # only significant comparisons shown
     if (pairwise.display %in% c("s", "significant")) {
-      df_pairwise %<>% dplyr::filter(.data = ., significance != "ns")
+      df_pairwise %<>% dplyr::filter(.data = ., p.value < 0.05)
     }
 
     # only non-significant comparisons shown
     if (pairwise.display %in% c("ns", "nonsignificant", "non-significant")) {
-      df_pairwise %<>% dplyr::filter(.data = ., significance == "ns")
+      df_pairwise %<>% dplyr::filter(.data = ., p.value >= 0.05)
     }
 
     # proceed only if there are any significant comparisons to display

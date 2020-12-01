@@ -49,7 +49,7 @@ values, \emph{p}-values, no. of observations, etc.) will be returned.}
 \item{...}{
   Arguments passed on to \code{\link[=ggcorrmat]{ggcorrmat}}
   \describe{
-    \item{\code{matrix.type}}{Character, \code{"lower"} (default), \code{"full"}, or \code{"upper"},
+    \item{\code{matrix.type}}{Character, \code{"upper"} (default), \code{"lower"}, or \code{"full"},
 display full matrix, lower triangular or upper triangular matrix.}
     \item{\code{sig.level}}{Significance level (Default: \code{0.05}). If the \emph{p}-value in
 \emph{p}-value matrix is bigger than \code{sig.level}, then the corresponding

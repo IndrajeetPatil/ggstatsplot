@@ -9,7 +9,7 @@ ggcorrmat(
   cor.vars = NULL,
   cor.vars.names = NULL,
   output = "plot",
-  matrix.type = "lower",
+  matrix.type = "upper",
   type = "parametric",
   beta = 0.1,
   k = 2L,
@@ -48,7 +48,7 @@ literally anything other than \code{"plot"}), a dataframe containing all details
 from statistical analyses (e.g., correlation coefficients, statistic
 values, \emph{p}-values, no. of observations, etc.) will be returned.}
 
-\item{matrix.type}{Character, \code{"lower"} (default), \code{"full"}, or \code{"upper"},
+\item{matrix.type}{Character, \code{"upper"} (default), \code{"lower"}, or \code{"full"},
 display full matrix, lower triangular or upper triangular matrix.}
 
 \item{type}{Type of association between paired samples required

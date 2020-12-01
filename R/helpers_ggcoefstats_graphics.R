@@ -19,9 +19,7 @@ ggcoefstats_label_maker <- function(tidy_df,
   #----------------------- p-value cleanup ------------------------------------
 
   # formatting the p-values
-  tidy_df %<>%
-    signif_column(data = ., p = p.value) %>%
-    dplyr::rowwise()
+  tidy_df %<>% dplyr::rowwise()
 
   #--------------------------- t-statistic ------------------------------------
 

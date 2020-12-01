@@ -203,7 +203,7 @@
   conf.int <span class='op'>=</span> <span class='cn'>TRUE</span>,
   conf.level <span class='op'>=</span> <span class='fl'>0.95</span>,
   k <span class='op'>=</span> <span class='fl'>2L</span>,
-  exclude.intercept <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  exclude.intercept <span class='op'>=</span> <span class='cn'>FALSE</span>,
   effsize <span class='op'>=</span> <span class='st'>"eta"</span>,
   meta.analytic.effect <span class='op'>=</span> <span class='cn'>FALSE</span>,
   meta.type <span class='op'>=</span> <span class='st'>"parametric"</span>,
@@ -272,7 +272,7 @@ error bars (Default: <code>TRUE</code>).</p></td>
     <tr>
       <th>exclude.intercept</th>
       <td><p>Logical that decides whether the intercept should be
-excluded from the plot (Default: <code>TRUE</code>).</p></td>
+excluded from the plot (Default: <code>FALSE</code>).</p></td>
     </tr>
     <tr>
       <th>effsize</th>
@@ -436,35 +436,32 @@ is recommended that you install the GitHub versions of <code>parameters</code> a
 <span class='co'># -------------- with model object --------------------------------------</span>
 
 <span class='co'># model object</span>
-<span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span>formula <span class='op'>=</span> <span class='va'>mpg</span> <span class='op'>~</span> <span class='va'>cyl</span> <span class='op'>*</span> <span class='va'>am</span>, data <span class='op'>=</span> <span class='va'>mtcars</span><span class='op'>)</span>
+<span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/VGAM/man/notdocumentedyet.html'>lm</a></span><span class='op'>(</span>formula <span class='op'>=</span> <span class='va'>mpg</span> <span class='op'>~</span> <span class='va'>cyl</span> <span class='op'>*</span> <span class='va'>am</span>, data <span class='op'>=</span> <span class='va'>mtcars</span><span class='op'>)</span>
 
 <span class='co'># to get a plot</span>
 <span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>ggcoefstats</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>mod</span>, output <span class='op'>=</span> <span class='st'>"plot"</span><span class='op'>)</span>
 </div><div class='img'><img src='ggcoefstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># to get a tidy dataframe</span>
 <span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>ggcoefstats</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>mod</span>, output <span class='op'>=</span> <span class='st'>"tidy"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 3 x 10</span><span>
-#&gt;   </span><span style='font-weight: bold;'>term</span><span>   </span><span style='font-weight: bold;'>estimate</span><span> </span><span style='font-weight: bold;'>std.error</span><span> </span><span style='font-weight: bold;'>conf.low</span><span> </span><span style='font-weight: bold;'>conf.high</span><span> </span><span style='font-weight: bold;'>statistic</span><span> </span><span style='font-weight: bold;'>df.error</span><span>  </span><span style='font-weight: bold;'>p.value</span><span>
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> cyl       -</span><span style='color: #BB0000;'>1.98</span><span>     </span><span style='color: #949494;'>0.</span><span>449    -</span><span style='color: #BB0000;'>2.89</span><span>    -</span><span style='color: #BB0000;'>1.06</span><span>      -</span><span style='color: #BB0000;'>4.40</span><span>       28 </span><span style='color: #949494;'>0.000</span><span style='text-decoration: underline;'>141</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> am        10.2      4.30      1.36    19.0        2.36       28 </span><span style='color: #949494;'>0.0</span><span>25</span><span style='text-decoration: underline;'>3</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> cyl:am    -</span><span style='color: #BB0000;'>1.31</span><span>     </span><span style='color: #949494;'>0.</span><span>707    -</span><span style='color: #BB0000;'>2.75</span><span>     </span><span style='color: #949494;'>0.</span><span>143     -</span><span style='color: #BB0000;'>1.85</span><span>       28 </span><span style='color: #949494;'>0.0</span><span>75</span><span style='text-decoration: underline;'>5</span><span>  
-#&gt;   </span><span style='font-weight: bold;'>significance</span><span>
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> ***         
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> *           
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> ns          
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 4 x 9</span><span>
+#&gt;   </span><span style='font-weight: bold;'>term</span><span>        </span><span style='font-weight: bold;'>estimate</span><span> </span><span style='font-weight: bold;'>std.error</span><span> </span><span style='font-weight: bold;'>conf.low</span><span> </span><span style='font-weight: bold;'>conf.high</span><span> </span><span style='font-weight: bold;'>statistic</span><span> </span><span style='font-weight: bold;'>df.error</span><span>  </span><span style='font-weight: bold;'>p.value</span><span>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> (Intercept)    30.9      3.19     24.3     37.4        9.68       28 1.95</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-10</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span> cyl            -</span><span style='color: #BB0000;'>1.98</span><span>     </span><span style='color: #555555;'>0.</span><span>449    -</span><span style='color: #BB0000;'>2.89</span><span>    -</span><span style='color: #BB0000;'>1.06</span><span>      -</span><span style='color: #BB0000;'>4.40</span><span>       28 1.41</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 4</span><span>
+#&gt; </span><span style='color: #555555;'>3</span><span> am             10.2      4.30      1.36    19.0        2.36       28 2.53</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span>
+#&gt; </span><span style='color: #555555;'>4</span><span> cyl:am         -</span><span style='color: #BB0000;'>1.31</span><span>     </span><span style='color: #555555;'>0.</span><span>707    -</span><span style='color: #BB0000;'>2.75</span><span>     </span><span style='color: #555555;'>0.</span><span>143     -</span><span style='color: #BB0000;'>1.85</span><span>       28 7.55</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span>
 #&gt;   </span><span style='font-weight: bold;'>label</span><span>                                                                         
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                                                         
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> list(~widehat(italic(beta))==-1.98, ~italic(t)(28)==-4.40, ~italic(p)=='1.41e~
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> list(~widehat(italic(beta))==10.18, ~italic(t)(28)==2.36, ~italic(p)=='0.025')
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> list(~widehat(italic(beta))==-1.31, ~italic(t)(28)==-1.85, ~italic(p)=='0.076~</div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                                                         
+#&gt; </span><span style='color: #555555;'>1</span><span> list(~widehat(italic(beta))==30.87, ~italic(t)(28)==9.68, ~italic(p)=='1.95e-~
+#&gt; </span><span style='color: #555555;'>2</span><span> list(~widehat(italic(beta))==-1.98, ~italic(t)(28)==-4.40, ~italic(p)=='1.41e~
+#&gt; </span><span style='color: #555555;'>3</span><span> list(~widehat(italic(beta))==10.18, ~italic(t)(28)==2.36, ~italic(p)=='0.025')
+#&gt; </span><span style='color: #555555;'>4</span><span> list(~widehat(italic(beta))==-1.31, ~italic(t)(28)==-1.85, ~italic(p)=='0.076~</div><div class='input'>
 <span class='co'># to get a glance summary</span>
 <span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>ggcoefstats</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>mod</span>, output <span class='op'>=</span> <span class='st'>"glance"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 6</span><span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 6</span><span>
 #&gt;     </span><span style='font-weight: bold;'>aic</span><span>   </span><span style='font-weight: bold;'>bic</span><span>    </span><span style='font-weight: bold;'>r2</span><span> </span><span style='font-weight: bold;'>r2.adjusted</span><span>  </span><span style='font-weight: bold;'>rmse</span><span> </span><span style='font-weight: bold;'>sigma</span><span>
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>  166.  173. </span><span style='color: #949494;'>0.</span><span>785       </span><span style='color: #949494;'>0.</span><span>762  2.75  2.94</div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>  166.  173. </span><span style='color: #555555;'>0.</span><span>785       </span><span style='color: #555555;'>0.</span><span>762  2.75  2.94</div><div class='input'>
 <span class='co'># -------------- with custom dataframe -----------------------------------</span>
 
 <span class='co'># creating a dataframe</span>
@@ -540,7 +537,7 @@ is recommended that you install the GitHub versions of <code>parameters</code> a
   meta.analytic.effect <span class='op'>=</span> <span class='cn'>TRUE</span>,
   k <span class='op'>=</span> <span class='fl'>3</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: There were 8 divergent transitions after warmup. See</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: There were 3 divergent transitions after warmup. See</span>
 #&gt; <span class='warning'>http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup</span>
 #&gt; <span class='warning'>to find out why this is a problem and how to eliminate them.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Examine the pairs() plot to diagnose sampling problems</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Could not get model data.</span></div><div class='img'><img src='ggcoefstats-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></span></pre>

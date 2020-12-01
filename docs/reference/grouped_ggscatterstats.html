@@ -330,7 +330,7 @@ size of the largest group (across all panels). <code><a href='https://rdrr.io/r/
 used for less than 1,000 observations; otherwise <code><a href='https://rdrr.io/pkg/mgcv/man/gam.html'>mgcv::gam()</a></code> is
 used with <code>formula = y ~ s(x, bs = "cs")</code> with <code>method = "REML"</code>. Somewhat anecdotally,
 <code>loess</code> gives a better appearance, but is \(O(N^{2})\) in memory,
-so does not work for larger datasets.If you have fewer than 1,000 observations but want to use the same <code>gam()</code>
+so does not work for larger datasets.If you have fewer than 1,000 observations but want to use the same <code><a href='https://rdrr.io/pkg/gam/man/gam.html'>gam()</a></code>
 model that <code>method = NULL</code> would use, then set
 <code>method = "gam", formula = y ~ s(x, bs = "cs")</code>.</p></dd>
     <dt><code>method.args</code></dt><dd><p>List of additional arguments passed on to the modelling

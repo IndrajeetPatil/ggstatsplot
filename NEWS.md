@@ -11,7 +11,7 @@ BREAKING CHANGES
     1. As a matter of good practice, the *p*-values are adjusted by default for
        multiple comparisons.
 
-    2. The default matrix is lower type, and not the full matrix, which features
+    2. The default matrix is upper type, and not the full matrix, which features
        many redundant comparisons and self-correlations diagonally.
 
     3. Default text size for legend has been increased to 15 and background grid
@@ -42,6 +42,8 @@ MAJOR CHANGES
   - `ggpiestats` and `ggbarstats` were not supposed to support returning Bayes
     Factor for paired contingency table analysis, which is not supported in
     `BayesFactor` itself.
+
+  - `ggcoefstats` defaults to displaying the intercept term.
 
 NEW FEATURES
 

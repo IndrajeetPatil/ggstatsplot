@@ -148,7 +148,6 @@ testthat::test_that(
     # checking comparison groups and labels
     testthat::expect_identical(dat$group1, c("Action", "Action", "Comedy"))
     testthat::expect_identical(dat$group2, c("Comedy", "RomCom", "RomCom"))
-    testthat::expect_identical(dat$significance, c("ns", "***", "***"))
     testthat::expect_identical(
       dat$label,
       c(
@@ -229,7 +228,6 @@ testthat::test_that(
     # checking comparison groups and labels
     testthat::expect_identical(dat$group1, c("4", "4", "f"))
     testthat::expect_identical(dat$group2, c("f", "r", "r"))
-    testthat::expect_identical(dat$significance, c("***", "ns", "***"))
     testthat::expect_identical(
       pb$plot$labels$caption,
       ggplot2::expr(atop(
@@ -310,7 +308,6 @@ testthat::test_that(
     # checking comparison groups and labels)
     testthat::expect_identical(dat$group1, c("4", "4", "6"))
     testthat::expect_identical(dat$group2, c("6", "8", "8"))
-    testthat::expect_identical(dat$significance, c("*", "***", "*"))
     testthat::expect_identical(
       pb$plot$labels$caption,
       ggplot2::expr(atop(

@@ -190,7 +190,7 @@ ggstatsplot::ggcorrmat(
     pch.col = "white",
     pch.cex = 14
   )
-) + # modification outside ggstatsplot using ggplot functions
+) + # modification outside `ggstatsplot` using `ggplot2` functions
   ggplot2::theme(
     axis.text.x = ggplot2::element_text(
       margin = ggplot2::margin(t = 0.15, r = 0.15, b = 0.15, l = 0.15, unit = "cm")
@@ -229,8 +229,6 @@ return.
 ```{r ggcorrmat6}
 # for reproducibility
 set.seed(123)
-
-# show four digits in a tibble
 options(pillar.sigfig = 4)
 
 # getting the correlation coefficient matrix
@@ -259,7 +257,7 @@ set.seed(123)
 
 # let's use just 5% of the data to speed it up
 ggstatsplot::grouped_ggcorrmat(
-  # arguments relevant for ggstatsplot::ggcorrmat
+  # arguments relevant for `ggstatsplot::ggcorrmat`
   data = dplyr::sample_frac(tbl = ggplot2::diamonds, size = 0.05),
   type = "robust", # percentage bend correlation coefficient
   beta = 0.2, # bending constant
@@ -275,7 +273,7 @@ ggstatsplot::grouped_ggcorrmat(
     "width (in mm)",
     "depth (in mm)"
   ),
-  # arguments relevant for `ggstatsplot::combine_plots`
+  # arguments relevant for `ggstatsplot::combine_plots2`
   title.text = "Relationship between diamond attributes and price across cut",
   title.args = list(size = 16, color = "red"),
   caption.text = "Dataset: Diamonds from ggplot2 package",
