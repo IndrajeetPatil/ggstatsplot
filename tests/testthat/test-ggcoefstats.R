@@ -576,9 +576,9 @@ testthat::test_that(
     testthat::expect_identical(
       pb5$data[[4]]$label,
       c(
-        "list(~widehat(italic(beta))==0.07, ~italic(t)(NA)==0.16, ~italic(p)=='0.875')",
-        "list(~widehat(italic(beta))==0.54, ~italic(t)(NA)==1.33, ~italic(p)=='0.191')",
-        "list(~widehat(italic(beta))==0.04, ~italic(t)(NA)==1.24, ~italic(p)=='0.001')"
+        "list(~widehat(italic(beta))==0.07, ~italic(t)(Inf)==0.16, ~italic(p)=='0.875')",
+        "list(~widehat(italic(beta))==0.54, ~italic(t)(Inf)==1.33, ~italic(p)=='0.191')",
+        "list(~widehat(italic(beta))==0.04, ~italic(t)(Inf)==1.24, ~italic(p)=='0.001')"
       )
     )
 
@@ -654,7 +654,7 @@ testthat::test_that(
     tidy_df <-
       ggstatsplot::ggcoefstats(
         x = mod,
-        exclude.intercept = FALSE,
+        exclude.intercept = TRUE,
         statistic = "t",
         output = "tidy"
       )
