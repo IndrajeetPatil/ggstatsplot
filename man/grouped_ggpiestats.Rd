@@ -58,8 +58,9 @@ about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
 \item{...}{
   Arguments passed on to \code{\link[=ggpiestats]{ggpiestats}}
   \describe{
-    \item{\code{proportion.test}}{Decides whether proportion test for \code{x} variable is
-to be carried out for each level of \code{y} (Default: \code{TRUE}).}
+    \item{\code{proportion.test}}{Decides whether proportion test for \code{x} variable is to
+be carried out for each level of \code{y} (Default: \code{TRUE}). In \code{ggbarstats},
+only \emph{p}-values from this test will be displayed.}
     \item{\code{perc.k}}{Numeric that decides number of decimal places for percentage
 labels (Default: \code{0}).}
     \item{\code{label}}{Character decides what information needs to be displayed

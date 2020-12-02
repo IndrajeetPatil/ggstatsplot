@@ -825,6 +825,9 @@ ggstatsplot::ggbarstats(
 
 <img src="man/figures/README-ggbarstats1-1.png" width="100%" />
 
+(The *p*-values from one-sample proportion test are displayed on top of
+each column.)
+
 And, needless to say, there is also a `grouped_` variant of this
 function-
 

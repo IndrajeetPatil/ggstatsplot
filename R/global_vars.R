@@ -30,7 +30,8 @@ utils::globalVariables(
     "term",
     "df",
     ".label",
-    ".counts"
+    ".counts",
+    ".p.label"
   ),
   package = "ggstatsplot",
   add = FALSE

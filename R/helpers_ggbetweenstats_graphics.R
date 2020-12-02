@@ -14,7 +14,7 @@
 #' @importFrom dplyr select group_by matches mutate rowwise group_modify arrange ungroup
 #' @importFrom rlang !! enquo ensym :=
 #' @importFrom tidyr drop_na
-#' @importFrom ipmisc specify_decimal_p signif_column
+#' @importFrom ipmisc specify_decimal_p
 #'
 #' @examples
 #' # this internal function may not have much utility outside of the package

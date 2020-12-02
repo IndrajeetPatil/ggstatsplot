@@ -85,8 +85,9 @@ on the label in each pie slice. Possible options are \code{"percentage"}
 \verb{95\%} confidence/credible intervals (\code{0.95}).}
     \item{\code{k}}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2L}).}
-    \item{\code{proportion.test}}{Decides whether proportion test for \code{x} variable is
-to be carried out for each level of \code{y} (Default: \code{TRUE}).}
+    \item{\code{proportion.test}}{Decides whether proportion test for \code{x} variable is to
+be carried out for each level of \code{y} (Default: \code{TRUE}). In \code{ggbarstats},
+only \emph{p}-values from this test will be displayed.}
     \item{\code{perc.k}}{Numeric that decides number of decimal places for percentage
 labels (Default: \code{0}).}
     \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in

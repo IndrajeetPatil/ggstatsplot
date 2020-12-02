@@ -196,7 +196,6 @@ ggstatsplot::grouped_ggpiestats(
   y = Sex,
   grouping.var = Age,
   title.prefix = "Child or Adult?",
-  nboot = 10,
   perc.k = 1,
   package = "ggsci",
   palette = "category10_d3",

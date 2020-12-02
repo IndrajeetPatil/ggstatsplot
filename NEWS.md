@@ -25,10 +25,10 @@ BUG FIXES
 
   - Setting `mean.path = FALSE` in `ggwithinstats` produced incorrect colors for
     points (#470). This bug was introduced in `0.6.5` and is now fixed.
-    
+
   - If user had set `options(scipen = 999)` in their session, the *p*-value
-    formatting for `ggpiestats` and `ggcoefstats` looked super-ugly (#478).
-    This has been fixed.
+    formatting for `ggpiestats` and `ggcoefstats` looked super-ugly (#478). This
+    has been fixed.
 
 MAJOR CHANGES
 
@@ -38,7 +38,7 @@ MAJOR CHANGES
   - `ggpiestats` and `ggbarstats` don't support returning dataframes. See FAQ
     vignette on how to get these dataframes:
     <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/faq.html#faq-1>
-    
+
   - `ggpiestats` and `ggbarstats` were not supposed to support returning Bayes
     Factor for paired contingency table analysis, which is not supported in
     `BayesFactor` itself.
@@ -46,6 +46,10 @@ MAJOR CHANGES
   - `ggcoefstats` defaults to displaying the intercept term. Also, when the
     degrees of freedom are not available for `t`-statistic, they are displayed
     to be `Inf`, in keeping with `easystats` conventions.
+
+  - Instead of showing significance of *p*-values with APA's asterisks
+    conventions, `ggbarstats` now instead shows the actual *p*-values from
+    one-sample proportion tests.
 
 NEW FEATURES
 

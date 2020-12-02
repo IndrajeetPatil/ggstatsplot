@@ -203,14 +203,10 @@ ggbarstats <- function(data,
     p <- p +
       ggplot2::geom_text(
         data = df_proptest,
-        mapping = ggplot2::aes(
-          x = {{ y }},
-          y = 1.05,
-          label = significance,
-          fill = NULL
-        ),
-        size = 5,
-        na.rm = TRUE
+        mapping = ggplot2::aes(x = {{ y }}, y = 1.05, label = .p.label, fill = NULL),
+        size = 2.8,
+        na.rm = TRUE,
+        parse = TRUE
       )
   }
 
@@ -219,12 +215,7 @@ ggbarstats <- function(data,
     p <- p +
       ggplot2::geom_text(
         data = df_proptest,
-        mapping = ggplot2::aes(
-          x = {{ y }},
-          y = -0.05,
-          label = N,
-          fill = NULL
-        ),
+        mapping = ggplot2::aes(x = {{ y }}, y = -0.05, label = N, fill = NULL),
         size = 4,
         na.rm = TRUE
       )

@@ -436,7 +436,7 @@ is recommended that you install the GitHub versions of <code>parameters</code> a
 <span class='co'># -------------- with model object --------------------------------------</span>
 
 <span class='co'># model object</span>
-<span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/VGAM/man/notdocumentedyet.html'>lm</a></span><span class='op'>(</span>formula <span class='op'>=</span> <span class='va'>mpg</span> <span class='op'>~</span> <span class='va'>cyl</span> <span class='op'>*</span> <span class='va'>am</span>, data <span class='op'>=</span> <span class='va'>mtcars</span><span class='op'>)</span>
+<span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span>formula <span class='op'>=</span> <span class='va'>mpg</span> <span class='op'>~</span> <span class='va'>cyl</span> <span class='op'>*</span> <span class='va'>am</span>, data <span class='op'>=</span> <span class='va'>mtcars</span><span class='op'>)</span>
 
 <span class='co'># to get a plot</span>
 <span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>ggcoefstats</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>mod</span>, output <span class='op'>=</span> <span class='st'>"plot"</span><span class='op'>)</span>

@@ -44,8 +44,7 @@ df_descriptive <- function(data,
 
 # creating a dataframe with counts
 cat_counter <- function(data, x, y = NULL, ...) {
-  data %>%
-    dplyr::group_by(.data = ., {{ y }}, {{ x }}, .drop = TRUE) %>%
+  dplyr::group_by(.data = data, {{ y }}, {{ x }}, .drop = TRUE) %>%
     dplyr::tally(x = ., name = "counts") %>%
     dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
     dplyr::ungroup(.) %>%
@@ -60,8 +59,8 @@ cat_counter <- function(data, x, y = NULL, ...) {
 #'
 #' @noRd
 
-# combine info about sample size plus
-df_proptest <- function(data, x, y, k = 3L, ...) {
+# combine info about sample size plus proportion test
+df_proptest <- function(data, x, y, k = 2L, ...) {
   dplyr::full_join(
     # descriptives
     x = cat_counter(data = data, x = {{ y }}) %>%
@@ -69,9 +68,7 @@ df_proptest <- function(data, x, y, k = 3L, ...) {
     # proportion tests
     y = dplyr::group_by(data, {{ y }}) %>%
       dplyr::group_modify(.f = ~ chisq_test_safe(., {{ x }})) %>%
-      dplyr::ungroup(.) %>%
-      ipmisc::signif_column(data = ., p = p.value) %>%
-      dplyr::filter(.data = ., !is.na(significance)),
+      dplyr::ungroup(.),
     by = rlang::as_name(rlang::ensym(y))
   ) %>%
     dplyr::rowwise() %>%
@@ -87,7 +84,8 @@ df_proptest <- function(data, x, y, k = 3L, ...) {
         "', ~italic(n)==",
         counts,
         ")"
-      )
+      ),
+      .p.label = paste0("list(~italic(p)=='", specify_decimal_p(p.value, k, TRUE), "')")
     ) %>%
     dplyr::ungroup()
 }

@@ -159,11 +159,11 @@ testthat::test_that(
             "mapped_discrete",
             "numeric"
           )),
-          label = c("ns", "***"),
+          label = c("list(~italic(p)=='0.388')", "list(~italic(p)=='1.08e-225')"),
           PANEL = structure(c(1L, 1L), class = "factor", .Label = "1"),
           group = structure(2:1, n = 2L),
           colour = c("black", "black"),
-          size = c(5, 5),
+          size = c(2.8, 2.8),
           angle = c(0, 0),
           hjust = c(0.5, 0.5),
           vjust = c(0.5, 0.5),

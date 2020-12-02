@@ -12,8 +12,9 @@
 #'   (a goodness of fit test) will be run for the `x` variable. Otherwise an
 #'   appropriate association test will be run. This argument can not be `NULL`
 #'   for `ggbarstats` function.
-#' @param proportion.test Decides whether proportion test for `x` variable is
-#'   to be carried out for each level of `y` (Default: `TRUE`).
+#' @param proportion.test Decides whether proportion test for `x` variable is to
+#'   be carried out for each level of `y` (Default: `TRUE`). In `ggbarstats`,
+#'   only *p*-values from this test will be displayed.
 #' @param perc.k Numeric that decides number of decimal places for percentage
 #'   labels (Default: `0`).
 #' @param label Character decides what information needs to be displayed

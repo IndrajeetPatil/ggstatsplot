@@ -85,8 +85,9 @@ This can be helpful in case the labels are overlapping.}
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2L}).}
 
-\item{proportion.test}{Decides whether proportion test for \code{x} variable is
-to be carried out for each level of \code{y} (Default: \code{TRUE}).}
+\item{proportion.test}{Decides whether proportion test for \code{x} variable is to
+be carried out for each level of \code{y} (Default: \code{TRUE}). In \code{ggbarstats},
+only \emph{p}-values from this test will be displayed.}
 
 \item{perc.k}{Numeric that decides number of decimal places for percentage
 labels (Default: \code{0}).}

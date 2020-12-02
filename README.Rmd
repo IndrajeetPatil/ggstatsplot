@@ -736,6 +736,8 @@ ggstatsplot::ggbarstats(
 )
 ```
 
+(The *p*-values from one-sample proportion test are displayed on top of each bar.)
+
 And, needless to say, there is also a `grouped_` variant of this function-
 
 ```{r ggbarstats2, fig.height = 12, fig.width = 10}
