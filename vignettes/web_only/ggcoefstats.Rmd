@@ -4227,6 +4227,8 @@ ggstatsplot::ggcoefstats(
 
 ## Bayesian latent variable model (`blavaan`)
 
+Too time-consuming to be run here, so currently skipped.
+
 ```{r blavaan, fig.height = 10, fig.width = 6, eval=FALSE}
 # setup
 set.seed(123)

@@ -201,7 +201,7 @@
 <p><code>ggcorrmat</code> defaults have changed significantly:</p>
 <ol>
 <li><p>As a matter of good practice, the <em>p</em>-values are adjusted by default for multiple comparisons.</p></li>
-<li><p>The default matrix is lower type, and not the full matrix, which features many redundant comparisons and self-correlations diagonally.</p></li>
+<li><p>The default matrix is upper type, and not the full matrix, which features many redundant comparisons and self-correlations diagonally.</p></li>
 <li><p>Default text size for legend has been increased to 15 and background grid has been removed.</p></li>
 </ol>
 </li>
@@ -217,6 +217,7 @@
 <li><p>Drops <code>broomExtra</code> from dependencies. All regression modeling-related analysis now relies on <code>easystats</code> ecosystem.</p></li>
 <li><p><code>ggpiestats</code> and <code>ggbarstats</code> don’t support returning dataframes. See FAQ vignette on how to get these dataframes: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/faq.html#faq-1" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/faq.html#faq-1</a></p></li>
 <li><p><code>ggpiestats</code> and <code>ggbarstats</code> were not supposed to support returning Bayes Factor for paired contingency table analysis, which is not supported in <code>BayesFactor</code> itself.</p></li>
+<li><p><code>ggcoefstats</code> defaults to displaying the intercept term. Also, when the degrees of freedom are not available for <code>t</code>-statistic, they are displayed to be <code>Inf</code>, in keeping with <code>easystats</code> conventions.</p></li>
 </ul>
 <p>NEW FEATURES</p>
 <ul>

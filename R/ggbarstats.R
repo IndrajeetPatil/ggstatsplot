@@ -68,11 +68,8 @@ ggbarstats <- function(data,
                        ggplot.component = NULL,
                        output = "plot",
                        ...) {
-
-  # ensure the variables work quoted or unquoted
-  x <- rlang::ensym(x)
-  y <- rlang::ensym(y)
-  counts <- if (!rlang::quo_is_null(rlang::enquo(counts))) rlang::ensym(counts)
+  # make sure both quoted and unquoted arguments are allowed
+  c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
 
   # this is currently not supported in `BayesFactor`
   if (isTRUE(paired)) bf.message <- FALSE
@@ -89,25 +86,14 @@ ggbarstats <- function(data,
 
   # creating a dataframe
   data %<>%
-    dplyr::select(.data = ., {{ x }}, {{ y }}, {{ counts }}) %>%
+    dplyr::select(.data = ., {{ x }}, {{ y }}, .counts = {{ counts }}) %>%
     tidyr::drop_na(data = .) %>%
     as_tibble(x = .)
 
-  # =========================== converting counts ============================
-
   # untable the dataframe based on the count for each observation
-  if (!rlang::quo_is_null(rlang::enquo(counts))) {
-    data %<>%
-      tidyr::uncount(
-        data = .,
-        weights = {{ counts }},
-        .remove = TRUE,
-        .id = "id"
-      )
-  }
+  if (".counts" %in% names(data)) data %<>% tidyr::uncount(data = ., weights = .counts)
 
-  # x and y need to be a factor for this analysis
-  # also drop the unused levels of the factors
+  # x and y need to be a factor; also drop the unused levels of the factors
   data %<>%
     dplyr::mutate(
       {{ x }} := droplevels(as.factor({{ x }})),
@@ -161,11 +147,7 @@ ggbarstats <- function(data,
 
   # return early if anything other than plot
   if (output != "plot") {
-    return(switch(
-      EXPR = output,
-      "subtitle" = subtitle,
-      "caption" = caption
-    ))
+    return(switch(EXPR = output, "caption" = caption, subtitle))
   }
 
   # =================================== plot =================================

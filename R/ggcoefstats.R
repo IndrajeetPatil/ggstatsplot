@@ -277,8 +277,8 @@ ggcoefstats <- function(x,
 
       # final cleanup
       tidy_df %<>%
-        dplyr::filter(.data = ., !is.na(statistic)) %>% # for `aovlist` objects
-        dplyr::rename(.data = ., "df1" = "df")
+        dplyr::filter(!is.na(statistic)) %>% # for `aovlist` objects
+        dplyr::rename("df1" = "df")
 
       # renaming the `xlab` according to the estimate chosen
       xlab <- paste("partial", " ", effsize, "-squared", sep = "")
@@ -287,7 +287,7 @@ ggcoefstats <- function(x,
         parameters::model_parameters(
           model = x,
           ci = conf.level,
-          # verbose = FALSE,
+          verbose = FALSE,
           ...
         ) %>%
         insight::standardize_names(data = ., style = "broom")
@@ -319,8 +319,8 @@ ggcoefstats <- function(x,
   # create a new term column if it's not present
   if (!"term" %in% names(tidy_df)) {
     tidy_df %<>%
-      dplyr::mutate(.data = ., term = dplyr::row_number()) %>%
-      dplyr::mutate(.data = ., term = paste("term", term, sep = "_"))
+      dplyr::mutate(term = dplyr::row_number()) %>%
+      dplyr::mutate(term = paste("term", term, sep = "_"))
   }
 
   # ================ check for duplicate terms and columns ===================
@@ -355,12 +355,6 @@ ggcoefstats <- function(x,
 
     # stop displaying whiskers
     conf.int <- FALSE
-
-    # inform the user that skipping labels for the same reason
-    message(cat(
-      "Note: No confidence intervals available for regression coefficients,\n",
-      "so whiskers in the plot will be skipped.\n"
-    ))
   }
 
   # ================================ intercept ================================
@@ -459,8 +453,8 @@ ggcoefstats <- function(x,
 
   # whether the term need to be arranged in any specified order
   tidy_df %<>%
-    dplyr::mutate(.data = ., term = as.factor(term)) %>%
-    dplyr::mutate(.data = ., rowid = dplyr::row_number())
+    dplyr::mutate(term = as.factor(term)) %>%
+    dplyr::mutate(rowid = dplyr::row_number())
 
   # sorting factor levels
   new_order <-
@@ -474,9 +468,9 @@ ggcoefstats <- function(x,
 
   # sorting `term` factor levels according to new sorting order
   tidy_df %<>%
-    dplyr::mutate(.data = ., term = as.character(term)) %>%
-    dplyr::mutate(.data = ., term = factor(x = term, levels = term[new_order])) %>%
-    dplyr::select(.data = ., -rowid)
+    dplyr::mutate(term = as.character(term)) %>%
+    dplyr::mutate(term = factor(x = term, levels = term[new_order])) %>%
+    dplyr::select(-rowid)
 
   # ========================== basic plot ===================================
 
@@ -540,8 +534,8 @@ ggcoefstats <- function(x,
       # computing the number of colors in a given palette
       palette_df <-
         as_tibble(paletteer::palettes_d_names) %>%
-        dplyr::filter(.data = ., package == !!package, palette == !!palette) %>%
-        dplyr::select(.data = ., length)
+        dplyr::filter(package == !!package, palette == !!palette) %>%
+        dplyr::select(length)
 
       # if insufficient number of colors are available in a given palette
       if (palette_df$length[[1]] < length(tidy_df$term)) stats.label.color <- "black"

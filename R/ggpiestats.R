@@ -96,7 +96,9 @@ ggpiestats <- function(data,
   # ensure the variables work quoted or unquoted
   x <- rlang::ensym(x)
   y <- if (!rlang::quo_is_null(rlang::enquo(y))) rlang::ensym(y)
-  counts <- if (!rlang::quo_is_null(rlang::enquo(counts))) rlang::ensym(counts)
+
+  # one-way or two-way table?
+  test <- ifelse(!rlang::quo_is_null(rlang::enquo(y)), "two.way", "one.way")
 
   # this is currently not supported in `BayesFactor`
   if (isTRUE(paired)) bf.message <- FALSE
@@ -108,23 +110,14 @@ ggpiestats <- function(data,
 
   # creating a dataframe
   data %<>%
-    dplyr::select(.data = ., {{ x }}, {{ y }}, {{ counts }}) %>%
+    dplyr::select(.data = ., {{ x }}, {{ y }}, .counts = {{ counts }}) %>%
     tidyr::drop_na(data = .) %>%
-    as_tibble(.)
+    as_tibble(x = .)
 
   # untable the dataframe based on the count for each observation
-  if (!rlang::quo_is_null(rlang::enquo(counts))) {
-    data %<>%
-      tidyr::uncount(
-        data = .,
-        weights = {{ counts }},
-        .remove = TRUE,
-        .id = "id"
-      )
-  }
+  if (".counts" %in% names(data)) data %<>% tidyr::uncount(data = ., weights = .counts)
 
-  # x and y need to be a factor for this analysis
-  # also drop the unused levels of the factors
+  # x and y need to be a factor; also drop the unused levels of the factors
 
   # x
   data %<>% dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }})))
@@ -185,11 +178,7 @@ ggpiestats <- function(data,
 
   # return early if anything other than plot
   if (output != "plot") {
-    return(switch(
-      EXPR = output,
-      "subtitle" = subtitle,
-      "caption" = caption
-    ))
+    return(switch(EXPR = output, "caption" = caption, subtitle))
   }
 
   # =================================== plot =================================
@@ -198,9 +187,7 @@ ggpiestats <- function(data,
   df_descriptive <- df_descriptive(data, {{ x }}, {{ y }}, label, perc.k)
 
   # dataframe containing all details needed for prop test
-  if (!rlang::quo_is_null(rlang::enquo(y))) {
-    df_proptest <- df_proptest(data, {{ x }}, {{ y }}, k)
-  }
+  if (test == "two.way") df_proptest <- df_proptest(data, {{ x }}, {{ y }}, k)
 
   # if no. of factor levels is greater than the default palette color count
   palette_message(
@@ -221,11 +208,8 @@ ggpiestats <- function(data,
     )
 
   # whether labels need to be repelled
-  if (isTRUE(label.repel)) {
-    .fn <- ggrepel::geom_label_repel
-  } else {
-    .fn <- ggplot2::geom_label
-  }
+  if (isTRUE(label.repel)) .fn <- ggrepel::geom_label_repel
+  if (isFALSE(label.repel)) .fn <- ggplot2::geom_label
 
   # adding label with percentages and/or counts
   suppressWarnings(suppressMessages(p <- p +

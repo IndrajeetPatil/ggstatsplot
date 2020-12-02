@@ -123,7 +123,7 @@ ggcorrmat <- function(data,
   if (!is.null(cor.vars.names)) {
     # check if number of cor.vars is equal to the number of names entered
     if (length(df) != length(cor.vars.names)) {
-      message("Warning: Mismatch between number of variable and entered names.")
+      message("Warning: Mismatch between number of variables and names.")
     } else {
       colnames(df) <- cor.vars.names
     }
@@ -157,7 +157,7 @@ ggcorrmat <- function(data,
   # ===================== statistics ========================================
 
   # creating a dataframe of results
-  df_correlation <-
+  df_corr <-
     statsExpressions::correlation(
       data = df,
       method = corr.method,
@@ -171,7 +171,7 @@ ggcorrmat <- function(data,
 
   # early stats return
   if (output != "plot") {
-    return(tibble::as_tibble(df_correlation) %>%
+    return(tibble::as_tibble(df_corr) %>%
       dplyr::rename_all(., tolower) %>%
       dplyr::rename(., nobs = n_obs))
   }
@@ -179,8 +179,8 @@ ggcorrmat <- function(data,
   # ========================== plot =========================================
 
   # create matrices for correlation coefficients and p-values
-  corr.mat <- as.matrix(dplyr::select(df_correlation, dplyr::matches("^parameter|^r")))
-  p.mat <- as.matrix(dplyr::select(df_correlation, dplyr::matches("^parameter|^p")))
+  corr.mat <- as.matrix(dplyr::select(df_corr, dplyr::matches("^parameter|^r")))
+  p.mat <- as.matrix(dplyr::select(df_corr, dplyr::matches("^parameter|^p")))
 
   # creating the basic plot
   # if user has not specified colors, then use a color palette
@@ -220,11 +220,11 @@ ggcorrmat <- function(data,
         atop(
           atop(
             scriptstyle(bold("sample size:")),
-            italic(n)[min] ~ "=" ~ .(min(df_correlation$n_Obs))
+            italic(n)[min] ~ "=" ~ .(min(df_corr$n_Obs))
           ),
           atop(
-            italic(n)[mode] ~ "=" ~ .(getmode(df_correlation$n_Obs)),
-            italic(n)[max] ~ "=" ~ .(max(df_correlation$n_Obs))
+            italic(n)[mode] ~ "=" ~ .(getmode(df_corr$n_Obs)),
+            italic(n)[max] ~ "=" ~ .(max(df_corr$n_Obs))
           )
         ),
         atop(

@@ -43,7 +43,9 @@ MAJOR CHANGES
     Factor for paired contingency table analysis, which is not supported in
     `BayesFactor` itself.
 
-  - `ggcoefstats` defaults to displaying the intercept term.
+  - `ggcoefstats` defaults to displaying the intercept term. Also, when the
+    degrees of freedom are not available for `t`-statistic, they are displayed
+    to be `Inf`, in keeping with `easystats` conventions.
 
 NEW FEATURES
 

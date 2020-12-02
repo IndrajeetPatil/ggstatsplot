@@ -63,7 +63,7 @@ set.seed(123)
 
 # needed library (download from GitHub)
 if (isFALSE("ggpomological" %in% installed.packages())) {
-  devtools::install_github("gadenbuie/ggpomological")
+  remotes::install_github("gadenbuie/ggpomological")
 }
 
 # setup

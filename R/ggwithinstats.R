@@ -206,13 +206,9 @@ ggwithinstats <- function(data,
       )
   }
 
-  # quit early if only subtitle is needed
-  if (output %in% c("subtitle", "caption")) {
-    return(switch(
-      EXPR = output,
-      "subtitle" = subtitle,
-      "caption" = caption
-    ))
+  # return early if anything other than plot
+  if (output != "plot") {
+    return(switch(EXPR = output, "caption" = caption, subtitle))
   }
 
   # --------------------------------- basic plot ------------------------------

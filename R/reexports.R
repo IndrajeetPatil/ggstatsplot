@@ -17,14 +17,6 @@ ipmisc::`%$%`
 ipmisc::`%<-%`
 
 #' @export
-#' @importFrom ipmisc "%||%"
-ipmisc::`%||%`
-
-#' @export
-#' @importFrom ipmisc "%|%"
-ipmisc::`%|%`
-
-#' @export
 #' @importFrom ipmisc tibble
 ipmisc::tibble
 

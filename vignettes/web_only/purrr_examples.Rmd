@@ -58,7 +58,7 @@ We will see how to overcome this limitation by combining `ggstatsplot` with the
    can be a string (`"x"`) or a symbol (`x`), while using `purrr::pmap`, we
    **must** input the arguments as strings.
 
- * You can use `ggplot2` themes from extension packages (like `ggthemes`).
+ * You can use `ggplot2` themes from extension packages (e.g. `ggthemes`).
 
  * If you'd like some more background or an introduction to the purrr package,
    please see [this tutorial](https://jennybc.github.io/purrr-tutorial/).

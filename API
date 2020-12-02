@@ -31,8 +31,6 @@ magrittr::%$%
 zeallot::%<-%
 magrittr::%<>%
 magrittr::%>%
-rlang::%|%
-rlang::%||%
 tibble::as_tibble
 tibble::enframe
 tibble::tibble

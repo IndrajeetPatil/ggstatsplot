@@ -16,9 +16,7 @@ ggcoefstats_label_maker <- function(tidy_df,
                                     effsize = "eta",
                                     ...) {
 
-  #----------------------- p-value cleanup ------------------------------------
-
-  # formatting the p-values
+  # all operations will have to be done rowwise
   tidy_df %<>% dplyr::rowwise()
 
   #--------------------------- t-statistic ------------------------------------
@@ -26,7 +24,7 @@ ggcoefstats_label_maker <- function(tidy_df,
   # if the statistic is t-value
   if (statistic == "t") {
     # if not present, add NA column for dfs
-    if (!"df.error" %in% names(tidy_df)) tidy_df %<>% dplyr::mutate(df.error = NA)
+    if (!"df.error" %in% names(tidy_df)) tidy_df %<>% dplyr::mutate(df.error = Inf)
 
     tidy_df %<>%
       dplyr::mutate(
