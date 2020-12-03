@@ -25,6 +25,7 @@
 #' @inherit ggpiestats return details
 #'
 #' @examples
+#' \donttest{
 #' # for reproducibility
 #' set.seed(123)
 #'
@@ -34,6 +35,7 @@
 #'   x = vs,
 #'   y = cyl
 #' )
+#' }
 #' @export
 
 # defining the function

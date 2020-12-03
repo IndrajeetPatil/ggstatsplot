@@ -208,6 +208,7 @@ and \code{method = 'lm'}. If these arguments are different, only plot will be re
 }
 }
 \examples{
+\donttest{
 # to get reproducible results from bootstrapping
 set.seed(123)
 library(ggstatsplot)
@@ -223,6 +224,7 @@ ggstatsplot::ggscatterstats(
   label.var = car,
   label.expression = wt < 4 & mpg < 20
 )
+}
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html}

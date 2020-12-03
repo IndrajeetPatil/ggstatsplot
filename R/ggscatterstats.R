@@ -69,6 +69,7 @@
 #' and `method = 'lm'`. If these arguments are different, only plot will be returned.
 #'
 #' @examples
+#' \donttest{
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
 #' library(ggstatsplot)
@@ -84,6 +85,7 @@
 #'   label.var = car,
 #'   label.expression = wt < 4 & mpg < 20
 #' )
+#' }
 #' @export
 
 # defining the function

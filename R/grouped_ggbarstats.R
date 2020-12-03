@@ -22,6 +22,7 @@
 #' @inherit ggbarstats return return
 #'
 #' @examples
+#' \donttest{
 #' # for reproducibility
 #' set.seed(123)
 #'
@@ -38,11 +39,10 @@
 #'   x = color,
 #'   y = clarity,
 #'   grouping.var = cut,
-#'   results.subtitle = FALSE,
 #'   title.prefix = "Quality",
-#'   bar.label = "both",
 #'   plotgrid.args = list(nrow = 2)
 #' )
+#' }
 #' @export
 
 # defining the function

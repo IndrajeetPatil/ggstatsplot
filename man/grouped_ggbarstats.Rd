@@ -153,6 +153,7 @@ function across multiple levels of a given factor and combining the
 resulting plots using \code{ggstatsplot::combine_plots}.
 }
 \examples{
+\donttest{
 # for reproducibility
 set.seed(123)
 
@@ -169,11 +170,10 @@ ggstatsplot::grouped_ggbarstats(
   x = color,
   y = clarity,
   grouping.var = cut,
-  results.subtitle = FALSE,
   title.prefix = "Quality",
-  bar.label = "both",
   plotgrid.args = list(nrow = 2)
 )
+}
 }
 \seealso{
 \code{\link{ggbarstats}}, \code{\link{ggpiestats}},

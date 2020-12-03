@@ -11,7 +11,9 @@
 #' @importFrom rlang enquo quo_text ensym quo_is_null
 #'
 #' @examples
+#' \donttest{
 #' ggstatsplot:::grouped_list(data = ggplot2::msleep, grouping.var = vore)
+#' }
 #' @keywords internal
 
 # function body

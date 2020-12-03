@@ -20,6 +20,7 @@
 #' @inherit ggpiestats return return
 #'
 #' @examples
+#' \donttest{
 #' # grouped one-sample proportion test
 #' # let's skip statistical analysis
 #' ggstatsplot::grouped_ggpiestats(
@@ -28,6 +29,7 @@
 #'   x = cyl,
 #'   results.subtitle = FALSE
 #' )
+#' }
 #' @export
 
 # defining the function

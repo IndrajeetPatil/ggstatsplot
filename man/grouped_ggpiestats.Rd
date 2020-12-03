@@ -149,6 +149,7 @@ function across multiple levels of a given factor and combining the
 resulting plots using \code{ggstatsplot::combine_plots}.
 }
 \examples{
+\donttest{
 # grouped one-sample proportion test
 # let's skip statistical analysis
 ggstatsplot::grouped_ggpiestats(
@@ -157,6 +158,7 @@ ggstatsplot::grouped_ggpiestats(
   x = cyl,
   results.subtitle = FALSE
 )
+}
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}

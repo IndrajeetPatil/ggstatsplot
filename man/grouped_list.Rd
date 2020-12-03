@@ -19,6 +19,8 @@ of the list equal to the factor levels of the grouping variable. Each
 element of the list will be a tibble.
 }
 \examples{
+\donttest{
 ggstatsplot:::grouped_list(data = ggplot2::msleep, grouping.var = vore)
+}
 }
 \keyword{internal}
