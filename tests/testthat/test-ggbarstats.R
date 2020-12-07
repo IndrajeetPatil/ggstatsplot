@@ -301,7 +301,8 @@ testthat::test_that(
       ggstatsplot::ggbarstats(
         data = mtcars_small,
         x = cyl,
-        y = am
+        y = am,
+        results.subtitle = NULL
       )
 
     pb <- ggplot2::ggplot_build(p)
@@ -446,31 +447,7 @@ testthat::test_that(
         x = "am",
         y = NULL,
         title = NULL,
-        subtitle = ggplot2::expr(paste(
-          chi["gof"]^2,
-          "(",
-          "2",
-          ") = ",
-          "7.68",
-          ", ",
-          italic("p"),
-          " = ",
-          "0.021",
-          ", ",
-          widehat(italic("V"))["Cramer"],
-          " = ",
-          "0.41",
-          ", CI"["95%"],
-          " [",
-          "0.00",
-          ", ",
-          "0.67",
-          "]",
-          ", ",
-          italic("n")["obs"],
-          " = ",
-          19L
-        )),
+        subtitle = NULL,
         caption = NULL,
         fill = "cyl",
         label = ".label",

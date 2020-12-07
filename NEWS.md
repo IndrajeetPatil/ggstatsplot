@@ -1,3 +1,9 @@
+# ggstatsplot 0.6.6.9000
+
+MINOR CHANGES
+
+  - `ggcorrmat` uses pretty formatting to display sample size information.
+
 # ggstatsplot 0.6.6
 
 BREAKING CHANGES

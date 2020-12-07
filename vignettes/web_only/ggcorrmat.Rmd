@@ -255,10 +255,10 @@ in a given study, groups in a study sample, different studies, etc.
 # for reproducibility
 set.seed(123)
 
-# let's use just 5% of the data to speed it up
+# let's use just 10% of the data to speed it up
 ggstatsplot::grouped_ggcorrmat(
   # arguments relevant for `ggstatsplot::ggcorrmat`
-  data = dplyr::sample_frac(tbl = ggplot2::diamonds, size = 0.05),
+  data = dplyr::sample_frac(tbl = ggplot2::diamonds, size = 0.1),
   type = "robust", # percentage bend correlation coefficient
   beta = 0.2, # bending constant
   grouping.var = cut,

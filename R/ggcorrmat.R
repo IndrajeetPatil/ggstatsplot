@@ -206,7 +206,7 @@ ggcorrmat <- function(data,
       bquote(atop(
         atop(
           scriptstyle(bold("sample size:")),
-          italic(n) ~ "=" ~ .(nrow(df))
+          italic(n) ~ "=" ~ .(.prettyNum(nrow(df)))
         ),
         atop(
           scriptstyle(bold("correlation:")),
@@ -220,11 +220,11 @@ ggcorrmat <- function(data,
         atop(
           atop(
             scriptstyle(bold("sample size:")),
-            italic(n)[min] ~ "=" ~ .(min(df_corr$n_Obs))
+            italic(n)[min] ~ "=" ~ .(.prettyNum(min(df_corr$n_Obs)))
           ),
           atop(
-            italic(n)[mode] ~ "=" ~ .(getmode(df_corr$n_Obs)),
-            italic(n)[max] ~ "=" ~ .(max(df_corr$n_Obs))
+            italic(n)[mode] ~ "=" ~ .(.prettyNum(getmode(df_corr$n_Obs))),
+            italic(n)[max] ~ "=" ~ .(.prettyNum(max(df_corr$n_Obs)))
           )
         ),
         atop(

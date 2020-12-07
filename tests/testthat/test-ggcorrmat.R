@@ -155,7 +155,7 @@ testthat::test_that(
       p_legend_title,
       ggplot2::expr(atop(
         atop(scriptstyle(bold("sample size:")), italic(n) ~
-        "=" ~ 150L),
+        "=" ~ "150"),
         atop(
           scriptstyle(bold("correlation:")),
           "Pearson"
@@ -279,10 +279,10 @@ testthat::test_that(
       p_legend_title,
       ggplot2::expr(atop(atop(
         atop(scriptstyle(bold("sample size:")), italic(n)[min] ~
-        "=" ~ 30L),
+        "=" ~ "30"),
         atop(
-          italic(n)[mode] ~ "=" ~ 32L,
-          italic(n)[max] ~ "=" ~ 83L
+          italic(n)[mode] ~ "=" ~ "32",
+          italic(n)[max] ~ "=" ~ "83"
         )
       ), atop(
         scriptstyle(
@@ -361,10 +361,10 @@ testthat::test_that(
       p_legend_title,
       ggplot2::expr(atop(atop(
         atop(scriptstyle(bold("sample size:")), italic(n)[min] ~
-        "=" ~ 32L),
+        "=" ~ "32"),
         atop(
-          italic(n)[mode] ~ "=" ~ 32L,
-          italic(n)[max] ~ "=" ~ 83L
+          italic(n)[mode] ~ "=" ~ "32",
+          italic(n)[max] ~ "=" ~ "83"
         )
       ), atop(
         scriptstyle(

@@ -62,7 +62,7 @@ there are four levels this will be \code{ratio = c(0.25,0.25,0.25,0.25)}, etc.}
 
 \item{paired}{Logical indicating whether data came from a within-subjects or
 repeated measures design study (Default: \code{FALSE}). If \code{TRUE}, McNemar's
-test subtitle will be returned. If \code{FALSE}, Pearson's chi-square test will
+test expression will be returned. If \code{FALSE}, Pearson's chi-square test will
 be returned.}
 
 \item{results.subtitle}{Decides whether the results of statistical tests are

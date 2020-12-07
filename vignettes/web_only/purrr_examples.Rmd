@@ -96,7 +96,7 @@ You can pass:
 # `ggbetweenstats`
 
 Let's start with `ggebtweenstats`. We'll use the `gapminder` dataset. We'll make
-a 3 item named `list` called `data_list` using `dplyr::filter` and `split`.
+a 3 item `list` called `year_list` using `dplyr::filter` and `split`.
 
 ```{r purrr_ggbetweenstats1, fig.height = 12, fig.width = 7}
 # for reproducibility

@@ -2291,14 +2291,13 @@ ggstatsplot::ggcoefstats(
 ```{r mlm, fig.height = 5, fig.width = 6}
 # setup
 set.seed(123)
+library(effectsize)
 
 # model (converting all numeric columns in data to z-scores)
 mod <-
   stats::lm(
     formula = cbind(mpg, disp) ~ wt,
-    data = purrr::modify_if(.x = mtcars, .p = is.numeric, ~ {
-      as.numeric(scale(.x))
-    })
+    data = effectsize::standardize(mtcars)
   )
 
 # plot
@@ -2459,7 +2458,6 @@ set.seed(123)
 library(ggstatsplot)
 
 # specifying the model (note the error structure)
-# let's use 20% of the sample to speed up the analysis
 mod <- stats::aov(
   formula = value ~ attribute * measure + Error(id / (attribute * measure)),
   data = iris_long
@@ -2664,10 +2662,15 @@ library(mlogit)
 
 # data
 data("Fishing", package = "mlogit")
-Fish <- mlogit.data(Fishing, varying = c(2:9), shape = "wide", choice = "mode")
+Fish <-
+  mlogit::mlogit.data(Fishing,
+    varying = c(2:9),
+    shape = "wide",
+    choice = "mode"
+  )
 
 # a "mixed" model
-m <- mlogit(mode ~ price + catch | income, data = Fish)
+m <- mlogit::mlogit(mode ~ price + catch | income, data = Fish)
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -4233,7 +4236,6 @@ Too time-consuming to be run here, so currently skipped.
 # setup
 set.seed(123)
 library(blavaan)
-future::plan("multiprocess")
 
 # The Holzinger and Swineford (1939) example
 HS.model <- " visual =~ x1 + x2 + x3

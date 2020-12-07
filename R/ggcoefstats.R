@@ -251,25 +251,25 @@ ggcoefstats <- function(x,
   # =========================== tidy it ====================================
 
   if (isTRUE(insight::is_model(x))) {
+    # which effect size?
+    eta_squared <- omega_squared <- NULL
+    if (effsize == "eta") eta_squared <- "partial"
+    if (effsize == "omega") omega_squared <- "partial"
+
+    # converting model object to a tidy dataframe
+    tidy_df <-
+      parameters::model_parameters(
+        model = x,
+        eta_squared = eta_squared,
+        omega_squared = omega_squared,
+        ci = conf.level,
+        verbose = FALSE,
+        ...
+      ) %>%
+      insight::standardize_names(data = ., style = "broom") %>%
+      dplyr::rename_all(., ~ gsub("omega2.|eta2.", "", .x))
+
     if (class(x)[[1]] %in% c("aov", "aovlist", "anova", "Gam", "manova", "maov")) {
-      # which effect size?
-      eta_squared <- omega_squared <- NULL
-      if (effsize == "eta") eta_squared <- "partial"
-      if (effsize == "omega") omega_squared <- "partial"
-
-      # stats details
-      tidy_df <-
-        parameters::model_parameters(
-          model = x,
-          eta_squared = eta_squared,
-          omega_squared = omega_squared,
-          ci = conf.level,
-          verbose = FALSE,
-          ...
-        ) %>%
-        insight::standardize_names(data = ., style = "broom") %>%
-        dplyr::rename_all(., ~ gsub("omega2.|eta2.", "", .x))
-
       # creating numerator and denominator degrees of freedom
       if (dim(dplyr::filter(tidy_df, term == "Residuals"))[[1]] > 0L) {
         tidy_df$df2 <- tidy_df$df[nrow(tidy_df)]
@@ -282,15 +282,6 @@ ggcoefstats <- function(x,
 
       # renaming the `xlab` according to the estimate chosen
       xlab <- paste("partial", " ", effsize, "-squared", sep = "")
-    } else {
-      tidy_df <-
-        parameters::model_parameters(
-          model = x,
-          ci = conf.level,
-          verbose = FALSE,
-          ...
-        ) %>%
-        insight::standardize_names(data = ., style = "broom")
     }
   }
 
