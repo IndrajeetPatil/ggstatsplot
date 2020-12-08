@@ -11,7 +11,7 @@
 #'   modeling in its turn can suggest a different visualization method, and so
 #'   on and so forth. The central idea of `ggstatsplot` is simple: combine these
 #'   two phases into one in the form of graphics with statistical details, which
-#'   makes data exploration simpler and faster. Currently, it supports only the
+#'   makes data exploration simpler and faster. Currently, it supports the
 #'   most common types of statistical tests (parametric, non-parametric, Bayes
 #'   Factor, and robust versions of *t*-test/anova, correlation, regression
 #'   analyses, contingency tables analyses, and meta-analysis).

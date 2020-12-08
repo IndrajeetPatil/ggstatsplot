@@ -71,7 +71,7 @@ any grouping variable.
 
 # Summary of types of statistical analyses
 
-Currently, it supports only the most common types of statistical tests:
+Currently, it supports the most common types of statistical tests:
 **parametric**, **nonparametric**, **robust**, and **bayesian** versions of
 **t-test**/**anova**, **correlation** analyses, **contingency table** analysis,
 **meta-analysis**, and **regression** analyses.
@@ -471,8 +471,8 @@ ggstatsplot::ggscatterstats(
   type = "robust", # type of test that needs to be run
   xlab = "Movie budget (in million/ US$)", # label for x axis
   ylab = "IMDB rating", # label for y axis
-  label.var = "title", # variable for labeling data points
-  label.expression = "rating < 5 & budget > 100", # expression that decides which points to label
+  label.var = title, # variable for labeling data points
+  label.expression = rating < 5 & budget > 100, # expression that decides which points to label
   title = "Movie budget and IMDB rating (action)", # title text for the plot
   caption = expression(paste(italic("Note"), ": IMDB stands for Internet Movie DataBase")),
   ggtheme = hrbrthemes::theme_ipsum_ps(), # choosing a different theme
@@ -588,7 +588,6 @@ ggstatsplot::grouped_ggcorrmat(
   colors = c("#cbac43", "white", "#550000"),
   grouping.var = genre, # grouping variable
   matrix.type = "lower", # type of visualization matrix
-  k = 3L, # number of digits after decimal point
   title.prefix = "Movie genre",
   plotgrid.args = list(nrow = 2)
 )
@@ -649,14 +648,18 @@ results from McNemar's chi-squared test-
 # for reproducibility
 set.seed(123)
 
-# plot
-ggstatsplot::ggpiestats(
-  data = data.frame(
+# data
+df_paired <-
+  data.frame(
     "before" = c("Approve", "Approve", "Disapprove", "Disapprove"),
     "after" = c("Approve", "Disapprove", "Approve", "Disapprove"),
     counts = c(794, 150, 86, 570),
     check.names = FALSE
-  ),
+  )
+
+# plot
+ggstatsplot::ggpiestats(
+  data = df_paired,
   x = before,
   y = after,
   counts = counts,
@@ -826,7 +829,8 @@ ggstatsplot::grouped_gghistostats(
   normal.curve.args = list(color = "red", size = 1),
   title.prefix = "Movie genre",
   ggtheme = ggthemes::theme_tufte(),
-  ggplot.component = list( # modify the defaults from `ggstatsplot` for each plot
+  # modify the defaults from `ggstatsplot` for each plot
+  ggplot.component = list( 
     ggplot2::scale_x_continuous(breaks = seq(0, 200, 50), limits = (c(0, 200)))
   ),
   plotgrid.args = list(nrow = 2),
@@ -962,9 +966,12 @@ arguments (also, let's use a different model now):
 # for reproducibility
 set.seed(123)
 
+# model
+mod <- MASS::rlm(formula = mpg ~ am * cyl, data = mtcars)
+
 # plot
 ggstatsplot::ggcoefstats(
-  x = MASS::rlm(formula = mpg ~ am * cyl, data = mtcars),
+  x = mod,
   point.args = list(color = "red", size = 3, shape = 15),
   vline.args = list(size = 1, color = "#CC79A7", linetype = "dotdash"),
   title = "Car performance predicted by transmission & cylinder count",

@@ -90,7 +90,7 @@ subtitle." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.6</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.6.9000</span>
       </span>
     </div>
 
@@ -338,7 +338,7 @@ used for less than 1,000 observations; otherwise <code><a href='https://rdrr.io/
 used with <code>formula = y ~ s(x, bs = "cs")</code> with <code>method = "REML"</code>. Somewhat anecdotally,
 <code>loess</code> gives a better appearance, but is \(O(N^{2})\) in memory,
 so does not work for larger datasets.</p>
-<p>If you have fewer than 1,000 observations but want to use the same <code>gam()</code>
+<p>If you have fewer than 1,000 observations but want to use the same <code><a href='https://rdrr.io/pkg/mgcv/man/gam.html'>gam()</a></code>
 model that <code>method = NULL</code> would use, then set
 <code>method = "gam", formula = y ~ s(x, bs = "cs")</code>.</p></td>
     </tr>
@@ -497,7 +497,12 @@ and <code>method = 'lm'</code>. If these arguments are different, only plot will
   x <span class='op'>=</span> <span class='va'>wt</span>,
   y <span class='op'>=</span> <span class='va'>mpg</span>,
   label.var <span class='op'>=</span> <span class='va'>car</span>,
-  label.expression <span class='op'>=</span> <span class='va'>wt</span> <span class='op'>&lt;</span> <span class='fl'>4</span> <span class='op'>&amp;</span> <span class='va'>mpg</span> <span class='op'>&lt;</span> <span class='fl'>20</span>
+  label.expression <span class='op'>=</span> <span class='va'>wt</span> <span class='op'>&lt;</span> <span class='fl'>4</span> <span class='op'>&amp;</span> <span class='va'>mpg</span> <span class='op'>&lt;</span> <span class='fl'>20</span>,
+  <span class='co'># making further customizations with `ggplot2` functions</span>
+  ggplot.component <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span><span class='op'>(</span>
+    limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='fl'>35</span><span class='op'>)</span>,
+    breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='fl'>35</span>, <span class='fl'>5</span><span class='op'>)</span>
+  <span class='op'>)</span><span class='op'>)</span>
 <span class='op'>)</span>
 </div><div class='img'><img src='ggscatterstats-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>

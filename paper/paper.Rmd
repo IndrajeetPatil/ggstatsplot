@@ -8,7 +8,6 @@ output:
     toc: true
     keep_tex: true
     keep_md: true
-  latex_engine: xelatex
 header-includes: 
   - \usepackage{amsmath}
   - \usepackage{amssymb}
@@ -26,7 +25,7 @@ link-citations: yes
 linkcolor: blue
 ---
 
-```{r, echo = FALSE, warning = FALSE, message = FALSE}
+```{r, echo = FALSE}
 # needed libraries
 library(tidyverse)
 library(ggstatsplot)
@@ -180,8 +179,6 @@ ggstatsplot::ggbetweenstats(
   title = "IMDB rating by film genre",
   xlab = "Genre",
   ylab = "IMDB rating (average)",
-  pairwise.comparisons = TRUE,
-  p.adjust.method = "bonferroni",
   ggtheme = hrbrthemes::theme_ipsum_tw(),
   ggstatsplot.layer = FALSE,
   outlier.tagging = TRUE,
@@ -349,7 +346,7 @@ which comes in two forms:
     poor at conveying information about limits of the sample and presence of
     outliers ([@clevelandElementsGraphingData1985], p.220).
 
-```{r fig5, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8, fig.cap = "Distribution of a variable shown using `gghistostats`."}
+```{r fig5, fig.height = 6, fig.width = 8, fig.cap = "Distribution of a variable shown using `gghistostats`."}
 # for reproducibility
 set.seed(123)
 
@@ -410,7 +407,7 @@ structure of the data. More specifically,
     and, depending on variables in a given pair, the sample sizes may vary
     (Figure \@ref(fig:fig4)).
 
-```{r fig4, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 10, fig.cap = "`ggstatsplot` functions remove `NA`s from variables of interest and display total sample size \\textit{n}, but they can give more nuanced information about sample sizes when \\textit{n} differs across tests. For example, `ggcorrmat` will display (\\textit{a}) only one total sample size once when no `NA`s present, but (\\textit{b}) will instead show minimum, median, and maximum sample sizes across all correlation tests when `NA`s are present across correlation variables."}
+```{r fig4, fig.height = 5, fig.width = 10, fig.cap = "`ggstatsplot` functions remove `NA`s from variables of interest and display total sample size \\textit{n}, but they can give more nuanced information about sample sizes when \\textit{n} differs across tests. For example, `ggcorrmat` will display (\\textit{a}) only one total sample size once when no `NA`s present, but (\\textit{b}) will instead show minimum, median, and maximum sample sizes across all correlation tests when `NA`s are present across correlation variables."}
 # for reproducibility
 set.seed(123)
 
@@ -429,10 +426,8 @@ ggstatsplot::combine_plots(
   plotlist = purrr::pmap(
     .l = list(data = list(msleep_no_na, ggplot2::msleep)),
     .f = ggstatsplot::ggcorrmat,
-    p.adjust.method = "holm",
     cor.vars = c(sleep_rem, awake:bodywt),
     cor.vars.names = var_names,
-    matrix.type = "upper",
     colors = c("#B2182B", "white", "#4D4D4D"),
     title = "Correlalogram for mammals sleep dataset",
     subtitle = "sleep units: hours; weight units: kilograms"

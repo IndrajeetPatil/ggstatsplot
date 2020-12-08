@@ -82,8 +82,8 @@ ggstatsplot::ggscatterstats(
   y = rating, # dependent variable
   xlab = "Budget (in millions of US dollars)", # label for the x-axis
   ylab = "Rating on IMDB", # label for the y-axis
-  label.var = "title", # variable to use for labeling data points
-  label.expression = "rating < 5 & budget > 100", # expression for deciding which points to label
+  label.var = title, # variable to use for labeling data points
+  label.expression = rating < 5 & budget > 75, # expression for deciding which points to label
   point.label.args = list(alpha = 0.7, size = 4, color = "grey50"),
   marginal.type = "density", # type of plot for marginal distribution
   xfill = "#CC79A7", # fill for marginals on the x-axis
@@ -144,8 +144,8 @@ ggstatsplot::grouped_ggscatterstats(
   x = budget,
   y = rating,
   grouping.var = mpaa,
-  label.var = "title",
-  label.expression = "rating < 5 & budget > 75",
+  label.var = title,
+  label.expression = rating < 5 & budget < 20,
   marginal.type = "boxplot",
   ggtheme = ggthemes::theme_tufte(),
   ggstatsplot.layer = FALSE,

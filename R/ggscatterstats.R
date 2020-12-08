@@ -83,7 +83,12 @@
 #'   x = wt,
 #'   y = mpg,
 #'   label.var = car,
-#'   label.expression = wt < 4 & mpg < 20
+#'   label.expression = wt < 4 & mpg < 20,
+#'   # making further customizations with `ggplot2` functions
+#'   ggplot.component = list(ggplot2::scale_y_continuous(
+#'     limits = c(5, 35),
+#'     breaks = seq(5, 35, 5)
+#'   ))
 #' )
 #' }
 #' @export

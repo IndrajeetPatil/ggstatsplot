@@ -49,6 +49,7 @@
 #' @importFrom rlang !! enquo quo_name is_null
 #' @importFrom pairwiseComparisons p_adjust_text
 #' @importFrom statsExpressions correlation
+#' @importFrom parameters standardize_names
 #'
 #' @seealso \code{\link{grouped_ggcorrmat}} \code{\link{ggscatterstats}}
 #'   \code{\link{grouped_ggscatterstats}}
@@ -171,9 +172,7 @@ ggcorrmat <- function(data,
 
   # early stats return
   if (output != "plot") {
-    return(tibble::as_tibble(df_corr) %>%
-      dplyr::rename_all(., tolower) %>%
-      dplyr::rename(., nobs = n_obs))
+    return(as_tibble(parameters::standardize_names(df_corr, "broom")))
   }
 
   # ========================== plot =========================================
@@ -184,14 +183,7 @@ ggcorrmat <- function(data,
 
   # creating the basic plot
   # if user has not specified colors, then use a color palette
-  if (is.null(colors)) {
-    colors <-
-      paletteer::paletteer_d(
-        palette = paste0(package, "::", palette),
-        n = 3L,
-        type = "discrete"
-      )
-  }
+  if (is.null(colors)) colors <- paletteer::paletteer_d(paste0(package, "::", palette), 3L)
 
   # in case of NAs, compute minimum and maximum sample sizes of pairs
   # also compute mode

@@ -1,14 +1,13 @@
 ---
 title: "ggstatsplot: ggplot2 Based Plots with Statistical Details"
 author: Indrajeet Patil^[Max Planck Institute for Human Development, patilindrajeet.science@gmail.com]
-date: "2020-11-25"
+date: "2020-12-08"
 output: 
   bookdown::pdf_document2:
     fig_caption: true
     toc: true
     keep_tex: true
     keep_md: true
-  latex_engine: xelatex
 header-includes: 
   - \usepackage{amsmath}
   - \usepackage{amssymb}
@@ -27,6 +26,37 @@ linkcolor: blue
 ---
 
 
+```
+## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --
+```
+
+```
+## v ggplot2 3.3.2     v purrr   0.3.4
+## v tibble  3.0.4     v dplyr   1.0.2
+## v tidyr   1.1.2     v stringr 1.4.0
+## v readr   1.4.0     v forcats 0.5.0
+```
+
+```
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+```
+
+```
+## Registered S3 methods overwritten by 'lme4':
+##   method                          from
+##   cooks.distance.influence.merMod car 
+##   influence.merMod                car 
+##   dfbeta.influence.merMod         car 
+##   dfbetas.influence.merMod        car
+```
+
+```
+## In case you would like cite this package, cite it as:
+##      Patil, I. (2018). ggstatsplot: "ggplot2" Based Plots with Statistical Details. CRAN.
+##      Retrieved from https://cran.r-project.org/web/packages/ggstatsplot/index.html
+```
 
 > "What is to be sought in designs for the display of information is the clear
 portrayal of complexity. Not the complication of the simple; rather ... the
@@ -159,8 +189,6 @@ ggstatsplot::ggbetweenstats(
   title = "IMDB rating by film genre",
   xlab = "Genre",
   ylab = "IMDB rating (average)",
-  pairwise.comparisons = TRUE,
-  p.adjust.method = "bonferroni",
   ggtheme = hrbrthemes::theme_ipsum_tw(),
   ggstatsplot.layer = FALSE,
   outlier.tagging = TRUE,
@@ -433,10 +461,8 @@ ggstatsplot::combine_plots(
   plotlist = purrr::pmap(
     .l = list(data = list(msleep_no_na, ggplot2::msleep)),
     .f = ggstatsplot::ggcorrmat,
-    p.adjust.method = "holm",
     cor.vars = c(sleep_rem, awake:bodywt),
     cor.vars.names = var_names,
-    matrix.type = "upper",
     colors = c("#B2182B", "white", "#4D4D4D"),
     title = "Correlalogram for mammals sleep dataset",
     subtitle = "sleep units: hours; weight units: kilograms"

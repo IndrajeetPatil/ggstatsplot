@@ -53,7 +53,7 @@ same analysis for any grouping variable.
 
 # Summary of types of statistical analyses
 
-Currently, it supports only the most common types of statistical tests:
+Currently, it supports the most common types of statistical tests:
 **parametric**, **nonparametric**, **robust**, and **bayesian** versions
 of **t-test**/**anova**, **correlation** analyses, **contingency table**
 analysis, **meta-analysis**, and **regression** analyses.
@@ -490,8 +490,8 @@ ggstatsplot::ggscatterstats(
   type = "robust", # type of test that needs to be run
   xlab = "Movie budget (in million/ US$)", # label for x axis
   ylab = "IMDB rating", # label for y axis
-  label.var = "title", # variable for labeling data points
-  label.expression = "rating < 5 & budget > 100", # expression that decides which points to label
+  label.var = title, # variable for labeling data points
+  label.expression = rating < 5 & budget > 100, # expression that decides which points to label
   title = "Movie budget and IMDB rating (action)", # title text for the plot
   caption = expression(paste(italic("Note"), ": IMDB stands for Internet Movie DataBase")),
   ggtheme = hrbrthemes::theme_ipsum_ps(), # choosing a different theme
@@ -614,7 +614,6 @@ ggstatsplot::grouped_ggcorrmat(
   colors = c("#cbac43", "white", "#550000"),
   grouping.var = genre, # grouping variable
   matrix.type = "lower", # type of visualization matrix
-  k = 3L, # number of digits after decimal point
   title.prefix = "Movie genre",
   plotgrid.args = list(nrow = 2)
 )
@@ -636,41 +635,41 @@ ggcorrmat(
   output = "dataframe"
 )
 #> # A tibble: 15 x 13
-#>    parameter1  parameter2     rho ci_low ci_high    pd rope_percentage
-#>    <chr>       <chr>        <dbl>  <dbl>   <dbl> <dbl>           <dbl>
-#>  1 sleep_total sleep_rem    0.731  0.617  0.810  1              0     
-#>  2 sleep_total sleep_cycle -0.432 -0.678 -0.223  0.995          0.0173
-#>  3 sleep_total awake       -1.00  -1.00  -1.00   1              0     
-#>  4 sleep_total brainwt     -0.339 -0.523 -0.156  0.996          0.028 
-#>  5 sleep_total bodywt      -0.300 -0.458 -0.142  0.997          0.0292
-#>  6 sleep_rem   sleep_cycle -0.306 -0.535 -0.0555 0.965          0.091 
-#>  7 sleep_rem   awake       -0.734 -0.824 -0.638  1              0     
-#>  8 sleep_rem   brainwt     -0.202 -0.410  0.0130 0.927          0.212 
-#>  9 sleep_rem   bodywt      -0.315 -0.481 -0.120  0.994          0.0362
-#> 10 sleep_cycle awake        0.441  0.226  0.662  0.995          0.0158
-#> 11 sleep_cycle brainwt      0.823  0.720  0.911  1              0     
-#> 12 sleep_cycle bodywt       0.386  0.145  0.610  0.992          0.0392
-#> 13 awake       brainwt      0.341  0.154  0.524  0.992          0.0253
-#> 14 awake       bodywt       0.299  0.139  0.454  0.998          0.0265
-#> 15 brainwt     bodywt       0.926  0.896  0.957  1              0     
-#>    prior_distribution prior_location prior_scale        bf method          
-#>    <chr>                       <dbl>       <dbl>     <dbl> <chr>           
-#>  1 cauchy                          0       0.707  3.00e+ 9 Bayesian Pearson
-#>  2 cauchy                          0       0.707  8.85e+ 0 Bayesian Pearson
-#>  3 cauchy                          0       0.707 NA        Bayesian Pearson
-#>  4 cauchy                          0       0.707  7.29e+ 0 Bayesian Pearson
-#>  5 cauchy                          0       0.707  9.28e+ 0 Bayesian Pearson
-#>  6 cauchy                          0       0.707  1.42e+ 0 Bayesian Pearson
-#>  7 cauchy                          0       0.707  3.01e+ 9 Bayesian Pearson
-#>  8 cauchy                          0       0.707  6.54e- 1 Bayesian Pearson
-#>  9 cauchy                          0       0.707  4.80e+ 0 Bayesian Pearson
-#> 10 cauchy                          0       0.707  8.85e+ 0 Bayesian Pearson
-#> 11 cauchy                          0       0.707  3.80e+ 6 Bayesian Pearson
-#> 12 cauchy                          0       0.707  3.76e+ 0 Bayesian Pearson
-#> 13 cauchy                          0       0.707  7.29e+ 0 Bayesian Pearson
-#> 14 cauchy                          0       0.707  9.27e+ 0 Bayesian Pearson
-#> 15 cauchy                          0       0.707  1.58e+22 Bayesian Pearson
-#>     nobs
+#>    parameter1  parameter2  estimate conf.low conf.high    pd rope.percentage
+#>    <chr>       <chr>          <dbl>    <dbl>     <dbl> <dbl>           <dbl>
+#>  1 sleep_total sleep_rem      0.731    0.617    0.810  1              0     
+#>  2 sleep_total sleep_cycle   -0.432   -0.678   -0.223  0.995          0.0173
+#>  3 sleep_total awake         -1.00    -1.00    -1.00   1              0     
+#>  4 sleep_total brainwt       -0.339   -0.523   -0.156  0.996          0.028 
+#>  5 sleep_total bodywt        -0.300   -0.458   -0.142  0.997          0.0292
+#>  6 sleep_rem   sleep_cycle   -0.306   -0.535   -0.0555 0.965          0.091 
+#>  7 sleep_rem   awake         -0.734   -0.824   -0.638  1              0     
+#>  8 sleep_rem   brainwt       -0.202   -0.410    0.0130 0.927          0.212 
+#>  9 sleep_rem   bodywt        -0.315   -0.481   -0.120  0.994          0.0362
+#> 10 sleep_cycle awake          0.441    0.226    0.662  0.995          0.0158
+#> 11 sleep_cycle brainwt        0.823    0.720    0.911  1              0     
+#> 12 sleep_cycle bodywt         0.386    0.145    0.610  0.992          0.0392
+#> 13 awake       brainwt        0.341    0.154    0.524  0.992          0.0253
+#> 14 awake       bodywt         0.299    0.139    0.454  0.998          0.0265
+#> 15 brainwt     bodywt         0.926    0.896    0.957  1              0     
+#>    prior.distribution prior.location prior.scale bayes.factor method          
+#>    <chr>                       <dbl>       <dbl>        <dbl> <chr>           
+#>  1 cauchy                          0       0.707     3.00e+ 9 Bayesian Pearson
+#>  2 cauchy                          0       0.707     8.85e+ 0 Bayesian Pearson
+#>  3 cauchy                          0       0.707    NA        Bayesian Pearson
+#>  4 cauchy                          0       0.707     7.29e+ 0 Bayesian Pearson
+#>  5 cauchy                          0       0.707     9.28e+ 0 Bayesian Pearson
+#>  6 cauchy                          0       0.707     1.42e+ 0 Bayesian Pearson
+#>  7 cauchy                          0       0.707     3.01e+ 9 Bayesian Pearson
+#>  8 cauchy                          0       0.707     6.54e- 1 Bayesian Pearson
+#>  9 cauchy                          0       0.707     4.80e+ 0 Bayesian Pearson
+#> 10 cauchy                          0       0.707     8.85e+ 0 Bayesian Pearson
+#> 11 cauchy                          0       0.707     3.80e+ 6 Bayesian Pearson
+#> 12 cauchy                          0       0.707     3.76e+ 0 Bayesian Pearson
+#> 13 cauchy                          0       0.707     7.29e+ 0 Bayesian Pearson
+#> 14 cauchy                          0       0.707     9.27e+ 0 Bayesian Pearson
+#> 15 cauchy                          0       0.707     1.58e+22 Bayesian Pearson
+#>    n.obs
 #>    <int>
 #>  1    61
 #>  2    32
@@ -732,14 +731,18 @@ produce results from McNemar’s chi-squared test-
 # for reproducibility
 set.seed(123)
 
-# plot
-ggstatsplot::ggpiestats(
-  data = data.frame(
+# data
+df_paired <-
+  data.frame(
     "before" = c("Approve", "Approve", "Disapprove", "Disapprove"),
     "after" = c("Approve", "Disapprove", "Approve", "Disapprove"),
     counts = c(794, 150, 86, 570),
     check.names = FALSE
-  ),
+  )
+
+# plot
+ggstatsplot::ggpiestats(
+  data = df_paired,
   x = before,
   y = after,
   counts = counts,
@@ -923,7 +926,8 @@ ggstatsplot::grouped_gghistostats(
   normal.curve.args = list(color = "red", size = 1),
   title.prefix = "Movie genre",
   ggtheme = ggthemes::theme_tufte(),
-  ggplot.component = list( # modify the defaults from `ggstatsplot` for each plot
+  # modify the defaults from `ggstatsplot` for each plot
+  ggplot.component = list( 
     ggplot2::scale_x_continuous(breaks = seq(0, 200, 50), limits = (c(0, 200)))
   ),
   plotgrid.args = list(nrow = 2),
@@ -1071,9 +1075,12 @@ additional arguments (also, let’s use a different model now):
 # for reproducibility
 set.seed(123)
 
+# model
+mod <- MASS::rlm(formula = mpg ~ am * cyl, data = mtcars)
+
 # plot
 ggstatsplot::ggcoefstats(
-  x = MASS::rlm(formula = mpg ~ am * cyl, data = mtcars),
+  x = mod,
   point.args = list(color = "red", size = 3, shape = 15),
   vline.args = list(size = 1, color = "#CC79A7", linetype = "dotdash"),
   title = "Car performance predicted by transmission & cylinder count",
