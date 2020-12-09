@@ -3,6 +3,8 @@
 MINOR CHANGES
 
   - `ggcorrmat` uses pretty formatting to display sample size information.
+  
+  - `ggcoefstats` now also displays degrees of freedom for chi-squared tests.
 
 # ggstatsplot 0.6.6
 

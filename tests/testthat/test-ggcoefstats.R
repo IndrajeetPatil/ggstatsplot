@@ -140,8 +140,8 @@ testthat::test_that(
           x = c(0.0170335066199796, -0.511668342705175),
           y = structure(1:2, class = c("mapped_discrete", "numeric")),
           label = c(
-            "list(~widehat(italic(beta))==0.02, ~italic(chi)^2==3.40, ~italic(p)=='0.065')",
-            "list(~widehat(italic(beta))==-0.51, ~italic(chi)^2==9.31, ~italic(p)=='0.002')"
+            "list(~widehat(italic(beta))==0.02, ~italic(chi)^2~(225)==3.40, ~italic(p)=='0.065')",
+            "list(~widehat(italic(beta))==-0.51, ~italic(chi)^2~(225)==9.31, ~italic(p)=='0.002')"
           ),
           PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
           group = structure(1:2, n = 2L),
