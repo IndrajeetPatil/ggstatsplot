@@ -63,11 +63,8 @@ grouped_ggcorrmat <- function(data,
   # create a list of function call to check for label.expression
   param_list <- as.list(match.call())
 
-  # ensure the grouping variable works quoted or unquoted
-  grouping.var <- rlang::ensym(grouping.var)
-
   # if `title.prefix` is not provided, use the variable `grouping.var` name
-  if (is.null(title.prefix)) title.prefix <- rlang::as_name(grouping.var)
+  if (is.null(title.prefix)) title.prefix <- rlang::as_name(rlang::ensym(grouping.var))
 
   # getting the dataframe ready
   if ("cor.vars" %in% names(param_list)) {

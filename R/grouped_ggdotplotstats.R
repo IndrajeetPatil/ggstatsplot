@@ -30,17 +30,16 @@
 #' # plot
 #' ggstatsplot::grouped_ggdotplotstats(
 #'   data = df,
-#'   x = "cty",
-#'   y = "manufacturer",
-#'   grouping.var = "cyl",
+#'   x = cty,
+#'   y = manufacturer,
+#'   grouping.var = cyl,
 #'   test.value = 15.5,
 #'   title.prefix = "cylinder count",
 #'   ggplot.component = ggplot2::scale_x_continuous(
 #'     sec.axis = ggplot2::dup_axis(),
 #'     limits = c(12, 24),
 #'     breaks = seq(12, 24, 2)
-#'   ),
-#'   messages = FALSE
+#'   )
 #' )
 #' }
 #' @export
@@ -63,13 +62,8 @@ grouped_ggdotplotstats <- function(data,
 
   # ======================== preparing dataframe ============================
 
-  # ensure the grouping variable works quoted or unquoted
-  x <- rlang::ensym(x)
-  y <- rlang::ensym(y)
-  grouping.var <- rlang::ensym(grouping.var)
-
   # if `title.prefix` is not provided, use the variable `grouping.var` name
-  if (is.null(title.prefix)) title.prefix <- rlang::as_name(grouping.var)
+  if (is.null(title.prefix)) title.prefix <- rlang::as_name(rlang::ensym(grouping.var))
 
   # creating a dataframe
   df <-

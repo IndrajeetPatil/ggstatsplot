@@ -25,8 +25,7 @@ testthat::test_that(
         data = movies_filtered,
         grouping.var = mpaa,
         cor.vars = length:votes,
-        type = "p",
-        messages = FALSE
+        type = "p"
       )),
       what = "gg"
     ))
@@ -38,8 +37,7 @@ testthat::test_that(
         data = movies_filtered,
         grouping.var = "mpaa",
         cor.vars = c("length":"votes"),
-        type = "np",
-        messages = FALSE
+        type = "np"
       )),
       what = "gg"
     ))
@@ -52,8 +50,7 @@ testthat::test_that(
       suppressWarnings(ggstatsplot::grouped_ggcorrmat(
         data = movies_filtered,
         grouping.var = mpaa,
-        type = "p",
-        messages = FALSE
+        type = "p"
       )),
       what = "gg"
     ))
@@ -64,8 +61,7 @@ testthat::test_that(
       suppressWarnings(ggstatsplot::grouped_ggcorrmat(
         data = movies_filtered,
         grouping.var = "mpaa",
-        type = "r",
-        messages = FALSE
+        type = "r"
       )),
       what = "gg"
     ))
@@ -88,8 +84,7 @@ testthat::test_that(
         data = ggplot2::msleep,
         grouping.var = vore,
         output = "r",
-        k = 3,
-        messages = FALSE
+        k = 3
       )
 
     # testing dataframe

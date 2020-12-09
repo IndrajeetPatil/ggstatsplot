@@ -378,17 +378,16 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
 <span class='co'># plot</span>
 <span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>grouped_ggdotplotstats</span><span class='op'>(</span>
   data <span class='op'>=</span> <span class='va'>df</span>,
-  x <span class='op'>=</span> <span class='st'>"cty"</span>,
-  y <span class='op'>=</span> <span class='st'>"manufacturer"</span>,
-  grouping.var <span class='op'>=</span> <span class='st'>"cyl"</span>,
+  x <span class='op'>=</span> <span class='va'>cty</span>,
+  y <span class='op'>=</span> <span class='va'>manufacturer</span>,
+  grouping.var <span class='op'>=</span> <span class='va'>cyl</span>,
   test.value <span class='op'>=</span> <span class='fl'>15.5</span>,
   title.prefix <span class='op'>=</span> <span class='st'>"cylinder count"</span>,
   ggplot.component <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_continuous</a></span><span class='op'>(</span>
     sec.axis <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/sec_axis.html'>dup_axis</a></span><span class='op'>(</span><span class='op'>)</span>,
     limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>12</span>, <span class='fl'>24</span><span class='op'>)</span>,
     breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>12</span>, <span class='fl'>24</span>, <span class='fl'>2</span><span class='op'>)</span>
-  <span class='op'>)</span>,
-  messages <span class='op'>=</span> <span class='cn'>FALSE</span>
+  <span class='op'>)</span>
 <span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Scale for 'x' is already present. Adding another scale for 'x', which will</span>
 #&gt; <span class='message'>replace the existing scale.</span></div><div class='output co'>#&gt; <span class='message'>Scale for 'x' is already present. Adding another scale for 'x', which will</span>

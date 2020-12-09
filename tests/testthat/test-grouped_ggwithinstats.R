@@ -24,8 +24,7 @@ testthat::test_that(
         grouping.var = order,
         results.subtitle = FALSE,
         outlier.tagging = FALSE,
-        type = "bayes",
-        messages = FALSE
+        type = "bayes"
       ),
       "ggplot"
     )
@@ -44,8 +43,7 @@ testthat::test_that(
         results.subtitle = FALSE,
         outlier.tagging = TRUE,
         pairwise.comparisons = TRUE,
-        pairwise.annotation = "p.score",
-        messages = FALSE
+        pairwise.annotation = "p.score"
       ),
       what = "gg"
     ))
@@ -62,7 +60,6 @@ testthat::test_that(
         x = "attribute",
         y = "value",
         grouping.var = Species,
-        messages = FALSE,
         type = "r",
         results.subtitle = FALSE,
         pairwise.comparisons = TRUE,
@@ -95,7 +92,6 @@ testthat::test_that(
         y = desire,
         grouping.var = region,
         output = "subtitle",
-        messages = FALSE,
         bf.message = FALSE
       )
 
@@ -106,7 +102,6 @@ testthat::test_that(
         x = condition,
         y = desire,
         output = "subtitle",
-        messages = FALSE,
         bf.message = FALSE
       )
 

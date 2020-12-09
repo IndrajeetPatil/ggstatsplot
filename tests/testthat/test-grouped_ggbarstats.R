@@ -25,7 +25,7 @@ testthat::test_that(
         data = mpg_short,
         x = cyl,
         y = class,
-        grouping.var = class
+        grouping.var = "class"
       ),
       "ggplot"
     )
@@ -37,8 +37,7 @@ testthat::test_that(
         data = mpg_short,
         x = "cyl",
         y = class,
-        grouping.var = drv,
-        x.axis.orientation = "horizontal"
+        grouping.var = drv
       )
     ),
     what = "gg"
@@ -51,8 +50,7 @@ testthat::test_that(
         data = mpg_short,
         x = cyl,
         y = "class",
-        grouping.var = "drv",
-        x.axis.orientation = "slant"
+        grouping.var = "drv"
       )
     ),
     what = "gg"
@@ -108,7 +106,7 @@ testthat::test_that(
       suppressWarnings(ggstatsplot::grouped_ggbarstats(
         data = df,
         x = relig,
-        y = marital,
+        y = "marital",
         grouping.var = race,
         output = "subtitle"
       ))

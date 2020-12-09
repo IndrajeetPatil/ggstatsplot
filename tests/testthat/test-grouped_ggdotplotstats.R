@@ -30,7 +30,6 @@ testthat::test_that(
       point.shape = 13,
       test.value.line = TRUE,
       ggtheme = ggplot2::theme_classic(),
-      messages = FALSE,
       title.text = "Fuel economy data"
     )
 
@@ -46,8 +45,7 @@ testthat::test_that(
       ggplot.component = ggplot2::scale_y_continuous(
         sec.axis = ggplot2::dup_axis(name = "percentile score"),
         breaks = seq(0, 12, 2)
-      ),
-      messages = FALSE
+      )
     )
 
     # testing output objects are ggplot
@@ -75,8 +73,7 @@ testthat::test_that(
         y = manufacturer,
         grouping.var = "cyl",
         test.value = 15.5,
-        output = "subtitle",
-        messages = FALSE
+        output = "subtitle"
       )
 
     set.seed(123)
@@ -86,8 +83,7 @@ testthat::test_that(
         x = "cty",
         y = manufacturer,
         test.value = 15.5,
-        output = "subtitle",
-        messages = FALSE
+        output = "subtitle"
       )
 
     # tests

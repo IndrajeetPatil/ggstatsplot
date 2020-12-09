@@ -156,7 +156,6 @@ ggstatsplot::grouped_gghistostats(
     ggplot2::scale_x_continuous(breaks = seq(3, 9, 1), limits = (c(3, 9))),
     ggplot2::scale_y_continuous(breaks = seq(0, 25, 5), limits = (c(0, 25)))
   ),
-  messages = FALSE,
   plotgrid.args = list(nrow = 1, labels = c("(i)", "(ii)", "(iii)")),
 )
 }

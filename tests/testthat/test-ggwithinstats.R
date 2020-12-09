@@ -29,8 +29,7 @@ testthat::test_that(
         mean.path.args = list(color = "blue", size = 2, alpha = 0.8),
         mean.point.args = list(size = 3, color = "darkgreen", alpha = 0.5),
         title = "bugs dataset",
-        caption = "From `jmv` package",
-        messages = FALSE
+        caption = "From `jmv` package"
       )
 
     # build the plot
@@ -276,8 +275,7 @@ testthat::test_that(
           pairwise.comparisons = TRUE,
           pairwise.annotation = "asterisk",
           title = "wine tasting data",
-          caption = "From `WRS2` package",
-          messages = TRUE
+          caption = "From `WRS2` package"
         )
 
       # build the plot
@@ -293,8 +291,7 @@ testthat::test_that(
           type = "p",
           k = 4,
           paired = TRUE,
-          conf.level = 0.99,
-          messages = FALSE
+          conf.level = 0.99
         )
 
       # dataframe used for visualization
@@ -454,7 +451,6 @@ testthat::test_that(
           pairwise.comparisons = TRUE,
           pairwise.display = "all",
           pairwise.annotation = "p",
-          messages = FALSE,
           bf.message = TRUE
         ))
 
@@ -466,8 +462,7 @@ testthat::test_that(
           y = score,
           paired = TRUE,
           k = 3,
-          nboot = 25,
-          messages = FALSE
+          nboot = 25
         ))
 
       set.seed(123)
@@ -483,7 +478,6 @@ testthat::test_that(
           pairwise.comparisons = TRUE,
           pairwise.display = "all",
           pairwise.annotation = "p",
-          messages = FALSE,
           bf.message = TRUE
         )
 
@@ -496,8 +490,7 @@ testthat::test_that(
           conf.level = 0.50,
           paired = TRUE,
           k = 4,
-          nboot = 15,
-          messages = FALSE
+          nboot = 15
         )
 
       # built plots

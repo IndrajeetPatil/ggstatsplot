@@ -87,16 +87,13 @@ grouped_ggscatterstats <- function(data,
                                    sub.text = NULL,
                                    sub.args = list(size = 12)) {
 
-  # ======================== check user input =============================
-
-  # ensure the grouping variable works quoted or unquoted
-  grouping.var <- rlang::ensym(grouping.var)
-  label.var <- if (!rlang::quo_is_null(rlang::enquo(label.var))) rlang::ensym(label.var)
-
   # ======================== preparing dataframe =============================
 
+  # ensure the grouping variable works quoted or unquoted
+  label.var <- if (!rlang::quo_is_null(rlang::enquo(label.var))) rlang::ensym(label.var)
+
   # if `title.prefix` is not provided, use the variable `grouping.var` name
-  if (is.null(title.prefix)) title.prefix <- rlang::as_name(grouping.var)
+  if (is.null(title.prefix)) title.prefix <- rlang::as_name(rlang::ensym(grouping.var))
 
   # getting the dataframe ready
   df <- grouped_list(data = data, grouping.var = {{ grouping.var }})

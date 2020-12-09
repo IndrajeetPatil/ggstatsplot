@@ -29,8 +29,7 @@ testthat::test_that(
       y = rating,
       results.subtitle = FALSE,
       grouping.var = mpaa,
-      outlier.tagging = FALSE,
-      messages = FALSE
+      outlier.tagging = FALSE
     )
 
     # `outlier.label` is not specified
@@ -49,8 +48,7 @@ testthat::test_that(
         bf.message = TRUE,
         outlier.tagging = TRUE,
         pairwise.comparisons = TRUE,
-        pairwise.annotation = "p.value",
-        messages = FALSE
+        pairwise.annotation = "p.value"
       ),
       what = "gg"
     ))
@@ -66,7 +64,6 @@ testthat::test_that(
         type = "np",
         plot.type = "violin",
         pairwise.comparisons = TRUE,
-        messages = FALSE,
         outlier.tagging = TRUE,
         results.subtitle = FALSE,
         outlier.label = title
@@ -86,7 +83,6 @@ testthat::test_that(
         x = "genre",
         y = "rating",
         grouping.var = mpaa,
-        messages = FALSE,
         type = "r",
         results.subtitle = FALSE,
         pairwise.comparisons = TRUE,
@@ -125,8 +121,7 @@ testthat::test_that(
         grouping.var = "marital",
         output = "subtitle",
         bf.message = FALSE,
-        k = 4,
-        messages = FALSE
+        k = 4
       )
 
 
@@ -138,8 +133,7 @@ testthat::test_that(
         y = "tvhours",
         output = "subtitle",
         bf.message = FALSE,
-        k = 4,
-        messages = FALSE
+        k = 4
       )
     # tests
     testthat::expect_equal(ls_results$`Never married`, basic_results)

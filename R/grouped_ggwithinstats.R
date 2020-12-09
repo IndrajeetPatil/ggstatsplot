@@ -56,20 +56,10 @@ grouped_ggwithinstats <- function(data,
                                   sub.text = NULL,
                                   sub.args = list(size = 12)) {
 
-  # =================== check user input and prep =========================
-
-  # ensure the grouping variable works quoted or unquoted
-  x <- rlang::ensym(x)
-  y <- rlang::ensym(y)
-  grouping.var <- rlang::ensym(grouping.var)
-  outlier.label <- if (!rlang::quo_is_null(rlang::enquo(outlier.label))) {
-    rlang::ensym(outlier.label)
-  }
+  # ======================== preparing dataframe =============================
 
   # if `title.prefix` is not provided, use the variable `grouping.var` name
-  if (is.null(title.prefix)) title.prefix <- rlang::as_name(grouping.var)
-
-  # ======================== preparing dataframe =============================
+  if (is.null(title.prefix)) title.prefix <- rlang::as_name(rlang::ensym(grouping.var))
 
   # creating a dataframe
   df <-
