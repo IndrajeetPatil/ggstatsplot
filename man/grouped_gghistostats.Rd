@@ -47,12 +47,6 @@ results.}
 \item{...}{
   Arguments passed on to \code{\link[=gghistostats]{gghistostats}}
   \describe{
-    \item{\code{bar.measure}}{Character describing what value needs to be represented as
-height in the bar chart. This can either be \code{"count"}, which shows number
-of points in bin, or \code{"density"}, which density of points in bin, scaled to
-integrate to 1, or "\code{proportion}", which shows relative frequencies of
-observations in each bin, or "\code{mix}", which shows \emph{both} count and
-proportion in the same plot.}
     \item{\code{normal.curve}}{A logical value that decides whether to super-impose a
 normal curve using \code{stats::dnorm(mean(x), sd(x))}. Default is \code{FALSE}.}
     \item{\code{normal.curve.args}}{A list of additional aesthetic arguments to be

@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.6</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.6.9000</span>
       </span>
     </div>
 
@@ -143,7 +143,7 @@
       <h1 data-toc-skip>gghistostats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-12-02</h4>
+            <h4 class="date">2020-12-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/gghistostats.Rmd"><code>vignettes/web_only/gghistostats.Rmd</code></a></small>
       <div class="hidden name"><code>gghistostats.Rmd</code></div>
@@ -203,8 +203,6 @@
 </li>
 <li>Make the histogram bars a different color with <code>bar.fill = "#D55E00"</code>
 </li>
-<li>Plot proportions on the <code>y</code> axes with <code>bar.measure = "proportion"</code>
-</li>
 <li>Compute information about the Bayes Factor (<code>bf.message = TRUE</code>, see below)</li>
 </ol>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -242,11 +240,9 @@
   xlab <span class="op">=</span> <span class="st">"ACT Score"</span>,
   grouping.var <span class="op">=</span> <span class="va">gender</span>, <span class="co"># grouping variable males = 1, females = 2</span>
   title.prefix <span class="op">=</span> <span class="st">"Gender"</span>, <span class="co"># prefix for the fixed title</span>
-  k <span class="op">=</span> <span class="fl">1</span>, <span class="co"># number of decimal places in results</span>
   type <span class="op">=</span> <span class="st">"robust"</span>, <span class="co"># robust test: one-sample percentile bootstrap</span>
   test.value <span class="op">=</span> <span class="fl">20</span>, <span class="co"># test value against which sample mean is to be compared</span>
   test.value.line <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># show a vertical line at `test.value`</span>
-  bar.measure <span class="op">=</span> <span class="st">"density"</span>, <span class="co"># density</span>
   centrality.parameter <span class="op">=</span> <span class="st">"median"</span>, <span class="co"># plotting centrality parameter</span>
   centrality.line.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#D55E00"</span><span class="op">)</span>, 
   centrality.label.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#D55E00"</span><span class="op">)</span>,

@@ -90,8 +90,7 @@ we'll also:
 
   1.  Change the overall theme with `ggtheme = ggthemes::theme_tufte()`
   2.  Make the histogram bars a different color with `bar.fill = "#D55E00"`
-  3.  Plot proportions on the `y` axes with `bar.measure = "proportion"`
-  4.  Compute information about the Bayes Factor (`bf.message = TRUE`, see below)
+  3.  Compute information about the Bayes Factor (`bf.message = TRUE`, see below)
 
 ```{r psychact3, fig.height = 6, fig.width = 7}
 ggstatsplot::gghistostats(
@@ -141,11 +140,9 @@ ggstatsplot::grouped_gghistostats(
   xlab = "ACT Score",
   grouping.var = gender, # grouping variable males = 1, females = 2
   title.prefix = "Gender", # prefix for the fixed title
-  k = 1, # number of decimal places in results
   type = "robust", # robust test: one-sample percentile bootstrap
   test.value = 20, # test value against which sample mean is to be compared
   test.value.line = TRUE, # show a vertical line at `test.value`
-  bar.measure = "density", # density
   centrality.parameter = "median", # plotting centrality parameter
   centrality.line.args = list(color = "#D55E00"), 
   centrality.label.args = list(color = "#D55E00"),

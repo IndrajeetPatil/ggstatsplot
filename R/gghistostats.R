@@ -4,12 +4,6 @@
 #'   in the plot as a subtitle.
 #'
 #' @param ... Currently ignored.
-#' @param bar.measure Character describing what value needs to be represented as
-#'   height in the bar chart. This can either be `"count"`, which shows number
-#'   of points in bin, or `"density"`, which density of points in bin, scaled to
-#'   integrate to 1, or "`proportion`", which shows relative frequencies of
-#'   observations in each bin, or "`mix`", which shows *both* count and
-#'   proportion in the same plot.
 #' @param normal.curve A logical value that decides whether to super-impose a
 #'   normal curve using `stats::dnorm(mean(x), sd(x))`. Default is `FALSE`.
 #' @param normal.curve.args A list of additional aesthetic arguments to be
@@ -54,9 +48,8 @@
 #' ggstatsplot::gghistostats(
 #'   data = iris,
 #'   x = Sepal.Length,
-#'   bar.measure = "mix",
 #'   type = "p",
-#'   caption = substitute(paste(italic("Note"), ": Iris dataset by Fisher.")),
+#'   caption = substitute(paste(italic("Note"), ": Iris dataset by Anderson")),
 #'   bf.prior = 0.8,
 #'   test.value = 3,
 #'   test.value.line = TRUE,
@@ -70,7 +63,6 @@
 gghistostats <- function(data,
                          x,
                          binwidth = NULL,
-                         bar.measure = "count",
                          xlab = NULL,
                          title = NULL,
                          subtitle = NULL,
@@ -96,7 +88,7 @@ gghistostats <- function(data,
                          centrality.line.args = list(size = 1, color = "blue"),
                          centrality.label.args = list(color = "blue", size = 3),
                          normal.curve = FALSE,
-                         normal.curve.args = list(size = 3),
+                         normal.curve.args = list(size = 2),
                          ggplot.component = NULL,
                          output = "plot",
                          ...) {
@@ -142,8 +134,8 @@ gghistostats <- function(data,
       )
 
     # preparing the BF message
-    if (isTRUE(bf.message)) {
-      bf.caption.text <-
+    if (type == "parametric" && isTRUE(bf.message)) {
+      caption <-
         statsExpressions::bf_ttest(
           data = df,
           x = {{ x }},
@@ -153,9 +145,6 @@ gghistostats <- function(data,
           output = "expression",
           k = k
         )
-
-      # if bayes factor message needs to be displayed
-      if (type == "parametric" && isTRUE(bf.message)) caption <- bf.caption.text
     }
   }
 
@@ -164,56 +153,23 @@ gghistostats <- function(data,
     return(switch(EXPR = output, "caption" = caption, subtitle))
   }
 
-  # ======================= normal curve ===================================
-
-  # preparing the arguments needed for displaying a normal curve on the plot
-
-  # only counts
-  if (bar.measure %in% c("counts", "n", "count", "N")) {
-    .mapping <- ggplot2::aes(y = ..count.., fill = ..count..)
-    ylab_add <- NULL
-    .f_stat <- function(x, mean, sd, n, bw) stats::dnorm(x, mean, sd) * n * bw
-    args <- list(mean = mean(x_vec), sd = sd(x_vec), n = length(x_vec), bw = binwidth)
-  }
-
-  # only proportion
-  if (bar.measure %in% c("percentage", "perc", "proportion", "prop", "%")) {
-    .mapping <- ggplot2::aes(y = ..count.. / sum(..count..), fill = ..count.. / sum(..count..))
-    ylab_add <-
-      list(
-        ggplot2::scale_y_continuous(labels = function(x) paste0(x * 100, "%")),
-        ggplot2::ylab("proportion")
-      )
-    .f_stat <- function(x, mean, sd, n, bw) stats::dnorm(x, mean, sd) * bw
-    args <- list(mean = mean(x_vec), sd = sd(x_vec), n = length(x_vec), bw = binwidth)
-  }
-
-  # only density
-  if (bar.measure == "density") {
-    .mapping <- ggplot2::aes(y = ..density.., fill = ..density..)
-    ylab_add <- NULL
-    .f_stat <- stats::dnorm
-    args <- list(mean = mean(x_vec), sd = sd(x_vec))
-  }
+  # ======================= normal curve args =================================
 
   # all things combined
-  if (bar.measure %in% c("both", "mix", "all", "everything")) {
-    .mapping <- ggplot2::aes(y = ..count.., fill = ..count..)
-    ylab_add <-
-      list(
-        ggplot2::scale_y_continuous(
-          sec.axis = ggplot2::sec_axis(
-            trans = ~ . / nrow(df),
-            labels = function(x) paste0(x * 100, "%"),
-            name = "proportion"
-          )
-        ),
-        ggplot2::ylab("count"),
-        ggplot2::guides(fill = FALSE)
-      )
-    .f_stat <- function(x, mean, sd, n, bw) stats::dnorm(x, mean, sd) * n * bw
-    args <- list(mean = mean(x_vec), sd = sd(x_vec), n = length(x_vec), bw = binwidth)
-  }
+  ylab_add <-
+    list(
+      ggplot2::scale_y_continuous(
+        sec.axis = ggplot2::sec_axis(
+          trans = ~ . / nrow(df),
+          labels = function(x) paste0(x * 100, "%"),
+          name = "proportion"
+        )
+      ),
+      ggplot2::ylab("count"),
+      ggplot2::guides(fill = FALSE)
+    )
+  .f_stat <- function(x, mean, sd, n, bw) stats::dnorm(x, mean, sd) * n * bw
+  args <- list(mean = mean(x_vec), sd = sd(x_vec), n = length(x_vec), bw = binwidth)
 
   # ============================= plot ====================================
 
@@ -226,7 +182,7 @@ gghistostats <- function(data,
       alpha = 0.7,
       binwidth = binwidth,
       na.rm = TRUE,
-      mapping = .mapping
+      mapping = ggplot2::aes(y = ..count.., fill = ..count..)
     ) +
     ylab_add
 

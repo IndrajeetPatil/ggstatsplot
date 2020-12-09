@@ -790,16 +790,15 @@ set.seed(123)
 
 # plot
 ggstatsplot::gghistostats(
-  data = iris, # dataframe from which variable is to be taken
-  x = Sepal.Length, # numeric variable whose distribution is of interest
-  title = "Distribution of Iris sepal length", # title for the plot
-  caption = substitute(paste(italic("Source:"), "Ronald Fisher's Iris data set")),
-  bar.measure = "both",
-  test.value = 5, # default value is 0
+  data = ggplot2::msleep, # dataframe from which variable is to be taken
+  x = awake, # numeric variable whose distribution is of interest
+  title = "Amount of time spent awake", # title for the plot
+  caption = substitute(paste(italic("Source: "), "Mammalian sleep data set")),
+  test.value = 12, # default value is 0
   test.value.line = TRUE, # display a vertical line at test value
-  centrality.parameter = "mean", # which measure of central tendency is to be plotted
+  centrality.parameter = "median", # which measure of central tendency is to be plotted
   centrality.line.args = list(color = "darkred"), # aesthetics for central tendency line
-  binwidth = 0.10, # binwidth value (experiment)
+  binwidth = 1, # binwidth value (experiment)
   ggtheme = hrbrthemes::theme_ipsum_tw(), # choosing a different theme
   ggstatsplot.layer = FALSE # turn off ggstatsplot theme layer
 )
@@ -822,16 +821,18 @@ ggstatsplot::grouped_gghistostats(
     genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
   ),
   x = budget,
+  test.value = 50,
   xlab = "Movies budget (in million US$)",
-  type = "robust", # use robust location measure
+  type = "nonparametric",
   grouping.var = genre, # grouping variable
   normal.curve = TRUE, # superimpose a normal distribution curve
   normal.curve.args = list(color = "red", size = 1),
   title.prefix = "Movie genre",
   ggtheme = ggthemes::theme_tufte(),
   # modify the defaults from `ggstatsplot` for each plot
-  ggplot.component = list( 
-    ggplot2::scale_x_continuous(breaks = seq(0, 200, 50), limits = (c(0, 200)))
+  ggplot.component = ggplot2::scale_x_continuous(
+    breaks = seq(0, 200, 50),
+    limits = (c(0, 200))
   ),
   plotgrid.args = list(nrow = 2),
   title.text = "Movies budgets for different genres"

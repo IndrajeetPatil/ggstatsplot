@@ -270,7 +270,6 @@ testthat::test_that(
         title = "fuel economy",
         caption = substitute(paste(italic("source"), ": government website")),
         centrality.parameter = "median",
-        bar.measure = "mix",
         binwidth = 5,
         test.value = 20,
         k = 3,
@@ -278,8 +277,7 @@ testthat::test_that(
         test.k = 2,
         centrality.k = 2,
         test.value.line = TRUE,
-        results.subtitle = FALSE,
-        messages = FALSE
+        results.subtitle = FALSE
       )
 
     # build the plot
@@ -394,13 +392,11 @@ testthat::test_that(
       ggstatsplot::gghistostats(
         data = mtcars,
         x = wt,
-        bar.measure = "proportion",
         binwidth = 0.5,
         test.value = 2.5,
         type = "r",
         test.value.line = FALSE,
-        centrality.parameter = FALSE,
-        messages = FALSE
+        centrality.parameter = FALSE
       ) +
       scale_x_continuous(limits = c(1, 6))
 
@@ -414,94 +410,26 @@ testthat::test_that(
         data = mtcars,
         x = wt,
         test.value = 2.5,
-        type = "r",
-        messages = FALSE
+        type = "r"
       )
 
     # testing labels
     testthat::expect_identical(pb$plot$labels$subtitle, p_subtitle)
     testthat::expect_null(pb$plot$labels$caption, NULL)
-    testthat::expect_identical(pb$plot$labels$y, "proportion")
+    testthat::expect_identical(pb$plot$labels$y, "count")
 
     # checking different data layers
     testthat::expect_equal(length(pb$data), 1L)
     testthat::expect_equal(nrow(pb$data[[1]]), 11L)
     testthat::expect_equal(
       pb$data[[1]]$y,
-      c(
-        0.00000,
-        0.06250,
-        0.12500,
-        0.09375,
-        0.21875,
-        0.28125,
-        0.12500,
-        0.00000,
-        0.03125,
-        0.06250,
-        0.00000
-      ),
+      c(0, 2, 4, 3, 7, 9, 4, 0, 1, 2, 0),
       tolerance = 0.001
     )
-    testthat::expect_equal(pb$data[[1]]$x,
+    testthat::expect_equal(
+      pb$data[[1]]$x,
       c(1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0),
       tolerance = 0.01
-    )
-  }
-)
-
-# checking bayes stats and density -----------------------------------
-
-testthat::test_that(
-  desc = "checking bayes stats and density",
-  code = {
-    testthat::skip_on_cran()
-
-    # creating the plot
-    set.seed(123)
-    p <-
-      suppressMessages(ggstatsplot::gghistostats(
-        data = morley,
-        x = Speed,
-        bar.measure = "density",
-        binwidth = 50,
-        test.value = 2.5,
-        type = "bf",
-        test.value.line = FALSE,
-        centrality.parameter = FALSE,
-        messages = FALSE
-      ))
-
-    # build the plot
-    pb <- ggplot2::ggplot_build(p)
-
-    # checking subtitle
-    set.seed(123)
-    p_subtitle <-
-      statsExpressions::expr_t_onesample(
-        data = morley,
-        x = Speed,
-        test.value = 2.5,
-        type = "bf",
-        messages = FALSE
-      )
-
-    # testing labels
-    testthat::expect_identical(p$labels$subtitle, p_subtitle)
-    testthat::expect_identical(p$labels$y, "density")
-
-    # checking different data layers
-    testthat::expect_equal(length(pb$data), 1L)
-    testthat::expect_equal(nrow(pb$data[[1]]), 10L)
-    testthat::expect_equal(pb$data[[1]]$y[1], 0.0002, tolerance = 0.001)
-    testthat::expect_equal(pb$data[[1]]$y[5], 0.0044, tolerance = 0.001)
-    testthat::expect_equal(pb$data[[1]]$x[1], 600, tolerance = 0.01)
-    testthat::expect_equal(pb$data[[1]]$x[5], 800, tolerance = 0.01)
-
-    # checking panel parameters
-    testthat::expect_equal(pb$layout$panel_params[[1]]$x.range,
-      c(550, 1100),
-      tolerance = 0.001
     )
   }
 )
@@ -509,118 +437,149 @@ testthat::test_that(
 # checking if normal curve works -------------------------------------
 
 testthat::test_that(
-  desc = "checking with default binwidth",
+  desc = "checking if normal curve work",
   code = {
     testthat::skip_on_cran()
 
-    # creating a subset of the dataset
+    # plot
     set.seed(123)
-    dat1 <- dplyr::sample_frac(tbl = ggplot2::txhousing, size = 0.05)
-    dat2 <- ggplot2::msleep
-
-    # plot-1
     p1 <-
       ggstatsplot::gghistostats(
-        data = dat1,
-        x = sales,
-        results.subtitle = FALSE,
-        normal.curve = TRUE,
-        bar.measure = "count",
-        messages = FALSE
-      )
-
-    # plot-2
-    p2 <-
-      ggstatsplot::gghistostats(
-        data = dat1,
-        x = sales,
-        results.subtitle = FALSE,
-        normal.curve = TRUE,
-        binwidth = 100,
-        bar.measure = "proportion",
-        messages = FALSE
-      )
-
-    # plot-3
-    p3 <-
-      ggstatsplot::gghistostats(
-        data = dat2,
-        x = brainwt,
+        data = ggplot2::msleep,
+        x = awake,
+        binwidth = 1,
         results.subtitle = FALSE,
         normal.curve = TRUE,
         normal.curve.args =
           list(
             color = "red",
             size = 0.8
-          ),
-        bar.measure = "mix",
-        messages = FALSE
-      )
-
-    # plot-4
-    p4 <-
-      ggstatsplot::gghistostats(
-        data = dat2,
-        x = brainwt,
-        results.subtitle = FALSE,
-        normal.curve = TRUE,
-        bar.measure = "density",
-        binwidth = 0.05,
-        normal.curve.args =
-          list(
-            color = "black",
-            linetype = "dashed",
-            size = 1
-          ),
-        messages = FALSE
-      )
-
-    # plot-5
-    p5 <-
-      ggstatsplot::gghistostats(
-        data = dat2,
-        x = brainwt,
-        results.subtitle = FALSE,
-        normal.curve = FALSE,
-        messages = FALSE
+          )
       )
 
     # build plots
     pb1 <- ggplot2::ggplot_build(p1)
-    pb2 <- ggplot2::ggplot_build(p2)
-    pb3 <- ggplot2::ggplot_build(p3)
-    pb4 <- ggplot2::ggplot_build(p4)
-    pb5 <- ggplot2::ggplot_build(p5)
 
     # check data layers
     testthat::expect_equal(length(pb1$data), 4L)
-    testthat::expect_equal(length(pb2$data), 4L)
-    testthat::expect_equal(length(pb3$data), 4L)
-    testthat::expect_equal(length(pb4$data), 4L)
-    testthat::expect_equal(length(pb5$data), 3L)
 
-    # check aesthetic of the respective layer
-    testthat::expect_equal(dim(pb1$data[[2]]), c(101L, 8L))
-    testthat::expect_identical(unique(pb1$data[[2]]$colour), "black")
-    testthat::expect_equal(unique(pb1$data[[2]]$linetype), 1)
-    testthat::expect_equal(unique(pb1$data[[2]]$size), 3)
-    testthat::expect_identical(unique(pb3$data[[2]]$colour), "red")
-    testthat::expect_equal(unique(pb3$data[[2]]$size), 0.8)
-    testthat::expect_identical(unique(pb4$data[[2]]$linetype), "dashed")
+    # check individual layers
+    testthat::expect_equal(
+      pb1$data[[1]],
+      structure(list(fill = c(
+        "grey50", "grey50", "grey50", "grey50",
+        "grey50", "grey50", "grey50", "grey50", "grey50", "grey50", "grey50",
+        "grey50", "grey50", "grey50", "grey50", "grey50", "grey50", "grey50",
+        "grey50"
+      ), y = c(
+        2, 1, 2, 3, 4, 4, 7, 7, 2, 6, 12, 8, 5, 1, 4,
+        4, 5, 5, 1
+      ), count = c(
+        2, 1, 2, 3, 4, 4, 7, 7, 2, 6, 12, 8, 5,
+        1, 4, 4, 5, 5, 1
+      ), x = c(
+        4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
+        15, 16, 17, 18, 19, 20, 21, 22
+      ), xmin = c(
+        3.5, 4.5, 5.5, 6.5,
+        7.5, 8.5, 9.5, 10.5, 11.5, 12.5, 13.5, 14.5, 15.5, 16.5, 17.5,
+        18.5, 19.5, 20.5, 21.5
+      ), xmax = c(
+        4.5, 5.5, 6.5, 7.5, 8.5, 9.5,
+        10.5, 11.5, 12.5, 13.5, 14.5, 15.5, 16.5, 17.5, 18.5, 19.5, 20.5,
+        21.5, 22.5
+      ), density = c(
+        0.0240963855421687, 0.0120481927710843,
+        0.0240963855421687, 0.036144578313253, 0.0481927710843374, 0.0481927710843374,
+        0.0843373493975904, 0.0843373493975904, 0.0240963855421687, 0.072289156626506,
+        0.144578313253012, 0.0963855421686747, 0.0602409638554217, 0.0120481927710843,
+        0.0481927710843374, 0.0481927710843374, 0.0602409638554217, 0.0602409638554217,
+        0.0120481927710843
+      ), ncount = c(
+        0.166666666666667, 0.0833333333333333,
+        0.166666666666667, 0.25, 0.333333333333333, 0.333333333333333,
+        0.583333333333333, 0.583333333333333, 0.166666666666667, 0.5,
+        1, 0.666666666666667, 0.416666666666667, 0.0833333333333333,
+        0.333333333333333, 0.333333333333333, 0.416666666666667, 0.416666666666667,
+        0.0833333333333333
+      ), ndensity = c(
+        0.166666666666667, 0.0833333333333333,
+        0.166666666666667, 0.25, 0.333333333333333, 0.333333333333333,
+        0.583333333333333, 0.583333333333333, 0.166666666666667, 0.5,
+        1, 0.666666666666667, 0.416666666666667, 0.0833333333333333,
+        0.333333333333333, 0.333333333333333, 0.416666666666667, 0.416666666666667,
+        0.0833333333333333
+      ), flipped_aes = c(
+        FALSE, FALSE, FALSE, FALSE,
+        FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,
+        FALSE, FALSE, FALSE, FALSE, FALSE, FALSE
+      ), PANEL = structure(c(
+        1L,
+        1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L,
+        1L, 1L
+      ), .Label = "1", class = "factor"), group = c(
+        -1L, -1L,
+        -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L,
+        -1L, -1L, -1L, -1L
+      ), ymin = c(
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0
+      ), ymax = c(
+        2, 1, 2, 3, 4, 4, 7, 7, 2,
+        6, 12, 8, 5, 1, 4, 4, 5, 5, 1
+      ), colour = c(
+        "black", "black",
+        "black", "black", "black", "black", "black", "black", "black",
+        "black", "black", "black", "black", "black", "black", "black",
+        "black", "black", "black"
+      ), size = c(
+        0.5, 0.5, 0.5, 0.5, 0.5,
+        0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5,
+        0.5
+      ), linetype = c(
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1
+      ), alpha = c(
+        0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7,
+        0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7
+      )), row.names = c(
+        NA,
+        -19L
+      ), class = "data.frame")
+    )
 
-    # even if binwidth changes mean of the distribution shouldn't change
-    testthat::expect_identical(mean(pb1$data[[2]]$x), mean(pb2$data[[2]]$x))
-    testthat::expect_identical(mean(pb3$data[[2]]$x), mean(pb4$data[[2]]$x))
-    testthat::expect_equal(mean(pb1$data[[2]]$y), 14.02795, tolerance = 0.001)
-    testthat::expect_equal(mean(pb2$data[[2]]$y), 0.008271081, tolerance = 0.001)
-    testthat::expect_equal(mean(pb3$data[[2]]$y), 4.627659, tolerance = 0.001)
-    testthat::expect_equal(mean(pb4$data[[2]]$y), 0.1082654, tolerance = 0.001)
+    testthat::expect_equal(
+      pb1$data[[3]],
+      structure(
+        list(
+          xintercept = 13.5674698795181,
+          PANEL = structure(1L, .Label = "1", class = "factor"),
+          group = structure(-1L, n = 1L),
+          colour = "blue",
+          size = 1,
+          linetype = "dashed",
+          alpha = NA
+        ),
+        row.names = c(NA, -1L),
+        class = "data.frame"
+      )
+    )
 
     # annotation
-    testthat::expect_null(pb1$plot$labels$caption, NULL)
-    testthat::expect_null(pb2$plot$labels$caption, NULL)
-    testthat::expect_null(pb3$plot$labels$caption, NULL)
-    testthat::expect_null(pb4$plot$labels$caption, NULL)
+    testthat::expect_equal(
+      pb1$plot$labels,
+      list(
+        x = "awake",
+        title = NULL,
+        subtitle = NULL,
+        caption = NULL,
+        y = "count",
+        fill = "count",
+        weight = "weight",
+        xintercept = "xintercept",
+        label = "list(bquote(.(label.text) == .(specify_decimal_p(label.value, ..."
+      )
+    )
   }
 )
 
@@ -639,8 +598,7 @@ testthat::test_that(
         x = brainwt,
         output = "subtitle",
         type = "np",
-        test.value = 0.25,
-        messages = FALSE
+        test.value = 0.25
       )
 
     set.seed(123)
@@ -650,8 +608,7 @@ testthat::test_that(
         x = brainwt,
         output = "subtitle",
         type = "np",
-        test.value = 0.25,
-        messages = FALSE
+        test.value = 0.25
       )
 
     # tests

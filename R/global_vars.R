@@ -4,7 +4,6 @@ utils::globalVariables(
   names = c(
     ".",
     "..count..",
-    "..density..",
     "N",
     "conf.high",
     "conf.low",
@@ -18,7 +17,6 @@ utils::globalVariables(
     "isanoutlier",
     "label",
     "median",
-    "n_obs",
     "p.value",
     "parameter",
     "perc",

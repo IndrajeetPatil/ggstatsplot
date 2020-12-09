@@ -257,12 +257,6 @@ results.</p></td>
     <tr>
       <th>...</th>
       <td><p>Arguments passed on to <code><a href='gghistostats.html'>gghistostats</a></code></p><dl>
-    <dt><code>bar.measure</code></dt><dd><p>Character describing what value needs to be represented as
-height in the bar chart. This can either be <code>"count"</code>, which shows number
-of points in bin, or <code>"density"</code>, which density of points in bin, scaled to
-integrate to 1, or "<code>proportion</code>", which shows relative frequencies of
-observations in each bin, or "<code>mix</code>", which shows <em>both</em> count and
-proportion in the same plot.</p></dd>
     <dt><code>normal.curve</code></dt><dd><p>A logical value that decides whether to super-impose a
 normal curve using <code><a href='https://rdrr.io/r/stats/Normal.html'>stats::dnorm(mean(x), sd(x))</a></code>. Default is <code>FALSE</code>.</p></dd>
     <dt><code>normal.curve.args</code></dt><dd><p>A list of additional aesthetic arguments to be
@@ -395,7 +389,7 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
   messages <span class='op'>=</span> <span class='cn'>FALSE</span>,
   plotgrid.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>nrow <span class='op'>=</span> <span class='fl'>1</span>, labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"(i)"</span>, <span class='st'>"(ii)"</span>, <span class='st'>"(iii)"</span><span class='op'>)</span><span class='op'>)</span>,
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='img'><img src='grouped_gghistostats-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in matrix(nrow = niter(x), ncol = nvar(x) + iters): non-numeric matrix extent</span></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

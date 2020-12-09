@@ -1,5 +1,11 @@
-# ggstatsplot 0.6.6.9000
+# ggstatsplot 0.7.0
 
+BREAKING CHANGES
+
+  - `gghistostats` removes `bar.measure` argument. The function now defaults to
+    showing the `count` information on the `x`-axis and the `proportion`
+    information on the duplicated `x`-axis.
+ 
 MINOR CHANGES
 
   - `ggcorrmat` uses pretty formatting to display sample size information.

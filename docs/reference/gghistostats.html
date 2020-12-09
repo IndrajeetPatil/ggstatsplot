@@ -202,7 +202,6 @@ in the plot as a subtitle.</p>
   <span class='va'>data</span>,
   <span class='va'>x</span>,
   binwidth <span class='op'>=</span> <span class='cn'>NULL</span>,
-  bar.measure <span class='op'>=</span> <span class='st'>"count"</span>,
   xlab <span class='op'>=</span> <span class='cn'>NULL</span>,
   title <span class='op'>=</span> <span class='cn'>NULL</span>,
   subtitle <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -228,7 +227,7 @@ in the plot as a subtitle.</p>
   centrality.line.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>1</span>, color <span class='op'>=</span> <span class='st'>"blue"</span><span class='op'>)</span>,
   centrality.label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"blue"</span>, size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>,
   normal.curve <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  normal.curve.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>,
+  normal.curve.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>,
   ggplot.component <span class='op'>=</span> <span class='cn'>NULL</span>,
   output <span class='op'>=</span> <span class='st'>"plot"</span>,
   <span class='va'>...</span>
@@ -253,15 +252,6 @@ numeric value, or a function that calculates width from <code>x</code>. The defa
 to use the <code>max(x) - min(x) / sqrt(N)</code>. You should always check this value
 and explore multiple widths to find the best to illustrate the stories in
 your data.</p></td>
-    </tr>
-    <tr>
-      <th>bar.measure</th>
-      <td><p>Character describing what value needs to be represented as
-height in the bar chart. This can either be <code>"count"</code>, which shows number
-of points in bin, or <code>"density"</code>, which density of points in bin, scaled to
-integrate to 1, or "<code>proportion</code>", which shows relative frequencies of
-observations in each bin, or "<code>mix</code>", which shows <em>both</em> count and
-proportion in the same plot.</p></td>
     </tr>
     <tr>
       <th>xlab</th>
@@ -446,9 +436,8 @@ results.</p></td>
 <span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>gghistostats</span><span class='op'>(</span>
   data <span class='op'>=</span> <span class='va'>iris</span>,
   x <span class='op'>=</span> <span class='va'>Sepal.Length</span>,
-  bar.measure <span class='op'>=</span> <span class='st'>"mix"</span>,
   type <span class='op'>=</span> <span class='st'>"p"</span>,
-  caption <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>substitute</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/grDevices/plotmath.html'>italic</a></span><span class='op'>(</span><span class='st'>"Note"</span><span class='op'>)</span>, <span class='st'>": Iris dataset by Fisher."</span><span class='op'>)</span><span class='op'>)</span>,
+  caption <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>substitute</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/grDevices/plotmath.html'>italic</a></span><span class='op'>(</span><span class='st'>"Note"</span><span class='op'>)</span>, <span class='st'>": Iris dataset by Anderson"</span><span class='op'>)</span><span class='op'>)</span>,
   bf.prior <span class='op'>=</span> <span class='fl'>0.8</span>,
   test.value <span class='op'>=</span> <span class='fl'>3</span>,
   test.value.line <span class='op'>=</span> <span class='cn'>TRUE</span>,

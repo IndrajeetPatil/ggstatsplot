@@ -444,7 +444,6 @@ plot_list <-
         "Continent: Asia",
         "Continent: Europe"
       ),
-      bar.measure = list("proportion", "count", "mix", "density"),
       bar.fill = list("white", "red", "orange", "blue"),
       effsize.type = list("d", "d", "g", "g"),
       normal.curve = TRUE,
