@@ -5,12 +5,17 @@ BREAKING CHANGES
   - `gghistostats` removes `bar.measure` argument. The function now defaults to
     showing the `count` information on the `x`-axis and the `proportion`
     information on the duplicated `x`-axis.
- 
+
 MINOR CHANGES
 
   - `ggcorrmat` uses pretty formatting to display sample size information.
-  
+
   - `ggcoefstats` now also displays degrees of freedom for chi-squared tests.
+
+NEW FEATURES
+
+  - More models supported in `ggcoefstats`: `fixest`, `ivFixed`, `ivprobit`,
+    `riskRegression`.
 
 # ggstatsplot 0.6.6
 

@@ -85,19 +85,20 @@ also supported by `ggcoefstats`. For example-
 `cglm`, `clm`, `clm2`, `clmm`, `clmm2`, `coeftest`, `complmrob`,
 `confusionMatrix`, `coxme`, `coxph`, `coxph.penal`, `cpglm`, `cpglmm`, `crch`,
 `crq`, `DirichReg`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`,
-`fitdistr`, `flexsurvreg`, `gam`, `Gam`, `gamlss`, `garch`, `geeglm`, `glmc`,
-`glmerMod`, `glmmTMB`, `gls`, `glht`, `glm`, `glmm`, `glmmadmb`, `glmmPQL`,
-`glmRob`, `glmrob`, `glmx`, `gmm`, `HLfit`, `hurdle`, `ivreg`, `iv_robust`,
-`lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmerModLmerTest`, `lmodel2`, `lmRob`,
-`lmrob`, `lm_robust`, `logitmfx`, `logitor`, `logitsf`, `LORgee`, `lqm`, `lqmm`,
-`lrm`, `manova`, `maov`, `margins`, `mcmc`, `mcmc.list`, `MCMCglmm`, `mclogit`,
-`mice`, `mmclogit`, `mediate`, `metafor`, `merMod`, `merModList`, `metaplus`,
-`mixor`, `mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `negbinmfx`,
-`negbinirr`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `orm`, `plm`,
-`poissonmfx`, `poissonirr`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`,
-`robmixglm`, `rq`, `rqss`, `rrvglm`, `scam`, `semLm`, `semLme`, `slm`,
-`speedglm`, `speedlm`, `stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`,
-`svyglm`, `tobit`, `truncreg`, `vgam`, `vglm`, `wbgee`, `wblm`, `zeroinfl`, etc.
+`fitdistr`, `fixest`, `flexsurvreg`, `gam`, `Gam`, `gamlss`, `garch`, `geeglm`,
+`glmc`, `glmerMod`, `glmmTMB`, `gls`, `glht`, `glm`, `glmm`, `glmmadmb`,
+`glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`, `HLfit`, `hurdle`, `ivFixed`,
+`ivprobit`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`,
+`lmerModLmerTest`, `lmodel2`, `lmRob`, `lmrob`, `lm_robust`, `logitmfx`,
+`logitor`, `logitsf`, `LORgee`, `lqm`, `lqmm`, `lrm`, `manova`, `maov`,
+`margins`, `mcmc`, `mcmc.list`, `MCMCglmm`, `mclogit`, `mice`, `mmclogit`,
+`mediate`, `metafor`, `merMod`, `merModList`, `metaplus`, `mixor`, `mjoint`,
+`mle2`, `mlm`, `multinom`, `negbin`, `negbinmfx`, `negbinirr`, `nlmerMod`,
+`nlrq`, `nlreg`, `nls`, `orcutt`, `orm`, `plm`, `poissonmfx`, `poissonirr`,
+`polr`, `ridgelm`, `riskRegression`, `rjags`, `rlm`, `rlmerMod`, `robmixglm`,
+`rq`, `rqss`, `rrvglm`, `scam`, `semLm`, `semLme`, `slm`, `speedglm`, `speedlm`,
+`stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`,
+`truncreg`, `vgam`, `vglm`, `wbgee`, `wblm`, `zeroinfl`, etc.
 
 # Summary of meta-analyis tests
 
@@ -177,13 +178,13 @@ mod3 <- ttestBF(x = sleep$extra[1:10], y = sleep$extra[11:20], paired = TRUE)
 mod4 <- correlationBF(y = iris$Sepal.Length, x = iris$Sepal.Width)
 
 # contingency tabs (not supported)
-# data("raceDolls")
-# mod5 <-
-#   contingencyTableBF(
-#     raceDolls,
-#     sampleType = "indepMulti",
-#     fixedMargin = "cols"
-#   )
+data("raceDolls")
+mod5 <-
+  contingencyTableBF(
+    raceDolls,
+    sampleType = "indepMulti",
+    fixedMargin = "cols"
+  )
 
 # anova
 data("puzzles")
@@ -212,6 +213,7 @@ ggstatsplot::combine_plots(
   ggcoefstats(mod2, title = "independent t-test"),
   ggcoefstats(mod3, title = "paired t-test"),
   ggcoefstats(mod4, title = "correlation"),
+  ggcoefstats(mod5, title = "contingency table"),
   ggcoefstats(mod6, title = "anova"),
   ggcoefstats(mod7, title = "regression-1"),
   ggcoefstats(mod8, title = "meta-analysis"),
@@ -228,11 +230,11 @@ library(ggstatsplot)
 library(ggplot2)
 
 # model
-mod <- stats::aov(formula = rating ~ mpaa * genre, data = movies_long)
+mod_aov <- stats::aov(formula = rating ~ mpaa * genre, data = movies_long)
 
 # plot
 ggstatsplot::ggcoefstats(
-  x = mod,
+  x = mod_aov,
   effsize = "omega", # changing the effect size estimate being displayed
   point.args = list(color = "red", size = 4, shape = 15), # changing the point geom
   package = "dutchmasters", # package from which color palette is to be taken
@@ -335,7 +337,7 @@ library(car)
 library(ggstatsplot)
 
 # model
-mod <-
+mod_Anova <-
   car::Anova(stats::lm(
     formula = conformity ~ fcategory * partner.status,
     data = Moore,
@@ -344,7 +346,7 @@ mod <-
 
 # plot
 ggstatsplot::ggcoefstats(
-  x = mod,
+  x = mod_Anova,
   title = "Anova with `car`"
 )
 ```
@@ -401,18 +403,7 @@ ggstatsplot::ggcoefstats(
   stats.label.color = c("#CC79A7", "darkgreen", "#0072B2", "darkred", "black", "red"),
   title = "Movie ratings by their genre",
   subtitle = "Source: www.imdb.com"
-) +
-  # further modification with the ggplot2 commands
-  # note the order in which the labels are entered
-  ggplot2::scale_y_discrete(labels = c(
-    "Comedy",
-    "Action Comedy",
-    "Action Drama",
-    "Comedy Drama",
-    "Drama"
-  )) +
-  ggplot2::labs(y = "Genre compared to Action movies)") +
-  ggplot2::theme(axis.title.y = ggplot2::element_text(size = 14, face = "bold"))
+)
 ```
 
 ## standardized regression coefficients with `lm` (`lm.beta`)
@@ -574,6 +565,33 @@ ggstatsplot::combine_plots(
   ggstatsplot::ggcoefstats(m1_afex, title = "example-1"),
   ggstatsplot::ggcoefstats(m2_afex, title = "example-2"),
   title.text = "analysis of factorial experiments (using `afex`)"
+)
+```
+
+## risk regression (`riskRegression`)
+
+```{r riskRegression, fig.height = 6, fig.width = 6}
+# setup
+set.seed(123)
+library(riskRegression)
+library(prodlim)
+data(Melanoma, package = "riskRegression")
+
+# tumor thickness on the log-scale
+Melanoma$logthick <- log(Melanoma$thick)
+
+# absolute risk model
+multi.arr <-
+  riskRegression::ARR(
+    formula = Hist(time, status) ~ logthick + sex + age + ulcer,
+    data = Melanoma,
+    cause = 1
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = multi.arr,
+  title = "risk regression"
 )
 ```
 
@@ -3412,6 +3430,58 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
+## instrumental variables probit regression (`ivprobit`)
+
+```{r ivprobit, fig.height = 6, fig.width = 6}
+# setup
+set.seed(123)
+library(ivprobit)
+data(eco)
+
+# model
+pro <-
+  ivprobit::ivprobit(
+    formula = d2 ~ ltass + roe + div | eqrat + bonus | ltass + roe + div + gap + cfa,
+    data = eco
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = pro,
+  title = "instrumental variables probit regression"
+)
+```
+
+## instrumental fixed effect panel regression (`ivFixed`)
+
+```{r ivFixed, fig.height = 6, fig.width = 6}
+# setup
+set.seed(123)
+library(ivfixed)
+
+#  data
+pib <- as.matrix(c(12, 3, 4, 0.4, 0.7, 5, 0.7, 0.3, 0.6, 89, 7, 8, 45, 7, 4, 5, 0.5, 5),
+  nrows = 18, ncols = 1
+)
+tir <- as.matrix(c(12, 0.3, 4, 0.4, 7, 12, 3.0, 6.0, 45, 7.0, 0.8, 44, 65, 23, 4, 6, 76, 9),
+  nrows = 18, ncols = 1
+)
+inf <- as.matrix(c(1.2, 3.6, 44, 1.4, 0.78, 54, 0.34, 0.66, 12, 0.7, 8.0, 12, 65, 43, 5, 76, 65, 8), nrows = 18, ncols = 1)
+npl <- as.matrix(c(0.2, 3.8, 14, 2.4, 1.7, 43, 0.2, 0.5, 23, 7.8, 88, 36, 65, 3, 44, 65, 7, 34),
+  nrows = 18, ncols = 1
+)
+mdata <- data.frame(p = pib, t = tir, int = inf, np = npl)
+
+# model
+ivf <- ivfixed::ivFixed(t ~ p + int | p + np, mdata, n = 6, t = 3)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = ivf,
+  title = "instrumental fixed effect panel regression"
+)
+```
+
 ## causal mediation analysis (`mediate`)
 
 ```{r mediate, fig.height = 5, fig.width = 5}
@@ -3433,7 +3503,7 @@ c <-
   )
 
 # mediation model
-mod <-
+mod_mediate <-
   mediation::mediate(
     model.m = b,
     model.y = c,
@@ -3444,7 +3514,7 @@ mod <-
 
 # plot
 ggstatsplot::ggcoefstats(
-  x = mod,
+  x = mod_mediate,
   title = "causal mediation analysis"
 )
 ```
@@ -3710,7 +3780,7 @@ lmod <- lm(Fertility ~ ., data = swiss)
 
 # model
 mod_glht <-
-  glht(
+  multcomp::glht(
     model = lmod,
     linfct = c(
       "Agriculture = 0",
@@ -3793,7 +3863,7 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
-## Firth's Bias-Reduced Logistic Regression (`logitsf`)
+## Firth's bias-reduced logistic regression (`logitsf`)
 
 ```{r logitsf, fig.height = 4, fig.width = 4}
 # setup
@@ -3809,7 +3879,7 @@ mod_logistf <- logistf::logistf(event ~ time, data)
 # plot
 ggstatsplot::ggcoefstats(
   x = mod_logistf,
-  title = "Firth's Bias-Reduced Logistic Regression"
+  title = "Firth's bias-reduced logistic regression"
 )
 ```
 
@@ -3848,7 +3918,7 @@ wages <- panelr::panel_data(data = WageData, id = id, wave = t)
 
 # model
 mod_wblm <-
-  wbm(
+  panelr::wbm(
     formula = lwage ~ lag(union) + wks | blk + fem | blk * lag(union),
     data = wages
   )
@@ -4414,6 +4484,60 @@ imp <- mice(nhanes2)
 ggstatsplot::ggcoefstats(
   x = with(data = imp, exp = lm(bmi ~ age + hyp + chl)),
   title = "Multivariate Imputation by Chained Equations"
+)
+```
+
+## estimations with multiple fixed-effects (`fixest`)
+
+```{r fixest, fig.height = 10, fig.width = 10}
+# setup
+library(fixest)
+
+# data
+data(trade)
+
+# generating data for a simple example
+set.seed(1)
+n <- 100
+x <- rnorm(n, 1, 5)**2
+y <- rnorm(n, -1, 5)**2
+z1 <- rpois(n, x * y) + rpois(n, 2)
+base <- data.frame(x, y, z1)
+
+# creating different `fixest` regression model objects
+mod_fx1 <-
+  fixest::femlm(
+    fml = Euros ~ log(dist_km) | Origin + Destination + Product,
+    data = trade
+  )
+
+mod_fx2 <-
+  fixest::fepois(
+    fml = Sepal.Length ~ Sepal.Width + Petal.Length | Species,
+    data = iris
+  )
+
+mod_fx3 <-
+  fixest::feols(
+    fml = Sepal.Length ~ Sepal.Width + Petal.Length | Species,
+    data = iris
+  )
+
+mod_fx4 <-
+  fixest::feNmlm(
+    z1 ~ 1, base,
+    NL.fml = ~ a * log(x) + b * log(y),
+    NL.start = list(a = 0, b = 0)
+  )
+
+# combining plots
+ggstatsplot::combine_plots(
+  ggstatsplot::ggcoefstats(mod_fx1),
+  ggstatsplot::ggcoefstats(mod_fx2),
+  ggstatsplot::ggcoefstats(mod_fx3),
+  ggstatsplot::ggcoefstats(mod_fx4),
+  labels = "auto",
+  title.text = "fast and user-friendly fixed-effects estimations"
 )
 ```
 

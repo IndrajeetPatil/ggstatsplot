@@ -63,4 +63,3 @@ Roxygen: list(markdown = TRUE, roclets = c("rd", "namespace",
 RoxygenNote: 7.1.1
 Config/testthat/edition: 3
 Config/testthat/parallel: true
-Config/testthat/start-first: watcher, parallel*
