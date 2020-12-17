@@ -117,7 +117,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/IndrajeetPatil/ggstatsplot/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -137,13 +137,13 @@
 
       
 
-      </header><script src="purrr_examples_files/header-attrs-2.5.3/header-attrs.js"></script><div class="row">
+      </header><script src="purrr_examples_files/header-attrs-2.6/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-12-09</h4>
+            <h4 class="date">2020-12-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -176,7 +176,7 @@
 <p>You can pass:</p>
 <ul>
 <li><p>A single character string such as <code>xlab = "Continent"</code> or numeric such as <code>nboot = 25</code> in which case it will be reused/recycled as many times as needed.</p></li>
-<li><p>A vector of values such as <code>mean.ci = c(TRUE, FALSE, TRUE)</code> in which case it will be coerced to a list and checked for the right class (in this case integer) and the right quantity of entries in the vector i.e., <code>mean.ci = c(TRUE, FALSE)</code> will fail if we’re trying to make three plots.</p></li>
+<li><p>A vector of values such as <code>nboot = c(50, 100, 200)</code> in which case it will be coerced to a list and checked for the right class (in this case integer) and the right quantity of entries in the vector i.e., <code>nboot = c(50, 100)</code> will fail if we’re trying to make three plots.</p></li>
 <li><p>A list; either named <code>data = year_list</code> or created as you go <code>palette = list("Dark2", "Set1")</code>. Any list will be checked for the right class (in this case character) and the right quantity of entries in the list.</p></li>
 </ul>
 </div>
@@ -241,7 +241,6 @@
         <span class="st">"partial_eta"</span>
       <span class="op">)</span>,
       plot.type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"box"</span>, <span class="st">"boxviolin"</span>, <span class="st">"violin"</span><span class="op">)</span>,
-      mean.ci <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span><span class="op">)</span>,
       package <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"nord"</span>, <span class="st">"ochRe"</span>, <span class="st">"awtools"</span><span class="op">)</span>,
       palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"aurora"</span>, <span class="st">"parliament"</span>, <span class="st">"bpalette"</span><span class="op">)</span>,
       ggtheme <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
@@ -319,7 +318,6 @@
         <span class="st">"partial_omega"</span>,
         <span class="st">"partial_eta"</span>
       <span class="op">)</span>,
-      mean.ci <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span><span class="op">)</span>,
       package <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"ggsci"</span>, <span class="st">"palettetown"</span>, <span class="st">"palettetown"</span>, <span class="st">"wesanderson"</span><span class="op">)</span>,
       palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"lanonc_lancet"</span>, <span class="st">"venomoth"</span>, <span class="st">"blastoise"</span>, <span class="st">"GrandBudapest1"</span><span class="op">)</span>,
       ggtheme <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
@@ -374,8 +372,7 @@
       <span class="op">)</span>,
       label.var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"title"</span><span class="op">)</span>,
       label.expression <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-        <span class="st">"rating &gt; 7.5 &amp;
-         budget &lt; 100"</span>,
+        <span class="st">"rating &gt; 7.5 &amp; budget &lt; 100"</span>,
         <span class="st">"rating &gt; 8 &amp; budget &lt; 50"</span>,
         <span class="st">"rating &gt; 8 &amp; budget &lt; 10"</span>
       <span class="op">)</span>,

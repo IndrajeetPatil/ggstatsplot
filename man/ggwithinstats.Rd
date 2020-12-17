@@ -28,7 +28,6 @@ ggwithinstats(
   nboot = 100L,
   tr = 0.1,
   mean.plotting = TRUE,
-  mean.ci = FALSE,
   mean.point.args = list(size = 5, color = "darkred"),
   mean.label.args = list(size = 3),
   point.path = TRUE,
@@ -135,9 +134,6 @@ try to play around with the value of \code{tr}, which is by default set to
 
 \item{mean.plotting}{Logical that decides whether mean is to be highlighted
 and its value to be displayed (Default: \code{TRUE}).}
-
-\item{mean.ci}{Logical that decides whether \verb{95\%} confidence interval for
-mean is to be displayed (Default: \code{FALSE}).}
 
 \item{mean.point.args}{A list of additional aesthetic
 arguments to be passed to \code{ggplot2::geom_point} and

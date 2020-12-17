@@ -215,6 +215,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggrepel",
       "name": "ggrepel",
+      "version": ">= 0.9.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -263,6 +264,7 @@
       "@type": "SoftwareApplication",
       "identifier": "pairwiseComparisons",
       "name": "pairwiseComparisons",
+      "version": ">= 3.1.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -340,6 +342,7 @@
       "@type": "SoftwareApplication",
       "identifier": "statsExpressions",
       "name": "statsExpressions",
+      "version": ">= 0.6.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -431,5 +434,5 @@
   ],
   "funder": {},
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md",
-  "fileSize": "89225.815KB"
+  "fileSize": "88332.59KB"
 }

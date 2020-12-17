@@ -166,7 +166,7 @@ subtitle." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/IndrajeetPatil/ggstatsplot/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -210,25 +210,19 @@ subtitle.</p>
   bf.message <span class='op'>=</span> <span class='cn'>TRUE</span>,
   beta <span class='op'>=</span> <span class='fl'>0.1</span>,
   k <span class='op'>=</span> <span class='fl'>2L</span>,
+  results.subtitle <span class='op'>=</span> <span class='cn'>TRUE</span>,
   label.var <span class='op'>=</span> <span class='cn'>NULL</span>,
   label.expression <span class='op'>=</span> <span class='cn'>NULL</span>,
   point.label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>,
-  formula <span class='op'>=</span> <span class='va'>y</span> <span class='op'>~</span> <span class='va'>x</span>,
   smooth.line.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>1.5</span>, color <span class='op'>=</span> <span class='st'>"blue"</span><span class='op'>)</span>,
-  method <span class='op'>=</span> <span class='st'>"lm"</span>,
-  method.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
   point.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span>, alpha <span class='op'>=</span> <span class='fl'>0.4</span><span class='op'>)</span>,
   point.width.jitter <span class='op'>=</span> <span class='fl'>0</span>,
   point.height.jitter <span class='op'>=</span> <span class='fl'>0</span>,
   marginal <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  marginal.type <span class='op'>=</span> <span class='st'>"histogram"</span>,
-  margins <span class='op'>=</span> <span class='st'>"both"</span>,
+  marginal.type <span class='op'>=</span> <span class='st'>"densigram"</span>,
   marginal.size <span class='op'>=</span> <span class='fl'>5</span>,
   xfill <span class='op'>=</span> <span class='st'>"#009E73"</span>,
   yfill <span class='op'>=</span> <span class='st'>"#D55E00"</span>,
-  xparams <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='va'>xfill</span><span class='op'>)</span>,
-  yparams <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='va'>yfill</span><span class='op'>)</span>,
-  results.subtitle <span class='op'>=</span> <span class='cn'>TRUE</span>,
   xlab <span class='op'>=</span> <span class='cn'>NULL</span>,
   ylab <span class='op'>=</span> <span class='cn'>NULL</span>,
   title <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -297,6 +291,12 @@ parametric test</strong> (Default: <code>TRUE</code>).</p></td>
 (Default: <code>k = 2L</code>).</p></td>
     </tr>
     <tr>
+      <th>results.subtitle</th>
+      <td><p>Decides whether the results of statistical tests are
+to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
+the plot will be returned.</p></td>
+    </tr>
+    <tr>
       <th>label.var</th>
       <td><p>Variable to use for points labels. Can be entered either as
 a character string (e.g., <code>"var1"</code>) or as a bare expression (e.g, <code>var1</code>).</p></td>
@@ -314,38 +314,9 @@ expression (e.g., <code>y &lt; 4 &amp; z &lt; 20</code>).</p></td>
 to <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geom used to display the labels.</p></td>
     </tr>
     <tr>
-      <th>formula</th>
-      <td><p>Formula to use in smoothing function, eg. <code>y ~ x</code>,
-<code>y ~ poly(x, 2)</code>, <code>y ~ log(x)</code>. <code>NULL</code> by default, in which case
-<code>method = NULL</code> implies <code>formula = y ~ x</code> when there are fewer than 1,000
-observations and <code>formula = y ~ s(x, bs = "cs")</code> otherwise.</p></td>
-    </tr>
-    <tr>
       <th>smooth.line.args</th>
       <td><p>A list of additional aesthetic arguments to be passed
 to <code><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>ggplot2::geom_smooth</a></code> geom used to display the regression line.</p></td>
-    </tr>
-    <tr>
-      <th>method</th>
-      <td><p>Smoothing method (function) to use, accepts either
-<code>NULL</code> or a character vector, e.g. <code>"lm"</code>, <code>"glm"</code>, <code>"gam"</code>, <code>"loess"</code>
-or a function, e.g. <code><a href='https://rdrr.io/pkg/MASS/man/rlm.html'>MASS::rlm</a></code> or <code><a href='https://rdrr.io/pkg/mgcv/man/gam.html'>mgcv::gam</a></code>, <code><a href='https://rdrr.io/r/stats/lm.html'>stats::lm</a></code>, or <code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess</a></code>.
-<code>"auto"</code> is also accepted for backwards compatibility.  It is equivalent to
-<code>NULL</code>.</p>
-<p>For <code>method = NULL</code> the smoothing method is chosen based on the
-size of the largest group (across all panels). <code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess()</a></code> is
-used for less than 1,000 observations; otherwise <code><a href='https://rdrr.io/pkg/mgcv/man/gam.html'>mgcv::gam()</a></code> is
-used with <code>formula = y ~ s(x, bs = "cs")</code> with <code>method = "REML"</code>. Somewhat anecdotally,
-<code>loess</code> gives a better appearance, but is \(O(N^{2})\) in memory,
-so does not work for larger datasets.</p>
-<p>If you have fewer than 1,000 observations but want to use the same <code>gam()</code>
-model that <code>method = NULL</code> would use, then set
-<code>method = "gam", formula = y ~ s(x, bs = "cs")</code>.</p></td>
-    </tr>
-    <tr>
-      <th>method.args</th>
-      <td><p>List of additional arguments passed on to the modelling
-function defined by <code>method</code>.</p></td>
     </tr>
     <tr>
       <th>point.args</th>
@@ -371,10 +342,6 @@ displayed; the default is <code>TRUE</code>.</p></td>
 (<code>"histogram"</code>, <code>"boxplot"</code>, <code>"density"</code>, <code>"violin"</code>, <code>"densigram"</code>).</p></td>
     </tr>
     <tr>
-      <th>margins</th>
-      <td><p>Along which margins to show the plots. One of: [both, x, y].</p></td>
-    </tr>
-    <tr>
       <th>marginal.size</th>
       <td><p>Integer describing the relative size of the marginal
 plots compared to the main plot. A size of <code>5</code> means that the main plot is
@@ -385,22 +352,6 @@ plots compared to the main plot. A size of <code>5</code> means that the main pl
       <td><p>Character describing color fill for <code>x</code> and <code>y</code> axes
 marginal distributions (default: <code>"#009E73"</code> (for <code>x</code>) and <code>"#D55E00"</code> (for
 <code>y</code>)). Note that the defaults are colorblind-friendly.</p></td>
-    </tr>
-    <tr>
-      <th>xparams</th>
-      <td><p>List of extra parameters to use only for the marginal plot along
-the x axis.</p></td>
-    </tr>
-    <tr>
-      <th>yparams</th>
-      <td><p>List of extra parameters to use only for the marginal plot along
-the y axis.</p></td>
-    </tr>
-    <tr>
-      <th>results.subtitle</th>
-      <td><p>Decides whether the results of statistical tests are
-to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
-the plot will be returned.</p></td>
     </tr>
     <tr>
       <th>xlab</th>
@@ -470,8 +421,6 @@ want a <code>ggplot</code> object, set <code>marginal = FALSE</code>. Also have 
 from over-lapping to the largest degree possible.  As a consequence plot
 times will slow down massively (and the plot file will grow in size) if you
 have a lot of labels that overlap.</p></li>
-<li><p>The statistical analysis is available only for linear model (<code>formula = y ~ x</code>
-and <code>method = 'lm'</code>. If these arguments are different, only plot will be returned.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
@@ -504,7 +453,7 @@ and <code>method = 'lm'</code>. If these arguments are different, only plot will
     breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='fl'>35</span>, <span class='fl'>5</span><span class='op'>)</span>
   <span class='op'>)</span><span class='op'>)</span>
 <span class='op'>)</span>
-</div><div class='img'><img src='ggscatterstats-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: ggrepel: 7 unlabeled data points (too many overlaps). Consider increasing max.overlaps</span></div><div class='img'><img src='ggscatterstats-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -32,7 +32,6 @@ testthat::test_that(
     testthat::expect_equal(length(pb$data), 3L)
     testthat::expect_equal(dim(pb$data[[1]]), c(83L, 10L))
     testthat::expect_equal(dim(pb$data[[2]]), c(80L, 14L))
-    testthat::expect_equal(dim(pb$data[[3]]), c(2L, 15L))
 
     # checking outliers
     testthat::expect_equal(
@@ -41,19 +40,57 @@ testthat::test_that(
         list(
           x = c(3.9, 3.3),
           y = c(2547, 6654),
-          label = c("Asian elephant", "African elephant"),
-          PANEL = structure(c(1L, 1L), class = "factor", .Label = "1"),
+          label = c(
+            "Asian elephant",
+            "African elephant"
+          ),
+          PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
           group = structure(c(-1L, -1L), n = 1L),
-          colour = c("black", "black"),
+          colour = c(
+            "black",
+            "black"
+          ),
           fill = c("white", "white"),
           size = c(3, 3),
-          angle = c(0, 0),
+          angle = c(
+            0,
+            0
+          ),
           alpha = c(NA, NA),
           family = c("", ""),
-          fontface = c(1, 1),
+          fontface = c(
+            1,
+            1
+          ),
           lineheight = c(1.2, 1.2),
           hjust = c(0.5, 0.5),
-          vjust = c(0.5, 0.5)
+          vjust = c(
+            0.5,
+            0.5
+          ),
+          point.size = c(1, 1),
+          segment.linetype = c(1, 1),
+          segment.size = c(
+            0.5,
+            0.5
+          ),
+          segment.curvature = c(0, 0),
+          segment.angle = c(
+            90,
+            90
+          ),
+          segment.ncp = c(1, 1),
+          segment.shape = c(0.5, 0.5),
+          segment.square = c(TRUE, TRUE),
+          segment.squareShape = c(
+            1,
+            1
+          ),
+          segment.inflect = c(FALSE, FALSE),
+          segment.debug = c(
+            FALSE,
+            FALSE
+          )
         ),
         row.names = c(NA, -2L),
         class = "data.frame"
@@ -272,19 +309,66 @@ testthat::test_that(
         list(
           y = c(0.383333333, 0.333333333, 0.116666667, 0.2),
           x = c(17.4, 18, 19.7, 19.9),
-          label = c("Cingulata", "Didelphimorphia", "Chiroptera", "Chiroptera"),
-          PANEL = structure(c(1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
-          group = structure(c(-1L, -1L, -1L, -1L), n = 1L),
+          label = c(
+            "Cingulata", "Didelphimorphia",
+            "Chiroptera", "Chiroptera"
+          ),
+          PANEL = structure(c(
+            1L, 1L, 1L,
+            1L
+          ), .Label = "1", class = "factor"),
+          group = structure(c(
+            -1L,
+            -1L, -1L, -1L
+          ), n = 1L),
           colour = c("blue", "blue", "blue", "blue"),
           fill = c("white", "white", "white", "white"),
-          size = c(4, 4, 4, 4),
+          size = c(
+            4,
+            4, 4, 4
+          ),
           angle = c(0, 0, 0, 0),
           alpha = c(0.5, 0.5, 0.5, 0.5),
           family = c("", "", "", ""),
           fontface = c(1, 1, 1, 1),
-          lineheight = c(1.2, 1.2, 1.2, 1.2),
+          lineheight = c(
+            1.2,
+            1.2, 1.2, 1.2
+          ),
           hjust = c(0.5, 0.5, 0.5, 0.5),
-          vjust = c(0.5, 0.5, 0.5, 0.5)
+          vjust = c(
+            0.5,
+            0.5, 0.5, 0.5
+          ),
+          point.size = c(1, 1, 1, 1),
+          segment.linetype = c(
+            1,
+            1, 1, 1
+          ),
+          segment.size = c(0.5, 0.5, 0.5, 0.5),
+          segment.curvature = c(
+            0,
+            0, 0, 0
+          ),
+          segment.angle = c(90, 90, 90, 90),
+          segment.ncp = c(
+            1,
+            1, 1, 1
+          ),
+          segment.shape = c(0.5, 0.5, 0.5, 0.5),
+          segment.square = c(
+            TRUE,
+            TRUE, TRUE, TRUE
+          ),
+          segment.squareShape = c(1, 1, 1, 1),
+          segment.inflect = c(
+            FALSE,
+            FALSE, FALSE, FALSE
+          ),
+          segment.debug = c(
+            FALSE, FALSE, FALSE,
+            FALSE
+          )
         ),
         row.names = c(NA, -4L),
         class = "data.frame"
@@ -369,74 +453,6 @@ testthat::test_that(
       class(p),
       c("ggExtraPlot", "gtable", "gTree", "grob", "gDesc")
     )
-  }
-)
-
-# checking formula specification -------------------------------------------
-
-testthat::test_that(
-  desc = "checking formula specification",
-  code = {
-    testthat::skip_on_cran()
-
-    # creating the messages
-    set.seed(123)
-    p1 <-
-      ggstatsplot::ggscatterstats(
-        data = dplyr::starwars,
-        x = mass,
-        y = height,
-        formula = y ~ log(x),
-        method = stats::lm,
-        marginal = FALSE
-      )
-
-    set.seed(123)
-    p2 <-
-      ggstatsplot::ggscatterstats(
-        data = dplyr::starwars,
-        x = mass,
-        y = height,
-        results.subtitle = TRUE,
-        method = "gam",
-        marginal = FALSE
-      )
-
-    p3 <-
-      ggstatsplot::ggscatterstats(
-        data = dplyr::starwars,
-        x = mass,
-        y = height,
-        results.subtitle = TRUE,
-        method = MASS::rlm,
-        marginal = FALSE
-      )
-
-    # build the plot
-    pb1 <- ggplot2::ggplot_build(p1)
-    pb2 <- ggplot2::ggplot_build(p2)
-    pb3 <- ggplot2::ggplot_build(p3)
-
-    # checking subtitle - lack thereof
-    testthat::expect_null(pb1$plot$labels$subtitle, NULL)
-    testthat::expect_identical(class(pb1$plot$layers[[2]]$stat_params$method), "function")
-    testthat::expect_identical(
-      as.character(deparse(pb1$plot$layers[[2]]$stat_params$formula)),
-      "y ~ log(x)"
-    )
-
-    testthat::expect_null(pb2$plot$labels$subtitle, NULL)
-    testthat::expect_identical(pb2$plot$layers[[2]]$stat_params$method[[1]], "gam")
-    testthat::expect_identical(
-      as.character(deparse(pb2$plot$layers[[2]]$stat_params$formula)),
-      "y ~ x"
-    )
-    testthat::expect_identical(
-      as.character(deparse(pb3$plot$layers[[2]]$stat_params$formula)),
-      "y ~ x"
-    )
-    testthat::expect_null(pb3$plot$labels$subtitle, NULL)
-    testthat::expect_identical(class(pb3$plot$layers[[2]]$stat_params$method), "function")
   }
 )
 

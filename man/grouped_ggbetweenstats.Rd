@@ -114,8 +114,6 @@ Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
 \code{1.5}).}
     \item{\code{mean.plotting}}{Logical that decides whether mean is to be highlighted
 and its value to be displayed (Default: \code{TRUE}).}
-    \item{\code{mean.ci}}{Logical that decides whether \verb{95\%} confidence interval for
-mean is to be displayed (Default: \code{FALSE}).}
     \item{\code{point.args}}{A list of additional aesthetic arguments to be passed to
 the \code{geom_point} displaying the raw data.}
     \item{\code{violin.args}}{A list of additional aesthetic arguments to be passed to

@@ -6,6 +6,21 @@ BREAKING CHANGES
     showing the `count` information on the `x`-axis and the `proportion`
     information on the duplicated `x`-axis.
 
+  - `ggscatterstats` removes `method` and `method.args` arguments. It will no
+    longer be possible to use this function to visualize data for when the model
+    is not linear. It also retires `margins` argument.
+
+MAJOR CHANGES
+
+  - `ggscatterstats` defaults to `densigram` as the marginal distribution
+    visualization.
+
+  - `mean.ci` argument is retired for `ggbetweenstats` and `ggwithinstats`.
+    Future `ggstatsplot` releases will be providing different centrality
+    measures depending on the `type` argument and it is not guaranteed that all
+    of them will have CIs available. So, for the sake of consistency, this
+    argument is just going to be retired.
+
 MINOR CHANGES
 
   - `ggcorrmat` uses pretty formatting to display sample size information.

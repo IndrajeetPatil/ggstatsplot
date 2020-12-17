@@ -101,28 +101,6 @@ width to use in calculating Bayes factors.}
     \item{\code{beta}}{bending constant (Default: \code{0.1}). For more, see \code{\link[WRS2:pbcor]{WRS2::pbcor()}}.}
     \item{\code{k}}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2L}).}
-    \item{\code{formula}}{Formula to use in smoothing function, eg. \code{y ~ x},
-\code{y ~ poly(x, 2)}, \code{y ~ log(x)}. \code{NULL} by default, in which case
-\code{method = NULL} implies \code{formula = y ~ x} when there are fewer than 1,000
-observations and \code{formula = y ~ s(x, bs = "cs")} otherwise.}
-    \item{\code{method}}{Smoothing method (function) to use, accepts either
-\code{NULL} or a character vector, e.g. \code{"lm"}, \code{"glm"}, \code{"gam"}, \code{"loess"}
-or a function, e.g. \code{MASS::rlm} or \code{mgcv::gam}, \code{stats::lm}, or \code{stats::loess}.
-\code{"auto"} is also accepted for backwards compatibility.  It is equivalent to
-\code{NULL}.
-
-For \code{method = NULL} the smoothing method is chosen based on the
-size of the largest group (across all panels). \code{\link[stats:loess]{stats::loess()}} is
-used for less than 1,000 observations; otherwise \code{\link[mgcv:gam]{mgcv::gam()}} is
-used with \code{formula = y ~ s(x, bs = "cs")} with \code{method = "REML"}. Somewhat anecdotally,
-\code{loess} gives a better appearance, but is \eqn{O(N^{2})}{O(N^2)} in memory,
-so does not work for larger datasets.
-
-If you have fewer than 1,000 observations but want to use the same \code{gam()}
-model that \code{method = NULL} would use, then set
-\verb{method = "gam", formula = y ~ s(x, bs = "cs")}.}
-    \item{\code{method.args}}{List of additional arguments passed on to the modelling
-function defined by \code{method}.}
     \item{\code{ggtheme}}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
 extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
@@ -148,11 +126,6 @@ variable names for \code{x} and \code{y} will be used.}
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
 of the current function. Default is \code{NULL}. The argument should be entered
 as a function.}
-    \item{\code{margins}}{Along which margins to show the plots. One of: [both, x, y].}
-    \item{\code{xparams}}{List of extra parameters to use only for the marginal plot along
-the x axis.}
-    \item{\code{yparams}}{List of extra parameters to use only for the marginal plot along
-the y axis.}
   }}
 
 \item{plotgrid.args}{A list of additional arguments to \code{cowplot::plot_grid}.}

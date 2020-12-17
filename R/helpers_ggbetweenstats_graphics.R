@@ -39,7 +39,6 @@ mean_ggrepel <- function(plot,
                          data,
                          x,
                          y,
-                         mean.ci = FALSE,
                          k = 3L,
                          inherit.aes = TRUE,
                          sample.size.label = TRUE,
@@ -71,33 +70,10 @@ mean_ggrepel <- function(plot,
     ) %>%
     dplyr::rename(mean = estimate) %>%
     dplyr::ungroup(.) %>%
-    dplyr::rowwise()
-
-  # prepare label
-  if (isTRUE(mean.ci)) {
-    mean_df %<>%
-      dplyr::mutate(
-        label = paste0(
-          "list(~italic(widehat(mu))=='",
-          specify_decimal_p(mean, k),
-          "',",
-          "CI[95*'%']",
-          "*'['*'",
-          specify_decimal_p(conf.low, k),
-          "','",
-          specify_decimal_p(conf.high, k),
-          "'*']')"
-        )
-      )
-  } else {
-    mean_df %<>%
-      dplyr::mutate(
-        label = paste0("list(~italic(widehat(mu))=='", specify_decimal_p(mean, k), "')")
-      )
-  }
-
-  # add label about sample size
-  mean_df %<>%
+    dplyr::rowwise() %>%
+    dplyr::mutate(
+      label = paste0("list(~italic(widehat(mu))=='", specify_decimal_p(mean, k), "')")
+    ) %>%
     dplyr::ungroup(.) %>%
     dplyr::mutate(n_label = paste0({{ x }}, "\n(n = ", n, ")")) %>%
     dplyr::arrange({{ x }}) %>%

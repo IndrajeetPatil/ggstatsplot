@@ -282,7 +282,6 @@ ggstatsplot::grouped_ggwithinstats(
   ggstatsplot.layer = FALSE,
   outlier.label = education,
   k = 3,
-  mean.ci = TRUE,
   title.prefix = "Year",
   # arguments relevant for ggstatsplot::combine_plots
   title.text = "Desire to kill bugs across genders",

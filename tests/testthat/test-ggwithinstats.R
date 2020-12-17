@@ -57,7 +57,7 @@ testthat::test_that(
     testthat::expect_equal(dim(pb1$data[[5]]), c(0L, 0L))
     testthat::expect_equal(dim(pb1$data[[6]]), c(2L, 8L))
     testthat::expect_equal(dim(pb1$data[[7]]), c(2L, 13L))
-    testthat::expect_equal(dim(pb1$data[[8]]), c(2L, 15L))
+    testthat::expect_equal(dim(pb1$data[[8]]), c(2L, 26L))
 
     # checking geom data
     testthat::expect_identical(pb1$data[[4]]$colour[[1]], "red")
@@ -174,26 +174,52 @@ testthat::test_that(
             "list(~italic(widehat(mu))=='7.8667')",
             "list(~italic(widehat(mu))=='6.7389')"
           ),
-          PANEL = structure(c(1L, 1L), class = "factor", .Label = "1"),
+          PANEL = structure(c(
+            1L,
+            1L
+          ), .Label = "1", class = "factor"),
           group = structure(1:2, n = 2L),
           colour = c("black", "black"),
           fill = c("white", "white"),
           size = c(3, 3),
-          angle = c(
-            0,
-            0
-          ),
+          angle = c(0, 0),
           alpha = c(NA, NA),
-          family = c("", ""),
-          fontface = c(
+          family = c(
+            "",
+            ""
+          ),
+          fontface = c(1, 1),
+          lineheight = c(1.2, 1.2),
+          hjust = c(
+            0.5,
+            0.5
+          ),
+          vjust = c(0.5, 0.5),
+          point.size = c(1, 1),
+          segment.linetype = c(
             1,
             1
           ),
-          lineheight = c(1.2, 1.2),
-          hjust = c(0.5, 0.5),
-          vjust = c(
+          segment.size = c(0.5, 0.5),
+          segment.curvature = c(
+            0,
+            0
+          ),
+          segment.angle = c(90, 90),
+          segment.ncp = c(1, 1),
+          segment.shape = c(
             0.5,
             0.5
+          ),
+          segment.square = c(TRUE, TRUE),
+          segment.squareShape = c(
+            1,
+            1
+          ),
+          segment.inflect = c(FALSE, FALSE),
+          segment.debug = c(
+            FALSE,
+            FALSE
           )
         ),
         row.names = c(NA, -2L),
@@ -299,10 +325,10 @@ testthat::test_that(
       testthat::expect_equal(dim(pb1$data[[1]]), c(66L, 10L))
       testthat::expect_equal(dim(pb1$data[[2]]), c(3L, 26L))
       testthat::expect_equal(dim(pb1$data[[3]]), c(1536L, 21L))
-      testthat::expect_equal(dim(pb1$data[[4]]), c(4L, 15L))
+      testthat::expect_equal(dim(pb1$data[[4]]), c(4L, 26L))
       testthat::expect_equal(dim(pb1$data[[5]]), c(3L, 8L))
       testthat::expect_equal(dim(pb1$data[[6]]), c(3L, 13L))
-      testthat::expect_equal(dim(pb1$data[[7]]), c(3L, 15L))
+      testthat::expect_equal(dim(pb1$data[[7]]), c(3L, 26L))
       testthat::expect_equal(dim(pb1$data[[8]]), c(6L, 19L))
 
       # data from difference layers

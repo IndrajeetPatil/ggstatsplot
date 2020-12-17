@@ -65,7 +65,33 @@ testthat::test_that(
             0.5, 0.5,
             0.5
           ),
-          vjust = c(0.5, 0.5, 0.5)
+          vjust = c(0.5, 0.5, 0.5),
+          point.size = c(1, 1, 1),
+          segment.linetype = c(1, 1, 1),
+          segment.size = c(
+            0.5, 0.5,
+            0.5
+          ),
+          segment.curvature = c(0, 0, 0),
+          segment.angle = c(
+            90,
+            90, 90
+          ),
+          segment.ncp = c(1, 1, 1),
+          segment.shape = c(
+            0.5,
+            0.5, 0.5
+          ),
+          segment.square = c(TRUE, TRUE, TRUE),
+          segment.squareShape = c(
+            1,
+            1, 1
+          ),
+          segment.inflect = c(FALSE, FALSE, FALSE),
+          segment.debug = c(
+            FALSE,
+            FALSE, FALSE
+          )
         ),
         row.names = c(NA, -3L),
         class = "data.frame"
@@ -163,7 +189,33 @@ testthat::test_that(
             0.5,
             0.5
           ),
-          vjust = c(0.5, 0.5)
+          vjust = c(0.5, 0.5),
+          point.size = c(1, 1),
+          segment.linetype = c(
+            1,
+            1
+          ),
+          segment.size = c(0.5, 0.5),
+          segment.curvature = c(
+            0,
+            0
+          ),
+          segment.angle = c(90, 90),
+          segment.ncp = c(1, 1),
+          segment.shape = c(
+            0.5,
+            0.5
+          ),
+          segment.square = c(TRUE, TRUE),
+          segment.squareShape = c(
+            1,
+            1
+          ),
+          segment.inflect = c(FALSE, FALSE),
+          segment.debug = c(
+            FALSE,
+            FALSE
+          )
         ),
         row.names = c(NA, -2L),
         class = "data.frame"
