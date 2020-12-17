@@ -229,9 +229,10 @@ ggstatsplot::ggbetweenstats(
 
 📝 **Defaults** return<br>
 
-✅ raw data + distributions<br> ✅ descriptive statistics<br> ✅ statistic
-and *p*-value<br> ✅ effect size + CIs<br> ✅ pairwise comparisons<br> ✅
-Bayesian hypothesis-testing<br> ✅ Bayesian estimation<br>
+✅ raw data + distributions <br> ✅ descriptive statistics <br> ✅
+statistic + *p*-value <br> ✅ effect size + CIs <br> ✅ pairwise
+comparisons <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian
+estimation <br>
 
 Note that this function returns object of class `ggplot` and thus can be
 further modified using `ggplot2` functions.
@@ -261,7 +262,6 @@ ggstatsplot::ggbetweenstats(
   data = ToothGrowth,
   x = supp,
   y = len,
-  mean.ci = TRUE, # whether to display confidence interval for means
   k = 3, # number of decimal places for statistical results
   outlier.tagging = TRUE, # whether outliers need to be tagged
   outlier.label = dose, # variable to be used for tagging outliers
@@ -332,7 +332,7 @@ each type of test-
 | Type           | No. of groups | Effect size                                                                                                                                                                                            | CI?                           | Function                                               |
 |----------------|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|--------------------------------------------------------|
 | Parametric     | &gt; 2        | ![\\eta\_{p}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Ceta_%7Bp%7D%5E2 "\eta_{p}^2"), ![\\omega\_{p}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Comega_%7Bp%7D%5E2 "\omega_{p}^2") | <font color="green">Yes<font> | `effectsize::omega_squared`, `effectsize::eta_squared` |
-| Non-parametric | &gt; 2        | ![\\eta\_{H}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Ceta_%7BH%7D%5E2 "\eta_{H}^2") (*H*-statistic based eta-squared)                                                                      | <font color="green">Yes<font> | `rcompanion::epsilonSquared`                           |
+| Non-parametric | &gt; 2        | ![\\epsilon\_{ordinal}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Cepsilon_%7Bordinal%7D%5E2 "\epsilon_{ordinal}^2")                                                                          | <font color="green">Yes<font> | `rcompanion::epsilonSquared`                           |
 | Robust         | &gt; 2        | ![\\xi](https://chart.apis.google.com/chart?cht=tx&chl=%5Cxi "\xi") (Explanatory measure of effect size)                                                                                               | <font color="green">Yes<font> | `WRS2::t1way`                                          |
 | Bayes Factor   | &gt; 2        | ![R\_{posterior}^2](https://chart.apis.google.com/chart?cht=tx&chl=R_%7Bposterior%7D%5E2 "R_{posterior}^2")                                                                                            | <font color="green">Yes<font> | `performance::r2_bayes`                                |
 | Parametric     | 2             | Cohen’s *d*, Hedge’s *g*                                                                                                                                                                               | <font color="green">Yes<font> | `effectsize::cohens_d`, `effectsize::hedges_g`         |
@@ -384,9 +384,10 @@ ggstatsplot::ggwithinstats(
 
 📝 **Defaults** return<br>
 
-✅ raw data + distributions<br> ✅ descriptive statistics<br> ✅ statistic
-and *p*-value<br> ✅ effect size + CIs<br> ✅ pairwise comparisons<br> ✅
-Bayesian hypothesis-testing<br> ✅ Bayesian estimation<br>
+✅ raw data + distributions <br> ✅ descriptive statistics <br> ✅
+statistic + *p*-value <br> ✅ effect size + CIs <br> ✅ pairwise
+comparisons <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian
+estimation <br>
 
 As with the `ggbetweenstats`, this function also has a `grouped_`
 variant that makes repeating the same analysis across a single grouping
@@ -491,9 +492,9 @@ ggstatsplot::gghistostats(
 
 📝 **Defaults** return<br>
 
-✅ counts + proportion for bins<br> ✅ descriptive statistics<br> ✅
-statistic and *p*-value<br> ✅ effect size + CIs<br> ✅ Bayesian
-hypothesis-testing<br> ✅ Bayesian estimation<br>
+✅ counts + proportion for bins<br> ✅ descriptive statistics <br> ✅
+statistic + *p*-value <br> ✅ effect size + CIs <br> ✅ Bayesian
+hypothesis-testing <br> ✅ Bayesian estimation <br>
 
 There is also a `grouped_` variant of this function that makes it easy
 to repeat the same operation across a **single** grouping variable:
@@ -587,8 +588,8 @@ ggdotplotstats(
 
 📝 **Defaults** return<br>
 
-✅ descriptive statistics<br> ✅ statistic and *p*-value<br> ✅ effect size
-+ CIs<br> ✅ Bayesian hypothesis-testing<br> ✅ Bayesian estimation<br>
+✅ descriptive statistics <br> ✅ statistic + *p*-value <br> ✅ effect size
++ CIs <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br>
 
 As with the rest of the functions in this package, there is also a
 `grouped_` variant of this function to facilitate looping the same
@@ -642,9 +643,9 @@ ggstatsplot::ggscatterstats(
 
 📝 **Defaults** return<br>
 
-✅ raw data + distributions<br> ✅ marginal distributions<br> ✅ statistic
-and *p*-value<br> ✅ effect size + CIs<br> ✅ Bayesian
-hypothesis-testing<br> ✅ Bayesian estimation<br>
+✅ raw data + distributions <br> ✅ marginal distributions <br> ✅
+statistic + *p*-value <br> ✅ effect size + CIs <br> ✅ Bayesian
+hypothesis-testing <br> ✅ Bayesian estimation <br>
 
 The available marginal distributions are-
 
@@ -904,9 +905,9 @@ ggstatsplot::ggpiestats(
 
 📝 **Defaults** return<br>
 
-✅ descriptive statistics<br> ✅ statistic and *p*-value<br> ✅ effect size
-+ CIs<br> ✅ Goodness-of-fit tests<br> ✅ Bayesian hypothesis-testing<br>
-✅ Bayesian estimation<br>
+✅ descriptive statistics <br> ✅ statistic + *p*-value <br> ✅ effect size
++ CIs <br> ✅ Goodness-of-fit tests <br> ✅ Bayesian hypothesis-testing
+<br> ✅ Bayesian estimation <br>
 
 In case of repeated measures designs, setting `paired = TRUE` will
 produce results from McNemar’s chi-squared test-
@@ -1017,9 +1018,9 @@ ggstatsplot::ggbarstats(
 
 📝 **Defaults** return<br>
 
-✅ descriptive statistics<br> ✅ statistic and *p*-value<br> ✅ effect size
-+ CIs<br> ✅ Goodness-of-fit tests<br> ✅ Bayesian hypothesis-testing<br>
-✅ Bayesian estimation<br>
+✅ descriptive statistics <br> ✅ statistic + *p*-value <br> ✅ effect size
++ CIs <br> ✅ Goodness-of-fit tests <br> ✅ Bayesian hypothesis-testing
+<br> ✅ Bayesian estimation <br>
 
 And, needless to say, there is also a `grouped_` variant of this
 function-
@@ -1107,8 +1108,8 @@ ggstatsplot::ggcoefstats(mod)
 
 📝 **Defaults** return<br>
 
-✅ estimate + CIs<br> ✅ statistic and *p*-value<br> ✅ model summary (AIC
-+ BIC)
+✅ estimate + CIs <br> ✅ statistic + *p*-value <br> ✅ model summary (AIC
++ BIC) <br>
 
 This default plot can be further modified to one’s liking with
 additional arguments (also, let’s use a different model now):

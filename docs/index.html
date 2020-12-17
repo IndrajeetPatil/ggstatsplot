@@ -527,7 +527,7 @@
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats1-1.png" width="100%"></p>
 <p>📝 <strong>Defaults</strong> return<br></p>
-<p>✅ raw data + distributions<br> ✅ descriptive statistics<br> ✅ statistic and <em>p</em>-value<br> ✅ effect size + CIs<br> ✅ pairwise comparisons<br> ✅ Bayesian hypothesis-testing<br> ✅ Bayesian estimation<br></p>
+<p>✅ raw data + distributions <br> ✅ descriptive statistics <br> ✅ statistic + <em>p</em>-value <br> ✅ effect size + CIs <br> ✅ pairwise comparisons <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>Note that this function returns object of class <code>ggplot</code> and thus can be further modified using <code>ggplot2</code> functions.</p>
 <p>A number of other arguments can be specified to make this plot even more informative or change some of the default options. Additionally, this time we will use a grouping variable that has only two levels. The function will automatically switch from carrying out an ANOVA analysis to a <em>t</em>-test.</p>
 <p>The <code>type</code> (of test) argument also accepts the following abbreviations: <code>"p"</code> (for <em>parametric</em>) or <code>"np"</code> (for <em>nonparametric</em>) or <code>"r"</code> (for <em>robust</em>) or <code>"bf"</code> (for <em>Bayes Factor</em>). Additionally, the type of plot to be displayed can also be modified (<code>"box"</code>, <code>"violin"</code>, or <code>"boxviolin"</code>).</p>
@@ -803,7 +803,7 @@
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggwithinstats1-1.png" width="100%"></p>
 <p>📝 <strong>Defaults</strong> return<br></p>
-<p>✅ raw data + distributions<br> ✅ descriptive statistics<br> ✅ statistic and <em>p</em>-value<br> ✅ effect size + CIs<br> ✅ pairwise comparisons<br> ✅ Bayesian hypothesis-testing<br> ✅ Bayesian estimation<br></p>
+<p>✅ raw data + distributions <br> ✅ descriptive statistics <br> ✅ statistic + <em>p</em>-value <br> ✅ effect size + CIs <br> ✅ pairwise comparisons <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>As with the <code>ggbetweenstats</code>, this function also has a <code>grouped_</code> variant that makes repeating the same analysis across a single grouping variable quicker. We will see an example with only repeated measurements-</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># common setup</span>
@@ -1034,7 +1034,7 @@
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-gghistostats1-1.png" width="100%"></p>
 <p>📝 <strong>Defaults</strong> return<br></p>
-<p>✅ counts + proportion for bins<br> ✅ descriptive statistics<br> ✅ statistic and <em>p</em>-value<br> ✅ effect size + CIs<br> ✅ Bayesian hypothesis-testing<br> ✅ Bayesian estimation<br></p>
+<p>✅ counts + proportion for bins<br> ✅ descriptive statistics <br> ✅ statistic + <em>p</em>-value <br> ✅ effect size + CIs <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>There is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
@@ -1173,9 +1173,9 @@
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggdotplotstats1-1.png" width="100%"></p>
 <p>📝 <strong>Defaults</strong> return<br></p>
-<p>✅ descriptive statistics<br> ✅ statistic and <em>p</em>-value<br> ✅ effect size</p>
+<p>✅ descriptive statistics <br> ✅ statistic + <em>p</em>-value <br> ✅ effect size</p>
 <ul>
-<li>CIs<br> ✅ Bayesian hypothesis-testing<br> ✅ Bayesian estimation<br>
+<li>CIs <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br>
 </li>
 </ul>
 <p>As with the rest of the functions in this package, there is also a <code>grouped_</code> variant of this function to facilitate looping the same operation for all levels of a single grouping variable.</p>
@@ -1221,7 +1221,7 @@
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggscatterstats1-1.png" width="100%"></p>
 <p>📝 <strong>Defaults</strong> return<br></p>
-<p>✅ raw data + distributions<br> ✅ marginal distributions<br> ✅ statistic and <em>p</em>-value<br> ✅ effect size + CIs<br> ✅ Bayesian hypothesis-testing<br> ✅ Bayesian estimation<br></p>
+<p>✅ raw data + distributions <br> ✅ marginal distributions <br> ✅ statistic + <em>p</em>-value <br> ✅ effect size + CIs <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>The available marginal distributions are-</p>
 <ul>
 <li>histograms</li>
@@ -1466,9 +1466,9 @@
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggpiestats1-1.png" width="100%"></p>
 <p>📝 <strong>Defaults</strong> return<br></p>
-<p>✅ descriptive statistics<br> ✅ statistic and <em>p</em>-value<br> ✅ effect size</p>
+<p>✅ descriptive statistics <br> ✅ statistic + <em>p</em>-value <br> ✅ effect size</p>
 <ul>
-<li>CIs<br> ✅ Goodness-of-fit tests<br> ✅ Bayesian hypothesis-testing<br> ✅ Bayesian estimation<br>
+<li>CIs <br> ✅ Goodness-of-fit tests <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br>
 </li>
 </ul>
 <p>In case of repeated measures designs, setting <code>paired = TRUE</code> will produce results from McNemar’s chi-squared test-</p>
@@ -1616,9 +1616,9 @@
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggbarstats1-1.png" width="100%"></p>
 <p>📝 <strong>Defaults</strong> return<br></p>
-<p>✅ descriptive statistics<br> ✅ statistic and <em>p</em>-value<br> ✅ effect size</p>
+<p>✅ descriptive statistics <br> ✅ statistic + <em>p</em>-value <br> ✅ effect size</p>
 <ul>
-<li>CIs<br> ✅ Goodness-of-fit tests<br> ✅ Bayesian hypothesis-testing<br> ✅ Bayesian estimation<br>
+<li>CIs <br> ✅ Goodness-of-fit tests <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br>
 </li>
 </ul>
 <p>And, needless to say, there is also a <code>grouped_</code> variant of this function-</p>
@@ -1680,9 +1680,10 @@
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggcoefstats1-1.png" width="100%"></p>
 <p>📝 <strong>Defaults</strong> return<br></p>
-<p>✅ estimate + CIs<br> ✅ statistic and <em>p</em>-value<br> ✅ model summary (AIC</p>
+<p>✅ estimate + CIs <br> ✅ statistic + <em>p</em>-value <br> ✅ model summary (AIC</p>
 <ul>
-<li>BIC)</li>
+<li>BIC) <br>
+</li>
 </ul>
 <p>This default plot can be further modified to one’s liking with additional arguments (also, let’s use a different model now):</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">

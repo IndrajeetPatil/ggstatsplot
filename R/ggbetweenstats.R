@@ -67,8 +67,6 @@
 #'   `1.5`).
 #' @param mean.plotting Logical that decides whether mean is to be highlighted
 #'   and its value to be displayed (Default: `TRUE`).
-#' @param mean.ci Logical that decides whether `95%` confidence interval for
-#'   mean is to be displayed (Default: `FALSE`).
 #' @param point.args A list of additional aesthetic arguments to be passed to
 #'   the `geom_point` displaying the raw data.
 #' @param violin.args A list of additional aesthetic arguments to be passed to
@@ -176,7 +174,6 @@ ggbetweenstats <- function(data,
                            nboot = 100L,
                            tr = 0.1,
                            mean.plotting = TRUE,
-                           mean.ci = FALSE,
                            mean.point.args = list(size = 5, color = "darkred"),
                            mean.label.args = list(size = 3),
                            notch = FALSE,
@@ -408,7 +405,6 @@ ggbetweenstats <- function(data,
         data = data,
         x = {{ x }},
         y = {{ y }},
-        mean.ci = mean.ci,
         k = k,
         inherit.aes = TRUE,
         sample.size.label = sample.size.label,

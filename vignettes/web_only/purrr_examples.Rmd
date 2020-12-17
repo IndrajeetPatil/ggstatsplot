@@ -83,10 +83,10 @@ You can pass:
    `nboot = 25` in which case it will be reused/recycled as many times as
    needed.
 
- * A vector of values such as `mean.ci = c(TRUE, FALSE, TRUE)` in which case it
+ * A vector of values such as `nboot = c(50, 100, 200)` in which case it
    will be coerced to a list and checked for the right class (in this case
    integer) and the right quantity of entries in the vector i.e.,
-   `mean.ci = c(TRUE, FALSE)` will fail if we're trying to make three plots.
+   `nboot = c(50, 100)` will fail if we're trying to make three plots.
 
  * A list; either named `data = year_list` or created as you go
    `palette = list("Dark2", "Set1")`. Any list will
@@ -155,7 +155,6 @@ plot_list <-
         "Year: 2007"
       ),
       type = list("r", "bf", "np"),
-      pairwise.comparisons = TRUE,
       pairwise.display = list("s", "ns", "all"),
       p.adjust.method = list("hommel", "bonferroni", "BH"),
       conf.level = list(0.99, 0.95, 0.90),
@@ -166,7 +165,6 @@ plot_list <-
         "partial_eta"
       ),
       plot.type = list("box", "boxviolin", "violin"),
-      mean.ci = list(TRUE, FALSE, FALSE),
       package = list("nord", "ochRe", "awtools"),
       palette = list("aurora", "parliament", "bpalette"),
       ggtheme = list(
@@ -238,7 +236,6 @@ plot_list <-
         "Cue: Spatial"
       ),
       type = list("p", "r", "bf", "np"),
-      pairwise.comparisons = TRUE,
       pairwise.display = list("ns", "s", "ns", "all"),
       p.adjust.method = list("fdr", "hommel", "bonferroni", "BH"),
       conf.level = list(0.99, 0.99, 0.95, 0.90),
@@ -249,7 +246,6 @@ plot_list <-
         "partial_omega",
         "partial_eta"
       ),
-      mean.ci = list(FALSE, TRUE, FALSE, FALSE),
       package = list("ggsci", "palettetown", "palettetown", "wesanderson"),
       palette = list("lanonc_lancet", "venomoth", "blastoise", "GrandBudapest1"),
       ggtheme = list(

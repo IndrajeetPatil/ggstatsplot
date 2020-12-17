@@ -15,6 +15,12 @@ MAJOR CHANGES
   - `ggscatterstats` defaults to `densigram` as the marginal distribution
     visualization.
 
+  - `mean.ci` argument is retired for `ggbetweenstats` and `ggwithinstats`.
+    Future `ggstatsplot` releases will be providing different centrality
+    measures depending on the `type` argument and it is not guaranteed that all
+    of them will have CIs available. So, for the sake of consistency, this
+    argument is just going to be retired.
+
 MINOR CHANGES
 
   - `ggcorrmat` uses pretty formatting to display sample size information.

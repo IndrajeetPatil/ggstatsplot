@@ -225,13 +225,13 @@ ggstatsplot::ggbetweenstats(
 
 `r emo::ji("pencil")` **Defaults** return<br>
 
-`r emo::ji("check")` raw data + distributions<br>
-`r emo::ji("check")` descriptive statistics<br>
-`r emo::ji("check")` statistic and *p*-value<br>
-`r emo::ji("check")` effect size + CIs<br>
-`r emo::ji("check")` pairwise comparisons<br>
-`r emo::ji("check")` Bayesian hypothesis-testing<br>
-`r emo::ji("check")` Bayesian estimation<br>
+`r emo::ji("check")` raw data + distributions <br>
+`r emo::ji("check")` descriptive statistics <br>
+`r emo::ji("check")` statistic + *p*-value <br>
+`r emo::ji("check")` effect size + CIs <br>
+`r emo::ji("check")` pairwise comparisons <br>
+`r emo::ji("check")` Bayesian hypothesis-testing <br>
+`r emo::ji("check")` Bayesian estimation <br>
 
 Note that this function returns object of class `ggplot` and thus can be further
 modified using `ggplot2` functions.
@@ -260,7 +260,6 @@ ggstatsplot::ggbetweenstats(
   data = ToothGrowth,
   x = supp,
   y = len,
-  mean.ci = TRUE, # whether to display confidence interval for means
   k = 3, # number of decimal places for statistical results
   outlier.tagging = TRUE, # whether outliers need to be tagged
   outlier.label = dose, # variable to be used for tagging outliers
@@ -325,7 +324,7 @@ of test-
 Type | No. of groups | Effect size | CI? | Function
 ----------- | --- | ------------------------- | --- | -----
 Parametric | > 2 | $\eta_{p}^2$, $\omega_{p}^2$ | <font color="green">Yes<font> | `effectsize::omega_squared`, `effectsize::eta_squared`
-Non-parametric | > 2 | $\eta_{H}^2$ (*H*-statistic based eta-squared) | <font color="green">Yes<font> | `rcompanion::epsilonSquared`
+Non-parametric | > 2 | $\epsilon_{ordinal}^2$ | <font color="green">Yes<font> | `rcompanion::epsilonSquared`
 Robust | > 2 | $\xi$ (Explanatory measure of effect size) | <font color="green">Yes<font> | `WRS2::t1way`
 Bayes Factor | > 2 | $R_{posterior}^2$ | <font color="green">Yes<font> | `performance::r2_bayes`
 Parametric | 2 | Cohen's *d*, Hedge's *g* | <font color="green">Yes<font> | `effectsize::cohens_d`, `effectsize::hedges_g`
@@ -375,13 +374,13 @@ ggstatsplot::ggwithinstats(
 
 `r emo::ji("pencil")` **Defaults** return<br>
 
-`r emo::ji("check")` raw data + distributions<br>
-`r emo::ji("check")` descriptive statistics<br>
-`r emo::ji("check")` statistic and *p*-value<br>
-`r emo::ji("check")` effect size + CIs<br>
-`r emo::ji("check")` pairwise comparisons<br>
-`r emo::ji("check")` Bayesian hypothesis-testing<br>
-`r emo::ji("check")` Bayesian estimation<br>
+`r emo::ji("check")` raw data + distributions <br>
+`r emo::ji("check")` descriptive statistics <br>
+`r emo::ji("check")` statistic + *p*-value <br>
+`r emo::ji("check")` effect size + CIs <br>
+`r emo::ji("check")` pairwise comparisons <br>
+`r emo::ji("check")` Bayesian hypothesis-testing <br>
+`r emo::ji("check")` Bayesian estimation <br>
 
 As with the `ggbetweenstats`, this function also has a `grouped_` variant that
 makes repeating the same analysis across a single grouping variable quicker. We
@@ -482,11 +481,11 @@ ggstatsplot::gghistostats(
 `r emo::ji("pencil")` **Defaults** return<br>
 
 `r emo::ji("check")` counts + proportion for bins<br>
-`r emo::ji("check")` descriptive statistics<br>
-`r emo::ji("check")` statistic and *p*-value<br>
-`r emo::ji("check")` effect size + CIs<br>
-`r emo::ji("check")` Bayesian hypothesis-testing<br>
-`r emo::ji("check")` Bayesian estimation<br>
+`r emo::ji("check")` descriptive statistics <br>
+`r emo::ji("check")` statistic + *p*-value <br>
+`r emo::ji("check")` effect size + CIs <br>
+`r emo::ji("check")` Bayesian hypothesis-testing <br>
+`r emo::ji("check")` Bayesian estimation <br>
 
 There is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable:
@@ -576,11 +575,11 @@ ggdotplotstats(
 
 `r emo::ji("pencil")` **Defaults** return<br>
 
-`r emo::ji("check")` descriptive statistics<br>
-`r emo::ji("check")` statistic and *p*-value<br>
-`r emo::ji("check")` effect size + CIs<br>
-`r emo::ji("check")` Bayesian hypothesis-testing<br>
-`r emo::ji("check")` Bayesian estimation<br>
+`r emo::ji("check")` descriptive statistics <br>
+`r emo::ji("check")` statistic + *p*-value <br>
+`r emo::ji("check")` effect size + CIs <br>
+`r emo::ji("check")` Bayesian hypothesis-testing <br>
+`r emo::ji("check")` Bayesian estimation <br>
 
 As with the rest of the functions in this package, there is also a `grouped_`
 variant of this function to facilitate looping the same operation for all levels
@@ -630,12 +629,12 @@ ggstatsplot::ggscatterstats(
 
 `r emo::ji("pencil")` **Defaults** return<br>
 
-`r emo::ji("check")` raw data + distributions<br>
-`r emo::ji("check")` marginal distributions<br>
-`r emo::ji("check")` statistic and *p*-value<br>
-`r emo::ji("check")` effect size + CIs<br>
-`r emo::ji("check")` Bayesian hypothesis-testing<br>
-`r emo::ji("check")` Bayesian estimation<br>
+`r emo::ji("check")` raw data + distributions <br>
+`r emo::ji("check")` marginal distributions <br>
+`r emo::ji("check")` statistic + *p*-value <br>
+`r emo::ji("check")` effect size + CIs <br>
+`r emo::ji("check")` Bayesian hypothesis-testing <br>
+`r emo::ji("check")` Bayesian estimation <br>
 
 The available marginal distributions are-
 
@@ -831,12 +830,12 @@ ggstatsplot::ggpiestats(
 
 `r emo::ji("pencil")` **Defaults** return<br>
 
-`r emo::ji("check")` descriptive statistics<br>
-`r emo::ji("check")` statistic and *p*-value<br>
-`r emo::ji("check")` effect size + CIs<br>
-`r emo::ji("check")` Goodness-of-fit tests<br>
-`r emo::ji("check")` Bayesian hypothesis-testing<br>
-`r emo::ji("check")` Bayesian estimation<br>
+`r emo::ji("check")` descriptive statistics <br>
+`r emo::ji("check")` statistic + *p*-value <br>
+`r emo::ji("check")` effect size + CIs <br>
+`r emo::ji("check")` Goodness-of-fit tests <br>
+`r emo::ji("check")` Bayesian hypothesis-testing <br>
+`r emo::ji("check")` Bayesian estimation <br>
 
 In case of repeated measures designs, setting `paired = TRUE` will produce
 results from McNemar's chi-squared test-
@@ -941,12 +940,12 @@ ggstatsplot::ggbarstats(
 
 `r emo::ji("pencil")` **Defaults** return<br>
 
-`r emo::ji("check")` descriptive statistics<br>
-`r emo::ji("check")` statistic and *p*-value<br>
-`r emo::ji("check")` effect size + CIs<br>
-`r emo::ji("check")` Goodness-of-fit tests<br>
-`r emo::ji("check")` Bayesian hypothesis-testing<br>
-`r emo::ji("check")` Bayesian estimation<br>
+`r emo::ji("check")` descriptive statistics <br>
+`r emo::ji("check")` statistic + *p*-value <br>
+`r emo::ji("check")` effect size + CIs <br>
+`r emo::ji("check")` Goodness-of-fit tests <br>
+`r emo::ji("check")` Bayesian hypothesis-testing <br>
+`r emo::ji("check")` Bayesian estimation <br>
 
 
 And, needless to say, there is also a `grouped_` variant of this function-
@@ -1026,9 +1025,9 @@ ggstatsplot::ggcoefstats(mod)
 
 `r emo::ji("pencil")` **Defaults** return<br>
 
-`r emo::ji("check")` estimate + CIs<br>
-`r emo::ji("check")` statistic and *p*-value<br>
-`r emo::ji("check")` model summary (AIC + BIC)
+`r emo::ji("check")` estimate + CIs <br>
+`r emo::ji("check")` statistic + *p*-value <br>
+`r emo::ji("check")` model summary (AIC + BIC) <br>
 
 This default plot can be further modified to one's liking with additional
 arguments (also, let's use a different model now):

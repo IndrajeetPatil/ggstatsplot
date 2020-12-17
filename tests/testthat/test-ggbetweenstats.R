@@ -220,9 +220,9 @@ testthat::test_that(
     testthat::expect_identical(
       pb$data[[6]]$label,
       c(
-        "list(~italic(widehat(mu))=='2.29',CI[95*'%']*'['*'1.89','2.56'*']')",
-        "list(~italic(widehat(mu))=='3.12',CI[95*'%']*'['*'2.88','3.32'*']')",
-        "list(~italic(widehat(mu))=='4.00',CI[95*'%']*'['*'3.60','4.41'*']')"
+        "list(~italic(widehat(mu))=='2.29')",
+        "list(~italic(widehat(mu))=='3.12')",
+        "list(~italic(widehat(mu))=='4.00')"
       )
     )
 

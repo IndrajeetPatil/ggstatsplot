@@ -126,8 +126,6 @@ try to play around with the value of \code{tr}, which is by default set to
 \code{0.1}. Lowering the value might help.}
     \item{\code{mean.plotting}}{Logical that decides whether mean is to be highlighted
 and its value to be displayed (Default: \code{TRUE}).}
-    \item{\code{mean.ci}}{Logical that decides whether \verb{95\%} confidence interval for
-mean is to be displayed (Default: \code{FALSE}).}
     \item{\code{mean.point.args}}{A list of additional aesthetic
 arguments to be passed to \code{ggplot2::geom_point} and
 \code{ggrepel::geom_label_repel} geoms involved mean value plotting.}
