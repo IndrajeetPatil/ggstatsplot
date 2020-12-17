@@ -240,14 +240,13 @@
       "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
-      "version": ">= 0.11.1.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/easystats/insight"
+      "sameAs": "https://CRAN.R-project.org/package=insight"
     },
     {
       "@type": "SoftwareApplication",
@@ -290,14 +289,13 @@
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
-      "version": ">= 0.10.1.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/easystats/parameters"
+      "sameAs": "https://CRAN.R-project.org/package=parameters"
     },
     {
       "@type": "SoftwareApplication",
@@ -436,5 +434,5 @@
   ],
   "funder": {},
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md",
-  "fileSize": "88443.609KB"
+  "fileSize": "88420.848KB"
 }

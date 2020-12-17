@@ -56,48 +56,50 @@ testthat::test_that(
     # checking displayed outlier labels
     testthat::expect_equal(
       pb$data[[4]],
-      structure(
-        list(
-          x = structure(c(2L, 2L, 1L, 4L, 2L, 1L, 3L), class = c(
-            "mapped_discrete",
-            "numeric"
-          )),
-          y = c(
-            4.603,
-            0.655, 0.325, 1.32, 5.712, 0.157, 0.081
-          ),
-          label = c(
-            "Asian elephant",
-            "Horse",
-            "Gray seal",
-            "Human",
-            "African elephant",
-            "Jaguar",
-            "Giant armadillo"
-          ),
-          PANEL = structure(c(1L, 1L, 1L, 1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
-          group = structure(c(2L, 2L, 1L, 4L, 2L, 1L, 3L), n = 4L),
-          colour = c(
-            "darkgreen",
-            "darkgreen",
-            "darkgreen",
-            "darkgreen",
-            "darkgreen",
-            "darkgreen",
-            "darkgreen"
-          ),
-          fill = c("white", "white", "white", "white", "white", "white", "white"),
-          size = c(3.88, 3.88, 3.88, 3.88, 3.88, 3.88, 3.88),
-          angle = c(0, 0, 0, 0, 0, 0, 0),
-          alpha = c(NA, NA, NA, NA, NA, NA, NA),
-          family = c("", "", "", "", "", "", ""),
-          fontface = c(1, 1, 1, 1, 1, 1, 1),
-          lineheight = c(1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2),
-          hjust = c(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5),
-          vjust = c(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+      structure(list(
+        x = structure(c(2L, 2L, 1L, 4L, 2L, 1L, 3L), class = c(
+          "mapped_discrete",
+          "numeric"
+        )), y = c(4.603, 0.655, 0.325, 1.32, 5.712, 0.157, 0.081), label = c(
+          "Asian elephant", "Horse", "Gray seal", "Human",
+          "African elephant", "Jaguar", "Giant armadillo"
+        ), PANEL = structure(c(
+          1L,
+          1L, 1L, 1L, 1L, 1L, 1L
+        ), .Label = "1", class = "factor"),
+        group = structure(c(
+          2L, 2L, 1L, 4L, 2L, 1L, 3L
+        ), n = 4L),
+        colour = c(
+          "darkgreen", "darkgreen",
+          "darkgreen", "darkgreen", "darkgreen", "darkgreen", "darkgreen"
         ),
-        row.names = c(NA, -7L),
-        class = "data.frame"
+        fill = c("white", "white", "white", "white", "white", "white", "white"),
+        size = c(3.88, 3.88, 3.88, 3.88, 3.88, 3.88, 3.88),
+        angle = c(0, 0, 0, 0, 0, 0, 0),
+        alpha = c(NA, NA, NA, NA, NA, NA, NA),
+        family = c("", "", "", "", "", "", ""),
+        fontface = c(1, 1, 1, 1, 1, 1, 1),
+        lineheight = c(1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2),
+        hjust = c(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5),
+        vjust = c(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5),
+        point.size = c(1, 1, 1, 1, 1, 1, 1),
+        segment.linetype = c(1, 1, 1, 1, 1, 1, 1),
+        segment.size = c(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5),
+        segment.curvature = c(0, 0, 0, 0, 0, 0, 0),
+        segment.angle = c(90, 90, 90, 90, 90, 90, 90),
+        segment.ncp = c(1, 1, 1, 1, 1, 1, 1),
+        segment.shape = c(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5),
+        segment.square = c(TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE),
+        segment.squareShape = c(1, 1, 1, 1, 1, 1, 1),
+        segment.inflect = c(FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
+        segment.debug = c(FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE)
+      ),
+      row.names = c(
+        NA,
+        -7L
+      ),
+      class = "data.frame"
       )
     )
 
@@ -334,56 +336,41 @@ testthat::test_that(
     # checking geom data
     testthat::expect_equal(
       pb1$data[[2]],
-      structure(
-        list(
-          ymin = c(8.2, 4.2),
-          lower = c(15.525, 11.2),
-          middle = c(
-            22.7,
-            16.5
-          ),
-          upper = c(25.725, 23.1),
-          ymax = c(30.9, 29.5),
-          outliers = list(numeric(0), c(33.9, 32.5)),
-          notchupper = c(
-            25.6423655789178,
-            19.9327598420707
-          ),
-          notchlower = c(19.7576344210822, 13.0672401579293),
-          x = structure(c(1, 2), class = c("mapped_discrete", "numeric")),
-          flipped_aes = c(FALSE, FALSE),
-          PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
-          group = 1:2,
-          ymin_final = c(
-            8.2,
-            4.2
-          ),
-          ymax_final = c(30.9, 33.9),
-          xmin = structure(c(0.85, 1.85), class = c("mapped_discrete", "numeric")),
-          xmax = structure(c(
-            1.15,
-            2.15
-          ), class = c("mapped_discrete", "numeric")),
-          xid = c(1, 2),
-          newx = structure(c(1, 2), .Dim = 2L),
-          new_width = c(0.3, 0.3),
-          weight = c(1, 1),
-          colour = c("grey20", "grey20"),
-          fill = c(
-            "white",
-            "white"
-          ),
-          size = c(0.5, 0.5),
-          alpha = c(0.2, 0.2),
-          shape = c(
-            19,
-            19
-          ),
-          linetype = c("solid", "solid")
+      structure(list(
+        ymin = c(8.2, 4.2), lower = c(15.525, 11.2), middle = c(
+          22.7,
+          16.5
+        ), upper = c(25.725, 23.1), ymax = c(30.9, 29.5), outliers = list(
+          numeric(0), c(33.9, 32.5)
+        ), notchupper = c(
+          25.6423655789178,
+          19.9327598420707
+        ), notchlower = c(19.7576344210822, 13.0672401579293),
+        x = structure(c(1, 2), class = c("mapped_discrete", "numeric")),
+        flipped_aes = c(FALSE, FALSE),
+        PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
+        group = 1:2, ymin_final = c(
+          8.2,
+          4.2
         ),
-        row.names = c(NA, -2L),
-        class = "data.frame"
-      )
+        ymax_final = c(30.9, 33.9),
+        xmin = structure(c(0.85, 1.85), class = c("mapped_discrete", "numeric")),
+        xmax = structure(c(
+          1.15,
+          2.15
+        ), class = c("mapped_discrete", "numeric")),
+        xid = c(1, 2), newx = structure(c(1, 2), .Dim = 2L),
+        new_width = c(0.3, 0.3),
+        weight = c(1, 1), colour = c("grey20", "grey20"), fill = c(
+          "white",
+          "white"
+        ), size = c(0.5, 0.5),
+        alpha = c(0.2, 0.2),
+        shape = c(
+          19,
+          19
+        ), linetype = c("solid", "solid")
+      ), row.names = c(NA, -2L), class = "data.frame")
     )
 
     testthat::expect_equal(
@@ -395,36 +382,56 @@ testthat::test_that(
             "numeric"
           )),
           y = c(33.9, 32.5),
-          label = c(
-            33.9,
-            32.5
+          label = c(33.9, 32.5),
+          PANEL = structure(c(
+            1L,
+            1L
+          ), .Label = "1", class = "factor"),
+          group = structure(c(
+            1L,
+            1L
+          ), n = 1L),
+          colour = c("black", "black"),
+          fill = c(
+            "white",
+            "white"
           ),
-          PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
-          group = structure(c(1L, 1L), n = 1L),
-          colour = c(
-            "black",
-            "black"
-          ),
-          fill = c("white", "white"),
           size = c(3, 3),
-          angle = c(
-            0,
-            0
-          ),
+          angle = c(0, 0),
           alpha = c(NA, NA),
           family = c("", ""),
-          fontface = c(
+          fontface = c(1, 1),
+          lineheight = c(
+            1.2,
+            1.2
+          ),
+          hjust = c(0.5, 0.5),
+          vjust = c(0.5, 0.5),
+          point.size = c(
             1,
             1
           ),
-          lineheight = c(1.2, 1.2),
-          hjust = c(0.5, 0.5),
-          vjust = c(
-            0.5,
-            0.5
-          )
+          segment.linetype = c(1, 1),
+          segment.size = c(0.5, 0.5),
+          segment.curvature = c(0, 0),
+          segment.angle = c(90, 90),
+          segment.ncp = c(1, 1),
+          segment.shape = c(0.5, 0.5),
+          segment.square = c(
+            TRUE,
+            TRUE
+          ),
+          segment.squareShape = c(1, 1),
+          segment.inflect = c(
+            FALSE,
+            FALSE
+          ),
+          segment.debug = c(FALSE, FALSE)
         ),
-        row.names = c(NA, -2L),
+        row.names = c(
+          NA,
+          -2L
+        ),
         class = "data.frame"
       )
     )
@@ -480,18 +487,56 @@ testthat::test_that(
             "list(~italic(widehat(mu))=='20.66')",
             "list(~italic(widehat(mu))=='16.96')"
           ),
-          PANEL = structure(c(1L, 1L), class = "factor", .Label = "1"),
+          PANEL = structure(c(
+            1L,
+            1L
+          ), .Label = "1", class = "factor"),
           group = structure(1:2, n = 2L),
           colour = c("blue", "blue"),
           fill = c("white", "white"),
-          size = c(3.88, 3.88),
+          size = c(
+            3.88,
+            3.88
+          ),
           angle = c(0, 0),
           alpha = c(NA, NA),
-          family = c("", ""),
+          family = c(
+            "",
+            ""
+          ),
           fontface = c(1, 1),
           lineheight = c(1.2, 1.2),
-          hjust = c(0.5, 0.5),
-          vjust = c(0.5, 0.5)
+          hjust = c(
+            0.5,
+            0.5
+          ),
+          vjust = c(0.5, 0.5),
+          point.size = c(1, 1),
+          segment.linetype = c(
+            1,
+            1
+          ),
+          segment.size = c(0.5, 0.5),
+          segment.curvature = c(
+            0,
+            0
+          ),
+          segment.angle = c(90, 90),
+          segment.ncp = c(1, 1),
+          segment.shape = c(
+            0.5,
+            0.5
+          ),
+          segment.square = c(TRUE, TRUE),
+          segment.squareShape = c(
+            1,
+            1
+          ),
+          segment.inflect = c(FALSE, FALSE),
+          segment.debug = c(
+            FALSE,
+            FALSE
+          )
         ),
         row.names = c(NA, -2L),
         class = "data.frame"
@@ -531,18 +576,47 @@ testthat::test_that(
             "numeric"
           )),
           label = c(33.9, 32.5),
-          PANEL = structure(c(1L, 1L), class = "factor", .Label = "1"),
+          PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
           group = structure(c(1L, 1L), n = 1L),
           colour = c("black", "black"),
           fill = c("white", "white"),
           size = c(3, 3),
           angle = c(0, 0),
           alpha = c(NA, NA),
-          family = c("", ""),
+          family = c(
+            "",
+            ""
+          ),
           fontface = c(1, 1),
           lineheight = c(1.2, 1.2),
-          hjust = c(0.5, 0.5),
-          vjust = c(0.5, 0.5)
+          hjust = c(
+            0.5,
+            0.5
+          ),
+          vjust = c(0.5, 0.5),
+          point.size = c(1, 1),
+          segment.linetype = c(
+            1,
+            1
+          ),
+          segment.size = c(0.5, 0.5),
+          segment.curvature = c(0, 0),
+          segment.angle = c(90, 90),
+          segment.ncp = c(1, 1),
+          segment.shape = c(
+            0.5,
+            0.5
+          ),
+          segment.square = c(TRUE, TRUE),
+          segment.squareShape = c(
+            1,
+            1
+          ),
+          segment.inflect = c(FALSE, FALSE),
+          segment.debug = c(
+            FALSE,
+            FALSE
+          )
         ),
         row.names = c(NA, -2L),
         class = "data.frame"

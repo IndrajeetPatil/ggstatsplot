@@ -7,7 +7,7 @@
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [![CRAN\_Release\_Badge](https://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                 | [![Travis Build Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](https://travis-ci.org/IndrajeetPatil/ggstatsplot)                                               | [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)     | [![GitHub version](https://img.shields.io/badge/GitHub-0.6.5.9000-orange.svg?style=flat-square)](https://github.com/IndrajeetPatil/ggstatsplot/)               | [![Website](https://img.shields.io/badge/website-ggstatsplot-orange.svg?colorB=E91E63)](https://indrajeetpatil.github.io/ggstatsplot/)                          |
 | [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)                      | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Forks](https://img.shields.io/badge/forks-127-blue.svg)](https://github.com/IndrajeetPatil/ggstatsplot/)                                                    | [![Features](https://img.shields.io/badge/features-ggstatsplot-orange.svg?colorB=2196F3)](https://indrajeetpatil.github.io/ggstatsplot/reference/index.html)    |
-| [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.6.0-6666ff.svg)](https://cran.r-project.org/)                                                      | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                                               | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](https://img.shields.io/badge/issues-19-red.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)                                       | [![vignettes](https://img.shields.io/badge/vignettes-0.6.5-orange.svg?colorB=FF5722)](https://CRAN.R-project.org/package=ggstatsplot/vignettes/)                |
+| [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.6.0-6666ff.svg)](https://cran.r-project.org/)                                                      | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                                               | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](https://img.shields.io/badge/issues-20-red.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)                                       | [![vignettes](https://img.shields.io/badge/vignettes-0.6.5-orange.svg?colorB=FF5722)](https://CRAN.R-project.org/package=ggstatsplot/vignettes/)                |
 | [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot) | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2074621.svg)](https://doi.org/10.5281/zenodo.2074621)                                                       |
 | [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg)](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot)                             | [![Last-changedate](https://img.shields.io/badge/last%20change-2020--12--17-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
 | [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                                    | [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                                            | [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ggstatsplot/community)                                           | [![Project Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)                                                   | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
@@ -227,6 +227,12 @@ ggstatsplot::ggbetweenstats(
 
 <img src="man/figures/README-ggbetweenstats1-1.png" width="100%" />
 
+📝 **Defaults** return<br>
+
+✅ raw data + distributions<br> ✅ descriptive statistics<br> ✅ statistic
+and *p*-value<br> ✅ effect size + CIs<br> ✅ pairwise comparisons<br> ✅
+Bayesian hypothesis-testing<br> ✅ Bayesian estimation<br>
+
 Note that this function returns object of class `ggplot` and thus can be
 further modified using `ggplot2` functions.
 
@@ -376,6 +382,12 @@ ggstatsplot::ggwithinstats(
 
 <img src="man/figures/README-ggwithinstats1-1.png" width="100%" />
 
+📝 **Defaults** return<br>
+
+✅ raw data + distributions<br> ✅ descriptive statistics<br> ✅ statistic
+and *p*-value<br> ✅ effect size + CIs<br> ✅ pairwise comparisons<br> ✅
+Bayesian hypothesis-testing<br> ✅ Bayesian estimation<br>
+
 As with the `ggbetweenstats`, this function also has a `grouped_`
 variant that makes repeating the same analysis across a single grouping
 variable quicker. We will see an example with only repeated
@@ -449,6 +461,166 @@ Here is a summary of *multiple pairwise comparison* tests supported in
 For more, see the `ggwithinstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
 
+## `gghistostats`
+
+To visualize the distribution of a single variable and check if its mean
+is significantly different from a specified value with a one-sample
+test, `gghistostats` can be used.
+
+``` r
+# for reproducibility
+set.seed(123)
+
+# plot
+ggstatsplot::gghistostats(
+  data = ggplot2::msleep, # dataframe from which variable is to be taken
+  x = awake, # numeric variable whose distribution is of interest
+  title = "Amount of time spent awake", # title for the plot
+  caption = substitute(paste(italic("Source: "), "Mammalian sleep data set")),
+  test.value = 12, # default value is 0
+  test.value.line = TRUE, # display a vertical line at test value
+  centrality.parameter = "median", # which measure of central tendency is to be plotted
+  centrality.line.args = list(color = "darkred"), # aesthetics for central tendency line
+  binwidth = 1, # binwidth value (experiment)
+  ggtheme = hrbrthemes::theme_ipsum_tw(), # choosing a different theme
+  ggstatsplot.layer = FALSE # turn off ggstatsplot theme layer
+)
+```
+
+<img src="man/figures/README-gghistostats1-1.png" width="100%" />
+
+📝 **Defaults** return<br>
+
+✅ counts + proportion for bins<br> ✅ descriptive statistics<br> ✅
+statistic and *p*-value<br> ✅ effect size + CIs<br> ✅ Bayesian
+hypothesis-testing<br> ✅ Bayesian estimation<br>
+
+There is also a `grouped_` variant of this function that makes it easy
+to repeat the same operation across a **single** grouping variable:
+
+``` r
+# for reproducibility
+set.seed(123)
+
+# plot
+ggstatsplot::grouped_gghistostats(
+  data = dplyr::filter(
+    .data = ggstatsplot::movies_long,
+    genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
+  ),
+  x = budget,
+  test.value = 50,
+  xlab = "Movies budget (in million US$)",
+  type = "nonparametric",
+  grouping.var = genre, # grouping variable
+  normal.curve = TRUE, # superimpose a normal distribution curve
+  normal.curve.args = list(color = "red", size = 1),
+  title.prefix = "Movie genre",
+  ggtheme = ggthemes::theme_tufte(),
+  # modify the defaults from `ggstatsplot` for each plot
+  ggplot.component = ggplot2::scale_x_continuous(
+    breaks = seq(0, 200, 50),
+    limits = (c(0, 200))
+  ),
+  plotgrid.args = list(nrow = 2),
+  title.text = "Movies budgets for different genres"
+)
+```
+
+<img src="man/figures/README-gghistostats2-1.png" width="100%" />
+
+### Summary of tests
+
+Following tests are carried out for each type of analyses-
+
+| Type           | Test                            | Function               |
+|----------------|---------------------------------|------------------------|
+| Parametric     | One-sample Student’s *t*-test   | `stats::t.test`        |
+| Non-parametric | One-sample Wilcoxon test        | `stats::wilcox.test`   |
+| Robust         | One-sample percentile bootstrap | `WRS2::onesampb`       |
+| Bayes Factor   | One-sample Student’s *t*-test   | `BayesFactor::ttestBF` |
+
+Following effect sizes (and confidence intervals/CI) are available for
+each type of test-
+
+| Type           | Effect size                                                                                                           | CI?                           | Function                                       |
+|----------------|-----------------------------------------------------------------------------------------------------------------------|-------------------------------|------------------------------------------------|
+| Parametric     | Cohen’s *d*, Hedge’s *g*                                                                                              | <font color="green">Yes<font> | `effectsize::cohens_d`, `effectsize::hedges_g` |
+| Non-parametric | *r*                                                                                                                   | <font color="green">Yes<font> | `rcompanion::wilcoxonOneSampleR`               |
+| Robust         | robust location measure                                                                                               | <font color="green">Yes<font> | `WRS2::onesampb`                               |
+| Bayes Factor   | ![\\delta\_{posterior}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta_%7Bposterior%7D "\delta_{posterior}") | <font color="green">Yes<font> | `bayestestR::describe_posterior`               |
+
+For more, including information about the variant of this function
+`grouped_gghistostats`, see the `gghistostats` vignette:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html>
+
+## `ggdotplotstats`
+
+This function is similar to `gghistostats`, but is intended to be used
+when the numeric variable also has a label.
+
+``` r
+# for reproducibility
+set.seed(123)
+
+# plot
+ggdotplotstats(
+  data = dplyr::filter(.data = gapminder::gapminder, continent == "Asia"),
+  y = country,
+  x = lifeExp,
+  test.value = 55,
+  test.value.line = TRUE,
+  centrality.parameter = "median",
+  centrality.k = 0,
+  title = "Distribution of life expectancy in Asian continent",
+  xlab = "Life expectancy",
+  caption = substitute(
+    paste(
+      italic("Source"),
+      ": Gapminder dataset from https://www.gapminder.org/"
+    )
+  )
+)
+```
+
+<img src="man/figures/README-ggdotplotstats1-1.png" width="100%" />
+
+📝 **Defaults** return<br>
+
+✅ descriptive statistics<br> ✅ statistic and *p*-value<br> ✅ effect size
++ CIs<br> ✅ Bayesian hypothesis-testing<br> ✅ Bayesian estimation<br>
+
+As with the rest of the functions in this package, there is also a
+`grouped_` variant of this function to facilitate looping the same
+operation for all levels of a single grouping variable.
+
+``` r
+# for reproducibility
+set.seed(123)
+
+# plot
+ggstatsplot::grouped_ggdotplotstats(
+  data = dplyr::filter(.data = ggplot2::mpg, cyl %in% c("4", "6")),
+  x = cty,
+  y = manufacturer,
+  xlab = "city miles per gallon",
+  ylab = "car manufacturer",
+  type = "nonparametric", # non-parametric test
+  grouping.var = cyl, # grouping variable
+  test.value = 15.5,
+  test.value.line = TRUE,
+  title.prefix = "cylinder count",
+  point.args = list(color = "red", size = 5, shape = 13),
+  title.text = "Fuel economy data"
+)
+```
+
+<img src="man/figures/README-ggdotplotstats2-1.png" width="100%" />
+
+### Summary of tests
+
+This is identical to summary of tests for `gghistostats`.
+
 ## `ggscatterstats`
 
 This function creates a scatterplot with marginal distributions overlaid
@@ -467,6 +639,12 @@ ggstatsplot::ggscatterstats(
 ```
 
 <img src="man/figures/README-ggscatterstats1-1.png" width="100%" />
+
+📝 **Defaults** return<br>
+
+✅ raw data + distributions<br> ✅ marginal distributions<br> ✅ statistic
+and *p*-value<br> ✅ effect size + CIs<br> ✅ Bayesian
+hypothesis-testing<br> ✅ Bayesian estimation<br>
 
 The available marginal distributions are-
 
@@ -589,13 +767,13 @@ ggstatsplot::ggcorrmat(
 
 <img src="man/figures/README-ggcorrmat1-1.png" width="100%" />
 
-Two things to note:
+📝 **Defaults** return<br>
 
--   If there are `NA`s present in the selected variables, the legend
-    will display minimum, median, and maximum number of pairs used for
-    correlation tests.
+✅ effect size + significance<br> ✅ careful handling of `NA`s
 
--   If `cor.vars` are not specified, all numeric variables will be used.
+If there are `NA`s present in the selected variables, the legend will
+display minimum, median, and maximum number of pairs used for
+correlation tests.
 
 There is also a `grouped_` variant of this function that makes it easy
 to repeat the same operation across a **single** grouping variable:
@@ -724,6 +902,12 @@ ggstatsplot::ggpiestats(
 
 <img src="man/figures/README-ggpiestats1-1.png" width="100%" />
 
+📝 **Defaults** return<br>
+
+✅ descriptive statistics<br> ✅ statistic and *p*-value<br> ✅ effect size
++ CIs<br> ✅ Goodness-of-fit tests<br> ✅ Bayesian hypothesis-testing<br>
+✅ Bayesian estimation<br>
+
 In case of repeated measures designs, setting `paired = TRUE` will
 produce results from McNemar’s chi-squared test-
 
@@ -805,7 +989,10 @@ For more, see the `ggpiestats` vignette:
 ## `ggbarstats`
 
 In case you are not a fan of pie charts (for very good reasons), you can
-alternatively use `ggbarstats` function which has a similar syntax-
+alternatively use `ggbarstats` function which has a similar syntax.
+
+N.B. The *p*-values from one-sample proportion test are displayed on top
+of each bar.
 
 ``` r
 # for reproducibility
@@ -828,8 +1015,11 @@ ggstatsplot::ggbarstats(
 
 <img src="man/figures/README-ggbarstats1-1.png" width="100%" />
 
-(The *p*-values from one-sample proportion test are displayed on top of
-each bar.)
+📝 **Defaults** return<br>
+
+✅ descriptive statistics<br> ✅ statistic and *p*-value<br> ✅ effect size
++ CIs<br> ✅ Goodness-of-fit tests<br> ✅ Bayesian hypothesis-testing<br>
+✅ Bayesian estimation<br>
 
 And, needless to say, there is also a `grouped_` variant of this
 function-
@@ -870,160 +1060,6 @@ ggstatsplot::grouped_ggbarstats(
 ### Summary of tests
 
 This is identical to the `ggpiestats` function summary of tests.
-
-## `gghistostats`
-
-To visualize the distribution of a single variable and check if its mean
-is significantly different from a specified value with a one-sample
-test, `gghistostats` can be used.
-
-``` r
-# for reproducibility
-set.seed(123)
-
-# plot
-ggstatsplot::gghistostats(
-  data = ggplot2::msleep, # dataframe from which variable is to be taken
-  x = awake, # numeric variable whose distribution is of interest
-  title = "Amount of time spent awake", # title for the plot
-  caption = substitute(paste(italic("Source: "), "Mammalian sleep data set")),
-  test.value = 12, # default value is 0
-  test.value.line = TRUE, # display a vertical line at test value
-  centrality.parameter = "median", # which measure of central tendency is to be plotted
-  centrality.line.args = list(color = "darkred"), # aesthetics for central tendency line
-  binwidth = 1, # binwidth value (experiment)
-  ggtheme = hrbrthemes::theme_ipsum_tw(), # choosing a different theme
-  ggstatsplot.layer = FALSE # turn off ggstatsplot theme layer
-)
-```
-
-<img src="man/figures/README-gghistostats1-1.png" width="100%" />
-
-As can be seen from the plot, Bayes Factor can be attached
-(`bf.message = TRUE`) to assess evidence in favor of the null
-hypothesis.
-
-Additionally, there is also a `grouped_` variant of this function that
-makes it easy to repeat the same operation across a **single** grouping
-variable:
-
-``` r
-# for reproducibility
-set.seed(123)
-
-# plot
-ggstatsplot::grouped_gghistostats(
-  data = dplyr::filter(
-    .data = ggstatsplot::movies_long,
-    genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
-  ),
-  x = budget,
-  test.value = 50,
-  xlab = "Movies budget (in million US$)",
-  type = "nonparametric",
-  grouping.var = genre, # grouping variable
-  normal.curve = TRUE, # superimpose a normal distribution curve
-  normal.curve.args = list(color = "red", size = 1),
-  title.prefix = "Movie genre",
-  ggtheme = ggthemes::theme_tufte(),
-  # modify the defaults from `ggstatsplot` for each plot
-  ggplot.component = ggplot2::scale_x_continuous(
-    breaks = seq(0, 200, 50),
-    limits = (c(0, 200))
-  ),
-  plotgrid.args = list(nrow = 2),
-  title.text = "Movies budgets for different genres"
-)
-```
-
-<img src="man/figures/README-gghistostats2-1.png" width="100%" />
-
-### Summary of tests
-
-Following tests are carried out for each type of analyses-
-
-| Type           | Test                            | Function               |
-|----------------|---------------------------------|------------------------|
-| Parametric     | One-sample Student’s *t*-test   | `stats::t.test`        |
-| Non-parametric | One-sample Wilcoxon test        | `stats::wilcox.test`   |
-| Robust         | One-sample percentile bootstrap | `WRS2::onesampb`       |
-| Bayes Factor   | One-sample Student’s *t*-test   | `BayesFactor::ttestBF` |
-
-Following effect sizes (and confidence intervals/CI) are available for
-each type of test-
-
-| Type           | Effect size                                                                                                           | CI?                           | Function                                       |
-|----------------|-----------------------------------------------------------------------------------------------------------------------|-------------------------------|------------------------------------------------|
-| Parametric     | Cohen’s *d*, Hedge’s *g*                                                                                              | <font color="green">Yes<font> | `effectsize::cohens_d`, `effectsize::hedges_g` |
-| Non-parametric | *r*                                                                                                                   | <font color="green">Yes<font> | `rcompanion::wilcoxonOneSampleR`               |
-| Robust         | robust location measure                                                                                               | <font color="green">Yes<font> | `WRS2::onesampb`                               |
-| Bayes Factor   | ![\\delta\_{posterior}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta_%7Bposterior%7D "\delta_{posterior}") | <font color="green">Yes<font> | `bayestestR::describe_posterior`               |
-
-For more, including information about the variant of this function
-`grouped_gghistostats`, see the `gghistostats` vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html>
-
-## `ggdotplotstats`
-
-This function is similar to `gghistostats`, but is intended to be used
-when the numeric variable also has a label.
-
-``` r
-# for reproducibility
-set.seed(123)
-
-# plot
-ggdotplotstats(
-  data = dplyr::filter(.data = gapminder::gapminder, continent == "Asia"),
-  y = country,
-  x = lifeExp,
-  test.value = 55,
-  test.value.line = TRUE,
-  centrality.parameter = "median",
-  centrality.k = 0,
-  title = "Distribution of life expectancy in Asian continent",
-  xlab = "Life expectancy",
-  caption = substitute(
-    paste(
-      italic("Source"),
-      ": Gapminder dataset from https://www.gapminder.org/"
-    )
-  )
-)
-```
-
-<img src="man/figures/README-ggdotplotstats1-1.png" width="100%" />
-
-As with the rest of the functions in this package, there is also a
-`grouped_` variant of this function to facilitate looping the same
-operation for all levels of a single grouping variable.
-
-``` r
-# for reproducibility
-set.seed(123)
-
-# plot
-ggstatsplot::grouped_ggdotplotstats(
-  data = dplyr::filter(.data = ggplot2::mpg, cyl %in% c("4", "6")),
-  x = cty,
-  y = manufacturer,
-  xlab = "city miles per gallon",
-  ylab = "car manufacturer",
-  type = "nonparametric", # non-parametric test
-  grouping.var = cyl, # grouping variable
-  test.value = 15.5,
-  test.value.line = TRUE,
-  title.prefix = "cylinder count",
-  point.args = list(color = "red", size = 5, shape = 13),
-  title.text = "Fuel economy data"
-)
-```
-
-<img src="man/figures/README-ggdotplotstats2-1.png" width="100%" />
-
-### Summary of tests
-
-This is identical to summary of tests for `gghistostats`.
 
 ## `ggcoefstats`
 
@@ -1068,6 +1104,11 @@ ggstatsplot::ggcoefstats(mod)
 ```
 
 <img src="man/figures/README-ggcoefstats1-1.png" width="100%" />
+
+📝 **Defaults** return<br>
+
+✅ estimate + CIs<br> ✅ statistic and *p*-value<br> ✅ model summary (AIC
++ BIC)
 
 This default plot can be further modified to one’s liking with
 additional arguments (also, let’s use a different model now):
@@ -1209,48 +1250,51 @@ ggplot(morley, aes(x = Speed, y = as.factor(Expt), fill = as.factor(Expt))) +
 
 <img src="man/figures/README-ridgeplot-1.png" width="100%" />
 
-# Usage and syntax simplicity
+# Summary of benefits
 
-As seen from these examples, `ggstatsplot` relies on non-standard
-evaluation (NSE) - implemented via `rlang` - i.e., rather than looking
-at the values of arguments (`x`, `y`), it instead looks at their
-expressions. Therefore, the syntax is simpler and follows the following
-principles-
+-   No need to use scores of packages for statistical analysis (e.g.,
+    one to get stats, one to get effect sizes, another to get Bayes
+    Factors, and yet another to get pairwise comparisons, etc.).
 
--   When a given function depends on variables in a dataframe, `data`
-    argument must always be specified.
+-   Minimal amount of code needed for all functions (typically only
+    `data`, `x`, and `y`), which minimizes chances of error and makes
+    for tidy scripts.
 
--   The `$` operator cannot be used to specify variables in a dataframe.
+-   Conveniently toggle between statistical approaches.
 
--   All functions accept both string (`x = "var1"`) and symbol
-    (`x = var1`) arguments.
+-   Truly makes your figures worth a thousand words.
 
-These set principles combined with the fact that almost all functions
-produce publication-ready plots that require very few arguments if one
-finds the aesthetic and statistical defaults satisfying make the syntax
-much less cognitively demanding and easy to remember/reconstruct.
+-   No need to copy-paste results to the text editor (MS-Word, e.g.).
+
+-   Disembodied figures stand on their own and are easy to evaluate for
+    the reader.
+
+-   More breathing room for theoretical discussion and other text.
+
+-   No need to worry about updating figures and statistical details
+    separately.
+
+# Syntax simplicity
+
+All functions produce publication-ready plots that require very few
+arguments if one finds the aesthetic and statistical defaults satisfying
+make the syntax much less cognitively demanding and easy to remember.
 
 <img src='man/figures/arguments.png' align="center"/>
 
-<br>
+# Misconceptions about *ggstatsplot*
 
-Most functions share a `type` (of test) argument that is helpful to
-specify the type of statistical analysis:
+This package is…
 
--   `"p"` (for **parametric**)
--   `"np"` (for **non-parametric**)
--   `"r"` (for **robust**)
--   `"bf"` (for **Bayes Factor**)
+❌ an alternative to learning `ggplot2`<br> ✅ (The better you know
+`ggplot2`, the more you can modify the defaults to your liking.)
 
-All relevant functions in `ggstatsplot` have a `output` argument which
-can be used to not only return plots (which is the default), but also to
-return a `subtitle` or `caption`, which are objects of type `call` and
-can be used to display statistical details in conjunction with a custom
-plot and at a custom location in the plot.
+❌ meant to be used in talks/presentations<br> ✅ (Default plots can be
+too complicated for effectively communicating results in
+time-constrained presentation settings, e.g. conference talks.)
 
-Additionally, all functions share the `ggtheme` and `palette` arguments
-that can be used to specify your favorite `ggplot` theme and color
-palette.
+❌ the only game in town<br> ✅ (GUI software alternatives:
+[JASP](https://jasp-stats.org/) and [jamovi](https://www.jamovi.org/)).
 
 # `ggstatsverse`: Components of `ggstatsplot`
 
