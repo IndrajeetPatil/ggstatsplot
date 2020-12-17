@@ -117,7 +117,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/IndrajeetPatil/ggstatsplot/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -137,13 +137,13 @@
 
       
 
-      </header><script src="ggscatterstats_files/header-attrs-2.5.3/header-attrs.js"></script><div class="row">
+      </header><script src="ggscatterstats_files/header-attrs-2.6/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggscatterstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-12-08</h4>
+            <h4 class="date">2020-12-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggscatterstats.Rmd"><code>vignettes/web_only/ggscatterstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggscatterstats.Rmd</code></div>
@@ -310,57 +310,6 @@
 <h2 class="hasAnchor">
 <a href="#effect-size-interpretation" class="anchor"></a>Effect size interpretation</h2>
 <p>To see how the effect sizes displayed in these tests can be interpreted, see: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html</a></p>
-</div>
-<div id="different-smoothing-methods" class="section level2">
-<h2 class="hasAnchor">
-<a href="#different-smoothing-methods" class="anchor"></a>Different smoothing methods</h2>
-<p>Additionally, different smoothing methods can be specified. For example, if a robust correlation (percentage bend correlation coefficient) is used, we can use a robust smoothing function (<code><a href="https://rdrr.io/pkg/MASS/man/rlm.html">MASS::rlm</a></code>). Additionally, we can also specify different formulas to use for smoothing function. It is <strong>important</strong> that you set <code>results.subtitle = FALSE</code> since the results will no longer be relevant for the smoothing function used. Below, four different examples are given for how to use different smoothing functions.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">mgcv</span><span class="op">)</span>
-
-<span class="co"># creating a list of plots with different smoothing functions</span>
-<span class="va">plot_list2</span> <span class="op">&lt;-</span>
-  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span><span class="op">(</span>
-    .l <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-      <span class="co"># let's use only 5% of the data to speed up the calculations</span>
-      data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span><span class="op">(</span>tbl <span class="op">=</span> <span class="va">movies_wide</span>, size <span class="op">=</span> <span class="fl">0.025</span><span class="op">)</span><span class="op">)</span>,
-      x <span class="op">=</span> <span class="st">"budget"</span>,
-      y <span class="op">=</span> <span class="st">"rating"</span>,
-      title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-        <span class="st">"Robust linear model using an M estimator (rlm)"</span>,
-        <span class="st">"Generalized additive model (GAM) with a penalized smoother"</span>,
-        <span class="st">"Local Polynomial Regression Fitting"</span>,
-        <span class="st">"Quadratic fit"</span>
-      <span class="op">)</span>,
-      method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-        <span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/rlm.html">rlm</a></span>,
-        <span class="st">"gam"</span>,
-        <span class="st">"loess"</span>,
-        <span class="st">"lm"</span>
-      <span class="op">)</span>,
-      formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-        <span class="va">y</span> <span class="op">~</span> <span class="va">x</span>,
-        <span class="va">y</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/s.html">s</a></span><span class="op">(</span><span class="va">x</span>, k <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,
-        <span class="va">y</span> <span class="op">~</span> <span class="va">x</span>,
-        <span class="va">y</span> <span class="op">~</span> <span class="va">x</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
-      <span class="op">)</span>,
-      label.var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"title"</span><span class="op">)</span>,
-      label.expression <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"budget &gt; 70"</span><span class="op">)</span>,
-      marginal <span class="op">=</span> <span class="cn">FALSE</span>
-    <span class="op">)</span>,
-    .f <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/ggscatterstats.html">ggscatterstats</a></span>
-  <span class="op">)</span>
-
-<span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
-  plotlist <span class="op">=</span> <span class="va">plot_list2</span>,
-  title.text <span class="op">=</span> <span class="st">"Trying out different smoothing functions with ggscatterstats"</span>,
-  caption.text <span class="op">=</span> <span class="st">"Source: www.imdb.com"</span>,
-  nrow <span class="op">=</span> <span class="fl">2</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="ggscatterstats_files/figure-html/grouped3-1.png" width="100%"></p>
 </div>
 <div id="suggestions" class="section level1">
 <h1 class="hasAnchor">

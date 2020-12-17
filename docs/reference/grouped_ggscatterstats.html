@@ -168,7 +168,7 @@ subtitle." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/IndrajeetPatil/ggstatsplot/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -317,24 +317,6 @@ width to use in calculating Bayes factors.</p></dd>
     <dt><code>beta</code></dt><dd><p>bending constant (Default: <code>0.1</code>). For more, see <code><a href='https://rdrr.io/pkg/WRS2/man/pbcor.html'>WRS2::pbcor()</a></code>.</p></dd>
     <dt><code>k</code></dt><dd><p>Number of digits after decimal point (should be an integer)
 (Default: <code>k = 2L</code>).</p></dd>
-    <dt><code>formula</code></dt><dd><p>Formula to use in smoothing function, eg. <code>y ~ x</code>,
-<code>y ~ poly(x, 2)</code>, <code>y ~ log(x)</code>. <code>NULL</code> by default, in which case
-<code>method = NULL</code> implies <code>formula = y ~ x</code> when there are fewer than 1,000
-observations and <code>formula = y ~ s(x, bs = "cs")</code> otherwise.</p></dd>
-    <dt><code>method</code></dt><dd><p>Smoothing method (function) to use, accepts either
-<code>NULL</code> or a character vector, e.g. <code>"lm"</code>, <code>"glm"</code>, <code>"gam"</code>, <code>"loess"</code>
-or a function, e.g. <code><a href='https://rdrr.io/pkg/MASS/man/rlm.html'>MASS::rlm</a></code> or <code><a href='https://rdrr.io/pkg/mgcv/man/gam.html'>mgcv::gam</a></code>, <code><a href='https://rdrr.io/r/stats/lm.html'>stats::lm</a></code>, or <code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess</a></code>.
-<code>"auto"</code> is also accepted for backwards compatibility.  It is equivalent to
-<code>NULL</code>.For <code>method = NULL</code> the smoothing method is chosen based on the
-size of the largest group (across all panels). <code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess()</a></code> is
-used for less than 1,000 observations; otherwise <code><a href='https://rdrr.io/pkg/mgcv/man/gam.html'>mgcv::gam()</a></code> is
-used with <code>formula = y ~ s(x, bs = "cs")</code> with <code>method = "REML"</code>. Somewhat anecdotally,
-<code>loess</code> gives a better appearance, but is \(O(N^{2})\) in memory,
-so does not work for larger datasets.If you have fewer than 1,000 observations but want to use the same <code>gam()</code>
-model that <code>method = NULL</code> would use, then set
-<code>method = "gam", formula = y ~ s(x, bs = "cs")</code>.</p></dd>
-    <dt><code>method.args</code></dt><dd><p>List of additional arguments passed on to the modelling
-function defined by <code>method</code>.</p></dd>
     <dt><code>ggtheme</code></dt><dd><p>A function, <code>ggplot2</code> theme name. Default value is
 <code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
 extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>,
@@ -360,11 +342,6 @@ variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
 by <code>ggstatsplot</code>. This argument is primarily helpful for <code>grouped_</code> variant
 of the current function. Default is <code>NULL</code>. The argument should be entered
 as a function.</p></dd>
-    <dt><code>margins</code></dt><dd><p>Along which margins to show the plots. One of: [both, x, y].</p></dd>
-    <dt><code>xparams</code></dt><dd><p>List of extra parameters to use only for the marginal plot along
-the x axis.</p></dd>
-    <dt><code>yparams</code></dt><dd><p>List of extra parameters to use only for the marginal plot along
-the y axis.</p></dd>
   
 </dl></td>
     </tr>
@@ -440,7 +417,7 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
   label.expression <span class='op'>=</span> <span class='va'>hwy</span> <span class='op'>&gt;</span> <span class='fl'>25</span> <span class='op'>&amp;</span> <span class='va'>displ</span> <span class='op'>&gt;</span> <span class='fl'>2.5</span>,
   ggplot.component <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span><span class='op'>(</span>sec.axis <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/sec_axis.html'>dup_axis</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 <span class='op'>)</span>
-</div><div class='img'><img src='grouped_ggscatterstats-2.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: ggrepel: 21 unlabeled data points (too many overlaps). Consider increasing max.overlaps</span></div><div class='img'><img src='grouped_ggscatterstats-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># labeling without expression</span>
 
 <span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>grouped_ggscatterstats</span><span class='op'>(</span>

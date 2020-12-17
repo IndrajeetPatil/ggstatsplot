@@ -6,6 +6,15 @@ BREAKING CHANGES
     showing the `count` information on the `x`-axis and the `proportion`
     information on the duplicated `x`-axis.
 
+  - `ggscatterstats` removes `method` and `method.args` arguments. It will no
+    longer be possible to use this function to visualize data for when the model
+    is not linear. It also retires `margins` argument.
+
+MAJOR CHANGES
+
+  - `ggscatterstats` defaults to `densigram` as the marginal distribution
+    visualization.
+
 MINOR CHANGES
 
   - `ggcorrmat` uses pretty formatting to display sample size information.

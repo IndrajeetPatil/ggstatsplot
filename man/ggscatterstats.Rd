@@ -14,25 +14,19 @@ ggscatterstats(
   bf.message = TRUE,
   beta = 0.1,
   k = 2L,
+  results.subtitle = TRUE,
   label.var = NULL,
   label.expression = NULL,
   point.label.args = list(size = 3),
-  formula = y ~ x,
   smooth.line.args = list(size = 1.5, color = "blue"),
-  method = "lm",
-  method.args = list(),
   point.args = list(size = 3, alpha = 0.4),
   point.width.jitter = 0,
   point.height.jitter = 0,
   marginal = TRUE,
-  marginal.type = "histogram",
-  margins = "both",
+  marginal.type = "densigram",
   marginal.size = 5,
   xfill = "#009E73",
   yfill = "#D55E00",
-  xparams = list(fill = xfill),
-  yparams = list(fill = yfill),
-  results.subtitle = TRUE,
   xlab = NULL,
   ylab = NULL,
   title = NULL,
@@ -80,6 +74,10 @@ parametric test} (Default: \code{TRUE}).}
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2L}).}
 
+\item{results.subtitle}{Decides whether the results of statistical tests are
+to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
+the plot will be returned.}
+
 \item{label.var}{Variable to use for points labels. Can be entered either as
 a character string (e.g., \code{"var1"}) or as a bare expression (e.g, \code{var1}).}
 
@@ -91,33 +89,8 @@ expression (e.g., \code{y < 4 & z < 20}).}
 \item{point.label.args}{A list of additional aesthetic arguments to be passed
 to \code{ggrepel::geom_label_repel} geom used to display the labels.}
 
-\item{formula}{Formula to use in smoothing function, eg. \code{y ~ x},
-\code{y ~ poly(x, 2)}, \code{y ~ log(x)}. \code{NULL} by default, in which case
-\code{method = NULL} implies \code{formula = y ~ x} when there are fewer than 1,000
-observations and \code{formula = y ~ s(x, bs = "cs")} otherwise.}
-
 \item{smooth.line.args}{A list of additional aesthetic arguments to be passed
 to \code{ggplot2::geom_smooth} geom used to display the regression line.}
-
-\item{method}{Smoothing method (function) to use, accepts either
-\code{NULL} or a character vector, e.g. \code{"lm"}, \code{"glm"}, \code{"gam"}, \code{"loess"}
-or a function, e.g. \code{MASS::rlm} or \code{mgcv::gam}, \code{stats::lm}, or \code{stats::loess}.
-\code{"auto"} is also accepted for backwards compatibility.  It is equivalent to
-\code{NULL}.
-
-For \code{method = NULL} the smoothing method is chosen based on the
-size of the largest group (across all panels). \code{\link[stats:loess]{stats::loess()}} is
-used for less than 1,000 observations; otherwise \code{\link[mgcv:gam]{mgcv::gam()}} is
-used with \code{formula = y ~ s(x, bs = "cs")} with \code{method = "REML"}. Somewhat anecdotally,
-\code{loess} gives a better appearance, but is \eqn{O(N^{2})}{O(N^2)} in memory,
-so does not work for larger datasets.
-
-If you have fewer than 1,000 observations but want to use the same \code{gam()}
-model that \code{method = NULL} would use, then set
-\verb{method = "gam", formula = y ~ s(x, bs = "cs")}.}
-
-\item{method.args}{List of additional arguments passed on to the modelling
-function defined by \code{method}.}
 
 \item{point.args}{A list of additional aesthetic arguments to be passed
 to \code{ggplot2::geom_point} geom used to display the raw data points.}
@@ -134,8 +107,6 @@ displayed; the default is \code{TRUE}.}
 \item{marginal.type}{Type of marginal distribution to be plotted on the axes
 (\code{"histogram"}, \code{"boxplot"}, \code{"density"}, \code{"violin"}, \code{"densigram"}).}
 
-\item{margins}{Along which margins to show the plots. One of: [both, x, y].}
-
 \item{marginal.size}{Integer describing the relative size of the marginal
 plots compared to the main plot. A size of \code{5} means that the main plot is
 5x wider and 5x taller than the marginal plots.}
@@ -143,16 +114,6 @@ plots compared to the main plot. A size of \code{5} means that the main plot is
 \item{xfill, yfill}{Character describing color fill for \code{x} and \code{y} axes
 marginal distributions (default: \code{"#009E73"} (for \code{x}) and \code{"#D55E00"} (for
 \code{y})). Note that the defaults are colorblind-friendly.}
-
-\item{xparams}{List of extra parameters to use only for the marginal plot along
-the x axis.}
-
-\item{yparams}{List of extra parameters to use only for the marginal plot along
-the y axis.}
-
-\item{results.subtitle}{Decides whether the results of statistical tests are
-to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
-the plot will be returned.}
 
 \item{xlab}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
 variable names for \code{x} and \code{y} will be used.}
@@ -203,8 +164,6 @@ want a \code{ggplot} object, set \code{marginal = FALSE}. Also have a look at th
 from over-lapping to the largest degree possible.  As a consequence plot
 times will slow down massively (and the plot file will grow in size) if you
 have a lot of labels that overlap.
-\item The statistical analysis is available only for linear model (\code{formula = y ~ x}
-and \code{method = 'lm'}. If these arguments are different, only plot will be returned.
 }
 }
 \examples{

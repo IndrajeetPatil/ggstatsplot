@@ -30,18 +30,16 @@ knitr::opts_chunk$set(
 )
 ```
 
-# FAQ
-
 Here are some of the common questions that have been asked in GitHub issues and
 on social media platforms.  
 
-## I just want the plot, not the statistical details. How can I turn them off?
+# I just want the plot, not the statistical details. How can I turn them off?
 
 All functions in `ggstatsplot` that display results from statistical analysis in
 a subtitle have argument `results.subtitle`. Setting it to `FALSE` will return
 only the plot.
 
-## How can I customize the details contained in the subtitle?
+# How can I customize the details contained in the subtitle?
 
 Sometimes you may not wish include so many details in the subtitle. In that
 case, you can extract the expression and copy-paste only the part you wish to
@@ -67,7 +65,7 @@ ggplot(iris, aes(x = Species, y = Sepal.Length)) +
   )))
 ```
 
-## I am getting `Error in grid.Call` error
+# I am getting `Error in grid.Call` error
 
 Sometimes, if you are working in `RStudio`, you might see the following error-
 
@@ -82,7 +80,7 @@ those solutions solve your problem.
 If not, pray to the old and the new gods, and try again. It might just solve
 your problem. `r emo::ji("shrug")`
 
-## What statistical test was carried out?
+# What statistical test was carried out?
 
 In case you are not sure what was the statistical test that produced the results
 shown in the subtitle of the plot, the best way to get that information is to
@@ -92,7 +90,7 @@ associated vignette.
 Summary of all analysis is handily available in `README`: 
 <https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md>
 
-## How can I use `ggstatsplot` functions in a `for` loop?
+# How can I use `ggstatsplot` functions in a `for` loop?
 
 Given that all functions in `ggstatsplot` use tidy evaluation, running these
 functions in a `for` loop requires minor adjustment to how inputs are entered:
@@ -119,7 +117,7 @@ dataframe in what you want to do, I will recommend you to have a look at
 
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html#repeating-function-execution-across-multiple-columns-in-a-dataframe-1>
 
-## How can I have uniform Y-axes ranges in `grouped_` functions?
+# How can I have uniform Y-axes ranges in `grouped_` functions?
 
 ```{r grouped_y_axes, fig.height=10, fig.width=8}
 # setup
@@ -152,7 +150,7 @@ combine_plots2(
 )
 ```
 
-## Does `ggstatsplot` work with `plotly`?
+# Does `ggstatsplot` work with `plotly`?
 
 The `plotly` R graphing library makes it easy to produce interactive web
 graphics via `plotly.js`. 
@@ -177,7 +175,7 @@ p <-
 plotly::ggplotly(p, width = 480, height = 480)
 ```
 
-## How can I use `grouped_` functions with more than one group?
+# How can I use `grouped_` functions with more than one group?
 
 Currently, the `grouped_` variants of functions only support repeating the
 analysis across a _single_ grouping variable. Often, you have to run the same
@@ -223,7 +221,7 @@ ggstatsplot::combine_plots(
 )
 ```
 
-## How can I include statistical expressions in facet labels?
+# How can I include statistical expressions in facet labels?
 
 ```{r facet_expr, fig.width = 6, fig.height = 8}
 set.seed(123)
@@ -254,7 +252,7 @@ mtcars1 %>%
   )
 ```
 
-## Can you customize which pairs are shown in pairwise comparisons?
+# Can you customize which pairs are shown in pairwise comparisons?
 
 Currently, for `ggbetweenstats` and `ggwithinstats`, you can either display all
 **significant** comparisons, all **non-significant** comparisons, or **all**
@@ -272,7 +270,7 @@ ggbetweenstats(mtcars, cyl, wt, pairwise.comparisons = FALSE) +
   geom_signif(comparisons = list(c("4", "6")))
 ```
 
-## How to access dataframe with results from pairwise comparisons?
+# How to access dataframe with results from pairwise comparisons?
 
 ```{r}
 library(ggstatsplot)
@@ -293,7 +291,7 @@ library(pairwiseComparisons)
 pairwise_comparisons(mtcars, cyl, wt)
 ```
 
-## How to access dataframe with results from `ggpiestats` and `ggbarstats`?
+# How to access dataframe with results from `ggpiestats` and `ggbarstats`?
 
 ```{r proptest_df}
 # setup
@@ -313,7 +311,7 @@ pb$plot$plot_env$df_proptest
 pb$plot$plot_env$df_descriptive
 ```
 
-## How can I remove a a particular `geom` layer from the plot?
+# How can I remove a a particular `geom` layer from the plot?
 
 Sometimes you may not want a particular `geom` layer to be displayed. You can
 remove them using `gginnards`. 
@@ -366,7 +364,7 @@ p <- gginnards::delete_layers(x = p, match_type = "GeomPoint")
 p + geom_point(shape = 23, aes(color = condition))
 ```
 
-## How can I modify the fill colors with custom values?
+# How can I modify the fill colors with custom values?
 
 Sometimes you may not be satisfied with the available color palette values. In
 this case, you can also change the colors by manually specifying these values.
@@ -392,7 +390,7 @@ ggstatsplot::grouped_ggpiestats(
 )
 ```
 
-## How can I modify `grouped_` outputs using `ggplot2` functions?
+# How can I modify `grouped_` outputs using `ggplot2` functions?
 
 All `ggstatsplot` are `ggplot` objects, which can be further modified, just like
 any other `ggplot` object. But exception to these are all plots returned by
@@ -422,7 +420,7 @@ grouped_ggbetweenstats(
 )
 ```
 
-## How can I extract dataframe containing results from `ggstatsplot`?
+# How can I extract dataframe containing results from `ggstatsplot`?
 
 `ggstatsplot` can return expressions in the subtitle and caption, but what if
 you want to actually get back dataframe containing the results?
@@ -430,6 +428,49 @@ you want to actually get back dataframe containing the results?
 This is possible via `statsExpressions`:
 <https://indrajeetpatil.github.io/statsExpressions/articles/dataframe_outputs.html>
 
+# Test I need is not available. What can I do?
+
+By default, since `ggstatsplot` always allows just **one** type of test per
+statistical approach, sometimes your favorite test might not be available. For
+example, `ggstatsplot` provides only Spearman's $\rho$, but not Kendall's
+$\tau$ as a non-parametric correlation test. 
+
+In such cases, you can override the defaults and use `statsExpressions` to
+create custom expressions to display in the plot.
+
+```{r custom_test, fig.width = 5, fig.height = 5}
+# setup
+set.seed(123)
+library(ggstatsplot)
+library(correlation)
+library(statsExpressions)
+library(ggplot2)
+
+# data with two variables of interest
+df <- dplyr::select(mtcars, wt, mpg)
+
+# correlation results
+results <-
+  correlation(df, method = "kendall") %>%
+  parameters::standardize_names(., "broom")
+
+# creating expression out of these results
+expr_results <-
+  statsExpressions::expr_template(
+    no.parameters = 0L,
+    statistic.text = quote(italic("T")),
+    effsize.text = quote(widehat(italic(tau))["Kendall"]),
+    stats.df = results,
+    n = results$n.obs[[1]]
+  )
+
+# plot (overriding defaults and using custom expression)
+ggscatterstats(
+  df, wt, mpg,
+  results.subtitle = FALSE,
+  ggplot.component = list(labs(subtitle = expr_results))
+)
+```
 
 # Suggestions
 

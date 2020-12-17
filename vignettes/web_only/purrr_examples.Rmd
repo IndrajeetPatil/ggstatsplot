@@ -310,8 +310,7 @@ plot_list <-
       ),
       label.var = list("title"),
       label.expression = list(
-        "rating > 7.5 &
-         budget < 100",
+        "rating > 7.5 & budget < 100",
         "rating > 8 & budget < 50",
         "rating > 8 & budget < 10"
       ),

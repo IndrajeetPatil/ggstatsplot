@@ -33,7 +33,6 @@
 #'  marginal distributions (default: `"#009E73"` (for `x`) and `"#D55E00"` (for
 #'  `y`)). Note that the defaults are colorblind-friendly.
 #' @inheritParams statsExpressions::expr_corr_test
-#' @inheritParams ggplot2::geom_smooth
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams ggbetweenstats
 #' @inheritParams ggExtra::ggMarginal
@@ -64,9 +63,6 @@
 #' from over-lapping to the largest degree possible.  As a consequence plot
 #' times will slow down massively (and the plot file will grow in size) if you
 #' have a lot of labels that overlap.
-#'
-#' - The statistical analysis is available only for linear model (`formula = y ~ x`
-#' and `method = 'lm'`. If these arguments are different, only plot will be returned.
 #'
 #' @examples
 #' \donttest{
@@ -103,25 +99,19 @@ ggscatterstats <- function(data,
                            bf.message = TRUE,
                            beta = 0.1,
                            k = 2L,
+                           results.subtitle = TRUE,
                            label.var = NULL,
                            label.expression = NULL,
                            point.label.args = list(size = 3),
-                           formula = y ~ x,
                            smooth.line.args = list(size = 1.5, color = "blue"),
-                           method = "lm",
-                           method.args = list(),
                            point.args = list(size = 3, alpha = 0.4),
                            point.width.jitter = 0,
                            point.height.jitter = 0,
                            marginal = TRUE,
-                           marginal.type = "histogram",
-                           margins = "both",
+                           marginal.type = "densigram",
                            marginal.size = 5,
                            xfill = "#009E73",
                            yfill = "#D55E00",
-                           xparams = list(fill = xfill),
-                           yparams = list(fill = yfill),
-                           results.subtitle = TRUE,
                            xlab = NULL,
                            ylab = NULL,
                            title = NULL,
@@ -146,24 +136,6 @@ ggscatterstats <- function(data,
   # if `xlab` and `ylab` is not provided, use the variable `x` and `y` name
   if (is.null(xlab)) xlab <- rlang::as_name(x)
   if (is.null(ylab)) ylab <- rlang::as_name(y)
-
-  #----------------------- linear model check ----------------------------
-
-  # subtitle statistics is valid only for linear models, so turn off the
-  # analysis if the model is not linear
-  # `method` argument can be a string (`"gam"`) or function (`MASS::rlm`)
-  method_ch <- paste(deparse(method), collapse = "")
-
-  # check the formula and the method
-  if (as.character(deparse(formula)) != "y ~ x" ||
-    if (class(method) == "function") {
-      method_ch != paste(deparse(lm), collapse = "")
-    } else {
-      method != "lm"
-    }) {
-    # turn off the analysis
-    results.subtitle <- FALSE
-  }
 
   #----------------------- dataframe ---------------------------------------
 
@@ -263,9 +235,8 @@ ggscatterstats <- function(data,
     ) +
     rlang::exec(
       .fn = ggplot2::geom_smooth,
-      method = method,
-      method.args = method.args,
-      formula = formula,
+      method = "lm",
+      formula = y ~ x,
       level = conf.level,
       na.rm = TRUE,
       !!!smooth.line.args
@@ -314,10 +285,9 @@ ggscatterstats <- function(data,
       ggExtra::ggMarginal(
         p = plot,
         type = marginal.type,
-        margins = margins,
         size = marginal.size,
-        xparams = xparams,
-        yparams = yparams
+        xparams = list(fill = xfill),
+        yparams = list(fill = yfill)
       )
   }
 

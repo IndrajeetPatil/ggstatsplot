@@ -196,8 +196,13 @@
 </h1>
 <p>BREAKING CHANGES</p>
 <ul>
+<li><p><code>gghistostats</code> removes <code>bar.measure</code> argument. The function now defaults to showing the <code>count</code> information on the <code>x</code>-axis and the <code>proportion</code> information on the duplicated <code>x</code>-axis.</p></li>
+<li><p><code>ggscatterstats</code> removes <code>method</code> and <code>method.args</code> arguments. It will no longer be possible to use this function to visualize data for when the model is not linear. It also retires <code>margins</code> argument.</p></li>
+</ul>
+<p>MAJOR CHANGES</p>
+<ul>
 <li>
-<code>gghistostats</code> removes <code>bar.measure</code> argument. The function now defaults to showing the <code>count</code> information on the <code>x</code>-axis and the <code>proportion</code> information on the duplicated <code>x</code>-axis.</li>
+<code>ggscatterstats</code> defaults to <code>densigram</code> as the marginal distribution visualization.</li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
@@ -775,7 +780,7 @@
 <p>MAJOR CHANGES</p>
 <ul>
 <li><p>New function: <code>ggcoefstats</code> for displaying model coefficients.</p></li>
-<li><p>All functions now have <code>ggtheme</code> argument that can be used to change the default theme, which has now been changed from <code>theme_grey()</code> to <code>theme_bw()</code>.</p></li>
+<li><p>All functions now have <code>ggtheme</code> argument that can be used to change the default theme, which has now been changed from <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey()</a></code> to <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw()</a></code>.</p></li>
 <li><p>The robust correlation is no longer <code><a href="https://rdrr.io/pkg/MASS/man/rlm.html">MASS::rlm</a></code>, but percentage bend correlation, as implemented in <code><a href="https://rdrr.io/pkg/WRS2/man/pbcor.html">WRS2::pbcor</a></code>. This was done to be consistent across different functions. <code>ggcorrmat</code> also uses percentage bend correlation as the robust correlation measure. This also means that <code>ggstatsplot</code> no longer imports <code>MASS</code> and <code>sfsmisc</code>.</p></li>
 <li><p>The <code>data</code> argument is no longer <code>NULL</code> for all functions, except <code>gghistostats</code>. In other words, the user <strong>must</strong> provide a dataframe from which variables or formulas should be selected.</p></li>
 <li><p>All subtitles containing results now also show sample size information (<em>n</em>). To adjust for the inflated length of the subtitle, the default subtitle text size has been changed from <code>12</code> to <code>11</code>.</p></li>
