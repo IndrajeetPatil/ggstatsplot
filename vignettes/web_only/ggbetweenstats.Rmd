@@ -187,7 +187,6 @@ p1 <-
     ylab = "Life expectancy",
     plot.type = "box",
     type = "p",
-    effsize.type = "d",
     conf.level = 0.99,
     title = "Parametric test",
     package = "ggsci",
@@ -285,7 +284,6 @@ gapminder::gapminder %>%
     grouping.var = year,
     xlab = "Continent",
     ylab = "Life expectancy",
-    pairwise.comparisons = TRUE, # display results from pairwise comparisons
     pairwise.display = "significant", # display only significant pairwise comparisons
     p.adjust.method = "fdr", # adjust p-values for multiple tests using this method
     ggtheme = ggthemes::theme_tufte(),
@@ -328,6 +326,17 @@ For repeated measures designs, `ggwithinstats` function can be used:
 
 ## Summary of tests
 
+The central tendency measure displayed will depend on the statistics:
+
+Type | Measure | Function
+----------- | --------- | ------------------ 
+Parametric | mean | `parameters::describe_distribution`
+Non-parametric | median | `parameters::describe_distribution`
+Robust | trimmed mean | `parameters::describe_distribution`
+Bayesian | MAP estimate | `parameters::describe_distribution`
+
+MAP: maximum a posteriori probability
+
 Following (between-subjects) tests are carried out for each type of analyses-
 
 Type | No. of groups | Test | Function
@@ -355,8 +364,7 @@ Non-parametric | 2 | *r* (computed as $Z/\sqrt{N}$) | <font color="green">Yes<fo
 Robust | 2 |  $\xi$ (Explanatory measure of effect size) | <font color="green">Yes<font> | `WRS2::yuen.effect.ci`
 Bayes Factor | 2 | $\delta_{posterior}$ | <font color="green">Yes<font> | `bayestestR::describe_posterior`
 
-Here is a summary of *multiple pairwise comparison* tests supported in
-*ggbetweenstats*-
+Following multiple pairwise comparison tests are supported-
 
 Type | Equal variance? | Test | *p*-value adjustment? | Function
 ----------- | --- | ------------------------- | --- | -----

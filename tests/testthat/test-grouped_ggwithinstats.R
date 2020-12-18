@@ -23,8 +23,7 @@ testthat::test_that(
         y = score,
         grouping.var = order,
         results.subtitle = FALSE,
-        outlier.tagging = FALSE,
-        type = "bayes"
+        outlier.tagging = FALSE
       ),
       "ggplot"
     )

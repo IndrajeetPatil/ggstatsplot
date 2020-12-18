@@ -92,7 +92,7 @@ the plot as a subtitle." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.6.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0</span>
       </span>
     </div>
 
@@ -229,7 +229,7 @@ the plot as a subtitle.</p>
   tr <span class='op'>=</span> <span class='fl'>0.1</span>,
   mean.plotting <span class='op'>=</span> <span class='cn'>TRUE</span>,
   mean.point.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>5</span>, color <span class='op'>=</span> <span class='st'>"darkred"</span><span class='op'>)</span>,
-  mean.label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>,
+  mean.label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span>, nudge_x <span class='op'>=</span> <span class='fl'>0.4</span>, segment.linetype <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>,
   notch <span class='op'>=</span> <span class='cn'>FALSE</span>,
   notchwidth <span class='op'>=</span> <span class='fl'>0.5</span>,
   outlier.tagging <span class='op'>=</span> <span class='cn'>FALSE</span>,
@@ -388,8 +388,11 @@ try to play around with the value of <code>tr</code>, which is by default set to
     </tr>
     <tr>
       <th>mean.plotting</th>
-      <td><p>Logical that decides whether mean is to be highlighted
-and its value to be displayed (Default: <code>TRUE</code>).</p></td>
+      <td><p>Logical that decides whether centrality tendency measure
+is to be displayed as a point with a label (Default: <code>TRUE</code>). Function
+decides which central tendency measure to show depending on the <code>type</code>
+argument (<strong>mean</strong> for parametric, <strong>median</strong> for non-parametric,
+<strong>trimmed mean</strong> for robust, and <strong>MAP estimator</strong> for Bayes).</p></td>
     </tr>
     <tr>
       <th>mean.point.args, mean.label.args</th>

@@ -32,7 +32,7 @@ subtitle_function_switch <- function(test, type, ...) {
 #'
 #' @inheritParams subtitle_function_switch
 #'
-#' @importFrom statsExpressions bf_ttest bf_oneway_anova
+#' @importFrom tidyBF bf_ttest bf_oneway_anova
 #' @importFrom rlang exec
 #'
 #' @keywords internal

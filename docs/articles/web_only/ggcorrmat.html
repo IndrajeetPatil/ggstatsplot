@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.6.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0</span>
       </span>
     </div>
 
@@ -117,7 +117,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/IndrajeetPatil/ggstatsplot/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -137,13 +137,13 @@
 
       
 
-      </header><script src="ggcorrmat_files/header-attrs-2.5.3/header-attrs.js"></script><div class="row">
+      </header><script src="ggcorrmat_files/header-attrs-2.6/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggcorrmat</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-12-07</h4>
+            <h4 class="date">2020-12-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcorrmat.Rmd"><code>vignettes/web_only/ggcorrmat.Rmd</code></a></small>
       <div class="hidden name"><code>ggcorrmat.Rmd</code></div>
@@ -315,19 +315,19 @@
   digits <span class="op">=</span> <span class="fl">3</span>
 <span class="op">)</span>
 <span class="co">#&gt; # A tibble: 10 x 10</span>
-<span class="co">#&gt;    parameter1 parameter2      r ci_low ci_high      t    df        p</span>
-<span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 sales      volume      0.980  0.978   0.982 172.    1202 0.      </span>
-<span class="co">#&gt;  2 sales      median      0.469  0.423   0.512  18.3   1195 1.16e-65</span>
-<span class="co">#&gt;  3 sales      listings    0.930  0.921   0.937  83.0   1083 0.      </span>
-<span class="co">#&gt;  4 sales      inventory  -0.385 -0.434  -0.333 -13.7   1080 7.21e-39</span>
-<span class="co">#&gt;  5 volume     median      0.550  0.509   0.588  22.7   1195 1.50e-94</span>
-<span class="co">#&gt;  6 volume     listings    0.898  0.886   0.909  67.1   1083 0.      </span>
-<span class="co">#&gt;  7 volume     inventory  -0.368 -0.419  -0.316 -13.0   1080 1.19e-35</span>
-<span class="co">#&gt;  8 median     listings    0.403  0.352   0.451  14.5   1083 7.57e-43</span>
-<span class="co">#&gt;  9 median     inventory  -0.203 -0.259  -0.145  -6.80  1080 3.40e-11</span>
-<span class="co">#&gt; 10 listings   inventory  -0.163 -0.220  -0.104  -5.42  1080 7.25e- 8</span>
-<span class="co">#&gt;    method           nobs</span>
+<span class="co">#&gt;    parameter1 parameter2 estimate conf.low conf.high statistic    df  p.value</span>
+<span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 sales      volume        0.980    0.978     0.982    172.    1202 0.      </span>
+<span class="co">#&gt;  2 sales      median        0.469    0.423     0.512     18.3   1195 1.16e-65</span>
+<span class="co">#&gt;  3 sales      listings      0.930    0.921     0.937     83.0   1083 0.      </span>
+<span class="co">#&gt;  4 sales      inventory    -0.385   -0.434    -0.333    -13.7   1080 7.21e-39</span>
+<span class="co">#&gt;  5 volume     median        0.550    0.509     0.588     22.7   1195 1.50e-94</span>
+<span class="co">#&gt;  6 volume     listings      0.898    0.886     0.909     67.1   1083 0.      </span>
+<span class="co">#&gt;  7 volume     inventory    -0.368   -0.419    -0.316    -13.0   1080 1.19e-35</span>
+<span class="co">#&gt;  8 median     listings      0.403    0.352     0.451     14.5   1083 7.57e-43</span>
+<span class="co">#&gt;  9 median     inventory    -0.203   -0.259    -0.145     -6.80  1080 3.40e-11</span>
+<span class="co">#&gt; 10 listings   inventory    -0.163   -0.220    -0.104     -5.42  1080 7.25e- 8</span>
+<span class="co">#&gt;    method          n.obs</span>
 <span class="co">#&gt;    &lt;chr&gt;           &lt;int&gt;</span>
 <span class="co">#&gt;  1 Percentage Bend  1204</span>
 <span class="co">#&gt;  2 Percentage Bend  1197</span>
@@ -352,22 +352,22 @@
   output <span class="op">=</span> <span class="st">"dataframe"</span>
 <span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 9</span>
-<span class="co">#&gt;   parameter1   parameter2       rho  ci_low   ci_high       s         p method  </span>
-<span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   </span>
-<span class="co">#&gt; 1 Sepal.Length Sepal.Width  -0.1668 -0.3228 -0.001916 656283. 4.137e- 2 Spearman</span>
-<span class="co">#&gt; 2 Sepal.Length Petal.Length  0.8819  0.8390  0.9139    66429. 1.722e-49 Spearman</span>
-<span class="co">#&gt; 3 Sepal.Length Petal.Width   0.8343  0.7762  0.8784    93208. 1.676e-39 Spearman</span>
-<span class="co">#&gt; 4 Sepal.Width  Petal.Length -0.3096 -0.4515 -0.1525   736637. 3.462e- 4 Spearman</span>
-<span class="co">#&gt; 5 Sepal.Width  Petal.Width  -0.2890 -0.4333 -0.1303   725048. 6.686e- 4 Spearman</span>
-<span class="co">#&gt; 6 Petal.Length Petal.Width   0.9377  0.9141  0.9549    35061. 4.894e-69 Spearman</span>
-<span class="co">#&gt;    nobs</span>
-<span class="co">#&gt;   &lt;int&gt;</span>
-<span class="co">#&gt; 1   150</span>
-<span class="co">#&gt; 2   150</span>
-<span class="co">#&gt; 3   150</span>
-<span class="co">#&gt; 4   150</span>
-<span class="co">#&gt; 5   150</span>
-<span class="co">#&gt; 6   150</span></code></pre></div>
+<span class="co">#&gt;   parameter1   parameter2   estimate conf.low conf.high statistic   p.value</span>
+<span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;           &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 Sepal.Length Sepal.Width   -0.1668  -0.3228 -0.001916   656283. 4.137e- 2</span>
+<span class="co">#&gt; 2 Sepal.Length Petal.Length   0.8819   0.8390  0.9139      66429. 1.722e-49</span>
+<span class="co">#&gt; 3 Sepal.Length Petal.Width    0.8343   0.7762  0.8784      93208. 1.676e-39</span>
+<span class="co">#&gt; 4 Sepal.Width  Petal.Length  -0.3096  -0.4515 -0.1525     736637. 3.462e- 4</span>
+<span class="co">#&gt; 5 Sepal.Width  Petal.Width   -0.2890  -0.4333 -0.1303     725048. 6.686e- 4</span>
+<span class="co">#&gt; 6 Petal.Length Petal.Width    0.9377   0.9141  0.9549      35061. 4.894e-69</span>
+<span class="co">#&gt;   method   n.obs</span>
+<span class="co">#&gt;   &lt;chr&gt;    &lt;int&gt;</span>
+<span class="co">#&gt; 1 Spearman   150</span>
+<span class="co">#&gt; 2 Spearman   150</span>
+<span class="co">#&gt; 3 Spearman   150</span>
+<span class="co">#&gt; 4 Spearman   150</span>
+<span class="co">#&gt; 5 Spearman   150</span>
+<span class="co">#&gt; 6 Spearman   150</span></code></pre></div>
 </div>
 <div id="grouped-analysis-with-grouped_ggcorrmat" class="section level2">
 <h2 class="hasAnchor">
@@ -420,19 +420,19 @@
   output <span class="op">=</span> <span class="st">"dataframe"</span>
 <span class="op">)</span>
 <span class="co">#&gt; # A tibble: 60 x 11</span>
-<span class="co">#&gt;    vore  parameter1  parameter2        r  ci_low  ci_high          t    df</span>
-<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;         &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt; &lt;int&gt;</span>
-<span class="co">#&gt;  1 carni sleep_total sleep_rem    0.9189  0.6864  0.9810      6.589      8</span>
-<span class="co">#&gt;  2 carni sleep_total sleep_cycle  0.3764 -0.7574  0.9449      0.7038     3</span>
-<span class="co">#&gt;  3 carni sleep_total awake       -1.000  -1.000  -1.000   -1386.        17</span>
-<span class="co">#&gt;  4 carni sleep_total brainwt     -0.5244 -0.8815  0.2144     -1.629      7</span>
-<span class="co">#&gt;  5 carni sleep_total bodywt      -0.4427 -0.7468  0.01441    -2.036     17</span>
-<span class="co">#&gt;  6 carni sleep_rem   sleep_cycle  0.1216 -0.8521  0.9066      0.2122     3</span>
-<span class="co">#&gt;  7 carni sleep_rem   awake       -0.9189 -0.9810 -0.6865     -6.589      8</span>
-<span class="co">#&gt;  8 carni sleep_rem   brainwt     -0.5006 -0.9331  0.5237     -1.157      4</span>
-<span class="co">#&gt;  9 carni sleep_rem   bodywt      -0.4786 -0.8516  0.2162     -1.542      8</span>
-<span class="co">#&gt; 10 carni sleep_cycle awake       -0.3764 -0.9449  0.7574     -0.7038     3</span>
-<span class="co">#&gt;            p method   nobs</span>
+<span class="co">#&gt;    vore  parameter1  parameter2  estimate conf.low conf.high  statistic    df</span>
+<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt; &lt;int&gt;</span>
+<span class="co">#&gt;  1 carni sleep_total sleep_rem     0.9189   0.6864   0.9810      6.589      8</span>
+<span class="co">#&gt;  2 carni sleep_total sleep_cycle   0.3764  -0.7574   0.9449      0.7038     3</span>
+<span class="co">#&gt;  3 carni sleep_total awake        -1.000   -1.000   -1.000   -1386.        17</span>
+<span class="co">#&gt;  4 carni sleep_total brainwt      -0.5244  -0.8815   0.2144     -1.629      7</span>
+<span class="co">#&gt;  5 carni sleep_total bodywt       -0.4427  -0.7468   0.01441    -2.036     17</span>
+<span class="co">#&gt;  6 carni sleep_rem   sleep_cycle   0.1216  -0.8521   0.9066      0.2122     3</span>
+<span class="co">#&gt;  7 carni sleep_rem   awake        -0.9189  -0.9810  -0.6865     -6.589      8</span>
+<span class="co">#&gt;  8 carni sleep_rem   brainwt      -0.5006  -0.9331   0.5237     -1.157      4</span>
+<span class="co">#&gt;  9 carni sleep_rem   bodywt       -0.4786  -0.8516   0.2162     -1.542      8</span>
+<span class="co">#&gt; 10 carni sleep_cycle awake        -0.3764  -0.9449   0.7574     -0.7038     3</span>
+<span class="co">#&gt;      p.value method  n.obs</span>
 <span class="co">#&gt;        &lt;dbl&gt; &lt;chr&gt;   &lt;int&gt;</span>
 <span class="co">#&gt;  1 2.398e- 3 Pearson    10</span>
 <span class="co">#&gt;  2 1.000e+ 0 Pearson     5</span>

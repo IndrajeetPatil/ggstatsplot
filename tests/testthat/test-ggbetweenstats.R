@@ -4,6 +4,7 @@ testthat::test_that(
   desc = "checking labels and data from plot",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if(getRversion() < "3.6")
 
     # creating the plot
     set.seed(123)
@@ -44,7 +45,7 @@ testthat::test_that(
     testthat::expect_equal(dim(pb$data[[1]]), c(44L, 13L))
     testthat::expect_equal(dim(pb$data[[2]]), c(4L, 26L))
     testthat::expect_equal(dim(pb$data[[3]]), c(2048L, 21L))
-    testthat::expect_equal(dim(pb$data[[5]]), c(4L, 13L))
+    testthat::expect_equal(dim(pb$data[[5]]), c(4L, 10L))
 
     # data from difference layers
     testthat::expect_equal(length(pb$data), 6L)
@@ -109,6 +110,17 @@ testthat::test_that(
       tolerance = 1e-5
     )
 
+    # checking centrality
+    testthat::expect_equal(
+      pb$data[[6]]$label,
+      c(
+        "list(~italic(widehat(mu))[mean]=='0.07926')",
+        "list(~italic(widehat(mu))[mean]=='0.62160')",
+        "list(~italic(widehat(mu))[mean]=='0.02155')",
+        "list(~italic(widehat(mu))[mean]=='0.14573')"
+      )
+    )
+
     # checking x-axis sample size labels
     testthat::expect_identical(
       ggplot2::layer_scales(p)$x$labels,
@@ -166,6 +178,7 @@ testthat::test_that(
   desc = "checking mean labels are working",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if(getRversion() < "3.6")
 
     # creating the plot
     set.seed(123)
@@ -176,7 +189,6 @@ testthat::test_that(
         x = "cyl",
         y = "n",
         type = "np",
-        mean.ci = TRUE,
         k = 2L,
         pairwise.comparisons = FALSE,
         conf.level = 0.90,
@@ -184,8 +196,7 @@ testthat::test_that(
         outlier.label = "name",
         outlier.coef = 2.5,
         nboot = 5,
-        results.subtitle = FALSE,
-        messages = FALSE
+        results.subtitle = FALSE
       ) +
       ggplot2::coord_cartesian(ylim = c(1, 6)) +
       ggplot2::scale_y_continuous(limits = c(1, 6), breaks = seq(1, 6, 1))
@@ -218,12 +229,8 @@ testthat::test_that(
     )
 
     testthat::expect_identical(
-      pb$data[[6]]$label,
-      c(
-        "list(~italic(widehat(mu))=='2.29')",
-        "list(~italic(widehat(mu))=='3.12')",
-        "list(~italic(widehat(mu))=='4.00')"
-      )
+      pb$data[[6]]$label[1],
+      "list(~italic(widehat(mu))[median]=='2.20')"
     )
 
     # edge case
@@ -238,8 +245,7 @@ testthat::test_that(
         data = a,
         x = "group",
         y = "mean.a",
-        results.subtitle = FALSE,
-        messages = FALSE
+        results.subtitle = FALSE
       ))
 
     # build
@@ -248,8 +254,8 @@ testthat::test_that(
     testthat::expect_identical(
       pb1$data[[6]]$label,
       c(
-        "list(~italic(widehat(mu))=='0.98')",
-        "list(~italic(widehat(mu))=='1.39')"
+        "list(~italic(widehat(mu))[mean]=='0.98')",
+        "list(~italic(widehat(mu))[mean]=='1.39')"
       )
     )
   }
@@ -261,6 +267,7 @@ testthat::test_that(
   desc = "checking if plot.type argument works",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if(getRversion() < "3.6")
 
     # boxplot
     set.seed(123)
@@ -277,8 +284,7 @@ testthat::test_that(
         outlier.coef = 0.75,
         outlier.color = "blue",
         mean.point.args = list(size = 5, color = "darkgreen"),
-        mean.label.args = list(color = "blue"),
-        messages = FALSE
+        mean.label.args = list(color = "blue", nudge_x = 0.4, segment.linetype = 4)
       )
 
     # violin
@@ -288,6 +294,7 @@ testthat::test_that(
         data = ToothGrowth,
         x = supp,
         y = len,
+        type = "r",
         results.subtitle = FALSE,
         effsize.noncentral = FALSE,
         plot.type = "violin",
@@ -295,11 +302,9 @@ testthat::test_that(
         outlier.coef = 0.75,
         outlier.color = "blue",
         bf.message = FALSE,
-        mean.plotting = FALSE,
         sample.size.label = FALSE,
         package = "wesanderson",
-        palette = "Royal1",
-        messages = FALSE
+        palette = "Royal1"
       ) +
       ggplot2::scale_y_continuous(breaks = seq(0, 30, 5))
 
@@ -311,9 +316,6 @@ testthat::test_that(
     testthat::expect_null(pb1$plot$labels$subtitle, NULL)
     testthat::expect_null(pb1$plot$labels$caption, NULL)
     testthat::expect_null(pb2$plot$labels$caption, NULL)
-    testthat::expect_identical(length(pb1$data), 5L)
-    testthat::expect_identical(length(pb1$data), 5L)
-    testthat::expect_identical(length(pb2$data), 4L)
     testthat::expect_identical(
       unique(pb1$data[[1]]$colour),
       c("#D95F02FF", "#1B9E77FF")
@@ -326,9 +328,9 @@ testthat::test_that(
     # dims for data
     testthat::expect_equal(dim(pb1$data[[1]]), c(58L, 13L))
     testthat::expect_equal(dim(pb1$data[[2]]), c(2L, 26L))
-    testthat::expect_equal(dim(pb1$data[[4]]), c(2L, 13L))
+    testthat::expect_equal(dim(pb1$data[[4]]), c(2L, 10L))
     testthat::expect_equal(dim(pb1$data[[2]]), c(2L, 26L))
-    testthat::expect_equal(dim(pb1$data[[4]]), c(2L, 13L))
+    testthat::expect_equal(dim(pb1$data[[4]]), c(2L, 10L))
     testthat::expect_equal(dim(pb2$data[[1]]), c(58L, 13L))
     testthat::expect_equal(dim(pb2$data[[2]]), c(2L, 10L))
     testthat::expect_equal(dim(pb2$data[[3]]), c(1024L, 21L))
@@ -417,15 +419,9 @@ testthat::test_that(
           segment.angle = c(90, 90),
           segment.ncp = c(1, 1),
           segment.shape = c(0.5, 0.5),
-          segment.square = c(
-            TRUE,
-            TRUE
-          ),
+          segment.square = c(TRUE, TRUE),
           segment.squareShape = c(1, 1),
-          segment.inflect = c(
-            FALSE,
-            FALSE
-          ),
+          segment.inflect = c(FALSE, FALSE),
           segment.debug = c(FALSE, FALSE)
         ),
         row.names = c(
@@ -444,30 +440,21 @@ testthat::test_that(
             "mapped_discrete",
             "numeric"
           )),
-          group = 1:2,
-          y = c(
-            20.6633333333333,
-            16.9633333333333
-          ),
-          ymin = c(NA_real_, NA_real_),
-          ymax = c(
-            NA_real_,
-            NA_real_
-          ),
-          PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
-          flipped_aes = c(FALSE, FALSE),
+          y = c(24.9087976539589, 15.4354838709677),
+          PANEL = structure(c(
+            1L,
+            1L
+          ), .Label = "1", class = "factor"),
+          group = structure(1:2, n = 2L),
           shape = c(19, 19),
-          colour = c(
-            "darkgreen",
-            "darkgreen"
-          ),
+          colour = c("darkgreen", "darkgreen"),
           size = c(5, 5),
           fill = c(NA, NA),
-          alpha = c(
-            NA,
-            NA
-          ),
-          stroke = c(0.5, 0.5)
+          alpha = c(NA, NA),
+          stroke = c(
+            0.5,
+            0.5
+          )
         ),
         row.names = c(NA, -2L),
         class = "data.frame"
@@ -482,63 +469,59 @@ testthat::test_that(
             "mapped_discrete",
             "numeric"
           )),
-          y = c(20.6633333333333, 16.9633333333333),
+          y = c(24.9087976539589, 15.4354838709677),
           label = c(
-            "list(~italic(widehat(mu))=='20.66')",
-            "list(~italic(widehat(mu))=='16.96')"
+            "list(~italic(widehat(mu))[MAP]=='24.91')",
+            "list(~italic(widehat(mu))[MAP]=='15.44')"
           ),
           PANEL = structure(c(
             1L,
             1L
           ), .Label = "1", class = "factor"),
           group = structure(1:2, n = 2L),
+          nudge_x = structure(c(1.4, 2.4), class = c(
+            "mapped_discrete",
+            "numeric"
+          )),
+          nudge_y = c(24.9087976539589, 15.4354838709677),
           colour = c("blue", "blue"),
           fill = c("white", "white"),
-          size = c(
-            3.88,
-            3.88
-          ),
+          size = c(3.88, 3.88),
           angle = c(0, 0),
           alpha = c(NA, NA),
-          family = c(
-            "",
-            ""
-          ),
+          family = c("", ""),
           fontface = c(1, 1),
-          lineheight = c(1.2, 1.2),
-          hjust = c(
-            0.5,
-            0.5
+          lineheight = c(
+            1.2,
+            1.2
           ),
+          hjust = c(0.5, 0.5),
           vjust = c(0.5, 0.5),
-          point.size = c(1, 1),
-          segment.linetype = c(
+          point.size = c(
             1,
             1
           ),
+          segment.linetype = c(4, 4),
           segment.size = c(0.5, 0.5),
-          segment.curvature = c(
-            0,
-            0
-          ),
+          segment.curvature = c(0, 0),
           segment.angle = c(90, 90),
           segment.ncp = c(1, 1),
-          segment.shape = c(
-            0.5,
-            0.5
+          segment.shape = c(0.5, 0.5),
+          segment.square = c(
+            TRUE,
+            TRUE
           ),
-          segment.square = c(TRUE, TRUE),
-          segment.squareShape = c(
-            1,
-            1
-          ),
-          segment.inflect = c(FALSE, FALSE),
-          segment.debug = c(
+          segment.squareShape = c(1, 1),
+          segment.inflect = c(
             FALSE,
             FALSE
-          )
+          ),
+          segment.debug = c(FALSE, FALSE)
         ),
-        row.names = c(NA, -2L),
+        row.names = c(
+          NA,
+          -2L
+        ),
         class = "data.frame"
       )
     )
@@ -571,10 +554,7 @@ testthat::test_that(
       structure(
         list(
           y = c(33.9, 32.5),
-          x = structure(c(2L, 2L), class = c(
-            "mapped_discrete",
-            "numeric"
-          )),
+          x = structure(c(2L, 2L), class = c("mapped_discrete", "numeric")),
           label = c(33.9, 32.5),
           PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
           group = structure(c(1L, 1L), n = 1L),
@@ -583,44 +563,31 @@ testthat::test_that(
           size = c(3, 3),
           angle = c(0, 0),
           alpha = c(NA, NA),
-          family = c(
-            "",
-            ""
-          ),
+          family = c("", ""),
           fontface = c(1, 1),
           lineheight = c(1.2, 1.2),
-          hjust = c(
-            0.5,
-            0.5
-          ),
+          hjust = c(0.5, 0.5),
           vjust = c(0.5, 0.5),
           point.size = c(1, 1),
-          segment.linetype = c(
-            1,
-            1
-          ),
+          segment.linetype = c(1, 1),
           segment.size = c(0.5, 0.5),
           segment.curvature = c(0, 0),
           segment.angle = c(90, 90),
           segment.ncp = c(1, 1),
-          segment.shape = c(
-            0.5,
-            0.5
-          ),
+          segment.shape = c(0.5, 0.5),
           segment.square = c(TRUE, TRUE),
-          segment.squareShape = c(
-            1,
-            1
-          ),
+          segment.squareShape = c(1, 1),
           segment.inflect = c(FALSE, FALSE),
-          segment.debug = c(
-            FALSE,
-            FALSE
-          )
+          segment.debug = c(FALSE, FALSE)
         ),
         row.names = c(NA, -2L),
         class = "data.frame"
       )
+    )
+
+    testthat::expect_equal(
+      pb2$data[[6]]$label[1],
+      "list(~italic(widehat(mu))[trimmed]=='21.04')"
     )
   }
 )
@@ -631,6 +598,7 @@ testthat::test_that(
   desc = "subtitle output works",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if(getRversion() < "3.6")
 
     df <- mtcars
     df$wt[3] <- NA

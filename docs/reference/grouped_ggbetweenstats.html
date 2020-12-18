@@ -91,7 +91,7 @@ grouping variable." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.6.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0</span>
       </span>
     </div>
 
@@ -324,8 +324,11 @@ passed to <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>g
 With Tukey's method, outliers are below (1st Quartile) or above (3rd
 Quartile) <code>outlier.coef</code> times the Inter-Quartile Range (IQR) (Default:
 <code>1.5</code>).</p></dd>
-    <dt><code>mean.plotting</code></dt><dd><p>Logical that decides whether mean is to be highlighted
-and its value to be displayed (Default: <code>TRUE</code>).</p></dd>
+    <dt><code>mean.plotting</code></dt><dd><p>Logical that decides whether centrality tendency measure
+is to be displayed as a point with a label (Default: <code>TRUE</code>). Function
+decides which central tendency measure to show depending on the <code>type</code>
+argument (<strong>mean</strong> for parametric, <strong>median</strong> for non-parametric,
+<strong>trimmed mean</strong> for robust, and <strong>MAP estimator</strong> for Bayes).</p></dd>
     <dt><code>point.args</code></dt><dd><p>A list of additional aesthetic arguments to be passed to
 the <code>geom_point</code> displaying the raw data.</p></dd>
     <dt><code>violin.args</code></dt><dd><p>A list of additional aesthetic arguments to be passed to

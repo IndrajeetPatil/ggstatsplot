@@ -145,7 +145,7 @@ plot_list <-
       outlier.label.args = list(
         list(size = 3, color = "#56B4E9"),
         list(size = 2.5, color = "#009E73"),
-        list(size = 4, color = "#F0E442")
+        list(size = 3.5, color = "#F0E442")
       ),
       xlab = "Continent",
       ylab = "Life expectancy",
@@ -172,7 +172,7 @@ plot_list <-
         ggplot2::theme_classic(),
         ggthemes::theme_fivethirtyeight()
       ),
-      ggstatsplot.layer = list(FALSE, FALSE, FALSE)
+      ggstatsplot.layer = list(FALSE, FALSE, TRUE)
     ),
     .f = ggstatsplot::ggbetweenstats
   )

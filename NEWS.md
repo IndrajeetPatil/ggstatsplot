@@ -9,11 +9,21 @@ BREAKING CHANGES
   - `ggscatterstats` removes `method` and `method.args` arguments. It will no
     longer be possible to use this function to visualize data for when the model
     is not linear. It also retires `margins` argument.
+    
+  - For `ggbetweenstats` and `ggwithinstats` functions, the arguments of type
+    `mean.` have all been replaced by `centrality.`. This is because now these
+    functions decide which central tendency measure to show depending on the
+    `type` argument (**mean** for parametric, **median** for non-parametric,
+    **trimmed mean** for robust, and **MAP estimator** for Bayes).
 
 MAJOR CHANGES
 
   - `ggscatterstats` defaults to `densigram` as the marginal distribution
     visualization.
+
+  - `ggbetweenstats` and `ggwithinstats` now display the centrality tendency
+    measure in such a way that the label doesn't occlude any of the raw data
+    points (#429).
 
   - `mean.ci` argument is retired for `ggbetweenstats` and `ggwithinstats`.
     Future `ggstatsplot` releases will be providing different centrality

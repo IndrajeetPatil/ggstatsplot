@@ -272,9 +272,8 @@ ggstatsplot::grouped_ggwithinstats(
   xlab = "Continent",
   ylab = "Desire to kill bugs",
   type = "nonparametric", # type of test
-  pairwise.comparisons = TRUE, # display results from pairwise comparisons
   pairwise.display = "significant", # display only significant pairwise comparisons
-  p.adjust.method = "fdr", # adjust p-values for multiple tests using this method
+  p.adjust.method = "BH", # adjust p-values for multiple tests using this method
   ggtheme = ggthemes::theme_tufte(),
   package = "ggsci",
   palette = "default_jco",
@@ -309,6 +308,17 @@ For independent measures designs, `ggbetweenstats` function can be used:
 
 ## Summary of tests
 
+The central tendency measure displayed will depend on the statistics:
+
+Type | Measure | Function
+----------- | --------- | ------------------ 
+Parametric | mean | `parameters::describe_distribution`
+Non-parametric | median | `parameters::describe_distribution`
+Robust | trimmed mean | `parameters::describe_distribution`
+Bayesian | MAP estimate | `parameters::describe_distribution`
+
+MAP: maximum a posteriori probability
+
 Following (within-subjects) tests are carried out for each type of analyses-
 
 Type | No. of groups | Test | Function
@@ -336,8 +346,7 @@ Non-parametric | 2 | *r* (computed as $Z/\sqrt{N}$) | <font color="green">Yes<fo
 Robust | 2 |  $\delta_{R}$ (robust standardized difference) | <font color="green">Yes<font> | `WRS2::dep.effect`
 Bayes Factor | 2 | $\delta_{posterior}$ | <font color="green">Yes<font> | `bayestestR::describe_posterior`
 
-Here is a summary of *multiple pairwise comparison* tests supported in
-*ggwithinstats*-
+Following multiple pairwise comparison tests are supported-
 
 Type | Test | *p*-value adjustment? | Function
 ----------- | ---------------------------- | --- | -----

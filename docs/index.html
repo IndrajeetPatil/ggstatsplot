@@ -49,7 +49,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.6.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0</span>
       </span>
     </div>
 
@@ -178,14 +178,14 @@
 <td><a href="https://cran.r-project.org/web/checks/check_results_ggstatsplot.html"><img src="https://cranchecks.info/badges/summary/ggstatsplot" alt="CRAN Checks"></a></td>
 <td><a href="https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot"><img src="https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue" alt="Weekly downloads badge"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/"><img src="https://img.shields.io/badge/forks-127-blue.svg" alt="Forks"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/"><img src="https://img.shields.io/badge/forks-128-blue.svg" alt="Forks"></a></td>
 <td><a href="https://indrajeetpatil.github.io/ggstatsplot/reference/index.html"><img src="https://img.shields.io/badge/features-ggstatsplot-orange.svg?colorB=2196F3" alt="Features"></a></td>
 </tr>
 <tr class="odd">
 <td><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.6.0-6666ff.svg" alt="minimal R version"></a></td>
 <td><a href="https://www.tidyverse.org/lifecycle/"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue" alt="Monthly downloads badge"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-17-red.svg" alt="Github Issues"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-18-red.svg" alt="Github Issues"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot/vignettes/"><img src="https://img.shields.io/badge/vignettes-0.6.5-orange.svg?colorB=FF5722" alt="vignettes"></a></td>
 </tr>
 <tr class="even">
@@ -528,9 +528,36 @@
 <p><img src="reference/figures/README-ggbetweenstats1-1.png" width="100%"></p>
 <p>📝 <strong>Defaults</strong> return<br></p>
 <p>✅ raw data + distributions <br> ✅ descriptive statistics <br> ✅ statistic + <em>p</em>-value <br> ✅ effect size + CIs <br> ✅ pairwise comparisons <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
-<p>Note that this function returns object of class <code>ggplot</code> and thus can be further modified using <code>ggplot2</code> functions.</p>
-<p>A number of other arguments can be specified to make this plot even more informative or change some of the default options. Additionally, this time we will use a grouping variable that has only two levels. The function will automatically switch from carrying out an ANOVA analysis to a <em>t</em>-test.</p>
-<p>The <code>type</code> (of test) argument also accepts the following abbreviations: <code>"p"</code> (for <em>parametric</em>) or <code>"np"</code> (for <em>nonparametric</em>) or <code>"r"</code> (for <em>robust</em>) or <code>"bf"</code> (for <em>Bayes Factor</em>). Additionally, the type of plot to be displayed can also be modified (<code>"box"</code>, <code>"violin"</code>, or <code>"boxviolin"</code>).</p>
+<p>The central tendency measure displayed will depend on the statistics:</p>
+<table class="table">
+<thead><tr class="header">
+<th>Type</th>
+<th>Measure</th>
+<th>Function</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Parametric</td>
+<td>mean</td>
+<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html">parameters::describe_distribution</a></code></td>
+</tr>
+<tr class="even">
+<td>Non-parametric</td>
+<td>median</td>
+<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html">parameters::describe_distribution</a></code></td>
+</tr>
+<tr class="odd">
+<td>Robust</td>
+<td>trimmed mean</td>
+<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html">parameters::describe_distribution</a></code></td>
+</tr>
+<tr class="even">
+<td>Bayesian</td>
+<td>MAP estimate</td>
+<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html">parameters::describe_distribution</a></code></td>
+</tr>
+</tbody>
+</table>
 <p>A number of other arguments can be specified to make this plot even more informative or change some of the default options.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
@@ -542,6 +569,7 @@
   data <span class="op">=</span> <span class="va">ToothGrowth</span>,
   x <span class="op">=</span> <span class="va">supp</span>,
   y <span class="op">=</span> <span class="va">len</span>,
+  type <span class="op">=</span> <span class="st">"r"</span>, <span class="co"># robust statistics </span>
   k <span class="op">=</span> <span class="fl">3</span>, <span class="co"># number of decimal places for statistical results</span>
   xlab <span class="op">=</span> <span class="st">"Supplement type"</span>, <span class="co"># label for the x-axis variable</span>
   ylab <span class="op">=</span> <span class="st">"Tooth length"</span>, <span class="co"># label for the y-axis variable</span>
@@ -637,7 +665,7 @@
 <td><code><a href="https://rdrr.io/pkg/WRS2/man/yuen.html">WRS2::yuen</a></code></td>
 </tr>
 <tr class="even">
-<td>Bayes Factor</td>
+<td>Bayesian</td>
 <td>2</td>
 <td>Student’s <em>t</em>-test</td>
 <td><code><a href="https://rdrr.io/pkg/BayesFactor/man/ttestBF.html">BayesFactor::ttestBF</a></code></td>
@@ -721,7 +749,7 @@
 <td><code><a href="https://rdrr.io/pkg/WRS2/man/yuen.html">WRS2::yuen.effect.ci</a></code></td>
 </tr>
 <tr class="even">
-<td>Bayes Factor</td>
+<td>Bayesian</td>
 <td>2</td>
 <td><img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cdelta_%7Bposterior%7D" title="\delta_{posterior}" alt="\delta_{posterior}"></td>
 <td><font color="green">Yes<font></font></font></td>
@@ -803,6 +831,36 @@
 <p><img src="reference/figures/README-ggwithinstats1-1.png" width="100%"></p>
 <p>📝 <strong>Defaults</strong> return<br></p>
 <p>✅ raw data + distributions <br> ✅ descriptive statistics <br> ✅ statistic + <em>p</em>-value <br> ✅ effect size + CIs <br> ✅ pairwise comparisons <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
+<p>The central tendency measure displayed will depend on the statistics:</p>
+<table class="table">
+<thead><tr class="header">
+<th>Type</th>
+<th>Measure</th>
+<th>Function</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Parametric</td>
+<td>mean</td>
+<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html">parameters::describe_distribution</a></code></td>
+</tr>
+<tr class="even">
+<td>Non-parametric</td>
+<td>median</td>
+<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html">parameters::describe_distribution</a></code></td>
+</tr>
+<tr class="odd">
+<td>Robust</td>
+<td>trimmed mean</td>
+<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html">parameters::describe_distribution</a></code></td>
+</tr>
+<tr class="even">
+<td>Bayesian</td>
+<td>MAP estimate</td>
+<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html">parameters::describe_distribution</a></code></td>
+</tr>
+</tbody>
+</table>
 <p>As with the <code>ggbetweenstats</code>, this function also has a <code>grouped_</code> variant that makes repeating the same analysis across a single grouping variable quicker. We will see an example with only repeated measurements-</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># common setup</span>
@@ -817,13 +875,12 @@
   <span class="op">)</span>,
   x <span class="op">=</span> <span class="va">condition</span>,
   y <span class="op">=</span> <span class="va">desire</span>,
+  type <span class="op">=</span> <span class="st">"np"</span>, <span class="co">#non-parametric statistics</span>
   xlab <span class="op">=</span> <span class="st">"Condition"</span>,
   ylab <span class="op">=</span> <span class="st">"Desire to kill an artrhopod"</span>,
   grouping.var <span class="op">=</span> <span class="va">region</span>,
   outlier.tagging <span class="op">=</span> <span class="cn">TRUE</span>,
-  outlier.label <span class="op">=</span> <span class="va">education</span>,
-  ggtheme <span class="op">=</span> <span class="fu">hrbrthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_tw.html">theme_ipsum_tw</a></span><span class="op">(</span><span class="op">)</span>,
-  ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>
+  outlier.label <span class="op">=</span> <span class="va">education</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggwithinstats2-1.png" width="100%"></p>
 <div id="summary-of-tests-1" class="section level3">
@@ -878,7 +935,7 @@
 <td>Yuen’s test on trimmed means for dependent samples</td>
 </tr>
 <tr class="even">
-<td>Bayes Factor</td>
+<td>Bayesian</td>
 <td>2</td>
 <td>Student’s <em>t</em>-test</td>
 </tr>
@@ -961,7 +1018,7 @@
 <td><code><a href="https://rdrr.io/pkg/WRS2/man/yuend.html">WRS2::dep.effect</a></code></td>
 </tr>
 <tr class="even">
-<td>Bayes Factor</td>
+<td>Bayesian</td>
 <td>2</td>
 <td><img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cdelta_%7Bposterior%7D" title="\delta_{posterior}" alt="\delta_{posterior}"></td>
 <td><font color="green">Yes<font></font></font></td>
@@ -998,7 +1055,7 @@
 <td><code><a href="https://rdrr.io/pkg/WRS2/man/rmanova.html">WRS2::rmmcp</a></code></td>
 </tr>
 <tr class="even">
-<td>Bayes Factor</td>
+<td>Bayesian</td>
 <td>Student’s <em>t</em>-test</td>
 <td><code>NA</code></td>
 <td><code><a href="https://rdrr.io/pkg/BayesFactor/man/ttestBF.html">BayesFactor::ttestBF</a></code></td>
@@ -1090,7 +1147,7 @@
 <td><code><a href="https://rdrr.io/pkg/WRS2/man/onesampb.html">WRS2::onesampb</a></code></td>
 </tr>
 <tr class="even">
-<td>Bayes Factor</td>
+<td>Bayesian</td>
 <td>One-sample Student’s <em>t</em>-test</td>
 <td><code><a href="https://rdrr.io/pkg/BayesFactor/man/ttestBF.html">BayesFactor::ttestBF</a></code></td>
 </tr>
@@ -1172,11 +1229,7 @@
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggdotplotstats1-1.png" width="100%"></p>
 <p>📝 <strong>Defaults</strong> return<br></p>
-<p>✅ descriptive statistics <br> ✅ statistic + <em>p</em>-value <br> ✅ effect size</p>
-<ul>
-<li>CIs <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br>
-</li>
-</ul>
+<p>✅ descriptives (mean + sample size) <br> ✅ statistic + <em>p</em>-value <br> ✅ effect size + CIs <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>As with the rest of the functions in this package, there is also a <code>grouped_</code> variant of this function to facilitate looping the same operation for all levels of a single grouping variable.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
@@ -1316,7 +1369,7 @@
 <td><code><a href="https://easystats.github.io/correlation/reference/correlation.html">correlation::correlation</a></code></td>
 </tr>
 <tr class="even">
-<td>Bayes Factor</td>
+<td>Bayesian</td>
 <td>Pearson’s correlation coefficient</td>
 <td><font color="green">Yes</font></td>
 <td><code><a href="https://easystats.github.io/correlation/reference/correlation.html">correlation::correlation</a></code></td>

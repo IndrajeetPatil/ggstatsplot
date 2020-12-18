@@ -25,23 +25,26 @@ BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
 Depends: 
     R (>= 3.6.0)
 Imports:
+    bayestestR (>= 0.8.0.1),
     cowplot,
     dplyr,
+    effectsize (>= 0.4.1),
     ggcorrplot,
     ggExtra,
     ggplot2,
     ggrepel (>= 0.9.0),
     ggsignif,
-    insight,
+    insight (>= 0.11.1.1),
     ipmisc,
-    pairwiseComparisons (>= 3.1.1),
+    pairwiseComparisons,
     paletteer,
-    parameters,
-    performance,
+    parameters (>= 0.10.1.1),
+    performance (>= 0.6.1.1),
     purrr,
     rlang,
     stats,
-    statsExpressions (>= 0.6.2),
+    statsExpressions (>= 0.6.2.9000),
+    tidyBF (>= 0.4.2.9000),
     tidyr,
     utils
 Suggests:
@@ -55,6 +58,14 @@ Suggests:
     WRS2
 VignetteBuilder: 
     knitr
+Remotes:
+    easystats/insight,
+    easystats/bayestestR,
+    easystats/effectsize,
+    vincentarelbundock/parameters@centralize,
+    easystats/performance,
+    IndrajeetPatil/tidyBF,
+    IndrajeetPatil/statsExpressions
 Encoding: UTF-8
 Language: en-US
 LazyData: true

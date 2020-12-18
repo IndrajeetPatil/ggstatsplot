@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.6.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0</span>
       </span>
     </div>
 
@@ -143,7 +143,7 @@
       <h1 data-toc-skip>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-12-14</h4>
+            <h4 class="date">2020-12-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -331,7 +331,9 @@
 <span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span>
 <span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span>
 <span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span>
-<span class="co">#&gt; Error in designMatrix(object, ...): Model matrix not defined for this model type.</span></code></pre></div>
+<span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span>
+<span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/BFBayesFactor-1.png" width="960"></p>
 </div>
 <div id="omnibus-anova-aov" class="section level2">
 <h2 class="hasAnchor">
@@ -4106,7 +4108,7 @@
 
 <span class="co"># model</span>
 <span class="va">mod_glht</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">glht</a></span><span class="op">(</span>
+  <span class="fu">multcomp</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">glht</a></span><span class="op">(</span>
     model <span class="op">=</span> <span class="va">lmod</span>,
     linfct <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
       <span class="st">"Agriculture = 0"</span>,
@@ -4197,7 +4199,7 @@
 </div>
 <div id="firths-bias-reduced-logistic-regression-logitsf" class="section level2">
 <h2 class="hasAnchor">
-<a href="#firths-bias-reduced-logistic-regression-logitsf" class="anchor"></a>Firth’s Bias-Reduced Logistic Regression (<code>logitsf</code>)</h2>
+<a href="#firths-bias-reduced-logistic-regression-logitsf" class="anchor"></a>Firth’s bias-reduced logistic regression (<code>logitsf</code>)</h2>
 <div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -4212,7 +4214,7 @@
 <span class="co"># plot</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">mod_logistf</span>,
-  title <span class="op">=</span> <span class="st">"Firth's Bias-Reduced Logistic Regression"</span>
+  title <span class="op">=</span> <span class="st">"Firth's bias-reduced logistic regression"</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/logitsf-1.png" width="384"></p>
 </div>
@@ -4253,7 +4255,7 @@
 
 <span class="co"># model</span>
 <span class="va">mod_wblm</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="https://panelr.jacob-long.com/reference/wbm.html">wbm</a></span><span class="op">(</span>
+  <span class="fu">panelr</span><span class="fu">::</span><span class="fu"><a href="https://panelr.jacob-long.com/reference/wbm.html">wbm</a></span><span class="op">(</span>
     formula <span class="op">=</span> <span class="va">lwage</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/plm/man/re-export_functions.html">lag</a></span><span class="op">(</span><span class="va">union</span><span class="op">)</span> <span class="op">+</span> <span class="va">wks</span> <span class="op">|</span> <span class="va">blk</span> <span class="op">+</span> <span class="va">fem</span> <span class="op">|</span> <span class="va">blk</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/pkg/plm/man/re-export_functions.html">lag</a></span><span class="op">(</span><span class="va">union</span><span class="op">)</span>,
     data <span class="op">=</span> <span class="va">wages</span>
   <span class="op">)</span>

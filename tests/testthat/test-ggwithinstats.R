@@ -8,6 +8,7 @@ testthat::test_that(
   desc = "basic plotting works - two groups",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if(getRversion() < "3.6")
 
     # plot
     set.seed(123)
@@ -56,8 +57,7 @@ testthat::test_that(
     testthat::expect_equal(dim(pb1$data[[4]]), c(180L, 8L))
     testthat::expect_equal(dim(pb1$data[[5]]), c(0L, 0L))
     testthat::expect_equal(dim(pb1$data[[6]]), c(2L, 8L))
-    testthat::expect_equal(dim(pb1$data[[7]]), c(2L, 13L))
-    testthat::expect_equal(dim(pb1$data[[8]]), c(2L, 26L))
+    testthat::expect_equal(dim(pb1$data[[7]]), c(2L, 10L))
 
     # checking geom data
     testthat::expect_identical(pb1$data[[4]]$colour[[1]], "red")
@@ -131,30 +131,21 @@ testthat::test_that(
             "mapped_discrete",
             "numeric"
           )),
-          group = 1:2,
-          y = c(
-            7.86666666666667,
-            6.73888888888889
-          ),
-          ymin = c(NA_real_, NA_real_),
-          ymax = c(
-            NA_real_,
-            NA_real_
-          ),
-          PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
-          flipped_aes = c(FALSE, FALSE),
+          y = c(7.86666666666667, 6.73888888888889),
+          PANEL = structure(c(
+            1L,
+            1L
+          ), .Label = "1", class = "factor"),
+          group = structure(1:2, n = 2L),
           shape = c(19, 19),
-          colour = c(
-            "darkgreen",
-            "darkgreen"
-          ),
+          colour = c("darkgreen", "darkgreen"),
           size = c(3, 3),
           fill = c(NA, NA),
-          alpha = c(
+          alpha = c(0.5, 0.5),
+          stroke = c(
             0.5,
             0.5
-          ),
-          stroke = c(0.5, 0.5)
+          )
         ),
         row.names = c(NA, -2L),
         class = "data.frame"
@@ -171,14 +162,16 @@ testthat::test_that(
           )),
           y = c(7.86666666666667, 6.73888888888889),
           label = c(
-            "list(~italic(widehat(mu))=='7.8667')",
-            "list(~italic(widehat(mu))=='6.7389')"
+            "list(~italic(widehat(mu))[mean]=='7.8667')",
+            "list(~italic(widehat(mu))[mean]=='6.7389')"
           ),
-          PANEL = structure(c(
-            1L,
-            1L
-          ), .Label = "1", class = "factor"),
+          PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
           group = structure(1:2, n = 2L),
+          nudge_x = structure(c(1.4, 2.4), class = c(
+            "mapped_discrete",
+            "numeric"
+          )),
+          nudge_y = c(7.86666666666667, 6.73888888888889),
           colour = c("black", "black"),
           fill = c("white", "white"),
           size = c(3, 3),
@@ -196,10 +189,7 @@ testthat::test_that(
           ),
           vjust = c(0.5, 0.5),
           point.size = c(1, 1),
-          segment.linetype = c(
-            1,
-            1
-          ),
+          segment.linetype = c(4, 4),
           segment.size = c(0.5, 0.5),
           segment.curvature = c(
             0,
@@ -280,6 +270,8 @@ testthat::test_that(
   desc = "basic plotting works - more than two groups",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if(getRversion() < "3.6")
+
     if (utils::packageVersion("BayesFactor") >= package_version("0.9.12-4.3")) {
       library(WRS2)
 
@@ -327,8 +319,7 @@ testthat::test_that(
       testthat::expect_equal(dim(pb1$data[[3]]), c(1536L, 21L))
       testthat::expect_equal(dim(pb1$data[[4]]), c(4L, 26L))
       testthat::expect_equal(dim(pb1$data[[5]]), c(3L, 8L))
-      testthat::expect_equal(dim(pb1$data[[6]]), c(3L, 13L))
-      testthat::expect_equal(dim(pb1$data[[7]]), c(3L, 26L))
+      testthat::expect_equal(dim(pb1$data[[6]]), c(3L, 10L))
       testthat::expect_equal(dim(pb1$data[[8]]), c(6L, 19L))
 
       # data from difference layers
@@ -414,6 +405,7 @@ testthat::test_that(
   desc = "checking subtitle outputs - without NAs",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if(getRversion() < "3.6")
 
     if (utils::packageVersion("BayesFactor") >= package_version("0.9.12-4.3")) {
       set.seed(123)

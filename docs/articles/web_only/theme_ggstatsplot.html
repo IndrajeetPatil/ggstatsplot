@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.6</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0</span>
       </span>
     </div>
 
@@ -117,7 +117,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/IndrajeetPatil/ggstatsplot/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -137,13 +137,13 @@
 
       
 
-      </header><script src="theme_ggstatsplot_files/header-attrs-2.5/header-attrs.js"></script><div class="row">
+      </header><script src="theme_ggstatsplot_files/header-attrs-2.6/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggstatsplot theme</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-11-21</h4>
+            <h4 class="date">2020-12-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/theme_ggstatsplot.Rmd"><code>vignettes/web_only/theme_ggstatsplot.Rmd</code></a></small>
       <div class="hidden name"><code>theme_ggstatsplot.Rmd</code></div>
@@ -176,9 +176,8 @@
 <p>All plots in this package have <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw()</a></code> by default as the base on which <code><a href="../../reference/theme_ggstatsplot.html">theme_ggstatsplot()</a></code> is built, but this can be modified using the <code>ggtheme</code> argument. Let’s see an example with <code>ggcorrmat</code> function.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="fu">datasets</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/datasets/iris.html">iris</a></span>,
+  data <span class="op">=</span> <span class="va">iris</span>,
   cor.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Sepal.Length</span><span class="op">:</span><span class="va">Petal.Width</span><span class="op">)</span>,
-  matrix.type <span class="op">=</span> <span class="st">"upper"</span>,
   ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span><span class="op">(</span><span class="op">)</span>, <span class="co"># selected ggplot2 theme</span>
   ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span> <span class="co"># turn of default theme layer</span>
 <span class="op">)</span></code></pre></div>

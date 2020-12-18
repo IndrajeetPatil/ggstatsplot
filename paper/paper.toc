@@ -1,22 +1,22 @@
-\contentsline {section}{\numberline {1}Introduction: Raison d'être}{3}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Need for informative visualizations}{3}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Need for better statistical reporting}{3}{subsection.1.2}%
+\contentsline {section}{\numberline {1}Introduction: Raison d'être}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Need for informative visualizations}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Need for better statistical reporting}{2}{subsection.1.2}%
 \contentsline {section}{\numberline {2}\texttt {ggstatsplot} at a glance}{3}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Summary of types of plots included}{3}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Summary of types of statistical analyses}{4}{subsection.2.2}%
-\contentsline {section}{\numberline {3}Graphic design principles}{5}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Graphical perception}{5}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Graphical excellence}{10}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Statistical variation}{11}{subsection.3.3}%
-\contentsline {section}{\numberline {4}Statistical analysis}{13}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Data requirements}{13}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Statistical reporting}{15}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Statistical tests:}{16}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Dealing with \textbf {null results}:}{17}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Avoiding the \textbf {``p-value error''}:}{17}{subsection.4.5}%
-\contentsline {section}{\numberline {5}Acknowledgments}{18}{section.5}%
-\contentsline {section}{\numberline {6}Appendix}{19}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Appendix A: Documentation}{19}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Appendix B: Suggestions}{19}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Appendix C: Session information}{19}{subsection.6.3}%
-\contentsline {section}{References}{20}{section*.2}%
+\contentsline {subsection}{\numberline {2.2}Summary of types of statistical analyses}{3}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Graphic design principles}{4}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Graphical perception}{4}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Graphical excellence}{9}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Statistical variation}{10}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Statistical analysis}{12}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Data requirements}{12}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Statistical reporting}{14}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Statistical tests:}{15}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Dealing with \textbf {null results}:}{16}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Avoiding the \textbf {``p-value error''}:}{16}{subsection.4.5}%
+\contentsline {section}{\numberline {5}Acknowledgments}{17}{section.5}%
+\contentsline {section}{\numberline {6}Appendix}{18}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Appendix A: Documentation}{18}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Appendix B: Suggestions}{18}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Appendix C: Session information}{18}{subsection.6.3}%
+\contentsline {section}{References}{19}{section*.2}%

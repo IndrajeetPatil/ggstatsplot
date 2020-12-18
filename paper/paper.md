@@ -1,7 +1,7 @@
 ---
 title: "ggstatsplot: ggplot2 Based Plots with Statistical Details"
 author: Indrajeet Patil^[Max Planck Institute for Human Development, patilindrajeet.science@gmail.com]
-date: "2020-12-09"
+date: "2020-12-18"
 output: 
   bookdown::pdf_document2:
     fig_caption: true
@@ -27,103 +27,7 @@ linkcolor: blue
 
 
 ```
-## Found more than one class "atomicVector" in cache; using the first, from namespace 'Matrix'
-```
-
-```
-## Also defined by 'Rmpfr'
-```
-
-```
-## Found more than one class "atomicVector" in cache; using the first, from namespace 'Matrix'
-```
-
-```
-## Also defined by 'Rmpfr'
-```
-
-```
-## Found more than one class "atomicVector" in cache; using the first, from namespace 'Matrix'
-```
-
-```
-## Also defined by 'Rmpfr'
-```
-
-```
-## Found more than one class "atomicVector" in cache; using the first, from namespace 'Matrix'
-```
-
-```
-## Also defined by 'Rmpfr'
-```
-
-```
-## Found more than one class "atomicVector" in cache; using the first, from namespace 'Matrix'
-```
-
-```
-## Also defined by 'Rmpfr'
-```
-
-```
-## Found more than one class "atomicVector" in cache; using the first, from namespace 'Matrix'
-```
-
-```
-## Also defined by 'Rmpfr'
-```
-
-```
-## Found more than one class "atomicVector" in cache; using the first, from namespace 'Matrix'
-```
-
-```
-## Also defined by 'Rmpfr'
-```
-
-```
-## Found more than one class "atomicVector" in cache; using the first, from namespace 'Matrix'
-```
-
-```
-## Also defined by 'Rmpfr'
-```
-
-```
-## Found more than one class "atomicVector" in cache; using the first, from namespace 'Matrix'
-```
-
-```
-## Also defined by 'Rmpfr'
-```
-
-```
-## Found more than one class "atomicVector" in cache; using the first, from namespace 'Matrix'
-```
-
-```
-## Also defined by 'Rmpfr'
-```
-
-```
-## Found more than one class "atomicVector" in cache; using the first, from namespace 'Matrix'
-```
-
-```
-## Also defined by 'Rmpfr'
-```
-
-```
-## Found more than one class "atomicVector" in cache; using the first, from namespace 'Matrix'
-```
-
-```
-## Also defined by 'Rmpfr'
-```
-
-```
-## -- Attaching packages ------------------------------------------------------------------------------------- tidyverse 1.3.0 --
+## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --
 ```
 
 ```
@@ -134,11 +38,24 @@ linkcolor: blue
 ```
 
 ```
-## -- Conflicts ---------------------------------------------------------------------------------------- tidyverse_conflicts() --
-## x dplyr::filter()  masks ggstatsplot::filter(), stats::filter()
-## x purrr::is_null() masks ggstatsplot::is_null(), testthat::is_null()
-## x dplyr::lag()     masks stats::lag()
-## x dplyr::matches() masks tidyr::matches(), ggstatsplot::matches(), testthat::matches()
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+```
+
+```
+## Registered S3 methods overwritten by 'lme4':
+##   method                          from
+##   cooks.distance.influence.merMod car 
+##   influence.merMod                car 
+##   dfbeta.influence.merMod         car 
+##   dfbetas.influence.merMod        car
+```
+
+```
+## In case you would like cite this package, cite it as:
+##      Patil, I. (2018). ggstatsplot: "ggplot2" Based Plots with Statistical Details. CRAN.
+##      Retrieved from https://cran.r-project.org/web/packages/ggstatsplot/index.html
 ```
 
 > "What is to be sought in designs for the display of information is the clear
