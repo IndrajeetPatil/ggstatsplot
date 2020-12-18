@@ -56,10 +56,10 @@ Suggests:
 VignetteBuilder: 
     knitr
 Remotes:
+    IndrajeetPatil/statsExpressions,
     easystats/insight,
     vincentarelbundock/parameters@centralize,
-    easystats/performance,
-    IndrajeetPatil/statsExpressions
+    easystats/performance
 Encoding: UTF-8
 Language: en-US
 LazyData: true

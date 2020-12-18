@@ -575,7 +575,7 @@ ggdotplotstats(
 
 `r emo::ji("pencil")` **Defaults** return<br>
 
-`r emo::ji("check")` descriptive statistics <br>
+`r emo::ji("check")` descriptives (mean + sample size) <br>
 `r emo::ji("check")` statistic + *p*-value <br>
 `r emo::ji("check")` effect size + CIs <br>
 `r emo::ji("check")` Bayesian hypothesis-testing <br>
