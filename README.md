@@ -7,7 +7,7 @@
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [![CRAN\_Release\_Badge](https://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                 | [![Travis Build Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](https://travis-ci.org/IndrajeetPatil/ggstatsplot)                                               | [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)     | [![GitHub version](https://img.shields.io/badge/GitHub-0.6.5.9000-orange.svg?style=flat-square)](https://github.com/IndrajeetPatil/ggstatsplot/)               | [![Website](https://img.shields.io/badge/website-ggstatsplot-orange.svg?colorB=E91E63)](https://indrajeetpatil.github.io/ggstatsplot/)                          |
 | [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)                      | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Forks](https://img.shields.io/badge/forks-128-blue.svg)](https://github.com/IndrajeetPatil/ggstatsplot/)                                                    | [![Features](https://img.shields.io/badge/features-ggstatsplot-orange.svg?colorB=2196F3)](https://indrajeetpatil.github.io/ggstatsplot/reference/index.html)    |
-| [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.6.0-6666ff.svg)](https://cran.r-project.org/)                                                      | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                                               | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](https://img.shields.io/badge/issues-19-red.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)                                       | [![vignettes](https://img.shields.io/badge/vignettes-0.6.5-orange.svg?colorB=FF5722)](https://CRAN.R-project.org/package=ggstatsplot/vignettes/)                |
+| [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.6.0-6666ff.svg)](https://cran.r-project.org/)                                                      | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                                               | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](https://img.shields.io/badge/issues-18-red.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)                                       | [![vignettes](https://img.shields.io/badge/vignettes-0.6.5-orange.svg?colorB=FF5722)](https://CRAN.R-project.org/package=ggstatsplot/vignettes/)                |
 | [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot) | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2074621.svg)](https://doi.org/10.5281/zenodo.2074621)                                                       |
 | [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg)](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot)                             | [![Last-changedate](https://img.shields.io/badge/last%20change-2020--12--18-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
 | [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                                    | [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                                            | [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ggstatsplot/community)                                           | [![Project Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)                                                   | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
@@ -234,20 +234,14 @@ statistic + *p*-value <br> ✅ effect size + CIs <br> ✅ pairwise
 comparisons <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian
 estimation <br>
 
-Note that this function returns object of class `ggplot` and thus can be
-further modified using `ggplot2` functions.
+The central tendency measure displayed will depend on the statistics:
 
-A number of other arguments can be specified to make this plot even more
-informative or change some of the default options. Additionally, this
-time we will use a grouping variable that has only two levels. The
-function will automatically switch from carrying out an ANOVA analysis
-to a *t*-test.
-
-The `type` (of test) argument also accepts the following abbreviations:
-`"p"` (for *parametric*) or `"np"` (for *nonparametric*) or `"r"` (for
-*robust*) or `"bf"` (for *Bayes Factor*). Additionally, the type of plot
-to be displayed can also be modified (`"box"`, `"violin"`, or
-`"boxviolin"`).
+| Type           | Measure      | Function                            |
+|----------------|--------------|-------------------------------------|
+| Parametric     | mean         | `parameters::describe_distribution` |
+| Non-parametric | median       | `parameters::describe_distribution` |
+| Robust         | trimmed mean | `parameters::describe_distribution` |
+| Bayesian       | MAP estimate | `parameters::describe_distribution` |
 
 A number of other arguments can be specified to make this plot even more
 informative or change some of the default options.
@@ -262,6 +256,7 @@ ggstatsplot::ggbetweenstats(
   data = ToothGrowth,
   x = supp,
   y = len,
+  type = "r", # robust statistics 
   k = 3, # number of decimal places for statistical results
   xlab = "Supplement type", # label for the x-axis variable
   ylab = "Tooth length", # label for the y-axis variable
@@ -326,7 +321,7 @@ analyses-
 | Parametric     | 2             | Student’s or Welch’s *t*-test                   | `stats::t.test`        |
 | Non-parametric | 2             | Mann–Whitney *U* test                           | `stats::wilcox.test`   |
 | Robust         | 2             | Yuen’s test for trimmed means                   | `WRS2::yuen`           |
-| Bayes Factor   | 2             | Student’s *t*-test                              | `BayesFactor::ttestBF` |
+| Bayesian       | 2             | Student’s *t*-test                              | `BayesFactor::ttestBF` |
 
 Following effect sizes (and confidence intervals/CI) are available for
 each type of test-
@@ -340,7 +335,7 @@ each type of test-
 | Parametric     | 2             | Cohen’s *d*, Hedge’s *g*                                                                                                                                                                               | <font color="green">Yes<font> | `effectsize::cohens_d`, `effectsize::hedges_g`         |
 | Non-parametric | 2             | *r* (computed as ![Z/\\sqrt{N}](https://chart.apis.google.com/chart?cht=tx&chl=Z%2F%5Csqrt%7BN%7D "Z/\sqrt{N}"))                                                                                       | <font color="green">Yes<font> | `rcompanion::wilcoxonR`                                |
 | Robust         | 2             | ![\\xi](https://chart.apis.google.com/chart?cht=tx&chl=%5Cxi "\xi") (Explanatory measure of effect size)                                                                                               | <font color="green">Yes<font> | `WRS2::yuen.effect.ci`                                 |
-| Bayes Factor   | 2             | ![\\delta\_{posterior}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta_%7Bposterior%7D "\delta_{posterior}")                                                                                  | <font color="green">Yes<font> | `bayestestR::describe_posterior`                       |
+| Bayesian       | 2             | ![\\delta\_{posterior}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta_%7Bposterior%7D "\delta_{posterior}")                                                                                  | <font color="green">Yes<font> | `bayestestR::describe_posterior`                       |
 
 Here is a summary of *multiple pairwise comparison* tests supported in
 *ggbetweenstats*-
@@ -391,6 +386,15 @@ statistic + *p*-value <br> ✅ effect size + CIs <br> ✅ pairwise
 comparisons <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian
 estimation <br>
 
+The central tendency measure displayed will depend on the statistics:
+
+| Type           | Measure      | Function                            |
+|----------------|--------------|-------------------------------------|
+| Parametric     | mean         | `parameters::describe_distribution` |
+| Non-parametric | median       | `parameters::describe_distribution` |
+| Robust         | trimmed mean | `parameters::describe_distribution` |
+| Bayesian       | MAP estimate | `parameters::describe_distribution` |
+
 As with the `ggbetweenstats`, this function also has a `grouped_`
 variant that makes repeating the same analysis across a single grouping
 variable quicker. We will see an example with only repeated
@@ -409,6 +413,7 @@ ggstatsplot::grouped_ggwithinstats(
   ),
   x = condition,
   y = desire,
+  type = "np", #non-parametric statistics
   xlab = "Condition",
   ylab = "Desire to kill an artrhopod",
   grouping.var = region,
@@ -433,7 +438,7 @@ analyses-
 | Parametric     | 2             | Student’s *t*-test                                                |
 | Non-parametric | 2             | Wilcoxon signed-rank test                                         |
 | Robust         | 2             | Yuen’s test on trimmed means for dependent samples                |
-| Bayes Factor   | 2             | Student’s *t*-test                                                |
+| Bayesian       | 2             | Student’s *t*-test                                                |
 
 Following effect sizes (and confidence intervals/CI) are available for
 each type of test-
@@ -447,7 +452,7 @@ each type of test-
 | Parametric     | 2             | Cohen’s *d*, Hedge’s *g*                                                                                                                                                                               | <font color="green">Yes<font> | `effectsize::cohens_d`, `effectsize::hedges_g`         |
 | Non-parametric | 2             | *r* (computed as ![Z/\\sqrt{N}](https://chart.apis.google.com/chart?cht=tx&chl=Z%2F%5Csqrt%7BN%7D "Z/\sqrt{N}"))                                                                                       | <font color="green">Yes<font> | `rcompanion::wilcoxonR`                                |
 | Robust         | 2             | ![\\delta\_{R}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta_%7BR%7D "\delta_{R}") (robust standardized difference)                                                                         | <font color="green">Yes<font> | `WRS2::dep.effect`                                     |
-| Bayes Factor   | 2             | ![\\delta\_{posterior}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta_%7Bposterior%7D "\delta_{posterior}")                                                                                  | <font color="green">Yes<font> | `bayestestR::describe_posterior`                       |
+| Bayesian       | 2             | ![\\delta\_{posterior}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta_%7Bposterior%7D "\delta_{posterior}")                                                                                  | <font color="green">Yes<font> | `bayestestR::describe_posterior`                       |
 
 Here is a summary of *multiple pairwise comparison* tests supported in
 *ggwithinstats*-
@@ -457,7 +462,7 @@ Here is a summary of *multiple pairwise comparison* tests supported in
 | Parametric     | Student’s *t*-test        | <font color="green">Yes</font> | `stats::pairwise.t.test`        |
 | Non-parametric | Durbin-Conover test       | <font color="green">Yes</font> | `PMCMRplus::durbinAllPairsTest` |
 | Robust         | Yuen’s trimmed means test | <font color="green">Yes</font> | `WRS2::rmmcp`                   |
-| Bayes Factor   | Student’s *t*-test        | `NA`                           | `BayesFactor::ttestBF`          |
+| Bayesian       | Student’s *t*-test        | `NA`                           | `BayesFactor::ttestBF`          |
 
 For more, see the `ggwithinstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
@@ -539,7 +544,7 @@ Following tests are carried out for each type of analyses-
 | Parametric     | One-sample Student’s *t*-test   | `stats::t.test`        |
 | Non-parametric | One-sample Wilcoxon test        | `stats::wilcox.test`   |
 | Robust         | One-sample percentile bootstrap | `WRS2::onesampb`       |
-| Bayes Factor   | One-sample Student’s *t*-test   | `BayesFactor::ttestBF` |
+| Bayesian       | One-sample Student’s *t*-test   | `BayesFactor::ttestBF` |
 
 Following effect sizes (and confidence intervals/CI) are available for
 each type of test-
@@ -730,7 +735,7 @@ as effect sizes-
 | Parametric     | Pearson’s correlation coefficient       | <font color="green">Yes<font>  | `correlation::correlation` |
 | Non-parametric | Spearman’s rank correlation coefficient | <font color="green">Yes<font>  | `correlation::correlation` |
 | Robust         | Percentage bend correlation coefficient | <font color="green">Yes<font>  | `correlation::correlation` |
-| Bayes Factor   | Pearson’s correlation coefficient       | <font color="green">Yes</font> | `correlation::correlation` |
+| Bayesian       | Pearson’s correlation coefficient       | <font color="green">Yes</font> | `correlation::correlation` |
 
 For more, see the `ggscatterstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>

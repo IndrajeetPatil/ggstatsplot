@@ -389,7 +389,10 @@ try to play around with the value of <code>tr</code>, which is by default set to
     <tr>
       <th>mean.plotting</th>
       <td><p>Logical that decides whether centrality tendency measure
-is to be displayed as a point with a label (Default: <code>TRUE</code>).</p></td>
+is to be displayed as a point with a label (Default: <code>TRUE</code>). Function
+decides which central tendency measure to show depending on the <code>type</code>
+argument (<strong>mean</strong> for parametric, <strong>median</strong> for non-parametric,
+<strong>trimmed mean</strong> for robust, and <strong>MAP estimator</strong> for Bayes).</p></td>
     </tr>
     <tr>
       <th>mean.point.args, mean.label.args</th>

@@ -66,7 +66,10 @@
 #'   Quartile) `outlier.coef` times the Inter-Quartile Range (IQR) (Default:
 #'   `1.5`).
 #' @param mean.plotting Logical that decides whether centrality tendency measure
-#'   is to be displayed as a point with a label (Default: `TRUE`).
+#'   is to be displayed as a point with a label (Default: `TRUE`). Function
+#'   decides which central tendency measure to show depending on the `type`
+#'   argument (**mean** for parametric, **median** for non-parametric,
+#'   **trimmed mean** for robust, and **MAP estimator** for Bayes).
 #' @param point.args A list of additional aesthetic arguments to be passed to
 #'   the `geom_point` displaying the raw data.
 #' @param violin.args A list of additional aesthetic arguments to be passed to
@@ -406,7 +409,8 @@ ggbetweenstats <- function(data,
         x = {{ x }},
         y = {{ y }},
         k = k,
-        inherit.aes = TRUE,
+        type = type,
+        tr = tr,
         sample.size.label = sample.size.label,
         mean.point.args = mean.point.args,
         mean.label.args = mean.label.args

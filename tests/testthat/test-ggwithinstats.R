@@ -56,7 +56,7 @@ testthat::test_that(
     testthat::expect_equal(dim(pb1$data[[4]]), c(180L, 8L))
     testthat::expect_equal(dim(pb1$data[[5]]), c(0L, 0L))
     testthat::expect_equal(dim(pb1$data[[6]]), c(2L, 8L))
-    testthat::expect_equal(dim(pb1$data[[7]]), c(2L, 13L))
+    testthat::expect_equal(dim(pb1$data[[7]]), c(2L, 10L))
 
     # checking geom data
     testthat::expect_identical(pb1$data[[4]]$colour[[1]], "red")
@@ -130,30 +130,21 @@ testthat::test_that(
             "mapped_discrete",
             "numeric"
           )),
-          group = 1:2,
-          y = c(
-            7.86666666666667,
-            6.73888888888889
-          ),
-          ymin = c(NA_real_, NA_real_),
-          ymax = c(
-            NA_real_,
-            NA_real_
-          ),
-          PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
-          flipped_aes = c(FALSE, FALSE),
+          y = c(7.86666666666667, 6.73888888888889),
+          PANEL = structure(c(
+            1L,
+            1L
+          ), .Label = "1", class = "factor"),
+          group = structure(1:2, n = 2L),
           shape = c(19, 19),
-          colour = c(
-            "darkgreen",
-            "darkgreen"
-          ),
+          colour = c("darkgreen", "darkgreen"),
           size = c(3, 3),
           fill = c(NA, NA),
-          alpha = c(
+          alpha = c(0.5, 0.5),
+          stroke = c(
             0.5,
             0.5
-          ),
-          stroke = c(0.5, 0.5)
+          )
         ),
         row.names = c(NA, -2L),
         class = "data.frame"
@@ -170,13 +161,10 @@ testthat::test_that(
           )),
           y = c(7.86666666666667, 6.73888888888889),
           label = c(
-            "list(~italic(widehat(mu))=='7.8667')",
-            "list(~italic(widehat(mu))=='6.7389')"
+            "list(~italic(widehat(mu))[mean]=='7.8667')",
+            "list(~italic(widehat(mu))[mean]=='6.7389')"
           ),
-          PANEL = structure(c(
-            1L,
-            1L
-          ), .Label = "1", class = "factor"),
+          PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
           group = structure(1:2, n = 2L),
           nudge_x = structure(c(1.4, 2.4), class = c(
             "mapped_discrete",
@@ -328,7 +316,7 @@ testthat::test_that(
       testthat::expect_equal(dim(pb1$data[[3]]), c(1536L, 21L))
       testthat::expect_equal(dim(pb1$data[[4]]), c(4L, 26L))
       testthat::expect_equal(dim(pb1$data[[5]]), c(3L, 8L))
-      testthat::expect_equal(dim(pb1$data[[6]]), c(3L, 13L))
+      testthat::expect_equal(dim(pb1$data[[6]]), c(3L, 10L))
       testthat::expect_equal(dim(pb1$data[[8]]), c(6L, 19L))
 
       # data from difference layers

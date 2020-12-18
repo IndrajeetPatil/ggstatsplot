@@ -29,7 +29,8 @@ utils::globalVariables(
     "df",
     ".label",
     ".counts",
-    ".p.label"
+    ".p.label",
+    "trimmed.mean"
   ),
   package = "ggstatsplot",
   add = FALSE

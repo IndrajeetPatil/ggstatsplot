@@ -32,5 +32,6 @@ zeallot::%<-%
 magrittr::%<>%
 magrittr::%>%
 tibble::as_tibble
+effectsize::effectsize
 tibble::enframe
 tibble::tibble

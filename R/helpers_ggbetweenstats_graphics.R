@@ -14,7 +14,7 @@
 #' @importFrom dplyr select group_by matches mutate rowwise group_modify arrange ungroup
 #' @importFrom rlang !! enquo ensym :=
 #' @importFrom tidyr drop_na
-#' @importFrom ipmisc specify_decimal_p
+#' @importFrom ipmisc specify_decimal_p format_num
 #'
 #' @examples
 #' # this internal function may not have much utility outside of the package
@@ -39,14 +39,23 @@ mean_ggrepel <- function(plot,
                          data,
                          x,
                          y,
-                         k = 3L,
-                         inherit.aes = TRUE,
+                         type = "parametric",
+                         tr = 0.1,
+                         k = 2L,
                          sample.size.label = TRUE,
                          mean.path = FALSE,
                          mean.path.args = list(color = "red", size = 1, alpha = 0.5),
                          mean.point.args = list(size = 5, color = "darkred"),
                          mean.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
                          ...) {
+  # which centrality measure?
+  centrality <-
+    dplyr::case_when(
+      type == "parametric" ~ "mean",
+      type == "nonparametric" ~ "median",
+      type == "robust" ~ "trimmed",
+      type == "bayes" ~ "MAP"
+    )
 
   # ------------------------ dataframe -------------------------------------
 
@@ -62,21 +71,29 @@ mean_ggrepel <- function(plot,
       .f = ~ parameters::standardize_names(
         data = as.data.frame(parameters::describe_distribution(
           x = .,
-          centrality = "mean",
-          ci = 0.95
+          centrality = centrality,
+          threshold = tr
         )),
         style = "broom"
       )
     ) %>%
-    dplyr::ungroup(.) %>%
+    dplyr::ungroup(.)
+
+  # TO DO: remove once insight issue is fixed
+  if ("trimmed.mean" %in% names(mean_df)) mean_df %<>% dplyr::rename(estimate = trimmed.mean)
+
+  # create a label
+  mean_df %<>%
     dplyr::rowwise() %>%
     dplyr::mutate(
-      label = paste0("list(~italic(widehat(mu))=='", specify_decimal_p(estimate, k), "')")
+      label = paste0("list(~italic(widehat(mu))[", centrality, "]=='", format_num(estimate, k), "')")
     ) %>%
     dplyr::ungroup(.) %>%
     dplyr::mutate(n_label = paste0({{ x }}, "\n(n = ", n, ")")) %>%
     dplyr::arrange({{ x }}) %>%
     dplyr::select({{ x }}, !!as.character(rlang::ensym(y)) := estimate, dplyr::matches("label"))
+
+
 
   # if there should be lines connecting mean values across groups
   if (isTRUE(mean.path)) {
@@ -95,11 +112,10 @@ mean_ggrepel <- function(plot,
   # highlight the mean of each group
   plot <- plot +
     rlang::exec(
-      .fn = ggplot2::stat_summary,
+      .fn = ggplot2::geom_point,
       mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),
-      fun = base::mean,
-      geom = "point",
-      inherit.aes = inherit.aes,
+      data = mean_df,
+      inherit.aes = FALSE,
       na.rm = TRUE,
       !!!mean.point.args
     )

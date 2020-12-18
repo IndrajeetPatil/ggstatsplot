@@ -27,6 +27,7 @@ Depends:
 Imports:
     cowplot,
     dplyr,
+    effectsize (>= 0.4.1),
     ggcorrplot,
     ggExtra,
     ggplot2,
@@ -56,10 +57,11 @@ Suggests:
 VignetteBuilder: 
     knitr
 Remotes:
-    IndrajeetPatil/statsExpressions,
     easystats/insight,
+    easystats/effectsize,
     vincentarelbundock/parameters@centralize,
-    easystats/performance
+    easystats/performance,
+    IndrajeetPatil/statsExpressions
 Encoding: UTF-8
 Language: en-US
 LazyData: true

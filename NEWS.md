@@ -9,6 +9,12 @@ BREAKING CHANGES
   - `ggscatterstats` removes `method` and `method.args` arguments. It will no
     longer be possible to use this function to visualize data for when the model
     is not linear. It also retires `margins` argument.
+    
+  - For `ggbetweenstats` and `ggwithinstats` functions, the arguments of type
+    `mean.` have all been replaced by `centrality.`. This is because now these
+    functions decide which central tendency measure to show depending on the
+    `type` argument (**mean** for parametric, **median** for non-parametric,
+    **trimmed mean** for robust, and **MAP estimator** for Bayes).
 
 MAJOR CHANGES
 
