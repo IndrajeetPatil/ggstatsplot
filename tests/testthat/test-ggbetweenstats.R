@@ -229,12 +229,8 @@ testthat::test_that(
     )
 
     testthat::expect_identical(
-      pb$data[[6]]$label,
-      c(
-        "list(~italic(widehat(mu))[median]=='2.20')",
-        "list(~italic(widehat(mu))[median]=='3.21')",
-        "list(~italic(widehat(mu))[median]=='3.76')"
-      )
+      pb$data[[6]]$label[1],
+      "list(~italic(widehat(mu))[median]=='2.20')"
     )
 
     # edge case
@@ -590,11 +586,8 @@ testthat::test_that(
     )
 
     testthat::expect_equal(
-      pb2$data[[6]]$label,
-      c(
-        "list(~italic(widehat(mu))[trimmed]=='21.04')",
-        "list(~italic(widehat(mu))[trimmed]=='16.58')"
-      )
+      pb2$data[[6]]$label[1],
+      "list(~italic(widehat(mu))[trimmed]=='21.04')"
     )
   }
 )

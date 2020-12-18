@@ -79,9 +79,6 @@ mean_ggrepel <- function(plot,
     ) %>%
     dplyr::ungroup(.)
 
-  # TO DO: remove once insight issue is fixed
-  if ("trimmed.mean" %in% names(mean_df)) mean_df %<>% dplyr::rename(estimate = trimmed.mean)
-
   # create a label
   mean_df %<>%
     dplyr::rowwise() %>%
