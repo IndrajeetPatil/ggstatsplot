@@ -34,14 +34,14 @@ Imports:
     ggsignif,
     insight,
     ipmisc,
-    pairwiseComparisons (>= 3.1.1),
+    pairwiseComparisons,
     paletteer,
     parameters,
     performance,
     purrr,
     rlang,
     stats,
-    statsExpressions (>= 0.6.2),
+    statsExpressions,
     tidyr,
     utils
 Suggests:
