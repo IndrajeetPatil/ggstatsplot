@@ -72,9 +72,9 @@
 #' @param violin.args A list of additional aesthetic arguments to be passed to
 #'   the `geom_violin`.
 #' @param ggplot.component A `ggplot` component to be added to the plot prepared
-#'   by `ggstatsplot`. This argument is primarily helpful for `grouped_` variant
-#'   of the current function. Default is `NULL`. The argument should be entered
-#'   as a function.
+#'   by `ggstatsplot`. This argument is primarily helpful for `grouped_`
+#'   variants of all primary functions. Default is `NULL`. The argument should
+#'   be entered as a `ggplot2` function or a list of `ggplot2` functions.
 #' @param package,palette Name of the package from which the given palette is to
 #'   be extracted. The available palettes and packages can be checked by running
 #'   `View(paletteer::palettes_d_names)`.
@@ -89,7 +89,7 @@
 #' @inheritParams theme_ggstatsplot
 #' @param mean.point.args,mean.label.args A list of additional aesthetic
 #'   arguments to be passed to `ggplot2::geom_point` and
-#'   `ggrepel::geom_label_repel` geoms involved mean value plotting.
+#'   `ggrepel::geom_label_repel` geoms, which are involved in mean plotting.
 #' @param  ggsignif.args A list of additional aesthetic
 #'   arguments to be passed to `ggsignif::geom_signif`.
 #' @inheritParams statsExpressions::expr_anova_parametric

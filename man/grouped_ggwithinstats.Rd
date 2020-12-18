@@ -128,10 +128,10 @@ try to play around with the value of \code{tr}, which is by default set to
 and its value to be displayed (Default: \code{TRUE}).}
     \item{\code{mean.point.args}}{A list of additional aesthetic
 arguments to be passed to \code{ggplot2::geom_point} and
-\code{ggrepel::geom_label_repel} geoms involved mean value plotting.}
+\code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
     \item{\code{mean.label.args}}{A list of additional aesthetic
 arguments to be passed to \code{ggplot2::geom_point} and
-\code{ggrepel::geom_label_repel} geoms involved mean value plotting.}
+\code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
     \item{\code{notch}}{A logical. If \code{FALSE} (default), a standard box plot will be
 displayed. If \code{TRUE}, a notched box plot will be used. Notches are used to
 compare groups; if the notches of two boxes do not overlap, this suggests
@@ -167,9 +167,9 @@ be extracted. The available palettes and packages can be checked by running
 be extracted. The available palettes and packages can be checked by running
 \code{View(paletteer::palettes_d_names)}.}
     \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
-by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
-of the current function. Default is \code{NULL}. The argument should be entered
-as a function.}
+by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_}
+variants of all primary functions. Default is \code{NULL}. The argument should
+be entered as a \code{ggplot2} function or a list of \code{ggplot2} functions.}
   }}
 
 \item{plotgrid.args}{A list of additional arguments to \code{cowplot::plot_grid}.}

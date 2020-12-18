@@ -55,11 +55,11 @@ points.}
 
 \item{mean.point.args}{A list of additional aesthetic
 arguments to be passed to \code{ggplot2::geom_point} and
-\code{ggrepel::geom_label_repel} geoms involved mean value plotting.}
+\code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
 
 \item{mean.label.args}{A list of additional aesthetic
 arguments to be passed to \code{ggplot2::geom_point} and
-\code{ggrepel::geom_label_repel} geoms involved mean value plotting.}
+\code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
 
 \item{...}{Additional arguments.}
 }

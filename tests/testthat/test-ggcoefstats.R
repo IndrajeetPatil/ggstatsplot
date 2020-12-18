@@ -32,6 +32,87 @@ testthat::test_that(
 
     # tidy dataframe from the function
     testthat::expect_equal(
+      pb$data[[1]],
+      structure(
+        list(
+          xintercept = 0,
+          PANEL = structure(1L, .Label = "1", class = "factor"),
+          group = structure(-1L, n = 1L),
+          colour = "black",
+          size = 1,
+          linetype = "dashed",
+          alpha = NA
+        ),
+        row.names = c(NA, -1L),
+        class = "data.frame"
+      )
+    )
+
+    testthat::expect_equal(
+      pb$data[[2]],
+      structure(
+        list(
+          x = c(-0.780044678205957, 2.29400668890043, -0.556439259603544),
+          xmin = c(-1.15213248524039, 2.09855242875921, -0.929998880210387),
+          xmax = c(-0.412406648700957, 2.49329224456418, -0.180433778592503),
+          y = structure(1:3, class = c("mapped_discrete", "numeric")),
+          PANEL = structure(c(1L, 1L, 1L), .Label = "1", class = "factor"),
+          group = structure(1:3, n = 3L),
+          ymin = structure(c(
+            1, 2,
+            3
+          ), class = c("mapped_discrete", "numeric")),
+          ymax = structure(c(
+            1,
+            2, 3
+          ), class = c("mapped_discrete", "numeric")),
+          colour = c(
+            "black",
+            "black", "black"
+          ),
+          size = c(0.5, 0.5, 0.5),
+          linetype = c(
+            1,
+            1, 1
+          ),
+          height = c(0, 0, 0),
+          alpha = c(NA, NA, NA)
+        ),
+        row.names = c(
+          NA,
+          -3L
+        ),
+        class = "data.frame"
+      )
+    )
+
+    testthat::expect_equal(
+      pb$data[[3]],
+      structure(
+        list(
+          x = c(-0.780044678205957, 2.29400668890043, -0.556439259603544),
+          y = structure(1:3, class = c("mapped_discrete", "numeric")),
+          PANEL = structure(c(1L, 1L, 1L), .Label = "1", class = "factor"),
+          group = structure(1:3, n = 3L),
+          shape = c(19, 19, 19),
+          colour = c(
+            "blue",
+            "blue", "blue"
+          ),
+          size = c(3, 3, 3),
+          fill = c(NA, NA, NA),
+          alpha = c(NA, NA, NA),
+          stroke = c(0.5, 0.5, 0.5)
+        ),
+        row.names = c(
+          NA,
+          -3L
+        ),
+        class = "data.frame"
+      )
+    )
+
+    testthat::expect_equal(
       pb$data[[4]],
       structure(
         list(

@@ -14,13 +14,13 @@
   ],
   "issueTracker": "https://github.com/IndrajeetPatil/ggstatsplot/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.6.6.9000",
+  "version": "0.7.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R Under development (unstable) (2020-12-03 r79553)",
+  "runtimePlatform": "R Under development (unstable) (2020-12-16 r79643)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -434,5 +434,5 @@
   ],
   "funder": {},
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md",
-  "fileSize": "88332.59KB"
+  "fileSize": "88319.415KB"
 }
