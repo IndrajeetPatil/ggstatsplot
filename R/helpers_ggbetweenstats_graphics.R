@@ -45,7 +45,7 @@ mean_ggrepel <- function(plot,
                          mean.path = FALSE,
                          mean.path.args = list(color = "red", size = 1, alpha = 0.5),
                          mean.point.args = list(size = 5, color = "darkred"),
-                         mean.label.args = list(size = 3),
+                         mean.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
                          ...) {
 
   # ------------------------ dataframe -------------------------------------
@@ -68,16 +68,15 @@ mean_ggrepel <- function(plot,
         style = "broom"
       )
     ) %>%
-    dplyr::rename(mean = estimate) %>%
     dplyr::ungroup(.) %>%
     dplyr::rowwise() %>%
     dplyr::mutate(
-      label = paste0("list(~italic(widehat(mu))=='", specify_decimal_p(mean, k), "')")
+      label = paste0("list(~italic(widehat(mu))=='", specify_decimal_p(estimate, k), "')")
     ) %>%
     dplyr::ungroup(.) %>%
     dplyr::mutate(n_label = paste0({{ x }}, "\n(n = ", n, ")")) %>%
     dplyr::arrange({{ x }}) %>%
-    dplyr::select({{ x }}, !!as.character(rlang::ensym(y)) := mean, dplyr::matches("label"))
+    dplyr::select({{ x }}, !!as.character(rlang::ensym(y)) := estimate, dplyr::matches("label"))
 
   # if there should be lines connecting mean values across groups
   if (isTRUE(mean.path)) {
@@ -98,7 +97,7 @@ mean_ggrepel <- function(plot,
     rlang::exec(
       .fn = ggplot2::stat_summary,
       mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),
-      fun = mean,
+      fun = base::mean,
       geom = "point",
       inherit.aes = inherit.aes,
       na.rm = TRUE,
@@ -138,7 +137,7 @@ mean_ggrepel <- function(plot,
 #' @inheritParams ggbetweenstats
 #'
 #' @importFrom purrr pmap
-#' @importFrom dplyr mutate rename filter arrange pull
+#' @importFrom dplyr mutate filter arrange pull
 #' @importFrom ggsignif geom_signif
 #'
 #' @examples

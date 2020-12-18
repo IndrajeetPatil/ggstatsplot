@@ -15,6 +15,10 @@ MAJOR CHANGES
   - `ggscatterstats` defaults to `densigram` as the marginal distribution
     visualization.
 
+  - `ggbetweenstats` and `ggwithinstats` now display the centrality tendency
+    measure in such a way that the label doesn't occlude any of the raw data
+    points (#429).
+
   - `mean.ci` argument is retired for `ggbetweenstats` and `ggwithinstats`.
     Future `ggstatsplot` releases will be providing different centrality
     measures depending on the `type` argument and it is not guaranteed that all

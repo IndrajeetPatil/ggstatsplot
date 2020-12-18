@@ -112,8 +112,8 @@ passed to \code{ggrepel::geom_label_repel} for outlier label plotting.}
 With Tukey's method, outliers are below (1st Quartile) or above (3rd
 Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
 \code{1.5}).}
-    \item{\code{mean.plotting}}{Logical that decides whether mean is to be highlighted
-and its value to be displayed (Default: \code{TRUE}).}
+    \item{\code{mean.plotting}}{Logical that decides whether centrality tendency measure
+is to be displayed as a point with a label (Default: \code{TRUE}).}
     \item{\code{point.args}}{A list of additional aesthetic arguments to be passed to
 the \code{geom_point} displaying the raw data.}
     \item{\code{violin.args}}{A list of additional aesthetic arguments to be passed to

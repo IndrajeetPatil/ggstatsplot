@@ -285,7 +285,6 @@ gapminder::gapminder %>%
     grouping.var = year,
     xlab = "Continent",
     ylab = "Life expectancy",
-    pairwise.comparisons = TRUE, # display results from pairwise comparisons
     pairwise.display = "significant", # display only significant pairwise comparisons
     p.adjust.method = "fdr", # adjust p-values for multiple tests using this method
     ggtheme = ggthemes::theme_tufte(),

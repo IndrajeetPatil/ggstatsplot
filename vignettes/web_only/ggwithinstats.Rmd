@@ -272,7 +272,6 @@ ggstatsplot::grouped_ggwithinstats(
   xlab = "Continent",
   ylab = "Desire to kill bugs",
   type = "nonparametric", # type of test
-  pairwise.comparisons = TRUE, # display results from pairwise comparisons
   pairwise.display = "significant", # display only significant pairwise comparisons
   p.adjust.method = "fdr", # adjust p-values for multiple tests using this method
   ggtheme = ggthemes::theme_tufte(),

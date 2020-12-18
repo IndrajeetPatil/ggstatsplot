@@ -184,8 +184,7 @@ testthat::test_that(
         outlier.label = "name",
         outlier.coef = 2.5,
         nboot = 5,
-        results.subtitle = FALSE,
-        messages = FALSE
+        results.subtitle = FALSE
       ) +
       ggplot2::coord_cartesian(ylim = c(1, 6)) +
       ggplot2::scale_y_continuous(limits = c(1, 6), breaks = seq(1, 6, 1))
@@ -238,8 +237,7 @@ testthat::test_that(
         data = a,
         x = "group",
         y = "mean.a",
-        results.subtitle = FALSE,
-        messages = FALSE
+        results.subtitle = FALSE
       ))
 
     # build
@@ -277,8 +275,7 @@ testthat::test_that(
         outlier.coef = 0.75,
         outlier.color = "blue",
         mean.point.args = list(size = 5, color = "darkgreen"),
-        mean.label.args = list(color = "blue"),
-        messages = FALSE
+        mean.label.args = list(color = "blue", nudge_x = 0.4, segment.linetype = 4)
       )
 
     # violin
@@ -298,8 +295,7 @@ testthat::test_that(
         mean.plotting = FALSE,
         sample.size.label = FALSE,
         package = "wesanderson",
-        palette = "Royal1",
-        messages = FALSE
+        palette = "Royal1"
       ) +
       ggplot2::scale_y_continuous(breaks = seq(0, 30, 5))
 
@@ -417,15 +413,9 @@ testthat::test_that(
           segment.angle = c(90, 90),
           segment.ncp = c(1, 1),
           segment.shape = c(0.5, 0.5),
-          segment.square = c(
-            TRUE,
-            TRUE
-          ),
+          segment.square = c(TRUE, TRUE),
           segment.squareShape = c(1, 1),
-          segment.inflect = c(
-            FALSE,
-            FALSE
-          ),
+          segment.inflect = c(FALSE, FALSE),
           segment.debug = c(FALSE, FALSE)
         ),
         row.names = c(
@@ -492,6 +482,11 @@ testthat::test_that(
             1L
           ), .Label = "1", class = "factor"),
           group = structure(1:2, n = 2L),
+          nudge_x = structure(c(1.4, 2.4), class = c(
+            "mapped_discrete",
+            "numeric"
+          )),
+          nudge_y = c(20.6633333333333, 16.9633333333333),
           colour = c("blue", "blue"),
           fill = c("white", "white"),
           size = c(
@@ -512,31 +507,16 @@ testthat::test_that(
           ),
           vjust = c(0.5, 0.5),
           point.size = c(1, 1),
-          segment.linetype = c(
-            1,
-            1
-          ),
+          segment.linetype = c(4, 4),
           segment.size = c(0.5, 0.5),
-          segment.curvature = c(
-            0,
-            0
-          ),
+          segment.curvature = c(0, 0),
           segment.angle = c(90, 90),
           segment.ncp = c(1, 1),
-          segment.shape = c(
-            0.5,
-            0.5
-          ),
+          segment.shape = c(0.5, 0.5),
           segment.square = c(TRUE, TRUE),
-          segment.squareShape = c(
-            1,
-            1
-          ),
+          segment.squareShape = c(1, 1),
           segment.inflect = c(FALSE, FALSE),
-          segment.debug = c(
-            FALSE,
-            FALSE
-          )
+          segment.debug = c(FALSE, FALSE)
         ),
         row.names = c(NA, -2L),
         class = "data.frame"
@@ -571,10 +551,7 @@ testthat::test_that(
       structure(
         list(
           y = c(33.9, 32.5),
-          x = structure(c(2L, 2L), class = c(
-            "mapped_discrete",
-            "numeric"
-          )),
+          x = structure(c(2L, 2L), class = c("mapped_discrete", "numeric")),
           label = c(33.9, 32.5),
           PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
           group = structure(c(1L, 1L), n = 1L),
@@ -583,40 +560,22 @@ testthat::test_that(
           size = c(3, 3),
           angle = c(0, 0),
           alpha = c(NA, NA),
-          family = c(
-            "",
-            ""
-          ),
+          family = c("", ""),
           fontface = c(1, 1),
           lineheight = c(1.2, 1.2),
-          hjust = c(
-            0.5,
-            0.5
-          ),
+          hjust = c(0.5, 0.5),
           vjust = c(0.5, 0.5),
           point.size = c(1, 1),
-          segment.linetype = c(
-            1,
-            1
-          ),
+          segment.linetype = c(1, 1),
           segment.size = c(0.5, 0.5),
           segment.curvature = c(0, 0),
           segment.angle = c(90, 90),
           segment.ncp = c(1, 1),
-          segment.shape = c(
-            0.5,
-            0.5
-          ),
+          segment.shape = c(0.5, 0.5),
           segment.square = c(TRUE, TRUE),
-          segment.squareShape = c(
-            1,
-            1
-          ),
+          segment.squareShape = c(1, 1),
           segment.inflect = c(FALSE, FALSE),
-          segment.debug = c(
-            FALSE,
-            FALSE
-          )
+          segment.debug = c(FALSE, FALSE)
         ),
         row.names = c(NA, -2L),
         class = "data.frame"

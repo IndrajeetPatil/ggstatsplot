@@ -240,13 +240,14 @@
       "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
+      "version": ">= 0.11.1.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=insight"
+      "sameAs": "https://github.com/easystats/insight"
     },
     {
       "@type": "SoftwareApplication",
@@ -288,6 +289,7 @@
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
+      "version": ">= 0.10.1.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -300,13 +302,14 @@
       "@type": "SoftwareApplication",
       "identifier": "performance",
       "name": "performance",
+      "version": ">= 0.6.1.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=performance"
+      "sameAs": "https://github.com/easystats/performance"
     },
     {
       "@type": "SoftwareApplication",
@@ -341,13 +344,14 @@
       "@type": "SoftwareApplication",
       "identifier": "statsExpressions",
       "name": "statsExpressions",
+      "version": ">= 0.6.2.9000",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=statsExpressions"
+      "sameAs": "https://github.com/IndrajeetPatil/statsExpressions"
     },
     {
       "@type": "SoftwareApplication",
@@ -432,5 +436,5 @@
   ],
   "funder": {},
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md",
-  "fileSize": "88319.389KB"
+  "fileSize": "89306.968KB"
 }

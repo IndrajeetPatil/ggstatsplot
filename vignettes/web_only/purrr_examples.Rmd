@@ -172,7 +172,7 @@ plot_list <-
         ggplot2::theme_classic(),
         ggthemes::theme_fivethirtyeight()
       ),
-      ggstatsplot.layer = list(FALSE, FALSE, FALSE)
+      ggstatsplot.layer = list(FALSE, FALSE, TRUE)
     ),
     .f = ggstatsplot::ggbetweenstats
   )

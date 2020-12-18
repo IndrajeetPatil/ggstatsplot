@@ -91,7 +91,7 @@ grouping variable." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.6.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0</span>
       </span>
     </div>
 
@@ -336,8 +336,8 @@ get error stating "Standard error cannot be computed because of Winsorized
 variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
 try to play around with the value of <code>tr</code>, which is by default set to
 <code>0.1</code>. Lowering the value might help.</p></dd>
-    <dt><code>mean.plotting</code></dt><dd><p>Logical that decides whether mean is to be highlighted
-and its value to be displayed (Default: <code>TRUE</code>).</p></dd>
+    <dt><code>mean.plotting</code></dt><dd><p>Logical that decides whether centrality tendency measure
+is to be displayed as a point with a label (Default: <code>TRUE</code>).</p></dd>
     <dt><code>mean.point.args</code></dt><dd><p>A list of additional aesthetic
 arguments to be passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point</a></code> and
 <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geoms, which are involved in mean plotting.</p></dd>

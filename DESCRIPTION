@@ -32,16 +32,16 @@ Imports:
     ggplot2,
     ggrepel (>= 0.9.0),
     ggsignif,
-    insight,
+    insight (>= 0.11.1.1),
     ipmisc,
     pairwiseComparisons,
     paletteer,
-    parameters,
-    performance,
+    parameters (>= 0.10.1.1),
+    performance (>= 0.6.1.1),
     purrr,
     rlang,
     stats,
-    statsExpressions,
+    statsExpressions (>= 0.6.2.9000),
     tidyr,
     utils
 Suggests:
@@ -55,6 +55,11 @@ Suggests:
     WRS2
 VignetteBuilder: 
     knitr
+Remotes:
+    easystats/insight,
+    vincentarelbundock/parameters@centralize,
+    easystats/performance,
+    IndrajeetPatil/statsExpressions
 Encoding: UTF-8
 Language: en-US
 LazyData: true

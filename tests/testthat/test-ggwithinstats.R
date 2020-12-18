@@ -57,7 +57,6 @@ testthat::test_that(
     testthat::expect_equal(dim(pb1$data[[5]]), c(0L, 0L))
     testthat::expect_equal(dim(pb1$data[[6]]), c(2L, 8L))
     testthat::expect_equal(dim(pb1$data[[7]]), c(2L, 13L))
-    testthat::expect_equal(dim(pb1$data[[8]]), c(2L, 26L))
 
     # checking geom data
     testthat::expect_identical(pb1$data[[4]]$colour[[1]], "red")
@@ -179,6 +178,11 @@ testthat::test_that(
             1L
           ), .Label = "1", class = "factor"),
           group = structure(1:2, n = 2L),
+          nudge_x = structure(c(1.4, 2.4), class = c(
+            "mapped_discrete",
+            "numeric"
+          )),
+          nudge_y = c(7.86666666666667, 6.73888888888889),
           colour = c("black", "black"),
           fill = c("white", "white"),
           size = c(3, 3),
@@ -196,10 +200,7 @@ testthat::test_that(
           ),
           vjust = c(0.5, 0.5),
           point.size = c(1, 1),
-          segment.linetype = c(
-            1,
-            1
-          ),
+          segment.linetype = c(4, 4),
           segment.size = c(0.5, 0.5),
           segment.curvature = c(
             0,
@@ -328,7 +329,6 @@ testthat::test_that(
       testthat::expect_equal(dim(pb1$data[[4]]), c(4L, 26L))
       testthat::expect_equal(dim(pb1$data[[5]]), c(3L, 8L))
       testthat::expect_equal(dim(pb1$data[[6]]), c(3L, 13L))
-      testthat::expect_equal(dim(pb1$data[[7]]), c(3L, 26L))
       testthat::expect_equal(dim(pb1$data[[8]]), c(6L, 19L))
 
       # data from difference layers

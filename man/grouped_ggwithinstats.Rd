@@ -124,8 +124,8 @@ get error stating "Standard error cannot be computed because of Winsorized
 variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
 try to play around with the value of \code{tr}, which is by default set to
 \code{0.1}. Lowering the value might help.}
-    \item{\code{mean.plotting}}{Logical that decides whether mean is to be highlighted
-and its value to be displayed (Default: \code{TRUE}).}
+    \item{\code{mean.plotting}}{Logical that decides whether centrality tendency measure
+is to be displayed as a point with a label (Default: \code{TRUE}).}
     \item{\code{mean.point.args}}{A list of additional aesthetic
 arguments to be passed to \code{ggplot2::geom_point} and
 \code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}

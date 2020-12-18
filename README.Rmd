@@ -405,9 +405,7 @@ ggstatsplot::grouped_ggwithinstats(
   ylab = "Desire to kill an artrhopod",
   grouping.var = region,
   outlier.tagging = TRUE,
-  outlier.label = education,
-  ggtheme = hrbrthemes::theme_ipsum_tw(),
-  ggstatsplot.layer = FALSE
+  outlier.label = education
 )
 ```
 
