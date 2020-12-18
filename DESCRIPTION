@@ -25,6 +25,7 @@ BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
 Depends: 
     R (>= 3.6.0)
 Imports:
+    bayestestR (>= 0.8.0.1),
     cowplot,
     dplyr,
     effectsize (>= 0.4.1),
@@ -59,6 +60,7 @@ VignetteBuilder:
     knitr
 Remotes:
     easystats/insight,
+    easystats/bayestestR,
     easystats/effectsize,
     vincentarelbundock/parameters@centralize,
     easystats/performance,

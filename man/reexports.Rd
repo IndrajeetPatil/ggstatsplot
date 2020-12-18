@@ -11,6 +11,7 @@
 \alias{enframe}
 \alias{as_tibble}
 \alias{effectsize}
+\alias{bayesfactor}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -18,6 +19,8 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
+  \item{bayestestR}{\code{\link[bayestestR]{bayesfactor}}}
+
   \item{effectsize}{\code{\link[effectsize]{effectsize}}}
 
   \item{ipmisc}{\code{\link[ipmisc:reexports]{\%$\%}}, \code{\link[ipmisc:reexports]{\%<-\%}}, \code{\link[ipmisc:reexports]{\%<>\%}}, \code{\link[ipmisc:reexports]{\%>\%}}, \code{\link[ipmisc:reexports]{as_tibble}}, \code{\link[ipmisc:reexports]{enframe}}, \code{\link[ipmisc:reexports]{tibble}}}

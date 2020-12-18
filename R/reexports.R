@@ -31,3 +31,7 @@ ipmisc::as_tibble
 #' @export
 #' @importFrom effectsize effectsize
 effectsize::effectsize
+
+#' @export
+#' @importFrom bayestestR bayesfactor
+bayestestR::bayesfactor

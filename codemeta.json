@@ -153,6 +153,19 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "bayestestR",
+      "name": "bayestestR",
+      "version": ">= 0.8.0.1",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://github.com/easystats/bayestestR"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "cowplot",
       "name": "cowplot",
       "provider": {
@@ -461,6 +474,6 @@
     }
   ],
   "funder": {},
-  "fileSize": "89407.631KB",
+  "fileSize": "89408.351KB",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
 }
