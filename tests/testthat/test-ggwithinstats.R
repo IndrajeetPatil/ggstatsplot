@@ -8,6 +8,7 @@ testthat::test_that(
   desc = "basic plotting works - two groups",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if(getRversion() < "3.6")
 
     # plot
     set.seed(123)
@@ -269,6 +270,8 @@ testthat::test_that(
   desc = "basic plotting works - more than two groups",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if(getRversion() < "3.6")
+
     if (utils::packageVersion("BayesFactor") >= package_version("0.9.12-4.3")) {
       library(WRS2)
 
@@ -402,6 +405,7 @@ testthat::test_that(
   desc = "checking subtitle outputs - without NAs",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if(getRversion() < "3.6")
 
     if (utils::packageVersion("BayesFactor") >= package_version("0.9.12-4.3")) {
       set.seed(123)

@@ -43,6 +43,7 @@ Imports:
     rlang,
     stats,
     statsExpressions (>= 0.6.2.9000),
+    tidyBF (>= 0.4.2.9000),
     tidyr,
     utils
 Suggests:
@@ -61,6 +62,7 @@ Remotes:
     easystats/effectsize,
     vincentarelbundock/parameters@centralize,
     easystats/performance,
+    IndrajeetPatil/tidyBF,
     IndrajeetPatil/statsExpressions
 Encoding: UTF-8
 Language: en-US

@@ -368,6 +368,19 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "tidyBF",
+      "name": "tidyBF",
+      "version": ">= 0.4.2.9000",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://github.com/IndrajeetPatil/tidyBF"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "tidyr",
       "name": "tidyr",
       "provider": {
@@ -448,6 +461,6 @@
     }
   ],
   "funder": {},
-  "fileSize": "89407.195KB",
+  "fileSize": "89407.631KB",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
 }

@@ -4,6 +4,7 @@ testthat::test_that(
   desc = "checking labels and data from plot",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if(getRversion() < "3.6")
 
     # creating the plot
     set.seed(123)
@@ -177,6 +178,7 @@ testthat::test_that(
   desc = "checking mean labels are working",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if(getRversion() < "3.6")
 
     # creating the plot
     set.seed(123)
@@ -269,6 +271,7 @@ testthat::test_that(
   desc = "checking if plot.type argument works",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if(getRversion() < "3.6")
 
     # boxplot
     set.seed(123)
@@ -602,6 +605,7 @@ testthat::test_that(
   desc = "subtitle output works",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if(getRversion() < "3.6")
 
     df <- mtcars
     df$wt[3] <- NA
