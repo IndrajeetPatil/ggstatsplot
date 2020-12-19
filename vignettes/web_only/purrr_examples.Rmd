@@ -365,13 +365,10 @@ plot_list <-
     .l = list(
       data = cut_list,
       cor.vars = list(c("carat", "depth", "table", "price")),
-      corr.method = list("pearson", "np", "robust", "robust"),
+      type = list("pearson", "np", "robust", "bf"),
+      partial = list(TRUE, FALSE, TRUE, FALSE),
       title = list("Cut: Good", "Cut: Very Good", "Cut: Premium", "Cut: Ideal"),
-      # note that we are changing both p-value adjustment method *and*
-      # significance level to display the significant correlations in the
-      # visualization matrix
       p.adjust.method = list("hommel", "fdr", "BY", "hochberg"),
-      sig.level = list(0.001, 0.01, 0.05, 0.003),
       lab.size = 3.5,
       colors = list(
         c("#56B4E9", "white", "#999999"),
@@ -379,13 +376,13 @@ plot_list <-
         c("#56B4E9", "white", "#D55E00"),
         c("#999999", "white", "#0072B2")
       ),
-      ggstatsplot.layer = FALSE,
       ggtheme = list(
         sjPlot::theme_sjplot(),
         ggplot2::theme_classic(),
         ggthemes::theme_fivethirtyeight(),
         ggthemes::theme_tufte()
-      )
+      ),
+      ggstatsplot.layer = FALSE
     ),
     .f = ggstatsplot::ggcorrmat
   )

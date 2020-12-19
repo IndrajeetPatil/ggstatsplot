@@ -41,6 +41,8 @@ NEW FEATURES
 
   - More models supported in `ggcoefstats`: `fixest`, `ivFixed`, `ivprobit`,
     `riskRegression`.
+    
+  - `ggcorrmat` supports partial correlations.
 
 # ggstatsplot 0.6.6
 

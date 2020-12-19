@@ -143,7 +143,7 @@
       <h1 data-toc-skip>ggcorrmat</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-12-18</h4>
+            <h4 class="date">2020-12-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcorrmat.Rmd"><code>vignettes/web_only/ggcorrmat.Rmd</code></a></small>
       <div class="hidden name"><code>ggcorrmat.Rmd</code></div>
@@ -339,7 +339,7 @@
 <span class="co">#&gt;  8 Percentage Bend  1085</span>
 <span class="co">#&gt;  9 Percentage Bend  1082</span>
 <span class="co">#&gt; 10 Percentage Bend  1082</span></code></pre></div>
-<p>Note that if <code>cor.vars</code> are not specified, all numeric variables will be used. Moreover, you can also use abbreviations to specify what output you want in return.</p>
+<p>Note that if <code>cor.vars</code> are not specified, all numeric variables will be used. Moreover, you can also use abbreviations to specify what output you want in return. Additionally, one can also carry out <strong>partial</strong> correlation analysis:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -349,17 +349,18 @@
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">iris</span>, <span class="co"># all numeric variables from data will be used</span>
   type <span class="op">=</span> <span class="st">"np"</span>, <span class="co"># non-parametric</span>
+  partial <span class="op">=</span> <span class="cn">TRUE</span>,
   output <span class="op">=</span> <span class="st">"dataframe"</span>
 <span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 9</span>
 <span class="co">#&gt;   parameter1   parameter2   estimate conf.low conf.high statistic   p.value</span>
 <span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;           &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 Sepal.Length Sepal.Width   -0.1668  -0.3228 -0.001916   656283. 4.137e- 2</span>
-<span class="co">#&gt; 2 Sepal.Length Petal.Length   0.8819   0.8390  0.9139      66429. 1.722e-49</span>
-<span class="co">#&gt; 3 Sepal.Length Petal.Width    0.8343   0.7762  0.8784      93208. 1.676e-39</span>
-<span class="co">#&gt; 4 Sepal.Width  Petal.Length  -0.3096  -0.4515 -0.1525     736637. 3.462e- 4</span>
-<span class="co">#&gt; 5 Sepal.Width  Petal.Width   -0.2890  -0.4333 -0.1303     725048. 6.686e- 4</span>
-<span class="co">#&gt; 6 Petal.Length Petal.Width    0.9377   0.9141  0.9549      35061. 4.894e-69</span>
+<span class="co">#&gt; 1 Sepal.Length Sepal.Width    0.6157   0.5017    0.7087   216164. 1.528e-16</span>
+<span class="co">#&gt; 2 Sepal.Length Petal.Length   0.6817   0.5822    0.7610   179048. 3.937e-21</span>
+<span class="co">#&gt; 3 Sepal.Length Petal.Width   -0.3036  -0.4461   -0.1460   733226. 1.591e- 4</span>
+<span class="co">#&gt; 4 Sepal.Width  Petal.Length  -0.6339  -0.7232   -0.5237   919030. 1.249e-17</span>
+<span class="co">#&gt; 5 Sepal.Width  Petal.Width    0.3624   0.2100    0.4975   358655. 1.039e- 5</span>
+<span class="co">#&gt; 6 Petal.Length Petal.Width    0.8626   0.8134    0.8995    77303. 7.322e-45</span>
 <span class="co">#&gt;   method   n.obs</span>
 <span class="co">#&gt;   &lt;chr&gt;    &lt;int&gt;</span>
 <span class="co">#&gt; 1 Spearman   150</span>
@@ -383,20 +384,9 @@
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span><span class="op">(</span>
   <span class="co"># arguments relevant for `ggstatsplot::ggcorrmat`</span>
   data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span><span class="op">(</span>tbl <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html">diamonds</a></span>, size <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>,
-  type <span class="op">=</span> <span class="st">"robust"</span>, <span class="co"># percentage bend correlation coefficient</span>
-  beta <span class="op">=</span> <span class="fl">0.2</span>, <span class="co"># bending constant</span>
+  type <span class="op">=</span> <span class="st">"bf"</span>, <span class="co"># Bayesian test</span>
   grouping.var <span class="op">=</span> <span class="va">cut</span>,
   title.prefix <span class="op">=</span> <span class="st">"Quality of cut"</span>,
-  cor.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">carat</span>, <span class="va">depth</span><span class="op">:</span><span class="va">z</span><span class="op">)</span>,
-  cor.vars.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
-    <span class="st">"carat"</span>,
-    <span class="st">"total depth"</span>,
-    <span class="st">"table"</span>,
-    <span class="st">"price"</span>,
-    <span class="st">"length (in mm)"</span>,
-    <span class="st">"width (in mm)"</span>,
-    <span class="st">"depth (in mm)"</span>
-  <span class="op">)</span>,
   <span class="co"># arguments relevant for `ggstatsplot::combine_plots2`</span>
   title.text <span class="op">=</span> <span class="st">"Relationship between diamond attributes and price across cut"</span>,
   title.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">16</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,
@@ -459,21 +449,24 @@
 <p>Following tests are carried out for each type of analyses-</p>
 <table class="table">
 <colgroup>
-<col width="25%">
-<col width="56%">
+<col width="23%">
+<col width="53%">
 <col width="6%">
-<col width="11%">
+<col width="6%">
+<col width="10%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
 <th>Test</th>
 <th>CI?</th>
-<th>Function</th>
+<th>partial?</th>
+<th>Function used</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td>Parametric</td>
 <td>Pearson’s correlation coefficient</td>
+<td><font color="green">Yes<font></font></font></td>
 <td><font color="green">Yes<font></font></font></td>
 <td><code><a href="https://easystats.github.io/correlation/reference/correlation.html">correlation::correlation</a></code></td>
 </tr>
@@ -481,18 +474,21 @@
 <td>Non-parametric</td>
 <td>Spearman’s rank correlation coefficient</td>
 <td><font color="green">Yes<font></font></font></td>
+<td><font color="green">Yes<font></font></font></td>
 <td><code><a href="https://easystats.github.io/correlation/reference/correlation.html">correlation::correlation</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
 <td>Percentage bend correlation coefficient</td>
 <td><font color="green">Yes<font></font></font></td>
+<td><font color="green">Yes<font></font></font></td>
 <td><code><a href="https://easystats.github.io/correlation/reference/correlation.html">correlation::correlation</a></code></td>
 </tr>
 <tr class="even">
-<td>Bayes Factor</td>
+<td>Bayesian</td>
 <td>Pearson’s correlation coefficient</td>
 <td><font color="green">Yes</font></td>
+<td><font color="green">Yes<font></font></font></td>
 <td><code><a href="https://easystats.github.io/correlation/reference/correlation.html">correlation::correlation</a></code></td>
 </tr>
 </tbody>

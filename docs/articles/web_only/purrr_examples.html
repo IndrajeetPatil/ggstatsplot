@@ -143,7 +143,7 @@
       <h1 data-toc-skip>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-12-18</h4>
+            <h4 class="date">2020-12-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -431,13 +431,10 @@
     .l <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
       data <span class="op">=</span> <span class="va">cut_list</span>,
       cor.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"carat"</span>, <span class="st">"depth"</span>, <span class="st">"table"</span>, <span class="st">"price"</span><span class="op">)</span><span class="op">)</span>,
-      corr.method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"pearson"</span>, <span class="st">"np"</span>, <span class="st">"robust"</span>, <span class="st">"robust"</span><span class="op">)</span>,
+      type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"pearson"</span>, <span class="st">"np"</span>, <span class="st">"robust"</span>, <span class="st">"bf"</span><span class="op">)</span>,
+      partial <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span>,
       title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"Cut: Good"</span>, <span class="st">"Cut: Very Good"</span>, <span class="st">"Cut: Premium"</span>, <span class="st">"Cut: Ideal"</span><span class="op">)</span>,
-      <span class="co"># note that we are changing both p-value adjustment method *and*</span>
-      <span class="co"># significance level to display the significant correlations in the</span>
-      <span class="co"># visualization matrix</span>
       p.adjust.method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"hommel"</span>, <span class="st">"fdr"</span>, <span class="st">"BY"</span>, <span class="st">"hochberg"</span><span class="op">)</span>,
-      sig.level <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span>, <span class="fl">0.003</span><span class="op">)</span>,
       lab.size <span class="op">=</span> <span class="fl">3.5</span>,
       colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
         <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#56B4E9"</span>, <span class="st">"white"</span>, <span class="st">"#999999"</span><span class="op">)</span>,
@@ -445,13 +442,13 @@
         <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#56B4E9"</span>, <span class="st">"white"</span>, <span class="st">"#D55E00"</span><span class="op">)</span>,
         <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#999999"</span>, <span class="st">"white"</span>, <span class="st">"#0072B2"</span><span class="op">)</span>
       <span class="op">)</span>,
-      ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>,
       ggtheme <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
         <span class="fu">sjPlot</span><span class="fu">::</span><span class="fu"><a href="https://strengejacke.github.io/sjPlot/reference/sjPlot-themes.html">theme_sjplot</a></span><span class="op">(</span><span class="op">)</span>,
         <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span>,
         <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span><span class="op">(</span><span class="op">)</span>,
         <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span><span class="op">)</span>
-      <span class="op">)</span>
+      <span class="op">)</span>,
+      ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>
     <span class="op">)</span>,
     .f <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span>
   <span class="op">)</span>

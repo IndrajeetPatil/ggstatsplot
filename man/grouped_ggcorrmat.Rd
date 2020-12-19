@@ -49,6 +49,9 @@ values, \emph{p}-values, no. of observations, etc.) will be returned.}
 \item{...}{
   Arguments passed on to \code{\link[=ggcorrmat]{ggcorrmat}}
   \describe{
+    \item{\code{partial}}{Can be \code{TRUE} for partial correlations. For Bayesian partial
+correlations, "full" instead of pseudo-Bayesian partial correlations (i.e.,
+Bayesian correlation based on frequentist partialization) are returned.}
     \item{\code{matrix.type}}{Character, \code{"upper"} (default), \code{"lower"}, or \code{"full"},
 display full matrix, lower triangular or upper triangular matrix.}
     \item{\code{sig.level}}{Significance level (Default: \code{0.05}). If the \emph{p}-value in

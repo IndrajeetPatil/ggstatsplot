@@ -342,20 +342,20 @@ sick that number has reduced to just 13 or 34% which is a marked improvement.
 
 Following tests are carried out for each type of analyses-
 
-Type of data | Design | Test | Function
+Type of data | Design | Test | Function used
 ----------- | ------------ | ------------------------- | -----
 Unpaired | $n \times p$ contingency table | Pearson's $\chi^2$ test | `stats::chisq.test`
 Paired | $n \times p$ contingency table | McNemar's $\chi^2$ test | `stats::mcnemar.tests`
-Frequency | $n \times 1$ contingency table | Goodness of fit ($\chi^2$ test) | `stats::chisq.test`
+Frequency | $n \times 1$ contingency table | Goodness-of-fit ($\chi^2$ test) | `stats::chisq.test`
 
 Following effect sizes (and confidence intervals/CI) are available for each type
 of test-
 
-Test | Effect size | CI? | Function
+Test | Effect size | CI? | Function used
 --------------- | ------------------------- | --- | -----
 Pearson's $\chi^2$ test | Cramer's $V$ | <font color="green">Yes<font> | `effectsize::cramers_v`
 McNemar's test | Cohen's $g$ | <font color="green">Yes<font> | `effectsize::cohens_g`
-Goodness of fit | Cramer's $V$ | <font color="green">Yes<font> | `effectsize::cramers_v`
+Goodness-of-fit | Cramer's $V$ | <font color="green">Yes<font> | `effectsize::cramers_v`
 
 ## Effect size interpretation
 

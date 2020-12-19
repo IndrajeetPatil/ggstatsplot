@@ -12,6 +12,7 @@ ggcorrmat(
   matrix.type = "upper",
   type = "parametric",
   beta = 0.1,
+  partial = FALSE,
   k = 2L,
   sig.level = 0.05,
   conf.level = 0.95,
@@ -60,6 +61,10 @@ parametric/pearson), \code{"np"} (nonparametric/spearman), \code{"r"} (robust),
 \code{"bf"} (for bayes factor), resp.}
 
 \item{beta}{bending constant (Default: \code{0.1}). For more, see \code{\link[WRS2:pbcor]{WRS2::pbcor()}}.}
+
+\item{partial}{Can be \code{TRUE} for partial correlations. For Bayesian partial
+correlations, "full" instead of pseudo-Bayesian partial correlations (i.e.,
+Bayesian correlation based on frequentist partialization) are returned.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2L}).}
@@ -157,6 +162,7 @@ ggstatsplot::ggcorrmat(
 ggstatsplot::ggcorrmat(
   data = ggplot2::msleep,
   cor.vars = sleep_total:bodywt,
+  partial = TRUE,
   output = "dataframe"
 )
 }

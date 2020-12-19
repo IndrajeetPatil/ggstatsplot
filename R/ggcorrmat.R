@@ -14,6 +14,9 @@
 #'   `data` will be used.
 #' @param cor.vars.names Optional list of names to be used for `cor.vars`. The
 #'   names should be entered in the same order.
+#' @param partial Can be `TRUE` for partial correlations. For Bayesian partial
+#'   correlations, "full" instead of pseudo-Bayesian partial correlations (i.e.,
+#'   Bayesian correlation based on frequentist partialization) are returned.
 #' @param output Character that decides expected output from this function. If
 #'   `"plot"`, the visualization matrix will be returned. If `"dataframe"` (or
 #'   literally anything other than `"plot"`), a dataframe containing all details
@@ -80,6 +83,7 @@
 #' ggstatsplot::ggcorrmat(
 #'   data = ggplot2::msleep,
 #'   cor.vars = sleep_total:bodywt,
+#'   partial = TRUE,
 #'   output = "dataframe"
 #' )
 #' }
@@ -93,6 +97,7 @@ ggcorrmat <- function(data,
                       matrix.type = "upper",
                       type = "parametric",
                       beta = 0.1,
+                      partial = FALSE,
                       k = 2L,
                       sig.level = 0.05,
                       conf.level = 0.95,
@@ -148,12 +153,15 @@ ggcorrmat <- function(data,
   # create unique name for each method
   corr.method.text <-
     switch(
-      EXPR = corr.method,
-      "pearson" = "Pearson",
-      "spearman" = "Spearman",
-      "percentage" = "robust (% bend)",
-      "bayes" = "Pearson"
+      EXPR = stats_type,
+      "parametric" = "Pearson",
+      "nonparametric" = "Spearman",
+      "robust" = "robust (% bend)",
+      "bayes" = "Pearson (Bayesian)"
     )
+
+  # is it a partial correlation?
+  corr.nature <- ifelse(isTRUE(partial), "correlation (partial):", "correlation:")
 
   # ===================== statistics ========================================
 
@@ -164,10 +172,12 @@ ggcorrmat <- function(data,
       method = corr.method,
       p_adjust = p.adjust.method,
       ci = conf.level,
-      bayesian = ifelse(stats_type == "bayes", yes = TRUE, no = FALSE),
+      bayesian = ifelse(stats_type == "bayes", TRUE, FALSE),
       bayesian_prior = bf.prior,
       bayesian_test = c("pd", "rope", "bf"),
-      beta = beta
+      beta = beta,
+      partial = partial,
+      partial_bayesian = ifelse(stats_type == "bayes" && isTRUE(partial), TRUE, FALSE)
     )
 
   # early stats return
@@ -193,15 +203,15 @@ ggcorrmat <- function(data,
   }
 
   # legend title with information about correlation type and sample
-  if (isFALSE(any(is.na(df)))) {
+  if (isFALSE(any(is.na(df))) || isTRUE(partial)) {
     legend.title.text <-
       bquote(atop(
         atop(
-          scriptstyle(bold("sample size:")),
-          italic(n) ~ "=" ~ .(.prettyNum(nrow(df)))
+          scriptstyle(bold("sample sizes:")),
+          italic(n) ~ "=" ~ .(.prettyNum(df_corr$n_Obs[[1]]))
         ),
         atop(
-          scriptstyle(bold("correlation:")),
+          scriptstyle(bold(.(corr.nature))),
           .(corr.method.text)
         )
       ))
@@ -211,7 +221,7 @@ ggcorrmat <- function(data,
       bquote(atop(
         atop(
           atop(
-            scriptstyle(bold("sample size:")),
+            scriptstyle(bold("sample sizes:")),
             italic(n)[min] ~ "=" ~ .(.prettyNum(min(df_corr$n_Obs)))
           ),
           atop(
@@ -220,11 +230,14 @@ ggcorrmat <- function(data,
           )
         ),
         atop(
-          scriptstyle(bold("correlation:")),
+          scriptstyle(bold(.(corr.nature))),
           .(corr.method.text)
         )
       ))
   }
+
+  # special treatment for Bayes
+  if (stats_type == "bayes") sig.level <- Inf
 
   # plotting the correlalogram
   plot <-
@@ -246,7 +259,7 @@ ggcorrmat <- function(data,
   # =========================== labels ==================================
 
   # preparing the `pch` caption
-  if (pch == "cross" || pch == 4) {
+  if ((pch == "cross" || pch == 4) && stats_type != "bayes") {
     caption <-
       substitute(
         atop(

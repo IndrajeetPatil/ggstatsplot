@@ -328,7 +328,7 @@ For repeated measures designs, `ggwithinstats` function can be used:
 
 The central tendency measure displayed will depend on the statistics:
 
-Type | Measure | Function
+Type | Measure | Function used
 ----------- | --------- | ------------------ 
 Parametric | mean | `parameters::describe_distribution`
 Non-parametric | median | `parameters::describe_distribution`
@@ -339,40 +339,40 @@ MAP: maximum a posteriori probability
 
 Following (between-subjects) tests are carried out for each type of analyses-
 
-Type | No. of groups | Test | Function
+Type | No. of groups | Test | Function used
 ----------- | --- | ------------------------- | -----
 Parametric | > 2 | Fisher's or Welch's one-way ANOVA | `stats::oneway.test`
 Non-parametric | > 2 | Kruskal–Wallis one-way ANOVA | `stats::kruskal.test`
 Robust | > 2 | Heteroscedastic one-way ANOVA for trimmed means | `WRS2::t1way`
-Bayes Factor | > 2 | Fisher's ANOVA | `BayesFactor::anovaBF`
+Bayesian | > 2 | Fisher's ANOVA | `BayesFactor::anovaBF`
 Parametric | 2 | Student's or Welch's *t*-test | `stats::t.test`
 Non-parametric | 2 | Mann–Whitney *U* test | `stats::wilcox.test`
 Robust | 2 |  Yuen's test for trimmed means | `WRS2::yuen`
-Bayes Factor | 2 | Student's *t*-test | `BayesFactor::ttestBF`
+Bayesian | 2 | Student's *t*-test | `BayesFactor::ttestBF`
 
 Following effect sizes (and confidence intervals/CI) are available for each type
 of test-
 
-Type | No. of groups | Effect size | CI? | Function
+Type | No. of groups | Effect size | CI? | Function used
 ----------- | --- | ------------------------- | --- | -----
 Parametric | > 2 | $\eta_{p}^2$, $\omega_{p}^2$ | <font color="green">Yes<font> | `effectsize::omega_squared`, `effectsize::eta_squared`
 Non-parametric | > 2 | $\epsilon_{ordinal}^2$ | <font color="green">Yes<font> | `rcompanion::epsilonSquared`
 Robust | > 2 | $\xi$ (Explanatory measure of effect size) | <font color="green">Yes<font> | `WRS2::t1way`
-Bayes Factor | > 2 | $R_{posterior}^2$ | <font color="green">Yes<font> | `performance::r2_bayes`
+Bayesian | > 2 | $R_{posterior}^2$ | <font color="green">Yes<font> | `performance::r2_bayes`
 Parametric | 2 | Cohen's *d*, Hedge's *g* | <font color="green">Yes<font> | `effectsize::cohens_d`, `effectsize::hedges_g`
 Non-parametric | 2 | *r* (computed as $Z/\sqrt{N}$) | <font color="green">Yes<font> | `rcompanion::wilcoxonR`
 Robust | 2 |  $\xi$ (Explanatory measure of effect size) | <font color="green">Yes<font> | `WRS2::yuen.effect.ci`
-Bayes Factor | 2 | $\delta_{posterior}$ | <font color="green">Yes<font> | `bayestestR::describe_posterior`
+Bayesian | 2 | $\delta_{posterior}$ | <font color="green">Yes<font> | `bayestestR::describe_posterior`
 
 Following multiple pairwise comparison tests are supported-
 
-Type | Equal variance? | Test | *p*-value adjustment? | Function
+Type | Equal variance? | Test | *p*-value adjustment? | Function used
 ----------- | --- | ------------------------- | --- | -----
 Parametric | No | Games-Howell test | <font color="green">Yes</font> | `stats::pairwise.t.test`
 Parametric | Yes | Student's *t*-test | <font color="green">Yes</font> | `PMCMRplus::gamesHowellTest`
 Non-parametric | No | Dunn test | <font color="green">Yes</font> | `PMCMRplus::kwAllPairsDunnTest`
 Robust | No | Yuen's trimmed means test | <font color="green">Yes</font> | `WRS2::lincon`
-Bayes Factor | `NA` | Student's *t*-test | `NA` | `BayesFactor::ttestBF`
+Bayesian | `NA` | Student's *t*-test | `NA` | `BayesFactor::ttestBF`
 
 ## Effect size interpretation
 

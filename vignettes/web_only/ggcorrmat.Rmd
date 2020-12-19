@@ -62,7 +62,7 @@ provides values for life expectancy, Gross Domestic Product (GDP) per capita,
 and population, every five years, from 1952 to 2007, for each of 142 countries
 and was collected by the Gapminder Foundation. Let's have a look at the data-
 
-```{r gapminder, warning = FALSE, message = FALSE}
+```{r gapminder}
 library(gapminder)
 library(dplyr)
 
@@ -208,7 +208,7 @@ Another utility of `ggcorrmat` is in obtaining a dataframe containing all
 details from statistical analyses. Such dataframes can be easily embedded in
 manuscripts as tables.
 
-```{r ggcorrmat5, warning = FALSE, message = FALSE}
+```{r ggcorrmat5}
 # for reproducibility
 set.seed(123)
 
@@ -224,7 +224,7 @@ ggstatsplot::ggcorrmat(
 
 Note that if `cor.vars` are not specified, all numeric variables will be used.
 Moreover, you can also use abbreviations to specify what output you want in
-return.
+return. Additionally, one can also carry out **partial** correlation analysis:
 
 ```{r ggcorrmat6}
 # for reproducibility
@@ -235,6 +235,7 @@ options(pillar.sigfig = 4)
 ggstatsplot::ggcorrmat(
   data = iris, # all numeric variables from data will be used
   type = "np", # non-parametric
+  partial = TRUE,
   output = "dataframe"
 )
 ```
@@ -259,20 +260,9 @@ set.seed(123)
 ggstatsplot::grouped_ggcorrmat(
   # arguments relevant for `ggstatsplot::ggcorrmat`
   data = dplyr::sample_frac(tbl = ggplot2::diamonds, size = 0.1),
-  type = "robust", # percentage bend correlation coefficient
-  beta = 0.2, # bending constant
+  type = "bf", # Bayesian test
   grouping.var = cut,
   title.prefix = "Quality of cut",
-  cor.vars = c(carat, depth:z),
-  cor.vars.names = c(
-    "carat",
-    "total depth",
-    "table",
-    "price",
-    "length (in mm)",
-    "width (in mm)",
-    "depth (in mm)"
-  ),
   # arguments relevant for `ggstatsplot::combine_plots2`
   title.text = "Relationship between diamond attributes and price across cut",
   title.args = list(size = 16, color = "red"),
@@ -316,12 +306,12 @@ See the associated vignette here:
 
 Following tests are carried out for each type of analyses-
 
-Type | Test | CI? | Function
------------ | ------------------------- | --- | -----
-Parametric | Pearson's correlation coefficient | <font color="green">Yes<font> | `correlation::correlation`
-Non-parametric | Spearman's rank correlation coefficient | <font color="green">Yes<font> | `correlation::correlation`
-Robust | Percentage bend correlation coefficient | <font color="green">Yes<font> | `correlation::correlation`
-Bayes Factor | Pearson's correlation coefficient | <font color="green">Yes</font> | `correlation::correlation`
+Type | Test | CI? | partial? | Function used
+----------- | ------------------------- | --- | --- | -----
+Parametric | Pearson's correlation coefficient | <font color="green">Yes<font> | <font color="green">Yes<font> | `correlation::correlation`
+Non-parametric | Spearman's rank correlation coefficient | <font color="green">Yes<font> | <font color="green">Yes<font> | `correlation::correlation`
+Robust | Percentage bend correlation coefficient | <font color="green">Yes<font> | <font color="green">Yes<font> | `correlation::correlation`
+Bayesian | Pearson's correlation coefficient | <font color="green">Yes</font> | <font color="green">Yes<font> | `correlation::correlation`
 
 # Suggestions
 

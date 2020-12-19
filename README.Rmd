@@ -235,7 +235,7 @@ ggstatsplot::ggbetweenstats(
 
 The central tendency measure displayed will depend on the statistics:
 
-Type | Measure | Function
+Type | Measure | Function used
 ----------- | --------- | ------------------ 
 Parametric | mean | `parameters::describe_distribution`
 Non-parametric | median | `parameters::describe_distribution`
@@ -307,7 +307,7 @@ Note here that the function can be used to tag outliers!
 
 Following (between-subjects) tests are carried out for each type of analyses-
 
-Type | No. of groups | Test | Function
+Type | No. of groups | Test | Function used
 ----------- | --- | ------------------------- | -----
 Parametric | > 2 | Fisher's or Welch's one-way ANOVA | `stats::oneway.test`
 Non-parametric | > 2 | Kruskal–Wallis one-way ANOVA | `stats::kruskal.test`
@@ -321,7 +321,7 @@ Bayesian | 2 | Student's *t*-test | `BayesFactor::ttestBF`
 Following effect sizes (and confidence intervals/CI) are available for each type
 of test-
 
-Type | No. of groups | Effect size | CI? | Function
+Type | No. of groups | Effect size | CI? | Function used
 ----------- | --- | ------------------------- | --- | -----
 Parametric | > 2 | $\eta_{p}^2$, $\omega_{p}^2$ | <font color="green">Yes<font> | `effectsize::omega_squared`, `effectsize::eta_squared`
 Non-parametric | > 2 | $\epsilon_{ordinal}^2$ | <font color="green">Yes<font> | `rcompanion::epsilonSquared`
@@ -335,7 +335,7 @@ Bayesian | 2 | $\delta_{posterior}$ | <font color="green">Yes<font> | `bayestest
 Here is a summary of *multiple pairwise comparison* tests supported in
 *ggbetweenstats*-
 
-Type | Equal variance? | Test | *p*-value adjustment? | Function
+Type | Equal variance? | Test | *p*-value adjustment? | Function used
 ----------- | --- | ------------------------- | --- | -----
 Parametric | No | Games-Howell test | <font color="green">Yes</font> | `stats::pairwise.t.test`
 Parametric | Yes | Student's *t*-test | <font color="green">Yes</font> | `PMCMRplus::gamesHowellTest`
@@ -384,7 +384,7 @@ ggstatsplot::ggwithinstats(
 
 The central tendency measure displayed will depend on the statistics:
 
-Type | Measure | Function
+Type | Measure | Function used
 ----------- | --------- | ------------------ 
 Parametric | mean | `parameters::describe_distribution`
 Non-parametric | median | `parameters::describe_distribution`
@@ -421,7 +421,7 @@ ggstatsplot::grouped_ggwithinstats(
 
 Following (within-subjects) tests are carried out for each type of analyses-
 
-Type | No. of groups | Test | Function
+Type | No. of groups | Test | Function used
 ----------- | --- | -------------------------
 Parametric | > 2 | One-way repeated measures ANOVA | `ez::ezANOVA`
 Non-parametric | > 2 | Friedman rank sum test | `stats::friedman.test`
@@ -435,7 +435,7 @@ Bayesian | 2 | Student's *t*-test | `BayesFactor::ttestBF`
 Following effect sizes (and confidence intervals/CI) are available for each type
 of test-
 
-Type | No. of groups | Effect size | CI? | Function
+Type | No. of groups | Effect size | CI? | Function used
 ----------- | --- | ------------------------- | --- | -----
 Parametric | > 2 | $\eta_{p}^2$, $\omega_{p}^2$ | <font color="green">Yes<font> | `effectsize::omega_squared`, `effectsize::eta_squared`
 Non-parametric | > 2 | $W_{Kendall}$ (Kendall's coefficient of concordance) | <font color="green">Yes<font> | `rcompanion::kendallW`
@@ -449,7 +449,7 @@ Bayesian | 2 | $\delta_{posterior}$ | <font color="green">Yes<font> | `bayestest
 Here is a summary of *multiple pairwise comparison* tests supported in
 *ggwithinstats*-
 
-Type | Test | *p*-value adjustment? | Function
+Type | Test | *p*-value adjustment? | Function used
 ----------- | ---------------------------- | --- | -----
 Parametric | Student's *t*-test | <font color="green">Yes</font> | `stats::pairwise.t.test`
 Non-parametric | Durbin-Conover test | <font color="green">Yes</font> | `PMCMRplus::durbinAllPairsTest` 
@@ -531,7 +531,7 @@ ggstatsplot::grouped_gghistostats(
 
 Following tests are carried out for each type of analyses-
 
-Type | Test | Function
+Type | Test | Function used
 ------------------ | ------------------------- | -----
 Parametric | One-sample Student's *t*-test | `stats::t.test`
 Non-parametric | One-sample Wilcoxon test | `stats::wilcox.test`
@@ -541,7 +541,7 @@ Bayesian | One-sample Student's *t*-test | `BayesFactor::ttestBF`
 Following effect sizes (and confidence intervals/CI) are available for each type
 of test-
 
-Type | Effect size | CI? | Function
+Type | Effect size | CI? | Function used
 ------------ | ----------------------- | --- | -----
 Parametric | Cohen's *d*, Hedge's *g* | <font color="green">Yes<font> | `effectsize::cohens_d`, `effectsize::hedges_g`
 Non-parametric | *r* | <font color="green">Yes<font> | `rcompanion::wilcoxonOneSampleR`
@@ -717,7 +717,7 @@ Following tests are carried out for each type of analyses. Additionally, the
 correlation coefficients (and their confidence intervals) are used as effect
 sizes-
 
-Type | Test | CI? | Function
+Type | Test | CI? | Function used
 ----------- | ------------------------- | --- | -----
 Parametric | Pearson's correlation coefficient | <font color="green">Yes<font> | `correlation::correlation`
 Non-parametric | Spearman's rank correlation coefficient | <font color="green">Yes<font> | `correlation::correlation`
@@ -743,18 +743,9 @@ set.seed(123)
 # as a default this function outputs a correlation matrix plot
 ggstatsplot::ggcorrmat(
   data = ggplot2::msleep,
-  type = "robust", # correlation method
-  cor.vars = c(sleep_rem, awake:bodywt), # a range of variables can be selected
-  cor.vars.names = c(
-    "REM sleep", # variable names
-    "time awake",
-    "brain weight",
-    "body weight"
-  ),
   colors = c("#B2182B", "white", "#4D4D4D"),
   title = "Correlalogram for mammals sleep dataset",
-  subtitle = "sleep units: hours; weight units: kilograms",
-  caption = "Source: `ggplot2` R package"
+  subtitle = "sleep units: hours; weight units: kilograms"
 )
 ```
 
@@ -779,6 +770,7 @@ ggstatsplot::grouped_ggcorrmat(
     .data = ggstatsplot::movies_long,
     genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
   ),
+  type = "robust", # correlation method
   cor.vars = length:votes,
   colors = c("#cbac43", "white", "#550000"),
   grouping.var = genre, # grouping variable
@@ -803,9 +795,29 @@ ggcorrmat(
 )
 ```
 
+Additionally, **partial** correlation are also supported:
+
+```{r ggcorrmat4}
+# setup
+set.seed(123)
+
+# dataframe in long format
+ggcorrmat(
+  data = ggplot2::msleep,
+  type = "bayes",
+  partial = TRUE,
+  output = "dataframe"
+)
+```
+
 ### Summary of tests
 
-This is same as `ggscatterstats`.
+Type | Test | CI? | partial? | Function used
+----------- | ----------------------- | -- | -- | ----
+Parametric | Pearson's correlation coefficient | <font color="green">Yes<font> | <font color="green">Yes<font> | `correlation::correlation`
+Non-parametric | Spearman's rank correlation coefficient | <font color="green">Yes<font> | <font color="green">Yes<font> | `correlation::correlation`
+Robust | Percentage bend correlation coefficient | <font color="green">Yes<font> | <font color="green">Yes<font> | `correlation::correlation`
+Bayesian | Pearson's correlation coefficient | <font color="green">Yes</font> | <font color="green">Yes<font> | `correlation::correlation`
 
 For examples and more information, see the `ggcorrmat` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html>
@@ -901,7 +913,7 @@ ggstatsplot::grouped_ggpiestats(
 
 Following tests are carried out for each type of analyses-
 
-Type of data | Design | Test | Function
+Type of data | Design | Test | Function used
 ----------- | ------------ | ------------------------- | -----
 Unpaired | $n \times p$ contingency table | Pearson's $\chi^2$ test | `stats::chisq.test`
 Paired | $n \times p$ contingency table | McNemar's $\chi^2$ test | `stats::mcnemar.tests`
@@ -910,7 +922,7 @@ Frequency | $n \times 1$ contingency table | Goodness of fit ($\chi^2$ test) | `
 Following effect sizes (and confidence intervals/CI) are available for each type
 of test-
 
-Test | Effect size | CI? | Function
+Test | Effect size | CI? | Function used
 --------------- | ------------------------- | --- | -----
 Pearson's $\chi^2$ test | Cramer's $V$ | <font color="green">Yes<font> | `effectsize::cramers_v`
 McNemar's test | Cohen's $g$ | <font color="green">Yes<font> | `effectsize::cohens_g`
@@ -1093,7 +1105,7 @@ frequentist, robust, and Bayesian random-effects meta-analysis.
 
 ### Summary of meta-analysis tests
 
-Type | Test | Effect size | 95% CI available? | Function
+Type | Test | Effect size | 95% CI available? | Function used
 ----------- | -------------------- | -------- | ---  | -----
 Parametric | Meta-analysis via random-effects models | $\beta$ | <font color="green">Yes<font> | `metafor::metafor`
 Robust | Meta-analysis via robust random-effects models | $\beta$ | <font color="green">Yes<font> | `metaplus::metaplus`

@@ -179,22 +179,22 @@ See the associated vignette here:
 
 Following tests are carried out for each type of analyses-
 
-Type | Test | Function
+Type | Test | Function used
 ------------------ | ------------------------- | -----
 Parametric | One-sample Student's *t*-test | `stats::t.test`
 Non-parametric | One-sample Wilcoxon test | `stats::wilcox.test`
 Robust | One-sample percentile bootstrap | `WRS2::onesampb`
-Bayes Factor | One-sample Student's *t*-test | `BayesFactor::ttestBF`
+Bayesian | One-sample Student's *t*-test | `BayesFactor::ttestBF`
 
 Following effect sizes (and confidence intervals/CI) are available for each type
 of test-
 
-Type | Effect size | CI? | Function
+Type | Effect size | CI? | Function used
 ------------ | ----------------------- | --- | -----
 Parametric | Cohen's *d*, Hedge's *g* | <font color="green">Yes<font> | `effectsize::cohens_d`, `effectsize::hedges_g`
 Non-parametric | *r* | <font color="green">Yes<font> | `rcompanion::wilcoxonOneSampleR`
 Robust | robust location measure | <font color="green">Yes<font> | `WRS2::onesampb`
-Bayes Factor | $\delta_{posterior}$ | <font color="green">Yes<font> | `bayestestR::describe_posterior`
+Bayesian | $\delta_{posterior}$ | <font color="green">Yes<font> | `bayestestR::describe_posterior`
 
 ## Effect size interpretation
 
