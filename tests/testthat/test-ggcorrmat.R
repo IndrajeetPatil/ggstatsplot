@@ -558,8 +558,6 @@ testthat::test_that(
       ),
       tolerance = 0.001
     )
-
-    # checking legend
   }
 )
 
@@ -569,7 +567,7 @@ testthat::test_that(
   desc = "checking ggcorrmat - with NAs - spearman's rho",
   code = {
     testthat::skip_on_cran()
-    # testthat::skip_on_ci()
+    testthat::skip_on_ci()
 
     set.seed(123)
     df <-

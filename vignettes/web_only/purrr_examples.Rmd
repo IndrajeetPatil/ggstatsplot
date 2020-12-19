@@ -439,11 +439,6 @@ plot_list <-
       bar.fill = list("white", "red", "orange", "blue"),
       effsize.type = list("d", "d", "g", "g"),
       normal.curve = TRUE,
-      normal.curve.args = list(list(
-        color = "darkred",
-        linetype = "dashed",
-        size = 0.8
-      )),
       ggtheme = list(
         ggplot2::theme_classic(),
         hrbrthemes::theme_ipsum_tw(),
