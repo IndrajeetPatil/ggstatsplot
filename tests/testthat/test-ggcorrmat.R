@@ -141,9 +141,35 @@ testthat::test_that(
 # robust r with NAs ---------------------------------------------------
 
 testthat::test_that(
-  desc = "checking ggcorrmat - with NAs - robust r",
+  desc = "checking ggcorrmat - without NAs - robust r",
   code = {
     testthat::skip_on_cran()
+
+    # creating the plot
+    set.seed(123)
+    p <- ggstatsplot::ggcorrmat(data = anscombe, type = "r", partial = TRUE)
+    pb <- ggplot2::ggplot_build(p)
+
+    testthat::expect_identical(
+      pb$plot$plot_env$legend.title,
+      ggplot2::expr(
+        atop(atop(scriptstyle(bold("sample sizes:")), italic(n) ~
+        "=" ~ "11"), atop(
+          scriptstyle(bold("correlation (partial):")),
+          "robust (% bend)"
+        ))
+      )
+    )
+  }
+)
+
+# robust r with NAs ---------------------------------------------------
+
+testthat::test_that(
+  desc = "checking ggcorrmat - with NAs - robust r - partial",
+  code = {
+    testthat::skip_on_cran()
+    testthat::skip_on_ci()
 
     # creating the plot
     set.seed(123)
