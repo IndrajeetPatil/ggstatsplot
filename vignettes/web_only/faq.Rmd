@@ -438,7 +438,7 @@ $\tau$ as a non-parametric correlation test.
 In such cases, you can override the defaults and use `statsExpressions` to
 create custom expressions to display in the plot.
 
-```{r custom_test, fig.width = 5, fig.height = 5}
+```{r custom_test, fig.width = 6, fig.height = 6}
 # setup
 set.seed(123)
 library(ggstatsplot)

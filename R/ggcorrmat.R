@@ -135,29 +135,20 @@ ggcorrmat <- function(data,
     }
   }
 
-  # ============================ checking corr.method =======================
-
-  # see which method was used to specify type of correlation
-  stats_type <- ipmisc::stats_type_switch(type)
+  # ============================ checking r.method =======================
 
   # if any of the abbreviations have been entered, change them
-  corr.method <-
-    switch(
-      EXPR = stats_type,
-      "parametric" = "pearson",
-      "nonparametric" = "spearman",
-      "robust" = "percentage",
-      "bayes" = "pearson"
-    )
+  stats_type <- ipmisc::stats_type_switch(type)
 
+  # see which method was used to specify type of correlation
   # create unique name for each method
-  corr.method.text <-
+  c(r.method, r.method.text) %<-%
     switch(
       EXPR = stats_type,
-      "parametric" = "Pearson",
-      "nonparametric" = "Spearman",
-      "robust" = "robust (% bend)",
-      "bayes" = "Pearson (Bayesian)"
+      "parametric" = c("pearson", "Pearson"),
+      "nonparametric" = c("spearman", "Spearman"),
+      "robust" = c("percentage", "robust (% bend)"),
+      "bayes" = c("pearson", "Pearson (Bayesian)")
     )
 
   # is it a partial correlation?
@@ -169,7 +160,7 @@ ggcorrmat <- function(data,
   df_corr <-
     statsExpressions::correlation(
       data = df,
-      method = corr.method,
+      method = r.method,
       p_adjust = p.adjust.method,
       ci = conf.level,
       bayesian = ifelse(stats_type == "bayes", TRUE, FALSE),
@@ -207,12 +198,10 @@ ggcorrmat <- function(data,
     legend.title.text <-
       bquote(atop(
         atop(
-          scriptstyle(bold("sample sizes:")),
-          italic(n) ~ "=" ~ .(.prettyNum(df_corr$n_Obs[[1]]))
+          scriptstyle(bold("sample sizes:")), italic(n) ~ "=" ~ .(.prettyNum(df_corr$n_Obs[[1]]))
         ),
         atop(
-          scriptstyle(bold(.(corr.nature))),
-          .(corr.method.text)
+          scriptstyle(bold(.(corr.nature))), .(r.method.text)
         )
       ))
   } else {
@@ -221,8 +210,7 @@ ggcorrmat <- function(data,
       bquote(atop(
         atop(
           atop(
-            scriptstyle(bold("sample sizes:")),
-            italic(n)[min] ~ "=" ~ .(.prettyNum(min(df_corr$n_Obs)))
+            scriptstyle(bold("sample sizes:")), italic(n)[min] ~ "=" ~ .(.prettyNum(min(df_corr$n_Obs)))
           ),
           atop(
             italic(n)[mode] ~ "=" ~ .(.prettyNum(getmode(df_corr$n_Obs))),
@@ -230,8 +218,7 @@ ggcorrmat <- function(data,
           )
         ),
         atop(
-          scriptstyle(bold(.(corr.nature))),
-          .(corr.method.text)
+          scriptstyle(bold(.(corr.nature))), .(r.method.text)
         )
       ))
   }
@@ -295,8 +282,6 @@ ggcorrmat <- function(data,
 
   # adding `ggstatsplot` theme for correlation matrix
   if (isTRUE(ggstatsplot.layer)) plot <- plot + theme_corrmat()
-
-  # ---------------- adding ggplot component ---------------------------------
 
   # if any additional modification needs to be made to the plot
   # this is primarily useful for grouped_ variant of this function
