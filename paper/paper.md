@@ -1,7 +1,7 @@
 ---
 title: "ggstatsplot: ggplot2 Based Plots with Statistical Details"
 author: Indrajeet Patil^[Max Planck Institute for Human Development, patilindrajeet.science@gmail.com]
-date: "2020-12-19"
+date: "2020-12-21"
 output: 
   bookdown::pdf_document2:
     fig_caption: true
@@ -25,23 +25,6 @@ link-citations: yes
 linkcolor: blue
 ---
 
-
-```
-## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --
-```
-
-```
-## v ggplot2 3.3.2     v purrr   0.3.4
-## v tibble  3.0.4     v dplyr   1.0.2
-## v tidyr   1.1.2     v stringr 1.4.0
-## v readr   1.4.0     v forcats 0.5.0
-```
-
-```
-## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-```
 
 ```
 ## Registered S3 methods overwritten by 'lme4':
@@ -100,16 +83,16 @@ We list few reasons below-
 It produces a limited kinds of ready-made plots for the supported analyses:
 
 Function | Plot | Description
-------- | ---------- | -------------------- 
+------- | ---------- | ----------------- 
 `ggbetweenstats` | **violin plots** | for comparisons *between* groups/conditions
 `ggwithinstats` | **violin plots** | for comparisons *within* groups/conditions
 `gghistostats` | **histograms** | for distribution about numeric variable
 `ggdotplotstats` | **dot plots/charts** | for distribution about labeled numeric variable
-`ggpiestats`  | **pie charts** | for categorical data 
-`ggbarstats`  | **bar charts** | for categorical data 
-`ggscatterstats` | **scatterplots** | for correlations between two variables
-`ggcorrmat`  | **correlation matrices** | for correlations between multiple variables
-`ggcoefstats`  | **dot-and-whisker plots** | for regression models
+`ggscatterstats` | **scatterplots** | for correlation between two variables
+`ggcorrmat` | **correlation matrices** | for correlations between multiple variables
+`ggpiestats` | **pie charts** | for categorical data 
+`ggbarstats` | **bar charts** | for categorical data 
+`ggcoefstats` | **dot-and-whisker plots** | for regression models and meta-analysis
 
 In addition to these basic plots, `ggstatsplot` also provides **`grouped_`**
 versions (see below) that makes it easy to repeat the same analysis for
@@ -128,7 +111,7 @@ type of statistical analysis:
 The table below summarizes all the different types of analyses
 currently supported in this package-
 
-Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
+Functions | Description | Parametric | Non-parametric | Robust | Bayesian
 ------- | ------------------ | ---- | ----- | ----| ----- 
 `ggbetweenstats` | Between group/condition comparisons | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes}
 `ggwithinstats` | Within group/condition comparisons | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes} | \textcolor{ForestGreen}{Yes}
@@ -505,36 +488,6 @@ default while reporting statistical details:
     
   - With the exception of *p*-values, most statistics are rounded to two decimal
     places by default.
-
-## Statistical tests:
-
-Here is a summary table of all the statistical tests currently supported across
-various functions:
-
-Functions | Type | Test | Effect size | 95% CI available? 
--------------- | ----------- | --------------------- | -------- | -----  
-`ggbetweenstats` (2 groups) | Parametric | Student's and Welch's *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggbetweenstats` (> 2 groups) | Parametric | Fisher's and Welch's one-way ANOVA | $$\eta^2, \eta^2_p, \omega^2, \omega^2_p$$ |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggbetweenstats` (2 groups) | Non-parametric | Mann-Whitney *U*-test | *r* |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggbetweenstats` (> 2 groups) | Non-parametric | Kruskal-Wallis Rank Sum Test | $$\epsilon^2$$ |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggbetweenstats` (2 groups) | Robust | Yuen's test for trimmed means | $$\xi$$ |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggbetweenstats` (> 2 groups) | Robust | Heteroscedastic one-way ANOVA for trimmed means | $$\xi$$ |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggwithinstats` (2 groups) | Parametric | Student's *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggwithinstats` (> 2 groups) | Parametric | Fisher's one-way repeated measures ANOVA | $$\eta^2_p, \omega^2$$ |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggwithinstats` (2 groups) | Non-parametric | Wilcoxon signed-rank test | *r* |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggwithinstats` (> 2 groups) | Non-parametric | Friedman rank sum test | $$W_{Kendall}$$ |  \textcolor{ForestGreen}{$\checkmark$}
-`ggwithinstats` (2 groups) | Robust | Yuen's test on trimmed means for dependent samples | $$\delta_{R}$$ |  \textcolor{ForestGreen}{$\checkmark$} 
-`ggwithinstats` (> 2 groups) | Robust | Heteroscedastic one-way repeated measures ANOVA for trimmed means |  \textcolor{red}{$\times$} |  \textcolor{red}{$\times$}
-`ggpiestats` and `ggbarstats` (unpaired) | Parametric | $$\text{Pearson's}~ \chi^2 ~\text{test}$$ | Cramér's *V* |  \textcolor{ForestGreen}{$\checkmark$}
-`ggpiestats` and `ggbarstats` (paired) | Parametric | McNemar's test | Cohen's *g* |  \textcolor{ForestGreen}{$\checkmark$}
-`ggpiestats` | Parametric | One-sample proportion test | Cramér's *V* |  \textcolor{ForestGreen}{$\checkmark$}
-`ggscatterstats` and `ggcorrmat` | Parametric | Pearson's *r* | *r* |  \textcolor{ForestGreen}{$\checkmark$}
-`ggscatterstats` and `ggcorrmat` | Non-parametric | $$\text{Spearman's}~ \rho$$ | $$\rho$$ |  \textcolor{ForestGreen}{$\checkmark$}
-`ggscatterstats`and `ggcorrmat` | Robust | Percentage bend correlation | *r* |  \textcolor{ForestGreen}{$\checkmark$}
-`gghistostats` and `ggdotplotstats` | Parametric | One-sample *t*-test | Cohen's *d*, Hedge's *g* |  \textcolor{ForestGreen}{$\checkmark$}
-`gghistostats` | Non-parametric | One-sample Wilcoxon signed rank test | *r* |  \textcolor{ForestGreen}{$\checkmark$} 
-`gghistostats` and `ggdotplotstats` | Robust | One-sample percentile bootstrap | robust estimator |  \textcolor{ForestGreen}{$\checkmark$}
-`ggcoefstats` | Parametric | Regression models | $$\beta$$ |  \textcolor{ForestGreen}{$\checkmark$}
 
 ## Dealing with **null results**: 
 

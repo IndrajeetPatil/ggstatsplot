@@ -69,6 +69,9 @@ only available on the website for this package: <br>
   - Introduction to `ggstatsplot` (publication describing philosophy and
     principles behind this package):
     (<https://github.com/IndrajeetPatil/ggstatsplot/blob/master/paper/paper.pdf>)
+
+  - Frequently Asked Questions (FAQ)-
+    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/faq.html>)
     
   - Interpreting effect sizes for different tests:
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html>)
@@ -80,9 +83,6 @@ only available on the website for this package: <br>
   - Examples illustrating how to use functional programming package like `purrr`
     to extend `ggstatsplot` functionality-
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>)
-    
-  - Frequently Asked Questions (FAQ)-
-    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/faq.html>)
 
   - Session information:
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>)
@@ -125,14 +125,6 @@ displayed in `ggbetweenstats` and `ggwithinstats` functions.
 
 For more exhaustive documentation for this package, see:
 <https://indrajeetpatil.github.io/pairwiseComparisons/>
-
-## `ipmisc`
-
-The `ipmisc` package contains some of the data wrangling/cleaning functions and
-a few other miscellaneous functions.
-
-For more exhaustive documentation for this package, see:
-<https://indrajeetpatil.github.io/ipmisc/>
 
 # Other resources
 

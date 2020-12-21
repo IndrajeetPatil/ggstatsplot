@@ -138,7 +138,7 @@ testthat::test_that(
   }
 )
 
-# robust r with NAs ---------------------------------------------------
+# robust r without NAs ---------------------------------------------------
 
 testthat::test_that(
   desc = "checking ggcorrmat - without NAs - robust r",
@@ -147,7 +147,13 @@ testthat::test_that(
 
     # creating the plot
     set.seed(123)
-    p <- ggstatsplot::ggcorrmat(data = anscombe, type = "r", partial = TRUE)
+    p <-
+      ggstatsplot::ggcorrmat(
+        data = anscombe,
+        type = "r",
+        partial = TRUE,
+        cor.vars.names = "X"
+      )
     pb <- ggplot2::ggplot_build(p)
 
     testthat::expect_identical(

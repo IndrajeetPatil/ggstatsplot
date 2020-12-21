@@ -185,7 +185,7 @@
 <td><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.6.0-6666ff.svg" alt="minimal R version"></a></td>
 <td><a href="https://www.tidyverse.org/lifecycle/"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue" alt="Monthly downloads badge"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-15-red.svg" alt="Github Issues"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-11-red.svg" alt="Github Issues"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot/vignettes/"><img src="https://img.shields.io/badge/vignettes-0.6.5-orange.svg?colorB=FF5722" alt="vignettes"></a></td>
 </tr>
 <tr class="even">
@@ -199,7 +199,7 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
 <td><a href="https://hits.dwyl.com/IndrajeetPatil/ggstatsplot"><img src="https://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2020--12--19-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2020--12--21-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg" alt="GitHub last commit"></a></td>
 </tr>
 <tr class="even">
@@ -261,6 +261,16 @@
 <td>for distribution about labeled numeric variable</td>
 </tr>
 <tr class="odd">
+<td><code>ggscatterstats</code></td>
+<td><strong>scatterplots</strong></td>
+<td>for correlation between two variables</td>
+</tr>
+<tr class="even">
+<td><code>ggcorrmat</code></td>
+<td><strong>correlation matrices</strong></td>
+<td>for correlations between multiple variables</td>
+</tr>
+<tr class="odd">
 <td><code>ggpiestats</code></td>
 <td><strong>pie charts</strong></td>
 <td>for categorical data</td>
@@ -269,16 +279,6 @@
 <td><code>ggbarstats</code></td>
 <td><strong>bar charts</strong></td>
 <td>for categorical data</td>
-</tr>
-<tr class="odd">
-<td><code>ggscatterstats</code></td>
-<td><strong>scatterplots</strong></td>
-<td>for correlations between two variables</td>
-</tr>
-<tr class="even">
-<td><code>ggcorrmat</code></td>
-<td><strong>correlation matrices</strong></td>
-<td>for correlations between multiple variables</td>
 </tr>
 <tr class="odd">
 <td><code>ggcoefstats</code></td>
@@ -292,7 +292,6 @@
 <div id="summary-of-types-of-statistical-analyses" class="section level1">
 <h1 class="hasAnchor">
 <a href="#summary-of-types-of-statistical-analyses" class="anchor"></a>Summary of types of statistical analyses</h1>
-<p>Currently, it supports the most common types of statistical tests: <strong>parametric</strong>, <strong>nonparametric</strong>, <strong>robust</strong>, and <strong>bayesian</strong> versions of <strong>t-test</strong>/<strong>anova</strong>, <strong>correlation</strong> analyses, <strong>contingency table</strong> analysis, <strong>meta-analysis</strong>, and <strong>regression</strong> analyses.</p>
 <p>The table below summarizes all the different types of analyses currently supported in this package-</p>
 <table class="table">
 <colgroup>
@@ -309,7 +308,7 @@
 <th>Parametric</th>
 <th>Non-parametric</th>
 <th>Robust</th>
-<th>Bayes Factor</th>
+<th>Bayesian</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -1392,18 +1391,9 @@
 <span class="co"># as a default this function outputs a correlation matrix plot</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html">msleep</a></span>,
-  type <span class="op">=</span> <span class="st">"robust"</span>, <span class="co"># correlation method</span>
-  cor.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">sleep_rem</span>, <span class="va">awake</span><span class="op">:</span><span class="va">bodywt</span><span class="op">)</span>, <span class="co"># a range of variables can be selected</span>
-  cor.vars.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
-    <span class="st">"REM sleep"</span>, <span class="co"># variable names</span>
-    <span class="st">"time awake"</span>,
-    <span class="st">"brain weight"</span>,
-    <span class="st">"body weight"</span>
-  <span class="op">)</span>,
   colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#B2182B"</span>, <span class="st">"white"</span>, <span class="st">"#4D4D4D"</span><span class="op">)</span>,
   title <span class="op">=</span> <span class="st">"Correlalogram for mammals sleep dataset"</span>,
-  subtitle <span class="op">=</span> <span class="st">"sleep units: hours; weight units: kilograms"</span>,
-  caption <span class="op">=</span> <span class="st">"Source: `ggplot2` R package"</span>
+  subtitle <span class="op">=</span> <span class="st">"sleep units: hours; weight units: kilograms"</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggcorrmat1-1.png" width="100%"></p>
 <p>📝 <strong>Defaults</strong> return<br></p>
@@ -1420,6 +1410,7 @@
     .data <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="reference/movies_long.html">movies_long</a></span>,
     <span class="va">genre</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span><span class="op">)</span>
   <span class="op">)</span>,
+  type <span class="op">=</span> <span class="st">"robust"</span>, <span class="co"># correlation method</span>
   cor.vars <span class="op">=</span> <span class="va">length</span><span class="op">:</span><span class="va">votes</span>,
   colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#cbac43"</span>, <span class="st">"white"</span>, <span class="st">"#550000"</span><span class="op">)</span>,
   grouping.var <span class="op">=</span> <span class="va">genre</span>, <span class="co"># grouping variable</span>
@@ -1864,7 +1855,7 @@
 <h3 class="hasAnchor">
 <a href="#supported-models" class="anchor"></a>Supported models</h3>
 <p>Most of the regression models that are supported in the underlying packages are also supported by <code>ggcoefstats</code>. For example-</p>
-<p><code>aareg</code>, <code>anova</code>, <code>aov</code>, <code>aovlist</code>, <code>Arima</code>, <code>bam</code>, <code>bayesx</code>, <code>bayesGARCH</code>, <code>BBmm</code>, <code>BBreg</code>, <code>bcplm</code>, <code>betamfx</code>, <code>betaor</code>, <code>BFBayesFactor</code>, <code>bglmerMod</code>, <code>bife</code>, <code>bigglm</code>, <code>biglm</code>, <code>blavaan</code>, <code>bmlm</code>, <code>blmerMod</code>, <code>bracl</code>, <code>brglm</code>, <code>brglm2</code>, <code>brmsfit</code>, <code>brmultinom</code>, <code>btergm</code>, <code>cch</code>, <code>censReg</code>, <code>cgam</code>, <code>cgamm</code>, <code>cglm</code>, <code>clm</code>, <code>clm2</code>, <code>clmm</code>, <code>clmm2</code>, <code>coeftest</code>, <code>complmrob</code>, <code>confusionMatrix</code>, <code>coxme</code>, <code>coxph</code>, <code>coxph.penal</code>, <code>cpglm</code>, <code>cpglmm</code>, <code>crch</code>, <code>crq</code>, <code>DirichReg</code>, <code>drc</code>, <code>emmGrid</code>, <code>epi.2by2</code>, <code>ergm</code>, <code>feis</code>, <code>felm</code>, <code>fitdistr</code>, <code>fixest</code>, <code>flexsurvreg</code>, <code>gam</code>, <code>Gam</code>, <code>gamlss</code>, <code>garch</code>, <code>geeglm</code>, <code>glmc</code>, <code>glmerMod</code>, <code>glmmTMB</code>, <code>gls</code>, <code>glht</code>, <code>glm</code>, <code>glmm</code>, <code>glmmadmb</code>, <code>glmmPQL</code>, <code>glmRob</code>, <code>glmrob</code>, <code>glmx</code>, <code>gmm</code>, <code>HLfit</code>, <code>hurdle</code>, <code>ivFixed</code>, <code>ivprobit</code>, <code>ivreg</code>, <code>iv_robust</code>, <code>lavaan</code>, <code>lm</code>, <code>lm.beta</code>, <code>lmerMod</code>, <code>lmerModLmerTest</code>, <code>lmodel2</code>, <code>lmRob</code>, <code>lmrob</code>, <code>lm_robust</code>, <code>logitmfx</code>, <code>logitor</code>, <code>logitsf</code>, <code>LORgee</code>, <code>lqm</code>, <code>lqmm</code>, <code>lrm</code>, <code>manova</code>, <code>maov</code>, <code>margins</code>, <code>mcmc</code>, <code>mcmc.list</code>, <code>MCMCglmm</code>, <code>mclogit</code>, <code>mice</code>, <code>mmclogit</code>, <code>mediate</code>, <code>metafor</code>, <code>merMod</code>, <code>merModList</code>, <code>metaplus</code>, <code>mixor</code>, <code>mjoint</code>, <code>mle2</code>, <code>mlm</code>, <code>multinom</code>, <code>negbin</code>, <code>negbinmfx</code>, <code>negbinirr</code>, <code>nlmerMod</code>, <code>nlrq</code>, <code>nlreg</code>, <code>nls</code>, <code>orcutt</code>, <code>orm</code>, <code>plm</code>, <code>poissonmfx</code>, <code>poissonirr</code>, <code>polr</code>, <code>ridgelm</code>, <code>riskRegression</code>, <code>rjags</code>, <code>rlm</code>, <code>rlmerMod</code>, <code>robmixglm</code>, <code>rq</code>, <code>rqss</code>, <code>rrvglm</code>, <code>scam</code>, <code>semLm</code>, <code>semLme</code>, <code>slm</code>, <code>speedglm</code>, <code>speedlm</code>, <code>stanfit</code>, <code>stanreg</code>, <code>survreg</code>, <code>svyglm</code>, <code>svyolr</code>, <code>svyglm</code>, <code>tobit</code>, <code>truncreg</code>, <code>vgam</code>, <code>vglm</code>, <code>wbgee</code>, <code>wblm</code>, <code>zeroinfl</code>, etc.</p>
+<p><code>aareg</code>, <code>afex_aov</code>, <code>anova</code>, <code>aov</code>, <code>aovlist</code>, <code>Arima</code>, <code>bam</code>, <code>bayesx</code>, <code>bayesGARCH</code>, <code>BBmm</code>, <code>BBreg</code>, <code>bcplm</code>, <code>betamfx</code>, <code>betaor</code>, <code>BFBayesFactor</code>, <code>bglmerMod</code>, <code>bife</code>, <code>bigglm</code>, <code>biglm</code>, <code>blavaan</code>, <code>bmlm</code>, <code>blmerMod</code>, <code>bracl</code>, <code>brglm</code>, <code>brglm2</code>, <code>brmsfit</code>, <code>brmultinom</code>, <code>btergm</code>, <code>cch</code>, <code>censReg</code>, <code>cgam</code>, <code>cgamm</code>, <code>cglm</code>, <code>clm</code>, <code>clm2</code>, <code>clmm</code>, <code>clmm2</code>, <code>coeftest</code>, <code>complmrob</code>, <code>confusionMatrix</code>, <code>coxme</code>, <code>coxph</code>, <code>coxph.penal</code>, <code>cpglm</code>, <code>cpglmm</code>, <code>crch</code>, <code>crq</code>, <code>DirichReg</code>, <code>drc</code>, <code>emmGrid</code>, <code>epi.2by2</code>, <code>ergm</code>, <code>feis</code>, <code>felm</code>, <code>fitdistr</code>, <code>fixest</code>, <code>flexsurvreg</code>, <code>gam</code>, <code>Gam</code>, <code>gamlss</code>, <code>garch</code>, <code>geeglm</code>, <code>glmc</code>, <code>glmerMod</code>, <code>glmmTMB</code>, <code>gls</code>, <code>glht</code>, <code>glm</code>, <code>glmm</code>, <code>glmmadmb</code>, <code>glmmPQL</code>, <code>glmRob</code>, <code>glmrob</code>, <code>glmx</code>, <code>gmm</code>, <code>HLfit</code>, <code>hurdle</code>, <code>ivFixed</code>, <code>ivprobit</code>, <code>ivreg</code>, <code>iv_robust</code>, <code>lavaan</code>, <code>lm</code>, <code>lm.beta</code>, <code>lmerMod</code>, <code>lmerModLmerTest</code>, <code>lmodel2</code>, <code>lmRob</code>, <code>lmrob</code>, <code>lm_robust</code>, <code>logitmfx</code>, <code>logitor</code>, <code>logitsf</code>, <code>LORgee</code>, <code>lqm</code>, <code>lqmm</code>, <code>lrm</code>, <code>manova</code>, <code>maov</code>, <code>margins</code>, <code>mcmc</code>, <code>mcmc.list</code>, <code>MCMCglmm</code>, <code>mclogit</code>, <code>mice</code>, <code>mmclogit</code>, <code>mediate</code>, <code>metafor</code>, <code>merMod</code>, <code>merModList</code>, <code>metaplus</code>, <code>mixor</code>, <code>mjoint</code>, <code>mle2</code>, <code>mlm</code>, <code>multinom</code>, <code>negbin</code>, <code>negbinmfx</code>, <code>negbinirr</code>, <code>nlmerMod</code>, <code>nlrq</code>, <code>nlreg</code>, <code>nls</code>, <code>orcutt</code>, <code>orm</code>, <code>plm</code>, <code>poissonmfx</code>, <code>poissonirr</code>, <code>polr</code>, <code>ridgelm</code>, <code>riskRegression</code>, <code>rjags</code>, <code>rlm</code>, <code>rlmerMod</code>, <code>robmixglm</code>, <code>rq</code>, <code>rqss</code>, <code>rrvglm</code>, <code>scam</code>, <code>semLm</code>, <code>semLme</code>, <code>slm</code>, <code>speedglm</code>, <code>speedlm</code>, <code>stanfit</code>, <code>stanreg</code>, <code>survreg</code>, <code>svyglm</code>, <code>svyolr</code>, <code>svyglm</code>, <code>tobit</code>, <code>truncreg</code>, <code>vgam</code>, <code>vglm</code>, <code>wbgee</code>, <code>wblm</code>, <code>zeroinfl</code>, etc.</p>
 <p>Although not shown here, this function can also be used to carry out both frequentist, robust, and Bayesian random-effects meta-analysis.</p>
 </div>
 <div id="summary-of-meta-analysis-tests" class="section level3">

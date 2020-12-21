@@ -59,11 +59,11 @@ Function | Plot | Description
 `ggwithinstats` | **violin plots** | for comparisons *within* groups/conditions
 `gghistostats` | **histograms** | for distribution about numeric variable
 `ggdotplotstats` | **dot plots/charts** | for distribution about labeled numeric variable
-`ggpiestats`  | **pie charts** | for categorical data 
-`ggbarstats`  | **bar charts** | for categorical data 
-`ggscatterstats` | **scatterplots** | for correlations between two variables
-`ggcorrmat`  | **correlation matrices** | for correlations between multiple variables
-`ggcoefstats`  | **dot-and-whisker plots** | for regression models and meta-analysis
+`ggscatterstats` | **scatterplots** | for correlation between two variables
+`ggcorrmat` | **correlation matrices** | for correlations between multiple variables
+`ggpiestats` | **pie charts** | for categorical data 
+`ggbarstats` | **bar charts** | for categorical data 
+`ggcoefstats` | **dot-and-whisker plots** | for regression models and meta-analysis
 
 In addition to these basic plots, `ggstatsplot` also provides **`grouped_`**
 versions (see below) that makes it easy to repeat the same analysis for
@@ -71,15 +71,10 @@ any grouping variable.
 
 # Summary of types of statistical analyses
 
-Currently, it supports the most common types of statistical tests:
-**parametric**, **nonparametric**, **robust**, and **bayesian** versions of
-**t-test**/**anova**, **correlation** analyses, **contingency table** analysis,
-**meta-analysis**, and **regression** analyses.
-
 The table below summarizes all the different types of analyses currently
 supported in this package-
 
-Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
+Functions | Description | Parametric | Non-parametric | Robust | Bayesian
 ------- | ------------------ | ---- | ----- | ----| ----- 
 `ggbetweenstats` | Between group/condition comparisons | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
 `ggwithinstats` | Within group/condition comparisons | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
@@ -1078,11 +1073,11 @@ ggstatsplot::ggcoefstats(
 Most of the regression models that are supported in the underlying packages are
 also supported by `ggcoefstats`. For example-
 
-`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `bam`, `bayesx`, `bayesGARCH`,
-`BBmm`, `BBreg`, `bcplm`, `betamfx`, `betaor`, `BFBayesFactor`, `bglmerMod`,
-`bife`, `bigglm`, `biglm`, `blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm`,
-`brglm2`, `brmsfit`, `brmultinom`, `btergm`, `cch`, `censReg`, `cgam`, `cgamm`,
-`cglm`, `clm`, `clm2`, `clmm`, `clmm2`, `coeftest`, `complmrob`,
+`aareg`, `afex_aov`, `anova`, `aov`, `aovlist`, `Arima`, `bam`, `bayesx`,
+`bayesGARCH`, `BBmm`, `BBreg`, `bcplm`, `betamfx`, `betaor`, `BFBayesFactor`,
+`bglmerMod`, `bife`, `bigglm`, `biglm`, `blavaan`, `bmlm`, `blmerMod`, `bracl`,
+`brglm`, `brglm2`, `brmsfit`, `brmultinom`, `btergm`, `cch`, `censReg`, `cgam`,
+`cgamm`, `cglm`, `clm`, `clm2`, `clmm`, `clmm2`, `coeftest`, `complmrob`,
 `confusionMatrix`, `coxme`, `coxph`, `coxph.penal`, `cpglm`, `cpglmm`, `crch`,
 `crq`, `DirichReg`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`,
 `fitdistr`, `fixest`, `flexsurvreg`, `gam`, `Gam`, `gamlss`, `garch`, `geeglm`,

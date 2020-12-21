@@ -78,11 +78,11 @@ be invariant across models:
 Most of the regression models that are supported in the underlying packages are
 also supported by `ggcoefstats`. For example-
 
-`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `bam`, `bayesx`, `bayesGARCH`,
-`BBmm`, `BBreg`, `bcplm`, `betamfx`, `betaor`, `BFBayesFactor`, `bglmerMod`,
-`bife`, `bigglm`, `biglm`, `blavaan`, `bmlm`, `blmerMod`, `bracl`, `brglm`,
-`brglm2`, `brmsfit`, `brmultinom`, `btergm`, `cch`, `censReg`, `cgam`, `cgamm`,
-`cglm`, `clm`, `clm2`, `clmm`, `clmm2`, `coeftest`, `complmrob`,
+`aareg`, `afex_aov`, `anova`, `aov`, `aovlist`, `Arima`, `bam`, `bayesx`,
+`bayesGARCH`, `BBmm`, `BBreg`, `bcplm`, `betamfx`, `betaor`, `BFBayesFactor`,
+`bglmerMod`, `bife`, `bigglm`, `biglm`, `blavaan`, `bmlm`, `blmerMod`, `bracl`,
+`brglm`, `brglm2`, `brmsfit`, `brmultinom`, `btergm`, `cch`, `censReg`, `cgam`,
+`cgamm`, `cglm`, `clm`, `clm2`, `clmm`, `clmm2`, `coeftest`, `complmrob`,
 `confusionMatrix`, `coxme`, `coxph`, `coxph.penal`, `cpglm`, `cpglmm`, `crch`,
 `crq`, `DirichReg`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`,
 `fitdistr`, `fixest`, `flexsurvreg`, `gam`, `Gam`, `gamlss`, `garch`, `geeglm`,
@@ -565,6 +565,31 @@ ggstatsplot::combine_plots(
   ggstatsplot::ggcoefstats(m1_afex, title = "example-1"),
   ggstatsplot::ggcoefstats(m2_afex, title = "example-2"),
   title.text = "analysis of factorial experiments (using `afex`)"
+)
+```
+
+## anova using `afex` (`afex_aov`)
+
+```{r afex_aov, fig.height = 6, fig.width = 6}
+# setup
+set.seed(123)
+library(afex)
+data(obk.long)
+
+# model
+fit_all <-
+  afex::aov_ez(
+    "id",
+    "value",
+    obk.long,
+    between = c("treatment"),
+    within = c("phase")
+  )
+
+# plot
+ggcoefstats(
+  x = fit_all,
+  title = "anova using `afex`"
 )
 ```
 

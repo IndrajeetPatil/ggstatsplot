@@ -79,7 +79,8 @@
 #'
 #' @import ggplot2
 #' @importFrom rlang exec !!!
-#' @importFrom dplyr select mutate matches vars all_vars filter_at row_number
+#' @importFrom dplyr select mutate matches vars all_vars filter_at row_number last
+#' @importFrom dplyr group_by ungroup
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom tidyr unite
 #' @importFrom insight is_model find_statistic standardize_names
@@ -269,19 +270,23 @@ ggcoefstats <- function(x,
       insight::standardize_names(data = ., style = "broom") %>%
       dplyr::rename_all(., ~ gsub("omega2.|eta2.", "", .x))
 
+    # anova objects need further cleaning
     if (class(x)[[1]] %in% c("aov", "aovlist", "anova", "Gam", "manova", "maov")) {
-      # creating numerator and denominator degrees of freedom
       if (dim(dplyr::filter(tidy_df, term == "Residuals"))[[1]] > 0L) {
-        tidy_df$df2 <- tidy_df$df[nrow(tidy_df)]
+        if ("group" %in% names(tidy_df)) tidy_df %<>% group_by(group)
+        # creating a new column for residual degrees of freedom
+        tidy_df %<>% dplyr::mutate(df.error = dplyr::last(df))
       }
-
-      # final cleanup
-      tidy_df %<>%
-        dplyr::filter(!is.na(statistic)) %>% # for `aovlist` objects
-        dplyr::rename("df1" = "df")
 
       # renaming the `xlab` according to the estimate chosen
       xlab <- paste("partial", " ", effsize, "-squared", sep = "")
+
+      # final cleanup
+      tidy_df %<>%
+        dplyr::filter(!is.na(statistic)) %>%
+        dplyr::select(-dplyr::matches("sq$")) %>%
+        dplyr::mutate(estimate.type = xlab) %>%
+        dplyr::ungroup()
     }
   }
 
@@ -383,9 +388,9 @@ ggcoefstats <- function(x,
   if (isTRUE(insight::is_model(x))) {
     # creating glance dataframe
     glance_df <-
-      suppressWarnings(performance::model_performance(x, verbose = FALSE)) %>%
-      parameters::standardize_names(data = ., style = "broom") %>%
-      as_tibble(.)
+      suppressWarnings(performance::model_performance(x, verbose = FALSE) %>%
+        parameters::standardize_names(data = ., style = "broom") %>%
+        as_tibble(.))
 
     # no meta-analysis in this context
     meta.analytic.effect <- FALSE

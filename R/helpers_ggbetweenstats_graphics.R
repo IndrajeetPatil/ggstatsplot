@@ -77,10 +77,7 @@ mean_ggrepel <- function(plot,
         style = "broom"
       )
     ) %>%
-    dplyr::ungroup(.)
-
-  # create a label
-  mean_df %<>%
+    dplyr::ungroup(.) %>%
     dplyr::rowwise() %>%
     dplyr::mutate(
       label = paste0("list(~italic(widehat(mu))[", centrality, "]=='", format_num(estimate, k), "')")
@@ -89,8 +86,6 @@ mean_ggrepel <- function(plot,
     dplyr::mutate(n_label = paste0({{ x }}, "\n(n = ", n, ")")) %>%
     dplyr::arrange({{ x }}) %>%
     dplyr::select({{ x }}, !!as.character(rlang::ensym(y)) := estimate, dplyr::matches("label"))
-
-
 
   # if there should be lines connecting mean values across groups
   if (isTRUE(mean.path)) {
