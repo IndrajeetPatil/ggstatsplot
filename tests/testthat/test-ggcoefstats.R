@@ -321,7 +321,7 @@ testthat::test_that(
       ggcoefstats(
         x = mod,
         conf.level = 0.99,
-        exclude.intercept = FALSE,
+        exclude.intercept = TRUE,
         only.significant = TRUE,
         k = 3
       )
@@ -332,19 +332,18 @@ testthat::test_that(
     # checking panel parameters
     testthat::expect_equal(
       pb$layout$panel_params[[1]]$y$breaks,
-      structure(c("(Intercept)", "mpg", "am", "mpg:am"), pos = 1:4)
+      structure(c("mpg", "am", "mpg:am"), pos = 1:3)
     )
 
     # checking layered data
     testthat::expect_equal(dim(pb$data[[1]]), c(1L, 7L))
-    testthat::expect_equal(dim(pb$data[[2]]), c(4L, 13L))
-    testthat::expect_equal(dim(pb$data[[3]]), c(4L, 10L))
+    testthat::expect_equal(dim(pb$data[[2]]), c(3L, 13L))
+    testthat::expect_equal(dim(pb$data[[3]]), c(3L, 10L))
 
     # checking ggrepel label layer
     testthat::expect_identical(
       pb$data[[4]]$label,
       c(
-        "list(~widehat(italic(beta))==6.438, ~italic(t)(28)==13.765, ~italic(p)=='5.48e-14')",
         "list(~widehat(italic(beta))==-0.156, ~italic(t)(28)==-5.840, ~italic(p)=='2.81e-06')",
         "list(~widehat(italic(beta))==-1.809, ~italic(t)(28)==-2.615, ~italic(p)=='0.014')",
         NA_character_
@@ -352,7 +351,7 @@ testthat::test_that(
     )
     testthat::expect_identical(
       unclass(pb$data[[4]]$colour),
-      c("#1B9E77FF", "#D95F02FF", "#7570B3FF", "#E7298AFF")
+      c("#1B9E77FF", "#D95F02FF", "#7570B3FF")
     )
 
     # testing specific geoms
@@ -850,8 +849,7 @@ testthat::test_that(
       tidy_df2,
       structure(list(
         term = structure(1:7, .Label = c(
-          "N", "P", "K",
-          "N:P", "N:K", "P:K", "N:P:K"
+          "N", "P", "K", "N:P", "N:K", "P:K", "N:P:K"
         ), class = "factor"), df = c(
           1, 1,
           1, 1, 1, 1, 1

@@ -10,6 +10,7 @@ testthat::test_that(
     p <-
       ggstatsplot::ggcorrmat(
         data = iris,
+        cor.vars.names = "x",
         type = "p",
         title = "Iris dataset",
         subtitle = "By Edgar Anderson",
@@ -152,7 +153,7 @@ testthat::test_that(
         data = anscombe,
         type = "r",
         partial = TRUE,
-        cor.vars.names = "X"
+        cor.vars.names = names(anscombe)
       )
     pb <- ggplot2::ggplot_build(p)
 

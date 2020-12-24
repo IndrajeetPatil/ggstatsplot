@@ -418,7 +418,7 @@ Following (within-subjects) tests are carried out for each type of analyses-
 
 Type | No. of groups | Test | Function used
 ----------- | --- | -------------------------
-Parametric | > 2 | One-way repeated measures ANOVA | `ez::ezANOVA`
+Parametric | > 2 | One-way repeated measures ANOVA | `afex::aov_ez`
 Non-parametric | > 2 | Friedman rank sum test | `stats::friedman.test`
 Robust | > 2 | Heteroscedastic one-way repeated measures ANOVA for trimmed means | `WRS2::rmanova`
 Bayes Factor | > 2 | One-way repeated measures ANOVA | `BayesFactor::anovaBF`

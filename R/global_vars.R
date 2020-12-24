@@ -9,8 +9,6 @@ utils::globalVariables(
     "conf.low",
     "counts",
     "df.error",
-    "df1",
-    "df2",
     "estimate",
     "group1",
     "group2",
@@ -30,7 +28,10 @@ utils::globalVariables(
     ".label",
     ".counts",
     ".p.label",
-    "trimmed.mean"
+    "trimmed.mean",
+    "group",
+    "r.method",
+    "r.method.text"
   ),
   package = "ggstatsplot",
   add = FALSE
