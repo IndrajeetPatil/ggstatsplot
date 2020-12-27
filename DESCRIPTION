@@ -62,7 +62,7 @@ Remotes:
     easystats/insight,
     easystats/bayestestR,
     easystats/effectsize,
-    vincentarelbundock/parameters@centralize,
+    easystats/parameters,
     easystats/performance,
     IndrajeetPatil/tidyBF,
     IndrajeetPatil/statsExpressions

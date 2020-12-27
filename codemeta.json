@@ -20,7 +20,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R Under development (unstable) (2020-12-16 r79643)",
+  "runtimePlatform": "R version 4.0.3 (2020-10-10)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -322,7 +322,7 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=parameters"
+      "sameAs": "https://github.com/easystats/parameters"
     },
     {
       "@type": "SoftwareApplication",
@@ -474,6 +474,5 @@
     }
   ],
   "funder": {},
-  "fileSize": "89232.331KB",
-  "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
+  "fileSize": "89422.776KB"
 }
