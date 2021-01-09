@@ -29,7 +29,7 @@ testthat::test_that(
     # subtitle
     set.seed(123)
     p_subtitle <-
-      statsExpressions::expr_anova_parametric(
+      statsExpressions::expr_oneway_anova(
         data = ggplot2::msleep,
         x = vore,
         y = brainwt,
@@ -615,7 +615,7 @@ testthat::test_that(
 
     set.seed(123)
     sub <-
-      statsExpressions::expr_t_parametric(
+      statsExpressions::expr_t_twosample(
         data = df,
         x = am,
         y = wt,

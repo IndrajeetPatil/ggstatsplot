@@ -24,7 +24,7 @@
 #' @param mean.path.args,point.path.args A list of additional aesthetic
 #'   arguments passed on to `geom_path` connecting raw data points and mean
 #'   points.
-#' @inheritParams statsExpressions::expr_anova_parametric
+#' @inheritParams statsExpressions::expr_oneway_anova
 #'
 #' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggbetweenstats}},
 #'  \code{\link{grouped_ggwithinstats}}
@@ -171,8 +171,10 @@ ggwithinstats <- function(data,
     # preparing the bayes factor message
     if (type == "parametric" && isTRUE(bf.message)) {
       caption <-
-        caption_function_switch(
+        function_switch(
           test = test,
+          element = "caption",
+          # arguments relevant for expression helper functions
           data = data,
           x = rlang::as_string(x),
           y = rlang::as_string(y),
@@ -186,17 +188,17 @@ ggwithinstats <- function(data,
 
     # extracting the subtitle using the switch function
     subtitle <-
-      subtitle_function_switch(
-        # switch based on
-        type = type,
+      function_switch(
         test = test,
+        element = "subtitle",
         # arguments relevant for expression helper functions
         data = data,
-        x = {{ x }},
-        y = {{ y }},
+        x = rlang::as_string(x),
+        y = rlang::as_string(y),
         paired = TRUE,
+        type = type,
         effsize.type = effsize.type,
-        var.equal = TRUE, ,
+        var.equal = TRUE,
         bf.prior = bf.prior,
         tr = tr,
         nboot = nboot,
@@ -207,7 +209,7 @@ ggwithinstats <- function(data,
 
   # return early if anything other than plot
   if (output != "plot") {
-    return(switch(EXPR = output, "caption" = caption, subtitle))
+    return(switch(output, "caption" = caption, subtitle))
   }
 
   # --------------------------------- basic plot ------------------------------

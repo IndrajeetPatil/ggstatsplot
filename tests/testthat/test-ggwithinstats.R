@@ -39,7 +39,7 @@ testthat::test_that(
     # subtitle
     set.seed(123)
     p1_subtitle <-
-      statsExpressions::expr_t_parametric(
+      statsExpressions::expr_t_twosample(
         data = data_bugs_2,
         x = condition,
         y = desire,
@@ -302,7 +302,7 @@ testthat::test_that(
       # subtitle
       set.seed(123)
       p1_subtitle <-
-        statsExpressions::expr_anova_parametric(
+        statsExpressions::expr_oneway_anova(
           data = WineTasting,
           x = "Wine",
           y = Taste,
@@ -425,7 +425,7 @@ testthat::test_that(
 
       set.seed(123)
       p1_subtitle <-
-        statsExpressions::expr_anova_nonparametric(
+        statsExpressions::expr_oneway_anova(
           data = iris_long,
           x = condition,
           y = value,
@@ -449,11 +449,12 @@ testthat::test_that(
 
       set.seed(123)
       p2_subtitle <-
-        statsExpressions::expr_anova_robust(
+        statsExpressions::expr_oneway_anova(
           data = iris_long,
           x = condition,
           y = value,
           paired = TRUE,
+          type = "r",
           conf.level = 0.90
         )
 
@@ -474,11 +475,12 @@ testthat::test_that(
 
       set.seed(123)
       p3_subtitle <-
-        suppressWarnings(statsExpressions::expr_t_robust(
+        suppressWarnings(statsExpressions::expr_t_twosample(
           data = ggstatsplot::VR_dilemma,
           x = modality,
           y = score,
           paired = TRUE,
+          type = "r",
           k = 3,
           nboot = 25
         ))
@@ -501,15 +503,16 @@ testthat::test_that(
 
       set.seed(123)
       p4_subtitle <-
-        statsExpressions::expr_t_nonparametric(
+        suppressWarnings(statsExpressions::expr_t_twosample(
           data = ggstatsplot::VR_dilemma,
           x = modality,
           y = score,
+          type = "np",
           conf.level = 0.50,
           paired = TRUE,
           k = 4,
           nboot = 15
-        )
+        ))
 
       # built plots
       pb1 <- ggplot2::ggplot_build(p1)

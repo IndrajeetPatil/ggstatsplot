@@ -326,7 +326,7 @@ Type | No. of groups | Test | Function used
 Parametric | > 2 | One-way repeated measures ANOVA | `afex::aov_ez`
 Non-parametric | > 2 | Friedman rank sum test | `stats::friedman.test`
 Robust | > 2 | Heteroscedastic one-way repeated measures ANOVA for trimmed means | `WRS2::rmanova`
-Bayesian | > 2 | One-way repeated measures ANOVA | `BayesFactor::anovaBF`
+Bayes Factor | > 2 | One-way repeated measures ANOVA | `BayesFactor::anovaBF`
 Parametric | 2 | Student's *t*-test | `stats::t.test`
 Non-parametric | 2 | Wilcoxon signed-rank test | `stats::wilcox.test`
 Robust | 2 | Yuen's test on trimmed means for dependent samples | `WRS2::yuend`
@@ -338,15 +338,16 @@ of test-
 Type | No. of groups | Effect size | CI? | Function used
 ----------- | --- | ------------------------- | --- | -----
 Parametric | > 2 | $\eta_{p}^2$, $\omega_{p}^2$ | <font color="green">Yes<font> | `effectsize::omega_squared`, `effectsize::eta_squared`
-Non-parametric | > 2 | $W_{Kendall}$ (Kendall's coefficient of concordance) | <font color="green">Yes<font> | `rcompanion::kendallW`
+Non-parametric | > 2 | $W_{Kendall}$ (Kendall's coefficient of concordance) | <font color="green">Yes<font> | `effectsize::kendalls_w`
 Robust | > 2 | <font color="red">No<font> | <font color="red">No<font> | `NA`
-Bayesian | > 2 | $R_{posterior}^2$ | <font color="green">Yes<font> | `performance::r2_bayes`
+Bayes Factor | > 2 | $R_{posterior}^2$ | <font color="green">Yes<font> | `performance::r2_bayes`
 Parametric | 2 | Cohen's *d*, Hedge's *g* | <font color="green">Yes<font> | `effectsize::cohens_d`, `effectsize::hedges_g`
-Non-parametric | 2 | *r* (computed as $Z/\sqrt{N}$) | <font color="green">Yes<font> | `rcompanion::wilcoxonR`
+Non-parametric | 2 | *r* (rank-biserial correlation) | <font color="green">Yes<font> | `effectsize::rank_biserial`
 Robust | 2 |  $\delta_{R}$ (robust standardized difference) | <font color="green">Yes<font> | `WRS2::dep.effect`
 Bayesian | 2 | $\delta_{posterior}$ | <font color="green">Yes<font> | `bayestestR::describe_posterior`
 
-Following multiple pairwise comparison tests are supported-
+Here is a summary of *multiple pairwise comparison* tests supported in
+*ggwithinstats*-
 
 Type | Test | *p*-value adjustment? | Function used
 ----------- | ---------------------------- | --- | -----

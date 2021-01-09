@@ -78,27 +78,28 @@ be invariant across models:
 Most of the regression models that are supported in the underlying packages are
 also supported by `ggcoefstats`. For example-
 
-`aareg`, `afex_aov`, `anova`, `aov`, `aovlist`, `Arima`, `bam`, `bayesx`,
-`bayesGARCH`, `BBmm`, `BBreg`, `bcplm`, `betamfx`, `betaor`, `BFBayesFactor`,
-`bglmerMod`, `bife`, `bigglm`, `biglm`, `blavaan`, `bmlm`, `blmerMod`, `bracl`,
-`brglm`, `brglm2`, `brmsfit`, `brmultinom`, `btergm`, `cch`, `censReg`, `cgam`,
-`cgamm`, `cglm`, `clm`, `clm2`, `clmm`, `clmm2`, `coeftest`, `complmrob`,
-`confusionMatrix`, `coxme`, `coxph`, `coxph.penal`, `cpglm`, `cpglmm`, `crch`,
-`crq`, `DirichReg`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`,
-`fitdistr`, `fixest`, `flexsurvreg`, `gam`, `Gam`, `gamlss`, `garch`, `geeglm`,
-`glmc`, `glmerMod`, `glmmTMB`, `gls`, `glht`, `glm`, `glmm`, `glmmadmb`,
-`glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`, `HLfit`, `hurdle`, `ivFixed`,
-`ivprobit`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`,
-`lmerModLmerTest`, `lmodel2`, `lmRob`, `lmrob`, `lm_robust`, `logitmfx`,
-`logitor`, `logitsf`, `LORgee`, `lqm`, `lqmm`, `lrm`, `manova`, `maov`,
-`margins`, `mcmc`, `mcmc.list`, `MCMCglmm`, `mclogit`, `mice`, `mmclogit`,
-`mediate`, `metafor`, `merMod`, `merModList`, `metaplus`, `mixor`, `mjoint`,
-`mle2`, `mlm`, `multinom`, `negbin`, `negbinmfx`, `negbinirr`, `nlmerMod`,
-`nlrq`, `nlreg`, `nls`, `orcutt`, `orm`, `plm`, `poissonmfx`, `poissonirr`,
-`polr`, `ridgelm`, `riskRegression`, `rjags`, `rlm`, `rlmerMod`, `robmixglm`,
-`rq`, `rqss`, `rrvglm`, `scam`, `semLm`, `semLme`, `slm`, `speedglm`, `speedlm`,
-`stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`,
-`truncreg`, `vgam`, `vglm`, `wbgee`, `wblm`, `zeroinfl`, etc.
+`aareg`, `afex_aov`, `anova`, `anova.mlm`, `anova`, `aov`, `aovlist`, `Arima`,
+`bam`, `bayesx`, `bayesGARCH`, `BBmm`, `BBreg`, `bcplm`, `betamfx`, `betaor`,
+`BFBayesFactor`, `bglmerMod`, `bife`, `bigglm`, `biglm`, `blavaan`, `bmlm`,
+`blmerMod`, `bracl`, `brglm`, `brglm2`, `brmsfit`, `brmultinom`, `btergm`,
+`cch`, `censReg`, `cgam`, `cgamm`, `cglm`, `clm`, `clm2`, `clmm`, `clmm2`,
+`coeftest`, `complmrob`, `confusionMatrix`, `coxme`, `coxph`, `coxph.penal`,
+`cpglm`, `cpglmm`, `crch`, `crq`, `DirichReg`, `drc`, `emmGrid`, `epi.2by2`,
+`ergm`, `feis`, `felm`, `fitdistr`, `fixest`, `flexsurvreg`, `gam`, `Gam`,
+`gamlss`, `garch`, `geeglm`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `glht`,
+`glm`, `glmm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`,
+`HLfit`, `hurdle`, `ivFixed`, `ivprobit`, `ivreg`, `iv_robust`, `lavaan`, `lm`,
+`lm.beta`, `lmerMod`, `lmerModLmerTest`, `lmodel2`, `lmRob`, `lmrob`,
+`lm_robust`, `logitmfx`, `logitor`, `logitsf`, `LORgee`, `lqm`, `lqmm`, `lrm`,
+`manova`, `maov`, `margins`, `mcmc`, `mcmc.list`, `MCMCglmm`, `mclogit`, `mice`,
+`mmclogit`, `mediate`, `metafor`, `merMod`, `merModList`, `metaplus`, `mixor`,
+`mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `negbinmfx`, `negbinirr`,
+`nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `orm`, `plm`, `poissonmfx`,
+`poissonirr`, `polr`, `ridgelm`, `riskRegression`, `rjags`, `rlm`, `rlmerMod`,
+`robmixglm`, `rq`, `rqs`, `rqss`, `rrvglm`, `scam`, `semLm`, `semLme`, `slm`,
+`speedglm`, `speedlm`, `stanfit`, `stanreg`, `summary.lm`, `survreg`, `svyglm`,
+`svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`, `vglm`, `wbgee`, `wblm`,
+`zeroinfl`, etc.
 
 # Summary of meta-analyis tests
 
@@ -328,9 +329,9 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
-## Anova with `car` package (`anova`)
+## anova with `car` package (`Anova`)
 
-```{r anova_car, fig.height = 6, fig.width = 6}
+```{r Anova, fig.height = 6, fig.width = 6}
 # setup
 set.seed(123)
 library(car)
@@ -348,6 +349,50 @@ mod_Anova <-
 ggstatsplot::ggcoefstats(
   x = mod_Anova,
   title = "Anova with `car`"
+)
+```
+
+## ANOVA with `car` package on multiple linear models (`Anova.mlm`)
+
+```{r Anova.mlm, fig.height = 6, fig.width = 6, eval=FALSE}
+# setup
+set.seed(123)
+library(car)
+
+# data
+dv <- c(1, 3, 4, 2, 2, 3, 2, 5, 6, 3, 4, 4, 3, 5, 6)
+subject <- factor(c(
+  "s1", "s1", "s1", "s2", "s2", "s2", "s3", "s3", "s3",
+  "s4", "s4", "s4", "s5", "s5", "s5"
+))
+myfactor <- factor(c(
+  "f1", "f2", "f3", "f1", "f2", "f3", "f1", "f2", "f3",
+  "f1", "f2", "f3", "f1", "f2", "f3"
+))
+mydata <- data.frame(dv, subject, myfactor)
+
+dvm <- with(mydata, cbind(
+  dv[myfactor == "f1"],
+  dv[myfactor == "f2"], dv[myfactor == "f3"]
+))
+
+# model
+mlm1 <- lm(dvm ~ 1)
+
+rfactor <- factor(c("f1", "f2", "f3"))
+
+# model
+mlm1.aov <-
+  car::Anova(mlm1,
+    idata = data.frame(rfactor),
+    idesign = ~rfactor,
+    type = "III"
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mlm1.aov,
+  title = "ANOVA with `car` on multiple linear models"
 )
 ```
 
@@ -405,6 +450,8 @@ ggstatsplot::ggcoefstats(
   subtitle = "Source: www.imdb.com"
 )
 ```
+
+The same output will also be returned for objects of type `summary.lm`.
 
 ## standardized regression coefficients with `lm` (`lm.beta`)
 
@@ -3356,6 +3403,29 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
+## multiple response quantile regression (`rqs`)
+
+```{r rqs, fig.height = 7, fig.width = 6}
+# setup
+set.seed(123)
+library(quantreg)
+data("engel")
+
+# model
+fm <-
+  quantreg::rq(
+    formula = foodexp ~ income,
+    data = engel,
+    tau = 1:4 / 10
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = fm,
+  title = "multiple response quantile regression (`rqs`)"
+)
+```
+
 ## nonlinear quantile regression estimates (`nlrq`)
 
 ```{r nlrq, fig.height = 5, fig.width = 5}
@@ -3590,6 +3660,32 @@ g_gamlss <-
 ggstatsplot::ggcoefstats(
   x = g_gamlss,
   title = "generalized additive models \nfor location scale and shape"
+)
+```
+
+## Bayesian additive models for location scale and shape (`bamlss`)
+
+```{r bamlss, fig.height = 5, fig.width = 6}
+# setup
+set.seed(123)
+library(bamlss)
+data("SwissLabor", package = "AER")
+
+# formula
+f <- participation ~ income + age + education + youngkids + oldkids + foreign + I(age^2)
+
+# model
+b_bamlss <-
+  bamlss::bamlss(
+    formula = f,
+    family = "binomial",
+    data = SwissLabor
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = b_bamlss,
+  title = "Bayesian additive models \nfor location scale and shape"
 )
 ```
 

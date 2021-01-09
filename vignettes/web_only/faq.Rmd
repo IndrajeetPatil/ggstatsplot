@@ -53,7 +53,7 @@ library(ggplot2)
 library(statsExpressions)
 
 # extracting detailed expression
-(res_expr <- expr_anova_parametric(iris, Species, Sepal.Length, var.equal = TRUE))
+(res_expr <- expr_oneway_anova(iris, Species, Sepal.Length, var.equal = TRUE))
 
 # adapting the details to your liking
 ggplot(iris, aes(x = Species, y = Sepal.Length)) +

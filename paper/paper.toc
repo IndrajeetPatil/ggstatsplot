@@ -4,8 +4,8 @@
 \contentsline {section}{\numberline {2}\texttt {ggstatsplot} at a glance}{2}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Summary of types of plots included}{2}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Summary of types of statistical analyses}{3}{subsection.2.2}%
-\contentsline {section}{\numberline {3}Graphic design principles}{3}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Graphical perception}{3}{subsection.3.1}%
+\contentsline {section}{\numberline {3}Graphic design principles}{4}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Graphical perception}{4}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Graphical excellence}{9}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}Statistical variation}{10}{subsection.3.3}%
 \contentsline {section}{\numberline {4}Statistical analysis}{12}{section.4}%

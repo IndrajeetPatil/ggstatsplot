@@ -95,10 +95,9 @@
 #'   `ggrepel::geom_label_repel` geoms, which are involved in mean plotting.
 #' @param  ggsignif.args A list of additional aesthetic
 #'   arguments to be passed to `ggsignif::geom_signif`.
-#' @inheritParams statsExpressions::expr_anova_parametric
-#' @inheritParams statsExpressions::expr_t_parametric
+#' @inheritParams statsExpressions::expr_oneway_anova
+#' @inheritParams statsExpressions::expr_t_twosample
 #' @inheritParams statsExpressions::expr_t_onesample
-#' @inheritParams statsExpressions::expr_anova_robust
 #'
 #' @import ggplot2
 #'
@@ -253,8 +252,10 @@ ggbetweenstats <- function(data,
     # preparing the Bayes factor message
     if (type == "parametric" && isTRUE(bf.message)) {
       caption <-
-        caption_function_switch(
+        function_switch(
           test = test,
+          element = "caption",
+          # arguments relevant for expression helper functions
           data = data,
           x = rlang::as_string(x),
           y = rlang::as_string(y),
@@ -268,15 +269,15 @@ ggbetweenstats <- function(data,
 
     # extracting the subtitle using the switch function
     subtitle <-
-      subtitle_function_switch(
-        # switch based on
-        type = type,
+      function_switch(
         test = test,
+        element = "subtitle",
         # arguments relevant for expression helper functions
         data = data,
-        x = {{ x }},
-        y = {{ y }},
+        x = rlang::as_string(x),
+        y = rlang::as_string(y),
         paired = FALSE,
+        type = type,
         effsize.type = effsize.type,
         var.equal = var.equal,
         bf.prior = bf.prior,
@@ -289,7 +290,7 @@ ggbetweenstats <- function(data,
 
   # return early if anything other than plot
   if (output != "plot") {
-    return(switch(EXPR = output, "caption" = caption, subtitle))
+    return(switch(output, "caption" = caption, subtitle))
   }
 
   # -------------------------- basic plot -----------------------------------

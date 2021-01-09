@@ -2,19 +2,15 @@
 #'
 #' @title ggstatsplot: 'ggplot2' Based Plots with Statistical Details
 #'
-#' @description `ggstatsplot` is an extension of `ggplot2` package for creating
-#'   graphics with details from statistical tests included in the plots
-#'   themselves and targeted primarily at behavioral sciences community to
-#'   provide a one-line code to produce information-rich plots. In a typical
-#'   exploratory data analysis workflow, data visualization and statistical
-#'   modeling are two different phases: visualization informs modeling, and
-#'   modeling in its turn can suggest a different visualization method, and so
-#'   on and so forth. The central idea of `ggstatsplot` is simple: combine these
-#'   two phases into one in the form of graphics with statistical details, which
-#'   makes data exploration simpler and faster. Currently, it supports the
-#'   most common types of statistical tests (parametric, non-parametric, Bayes
-#'   Factor, and robust versions of *t*-test/anova, correlation, regression
-#'   analyses, contingency tables analyses, and meta-analysis).
+#' @description `ggstatsplot` is an extension of 'ggplot2', 'ggstatsplot'
+#'   creates graphics with details from statistical tests included in the plots
+#'   themselves. It provides an easier API to generate information-rich plots
+#'   for statistical analysis of continuous (violin plots, scatterplots,
+#'   histograms, dot plots, dot-and-whisker plots) or categorical (pie and bar
+#'   charts) data. Currently, it supports the most common types of statistical
+#'   tests: parametric, nonparametric, robust, and Bayesian versions of
+#'   t-test/ANOVA, correlation analyses, contingency table analysis,
+#'   meta-analysis, and regression analyses.
 #'
 #' @details The main functions are-
 #' \itemize{

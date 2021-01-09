@@ -143,7 +143,7 @@
       <h1 data-toc-skip>ggwithinstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-12-24</h4>
+            <h4 class="date">2021-01-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggwithinstats.Rmd"><code>vignettes/web_only/ggwithinstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggwithinstats.Rmd</code></div>
@@ -421,7 +421,7 @@
 <td>Heteroscedastic one-way repeated measures ANOVA for trimmed means</td>
 </tr>
 <tr class="even">
-<td>Bayesian</td>
+<td>Bayes Factor</td>
 <td>&gt; 2</td>
 <td>One-way repeated measures ANOVA</td>
 </tr>
@@ -481,7 +481,7 @@
 <td>
 <span class="math inline">\(W_{Kendall}\)</span> (Kendall’s coefficient of concordance)</td>
 <td><font color="green">Yes<font></font></font></td>
-<td><code><a href="https://rdrr.io/pkg/rcompanion/man/kendallW.html">rcompanion::kendallW</a></code></td>
+<td><code><a href="https://easystats.github.io/effectsize/reference/rank_biserial.html">effectsize::kendalls_w</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
@@ -491,7 +491,7 @@
 <td><code>NA</code></td>
 </tr>
 <tr class="even">
-<td>Bayesian</td>
+<td>Bayes Factor</td>
 <td>&gt; 2</td>
 <td><span class="math inline">\(R_{posterior}^2\)</span></td>
 <td><font color="green">Yes<font></font></font></td>
@@ -511,9 +511,9 @@
 <td>Non-parametric</td>
 <td>2</td>
 <td>
-<em>r</em> (computed as <span class="math inline">\(Z/\sqrt{N}\)</span>)</td>
+<em>r</em> (rank-biserial correlation)</td>
 <td><font color="green">Yes<font></font></font></td>
-<td><code><a href="https://rdrr.io/pkg/rcompanion/man/wilcoxonR.html">rcompanion::wilcoxonR</a></code></td>
+<td><code><a href="https://easystats.github.io/effectsize/reference/rank_biserial.html">effectsize::rank_biserial</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
@@ -532,7 +532,7 @@
 </tr>
 </tbody>
 </table>
-<p>Following multiple pairwise comparison tests are supported-</p>
+<p>Here is a summary of <em>multiple pairwise comparison</em> tests supported in <em>ggwithinstats</em>-</p>
 <table class="table">
 <thead><tr class="header">
 <th>Type</th>

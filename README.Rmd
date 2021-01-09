@@ -228,17 +228,6 @@ ggstatsplot::ggbetweenstats(
 `r emo::ji("check")` Bayesian hypothesis-testing <br>
 `r emo::ji("check")` Bayesian estimation <br>
 
-The central tendency measure displayed will depend on the statistics:
-
-Type | Measure | Function used
------------ | --------- | ------------------ 
-Parametric | mean | `parameters::describe_distribution`
-Non-parametric | median | `parameters::describe_distribution`
-Robust | trimmed mean | `parameters::describe_distribution`
-Bayesian | MAP estimate | `parameters::describe_distribution`
-
-MAP: maximum a posteriori probability
-
 A number of other arguments can be specified to make this plot even more
 informative or change some of the default options. 
 
@@ -300,6 +289,17 @@ Note here that the function can be used to tag outliers!
 
 ### Summary of tests
 
+The central tendency measure displayed will depend on the statistics:
+
+Type | Measure | Function used
+----------- | --------- | ------------------ 
+Parametric | mean | `parameters::describe_distribution`
+Non-parametric | median | `parameters::describe_distribution`
+Robust | trimmed mean | `parameters::describe_distribution`
+Bayesian | MAP estimate | `parameters::describe_distribution`
+
+MAP: maximum a posteriori probability
+
 Following (between-subjects) tests are carried out for each type of analyses-
 
 Type | No. of groups | Test | Function used
@@ -319,11 +319,11 @@ of test-
 Type | No. of groups | Effect size | CI? | Function used
 ----------- | --- | ------------------------- | --- | -----
 Parametric | > 2 | $\eta_{p}^2$, $\omega_{p}^2$ | <font color="green">Yes<font> | `effectsize::omega_squared`, `effectsize::eta_squared`
-Non-parametric | > 2 | $\epsilon_{ordinal}^2$ | <font color="green">Yes<font> | `rcompanion::epsilonSquared`
+Non-parametric | > 2 | $\epsilon_{ordinal}^2$ | <font color="green">Yes<font> | `effectsize::rank_epsilon_squared`
 Robust | > 2 | $\xi$ (Explanatory measure of effect size) | <font color="green">Yes<font> | `WRS2::t1way`
 Bayes Factor | > 2 | $R_{posterior}^2$ | <font color="green">Yes<font> | `performance::r2_bayes`
 Parametric | 2 | Cohen's *d*, Hedge's *g* | <font color="green">Yes<font> | `effectsize::cohens_d`, `effectsize::hedges_g`
-Non-parametric | 2 | *r* (computed as $Z/\sqrt{N}$) | <font color="green">Yes<font> | `rcompanion::wilcoxonR`
+Non-parametric | 2 | *r* (rank-biserial correlation) | <font color="green">Yes<font> | `effectsize::rank_biserial`
 Robust | 2 |  $\xi$ (Explanatory measure of effect size) | <font color="green">Yes<font> | `WRS2::yuen.effect.ci`
 Bayesian | 2 | $\delta_{posterior}$ | <font color="green">Yes<font> | `bayestestR::describe_posterior`
 
@@ -414,6 +414,17 @@ ggstatsplot::grouped_ggwithinstats(
 
 ### Summary of tests
 
+The central tendency measure displayed will depend on the statistics:
+
+Type | Measure | Function used
+----------- | --------- | ------------------ 
+Parametric | mean | `parameters::describe_distribution`
+Non-parametric | median | `parameters::describe_distribution`
+Robust | trimmed mean | `parameters::describe_distribution`
+Bayesian | MAP estimate | `parameters::describe_distribution`
+
+MAP: maximum a posteriori probability
+
 Following (within-subjects) tests are carried out for each type of analyses-
 
 Type | No. of groups | Test | Function used
@@ -433,11 +444,11 @@ of test-
 Type | No. of groups | Effect size | CI? | Function used
 ----------- | --- | ------------------------- | --- | -----
 Parametric | > 2 | $\eta_{p}^2$, $\omega_{p}^2$ | <font color="green">Yes<font> | `effectsize::omega_squared`, `effectsize::eta_squared`
-Non-parametric | > 2 | $W_{Kendall}$ (Kendall's coefficient of concordance) | <font color="green">Yes<font> | `rcompanion::kendallW`
+Non-parametric | > 2 | $W_{Kendall}$ (Kendall's coefficient of concordance) | <font color="green">Yes<font> | `effectsize::kendalls_w`
 Robust | > 2 | <font color="red">No<font> | <font color="red">No<font> | `NA`
 Bayes Factor | > 2 | $R_{posterior}^2$ | <font color="green">Yes<font> | `performance::r2_bayes`
 Parametric | 2 | Cohen's *d*, Hedge's *g* | <font color="green">Yes<font> | `effectsize::cohens_d`, `effectsize::hedges_g`
-Non-parametric | 2 | *r* (computed as $Z/\sqrt{N}$) | <font color="green">Yes<font> | `rcompanion::wilcoxonR`
+Non-parametric | 2 | *r* (rank-biserial correlation) | <font color="green">Yes<font> | `effectsize::rank_biserial`
 Robust | 2 |  $\delta_{R}$ (robust standardized difference) | <font color="green">Yes<font> | `WRS2::dep.effect`
 Bayesian | 2 | $\delta_{posterior}$ | <font color="green">Yes<font> | `bayestestR::describe_posterior`
 
@@ -453,7 +464,6 @@ Bayesian | Student's *t*-test | `NA` | `BayesFactor::ttestBF`
 
 For more, see the `ggwithinstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
-
 
 ## `gghistostats`
 
@@ -539,7 +549,7 @@ of test-
 Type | Effect size | CI? | Function used
 ------------ | ----------------------- | --- | -----
 Parametric | Cohen's *d*, Hedge's *g* | <font color="green">Yes<font> | `effectsize::cohens_d`, `effectsize::hedges_g`
-Non-parametric | *r* | <font color="green">Yes<font> | `rcompanion::wilcoxonOneSampleR`
+Non-parametric | *r* (rank-biserial correlation) | <font color="green">Yes<font> | `effectsize::rank_biserial`
 Robust | robust location measure | <font color="green">Yes<font> | `WRS2::onesampb`
 Bayes Factor | $\delta_{posterior}$ | <font color="green">Yes<font> | `bayestestR::describe_posterior`
 
@@ -1073,27 +1083,28 @@ ggstatsplot::ggcoefstats(
 Most of the regression models that are supported in the underlying packages are
 also supported by `ggcoefstats`. For example-
 
-`aareg`, `afex_aov`, `anova`, `aov`, `aovlist`, `Arima`, `bam`, `bayesx`,
-`bayesGARCH`, `BBmm`, `BBreg`, `bcplm`, `betamfx`, `betaor`, `BFBayesFactor`,
-`bglmerMod`, `bife`, `bigglm`, `biglm`, `blavaan`, `bmlm`, `blmerMod`, `bracl`,
-`brglm`, `brglm2`, `brmsfit`, `brmultinom`, `btergm`, `cch`, `censReg`, `cgam`,
-`cgamm`, `cglm`, `clm`, `clm2`, `clmm`, `clmm2`, `coeftest`, `complmrob`,
-`confusionMatrix`, `coxme`, `coxph`, `coxph.penal`, `cpglm`, `cpglmm`, `crch`,
-`crq`, `DirichReg`, `drc`, `emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`,
-`fitdistr`, `fixest`, `flexsurvreg`, `gam`, `Gam`, `gamlss`, `garch`, `geeglm`,
-`glmc`, `glmerMod`, `glmmTMB`, `gls`, `glht`, `glm`, `glmm`, `glmmadmb`,
-`glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`, `HLfit`, `hurdle`, `ivFixed`,
-`ivprobit`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`,
-`lmerModLmerTest`, `lmodel2`, `lmRob`, `lmrob`, `lm_robust`, `logitmfx`,
-`logitor`, `logitsf`, `LORgee`, `lqm`, `lqmm`, `lrm`, `manova`, `maov`,
-`margins`, `mcmc`, `mcmc.list`, `MCMCglmm`, `mclogit`, `mice`, `mmclogit`,
-`mediate`, `metafor`, `merMod`, `merModList`, `metaplus`, `mixor`, `mjoint`,
-`mle2`, `mlm`, `multinom`, `negbin`, `negbinmfx`, `negbinirr`, `nlmerMod`,
-`nlrq`, `nlreg`, `nls`, `orcutt`, `orm`, `plm`, `poissonmfx`, `poissonirr`,
-`polr`, `ridgelm`, `riskRegression`, `rjags`, `rlm`, `rlmerMod`, `robmixglm`,
-`rq`, `rqss`, `rrvglm`, `scam`, `semLm`, `semLme`, `slm`, `speedglm`, `speedlm`,
-`stanfit`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`,
-`truncreg`, `vgam`, `vglm`, `wbgee`, `wblm`, `zeroinfl`, etc.
+`aareg`, `afex_aov`, `anova`, `anova.mlm`, `anova`, `aov`, `aovlist`, `Arima`,
+`bam`, `bayesx`, `bayesGARCH`, `BBmm`, `BBreg`, `bcplm`, `betamfx`, `betaor`,
+`BFBayesFactor`, `bglmerMod`, `bife`, `bigglm`, `biglm`, `blavaan`, `bmlm`,
+`blmerMod`, `bracl`, `brglm`, `brglm2`, `brmsfit`, `brmultinom`, `btergm`,
+`cch`, `censReg`, `cgam`, `cgamm`, `cglm`, `clm`, `clm2`, `clmm`, `clmm2`,
+`coeftest`, `complmrob`, `confusionMatrix`, `coxme`, `coxph`, `coxph.penal`,
+`cpglm`, `cpglmm`, `crch`, `crq`, `DirichReg`, `drc`, `emmGrid`, `epi.2by2`,
+`ergm`, `feis`, `felm`, `fitdistr`, `fixest`, `flexsurvreg`, `gam`, `Gam`,
+`gamlss`, `garch`, `geeglm`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `glht`,
+`glm`, `glmm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`,
+`HLfit`, `hurdle`, `ivFixed`, `ivprobit`, `ivreg`, `iv_robust`, `lavaan`, `lm`,
+`lm.beta`, `lmerMod`, `lmerModLmerTest`, `lmodel2`, `lmRob`, `lmrob`,
+`lm_robust`, `logitmfx`, `logitor`, `logitsf`, `LORgee`, `lqm`, `lqmm`, `lrm`,
+`manova`, `maov`, `margins`, `mcmc`, `mcmc.list`, `MCMCglmm`, `mclogit`, `mice`,
+`mmclogit`, `mediate`, `metafor`, `merMod`, `merModList`, `metaplus`, `mixor`,
+`mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `negbinmfx`, `negbinirr`,
+`nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `orm`, `plm`, `poissonmfx`,
+`poissonirr`, `polr`, `ridgelm`, `riskRegression`, `rjags`, `rlm`, `rlmerMod`,
+`robmixglm`, `rq`, `rqs`, `rqss`, `rrvglm`, `scam`, `semLm`, `semLme`, `slm`,
+`speedglm`, `speedlm`, `stanfit`, `stanreg`, `summary.lm`, `survreg`, `svyglm`,
+`svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`, `vglm`, `wbgee`, `wblm`,
+`zeroinfl`, etc.
 
 Although not shown here, this function can also be used to carry out both
 frequentist, robust, and Bayesian random-effects meta-analysis.

@@ -344,7 +344,7 @@ Type | No. of groups | Test | Function used
 Parametric | > 2 | Fisher's or Welch's one-way ANOVA | `stats::oneway.test`
 Non-parametric | > 2 | Kruskal–Wallis one-way ANOVA | `stats::kruskal.test`
 Robust | > 2 | Heteroscedastic one-way ANOVA for trimmed means | `WRS2::t1way`
-Bayesian | > 2 | Fisher's ANOVA | `BayesFactor::anovaBF`
+Bayes Factor | > 2 | Fisher's ANOVA | `BayesFactor::anovaBF`
 Parametric | 2 | Student's or Welch's *t*-test | `stats::t.test`
 Non-parametric | 2 | Mann–Whitney *U* test | `stats::wilcox.test`
 Robust | 2 |  Yuen's test for trimmed means | `WRS2::yuen`
@@ -356,15 +356,16 @@ of test-
 Type | No. of groups | Effect size | CI? | Function used
 ----------- | --- | ------------------------- | --- | -----
 Parametric | > 2 | $\eta_{p}^2$, $\omega_{p}^2$ | <font color="green">Yes<font> | `effectsize::omega_squared`, `effectsize::eta_squared`
-Non-parametric | > 2 | $\epsilon_{ordinal}^2$ | <font color="green">Yes<font> | `rcompanion::epsilonSquared`
+Non-parametric | > 2 | $\epsilon_{ordinal}^2$ | <font color="green">Yes<font> | `effectsize::rank_epsilon_squared`
 Robust | > 2 | $\xi$ (Explanatory measure of effect size) | <font color="green">Yes<font> | `WRS2::t1way`
-Bayesian | > 2 | $R_{posterior}^2$ | <font color="green">Yes<font> | `performance::r2_bayes`
+Bayes Factor | > 2 | $R_{posterior}^2$ | <font color="green">Yes<font> | `performance::r2_bayes`
 Parametric | 2 | Cohen's *d*, Hedge's *g* | <font color="green">Yes<font> | `effectsize::cohens_d`, `effectsize::hedges_g`
-Non-parametric | 2 | *r* (computed as $Z/\sqrt{N}$) | <font color="green">Yes<font> | `rcompanion::wilcoxonR`
+Non-parametric | 2 | *r* (rank-biserial correlation) | <font color="green">Yes<font> | `effectsize::rank_biserial`
 Robust | 2 |  $\xi$ (Explanatory measure of effect size) | <font color="green">Yes<font> | `WRS2::yuen.effect.ci`
 Bayesian | 2 | $\delta_{posterior}$ | <font color="green">Yes<font> | `bayestestR::describe_posterior`
 
-Following multiple pairwise comparison tests are supported-
+Here is a summary of *multiple pairwise comparison* tests supported in
+*ggbetweenstats*-
 
 Type | Equal variance? | Test | *p*-value adjustment? | Function used
 ----------- | --- | ------------------------- | --- | -----
@@ -372,7 +373,7 @@ Parametric | No | Games-Howell test | <font color="green">Yes</font> | `stats::p
 Parametric | Yes | Student's *t*-test | <font color="green">Yes</font> | `PMCMRplus::gamesHowellTest`
 Non-parametric | No | Dunn test | <font color="green">Yes</font> | `PMCMRplus::kwAllPairsDunnTest`
 Robust | No | Yuen's trimmed means test | <font color="green">Yes</font> | `WRS2::lincon`
-Bayesian | `NA` | Student's *t*-test | `NA` | `BayesFactor::ttestBF`
+Bayes Factor | `NA` | Student's *t*-test | `NA` | `BayesFactor::ttestBF`
 
 ## Effect size interpretation
 

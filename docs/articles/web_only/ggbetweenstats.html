@@ -143,7 +143,7 @@
       <h1 data-toc-skip>ggbetweenstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2020-12-19</h4>
+            <h4 class="date">2021-01-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggbetweenstats.Rmd"><code>vignettes/web_only/ggbetweenstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggbetweenstats.Rmd</code></div>
@@ -436,7 +436,7 @@
 <td><code><a href="https://rdrr.io/pkg/WRS2/man/t1way.html">WRS2::t1way</a></code></td>
 </tr>
 <tr class="even">
-<td>Bayesian</td>
+<td>Bayes Factor</td>
 <td>&gt; 2</td>
 <td>Fisher’s ANOVA</td>
 <td><code><a href="https://rdrr.io/pkg/BayesFactor/man/anovaBF.html">BayesFactor::anovaBF</a></code></td>
@@ -500,7 +500,7 @@
 <td>&gt; 2</td>
 <td><span class="math inline">\(\epsilon_{ordinal}^2\)</span></td>
 <td><font color="green">Yes<font></font></font></td>
-<td><code><a href="https://rdrr.io/pkg/rcompanion/man/epsilonSquared.html">rcompanion::epsilonSquared</a></code></td>
+<td><code><a href="https://easystats.github.io/effectsize/reference/rank_biserial.html">effectsize::rank_epsilon_squared</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
@@ -511,7 +511,7 @@
 <td><code><a href="https://rdrr.io/pkg/WRS2/man/t1way.html">WRS2::t1way</a></code></td>
 </tr>
 <tr class="even">
-<td>Bayesian</td>
+<td>Bayes Factor</td>
 <td>&gt; 2</td>
 <td><span class="math inline">\(R_{posterior}^2\)</span></td>
 <td><font color="green">Yes<font></font></font></td>
@@ -531,9 +531,9 @@
 <td>Non-parametric</td>
 <td>2</td>
 <td>
-<em>r</em> (computed as <span class="math inline">\(Z/\sqrt{N}\)</span>)</td>
+<em>r</em> (rank-biserial correlation)</td>
 <td><font color="green">Yes<font></font></font></td>
-<td><code><a href="https://rdrr.io/pkg/rcompanion/man/wilcoxonR.html">rcompanion::wilcoxonR</a></code></td>
+<td><code><a href="https://easystats.github.io/effectsize/reference/rank_biserial.html">effectsize::rank_biserial</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
@@ -552,7 +552,7 @@
 </tr>
 </tbody>
 </table>
-<p>Following multiple pairwise comparison tests are supported-</p>
+<p>Here is a summary of <em>multiple pairwise comparison</em> tests supported in <em>ggbetweenstats</em>-</p>
 <table class="table">
 <thead><tr class="header">
 <th>Type</th>
@@ -592,7 +592,7 @@
 <td><code><a href="https://rdrr.io/pkg/WRS2/man/t1way.html">WRS2::lincon</a></code></td>
 </tr>
 <tr class="odd">
-<td>Bayesian</td>
+<td>Bayes Factor</td>
 <td><code>NA</code></td>
 <td>Student’s <em>t</em>-test</td>
 <td><code>NA</code></td>

@@ -362,11 +362,9 @@ should be displayed for each level of the grouping variable <code>x</code> (Defa
     <tr>
       <th>var.equal</th>
       <td><p>a logical variable indicating whether to treat the
-    variances in the samples as equal.  If <code>TRUE</code>, then a simple F
-    test for the equality of means in a one-way analysis of variance is
-    performed.  If <code>FALSE</code>, an approximate method of Welch (1951)
-    is used, which generalizes the commonly known 2-sample Welch test to
-    the case of arbitrarily many samples.</p></td>
+    two variances as being equal. If <code>TRUE</code> then the pooled
+    variance is used to estimate the variance otherwise the Welch
+    (or Satterthwaite) approximation to the degrees of freedom is used.</p></td>
     </tr>
     <tr>
       <th>conf.level</th>

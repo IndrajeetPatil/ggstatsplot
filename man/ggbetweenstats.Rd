@@ -124,11 +124,9 @@ should be displayed for each level of the grouping variable \code{x} (Default:
 (Default: \code{k = 2L}).}
 
 \item{var.equal}{a logical variable indicating whether to treat the
-    variances in the samples as equal.  If \code{TRUE}, then a simple F
-    test for the equality of means in a one-way analysis of variance is
-    performed.  If \code{FALSE}, an approximate method of Welch (1951)
-    is used, which generalizes the commonly known 2-sample Welch test to
-    the case of arbitrarily many samples.}
+    two variances as being equal. If \code{TRUE} then the pooled
+    variance is used to estimate the variance otherwise the Welch
+    (or Satterthwaite) approximation to the degrees of freedom is used.}
 
 \item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
 \verb{95\%} confidence/credible intervals (\code{0.95}).}
