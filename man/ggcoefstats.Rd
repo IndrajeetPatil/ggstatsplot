@@ -153,13 +153,12 @@ override some aspects of the selected \code{ggtheme}.}
 \item{...}{Additional arguments to tidying method. For more, see
 \code{parameters::model_parameters}.}
 }
-\value{
+\description{
+\Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+
 Plot with the regression coefficients' point estimates as dots with
 confidence interval whiskers and other statistical details included as
 labels.
-}
-\description{
-Dot-and-whisker plots for regression analyses
 }
 \note{
 \enumerate{

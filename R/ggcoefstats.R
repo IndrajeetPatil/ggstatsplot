@@ -1,8 +1,13 @@
 #' @title Dot-and-whisker plots for regression analyses
 #' @name ggcoefstats
-#' @return Plot with the regression coefficients' point estimates as dots with
-#'   confidence interval whiskers and other statistical details included as
-#'   labels.
+#'
+#' @description
+#'
+#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#'
+#' Plot with the regression coefficients' point estimates as dots with
+#' confidence interval whiskers and other statistical details included as
+#' labels.
 #'
 #' @param x A model object to be tidied, or a tidy data frame containing results
 #'   from a regression model. Function internally uses
@@ -78,7 +83,7 @@
 #' @inheritParams ggbetweenstats
 #'
 #' @import ggplot2
-#' @importFrom rlang exec !!!
+#' @importFrom rlang exec !!! !!
 #' @importFrom dplyr select mutate matches vars all_vars filter_at row_number last
 #' @importFrom dplyr group_by ungroup
 #' @importFrom ggrepel geom_label_repel
@@ -342,7 +347,7 @@ ggcoefstats <- function(x,
   # if `parameters` output doesn't contain p-value or statistic column
   if (sum(c("p.value", "statistic") %in% names(tidy_df)) != 2L) stats.labels <- FALSE
 
-  # ==================== confidence intervals check ===========================
+  # =========================== CIs and intercepts ===========================
 
   # if `parameters` output doesn't contain CI
   if (!"conf.low" %in% names(tidy_df)) {
@@ -357,9 +362,7 @@ ggcoefstats <- function(x,
 
   # whether to show model intercept
   # if not, remove the corresponding terms from the dataframe
-  if (isTRUE(exclude.intercept)) {
-    tidy_df %<>% dplyr::filter(!grepl(pattern = "(Intercept)", x = term, ignore.case = TRUE))
-  }
+  if (isTRUE(exclude.intercept)) tidy_df %<>% dplyr::filter(!grepl("(Intercept)", term, TRUE))
 
   # ========================== preparing label ================================
 
@@ -400,14 +403,11 @@ ggcoefstats <- function(x,
       # preparing caption with model diagnostics
       caption <-
         substitute(
-          expr = atop(
-            displaystyle(top.text),
-            expr = paste("AIC = ", AIC, ", BIC = ", BIC)
-          ),
+          expr = atop(displaystyle(top.text), expr = paste("AIC = ", AIC, ", BIC = ", BIC)),
           env = list(
             top.text = caption,
-            AIC = specify_decimal_p(x = glance_df$aic[[1]], k = 0L),
-            BIC = specify_decimal_p(x = glance_df$bic[[1]], k = 0L)
+            AIC = format_num(glance_df$aic[[1]], k = 0L),
+            BIC = format_num(glance_df$bic[[1]], k = 0L)
           )
         )
     }
@@ -572,10 +572,7 @@ ggcoefstats <- function(x,
         subtitle = subtitle,
         title = title
       ) +
-      ggstatsplot::theme_ggstatsplot(
-        ggtheme = ggtheme,
-        ggstatsplot.layer = ggstatsplot.layer
-      ) +
+      theme_ggstatsplot(ggtheme = ggtheme, ggstatsplot.layer = ggstatsplot.layer) +
       ggplot2::theme(plot.caption = ggplot2::element_text(size = 10))
   }
 

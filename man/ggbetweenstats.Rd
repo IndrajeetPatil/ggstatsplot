@@ -220,9 +220,11 @@ about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
 \item{...}{Currently ignored.}
 }
 \description{
-A combination of box and violin plots along with jittered data
-points for between-subjects designs with statistical details included in
-the plot as a subtitle.
+\Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+
+A combination of box and violin plots along with jittered data points for
+between-subjects designs with statistical details included in the plot as a
+subtitle.
 }
 \examples{
 \donttest{

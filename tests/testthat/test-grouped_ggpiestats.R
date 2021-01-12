@@ -1,12 +1,12 @@
-testthat::test_that(
+test_that(
   desc = "grouped_ggpiestats works",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     #--------------------- only x variable -------------------------------
 
     ## expecting error
-    testthat::expect_error(
+    expect_error(
       ggstatsplot::grouped_ggpiestats(
         data = mtcars,
         x = cyl
@@ -17,7 +17,7 @@ testthat::test_that(
 
     # when arguments are entered as bare expressions
     set.seed(123)
-    testthat::expect_true(inherits(suppressWarnings(
+    expect_true(inherits(suppressWarnings(
       ggstatsplot::grouped_ggpiestats(
         data = mtcars,
         grouping.var = am,
@@ -44,7 +44,7 @@ testthat::test_that(
 
     # when arguments are entered as bare expressions
     set.seed(123)
-    testthat::expect_true(inherits(suppressWarnings(
+    expect_true(inherits(suppressWarnings(
       ggstatsplot::grouped_ggpiestats(
         data = mpg_short,
         x = cyl,
@@ -61,7 +61,7 @@ testthat::test_that(
 
     # when arguments are entered as bare expressions
     set.seed(123)
-    testthat::expect_true(inherits(suppressWarnings(
+    expect_true(inherits(suppressWarnings(
       ggstatsplot::grouped_ggpiestats(
         data = as.data.frame(Titanic),
         grouping.var = Class,
@@ -78,10 +78,10 @@ testthat::test_that(
 
 # subtitle output --------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "subtitle output",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     set.seed(123)
     df <- dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1) %>%
@@ -110,6 +110,6 @@ testthat::test_that(
       ))
 
     # checking subtitle
-    testthat::expect_equal(ls_results$Other, sexpr_results)
+    expect_equal(ls_results$Other, sexpr_results)
   }
 )

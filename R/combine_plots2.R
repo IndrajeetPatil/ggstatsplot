@@ -1,8 +1,14 @@
 #' @title Simpler way to combine and arrange multiple plots in a grid
 #' @name combine_plots2
-#' @description Wrapper around `cowplot::plot_grid` that will return a plotgrid
-#'   along with a combination of title, caption, and annotation label. This is a
-#'   simpler version of the `combine_plots` function in this package.
+#'
+#' @description
+#'
+#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("stable")}
+#'
+#' Wrapper around `cowplot::plot_grid` that will return a plotgrid along with a
+#' combination of title, caption, and annotation label. This is a simpler version
+#' of the `combine_plots` function in this package.
+#'
 #' @return Combined plot with title and/or caption and/or annotation label
 #'
 #' @param ... Currently ignored.
@@ -13,7 +19,7 @@
 #'   provided to `title`, `caption` and `sub`, resp.
 #'
 #' @importFrom cowplot plot_grid add_sub ggdraw draw_label
-#' @importFrom rlang exec
+#' @importFrom rlang exec !!!
 #'
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html}
@@ -143,5 +149,5 @@ combine_plots2 <- function(plotlist,
   }
 
   # return the final, combined plot
-  return(plot)
+  plot
 }

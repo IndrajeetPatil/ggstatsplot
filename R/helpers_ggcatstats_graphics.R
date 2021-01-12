@@ -56,6 +56,7 @@ cat_counter <- function(data, x, y = NULL, ...) {
 #'
 #' @importFrom dplyr group_modify rowwise ungroup
 #' @importFrom rlang as_name ensym
+#' @importFrom ipmisc format_num
 #'
 #' @noRd
 
@@ -78,14 +79,14 @@ df_proptest <- function(data, x, y, k = 2L, ...) {
         "(",
         df,
         ")==",
-        specify_decimal_p(x = statistic, k = k),
+        format_num(statistic, k = k),
         ", ~italic(p)=='",
-        specify_decimal_p(x = p.value, k = k, p.value = TRUE),
+        format_num(p.value, k = k, p.value = TRUE),
         "', ~italic(n)==",
         counts,
         ")"
       ),
-      .p.label = paste0("list(~italic(p)=='", specify_decimal_p(p.value, k, TRUE), "')")
+      .p.label = paste0("list(~italic(p)=='", format_num(p.value, k, TRUE), "')")
     ) %>%
     dplyr::ungroup()
 }

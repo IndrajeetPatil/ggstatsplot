@@ -55,7 +55,11 @@
   
 
 <meta property="og:title" content="Visualization of a correlation matrix — ggcorrmat" />
-<meta property="og:description" content="Visualization of a correlation matrix" />
+<meta property="og:description" content="
+Correlation matrix plot or a dataframe containing results from pairwise
+correlation tests. The package internally uses ggcorrplot::ggcorrplot for
+creating the visualization matrix, while the correlation analysis is carried
+out using the correlation::correlation function." />
 <meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/logo.png" />
 
 
@@ -193,7 +197,11 @@
     </div>
 
     <div class="ref-description">
-    <p>Visualization of a correlation matrix</p>
+    <p><a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a></p>
+<p>Correlation matrix plot or a dataframe containing results from pairwise
+correlation tests. The package internally uses <code><a href='https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html'>ggcorrplot::ggcorrplot</a></code> for
+creating the visualization matrix, while the correlation analysis is carried
+out using the <code><a href='https://easystats.github.io/correlation/reference/correlation.html'>correlation::correlation</a></code> function.</p>
     </div>
 
     <pre class="usage"><span class='fu'>ggcorrmat</span><span class='op'>(</span>
@@ -375,13 +383,6 @@ be entered as a <code>ggplot2</code> function or a list of <code>ggplot2</code> 
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>Correlation matrix plot or a dataframe containing results from
-pairwise correlation tests. The package internally uses
-<code><a href='https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html'>ggcorrplot::ggcorrplot</a></code> for creating the visualization matrix, while the
-correlation analysis is carried out using the <code><a href='https://easystats.github.io/correlation/reference/correlation.html'>correlation::correlation</a></code>
-function.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p><a href='https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html'>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html</a></p>

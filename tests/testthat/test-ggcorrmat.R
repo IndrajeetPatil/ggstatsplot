@@ -1,9 +1,9 @@
 # pearson's r without NAs ------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "checking ggcorrmat - without NAs - pearson's r",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -43,10 +43,10 @@ testthat::test_that(
     data_dims <- dim(dat)
 
     # testing everything is okay with data
-    testthat::expect_equal(data_dims, c(16L, 7L))
-    testthat::expect_equal(dim(pb$data[[1]]), c(16L, 15L))
-    testthat::expect_equal(length(pb$data), 3L)
-    testthat::expect_equal(
+    expect_equal(data_dims, c(16L, 7L))
+    expect_equal(dim(pb$data[[1]]), c(16L, 15L))
+    expect_equal(length(pb$data), 3L)
+    expect_equal(
       dat$coef,
       c(
         1.0000,
@@ -68,26 +68,26 @@ testthat::test_that(
       ),
       tolerance = 1e-3
     )
-    testthat::expect_equal(dat$Var1[3], "Petal.Length")
-    testthat::expect_equal(dat$Var2[4], "Sepal.Length")
-    testthat::expect_equal(dat$signif[1], 1L)
-    testthat::expect_equal(dat$signif[2], 0L)
-    testthat::expect_equal(dat$signif[4], 1L)
-    testthat::expect_equal(dat$signif[5], 0L)
-    testthat::expect_identical(
+    expect_equal(dat$Var1[3], "Petal.Length")
+    expect_equal(dat$Var2[4], "Sepal.Length")
+    expect_equal(dat$signif[1], 1L)
+    expect_equal(dat$signif[2], 0L)
+    expect_equal(dat$signif[4], 1L)
+    expect_equal(dat$signif[5], 0L)
+    expect_identical(
       unclass(p$plot_env$colors),
       c("#1B9E77FF", "#D95F02FF", "#7570B3FF")
     )
 
     # checking layers
-    testthat::expect_equal(pb$plot$layers[[3]]$aes_params$shape, "cross")
-    testthat::expect_equal(pb$plot$layers[[3]]$aes_params$size, 14L)
-    testthat::expect_identical(pb$plot$layers[[3]]$aes_params$colour, "white")
+    expect_equal(pb$plot$layers[[3]]$aes_params$shape, "cross")
+    expect_equal(pb$plot$layers[[3]]$aes_params$size, 14L)
+    expect_identical(pb$plot$layers[[3]]$aes_params$colour, "white")
 
     # checking plot labels
-    testthat::expect_identical(p$labels$title, "Iris dataset")
-    testthat::expect_identical(p$labels$subtitle, "By Edgar Anderson")
-    testthat::expect_identical(
+    expect_identical(p$labels$title, "Iris dataset")
+    expect_identical(p$labels$subtitle, "By Edgar Anderson")
+    expect_identical(
       p_legend_title,
       ggplot2::expr(atop(
         atop(scriptstyle(bold("sample sizes:")), italic(n) ~
@@ -98,7 +98,7 @@ testthat::test_that(
         )
       ))
     )
-    testthat::expect_identical(
+    expect_identical(
       p$labels$caption,
       ggplot2::expr(atop(
         displaystyle(NULL),
@@ -114,37 +114,37 @@ testthat::test_that(
         )
       ))
     )
-    testthat::expect_null(p$labels$xlab, NULL)
-    testthat::expect_null(p$labels$ylab, NULL)
+    expect_null(p$labels$xlab, NULL)
+    expect_null(p$labels$ylab, NULL)
 
     # checking layer data
-    testthat::expect_equal(dim(pb$data[[1]]), c(16L, 15L))
-    testthat::expect_equal(dim(pb$data[[2]]), c(16L, 15L))
-    testthat::expect_equal(dim(pb$data[[3]]), c(2L, 10L))
+    expect_equal(dim(pb$data[[1]]), c(16L, 15L))
+    expect_equal(dim(pb$data[[2]]), c(16L, 15L))
+    expect_equal(dim(pb$data[[3]]), c(2L, 10L))
 
     # check if number of cells is equal to number of correlations
-    testthat::expect_equal(
+    expect_equal(
       length(unique(dat$Var1))^2,
       max(pb$data[[1]]$group)
     )
 
     # checking unique number of correlations
-    testthat::expect_equal(length(unique(pb$data[[1]]$fill)), 7L)
+    expect_equal(length(unique(pb$data[[1]]$fill)), 7L)
 
     # checking if aesthetic modifications worked
-    testthat::expect_equal(pb$data[[3]]$shape[1], "cross")
-    testthat::expect_equal(pb$data[[3]]$size[1], 14L)
-    testthat::expect_identical(pb$data[[2]]$colour[1], "white")
-    testthat::expect_identical(pb$data[[3]]$colour[1], "white")
+    expect_equal(pb$data[[3]]$shape[1], "cross")
+    expect_equal(pb$data[[3]]$size[1], 14L)
+    expect_identical(pb$data[[2]]$colour[1], "white")
+    expect_identical(pb$data[[3]]$colour[1], "white")
   }
 )
 
 # robust r without NAs ---------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "checking ggcorrmat - without NAs - robust r",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -157,7 +157,7 @@ testthat::test_that(
       )
     pb <- ggplot2::ggplot_build(p)
 
-    testthat::expect_identical(
+    expect_identical(
       pb$plot$plot_env$legend.title,
       ggplot2::expr(
         atop(atop(scriptstyle(bold("sample sizes:")), italic(n) ~
@@ -172,11 +172,11 @@ testthat::test_that(
 
 # robust r with NAs ---------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "checking ggcorrmat - with NAs - robust r - partial",
   code = {
-    testthat::skip_on_cran()
-    testthat::skip_on_ci()
+    skip_on_cran()
+    skip_on_ci()
 
     # creating the plot
     set.seed(123)
@@ -196,7 +196,7 @@ testthat::test_that(
     p_legend_title <- pb$plot$plot_env$legend.title
 
     # geom data
-    testthat::expect_equal(
+    expect_equal(
       pb$data,
       list(
         structure(list(
@@ -359,7 +359,7 @@ testthat::test_that(
     )
 
     # checking plot labels
-    testthat::expect_identical(
+    expect_identical(
       p_legend_title,
       ggplot2::expr(atop(atop(scriptstyle(bold("sample sizes:")), italic(n) ~
       "=" ~ "30"), atop(
@@ -372,10 +372,10 @@ testthat::test_that(
 
 # spearman's rho with NAs ---------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "checking ggcorrmat - with NAs - spearman's rho",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -410,25 +410,25 @@ testthat::test_that(
     data_dims <- dim(dat)
 
     # testing everything is okay with data
-    testthat::expect_equal(data_dims, c(16L, 7L))
-    testthat::expect_equal(dat$coef[2], 0.76, tolerance = 1e-3)
-    testthat::expect_equal(dat$coef[7], -0.33, tolerance = 1e-3)
-    testthat::expect_equal(dat$coef[9], -0.49, tolerance = 1e-3)
-    testthat::expect_equal(dat$coef[14], -0.76, tolerance = 1e-3)
-    testthat::expect_equal(dat$Var1[15], "sleep_cycle")
-    testthat::expect_equal(dat$Var2[16], "awake")
-    testthat::expect_equal(dat$signif[1], 1L)
-    testthat::expect_equal(dat$signif[7], 0L)
-    testthat::expect_equal(dat$signif[10], 0L)
-    testthat::expect_equal(dat$signif[11], 1L)
+    expect_equal(data_dims, c(16L, 7L))
+    expect_equal(dat$coef[2], 0.76, tolerance = 1e-3)
+    expect_equal(dat$coef[7], -0.33, tolerance = 1e-3)
+    expect_equal(dat$coef[9], -0.49, tolerance = 1e-3)
+    expect_equal(dat$coef[14], -0.76, tolerance = 1e-3)
+    expect_equal(dat$Var1[15], "sleep_cycle")
+    expect_equal(dat$Var2[16], "awake")
+    expect_equal(dat$signif[1], 1L)
+    expect_equal(dat$signif[7], 0L)
+    expect_equal(dat$signif[10], 0L)
+    expect_equal(dat$signif[11], 1L)
 
     # checking aesthetics
-    testthat::expect_identical(
+    expect_identical(
       unique(pb$data[[1]]$fill),
       c("#0B775E", "#57896B", "#E6BE81", "#E1BD6D", "#E7BE87", "#E3BD77", "#8E9C79")
     )
 
-    testthat::expect_identical(
+    expect_identical(
       p_legend_title,
       ggplot2::expr(atop(atop(
         atop(scriptstyle(bold("sample sizes:")), italic(n)[min] ~
@@ -449,17 +449,17 @@ testthat::test_that(
 
 # Bayesian pearson (with NA) ---------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "checking Bayesian pearson (with NA)",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     set.seed(123)
     p <- suppressWarnings(ggcorrmat(ggplot2::msleep, type = "bf"))
     pb <- ggplot2::ggplot_build(p)
 
     # check legend
-    testthat::expect_identical(
+    expect_identical(
       p$plot_env$legend.title,
       ggplot2::expr(atop(atop(atop(scriptstyle(bold("sample sizes:")), italic(n)[min] ~
       "=" ~ "30"), atop(italic(n)[mode] ~ "=" ~
@@ -470,7 +470,7 @@ testthat::test_that(
     )
 
     # checking geom data
-    testthat::expect_equal(
+    expect_equal(
       pb$data,
       list(
         structure(list(
@@ -596,11 +596,11 @@ testthat::test_that(
 
 # checking all dataframe outputs -------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "checking ggcorrmat - with NAs - spearman's rho",
   code = {
-    testthat::skip_on_cran()
-    testthat::skip_on_ci()
+    skip_on_cran()
+    skip_on_ci()
 
     set.seed(123)
     df <-
@@ -614,7 +614,7 @@ testthat::test_that(
         .f = ggcorrmat
       ))
 
-    testthat::expect_equal(
+    expect_equal(
       df,
       structure(list(
         parameter1 = c(

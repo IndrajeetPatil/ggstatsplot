@@ -1,8 +1,13 @@
 #' @title Scatterplot with marginal distributions and statistical results
 #' @name ggscatterstats
-#' @description Scatterplots from `ggplot2` combined with marginal
-#'   histograms/boxplots/density plots with statistical details added as a
-#'   subtitle.
+#'
+#' @description
+#'
+#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#'
+#' Scatterplots from `ggplot2` combined with marginal
+#' histograms/boxplots/density plots with statistical details added as a
+#' subtitle.
 #'
 #' @param ... Currently ignored.
 #' @param label.var Variable to use for points labels. Can be entered either as
@@ -270,10 +275,7 @@ ggscatterstats <- function(data,
       subtitle = subtitle,
       caption = caption
     ) +
-    ggstatsplot::theme_ggstatsplot(
-      ggtheme = ggtheme,
-      ggstatsplot.layer = ggstatsplot.layer
-    ) +
+    theme_ggstatsplot(ggtheme = ggtheme, ggstatsplot.layer = ggstatsplot.layer) +
     ggplot.component
 
   #------------------------- ggMarginal  ---------------------------------

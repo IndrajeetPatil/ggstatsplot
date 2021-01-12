@@ -1,8 +1,14 @@
 #' @title Violin plots for group or condition comparisons in between-subjects
 #'   designs repeated across all levels of a grouping variable.
 #' @name grouped_ggbetweenstats
-#' @description A combined plot of comparison plot created for levels of a
-#'   grouping variable.
+#'
+#' @description
+#'
+#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#'
+#' Helper function for `ggstatsplot::ggbetweenstats` to apply this function
+#' across multiple levels of a given factor and combining the resulting plots
+#' using `ggstatsplot::combine_plots2`.
 #'
 #' @param title.prefix Character string specifying the prefix text for the fixed
 #'   plot title (name of each factor level) (Default: `NULL`). If `NULL`, the

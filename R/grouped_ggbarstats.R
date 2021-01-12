@@ -1,8 +1,13 @@
 #' @title Grouped bar (column) charts with statistical tests
 #' @name grouped_ggbarstats
-#' @description Helper function for `ggstatsplot::ggbarstats` to apply this
-#'   function across multiple levels of a given factor and combining the
-#'   resulting plots using `ggstatsplot::combine_plots`.
+#'
+#' @description
+#'
+#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#'
+#' Helper function for `ggstatsplot::ggbarstats` to apply this function across
+#' multiple levels of a given factor and combining the resulting plots using
+#' `ggstatsplot::combine_plots2`.
 #'
 #' @inheritParams ggbarstats
 #' @inheritParams grouped_ggbetweenstats

@@ -1,7 +1,12 @@
 #' @title Pie charts with statistical tests
 #' @name ggpiestats
-#' @description Pie charts for categorical data with statistical details
-#'   included in the plot as a subtitle.
+#'
+#' @description
+#'
+#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#'
+#' Pie charts for categorical data with statistical details included in the plot
+#' as a subtitle.
 #'
 #' @param x The variable to use as the **rows** in the contingency table. Please
 #'   note that if there are empty factor levels in your variable, they will be
@@ -111,7 +116,7 @@ ggpiestats <- function(data,
 
   # creating a dataframe
   data %<>%
-    dplyr::select(.data = ., {{ x }}, {{ y }}, .counts = {{ counts }}) %>%
+    dplyr::select({{ x }}, {{ y }}, .counts = {{ counts }}) %>%
     tidyr::drop_na(data = .) %>%
     as_tibble(x = .)
 
@@ -121,12 +126,12 @@ ggpiestats <- function(data,
   # x and y need to be a factor; also drop the unused levels of the factors
 
   # x
-  data %<>% dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }})))
+  data %<>% dplyr::mutate({{ x }} := droplevels(as.factor({{ x }})))
   x_levels <- nlevels(data %>% dplyr::pull({{ x }}))[[1]]
 
   # y
   if (!rlang::quo_is_null(rlang::enquo(y))) {
-    data %<>% dplyr::mutate(.data = ., {{ y }} := droplevels(as.factor({{ y }})))
+    data %<>% dplyr::mutate({{ y }} := droplevels(as.factor({{ y }})))
     y_levels <- nlevels(data %>% dplyr::pull({{ y }}))[[1]]
 
     # TO DO: until one-way table is supported by `BayesFactor`

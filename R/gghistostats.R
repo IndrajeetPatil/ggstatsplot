@@ -1,7 +1,12 @@
 #' @title Histogram for distribution of a numeric variable
 #' @name gghistostats
-#' @description Histogram with statistical details from one-sample test included
-#'   in the plot as a subtitle.
+#'
+#' @description
+#'
+#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#'
+#' Histogram with statistical details from one-sample test included in the plot
+#' as a subtitle.
 #'
 #' @param ... Currently ignored.
 #' @param normal.curve A logical value that decides whether to super-impose a

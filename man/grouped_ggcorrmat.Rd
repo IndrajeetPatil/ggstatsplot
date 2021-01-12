@@ -128,17 +128,12 @@ Can be a plotmath expression.}
 \item{sub.args}{A list of additional arguments
 provided to \code{title}, \code{caption} and \code{sub}, resp.}
 }
-\value{
-Correlation matrix plot or a dataframe containing results from
-pairwise correlation tests. The package internally uses
-\code{ggcorrplot::ggcorrplot} for creating the visualization matrix, while the
-correlation analysis is carried out using the \code{correlation::correlation}
-function.
-}
 \description{
-Helper function for \code{ggstatsplot::ggcorrmat} to apply this
-function across multiple levels of a given factor and combining the
-resulting plots using \code{ggstatsplot::combine_plots}.
+\Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+
+Helper function for \code{ggstatsplot::ggcorrmat} to apply this function across
+multiple levels of a given factor and combining the resulting plots using
+\code{ggstatsplot::combine_plots2}.
 }
 \examples{
 \donttest{

@@ -1,8 +1,14 @@
 #' @title Grouped histograms for distribution of a numeric variable
 #' @name grouped_gghistostats
-#' @description Helper function for `ggstatsplot::gghistostats` to apply this
-#'   function across multiple levels of a given factor and combining the
-#'   resulting plots using `ggstatsplot::combine_plots`.
+#'
+#'
+#' @description
+#'
+#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#'
+#' Helper function for `ggstatsplot::gghistostats` to apply this function
+#' across multiple levels of a given factor and combining the resulting plots
+#' using `ggstatsplot::combine_plots2`.
 #'
 #' @inheritParams gghistostats
 #' @inheritParams grouped_ggbetweenstats

@@ -1,9 +1,9 @@
 # grouped_ggdotplotstats works -----------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "grouped_ggdotplotstats works",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # for reproducibility
     set.seed(123)
@@ -49,17 +49,17 @@ testthat::test_that(
     )
 
     # testing output objects are ggplot
-    testthat::expect_true(inherits(p1, what = "gg"))
-    testthat::expect_true(inherits(p2, what = "gg"))
+    expect_true(inherits(p1, what = "gg"))
+    expect_true(inherits(p2, what = "gg"))
   }
 )
 
 # subtitle output --------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "subtitle output",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # removing factor level with very few no. of observations
     df <- dplyr::filter(.data = ggplot2::mpg, cyl %in% c("4"))
@@ -87,7 +87,7 @@ testthat::test_that(
       )
 
     # tests
-    testthat::expect_equal(length(ls_results), 1L)
-    testthat::expect_identical(ls_results$`4`, basic_results)
+    expect_equal(length(ls_results), 1L)
+    expect_identical(ls_results$`4`, basic_results)
   }
 )

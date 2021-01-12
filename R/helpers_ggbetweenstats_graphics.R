@@ -14,7 +14,7 @@
 #' @importFrom dplyr select group_by matches mutate rowwise group_modify arrange ungroup
 #' @importFrom rlang !! enquo ensym :=
 #' @importFrom tidyr drop_na
-#' @importFrom ipmisc specify_decimal_p format_num
+#' @importFrom ipmisc format_num
 #'
 #' @examples
 #' # this internal function may not have much utility outside of the package
@@ -62,11 +62,11 @@ mean_ggrepel <- function(plot,
   # creating the dataframe
   mean_df <-
     data %>%
-    dplyr::select(.data = ., {{ x }}, {{ y }}) %>%
+    dplyr::select({{ x }}, {{ y }}) %>%
     tidyr::drop_na(.) %>%
-    dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }}))) %>%
+    dplyr::mutate({{ x }} := droplevels(as.factor({{ x }}))) %>%
     as_tibble(.) %>%
-    dplyr::group_by(.data = ., {{ x }}) %>%
+    dplyr::group_by({{ x }}) %>%
     dplyr::group_modify(
       .f = ~ parameters::standardize_names(
         data = as.data.frame(parameters::describe_distribution(
@@ -190,12 +190,12 @@ ggsignif_adder <- function(plot,
     # decide what needs to be displayed:
     # only significant comparisons shown
     if (pairwise.display %in% c("s", "significant")) {
-      df_pairwise %<>% dplyr::filter(.data = ., p.value < 0.05)
+      df_pairwise %<>% dplyr::filter(p.value < 0.05)
     }
 
     # only non-significant comparisons shown
     if (pairwise.display %in% c("ns", "nonsignificant", "non-significant")) {
-      df_pairwise %<>% dplyr::filter(.data = ., p.value >= 0.05)
+      df_pairwise %<>% dplyr::filter(p.value >= 0.05)
     }
 
     # proceed only if there are any significant comparisons to display
@@ -205,7 +205,7 @@ ggsignif_adder <- function(plot,
   }
 
   # arrange the dataframe so that annotations are properly aligned
-  df_pairwise %<>% dplyr::arrange(.data = ., group1, group2)
+  df_pairwise %<>% dplyr::arrange(group1, group2)
 
   # adding ggsignif comparisons to the plot
   plot +

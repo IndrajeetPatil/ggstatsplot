@@ -1,9 +1,9 @@
 # significant display works -------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "check comparison significant displays - FDR-corrected",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -23,10 +23,10 @@ testthat::test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # checking dimensions of data
-    testthat::expect_equal(length(pb$data), 6L)
+    expect_equal(length(pb$data), 6L)
 
     # checking caption
-    testthat::expect_identical(
+    expect_identical(
       pb$plot$labels$caption,
       ggplot2::expr(atop(
         displaystyle("mammalian sleep"),
@@ -44,10 +44,10 @@ testthat::test_that(
 
 # non-significant display works ---------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "check non-significant comparison displays - no adjustment",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -68,7 +68,7 @@ testthat::test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # checking comparison groups and labels
-    testthat::expect_equal(
+    expect_equal(
       unique(as.character(pb$data[[7]]$annotation)),
       c(
         "list(~italic(p)[uncorrected]==0.139)",
@@ -77,13 +77,13 @@ testthat::test_that(
       )
     )
 
-    testthat::expect_equal(
+    expect_equal(
       unique(as.character(pb$data[[7]]$group)),
       c("PG-PG-13-1", "PG-R-2", "PG-13-R-3")
     )
 
     # checking caption
-    testthat::expect_identical(
+    expect_identical(
       pb$plot$labels$caption,
       ggplot2::expr(atop(
         displaystyle(NULL),
@@ -100,10 +100,10 @@ testthat::test_that(
 
 # mixed display works -------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "check mixed comparison displays - FDR-corrected",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -140,9 +140,9 @@ testthat::test_that(
     data_signif <- as_tibble(pb$data[[7]])
 
     # checking comparison groups and labels
-    testthat::expect_identical(dat$group1, c("Action", "Action", "Comedy"))
-    testthat::expect_identical(dat$group2, c("Comedy", "RomCom", "RomCom"))
-    testthat::expect_identical(
+    expect_identical(dat$group1, c("Action", "Action", "Comedy"))
+    expect_identical(dat$group2, c("Comedy", "RomCom", "RomCom"))
+    expect_identical(
       dat$label,
       c(
         "list(~italic(p)[FDR-corrected]==0.812)",
@@ -150,7 +150,7 @@ testthat::test_that(
         "list(~italic(p)[FDR-corrected]==4.18e-04)"
       )
     )
-    testthat::expect_identical(
+    expect_identical(
       pb$plot$labels$caption$expr,
       ggplot2::expr(paste(
         "Pairwise test: ",
@@ -161,30 +161,30 @@ testthat::test_that(
     )
 
     # checking values
-    testthat::expect_equal(dat$statistic,
+    expect_equal(dat$statistic,
       c(0.238306686320387, 3.63442246865882, 3.69050171235682),
       tolerance = 0.001
     )
 
     # checking ggsignif layers
-    testthat::expect_equal(ggsignif_stat$y_position,
+    expect_equal(ggsignif_stat$y_position,
       c(9.2250, 9.7725, 10.3200),
       tolerance = 0.001
     )
-    testthat::expect_equal(
+    expect_equal(
       ggsignif_stat$comparisons[[1]],
       c("Action", "Comedy")
     )
-    testthat::expect_equal(ggsignif_stat$annotations, dat$label)
+    expect_equal(ggsignif_stat$annotations, dat$label)
   }
 )
 
 # robust test works -------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "check robust test display - FDR-corrected",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -218,9 +218,9 @@ testthat::test_that(
     data_signif <- as_tibble(pb$data[[7]])
 
     # checking comparison groups and labels
-    testthat::expect_identical(dat$group1, c("4", "4", "f"))
-    testthat::expect_identical(dat$group2, c("f", "r", "r"))
-    testthat::expect_identical(
+    expect_identical(dat$group1, c("4", "4", "f"))
+    expect_identical(dat$group2, c("f", "r", "r"))
+    expect_identical(
       pb$plot$labels$caption,
       ggplot2::expr(atop(
         displaystyle(NULL),
@@ -234,19 +234,19 @@ testthat::test_that(
     )
 
     # checking values
-    testthat::expect_equal(dat$estimate,
+    expect_equal(dat$estimate,
       c(-5.3769964, 0.1927711, 5.5697674),
       tolerance = 0.001
     )
 
     # checking ggsignif layers
-    testthat::expect_equal(
+    expect_equal(
       ggsignif_stat$y_position,
       c(35.875, 37.825, 39.775),
       tolerance = 0.001
     )
-    testthat::expect_equal(ggsignif_stat$comparisons[[2]], c("f", "r"))
-    testthat::expect_equal(
+    expect_equal(ggsignif_stat$comparisons[[2]], c("f", "r"))
+    expect_equal(
       ggsignif_stat$annotations,
       c(
         "list(~italic(p)[Holm-corrected]==0e+00)",
@@ -258,10 +258,10 @@ testthat::test_that(
 
 # student's t test works -------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "check student's t test display - FDR-corrected",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -296,9 +296,9 @@ testthat::test_that(
     data_signif <- as_tibble(pb$data[[7]])
 
     # checking comparison groups and labels)
-    testthat::expect_identical(dat$group1, c("4", "4", "6"))
-    testthat::expect_identical(dat$group2, c("6", "8", "8"))
-    testthat::expect_identical(
+    expect_identical(dat$group1, c("4", "4", "6"))
+    expect_identical(dat$group2, c("6", "8", "8"))
+    expect_identical(
       pb$plot$labels$caption,
       ggplot2::expr(atop(
         displaystyle(NULL),
@@ -313,12 +313,12 @@ testthat::test_that(
 
     # checking values
     # checking ggsignif layers
-    testthat::expect_equal(ggsignif_stat$y_position,
+    expect_equal(ggsignif_stat$y_position,
       c(5.559600, 5.852925, 6.146250),
       tolerance = 0.001
     )
-    testthat::expect_equal(ggsignif_stat$comparisons[[2]], c("4", "8"))
-    testthat::expect_equal(
+    expect_equal(ggsignif_stat$comparisons[[2]], c("4", "8"))
+    expect_equal(
       ggsignif_stat$annotations,
       c(
         "list(~italic(p)[Bonferroni-corrected]==0.032)",
@@ -328,8 +328,8 @@ testthat::test_that(
     )
 
     # geom_signif data layers
-    testthat::expect_equal(dim(data_signif), c(9L, 19L))
-    testthat::expect_identical(
+    expect_equal(dim(data_signif), c(9L, 19L))
+    expect_identical(
       as.character(data_signif$group),
       c(
         "4-6-1",

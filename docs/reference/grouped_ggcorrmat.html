@@ -57,9 +57,10 @@ levels of a grouping variable — grouped_ggcorrmat • ggstatsplot</title>
 
 <meta property="og:title" content="Visualization of a correlalogram (or correlation matrix) for all
 levels of a grouping variable — grouped_ggcorrmat" />
-<meta property="og:description" content="Helper function for ggstatsplot::ggcorrmat to apply this
-function across multiple levels of a given factor and combining the
-resulting plots using ggstatsplot::combine_plots." />
+<meta property="og:description" content="
+Helper function for ggstatsplot::ggcorrmat to apply this function across
+multiple levels of a given factor and combining the resulting plots using
+ggstatsplot::combine_plots2." />
 <meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/logo.png" />
 
 
@@ -198,9 +199,10 @@ levels of a grouping variable</h1>
     </div>
 
     <div class="ref-description">
-    <p>Helper function for <code><a href='ggcorrmat.html'>ggstatsplot::ggcorrmat</a></code> to apply this
-function across multiple levels of a given factor and combining the
-resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_plots</a></code>.</p>
+    <p><a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a></p>
+<p>Helper function for <code><a href='ggcorrmat.html'>ggstatsplot::ggcorrmat</a></code> to apply this function across
+multiple levels of a given factor and combining the resulting plots using
+<code><a href='combine_plots2.html'>ggstatsplot::combine_plots2</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>grouped_ggcorrmat</span><span class='op'>(</span>
@@ -357,13 +359,6 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>Correlation matrix plot or a dataframe containing results from
-pairwise correlation tests. The package internally uses
-<code><a href='https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html'>ggcorrplot::ggcorrplot</a></code> for creating the visualization matrix, while the
-correlation analysis is carried out using the <code><a href='https://easystats.github.io/correlation/reference/correlation.html'>correlation::correlation</a></code>
-function.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p><a href='https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html'>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html</a></p>

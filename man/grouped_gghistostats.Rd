@@ -136,9 +136,11 @@ Can be a plotmath expression.}
 provided to \code{title}, \code{caption} and \code{sub}, resp.}
 }
 \description{
-Helper function for \code{ggstatsplot::gghistostats} to apply this
-function across multiple levels of a given factor and combining the
-resulting plots using \code{ggstatsplot::combine_plots}.
+\Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+
+Helper function for \code{ggstatsplot::gghistostats} to apply this function
+across multiple levels of a given factor and combining the resulting plots
+using \code{ggstatsplot::combine_plots2}.
 }
 \examples{
 \donttest{

@@ -1,9 +1,9 @@
 # combine_plots --------------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "checking if combining plots works",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # setup
     set.seed(123)
@@ -41,27 +41,27 @@ testthat::test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # testing labels
-    testthat::expect_identical(
+    expect_identical(
       p$layers[[1]]$geom_params$grob$grobs[[19]]$label,
       "additional text"
     )
-    testthat::expect_identical(
+    expect_identical(
       class(p$layers[[1]]$geom_params$grob),
       c("gtable", "gTree", "grob", "gDesc")
     )
-    testthat::expect_identical(class(p), c("gg", "ggplot"))
-    testthat::expect_identical(class(p1), c("gg", "ggplot"))
-    testthat::expect_identical(class(p2), c("gg", "ggplot"))
+    expect_identical(class(p), c("gg", "ggplot"))
+    expect_identical(class(p1), c("gg", "ggplot"))
+    expect_identical(class(p2), c("gg", "ggplot"))
   }
 )
 
 
 # combine_plots2 --------------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "checking if combining plots works with the other version",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # setup
     set.seed(123)
@@ -102,16 +102,16 @@ testthat::test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # testing labels
-    testthat::expect_identical(
+    expect_identical(
       p$layers[[1]]$geom_params$grob$grobs[[19]]$label,
       "additional text"
     )
-    testthat::expect_identical(
+    expect_identical(
       class(p$layers[[1]]$geom_params$grob),
       c("gtable", "gTree", "grob", "gDesc")
     )
-    testthat::expect_identical(class(p), c("gg", "ggplot"))
-    testthat::expect_identical(class(p1), c("gg", "ggplot"))
-    testthat::expect_identical(class(p2), c("gg", "ggplot"))
+    expect_identical(class(p), c("gg", "ggplot"))
+    expect_identical(class(p1), c("gg", "ggplot"))
+    expect_identical(class(p2), c("gg", "ggplot"))
   }
 )

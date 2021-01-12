@@ -1,7 +1,12 @@
 #' @title Bar (column) charts with statistical tests
 #' @name ggbarstats
-#' @description Bar charts for categorical data with statistical details
-#'   included in the plot as a subtitle.
+#'
+#' @description
+#'
+#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#'
+#' Bar charts for categorical data with statistical details included in the plot
+#' as a subtitle.
 #'
 #' @param xlab Custom text for the `x` axis label (Default: `NULL`, which
 #'   will cause the `x` axis label to be the `x` variable).
@@ -88,7 +93,7 @@ ggbarstats <- function(data,
 
   # creating a dataframe
   data %<>%
-    dplyr::select(.data = ., {{ x }}, {{ y }}, .counts = {{ counts }}) %>%
+    dplyr::select({{ x }}, {{ y }}, .counts = {{ counts }}) %>%
     tidyr::drop_na(data = .) %>%
     as_tibble(x = .)
 

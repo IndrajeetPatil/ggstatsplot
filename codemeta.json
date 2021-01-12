@@ -292,7 +292,7 @@
       "@type": "SoftwareApplication",
       "identifier": "pairwiseComparisons",
       "name": "pairwiseComparisons",
-      "version": ">= 3.1.1.9000",
+      "version": ">= 3.1.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -476,6 +476,6 @@
     }
   ],
   "funder": {},
-  "fileSize": "89839.215KB",
+  "fileSize": "89895.498KB",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
 }

@@ -1,9 +1,9 @@
 # checking plot and parametric stats --------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "checking gghistostats plot and parametric stats - data with NAs",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -27,7 +27,7 @@ testthat::test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # checking geom data
-    testthat::expect_equal(
+    expect_equal(
       pb$data[[1]],
       structure(
         list(
@@ -161,7 +161,7 @@ testthat::test_that(
       )
     )
 
-    testthat::expect_equal(
+    expect_equal(
       pb$data[[2]],
       structure(
         list(
@@ -178,7 +178,7 @@ testthat::test_that(
       )
     )
 
-    testthat::expect_equal(
+    expect_equal(
       pb$data[[4]],
       structure(
         list(
@@ -196,30 +196,30 @@ testthat::test_that(
     )
 
     # checking different data layers
-    testthat::expect_equal(length(pb$data), 5L)
-    testthat::expect_equal(dim(pb$data[[1]]), c(11L, 18L))
-    testthat::expect_equal(dim(pb$data[[2]]), c(1L, 7L))
-    testthat::expect_equal(dim(pb$data[[3]]), c(81L, 15L))
-    testthat::expect_equal(dim(pb$data[[4]]), c(1L, 7L))
-    testthat::expect_equal(dim(pb$data[[5]]), c(81L, 15L))
+    expect_equal(length(pb$data), 5L)
+    expect_equal(dim(pb$data[[1]]), c(11L, 18L))
+    expect_equal(dim(pb$data[[2]]), c(1L, 7L))
+    expect_equal(dim(pb$data[[3]]), c(81L, 15L))
+    expect_equal(dim(pb$data[[4]]), c(1L, 7L))
+    expect_equal(dim(pb$data[[5]]), c(81L, 15L))
 
-    testthat::expect_equal(
+    expect_equal(
       class(pb$data[[3]]$label[[1]]),
       "call"
     )
-    testthat::expect_equal(
+    expect_equal(
       class(pb$data[[5]]$label[[1]]),
       "call"
     )
-    testthat::expect_equal(
+    expect_equal(
       pb$data[[3]]$label[[1]],
       ggplot2::expr("test" == "150")
     )
-    testthat::expect_equal(
+    expect_equal(
       pb$data[[5]]$label[[1]],
       ggplot2::expr("mean" == "174")
     )
-    testthat::expect_null(pb$layout$panel_params[[1]]$y.sec.labels, NULL)
+    expect_null(pb$layout$panel_params[[1]]$y.sec.labels, NULL)
 
     # checking subtitle
     set.seed(123)
@@ -246,19 +246,19 @@ testthat::test_that(
       )
 
     # testing overall call
-    testthat::expect_identical(pb$plot$labels$subtitle, p_subtitle)
-    testthat::expect_identical(pb$plot$labels$title, "starwars: character heights")
-    testthat::expect_identical(pb$plot$labels$x, "character height")
-    testthat::expect_identical(pb$plot$labels$caption, p_cap)
+    expect_identical(pb$plot$labels$subtitle, p_subtitle)
+    expect_identical(pb$plot$labels$title, "starwars: character heights")
+    expect_identical(pb$plot$labels$x, "character height")
+    expect_identical(pb$plot$labels$caption, p_cap)
   }
 )
 
 # checking plot and non-parametric stats -----------------------------------
 
-testthat::test_that(
+test_that(
   desc = "checking gghistostats and non-parametric stats - data without NAs",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -284,45 +284,45 @@ testthat::test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # checking different data layers
-    testthat::expect_equal(length(pb$data), 5L)
-    testthat::expect_equal(nrow(pb$data[[1]]), 6L)
-    testthat::expect_equal(
+    expect_equal(length(pb$data), 5L)
+    expect_equal(nrow(pb$data[[1]]), 6L)
+    expect_equal(
       pb$data[[4]]$xintercept,
       median(ggplot2::mpg$cty, na.rm = TRUE),
       tolerance = 0.001
     )
-    testthat::expect_equal(pb$data[[2]]$xintercept,
+    expect_equal(pb$data[[2]]$xintercept,
       20.000,
       tolerance = 0.001
     )
-    testthat::expect_equal(
+    expect_equal(
       pb$data[[3]]$label[[1]],
       ggplot2::expr("test" == "20.00")
     )
-    testthat::expect_equal(
+    expect_equal(
       pb$data[[5]]$label[[1]],
       ggplot2::expr("median" == "17.00")
     )
-    testthat::expect_equal(pb$data[[1]]$y[1], 33L)
-    testthat::expect_equal(pb$data[[1]]$y[6], 2L)
-    testthat::expect_equal(pb$data[[1]]$x[1], 10L)
-    testthat::expect_equal(pb$data[[1]]$x[6], 35L)
-    testthat::expect_equal(pb$data[[1]]$xmin[1], 7.5, tolerance = 0.001)
-    testthat::expect_equal(pb$data[[1]]$xmax[1], 12.5, tolerance = 0.001)
-    testthat::expect_equal(pb$data[[1]]$xmin[6], 32.5, tolerance = 0.001)
-    testthat::expect_equal(pb$data[[1]]$xmax[6], 37.5, tolerance = 0.001)
+    expect_equal(pb$data[[1]]$y[1], 33L)
+    expect_equal(pb$data[[1]]$y[6], 2L)
+    expect_equal(pb$data[[1]]$x[1], 10L)
+    expect_equal(pb$data[[1]]$x[6], 35L)
+    expect_equal(pb$data[[1]]$xmin[1], 7.5, tolerance = 0.001)
+    expect_equal(pb$data[[1]]$xmax[1], 12.5, tolerance = 0.001)
+    expect_equal(pb$data[[1]]$xmin[6], 32.5, tolerance = 0.001)
+    expect_equal(pb$data[[1]]$xmax[6], 37.5, tolerance = 0.001)
 
     # checking panel parameters
-    testthat::expect_equal(pb$layout$panel_params[[1]]$x$limits, c(7.5, 37.5))
-    testthat::expect_identical(
+    expect_equal(pb$layout$panel_params[[1]]$x$limits, c(7.5, 37.5))
+    expect_identical(
       pb$layout$panel_params[[1]]$x$breaks,
       c(NA, 10, 20, 30, NA)
     )
-    testthat::expect_identical(
+    expect_identical(
       pb$layout$panel_params[[1]]$y$breaks,
       c(0, 25, 50, 75, 100)
     )
-    testthat::expect_equal(
+    expect_equal(
       pb$layout$panel_params[[1]]$y.sec$break_info,
       list(
         range = c(-0.0211538461538462, 0.444230769230769),
@@ -365,11 +365,11 @@ testthat::test_that(
     )
 
     # testing labels
-    testthat::expect_identical(p$labels$subtitle, NULL)
-    testthat::expect_identical(p$labels$title, "fuel economy")
-    testthat::expect_identical(p$labels$x, "city miles per gallon")
-    testthat::expect_identical(p$labels$y, "count")
-    testthat::expect_identical(
+    expect_identical(p$labels$subtitle, NULL)
+    expect_identical(p$labels$title, "fuel economy")
+    expect_identical(p$labels$x, "city miles per gallon")
+    expect_identical(p$labels$y, "count")
+    expect_identical(
       p$labels$caption,
       ggplot2::expr(paste(
         italic("source"),
@@ -381,10 +381,10 @@ testthat::test_that(
 
 # checking robust stats and proportions -----------------------------------
 
-testthat::test_that(
+test_that(
   desc = "checking robust stats and proportions",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -414,19 +414,19 @@ testthat::test_that(
       )
 
     # testing labels
-    testthat::expect_identical(pb$plot$labels$subtitle, p_subtitle)
-    testthat::expect_null(pb$plot$labels$caption, NULL)
-    testthat::expect_identical(pb$plot$labels$y, "count")
+    expect_identical(pb$plot$labels$subtitle, p_subtitle)
+    expect_null(pb$plot$labels$caption, NULL)
+    expect_identical(pb$plot$labels$y, "count")
 
     # checking different data layers
-    testthat::expect_equal(length(pb$data), 1L)
-    testthat::expect_equal(nrow(pb$data[[1]]), 11L)
-    testthat::expect_equal(
+    expect_equal(length(pb$data), 1L)
+    expect_equal(nrow(pb$data[[1]]), 11L)
+    expect_equal(
       pb$data[[1]]$y,
       c(0, 2, 4, 3, 7, 9, 4, 0, 1, 2, 0),
       tolerance = 0.001
     )
-    testthat::expect_equal(
+    expect_equal(
       pb$data[[1]]$x,
       c(1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0),
       tolerance = 0.01
@@ -436,10 +436,10 @@ testthat::test_that(
 
 # checking if normal curve works -------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "checking if normal curve work",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # plot
     set.seed(123)
@@ -461,10 +461,10 @@ testthat::test_that(
     pb1 <- ggplot2::ggplot_build(p1)
 
     # check data layers
-    testthat::expect_equal(length(pb1$data), 4L)
+    expect_equal(length(pb1$data), 4L)
 
     # check individual layers
-    testthat::expect_equal(
+    expect_equal(
       pb1$data[[1]],
       structure(list(fill = c(
         "grey50", "grey50", "grey50", "grey50",
@@ -548,7 +548,7 @@ testthat::test_that(
       ), class = "data.frame")
     )
 
-    testthat::expect_equal(
+    expect_equal(
       pb1$data[[3]],
       structure(
         list(
@@ -566,7 +566,7 @@ testthat::test_that(
     )
 
     # annotation
-    testthat::expect_equal(
+    expect_equal(
       pb1$plot$labels,
       list(
         x = "awake",
@@ -577,7 +577,7 @@ testthat::test_that(
         fill = "count",
         weight = "weight",
         xintercept = "xintercept",
-        label = "list(bquote(.(label.text) == .(specify_decimal_p(label.value, ..."
+        label = "list(bquote(.(label.text) == .(format_num(label.value, ..."
       )
     )
   }
@@ -585,10 +585,10 @@ testthat::test_that(
 
 # subtitle output --------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "subtitle output",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # should output a list of length 3
     set.seed(123)
@@ -612,6 +612,6 @@ testthat::test_that(
       )
 
     # tests
-    testthat::expect_identical(p_sub, sub)
+    expect_identical(p_sub, sub)
   }
 )

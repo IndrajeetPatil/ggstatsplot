@@ -144,9 +144,10 @@ results.}
 \item{...}{Currently ignored.}
 }
 \description{
-A dot chart (as described by William S. Cleveland) with
-statistical details from one-sample test included in the plot as a
-subtitle.
+\Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+
+A dot chart (as described by William S. Cleveland) with statistical details
+from one-sample test included in the plot as a subtitle.
 }
 \examples{
 \donttest{

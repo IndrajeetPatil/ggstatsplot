@@ -1,10 +1,10 @@
 # checking labels and data from plot -------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "checking labels and data from plot",
   code = {
-    testthat::skip_on_cran()
-    testthat::skip_if(getRversion() < "3.6")
+    skip_on_cran()
+    skip_if(getRversion() < "3.6")
 
     # creating the plot
     set.seed(123)
@@ -41,21 +41,21 @@ testthat::test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # dataframe used for visualization
-    testthat::expect_equal(length(pb$data), 6L)
-    testthat::expect_equal(dim(pb$data[[1]]), c(44L, 13L))
-    testthat::expect_equal(dim(pb$data[[2]]), c(4L, 26L))
-    testthat::expect_equal(dim(pb$data[[3]]), c(2048L, 21L))
-    testthat::expect_equal(dim(pb$data[[5]]), c(4L, 10L))
+    expect_equal(length(pb$data), 6L)
+    expect_equal(dim(pb$data[[1]]), c(44L, 13L))
+    expect_equal(dim(pb$data[[2]]), c(4L, 26L))
+    expect_equal(dim(pb$data[[3]]), c(2048L, 21L))
+    expect_equal(dim(pb$data[[5]]), c(4L, 10L))
 
     # data from difference layers
-    testthat::expect_equal(length(pb$data), 6L)
-    testthat::expect_equal(pb$data[[5]]$y,
+    expect_equal(length(pb$data), 6L)
+    expect_equal(pb$data[[5]]$y,
       c(0.07925556, 0.62159750, 0.02155000, 0.14573118),
       tolerance = 0.001
     )
 
     # checking displayed outlier labels
-    testthat::expect_equal(
+    expect_equal(
       pb$data[[4]],
       structure(list(
         x = structure(c(2L, 2L, 1L, 4L, 2L, 1L, 3L), class = c(
@@ -105,13 +105,13 @@ testthat::test_that(
     )
 
     # range of y variable
-    testthat::expect_equal(ggplot2::layer_scales(p)$y$range$range,
+    expect_equal(ggplot2::layer_scales(p)$y$range$range,
       c(0.00014, 5.71200000),
       tolerance = 1e-5
     )
 
     # checking centrality
-    testthat::expect_equal(
+    expect_equal(
       pb$data[[6]]$label,
       c(
         "list(~italic(widehat(mu))[mean]=='0.07926')",
@@ -122,7 +122,7 @@ testthat::test_that(
     )
 
     # checking x-axis sample size labels
-    testthat::expect_identical(
+    expect_identical(
       ggplot2::layer_scales(p)$x$labels,
       c(
         "carni\n(n = 9)",
@@ -132,10 +132,10 @@ testthat::test_that(
       )
     )
 
-    testthat::expect_identical(pb$plot$labels$subtitle, p_subtitle)
+    expect_identical(pb$plot$labels$subtitle, p_subtitle)
 
     # checking plot labels
-    # testthat::expect_equal(
+    # expect_equal(
     #   pb$plot$labels$caption,
     #   ggplot2::expr(atop(
     #     displaystyle(atop(
@@ -174,11 +174,11 @@ testthat::test_that(
 
 # mean labelling tests work ------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "checking mean labels are working",
   code = {
-    testthat::skip_on_cran()
-    testthat::skip_if(getRversion() < "3.6")
+    skip_on_cran()
+    skip_if(getRversion() < "3.6")
 
     # creating the plot
     set.seed(123)
@@ -205,10 +205,10 @@ testthat::test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # checking dimensions of data for `geom_point`
-    testthat::expect_equal(dim(pb$data[[1]]), c(29L, 13L))
+    expect_equal(dim(pb$data[[1]]), c(29L, 13L))
 
     # checking displayed mean labels
-    testthat::expect_identical(
+    expect_identical(
       pb$data[[4]]$label,
       c(
         "Cadillac Fleetwood",
@@ -218,17 +218,17 @@ testthat::test_that(
     )
 
     # check if the y-axis labels have changed
-    testthat::expect_identical(
+    expect_identical(
       pb$layout$panel_params[[1]]$x$scale$labels,
       c("4\n(n = 11)", "6\n(n = 7)", "8\n(n = 14)")
     )
 
-    testthat::expect_identical(
+    expect_identical(
       pb$layout$panel_params[[1]]$y$breaks,
       c(1, 2, 3, 4, 5, 6)
     )
 
-    testthat::expect_identical(
+    expect_identical(
       pb$data[[6]]$label[1],
       "list(~italic(widehat(mu))[median]=='2.20')"
     )
@@ -251,7 +251,7 @@ testthat::test_that(
     # build
     pb1 <- ggplot2::ggplot_build(p1)
 
-    testthat::expect_identical(
+    expect_identical(
       pb1$data[[6]]$label,
       c(
         "list(~italic(widehat(mu))[mean]=='0.98')",
@@ -263,11 +263,11 @@ testthat::test_that(
 
 # checking if plot.type argument works --------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "checking if plot.type argument works",
   code = {
-    testthat::skip_on_cran()
-    testthat::skip_if(getRversion() < "3.6")
+    skip_on_cran()
+    skip_if(getRversion() < "3.6")
 
     # boxplot
     set.seed(123)
@@ -313,30 +313,30 @@ testthat::test_that(
     pb2 <- ggplot2::ggplot_build(p2)
 
     # tests for labels
-    testthat::expect_null(pb1$plot$labels$subtitle, NULL)
-    testthat::expect_null(pb1$plot$labels$caption, NULL)
-    testthat::expect_null(pb2$plot$labels$caption, NULL)
-    testthat::expect_identical(
+    expect_null(pb1$plot$labels$subtitle, NULL)
+    expect_null(pb1$plot$labels$caption, NULL)
+    expect_null(pb2$plot$labels$caption, NULL)
+    expect_identical(
       unique(pb1$data[[1]]$colour),
       c("#D95F02FF", "#1B9E77FF")
     )
-    testthat::expect_identical(
+    expect_identical(
       unique(pb2$data[[1]]$colour),
       c("#C93312FF", "#899DA4FF")
     )
 
     # dims for data
-    testthat::expect_equal(dim(pb1$data[[1]]), c(58L, 13L))
-    testthat::expect_equal(dim(pb1$data[[2]]), c(2L, 26L))
-    testthat::expect_equal(dim(pb1$data[[4]]), c(2L, 10L))
-    testthat::expect_equal(dim(pb1$data[[2]]), c(2L, 26L))
-    testthat::expect_equal(dim(pb1$data[[4]]), c(2L, 10L))
-    testthat::expect_equal(dim(pb2$data[[1]]), c(58L, 13L))
-    testthat::expect_equal(dim(pb2$data[[2]]), c(2L, 10L))
-    testthat::expect_equal(dim(pb2$data[[3]]), c(1024L, 21L))
+    expect_equal(dim(pb1$data[[1]]), c(58L, 13L))
+    expect_equal(dim(pb1$data[[2]]), c(2L, 26L))
+    expect_equal(dim(pb1$data[[4]]), c(2L, 10L))
+    expect_equal(dim(pb1$data[[2]]), c(2L, 26L))
+    expect_equal(dim(pb1$data[[4]]), c(2L, 10L))
+    expect_equal(dim(pb2$data[[1]]), c(58L, 13L))
+    expect_equal(dim(pb2$data[[2]]), c(2L, 10L))
+    expect_equal(dim(pb2$data[[3]]), c(1024L, 21L))
 
     # checking geom data
-    testthat::expect_equal(
+    expect_equal(
       pb1$data[[2]],
       structure(list(
         ymin = c(8.2, 4.2), lower = c(15.525, 11.2), middle = c(
@@ -375,7 +375,7 @@ testthat::test_that(
       ), row.names = c(NA, -2L), class = "data.frame")
     )
 
-    testthat::expect_equal(
+    expect_equal(
       pb1$data[[3]],
       structure(
         list(
@@ -432,7 +432,7 @@ testthat::test_that(
       )
     )
 
-    testthat::expect_equal(
+    expect_equal(
       pb1$data[[4]],
       structure(
         list(
@@ -461,7 +461,7 @@ testthat::test_that(
       )
     )
 
-    testthat::expect_equal(
+    expect_equal(
       pb1$data[[5]],
       structure(
         list(
@@ -526,7 +526,7 @@ testthat::test_that(
       )
     )
 
-    testthat::expect_equal(
+    expect_equal(
       pb2$data[[2]],
       structure(
         list(
@@ -549,7 +549,7 @@ testthat::test_that(
       )
     )
 
-    testthat::expect_equal(
+    expect_equal(
       pb2$data[[4]],
       structure(
         list(
@@ -585,7 +585,7 @@ testthat::test_that(
       )
     )
 
-    testthat::expect_equal(
+    expect_equal(
       pb2$data[[6]]$label[1],
       "list(~italic(widehat(mu))[trimmed]=='21.04')"
     )
@@ -594,11 +594,11 @@ testthat::test_that(
 
 # subtitle output works ------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "subtitle output works",
   code = {
-    testthat::skip_on_cran()
-    testthat::skip_if(getRversion() < "3.6")
+    skip_on_cran()
+    skip_if(getRversion() < "3.6")
 
     df <- mtcars
     df$wt[3] <- NA
@@ -623,6 +623,6 @@ testthat::test_that(
       )
 
     # test
-    testthat::expect_identical(subtitle_exp, sub)
+    expect_identical(subtitle_exp, sub)
   }
 )

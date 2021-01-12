@@ -152,8 +152,10 @@ results.}
 \item{...}{Currently ignored.}
 }
 \description{
-Histogram with statistical details from one-sample test included
-in the plot as a subtitle.
+\Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+
+Histogram with statistical details from one-sample test included in the plot
+as a subtitle.
 }
 \examples{
 \donttest{

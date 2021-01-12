@@ -1,7 +1,13 @@
 #' @title Combining and arranging multiple plots in a grid
 #' @name combine_plots
-#' @description Wrapper around \code{\link[cowplot]{plot_grid}} that will return
-#'   a plotgrid along with a combination of title, caption, and annotation label
+#'
+#' @description
+#'
+#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("stable")}
+#'
+#' Wrapper around \code{\link[cowplot]{plot_grid}} that will return a plotgrid
+#' along with a combination of title, caption, and annotation label
+#'
 #' @return Combined plot with title and/or caption and/or annotation label
 #'
 #' @inheritDotParams cowplot::plot_grid
@@ -29,8 +35,8 @@
 #'   Can be a plotmath expression.
 #' @param sub.color Text color for annotation label (Default: `"black"`).
 #' @param sub.size Point size of annotation text (Default: `12`).
-#' @param sub.x The x position of annotation label (Default: `0.5`).
-#' @param sub.y The y position of annotation label (Default: `0.5`).
+#' @param sub.x The `x` position of annotation label (Default: `0.5`).
+#' @param sub.y The `y` position of annotation label (Default: `0.5`).
 #' @param sub.hjust Horizontal justification for annotation label (Default:
 #'   `0.5`).
 #' @param sub.vjust Vertical justification for annotation label (Default:
@@ -52,6 +58,7 @@
 #'   combining (plot, caption).
 #'
 #' @importFrom cowplot plot_grid add_sub ggdraw draw_label
+#' @importFrom rlang exec !!!
 #'
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html}
@@ -80,8 +87,7 @@
 #'
 #' # combining the plot with a title and a caption
 #' combine_plots(
-#'   p1,
-#'   p2,
+#'   p1, p2,
 #'   labels = c("(a)", "(b)"),
 #'   title.text = "Dataset: Iris Flower dataset",
 #'   caption.text = "Note: Only two species of flower are displayed",
@@ -201,5 +207,5 @@ combine_plots <- function(...,
   }
 
   # return the final, combined plot
-  return(plot)
+  plot
 }

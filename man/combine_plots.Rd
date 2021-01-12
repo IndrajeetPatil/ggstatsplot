@@ -125,9 +125,9 @@ Can be a plotmath expression.}
 \item{sub.fontface}{The font face (\code{"plain"} (default), \code{"bold"}, \code{"italic"},
 \code{"bold.italic"}) for the annotation label.}
 
-\item{sub.x}{The x position of annotation label (Default: \code{0.5}).}
+\item{sub.x}{The \code{x} position of annotation label (Default: \code{0.5}).}
 
-\item{sub.y}{The y position of annotation label (Default: \code{0.5}).}
+\item{sub.y}{The \code{y} position of annotation label (Default: \code{0.5}).}
 
 \item{sub.vpadding}{Vertical padding. The total vertical space added to the
 label, given in grid units. By default, this is added equally above and
@@ -152,8 +152,10 @@ while combining (title, plot, caption).}
 Combined plot with title and/or caption and/or annotation label
 }
 \description{
-Wrapper around \code{\link[cowplot]{plot_grid}} that will return
-a plotgrid along with a combination of title, caption, and annotation label
+\Sexpr[results=rd, stage=render]{rlang:::lifecycle("stable")}
+
+Wrapper around \code{\link[cowplot]{plot_grid}} that will return a plotgrid
+along with a combination of title, caption, and annotation label
 }
 \examples{
 # loading the necessary libraries
@@ -179,8 +181,7 @@ p2 <-
 
 # combining the plot with a title and a caption
 combine_plots(
-  p1,
-  p2,
+  p1, p2,
   labels = c("(a)", "(b)"),
   title.text = "Dataset: Iris Flower dataset",
   caption.text = "Note: Only two species of flower are displayed",

@@ -42,7 +42,7 @@ This session information was generated on `r Sys.Date()`:
 ```{r session_info}
 # setup for the session
 options(width = 200)
-options(tibble.width = Inf)
+options(tibble.width = Inf, pillar.bold = TRUE, pillar.subtle_num = TRUE)
 
 library(ggstatsplot)
 

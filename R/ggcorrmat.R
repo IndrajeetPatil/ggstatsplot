@@ -1,10 +1,14 @@
 #' @title Visualization of a correlation matrix
 #' @name ggcorrmat
-#' @return Correlation matrix plot or a dataframe containing results from
-#'   pairwise correlation tests. The package internally uses
-#'   `ggcorrplot::ggcorrplot` for creating the visualization matrix, while the
-#'   correlation analysis is carried out using the `correlation::correlation`
-#'   function.
+#'
+#' @description
+#'
+#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#'
+#' Correlation matrix plot or a dataframe containing results from pairwise
+#' correlation tests. The package internally uses `ggcorrplot::ggcorrplot` for
+#' creating the visualization matrix, while the correlation analysis is carried
+#' out using the `correlation::correlation` function.
 #'
 #' @param ... Currently ignored.
 #' @param data Dataframe from which variables specified are preferentially to be

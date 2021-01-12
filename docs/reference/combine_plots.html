@@ -55,8 +55,9 @@
   
 
 <meta property="og:title" content="Combining and arranging multiple plots in a grid — combine_plots" />
-<meta property="og:description" content="Wrapper around plot_grid that will return
-a plotgrid along with a combination of title, caption, and annotation label" />
+<meta property="og:description" content="
+Wrapper around plot_grid that will return a plotgrid
+along with a combination of title, caption, and annotation label" />
 <meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/logo.png" />
 
 
@@ -194,8 +195,9 @@ a plotgrid along with a combination of title, caption, and annotation label" />
     </div>
 
     <div class="ref-description">
-    <p>Wrapper around <code><a href='https://wilkelab.org/cowplot/reference/plot_grid.html'>plot_grid</a></code> that will return
-a plotgrid along with a combination of title, caption, and annotation label</p>
+    <p><a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a></p>
+<p>Wrapper around <code><a href='https://wilkelab.org/cowplot/reference/plot_grid.html'>plot_grid</a></code> that will return a plotgrid
+along with a combination of title, caption, and annotation label</p>
     </div>
 
     <pre class="usage"><span class='fu'>combine_plots</span><span class='op'>(</span>
@@ -360,11 +362,11 @@ Can be a plotmath expression.</p></td>
     </tr>
     <tr>
       <th>sub.x</th>
-      <td><p>The x position of annotation label (Default: <code>0.5</code>).</p></td>
+      <td><p>The <code>x</code> position of annotation label (Default: <code>0.5</code>).</p></td>
     </tr>
     <tr>
       <th>sub.y</th>
-      <td><p>The y position of annotation label (Default: <code>0.5</code>).</p></td>
+      <td><p>The <code>y</code> position of annotation label (Default: <code>0.5</code>).</p></td>
     </tr>
     <tr>
       <th>sub.vpadding</th>
@@ -409,7 +411,8 @@ while combining (title, plot, caption).</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># loading the necessary libraries</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
-
+</div><div class='output co'>#&gt; <span class='message'>Want to understand how all the pieces fit together? Read R for Data</span>
+#&gt; <span class='message'>Science: https://r4ds.had.co.nz/</span></div><div class='input'>
 <span class='co'># preparing the first plot</span>
 <span class='va'>p1</span> <span class='op'>&lt;-</span>
   <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>
@@ -430,8 +433,7 @@ while combining (title, plot, caption).</p></td>
 
 <span class='co'># combining the plot with a title and a caption</span>
 <span class='fu'>combine_plots</span><span class='op'>(</span>
-  <span class='va'>p1</span>,
-  <span class='va'>p2</span>,
+  <span class='va'>p1</span>, <span class='va'>p2</span>,
   labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"(a)"</span>, <span class='st'>"(b)"</span><span class='op'>)</span>,
   title.text <span class='op'>=</span> <span class='st'>"Dataset: Iris Flower dataset"</span>,
   caption.text <span class='op'>=</span> <span class='st'>"Note: Only two species of flower are displayed"</span>,

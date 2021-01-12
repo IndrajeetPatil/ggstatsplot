@@ -1,12 +1,12 @@
 # contingency tab (with counts) ----------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "checking labels with counts",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # y variable is not optional for `ggbarstats`
-    testthat::expect_error(
+    expect_error(
       ggstatsplot::ggbarstats(
         data = as.data.frame(Titanic),
         x = Sex
@@ -43,7 +43,7 @@ testthat::test_that(
       )
 
     # checking geom data
-    testthat::expect_equal(
+    expect_equal(
       pb$data[[1]],
       structure(
         list(
@@ -84,7 +84,7 @@ testthat::test_that(
       )
     )
 
-    testthat::expect_equal(
+    expect_equal(
       pb$data[[2]],
       structure(
         list(
@@ -150,7 +150,7 @@ testthat::test_that(
       )
     )
 
-    testthat::expect_equal(
+    expect_equal(
       pb$data[[3]],
       structure(
         list(
@@ -177,7 +177,7 @@ testthat::test_that(
       )
     )
 
-    testthat::expect_equal(
+    expect_equal(
       pb$data[[4]],
       structure(
         list(
@@ -205,16 +205,16 @@ testthat::test_that(
     )
 
     # checking plot labels
-    testthat::expect_identical(pb$plot$labels$subtitle, p_subtitle)
-    testthat::expect_identical(pb$plot$labels$caption, NULL)
-    testthat::expect_identical(pb$plot$labels$x, "Passenger sex")
-    testthat::expect_identical(pb$plot$labels$y, "proportion")
+    expect_identical(pb$plot$labels$subtitle, p_subtitle)
+    expect_identical(pb$plot$labels$caption, NULL)
+    expect_identical(pb$plot$labels$x, "Passenger sex")
+    expect_identical(pb$plot$labels$y, "proportion")
 
     # checking data layers
-    testthat::expect_equal(length(pb$data), 4L)
+    expect_equal(length(pb$data), 4L)
 
     # checking geoms data
-    testthat::expect_equal(
+    expect_equal(
       pb$data[[3]]$y + pb$data[[4]]$y,
       c(1, 1),
       tolerance = 0.001
@@ -224,10 +224,10 @@ testthat::test_that(
 
 # aesthetic modifications --------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "aesthetic modifications",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # plot
     set.seed(123)
@@ -265,8 +265,8 @@ testthat::test_that(
       )
 
     # testing everything is okay with data
-    testthat::expect_equal(dim(dat), c(5L, 5L))
-    testthat::expect_identical(
+    expect_equal(dim(dat), c(5L, 5L))
+    expect_identical(
       pb$data[[2]]$label,
       c(
         "10\n(91%)",
@@ -276,22 +276,22 @@ testthat::test_that(
         "14\n(100%)"
       )
     )
-    testthat::expect_identical(
+    expect_identical(
       pb1$data[[2]]$label,
       c("10", "4", "1", "3", "14")
     )
 
     # checking layered data
-    testthat::expect_identical(pb$plot$guides$fill$title, "Engine")
+    expect_identical(pb$plot$guides$fill$title, "Engine")
   }
 )
 
 # dropped factor levels --------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "dropped factor levels",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # dropped level dataset
     mtcars_small <- dplyr::filter(.data = mtcars, am == "0")
@@ -308,9 +308,9 @@ testthat::test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # data
-    testthat::expect_equal(length(pb$data), 3L)
+    expect_equal(length(pb$data), 3L)
 
-    testthat::expect_equal(
+    expect_equal(
       pb$data[[1]],
       structure(
         list(
@@ -358,7 +358,7 @@ testthat::test_that(
       )
     )
 
-    testthat::expect_equal(
+    expect_equal(
       pb$data[[2]],
       structure(
         list(
@@ -414,7 +414,7 @@ testthat::test_that(
       )
     )
 
-    testthat::expect_equal(
+    expect_equal(
       pb$data[[3]],
       structure(
         list(
@@ -441,7 +441,7 @@ testthat::test_that(
       )
     )
 
-    testthat::expect_equal(
+    expect_equal(
       pb$plot$labels,
       list(
         x = "am",
@@ -459,10 +459,10 @@ testthat::test_that(
 
 # other outputs --------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "other outputs",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     set.seed(123)
     df <- dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1) %>%
@@ -490,9 +490,9 @@ testthat::test_that(
       )
 
     # tests
-    testthat::expect_identical(p_sub, stats_output)
+    expect_identical(p_sub, stats_output)
 
-    testthat::expect_null(ggstatsplot::ggbarstats(
+    expect_null(ggstatsplot::ggbarstats(
       data = mtcars,
       x = cyl,
       y = am,
@@ -504,10 +504,10 @@ testthat::test_that(
 
 # without enough data ---------------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "checking if functions work without enough data",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
     set.seed(123)
 
     # creating a dataframe
@@ -517,7 +517,7 @@ testthat::test_that(
     )
 
     # should not work
-    testthat::expect_s3_class(
+    expect_s3_class(
       suppressWarnings(ggstatsplot::ggbarstats(
         data = df,
         x = x,

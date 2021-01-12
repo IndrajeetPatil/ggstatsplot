@@ -1,13 +1,13 @@
 # outlier labeling works --------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "grouping.var works across vector types",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
     set.seed(123)
 
     # expect error when no grouping.var is specified
-    testthat::expect_error(
+    expect_error(
       ggstatsplot::grouped_ggwithinstats(
         VR_dilemma,
         x = modality,
@@ -16,7 +16,7 @@ testthat::test_that(
     )
 
     # outlier tagging is not required
-    testthat::expect_s3_class(
+    expect_s3_class(
       ggstatsplot::grouped_ggwithinstats(
         VR_dilemma,
         x = modality,
@@ -30,7 +30,7 @@ testthat::test_that(
 
     # `outlier.label` is not specified
     set.seed(123)
-    testthat::expect_true(inherits(
+    expect_true(inherits(
       ggstatsplot::grouped_ggwithinstats(
         VR_dilemma,
         x = modality,
@@ -53,7 +53,7 @@ testthat::test_that(
     dat <- iris_long
     dat$id <- as.character(dat$id)
 
-    testthat::expect_true(inherits(
+    expect_true(inherits(
       ggstatsplot::grouped_ggwithinstats(
         data = dat,
         x = "attribute",
@@ -73,10 +73,10 @@ testthat::test_that(
 
 # subtitle output with NA --------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "subtitle output with NA",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # data
     df <- ggstatsplot::bugs_long %>%
@@ -105,7 +105,7 @@ testthat::test_that(
       )
 
     # tests
-    testthat::expect_equal(length(ls_results), 1L)
-    testthat::expect_identical(ls_results$`North America`, basic_results)
+    expect_equal(length(ls_results), 1L)
+    expect_identical(ls_results$`North America`, basic_results)
   }
 )

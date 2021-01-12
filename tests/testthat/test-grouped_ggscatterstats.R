@@ -1,10 +1,10 @@
-testthat::test_that(
+test_that(
   desc = "grouped_ggscatterstats works",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # expect error if no grouping variable is specified
-    testthat::expect_error(
+    expect_error(
       grouped_ggscatterstats(
         data = iris,
         x = Sepal.Length,
@@ -14,7 +14,7 @@ testthat::test_that(
 
     # without any labelling
     set.seed(123)
-    testthat::expect_true(inherits(
+    expect_true(inherits(
       ggstatsplot::grouped_ggscatterstats(
         data = iris,
         x = Sepal.Length,
@@ -36,7 +36,7 @@ testthat::test_that(
 
     # both quoted
     set.seed(123)
-    testthat::expect_true(inherits(
+    expect_true(inherits(
       ggstatsplot::grouped_ggscatterstats(
         data = df,
         x = length,
@@ -53,7 +53,7 @@ testthat::test_that(
 
     # both unquoted
     set.seed(123)
-    testthat::expect_true(inherits(
+    expect_true(inherits(
       ggstatsplot::grouped_ggscatterstats(
         data = df,
         x = length,
@@ -69,7 +69,7 @@ testthat::test_that(
 
     # one quoted, one unquoted
     set.seed(123)
-    testthat::expect_true(inherits(
+    expect_true(inherits(
       ggstatsplot::grouped_ggscatterstats(
         data = df,
         x = length,
@@ -85,7 +85,7 @@ testthat::test_that(
     ))
 
     set.seed(123)
-    testthat::expect_true(inherits(
+    expect_true(inherits(
       ggstatsplot::grouped_ggscatterstats(
         data = df,
         x = "length",
@@ -102,7 +102,7 @@ testthat::test_that(
 
     # without point labelling
     set.seed(123)
-    testthat::expect_true(inherits(
+    expect_true(inherits(
       ggstatsplot::grouped_ggscatterstats(
         data = df,
         x = "length",
@@ -118,7 +118,7 @@ testthat::test_that(
 
     # labeling all points (without expression, i.e.)
     set.seed(123)
-    testthat::expect_true(inherits(
+    expect_true(inherits(
       ggstatsplot::grouped_ggscatterstats(
         data = dplyr::sample_frac(tbl = df, size = 0.1),
         x = "length",
@@ -135,7 +135,7 @@ testthat::test_that(
 
     # checking if ggplot component addition works
     set.seed(123)
-    testthat::expect_true(inherits(
+    expect_true(inherits(
       ggstatsplot::grouped_ggscatterstats(
         data = ggplot2::msleep,
         x = sleep_total,
@@ -157,10 +157,10 @@ testthat::test_that(
 
 # subtitle output --------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "subtitle output",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # data
     df <- dplyr::filter(.data = ggstatsplot::movies_long, genre %in% c("Action Drama"))
@@ -189,7 +189,7 @@ testthat::test_that(
       )
 
     # tests
-    testthat::expect_equal(length(ls_results), 1L)
-    testthat::expect_identical(ls_results$`Action Drama`, basic_results)
+    expect_equal(length(ls_results), 1L)
+    expect_identical(ls_results$`Action Drama`, basic_results)
   }
 )

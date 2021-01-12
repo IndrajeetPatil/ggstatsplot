@@ -184,7 +184,7 @@ line_labeller <- function(plot,
     rlang::exec(
       .f = ggplot2::geom_label,
       mapping = ggplot2::aes(
-        label = list(bquote(.(label.text) == .(specify_decimal_p(label.value, k)))),
+        label = list(bquote(.(label.text) == .(format_num(label.value, k)))),
         x = x_pos,
         y = y_pos
       ),

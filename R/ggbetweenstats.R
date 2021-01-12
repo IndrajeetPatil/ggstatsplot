@@ -1,9 +1,14 @@
 #' @title Box/Violin plots for group or condition comparisons in
 #'   between-subjects designs.
 #' @name ggbetweenstats
-#' @description A combination of box and violin plots along with jittered data
-#'   points for between-subjects designs with statistical details included in
-#'   the plot as a subtitle.
+#'
+#' @description
+#'
+#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#'
+#' A combination of box and violin plots along with jittered data points for
+#' between-subjects designs with statistical details included in the plot as a
+#' subtitle.
 #'
 #' @param plot.type Character describing the *type* of plot. Currently supported
 #'   plots are `"box"` (for pure boxplots), `"violin"` (for pure violin plots),
@@ -222,14 +227,14 @@ ggbetweenstats <- function(data,
 
   # creating a dataframe
   data %<>%
-    dplyr::select(.data = ., {{ x }}, {{ y }}, outlier.label = {{ outlier.label }}) %>%
+    dplyr::select({{ x }}, {{ y }}, outlier.label = {{ outlier.label }}) %>%
     tidyr::drop_na(data = .) %>%
-    dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }}))) %>%
+    dplyr::mutate({{ x }} := droplevels(as.factor({{ x }}))) %>%
     as_tibble(x = .)
 
   # if outlier.label column is not present, just use the values from `y` column
   if (rlang::quo_is_null(rlang::enquo(outlier.label))) {
-    data %<>% dplyr::mutate(.data = ., outlier.label = {{ y }})
+    data %<>% dplyr::mutate(outlier.label = {{ y }})
   }
 
   # add a logical column indicating whether a point is or is not an outlier

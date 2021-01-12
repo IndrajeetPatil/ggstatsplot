@@ -1,9 +1,9 @@
 # grouped_list works -----------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "grouped_list works",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
     set.seed(123)
 
     # creating lists
@@ -16,21 +16,21 @@ testthat::test_that(
     df6 <- ggstatsplot:::grouped_list(data = ggplot2::msleep, grouping.var = NULL)
 
     # testing lengths of lists
-    testthat::expect_equal(length(df1), 4L)
-    testthat::expect_equal(length(df2), 3L)
-    testthat::expect_identical(class(df1), "list")
-    testthat::expect_identical(df1$carni, df5$carni)
-    testthat::expect_identical(ggplot2::msleep, df6)
+    expect_equal(length(df1), 4L)
+    expect_equal(length(df2), 3L)
+    expect_identical(class(df1), "list")
+    expect_identical(df1$carni, df5$carni)
+    expect_identical(ggplot2::msleep, df6)
   }
 )
 
 
 # palette_message is working ------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "palette_message is working",
   code = {
-    testthat::expect_output(
+    expect_output(
       ggstatsplot:::palette_message(
         package = "RColorBrewer",
         palette = "Dark2",

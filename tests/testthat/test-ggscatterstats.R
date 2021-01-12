@@ -1,9 +1,9 @@
 # pearson's r with NAs ---------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "checking ggscatterstats - without NAs - pearson's r",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -29,12 +29,12 @@ testthat::test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # checking layer data
-    testthat::expect_equal(length(pb$data), 3L)
-    testthat::expect_equal(dim(pb$data[[1]]), c(83L, 10L))
-    testthat::expect_equal(dim(pb$data[[2]]), c(80L, 14L))
+    expect_equal(length(pb$data), 3L)
+    expect_equal(dim(pb$data[[1]]), c(83L, 10L))
+    expect_equal(dim(pb$data[[2]]), c(80L, 14L))
 
     # checking outliers
-    testthat::expect_equal(
+    expect_equal(
       pb$data[[3]],
       structure(
         list(
@@ -119,12 +119,12 @@ testthat::test_that(
       )
 
     # checking plot labels
-    testthat::expect_identical(pb$plot$labels$caption, p_cap)
-    testthat::expect_identical(pb$plot$labels$title, "Mammalian sleep")
-    testthat::expect_identical(pb$plot$labels$subtitle, p_subtitle)
-    testthat::expect_identical(pb$plot$labels$x, "sleep (total)")
-    testthat::expect_identical(pb$plot$labels$y, "body weight")
-    testthat::expect_identical(
+    expect_identical(pb$plot$labels$caption, p_cap)
+    expect_identical(pb$plot$labels$title, "Mammalian sleep")
+    expect_identical(pb$plot$labels$subtitle, p_subtitle)
+    expect_identical(pb$plot$labels$x, "sleep (total)")
+    expect_identical(pb$plot$labels$y, "body weight")
+    expect_identical(
       pb$data[[3]]$label,
       c("Asian elephant", "African elephant")
     )
@@ -133,10 +133,10 @@ testthat::test_that(
 
 # spearman's rho with NAs ---------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "checking ggscatterstats - without NAs - spearman's rho",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -167,19 +167,19 @@ testthat::test_that(
       )
 
     # testing data and annotations
-    testthat::expect_equal(length(pb$data), 2L)
-    testthat::expect_identical(pb$plot$labels$subtitle, p_subtitle)
-    testthat::expect_null(pb$plot$labels$caption, NULL)
+    expect_equal(length(pb$data), 2L)
+    expect_identical(pb$plot$labels$subtitle, p_subtitle)
+    expect_null(pb$plot$labels$caption, NULL)
   }
 )
 
 
 # percentage bend with NAs ---------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "checking ggscatterstats - without NAs - percentage bend",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -211,21 +211,21 @@ testthat::test_that(
     # built plot
     pb <- ggplot2::ggplot_build(p)
 
-    testthat::expect_identical(pb$plot$labels$subtitle, p_subtitle)
+    expect_identical(pb$plot$labels$subtitle, p_subtitle)
 
     # checking layered data
-    testthat::expect_equal(unique(pb$data[[1]]$size), 5L)
-    testthat::expect_equal(unique(pb$data[[1]]$shape), 19L)
-    testthat::expect_identical(unique(pb$data[[1]]$colour), "red")
+    expect_equal(unique(pb$data[[1]]$size), 5L)
+    expect_equal(unique(pb$data[[1]]$shape), 19L)
+    expect_identical(unique(pb$data[[1]]$colour), "red")
   }
 )
 
 # bayes factor plus class of object -----------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "bayes factor plus class of object",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -253,24 +253,24 @@ testthat::test_that(
         type = "bf"
       )
 
-    testthat::expect_identical(class(p)[[1]], "ggExtraPlot")
-    testthat::expect_identical(
+    expect_identical(class(p)[[1]], "ggExtraPlot")
+    expect_identical(
       enframe(p$grobs[[23]]$children)$value[[1]][[1]],
       "mammalian sleep dataset"
     )
-    testthat::expect_identical(
+    expect_identical(
       enframe(p$grobs[[17]]$children)$value[[1]][[1]],
       "source: ggplot2 package"
     )
-    testthat::expect_identical(
+    expect_identical(
       enframe(p$grobs[[12]]$children)$value[[1]][[1]],
       "total sleep"
     )
-    testthat::expect_identical(
+    expect_identical(
       enframe(p$grobs[[13]]$children)$value[[1]][[1]],
       "body weight"
     )
-    testthat::expect_identical(
+    expect_identical(
       enframe(p$grobs[[22]]$children)$value[[1]][[1]],
       p_subtitle
     )
@@ -279,10 +279,10 @@ testthat::test_that(
 
 # aesthetic modifications work ---------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "aesthetic modifications work",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -303,7 +303,7 @@ testthat::test_that(
     # build the plot
     pb <- ggplot2::ggplot_build(p)
 
-    testthat::expect_equal(
+    expect_equal(
       pb$data[[3]],
       structure(
         list(
@@ -376,19 +376,19 @@ testthat::test_that(
     )
 
     # both quoted
-    testthat::expect_s3_class(p, "gg")
+    expect_s3_class(p, "gg")
   }
 )
 
 # labeling input variations ---------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "checking ggscatterstats with different kinds of inputs to labeling",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # both quoted
-    testthat::expect_true(inherits(
+    expect_true(inherits(
       ggstatsplot::ggscatterstats(
         data = ggplot2::msleep,
         x = sleep_total,
@@ -402,7 +402,7 @@ testthat::test_that(
     ))
 
     # both unquoted
-    testthat::expect_true(inherits(
+    expect_true(inherits(
       ggstatsplot::ggscatterstats(
         data = ggplot2::msleep,
         x = sleep_total,
@@ -416,7 +416,7 @@ testthat::test_that(
     ))
 
     # label.expression not specified
-    testthat::expect_true(inherits(
+    expect_true(inherits(
       ggstatsplot::ggscatterstats(
         data = dplyr::sample_frac(ggplot2::msleep, 0.1),
         x = sleep_total,
@@ -433,10 +433,10 @@ testthat::test_that(
 
 # with marginals ----------------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "with marginals",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -449,7 +449,7 @@ testthat::test_that(
         results.subtitle = FALSE
       )
 
-    testthat::expect_identical(
+    expect_identical(
       class(p),
       c("ggExtraPlot", "gtable", "gTree", "grob", "gDesc")
     )
@@ -458,10 +458,10 @@ testthat::test_that(
 
 # subtitle output ----------------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "subtitle output",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # creating the messages
     set.seed(123)
@@ -486,6 +486,6 @@ testthat::test_that(
       )
 
     # checking captured messages
-    testthat::expect_identical(p_sub, fun_sub)
+    expect_identical(p_sub, fun_sub)
   }
 )

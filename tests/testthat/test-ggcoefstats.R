@@ -1,9 +1,9 @@
 # z-statistic --------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "ggcoefstats with glm with z",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
     set.seed(123)
 
     # having a look at the Titanic dataset
@@ -31,7 +31,7 @@ testthat::test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # tidy dataframe from the function
-    testthat::expect_equal(
+    expect_equal(
       pb$data[[1]],
       structure(
         list(
@@ -48,7 +48,7 @@ testthat::test_that(
       )
     )
 
-    testthat::expect_equal(
+    expect_equal(
       pb$data[[2]],
       structure(
         list(
@@ -86,7 +86,7 @@ testthat::test_that(
       )
     )
 
-    testthat::expect_equal(
+    expect_equal(
       pb$data[[3]],
       structure(
         list(
@@ -112,7 +112,7 @@ testthat::test_that(
       )
     )
 
-    testthat::expect_equal(
+    expect_equal(
       pb$data[[4]],
       structure(
         list(
@@ -183,10 +183,10 @@ testthat::test_that(
 
 # chi^2-statistic --------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "ggcoefstats with coxph.panel model",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # model
     df <-
@@ -240,7 +240,7 @@ testthat::test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # tidy dataframe from the function
-    testthat::expect_equal(
+    expect_equal(
       pb$data[[4]],
       structure(
         list(
@@ -307,10 +307,10 @@ testthat::test_that(
 
 # t-statistic --------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "ggcoefstats with lm model",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
     set.seed(123)
 
     # model
@@ -330,18 +330,18 @@ testthat::test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # checking panel parameters
-    testthat::expect_equal(
+    expect_equal(
       pb$layout$panel_params[[1]]$y$breaks,
       structure(c("mpg", "am", "mpg:am"), pos = 1:3)
     )
 
     # checking layered data
-    testthat::expect_equal(dim(pb$data[[1]]), c(1L, 7L))
-    testthat::expect_equal(dim(pb$data[[2]]), c(3L, 13L))
-    testthat::expect_equal(dim(pb$data[[3]]), c(3L, 10L))
+    expect_equal(dim(pb$data[[1]]), c(1L, 7L))
+    expect_equal(dim(pb$data[[2]]), c(3L, 13L))
+    expect_equal(dim(pb$data[[3]]), c(3L, 10L))
 
     # checking ggrepel label layer
-    testthat::expect_identical(
+    expect_identical(
       pb$data[[4]]$label,
       c(
         "list(~widehat(italic(beta))==-0.156, ~italic(t)(28)==-5.840, ~italic(p)=='2.81e-06')",
@@ -349,13 +349,13 @@ testthat::test_that(
         NA_character_
       )
     )
-    testthat::expect_identical(
+    expect_identical(
       unclass(pb$data[[4]]$colour),
       c("#1B9E77FF", "#D95F02FF", "#7570B3FF")
     )
 
     # testing specific geoms
-    testthat::expect_equal(
+    expect_equal(
       pb$data[[1]],
       structure(
         list(
@@ -377,10 +377,10 @@ testthat::test_that(
 
 # f-statistic and partial eta- and omega-squared -----------------------------
 
-testthat::test_that(
+test_that(
   desc = "ggcoefstats with partial variants of effect size for f-statistic",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     ## partial eta-squared
 
@@ -406,20 +406,20 @@ testthat::test_that(
     # tidy dataframe from the function
     tidy_df <- p$plot_env$tidy_df
 
-    testthat::expect_equal(tidy_df$estimate,
+    expect_equal(tidy_df$estimate,
       c(0.8093822, 0.2068347, 0.1176152),
       tolerance = 1e-3
     )
-    testthat::expect_equal(tidy_df$df[1], 1L)
-    testthat::expect_equal(tidy_df$df.error[1], 28L)
-    testthat::expect_equal(tidy_df$p.value,
+    expect_equal(tidy_df$df[1], 1L)
+    expect_equal(tidy_df$df.error[1], 28L)
+    expect_equal(tidy_df$p.value,
       c(1.378306e-11, 1.156944e-02, 6.355055e-02),
       tolerance = 1e-5
     )
 
-    testthat::expect_identical(p$labels$x, "partial eta-squared")
-    testthat::expect_identical(p$labels$y, "effect")
-    testthat::expect_identical(
+    expect_identical(p$labels$x, "partial eta-squared")
+    expect_identical(p$labels$y, "effect")
+    expect_identical(
       p$labels$caption,
       ggplot2::expr(atop(
         displaystyle(NULL),
@@ -431,9 +431,9 @@ testthat::test_that(
         )
       ))
     )
-    testthat::expect_null(p$labels$title, NULL)
-    testthat::expect_null(p$labels$subtitle, NULL)
-    testthat::expect_identical(
+    expect_null(p$labels$title, NULL)
+    expect_null(p$labels$subtitle, NULL)
+    expect_identical(
       tidy_df$label,
       c(
         "list(~italic(F)(1*\",\"*28)==118.89, ~italic(p)=='1.38e-11', ~widehat(italic(eta)[p]^2)==0.81)",
@@ -477,40 +477,40 @@ testthat::test_that(
     tidy_df <- p$plot_env$tidy_df
 
     # tests
-    testthat::expect_identical(p$labels$x, "partial omega-squared")
-    testthat::expect_identical(p$labels$y, "term")
-    testthat::expect_identical(
+    expect_identical(p$labels$x, "partial omega-squared")
+    expect_identical(p$labels$y, "term")
+    expect_identical(
       p$labels$caption,
       ggplot2::expr(atop(
         displaystyle(paste(italic("Note"), ": From `tidyverse`")),
         expr = paste("AIC = ", "126", ", BIC = ", "142")
       ))
     )
-    testthat::expect_identical(p$labels$title, "mammalian sleep")
-    testthat::expect_identical(p$labels$subtitle, "Source: `ggplot2` package")
+    expect_identical(p$labels$title, "mammalian sleep")
+    expect_identical(p$labels$subtitle, "Source: `ggplot2` package")
 
-    testthat::expect_equal(pb$data[[2]]$x, tidy_df$estimate, tolerance = 0.001)
-    testthat::expect_equal(pb$data[[2]]$xmin, tidy_df$conf.low, tolerance = 0.001)
-    testthat::expect_equal(pb$data[[2]]$xmax, tidy_df$conf.high, tolerance = 0.001)
-    testthat::expect_equal(
+    expect_equal(pb$data[[2]]$x, tidy_df$estimate, tolerance = 0.001)
+    expect_equal(pb$data[[2]]$xmin, tidy_df$conf.low, tolerance = 0.001)
+    expect_equal(pb$data[[2]]$xmax, tidy_df$conf.high, tolerance = 0.001)
+    expect_equal(
       pb$data[[2]]$y,
       structure(c(3L, 1L, 2L), class = c("mapped_discrete", "numeric"))
     )
 
-    testthat::expect_identical(tidy_df$label, pb$data[[4]]$label)
+    expect_identical(tidy_df$label, pb$data[[4]]$label)
 
-    testthat::expect_equal(tidy_df$estimate,
+    expect_equal(tidy_df$estimate,
       c(0.30828881, 0.02348073, 0.17365008),
       tolerance = 0.001
     )
-    testthat::expect_equal(tidy_df$df[1], 3L)
-    testthat::expect_equal(tidy_df$df.error[1], 35L)
-    testthat::expect_equal(tidy_df$p.value,
+    expect_equal(tidy_df$df[1], 3L)
+    expect_equal(tidy_df$df.error[1], 35L)
+    expect_equal(tidy_df$p.value,
       c(0.0005838887, 0.1626797382, 0.0148476585),
       tolerance = 0.001
     )
 
-    testthat::expect_identical(
+    expect_identical(
       tidy_df$label,
       c(
         "list(~italic(F)(3*\",\"*35)==7.388, ~italic(p)=='0.001', ~widehat(italic(omega)[p]^2)==0.308)",
@@ -523,10 +523,10 @@ testthat::test_that(
 
 # dataframe as input ----------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "ggcoefstats works with data frames",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
     set.seed(123)
 
     # creating dataframe
@@ -630,18 +630,18 @@ testthat::test_that(
         12L
       )
 
-    testthat::expect_identical(
+    expect_identical(
       colnames(ggcoefstats(df8, output = "tidy"))[[7]],
       "term"
     )
 
     # expect errors
-    testthat::expect_message(ggcoefstats(x = df1))
-    testthat::expect_error(ggcoefstats(
+    expect_message(ggcoefstats(x = df1))
+    expect_error(ggcoefstats(
       x = df6,
       meta.analytic.effect = TRUE
     ))
-    testthat::expect_message(ggcoefstats(x = df7))
+    expect_message(ggcoefstats(x = df7))
 
     # plotting the dataframe
     p1 <-
@@ -697,7 +697,7 @@ testthat::test_that(
     pb7 <- ggplot2::ggplot_build(p7)
 
     # stats labels
-    testthat::expect_identical(
+    expect_identical(
       pb1$data[[4]]$label,
       c(
         "list(~widehat(italic(beta))==0.07, ~italic(t)(5)==0.16, ~italic(p)=='0.875')",
@@ -705,7 +705,7 @@ testthat::test_that(
         "list(~widehat(italic(beta))==0.04, ~italic(t)(12)==1.24, ~italic(p)=='0.001')"
       )
     )
-    testthat::expect_identical(
+    expect_identical(
       pb5$data[[4]]$label,
       c(
         "list(~widehat(italic(beta))==0.07, ~italic(t)(Inf)==0.16, ~italic(p)=='0.875')",
@@ -714,11 +714,11 @@ testthat::test_that(
       )
     )
 
-    testthat::expect_equal(
+    expect_equal(
       pb2$data[[3]]$y,
       structure(c(2L, 1L, 3L), class = c("mapped_discrete", "numeric"))
     )
-    testthat::expect_identical(
+    expect_identical(
       pb2$data[[4]]$label,
       c(
         "list(~widehat(italic(beta))==0.07, ~italic(z)==0.16, ~italic(p)=='0.875')",
@@ -728,31 +728,31 @@ testthat::test_that(
     )
 
     # checking number of data layers
-    testthat::expect_equal(length(pb1$data), 4L)
-    testthat::expect_equal(length(pb2$data), 4L)
-    testthat::expect_equal(length(pb3$data), 3L)
-    testthat::expect_equal(length(pb4$data), 3L)
+    expect_equal(length(pb1$data), 4L)
+    expect_equal(length(pb2$data), 4L)
+    expect_equal(length(pb3$data), 3L)
+    expect_equal(length(pb4$data), 3L)
 
     # confidence intervals used for each layer should be the same as df
-    testthat::expect_equal(pb3$data[[2]]$xmin, df1$conf.low)
-    testthat::expect_equal(pb3$data[[2]]$xmax, df2$conf.high)
-    testthat::expect_equal(pb2$data[[2]]$xmin, df3$conf.low)
-    testthat::expect_equal(pb2$data[[2]]$xmax, df3$conf.high)
+    expect_equal(pb3$data[[2]]$xmin, df1$conf.low)
+    expect_equal(pb3$data[[2]]$xmax, df2$conf.high)
+    expect_equal(pb2$data[[2]]$xmin, df3$conf.low)
+    expect_equal(pb2$data[[2]]$xmax, df3$conf.high)
 
     # annotations
-    testthat::expect_identical(p4$labels$x, "location")
-    testthat::expect_null(p4$labels$y, NULL)
-    testthat::expect_null(p4$labels$title, NULL)
-    testthat::expect_null(p4$labels$subtitle, NULL)
+    expect_identical(p4$labels$x, "location")
+    expect_null(p4$labels$y, NULL)
+    expect_null(p4$labels$title, NULL)
+    expect_null(p4$labels$subtitle, NULL)
 
     # checking meta-analysis
-    testthat::expect_error(ggcoefstats(
+    expect_error(ggcoefstats(
       x = df1,
       statistic = "t",
       meta.analytic.effect = TRUE
     ))
 
-    testthat::expect_identical(pb7$plot$labels$caption, "mnp")
+    expect_identical(pb7$plot$labels$caption, "mnp")
 
     # caption
     set.seed(123)
@@ -768,16 +768,16 @@ testthat::test_that(
           messages = TRUE
         )
       )
-    testthat::expect_identical(as.character(meta_info$expr)[19], "81.42%")
+    expect_identical(as.character(meta_info$expr)[19], "81.42%")
   }
 )
 
 # check tidy output ----------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "check tidy output",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     library(ggstatsplot)
 
@@ -793,7 +793,7 @@ testthat::test_that(
     tidy_df2 <- ggcoefstats(m2, output = "tidy")
 
     # checking entire objects
-    testthat::expect_equal(
+    expect_equal(
       tidy_df1,
       structure(list(
         group = c(
@@ -845,7 +845,7 @@ testthat::test_that(
       tolerance = 0.001
     )
 
-    testthat::expect_equal(
+    expect_equal(
       tidy_df2,
       structure(list(
         term = structure(1:7, .Label = c(
@@ -894,10 +894,10 @@ testthat::test_that(
 
 # check if glance works ----------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "check if glance works",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # lm
     set.seed(123)
@@ -905,16 +905,16 @@ testthat::test_that(
     glance_df1 <- ggcoefstats(x = mod1, output = "glance")
 
     # checking if they are present
-    testthat::expect_true(all(c("aic", "bic") %in% names(glance_df1)))
+    expect_true(all(c("aic", "bic") %in% names(glance_df1)))
   }
 )
 
 # CIs missing and palette change message -------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "CIs missing and palette change message",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     df <-
       structure(list(
@@ -955,6 +955,6 @@ testthat::test_that(
 
     pb <- ggplot2::ggplot_build(p)
 
-    testthat::expect_equal(length(pb$data), 3L)
+    expect_equal(length(pb$data), 3L)
   }
 )

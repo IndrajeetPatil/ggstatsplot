@@ -1,9 +1,14 @@
 #' @title Box/Violin plots for group or condition comparisons in
 #'   within-subjects (or repeated measures) designs.
 #' @name ggwithinstats
-#' @description A combination of box and violin plots along with raw
-#'   (unjittered) data points for within-subjects designs with statistical
-#'   details included in the plot as a subtitle.
+#'
+#' @description
+#'
+#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#'
+#' A combination of box and violin plots along with raw (unjittered) data points
+#' for within-subjects designs with statistical details included in the plot as
+#' a subtitle.
 #'
 #' @note
 #' 1. Please note that the function expects that the data is
@@ -132,17 +137,17 @@ ggwithinstats <- function(data,
 
   # creating a dataframe
   data %<>%
-    dplyr::select(.data = ., {{ x }}, {{ y }}, outlier.label = {{ outlier.label }}) %>%
-    dplyr::mutate(.data = ., {{ x }} := droplevels(as.factor({{ x }}))) %>%
+    dplyr::select({{ x }}, {{ y }}, outlier.label = {{ outlier.label }}) %>%
+    dplyr::mutate({{ x }} := droplevels(as.factor({{ x }}))) %>%
     as_tibble(.) %>%
-    dplyr::group_by(.data = ., {{ x }}) %>%
-    dplyr::mutate(.data = ., rowid = dplyr::row_number()) %>%
+    dplyr::group_by({{ x }}) %>%
+    dplyr::mutate(rowid = dplyr::row_number()) %>%
     dplyr::ungroup(.) %>%
     dplyr::anti_join(x = ., y = dplyr::filter(., is.na({{ y }})), by = "rowid")
 
   # if `outlier.label` column is not present, just use the values from `y` column
   if (rlang::quo_is_null(rlang::enquo(outlier.label))) {
-    data %<>% dplyr::mutate(.data = ., outlier.label = {{ y }})
+    data %<>% dplyr::mutate(outlier.label = {{ y }})
   }
 
   # add a logical column indicating whether a point is or is not an outlier

@@ -1,13 +1,13 @@
 # grouped_gghistostats works ---------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "grouped_gghistostats works",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # when arguments are entered as bare expressions
     set.seed(123)
-    testthat::expect_true(inherits(
+    expect_true(inherits(
       ggstatsplot::grouped_gghistostats(
         data = ggplot2::msleep,
         x = brainwt,
@@ -16,15 +16,14 @@ testthat::test_that(
         results.subtitle = FALSE,
         normal.curve = TRUE,
         bar.measure = "mix",
-        bf.message = TRUE,
-        messages = FALSE
+        bf.message = TRUE
       ),
       what = "gg"
     ))
 
     # when arguments are entered as character
     set.seed(123)
-    testthat::expect_true(inherits(
+    expect_true(inherits(
       ggstatsplot::grouped_gghistostats(
         data = ggplot2::msleep,
         x = "brainwt",
@@ -37,8 +36,7 @@ testthat::test_that(
         bar.measure = "proportion",
         ggplot.component = ggplot2::scale_x_continuous(
           sec.axis = ggplot2::dup_axis(name = ggplot2::element_blank())
-        ),
-        messages = FALSE
+        )
       ),
       what = "gg"
     ))
@@ -47,10 +45,10 @@ testthat::test_that(
 
 # subtitle output --------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "subtitle output",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     df <- dplyr::filter(ggplot2::msleep, vore == "omni")
 
@@ -61,8 +59,7 @@ testthat::test_that(
         x = brainwt,
         grouping.var = vore,
         test.value = 0.25,
-        output = "subtitle",
-        messages = FALSE
+        output = "subtitle"
       )
 
     set.seed(123)
@@ -71,11 +68,10 @@ testthat::test_that(
         data = df,
         x = brainwt,
         test.value = 0.25,
-        output = "subtitle",
-        messages = FALSE
+        output = "subtitle"
       )
 
     # tests
-    testthat::expect_equal(ls_results$`omni`, basic_results)
+    expect_equal(ls_results$`omni`, basic_results)
   }
 )

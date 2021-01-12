@@ -1,9 +1,9 @@
 # outlier labeling works --------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "grouping.var works across vector types",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # creating a smaller dataframe
     set.seed(123)
@@ -14,7 +14,7 @@ testthat::test_that(
       )
 
     # expect error when no grouping.var is specified
-    testthat::expect_error(
+    expect_error(
       ggstatsplot::grouped_ggbetweenstats(
         data = dat,
         x = genre,
@@ -34,7 +34,7 @@ testthat::test_that(
 
     # `outlier.label` is not specified
     set.seed(123)
-    testthat::expect_true(inherits(
+    expect_true(inherits(
       ggstatsplot::grouped_ggbetweenstats(
         data = dat,
         x = genre,
@@ -55,7 +55,7 @@ testthat::test_that(
 
     # `outlier.label` is factor
     set.seed(123)
-    testthat::expect_true(inherits(
+    expect_true(inherits(
       ggstatsplot::grouped_ggbetweenstats(
         data = dat,
         x = "genre",
@@ -77,7 +77,7 @@ testthat::test_that(
     set.seed(123)
     dat$title <- as.character(dat$title)
 
-    testthat::expect_true(inherits(
+    expect_true(inherits(
       ggstatsplot::grouped_ggbetweenstats(
         data = dat,
         x = "genre",
@@ -99,10 +99,10 @@ testthat::test_that(
 
 # subtitle output --------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "subtitle output",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     set.seed(123)
     df <- dplyr::sample_frac(forcats::gss_cat, 0.25) %>%
@@ -136,6 +136,6 @@ testthat::test_that(
         k = 4
       )
     # tests
-    testthat::expect_equal(ls_results$`Never married`, basic_results)
+    expect_equal(ls_results$`Never married`, basic_results)
   }
 )

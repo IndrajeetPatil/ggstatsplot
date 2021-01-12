@@ -1,7 +1,7 @@
-testthat::test_that(
+test_that(
   desc = "grouped_ggbarstats works",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # --------------------- without counts -----------------------------------
 
@@ -9,18 +9,18 @@ testthat::test_that(
     mpg_short <- dplyr::filter(.data = ggplot2::mpg, drv %in% c("4", "f"))
 
     ## expecting error message
-    testthat::expect_error(ggstatsplot::grouped_ggbarstats(
+    expect_error(ggstatsplot::grouped_ggbarstats(
       data = mpg_short,
       x = cyl,
       grouping.var = class
     ))
 
-    testthat::expect_error(ggstatsplot::grouped_ggbarstats(
+    expect_error(ggstatsplot::grouped_ggbarstats(
       data = mpg_short,
       x = cyl
     ))
 
-    testthat::expect_s3_class(
+    expect_s3_class(
       ggstatsplot::grouped_ggbarstats(
         data = mpg_short,
         x = cyl,
@@ -32,7 +32,7 @@ testthat::test_that(
 
     # when arguments are entered as bare expressions
     set.seed(123)
-    testthat::expect_true(inherits(suppressWarnings(
+    expect_true(inherits(suppressWarnings(
       ggstatsplot::grouped_ggbarstats(
         data = mpg_short,
         x = "cyl",
@@ -45,7 +45,7 @@ testthat::test_that(
 
     # when arguments are entered as character
     set.seed(123)
-    testthat::expect_true(inherits(suppressWarnings(
+    expect_true(inherits(suppressWarnings(
       ggstatsplot::grouped_ggbarstats(
         data = mpg_short,
         x = cyl,
@@ -60,7 +60,7 @@ testthat::test_that(
 
     # when arguments are entered as bare expressions
     set.seed(123)
-    testthat::expect_true(inherits(suppressWarnings(
+    expect_true(inherits(suppressWarnings(
       ggstatsplot::grouped_ggbarstats(
         data = as.data.frame(Titanic),
         grouping.var = Class,
@@ -74,7 +74,7 @@ testthat::test_that(
 
     # when arguments are entered as character
     set.seed(123)
-    testthat::expect_true(inherits(suppressWarnings(
+    expect_true(inherits(suppressWarnings(
       ggstatsplot::grouped_ggbarstats(
         data = as.data.frame(Titanic),
         grouping.var = "Class",
@@ -90,10 +90,10 @@ testthat::test_that(
 
 # subtitle output --------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "subtitle output",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     set.seed(123)
     df <- dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1) %>%
@@ -122,6 +122,6 @@ testthat::test_that(
       ))
 
     # checking subtitle
-    testthat::expect_equal(ls_results$Other, sexpr_results)
+    expect_equal(ls_results$Other, sexpr_results)
   }
 )

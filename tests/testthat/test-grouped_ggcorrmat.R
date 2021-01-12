@@ -1,13 +1,13 @@
 # output: plot ---------------------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "grouped_ggcorrmat plots work",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # with grouping.var missing ---------------------------------------------
 
-    testthat::expect_error(ggstatsplot::grouped_ggcorrmat(iris))
+    expect_error(ggstatsplot::grouped_ggcorrmat(iris))
 
     # with cor.vars specified -----------------------------------------------
 
@@ -20,7 +20,7 @@ testthat::test_that(
 
     # when arguments are entered as bare expressions
     set.seed(123)
-    testthat::expect_true(inherits(
+    expect_true(inherits(
       suppressWarnings(ggstatsplot::grouped_ggcorrmat(
         data = movies_filtered,
         grouping.var = mpaa,
@@ -32,7 +32,7 @@ testthat::test_that(
 
     # when arguments are entered as character
     set.seed(123)
-    testthat::expect_true(inherits(
+    expect_true(inherits(
       suppressWarnings(ggstatsplot::grouped_ggcorrmat(
         data = movies_filtered,
         grouping.var = "mpaa",
@@ -46,7 +46,7 @@ testthat::test_that(
 
     # when arguments are entered as bare expressions
     set.seed(123)
-    testthat::expect_true(inherits(
+    expect_true(inherits(
       suppressWarnings(ggstatsplot::grouped_ggcorrmat(
         data = movies_filtered,
         grouping.var = mpaa,
@@ -57,7 +57,7 @@ testthat::test_that(
 
     # when arguments are entered as bare expressions
     set.seed(123)
-    testthat::expect_true(inherits(
+    expect_true(inherits(
       suppressWarnings(ggstatsplot::grouped_ggcorrmat(
         data = movies_filtered,
         grouping.var = "mpaa",
@@ -70,10 +70,10 @@ testthat::test_that(
 
 # output: stats ---------------------------------------------------------------
 
-testthat::test_that(
+test_that(
   desc = "grouped_ggcorrmat stats work",
   code = {
-    testthat::skip_on_cran()
+    skip_on_cran()
 
     # without cor.vars specified --------------------------------------------
 
@@ -88,6 +88,6 @@ testthat::test_that(
       )
 
     # testing dataframe
-    testthat::expect_equal(dim(df1), c(60L, 11L))
+    expect_equal(dim(df1), c(60L, 11L))
   }
 )

@@ -1,9 +1,14 @@
 #' @title Visualization of a correlalogram (or correlation matrix) for all
 #'   levels of a grouping variable
 #' @name grouped_ggcorrmat
-#' @description Helper function for `ggstatsplot::ggcorrmat` to apply this
-#'   function across multiple levels of a given factor and combining the
-#'   resulting plots using `ggstatsplot::combine_plots`.
+#'
+#' @description
+#'
+#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#'
+#' Helper function for `ggstatsplot::ggcorrmat` to apply this function across
+#' multiple levels of a given factor and combining the resulting plots using
+#' `ggstatsplot::combine_plots2`.
 #'
 #' @inheritParams ggcorrmat
 #' @inheritParams grouped_ggbetweenstats

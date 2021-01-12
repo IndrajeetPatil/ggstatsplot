@@ -1,8 +1,12 @@
 #' @title Dot plot/chart for labeled numeric data.
 #' @name ggdotplotstats
-#' @description A dot chart (as described by William S. Cleveland) with
-#'   statistical details from one-sample test included in the plot as a
-#'   subtitle.
+#'
+#' @description
+#'
+#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#'
+#' A dot chart (as described by William S. Cleveland) with statistical details
+#' from one-sample test included in the plot as a subtitle.
 #'
 #' @param ... Currently ignored.
 #' @param y Label or grouping variable.
@@ -96,16 +100,15 @@ ggdotplotstats <- function(data,
 
   # creating a dataframe
   data %<>%
-    dplyr::select(.data = ., {{ x }}, {{ y }}) %>%
+    dplyr::select({{ x }}, {{ y }}) %>%
     tidyr::drop_na(data = .) %>%
-    dplyr::mutate(.data = ., {{ y }} := droplevels(as.factor({{ y }}))) %>%
-    dplyr::group_by(.data = ., {{ y }}) %>%
-    dplyr::summarise(.data = ., {{ x }} := mean({{ x }}, na.rm = TRUE)) %>%
+    dplyr::mutate({{ y }} := droplevels(as.factor({{ y }}))) %>%
+    dplyr::group_by({{ y }}) %>%
+    dplyr::summarise({{ x }} := mean({{ x }}, na.rm = TRUE)) %>%
     dplyr::ungroup(x = .) %>%
     # rank ordering the data
-    dplyr::arrange(.data = ., {{ x }}) %>%
+    dplyr::arrange({{ x }}) %>%
     dplyr::mutate(
-      .data = .,
       percent_rank = dplyr::percent_rank({{ x }}),
       rank = dplyr::row_number()
     ) %>%
@@ -206,10 +209,7 @@ ggdotplotstats <- function(data,
       subtitle = subtitle,
       caption = caption
     ) +
-    ggstatsplot::theme_ggstatsplot(
-      ggtheme = ggtheme,
-      ggstatsplot.layer = ggstatsplot.layer
-    ) +
+    theme_ggstatsplot(ggtheme = ggtheme, ggstatsplot.layer = ggstatsplot.layer) +
     ggplot2::theme(
       legend.position = "none",
       panel.grid.major.y = ggplot2::element_line(
@@ -219,9 +219,6 @@ ggdotplotstats <- function(data,
       )
     )
 
-  # ---------------- adding ggplot component ---------------------------------
-
-  # if any additional modification needs to be made to the plot
-  # this is primarily useful for grouped_ variant of this function
-  return(plot + ggplot.component)
+  # adding ggplot component
+  plot + ggplot.component
 }

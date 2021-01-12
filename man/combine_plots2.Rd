@@ -51,9 +51,11 @@ while combining (title, plot, caption).}
 Combined plot with title and/or caption and/or annotation label
 }
 \description{
-Wrapper around \code{cowplot::plot_grid} that will return a plotgrid
-along with a combination of title, caption, and annotation label. This is a
-simpler version of the \code{combine_plots} function in this package.
+\Sexpr[results=rd, stage=render]{rlang:::lifecycle("stable")}
+
+Wrapper around \code{cowplot::plot_grid} that will return a plotgrid along with a
+combination of title, caption, and annotation label. This is a simpler version
+of the \code{combine_plots} function in this package.
 }
 \examples{
 # loading the necessary libraries
