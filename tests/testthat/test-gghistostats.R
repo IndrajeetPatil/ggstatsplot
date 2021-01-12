@@ -577,7 +577,7 @@ test_that(
         fill = "count",
         weight = "weight",
         xintercept = "xintercept",
-        label = "list(bquote(.(label.text) == .(format_num(label.value, ..."
+        label = "list(bquote(.(label.text) == .(format_num(label.value, k))))"
       )
     )
   }
