@@ -328,7 +328,7 @@ passed to <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>g
 With Tukey's method, outliers are below (1st Quartile) or above (3rd
 Quartile) <code>outlier.coef</code> times the Inter-Quartile Range (IQR) (Default:
 <code>1.5</code>).</p></dd>
-    <dt><code>mean.plotting</code></dt><dd><p>Logical that decides whether centrality tendency measure
+    <dt><code>centrality.plotting</code></dt><dd><p>Logical that decides whether centrality tendency measure
 is to be displayed as a point with a label (Default: <code>TRUE</code>). Function
 decides which central tendency measure to show depending on the <code>type</code>
 argument (<strong>mean</strong> for parametric, <strong>median</strong> for non-parametric,
@@ -347,14 +347,14 @@ be extracted. The available palettes and packages can be checked by running
     <dt><code>palette</code></dt><dd><p>Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
 <code><a href='https://rdrr.io/r/utils/View.html'>View(paletteer::palettes_d_names)</a></code>.</p></dd>
-    <dt><code>mean.point.args</code></dt><dd><p>A list of additional aesthetic
+    <dt><code>centrality.point.args</code></dt><dd><p>A list of additional aesthetic
 arguments to be passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point</a></code> and
 <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geoms, which are involved in mean plotting.</p></dd>
-    <dt><code>mean.label.args</code></dt><dd><p>A list of additional aesthetic
+    <dt><code>centrality.label.args</code></dt><dd><p>A list of additional aesthetic
 arguments to be passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point</a></code> and
 <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geoms, which are involved in mean plotting.</p></dd>
     <dt><code>ggsignif.args</code></dt><dd><p>A list of additional aesthetic
-arguments to be passed to <code><a href='https://rdrr.io/pkg/ggsignif/man/stat_signif.html'>ggsignif::geom_signif</a></code>.</p></dd>
+arguments to be passed to <code><a href='https://const-ae.github.io/ggsignif//reference/stat_signif.html'>ggsignif::geom_signif</a></code>.</p></dd>
     <dt><code>ggtheme</code></dt><dd><p>A function, <code>ggplot2</code> theme name. Default value is
 <code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
 extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>,

@@ -70,7 +70,7 @@
 #'   With Tukey's method, outliers are below (1st Quartile) or above (3rd
 #'   Quartile) `outlier.coef` times the Inter-Quartile Range (IQR) (Default:
 #'   `1.5`).
-#' @param mean.plotting Logical that decides whether centrality tendency measure
+#' @param centrality.plotting Logical that decides whether centrality tendency measure
 #'   is to be displayed as a point with a label (Default: `TRUE`). Function
 #'   decides which central tendency measure to show depending on the `type`
 #'   argument (**mean** for parametric, **median** for non-parametric,
@@ -95,7 +95,7 @@
 #'   `bf.message = TRUE`, otherwise this will return a `NULL`.
 #' @param ... Currently ignored.
 #' @inheritParams theme_ggstatsplot
-#' @param mean.point.args,mean.label.args A list of additional aesthetic
+#' @param centrality.point.args,centrality.label.args A list of additional aesthetic
 #'   arguments to be passed to `ggplot2::geom_point` and
 #'   `ggrepel::geom_label_repel` geoms, which are involved in mean plotting.
 #' @param  ggsignif.args A list of additional aesthetic
@@ -180,9 +180,9 @@ ggbetweenstats <- function(data,
                            conf.level = 0.95,
                            nboot = 100L,
                            tr = 0.1,
-                           mean.plotting = TRUE,
-                           mean.point.args = list(size = 5, color = "darkred"),
-                           mean.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
+                           centrality.plotting = TRUE,
+                           centrality.point.args = list(size = 5, color = "darkred"),
+                           centrality.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
                            notch = FALSE,
                            notchwidth = 0.5,
                            outlier.tagging = FALSE,
@@ -407,9 +407,9 @@ ggbetweenstats <- function(data,
   # ---------------- mean value tagging -------------------------------------
 
   # add labels for mean values
-  if (isTRUE(mean.plotting)) {
+  if (isTRUE(centrality.plotting)) {
     plot <-
-      mean_ggrepel(
+      centrality_ggrepel(
         plot = plot,
         data = data,
         x = {{ x }},
@@ -418,8 +418,8 @@ ggbetweenstats <- function(data,
         type = type,
         tr = tr,
         sample.size.label = sample.size.label,
-        mean.point.args = mean.point.args,
-        mean.label.args = mean.label.args
+        centrality.point.args = centrality.point.args,
+        centrality.label.args = centrality.label.args
       )
   }
 

@@ -143,7 +143,7 @@
       <h1 data-toc-skip>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2021-01-09</h4>
+            <h4 class="date">2021-01-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -161,6 +161,7 @@
 <p>Although the statistical models displayed in the plot may differ based on the class of models being investigated, there are few aspects of the plot that will be invariant across models:</p>
 <ul>
 <li><p>The dot-whisker plot contains a dot representing the <strong>estimate</strong> and their <strong>confidence intervals</strong> (<code>95%</code> is the default). The estimate can either be effect sizes (for tests that depend on the <code>F</code>-statistic) or regression coefficients (for tests with <code>t</code>-, <span class="math inline">\(\chi^{2}\)</span>-, and <code>z</code>-statistic), etc. The function will, by default, display a helpful <code>x</code>-axis label that should clear up what estimates are being displayed. The confidence intervals can sometimes be asymmetric if bootstrapping was used.</p></li>
+<li><p>The label attached to dot will provide more details from the statistical test carried out and it will typically contain estimate, statistic, and <em>p</em>-value.</p></li>
 <li><p>The caption will contain diagnostic information, if available, about models that can be useful for model selection: The smaller the Akaike’s Information Criterion (<strong>AIC</strong>) and the Bayesian Information Criterion (<strong>BIC</strong>) values, the “better” the model is.</p></li>
 <li><p>The output of this function will be a <code>ggplot2</code> object and, thus, it can be further modified (e.g., change themes, etc.) with <code>ggplot2</code> functions.</p></li>
 </ul>
@@ -217,7 +218,7 @@
 <div id="examples-of-supported-models" class="section level1">
 <h1 class="hasAnchor">
 <a href="#examples-of-supported-models" class="anchor"></a>Examples of supported models</h1>
-<p>The following are in no particular order.</p>
+<p>The following demos are in <strong>no particular order</strong>.</p>
 <div id="summary-grid-from-emmeans-package-emmgrid" class="section level2">
 <h2 class="hasAnchor">
 <a href="#summary-grid-from-emmeans-package-emmgrid" class="anchor"></a>summary grid from <code>emmeans</code> package (<code>emmGrid</code>)</h2>
@@ -253,8 +254,8 @@
 
 <span class="co"># model and effect sizes</span>
 <span class="va">fiber.lm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">strength</span> <span class="op">~</span> <span class="va">diameter</span> <span class="op">+</span> <span class="va">machine</span>, data <span class="op">=</span> <span class="va">fiber</span><span class="op">)</span>
-<span class="va">emm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html">emmeans</a></span><span class="op">(</span><span class="va">fiber.lm</span>, <span class="st">"machine"</span><span class="op">)</span>
-<span class="va">es</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/eff_size.html">eff_size</a></span><span class="op">(</span><span class="va">emm</span>, sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sigma.html">sigma</a></span><span class="op">(</span><span class="va">fiber.lm</span><span class="op">)</span>, edf <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/df.residual.html">df.residual</a></span><span class="op">(</span><span class="va">fiber.lm</span><span class="op">)</span><span class="op">)</span>
+<span class="va">emm</span> <span class="op">&lt;-</span> <span class="fu">emmeans</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html">emmeans</a></span><span class="op">(</span><span class="va">fiber.lm</span>, <span class="st">"machine"</span><span class="op">)</span>
+<span class="va">es</span> <span class="op">&lt;-</span> <span class="fu">emmeans</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/eff_size.html">eff_size</a></span><span class="op">(</span><span class="va">emm</span>, sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sigma.html">sigma</a></span><span class="op">(</span><span class="va">fiber.lm</span><span class="op">)</span>, edf <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/df.residual.html">df.residual</a></span><span class="op">(</span><span class="va">fiber.lm</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># plot</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
@@ -311,9 +312,10 @@
 <span class="co"># meta-analysis</span>
 <span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">.15</span>, <span class="fl">2.39</span>, <span class="fl">2.42</span>, <span class="fl">2.43</span>, <span class="op">-</span><span class="fl">.15</span>, <span class="fl">2.39</span>, <span class="fl">2.42</span>, <span class="fl">2.43</span><span class="op">)</span>
 <span class="va">N</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">150</span>, <span class="fl">97</span>, <span class="fl">99</span>, <span class="fl">99</span>, <span class="fl">97</span>, <span class="fl">100</span>, <span class="fl">150</span><span class="op">)</span>
-
-<span class="co"># using `rscale = 1` and one-sided test to be consistent with Rouder &amp; Morey (2011)</span>
 <span class="va">mod8</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BayesFactor/man/meta.ttestBF.html">meta.ttestBF</a></span><span class="op">(</span><span class="va">t</span>, <span class="va">N</span>, rscale <span class="op">=</span> <span class="fl">1</span>, nullInterval <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="cn">Inf</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># proportion test</span>
+<span class="va">mod9</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BayesFactor/man/proportionBF.html">proportionBF</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fl">15</span>, N <span class="op">=</span> <span class="fl">25</span>, p <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span>
 
 <span class="co"># list of plots</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
@@ -325,8 +327,10 @@
   <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="va">mod6</span>, title <span class="op">=</span> <span class="st">"anova"</span><span class="op">)</span>,
   <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="va">mod7</span>, title <span class="op">=</span> <span class="st">"regression-1"</span><span class="op">)</span>,
   <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="va">mod8</span>, title <span class="op">=</span> <span class="st">"meta-analysis"</span><span class="op">)</span>,
+  <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="va">mod9</span>, title <span class="op">=</span> <span class="st">"proportion test"</span><span class="op">)</span>,
   title.text <span class="op">=</span> <span class="st">"Example from `BayesFactor` package"</span>
 <span class="op">)</span>
+<span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span>
 <span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span>
 <span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span>
 <span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span>
@@ -544,8 +548,7 @@
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">rt_anova</span><span class="op">$</span><span class="va">aov</span>,
   title <span class="op">=</span> <span class="st">"Anova with `ez` package"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/anova_ez-1.png" width="384"></p>
 </div>
 <div id="linear-model-lm" class="section level2">
@@ -826,8 +829,7 @@
   title <span class="op">=</span> <span class="st">"Aalen's additive regression model"</span>,
   subtitle <span class="op">=</span> <span class="st">"(for censored data)"</span>,
   k <span class="op">=</span> <span class="fl">3</span>
-<span class="op">)</span>
-<span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/aareg-1.png" width="480"></p>
 </div>
 <div id="multivariate-generalized-linear-mixed-models-mcmcglmm" class="section level2">
@@ -915,7 +917,6 @@
 <div id="robust-linear-mixed-effects-models-rlmer" class="section level2">
 <h2 class="hasAnchor">
 <a href="#robust-linear-mixed-effects-models-rlmer" class="anchor"></a>robust linear mixed-effects models (<code>rlmer</code>)</h2>
-<p>Robust version of <code>lmer</code> (as implemented in <code>robustlmm</code> package) is also supported-</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setups</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -990,7 +991,6 @@
 <div id="non-linear-least-squares-model-nls" class="section level2">
 <h2 class="hasAnchor">
 <a href="#non-linear-least-squares-model-nls" class="anchor"></a>non-linear least-squares model (<code>nls</code>)</h2>
-<p>So far we have been assuming a linear relationship between movie budget and rating. But what if we want to also explore the possibility of a non-linear relationship? In that case, we can run a non-linear least squares regression. Note that you need to choose some non-linear function, which will be based on prior exploratory data analysis (<code>y ~ k/x + c</code> implemented here, but you can try out other non-linear functions, e.g. <code>Y ~ k * exp(-b*c)</code>).</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -1012,7 +1012,6 @@
 <span class="op">)</span>
 <span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/nls-1.png" width="480"></p>
-<p>This analysis shows that there is indeed a possible non-linear association between rating and budget (non-linear regression term <code>k</code> is significant), at least with the particular non-linear function we used.</p>
 </div>
 <div id="conditional-generalized-linear-models-for-clustered-data-cglm" class="section level2">
 <h2 class="hasAnchor">
@@ -1037,8 +1036,7 @@
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">fit.ide</span>,
   title <span class="op">=</span> <span class="st">"conditional generalized linear models for clustered data"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/cglm-1.png" width="576"></p>
 </div>
 <div id="joint-model-to-time-to-event-data-and-multivariate-longitudinal-data-mjoint" class="section level2">
@@ -1081,7 +1079,7 @@
   palette <span class="op">=</span> <span class="st">"basel"</span>,
   title <span class="op">=</span> <span class="st">"joint model to time-to-event data and multivariate longitudinal data"</span>
 <span class="op">)</span>
-<span class="co">#&gt; Error in 1:nrow(parameters): argument of length 0</span></code></pre></div>
+<span class="co">#&gt; Error in if (column_index &gt; ncol(cs)) {: argument is of length zero</span></code></pre></div>
 </div>
 <div id="stationary-linear-model-slm" class="section level2">
 <h2 class="hasAnchor">
@@ -1114,7 +1112,6 @@
 <div id="generalized-linear-model-glm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#generalized-linear-model-glm" class="anchor"></a>generalized linear model (<code>glm</code>)</h2>
-<p>In all the analyses carried out thus far, the outcome variable (<code>y</code> in <code>y ~ x</code>) has been continuous. In case the outcome variable is nominal/categorical/factor, we can use the <strong>generalized</strong> form of linear model that works even if the response is a numeric vector or a factor vector, etc.</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
@@ -1518,8 +1515,7 @@
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">mod.mcml1</span>,
   title <span class="op">=</span> <span class="st">"Fitting Generalized Linear Mixed Models using MCML"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/glmm-1.png" width="480"></p>
 </div>
 <div id="fitting-negative-binomial-glmm-glmer-nb" class="section level2">
@@ -1728,8 +1724,7 @@
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">ans</span>,
   title <span class="op">=</span> <span class="st">"Constrained Generalized Additive Mixed-Effects Model Fitting"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/cgamm-1.png" width="672"></p>
 </div>
 <div id="shape-constrained-additive-models-scam" class="section level2">
@@ -2743,7 +2738,7 @@
   <span class="op">)</span>
 
 <span class="co"># update</span>
-<span class="va">dclus1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/spaMM/man/update.html">update</a></span><span class="op">(</span><span class="va">dclus1</span>, mealcat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html">cut</a></span><span class="op">(</span><span class="va">meals</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">25</span>, <span class="fl">50</span>, <span class="fl">75</span>, <span class="fl">100</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="va">dclus1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/update.html">update</a></span><span class="op">(</span><span class="va">dclus1</span>, mealcat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html">cut</a></span><span class="op">(</span><span class="va">meals</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">25</span>, <span class="fl">50</span>, <span class="fl">75</span>, <span class="fl">100</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># model</span>
 <span class="va">m_svyolr</span> <span class="op">&lt;-</span>
@@ -2818,8 +2813,7 @@
   subtitle <span class="op">=</span> <span class="st">"Source: Iris data set (by Fisher or Anderson)"</span>,
   caption <span class="op">=</span> <span class="st">"Results from 2 by 2 RM ANOVA"</span>
 <span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.subtitle <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">11</span>, face <span class="op">=</span> <span class="st">"plain"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span></code></pre></div>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.subtitle <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">11</span>, face <span class="op">=</span> <span class="st">"plain"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/aovlist1-1.png" width="768"></p>
 </div>
 <div id="robust-regression-with-robust-package-lmrob-glmrob" class="section level2">
@@ -3349,10 +3343,9 @@
 <span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/tobit-1.png" width="480"></p>
 </div>
-</div>
-<div id="censored-regression-tobit-regression-censreg" class="section level1">
-<h1 class="hasAnchor">
-<a href="#censored-regression-tobit-regression-censreg" class="anchor"></a>censored regression (tobit) regression (<code>censReg</code>)</h1>
+<div id="censored-regression-tobit-regression-censreg" class="section level2">
+<h2 class="hasAnchor">
+<a href="#censored-regression-tobit-regression-censreg" class="anchor"></a>censored regression (tobit) regression (<code>censReg</code>)</h2>
 <div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -3371,6 +3364,7 @@
   x <span class="op">=</span> <span class="va">estResult</span>,
   title <span class="op">=</span> <span class="st">"censored regression (tobit) regression"</span>
 <span class="op">)</span></code></pre></div>
+</div>
 <div id="relative-risk-regression-model-for-case-cohort-studies-cch" class="section level2">
 <h2 class="hasAnchor">
 <a href="#relative-risk-regression-model-for-case-cohort-studies-cch" class="anchor"></a>relative risk regression model for case-cohort studies (<code>cch</code>)</h2>
@@ -3429,8 +3423,7 @@
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">mod_ridgelm</span>,
   title <span class="op">=</span> <span class="st">"ridge regression"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/ridgelm-1.png" width="480"></p>
 </div>
 <div id="generalized-additive-models-with-integrated-smoothness-estimation-gam" class="section level2">
@@ -3732,8 +3725,7 @@
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">f_crq</span>,
   title <span class="op">=</span> <span class="st">"censored quantile regression models"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/crq-1.png" width="480"></p>
 </div>
 <div id="instrumental-variable-regression-ivreg" class="section level2">
@@ -3780,8 +3772,7 @@
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">pro</span>,
   title <span class="op">=</span> <span class="st">"instrumental variables probit regression"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/ivprobit-1.png" width="576"></p>
 </div>
 <div id="instrumental-fixed-effect-panel-regression-ivfixed" class="section level2">
@@ -3850,8 +3841,7 @@
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">mod_mediate</span>,
   title <span class="op">=</span> <span class="st">"causal mediation analysis"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/mediate-1.png" width="480"></p>
 </div>
 <div id="model-ii-regression-lmodel2" class="section level2">
@@ -4141,7 +4131,7 @@
   x <span class="op">=</span> <span class="va">dax.garch</span>,
   title <span class="op">=</span> <span class="st">"generalized autoregressive conditional heteroscedastic"</span>
 <span class="op">)</span>
-<span class="co">#&gt; Error in fix.by(by.y, y): 'by' must specify a uniquely valid column</span></code></pre></div>
+<span class="co">#&gt; Error in if (column_index &gt; ncol(cs)) {: argument is of length zero</span></code></pre></div>
 </div>
 <div id="bayesian-estimation-of-the-garch11-model-with-student-t-innovations-bayesgarch" class="section level2">
 <h2 class="hasAnchor">
@@ -4164,8 +4154,7 @@
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">mod_bayesGARCH</span>,
   title <span class="op">=</span> <span class="st">"Bayesian Estimation of the GARCH(1,1) Model \nwith Student-t Innovations"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/bayesGARCH-1.png" width="480"></p>
 </div>
 <div id="maximum-likelihood-fitting-of-univariate-distributions-fitdistr" class="section level2">
@@ -4245,8 +4234,7 @@
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">mod_glht</span>,
   title <span class="op">=</span> <span class="st">"General Linear Hypotheses (using `multcomp`)"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/glht-1.png" width="576"></p>
 </div>
 <div id="cochrane-orcutt-estimation-orcutt" class="section level2">
@@ -4501,7 +4489,7 @@
   x <span class="op">=</span> <span class="va">fit_epiR</span>,
   title <span class="op">=</span> <span class="st">"Summary measures for count data presented in a 2 by 2 table"</span>
 <span class="op">)</span>
-<span class="co">#&gt; Error in `$&lt;-.data.frame`(`*tmp*`, ".id", value = 1:0): replacement has 2 rows, data has 0</span></code></pre></div>
+<span class="co">#&gt; Error in if (column_index &gt; ncol(cs)) {: argument is of length zero</span></code></pre></div>
 </div>
 <div id="marginal-effects-for-a-beta-regression-betamfx" class="section level2">
 <h2 class="hasAnchor">
@@ -4957,6 +4945,7 @@ speed =~ x7 + x8 + x9 "</span>
   x <span class="op">=</span> <span class="va">mod_bcplm</span>,
   title <span class="op">=</span> <span class="st">"Bayesian Compound Poisson Linear Models"</span>
 <span class="op">)</span>
+<span class="co">#&gt; NULL</span>
 <span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/bcplm-1.png" width="960"></p>
 </div>
@@ -5008,7 +4997,7 @@ speed =~ x7 + x8 + x9 "</span>
 <a href="#estimations-with-multiple-fixed-effects-fixest" class="anchor"></a>estimations with multiple fixed-effects (<code>fixest</code>)</h2>
 <div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">fixest</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lrberge.github.io/fixest/">fixest</a></span><span class="op">)</span>
 
 <span class="co"># data</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">trade</span><span class="op">)</span>
@@ -5023,25 +5012,25 @@ speed =~ x7 + x8 + x9 "</span>
 
 <span class="co"># creating different `fixest` regression model objects</span>
 <span class="va">mod_fx1</span> <span class="op">&lt;-</span>
-  <span class="fu">fixest</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/fixest/man/femlm.html">femlm</a></span><span class="op">(</span>
+  <span class="fu">fixest</span><span class="fu">::</span><span class="fu"><a href="https://lrberge.github.io/fixest/reference/femlm.html">femlm</a></span><span class="op">(</span>
     fml <span class="op">=</span> <span class="va">Euros</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">dist_km</span><span class="op">)</span> <span class="op">|</span> <span class="va">Origin</span> <span class="op">+</span> <span class="va">Destination</span> <span class="op">+</span> <span class="va">Product</span>,
     data <span class="op">=</span> <span class="va">trade</span>
   <span class="op">)</span>
 
 <span class="va">mod_fx2</span> <span class="op">&lt;-</span>
-  <span class="fu">fixest</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/fixest/man/feglm.html">fepois</a></span><span class="op">(</span>
+  <span class="fu">fixest</span><span class="fu">::</span><span class="fu"><a href="https://lrberge.github.io/fixest/reference/feglm.html">fepois</a></span><span class="op">(</span>
     fml <span class="op">=</span> <span class="va">Sepal.Length</span> <span class="op">~</span> <span class="va">Sepal.Width</span> <span class="op">+</span> <span class="va">Petal.Length</span> <span class="op">|</span> <span class="va">Species</span>,
     data <span class="op">=</span> <span class="va">iris</span>
   <span class="op">)</span>
 
 <span class="va">mod_fx3</span> <span class="op">&lt;-</span>
-  <span class="fu">fixest</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/fixest/man/feols.html">feols</a></span><span class="op">(</span>
+  <span class="fu">fixest</span><span class="fu">::</span><span class="fu"><a href="https://lrberge.github.io/fixest/reference/feols.html">feols</a></span><span class="op">(</span>
     fml <span class="op">=</span> <span class="va">Sepal.Length</span> <span class="op">~</span> <span class="va">Sepal.Width</span> <span class="op">+</span> <span class="va">Petal.Length</span> <span class="op">|</span> <span class="va">Species</span>,
     data <span class="op">=</span> <span class="va">iris</span>
   <span class="op">)</span>
 
 <span class="va">mod_fx4</span> <span class="op">&lt;-</span>
-  <span class="fu">fixest</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/fixest/man/feNmlm.html">feNmlm</a></span><span class="op">(</span>
+  <span class="fu">fixest</span><span class="fu">::</span><span class="fu"><a href="https://lrberge.github.io/fixest/reference/feNmlm.html">feNmlm</a></span><span class="op">(</span>
     <span class="va">z1</span> <span class="op">~</span> <span class="fl">1</span>, <span class="va">base</span>,
     NL.fml <span class="op">=</span> <span class="op">~</span> <span class="va">a</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">+</span> <span class="va">b</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>,
     NL.start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">0</span>, b <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
@@ -5058,12 +5047,33 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/fixest-1.png" width="960"></p>
 </div>
+<div id="multivariate-analysis-of-variance-manova" class="section level2">
+<h2 class="hasAnchor">
+<a href="#multivariate-analysis-of-variance-manova" class="anchor"></a>multivariate analysis of variance (<code>manova</code>)</h2>
+<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># setup</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="va">op</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>contrasts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"contr.helmert"</span>, <span class="st">"contr.poly"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># fake a 2nd response variable</span>
+<span class="va">npk2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">within</a></span><span class="op">(</span><span class="va">npk</span>, <span class="va">foo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">24</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># model</span>
+<span class="va">m_manova</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/manova.html">manova</a></span><span class="op">(</span><span class="fu"><a href="https://amices.org/mice/reference/cbind.html">cbind</a></span><span class="op">(</span><span class="va">yield</span>, <span class="va">foo</span><span class="op">)</span> <span class="op">~</span> <span class="va">block</span> <span class="op">+</span> <span class="va">N</span> <span class="op">*</span> <span class="va">P</span> <span class="op">*</span> <span class="va">K</span>, <span class="va">npk2</span><span class="op">)</span>
+
+<span class="co"># plot</span>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
+  x <span class="op">=</span> <span class="va">m_manova</span>,
+  title <span class="op">=</span> <span class="st">"multivariate analysis of variance"</span>
+<span class="op">)</span></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/manova-1.png" width="768"></p>
+</div>
 </div>
 <div id="regression-models-with-list-outputs" class="section level1">
 <h1 class="hasAnchor">
 <a href="#regression-models-with-list-outputs" class="anchor"></a>Regression models with <code>list</code> outputs</h1>
 <p>Note that a number of regression models will return an object of class <code>list</code>, in which case this function will fail. But often you can extract the object of interest from this list and use it to plot the regression coefficients.</p>
-<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">gamm4</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -5111,27 +5121,6 @@ speed =~ x7 + x8 + x9 "</span>
   nrow <span class="op">=</span> <span class="fl">1</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/list_gamm4-1.png" width="960"></p>
-<div id="multivariate-analysis-of-variance-manova" class="section level2">
-<h2 class="hasAnchor">
-<a href="#multivariate-analysis-of-variance-manova" class="anchor"></a>multivariate analysis of variance (<code>manova</code>)</h2>
-<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># setup</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="va">op</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>contrasts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"contr.helmert"</span>, <span class="st">"contr.poly"</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># fake a 2nd response variable</span>
-<span class="va">npk2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">within</a></span><span class="op">(</span><span class="va">npk</span>, <span class="va">foo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">24</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># model</span>
-<span class="va">m_manova</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/manova.html">manova</a></span><span class="op">(</span><span class="fu"><a href="https://amices.org/mice/reference/cbind.html">cbind</a></span><span class="op">(</span><span class="va">yield</span>, <span class="va">foo</span><span class="op">)</span> <span class="op">~</span> <span class="va">block</span> <span class="op">+</span> <span class="va">N</span> <span class="op">*</span> <span class="va">P</span> <span class="op">*</span> <span class="va">K</span>, <span class="va">npk2</span><span class="op">)</span>
-
-<span class="co"># plot</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
-  x <span class="op">=</span> <span class="va">m_manova</span>,
-  title <span class="op">=</span> <span class="st">"multivariate analysis of variance"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/manova-1.png" width="768"></p>
-</div>
 </div>
 <div id="meta-analysis" class="section level1">
 <h1 class="hasAnchor">

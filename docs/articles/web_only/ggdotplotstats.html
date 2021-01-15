@@ -143,7 +143,7 @@
       <h1 data-toc-skip>ggdotplotstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2021-01-09</h4>
+            <h4 class="date">2021-01-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggdotplotstats.Rmd"><code>vignettes/web_only/ggdotplotstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggdotplotstats.Rmd</code></div>
@@ -280,8 +280,9 @@
 </tr>
 <tr class="odd">
 <td>Robust</td>
-<td>One-sample percentile bootstrap</td>
-<td><code><a href="https://rdrr.io/pkg/WRS2/man/onesampb.html">WRS2::onesampb</a></code></td>
+<td>Bootstrap-<em>t</em> method for one-sample test</td>
+<td>
+<code>trimcibt</code> (custom)</td>
 </tr>
 <tr class="even">
 <td>Bayesian</td>
@@ -323,9 +324,10 @@
 </tr>
 <tr class="odd">
 <td>Robust</td>
-<td>robust location measure</td>
+<td>trimmed mean</td>
 <td><font color="green">Yes<font></font></font></td>
-<td><code><a href="https://rdrr.io/pkg/WRS2/man/onesampb.html">WRS2::onesampb</a></code></td>
+<td>
+<code>trimcibt</code> (custom)</td>
 </tr>
 <tr class="even">
 <td>Bayes Factor</td>

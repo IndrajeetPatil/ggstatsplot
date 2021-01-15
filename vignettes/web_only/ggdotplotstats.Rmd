@@ -154,7 +154,7 @@ Type | Test | Function used
 ------------------ | ------------------------- | -----
 Parametric | One-sample Student's *t*-test | `stats::t.test`
 Non-parametric | One-sample Wilcoxon test | `stats::wilcox.test`
-Robust | One-sample percentile bootstrap | `WRS2::onesampb`
+Robust | Bootstrap-*t* method for one-sample test | `trimcibt` (custom)
 Bayesian | One-sample Student's *t*-test | `BayesFactor::ttestBF`
 
 Following effect sizes (and confidence intervals/CI) are available for each type
@@ -164,7 +164,7 @@ Type | Effect size | CI? | Function used
 ------------ | ----------------------- | --- | -----
 Parametric | Cohen's *d*, Hedge's *g* | <font color="green">Yes<font> | `effectsize::cohens_d`, `effectsize::hedges_g`
 Non-parametric | *r* (rank-biserial correlation) | <font color="green">Yes<font> | `effectsize::rank_biserial`
-Robust | robust location measure | <font color="green">Yes<font> | `WRS2::onesampb`
+Robust | trimmed mean | <font color="green">Yes<font> | `trimcibt` (custom)
 Bayes Factor | $\delta_{posterior}$ | <font color="green">Yes<font> | `bayestestR::describe_posterior`
 
 ## Effect size interpretation

@@ -271,13 +271,13 @@ default to <code>TRUE</code>. Note that <code>point.path</code> argument is rele
 there are two groups (i.e., in case of a <em>t</em>-test). In case of large number
 of data points, it is advisable to set <code>point.path = FALSE</code> as these lines
 can overwhelm the plot.</p></dd>
-    <dt><code>mean.path</code></dt><dd><p>Logical that decides whether individual data
+    <dt><code>centrality.path</code></dt><dd><p>Logical that decides whether individual data
 points and means, respectively, should be connected using <code>geom_path</code>. Both
 default to <code>TRUE</code>. Note that <code>point.path</code> argument is relevant only when
 there are two groups (i.e., in case of a <em>t</em>-test). In case of large number
 of data points, it is advisable to set <code>point.path = FALSE</code> as these lines
 can overwhelm the plot.</p></dd>
-    <dt><code>mean.path.args</code></dt><dd><p>A list of additional aesthetic
+    <dt><code>centrality.path.args</code></dt><dd><p>A list of additional aesthetic
 arguments passed on to <code>geom_path</code> connecting raw data points and mean
 points.</p></dd>
     <dt><code>point.path.args</code></dt><dd><p>A list of additional aesthetic
@@ -336,15 +336,15 @@ get error stating "Standard error cannot be computed because of Winsorized
 variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
 try to play around with the value of <code>tr</code>, which is by default set to
 <code>0.1</code>. Lowering the value might help.</p></dd>
-    <dt><code>mean.plotting</code></dt><dd><p>Logical that decides whether centrality tendency measure
+    <dt><code>centrality.plotting</code></dt><dd><p>Logical that decides whether centrality tendency measure
 is to be displayed as a point with a label (Default: <code>TRUE</code>). Function
 decides which central tendency measure to show depending on the <code>type</code>
 argument (<strong>mean</strong> for parametric, <strong>median</strong> for non-parametric,
 <strong>trimmed mean</strong> for robust, and <strong>MAP estimator</strong> for Bayes).</p></dd>
-    <dt><code>mean.point.args</code></dt><dd><p>A list of additional aesthetic
+    <dt><code>centrality.point.args</code></dt><dd><p>A list of additional aesthetic
 arguments to be passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point</a></code> and
 <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geoms, which are involved in mean plotting.</p></dd>
-    <dt><code>mean.label.args</code></dt><dd><p>A list of additional aesthetic
+    <dt><code>centrality.label.args</code></dt><dd><p>A list of additional aesthetic
 arguments to be passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point</a></code> and
 <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geoms, which are involved in mean plotting.</p></dd>
     <dt><code>notch</code></dt><dd><p>A logical. If <code>FALSE</code> (default), a standard box plot will be
@@ -366,7 +366,7 @@ passed to <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>g
     <dt><code>violin.args</code></dt><dd><p>A list of additional aesthetic arguments to be passed to
 the <code>geom_violin</code>.</p></dd>
     <dt><code>ggsignif.args</code></dt><dd><p>A list of additional aesthetic
-arguments to be passed to <code><a href='https://rdrr.io/pkg/ggsignif/man/stat_signif.html'>ggsignif::geom_signif</a></code>.</p></dd>
+arguments to be passed to <code><a href='https://const-ae.github.io/ggsignif//reference/stat_signif.html'>ggsignif::geom_signif</a></code>.</p></dd>
     <dt><code>ggtheme</code></dt><dd><p>A function, <code>ggplot2</code> theme name. Default value is
 <code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
 extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>,

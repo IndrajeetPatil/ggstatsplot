@@ -235,7 +235,7 @@ test_that(
 
     # edge case
     a <- data.frame(
-      mean.a = c(1.1, 0.9, 0.94, 1.58, 1.2, 1.4),
+      centrality.a = c(1.1, 0.9, 0.94, 1.58, 1.2, 1.4),
       group = c("a", "a", "a", "b", "b", "b")
     )
 
@@ -244,7 +244,7 @@ test_that(
       suppressWarnings(ggstatsplot::ggbetweenstats(
         data = a,
         x = "group",
-        y = "mean.a",
+        y = "centrality.a",
         results.subtitle = FALSE
       ))
 
@@ -283,8 +283,8 @@ test_that(
         bf.message = TRUE,
         outlier.coef = 0.75,
         outlier.color = "blue",
-        mean.point.args = list(size = 5, color = "darkgreen"),
-        mean.label.args = list(color = "blue", nudge_x = 0.4, segment.linetype = 4)
+        centrality.point.args = list(size = 5, color = "darkgreen"),
+        centrality.label.args = list(color = "blue", nudge_x = 0.4, segment.linetype = 4)
       )
 
     # violin

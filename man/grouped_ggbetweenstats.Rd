@@ -112,7 +112,7 @@ passed to \code{ggrepel::geom_label_repel} for outlier label plotting.}
 With Tukey's method, outliers are below (1st Quartile) or above (3rd
 Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
 \code{1.5}).}
-    \item{\code{mean.plotting}}{Logical that decides whether centrality tendency measure
+    \item{\code{centrality.plotting}}{Logical that decides whether centrality tendency measure
 is to be displayed as a point with a label (Default: \code{TRUE}). Function
 decides which central tendency measure to show depending on the \code{type}
 argument (\strong{mean} for parametric, \strong{median} for non-parametric,
@@ -131,10 +131,10 @@ be extracted. The available palettes and packages can be checked by running
     \item{\code{palette}}{Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
 \code{View(paletteer::palettes_d_names)}.}
-    \item{\code{mean.point.args}}{A list of additional aesthetic
+    \item{\code{centrality.point.args}}{A list of additional aesthetic
 arguments to be passed to \code{ggplot2::geom_point} and
 \code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
-    \item{\code{mean.label.args}}{A list of additional aesthetic
+    \item{\code{centrality.label.args}}{A list of additional aesthetic
 arguments to be passed to \code{ggplot2::geom_point} and
 \code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
     \item{\code{ggsignif.args}}{A list of additional aesthetic

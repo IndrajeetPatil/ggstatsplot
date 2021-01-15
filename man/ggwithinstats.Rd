@@ -27,13 +27,13 @@ ggwithinstats(
   conf.level = 0.95,
   nboot = 100L,
   tr = 0.1,
-  mean.plotting = TRUE,
-  mean.point.args = list(size = 5, color = "darkred"),
-  mean.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
+  centrality.plotting = TRUE,
+  centrality.point.args = list(size = 5, color = "darkred"),
+  centrality.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
   point.path = TRUE,
   point.path.args = list(alpha = 0.5, linetype = "dashed"),
-  mean.path = TRUE,
-  mean.path.args = list(color = "red", size = 1, alpha = 0.5),
+  centrality.path = TRUE,
+  centrality.path.args = list(color = "red", size = 1, alpha = 0.5),
   notch = FALSE,
   notchwidth = 0.5,
   outlier.tagging = FALSE,
@@ -132,28 +132,28 @@ variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
 try to play around with the value of \code{tr}, which is by default set to
 \code{0.1}. Lowering the value might help.}
 
-\item{mean.plotting}{Logical that decides whether centrality tendency measure
+\item{centrality.plotting}{Logical that decides whether centrality tendency measure
 is to be displayed as a point with a label (Default: \code{TRUE}). Function
 decides which central tendency measure to show depending on the \code{type}
 argument (\strong{mean} for parametric, \strong{median} for non-parametric,
 \strong{trimmed mean} for robust, and \strong{MAP estimator} for Bayes).}
 
-\item{mean.point.args}{A list of additional aesthetic
+\item{centrality.point.args}{A list of additional aesthetic
 arguments to be passed to \code{ggplot2::geom_point} and
 \code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
 
-\item{mean.label.args}{A list of additional aesthetic
+\item{centrality.label.args}{A list of additional aesthetic
 arguments to be passed to \code{ggplot2::geom_point} and
 \code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
 
-\item{point.path, mean.path}{Logical that decides whether individual data
+\item{point.path, centrality.path}{Logical that decides whether individual data
 points and means, respectively, should be connected using \code{geom_path}. Both
 default to \code{TRUE}. Note that \code{point.path} argument is relevant only when
 there are two groups (i.e., in case of a \emph{t}-test). In case of large number
 of data points, it is advisable to set \code{point.path = FALSE} as these lines
 can overwhelm the plot.}
 
-\item{mean.path.args, point.path.args}{A list of additional aesthetic
+\item{centrality.path.args, point.path.args}{A list of additional aesthetic
 arguments passed on to \code{geom_path} connecting raw data points and mean
 points.}
 

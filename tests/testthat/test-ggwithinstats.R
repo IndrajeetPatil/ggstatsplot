@@ -27,8 +27,8 @@ test_that(
         ggsignif.args = list(textsize = 6, tip_length = 0.01),
         pairwise.annotation = "asterisk",
         point.path.args = list(color = "red"),
-        mean.path.args = list(color = "blue", size = 2, alpha = 0.8),
-        mean.point.args = list(size = 3, color = "darkgreen", alpha = 0.5),
+        centrality.path.args = list(color = "blue", size = 2, alpha = 0.8),
+        centrality.point.args = list(size = 3, color = "darkgreen", alpha = 0.5),
         title = "bugs dataset",
         caption = "From `jmv` package"
       )
@@ -283,8 +283,6 @@ test_that(
           x = Wine,
           y = "Taste",
           type = "p",
-          sort = "ascending",
-          sort.fun = median,
           bf.message = TRUE,
           k = 4,
           conf.level = 0.99,
@@ -341,13 +339,6 @@ test_that(
         ggplot2::layer_grob(p1, i = 4L)$`1`$lab,
         c(5.00, 6.30, 6.30, 6.25),
         tolerance = 0.01
-      )
-
-      # range of y variable
-      expect_equal(
-        ggplot2::layer_scales(p1)$y$range$range,
-        c(4.95000, 6.55875),
-        tolerance = 1e-5
       )
 
       # checking x-axis sample size labels
@@ -618,8 +609,8 @@ test_that(
         iris_long,
         condition,
         value,
-        mean.point.args = list(size = 5, alpha = 0.5, color = "darkred"),
-        mean.path = TRUE,
+        centrality.point.args = list(size = 5, alpha = 0.5, color = "darkred"),
+        centrality.path = TRUE,
         results.subtitle = FALSE,
         pairwise.comparisons = FALSE
       )
@@ -629,8 +620,8 @@ test_that(
         iris_long,
         condition,
         value,
-        mean.point.args = list(size = 5, alpha = 0.5, color = "darkred"),
-        mean.path = FALSE,
+        centrality.point.args = list(size = 5, alpha = 0.5, color = "darkred"),
+        centrality.path = FALSE,
         results.subtitle = FALSE,
         pairwise.comparisons = FALSE
       )

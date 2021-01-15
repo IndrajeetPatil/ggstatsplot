@@ -64,6 +64,10 @@ be invariant across models:
     function will, by default, display a helpful `x`-axis label that should
     clear up what estimates are being displayed. The confidence intervals can
     sometimes be asymmetric if bootstrapping was used.
+    
+  - The label attached to dot will provide more details from the statistical
+    test carried out and it will typically contain estimate, statistic, and
+    *p*-value.
 
   - The caption will contain diagnostic information, if available, about
     models that can be useful for model selection: The smaller the Akaike's
@@ -111,7 +115,7 @@ Bayes | Meta-analysis via robust random-effects models | $\beta$ | <font color="
 
 # Examples of supported models
 
-The following are in no particular order.
+The following demos are in **no particular order**.
 
 ## summary grid from `emmeans` package (`emmGrid`)
 
@@ -148,8 +152,8 @@ library(emmeans)
 
 # model and effect sizes
 fiber.lm <- lm(strength ~ diameter + machine, data = fiber)
-emm <- emmeans(fiber.lm, "machine")
-es <- eff_size(emm, sigma = sigma(fiber.lm), edf = df.residual(fiber.lm))
+emm <- emmeans::emmeans(fiber.lm, "machine")
+es <- emmeans::eff_size(emm, sigma = sigma(fiber.lm), edf = df.residual(fiber.lm))
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -204,9 +208,10 @@ mod7 <- regressionBF(rating ~ ., data = attitude, progress = FALSE)
 # meta-analysis
 t <- c(-.15, 2.39, 2.42, 2.43, -.15, 2.39, 2.42, 2.43)
 N <- c(100, 150, 97, 99, 99, 97, 100, 150)
-
-# using `rscale = 1` and one-sided test to be consistent with Rouder & Morey (2011)
 mod8 <- meta.ttestBF(t, N, rscale = 1, nullInterval = c(0, Inf))
+
+# proportion test
+mod9 <- proportionBF(y = 15, N = 25, p = .5)
 
 # list of plots
 ggstatsplot::combine_plots(
@@ -218,6 +223,7 @@ ggstatsplot::combine_plots(
   ggcoefstats(mod6, title = "anova"),
   ggcoefstats(mod7, title = "regression-1"),
   ggcoefstats(mod8, title = "meta-analysis"),
+  ggcoefstats(mod9, title = "proportion test"),
   title.text = "Example from `BayesFactor` package"
 )
 ```
@@ -772,9 +778,6 @@ ggstatsplot::ggcoefstats(
 
 ## robust linear mixed-effects models (`rlmer`)
 
-Robust version of `lmer` (as implemented in `robustlmm` package) is also
-supported-
-
 ```{r rlmer, width = 5, height = 5}
 # setups
 set.seed(123)
@@ -844,13 +847,6 @@ ggstatsplot::ggcoefstats(
 
 ## non-linear least-squares model (`nls`)
 
-So far we have been assuming a linear relationship between movie budget and
-rating. But what if we want to also explore the possibility of a non-linear
-relationship? In that case, we can run a non-linear least squares regression.
-Note that you need to choose some non-linear function, which will be based on
-prior exploratory data analysis (`y ~ k/x + c` implemented here, but you can try
-out other non-linear functions, e.g. `Y ~ k * exp(-b*c)`).
-
 ```{r nls, fig.height = 5, fig.width = 5}
 # setup
 set.seed(123)
@@ -871,10 +867,6 @@ ggstatsplot::ggcoefstats(
   subtitle = "Non-linear relationship between budget and rating"
 )
 ```
-
-This analysis shows that there is indeed a possible non-linear association
-between rating and budget (non-linear regression term `k` is significant), at
-least with the particular non-linear function we used.
 
 ## conditional generalized linear models for clustered data (`cglm`)
 
@@ -970,11 +962,6 @@ ggstatsplot::ggcoefstats(
 ```
 
 ## generalized linear model (`glm`)
-
-In all the analyses carried out thus far, the outcome variable (`y` in `y ~ x`)
-has been continuous. In case the outcome variable is nominal/categorical/factor,
-we can use the **generalized** form of linear model that works even if the
-response is a numeric vector or a factor vector, etc.
 
 ```{r glm1, fig.height = 6, fig.width = 6}
 # setup
@@ -3126,7 +3113,7 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
-# censored regression (tobit) regression (`censReg`)
+## censored regression (tobit) regression (`censReg`)
 
 ```{r censReg, fig.height = 5, fig.width = 5, eval=FALSE}
 # setup
@@ -4662,6 +4649,26 @@ ggstatsplot::combine_plots(
 )
 ```
 
+## multivariate analysis of variance (`manova`)
+
+```{r manova, fig.height = 8, fig.width = 8}
+# setup
+set.seed(123)
+op <- options(contrasts = c("contr.helmert", "contr.poly"))
+
+# fake a 2nd response variable
+npk2 <- within(npk, foo <- rnorm(24))
+
+# model
+m_manova <- manova(cbind(yield, foo) ~ block + N * P * K, npk2)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = m_manova,
+  title = "multivariate analysis of variance"
+)
+```
+
 # Regression models with `list` outputs
 
 Note that a number of regression models will return an object of class `list`,
@@ -4706,26 +4713,6 @@ ggstatsplot::combine_plots(
     k = 3
   ),
   nrow = 1
-)
-```
-
-## multivariate analysis of variance (`manova`)
-
-```{r manova, fig.height = 8, fig.width = 8}
-# setup
-set.seed(123)
-op <- options(contrasts = c("contr.helmert", "contr.poly"))
-
-# fake a 2nd response variable
-npk2 <- within(npk, foo <- rnorm(24))
-
-# model
-m_manova <- manova(cbind(yield, foo) ~ block + N * P * K, npk2)
-
-# plot
-ggstatsplot::ggcoefstats(
-  x = m_manova,
-  title = "multivariate analysis of variance"
 )
 ```
 

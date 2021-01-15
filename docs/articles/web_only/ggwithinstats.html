@@ -143,7 +143,7 @@
       <h1 data-toc-skip>ggwithinstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2021-01-09</h4>
+            <h4 class="date">2021-01-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggwithinstats.Rmd"><code>vignettes/web_only/ggwithinstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggwithinstats.Rmd</code></div>
@@ -486,9 +486,12 @@
 <tr class="odd">
 <td>Robust</td>
 <td>&gt; 2</td>
-<td><font color="red">No<font></font></font></td>
-<td><font color="red">No<font></font></font></td>
-<td><code>NA</code></td>
+<td>
+<span class="math inline">\(\delta_{R-avg}^{AKP}\)</span> <font color="green">Yes<font></font></font>
+</td>
+<td>Algina-Keselman-Penfield robust standardized difference average</td>
+<td>
+<code>wAKP.avg</code> (custom)</td>
 </tr>
 <tr class="even">
 <td>Bayes Factor</td>
@@ -519,7 +522,7 @@
 <td>Robust</td>
 <td>2</td>
 <td>
-<span class="math inline">\(\delta_{R}\)</span> (robust standardized difference)</td>
+<span class="math inline">\(\delta_{R}^{AKP}\)</span> (Algina-Keselman-Penfield robust standardized difference)</td>
 <td><font color="green">Yes<font></font></font></td>
 <td><code><a href="https://rdrr.io/pkg/WRS2/man/yuend.html">WRS2::dep.effect</a></code></td>
 </tr>
