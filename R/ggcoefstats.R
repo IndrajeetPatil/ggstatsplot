@@ -84,8 +84,7 @@
 #'
 #' @import ggplot2
 #' @importFrom rlang exec !!! !!
-#' @importFrom dplyr select mutate matches vars all_vars filter_at row_number last
-#' @importFrom dplyr group_by ungroup
+#' @importFrom dplyr select mutate matches across row_number last group_by ungroup
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom tidyr unite
 #' @importFrom insight is_model find_statistic standardize_names
@@ -310,11 +309,10 @@ ggcoefstats <- function(x,
   # remove NAs
   if (isTRUE(stats.labels)) {
     tidy_df %<>%
-      dplyr::filter_at(
-        .tbl = .,
-        .vars = dplyr::vars(dplyr::matches("estimate|statistic|std.error|p.value")),
-        .vars_predicate = dplyr::all_vars(!is.na(.))
-      )
+      dplyr::filter(dplyr::across(
+        .cols = c(dplyr::matches("estimate|statistic|std.error|p.value")),
+        .fns = ~ !is.na(.)
+      ))
   }
 
   # create a new term column if it's not present
@@ -493,7 +491,7 @@ ggcoefstats <- function(x,
         rlang::exec(
           .fn = ggplot2::geom_errorbarh,
           data = tidy_df,
-          mapping = ggplot2::aes_string(xmin = "conf.low", xmax = "conf.high"),
+          mapping = ggplot2::aes(xmin = conf.low, xmax = conf.high),
           na.rm = TRUE,
           !!!errorbar.args
         )

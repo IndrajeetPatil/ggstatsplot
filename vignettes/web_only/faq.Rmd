@@ -1,5 +1,5 @@
 ---
-title: "Frequently asked questions"
+title: "frequently asked questions (FAQ)"
 author: "Indrajeet Patil"
 date: "`r Sys.Date()`"
 output:
@@ -11,7 +11,7 @@ output:
     warning: FALSE
     message: FALSE
 vignette: >
-  %\VignetteIndexEntry{Frequently asked questions}
+  %\VignetteIndexEntry{frequently asked questions (FAQ)}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

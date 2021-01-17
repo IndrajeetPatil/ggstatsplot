@@ -354,7 +354,6 @@ ggstatsplot::gghistostats(
   data = morley,
   x = Speed,
   test.value = 792,
-  test.value.line = TRUE,
   xlab = "Speed of light (km/sec, with 299000 subtracted)",
   title = "Distribution of measured Speed of light",
   caption = "Note: Data collected across 5 experiments (20 measurements each)"

@@ -162,8 +162,8 @@ test_that(
           )),
           y = c(7.86666666666667, 6.73888888888889),
           label = c(
-            "list(~italic(widehat(mu))[mean]=='7.8667')",
-            "list(~italic(widehat(mu))[mean]=='6.7389')"
+            "list(~widehat(mu)[mean]=='7.8667')",
+            "list(~widehat(mu)[mean]=='6.7389')"
           ),
           PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
           group = structure(1:2, n = 2L),

@@ -503,14 +503,6 @@ plot_list <-
         list(color = "#D55E00"),
         list(color = "#CC79A7")
       ),
-      test.value.line = TRUE,
-      test.value.line.args = list(
-        list(color = "#E69F00", size = 1),
-        list(color = "#56B4E9", size = 0.8),
-        list(color = "#009E73", size = 1.5),
-        list(color = "blue", size = 0.4)
-      ),
-      centrality.parameter = list("median", "mean", "mean", "none"),
       ggtheme = list(
         ggplot2::theme_minimal(base_family = "serif"),
         ggthemes::theme_tufte(),

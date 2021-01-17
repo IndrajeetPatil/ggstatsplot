@@ -90,7 +90,7 @@ along with a combination of title, caption, and annotation label" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.8</span>
       </span>
     </div>
 
@@ -106,56 +106,62 @@ along with a combination of title, caption, and annotation label" />
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/additional.html">additional vignettes</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/combine_plots.html">combine_plots</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/faq.html">Frequently asked questions</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
-    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Primary functions</li>
     <li>
       <a href="../articles/web_only/ggbetweenstats.html">ggbetweenstats</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/ggcoefstats.html">ggcoefstats</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/ggcorrmat.html">ggcorrmat</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/gghistostats.html">gghistostats</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/ggpiestats.html">ggpiestats</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/ggscatterstats.html">ggscatterstats</a>
     </li>
     <li>
       <a href="../articles/web_only/ggwithinstats.html">ggwithinstats</a>
     </li>
     <li>
-      <a href="../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
+      <a href="../articles/web_only/gghistostats.html">gghistostats</a>
     </li>
     <li>
-      <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
+      <a href="../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/ggcorrmat.html">ggcorrmat</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/ggscatterstats.html">ggscatterstats</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/ggpiestats.html">ggpiestats</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/ggcoefstats.html">ggcoefstats</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Helper functions</li>
+    <li>
+      <a href="../articles/web_only/combine_plots.html">combine_plots</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/theme_ggstatsplot.html">ggstatsplot theme</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Miscellaneous</li>
+    <li>
+      <a href="../articles/additional.html">additional vignettes</a>
     </li>
     <li>
       <a href="../articles/web_only/session_info.html">session information</a>
     </li>
     <li>
-      <a href="../articles/web_only/theme_ggstatsplot.html">ggstatsplot theme</a>
+      <a href="../articles/web_only/gallery.html">gallery of `ggstatsplot` examples</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
     </li>
   </ul>
 </li>
@@ -411,8 +417,7 @@ while combining (title, plot, caption).</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># loading the necessary libraries</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Want to understand how all the pieces fit together? Read R for Data</span>
-#&gt; <span class='message'>Science: https://r4ds.had.co.nz/</span></div><div class='input'>
+
 <span class='co'># preparing the first plot</span>
 <span class='va'>p1</span> <span class='op'>&lt;-</span>
   <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>

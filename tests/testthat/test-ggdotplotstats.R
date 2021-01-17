@@ -7,9 +7,8 @@ test_that(
 
     # creating a new dataset
     morley_new <-
-      morley %>%
       dplyr::mutate(
-        .data = .,
+        .data = morley,
         Expt = dplyr::case_when(
           Expt == 1 ~ "1st",
           Expt == 2 ~ "2nd",
@@ -17,13 +16,12 @@ test_that(
           Expt == 4 ~ "4th",
           Expt == 5 ~ "5th"
         )
-      ) %>%
-      as_tibble(x = .)
+      )
 
     # creating the plot
     set.seed(123)
     p <-
-      ggstatsplot::ggdotplotstats(
+      suppressMessages(ggstatsplot::ggdotplotstats(
         data = morley_new,
         x = Speed,
         y = "Expt",
@@ -31,7 +29,6 @@ test_that(
         type = "p",
         k = 4,
         effsize.type = "d",
-        effsize.noncentral = FALSE,
         title = "Michelson-Morley experiment",
         caption = "Studies carried out in 1887",
         xlab = substitute(paste("Speed of light (", italic("c"), ")")),
@@ -41,11 +38,8 @@ test_that(
           breaks = seq(800, 900, 10),
           sec.axis = ggplot2::dup_axis()
         ),
-        bf.prior = 0.88,
-        test.value.line = TRUE,
-        centrality.parameter = "mean",
-        messages = TRUE
-      )
+        bf.prior = 0.88
+      ))
 
     # build the plot
     pb <- ggplot2::ggplot_build(p)
@@ -60,8 +54,7 @@ test_that(
         test.value = 800,
         type = "p",
         k = 4,
-        effsize.type = "d",
-        effsize.noncentral = FALSE
+        effsize.type = "d"
       )
 
     # testing labels
@@ -75,11 +68,12 @@ test_that(
     # checking panel parameters
     expect_equal(
       pb$layout$panel_params[[1]]$x$scale$range$range,
-      c(800, 909)
+      c(820.5, 909.0),
+      tolerance = 0.001
     )
     expect_equal(
       pb$layout$panel_params[[1]]$x$breaks,
-      c(800, 810, 820, 830, 840, 850, 860, 870, 880, 890, 900)
+      c(NA, NA, 820, 830, 840, 850, 860, 870, 880, 890, 900)
     )
     expect_equal(
       pb$layout$panel_params[[1]]$y.range,
@@ -136,7 +130,8 @@ test_that(
           1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5,
           5
         )
-      )
+      ),
+      tolerance = 0.01
     )
 
     # geom data
@@ -157,59 +152,31 @@ test_that(
         ),
         row.names = c(NA, -5L),
         class = "data.frame"
-      )
+      ),
+      tolerance = 0.001
     )
 
     expect_equal(
       pb$data[[2]],
       structure(
         list(
-          xintercept = 800,
+          xintercept = 852,
           PANEL = structure(1L, .Label = "1", class = "factor"),
           group = structure(c(-1L), n = 1L),
-          colour = "black",
+          colour = "blue",
           size = 1,
           linetype = "dashed",
           alpha = NA
         ),
         row.names = c(NA, -1L),
         class = "data.frame"
-      )
+      ),
+      tolerance = 0.001
     )
 
-    expect_equal(
-      pb$data[[3]],
-      structure(
-        list(
-          y = c(2.25, 2.25, 2.25, 2.25, 2.25),
-          x = c(800, 800, 800, 800, 800),
-          label = list(
-            ggplot2::expr("test" == "800"),
-            ggplot2::expr("test" == "800"),
-            ggplot2::expr("test" == "800"),
-            ggplot2::expr("test" == "800"),
-            ggplot2::expr("test" == "800")
-          ),
-          PANEL = structure(c(1L, 1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
-          group = structure(c(-1L, -1L, -1L, -1L, -1L), n = 1L),
-          colour = c("black", "black", "black", "black", "black"),
-          fill = c("white", "white", "white", "white", "white"),
-          size = c(3, 3, 3, 3, 3),
-          angle = c(0, 0, 0, 0, 0),
-          hjust = c(0.5, 0.5, 0.5, 0.5, 0.5),
-          vjust = c(0.5, 0.5, 0.5, 0.5, 0.5),
-          alpha = c(0.5, 0.5, 0.5, 0.5, 0.5),
-          family = c("", "", "", "", ""),
-          fontface = c(1, 1, 1, 1, 1),
-          lineheight = c(1.2, 1.2, 1.2, 1.2, 1.2)
-        ),
-        row.names = c(NA, -5L),
-        class = "data.frame"
-      )
-    )
 
     expect_equal(
-      pb$data[[4]],
+      pb$data[[2]],
       structure(
         list(
           xintercept = 852.4,
@@ -222,21 +189,22 @@ test_that(
         ),
         row.names = c(NA, -1L),
         class = "data.frame"
-      )
+      ),
+      tolerance = 0.001
     )
 
     expect_equal(
-      pb$data[[5]],
+      pb$data[[3]],
       structure(
         list(
           y = c(3.75, 3.75, 3.75, 3.75, 3.75),
           x = c(852.4, 852.4, 852.4, 852.4, 852.4),
-          label = list(
-            ggplot2::expr("mean" == "852.40"),
-            ggplot2::expr("mean" == "852.40"),
-            ggplot2::expr("mean" == "852.40"),
-            ggplot2::expr("mean" == "852.40"),
-            ggplot2::expr("mean" == "852.40")
+          label = c(
+            "list(~widehat(mu)[mean]=='852.40')",
+            "list(~widehat(mu)[mean]=='852.40')",
+            "list(~widehat(mu)[mean]=='852.40')",
+            "list(~widehat(mu)[mean]=='852.40')",
+            "list(~widehat(mu)[mean]=='852.40')"
           ),
           PANEL = structure(c(1L, 1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
           group = structure(c(-1L, -1L, -1L, -1L, -1L), n = 1L),
@@ -253,7 +221,8 @@ test_that(
         ),
         row.names = c(NA, -5L),
         class = "data.frame"
-      )
+      ),
+      tolerance = 0.001
     )
   }
 )
@@ -284,8 +253,7 @@ test_that(
         data = df_msleep,
         y = vore,
         x = brainwt,
-        results.subtitle = FALSE,
-        messages = FALSE
+        results.subtitle = FALSE
       )
 
     # plot with modified data
@@ -294,8 +262,7 @@ test_that(
         data = dplyr::filter(ggplot2::msleep, vore != "omni"),
         y = vore,
         x = brainwt,
-        results.subtitle = FALSE,
-        messages = FALSE
+        results.subtitle = FALSE
       )
 
     # build those plots
@@ -337,8 +304,7 @@ test_that(
         y = Expt,
         test.value = 800,
         output = "subtitle",
-        type = "np",
-        messages = FALSE
+        type = "np"
       ))
 
     # tests
@@ -351,8 +317,7 @@ test_that(
         x = mean,
         test.value = 800,
         output = "subtitle",
-        type = "np",
-        messages = FALSE
+        type = "np"
       ))
     )
   }

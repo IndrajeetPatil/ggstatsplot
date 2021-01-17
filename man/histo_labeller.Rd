@@ -8,13 +8,9 @@ histo_labeller(
   plot,
   x,
   y.label.position,
-  test.value = 0,
-  test.k = 0,
-  test.value.line = FALSE,
-  test.value.line.args = list(size = 1),
-  test.value.label.args = list(),
-  centrality.parameter = "mean",
-  centrality.k = 2,
+  type = "parametric",
+  tr = 0.1,
+  centrality.k = 2L,
   centrality.line.args = list(color = "blue", size = 1),
   centrality.label.args = list(color = "blue"),
   ...
@@ -26,25 +22,19 @@ for a test value and/or a centrality parameter (mean/median) value.}
 
 \item{x}{A numeric variable from the dataframe \code{data}.}
 
-\item{test.value}{A number specifying the value of the null hypothesis
-(Default: \code{0}).}
+\item{type}{Type of statistic expected (\code{"parametric"} or \code{"nonparametric"}
+or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accepted:
+\code{"p"} (for parametric), \code{"np"} (nonparametric), \code{"r"} (robust), or
+\code{"bf"}resp.}
 
-\item{test.k}{Integer denoting the number of decimal places expected for
-\code{test.value} label. (Default: \code{0} ).}
-
-\item{test.value.line}{Logical that decides whether a line corresponding to
-the \code{test.value} should be superimposed on the plot.}
-
-\item{test.value.line.args}{A list of additional aesthetic arguments to be
-passed to the \code{geom_line} used to display the line corresponding to
-\code{test.value}.}
-
-\item{centrality.parameter}{Decides \emph{which} measure of central tendency
-(\code{"mean"} or \code{"median"}) is to be displayed as a vertical line. To not show
-any parameter, set this to \code{"none"}.}
+\item{tr}{Trim level for the mean when carrying out \code{robust} tests. If you
+get error stating "Standard error cannot be computed because of Winsorized
+variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
+try to play around with the value of \code{tr}, which is by default set to
+\code{0.1}. Lowering the value might help.}
 
 \item{centrality.k}{Integer denoting the number of decimal places expected
-for centrality parameter label. (Default: \code{2}).}
+for centrality parameter label. (Default: \code{2L}).}
 
 \item{centrality.line.args, test.value.line.args}{A list of additional
 aesthetic arguments to be passed to the \code{geom_line} used to display the

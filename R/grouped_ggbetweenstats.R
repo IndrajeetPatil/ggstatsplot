@@ -20,9 +20,8 @@
 #'
 #' @import ggplot2
 #'
-#' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
-#' @importFrom dplyr group_by n arrange
-#' @importFrom rlang !! enquo quo_name ensym
+#' @importFrom dplyr select
+#' @importFrom rlang as_name ensym
 #' @importFrom purrr pmap
 #'
 #' @seealso \code{\link{ggbetweenstats}}, \code{\link{ggwithinstats}},
@@ -87,13 +86,8 @@ grouped_ggbetweenstats <- function(data,
 
   # creating a dataframe
   df <-
-    dplyr::select(
-      .data = data,
-      {{ grouping.var }},
-      {{ x }},
-      {{ y }},
-      {{ outlier.label }}
-    ) %>%
+    data %>%
+    dplyr::select({{ grouping.var }}, {{ x }}, {{ y }}, {{ outlier.label }}) %>%
     grouped_list(data = ., grouping.var = {{ grouping.var }})
 
   # ============== creating a list of plots using `pmap`=======================

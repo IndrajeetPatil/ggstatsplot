@@ -40,8 +40,7 @@
 #'
 #' @examples
 #' \donttest{
-#' # most basic function call with the defaults
-#' # this is the **only** function where data argument can be `NULL`
+#' # most basic function
 #' ggstatsplot::gghistostats(
 #'   data = ToothGrowth,
 #'   x = len,
@@ -79,16 +78,13 @@ gghistostats <- function(data,
                          effsize.type = "g",
                          conf.level = 0.95,
                          nboot = 100,
+                         tr = 0.1,
                          k = 2L,
                          ggtheme = ggplot2::theme_bw(),
                          ggstatsplot.layer = TRUE,
                          bar.fill = "grey50",
                          results.subtitle = TRUE,
-                         test.k = 0,
-                         test.value.line = FALSE,
-                         test.value.line.args = list(size = 1),
-                         test.value.label.args = list(size = 3),
-                         centrality.parameter = "mean",
+                         centrality.plotting = TRUE,
                          centrality.k = 2,
                          centrality.line.args = list(size = 1, color = "blue"),
                          centrality.label.args = list(color = "blue", size = 3),
@@ -112,8 +108,7 @@ gghistostats <- function(data,
   # if dataframe is provided
   df <-
     dplyr::select(.data = data, {{ x }}) %>%
-    tidyr::drop_na(data = .) %>%
-    as_tibble(x = .)
+    tidyr::drop_na(.)
 
   # column as a vector
   x_vec <- df %>% dplyr::pull({{ x }})
@@ -135,6 +130,7 @@ gghistostats <- function(data,
         effsize.type = effsize.type,
         conf.level = conf.level,
         nboot = nboot,
+        tr = tr,
         k = k
       )
 
@@ -213,27 +209,26 @@ gghistostats <- function(data,
       caption = caption
     )
 
-  # ====================== centrality line and label ========================
+  # ---------------- centrality tagging -------------------------------------
 
   # computing statistics needed for displaying labels
   y_label_pos <- median(ggplot2::layer_scales(plot)$y$range$range, na.rm = TRUE)
 
   # using custom function for adding labels
-  plot <-
-    histo_labeller(
-      plot = plot,
-      x = x_vec,
-      y.label.position = y_label_pos,
-      test.value = test.value,
-      test.k = test.k,
-      test.value.line = test.value.line,
-      test.value.line.args = test.value.line.args,
-      test.value.label.args = test.value.label.args,
-      centrality.parameter = centrality.parameter,
-      centrality.k = centrality.k,
-      centrality.line.args = centrality.line.args,
-      centrality.label.args = centrality.label.args
-    )
+  if (isTRUE(centrality.plotting)) {
+    plot <-
+      histo_labeller(
+        plot = plot,
+        x = x_vec,
+        y.label.position = y_label_pos,
+        type = type,
+        tr = tr,
+        test.value = test.value,
+        centrality.k = centrality.k,
+        centrality.line.args = centrality.line.args,
+        centrality.label.args = centrality.label.args
+      )
+  }
 
   # ---------------- adding ggplot component ---------------------------------
 

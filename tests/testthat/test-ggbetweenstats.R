@@ -114,10 +114,10 @@ test_that(
     expect_equal(
       pb$data[[6]]$label,
       c(
-        "list(~italic(widehat(mu))[mean]=='0.07926')",
-        "list(~italic(widehat(mu))[mean]=='0.62160')",
-        "list(~italic(widehat(mu))[mean]=='0.02155')",
-        "list(~italic(widehat(mu))[mean]=='0.14573')"
+        "list(~widehat(mu)[mean]=='0.07926')",
+        "list(~widehat(mu)[mean]=='0.62160')",
+        "list(~widehat(mu)[mean]=='0.02155')",
+        "list(~widehat(mu)[mean]=='0.14573')"
       )
     )
 
@@ -230,7 +230,7 @@ test_that(
 
     expect_identical(
       pb$data[[6]]$label[1],
-      "list(~italic(widehat(mu))[median]=='2.20')"
+      "list(~widehat(mu)[median]=='2.20')"
     )
 
     # edge case
@@ -254,8 +254,8 @@ test_that(
     expect_identical(
       pb1$data[[6]]$label,
       c(
-        "list(~italic(widehat(mu))[mean]=='0.98')",
-        "list(~italic(widehat(mu))[mean]=='1.39')"
+        "list(~widehat(mu)[mean]=='0.98')",
+        "list(~widehat(mu)[mean]=='1.39')"
       )
     )
   }
@@ -471,8 +471,8 @@ test_that(
           )),
           y = c(24.9087976539589, 15.4354838709677),
           label = c(
-            "list(~italic(widehat(mu))[MAP]=='24.91')",
-            "list(~italic(widehat(mu))[MAP]=='15.44')"
+            "list(~widehat(mu)[MAP]=='24.91')",
+            "list(~widehat(mu)[MAP]=='15.44')"
           ),
           PANEL = structure(c(
             1L,
@@ -587,7 +587,7 @@ test_that(
 
     expect_equal(
       pb2$data[[6]]$label[1],
-      "list(~italic(widehat(mu))[trimmed]=='21.04')"
+      "list(~widehat(mu)[trimmed]=='21.04')"
     )
   }
 )

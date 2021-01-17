@@ -91,7 +91,7 @@ using ggstatsplot::combine_plots2." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.8</span>
       </span>
     </div>
 
@@ -107,56 +107,62 @@ using ggstatsplot::combine_plots2." />
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/additional.html">additional vignettes</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/combine_plots.html">combine_plots</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/faq.html">Frequently asked questions</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
-    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Primary functions</li>
     <li>
       <a href="../articles/web_only/ggbetweenstats.html">ggbetweenstats</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/ggcoefstats.html">ggcoefstats</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/ggcorrmat.html">ggcorrmat</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/gghistostats.html">gghistostats</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/ggpiestats.html">ggpiestats</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/ggscatterstats.html">ggscatterstats</a>
     </li>
     <li>
       <a href="../articles/web_only/ggwithinstats.html">ggwithinstats</a>
     </li>
     <li>
-      <a href="../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
+      <a href="../articles/web_only/gghistostats.html">gghistostats</a>
     </li>
     <li>
-      <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
+      <a href="../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/ggcorrmat.html">ggcorrmat</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/ggscatterstats.html">ggscatterstats</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/ggpiestats.html">ggpiestats</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/ggcoefstats.html">ggcoefstats</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Helper functions</li>
+    <li>
+      <a href="../articles/web_only/combine_plots.html">combine_plots</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/theme_ggstatsplot.html">ggstatsplot theme</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Miscellaneous</li>
+    <li>
+      <a href="../articles/additional.html">additional vignettes</a>
     </li>
     <li>
       <a href="../articles/web_only/session_info.html">session information</a>
     </li>
     <li>
-      <a href="../articles/web_only/theme_ggstatsplot.html">ggstatsplot theme</a>
+      <a href="../articles/web_only/gallery.html">gallery of `ggstatsplot` examples</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
     </li>
   </ul>
 </li>
@@ -257,23 +263,17 @@ results.</p></td>
       <td><p>Arguments passed on to <code><a href='ggdotplotstats.html'>ggdotplotstats</a></code></p><dl>
     <dt><code>point.args</code></dt><dd><p>A list of additional aesthetic arguments passed to
 <code>geom_point</code>.</p></dd>
-    <dt><code>test.value</code></dt><dd><p>A number specifying the value of the null hypothesis
-(Default: <code>0</code>).</p></dd>
-    <dt><code>test.k</code></dt><dd><p>Integer denoting the number of decimal places expected for
-<code>test.value</code> label. (Default: <code>0</code> ).</p></dd>
-    <dt><code>test.value.line</code></dt><dd><p>Logical that decides whether a line corresponding to
-the <code>test.value</code> should be superimposed on the plot.</p></dd>
-    <dt><code>test.value.line.args</code></dt><dd><p>A list of additional
-aesthetic arguments to be passed to the <code>geom_line</code> used to display the
-lines corresponding to the centrality parameter and test value.</p></dd>
-    <dt><code>test.value.label.args</code></dt><dd><p>A list of additional
-aesthetic arguments to be passed to the <code>geom_label</code> used to display the
-label corresponding to the centrality parameter and test value.</p></dd>
-    <dt><code>centrality.parameter</code></dt><dd><p>Decides <em>which</em> measure of central tendency
-(<code>"mean"</code> or <code>"median"</code>) is to be displayed as a vertical line. To not show
-any parameter, set this to <code>"none"</code>.</p></dd>
+    <dt><code>type</code></dt><dd><p>Type of statistic expected (<code>"parametric"</code> or <code>"nonparametric"</code>
+or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations are also accepted:
+<code>"p"</code> (for parametric), <code>"np"</code> (nonparametric), <code>"r"</code> (robust), or
+<code>"bf"</code>resp.</p></dd>
+    <dt><code>tr</code></dt><dd><p>Trim level for the mean when carrying out <code>robust</code> tests. If you
+get error stating "Standard error cannot be computed because of Winsorized
+variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
+try to play around with the value of <code>tr</code>, which is by default set to
+<code>0.1</code>. Lowering the value might help.</p></dd>
     <dt><code>centrality.k</code></dt><dd><p>Integer denoting the number of decimal places expected
-for centrality parameter label. (Default: <code>2</code>).</p></dd>
+for centrality parameter label. (Default: <code>2L</code>).</p></dd>
     <dt><code>centrality.line.args</code></dt><dd><p>A list of additional
 aesthetic arguments to be passed to the <code>geom_line</code> used to display the
 lines corresponding to the centrality parameter and test value.</p></dd>
@@ -285,10 +285,8 @@ variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
     <dt><code>subtitle</code></dt><dd><p>The text for the plot subtitle. Will work only if
 <code>results.subtitle = FALSE</code>.</p></dd>
     <dt><code>caption</code></dt><dd><p>The text for the plot caption.</p></dd>
-    <dt><code>type</code></dt><dd><p>Type of statistic expected (<code>"parametric"</code> or <code>"nonparametric"</code>
-or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations are also accepted:
-<code>"p"</code> (for parametric), <code>"np"</code> (nonparametric), <code>"r"</code> (robust), or
-<code>"bf"</code>resp.</p></dd>
+    <dt><code>test.value</code></dt><dd><p>A number specifying the value of the null hypothesis
+(Default: <code>0</code>).</p></dd>
     <dt><code>bf.prior</code></dt><dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
 width to use in calculating Bayes factors.</p></dd>
     <dt><code>bf.message</code></dt><dd><p>Logical that decides whether to display Bayes Factor in
@@ -305,6 +303,11 @@ for the effect size (Default: <code>100</code>).</p></dd>
     <dt><code>results.subtitle</code></dt><dd><p>Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
 the plot will be returned.</p></dd>
+    <dt><code>centrality.plotting</code></dt><dd><p>Logical that decides whether centrality tendency measure
+is to be displayed as a point with a label (Default: <code>TRUE</code>). Function
+decides which central tendency measure to show depending on the <code>type</code>
+argument (<strong>mean</strong> for parametric, <strong>median</strong> for non-parametric,
+<strong>trimmed mean</strong> for robust, and <strong>MAP estimator</strong> for Bayes).</p></dd>
     <dt><code>ggplot.component</code></dt><dd><p>A <code>ggplot</code> component to be added to the plot prepared
 by <code>ggstatsplot</code>. This argument is primarily helpful for <code>grouped_</code>
 variants of all primary functions. Default is <code>NULL</code>. The argument should

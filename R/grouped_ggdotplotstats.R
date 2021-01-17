@@ -13,8 +13,8 @@
 #' @inheritParams grouped_ggbetweenstats
 #' @inheritDotParams ggdotplotstats -title
 #'
-#' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if group_by
-#' @importFrom rlang !! enquo quo_name ensym
+#' @importFrom dplyr select
+#' @importFrom rlang as_name ensym
 #' @importFrom purrr pmap
 #'
 #' @seealso \code{\link{grouped_gghistostats}}, \code{\link{ggdotplotstats}},

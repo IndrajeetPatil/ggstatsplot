@@ -19,8 +19,8 @@ palette_message <- function(package, palette, min_length) {
   # computing the number of colors in a given palette
   palette_df <-
     as_tibble(paletteer::palettes_d_names) %>%
-    dplyr::filter(.data = ., package == !!package, palette == !!palette) %>%
-    dplyr::select(.data = ., length)
+    dplyr::filter(package == !!package, palette == !!palette) %>%
+    dplyr::select(length)
 
   # if insufficient number of colors are available in a given palette
   if (palette_df$length[[1]] < min_length) {

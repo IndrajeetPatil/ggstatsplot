@@ -47,7 +47,7 @@ on <http://fueleconomy.gov>.
 
 ```{r mpg}
 # looking at the structure of the data using glimpse
-dplyr::glimpse(x = ggplot2::mpg)
+dplyr::glimpse(ggplot2::mpg)
 ```
 
 Let's say we want to visualize the distribution of mileage by car manufacturer. 
@@ -80,7 +80,6 @@ ggstatsplot::ggdotplotstats(
     color = paletter_vector,
     size = 5
   ),
-  test.value.line = TRUE,
   title = "Distribution of mileage of cars",
   ggtheme = hrbrthemes::theme_ipsum_ps(),
   ggstatsplot.layer = FALSE
@@ -125,7 +124,6 @@ ggstatsplot::grouped_ggdotplotstats(
     size = 5,
     shape = 13
   ),
-  test.value.line = TRUE,
   ggtheme = ggthemes::theme_fivethirtyeight(),
   # arguments relevant for ggstatsplot::combine_plots
   title.text = "Fuel economy data",
@@ -147,6 +145,17 @@ See the associated vignette here:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
 
 ## Summary of tests
+
+The central tendency measure displayed will depend on the statistics:
+
+Type | Measure | Function used
+----------- | --------- | ------------------ 
+Parametric | mean | `parameters::describe_distribution`
+Non-parametric | median | `parameters::describe_distribution`
+Robust | trimmed mean | `parameters::describe_distribution`
+Bayesian | MAP estimate | `parameters::describe_distribution`
+
+MAP: maximum a posteriori probability
 
 Following tests are carried out for each type of analyses-
 

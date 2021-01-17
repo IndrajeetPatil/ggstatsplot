@@ -31,7 +31,9 @@ utils::globalVariables(
     "trimmed.mean",
     "group",
     "r.method",
-    "r.method.text"
+    "r.method.text",
+    ".temp",
+    "var"
   ),
   package = "ggstatsplot",
   add = FALSE

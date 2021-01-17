@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.8</span>
       </span>
     </div>
 
@@ -57,56 +57,62 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../../articles/additional.html">additional vignettes</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/combine_plots.html">combine_plots</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/faq.html">Frequently asked questions</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
-    </li>
+<li class="divider">
+    <li class="dropdown-header">Primary functions</li>
     <li>
       <a href="../../articles/web_only/ggbetweenstats.html">ggbetweenstats</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/ggcoefstats.html">ggcoefstats</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/ggcorrmat.html">ggcorrmat</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/gghistostats.html">gghistostats</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/ggpiestats.html">ggpiestats</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/ggscatterstats.html">ggscatterstats</a>
     </li>
     <li>
       <a href="../../articles/web_only/ggwithinstats.html">ggwithinstats</a>
     </li>
     <li>
-      <a href="../../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
+      <a href="../../articles/web_only/gghistostats.html">gghistostats</a>
     </li>
     <li>
-      <a href="../../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
+      <a href="../../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/ggcorrmat.html">ggcorrmat</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/ggscatterstats.html">ggscatterstats</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/ggpiestats.html">ggpiestats</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/ggcoefstats.html">ggcoefstats</a>
+    </li>
+    <li class="divider">
+    <li class="dropdown-header">Helper functions</li>
+    <li>
+      <a href="../../articles/web_only/combine_plots.html">combine_plots</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/theme_ggstatsplot.html">ggstatsplot theme</a>
+    </li>
+    <li class="divider">
+    <li class="dropdown-header">Miscellaneous</li>
+    <li>
+      <a href="../../articles/additional.html">additional vignettes</a>
     </li>
     <li>
       <a href="../../articles/web_only/session_info.html">session information</a>
     </li>
     <li>
-      <a href="../../articles/web_only/theme_ggstatsplot.html">ggstatsplot theme</a>
+      <a href="../../articles/web_only/gallery.html">gallery of `ggstatsplot` examples</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
     </li>
   </ul>
 </li>
@@ -143,7 +149,7 @@
       <h1 data-toc-skip>ggdotplotstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2021-01-15</h4>
+            <h4 class="date">2021-01-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggdotplotstats.Rmd"><code>vignettes/web_only/ggdotplotstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggdotplotstats.Rmd</code></div>
@@ -161,7 +167,7 @@
 <p>Let’s begin with a very simple example from the <code>ggplot2</code> package (<code><a href="https://ggplot2.tidyverse.org/reference/mpg.html">ggplot2::mpg</a></code>), a subset of the fuel economy data that the EPA makes available on <a href="http://fueleconomy.gov" class="uri">http://fueleconomy.gov</a>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># looking at the structure of the data using glimpse</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html">mpg</a></span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html">mpg</a></span><span class="op">)</span>
 <span class="co">#&gt; Rows: 234</span>
 <span class="co">#&gt; Columns: 11</span>
 <span class="co">#&gt; $ manufacturer &lt;chr&gt; "audi", "audi", "audi", "audi", "audi", "audi", "audi"...</span>
@@ -204,7 +210,6 @@
     color <span class="op">=</span> <span class="va">paletter_vector</span>,
     size <span class="op">=</span> <span class="fl">5</span>
   <span class="op">)</span>,
-  test.value.line <span class="op">=</span> <span class="cn">TRUE</span>,
   title <span class="op">=</span> <span class="st">"Distribution of mileage of cars"</span>,
   ggtheme <span class="op">=</span> <span class="fu">hrbrthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html">theme_ipsum_ps</a></span><span class="op">(</span><span class="op">)</span>,
   ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>
@@ -242,7 +247,6 @@
     size <span class="op">=</span> <span class="fl">5</span>,
     shape <span class="op">=</span> <span class="fl">13</span>
   <span class="op">)</span>,
-  test.value.line <span class="op">=</span> <span class="cn">TRUE</span>,
   ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span><span class="op">(</span><span class="op">)</span>,
   <span class="co"># arguments relevant for ggstatsplot::combine_plots</span>
   title.text <span class="op">=</span> <span class="st">"Fuel economy data"</span>,
@@ -260,6 +264,37 @@
 <div id="summary-of-tests" class="section level2">
 <h2 class="hasAnchor">
 <a href="#summary-of-tests" class="anchor"></a>Summary of tests</h2>
+<p>The central tendency measure displayed will depend on the statistics:</p>
+<table class="table">
+<thead><tr class="header">
+<th>Type</th>
+<th>Measure</th>
+<th>Function used</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Parametric</td>
+<td>mean</td>
+<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html">parameters::describe_distribution</a></code></td>
+</tr>
+<tr class="even">
+<td>Non-parametric</td>
+<td>median</td>
+<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html">parameters::describe_distribution</a></code></td>
+</tr>
+<tr class="odd">
+<td>Robust</td>
+<td>trimmed mean</td>
+<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html">parameters::describe_distribution</a></code></td>
+</tr>
+<tr class="even">
+<td>Bayesian</td>
+<td>MAP estimate</td>
+<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html">parameters::describe_distribution</a></code></td>
+</tr>
+</tbody>
+</table>
+<p>MAP: maximum a posteriori probability</p>
 <p>Following tests are carried out for each type of analyses-</p>
 <table class="table">
 <thead><tr class="header">

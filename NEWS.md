@@ -1,6 +1,6 @@
-# ggstatsplot 0.7.0
+# ggstatsplot 0.6.8
 
-BREAKING CHANGES
+MAJOR CHANGES
 
   - `gghistostats` removes `bar.measure` argument. The function now defaults to
     showing the `count` information on the `x`-axis and the `proportion`
@@ -9,14 +9,24 @@ BREAKING CHANGES
   - `ggscatterstats` removes `method` and `method.args` arguments. It will no
     longer be possible to use this function to visualize data for when the model
     is not linear. It also retires `margins` argument.
-    
+
   - For `ggbetweenstats` and `ggwithinstats` functions, the arguments of type
     `mean.*` have all been replaced by `centrality.*`. This is because now these
     functions decide which central tendency measure to show depending on the
     `type` argument (**mean** for parametric, **median** for non-parametric,
     **trimmed mean** for robust, and **MAP estimator** for Bayes).
 
-MAJOR CHANGES
+  - Similarly, `gghistostats` and `ggdotplotstats` functions also decide which
+    central tendency measure to show depending on the `type` argument (**mean**
+    for parametric, **median** for non-parametric, **trimmed mean** for robust,
+    and **MAP estimator** for Bayes). Therefore, `centrality.parameter` argument
+    has been removed. If you want to turn off displaying centrality measure, set
+    `centrality.plotting = FALSE`.
+
+  - `gghistostats` and `ggdotplotstats` functions remove the functionality to
+    display a vertical line corresponding to `test.value`. This feature was
+    turned off by default in prior releases. Accordingly, all related arguments
+    from these two functions have been removed.
 
   - `ggscatterstats` defaults to `densigram` as the marginal distribution
     visualization.
@@ -37,11 +47,14 @@ MINOR CHANGES
 
   - `ggcoefstats` now also displays degrees of freedom for chi-squared tests.
 
+  - Expects minor changes in some of the effect sizes and their confidence
+    intervals due to changes in `statsExpressions`.
+
 NEW FEATURES
 
   - More models supported in `ggcoefstats`: `fixest`, `ivFixed`, `ivprobit`,
     `riskRegression`.
-    
+
   - `ggcorrmat` supports partial correlations.
 
 # ggstatsplot 0.6.6

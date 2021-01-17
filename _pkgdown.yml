@@ -47,3 +47,37 @@ reference:
       - VR_dilemma
       - bugs_wide
       - bugs_long
+
+
+articles:
+  - title: Primary functions
+    navbar: Primary functions
+    desc: Details about primary functions and their `grouped_` variants
+    contents:
+    - web_only/ggbetweenstats
+    - web_only/ggwithinstats
+    - web_only/gghistostats
+    - web_only/ggdotplotstats
+    - web_only/ggcorrmat
+    - web_only/ggscatterstats
+    - web_only/ggpiestats
+    - web_only/ggcoefstats
+
+  - title: Helper functions
+    navbar: Helper functions
+    desc: Details about helper functions for graphics
+    contents:
+    - web_only/combine_plots
+    - web_only/theme_ggstatsplot
+
+  - title: Miscellaneous
+    navbar: Miscellaneous
+    #desc:
+    contents:
+    - additional
+    - web_only/session_info
+    - web_only/gallery
+    - web_only/effsize_interpretation
+    - web_only/faq
+    - web_only/purrr_examples
+    - web_only/other_resources

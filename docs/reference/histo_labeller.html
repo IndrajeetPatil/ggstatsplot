@@ -89,7 +89,7 @@ test value for the continuous, numeric x-axis variable." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.8</span>
       </span>
     </div>
 
@@ -105,56 +105,62 @@ test value for the continuous, numeric x-axis variable." />
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/additional.html">additional vignettes</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/combine_plots.html">combine_plots</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/faq.html">Frequently asked questions</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
-    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Primary functions</li>
     <li>
       <a href="../articles/web_only/ggbetweenstats.html">ggbetweenstats</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/ggcoefstats.html">ggcoefstats</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/ggcorrmat.html">ggcorrmat</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/gghistostats.html">gghistostats</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/ggpiestats.html">ggpiestats</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/ggscatterstats.html">ggscatterstats</a>
     </li>
     <li>
       <a href="../articles/web_only/ggwithinstats.html">ggwithinstats</a>
     </li>
     <li>
-      <a href="../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
+      <a href="../articles/web_only/gghistostats.html">gghistostats</a>
     </li>
     <li>
-      <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
+      <a href="../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/ggcorrmat.html">ggcorrmat</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/ggscatterstats.html">ggscatterstats</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/ggpiestats.html">ggpiestats</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/ggcoefstats.html">ggcoefstats</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Helper functions</li>
+    <li>
+      <a href="../articles/web_only/combine_plots.html">combine_plots</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/theme_ggstatsplot.html">ggstatsplot theme</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Miscellaneous</li>
+    <li>
+      <a href="../articles/additional.html">additional vignettes</a>
     </li>
     <li>
       <a href="../articles/web_only/session_info.html">session information</a>
     </li>
     <li>
-      <a href="../articles/web_only/theme_ggstatsplot.html">ggstatsplot theme</a>
+      <a href="../articles/web_only/gallery.html">gallery of `ggstatsplot` examples</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
     </li>
   </ul>
 </li>
@@ -202,13 +208,9 @@ test value for the continuous, numeric <code>x</code>-axis variable.</p>
   <span class='va'>plot</span>,
   <span class='va'>x</span>,
   <span class='va'>y.label.position</span>,
-  test.value <span class='op'>=</span> <span class='fl'>0</span>,
-  test.k <span class='op'>=</span> <span class='fl'>0</span>,
-  test.value.line <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  test.value.line.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>,
-  test.value.label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
-  centrality.parameter <span class='op'>=</span> <span class='st'>"mean"</span>,
-  centrality.k <span class='op'>=</span> <span class='fl'>2</span>,
+  type <span class='op'>=</span> <span class='st'>"parametric"</span>,
+  tr <span class='op'>=</span> <span class='fl'>0.1</span>,
+  centrality.k <span class='op'>=</span> <span class='fl'>2L</span>,
   centrality.line.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"blue"</span>, size <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>,
   centrality.label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"blue"</span><span class='op'>)</span>,
   <span class='va'>...</span>
@@ -227,36 +229,24 @@ for a test value and/or a centrality parameter (mean/median) value.</p></td>
       <td><p>A numeric variable from the dataframe <code>data</code>.</p></td>
     </tr>
     <tr>
-      <th>test.value</th>
-      <td><p>A number specifying the value of the null hypothesis
-(Default: <code>0</code>).</p></td>
+      <th>type</th>
+      <td><p>Type of statistic expected (<code>"parametric"</code> or <code>"nonparametric"</code>
+or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations are also accepted:
+<code>"p"</code> (for parametric), <code>"np"</code> (nonparametric), <code>"r"</code> (robust), or
+<code>"bf"</code>resp.</p></td>
     </tr>
     <tr>
-      <th>test.k</th>
-      <td><p>Integer denoting the number of decimal places expected for
-<code>test.value</code> label. (Default: <code>0</code> ).</p></td>
-    </tr>
-    <tr>
-      <th>test.value.line</th>
-      <td><p>Logical that decides whether a line corresponding to
-the <code>test.value</code> should be superimposed on the plot.</p></td>
-    </tr>
-    <tr>
-      <th>test.value.line.args</th>
-      <td><p>A list of additional aesthetic arguments to be
-passed to the <code>geom_line</code> used to display the line corresponding to
-<code>test.value</code>.</p></td>
-    </tr>
-    <tr>
-      <th>centrality.parameter</th>
-      <td><p>Decides <em>which</em> measure of central tendency
-(<code>"mean"</code> or <code>"median"</code>) is to be displayed as a vertical line. To not show
-any parameter, set this to <code>"none"</code>.</p></td>
+      <th>tr</th>
+      <td><p>Trim level for the mean when carrying out <code>robust</code> tests. If you
+get error stating "Standard error cannot be computed because of Winsorized
+variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
+try to play around with the value of <code>tr</code>, which is by default set to
+<code>0.1</code>. Lowering the value might help.</p></td>
     </tr>
     <tr>
       <th>centrality.k</th>
       <td><p>Integer denoting the number of decimal places expected
-for centrality parameter label. (Default: <code>2</code>).</p></td>
+for centrality parameter label. (Default: <code>2L</code>).</p></td>
     </tr>
     <tr>
       <th>centrality.line.args, test.value.line.args</th>

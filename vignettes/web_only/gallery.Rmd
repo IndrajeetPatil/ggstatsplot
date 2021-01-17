@@ -1,5 +1,5 @@
 ---
-title: "Gallery of ggstatsplot examples"
+title: "gallery of `ggstatsplot` examples"
 author: "Indrajeet Patil"
 date: "`r Sys.Date()`"
 output:
@@ -12,7 +12,7 @@ output:
     warning: FALSE
     message: FALSE
 vignette: >
-  %\VignetteIndexEntry{Gallery of ggstatsplot examples}
+  %\VignetteIndexEntry{gallery of `ggstatsplot` examples}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

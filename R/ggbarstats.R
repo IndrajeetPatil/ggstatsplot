@@ -21,8 +21,8 @@
 #'
 #' @import ggplot2
 #'
-#' @importFrom dplyr select group_by summarize n mutate mutate_at mutate_if
-#' @importFrom rlang !! enquo quo_name as_name ensym
+#' @importFrom dplyr select mutate
+#' @importFrom rlang !!! as_name ensym exec
 #' @importFrom paletteer scale_fill_paletteer_d
 #' @importFrom tidyr uncount drop_na
 #' @importFrom statsExpressions expr_contingency_tab bf_contingency_tab

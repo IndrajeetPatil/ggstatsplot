@@ -48,44 +48,9 @@ centrality_ggrepel <- function(plot,
                                centrality.point.args = list(size = 5, color = "darkred"),
                                centrality.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
                                ...) {
-  # which centrality measure?
-  centrality <-
-    dplyr::case_when(
-      type == "parametric" ~ "mean",
-      type == "nonparametric" ~ "median",
-      type == "robust" ~ "trimmed",
-      type == "bayes" ~ "MAP"
-    )
-
-  # ------------------------ dataframe -------------------------------------
-
   # creating the dataframe
   centrality_df <-
-    data %>%
-    dplyr::select({{ x }}, {{ y }}) %>%
-    tidyr::drop_na(.) %>%
-    dplyr::mutate({{ x }} := droplevels(as.factor({{ x }}))) %>%
-    as_tibble(.) %>%
-    dplyr::group_by({{ x }}) %>%
-    dplyr::group_modify(
-      .f = ~ parameters::standardize_names(
-        data = as.data.frame(parameters::describe_distribution(
-          x = .,
-          centrality = centrality,
-          threshold = tr
-        )),
-        style = "broom"
-      )
-    ) %>%
-    dplyr::ungroup(.) %>%
-    dplyr::rowwise() %>%
-    dplyr::mutate(
-      label = paste0("list(~italic(widehat(mu))[", centrality, "]=='", format_num(estimate, k), "')")
-    ) %>%
-    dplyr::ungroup(.) %>%
-    dplyr::mutate(n_label = paste0({{ x }}, "\n(n = ", n, ")")) %>%
-    dplyr::arrange({{ x }}) %>%
-    dplyr::select({{ x }}, !!as.character(rlang::ensym(y)) := estimate, dplyr::matches("label"))
+    centrality_data(data, {{ x }}, {{ y }}, type = type, tr = tr, k = k)
 
   # if there should be lines connecting mean values across groups
   if (isTRUE(centrality.path)) {
@@ -133,6 +98,50 @@ centrality_ggrepel <- function(plot,
 
   # return the plot
   plot
+}
+
+#' @noRd
+
+centrality_data <- function(data, x, y, type = "parametric", tr = 0.1, k = 2L, ...) {
+
+  # ------------------------ measure -------------------------------------
+
+  # which centrality measure?
+  centrality <-
+    dplyr::case_when(
+      type == "parametric" ~ "mean",
+      type == "nonparametric" ~ "median",
+      type == "robust" ~ "trimmed",
+      type == "bayes" ~ "MAP"
+    )
+
+  # ------------------------ dataframe -------------------------------------
+
+  # creating the dataframe
+  data %>%
+    dplyr::select({{ x }}, {{ y }}) %>%
+    tidyr::drop_na() %>%
+    dplyr::mutate({{ x }} := droplevels(as.factor({{ x }}))) %>%
+    dplyr::group_by({{ x }}) %>%
+    dplyr::group_modify(
+      .f = ~ parameters::standardize_names(
+        data = as.data.frame(suppressWarnings(parameters::describe_distribution(
+          x = .,
+          centrality = centrality,
+          threshold = tr
+        ))),
+        style = "broom"
+      )
+    ) %>%
+    dplyr::ungroup() %>%
+    dplyr::rowwise() %>%
+    dplyr::mutate(
+      label = paste0("list(~widehat(mu)[", centrality, "]=='", format_num(estimate, k), "')")
+    ) %>%
+    dplyr::ungroup() %>%
+    dplyr::mutate(n_label = paste0({{ x }}, "\n(n = ", n, ")")) %>%
+    dplyr::arrange({{ x }}) %>%
+    dplyr::select({{ x }}, !!as.character(rlang::ensym(y)) := estimate, dplyr::matches("label"))
 }
 
 #' @title Adding `geom_signif` to `ggplot`
@@ -289,10 +298,7 @@ aesthetic_addon <- function(plot,
       caption = caption,
       color = xlab
     ) +
-    ggstatsplot::theme_ggstatsplot(
-      ggtheme = ggtheme,
-      ggstatsplot.layer = ggstatsplot.layer
-    ) +
+    theme_ggstatsplot(ggtheme = ggtheme, ggstatsplot.layer = ggstatsplot.layer) +
     ggplot2::theme(legend.position = "none") +
     paletteer::scale_color_paletteer_d(paste0(package, "::", palette)) +
     paletteer::scale_fill_paletteer_d(paste0(package, "::", palette))

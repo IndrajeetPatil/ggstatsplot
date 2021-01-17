@@ -35,7 +35,6 @@
 #'   data = ggplot2::mpg,
 #'   x = cty,
 #'   y = manufacturer,
-#'   conf.level = 0.99,
 #'   test.value = 15,
 #'   test.value.line = TRUE,
 #'   test.line.labeller = TRUE,
@@ -66,14 +65,11 @@ ggdotplotstats <- function(data,
                            effsize.type = "g",
                            conf.level = 0.95,
                            nboot = 100,
+                           tr = 0.1,
                            k = 2,
                            results.subtitle = TRUE,
                            point.args = list(color = "black", size = 3, shape = 16),
-                           test.k = 0,
-                           test.value.line = FALSE,
-                           test.value.line.args = list(size = 1),
-                           test.value.label.args = list(size = 3),
-                           centrality.parameter = "mean",
+                           centrality.plotting = TRUE,
                            centrality.k = 2,
                            centrality.line.args = list(color = "blue", size = 1),
                            centrality.label.args = list(color = "blue", size = 3),
@@ -101,7 +97,7 @@ ggdotplotstats <- function(data,
   # creating a dataframe
   data %<>%
     dplyr::select({{ x }}, {{ y }}) %>%
-    tidyr::drop_na(data = .) %>%
+    tidyr::drop_na(.) %>%
     dplyr::mutate({{ y }} := droplevels(as.factor({{ y }}))) %>%
     dplyr::group_by({{ y }}) %>%
     dplyr::summarise({{ x }} := mean({{ x }}, na.rm = TRUE)) %>%
@@ -111,8 +107,7 @@ ggdotplotstats <- function(data,
     dplyr::mutate(
       percent_rank = dplyr::percent_rank({{ x }}),
       rank = dplyr::row_number()
-    ) %>%
-    as_tibble(.)
+    )
 
   # ================ stats labels ==========================================
 
@@ -142,6 +137,7 @@ ggdotplotstats <- function(data,
         effsize.type = effsize.type,
         conf.level = conf.level,
         nboot = nboot,
+        tr = tr,
         k = k
       )
   }
@@ -176,27 +172,26 @@ ggdotplotstats <- function(data,
       sec.axis = ggplot2::dup_axis(name = ggplot2::element_blank())
     )
 
-  # ====================== centrality line and label ========================
+  # ---------------- centrality tagging -------------------------------------
 
   # computing statistics needed for displaying labels
   y_label_pos <- median(ggplot2::layer_scales(plot)$y$range$range, na.rm = TRUE)
 
   # using custom function for adding labels
-  plot <-
-    histo_labeller(
-      plot = plot,
-      x = data %>% dplyr::pull({{ x }}),
-      y.label.position = y_label_pos,
-      test.value = test.value,
-      test.k = test.k,
-      test.value.line = test.value.line,
-      test.value.line.args = test.value.line.args,
-      test.value.label.args = test.value.label.args,
-      centrality.parameter = centrality.parameter,
-      centrality.k = centrality.k,
-      centrality.line.args = centrality.line.args,
-      centrality.label.args = centrality.label.args
-    )
+  if (isTRUE(centrality.plotting)) {
+    plot <-
+      histo_labeller(
+        plot = plot,
+        x = data %>% dplyr::pull({{ x }}),
+        y.label.position = y_label_pos,
+        type = type,
+        tr = tr,
+        test.value = test.value,
+        centrality.k = centrality.k,
+        centrality.line.args = centrality.line.args,
+        centrality.label.args = centrality.label.args
+      )
+  }
 
   # ------------------------ annotations and themes -------------------------
 

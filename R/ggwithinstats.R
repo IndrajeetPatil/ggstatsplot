@@ -280,7 +280,7 @@ ggwithinstats <- function(data,
       )
   }
 
-  # ---------------- mean value tagging -------------------------------------
+  # ---------------- centrality tagging -------------------------------------
 
   # add labels for mean values
   if (isTRUE(centrality.plotting)) {

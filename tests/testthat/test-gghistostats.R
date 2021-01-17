@@ -17,10 +17,7 @@ test_that(
         bar.fill = "orange",
         test.value = 150,
         bf.prior = 0.9,
-        test.k = 0,
-        centrality.k = 0,
-        test.value.line = TRUE,
-        messages = TRUE
+        centrality.k = 0
       )
 
     # build the plot
@@ -165,23 +162,6 @@ test_that(
       pb$data[[2]],
       structure(
         list(
-          xintercept = 150,
-          PANEL = structure(1L, .Label = "1", class = "factor"),
-          group = structure(-1L, n = 1L),
-          colour = "black",
-          size = 1,
-          linetype = "dashed",
-          alpha = NA
-        ),
-        row.names = c(NA, -1L),
-        class = "data.frame"
-      )
-    )
-
-    expect_equal(
-      pb$data[[4]],
-      structure(
-        list(
           xintercept = 174.358024691358,
           PANEL = structure(1L, .Label = "1", class = "factor"),
           group = structure(-1L, n = 1L),
@@ -196,28 +176,18 @@ test_that(
     )
 
     # checking different data layers
-    expect_equal(length(pb$data), 5L)
+    expect_equal(length(pb$data), 3L)
     expect_equal(dim(pb$data[[1]]), c(11L, 18L))
     expect_equal(dim(pb$data[[2]]), c(1L, 7L))
     expect_equal(dim(pb$data[[3]]), c(81L, 15L))
-    expect_equal(dim(pb$data[[4]]), c(1L, 7L))
-    expect_equal(dim(pb$data[[5]]), c(81L, 15L))
 
     expect_equal(
       class(pb$data[[3]]$label[[1]]),
-      "call"
+      "character"
     )
-    expect_equal(
-      class(pb$data[[5]]$label[[1]]),
-      "call"
-    )
-    expect_equal(
+    expect_identical(
       pb$data[[3]]$label[[1]],
-      ggplot2::expr("test" == "150")
-    )
-    expect_equal(
-      pb$data[[5]]$label[[1]],
-      ggplot2::expr("mean" == "174")
+      "list(~widehat(mu)[mean]=='174')"
     )
     expect_null(pb$layout$panel_params[[1]]$y.sec.labels, NULL)
 
@@ -228,8 +198,7 @@ test_that(
         data = dplyr::starwars,
         x = height,
         type = "p",
-        test.value = 150,
-        messages = FALSE
+        test.value = 150
       )
 
     # checking caption
@@ -240,7 +209,6 @@ test_that(
         x = height,
         type = "p",
         test.value = 150,
-        messages = FALSE,
         bf.prior = 0.9,
         output = "caption"
       )
@@ -269,14 +237,11 @@ test_that(
         xlab = "city miles per gallon",
         title = "fuel economy",
         caption = substitute(paste(italic("source"), ": government website")),
-        centrality.parameter = "median",
         binwidth = 5,
         test.value = 20,
         k = 3,
         type = "np",
-        test.k = 2,
         centrality.k = 2,
-        test.value.line = TRUE,
         results.subtitle = FALSE
       )
 
@@ -284,24 +249,20 @@ test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # checking different data layers
-    expect_equal(length(pb$data), 5L)
+    expect_equal(length(pb$data), 3L)
     expect_equal(nrow(pb$data[[1]]), 6L)
     expect_equal(
-      pb$data[[4]]$xintercept,
+      pb$data[[2]]$xintercept,
       median(ggplot2::mpg$cty, na.rm = TRUE),
       tolerance = 0.001
     )
     expect_equal(pb$data[[2]]$xintercept,
-      20.000,
+      17.000,
       tolerance = 0.001
     )
-    expect_equal(
+    expect_identical(
       pb$data[[3]]$label[[1]],
-      ggplot2::expr("test" == "20.00")
-    )
-    expect_equal(
-      pb$data[[5]]$label[[1]],
-      ggplot2::expr("median" == "17.00")
+      "list(~widehat(mu)[median]=='17.00')"
     )
     expect_equal(pb$data[[1]]$y[1], 33L)
     expect_equal(pb$data[[1]]$y[6], 2L)
@@ -326,10 +287,7 @@ test_that(
       pb$layout$panel_params[[1]]$y.sec$break_info,
       list(
         range = c(-0.0211538461538462, 0.444230769230769),
-        labels = c(
-          "0%",
-          "10%", "20%", "30%", "40%"
-        ),
+        labels = c("0%", "10%", "20%", "30%", "40%"),
         major = c(
           0.045, 0.26, 0.475, 0.69,
           0.905
@@ -394,9 +352,7 @@ test_that(
         x = wt,
         binwidth = 0.5,
         test.value = 2.5,
-        type = "r",
-        test.value.line = FALSE,
-        centrality.parameter = FALSE
+        type = "r"
       ) +
       scale_x_continuous(limits = c(1, 6))
 
@@ -418,8 +374,13 @@ test_that(
     expect_null(pb$plot$labels$caption, NULL)
     expect_identical(pb$plot$labels$y, "count")
 
+    expect_identical(
+      pb$data[[3]]$label[[1]],
+      "list(~widehat(mu)[trimmed]=='3.15')"
+    )
+
     # checking different data layers
-    expect_equal(length(pb$data), 1L)
+    expect_equal(length(pb$data), 3L)
     expect_equal(nrow(pb$data[[1]]), 11L)
     expect_equal(
       pb$data[[1]]$y,
@@ -577,7 +538,7 @@ test_that(
         fill = "count",
         weight = "weight",
         xintercept = "xintercept",
-        label = "list(bquote(.(label.text) == .(format_num(label.value, k))))"
+        label = "centrality_df$label[[1]]"
       )
     )
   }

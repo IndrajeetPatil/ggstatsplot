@@ -45,23 +45,17 @@ results.}
   \describe{
     \item{\code{point.args}}{A list of additional aesthetic arguments passed to
 \code{geom_point}.}
-    \item{\code{test.value}}{A number specifying the value of the null hypothesis
-(Default: \code{0}).}
-    \item{\code{test.k}}{Integer denoting the number of decimal places expected for
-\code{test.value} label. (Default: \code{0} ).}
-    \item{\code{test.value.line}}{Logical that decides whether a line corresponding to
-the \code{test.value} should be superimposed on the plot.}
-    \item{\code{test.value.line.args}}{A list of additional
-aesthetic arguments to be passed to the \code{geom_line} used to display the
-lines corresponding to the centrality parameter and test value.}
-    \item{\code{test.value.label.args}}{A list of additional
-aesthetic arguments to be passed to the \code{geom_label} used to display the
-label corresponding to the centrality parameter and test value.}
-    \item{\code{centrality.parameter}}{Decides \emph{which} measure of central tendency
-(\code{"mean"} or \code{"median"}) is to be displayed as a vertical line. To not show
-any parameter, set this to \code{"none"}.}
+    \item{\code{type}}{Type of statistic expected (\code{"parametric"} or \code{"nonparametric"}
+or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accepted:
+\code{"p"} (for parametric), \code{"np"} (nonparametric), \code{"r"} (robust), or
+\code{"bf"}resp.}
+    \item{\code{tr}}{Trim level for the mean when carrying out \code{robust} tests. If you
+get error stating "Standard error cannot be computed because of Winsorized
+variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
+try to play around with the value of \code{tr}, which is by default set to
+\code{0.1}. Lowering the value might help.}
     \item{\code{centrality.k}}{Integer denoting the number of decimal places expected
-for centrality parameter label. (Default: \code{2}).}
+for centrality parameter label. (Default: \code{2L}).}
     \item{\code{centrality.line.args}}{A list of additional
 aesthetic arguments to be passed to the \code{geom_line} used to display the
 lines corresponding to the centrality parameter and test value.}
@@ -73,10 +67,8 @@ variable names for \code{x} and \code{y} will be used.}
     \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
     \item{\code{caption}}{The text for the plot caption.}
-    \item{\code{type}}{Type of statistic expected (\code{"parametric"} or \code{"nonparametric"}
-or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accepted:
-\code{"p"} (for parametric), \code{"np"} (nonparametric), \code{"r"} (robust), or
-\code{"bf"}resp.}
+    \item{\code{test.value}}{A number specifying the value of the null hypothesis
+(Default: \code{0}).}
     \item{\code{bf.prior}}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
 width to use in calculating Bayes factors.}
     \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
@@ -93,6 +85,11 @@ for the effect size (Default: \code{100}).}
     \item{\code{results.subtitle}}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}
+    \item{\code{centrality.plotting}}{Logical that decides whether centrality tendency measure
+is to be displayed as a point with a label (Default: \code{TRUE}). Function
+decides which central tendency measure to show depending on the \code{type}
+argument (\strong{mean} for parametric, \strong{median} for non-parametric,
+\strong{trimmed mean} for robust, and \strong{MAP estimator} for Bayes).}
     \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_}
 variants of all primary functions. Default is \code{NULL}. The argument should

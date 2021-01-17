@@ -106,10 +106,10 @@
 #'
 #' @import ggplot2
 #'
-#' @importFrom dplyr select group_by arrange mutate mutate_at mutate_if
+#' @importFrom dplyr select group_by arrange mutate
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom stats t.test oneway.test
-#' @importFrom rlang enquo quo_name as_name !! as_string
+#' @importFrom rlang enquo as_name !! as_string
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom paletteer scale_color_paletteer_d scale_fill_paletteer_d
 #' @importFrom ggsignif geom_signif
@@ -404,9 +404,9 @@ ggbetweenstats <- function(data,
       )
   }
 
-  # ---------------- mean value tagging -------------------------------------
+  # ---------------- centrality tagging -------------------------------------
 
-  # add labels for mean values
+  # add labels for centrality measure
   if (isTRUE(centrality.plotting)) {
     plot <-
       centrality_ggrepel(
