@@ -145,9 +145,7 @@ ggscatterstats <- function(data,
   #----------------------- dataframe ---------------------------------------
 
   # preparing the dataframe
-  data %<>%
-    dplyr::filter(.data = ., !is.na({{ x }}), !is.na({{ y }})) %>%
-    as_tibble(.)
+  data %<>% dplyr::filter(!is.na({{ x }}), !is.na({{ y }}))
 
   #----------------------- creating results subtitle ------------------------
 
@@ -182,11 +180,7 @@ ggscatterstats <- function(data,
 
   # quit early if only subtitle is needed
   if (output %in% c("subtitle", "caption")) {
-    return(switch(
-      EXPR = output,
-      "subtitle" = subtitle,
-      "caption" = caption
-    ))
+    return(switch(output, "subtitle" = subtitle, "caption" = caption))
   }
 
   #---------------------------- user expression -------------------------
@@ -282,7 +276,6 @@ ggscatterstats <- function(data,
 
   # creating the `ggMarginal` plot of a given `marginal.type`
   if (isTRUE(marginal)) {
-    # adding marginals to plot
     plot <-
       ggExtra::ggMarginal(
         p = plot,

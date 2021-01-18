@@ -101,7 +101,7 @@ ggdotplotstats <- function(data,
     dplyr::mutate({{ y }} := droplevels(as.factor({{ y }}))) %>%
     dplyr::group_by({{ y }}) %>%
     dplyr::summarise({{ x }} := mean({{ x }}, na.rm = TRUE)) %>%
-    dplyr::ungroup(x = .) %>%
+    dplyr::ungroup(.) %>%
     # rank ordering the data
     dplyr::arrange({{ x }}) %>%
     dplyr::mutate(
@@ -144,7 +144,7 @@ ggdotplotstats <- function(data,
 
   # return early if anything other than plot
   if (output != "plot") {
-    return(switch(EXPR = output, "caption" = caption, subtitle))
+    return(switch(output, "caption" = caption, subtitle))
   }
 
   # ------------------------------ basic plot ----------------------------
@@ -174,19 +174,14 @@ ggdotplotstats <- function(data,
 
   # ---------------- centrality tagging -------------------------------------
 
-  # computing statistics needed for displaying labels
-  y_label_pos <- median(ggplot2::layer_scales(plot)$y$range$range, na.rm = TRUE)
-
   # using custom function for adding labels
   if (isTRUE(centrality.plotting)) {
     plot <-
       histo_labeller(
         plot = plot,
         x = data %>% dplyr::pull({{ x }}),
-        y.label.position = y_label_pos,
         type = type,
         tr = tr,
-        test.value = test.value,
         centrality.k = centrality.k,
         centrality.line.args = centrality.line.args,
         centrality.label.args = centrality.label.args

@@ -45,7 +45,6 @@
 # function body
 histo_labeller <- function(plot,
                            x,
-                           y.label.position,
                            type = "parametric",
                            tr = 0.1,
                            centrality.k = 2L,
@@ -54,6 +53,8 @@ histo_labeller <- function(plot,
                            ...) {
 
   # -------------------------- label ----------------------------------------
+
+  y.label.position <- median(ggplot2::layer_scales(plot)$y$range$range, na.rm = TRUE)
 
   dat_temp <- data.frame(.temp = ".temp", "var" = x)
 

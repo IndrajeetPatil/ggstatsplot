@@ -94,23 +94,17 @@ ggbarstats <- function(data,
   # creating a dataframe
   data %<>%
     dplyr::select({{ x }}, {{ y }}, .counts = {{ counts }}) %>%
-    tidyr::drop_na(data = .) %>%
-    as_tibble(x = .)
+    tidyr::drop_na(.)
 
   # untable the dataframe based on the count for each observation
   if (".counts" %in% names(data)) data %<>% tidyr::uncount(data = ., weights = .counts)
 
   # x and y need to be a factor; also drop the unused levels of the factors
-  data %<>%
-    dplyr::mutate(
-      {{ x }} := droplevels(as.factor({{ x }})),
-      {{ y }} := droplevels(as.factor({{ y }}))
-    )
+  data %<>% dplyr::mutate(dplyr::across(dplyr::everything(), ~ droplevels(as.factor(.x))))
 
   # TO DO: until one-way table is supported by `BayesFactor`
   if (nlevels(data %>% dplyr::pull({{ y }})) == 1L) {
-    bf.message <- FALSE
-    proportion.test <- FALSE
+    c(bf.message, proportion.test) %<-% c(FALSE, FALSE)
   }
 
   # ========================= statistical analysis ===========================

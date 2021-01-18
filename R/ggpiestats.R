@@ -41,8 +41,8 @@
 #'
 #' @import ggplot2
 #'
-#' @importFrom dplyr select mutate vars pull
-#' @importFrom rlang !! enquo quo_name as_name ensym
+#' @importFrom dplyr select mutate vars pull across everything
+#' @importFrom rlang !! enquo as_name ensym
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom paletteer scale_fill_paletteer_d
 #' @importFrom tidyr uncount drop_na
@@ -117,21 +117,19 @@ ggpiestats <- function(data,
   # creating a dataframe
   data %<>%
     dplyr::select({{ x }}, {{ y }}, .counts = {{ counts }}) %>%
-    tidyr::drop_na(data = .) %>%
-    as_tibble(x = .)
+    tidyr::drop_na(.)
 
   # untable the dataframe based on the count for each observation
   if (".counts" %in% names(data)) data %<>% tidyr::uncount(data = ., weights = .counts)
 
   # x and y need to be a factor; also drop the unused levels of the factors
+  data %<>% dplyr::mutate(dplyr::across(dplyr::everything(), ~ droplevels(as.factor(.x))))
 
   # x
-  data %<>% dplyr::mutate({{ x }} := droplevels(as.factor({{ x }})))
   x_levels <- nlevels(data %>% dplyr::pull({{ x }}))[[1]]
 
   # y
   if (!rlang::quo_is_null(rlang::enquo(y))) {
-    data %<>% dplyr::mutate({{ y }} := droplevels(as.factor({{ y }})))
     y_levels <- nlevels(data %>% dplyr::pull({{ y }}))[[1]]
 
     # TO DO: until one-way table is supported by `BayesFactor`

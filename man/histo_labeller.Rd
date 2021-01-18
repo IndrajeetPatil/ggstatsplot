@@ -7,7 +7,6 @@
 histo_labeller(
   plot,
   x,
-  y.label.position,
   type = "parametric",
   tr = 0.1,
   centrality.k = 2L,

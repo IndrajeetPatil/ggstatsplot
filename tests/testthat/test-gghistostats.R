@@ -531,10 +531,10 @@ test_that(
       pb1$plot$labels,
       list(
         x = "awake",
+        y = "count",
         title = NULL,
         subtitle = NULL,
         caption = NULL,
-        y = "count",
         fill = "count",
         weight = "weight",
         xintercept = "xintercept",

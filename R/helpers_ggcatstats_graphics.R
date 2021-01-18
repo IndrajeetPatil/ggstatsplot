@@ -32,7 +32,7 @@ df_descriptive <- function(data,
   }
 
   # reorder the category factor levels to order the legend
-  return(data %<>% dplyr::mutate(.data = ., {{ x }} := factor({{ x }}, unique({{ x }}))))
+  return(data %<>% dplyr::mutate({{ x }} := factor({{ x }}, unique({{ x }}))))
 }
 
 
@@ -44,12 +44,13 @@ df_descriptive <- function(data,
 
 # creating a dataframe with counts
 cat_counter <- function(data, x, y = NULL, ...) {
-  dplyr::group_by(.data = data, {{ y }}, {{ x }}, .drop = TRUE) %>%
+  data %>%
+    dplyr::group_by({{ y }}, {{ x }}, .drop = TRUE) %>%
     dplyr::tally(x = ., name = "counts") %>%
-    dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
+    dplyr::mutate(perc = (counts / sum(counts)) * 100) %>%
     dplyr::ungroup(.) %>%
-    dplyr::arrange(.data = ., dplyr::desc({{ x }})) %>%
-    dplyr::filter(.data = ., counts != 0L)
+    dplyr::arrange(dplyr::desc({{ x }})) %>%
+    dplyr::filter(counts != 0L)
 }
 
 #' @title A dataframe with chi-squared test results

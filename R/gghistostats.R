@@ -151,26 +151,8 @@ gghistostats <- function(data,
 
   # return early if anything other than plot
   if (output != "plot") {
-    return(switch(EXPR = output, "caption" = caption, subtitle))
+    return(switch(output, "caption" = caption, subtitle))
   }
-
-  # ======================= normal curve args =================================
-
-  # all things combined
-  ylab_add <-
-    list(
-      ggplot2::scale_y_continuous(
-        sec.axis = ggplot2::sec_axis(
-          trans = ~ . / nrow(df),
-          labels = function(x) paste0(x * 100, "%"),
-          name = "proportion"
-        )
-      ),
-      ggplot2::ylab("count"),
-      ggplot2::guides(fill = FALSE)
-    )
-  .f_stat <- function(x, mean, sd, n, bw) stats::dnorm(x, mean, sd) * n * bw
-  args <- list(mean = mean(x_vec), sd = sd(x_vec), n = length(x_vec), bw = binwidth)
 
   # ============================= plot ====================================
 
@@ -185,16 +167,23 @@ gghistostats <- function(data,
       na.rm = TRUE,
       mapping = ggplot2::aes(y = ..count.., fill = ..count..)
     ) +
-    ylab_add
+    ggplot2::scale_y_continuous(
+      sec.axis = ggplot2::sec_axis(
+        trans = ~ . / nrow(df),
+        labels = function(x) paste0(x * 100, "%"),
+        name = "proportion"
+      )
+    ) +
+    ggplot2::guides(fill = FALSE)
 
   # if normal curve overlay  needs to be displayed
   if (isTRUE(normal.curve)) {
     plot <- plot +
       rlang::exec(
         .f = ggplot2::stat_function,
-        fun = .f_stat,
+        fun = function(x, mean, sd, n, bw) stats::dnorm(x, mean, sd) * n * bw,
         na.rm = TRUE,
-        args = args,
+        args = list(mean = mean(x_vec), sd = sd(x_vec), n = length(x_vec), bw = binwidth),
         !!!normal.curve.args
       )
   }
@@ -204,6 +193,7 @@ gghistostats <- function(data,
     theme_ggstatsplot(ggtheme = ggtheme, ggstatsplot.layer = ggstatsplot.layer) +
     ggplot2::labs(
       x = xlab,
+      y = "count",
       title = title,
       subtitle = subtitle,
       caption = caption
@@ -211,19 +201,14 @@ gghistostats <- function(data,
 
   # ---------------- centrality tagging -------------------------------------
 
-  # computing statistics needed for displaying labels
-  y_label_pos <- median(ggplot2::layer_scales(plot)$y$range$range, na.rm = TRUE)
-
   # using custom function for adding labels
   if (isTRUE(centrality.plotting)) {
     plot <-
       histo_labeller(
         plot = plot,
         x = x_vec,
-        y.label.position = y_label_pos,
         type = type,
         tr = tr,
-        test.value = test.value,
         centrality.k = centrality.k,
         centrality.line.args = centrality.line.args,
         centrality.label.args = centrality.label.args
