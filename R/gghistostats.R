@@ -33,7 +33,7 @@
 #' @importFrom dplyr group_by n arrange
 #' @importFrom rlang enquo as_name !!
 #' @importFrom stats dnorm
-#' @importFrom statsExpressions expr_t_onesample bf_ttest
+#' @importFrom statsExpressions expr_t_onesample
 #'
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
@@ -137,9 +137,10 @@ gghistostats <- function(data,
     # preparing the BF message
     if (type == "parametric" && isTRUE(bf.message)) {
       caption <-
-        statsExpressions::bf_ttest(
+        statsExpressions::expr_t_onesample(
           data = df,
           x = {{ x }},
+          type = "bayes",
           test.value = test.value,
           bf.prior = bf.prior,
           top.text = caption,

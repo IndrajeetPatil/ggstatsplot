@@ -273,7 +273,7 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/IndrajeetPatil/pairwiseComparisons"
+      "sameAs": "https://CRAN.R-project.org/package=pairwiseComparisons"
     },
     {
       "@type": "SoftwareApplication",
@@ -352,20 +352,7 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/IndrajeetPatil/statsExpressions"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "tidyBF",
-      "name": "tidyBF",
-      "version": ">= 0.4.2.9000",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://github.com/IndrajeetPatil/tidyBF"
+      "sameAs": "https://CRAN.R-project.org/package=statsExpressions"
     },
     {
       "@type": "SoftwareApplication",
@@ -449,6 +436,6 @@
     }
   ],
   "funder": {},
-  "fileSize": "93744.465KB",
+  "fileSize": "93742.387KB",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
 }

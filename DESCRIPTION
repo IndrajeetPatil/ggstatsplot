@@ -42,7 +42,6 @@ Imports:
     rlang,
     stats,
     statsExpressions (>= 0.7.0),
-    tidyBF (>= 0.4.2.9000),
     tidyr,
     utils
 Suggests:
@@ -56,10 +55,6 @@ Suggests:
     WRS2
 VignetteBuilder: 
     knitr
-Remotes:
-    IndrajeetPatil/pairwiseComparisons,
-    IndrajeetPatil/tidyBF,
-    IndrajeetPatil/statsExpressions
 Encoding: UTF-8
 Language: en-US
 LazyData: true

@@ -17,7 +17,7 @@
 #' @inheritParams ggcoefstats
 #'
 #' @importFrom dplyr row_number percent_rank pull
-#' @importFrom statsExpressions expr_t_onesample bf_ttest
+#' @importFrom statsExpressions expr_t_onesample
 #'
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html}
@@ -115,9 +115,10 @@ ggdotplotstats <- function(data,
     # preparing the BF message for NULL
     if (isTRUE(bf.message) && type == "parametric") {
       caption <-
-        statsExpressions::bf_ttest(
+        statsExpressions::expr_t_onesample(
           data = data,
           x = {{ x }},
+          type = "bayes",
           test.value = test.value,
           bf.prior = bf.prior,
           top.text = caption,

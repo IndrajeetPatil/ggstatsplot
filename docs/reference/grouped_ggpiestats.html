@@ -325,6 +325,10 @@ proportion test (should sum to 1). Default is <code>NULL</code>, which means the
 is equal theoretical proportions across the levels of the nominal variable.
 This means if there are two levels this will be <code>ratio = c(0.5,0.5)</code> or if
 there are four levels this will be <code>ratio = c(0.25,0.25,0.25,0.25)</code>, etc.</p></dd>
+    <dt><code>paired</code></dt><dd><p>Logical indicating whether data came from a within-subjects or
+repeated measures design study (Default: <code>FALSE</code>). If <code>TRUE</code>, McNemar's
+test expression will be returned. If <code>FALSE</code>, Pearson's chi-square test will
+be returned.</p></dd>
     <dt><code>sampling.plan</code></dt><dd><p>Character describing the sampling plan. Possible options
 are <code>"indepMulti"</code> (independent multinomial; default), <code>"poisson"</code>,
 <code>"jointMulti"</code> (joint multinomial), <code>"hypergeom"</code> (hypergeometric). For
@@ -335,10 +339,6 @@ margin is fixed (<code>"rows"</code> or <code>"cols"</code>). Defaults to <code>
 to <code>1</code> by default. It indexes the expected deviation from the null
 hypothesis under the alternative, and corresponds to Gunel and Dickey's
 (1974) <code>"a"</code> parameter.</p></dd>
-    <dt><code>paired</code></dt><dd><p>Logical indicating whether data came from a within-subjects or
-repeated measures design study (Default: <code>FALSE</code>). If <code>TRUE</code>, McNemar's
-test expression will be returned. If <code>FALSE</code>, Pearson's chi-square test will
-be returned.</p></dd>
   
 </dl></td>
     </tr>

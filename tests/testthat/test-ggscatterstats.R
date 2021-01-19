@@ -110,12 +110,13 @@ test_that(
     # subtitle
     set.seed(123)
     p_cap <-
-      statsExpressions::bf_corr_test(
+      statsExpressions::expr_corr_test(
         data = ggplot2::msleep,
         x = "sleep_total",
         y = bodywt,
         top.text = "ggplot2 dataset",
-        output = "expression"
+        output = "expression",
+        type = "bayes"
       )
 
     # checking plot labels

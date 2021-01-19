@@ -35,7 +35,6 @@
 #'  \code{\link{grouped_ggwithinstats}}
 #'
 #' @importFrom rlang exec !! enquo := !!! exec
-#' @importFrom statsExpressions bf_ttest bf_oneway_anova
 #' @importFrom pairwiseComparisons pairwise_comparisons pairwise_caption
 #' @importFrom dplyr select mutate row_number group_by ungroup anti_join
 #'
@@ -178,11 +177,11 @@ ggwithinstats <- function(data,
       caption <-
         function_switch(
           test = test,
-          element = "caption",
           # arguments relevant for expression helper functions
           data = data,
           x = rlang::as_string(x),
           y = rlang::as_string(y),
+          type = "bayes",
           bf.prior = bf.prior,
           top.text = caption,
           paired = TRUE,
@@ -195,7 +194,6 @@ ggwithinstats <- function(data,
     subtitle <-
       function_switch(
         test = test,
-        element = "subtitle",
         # arguments relevant for expression helper functions
         data = data,
         x = rlang::as_string(x),

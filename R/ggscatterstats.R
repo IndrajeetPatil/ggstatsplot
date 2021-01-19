@@ -50,7 +50,7 @@
 #' @importFrom rlang !! enquo quo_name parse_expr ensym as_name enexpr exec !!!
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom ggExtra ggMarginal
-#' @importFrom statsExpressions expr_corr_test bf_corr_test
+#' @importFrom statsExpressions expr_corr_test
 #'
 #' @seealso \code{\link{grouped_ggscatterstats}}, \code{\link{ggcorrmat}},
 #' \code{\link{grouped_ggcorrmat}}
@@ -154,10 +154,11 @@ ggscatterstats <- function(data,
     # preparing the BF message for null hypothesis support
     if (type == "parametric" && isTRUE(bf.message)) {
       caption <-
-        statsExpressions::bf_corr_test(
+        statsExpressions::expr_corr_test(
           data = data,
           x = {{ x }},
           y = {{ y }},
+          type = "bayes",
           bf.prior = bf.prior,
           top.text = caption,
           output = "expression",

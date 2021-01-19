@@ -35,8 +35,9 @@ test_that(
     # caption
     set.seed(123)
     p_cap <-
-      statsExpressions::bf_contingency_tab(
+      statsExpressions::expr_contingency_tab(
         data = ggplot2::msleep,
+        type = "bayes",
         x = "vore",
         top.text = "From ggplot2 package",
         output = "caption"
@@ -225,10 +226,11 @@ test_that(
     # subtitle used
     set.seed(123)
     p_cap <-
-      suppressWarnings(statsExpressions::bf_contingency_tab(
+      suppressWarnings(statsExpressions::expr_contingency_tab(
         data = mtcars,
         x = "am",
         y = "cyl",
+        type = "bayes",
         output = "caption"
       ))
 
@@ -605,10 +607,11 @@ test_that(
     # caption output
     set.seed(123)
     p_cap_exp <-
-      statsExpressions::bf_contingency_tab(
+      statsExpressions::expr_contingency_tab(
         data = df,
         x = "race",
         y = marital,
+        type = "bayes",
         output = "caption",
         k = 4
       )

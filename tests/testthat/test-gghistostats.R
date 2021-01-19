@@ -204,10 +204,10 @@ test_that(
     # checking caption
     set.seed(123)
     p_cap <-
-      statsExpressions::bf_ttest(
+      statsExpressions::expr_t_onesample(
         data = dplyr::starwars,
         x = height,
-        type = "p",
+        type = "bf",
         test.value = 150,
         bf.prior = 0.9,
         output = "caption"

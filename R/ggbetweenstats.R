@@ -113,7 +113,6 @@
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom paletteer scale_color_paletteer_d scale_fill_paletteer_d
 #' @importFrom ggsignif geom_signif
-#' @importFrom statsExpressions bf_ttest bf_oneway_anova
 #' @importFrom pairwiseComparisons pairwise_comparisons pairwise_caption
 #'
 #' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggwithinstats}},
@@ -259,11 +258,11 @@ ggbetweenstats <- function(data,
       caption <-
         function_switch(
           test = test,
-          element = "caption",
           # arguments relevant for expression helper functions
           data = data,
           x = rlang::as_string(x),
           y = rlang::as_string(y),
+          type = "bayes",
           bf.prior = bf.prior,
           top.text = caption,
           paired = FALSE,
@@ -276,7 +275,6 @@ ggbetweenstats <- function(data,
     subtitle <-
       function_switch(
         test = test,
-        element = "subtitle",
         # arguments relevant for expression helper functions
         data = data,
         x = rlang::as_string(x),
