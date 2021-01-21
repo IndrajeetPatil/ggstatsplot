@@ -25,6 +25,7 @@ BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
 Depends: 
     R (>= 3.6.0)
 Imports:
+    bayestestR (>= 0.8.1),
     cowplot,
     dplyr,
     ggcorrplot,
@@ -54,6 +55,7 @@ Suggests:
     tibble,
     WRS2
 Remotes:
+    easystats/bayestestR,
     IndrajeetPatil/statsExpressions
 VignetteBuilder: 
     knitr

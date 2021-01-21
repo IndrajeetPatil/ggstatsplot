@@ -767,8 +767,8 @@ test_that(
       )
 
     expect_identical(
-      as.character(meta_info)[3],
-      "widehat(italic(delta))[\"mean\"]^\"posterior\" * \" = \" * \"0.128\" * \", \""
+      as.character(meta_info)[2],
+      "\"log\"[\"e\"] * \"(BF\"[\"01\"] * \") = \" * \"1.233\" * \", \""
     )
   }
 )
