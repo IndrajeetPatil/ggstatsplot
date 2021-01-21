@@ -600,6 +600,7 @@ plot_list <-
       data = class_list,
       x = "Survived",
       y = "Sex",
+      type = "bayes",
       label = list("both", "count", "percentage", "both"),
       title = list(
         "Passenger class: 1st",

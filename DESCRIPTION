@@ -15,7 +15,7 @@ Description: Extension of 'ggplot2', 'ggstatsplot' creates
     for statistical analysis of continuous (violin plots, scatterplots,
     histograms, dot plots, dot-and-whisker plots) or categorical (pie and
     bar charts) data. Currently, it supports the most common types of
-    statistical tests: parametric, nonparametric, robust, and Bayesian
+    statistical approaches and tests: parametric, nonparametric, robust, and Bayesian
     versions of t-test/ANOVA, correlation analyses, contingency table
     analysis, meta-analysis, and regression analyses.
 License: GPL-3 | file LICENSE
@@ -41,7 +41,7 @@ Imports:
     purrr,
     rlang,
     stats,
-    statsExpressions (>= 0.7.0),
+    statsExpressions (>= 0.7.0.9000),
     tidyr,
     utils
 Suggests:
@@ -53,6 +53,8 @@ Suggests:
     testthat,
     tibble,
     WRS2
+Remotes:
+    IndrajeetPatil/statsExpressions
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

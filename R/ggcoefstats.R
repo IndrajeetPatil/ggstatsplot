@@ -416,29 +416,17 @@ ggcoefstats <- function(x,
     meta.type <- ipmisc::stats_type_switch(meta.type)
 
     # results from frequentist random-effects meta-analysis
-    subtitle <- expr_meta_random(tidy_df, type = meta.type, k = k)
+    subtitle <- statsExpressions::expr_meta_random(tidy_df, type = meta.type, k = k)
 
-    # model summary (detailed only for parametric statistics)
-    if (meta.type == "parametric") {
-      # results from Bayesian random-effects meta-analysis
-      if (isTRUE(bf.message)) {
-        caption <-
-          statsExpressions::expr_meta_random(
-            top.text = caption,
-            type = "bayes",
-            output = "caption", # don't change to "expression"
-            data = tidy_df,
-            k = k
-          )
-      }
-
-      # caption with heterogeneity test results
+    # results from Bayesian random-effects meta-analysis (only for parametric)
+    if (meta.type == "parametric" && isTRUE(bf.message)) {
       caption <-
         statsExpressions::expr_meta_random(
+          top.text = caption,
+          type = "bayes",
+          output = "expression",
           data = tidy_df,
-          k = k,
-          caption = caption,
-          output = "caption" # don't change to "expression"
+          k = k
         )
     }
   }

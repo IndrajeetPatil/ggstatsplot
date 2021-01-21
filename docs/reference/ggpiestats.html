@@ -211,17 +211,18 @@ as a subtitle.</p>
   <span class='va'>x</span>,
   y <span class='op'>=</span> <span class='cn'>NULL</span>,
   counts <span class='op'>=</span> <span class='cn'>NULL</span>,
-  ratio <span class='op'>=</span> <span class='cn'>NULL</span>,
+  type <span class='op'>=</span> <span class='st'>"parametric"</span>,
   paired <span class='op'>=</span> <span class='cn'>FALSE</span>,
   results.subtitle <span class='op'>=</span> <span class='cn'>TRUE</span>,
   label <span class='op'>=</span> <span class='st'>"percentage"</span>,
   label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>direction <span class='op'>=</span> <span class='st'>"both"</span><span class='op'>)</span>,
   label.repel <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  conf.level <span class='op'>=</span> <span class='fl'>0.95</span>,
   k <span class='op'>=</span> <span class='fl'>2L</span>,
   proportion.test <span class='op'>=</span> <span class='cn'>TRUE</span>,
   perc.k <span class='op'>=</span> <span class='fl'>0</span>,
   bf.message <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  ratio <span class='op'>=</span> <span class='cn'>NULL</span>,
+  conf.level <span class='op'>=</span> <span class='fl'>0.95</span>,
   sampling.plan <span class='op'>=</span> <span class='st'>"indepMulti"</span>,
   fixed.margin <span class='op'>=</span> <span class='st'>"rows"</span>,
   prior.concentration <span class='op'>=</span> <span class='fl'>1</span>,
@@ -267,12 +268,11 @@ for <code>ggbarstats</code> function.</p></td>
 if each row represents a single observation.</p></td>
     </tr>
     <tr>
-      <th>ratio</th>
-      <td><p>A vector of proportions: the expected proportions for the
-proportion test (should sum to 1). Default is <code>NULL</code>, which means the null
-is equal theoretical proportions across the levels of the nominal variable.
-This means if there are two levels this will be <code>ratio = c(0.5,0.5)</code> or if
-there are four levels this will be <code>ratio = c(0.25,0.25,0.25,0.25)</code>, etc.</p></td>
+      <th>type</th>
+      <td><p>Type of statistic expected (<code>"parametric"</code> or <code>"nonparametric"</code>
+or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations are also accepted:
+<code>"p"</code> (for parametric), <code>"np"</code> (nonparametric), <code>"r"</code> (robust), or
+<code>"bf"</code>resp.</p></td>
     </tr>
     <tr>
       <th>paired</th>
@@ -304,11 +304,6 @@ on the label in each pie slice. Possible options are <code>"percentage"</code>
 This can be helpful in case the labels are overlapping.</p></td>
     </tr>
     <tr>
-      <th>conf.level</th>
-      <td><p>Scalar between 0 and 1. If unspecified, the defaults return
-<code>95%</code> confidence/credible intervals (<code>0.95</code>).</p></td>
-    </tr>
-    <tr>
       <th>k</th>
       <td><p>Number of digits after decimal point (should be an integer)
 (Default: <code>k = 2L</code>).</p></td>
@@ -329,6 +324,19 @@ labels (Default: <code>0</code>).</p></td>
       <td><p>Logical that decides whether to display Bayes Factor in
 favor of the <em>null</em> hypothesis. This argument is relevant only <strong>for
 parametric test</strong> (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>ratio</th>
+      <td><p>A vector of proportions: the expected proportions for the
+proportion test (should sum to 1). Default is <code>NULL</code>, which means the null
+is equal theoretical proportions across the levels of the nominal variable.
+This means if there are two levels this will be <code>ratio = c(0.5,0.5)</code> or if
+there are four levels this will be <code>ratio = c(0.25,0.25,0.25,0.25)</code>, etc.</p></td>
+    </tr>
+    <tr>
+      <th>conf.level</th>
+      <td><p>Scalar between 0 and 1. If unspecified, the defaults return
+<code>95%</code> confidence/credible intervals (<code>0.95</code>).</p></td>
     </tr>
     <tr>
       <th>sampling.plan</th>

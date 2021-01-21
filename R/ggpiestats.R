@@ -41,7 +41,7 @@
 #' @import ggplot2
 #'
 #' @importFrom dplyr select mutate vars pull across everything
-#' @importFrom rlang !! enquo as_name ensym
+#' @importFrom rlang !! enquo as_name ensym !!! exec
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom paletteer scale_fill_paletteer_d
 #' @importFrom tidyr uncount drop_na
@@ -72,17 +72,18 @@ ggpiestats <- function(data,
                        x,
                        y = NULL,
                        counts = NULL,
-                       ratio = NULL,
+                       type = "parametric",
                        paired = FALSE,
                        results.subtitle = TRUE,
                        label = "percentage",
                        label.args = list(direction = "both"),
                        label.repel = FALSE,
-                       conf.level = 0.95,
                        k = 2L,
                        proportion.test = TRUE,
                        perc.k = 0,
                        bf.message = TRUE,
+                       ratio = NULL,
+                       conf.level = 0.95,
                        sampling.plan = "indepMulti",
                        fixed.margin = "rows",
                        prior.concentration = 1,
@@ -97,6 +98,8 @@ ggpiestats <- function(data,
                        ggplot.component = NULL,
                        output = "plot",
                        ...) {
+  # convert entered stats type to a standard notation
+  type <- ipmisc::stats_type_switch(type)
 
   # ensure the variables work quoted or unquoted
   x <- rlang::ensym(x)
@@ -104,9 +107,6 @@ ggpiestats <- function(data,
 
   # one-way or two-way table?
   test <- ifelse(!rlang::quo_is_null(rlang::enquo(y)), "two.way", "one.way")
-
-  # this is currently not supported in `BayesFactor`
-  if (isTRUE(paired)) bf.message <- FALSE
 
   # saving the column label for the 'x' variables
   if (rlang::is_null(legend.title)) legend.title <- rlang::as_name(x)
@@ -128,7 +128,7 @@ ggpiestats <- function(data,
   x_levels <- nlevels(data %>% dplyr::pull({{ x }}))[[1]]
 
   # y
-  if (!rlang::quo_is_null(rlang::enquo(y))) {
+  if (test == "two.way") {
     y_levels <- nlevels(data %>% dplyr::pull({{ y }}))[[1]]
 
     # TO DO: until one-way table is supported by `BayesFactor`
@@ -141,7 +141,7 @@ ggpiestats <- function(data,
   facet <- ifelse(y_levels > 1L, TRUE, FALSE)
   if (x_levels == 1L && isTRUE(facet)) proportion.test <- FALSE
 
-  # ========================= statistical analysis ==========================
+  # -------------------------- statistical analysis --------------------------
 
   # if subtitle with results is to be displayed
   if (isTRUE(results.subtitle)) {
@@ -151,16 +151,17 @@ ggpiestats <- function(data,
           data = data,
           x = {{ x }},
           y = {{ y }},
-          ratio = ratio,
+          type = type,
+          k = k,
           paired = paired,
-          conf.level = conf.level,
-          k = k
+          ratio = ratio,
+          conf.level = conf.level
         ),
         error = function(e) NULL
       )
 
     # preparing Bayes Factor caption
-    if (isTRUE(bf.message) && !is.null(subtitle)) {
+    if (type != "bayes" && isTRUE(bf.message) && isFALSE(paired)) {
       caption <-
         tryCatch(
           expr = statsExpressions::expr_contingency_tab(
@@ -168,12 +169,11 @@ ggpiestats <- function(data,
             x = {{ x }},
             y = {{ y }},
             type = "bayes",
+            k = k,
+            top.text = caption,
             sampling.plan = sampling.plan,
             fixed.margin = fixed.margin,
-            prior.concentration = prior.concentration,
-            top.text = caption,
-            output = "caption",
-            k = k
+            prior.concentration = prior.concentration
           ),
           error = function(e) NULL
         )
@@ -194,11 +194,7 @@ ggpiestats <- function(data,
   if (test == "two.way") df_proptest <- df_proptest(data, {{ x }}, {{ y }}, k)
 
   # if no. of factor levels is greater than the default palette color count
-  palette_message(
-    package = package,
-    palette = palette,
-    min_length = x_levels
-  )
+  palette_message(package, palette, min_length = x_levels)
 
   # creating the basic plot
   p <-

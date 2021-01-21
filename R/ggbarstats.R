@@ -48,17 +48,18 @@ ggbarstats <- function(data,
                        x,
                        y,
                        counts = NULL,
-                       ratio = NULL,
+                       type = "parametric",
                        paired = FALSE,
                        results.subtitle = TRUE,
                        sample.size.label = TRUE,
                        label = "percentage",
                        label.args = list(alpha = 1, fill = "white"),
-                       conf.level = 0.95,
                        k = 2L,
                        proportion.test = TRUE,
                        perc.k = 0,
                        bf.message = TRUE,
+                       ratio = NULL,
+                       conf.level = 0.95,
                        sampling.plan = "indepMulti",
                        fixed.margin = "rows",
                        prior.concentration = 1,
@@ -75,11 +76,11 @@ ggbarstats <- function(data,
                        ggplot.component = NULL,
                        output = "plot",
                        ...) {
+  # convert entered stats type to a standard notation
+  type <- ipmisc::stats_type_switch(type)
+
   # make sure both quoted and unquoted arguments are allowed
   c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
-
-  # this is currently not supported in `BayesFactor`
-  if (isTRUE(paired)) bf.message <- FALSE
 
   # ================= extracting column names as labels  =====================
 
@@ -107,10 +108,9 @@ ggbarstats <- function(data,
     c(bf.message, proportion.test) %<-% c(FALSE, FALSE)
   }
 
-  # ========================= statistical analysis ===========================
+  # -------------------------- statistical analysis --------------------------
 
-  # running appropriate statistical test
-  # unpaired: Pearson's Chi-square test of independence
+  # if subtitle with results is to be displayed
   if (isTRUE(results.subtitle)) {
     subtitle <-
       tryCatch(
@@ -118,16 +118,17 @@ ggbarstats <- function(data,
           data = data,
           x = {{ x }},
           y = {{ y }},
-          ratio = ratio,
+          type = type,
+          k = k,
           paired = paired,
-          conf.level = conf.level,
-          k = k
+          ratio = ratio,
+          conf.level = conf.level
         ),
         error = function(e) NULL
       )
 
-    # preparing the BF message for null hypothesis support
-    if (isTRUE(bf.message) && !is.null(subtitle)) {
+    # preparing Bayes Factor caption
+    if (type != "bayes" && isTRUE(bf.message) && isFALSE(paired)) {
       caption <-
         tryCatch(
           expr = statsExpressions::expr_contingency_tab(
@@ -135,12 +136,11 @@ ggbarstats <- function(data,
             x = {{ x }},
             y = {{ y }},
             type = "bayes",
+            k = k,
+            top.text = caption,
             sampling.plan = sampling.plan,
             fixed.margin = fixed.margin,
-            prior.concentration = prior.concentration,
-            top.text = caption,
-            output = "caption",
-            k = k
+            prior.concentration = prior.concentration
           ),
           error = function(e) NULL
         )
@@ -161,11 +161,7 @@ ggbarstats <- function(data,
   df_proptest <- df_proptest(data, {{ x }}, {{ y }}, k)
 
   # if no. of factor levels is greater than the default palette color count
-  palette_message(
-    package = package,
-    palette = palette,
-    min_length = nlevels(data %>% dplyr::pull({{ x }}))[[1]]
-  )
+  palette_message(package, palette, min_length = nlevels(data %>% dplyr::pull({{ x }}))[[1]])
 
   # plot
   p <-

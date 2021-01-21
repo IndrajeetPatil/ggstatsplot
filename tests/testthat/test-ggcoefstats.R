@@ -669,8 +669,7 @@ test_that(
           statistic = "t",
           k = 3,
           meta.analytic.effect = TRUE,
-          bf.message = TRUE,
-          messages = FALSE
+          bf.message = TRUE
         )
       )
     p7 <-
@@ -682,8 +681,7 @@ test_that(
           meta.analytic.effect = TRUE,
           meta.type = "bf",
           caption = "mnp",
-          bf.message = TRUE,
-          messages = FALSE
+          bf.message = TRUE
         )
       )
 
@@ -764,11 +762,14 @@ test_that(
           k = 3,
           meta.analytic.effect = TRUE,
           bf.message = TRUE,
-          output = "caption",
-          messages = TRUE
+          output = "caption"
         )
       )
-    expect_identical(as.character(meta_info$expr)[19], "81.42%")
+
+    expect_identical(
+      as.character(meta_info)[3],
+      "widehat(italic(delta))[\"mean\"]^\"posterior\" * \" = \" * \"0.128\" * \", \""
+    )
   }
 )
 

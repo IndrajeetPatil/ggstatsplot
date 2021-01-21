@@ -8,7 +8,7 @@ test_that(
     # creating the plot
     set.seed(123)
     p <-
-      ggstatsplot::ggpiestats(
+      ggpiestats(
         data = ggplot2::msleep,
         x = vore,
         bf.message = TRUE,
@@ -17,8 +17,7 @@ test_that(
         caption = "From ggplot2 package",
         perc.k = 2,
         ggstatsplot.layer = FALSE,
-        label = "both",
-        messages = FALSE
+        label = "both"
       )
 
     # built plot
@@ -176,7 +175,7 @@ test_that(
     set.seed(123)
     p <-
       suppressWarnings(
-        ggstatsplot::ggpiestats(
+        ggpiestats(
           data = mtcars,
           x = "am",
           y = "cyl",
@@ -185,8 +184,7 @@ test_that(
           palette = "Royal2",
           ggtheme = ggplot2::theme_bw(),
           label = "counts",
-          legend.title = "transmission",
-          messages = FALSE
+          legend.title = "transmission"
         )
       )
 
@@ -195,14 +193,14 @@ test_that(
 
     # plot
     p1 <-
-      ggstatsplot::ggpiestats(
+      ggpiestats(
         data = mtcars_small,
         x = cyl,
         y = am
       )
 
     expect_s3_class(
-      suppressWarnings(ggstatsplot::ggpiestats(
+      suppressWarnings(ggpiestats(
         data = mtcars_small,
         y = cyl,
         x = am
@@ -316,7 +314,7 @@ test_that(
     # plot
     set.seed(123)
     p <-
-      ggstatsplot::ggpiestats(
+      ggpiestats(
         data = as.data.frame(Titanic),
         x = Sex,
         y = Survived,
@@ -383,7 +381,7 @@ test_that(
     # plot
     set.seed(123)
     p <-
-      ggstatsplot::ggpiestats(
+      ggpiestats(
         data = survey.data,
         x = `1st survey`,
         y = `2nd survey`,
@@ -554,7 +552,7 @@ test_that(
       )
 
     # subtitle
-    expect_null(ggstatsplot::ggpiestats(
+    expect_null(ggpiestats(
       data = df,
       x = x,
       output = "subtitle"
@@ -562,10 +560,10 @@ test_that(
   }
 )
 
-# subtitle output --------------------------------------------------
+# expression output --------------------------------------------------
 
 test_that(
-  desc = "subtitle output",
+  desc = "expression output",
   code = {
     skip_on_cran()
 
@@ -576,7 +574,7 @@ test_that(
     # subtitle output
     set.seed(123)
     p_sub <-
-      ggstatsplot::ggpiestats(
+      ggpiestats(
         data = df,
         x = race,
         y = marital,
@@ -596,11 +594,12 @@ test_that(
     # caption output
     set.seed(123)
     p_cap <-
-      ggstatsplot::ggpiestats(
+      ggpiestats(
         data = df,
         x = race,
         y = "marital",
-        output = "caption",
+        type = "bayes",
+        output = "subtitle",
         k = 4
       )
 
@@ -612,7 +611,6 @@ test_that(
         x = "race",
         y = marital,
         type = "bayes",
-        output = "caption",
         k = 4
       )
 

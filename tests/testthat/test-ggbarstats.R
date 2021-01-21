@@ -7,7 +7,7 @@ test_that(
 
     # y variable is not optional for `ggbarstats`
     expect_error(
-      ggstatsplot::ggbarstats(
+      ggbarstats(
         data = as.data.frame(Titanic),
         x = Sex
       )
@@ -16,7 +16,7 @@ test_that(
     # plot
     set.seed(123)
     p <-
-      ggstatsplot::ggbarstats(
+      ggbarstats(
         data = as.data.frame(Titanic),
         x = Sex,
         y = Survived,
@@ -232,7 +232,7 @@ test_that(
     # plot
     set.seed(123)
     p <-
-      suppressWarnings(ggstatsplot::ggbarstats(
+      suppressWarnings(ggbarstats(
         data = mtcars,
         x = vs,
         y = "cyl",
@@ -244,7 +244,7 @@ test_that(
       ))
 
     p1 <-
-      suppressWarnings(ggstatsplot::ggbarstats(
+      suppressWarnings(ggbarstats(
         data = mtcars,
         x = vs,
         y = cyl,
@@ -298,7 +298,7 @@ test_that(
 
     set.seed(123)
     p <-
-      ggstatsplot::ggbarstats(
+      ggbarstats(
         data = mtcars_small,
         x = cyl,
         y = am,
@@ -457,51 +457,6 @@ test_that(
   }
 )
 
-# other outputs --------------------------------------------------
-
-test_that(
-  desc = "other outputs",
-  code = {
-    skip_on_cran()
-
-    set.seed(123)
-    df <- dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1) %>%
-      dplyr::mutate_if(., is.factor, droplevels)
-
-
-    # subtitle output
-    set.seed(123)
-    p_sub <-
-      ggstatsplot::ggbarstats(
-        data = df,
-        x = race,
-        y = marital,
-        output = "subtitle",
-        k = 4
-      )
-
-    set.seed(123)
-    stats_output <-
-      statsExpressions::expr_contingency_tab(
-        data = df,
-        x = race,
-        y = marital,
-        k = 4
-      )
-
-    # tests
-    expect_identical(p_sub, stats_output)
-
-    expect_null(ggstatsplot::ggbarstats(
-      data = mtcars,
-      x = cyl,
-      y = am,
-      paired = TRUE,
-      output = "caption"
-    ))
-  }
-)
-
 # without enough data ---------------------------------------------------------
 
 test_that(
@@ -518,12 +473,73 @@ test_that(
 
     # should not work
     expect_s3_class(
-      suppressWarnings(ggstatsplot::ggbarstats(
+      suppressWarnings(ggbarstats(
         data = df,
         x = x,
         y = y
       )),
       "ggplot"
     )
+  }
+)
+
+
+# expression output --------------------------------------------------
+
+test_that(
+  desc = "expression output",
+  code = {
+    skip_on_cran()
+
+    set.seed(123)
+    df <- dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1) %>%
+      dplyr::mutate_if(., is.factor, droplevels)
+
+    # subtitle output
+    set.seed(123)
+    p_sub <-
+      ggbarstats(
+        data = df,
+        x = race,
+        y = marital,
+        output = "subtitle",
+        k = 4
+      )
+
+    set.seed(123)
+    stats_output <-
+      statsExpressions::expr_contingency_tab(
+        data = df,
+        x = race,
+        y = marital,
+        k = 4
+      )
+
+    # caption output
+    set.seed(123)
+    p_cap <-
+      ggbarstats(
+        data = df,
+        x = race,
+        y = "marital",
+        type = "bayes",
+        output = "subtitle",
+        k = 4
+      )
+
+    # caption output
+    set.seed(123)
+    p_cap_exp <-
+      statsExpressions::expr_contingency_tab(
+        data = df,
+        x = "race",
+        y = marital,
+        type = "bayes",
+        k = 4
+      )
+
+    # tests
+    expect_identical(p_sub, stats_output)
+    expect_identical(p_cap, p_cap_exp)
   }
 )
