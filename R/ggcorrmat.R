@@ -161,7 +161,7 @@ ggcorrmat <- function(data,
   # ===================== statistics ========================================
 
   # creating a dataframe of results
-  df_corr <-
+  stats_df <-
     statsExpressions::correlation(
       data = df,
       method = r.method,
@@ -177,14 +177,10 @@ ggcorrmat <- function(data,
 
   # early stats return
   if (output != "plot") {
-    return(as_tibble(parameters::standardize_names(df_corr, "broom")))
+    return(as_tibble(parameters::standardize_names(stats_df, "broom")))
   }
 
   # ========================== plot =========================================
-
-  # create matrices for correlation coefficients and p-values
-  corr.mat <- as.matrix(dplyr::select(df_corr, dplyr::matches("^parameter|^r")))
-  p.mat <- as.matrix(dplyr::select(df_corr, dplyr::matches("^parameter|^p")))
 
   # creating the basic plot
   # if user has not specified colors, then use a color palette
@@ -202,7 +198,7 @@ ggcorrmat <- function(data,
     legend.title.text <-
       bquote(atop(
         atop(
-          scriptstyle(bold("sample sizes:")), italic(n) ~ "=" ~ .(.prettyNum(df_corr$n_Obs[[1]]))
+          scriptstyle(bold("sample sizes:")), italic(n) ~ "=" ~ .(.prettyNum(stats_df$n_Obs[[1]]))
         ),
         atop(
           scriptstyle(bold(.(corr.nature))), .(r.method.text)
@@ -214,11 +210,11 @@ ggcorrmat <- function(data,
       bquote(atop(
         atop(
           atop(
-            scriptstyle(bold("sample sizes:")), italic(n)[min] ~ "=" ~ .(.prettyNum(min(df_corr$n_Obs)))
+            scriptstyle(bold("sample sizes:")), italic(n)[min] ~ "=" ~ .(.prettyNum(min(stats_df$n_Obs)))
           ),
           atop(
-            italic(n)[mode] ~ "=" ~ .(.prettyNum(getmode(df_corr$n_Obs))),
-            italic(n)[max] ~ "=" ~ .(.prettyNum(max(df_corr$n_Obs)))
+            italic(n)[mode] ~ "=" ~ .(.prettyNum(getmode(stats_df$n_Obs))),
+            italic(n)[max] ~ "=" ~ .(.prettyNum(max(stats_df$n_Obs)))
           )
         ),
         atop(
@@ -234,8 +230,8 @@ ggcorrmat <- function(data,
   plot <-
     rlang::exec(
       .f = ggcorrplot::ggcorrplot,
-      corr = corr.mat,
-      p.mat = p.mat,
+      corr = as.matrix(dplyr::select(stats_df, dplyr::matches("^parameter|^r"))),
+      p.mat = as.matrix(dplyr::select(stats_df, dplyr::matches("^parameter|^p"))),
       sig.level = sig.level,
       ggtheme = ggtheme,
       colors = colors,
