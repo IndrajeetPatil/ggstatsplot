@@ -12,7 +12,7 @@
 #' @import ggplot2
 #'
 #' @importFrom dplyr select
-#' @importFrom rlang !! enquo enexpr ensym
+#' @importFrom rlang as_name enexpr ensym
 #' @importFrom purrr pmap
 #'
 #' @seealso \code{\link{ggscatterstats}}, \code{\link{ggcorrmat}},

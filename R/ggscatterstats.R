@@ -134,9 +134,15 @@ ggscatterstats <- function(data,
   #---------------------- variable names --------------------------------
 
   # ensure the arguments work quoted or unquoted
-  x <- rlang::ensym(x)
-  y <- rlang::ensym(y)
-  label.var <- if (!rlang::quo_is_null(rlang::enquo(label.var))) rlang::ensym(label.var)
+  c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
+
+  # point labeling
+  if (!rlang::quo_is_null(rlang::enquo(label.var))) {
+    label.var <- rlang::ensym(label.var)
+    point.labelling <- TRUE
+  } else {
+    point.labelling <- FALSE
+  }
 
   # if `xlab` and `ylab` is not provided, use the variable `x` and `y` name
   if (is.null(xlab)) xlab <- rlang::as_name(x)
@@ -187,9 +193,7 @@ ggscatterstats <- function(data,
   #---------------------------- user expression -------------------------
 
   # check labeling variable has been entered
-  if (!rlang::quo_is_null(rlang::enquo(label.var))) {
-    point.labelling <- TRUE
-
+  if (isTRUE(point.labelling)) {
     # is expression provided?
     if (!rlang::quo_is_null(rlang::enquo(label.expression))) {
       expression.present <- TRUE
@@ -214,8 +218,6 @@ ggscatterstats <- function(data,
     } else {
       label_data <- data
     }
-  } else {
-    point.labelling <- FALSE
   }
 
   # --------------------------------- basic plot ---------------------------

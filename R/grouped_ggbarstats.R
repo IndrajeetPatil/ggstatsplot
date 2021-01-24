@@ -16,8 +16,8 @@
 #' @import ggplot2
 #'
 #' @importFrom dplyr select
-#' @importFrom rlang enquo quo_name ensym
-#' @importFrom purrr map
+#' @importFrom rlang quo_name ensym
+#' @importFrom purrr pmap
 #'
 #' @seealso \code{\link{ggbarstats}}, \code{\link{ggpiestats}},
 #'  \code{\link{grouped_ggpiestats}}

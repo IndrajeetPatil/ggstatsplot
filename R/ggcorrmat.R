@@ -53,7 +53,7 @@
 #' @importFrom ggcorrplot ggcorrplot
 #' @importFrom dplyr select matches
 #' @importFrom purrr is_bare_numeric keep
-#' @importFrom rlang !! enquo quo_name is_null
+#' @importFrom rlang exec !!!
 #' @importFrom pairwiseComparisons p_adjust_text
 #' @importFrom statsExpressions correlation
 #' @importFrom parameters standardize_names
@@ -72,7 +72,7 @@
 #' # if `cor.vars` not specified, all numeric variables used
 #' ggstatsplot::ggcorrmat(iris)
 #'
-#' # to get the correlalogram
+#' # to get the correlation matrix
 #' # note that the function will run even if the vector with variable names is
 #' # not of same length as the number of variables
 #' ggstatsplot::ggcorrmat(
@@ -142,13 +142,13 @@ ggcorrmat <- function(data,
   # ============================ checking r.method =======================
 
   # if any of the abbreviations have been entered, change them
-  stats_type <- ipmisc::stats_type_switch(type)
+  type <- ipmisc::stats_type_switch(type)
 
   # see which method was used to specify type of correlation
   # create unique name for each method
   c(r.method, r.method.text) %<-%
     switch(
-      EXPR = stats_type,
+      EXPR = type,
       "parametric" = c("pearson", "Pearson"),
       "nonparametric" = c("spearman", "Spearman"),
       "robust" = c("percentage", "robust (% bend)"),
@@ -167,12 +167,12 @@ ggcorrmat <- function(data,
       method = r.method,
       p_adjust = p.adjust.method,
       ci = conf.level,
-      bayesian = ifelse(stats_type == "bayes", TRUE, FALSE),
+      bayesian = ifelse(type == "bayes", TRUE, FALSE),
       bayesian_prior = bf.prior,
       bayesian_test = c("pd", "rope", "bf"),
       beta = beta,
       partial = partial,
-      partial_bayesian = ifelse(stats_type == "bayes" && isTRUE(partial), TRUE, FALSE)
+      partial_bayesian = ifelse(type == "bayes" && isTRUE(partial), TRUE, FALSE)
     )
 
   # early stats return
@@ -223,16 +223,13 @@ ggcorrmat <- function(data,
       ))
   }
 
-  # special treatment for Bayes
-  if (stats_type == "bayes") sig.level <- Inf
-
   # plotting the correlalogram
   plot <-
     rlang::exec(
       .f = ggcorrplot::ggcorrplot,
       corr = as.matrix(dplyr::select(stats_df, dplyr::matches("^parameter|^r"))),
       p.mat = as.matrix(dplyr::select(stats_df, dplyr::matches("^parameter|^p"))),
-      sig.level = sig.level,
+      sig.level = ifelse(type == "bayes", Inf, sig.level),
       ggtheme = ggtheme,
       colors = colors,
       type = matrix.type,
@@ -246,7 +243,7 @@ ggcorrmat <- function(data,
   # =========================== labels ==================================
 
   # preparing the `pch` caption
-  if ((pch == "cross" || pch == 4) && stats_type != "bayes") {
+  if ((pch == "cross" || pch == 4) && type != "bayes") {
     caption <-
       substitute(
         atop(

@@ -50,7 +50,6 @@
 # defining the function
 grouped_ggcorrmat <- function(data,
                               cor.vars = NULL,
-                              cor.vars.names = NULL,
                               grouping.var,
                               title.prefix = NULL,
                               output = "plot",
@@ -88,7 +87,6 @@ grouped_ggcorrmat <- function(data,
     purrr::pmap(
       .l = list(data = df, title = paste0(title.prefix, ": ", names(df))),
       .f = ggstatsplot::ggcorrmat,
-      cor.vars.names = cor.vars.names,
       output = output,
       ...
     )

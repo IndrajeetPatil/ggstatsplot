@@ -8,7 +8,6 @@ levels of a grouping variable}
 grouped_ggcorrmat(
   data,
   cor.vars = NULL,
-  cor.vars.names = NULL,
   grouping.var,
   title.prefix = NULL,
   output = "plot",
@@ -30,9 +29,6 @@ taken.}
 computed and visualized. If \code{NULL} (default), all numeric variables from
 \code{data} will be used.}
 
-\item{cor.vars.names}{Optional list of names to be used for \code{cor.vars}. The
-names should be entered in the same order.}
-
 \item{grouping.var}{A single grouping variable (can be entered either as a
 bare name \code{x} or as a string \code{"x"}).}
 
@@ -49,6 +45,8 @@ values, \emph{p}-values, no. of observations, etc.) will be returned.}
 \item{...}{
   Arguments passed on to \code{\link[=ggcorrmat]{ggcorrmat}}
   \describe{
+    \item{\code{cor.vars.names}}{Optional list of names to be used for \code{cor.vars}. The
+names should be entered in the same order.}
     \item{\code{partial}}{Can be \code{TRUE} for partial correlations. For Bayesian partial
 correlations, "full" instead of pseudo-Bayesian partial correlations (i.e.,
 Bayesian correlation based on frequentist partialization) are returned.}

@@ -9,8 +9,8 @@
 #' @inheritDotParams ggpiestats -title
 #'
 #' @importFrom dplyr select
-#' @importFrom rlang enquo quo_name ensym
-#' @importFrom purrr map
+#' @importFrom rlang as_name ensym
+#' @importFrom purrr pmap
 #'
 #' @seealso \code{\link{ggbarstats}}, \code{\link{ggpiestats}},
 #'  \code{\link{grouped_ggbarstats}}

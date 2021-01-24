@@ -37,6 +37,7 @@ test_that(
         data = movies_filtered,
         grouping.var = "mpaa",
         cor.vars = c("length":"votes"),
+        cor.vars.names = c("w", "x", "y", "z"),
         type = "np"
       )),
       what = "gg"

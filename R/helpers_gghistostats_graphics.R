@@ -58,8 +58,7 @@ histo_labeller <- function(plot,
 
   dat_temp <- data.frame(.temp = ".temp", "var" = x)
 
-  centrality_df <-
-    centrality_data(dat_temp, .temp, var, type = type, tr = tr, k = centrality.k)
+  centrality_df <- centrality_data(dat_temp, .temp, var, type = type, tr = tr, k = centrality.k)
 
   # -------------------------- centrality parameter ---------------------------
 
