@@ -19,6 +19,7 @@ utils::globalVariables(
     "parameter",
     "perc",
     "rowid",
+    ".rowid",
     "sd",
     "significance",
     "statistic",

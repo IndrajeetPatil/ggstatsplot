@@ -461,7 +461,6 @@ test_that(
         exclude.intercept = FALSE,
         sort = "ascending",
         effsize = "omega",
-        partial = TRUE,
         title = "mammalian sleep",
         subtitle = "Source: `ggplot2` package",
         caption = substitute(paste(italic("Note"), ": From `tidyverse`")),
@@ -957,5 +956,123 @@ test_that(
     pb <- ggplot2::ggplot_build(p)
 
     expect_equal(length(pb$data), 3L)
+  }
+)
+
+# duplicated terms -------------------------------------
+
+test_that(
+  desc = "duplicated terms",
+  code = {
+    skip_on_cran()
+
+    df <-
+      structure(
+        list(
+          term = c(
+            "(Intercept)", "x", "(Intercept)", "x",
+            "(Intercept)", "x"
+          ),
+          estimate = c(
+            29.3220715172958,
+            1.1244506550584,
+            29.9547605920406,
+            1.1822574944936,
+            30.6283792821576,
+            1.25165747424685
+          ),
+          std.error = c(
+            0.117485050182681,
+            0.255357284283965,
+            0.113389002110287,
+            0.16192823674221,
+            0.0997134241212493,
+            0.184844896331203
+          ),
+          ci.width = c(
+            95,
+            95, 95, 95, 95, 95
+          ),
+          conf.low = c(
+            29.0912440592861,
+            0.622740244041031,
+            29.7319807993548,
+            0.864110775323021,
+            30.4324684306615,
+            0.888485500622392
+          ),
+          conf.high = c(
+            29.5528989753056,
+            1.62616106607576,
+            30.1775403847265,
+            1.50040421366417,
+            30.8242901336538,
+            1.61482944787131
+          ),
+          statistic = c(
+            249.581299677722,
+            4.40344068590569,
+            264.176948685952,
+            7.30112004106952,
+            307.164050899648,
+            6.77139320094696
+          ),
+          df = c(498L, 498L, 498L, 498L, 498L, 498L),
+          p.value = c(
+            9.8364342079353e-78,
+            5.77239788522003e-05,
+            6.0849598304989e-79,
+            2.26914690385169e-09,
+            3.78325168389556e-82,
+            1.49961152818978e-08
+          ),
+          component = c(
+            "tau (0.25)",
+            "tau (0.25)",
+            "tau (0.50)",
+            "tau (0.50)",
+            "tau (0.75)",
+            "tau (0.75)"
+          )
+        ),
+        row.names = c(
+          NA,
+          6L
+        ),
+        pretty_names = c(`(Intercept)` = "(Intercept)", x = "x"),
+        ci = 0.95,
+        verbose = TRUE,
+        exponentiate = FALSE,
+        ordinal_model = FALSE,
+        model_class = "lqm",
+        bootstrap = FALSE,
+        iterations = 1000,
+        model_formula = "y ~ x",
+        coefficient_name = "Coefficient",
+        zi_coefficient_name = "Log-Odds",
+        digits = 2,
+        ci_digits = 2,
+        p_digits = 3,
+        class = "data.frame",
+        object_name = "fit.lqm"
+      )
+
+    p <- ggcoefstats(df, statistic = "t")
+
+    pb <- ggplot2::ggplot_build(p)
+
+    expect_equal(length(pb$data), 4L)
+
+    expect_identical(
+      pb$data[[4]]$label,
+      c(
+        "list(~widehat(italic(beta))==29.32, ~italic(t)(Inf)==249.58, ~italic(p)=='9.84e-78')",
+        "list(~widehat(italic(beta))==1.12, ~italic(t)(Inf)==4.40, ~italic(p)=='5.77e-05')",
+        "list(~widehat(italic(beta))==29.95, ~italic(t)(Inf)==264.18, ~italic(p)=='6.08e-79')",
+        "list(~widehat(italic(beta))==1.18, ~italic(t)(Inf)==7.30, ~italic(p)=='2.27e-09')",
+        "list(~widehat(italic(beta))==30.63, ~italic(t)(Inf)==307.16, ~italic(p)=='3.78e-82')",
+        "list(~widehat(italic(beta))==1.25, ~italic(t)(Inf)==6.77, ~italic(p)=='1.5e-08')"
+      )
+    )
   }
 )

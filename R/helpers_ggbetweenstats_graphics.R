@@ -282,11 +282,7 @@ aesthetic_addon <- function(plot,
                             ...) {
 
   # if no. of factor levels is greater than the default palette color count
-  palette_message(
-    package = package,
-    palette = palette,
-    min_length = length(unique(levels(x)))[[1]]
-  )
+  palette_message(package, palette, min_length = length(unique(levels(x)))[[1]])
 
   # modifying the plot
   plot <- plot +
@@ -358,4 +354,27 @@ outlier_df <- function(data, x, y, outlier.label, outlier.coef = 1.5, ...) {
       outlier = ifelse(isanoutlier, {{ outlier.label }}, NA)
     ) %>%
     dplyr::ungroup(.)
+}
+
+
+#' @title Switch expression making function
+#' @name function_switch
+#'
+#' @param test Decides which test to run (can be either `"t"` or
+#'   `"anova"`).
+#' @param element Which expression is needed (`"subtitle"` or `"caption"`)
+#' @param ... Arguments passed to respective subtitle helper functions.
+#'
+#' @importFrom statsExpressions expr_t_twosample expr_oneway_anova
+#' @importFrom rlang exec
+#'
+#' @noRd
+
+function_switch <- function(test, element, ...) {
+  # which function?
+  if (test == "t") .f <- statsExpressions::expr_t_twosample
+  if (test == "anova") .f <- statsExpressions::expr_oneway_anova
+
+  # evaluate it
+  suppressWarnings(suppressMessages(rlang::exec(.fn = .f, ...)))
 }

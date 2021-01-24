@@ -24,7 +24,6 @@ palette_message <- function(package, palette, min_length) {
 
   # if insufficient number of colors are available in a given palette
   if (palette_df$length[[1]] < min_length) {
-    # message to display
     message(cat(
       "Warning: Number of labels is greater than default palette color count.\n",
       "Try using another color `palette` (and/or `package`).\n"

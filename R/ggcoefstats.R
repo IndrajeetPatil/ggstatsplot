@@ -316,14 +316,13 @@ ggcoefstats <- function(x,
 
   # create a new term column if it's not present
   if (!"term" %in% names(tidy_df)) {
-    tidy_df %<>%
-      dplyr::mutate(term = dplyr::row_number()) %>%
-      dplyr::mutate(term = paste("term", term, sep = "_"))
+    tidy_df %<>% dplyr::mutate(term = paste("term", dplyr::row_number(), sep = "_"))
   }
 
   # ================ check for duplicate terms and columns ===================
 
   # a check if there are repeated terms
+  # needed for maov, lqm, lqmm, etc. kind of objects
   if (any(duplicated(dplyr::select(tidy_df, term)))) {
     tidy_df %<>%
       tidyr::unite(
@@ -355,10 +354,7 @@ ggcoefstats <- function(x,
     conf.int <- FALSE
   }
 
-  # ================================ intercept ================================
-
   # whether to show model intercept
-  # if not, remove the corresponding terms from the dataframe
   if (isTRUE(exclude.intercept)) tidy_df %<>% dplyr::filter(!grepl("(Intercept)", term, TRUE))
 
   # ========================== preparing label ================================
@@ -366,17 +362,13 @@ ggcoefstats <- function(x,
   # adding a column with labels to be used with `ggrepel`
   if (isTRUE(stats.labels)) {
     # in case a dataframe was entered, `x` and `tidy_df` are going to be same
-    if (isTRUE(insight::is_model(x))) {
-      statistic <- substring(tolower(insight::find_statistic(x)), 1, 1)
-    } else {
-      statistic <- substring(tolower(statistic), 1, 1)
-    }
+    if (isTRUE(insight::is_model(x))) statistic <- insight::find_statistic(x)
 
     # adding a column with labels using custom function
     tidy_df %<>%
       ggcoefstats_label_maker(
         tidy_df = .,
-        statistic = statistic,
+        statistic = substring(tolower(statistic), 1, 1),
         k = k,
         effsize = effsize
       )
@@ -387,10 +379,9 @@ ggcoefstats <- function(x,
   # for non-dataframe objects
   if (isTRUE(insight::is_model(x))) {
     # creating glance dataframe
-    glance_df <-
-      suppressWarnings(performance::model_performance(x, verbose = FALSE) %>%
-        parameters::standardize_names(data = ., style = "broom") %>%
-        as_tibble(.))
+    suppressWarnings(glance_df <-
+      performance::model_performance(x, verbose = FALSE) %>%
+      parameters::standardize_names(data = ., style = "broom"))
 
     # no meta-analysis in this context
     meta.analytic.effect <- FALSE
@@ -434,25 +425,23 @@ ggcoefstats <- function(x,
   # ========================== sorting ===================================
 
   # whether the term need to be arranged in any specified order
-  tidy_df %<>%
-    dplyr::mutate(term = as.factor(term)) %>%
-    dplyr::mutate(rowid = dplyr::row_number())
+  tidy_df %<>% dplyr::mutate(term = as.factor(term), .rowid = dplyr::row_number())
 
   # sorting factor levels
   new_order <-
     switch(
       sort,
-      "none" = order(tidy_df$rowid, decreasing = FALSE),
+      "none" = order(tidy_df$.rowid, decreasing = FALSE),
       "ascending" = order(tidy_df$estimate, decreasing = FALSE),
       "descending" = order(tidy_df$estimate, decreasing = TRUE),
-      order(tidy_df$rowid, decreasing = FALSE)
+      order(tidy_df$.rowid, decreasing = FALSE)
     )
 
   # sorting `term` factor levels according to new sorting order
   tidy_df %<>%
     dplyr::mutate(term = as.character(term)) %>%
     dplyr::mutate(term = factor(x = term, levels = term[new_order])) %>%
-    dplyr::select(-rowid)
+    dplyr::select(-.rowid)
 
   # ========================== basic plot ===================================
 
@@ -499,13 +488,10 @@ ggcoefstats <- function(x,
     if (isTRUE(stats.labels)) {
       # only significant p-value labels are shown
       if (isTRUE(only.significant) && "p.value" %in% names(tidy_df)) {
-        tidy_df %<>%
-          dplyr::mutate(
-            label = dplyr::case_when(
-              p.value >= 0.05 ~ NA_character_,
-              TRUE ~ label
-            )
-          )
+        tidy_df %<>% dplyr::mutate(label = dplyr::case_when(
+          p.value >= 0.05 ~ NA_character_,
+          TRUE ~ label
+        ))
       }
 
       # ========================== palette check =================================
@@ -570,8 +556,8 @@ ggcoefstats <- function(x,
     "plot" = plot,
     "subtitle" = subtitle,
     "caption" = caption,
-    "tidy" = tidy_df,
-    "glance" = glance_df,
+    "tidy" = as_tibble(tidy_df),
+    "glance" = as_tibble(glance_df),
     "plot"
   ))
 }

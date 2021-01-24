@@ -802,7 +802,7 @@ ggstatsplot::ggcoefstats(
 
 ## linear mixed-effects models with `lmerTest` (`lmerModLmerTest`)
 
-```{r lmerModLmerTest, width = 6, height = 16}
+```{r lmerModLmerTest, width = 8, height = 18}
 # setup
 set.seed(123)
 library(lmerTest)
@@ -2367,29 +2367,23 @@ ggstatsplot::ggcoefstats(
 
 ## Bayesian generalized linear mixed-effects models (`bglmerMod`)
 
-```{r bglmerMod, fig.height = 4, fig.width = 4}
+```{r bglmerMod, fig.height = 6, fig.width = 6}
 # for reproducibility
 set.seed(123)
 library(blme)
 
-# data
-y <- c(28, 8, -3, 7, -1, 1, 18, 12)
-sigma <- c(15, 10, 16, 11, 9, 11, 10, 18)
-g <- 1:8
-
 # model
-schools <-
-  blme::blmer(
-    y ~ 1 + (1 | g),
-    resid.prior = point,
+mod_bglmer <-
+  blme::bglmer(
+    formula = Reaction ~ Days + (1 + Days | Subject),
+    data = sleepstudy,
     cov.prior = NULL,
-    REML = FALSE,
-    weights = 1 / sigma^2
+    fixef.prior = normal
   )
 
 # plot
 ggstatsplot::ggcoefstats(
-  x = schools,
+  x = mod_bglmer,
   title = "Bayesian generalized linear mixed-effects models"
 )
 ```
@@ -2675,7 +2669,7 @@ ggstatsplot::combine_plots(
     x = lmrob(formula = Y ~ ., data = coleman),
     title = "robust linear model"
   ),
-  # arguments relevant for `combine_plots` function
+  # arguments relevant for `combine_plots`
   title.text = "Robust variants of `lmRob` and `glmRob` \n(from`robustbase` package)",
   nrow = 2
 )
