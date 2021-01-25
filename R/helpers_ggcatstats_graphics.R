@@ -1,6 +1,6 @@
-#'  @title A dataframe with descriptive labels
+#' @title A dataframe with descriptive labels
 #'
-#' @importFrom dplyr mutate
+#' @importFrom dplyr mutate case_when
 #' @importFrom rlang !! :=
 #'
 #' @noRd
@@ -13,26 +13,16 @@ df_descriptive <- function(data,
                            perc.k = 1,
                            ...) {
   # creating a dataframe with counts
-  data %<>% cat_counter(., {{ x }}, {{ y }})
-
-  # checking what needs to be displayed in a label
-  # only percentage
-  if (label.content %in% c("percentage", "perc", "proportion", "prop", "%")) {
-    data %<>% dplyr::mutate(.label = paste0(round(perc, perc.k), "%"))
-  }
-
-  # only raw counts
-  if (label.content %in% c("counts", "n", "count", "N")) {
-    data %<>% dplyr::mutate(.label = paste0(.prettyNum(counts)))
-  }
-
-  # both raw counts and percentages
-  if (label.content %in% c("both", "mix", "all", "everything")) {
-    data %<>% dplyr::mutate(.label = paste0(.prettyNum(counts), "\n", "(", round(perc, perc.k), "%)"))
-  }
-
-  # reorder the category factor levels to order the legend
-  return(data %<>% dplyr::mutate({{ x }} := factor({{ x }}, unique({{ x }}))))
+  cat_counter(data, {{ x }}, {{ y }}) %>%
+    dplyr::mutate(
+      .label = dplyr::case_when(
+        grepl("perc|prop", label.content) ~ paste0(round(perc, perc.k), "%"),
+        grepl("count|n|N", label.content) ~ paste0(.prettyNum(counts)),
+        TRUE ~ paste0(.prettyNum(counts), "\n", "(", round(perc, perc.k), "%)")
+      )
+    ) %>%
+    # reorder the category factor levels to order the legend
+    dplyr::mutate({{ x }} := factor({{ x }}, unique({{ x }})))
 }
 
 
@@ -80,9 +70,9 @@ df_proptest <- function(data, x, y, k = 2L, ...) {
         "(",
         df,
         ")==",
-        format_num(statistic, k = k),
+        format_num(statistic, k),
         ", ~italic(p)=='",
-        format_num(p.value, k = k, p.value = TRUE),
+        format_num(p.value, k, p.value = TRUE),
         "', ~italic(n)==",
         counts,
         ")"
